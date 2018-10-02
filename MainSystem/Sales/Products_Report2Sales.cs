@@ -1346,41 +1346,41 @@ namespace MainSystem
                 {
                     if (e.Column.ToString() == "الكود")
                     {
-                        //if (tipImage == null)
-                        //{
-                        //    if (row1["الكود"].ToString().Length >= 20)
-                        //    {
-                        //        tipImage = new TipImage(row1["Data_ID"].ToString(), "بند");
-                        //    }
-                        //    else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "طقم")
-                        //    {
-                        //        tipImage = new TipImage(row1["الكود"].ToString(), "طقم");
-                        //    }
-                        //    else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "عرض")
-                        //    {
-                        //        tipImage = new TipImage(row1["الكود"].ToString(), "عرض");
-                        //    }
-                        //    tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                        //    tipImage.Show();
-                        //}
-                        //else
-                        //{
-                        //    tipImage.Close();
-                        //    if (row1["الكود"].ToString().Length >= 20)
-                        //    {
-                        //        tipImage = new TipImage(row1["Data_ID"].ToString(), "بند");
-                        //    }
-                        //    else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "طقم")
-                        //    {
-                        //        tipImage = new TipImage(row1["الكود"].ToString(), "طقم");
-                        //    }
-                        //    else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "عرض")
-                        //    {
-                        //        tipImage = new TipImage(row1["الكود"].ToString(), "عرض");
-                        //    }
-                        //    tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                        //    tipImage.Show();
-                        //}
+                        if (tipImage == null)
+                        {
+                            if (row1["الكود"].ToString().Length >= 20)
+                            {
+                                tipImage = new TipImage(row1["Data_ID"].ToString(), "بند");
+                            }
+                            else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "طقم")
+                            {
+                                tipImage = new TipImage(row1["الكود"].ToString(), "طقم");
+                            }
+                            else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "عرض")
+                            {
+                                tipImage = new TipImage(row1["الكود"].ToString(), "عرض");
+                            }
+                            tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                            tipImage.Show();
+                        }
+                        else
+                        {
+                            tipImage.Close();
+                            if (row1["الكود"].ToString().Length >= 20)
+                            {
+                                tipImage = new TipImage(row1["Data_ID"].ToString(), "بند");
+                            }
+                            else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "طقم")
+                            {
+                                tipImage = new TipImage(row1["الكود"].ToString(), "طقم");
+                            }
+                            else if (row1["الاسم"].ToString().Split(')')[0].Split('(')[1] == "عرض")
+                            {
+                                tipImage = new TipImage(row1["الكود"].ToString(), "عرض");
+                            }
+                            tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                            tipImage.Show();
+                        }
                     }
 
                     else if (e.Column.ToString() == "الكمية")

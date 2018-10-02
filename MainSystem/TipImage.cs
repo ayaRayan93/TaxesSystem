@@ -16,6 +16,7 @@ namespace MainSystem
     public partial class TipImage : Form
     {
         string code = "";
+        string type = "";
         MySqlConnection dbconnection;
         byte[] bin;
         int bufferSize = 1024;
@@ -29,7 +30,15 @@ namespace MainSystem
             image = null;
             this.code = code;
         }
-
+        public TipImage(String code, String Type)
+        {
+            InitializeComponent();
+            dbconnection = new MySqlConnection(connection.connectionString);
+            bin = new byte[bufferSize];
+            image = null;
+            this.code = code;
+            type = Type;
+        }
         private void TipImage_Load(object sender, EventArgs e)
         {
             try

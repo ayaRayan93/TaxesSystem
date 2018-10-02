@@ -768,16 +768,16 @@ namespace MainSystem
         {
             try
             {
-                //if (SetUpdate.tipImage != null)
-                //{
-                //    SetUpdate.tipImage.Close();
-                //    SetUpdate.tipImage = null;
-                //}
-                //if (SetRecord.tipImage != null)
-                //{
-                //    SetRecord.tipImage.Close();
-                //    SetRecord.tipImage = null;
-                //}
+                if (SetUpdate.tipImage != null)
+                {
+                    SetUpdate.tipImage.Close();
+                    SetUpdate.tipImage = null;
+                }
+                if (SetRecord.tipImage != null)
+                {
+                    SetRecord.tipImage.Close();
+                    SetRecord.tipImage = null;
+                }
             }
             catch (Exception ex)
             {
