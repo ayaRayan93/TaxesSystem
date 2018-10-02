@@ -45,8 +45,16 @@ namespace MainSystem
             {
                 pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
                 pictureBox1.Image = Properties.Resources.Back_32;
-                Thread t1 = new Thread(displayImage);
-                t1.Start();
+                if (type != "")
+                {
+                    Thread t1 = new Thread(displayImageType);
+                    t1.Start();
+                }
+                else
+                {
+                    Thread t1 = new Thread(displayImage);
+                    t1.Start();
+                }
             }
             catch (Exception ex)
             {
@@ -85,6 +93,52 @@ namespace MainSystem
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox1.Image = Properties.Resources.Delete_52px;
                
+            }
+            dbconnection.Close();
+        }
+        public void displayImageType()
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "";
+                if (type == "بند")
+                {
+                    query = "select Photo from data_photo where Data_ID=" + code;
+                }
+                else if (type == "طقم")
+                {
+                    query = "select Photo from set_photo where Set_ID=" + code;
+                }
+                else if (type == "عرض")
+                {
+                    query = "select Photo from offer_photo where Offer_ID=" + code;
+                }
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+
+
+                if (com.ExecuteScalar() != null)
+                {
+                    bin = (byte[])com.ExecuteScalar();
+
+                    ms = new MemoryStream(bin);
+                    image = Image.FromStream(ms);
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox1.Image = image;
+                }
+                else
+                {
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox1.Image = Properties.Resources.Delete_52px;
+                }
+
+            }
+            catch
+            {
+                // MessageBox.Show(ex.Message);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBox1.Image = Properties.Resources.Delete_52px;
+
             }
             dbconnection.Close();
         }
