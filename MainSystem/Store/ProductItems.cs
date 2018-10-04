@@ -15,7 +15,7 @@ namespace MainSystem
 {
     public partial class ProductItems : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnectionreader;
         DataGridViewRow row1 = null;
         int id = -1;
         bool load = false;
@@ -28,9 +28,12 @@ namespace MainSystem
             {         
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnectionreader = new MySqlConnection(connection.connectionString);
                 mTC_Content.SelectedIndex = 6;
                 displayType();
                 txtType.Focus();
+                txtProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
+                txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
             catch (Exception e)
             {
@@ -548,14 +551,27 @@ namespace MainSystem
                         }
                         break;
                     case "txtProduct":
-                        if (comFactoryGroup.Text != "")
-                        {
-                            query = "select Product_ID as 'كود',Product_Name as 'الأسم' from Product where Product_Name like'" + txtProduct.Text + "%' and Group_ID=" + comFactoryGroup.SelectedValue;
-                            adapter = new MySqlDataAdapter(query, dbconnection);
-                            dtaple = new DataTable();
-                            adapter.Fill(dtaple);
-                            dataGridViewProduct.DataSource = dtaple;
-                        }
+                            if (comFactoryGroup.Text != "")
+                            {
+
+
+                                query = "select Product_ID as 'كود',Product_Name as 'الأسم' from Product where Product_Name like'" + txtProduct.Text + "%'";
+                                MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                                MySqlDataReader dr = comand.ExecuteReader();
+                                List<string> arr = new List<string>();
+                                while (dr.Read())
+                                {
+                                    arr.Add(dr["الأسم"].ToString());
+                                }
+                                dr.Close();
+                                string[] strarr = new string[arr.Count];
+                                arr.CopyTo(strarr);
+
+                                AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+                                collection.AddRange(strarr);
+
+                                txtProduct.AutoCompleteCustomSource = collection;
+                            }
                         break;
                     case "txtSort":
                         query = "select Sort_ID as 'كود',Sort_Value as 'الأسم' from Sort where Sort_Value like'" + txtSort.Text + "%'";
@@ -1362,7 +1378,12 @@ namespace MainSystem
                     }
                     else
                     {
-                        MessageBox.Show("This product already exist");
+                        int Product_ID = Convert.ToInt16(com.ExecuteScalar());
+                        query = "insert into product_factory (Product_ID,Factory_ID) values (@Product_ID,@Factory_ID)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.AddWithValue("@Product_ID", Product_ID);
+                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                        com.ExecuteNonQuery();
                     }
                 }
                 else
@@ -1382,64 +1403,88 @@ namespace MainSystem
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if ((txtGroup2.Text != "" || checkedListBox2.CheckedItems.Count > 0) && comFactoryGroup.Text != ""&& comTypeProduct.Text != "")
+                    if ((txtGroup2.Text != "" || checkedListBox2.CheckedItems.Count > 0) && comFactoryGroup.Text != "" && comTypeProduct.Text != "")
                     {
                         dbconnection.Open();
-                        string query = "select Product_ID from product where Product_Name = '" + txtProduct.Text+"'";
+                        string query = "select Product_ID from product where Product_Name = '" + txtProduct.Text + "'";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() == null)
                         {
                             if (txtProduct.Text != "")
                             {
-                                query = "insert into product (Product_Name,Type_ID,Factory_ID) values (@name,@Type_ID,@Factory_ID)";
+                                query = "insert into product (Product_Name,Type_ID) values (@name,@Type_ID)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.AddWithValue("@name", txtProduct.Text);
                                 com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comTypeProduct.SelectedValue));
-                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
                                 com.ExecuteNonQuery();
                                 query = "select Product_ID from product order by Product_ID desc limit 1";
                                 com = new MySqlCommand(query, dbconnection);
                                 int id = Convert.ToInt16(com.ExecuteScalar());
                                 if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني")
-                                { 
+                                {
                                     int Group_ID = 0;
                                     for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
                                     {
                                         Group_ID = Convert.ToInt16(checkedListBox2.CheckedItems[i].ToString().Split('\t')[1]);
-                                        query = "insert into product_group (Product_ID,Group_ID) values (@Product_ID,@Group_ID)";
+                                        query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                         com = new MySqlCommand(query, dbconnection);
                                         com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                         com.Parameters["@Product_ID"].Value = id;
                                         com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                         com.Parameters["@Group_ID"].Value = Group_ID;
+                                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
                                         com.ExecuteNonQuery();
                                     }
                                     displayProduct_Group(Group_ID);
+
+                                
+
                                 }
                                 else
                                 {
-                                    query = "insert into product_group (Product_ID,Group_ID) values (@Product_ID,@Group_ID)";
+                                    query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
-                                    com.Parameters.AddWithValue("@Product_ID",id);
+                                    com.Parameters.AddWithValue("@Product_ID", id);
                                     com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(comGroup.SelectedValue));
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
                                     com.ExecuteNonQuery();
                                     displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
                                 }
-                                //UserControl.UserRecord("product", "اضافة", id+"", DateTime.Now, dbconnection);
-
-                                
+                                //UserControl.UserRecord("product", "اضافة", id + "", DateTime.Now, dbconnection);
+                                MessageBox.Show("Done");
                                 txtProduct.Text = "";
                                 txtProduct.Focus();
                             }
                             else
                             {
                                 txtProduct.Focus();
-                               
+
                             }
                         }
                         else
                         {
-                            MessageBox.Show("This product already exist");
+                            int Product_ID = Convert.ToInt16(com.ExecuteScalar());
+                       
+                            for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
+                            {
+                                int Group_ID = Convert.ToInt16(checkedListBox2.CheckedItems[i].ToString().Split('\t')[1]);
+                                query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
+                                com.Parameters["@Product_ID"].Value = Product_ID;
+                                com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
+                                com.Parameters["@Group_ID"].Value = Group_ID;
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
+                                com.ExecuteNonQuery();
+                            }
+
+                            MessageBox.Show("Done");
+                            txtProduct.Text = "";
+                            txtProduct.Focus();
+                            displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
                         }
                     }
                     else
@@ -1476,7 +1521,7 @@ namespace MainSystem
             {
                 if (flagFactoryP)
                 {
-                    if (comTypeProduct.SelectedValue.ToString() != "1")
+                    if (comTypeProduct.Text != "سيراميك" && comTypeProduct.Text != "صيني")
                     {
                         string query = "select * from groupo where Factory_ID=" + comFactoryGroup.SelectedValue;
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -1491,6 +1536,7 @@ namespace MainSystem
                     }
                     else if (comTypeProduct.Text == "صيني")
                     {
+                        dbconnection.Open();
                         string query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where type.Type_ID=" + comTypeProduct.SelectedValue.ToString()+" and Factory_ID="+txtFactory2.Text;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         MySqlDataReader dr = com.ExecuteReader();
@@ -1500,6 +1546,13 @@ namespace MainSystem
                             checkedListBox2.Items.Add(dr["Group_Name"].ToString() + "\t" + dr["Group_ID"]);
 
                         dr.Close();
+
+                        checkedListBox2.Visible = true;
+                        btnSelectAll.Visible = true;
+                        comGroup.Visible = false;
+                        txtGroup2.Visible = false;
+                        label11.Visible = false;
+                        dbconnection.Close();
                     }
                     dataGridViewProduct.DataSource = null;
                     dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt16(comFactoryGroup.SelectedValue));
@@ -1589,9 +1642,9 @@ namespace MainSystem
                     flagFactoryP = false;
                     flagGroup = false;
                     txtType2.Text = comTypeProduct.SelectedValue.ToString();
-                    if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني")
+                    if (comTypeProduct.Text == "سيراميك" )
                     {
-                        string query = "select distinct factory.Factory_ID, Factory_Name from factory inner join type_factory on type_factory.Factory_ID=factory.Factory_ID where type_factory.Type_ID=" + comTypeProduct.SelectedValue.ToString();
+                        string query = "select distinct factory.Factory_ID, factory.Factory_Name from factory inner join type_factory on type_factory.Factory_ID=factory.Factory_ID where type_factory.Type_ID=" + comTypeProduct.SelectedValue.ToString();
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -1602,7 +1655,7 @@ namespace MainSystem
                         txtFactory2.Text = "";
 
                         dbconnection.Open();
-                        query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where groupo.Type_ID=" + comTypeProduct.SelectedValue.ToString();
+                        query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where type.Type_ID=" + comTypeProduct.SelectedValue.ToString() + " and Factory_ID=0";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         MySqlDataReader dr = com.ExecuteReader();
 
@@ -1611,6 +1664,9 @@ namespace MainSystem
                             checkedListBox2.Items.Add(dr["Group_Name"].ToString() + "\t" + dr["Group_ID"]);
 
                         dr.Close();
+
+                        dbconnection.Close();
+                    
 
                         checkedListBox2.Visible = true;
                         btnSelectAll.Visible = true;
@@ -1652,45 +1708,53 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Open();
+                dbconnectionreader.Open();
                 DataGridViewRow row1 = dataGridViewProduct.Rows[dataGridViewProduct.SelectedCells[0].RowIndex];
-                if (row1.Cells[1].Value.ToString() == "سيراميك")
+                if (row1.Cells[1].Value.ToString() == "سيراميك"|| row1.Cells[1].Value.ToString() == "صيني")
                 {
-                    dbconnection.Open();
+                    string query1 = "";
+                    if (row1.Cells[1].Value.ToString() == "سيراميك")
+                    {
+                        query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID  where type.Type_Name='" + row1.Cells[1].Value.ToString() + "' and Factory_ID=0";
+                    }
+                    else if (row1.Cells[1].Value.ToString() == "صيني")
+                    {
+                         query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID inner join factory on factory.Factory_ID=groupo.Factory_ID  where type.Type_Name='" + row1.Cells[1].Value.ToString() + "' and Factory_Name='" + row1.Cells[2].Value.ToString() + "'";
+                    }
                     btnSave_productUpdate.Visible = true;
                     checkedListBox2.Visible = true;
-                    string query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where type.Type_ID=" + comTypeProduct.SelectedValue.ToString() + " and Factory_ID=0";
-                    MySqlCommand com1 = new MySqlCommand(query1, dbconnection);
+                    MySqlCommand com1 = new MySqlCommand(query1, dbconnectionreader);
                     MySqlDataReader dr1 = com1.ExecuteReader();
 
                     checkedListBox2.Items.Clear();
                     while (dr1.Read())
                         checkedListBox2.Items.Add(dr1["Group_Name"].ToString() + "\t" + dr1["Group_ID"]);
-
                     dr1.Close();
-
+                    
                     comGroup.Visible = false;
                     txtGroup2.Visible = false;
                     label11.Visible = false;
                     if (row1 != null)
                     {
-                        txtProduct.Text = row1.Cells[4].Value.ToString();
-                        id = Convert.ToInt16(row1.Cells[0].Value.ToString());
-                        string query = "select Type_ID,Factory_ID from product where product.Product_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        MySqlDataReader dr2 = com.ExecuteReader();
 
-                        dr2.Read();
-                        
-                        string Factory_ID = dr2["Factory_ID"].ToString();
-                        txtType2.Text = dr2["Type_ID"].ToString();
-                        txtFactory2.Text = Factory_ID;
-                        
-                        dr2.Close();
-                        dbconnection.Close();
+                        txtProduct.Text = row1.Cells[4].Value.ToString();
                         dbconnection.Open();
-                        query = "select Group_ID from product inner join product_group on product.Product_ID=product_group.Product_ID  where product.Product_ID=" + id;
+                        id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        string query = "select Type_ID from product where product.Product_ID=" + id;
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        
+                        txtType2.Text =com.ExecuteScalar().ToString();
+                        dbconnection.Open();
+                        query = "select Factory_ID from product_factory_group where Product_ID=" + id+" limit 1";
                         com = new MySqlCommand(query, dbconnection);
-                        dr2 = com.ExecuteReader();
+                        txtFactory2.Text = com.ExecuteScalar().ToString();
+                        dbconnection.Open();
+
+
+                        query = "select Group_ID from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  where product.Product_ID=" + id;
+                        com = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr2 = com.ExecuteReader();
                         List<int> idList = new List<int>();
 
                         while (dr2.Read())
@@ -1698,9 +1762,7 @@ namespace MainSystem
                             idList.Add(Convert.ToInt16(dr2["Group_ID"].ToString()));
                         }
                         dr2.Close();
-                        dbconnection.Close();
-                        
-                       
+     
                         for (int i = 0; i < checkedListBox2.Items.Count; i++)
                         {
                             int Group_ID = Convert.ToInt16(checkedListBox2.Items[i].ToString().Split('\t')[1]);
@@ -1724,6 +1786,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnectionreader.Close();
         }
         private void btnSave_productUpdate_Click(object sender, EventArgs e)
         {
@@ -1739,14 +1802,13 @@ namespace MainSystem
                     {
                         if (txtProduct.Text != "")
                         {
-                            query = "update  product set Product_Name=@name,Type_ID=@Type_ID,Factory_ID=@Factory_ID where Product_ID="+id;
+                            query = "update  product set Product_Name=@name,Type_ID=@Type_ID where Product_ID="+id;
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtProduct.Text);
                             com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(txtType2.Text));
-                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(txtFactory2.Text));
-                            com.ExecuteNonQuery();
+                           com.ExecuteNonQuery();
 
-                            query = "delete from product_group where Product_ID="+id;
+                            query = "delete from product_factory_Group where Product_ID=" + id;
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
 
@@ -1756,12 +1818,14 @@ namespace MainSystem
                                 for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
                                 {
                                     Group_ID = Convert.ToInt16(checkedListBox2.CheckedItems[i].ToString().Split('\t')[1]);
-                                    query = "insert into product_group (Product_ID,Group_ID) values (@Product_ID,@Group_ID)";
+                                    query = "insert into product_factory_Group (Product_ID,Group_ID,Factory_ID) values (@Product_ID,@Group_ID,@Factory_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                     com.Parameters["@Product_ID"].Value = id;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(txtFactory2.Text));
+
                                     com.ExecuteNonQuery();
                                 }
                                 displayProduct_Group(Group_ID);
@@ -2477,7 +2541,7 @@ namespace MainSystem
         #region functions of product tap    
         public void displayProductAll()
         {
-            string query = "select distinct  product.Product_ID as 'كود', Type_Name as 'النوع',Factory_Name as 'المصنع', Group_Name as 'المجموعة',Product_Name as 'الصنف' from product inner join product_group on product.Product_ID=product_group.Product_ID inner join  groupo on product_group.Group_ID=groupo.Group_ID inner join  factory on product.Factory_ID=factory.Factory_ID inner join  type on product.Type_ID=type.Type_ID   order by product.Product_ID";
+            string query = "select distinct  product.Product_ID as 'كود', Type_Name as 'النوع',Factory_Name as 'المصنع', Group_Name as 'المجموعة',Product_Name as 'الصنف' from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID   inner join  groupo on product_factory_Group.Group_ID=groupo.Group_ID inner join  factory on product_factory_group.Factory_ID=factory.Factory_ID inner join  type on product.Type_ID=type.Type_ID   order by product.Product_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -2486,7 +2550,7 @@ namespace MainSystem
         }
         public object displayProduct_Type(int type_id)
         {
-            string query = "select distinct product.Product_ID as 'كود' ,Factory_Name as 'المصنع', Group_Name as 'المجموعة',Product_Name as 'الصنف' from product join product_group on product.Product_ID=product_group.Product_ID  inner join  groupo on product_group.Group_ID=groupo.Group_ID inner join  factory on product.Factory_ID=factory.Factory_ID inner join  type on product.Type_ID=type.Type_ID where product.Type_ID=" + type_id + " order by product.Product_ID";
+            string query = "select distinct product.Product_ID as 'كود' ,Factory_Name as 'المصنع', Group_Name as 'المجموعة',Product_Name as 'الصنف' from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  inner join  groupo on product_factory_Group.Group_ID=groupo.Group_ID  inner join  factory on product_factory_group.Factory_ID=factory.Factory_ID inner join  type on product.Type_ID=type.Type_ID where product.Type_ID=" + type_id + " order by product.Product_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -2494,7 +2558,7 @@ namespace MainSystem
         }
         public object displayProduct_Factory(int factory_id)
         {
-            string query = "select distinct  product.Product_ID as 'كود' , Group_Name as 'المجموعة',Product_Name as 'الصنف' from product join product_group on product.Product_ID=product_group.Product_ID  inner join  groupo on product_group.Group_ID=groupo.Group_ID   where product.Type_ID=" + txtType2.Text + " and product.Factory_ID=" + factory_id+ " order by product.Product_ID";
+            string query = "select distinct  product.Product_ID as 'كود' , Group_Name as 'المجموعة',Product_Name as 'الصنف' from product join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  inner join  groupo on product_factory_Group.Group_ID=groupo.Group_ID   where product.Type_ID=" + txtType2.Text + " and product_factory_group.Factory_ID=" + factory_id+ " order by product.Product_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -2504,7 +2568,7 @@ namespace MainSystem
         {
             if (txtType2.Text != "" && txtFactory2.Text != "" && (txtGroup2.Text != ""||checkedListBox2.CheckedItems.Count>0))
             {
-                string query = "select distinct  product.Product_ID as 'كود' ,Product_Name as 'الصنف' from product inner join product_group on product.Product_ID=product_group.Product_ID  where product.Type_ID=" + txtType2.Text + " and product.Factory_ID=" + txtFactory2.Text + " and product_group.Group_ID="+ groupID + "  order by product.Product_ID";
+                string query = "select distinct  product.Product_ID as 'كود' ,Product_Name as 'الصنف' from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID   where product.Type_ID=" + txtType2.Text + " and product_factory_group.Factory_ID=" + txtFactory2.Text + " and product_factory_Group.Group_ID=" + groupID + "  order by product.Product_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -2514,7 +2578,7 @@ namespace MainSystem
         }
         public void displayProduct()
         {
-            string query = "select distinct Product_ID as 'كود' ,Product_Name as 'الصنف' from product join product_group on product.Product_ID=product_group.Product_ID   where product.Type_ID=" + txtType2.Text + " and product.Factory_ID=" + txtFactory2.Text + " and  product_group.Group_ID=" + txtGroup2.Text + " order by product.Product_ID";
+            string query = "select distinct Product_ID as 'كود' ,Product_Name as 'الصنف' from product join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID   where product.Type_ID=" + txtType2.Text + " and product_factory_group.Factory_ID=" + txtFactory2.Text + " and  product_factory_Group.Group_ID=" + txtGroup2.Text + " order by product.Product_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);

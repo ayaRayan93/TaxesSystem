@@ -384,7 +384,8 @@ namespace MainSystem
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
-                                    comProduct.Text = Name;
+                                    comType.Text = Name;
+                                    
                                     makeCode(txtCodePart1);
                                     txtCodePart2.Focus();
                                     dbconnection.Close();
@@ -402,7 +403,7 @@ namespace MainSystem
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
-                                    comProduct.Text = Name;
+                                    comFactory.Text = Name;
                                     makeCode(txtCodePart2);
                                     txtCodePart3.Focus();
                                     dbconnection.Close();
@@ -420,7 +421,7 @@ namespace MainSystem
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
-                                    comProduct.Text = Name;
+                                    comGroup.Text = Name;
                                     makeCode(txtCodePart3);
                                     txtCodePart4.Focus();
                                     dbconnection.Close();

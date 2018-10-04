@@ -289,7 +289,7 @@ namespace MainSystem
 
             xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
-            UpdateSellPriceForm objForm = new UpdateSellPriceForm(rows, productsSellPriceForm, query, xtraTabControlSalesContent);
+            UpdateSellPrice objForm = new UpdateSellPrice(rows, productsSellPriceForm, query, xtraTabControlSalesContent);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

@@ -72,7 +72,6 @@ namespace MainSystem
             tabPageInformationOffers = new XtraTabPage();
             panelInformationOffers = new Panel();
             
-
             tabControlPointSale = xtraTabControlPointSale;
         }
 

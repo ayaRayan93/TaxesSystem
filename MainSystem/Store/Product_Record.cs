@@ -171,7 +171,7 @@ namespace MainSystem
                             {
                                 txtGroup.Text = comGroup.SelectedValue.ToString();
 
-                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_group on product.Product_ID=product_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product.Factory_ID=" + txtFactory.Text + " and product_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
+                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
                                 MySqlDataAdapter da3 = new MySqlDataAdapter(query3, conn);
                                 DataTable dt3 = new DataTable();
                                 da3.Fill(dt3);
