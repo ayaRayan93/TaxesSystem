@@ -26,6 +26,7 @@ namespace MainSystem
 
         public static bool loadedPrintCustomer = false;
 
+
         public static Customer_Report CustomerReport;
         public static Products_Report ProductsReport;
         public static ProductsDetails_Report ProductsDetailsReport;
