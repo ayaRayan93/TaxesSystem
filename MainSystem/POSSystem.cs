@@ -35,6 +35,7 @@ namespace MainSystem
         public static Information_Sets InformationSets;
         public static Information_Offers InformationOffers;
 
+
         XtraTabPage tabPageCustomerReport;
         Panel panelCustomerReport;
         public static XtraTabPage tabPageProductsReport;
