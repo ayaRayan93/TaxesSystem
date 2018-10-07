@@ -2403,7 +2403,8 @@ namespace MainSystem
             {
                 if (DashBillNum != 0)
                 {
-                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, EmpBranchId);
+                    int DelegateId = UserControl.LoginDelegate(dbconnection);
+                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, EmpBranchId, DelegateId);
                     soForm.ShowDialog();
                 }
                 else

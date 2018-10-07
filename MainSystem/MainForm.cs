@@ -311,8 +311,6 @@ namespace MainSystem
                 item.Appearance.ForeColor = Color.Black;
             }
         }
-
-       
     }
 
 
