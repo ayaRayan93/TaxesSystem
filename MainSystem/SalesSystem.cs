@@ -400,7 +400,8 @@ namespace MainSystem
             MySqlCommand command = new MySqlCommand(query, dbconnection);
             dbconnection.Open();
             string reader = command.ExecuteScalar().ToString();
-            labelNotify.Text = reader;
+            labNotify.Text = reader;
+            labNotify.Visible = true;
         }
     }
 }
