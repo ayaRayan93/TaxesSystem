@@ -33,17 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\User\Desktop\AxInterop.WMPLib\AxInterop.WMPLib.dll</HintPath>
+    <Reference Include="AxInterop.WMPLib">
+      <HintPath>D:\sara\Codes\PointSale_DX\EmployeeAttendance\EmployeeAttendance\bin\Debug\AxInterop.WMPLib.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Bunifu_UI_v1.5.3.dll</HintPath>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>D:\sara\Codes\Bank_DX\BankDX\BankDX\BankDX\BankDX\bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -89,7 +87,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Interop.WMPLib">
-      <HintPath>C:\Users\User\Desktop\Interop.WMPLib\Interop.WMPLib.dll</HintPath>
+      <HintPath>D:\sara\Codes\PointSale_DX\EmployeeAttendance\EmployeeAttendance\bin\Debug\Interop.WMPLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
@@ -104,9 +102,9 @@
       <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.12\lib\net452\MySql.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\sara\Codes\Bank_DX\BankDX\BankDX\BankDX\BankDX\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -731,7 +729,7 @@
     <Compile Include="PointOfSale\AddSpecialOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PointOfSale\AddSpecialOrder.Designer.cs">
+    <Compile Include="PointOfSale\AddSpecialOrder.designer.cs">
       <DependentUpon>AddSpecialOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="PointOfSale\BillDetails_Confirm.cs">
@@ -925,6 +923,12 @@
     <Compile Include="Sales\QuantityUpdate2Sales.designer.cs">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\SpecialOrders_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\SpecialOrders_Report.designer.cs">
+      <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\UpdateSellPrice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -936,12 +940,6 @@
     </Compile>
     <Compile Include="Sales\SetSellPrice.Designer.cs">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\SpecialOrders_Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\SpecialOrders_Report.designer.cs">
-      <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\SpecialOrder_Request.cs">
       <SubType>Form</SubType>
@@ -1487,14 +1485,14 @@
     <EmbeddedResource Include="Sales\QuantityUpdate2Sales.resx">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\SpecialOrders_Report.resx">
+      <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\UpdateSellPrice.resx">
       <DependentUpon>UpdateSellPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SetSellPrice.resx">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\SpecialOrders_Report.resx">
-      <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SpecialOrder_Request.resx">
       <DependentUpon>SpecialOrder_Request.cs</DependentUpon>

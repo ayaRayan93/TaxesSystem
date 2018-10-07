@@ -307,13 +307,14 @@
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
-            this.labelNotify = new System.Windows.Forms.Label();
-            this.pictureBoxBell = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labNotify = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBoxCar = new System.Windows.Forms.PictureBox();
+            this.labNotify = new System.Windows.Forms.Label();
+            this.labelNotify = new System.Windows.Forms.Label();
+            this.pictureBoxSale = new System.Windows.Forms.PictureBox();
+            this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -342,9 +343,9 @@
             this.panMain.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBell)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControlMainContainer
@@ -2784,9 +2785,12 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
+            this.panHeader.Controls.Add(this.label2);
+            this.panHeader.Controls.Add(this.pictureBoxCar);
+            this.panHeader.Controls.Add(this.labNotify);
             this.panHeader.Controls.Add(this.labelNotify);
+            this.panHeader.Controls.Add(this.pictureBoxSale);
             this.panHeader.Controls.Add(this.pictureBoxBell);
-            this.panHeader.Controls.Add(this.panel1);
             this.panHeader.Controls.Add(this.label1);
             this.panHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panHeader.Location = new System.Drawing.Point(0, 0);
@@ -2794,69 +2798,6 @@
             this.panHeader.Name = "panHeader";
             this.panHeader.Size = new System.Drawing.Size(1177, 42);
             this.panHeader.TabIndex = 0;
-            // 
-            // labelNotify
-            // 
-            this.labelNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelNotify.AutoSize = true;
-            this.labelNotify.BackColor = System.Drawing.Color.Red;
-            this.labelNotify.ForeColor = System.Drawing.Color.White;
-            this.labelNotify.Location = new System.Drawing.Point(599, 7);
-            this.labelNotify.Name = "labelNotify";
-            this.labelNotify.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelNotify.Size = new System.Drawing.Size(13, 13);
-            this.labelNotify.TabIndex = 5;
-            this.labelNotify.Text = "0";
-            this.labelNotify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelNotify.Visible = false;
-            // 
-            // pictureBoxBell
-            // 
-            this.pictureBoxBell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxBell.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxBell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxBell.Image = global::MainSystem.Properties.Resources.Shopping_Cart_30px;
-            this.pictureBoxBell.ImageLocation = "";
-            this.pictureBoxBell.Location = new System.Drawing.Point(564, 4);
-            this.pictureBoxBell.Name = "pictureBoxBell";
-            this.pictureBoxBell.Size = new System.Drawing.Size(44, 34);
-            this.pictureBoxBell.TabIndex = 4;
-            this.pictureBoxBell.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.labNotify);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(812, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(63, 36);
-            this.panel1.TabIndex = 3;
-            // 
-            // labNotify
-            // 
-            this.labNotify.AutoSize = true;
-            this.labNotify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labNotify.ForeColor = System.Drawing.Color.White;
-            this.labNotify.Location = new System.Drawing.Point(24, 14);
-            this.labNotify.Name = "labNotify";
-            this.labNotify.Size = new System.Drawing.Size(19, 13);
-            this.labNotify.TabIndex = 4;
-            this.labNotify.Text = "12";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Image = global::MainSystem.Properties.Resources.Notification_20px_1;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 34);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -2866,14 +2807,100 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(924, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 23);
+            this.label1.Size = new System.Drawing.Size(192, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "المركز التجاري للسراميك";
+            this.label1.Text = "المركز التجاري للسيراميك";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Red;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(818, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(13, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "0";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Visible = false;
+            // 
+            // pictureBoxCar
+            // 
+            this.pictureBoxCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxCar.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxCar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxCar.Image = global::MainSystem.Properties.Resources.Car_Service_50px;
+            this.pictureBoxCar.ImageLocation = "";
+            this.pictureBoxCar.Location = new System.Drawing.Point(779, 4);
+            this.pictureBoxCar.Name = "pictureBoxCar";
+            this.pictureBoxCar.Size = new System.Drawing.Size(44, 34);
+            this.pictureBoxCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCar.TabIndex = 12;
+            this.pictureBoxCar.TabStop = false;
+            // 
+            // labNotify
+            // 
+            this.labNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labNotify.AutoSize = true;
+            this.labNotify.BackColor = System.Drawing.Color.Red;
+            this.labNotify.ForeColor = System.Drawing.Color.White;
+            this.labNotify.Location = new System.Drawing.Point(906, 5);
+            this.labNotify.Name = "labNotify";
+            this.labNotify.Size = new System.Drawing.Size(13, 13);
+            this.labNotify.TabIndex = 9;
+            this.labNotify.Text = "0";
+            this.labNotify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labNotify.Visible = false;
+            // 
+            // labelNotify
+            // 
+            this.labelNotify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNotify.AutoSize = true;
+            this.labelNotify.BackColor = System.Drawing.Color.Red;
+            this.labelNotify.ForeColor = System.Drawing.Color.White;
+            this.labelNotify.Location = new System.Drawing.Point(863, 5);
+            this.labelNotify.Name = "labelNotify";
+            this.labelNotify.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelNotify.Size = new System.Drawing.Size(13, 13);
+            this.labelNotify.TabIndex = 11;
+            this.labelNotify.Text = "0";
+            this.labelNotify.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelNotify.Visible = false;
+            // 
+            // pictureBoxSale
+            // 
+            this.pictureBoxSale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxSale.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSale.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxSale.Image = global::MainSystem.Properties.Resources.Notification_20px_1;
+            this.pictureBoxSale.ImageLocation = "";
+            this.pictureBoxSale.Location = new System.Drawing.Point(876, 4);
+            this.pictureBoxSale.Name = "pictureBoxSale";
+            this.pictureBoxSale.Size = new System.Drawing.Size(44, 34);
+            this.pictureBoxSale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxSale.TabIndex = 8;
+            this.pictureBoxSale.TabStop = false;
+            this.pictureBoxSale.Click += new System.EventHandler(this.pictureBoxSale_Click);
+            // 
+            // pictureBoxBell
+            // 
+            this.pictureBoxBell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxBell.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxBell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxBell.Image = global::MainSystem.Properties.Resources.Shopping_Cart_30px;
+            this.pictureBoxBell.ImageLocation = "";
+            this.pictureBoxBell.Location = new System.Drawing.Point(828, 4);
+            this.pictureBoxBell.Name = "pictureBoxBell";
+            this.pictureBoxBell.Size = new System.Drawing.Size(44, 34);
+            this.pictureBoxBell.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxBell.TabIndex = 10;
+            this.pictureBoxBell.TabStop = false;
             // 
             // MainForm
             // 
@@ -2915,10 +2942,9 @@
             this.panContent.ResumeLayout(false);
             this.panHeader.ResumeLayout(false);
             this.panHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBell)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3188,11 +3214,12 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem129;
         private DevExpress.XtraNavBar.NavBarItem navBarItem130;
         private DevExpress.XtraNavBar.NavBarItem navBarItem131;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labNotify;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBoxCar;
+        private System.Windows.Forms.Label labNotify;
         private System.Windows.Forms.Label labelNotify;
+        private System.Windows.Forms.PictureBox pictureBoxSale;
         private System.Windows.Forms.PictureBox pictureBoxBell;
     }
 }

@@ -26,6 +26,7 @@ namespace MainSystem
 
         public static bool loadedPrintCustomer = false;
 
+
         public static Customer_Report CustomerReport;
         public static Products_Report ProductsReport;
         public static ProductsDetails_Report ProductsDetailsReport;
@@ -33,6 +34,7 @@ namespace MainSystem
         public static Information_Products InformationProducts;
         public static Information_Sets InformationSets;
         public static Information_Offers InformationOffers;
+
 
         XtraTabPage tabPageCustomerReport;
         Panel panelCustomerReport;

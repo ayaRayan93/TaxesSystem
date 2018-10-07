@@ -18,13 +18,15 @@ namespace MainSystem
         int DashBillNum = 0;
         int EmpBranchId = 0;
         int branchBillNumber = 0;
+        int DelegateId = 0;
 
-        public AddSpecialOrder(int dashBillNum, int empBranchId)
+        public AddSpecialOrder(int dashBillNum, int empBranchId, int delegateId)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             DashBillNum = dashBillNum;
             EmpBranchId = empBranchId;
+            DelegateId = delegateId;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -85,7 +87,7 @@ namespace MainSystem
             string BranchName = com.ExecuteScalar().ToString();
             
 
-            query = "insert into requests (Branch_ID,Branch_Name,BranchBillNumber,SpecialOrder_ID) values (@Branch_ID,@Branch_Name,@BranchBillNumber,@SpecialOrder_ID)";
+            query = "insert into requests (Branch_ID,Branch_Name,BranchBillNumber,SpecialOrder_ID,Delegate_ID,Client_ID) values (@Branch_ID,@Branch_Name,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID,@Client_ID)";
             com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
             com.Parameters["@Branch_ID"].Value = EmpBranchId;
@@ -95,6 +97,8 @@ namespace MainSystem
             com.Parameters["@BranchBillNumber"].Value = branchBillNumber;
             com.Parameters.Add("@SpecialOrder_ID", MySqlDbType.Int16);
             com.Parameters["@SpecialOrder_ID"].Value = SpecialOrderID;
+            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
+            com.Parameters["@Delegate_ID"].Value = DelegateId;
             com.ExecuteNonQuery();
         }
     }

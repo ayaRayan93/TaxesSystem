@@ -204,14 +204,14 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }*/
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        
+        private void pictureBoxSale_Click(object sender, EventArgs e)
         {
             try
             {
                 if (flag == false)
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
+                    xtraTabControlMainContainer.TabPages.Insert(1, SalesTP);
                     flag = true;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[1];
@@ -236,7 +236,7 @@ namespace MainSystem
             }
         }
 
-    
+
         //functions
         //Products sell price
         public void bindDisplayProductsSellPriceForm(XtraTabPage xtraTabPage)
