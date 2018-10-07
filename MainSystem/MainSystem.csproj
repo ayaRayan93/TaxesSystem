@@ -33,17 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\User\Desktop\AxInterop.WMPLib\AxInterop.WMPLib.dll</HintPath>
+    <Reference Include="AxInterop.WMPLib">
+      <HintPath>D:\sara\Codes\PointSale_DX\EmployeeAttendance\EmployeeAttendance\bin\Debug\AxInterop.WMPLib.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bunifu_UI_v1.5.3, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Bunifu_UI_v1.5.3.dll</HintPath>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>D:\sara\Codes\Bank_DX\BankDX\BankDX\BankDX\BankDX\bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -89,7 +87,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Interop.WMPLib">
-      <HintPath>C:\Users\User\Desktop\Interop.WMPLib\Interop.WMPLib.dll</HintPath>
+      <HintPath>D:\sara\Codes\PointSale_DX\EmployeeAttendance\EmployeeAttendance\bin\Debug\Interop.WMPLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
