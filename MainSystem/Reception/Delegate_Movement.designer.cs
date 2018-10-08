@@ -132,7 +132,7 @@
             this.colDelegateID.Caption = "التسلسل";
             this.colDelegateID.FieldName = "DelegateId";
             this.colDelegateID.Name = "colDelegateID";
-            this.colDelegateID.Width = 250;
+            this.colDelegateID.Width = 200;
             // 
             // colDelegate
             // 
@@ -144,7 +144,7 @@
             this.colDelegate.OptionsColumn.ReadOnly = true;
             this.colDelegate.Visible = true;
             this.colDelegate.VisibleIndex = 1;
-            this.colDelegate.Width = 250;
+            this.colDelegate.Width = 215;
             // 
             // repositoryItemTextEdit1
             // 
@@ -160,7 +160,7 @@
             this.colStatus.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colStatus.Visible = true;
             this.colStatus.VisibleIndex = 2;
-            this.colStatus.Width = 250;
+            this.colStatus.Width = 209;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -178,7 +178,7 @@
             this.colButton.OptionsColumn.AllowEdit = false;
             this.colButton.Visible = true;
             this.colButton.VisibleIndex = 3;
-            this.colButton.Width = 55;
+            this.colButton.Width = 28;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -191,10 +191,12 @@
             // colTimer
             // 
             this.colTimer.Caption = "المدة";
+            this.colTimer.FieldName = "StatusTimer";
             this.colTimer.Name = "colTimer";
+            this.colTimer.OptionsColumn.AllowEdit = false;
             this.colTimer.Visible = true;
             this.colTimer.VisibleIndex = 4;
-            this.colTimer.Width = 100;
+            this.colTimer.Width = 150;
             // 
             // colAttend
             // 
@@ -205,7 +207,7 @@
             this.colAttend.OptionsColumn.ReadOnly = true;
             this.colAttend.Visible = true;
             this.colAttend.VisibleIndex = 5;
-            this.colAttend.Width = 152;
+            this.colAttend.Width = 150;
             // 
             // colDeparture
             // 
@@ -216,7 +218,7 @@
             this.colDeparture.OptionsColumn.ReadOnly = true;
             this.colDeparture.Visible = true;
             this.colDeparture.VisibleIndex = 6;
-            this.colDeparture.Width = 152;
+            this.colDeparture.Width = 150;
             // 
             // repositoryItemColorEdit1
             // 

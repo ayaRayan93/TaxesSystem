@@ -13,6 +13,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace MainSystem
 {
@@ -191,7 +192,7 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("There are unsave Pages To you wound close anyway?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        Environment.Exit(0);
+                        Application.Exit();
                     }
                     else if (dialogResult == DialogResult.No)
                     {
@@ -311,8 +312,6 @@ namespace MainSystem
                 item.Appearance.ForeColor = Color.Black;
             }
         }
-
-       
     }
 
 

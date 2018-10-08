@@ -45,7 +45,7 @@ namespace MainSystem
         public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
 
         Timer timer = new Timer();
-
+        
         public Delegate_Movement()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace MainSystem
             timer.Interval = 1000 * 60;
             timer.Tick += new EventHandler(CalculateWorkingTime);
             timer.Start();
-
+            
             //Registration of delegates latecomers absence
             var DailyTime = "11:00:00";
             var timeParts = DailyTime.Split(new char[1] { ':' });
@@ -120,6 +120,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     string query = "";
+                    TimeSpan statustime = new TimeSpan();
                     if (e.Action == CollectionChangeAction.Add)
                     {
                         if (Convert.ToInt16(gridView1.GetFocusedRowCellValue(colStatus)) == 4)
@@ -136,10 +137,12 @@ namespace MainSystem
                             gridView1.SetFocusedRowCellValue(colStatus, 1);
                             gridView1.Columns[3].ColumnEdit = repositoryItemButtonEdit1;
                             gridView1.SetFocusedRowCellValue(colAttend, DateTime.Now.ToString("HH:mm:ss"));
+                            gridView1.SetFocusedRowCellValue(colTimer, statustime);
                             //repositoryItemButtonEdit1.Appearance.Image = Properties.Resources.icons8_Protect_16;
                             MySqlCommand command = new MySqlCommand(query, dbconnection);
                             dbconnection.Open();
                             command.ExecuteNonQuery();
+                            
                             gridView1.FocusedRowHandle += 1;
                             gridView1.FocusedRowHandle -= 1;
                         }
@@ -159,6 +162,7 @@ namespace MainSystem
                         gridView1.SetFocusedRowCellValue(colStatus, 4);
                         gridView1.SetFocusedRowCellValue(colDeparture, DateTime.Now.ToString("HH:mm:ss"));
                         gridView1.Columns[3].ColumnEdit = repositoryItemButtonEdit1;
+                        gridView1.SetFocusedRowCellValue(colTimer, statustime);
                         //repositoryItemButtonEdit1.Appearance.Image = Properties.Resources.icons8_Warning_Shield_16;
                         MySqlCommand command = new MySqlCommand(query, dbconnection);
                         dbconnection.Open();
@@ -236,6 +240,9 @@ namespace MainSystem
                 if (gridView1.IsRowSelected(gridView1.FocusedRowHandle))
                 {
                     LookUpEdit edit = sender as LookUpEdit;
+
+                    ResetStatusTime();
+                    
                     if (Convert.ToInt32(edit.EditValue) == 2)
                     {
                         dbconnection.Open();
@@ -663,6 +670,8 @@ namespace MainSystem
             {
                 TimeSpan dt = new TimeSpan();
                 TimeSpan atime = new TimeSpan();
+                TimeSpan stattime = new TimeSpan();
+
                 string query = "SELECT attendance.Status FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'";
                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                 if (command.ExecuteScalar() != null)
@@ -694,7 +703,7 @@ namespace MainSystem
                     }
 
                     dbconnection5.Open();
-                    MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection5);
+                    MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time',cast(Status_Duration as time) as 'Status_Duration' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection5);
                     MySqlDataReader dr2 = adapter2.ExecuteReader();
                     if (dr2.HasRows)
                     {
@@ -702,9 +711,12 @@ namespace MainSystem
                         {
                             if (TimeSpan.TryParse(dr2["Departure_Time"].ToString(), out dt))
                             { }
+                            if (TimeSpan.TryParse(dr2["Status_Duration"].ToString(), out stattime))
+                            { }
 
                             gridView1.SetRowCellValue(i, colAttend, TimeSpan.Parse(dr2["Attendance_Time"].ToString()));
                             gridView1.SetRowCellValue(i, colDeparture, dt);
+                            gridView1.SetRowCellValue(i, colTimer, stattime);
                             //lista.Add(new GridData() { DelegateId = Convert.ToInt16(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1", AttendId = TimeSpan.Parse(dr2["Attendance_Time"].ToString()), DepartureId = dt });
                         }
                         dr2.Close();
@@ -718,6 +730,7 @@ namespace MainSystem
                     gridView1.Columns[3].ColumnEdit = repositoryItemButtonEdit1;
                     gridView1.SetRowCellValue(i, colAttend, atime);
                     gridView1.SetRowCellValue(i, colDeparture, dt);
+                    gridView1.SetRowCellValue(i, colTimer, stattime);
                 }
             }
             dbconnection.Close();
@@ -728,13 +741,13 @@ namespace MainSystem
         {
             try
             {
+                dbconnection2.Open();
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
                     if (gridView1.GetRowCellDisplayText(i, colStatus).ToString() == "مشغول")
                     {
                         string query = "SELECT distinct Busy_Duration FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
                         MySqlCommand command = new MySqlCommand(query, dbconnection2);
-                        dbconnection2.Open();
                         double reader = Convert.ToDouble(command.ExecuteScalar());
 
                         query = "update Attendance set Busy_Duration=" + (reader + 1).ToString() + " where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
@@ -762,7 +775,6 @@ namespace MainSystem
                             }
                             dr1.Close();
                         }
-                        dbconnection2.Close();
                         dbconnection3.Close();
                     }
 
@@ -770,26 +782,42 @@ namespace MainSystem
                     {
                         string query = "SELECT distinct Available_Duration FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
                         MySqlCommand command = new MySqlCommand(query, dbconnection2);
-                        dbconnection2.Open();
                         double reader = Convert.ToDouble(command.ExecuteScalar());
 
                         query = "update Attendance set Available_Duration=" + (reader + 1).ToString() + " where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
                         command = new MySqlCommand(query, dbconnection2);
                         command.ExecuteNonQuery();
-                        dbconnection2.Close();
                     }
 
                     else if (gridView1.GetRowCellDisplayText(i, colStatus).ToString() == "استراحة")
                     {
                         string query = "SELECT distinct Break_Duration FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
                         MySqlCommand command = new MySqlCommand(query, dbconnection2);
-                        dbconnection2.Open();
                         double reader = Convert.ToDouble(command.ExecuteScalar());
 
                         query = "update Attendance set Break_Duration=" + (reader + 1).ToString() + " where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
                         command = new MySqlCommand(query, dbconnection2);
                         command.ExecuteNonQuery();
-                        dbconnection2.Close();
+                    }
+
+                    //Calculate Status Time
+                    TimeSpan statustime = new TimeSpan();
+                    if (gridView1.IsRowSelected(i))
+                    {
+                        string q = "";
+                        MySqlCommand com;
+                        TimeSpan time1 = TimeSpan.FromMinutes(1);
+                        
+                        q = "select cast(Status_Duration as time) from attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
+                        com = new MySqlCommand(q, dbconnection2);
+                        if (TimeSpan.TryParse(com.ExecuteScalar().ToString(), out statustime))
+                        { }
+                        
+                        statustime = statustime.Add(time1);
+                        q = "update attendance set Status_Duration='" + statustime + "' where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
+                        com = new MySqlCommand(q, dbconnection2);
+                        com.ExecuteNonQuery();
+                        gridView1.SetRowCellValue(i, colTimer, statustime);
                     }
                 }
             }
@@ -824,6 +852,17 @@ namespace MainSystem
                 dbconnection4.Close();
             }
         }
+        
+        public void ResetStatusTime()
+        {
+            dbconnection.Open();
+            TimeSpan time1 = new TimeSpan();
+            string q = "update attendance set Status_Duration='" + time1 + "' where Delegate_ID=" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
+            MySqlCommand com = new MySqlCommand(q, dbconnection);
+            com.ExecuteNonQuery();
+            gridView1.SetFocusedRowCellValue(colTimer, time1);
+            dbconnection.Close();
+        }
     }
 
     public class ComboData
@@ -837,6 +876,7 @@ namespace MainSystem
         public int DelegateId { get; set; }
         public string DelegateName { get; set; }
         public string StatusID { get; set; }
+        public TimeSpan StatusTimer { get; set; }
         public TimeSpan AttendId { get; set; }
         public TimeSpan DepartureId { get; set; }
     }
