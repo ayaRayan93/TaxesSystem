@@ -239,7 +239,8 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                       // UserControl.UserRecord("sets", "delete", setRow[0].ToString(), DateTime.Now, dbconnection);
+                        // UserControl.UserRecord("sets", "delete", setRow[0].ToString(), DateTime.Now, dbconnection);
+                        dbconnection.Close();
                         DisplayAtaqm();
                         }
                         else if (dialogResult == DialogResult.No)

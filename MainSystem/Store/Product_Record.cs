@@ -500,7 +500,7 @@ namespace MainSystem
                         command = conn.CreateCommand();
                         if (selectedImage != null)
                         {
-                            command.CommandText = "INSERT INTO data_details (Code,Photo,Type) VALUES (?Code,?Photo,?Type)";
+                            command.CommandText = "INSERT INTO data_photo (Code,Photo,Type) VALUES (?Code,?Photo,?Type)";
                             command.Parameters.AddWithValue("?Code", code);
                             command.Parameters.AddWithValue("?Photo", selectedImage);
                             command.Parameters.AddWithValue("?Type", "بند");
