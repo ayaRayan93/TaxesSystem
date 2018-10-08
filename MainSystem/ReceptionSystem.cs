@@ -148,10 +148,10 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageDelegateMovement");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1, "xtraTabPageReception");
                 if (xtraTabPage == null)
                 {
-                    tabPageDelegateMovement.Name = "tabPageDelegateMovement";
+                    tabPageDelegateMovement.Name = "xtraTabPageReception";
                     tabPageDelegateMovement.Text = "عرض حركة المندوبين";
                     panelDelegateMovement.Name = "panelDelegateMovement";
                     panelDelegateMovement.Dock = DockStyle.Fill;
@@ -165,9 +165,9 @@ namespace MainSystem
                 panelDelegateMovement.Controls.Clear();
                 panelDelegateMovement.Controls.Add(DelegateMovementShow);
                 tabPageDelegateMovement.Controls.Add(panelDelegateMovement);
-                xtraTabControlPointSale.TabPages.Add(tabPageDelegateMovement);
+                xtraTabControl1.TabPages.Add(tabPageDelegateMovement);
                 DelegateMovementShow.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageDelegateMovement;
+                xtraTabControl1.SelectedTabPage = tabPageDelegateMovement;
             }
             catch (Exception ex)
             {

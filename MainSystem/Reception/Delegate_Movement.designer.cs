@@ -38,6 +38,7 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colButton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colTimer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAttend = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDeparture = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorEdit();
@@ -48,13 +49,13 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.radOldBill = new System.Windows.Forms.RadioButton();
             this.radNewBill = new System.Windows.Forms.RadioButton();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.labBill = new System.Windows.Forms.Label();
             this.txtBill = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReload = new System.Windows.Forms.Button();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -65,9 +66,9 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // gridControl1
@@ -104,6 +105,7 @@
             this.colDelegate,
             this.colStatus,
             this.colButton,
+            this.colTimer,
             this.colAttend,
             this.colDeparture});
             this.gridView1.GridControl = this.gridControl1;
@@ -130,7 +132,7 @@
             this.colDelegateID.Caption = "التسلسل";
             this.colDelegateID.FieldName = "DelegateId";
             this.colDelegateID.Name = "colDelegateID";
-            this.colDelegateID.Width = 276;
+            this.colDelegateID.Width = 250;
             // 
             // colDelegate
             // 
@@ -142,7 +144,7 @@
             this.colDelegate.OptionsColumn.ReadOnly = true;
             this.colDelegate.Visible = true;
             this.colDelegate.VisibleIndex = 1;
-            this.colDelegate.Width = 326;
+            this.colDelegate.Width = 250;
             // 
             // repositoryItemTextEdit1
             // 
@@ -158,7 +160,7 @@
             this.colStatus.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colStatus.Visible = true;
             this.colStatus.VisibleIndex = 2;
-            this.colStatus.Width = 343;
+            this.colStatus.Width = 250;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -176,7 +178,7 @@
             this.colButton.OptionsColumn.AllowEdit = false;
             this.colButton.Visible = true;
             this.colButton.VisibleIndex = 3;
-            this.colButton.Width = 25;
+            this.colButton.Width = 55;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -186,6 +188,14 @@
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // colTimer
+            // 
+            this.colTimer.Caption = "المدة";
+            this.colTimer.Name = "colTimer";
+            this.colTimer.Visible = true;
+            this.colTimer.VisibleIndex = 4;
+            this.colTimer.Width = 100;
+            // 
             // colAttend
             // 
             this.colAttend.Caption = "الحضور";
@@ -194,8 +204,8 @@
             this.colAttend.OptionsColumn.AllowEdit = false;
             this.colAttend.OptionsColumn.ReadOnly = true;
             this.colAttend.Visible = true;
-            this.colAttend.VisibleIndex = 4;
-            this.colAttend.Width = 125;
+            this.colAttend.VisibleIndex = 5;
+            this.colAttend.Width = 152;
             // 
             // colDeparture
             // 
@@ -205,8 +215,8 @@
             this.colDeparture.OptionsColumn.AllowEdit = false;
             this.colDeparture.OptionsColumn.ReadOnly = true;
             this.colDeparture.Visible = true;
-            this.colDeparture.VisibleIndex = 5;
-            this.colDeparture.Width = 125;
+            this.colDeparture.VisibleIndex = 6;
+            this.colDeparture.Width = 152;
             // 
             // repositoryItemColorEdit1
             // 
@@ -251,8 +261,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnSound, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.axWindowsMediaPlayer1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.axWindowsMediaPlayer1, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -328,16 +338,6 @@
             this.radNewBill.UseVisualStyleBackColor = true;
             this.radNewBill.Visible = false;
             this.radNewBill.Click += new System.EventHandler(this.radNewBill_Click);
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(626, 3);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(97, 48);
-            this.axWindowsMediaPlayer1.TabIndex = 23;
-            this.axWindowsMediaPlayer1.Visible = false;
             // 
             // tableLayoutPanel4
             // 
@@ -425,6 +425,17 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(626, 3);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(97, 48);
+            this.axWindowsMediaPlayer1.TabIndex = 27;
+            this.axWindowsMediaPlayer1.Visible = false;
+            // 
             // Delegate_Movement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,10 +456,10 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -466,7 +477,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnSound;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.RadioButton radOldBill;
         private System.Windows.Forms.RadioButton radNewBill;
@@ -481,6 +491,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDeparture;
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private DevExpress.XtraGrid.Columns.GridColumn colTimer;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 
