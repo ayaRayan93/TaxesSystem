@@ -200,7 +200,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    Environment.Exit(0);
+                    Application.Exit();
                 }
             }
             catch (Exception ex)

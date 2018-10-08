@@ -38,6 +38,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panContainer = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.txtCodePart4 = new System.Windows.Forms.TextBox();
             this.txtCodePart5 = new System.Windows.Forms.TextBox();
@@ -71,7 +72,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
             this.panContainer.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -170,9 +170,9 @@
             this.label13.Location = new System.Drawing.Point(302, 45);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label13.Size = new System.Drawing.Size(115, 18);
+            this.label13.Size = new System.Drawing.Size(131, 18);
             this.label13.TabIndex = 32;
-            this.label13.Text = "اجمالي عدد الامتار";
+            this.label13.Text = "اجمالي عدد الوحدات";
             // 
             // label14
             // 
@@ -213,6 +213,18 @@
             this.panContainer.Name = "panContainer";
             this.panContainer.Size = new System.Drawing.Size(921, 132);
             this.panContainer.TabIndex = 39;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label9.Location = new System.Drawing.Point(677, 7);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(71, 18);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "كود المنتج";
             // 
             // txtTotalMeter
             // 
@@ -607,18 +619,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(927, 841);
             this.tableLayoutPanel1.TabIndex = 41;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(677, 7);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(71, 18);
-            this.label9.TabIndex = 42;
-            this.label9.Text = "كود المنتج";
             // 
             // initialCodeStorage
             // 

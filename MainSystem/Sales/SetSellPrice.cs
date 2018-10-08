@@ -64,12 +64,12 @@ namespace MainSystem
             {
                 if (chBoxAdditionalIncrease.Checked)
                 {
-                    tLPanCpntent.RowStyles[2].Height = 350;
+                    tLPanCpntent.RowStyles[2].Height = 360;
                     
                 }
                 else
                 {
-                    tLPanCpntent.RowStyles[2].Height = 210;
+                    tLPanCpntent.RowStyles[2].Height = 200;
                 }
             }
             catch (Exception ex)
@@ -176,15 +176,16 @@ namespace MainSystem
                 comColor.ValueMember = dt.Columns["Color_ID"].ToString();
                 comColor.Text = "";
                 txtColor.Text = "";
-                query = "select * from sort";
+
+                query = "select * from data";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
-                comSort.DataSource = dt;
-                comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
-                comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
-                comSort.Text = "";
-                txtSort.Text = "";
+                comClassfication.DataSource = dt;
+                comClassfication.DisplayMember = dt.Columns["Classification"].ToString();
+                comClassfication.Text = "";
+
+
                 load = true;
 
             }
@@ -229,6 +230,9 @@ namespace MainSystem
                         break;
                     case "comSort":
                         txtSort.Text = comSort.SelectedValue.ToString();
+                        displayProducts();
+                        break;
+                    case "comClassfication":
                         displayProducts();
                         break;
                 }
@@ -568,8 +572,7 @@ namespace MainSystem
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
 
                                 command.ExecuteNonQuery();
-                                UserControl.ItemRecord("sellprice", "اضافة", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now,"", dbconnection);
-                                dbconnection.Open();
+                          
                             }
                         }
                         #endregion
@@ -591,7 +594,7 @@ namespace MainSystem
 
 
                                 command.ExecuteNonQuery();
-                                dbconnection.Open();
+                            
                             }
                             else
                             {
@@ -631,7 +634,7 @@ namespace MainSystem
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
 
                                 command.ExecuteNonQuery();
-                                dbconnection.Open();
+                             
                             }
                         }
 
@@ -663,7 +666,6 @@ namespace MainSystem
 
                                 command.ExecuteNonQuery();
 
-                                dbconnection.Open();
                             }
                             else
                             {
@@ -671,29 +673,33 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-                            int sellPrice_ID=0;
-                            string queryx = "select SellPrice_ID from sellprice order by SellPrice_ID desc limit 1";
-                            MySqlCommand com = new MySqlCommand(queryx, dbconnection);
-                            if (com.ExecuteScalar() != null)
-                            {
-                                sellPrice_ID = Convert.ToInt16(com.ExecuteScalar());
-                            }
-                            foreach (DataGridViewRow item in dataGridView1.Rows)
-                            {
-                                double addational = Convert.ToDouble(item.Cells[0].Value);
-                                queryx = "insert into additional_increase_sellprice (SellPrice_ID,AdditionalValue,Description) values (@SellPrice_ID,@AdditionalValue,@Description)";
-                                com = new MySqlCommand(queryx, dbconnection);
-                                com.Parameters.AddWithValue("@SellPrice_ID", sellPrice_ID);
-                                com.Parameters.AddWithValue("@AdditionalValue", sellPrice_ID);
-                                com.Parameters.AddWithValue("@Description", item.Cells[1].Value);
-                                com.ExecuteNonQuery();
-
-                            }
-                            UserControl.ItemRecord("sellprice", "اضافة", sellPrice_ID, DateTime.Now,"", dbconnection);
-
+                    
+                           
                         }
                         #endregion
                     }
+
+                    int sellPrice_ID = 0;
+                    string queryx = "select SellPrice_ID from sellprice order by SellPrice_ID desc limit 1";
+                    MySqlCommand com = new MySqlCommand(queryx, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        sellPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+                    }
+                    foreach (DataGridViewRow item in dataGridView1.Rows)
+                    {
+                        double addational = Convert.ToDouble(item.Cells[0].Value);
+                        queryx = "insert into additional_increase_sellprice (SellPrice_ID,AdditionalValue,Type,Description) values (@SellPrice_ID,@AdditionalValue,@Type,@Description)";
+                        com = new MySqlCommand(queryx, dbconnection);
+                        com.Parameters.AddWithValue("@SellPrice_ID", sellPrice_ID);
+                        com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
+                        com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
+                        com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
+                        com.ExecuteNonQuery();
+
+                    }
+                    UserControl.ItemRecord("sellprice", "اضافة", sellPrice_ID, DateTime.Now, "", dbconnection);
+
                     MessageBox.Show("Done");
                     Clear();
                     productsSellPriceForm.displayProducts();
@@ -757,14 +763,26 @@ namespace MainSystem
         {
             try
             {
-                if (txtCode.Text != "")
+                if (txtCode.Text != ""||chBoxSelectAll.Checked)
                 {
                     if (txtDes.Text != "" && txtPlus.Text != "")
                     {
-                        int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells[0].Value = txtPlus.Text;
-                        dataGridView1.Rows[n].Cells[1].Value = txtDes.Text;
-                        labSellPrice.Text=""+ calSellPrice();
+                        if (radioNormal.Checked)
+                        {
+                            int n = dataGridView1.Rows.Add();
+                            dataGridView1.Rows[n].Cells[0].Value = txtPlus.Text;
+                            dataGridView1.Rows[n].Cells[1].Value ="عادية";
+                            dataGridView1.Rows[n].Cells[2].Value = txtDes.Text;
+                            labSellPrice.Text = "" + calSellPrice();
+                        }
+                        else if (radioQata3a.Checked)
+                        {
+                            int n = dataGridView1.Rows.Add();
+                            dataGridView1.Rows[n].Cells[0].Value = txtPlus.Text;
+                            dataGridView1.Rows[n].Cells[1].Value = "قطعية";
+                            dataGridView1.Rows[n].Cells[2].Value = txtDes.Text;
+                            labSellPrice.Text = "" + calSellPrice();
+                        }
                     }
                 }
             }
@@ -893,11 +911,17 @@ namespace MainSystem
         public double calSellPrice()
         {
             double addational = 0.0;
-            foreach (DataGridViewRow item in dataGridView1.Rows)
-            {
-                addational += Convert.ToDouble(item.Cells[0].Value);
-            }
             double price = double.Parse(txtPrice.Text);
+            if (dataGridView1.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells[1].Value.ToString() == "عادية")
+                        price += Convert.ToDouble(item.Cells[0].Value);
+                    else if (item.Cells[1].Value.ToString() == "قطعية")
+                        addational += Convert.ToDouble(item.Cells[0].Value);
+                }
+            }
             double SellPercent = double.Parse(txtSell.Text);
             if (radioQata3y.Checked == true)
             {

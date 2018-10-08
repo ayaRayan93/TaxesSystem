@@ -181,6 +181,17 @@ namespace MainSystem
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
 
+
+                                string query2 = "select * from size where Factory_ID=" + txtFactory.Text+" Group_ID="+txtGroup.Text;
+                                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, conn);
+                                DataTable dt2 = new DataTable();
+                                da2.Fill(dt2);
+                                comSize.DataSource = dt2;
+                                comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
+                                comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
+                                comSize.Text = "";
+                                txtSize.Text = "";
+
                                 comProduct.Focus();
                             }
                             break;
