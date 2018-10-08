@@ -87,7 +87,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Interop.WMPLib">
-      <HintPath>D:\sara\Codes\PointSale_DX\EmployeeAttendance\EmployeeAttendance\bin\Debug\Interop.WMPLib.dll</HintPath>
+      <HintPath>C:\Users\User\Desktop\Interop.WMPLib\Interop.WMPLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">

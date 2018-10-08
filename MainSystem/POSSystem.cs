@@ -226,16 +226,16 @@ namespace MainSystem
             conn.Close();
         }
         
-         /*      private void pictureBoxBell_Click(object sender, EventArgs e)
+         private void pictureBoxBell_Click(object sender, EventArgs e)
         {
             try
             {
-                XtraTabPage xtraTabPagePS =getTabPage(xtraTabControlPointSale,"xtraTabPagePointSale");
+                XtraTabPage xtraTabPagePS =getTabPage(xtraTabControlPointSale, "xtraTabPagePOS");
                 if (xtraTabPagePS == null)
                 {
-                    xtraTabControlMain.TabPages.Add(xtraTabPagePointSale);
+                    xtraTabControlMainContainer.TabPages.Add(xtraTabPagePOS);
 
-                    xtraTabControlMain.SelectedTabPage = xtraTabPagePointSale;
+                    xtraTabControlMainContainer.SelectedTabPage = xtraTabPagePOS;
                 }
                 XtraTabPage xtraTabPage =getTabPage(xtraTabControlPointSale,"tabPageProductsDetailsReport");
                 //if (xtraTabPage == null)
@@ -268,7 +268,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        */
+        
 
         private void navBarItemConfirmBill_LinkClicked(object sender, NavBarLinkEventArgs e)
         {

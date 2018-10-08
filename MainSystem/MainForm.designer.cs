@@ -133,18 +133,18 @@
             this.xtraTabPageHR = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlHRContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl3 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup20 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem38 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem39 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem40 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem41 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem42 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup19 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem37 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup20 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem38 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem39 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem40 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem41 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem42 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup21 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem43 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem44 = new DevExpress.XtraNavBar.NavBarItem();
@@ -307,14 +307,14 @@
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.labNotify = new System.Windows.Forms.Label();
             this.labelNotify = new System.Windows.Forms.Label();
             this.pictureBoxSale = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1327,7 +1327,7 @@
             // 
             // navBarControl3
             // 
-            this.navBarControl3.ActiveGroup = this.navBarGroup20;
+            this.navBarControl3.ActiveGroup = this.navBarGroup19;
             this.navBarControl3.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl3.Appearance.Background.Options.UseFont = true;
             this.navBarControl3.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1410,10 +1410,47 @@
             this.navBarControl3.TabIndex = 3;
             this.navBarControl3.Text = "navBarControl3";
             // 
+            // navBarGroup19
+            // 
+            this.navBarGroup19.Caption = "البيانات المالية";
+            this.navBarGroup19.Expanded = true;
+            this.navBarGroup19.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37)});
+            this.navBarGroup19.Name = "navBarGroup19";
+            // 
+            // navBarItem33
+            // 
+            this.navBarItem33.Caption = "الرواتب";
+            this.navBarItem33.Name = "navBarItem33";
+            this.navBarItem33.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnSalaryRecord_LinkClicked);
+            // 
+            // navBarItem34
+            // 
+            this.navBarItem34.Caption = "الحوافز";
+            this.navBarItem34.Name = "navBarItem34";
+            // 
+            // navBarItem35
+            // 
+            this.navBarItem35.Caption = "السلف";
+            this.navBarItem35.Name = "navBarItem35";
+            // 
+            // navBarItem36
+            // 
+            this.navBarItem36.Caption = "مكافئات";
+            this.navBarItem36.Name = "navBarItem36";
+            // 
+            // navBarItem37
+            // 
+            this.navBarItem37.Caption = "العلاوات";
+            this.navBarItem37.Name = "navBarItem37";
+            // 
             // navBarGroup20
             // 
             this.navBarGroup20.Caption = "الموظفين";
-            this.navBarGroup20.Expanded = true;
             this.navBarGroup20.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem38),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem39),
@@ -1451,42 +1488,6 @@
             this.navBarItem42.Caption = "تقرير البيانات الشخصية للموظفين";
             this.navBarItem42.Name = "navBarItem42";
             this.navBarItem42.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem9_LinkClicked);
-            // 
-            // navBarGroup19
-            // 
-            this.navBarGroup19.Caption = "البيانات المالية";
-            this.navBarGroup19.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37)});
-            this.navBarGroup19.Name = "navBarGroup19";
-            // 
-            // navBarItem33
-            // 
-            this.navBarItem33.Caption = "الرواتب";
-            this.navBarItem33.Name = "navBarItem33";
-            // 
-            // navBarItem34
-            // 
-            this.navBarItem34.Caption = "الحوافز";
-            this.navBarItem34.Name = "navBarItem34";
-            // 
-            // navBarItem35
-            // 
-            this.navBarItem35.Caption = "السلف";
-            this.navBarItem35.Name = "navBarItem35";
-            // 
-            // navBarItem36
-            // 
-            this.navBarItem36.Caption = "مكافئات";
-            this.navBarItem36.Name = "navBarItem36";
-            // 
-            // navBarItem37
-            // 
-            this.navBarItem37.Caption = "العلاوات";
-            this.navBarItem37.Name = "navBarItem37";
             // 
             // navBarGroup21
             // 
@@ -2799,23 +2800,6 @@
             this.panHeader.Size = new System.Drawing.Size(1177, 42);
             this.panHeader.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 14F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(924, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "المركز التجاري للسيراميك";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2901,6 +2885,24 @@
             this.pictureBoxBell.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxBell.TabIndex = 10;
             this.pictureBoxBell.TabStop = false;
+            this.pictureBoxBell.Click += new System.EventHandler(this.pictureBoxBell_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 14F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(924, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(192, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "المركز التجاري للسيراميك";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // MainForm
             // 

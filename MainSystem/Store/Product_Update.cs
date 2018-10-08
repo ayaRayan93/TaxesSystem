@@ -485,7 +485,7 @@ namespace MainSystem
 
                         //save image as bytes
                         command = dbconnection.CreateCommand();
-                        command.CommandText = "update data_details set Photo =?Photo where Data_ID=" + Data_ID;
+                        command.CommandText = "update data_photo set Photo =?Photo where Data_ID=" + Data_ID;
                         command.Parameters.AddWithValue("?Photo", selectedImage);
                         dbconnection.Open();
                         command.ExecuteNonQuery();
@@ -677,7 +677,7 @@ namespace MainSystem
             try
             {
                 dbconnection1.Open();
-                string query = "select Photo from data_details where Code='" + code + "'";
+                string query = "select Photo from data_photo where Code='" + code + "'";
                 MySqlCommand com = new MySqlCommand(query, dbconnection1);
                 byte[] photo = (byte[])com.ExecuteScalar();
                

@@ -67,7 +67,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                
-                string query = "select Photo from data_details where Code='"+code+"'";
+                string query = "select Photo from data_photo where Code='" + code+"'";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                

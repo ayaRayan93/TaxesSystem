@@ -367,9 +367,9 @@ namespace MainSystem
             // mTC_Content
             // 
             this.mTC_Content.Controls.Add(this.mTPSort);
-            this.mTC_Content.Controls.Add(this.mTPProduct);
             this.mTC_Content.Controls.Add(this.mTPSize);
             this.mTC_Content.Controls.Add(this.mTPColor);
+            this.mTC_Content.Controls.Add(this.mTPProduct);
             this.mTC_Content.Controls.Add(this.mTPGroup);
             this.mTC_Content.Controls.Add(this.mTPFactory);
             this.mTC_Content.Controls.Add(this.mTPType);

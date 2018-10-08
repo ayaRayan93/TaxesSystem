@@ -614,10 +614,11 @@ namespace MainSystem
 
                         DecreaseProductQuantity();
 
+
                         UserControl.ItemRecord("customer_bill", "اضافة", CustomerBill_ID, DateTime.Now, "", dbconnection);
                         
                         //printBill();
-                        MessageBox.Show("تم");
+                        MessageBox.Show("فاتورة رقم : "+ Branch_BillNumber);
                     }
                     else
                     {
