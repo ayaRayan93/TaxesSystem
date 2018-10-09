@@ -19,6 +19,7 @@ namespace MainSystem
         ProductsSellPriceForm productsSellPriceForm = null;
         XtraTabControl xtraTabControlSalesContent = null;
         List<DataRowView> rows = null;
+        customPanel customPanel;
         bool load = false;
         int id = 0;
         String query = "";
@@ -32,6 +33,10 @@ namespace MainSystem
                 this.productsSellPriceForm = productsSellPriceForm;
                 this.query = query;
                 dbconnection = new MySqlConnection(connection.connectionString);
+
+                customPanel = new customPanel();
+                panContent.Controls.Add(customPanel.Controls["panContent"]);
+                panContent.Controls["panContent"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -127,13 +132,31 @@ namespace MainSystem
                 if (chBoxSpecialIncrease.Checked)
                 {
                     tLPanCpntent.RowStyles[1].Height = 200;
-                    panContent.VerticalScroll.Value = panContent.VerticalScroll.Maximum;
-
+                   
+                    foreach (Control item in panContent.Controls)
+                    {
+                        item.Visible = false;
+                    }
+                    panContent.Controls["panContent"].Visible = true;
+                    label19.Visible = false;
+                    labSellPrice.Visible = false;
                 }
                 else
                 {
-                    tLPanCpntent.RowStyles[1].Height = 360;
-                    panContent.VerticalScroll.Value = 0;
+                    if(chBoxAdditionalIncrease.Checked)
+                        tLPanCpntent.RowStyles[1].Height = 360;
+                    else
+                        tLPanCpntent.RowStyles[1].Height = 200;
+
+
+                    
+                    foreach (Control item in panContent.Controls)
+                    {
+                        item.Visible = true;
+                    }
+                    panContent.Controls["panContent"].Visible = false;
+                    label19.Visible = true;
+                    labSellPrice.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -269,79 +292,142 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                double price = double.Parse(txtPrice.Text);
-                double SellPercent = double.Parse(txtSell.Text);
-
-                if (radioQata3y.Checked == true)
+                if (!chBoxSpecialIncrease.Checked)
                 {
-                    #region set qata3yPrice for list item
+                    double price = double.Parse(txtPrice.Text);
+                    double SellPercent = double.Parse(txtSell.Text);
 
-                    double NormalPercent = double.Parse(txtNormal.Text);
-                    double UnNormalPercent = double.Parse(txtUnNormal.Text);
-
-                    DataTable dataTable = (DataTable)gridControl1.DataSource;
-                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    if (radioQata3y.Checked == true)
                     {
-                        String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate where SellPrice_ID=" + dataTable.Rows[i][0].ToString();
+                        #region set qata3yPrice for list item
 
-                        MySqlCommand command = new MySqlCommand(query, dbconnection);
-                        command.Parameters.AddWithValue("@Price_Type", "قطعى");
-                        command.Parameters.AddWithValue("@Sell_Price", price + (price * SellPercent / 100.0));
-                        command.Parameters.AddWithValue("@ProfitRatio", SellPercent);
-                        command.Parameters.AddWithValue("@Sell_Discount", 0.00);
-                        command.Parameters.AddWithValue("@Price", price);
-                        command.Parameters.AddWithValue("@Normal_Increase", 0.00);
-                        command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
-                        command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                        double NormalPercent = double.Parse(txtNormal.Text);
+                        double UnNormalPercent = double.Parse(txtUnNormal.Text);
 
-                        command.ExecuteNonQuery();
+                        DataTable dataTable = (DataTable)gridControl1.DataSource;
+                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        {
+                            String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate where SellPrice_ID=" + dataTable.Rows[i][0].ToString();
 
-                        UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
-                       
+                            MySqlCommand command = new MySqlCommand(query, dbconnection);
+                            command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                            command.Parameters.AddWithValue("@Sell_Price", price + (price * SellPercent / 100.0));
+                            command.Parameters.AddWithValue("@ProfitRatio", SellPercent);
+                            command.Parameters.AddWithValue("@Sell_Discount", 0.00);
+                            command.Parameters.AddWithValue("@Price", price);
+                            command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                            command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                            command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+
+                            command.ExecuteNonQuery();
+
+
+                        }
+
+                        #endregion
+                    }
+                    else
+                    {
+                        #region set priceList for collection of items
+
+                        double NormalPercent = double.Parse(txtNormal.Text);
+                        double unNormalPercent = double.Parse(txtUnNormal.Text);
+
+                        double sellPrice = (price + NormalPercent) - ((price + NormalPercent) * SellPercent / 100.0);
+
+                        sellPrice = sellPrice + unNormalPercent;
+
+                        DataTable dataTable = (DataTable)gridControl1.DataSource;
+                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        {
+                            string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate where SellPrice_ID =" + dataTable.Rows[i][0].ToString();
+
+                            MySqlCommand command = new MySqlCommand(query, dbconnection);
+                            command.Parameters.AddWithValue("@Price_Type", "لستة");
+                            command.Parameters.AddWithValue("@Sell_Price", sellPrice);
+                            command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                            command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
+                            command.Parameters.AddWithValue("@Price", price);
+                            command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                            command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                            command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+
+                            command.ExecuteNonQuery();
+
+
+                        }
+
+                        #endregion
+                    }
+                    int sellPrice_ID = 0;
+                    string queryx = "select SellPrice_ID from sellprice order by SellPrice_ID desc limit 1";
+                    MySqlCommand com = new MySqlCommand(queryx, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        sellPrice_ID = Convert.ToInt16(com.ExecuteScalar());
                     }
 
-                    #endregion
+                    queryx = "delete from additional_increase_sellprice where SellPrice_ID=" + sellPrice_ID;
+                    com = new MySqlCommand(queryx, dbconnection);
+                    com.ExecuteNonQuery();
+
+                    foreach (DataGridViewRow item in dataGridView1.Rows)
+                    {
+                        double addational = Convert.ToDouble(item.Cells[0].Value);
+                        queryx = "insert into additional_increase_sellprice (SellPrice_ID,AdditionalValue,Type,Description) values (@SellPrice_ID,@AdditionalValue,@Type,@Description)";
+                        com = new MySqlCommand(queryx, dbconnection);
+                        com.Parameters.AddWithValue("@SellPrice_ID", sellPrice_ID);
+                        com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
+                        com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
+                        com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
+                        com.ExecuteNonQuery();
+
+                    }
+                    UserControl.ItemRecord("sellprice", "تعديل", sellPrice_ID, DateTime.Now, "", dbconnection);
                 }
                 else
                 {
-                    #region set priceList for collection of items
-
-                    double NormalPercent = double.Parse(txtNormal.Text);
-                    double unNormalPercent = double.Parse(txtUnNormal.Text);
-
-                    double sellPrice = (price + NormalPercent) - ((price + NormalPercent) * SellPercent / 100.0);
-
-                    sellPrice = sellPrice + unNormalPercent;
-
-                    DataTable dataTable = (DataTable)gridControl1.DataSource;
-                    for (int i = 0; i < dataTable.Rows.Count; i++)
+                    double addationalValue = 0.0;
+                    DataGridView DataGridView = (DataGridView)panContent.Controls["panContent"].Controls["dataGridView1"];
+                    foreach (DataGridViewRow item1 in DataGridView.Rows)
                     {
-                        string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate where SellPrice_ID =" + dataTable.Rows[i][0].ToString();
+                        addationalValue += Convert.ToDouble(item1.Cells[0].Value);
+                    }
+                    int[] rows = (((GridView)gridControl1.MainView).GetSelectedRows());
+                    List<DataRowView> recordList = new List<DataRowView>();
+                    for (int i = 0; i < rows.Length; i++)
+                    {
+                        DataRowView a = (DataRowView)(((GridView)gridControl1.MainView).GetRow(rows[i]));
+                        recordList.Add(a);
+                    }
+                    foreach (DataRowView item in recordList)
+                    {
+                        String query = "update sellprice set Sell_Price=@Sell_Price where SellPrice_ID=" + item[0].ToString();
 
                         MySqlCommand command = new MySqlCommand(query, dbconnection);
-                        command.Parameters.AddWithValue("@Price_Type", "لستة");
-                        command.Parameters.AddWithValue("@Sell_Price", sellPrice);
-                        command.Parameters.AddWithValue("@ProfitRatio", 0.00);
-                        command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
-                        command.Parameters.AddWithValue("@Price", price);
-                        command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                        command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                        command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-
+                        command.Parameters.AddWithValue("@Sell_Price",Convert.ToDouble(item["سعر البيع"])+addationalValue);           
                         command.ExecuteNonQuery();
 
-                        UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
-           
-                    }
+                        foreach (DataGridViewRow item1 in DataGridView.Rows)
+                        {
+                            double addational = Convert.ToDouble(item1.Cells[0].Value);
+                            string  queryx = "insert into special_increase (SellPrice_ID,Value,Description,Date) values (@SellPrice_ID,@Value,@Description,@Date)";
+                            MySqlCommand com = new MySqlCommand(queryx, dbconnection);
+                            com.Parameters.AddWithValue("@SellPrice_ID", item[0]);
+                            com.Parameters.AddWithValue("@Value", item1.Cells[0].Value);
+                            com.Parameters.AddWithValue("@Description", item1.Cells[1].Value);
+                            com.Parameters.Add("@Date", MySqlDbType.Date);
+                            com.Parameters["@Date"].Value = DateTime.Now.Date;
+                            com.ExecuteNonQuery();
 
-                    #endregion
+                        }
+                    }
+            
                 }
                 displayData();
-
                 productsSellPriceForm.displayProducts();
 
                 XtraTabPage xtraTabPage = getTabPage("تعديل اسعار البنود");
-
                 xtraTabPage.ImageOptions.Image = null;
 
             }
@@ -399,14 +485,26 @@ namespace MainSystem
         {
             try
             {
-                if (txtCode.Text != "")
+                if (txtCode.Text != "" || chBoxSelectAll.Checked)
                 {
                     if (txtDes.Text != "" && txtPlus.Text != "")
                     {
-                        int n = dataGridView1.Rows.Add();
-                        dataGridView1.Rows[n].Cells[0].Value = txtPlus.Text;
-                        dataGridView1.Rows[n].Cells[1].Value = txtDes.Text;
-                        labSellPrice.Text=""+ calSellPrice();
+                        if (radioNormal.Checked)
+                        {
+                            int n = dataGridView1.Rows.Add();
+                            dataGridView1.Rows[n].Cells[0].Value = txtPlus.Text;
+                            dataGridView1.Rows[n].Cells[1].Value = "عادية";
+                            dataGridView1.Rows[n].Cells[2].Value = txtDes.Text;
+                            labSellPrice.Text = "" + calSellPrice();
+                        }
+                        else if (radioQata3a.Checked)
+                        {
+                            int n = dataGridView1.Rows.Add();
+                            dataGridView1.Rows[n].Cells[0].Value = txtPlus.Text;
+                            dataGridView1.Rows[n].Cells[1].Value = "قطعية";
+                            dataGridView1.Rows[n].Cells[2].Value = txtDes.Text;
+                            labSellPrice.Text = "" + calSellPrice();
+                        }
                     }
                 }
             }

@@ -882,6 +882,12 @@
     <Compile Include="Sales\Customer_Update.designer.cs">
       <DependentUpon>Customer_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\customPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\customPanel.Designer.cs">
+      <DependentUpon>customPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\ItemDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1458,6 +1464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Update.resx">
       <DependentUpon>Customer_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\customPanel.resx">
+      <DependentUpon>customPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\ItemDetails.resx">
       <DependentUpon>ItemDetails.cs</DependentUpon>
