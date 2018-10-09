@@ -942,6 +942,36 @@
     <Compile Include="Sales\UpdateSellPriceForm.Designer.cs">
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\Area_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Area_Report.designer.cs">
+      <DependentUpon>Area_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Main.designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\Shipping_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Shipping_Record.designer.cs">
+      <DependentUpon>Shipping_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\Zone_Area.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Zone_Area.Designer.cs">
+      <DependentUpon>Zone_Area.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\Zone_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Zone_Report.designer.cs">
+      <DependentUpon>Zone_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="StoreSystem.cs" />
     <Compile Include="Store\Ataqm.cs">
       <SubType>Form</SubType>
@@ -1488,6 +1518,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\UpdateSellPriceForm.resx">
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Area_Report.resx">
+      <DependentUpon>Area_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Shipping_Record.resx">
+      <DependentUpon>Shipping_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Zone_Area.resx">
+      <DependentUpon>Zone_Area.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Zone_Report.resx">
+      <DependentUpon>Zone_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ataqm.resx">
       <DependentUpon>Ataqm.cs</DependentUpon>
