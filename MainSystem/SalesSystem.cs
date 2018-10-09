@@ -39,8 +39,6 @@ namespace MainSystem
         {
             try
             {
-                
-
                 tabControlSales = xtraTabControlSalesContent;
 
                 MainTabPageAddCustomer = new XtraTabPage();

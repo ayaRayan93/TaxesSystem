@@ -27,6 +27,7 @@ namespace MainSystem
         XtraTabPage POSTP;
         XtraTabPage BankTP;
         XtraTabPage ReceptionTP;
+        XtraTabPage ShippingTP;
         int index = 1;
         
         public MainForm()
@@ -40,6 +41,7 @@ namespace MainSystem
                 ReceptionSystem();
                 POSSystem();
                 SalesMainForm();
+                ShippingForm();
 
                 StoreTP = xtraTabPageStores;
                 SalesTP =xtraTabPageSales;
@@ -48,13 +50,16 @@ namespace MainSystem
                 POSTP = xtraTabPagePOS;
                 BankTP = xtraTabPageBank;
                 ReceptionTP = xtraTabPageReception;
+                ShippingTP = xtraTabPageShipping;
+
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageHR);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCars);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePOS);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageBank);
-                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageReception);            
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageReception);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageShipping);
             }
             catch (Exception ex)
             {
@@ -181,7 +186,22 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void TIElsha7n_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageShipping))
+                {
+                    xtraTabControlMainContainer.TabPages.Insert(index, ShippingTP);
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageShipping)];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -312,6 +332,8 @@ namespace MainSystem
                 item.Appearance.ForeColor = Color.Black;
             }
         }
+
+      
     }
 
 
