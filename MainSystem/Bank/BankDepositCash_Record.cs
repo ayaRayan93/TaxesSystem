@@ -103,8 +103,7 @@ namespace MainSystem
                     {
                         if (int.TryParse(txtBillNumber.Text, out billNumber))
                         {
-                            // and Type_Buy='كاش'
-                            string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + "";
+                            string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
 

@@ -64,8 +64,8 @@
             this.comDelegate = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
-            this.checkedListBoxBills = new System.Windows.Forms.CheckedListBox();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
+            this.listBoxControlBranchID = new DevExpress.XtraEditors.ListBoxControl();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -77,6 +77,8 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBranchID)).BeginInit();
             this.SuspendLayout();
             // 
             // labTotalBillPriceAD
@@ -534,8 +536,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.btnRemove);
-            this.groupBox4.Controls.Add(this.checkedListBoxBills);
+            this.groupBox4.Controls.Add(this.listBoxControlBranchID);
+            this.groupBox4.Controls.Add(this.listBoxControlBills);
             this.groupBox4.Controls.Add(this.checkBoxAdd);
             this.groupBox4.Controls.Add(this.comDelegate);
             this.groupBox4.Controls.Add(this.comBranch);
@@ -613,26 +615,24 @@
             this.radDealer.UseVisualStyleBackColor = true;
             this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
-            // checkedListBoxBills
+            // listBoxControlBills
             // 
-            this.checkedListBoxBills.FormattingEnabled = true;
-            this.checkedListBoxBills.Location = new System.Drawing.Point(78, 55);
-            this.checkedListBoxBills.Name = "checkedListBoxBills";
-            this.checkedListBoxBills.Size = new System.Drawing.Size(100, 68);
-            this.checkedListBoxBills.TabIndex = 154;
+            this.listBoxControlBills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxControlBills.HorizontalScrollbar = true;
+            this.listBoxControlBills.Location = new System.Drawing.Point(78, 53);
+            this.listBoxControlBills.Name = "listBoxControlBills";
+            this.listBoxControlBills.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.listBoxControlBills.Size = new System.Drawing.Size(100, 69);
+            this.listBoxControlBills.TabIndex = 155;
             // 
-            // btnRemove
+            // listBoxControlBranchID
             // 
-            this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.ForeColor = System.Drawing.Color.White;
-            this.btnRemove.Location = new System.Drawing.Point(10, 76);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(62, 23);
-            this.btnRemove.TabIndex = 155;
-            this.btnRemove.Text = "حذف";
-            this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.listBoxControlBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxControlBranchID.Location = new System.Drawing.Point(10, 54);
+            this.listBoxControlBranchID.Name = "listBoxControlBranchID";
+            this.listBoxControlBranchID.Size = new System.Drawing.Size(62, 68);
+            this.listBoxControlBranchID.TabIndex = 156;
+            this.listBoxControlBranchID.Visible = false;
             // 
             // Bill_Confirm
             // 
@@ -661,6 +661,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBranchID)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -702,8 +704,8 @@
         private System.Windows.Forms.Label labTotalDiscount;
         private System.Windows.Forms.Label labTotalBillPriceBD;
         private Bunifu.Framework.UI.BunifuTileButton btnAddItem;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.CheckedListBox checkedListBoxBills;
+        private DevExpress.XtraEditors.ListBoxControl listBoxControlBills;
+        private DevExpress.XtraEditors.ListBoxControl listBoxControlBranchID;
     }
 }
 

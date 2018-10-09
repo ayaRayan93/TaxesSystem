@@ -236,17 +236,17 @@
             this.xtraTabPageBank = new DevExpress.XtraTab.XtraTabPage();
             this.MainTabControlBank = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControlBankReport = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupPullOut = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem95 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem96 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem97 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem98 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupDeposit = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem90 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem91 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem92 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem93 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem94 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroupPullOut = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem95 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem96 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem97 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem98 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupTransfers = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem89 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportBank = new DevExpress.XtraNavBar.NavBarGroup();
@@ -407,6 +407,7 @@
             this.tcMainContent.Margin = new System.Windows.Forms.Padding(0);
             this.tcMainContent.MaxId = 27;
             this.tcMainContent.Name = "tcMainContent";
+            this.tcMainContent.Position = 43;
             this.tcMainContent.Size = new System.Drawing.Size(1145, 523);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
@@ -2226,6 +2227,51 @@
             this.navBarControlBankReport.TabIndex = 3;
             this.navBarControlBankReport.Text = "navBarControl1";
             // 
+            // navBarGroupPullOut
+            // 
+            this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
+            this.navBarGroupPullOut.Appearance.Options.UseFont = true;
+            this.navBarGroupPullOut.Caption = "سحب";
+            this.navBarGroupPullOut.Expanded = true;
+            this.navBarGroupPullOut.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem96),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem97),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem98)});
+            this.navBarGroupPullOut.Name = "navBarGroupPullOut";
+            // 
+            // navBarItem95
+            // 
+            this.navBarItem95.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem95.Appearance.Options.UseFont = true;
+            this.navBarItem95.Caption = "فاتورة كاش";
+            this.navBarItem95.Name = "navBarItem95";
+            this.navBarItem95.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullCash_LinkClicked);
+            // 
+            // navBarItem96
+            // 
+            this.navBarItem96.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem96.Appearance.Options.UseFont = true;
+            this.navBarItem96.Caption = "لحساب عميل(أجل)";
+            this.navBarItem96.Name = "navBarItem96";
+            this.navBarItem96.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullAgl_LinkClicked);
+            // 
+            // navBarItem97
+            // 
+            this.navBarItem97.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem97.Appearance.Options.UseFont = true;
+            this.navBarItem97.Caption = "مصروف";
+            this.navBarItem97.Name = "navBarItem97";
+            this.navBarItem97.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpense_LinkClicked);
+            // 
+            // navBarItem98
+            // 
+            this.navBarItem98.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem98.Appearance.Options.UseFont = true;
+            this.navBarItem98.Caption = "تحت حساب";
+            this.navBarItem98.Name = "navBarItem98";
+            this.navBarItem98.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullPayAccount_LinkClicked);
+            // 
             // navBarGroupDeposit
             // 
             this.navBarGroupDeposit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
@@ -2277,51 +2323,6 @@
             this.navBarItem94.Appearance.Options.UseFont = true;
             this.navBarItem94.Caption = "مرتجع طلب(مورد)";
             this.navBarItem94.Name = "navBarItem94";
-            // 
-            // navBarGroupPullOut
-            // 
-            this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            this.navBarGroupPullOut.Appearance.Options.UseFont = true;
-            this.navBarGroupPullOut.Caption = "سحب";
-            this.navBarGroupPullOut.Expanded = true;
-            this.navBarGroupPullOut.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem96),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem97),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem98)});
-            this.navBarGroupPullOut.Name = "navBarGroupPullOut";
-            // 
-            // navBarItem95
-            // 
-            this.navBarItem95.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem95.Appearance.Options.UseFont = true;
-            this.navBarItem95.Caption = "فاتورة كاش";
-            this.navBarItem95.Name = "navBarItem95";
-            this.navBarItem95.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullCash_LinkClicked);
-            // 
-            // navBarItem96
-            // 
-            this.navBarItem96.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem96.Appearance.Options.UseFont = true;
-            this.navBarItem96.Caption = "لحساب عميل(أجل)";
-            this.navBarItem96.Name = "navBarItem96";
-            this.navBarItem96.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullAgl_LinkClicked);
-            // 
-            // navBarItem97
-            // 
-            this.navBarItem97.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem97.Appearance.Options.UseFont = true;
-            this.navBarItem97.Caption = "مصروف";
-            this.navBarItem97.Name = "navBarItem97";
-            this.navBarItem97.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpense_LinkClicked);
-            // 
-            // navBarItem98
-            // 
-            this.navBarItem98.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem98.Appearance.Options.UseFont = true;
-            this.navBarItem98.Caption = "تحت حساب";
-            this.navBarItem98.Name = "navBarItem98";
-            this.navBarItem98.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullPayAccount_LinkClicked);
             // 
             // navBarGroupTransfers
             // 
@@ -2913,7 +2914,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "المركز التجاري للسراميك";
+            this.Text = "المركز التجاري للسيراميك";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).EndInit();
