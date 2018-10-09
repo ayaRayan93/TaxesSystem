@@ -38,7 +38,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void UpdateSellPrice_Load(object sender, EventArgs e)
         {
             try
@@ -61,6 +60,7 @@ namespace MainSystem
                 gridView1.Columns[1].Width = 140;
                 gridView1.Columns[2].Width = 200;
 
+                setData((DataRowView)gridView1.GetRow(0));
                 load = true;
             }
             catch (Exception ex)
@@ -70,19 +70,18 @@ namespace MainSystem
             dbconnection.Close();
         }
         //deign event
-
         private void chBoxAdditionalIncrease_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 if (chBoxAdditionalIncrease.Checked)
                 {
-                    tLPanCpntent.RowStyles[1].Height = 350;
+                    tLPanCpntent.RowStyles[1].Height = 360;
                     
                 }
                 else
                 {
-                    tLPanCpntent.RowStyles[1].Height = 210;
+                    tLPanCpntent.RowStyles[1].Height = 200;
                 }
             }
             catch (Exception ex)
@@ -90,7 +89,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radioList_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -106,7 +104,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radioQata3y_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -123,7 +120,27 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void chBoxSpecialIncrease_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chBoxSpecialIncrease.Checked)
+                {
+                    tLPanCpntent.RowStyles[1].Height = 200;
+                    panContent.VerticalScroll.Value = panContent.VerticalScroll.Maximum;
 
+                }
+                else
+                {
+                    tLPanCpntent.RowStyles[1].Height = 360;
+                    panContent.VerticalScroll.Value = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         //main events
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -228,8 +245,7 @@ namespace MainSystem
                 }
                 dbconnection.Close();
             }
-        }
-     
+        }    
         private void gridControl1_EditorKeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -248,7 +264,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -447,6 +462,20 @@ namespace MainSystem
                 txtSell.Text = row1["نسبة البيع"].ToString();
                 radioQata3y.Checked = true;
             }
+            string query = "select AdditionalValue,Type,Description from additional_increase_sellprice where SellPrice_ID="+ row1[0].ToString(); ;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                int n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells[0].Value = dr[0].ToString();
+                dataGridView1.Rows[n].Cells[1].Value = dr[1].ToString();
+                dataGridView1.Rows[n].Cells[2].Value = dr[2].ToString();
+
+            }
+            dr.Close();
+            calSellPrice();
+
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -529,5 +558,6 @@ namespace MainSystem
             txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
 
+      
     }
 }

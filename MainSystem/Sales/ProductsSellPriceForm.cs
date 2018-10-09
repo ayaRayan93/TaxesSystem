@@ -271,11 +271,7 @@ namespace MainSystem
                     recordList.Add(a);
                 }
                 
-                if (chBoxSelectAll.Checked)
-                {
-                    salesMainForm.bindUpdateSellPriceForm(null, this, query);
-                }
-                else if (recordList != null)
+                if (recordList != null)
                 {
                     salesMainForm.bindUpdateSellPriceForm(recordList, this, "");
                 }
