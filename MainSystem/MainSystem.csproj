@@ -948,17 +948,12 @@
     <Compile Include="Sales\UpdateSellPriceForm.Designer.cs">
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShippingSystem.cs" />
     <Compile Include="Shipping\Area_Report.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Shipping\Area_Report.designer.cs">
       <DependentUpon>Area_Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Shipping\Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Shipping\Main.designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipping\Shipping_Record.cs">
       <SubType>Form</SubType>
@@ -1530,9 +1525,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Area_Report.resx">
       <DependentUpon>Area_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Shipping_Record.resx">
       <DependentUpon>Shipping_Record.cs</DependentUpon>

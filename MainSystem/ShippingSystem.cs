@@ -8,21 +8,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraTab;
-using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraGrid;
+using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
-using System.Diagnostics;
 using MySql.Data.MySqlClient;
 
 namespace MainSystem
 {
-    public partial class Main : DevExpress.XtraEditors.XtraForm
+    class ShippingSystem
     {
-        MySqlConnection conn;
+    }
+    public partial class MainForm 
+    {
         public static XtraTabControl tabControlShipping;
-        
+
         public static Zone_Area ZoneArea;
         public static Shipping_Record ShippingRecord;
 
@@ -31,56 +31,22 @@ namespace MainSystem
         XtraTabPage tabPageShippingRecord;
         Panel panelShippingRecord;
 
-        public static int delegateID = -1;
-        public static int billNum = 0;
-        bool flag = false;
+        //public static int delegateID = -1;
+        //public static int billNum = 0;
+        //bool flag = false;
 
-        public Main()
+        public void ShippingForm()
         {
-            InitializeComponent();
-            conn = new MySqlConnection(connection.connectionString);
-            
             tabPageZoneArea = new XtraTabPage();
             panelZoneArea = new Panel();
             tabPageShippingRecord = new XtraTabPage();
             panelShippingRecord = new Panel();
 
-            xtraTabControlMain.TabPages.Remove(xtraTabPageShipping);
+          //  xtraTabControlMain.TabPages.Remove(xtraTabPageShipping);
 
             tabControlShipping = xtraTabControlShipping;
         }
-
-        private void xtraTabControlMain_CloseButtonClick(object sender, EventArgs e)
-        {
-            try
-            {
-                ClosePageButtonEventArgs arg = e as ClosePageButtonEventArgs;
-                XtraTabPage xtraTabPage = (XtraTabPage)arg.Page;
-                if (!IsTabPageSave())
-                {
-                    DialogResult dialogResult = MessageBox.Show("هل متاكد انك تريد غلق النافذة بدون حفظ التعديلات؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        xtraTabControlMain.TabPages.Remove(arg.Page as XtraTabPage);
-                        flag = false;
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-
-                    }
-                }
-                else
-                {
-                    xtraTabControlMain.TabPages.Remove(arg.Page as XtraTabPage);
-                    flag = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+        
         private void xtraTabControlPointSale_CloseButtonClick(object sender, EventArgs e)
         {
             try
@@ -111,101 +77,7 @@ namespace MainSystem
             }
         }
 
-        private void xtraTabControlPointSale_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
-        {
-            try
-            {
-                //if (xtraTabControlPointSale.SelectedTabPage == tabPageProductsReport)
-                //{
-                //    ProductsReport.search();
-                //}
-
-                //else if (xtraTabControlBank.SelectedTabPage == Bank_Report.MainTabPagePrintingBank)
-                //{
-                //    if (loadedPrintBank)
-                //    {
-                //        Bank_Report.bankPrint.display();
-                //    }
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //functions
-        public void restForeColorOfNavBarItem()
-        {
-            foreach (NavBarItem item in navBarControlShippingReport.Items)
-            {
-                item.Appearance.ForeColor = Color.Black;
-            }
-        }
-
-        public XtraTabPage getTabPage(string text)
-        {
-            for (int i = 0; i < Main.tabControlShipping.TabPages.Count; i++)
-                if (Main.tabControlShipping.TabPages[i].Name == text)
-                {
-                    return Main.tabControlShipping.TabPages[i];
-                }
-            return null;
-        }
-
-        public bool IsTabPageSave()
-        {
-            for (int i = 0; i < xtraTabControlShipping.TabPages.Count; i++)
-                if (xtraTabControlShipping.TabPages[i].ImageOptions.Image != null)
-                {
-                    return false;
-                }
-            return true;
-        }
-
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                if (!IsTabPageSave())
-                {
-                    DialogResult dialogResult = MessageBox.Show("هل متاكد انك تريد غلق النافذة بدون حفظ التعديلات؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        Application.Exit();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        e.Cancel = (dialogResult == DialogResult.No);
-                    }
-                }
-                else
-                {
-                    Application.Exit();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void tileItemShipping_ItemClick(object sender, TileItemEventArgs e)
-        {
-            try
-            {
-                if (flag == false)
-                {
-                    xtraTabControlMain.TabPages.Add(xtraTabPageShipping);
-                    flag = true;
-                }
-                xtraTabControlMain.SelectedTabPage = xtraTabPageShipping;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+ 
 
         private void navBarItemZoonReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
