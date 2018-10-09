@@ -103,7 +103,8 @@ namespace MainSystem
                     {
                         if (int.TryParse(txtBillNumber.Text, out billNumber))
                         {
-                            string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and Type_Buy='كاش'";
+                            // and Type_Buy='كاش'
+                            string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + "";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
 
@@ -561,6 +562,8 @@ namespace MainSystem
 
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
+
+                                DecreaseProductQuantity();
                                 dbconnection.Close();
 
                                 //finalFlag = true;
@@ -1319,208 +1322,161 @@ namespace MainSystem
             connectionReader2.Open();
             string q;
             int id;
-            bool flag = false;
             double storageQ, productQ;
 
-            string query = "select RecivedType from customer_bill where CustomerBill_ID=" + ID;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            string store = com.ExecuteScalar().ToString();
-            if (store != "العميل")
+            #region not customer
+            string query = "select Data_ID,Type,Quantity,Store_ID from product_bill where CustomerBill_ID=" + ID;
+            MySqlCommand com = new MySqlCommand(query, connectionReader);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
             {
-                #region not customer
-                query = "select Code,Quantity,Set_ID from product_bill where CustomerBill_ID=" + ID;
-                com = new MySqlCommand(query, connectionReader);
-                MySqlDataReader dr = com.ExecuteReader();
-
-                while (dr.Read())
+                if (dr["Type"].ToString() == "بند")
                 {
-                    if (dr["Code"].ToString().Length < 20)
+                    #region بند
+                    double quantityInStore = 0;
+                    query = "select sum(Total_Meters) from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Store_ID=" + dr["Store_ID"].ToString() + " GROUP BY Store_ID,Data_ID";
+                    com = new MySqlCommand(query, connectionReader2);
+                    if (com.ExecuteScalar().ToString() != "")
                     {
-                        query = "select Code,Quantity from offer_details where Offer_ID=" + Convert.ToInt16(dr["Code"].ToString());
-                        com = new MySqlCommand(query, connectionReader1);
-                        MySqlDataReader dr1 = com.ExecuteReader();
-
-                        while (dr1.Read())
-                        {
-                            query = "select sum(Total_Meters) from storage where Code='" + dr1["Code"].ToString() + "' and Store_Name='" + store + "'";
-                            com = new MySqlCommand(query, connectionReader2);
-                            double quantityInStore = 0;
-                            if (com.ExecuteScalar().ToString() != "")
-                            {
-                                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
-                            }
-                            productQ = Convert.ToDouble(dr1["Quantity"]) * Convert.ToDouble(dr["Quantity"]);
-                            if (quantityInStore >= productQ)
-                            {
-                                query = "select Storage_ID,Total_Meters from storage where Code='" + dr1["Code"].ToString() + "' and Store_Name='" + store + "'";
-                                com = new MySqlCommand(query, connectionReader2);
-                                MySqlDataReader dr2 = com.ExecuteReader();
-                                while (dr2.Read())
-                                {
-
-                                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-
-                                    if (storageQ > productQ)
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                        flag = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                    }
-                                }
-                                dr2.Close();
-
-                                if (!flag)
-                                {
-                                    MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                    return;
-                                }
-                                flag = false;
-                            }
-                            else
-                            {
-                                MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                return;
-                            }
-                        }
-                        dr1.Close();
+                        quantityInStore = Convert.ToDouble(com.ExecuteScalar());
                     }
-                    else if (dr["Code"].ToString().Length == 20)
+                    productQ = Convert.ToDouble(dr["Quantity"].ToString());
+                    query = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Store_ID=" + dr["Store_ID"].ToString() + "";
+                    com = new MySqlCommand(query, connectionReader2);
+                    MySqlDataReader dr2 = com.ExecuteReader();
+                    while (dr2.Read())
                     {
-                        if (dr["Set_ID"].ToString() == "")
+                        if (productQ > 0)
                         {
-                            #region بند
-                            query = "select sum(Total_Meters) from storage where Code='" + dr["Code"].ToString() + "' and Store_Name='" + store + "'";
-                            com = new MySqlCommand(query, connectionReader2);
-                            double quantityInStore = 0;
-                            if (com.ExecuteScalar().ToString() != "")
+                            storageQ = Convert.ToDouble(dr2["Total_Meters"].ToString());
+
+                            if (storageQ >= productQ)
                             {
-                                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
-                            }
-                            productQ = Convert.ToDouble(dr["Quantity"]);
-                            if (quantityInStore >= productQ)
-                            {
-                                query = "select Storage_ID,Total_Meters from storage where Code='" + dr["Code"].ToString() + "' and Store_Name='" + store + "'";
-                                com = new MySqlCommand(query, connectionReader2);
-                                MySqlDataReader dr2 = com.ExecuteReader();
-                                while (dr2.Read())
-                                {
-
-                                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-
-                                    if (storageQ > productQ)
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                        flag = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                    }
-                                }
-                                dr2.Close();
-
-                                if (!flag)
-                                {
-                                    MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                    return;
-                                }
-                                flag = false;
+                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
+                                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                                comm.ExecuteNonQuery();
+                                productQ = 0;
+                                //flag = true;
+                                break;
                             }
                             else
                             {
-                                MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                return;
+                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
+                                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                                comm.ExecuteNonQuery();
+                                productQ -= storageQ;
                             }
-                            #endregion
                         }
                         else
                         {
-                            #region طقم
-                            query = "select Quantity from set_details where Set_ID=" + dr["Code"].ToString() + " order by SetDetails_ID limit 1";
-                            com = new MySqlCommand(query, dbconnection);
-                            double itemQuantity = Convert.ToDouble(com.ExecuteScalar());
+                            break;
+                        }
+                    }
+                    dr2.Close();
+                    #endregion
+                }
 
-                            query = "select sum(Total_Meters) from storage where Code='" + dr["Set_ID"].ToString() + "' and Store_Name='" + store + "'";
-                            com = new MySqlCommand(query, connectionReader2);
-                            double quantityInStore = 0;
-                            if (com.ExecuteScalar().ToString() != "")
+                else if (dr["Type"].ToString() == "طقم")
+                {
+                    #region طقم
+                    query = "select sum(Total_Meters) from storage where Set_ID=" + dr["Data_ID"].ToString() + " and Store_ID=" + dr["Store_ID"].ToString() + " GROUP BY Store_ID,Set_ID";
+                    com = new MySqlCommand(query, connectionReader2);
+                    double quantityInStore = 0;
+                    if (com.ExecuteScalar().ToString() != "")
+                    {
+                        quantityInStore = Convert.ToDouble(com.ExecuteScalar());
+                    }
+                    productQ = Convert.ToDouble(dr["Quantity"].ToString());
+                    query = "select Storage_ID,Total_Meters from storage where Set_ID=" + dr["Data_ID"].ToString() + " and Store_ID=" + dr["Store_ID"].ToString() + "";
+                    com = new MySqlCommand(query, connectionReader2);
+                    MySqlDataReader dr2 = com.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        if (productQ > 0)
+                        {
+                            storageQ = Convert.ToDouble(dr2["Total_Meters"].ToString());
+
+                            if (storageQ > productQ)
                             {
-                                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
-                            }
-                            productQ = Convert.ToDouble(dr["Quantity"]) / itemQuantity;
-                            if (quantityInStore >= productQ)
-                            {
-                                query = "select Storage_ID,Total_Meters from storage where Code='" + dr["Set_ID"].ToString() + "' and Store_Name='" + store + "'";
-                                com = new MySqlCommand(query, connectionReader2);
-                                MySqlDataReader dr2 = com.ExecuteReader();
-                                while (dr2.Read())
-                                {
-
-                                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-
-                                    if (storageQ > productQ)
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                        flag = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                    }
-                                }
-                                dr2.Close();
-
-                                if (!flag)
-                                {
-                                    MessageBox.Show(dr["Set_ID"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                    return;
-                                }
-                                flag = false;
+                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
+                                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                                comm.ExecuteNonQuery();
+                                productQ = 0;
+                                break;
                             }
                             else
                             {
-                                MessageBox.Show(dr["Set_ID"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                return;
+                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
+                                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                                comm.ExecuteNonQuery();
+                                productQ -= storageQ;
                             }
-                            #endregion
+                        }
+                        else
+                        {
+                            break;
                         }
                     }
+                    dr2.Close();
+                    #endregion
                 }
-                dr.Close();
-                //successFlag = true;
 
-                #endregion
+                else if (dr["Type"].ToString() == "عرض")
+                {
+                    #region عرض
+                    query = "select sum(Total_Meters) from storage where Offer_ID=" + dr["Data_ID"].ToString() + " and Store_ID=" + dr["Store_ID"].ToString() + " GROUP BY Store_ID,Offer_ID";
+                    com = new MySqlCommand(query, connectionReader2);
+                    double quantityInStore = 0;
+                    if (com.ExecuteScalar().ToString() != "")
+                    {
+                        quantityInStore = Convert.ToDouble(com.ExecuteScalar());
+                    }
+                    productQ = Convert.ToDouble(dr["Quantity"].ToString());
+                    query = "select Storage_ID,Total_Meters from storage where Offer_ID=" + dr["Data_ID"].ToString() + " and Store_ID=" + dr["Store_ID"].ToString() + "";
+                    com = new MySqlCommand(query, connectionReader2);
+                    MySqlDataReader dr2 = com.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        if (productQ > 0)
+                        {
+                            storageQ = Convert.ToDouble(dr2["Total_Meters"].ToString());
+
+                            if (storageQ > productQ)
+                            {
+                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
+                                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                                comm.ExecuteNonQuery();
+                                productQ = 0;
+                                break;
+                            }
+                            else
+                            {
+                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
+                                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                                comm.ExecuteNonQuery();
+                                productQ -= storageQ;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    dr2.Close();
+                    #endregion
+                }
             }
+
+            dr.Close();
+
+            #endregion
             connectionReader2.Close();
             connectionReader1.Close();
             connectionReader.Close();

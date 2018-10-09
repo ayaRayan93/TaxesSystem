@@ -197,25 +197,36 @@ namespace MainSystem
             {
                 try
                 {
+                    int billNumb = 0;
+                    if (int.TryParse(txtBillNo.Text,out billNumb))
+                    { }
+                    else
+                    {
+                        MessageBox.Show("تاكد من رقم الفاتورة");
+                        return;
+                    }
+
                     dbconnection.Open();
                     dbconnectionr.Open();
-
                     if (checkBoxAdd.Checked == false)
                     {
                         MySqlDataAdapter adapter = new MySqlDataAdapter("select distinct data.Data_ID as 'التسلسل', data.Code as 'الكود', data.Code as 'النوع',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',sellprice.Price as 'السعر',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount * dash_details.Quantity) as 'الخصم',(sellprice.Sell_Discount * dash_details.Quantity) as 'النسبة',data.Carton as 'الكرتنة',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash.Dash_ID,'added' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=0 and dash.Branch_ID=0", dbconnection);
                         DataSet sourceDataSet = new DataSet();
                         adapter.Fill(sourceDataSet);
                         gridControl1.DataSource = sourceDataSet.Tables[0];
+                        checkedListBoxBills.Items.Clear();
                     }
+                    checkedListBoxBills.Items.Add(billNumb);
+
                     gridView1.Columns[0].Visible = false;
                     gridView1.Columns["الخصم"].Visible = false;
-                    gridView1.Columns["النسبة"].Visible = false;
+                    //gridView1.Columns["النسبة"].Visible = false;
                     gridView1.Columns["Store_ID"].Visible = false;
-                    gridView1.Columns["الكرتنة"].Visible = false;
+                    //gridView1.Columns["الكرتنة"].Visible = false;
                     gridView1.Columns["Dash_ID"].Visible = false;
                     gridView1.Columns["added"].Visible = false;
 
-                    string query = "SELECT dash.Customer_Name,customer.Customer_Type,delegate.Delegate_Name,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID where dash.Bill_Number = " + txtBillNo.Text + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + "";
+                    string query = "SELECT dash.Customer_Name,customer.Customer_Type,delegate.Delegate_Name,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + "";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     dataReader = com.ExecuteReader();
                     if (dataReader.HasRows)
@@ -254,7 +265,7 @@ namespace MainSystem
 
                                 if (PriceType == "لستة")
                                 {
-                                    query = "select distinct data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Price as 'السعر',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount) as 'الخصم',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + txtBillNo.Text + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='بند'";
+                                    query = "select distinct data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Price as 'السعر',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount) as 'الخصم',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='بند'";
                                     com = new MySqlCommand(query, dbconnectionr);
                                     dataReader1 = com.ExecuteReader();
                                     while (dataReader1.Read())
@@ -286,7 +297,7 @@ namespace MainSystem
                                 }
                                 else if (PriceType == "قطعى")
                                 {
-                                    query = "select distinct data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Sell_Price as 'السعر',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + txtBillNo.Text + " and dash.Branch_ID=" + EmpBranchId + "";
+                                    query = "select distinct data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Sell_Price as 'السعر',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "";
                                     com = new MySqlCommand(query, dbconnectionr);
                                     dataReader1 = com.ExecuteReader();
                                     while (dataReader1.Read())
@@ -322,7 +333,7 @@ namespace MainSystem
                             #region طقم
                             else if (dataReader["Type"].ToString().Trim() == "طقم")
                             {
-                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن' FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + txtBillNo.Text + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='طقم'";
+                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن' FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='طقم'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -376,7 +387,7 @@ namespace MainSystem
                             #region عرض
                             else if (dataReader["Type"].ToString().Trim() == "عرض")
                             {
-                                query = "select distinct offer.Offer_ID, offer.Offer_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',offer.Price as 'السعر',(offer.Price*dash_details.Quantity) as 'الاجمالى' FROM offer INNER JOIN dash_details ON dash_details.Data_ID = offer.Offer_ID INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where offer.Offer_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + txtBillNo.Text + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='عرض'";
+                                query = "select distinct offer.Offer_ID, offer.Offer_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',offer.Price as 'السعر',(offer.Price*dash_details.Quantity) as 'الاجمالى' FROM offer INNER JOIN dash_details ON dash_details.Data_ID = offer.Offer_ID INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where offer.Offer_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='عرض'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -612,7 +623,7 @@ namespace MainSystem
                             }
                         }
 
-                        DecreaseProductQuantity();
+                        //DecreaseProductQuantity();
 
 
                         UserControl.ItemRecord("customer_bill", "اضافة", CustomerBill_ID, DateTime.Now, "", dbconnection);
@@ -730,6 +741,18 @@ namespace MainSystem
 
                     txtBillNo.Enabled = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //checkedListBoxBills.Items.re
             }
             catch (Exception ex)
             {

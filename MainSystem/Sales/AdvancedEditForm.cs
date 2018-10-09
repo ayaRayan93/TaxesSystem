@@ -427,31 +427,39 @@ namespace MainSystem
         
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            double x = 0;
-            if (!Added && row1 != null && double.TryParse(txtPrice.Text,out x))
+            try
             {
-                addedRecordIDs[recordCount] = gridView1.GetSelectedRows()[0];
-                /*gridView1.Rows[gridView1.SelectedCells[0].RowIndex].DefaultCellStyle.BackColor = Color.Silver;*/
-                recordCount++;
-
-                gridView1.AddNewRow();
-                int n = gridView1.GetRowHandle(gridView1.DataRowCount);
-                foreach (GridColumn item in gridView1.Columns)
+                double x = 0;
+                if (!Added && row1 != null && double.TryParse(txtPrice.Text, out x))
                 {
-                    MessageBox.Show(item.Name);
-                    gridView2.SetRowCellValue(n, item.Name, gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], item.Name));
-                }
-                gridView2.SetRowCellValue(n, gridView1.Columns["الكمية"], txtTotalMeters.Text);
-                gridView2.SetRowCellValue(n, gridView1.Columns["السعر"], x);
+                    addedRecordIDs[recordCount] = gridView1.GetSelectedRows()[0];
+                    /*gridView1.Rows[gridView1.SelectedCells[0].RowIndex].DefaultCellStyle.BackColor = Color.Silver;*/
+                    recordCount++;
 
-                //clear fields
-                txtCode.Text = txtPrice.Text = txtTotalMeters.Text = "";
+                    gridView1.AddNewRow();
+                    int n = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    foreach (GridColumn item in gridView1.Columns)
+                    {
+                        MessageBox.Show(item.Name);
+                        gridView2.SetRowCellValue(n, item.Name, gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], item.Name));
+                    }
+                    gridView2.SetRowCellValue(n, gridView1.Columns["الكمية"], txtTotalMeters.Text);
+                    gridView2.SetRowCellValue(n, gridView1.Columns["السعر"], x);
+
+                    //clear fields
+                    txtCode.Text = txtPrice.Text = txtTotalMeters.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("insert all values with correct format");
+                    return;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("insert all values with correct format");
-                return;
+                MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
