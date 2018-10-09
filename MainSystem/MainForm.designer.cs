@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
@@ -313,7 +314,7 @@
             this.pictureBoxSale = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -2185,7 +2186,7 @@
             // 
             // navBarControlBankReport
             // 
-            this.navBarControlBankReport.ActiveGroup = this.navBarGroupDeposit;
+            this.navBarControlBankReport.ActiveGroup = this.navBarGroupPullOut;
             this.navBarControlBankReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlBankReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlBankReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2230,7 +2231,6 @@
             this.navBarGroupDeposit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroupDeposit.Appearance.Options.UseFont = true;
             this.navBarGroupDeposit.Caption = "ايداع";
-            this.navBarGroupDeposit.Expanded = true;
             this.navBarGroupDeposit.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem90),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem91),
@@ -2261,7 +2261,7 @@
             this.navBarItem92.Appearance.Options.UseFont = true;
             this.navBarItem92.Caption = "بدون فاتورة(تحت حساب)";
             this.navBarItem92.Name = "navBarItem92";
-            this.navBarItem92.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncome_LinkClicked);
+            this.navBarItem92.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPayAccount_LinkClicked);
             // 
             // navBarItem93
             // 
@@ -2283,6 +2283,7 @@
             this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroupPullOut.Appearance.Options.UseFont = true;
             this.navBarGroupPullOut.Caption = "سحب";
+            this.navBarGroupPullOut.Expanded = true;
             this.navBarGroupPullOut.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem96),

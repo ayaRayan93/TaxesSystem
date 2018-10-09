@@ -64,6 +64,8 @@
             this.comDelegate = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
+            this.checkedListBoxBills = new System.Windows.Forms.CheckedListBox();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -136,7 +138,7 @@
             this.comBranch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(262, 30);
+            this.comBranch.Location = new System.Drawing.Point(262, 25);
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(150, 24);
             this.comBranch.TabIndex = 147;
@@ -147,7 +149,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label6.Location = new System.Drawing.Point(418, 34);
+            this.label6.Location = new System.Drawing.Point(418, 29);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 151;
@@ -226,7 +228,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(297, 80);
+            this.label1.Location = new System.Drawing.Point(379, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 140;
@@ -305,7 +307,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(184, 34);
+            this.label2.Location = new System.Drawing.Point(184, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 133;
@@ -316,7 +318,7 @@
             this.txtBillNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBillNo.Enabled = false;
             this.txtBillNo.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBillNo.Location = new System.Drawing.Point(78, 30);
+            this.txtBillNo.Location = new System.Drawing.Point(78, 25);
             this.txtBillNo.Name = "txtBillNo";
             this.txtBillNo.Size = new System.Drawing.Size(100, 24);
             this.txtBillNo.TabIndex = 132;
@@ -532,6 +534,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.btnRemove);
+            this.groupBox4.Controls.Add(this.checkedListBoxBills);
             this.groupBox4.Controls.Add(this.checkBoxAdd);
             this.groupBox4.Controls.Add(this.comDelegate);
             this.groupBox4.Controls.Add(this.comBranch);
@@ -555,7 +559,7 @@
             this.checkBoxAdd.AutoSize = true;
             this.checkBoxAdd.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAdd.Location = new System.Drawing.Point(10, 32);
+            this.checkBoxAdd.Location = new System.Drawing.Point(10, 27);
             this.checkBoxAdd.Name = "checkBoxAdd";
             this.checkBoxAdd.Size = new System.Drawing.Size(62, 20);
             this.checkBoxAdd.TabIndex = 153;
@@ -569,7 +573,7 @@
             this.comDelegate.Enabled = false;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(141, 76);
+            this.comDelegate.Location = new System.Drawing.Point(223, 76);
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.Size = new System.Drawing.Size(150, 24);
             this.comDelegate.TabIndex = 152;
@@ -608,6 +612,27 @@
             this.radDealer.Text = "تاجر";
             this.radDealer.UseVisualStyleBackColor = true;
             this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // checkedListBoxBills
+            // 
+            this.checkedListBoxBills.FormattingEnabled = true;
+            this.checkedListBoxBills.Location = new System.Drawing.Point(78, 55);
+            this.checkedListBoxBills.Name = "checkedListBoxBills";
+            this.checkedListBoxBills.Size = new System.Drawing.Size(100, 68);
+            this.checkedListBoxBills.TabIndex = 154;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.ForeColor = System.Drawing.Color.White;
+            this.btnRemove.Location = new System.Drawing.Point(10, 76);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(62, 23);
+            this.btnRemove.TabIndex = 155;
+            this.btnRemove.Text = "حذف";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // Bill_Confirm
             // 
@@ -677,6 +702,8 @@
         private System.Windows.Forms.Label labTotalDiscount;
         private System.Windows.Forms.Label labTotalBillPriceBD;
         private Bunifu.Framework.UI.BunifuTileButton btnAddItem;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.CheckedListBox checkedListBoxBills;
     }
 }
 

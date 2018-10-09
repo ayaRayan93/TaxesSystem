@@ -124,13 +124,13 @@ namespace MainSystem
                                     customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
 
                                 clientID = Convert.ToInt16(dr["Client_ID"].ToString());
-                                delegateID = Convert.ToInt16(dr["Delegate_ID"].ToString());
+                                //delegateID = Convert.ToInt16(dr["Delegate_ID"].ToString());
                             }
                             dr.Close();
                             if (flag2 == true)
                             {
                                 //extract delgate info
-                                if (delegateID > 0)
+                                /*if (delegateID > 0)
                                 {
                                     query = "select * from Delegate where Delegate_ID=" + delegateID;
                                     com = new MySqlCommand(query, dbconnection);
@@ -149,7 +149,7 @@ namespace MainSystem
                                     txtPullMoney.Text = "";
                                     MessageBox.Show("لابد من وجود مندوب");
                                     return;
-                                }
+                                }*/
 
                                 //extract customer info
                                 if (clientID > 0)
