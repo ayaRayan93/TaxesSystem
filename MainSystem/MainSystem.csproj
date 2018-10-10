@@ -721,12 +721,6 @@
     <Compile Include="PointOfSale\AddSpecialOrder.designer.cs">
       <DependentUpon>AddSpecialOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="PointOfSale\BillDetails_Confirm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PointOfSale\BillDetails_Confirm.designer.cs">
-      <DependentUpon>BillDetails_Confirm.cs</DependentUpon>
-    </Compile>
     <Compile Include="PointOfSale\Information_Offers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1400,9 +1394,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\AddSpecialOrder.resx">
       <DependentUpon>AddSpecialOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PointOfSale\BillDetails_Confirm.resx">
-      <DependentUpon>BillDetails_Confirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Information_Offers.resx">
       <DependentUpon>Information_Offers.cs</DependentUpon>

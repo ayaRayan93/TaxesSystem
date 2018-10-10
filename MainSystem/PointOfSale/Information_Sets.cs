@@ -67,7 +67,7 @@ namespace MainSystem
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["البيان"], dr["البيان"]);
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الصورة"], dr["الصورة"]);
 
-                        query = "SELECT sum(set_details.Quantity*sellprice.Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='لستة' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID";
+                        query = "SELECT sum(set_details.Quantity*sellprice.Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='لستة' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID order by sellprice.Date desc";
                         comand = new MySqlCommand(query, dbconnection3);
                         MySqlDataReader dr1 = comand.ExecuteReader();
                         while (dr1.Read())
@@ -79,7 +79,7 @@ namespace MainSystem
                         }
                         dr1.Close();
 
-                        query = "SELECT sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',sets.Description as 'البيان' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='قطعى' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID";
+                        query = "SELECT sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',sets.Description as 'البيان' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='قطعى' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID order by sellprice.Date desc";
                         comand = new MySqlCommand(query, dbconnection3);
                         MySqlDataReader dr2 = comand.ExecuteReader();
                         while (dr2.Read())
@@ -145,7 +145,7 @@ namespace MainSystem
                             layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["البيان"], dr["البيان"]);
                             layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الصورة"], dr["الصورة"]);
 
-                            query = "SELECT sum(set_details.Quantity*sellprice.Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='لستة' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID";
+                            query = "SELECT sum(set_details.Quantity*sellprice.Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='لستة' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID order by sellprice.Date desc";
                             comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr1 = comand.ExecuteReader();
                             while (dr1.Read())
@@ -164,7 +164,7 @@ namespace MainSystem
                             }
                             dr1.Close();
 
-                            query = "SELECT sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='قطعى' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID";
+                            query = "SELECT sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='قطعى' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID order by sellprice.Date desc";
                             comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr2 = comand.ExecuteReader();
                             while (dr2.Read())
@@ -283,7 +283,7 @@ namespace MainSystem
                             layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["البيان"], dr["البيان"]);
                             layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الصورة"], dr["الصورة"]);
 
-                            query = "SELECT sum(set_details.Quantity*sellprice.Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='لستة' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID";
+                            query = "SELECT sum(set_details.Quantity*sellprice.Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='لستة' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID order by sellprice.Date desc";
                             comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr1 = comand.ExecuteReader();
                             while (dr1.Read())
@@ -302,7 +302,7 @@ namespace MainSystem
                             }
                             dr1.Close();
 
-                            query = "SELECT sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='قطعى' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID";
+                            query = "SELECT sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sellprice.Price_Type='قطعى' and sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, sets.Set_ID order by sellprice.Date desc";
                             comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr2 = comand.ExecuteReader();
                             while (dr2.Read())
