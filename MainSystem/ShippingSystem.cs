@@ -30,10 +30,7 @@ namespace MainSystem
         Panel panelZoneArea;
         XtraTabPage tabPageShippingRecord;
         Panel panelShippingRecord;
-
-        //public static int delegateID = -1;
-        //public static int billNum = 0;
-        //bool flag = false;
+        
 
         public void ShippingForm()
         {
@@ -41,8 +38,6 @@ namespace MainSystem
             panelZoneArea = new Panel();
             tabPageShippingRecord = new XtraTabPage();
             panelShippingRecord = new Panel();
-
-          //  xtraTabControlMain.TabPages.Remove(xtraTabPageShipping);
 
             tabControlShipping = xtraTabControlShipping;
         }
