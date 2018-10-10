@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
@@ -344,7 +345,7 @@
             this.pictureBoxSale = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -441,7 +442,6 @@
             this.tcMainContent.Margin = new System.Windows.Forms.Padding(0);
             this.tcMainContent.MaxId = 27;
             this.tcMainContent.Name = "tcMainContent";
-            this.tcMainContent.Position = 43;
             this.tcMainContent.Size = new System.Drawing.Size(1145, 523);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
@@ -784,7 +784,7 @@
             this.xtraTabControlStoresContent.Size = new System.Drawing.Size(981, 523);
             this.xtraTabControlStoresContent.TabIndex = 2;
             this.xtraTabControlStoresContent.Visible = false;
-            this.xtraTabControlStoresContent.Click += new System.EventHandler(this.xtraTabControlContent_Click);
+            this.xtraTabControlStoresContent.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControl1
             // 

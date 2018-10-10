@@ -145,7 +145,7 @@
             this.tLPanCpntent.RowCount = 4;
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 360F));
+            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tLPanCpntent.Size = new System.Drawing.Size(908, 737);
             this.tLPanCpntent.TabIndex = 0;
@@ -751,7 +751,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 123);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(902, 191);
+            this.gridControl1.Size = new System.Drawing.Size(902, 351);
             this.gridControl1.TabIndex = 41;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -803,9 +803,9 @@
             this.panContent.Controls.Add(this.txtCode);
             this.panContent.Controls.Add(this.label11);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panContent.Location = new System.Drawing.Point(3, 320);
+            this.panContent.Location = new System.Drawing.Point(3, 480);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(902, 354);
+            this.panContent.Size = new System.Drawing.Size(902, 194);
             this.panContent.TabIndex = 42;
             // 
             // panel2
