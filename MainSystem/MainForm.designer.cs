@@ -441,6 +441,7 @@
             this.tcMainContent.Margin = new System.Windows.Forms.Padding(0);
             this.tcMainContent.MaxId = 27;
             this.tcMainContent.Name = "tcMainContent";
+            this.tcMainContent.Position = 43;
             this.tcMainContent.Size = new System.Drawing.Size(1145, 523);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
@@ -3159,7 +3160,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "المركز التجاري للسراميك";
+            this.Text = "المركز التجاري للسيراميك";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).EndInit();

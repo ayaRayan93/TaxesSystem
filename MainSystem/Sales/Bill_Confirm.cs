@@ -1,4 +1,6 @@
 ﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
@@ -157,6 +159,7 @@ namespace MainSystem
                 }
             }
         }
+
         //recived type checked
         private void radRecivedType_CheckedChanged(object sender, EventArgs e)
         {
@@ -210,13 +213,13 @@ namespace MainSystem
                     dbconnectionr.Open();
                     if (checkBoxAdd.Checked == false)
                     {
-                        MySqlDataAdapter adapter = new MySqlDataAdapter("select distinct data.Data_ID as 'التسلسل', data.Code as 'الكود', data.Code as 'النوع',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',sellprice.Price as 'السعر',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount * dash_details.Quantity) as 'الخصم',(sellprice.Sell_Discount * dash_details.Quantity) as 'النسبة',data.Carton as 'الكرتنة',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash.Dash_ID,'added' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=0 and dash.Branch_ID=0", dbconnection);
+                        MySqlDataAdapter adapter = new MySqlDataAdapter("select distinct data.Data_ID as 'التسلسل', data.Code as 'الكود', data.Code as 'النوع',concat(product.Product_Name,type.Type_Name,factory.Factory_Name,groupo.Group_Name) as 'الاسم',concat(color.Color_Name,size.Size_Value,sort.Sort_Value) as 'المواصفات',dash_details.Quantity as 'الكمية',sellprice.Price as 'السعر',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount * dash_details.Quantity) as 'الخصم',(sellprice.Sell_Discount * dash_details.Quantity) as 'النسبة',data.Carton as 'الكرتنة',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash.Dash_ID,'added' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=0 and dash.Branch_ID=0", dbconnection);
                         DataSet sourceDataSet = new DataSet();
                         adapter.Fill(sourceDataSet);
                         gridControl1.DataSource = sourceDataSet.Tables[0];
-                        checkedListBoxBills.Items.Clear();
+                        listBoxControlBills.Items.Clear();
+                        listBoxControlBranchID.Items.Clear();
                     }
-                    checkedListBoxBills.Items.Add(billNumb);
 
                     gridView1.Columns[0].Visible = false;
                     gridView1.Columns["الخصم"].Visible = false;
@@ -226,26 +229,28 @@ namespace MainSystem
                     gridView1.Columns["Dash_ID"].Visible = false;
                     gridView1.Columns["added"].Visible = false;
 
-                    string query = "SELECT dash.Customer_Name,customer.Customer_Type,delegate.Delegate_Name,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + "";
+                    string query = "SELECT dash.Customer_Name,customer.Customer_Type,delegate.Delegate_Name,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     dataReader = com.ExecuteReader();
                     if (dataReader.HasRows)
                     {
+                        listBoxControlBills.Items.Add(billNumb + ":" + comBranch.Text);
+                        listBoxControlBranchID.Items.Add(comBranch.SelectedValue.ToString());
                         while (dataReader.Read())
                         {
                             if (dataReader["Customer_Type"].ToString() == "عميل")
                             {
                                 radClient.Checked = true;
                             }
-                            if (dataReader["Customer_Type"].ToString() == "مهندس")
+                            else if (dataReader["Customer_Type"].ToString() == "مهندس")
                             {
                                 radEng.Checked = true;
                             }
-                            if (dataReader["Customer_Type"].ToString() == "مقاول")
+                            else if (dataReader["Customer_Type"].ToString() == "مقاول")
                             {
                                 radCon.Checked = true;
                             }
-                            if (dataReader["Customer_Type"].ToString() == "تاجر")
+                            else if (dataReader["Customer_Type"].ToString() == "تاجر")
                             {
                                 radDealer.Checked = true;
                             }
@@ -265,7 +270,7 @@ namespace MainSystem
 
                                 if (PriceType == "لستة")
                                 {
-                                    query = "select distinct data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Price as 'السعر',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount) as 'الخصم',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='بند'";
+                                    query = "select distinct data.Data_ID, data.Code as 'الكود',concat(product.Product_Name,'/',type.Type_Name,'/',factory.Factory_Name,'/',groupo.Group_Name) as 'الاسم',concat(color.Color_Name,'-',size.Size_Value,'-',sort.Sort_Value) as 'المواصفات',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Price as 'السعر',sellprice.Sell_Price as 'بعد الخصم',(sellprice.Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Discount) as 'الخصم',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='بند'";
                                     com = new MySqlCommand(query, dbconnectionr);
                                     dataReader1 = com.ExecuteReader();
                                     while (dataReader1.Read())
@@ -278,9 +283,10 @@ namespace MainSystem
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dataReader1["الكود"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], "بند");
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اللون"], dataReader1["اللون"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المقاس"], dataReader1["المقاس"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الفرز"], dataReader1["الفرز"].ToString());
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المواصفات"], dataReader1["المواصفات"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اللون"], dataReader1["اللون"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المقاس"], dataReader1["المقاس"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الفرز"], dataReader1["الفرز"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dataReader1["الكمية"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dataReader1["السعر"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], dataReader1["الاجمالى"].ToString());
@@ -297,7 +303,7 @@ namespace MainSystem
                                 }
                                 else if (PriceType == "قطعى")
                                 {
-                                    query = "select distinct data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Sell_Price as 'السعر',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "";
+                                    query = "select distinct data.Data_ID, data.Code as 'الكود',concat(product.Product_Name,'/',type.Type_Name,'/',factory.Factory_Name,'/',groupo.Group_Name) as 'الاسم',concat(color.Color_Name,'-',size.Size_Value,'-',sort.Sort_Value) as 'المواصفات',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',sellprice.Sell_Price as 'السعر',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى',data.Carton as 'الكرتنة' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "";
                                     com = new MySqlCommand(query, dbconnectionr);
                                     dataReader1 = com.ExecuteReader();
                                     while (dataReader1.Read())
@@ -310,9 +316,10 @@ namespace MainSystem
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dataReader1["الكود"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], "بند");
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اللون"], dataReader1["اللون"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المقاس"], dataReader1["المقاس"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الفرز"], dataReader1["الفرز"].ToString());
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المواصفات"], dataReader1["المواصفات"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اللون"], dataReader1["اللون"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المقاس"], dataReader1["المقاس"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الفرز"], dataReader1["الفرز"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dataReader1["الكمية"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dataReader1["السعر"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], dataReader1["الاجمالى"].ToString());
@@ -412,15 +419,7 @@ namespace MainSystem
                             }
                             #endregion
 
-                            else
-                            {
-                                MessageBox.Show("هذه الفاتورة غير موجوده");
-                                dataReader.Close();
-                                dbconnection.Close();
-                                dbconnectionr.Close();
-                                dbconnection2.Close();
-                                return;
-                            }
+                            
                         }
                         dataReader.Close();
                         
@@ -431,9 +430,15 @@ namespace MainSystem
                     }
                     else
                     {
+                        dataReader.Close();
+                        dbconnection.Close();
+                        dbconnectionr.Close();
+                        dbconnection2.Close();
                         comDelegate.Text = "";
                         comClient.Text = "";
                         comEngCon.Text = "";
+                        MessageBox.Show("هذه الفاتورة غير موجوده");
+                        return;
                     }
 
                     double sum = 0;
@@ -479,7 +484,7 @@ namespace MainSystem
         {
             try
             {
-                if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                     return;
                 GridView view = gridView1 as GridView;
                 view.DeleteRow(view.FocusedRowHandle);
@@ -623,6 +628,13 @@ namespace MainSystem
                             }
                         }
 
+                        for (int i = 0; i < listBoxControlBills.Items.Count; i++)
+                        {
+                            query = "update dash set Confirmed=1 where Bill_Number=" + listBoxControlBills.Items[i].ToString().Split(':')[0].Trim() + " and Branch_ID=" + listBoxControlBranchID.Items[i].ToString() + " order by Dash_ID desc limit 1";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                        }
+
                         //DecreaseProductQuantity();
 
 
@@ -630,6 +642,7 @@ namespace MainSystem
                         
                         //printBill();
                         MessageBox.Show("فاتورة رقم : "+ Branch_BillNumber);
+                        clear(tableLayoutPanel1);
                     }
                     else
                     {
@@ -748,17 +761,20 @@ namespace MainSystem
             }
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
+        /*private void btnRemove_Click(object sender, EventArgs e)
         {
             try
             {
-                //checkedListBoxBills.Items.re
+                foreach (DataRowView item in checkedListBoxBills.CheckedItems)
+                {
+                    checkedListBoxBills.Items.Remove(item);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }*/
 
         //functions
         public XtraTabPage getTabPage(string text)
@@ -769,6 +785,53 @@ namespace MainSystem
                     return MainForm.tabControlSales.TabPages[i];
                 }
             return null;
+        }
+
+        public void clear(Control tlp)
+        {
+            //foreach (Control co in tlp.Controls)
+            //{
+            foreach (Control item in tlp.Controls)
+            {
+                if (item is TableLayoutPanel)
+                {
+                    clear(item);
+                }
+                else if (item is System.Windows.Forms.ComboBox)
+                {
+                    item.Text = "";
+                }
+                else if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+                else if (item is Label)
+                {
+                    if (tlp.Name == "tableLayoutPanel4")
+                    {
+                        item.Text = "";
+                    }
+                }
+                else if (item is ListBoxControl)
+                {
+                    listBoxControlBills.Items.Clear();
+                    listBoxControlBranchID.Items.Clear();
+                }
+                else if (item is GroupBox)
+                {
+                    clear(item);
+                }
+                else if (item is GridControl)
+                {
+                    gridControl1.DataSource = null;
+                }
+                else if (item is CheckBox)
+                {
+                    checkBoxAdd.Checked = false;
+                }
+            }
+            //}
+            //}
         }
 
         //check if there are enough quantity from this item in store
