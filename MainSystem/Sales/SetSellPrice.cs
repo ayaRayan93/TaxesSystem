@@ -64,8 +64,7 @@ namespace MainSystem
             {
                 if (chBoxAdditionalIncrease.Checked)
                 {
-                    tLPanCpntent.RowStyles[2].Height = 360;
-                    
+                    tLPanCpntent.RowStyles[2].Height = 360;                  
                 }
                 else
                 {
@@ -560,13 +559,15 @@ namespace MainSystem
                             DataTable dataTable = (DataTable)gridControl1.DataSource;
                             for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
-                                string query = "INSERT INTO sellprice (Price_Type, Sell_Price, ProfitRatio, Data_ID, Price, PercentageDelegate,Date) VALUES(?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?PercentageDelegate,?Date)";
+                                string query = "INSERT INTO sellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                 command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
                                 command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
                                 command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("?Price", price);
+                                command.Parameters.AddWithValue("?Last_Price", calSellPrice());
+                                command.Parameters.AddWithValue("?Sell_Discount", 0.0);
                                 command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
@@ -581,13 +582,15 @@ namespace MainSystem
                         {
                             if (id != 0)
                             {
-                                string query = "INSERT INTO sellprice (Price_Type, Sell_Price, ProfitRatio, Data_ID, Price, PercentageDelegate,Date) VALUES(?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?PercentageDelegate,?Date)";
+                                string query = "INSERT INTO sellprice (Sell_Discount,Price_Type,Last_Price, Sell_Price, ProfitRatio, Data_ID, Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Last_Price,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?PercentageDelegate,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                 command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
                                 command.Parameters.AddWithValue("?Data_ID", id);
                                 command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("?Price", price);
+                                command.Parameters.AddWithValue("?Last_Price", calSellPrice());
+                                command.Parameters.AddWithValue("?Sell_Discount", 0.0);
                                 command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
@@ -620,13 +623,14 @@ namespace MainSystem
                             for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
 
-                                string query = "INSERT INTO sellprice (Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
+                                string query = "INSERT INTO sellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
                                 command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
                                 command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
                                 command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
-                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Price", price); 
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
@@ -651,13 +655,14 @@ namespace MainSystem
 
                                 sellPrice = sellPrice + unNormalPercent;
 
-                                string query = "INSERT INTO sellprice (Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
+                                string query = "INSERT INTO sellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
                                 command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
                                 command.Parameters.AddWithValue("?Data_ID", id);
                                 command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
@@ -874,6 +879,7 @@ namespace MainSystem
             fQuery = "";
             chBoxSelectAll.Checked = false;
         }
+
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < xtraTabControlSalesContent.TabPages.Count; i++)
@@ -895,6 +901,7 @@ namespace MainSystem
             else
                 return false;
         }
+
         public void Clear()
         {
             txtCode.Text = "";
@@ -908,6 +915,7 @@ namespace MainSystem
             txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
             radioList.Checked = true;
         }
+
         public double calSellPrice()
         {
             double addational = 0.0;
@@ -937,6 +945,21 @@ namespace MainSystem
                 return sellPrice + addational;
             }
         }
+        public double lastPrice()
+        {
+            double price = double.Parse(txtPrice.Text);
+            if (dataGridView1.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells[1].Value.ToString() == "عادية")
+                        price += Convert.ToDouble(item.Cells[0].Value);
+                }
+            }
+            price += double.Parse(txtNormal.Text);
+            return price;
+        }
+
         public void makeCode(TextBox txtBox)
         {
             string code = txtCode.Text;

@@ -275,10 +275,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < Main.tabControlShipping.TabPages.Count; i++)
-                if (Main.tabControlShipping.TabPages[i].Name == text)
+            for (int i = 0; i < MainForm.tabControlShipping.TabPages.Count; i++)
+                if (MainForm.tabControlShipping.TabPages[i].Name == text)
                 {
-                    return Main.tabControlShipping.TabPages[i];
+                    return MainForm.tabControlShipping.TabPages[i];
                 }
             return null;
         }

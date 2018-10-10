@@ -304,9 +304,9 @@ namespace MainSystem
                 }
             return null;
         }
+
         public bool IsTabPageSave()
         {
-          
             for (int i = 0; i < xtraTabControlMainContainer.TabPages.Count; i++)
             {
                 foreach (Control item in xtraTabControlMainContainer.TabPages[i].Controls)
@@ -322,9 +322,9 @@ namespace MainSystem
                     }
                 }
             }
-          
             return true;
         }
+
         public void restForeColorOfNavBarItem()
         {
             foreach (NavBarItem item in navBarControl1.Items)
@@ -332,12 +332,9 @@ namespace MainSystem
                 item.Appearance.ForeColor = Color.Black;
             }
         }
-
-      
+        
     }
-
-
-
+    
     public static class connection
     {
        public static string connectionString = "SERVER=192.168.1.200;DATABASE=cccs;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";

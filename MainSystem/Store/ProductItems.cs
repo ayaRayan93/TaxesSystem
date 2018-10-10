@@ -1330,43 +1330,48 @@ namespace MainSystem
                     {
                         if (txtProduct.Text != "")
                         {
-                            query = "insert into product (Product_Name,Type_ID,Factory_ID) values (@name,@Type_ID,@Factory_ID)";
+                            query = "insert into product (Product_Name,Type_ID) values (@name,@Type_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtProduct.Text);
                             com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comTypeProduct.SelectedValue));
-                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
                             com.ExecuteNonQuery();
                             query = "select Product_ID from product order by Product_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
                             int id = Convert.ToInt16(com.ExecuteScalar());
-                            if (comTypeProduct.Text == "سيراميك"|| comTypeProduct.Text == "صيني")
+                            if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني")
                             {
                                 int Group_ID = 0;
                                 for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
                                 {
                                     Group_ID = Convert.ToInt16(checkedListBox2.CheckedItems[i].ToString().Split('\t')[1]);
-                                    query = "insert into product_group (Product_ID,Group_ID) values (@Product_ID,@Group_ID)";
+                                    query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                     com.Parameters["@Product_ID"].Value = id;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
                                     com.ExecuteNonQuery();
                                 }
                                 displayProduct_Group(Group_ID);
+
+
+
                             }
                             else
                             {
-                                query = "insert into product_group (Product_ID,Group_ID) values (@Product_ID,@Group_ID)";
+                                query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.AddWithValue("@Product_ID", id);
                                 com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(comGroup.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
                                 com.ExecuteNonQuery();
                                 displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
                             }
-                            //UserControl.UserRecord("product", "اضافة", id + "", DateTime.Now, dbconnection);
-
-
+                            UserControl.ItemRecord("product", "اضافة", id , DateTime.Now,"", dbconnection);
+                            MessageBox.Show("Done");
                             txtProduct.Text = "";
                             txtProduct.Focus();
                         }
@@ -1379,11 +1384,25 @@ namespace MainSystem
                     else
                     {
                         int Product_ID = Convert.ToInt16(com.ExecuteScalar());
-                        query = "insert into product_factory (Product_ID,Factory_ID) values (@Product_ID,@Factory_ID)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.AddWithValue("@Product_ID", Product_ID);
-                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
-                        com.ExecuteNonQuery();
+
+                        for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
+                        {
+                            int Group_ID = Convert.ToInt16(checkedListBox2.CheckedItems[i].ToString().Split('\t')[1]);
+                            query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
+                            com.Parameters["@Product_ID"].Value = Product_ID;
+                            com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
+                            com.Parameters["@Group_ID"].Value = Group_ID;
+                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
+                            com.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Done");
+                        txtProduct.Text = "";
+                        txtProduct.Focus();
+                        displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
                     }
                 }
                 else
@@ -1452,7 +1471,8 @@ namespace MainSystem
                                     com.ExecuteNonQuery();
                                     displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
                                 }
-                                //UserControl.UserRecord("product", "اضافة", id + "", DateTime.Now, dbconnection);
+                                UserControl.ItemRecord("product", "اضافة", id, DateTime.Now, "", dbconnection);
+
                                 MessageBox.Show("Done");
                                 txtProduct.Text = "";
                                 txtProduct.Focus();
