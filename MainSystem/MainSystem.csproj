@@ -980,18 +980,6 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\CarsMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Store\CarsMainForm.Designer.cs">
-      <DependentUpon>CarsMainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Store\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Store\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Store\initialCodeStorage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1531,12 +1519,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\AtaqmStorage.resx">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Store\CarsMainForm.resx">
-      <DependentUpon>CarsMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Store\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>

@@ -29,6 +29,7 @@ namespace MainSystem
         DataRowView prodRow;
         Products products = null;
         XtraTabControl xtraTabControlStoresContent = null;
+
         public Product_Update(DataRowView prodRow,Products products,XtraTabControl xtraTabControlStoresContent)
         {
             try
@@ -63,7 +64,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void comBox_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -206,7 +206,6 @@ namespace MainSystem
                 //  MessageBox.Show(ex.Message);
             }
         }
-  
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
             TextBox txtBox = (TextBox)sender;
@@ -359,7 +358,6 @@ namespace MainSystem
             }
 
         }
-
         private void btnUpdateProduct_Click(object sender, EventArgs e)
         {
             try
@@ -554,7 +552,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void txtClassification_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -562,7 +559,6 @@ namespace MainSystem
                 txtDescription.Focus();
             }
         }
-
         private void txtDescription_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -570,7 +566,6 @@ namespace MainSystem
                 comSort.Focus();
             }
         }    
-
         private void btnUploadPhoto_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -583,7 +578,6 @@ namespace MainSystem
                 selectedImage= File.ReadAllBytes(selectedFile);
             }
         }
-
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -602,7 +596,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void ImageProduct_Click(object sender, EventArgs e)
         {
             try
@@ -672,7 +665,6 @@ namespace MainSystem
             comSort.Text = "";
 
         }
-
         public void displayData(DataRowView row1)
         {
             ImageProduct.Image = Properties.Resources.animated_gif_loading;
@@ -708,7 +700,6 @@ namespace MainSystem
 
             Data_ID =Convert.ToInt16(row1[0]);
         }
-
         public void displayImage()
         {
             try
@@ -735,7 +726,6 @@ namespace MainSystem
             }
             dbconnection1.Close();
         }
-
         public void displayCode()
         {
             char[] arrCode = code.ToCharArray();
@@ -745,7 +735,6 @@ namespace MainSystem
             txtProduct.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() + "").ToString();
             lastPartCode = "" + arrCode[16] + arrCode[17] + arrCode[18] + arrCode[19];
         }
-
         private void TypeColor()
         {
             string query = "select * from color where Type_ID=" + Convert.ToInt16(comType.SelectedValue);
@@ -759,7 +748,6 @@ namespace MainSystem
            
            // comFactory.Focus();
         }
-
         private void FactorySize()
         {
             string query2 = "select * from size where Factory_ID=" + Convert.ToInt16(comFactory.SelectedValue)+" and Group_ID="+txtGroup.Text;
@@ -771,8 +759,7 @@ namespace MainSystem
             comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
             comSize.Text = "";
             //comGroup.Focus();
-        }
-        
+        }      
         public bool IsClear()
         {
             if (comType.Text == prodRow["النوع"].ToString() &&
@@ -789,7 +776,6 @@ namespace MainSystem
 
             return false;
         }
-
         public bool IsMainChang()
         {
             if (comType.Text == prodRow["النوع"].ToString() &&
@@ -800,7 +786,6 @@ namespace MainSystem
 
             return false;
         }
-
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < xtraTabControlStoresContent.TabPages.Count; i++)
