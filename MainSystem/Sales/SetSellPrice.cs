@@ -56,8 +56,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-     
+        }    
         private void chBoxAdditionalIncrease_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -76,7 +75,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radioList_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -92,7 +90,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radioQata3y_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -492,6 +489,7 @@ namespace MainSystem
                 comColor.Text = "";
                 comSize.Text = "";
                 comSort.Text = "";
+                comClassfication.Text = "";
 
                 txtType.Text = "";
                 txtFactory.Text = "";
@@ -868,6 +866,10 @@ namespace MainSystem
             {
                 fQuery += "and Sort.Sort_ID='" + comSort.SelectedValue + "'";
             }
+            if (comClassfication.Text != "")
+            {
+                fQuery += "and data.Classification='" + comClassfication.Text + "'";
+            }
 
             string query = "SELECT data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery;
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -879,7 +881,6 @@ namespace MainSystem
             fQuery = "";
             chBoxSelectAll.Checked = false;
         }
-
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < xtraTabControlSalesContent.TabPages.Count; i++)
@@ -901,7 +902,6 @@ namespace MainSystem
             else
                 return false;
         }
-
         public void Clear()
         {
             txtCode.Text = "";
@@ -915,7 +915,6 @@ namespace MainSystem
             txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
             radioList.Checked = true;
         }
-
         public double calSellPrice()
         {
             double addational = 0.0;
@@ -959,7 +958,6 @@ namespace MainSystem
             price += double.Parse(txtNormal.Text);
             return price;
         }
-
         public void makeCode(TextBox txtBox)
         {
             string code = txtCode.Text;

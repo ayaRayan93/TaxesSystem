@@ -109,6 +109,7 @@
             this.txtSort.Name = "txtSort";
             this.txtSort.Size = new System.Drawing.Size(55, 24);
             this.txtSort.TabIndex = 20;
+            this.txtSort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtSize
             // 
@@ -119,6 +120,7 @@
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(55, 24);
             this.txtSize.TabIndex = 19;
+            this.txtSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtColor
             // 
@@ -129,6 +131,7 @@
             this.txtColor.Name = "txtColor";
             this.txtColor.Size = new System.Drawing.Size(55, 24);
             this.txtColor.TabIndex = 18;
+            this.txtColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCarton
             // 

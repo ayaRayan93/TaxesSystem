@@ -21,6 +21,7 @@ namespace MainSystem
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
+        bool  flagProduct = false;
         Products products = null;
         XtraTabControl xtraTabControlStoresContent = null;
         public Product_Record(Products products, XtraTabControl xtraTabControlStoresContent)
@@ -182,7 +183,7 @@ namespace MainSystem
                                 txtProduct.Text = "";
 
 
-                                string query2 = "select * from size where Factory_ID=" + txtFactory.Text+" Group_ID="+txtGroup.Text;
+                                string query2 = "select * from size where Factory_ID=" + txtFactory.Text+" and Group_ID="+txtGroup.Text;
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, conn);
                                 DataTable dt2 = new DataTable();
                                 da2.Fill(dt2);
@@ -193,12 +194,17 @@ namespace MainSystem
                                 txtSize.Text = "";
 
                                 comProduct.Focus();
+                                flagProduct = true;
                             }
                             break;
 
                         case "comProduct":
-                            txtProduct.Text = comProduct.SelectedValue.ToString();
-                            comColour.Focus();
+                            if (flagProduct)
+                            {
+                                flagProduct = false;
+                                txtProduct.Text = comProduct.SelectedValue.ToString();
+                                comColour.Focus();
+                            }
                             break;
 
                         case "comColour":
@@ -220,7 +226,7 @@ namespace MainSystem
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+              //  MessageBox.Show(ex.Message);
             }
         }
 
@@ -370,7 +376,7 @@ namespace MainSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                   // MessageBox.Show(ex.ToString());
                 }
                 conn.Close();
             }
