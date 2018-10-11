@@ -906,6 +906,12 @@
     <Compile Include="Sales\Products_Report2Sales.designer.cs">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\PriceUpdateSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\PriceUpdateSales.designer.cs">
+      <DependentUpon>PriceUpdateSales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\QuantityUpdate2Sales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1495,6 +1501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\PriceUpdateSales.resx">
+      <DependentUpon>PriceUpdateSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\QuantityUpdate2Sales.resx">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
