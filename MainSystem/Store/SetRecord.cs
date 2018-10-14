@@ -20,9 +20,13 @@ namespace MainSystem
         XtraTabControl xtraTabControlStoresContent = null;
         DataGridViewRow row1 = null, row2 = null;
         bool loaded=false;
+        bool factoryFlage = false;
+        bool groupFlage = false;
+        bool flagProduct = false;
         public static TipImage tipImage = null;
         Ataqm ataqm = null;
         byte[] selectedImage = null;
+
         public SetRecord(Ataqm ataqm, XtraTabControl xtraTabControlStoresContent)
         {
             try
@@ -95,30 +99,106 @@ namespace MainSystem
         }
         private void comBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (loaded)
+            try
             {
-                ComboBox comBox = (ComboBox)sender;
-
-                switch (comBox.Name)
+                if (loaded)
                 {
-                    case "comType":
-                        txtType.Text = comType.SelectedValue.ToString();
-                        displayProducts();
-                        break;
-                    case "comFactory":
-                        txtFactory.Text = comFactory.SelectedValue.ToString();
-                        displayProducts();
-                        break;
-                    case "comGroup":
-                        txtGroup.Text = comGroup.SelectedValue.ToString();
-                        displayProducts();
-                        break;
-                    case "comProduct":
-                        txtProduct.Text = comProduct.SelectedValue.ToString();
-                        displayProducts();
-                        break;
+                    ComboBox comBox = (ComboBox)sender;
+
+                    switch (comBox.Name)
+                    {
+                        case "comType":
+                            if (loaded)
+                            {
+                                txtType.Text = comType.SelectedValue.ToString();
+                                string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + txtType.Text;
+                                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+                                comFactory.DataSource = dt;
+                                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                                comFactory.Text = "";
+                                txtFactory.Text = "";
+                                if (txtType.Text == "1")
+                                {
+                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=" + txtType.Text;
+                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                                    DataTable dt2 = new DataTable();
+                                    da2.Fill(dt2);
+                                    comGroup.DataSource = dt2;
+                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+                                factoryFlage = true;
+                                displayProducts();
+                                comFactory.Focus();
+                            }
+                            break;
+                        case "comFactory":
+                            if (factoryFlage)
+                            {
+                                txtFactory.Text = comFactory.SelectedValue.ToString();
+                                if (txtType.Text != "1")
+                                {
+                                    string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
+                                    MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
+                                    DataTable dt2f = new DataTable();
+                                    da2f.Fill(dt2f);
+                                    comGroup.DataSource = dt2f;
+                                    comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+
+                                groupFlage = true;
+
+                                displayProducts();
+                                comGroup.Focus();
+                            }
+                            break;
+                        case "comGroup":
+                            if (groupFlage)
+                            {
+                                txtGroup.Text = comGroup.SelectedValue.ToString();
+
+                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
+                                MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
+                                DataTable dt3 = new DataTable();
+                                da3.Fill(dt3);
+                                comProduct.DataSource = dt3;
+                                comProduct.DisplayMember = dt3.Columns["Product_Name"].ToString();
+                                comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
+                                comProduct.Text = "";
+                                txtProduct.Text = "";
+                                comProduct.Focus();
+                                displayProducts();                           
+                                flagProduct = true;
+                            }
+                            break;
+
+                        case "comProduct":
+                            if (flagProduct)
+                            {
+                                flagProduct = false;
+                                txtProduct.Text = comProduct.SelectedValue.ToString();
+                                comType.Focus();
+                                displayProducts();
+                            }
+                            break;
+
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+               // MessageBox.Show(ex.Message);
+            }
+
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -214,15 +294,36 @@ namespace MainSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                   // MessageBox.Show(ex.ToString());
                 }
                 dbconnection.Close();
             }
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            displayProducts();
+            try
+            {
+                displayProducts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        
+        }
+        private void btnNewChooes_Click(object sender, EventArgs e)
+        {
+            foreach (Control item in panel1.Controls)
+            {
+                if (item is TextBox)
+                    item.Text = "";
+                else if (item is ComboBox)
+                {
+                    item.Text = "";
+                }
 
+            }
+            dataGridView1.DataSource = null;
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -517,7 +618,7 @@ namespace MainSystem
                             comand.ExecuteNonQuery();
                         }
 
-                        //UserControl.UserRecord("sets", "add", set_id.ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("sets", "add",Convert.ToInt16(set_id.ToString()), DateTime.Now,"", dbconnection);
 
                         MessageBox.Show("Done");
                         clear();
@@ -699,9 +800,6 @@ namespace MainSystem
                     q4 = txtGroup.Text;
                 }
 
-                //  string query = "select distinct data.Code as 'كود' , type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة', product.Product_Name as 'المنتج' ,data.Colour as 'لون', data.Size as 'المقاس', data.Sort as 'الفرز',data.Classification as 'التصنيف', data.Description as 'الوصف', data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") group by data.Code";
-
-
                 string query = "SELECT data.Data_ID,data.Code,product.Product_Name,type.Type_Name,factory.Factory_Name,groupo.Group_Name,color.Color_Name,size.Size_Value,sort.Sort_Value,data.Classification,data.Description,data.Carton from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") group by data.Code";
 
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
@@ -772,12 +870,8 @@ namespace MainSystem
             else
                 return false;
            
-            
-              
-            
-
             return flag;
-        }
+        }       
         public void clear()
         {
             dataGridView1.Rows.Clear();

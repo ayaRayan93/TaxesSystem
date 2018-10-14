@@ -29,6 +29,7 @@ namespace MainSystem
         public Product_Update product_Update = null;
         TipImage tipImage=null;
         char[] arrCode=null;
+
         public Products(MainForm storeMainForm)
         {
             try
@@ -113,7 +114,10 @@ namespace MainSystem
                     txtType.Text = comType.SelectedValue.ToString();
                     comFactory.Focus();
                     filterFactory();
-                    displayProducts();
+                    if (chBoxSelectAll.Checked)
+                        displayProducts();
+                    else
+                        displayAllProducts();
                     if (txtType.Text != "1")
                     {
                         string query = "select * from product";
@@ -160,7 +164,10 @@ namespace MainSystem
                     txtGroup.Text = comGroup.SelectedValue.ToString();
                     comProduct.Focus();
                     filterProduct();
-                    displayProducts();
+                    if (chBoxSelectAll.Checked)
+                        displayProducts();
+                    else
+                        displayAllProducts();
                     loaded = true;
                 }
             }
@@ -181,7 +188,10 @@ namespace MainSystem
                     txtFactory.Text = comFactory.SelectedValue.ToString();
                     comGroup.Focus();
                     filterGroup();
-                    displayProducts();
+                    if (chBoxSelectAll.Checked)
+                        displayProducts();
+                    else
+                        displayAllProducts();
                     loaded = true;
                 }
             }
@@ -201,7 +211,10 @@ namespace MainSystem
                     dbconnection.Open();
                     txtProduct.Text = comProduct.SelectedValue.ToString();
                     comType.Focus();
-                    displayProducts();
+                    if (chBoxSelectAll.Checked)
+                        displayProducts();
+                    else
+                        displayAllProducts();
                     loaded = true;
                 }
             }
@@ -237,7 +250,10 @@ namespace MainSystem
                                     txtFactory.Focus();
                                     filterFactory();
                                     dbconnection.Close();
-                                    displayProducts();
+                                    if (chBoxSelectAll.Checked)
+                                        displayProducts();
+                                    else
+                                        displayAllProducts();
                                 }
                                 else
                                 {
@@ -255,7 +271,10 @@ namespace MainSystem
                                     comFactory.Text = Name;
                                     txtGroup.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
+                                    if (chBoxSelectAll.Checked)
+                                        displayProducts();
+                                    else
+                                        displayAllProducts();
                                 }
                                 else
                                 {
@@ -273,7 +292,10 @@ namespace MainSystem
                                     comGroup.Text = Name;
                                     txtProduct.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
+                                    if (chBoxSelectAll.Checked)
+                                        displayProducts();
+                                    else
+                                        displayAllProducts();
                                 }
                                 else
                                 {
@@ -291,7 +313,10 @@ namespace MainSystem
                                     this.com.Text = Name;
                                     txtType.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
+                                    if (chBoxSelectAll.Checked)
+                                        displayProducts();
+                                    else
+                                        displayAllProducts();
                                 }
                                 else
                                 {
@@ -316,7 +341,10 @@ namespace MainSystem
         {
             try
             {
-                displayAllProducts();
+                if (chBoxSelectAll.Checked)
+                    displayProducts();
+                else
+                    displayAllProducts();
             }
             catch (Exception ex)
             {
@@ -356,9 +384,12 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery(); 
 
-                      //  UserControl.UserRecord("data", "حذف", row1[0].ToString(), DateTime.Now, dbconnection);
-                     
-                        displayProducts();
+                        UserControl.ItemRecord("data", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
+
+                        if (chBoxSelectAll.Checked)
+                            displayProducts();
+                        else
+                            displayAllProducts();
                     }
                     else if (dialogResult == DialogResult.No)
                     { }
@@ -379,22 +410,22 @@ namespace MainSystem
             try
             {
                 DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                //if (load)
-                //{
-                //    if (tipImage == null)
-                //    {
-                //        tipImage = new TipImage(row1[1].ToString());
-                //        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                //        tipImage.Show();
-                //    }
-                //    else
-                //    {
-                //        tipImage.Close();
-                //        tipImage = new TipImage(row1[1].ToString());
-                //        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                //        tipImage.Show();
-                //    }
-                //}
+                if (load)
+                {
+                    if (tipImage == null)
+                    {
+                        tipImage = new TipImage(row1[1].ToString());
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                    else
+                    {
+                        tipImage.Close();
+                        tipImage = new TipImage(row1[1].ToString());
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -451,7 +482,10 @@ namespace MainSystem
             try
             {
                 clear();
-                displayProducts();
+                if (chBoxSelectAll.Checked)
+                    displayProducts();
+                else
+                    displayAllProducts();
             }
             catch (Exception ex)
             {
@@ -520,7 +554,10 @@ namespace MainSystem
                             query = "update data set Code='" + code + "' where Data_ID=" + row[0].ToString();
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
-                            displayProducts();
+                            if (chBoxSelectAll.Checked)
+                                displayProducts();
+                            else
+                                displayAllProducts();
                             txtEditCode.Text = "";
                             txtEditCode.Visible = false;
                             label7.Visible = false;
@@ -643,9 +680,8 @@ namespace MainSystem
         {
             try
             {
-
                 load = false;
-                string q1, q2, q3, q4;
+                string q1, q2, q3, q4,q5;
                 if (txtType.Text == "")
                 {
                     q1 = "select Type_ID from type";
@@ -678,7 +714,14 @@ namespace MainSystem
                 {
                     q4 = txtGroup.Text;
                 }
-               
+                if (txtProduct.Text == "")
+                {
+                    q5 = "select Size_ID from size";
+                }
+                else
+                {
+                    q5 = txtProduct.Text;
+                }
                 if (txtType.Text != "1")
                 {
                     string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  order by data.Code ";
@@ -702,11 +745,11 @@ namespace MainSystem
                 }
                 else
                 {
-                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") order by data.Code ";
+                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ") order by data.Code ";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet);
-                    dataGridView1.DataSource = null;
+                   // dataGridView1.DataSource = null;
                     GridView lView = new GridView(dataGridView1);
 
                     dataGridView1.MainView = lView;
@@ -770,7 +813,7 @@ namespace MainSystem
                 }
 
                 dataGridView1.DataSource = null;
-                string query = "SELECT distinct data.Code as 'الكود',data_details.Photo as 'الصورة',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN data_details on data.`Code`=data_details.Code  ";
+                string query = "SELECT distinct data.Code as 'الكود',data_photo.Photo as 'الصورة',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN data_photo on data.Data_ID=data_photo.Data_ID  ";
                 MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
@@ -852,7 +895,7 @@ namespace MainSystem
             {
                 if (txtType.Text != "1")
                 {
-                    string query = "select * from product inner join product_group on product.Product_ID=product_group.Product_ID where product_group.Group_ID=" + comGroup.SelectedValue + " and Factory_ID=" + comFactory.SelectedValue + " and Type_ID=" + comType.SelectedValue;
+                    string query = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -864,7 +907,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    string query = "select * from size where  Factory_ID=" + comFactory.SelectedValue ;
+                    string query = "select * from size where Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);

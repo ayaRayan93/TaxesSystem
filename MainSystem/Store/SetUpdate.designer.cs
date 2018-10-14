@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetUpdate));
             this.panel3 = new System.Windows.Forms.Panel();
             this.tLPanProductsContainer = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
@@ -68,6 +66,7 @@
             this.Description2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Carton2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ImageProduct = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtSetName = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -78,7 +77,6 @@
             this.txtCode = new System.Windows.Forms.TextBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -91,19 +89,20 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
-            this.ImageProduct = new System.Windows.Forms.PictureBox();
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl();
+            this.btnNewChooes = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.tLPanProductsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageProduct)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageProduct)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -158,7 +157,7 @@
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 13.25F);
             dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -314,7 +313,7 @@
             this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 13.25F);
             dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -435,6 +434,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(886, 144);
             this.panel1.TabIndex = 19;
+            // 
+            // ImageProduct
+            // 
+            this.ImageProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
+            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara1;
+            this.ImageProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ImageProduct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ImageProduct.Location = new System.Drawing.Point(124, 6);
+            this.ImageProduct.Margin = new System.Windows.Forms.Padding(30);
+            this.ImageProduct.Name = "ImageProduct";
+            this.ImageProduct.Size = new System.Drawing.Size(218, 132);
+            this.ImageProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImageProduct.TabIndex = 19;
+            this.ImageProduct.TabStop = false;
+            this.ImageProduct.Click += new System.EventHandler(this.ImageProduct_Click);
             // 
             // label8
             // 
@@ -559,7 +574,8 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.bunifuFlatButton1);
+            this.panel4.Controls.Add(this.btnNewChooes);
+            this.panel4.Controls.Add(this.btnSearch);
             this.panel4.Controls.Add(this.txtProduct);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.label4);
@@ -578,48 +594,11 @@
             this.panel4.Size = new System.Drawing.Size(886, 94);
             this.panel4.TabIndex = 21;
             // 
-            // bunifuFlatButton1
-            // 
-            this.bunifuFlatButton1.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuFlatButton1.BorderRadius = 0;
-            this.bunifuFlatButton1.ButtonText = "بحث";
-            this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
-            this.bunifuFlatButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
-            this.bunifuFlatButton1.Iconimage = ((System.Drawing.Image)(resources.GetObject("bunifuFlatButton1.Iconimage")));
-            this.bunifuFlatButton1.Iconimage_right = null;
-            this.bunifuFlatButton1.Iconimage_right_Selected = null;
-            this.bunifuFlatButton1.Iconimage_Selected = null;
-            this.bunifuFlatButton1.IconMarginLeft = 0;
-            this.bunifuFlatButton1.IconMarginRight = 0;
-            this.bunifuFlatButton1.IconRightVisible = false;
-            this.bunifuFlatButton1.IconRightZoom = 0D;
-            this.bunifuFlatButton1.IconVisible = false;
-            this.bunifuFlatButton1.IconZoom = 90D;
-            this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(33, 33);
-            this.bunifuFlatButton1.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuFlatButton1.Name = "bunifuFlatButton1";
-            this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.bunifuFlatButton1.OnHovercolor = System.Drawing.SystemColors.ControlDarkDark;
-            this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.White;
-            this.bunifuFlatButton1.selected = false;
-            this.bunifuFlatButton1.Size = new System.Drawing.Size(76, 28);
-            this.bunifuFlatButton1.TabIndex = 3;
-            this.bunifuFlatButton1.Text = "بحث";
-            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
-            this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuFlatButton1.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // txtProduct
             // 
             this.txtProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProduct.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProduct.Location = new System.Drawing.Point(138, 47);
+            this.txtProduct.Location = new System.Drawing.Point(227, 45);
             this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(69, 23);
@@ -643,7 +622,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(436, 45);
+            this.label4.Location = new System.Drawing.Point(486, 47);
             this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 16);
@@ -654,7 +633,7 @@
             // 
             this.txtFactory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFactory.Location = new System.Drawing.Point(138, 18);
+            this.txtFactory.Location = new System.Drawing.Point(227, 18);
             this.txtFactory.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(69, 23);
@@ -668,11 +647,11 @@
             this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comGroup.FormattingEnabled = true;
             this.comGroup.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comGroup.Location = new System.Drawing.Point(589, 45);
+            this.comGroup.Location = new System.Drawing.Point(630, 45);
             this.comGroup.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comGroup.Name = "comGroup";
             this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comGroup.Size = new System.Drawing.Size(220, 24);
+            this.comGroup.Size = new System.Drawing.Size(179, 24);
             this.comGroup.TabIndex = 9;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -683,11 +662,11 @@
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comFactory.FormattingEnabled = true;
             this.comFactory.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comFactory.Location = new System.Drawing.Point(211, 16);
+            this.comFactory.Location = new System.Drawing.Point(302, 18);
             this.comFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comFactory.Size = new System.Drawing.Size(220, 24);
+            this.comFactory.Size = new System.Drawing.Size(179, 24);
             this.comFactory.TabIndex = 11;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -695,7 +674,7 @@
             // 
             this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGroup.Location = new System.Drawing.Point(514, 47);
+            this.txtGroup.Location = new System.Drawing.Point(555, 47);
             this.txtGroup.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(69, 23);
@@ -709,11 +688,11 @@
             this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comType.FormattingEnabled = true;
             this.comType.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comType.Location = new System.Drawing.Point(589, 16);
+            this.comType.Location = new System.Drawing.Point(630, 16);
             this.comType.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comType.Name = "comType";
             this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comType.Size = new System.Drawing.Size(220, 24);
+            this.comType.Size = new System.Drawing.Size(179, 24);
             this.comType.TabIndex = 2;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -725,11 +704,11 @@
             this.comProduct.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comProduct.FormattingEnabled = true;
             this.comProduct.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comProduct.Location = new System.Drawing.Point(211, 45);
+            this.comProduct.Location = new System.Drawing.Point(302, 47);
             this.comProduct.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comProduct.Name = "comProduct";
             this.comProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comProduct.Size = new System.Drawing.Size(220, 24);
+            this.comProduct.Size = new System.Drawing.Size(179, 24);
             this.comProduct.TabIndex = 10;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -737,7 +716,7 @@
             // 
             this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtType.Location = new System.Drawing.Point(514, 18);
+            this.txtType.Location = new System.Drawing.Point(555, 18);
             this.txtType.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(69, 23);
@@ -749,7 +728,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(436, 16);
+            this.label2.Location = new System.Drawing.Point(486, 18);
             this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 16);
@@ -775,21 +754,36 @@
             this.bunifuDragControl1.TargetControl = null;
             this.bunifuDragControl1.Vertical = true;
             // 
-            // ImageProduct
+            // btnNewChooes
             // 
-            this.ImageProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara1;
-            this.ImageProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ImageProduct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ImageProduct.Location = new System.Drawing.Point(124, 6);
-            this.ImageProduct.Margin = new System.Windows.Forms.Padding(30);
-            this.ImageProduct.Name = "ImageProduct";
-            this.ImageProduct.Size = new System.Drawing.Size(218, 132);
-            this.ImageProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ImageProduct.TabIndex = 19;
-            this.ImageProduct.TabStop = false;
-            this.ImageProduct.Click += new System.EventHandler(this.ImageProduct_Click);
+            this.btnNewChooes.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChooes.FlatAppearance.BorderSize = 0;
+            this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewChooes.Location = new System.Drawing.Point(15, 10);
+            this.btnNewChooes.Name = "btnNewChooes";
+            this.btnNewChooes.Size = new System.Drawing.Size(103, 33);
+            this.btnNewChooes.TabIndex = 140;
+            this.btnNewChooes.Text = "اختيار اخر";
+            this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSearch.Location = new System.Drawing.Point(15, 47);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(103, 33);
+            this.btnSearch.TabIndex = 139;
+            this.btnSearch.Text = "بحث";
+            this.btnSearch.UseVisualStyleBackColor = false;
             // 
             // SetUpdate
             // 
@@ -809,13 +803,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageProduct)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImageProduct)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -824,7 +818,6 @@
 
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tLPanProductsContainer;
-        private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
@@ -879,5 +872,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Description2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Carton2;
         private System.Windows.Forms.PictureBox ImageProduct;
+        private System.Windows.Forms.Button btnNewChooes;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

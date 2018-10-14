@@ -58,6 +58,7 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnDisplayWithImage = new DevExpress.XtraEditors.SimpleButton();
+            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.tLPanProductsContainer.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -115,6 +116,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnDelete, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnReport, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.chBoxSelectAll, 5, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 492);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -563,6 +565,19 @@
             this.btnDisplayWithImage.Text = "عرض مع الصور";
             this.btnDisplayWithImage.Click += new System.EventHandler(this.btnDisplayWithImage_Click);
             // 
+            // chBoxSelectAll
+            // 
+            this.chBoxSelectAll.AutoSize = true;
+            this.chBoxSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.chBoxSelectAll.Location = new System.Drawing.Point(3, 3);
+            this.chBoxSelectAll.Name = "chBoxSelectAll";
+            this.chBoxSelectAll.Size = new System.Drawing.Size(257, 54);
+            this.chBoxSelectAll.TabIndex = 6;
+            this.chBoxSelectAll.Text = "عرض البنود المسجلة اليوم فقط";
+            this.chBoxSelectAll.UseVisualStyleBackColor = true;
+            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,6 +592,7 @@
             this.tLPanProductsContainer.ResumeLayout(false);
             this.tLPanProductsContainer.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -618,5 +634,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Button btnNewChooes;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox chBoxSelectAll;
     }
 }
