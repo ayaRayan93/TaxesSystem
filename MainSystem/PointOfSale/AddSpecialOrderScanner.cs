@@ -88,17 +88,17 @@ namespace MainSystem
                 SpecialOrderID = Convert.ToInt16(com.ExecuteScalar());
             }
 
-            query = "select Branch_Name from Branch where Branch_ID=" + EmpBranchId;
+            /*query = "select Branch_Name from Branch where Branch_ID=" + EmpBranchId;
             com = new MySqlCommand(query, dbconnection);
-            string BranchName = com.ExecuteScalar().ToString();
+            string BranchName = com.ExecuteScalar().ToString();*/
 
             //,Client_ID  ,@Client_ID
-            query = "insert into requests (Branch_ID,Branch_Name,BranchBillNumber,SpecialOrder_ID,Delegate_ID) values (@Branch_ID,@Branch_Name,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID)";
+            query = "insert into requests (Branch_ID,BranchBillNumber,SpecialOrder_ID,Delegate_ID) values (@Branch_ID,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID)";
             com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
             com.Parameters["@Branch_ID"].Value = EmpBranchId;
-            com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
-            com.Parameters["@Branch_Name"].Value = BranchName;
+            //com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
+            //com.Parameters["@Branch_Name"].Value = BranchName;
             com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16);
             com.Parameters["@BranchBillNumber"].Value = branchBillNumber;
             com.Parameters.Add("@SpecialOrder_ID", MySqlDbType.Int16);

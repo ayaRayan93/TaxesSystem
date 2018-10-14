@@ -14,6 +14,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,7 +36,7 @@ namespace MainSystem
         int EmpBranchId = 0;
         
         public static RequestImage tipImage = null;
-        DataRow row1;
+        DataRowView row1;
 
         public SpecialOrders_Report2()
         {
@@ -53,8 +54,8 @@ namespace MainSystem
             
             //gridView1.PostEditor();
             //gridView1.UpdateCurrentRow();
-            gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
-            gridView1.OptionsEditForm.CustomEditFormLayout = new AdvancedEditForm(EmpBranchId);
+            /*gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
+            gridView1.OptionsEditForm.CustomEditFormLayout = new AdvancedEditForm(EmpBranchId);*/
             
             //gridView1.ShowInplaceEditForm();
             //gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Default;
@@ -109,7 +110,7 @@ namespace MainSystem
 
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
         {
-            try
+            /*try
             {
                 if (e.Column.ToString() == "صورة الطلب")
                 {
@@ -133,34 +134,66 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
 
-        /*private void gridView1_DoubleClick(object sender, EventArgs e)
+        private void repositoryItemButtonEditDownload_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
             {
-                row1 = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+                //string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                byte[] bytes = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns[2]);
+                Image image= byteArrayToImage(bytes);
+                SaveFileDialog f = new SaveFileDialog();
+                f.Filter = "PNG(*.PNG)|*.png";
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    image.Save(f.FileName);
+                }
+                //System.IO.File.WriteAllBytes(filePath, bytes);
+                //File.WriteAllBytes(Server.MapPath(filePath), bytes);
+                //MemoryStream imageData = new MemoryStream(bytes);
 
-                if (tipImage == null)
+
+                /*using (WebClient webClient = new WebClient())
                 {
-                    tipImage = new RequestImage(row1["SpecialOrderID"].ToString());
-                    tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                    tipImage.Show();
-                }
-                else
-                {
-                    tipImage.Close();
-                    tipImage = new RequestImage(row1["SpecialOrderID"].ToString());
-                    tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                    tipImage.Show();
-                }
+                    var watch = System.Diagnostics.Stopwatch.StartNew();
+
+                    byte[] data = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns[2]);
+                    using (MemoryStream imageData = new MemoryStream(data))
+                    {
+                    }
+
+                    watch.Stop();
+                }*/
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                //row1 = (DataRowView)gridView1.GetRow(gridView1.FocusedRowHandle);
+                
+                AdvancedEditForm2 f2 = new AdvancedEditForm2(EmpBranchId, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
+                f2.ShowDialog();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }*/
+        }
     }
 
     public class GridPicture

@@ -852,6 +852,12 @@
       <DependentUpon>GraphicDelegateExistence_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="SalesSystem.cs" />
+    <Compile Include="Sales\AdvancedEditForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\AdvancedEditForm2.designer.cs">
+      <DependentUpon>AdvancedEditForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\AdvancedEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1487,6 +1493,9 @@
     <EmbeddedResource Include="Reception\GraphicDelegateExistence_Report.resx">
       <DependentUpon>GraphicDelegateExistence_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\AdvancedEditForm2.resx">
+      <DependentUpon>AdvancedEditForm2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\AdvancedEditForm.resx">
       <DependentUpon>AdvancedEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1893,6 +1902,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_Download_32.png" />
     <None Include="Resources\update.png" />
     <None Include="Resources\BackgroundBlue.jpg" />
     <None Include="Resources\Car Service_50px.png" />

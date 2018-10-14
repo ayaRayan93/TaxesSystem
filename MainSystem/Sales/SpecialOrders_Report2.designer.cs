@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -37,12 +42,15 @@
             this.colRequestNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRequestPicture = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            this.colButton = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEditDownload = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDownload)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,7 +85,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemPictureEdit1});
+            this.repositoryItemPictureEdit1,
+            this.repositoryItemButtonEditDownload});
             this.gridControl1.Size = new System.Drawing.Size(1037, 594);
             this.gridControl1.TabIndex = 6;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -96,11 +105,14 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSpecialOrderID,
             this.colRequestNumber,
-            this.colRequestPicture});
+            this.colRequestPicture,
+            this.colButton});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.RowHeight = 200;
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.RowHeight = 400;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colSpecialOrderID
             // 
@@ -115,6 +127,7 @@
             this.colRequestNumber.Name = "colRequestNumber";
             this.colRequestNumber.Visible = true;
             this.colRequestNumber.VisibleIndex = 0;
+            this.colRequestNumber.Width = 200;
             // 
             // colRequestPicture
             // 
@@ -124,11 +137,31 @@
             this.colRequestPicture.Name = "colRequestPicture";
             this.colRequestPicture.Visible = true;
             this.colRequestPicture.VisibleIndex = 1;
+            this.colRequestPicture.Width = 716;
             // 
             // repositoryItemPictureEdit1
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             this.repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            // 
+            // colButton
+            // 
+            this.colButton.Caption = "تنزيل";
+            this.colButton.ColumnEdit = this.repositoryItemButtonEditDownload;
+            this.colButton.Name = "colButton";
+            this.colButton.Visible = true;
+            this.colButton.VisibleIndex = 2;
+            this.colButton.Width = 100;
+            // 
+            // repositoryItemButtonEditDownload
+            // 
+            this.repositoryItemButtonEditDownload.AutoHeight = false;
+            editorButtonImageOptions2.Image = global::MainSystem.Properties.Resources.icons8_Download_32;
+            this.repositoryItemButtonEditDownload.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repositoryItemButtonEditDownload.Name = "repositoryItemButtonEditDownload";
+            this.repositoryItemButtonEditDownload.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repositoryItemButtonEditDownload.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEditDownload_ButtonClick);
             // 
             // toolTipController1
             // 
@@ -152,6 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEditDownload)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -167,5 +201,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colRequestPicture;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn colSpecialOrderID;
+        private DevExpress.XtraGrid.Columns.GridColumn colButton;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEditDownload;
     }
 }
