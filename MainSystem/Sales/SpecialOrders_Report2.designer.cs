@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SpecialOrders_Report
+    partial class SpecialOrders_Report2
     {
         /// <summary>
         /// Required designer variable.
@@ -33,11 +33,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSpecialOrderID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRequestNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRequestPicture = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -61,7 +66,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 600F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1043, 600);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
@@ -71,6 +76,8 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 3);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemPictureEdit1});
             this.gridControl1.Size = new System.Drawing.Size(1037, 594);
             this.gridControl1.TabIndex = 6;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -86,8 +93,42 @@
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSpecialOrderID,
+            this.colRequestNumber,
+            this.colRequestPicture});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.RowHeight = 200;
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            // 
+            // colSpecialOrderID
+            // 
+            this.colSpecialOrderID.Caption = "SpecialOrderID";
+            this.colSpecialOrderID.FieldName = "SpecialOrderID";
+            this.colSpecialOrderID.Name = "colSpecialOrderID";
+            // 
+            // colRequestNumber
+            // 
+            this.colRequestNumber.Caption = "رقم الطلب";
+            this.colRequestNumber.FieldName = "RequestNumber";
+            this.colRequestNumber.Name = "colRequestNumber";
+            this.colRequestNumber.Visible = true;
+            this.colRequestNumber.VisibleIndex = 0;
+            // 
+            // colRequestPicture
+            // 
+            this.colRequestPicture.Caption = "صورة الطلب";
+            this.colRequestPicture.ColumnEdit = this.repositoryItemPictureEdit1;
+            this.colRequestPicture.FieldName = "Picture";
+            this.colRequestPicture.Name = "colRequestPicture";
+            this.colRequestPicture.Visible = true;
+            this.colRequestPicture.VisibleIndex = 1;
+            // 
+            // repositoryItemPictureEdit1
+            // 
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            this.repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             // 
             // toolTipController1
             // 
@@ -95,14 +136,14 @@
             this.toolTipController1.Appearance.Options.UseFont = true;
             this.toolTipController1.ShowBeak = true;
             // 
-            // SpecialOrders_Report
+            // SpecialOrders_Report2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "SpecialOrders_Report";
+            this.Name = "SpecialOrders_Report2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تقرير الطلبات الخاصة";
             this.Load += new System.EventHandler(this.Delegate_Report_Load);
@@ -110,6 +151,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -121,5 +163,9 @@
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn colRequestNumber;
+        private DevExpress.XtraGrid.Columns.GridColumn colRequestPicture;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colSpecialOrderID;
     }
 }

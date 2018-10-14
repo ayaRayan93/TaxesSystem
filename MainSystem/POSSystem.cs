@@ -34,6 +34,7 @@ namespace MainSystem
         public static Information_Products InformationProducts;
         public static Information_Sets InformationSets;
         public static Information_Offers InformationOffers;
+        public static InformationProducts_Report InformationProductsReport;
 
 
         XtraTabPage tabPageCustomerReport;
@@ -50,6 +51,8 @@ namespace MainSystem
         Panel panelInformationSets;
         XtraTabPage tabPageInformationOffers;
         Panel panelInformationOffers;
+        XtraTabPage tabPageInformationProductsReport;
+        Panel panelInformationProductsReport;
 
         public static int delegateID = -1;
         public static int billNum = 0;
@@ -73,7 +76,9 @@ namespace MainSystem
             panelInformationSets = new Panel();
             tabPageInformationOffers = new XtraTabPage();
             panelInformationOffers = new Panel();
-            
+            tabPageInformationProductsReport = new XtraTabPage();
+            panelInformationProductsReport = new Panel();
+
             tabControlPointSale = xtraTabControlPointSale;
         }
 
@@ -268,9 +273,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
 
-        private void navBarItemConfirmBill_LinkClicked(object sender, NavBarLinkEventArgs e)
+
+        /*private void navBarItemConfirmBill_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
             {
@@ -303,7 +308,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }*/
 
         private void navBarItemInformationProducts_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
@@ -313,7 +318,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage =getTabPage(xtraTabControlPointSale,"tabPageInformationProducts");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageInformationProducts");
                 if (xtraTabPage == null)
                 {
                     tabPageInformationProducts.Name = "tabPageInformationProducts";
@@ -333,6 +338,41 @@ namespace MainSystem
                 xtraTabControlPointSale.TabPages.Add(tabPageInformationProducts);
                 InformationProducts.Show();
                 xtraTabControlPointSale.SelectedTabPage = tabPageInformationProducts;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemInformationProductsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageInformationProductsReport");
+                if (xtraTabPage == null)
+                {
+                    tabPageInformationProductsReport.Name = "tabPageInformationProductsReport";
+                    tabPageInformationProductsReport.Text = "استفسار عام";
+                    panelInformationProductsReport.Name = "panelInformationProductsReport";
+                    panelInformationProductsReport.Dock = DockStyle.Fill;
+
+                    InformationProductsReport = new InformationProducts_Report(this);
+                    InformationProductsReport.Size = new Size(1109, 660);
+                    InformationProductsReport.TopLevel = false;
+                    InformationProductsReport.FormBorderStyle = FormBorderStyle.None;
+                    InformationProductsReport.Dock = DockStyle.Fill;
+                }
+                panelInformationProductsReport.Controls.Clear();
+                panelInformationProductsReport.Controls.Add(InformationProductsReport);
+                tabPageInformationProductsReport.Controls.Add(panelInformationProductsReport);
+                xtraTabControlPointSale.TabPages.Add(tabPageInformationProductsReport);
+                InformationProductsReport.Show();
+                xtraTabControlPointSale.SelectedTabPage = tabPageInformationProductsReport;
             }
             catch (Exception ex)
             {

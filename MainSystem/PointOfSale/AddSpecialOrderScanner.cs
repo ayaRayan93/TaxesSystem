@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace MainSystem
 {
-    public partial class AddSpecialOrder : DevExpress.XtraEditors.XtraForm
+    public partial class AddSpecialOrderScanner : DevExpress.XtraEditors.XtraForm
     {
         MySqlConnection dbconnection;
         int DashBillNum = 0;
@@ -20,7 +22,7 @@ namespace MainSystem
         int branchBillNumber = 0;
         int DelegateId = 0;
 
-        public AddSpecialOrder(int dashBillNum, int empBranchId, int delegateId)
+        public AddSpecialOrderScanner(int dashBillNum, int empBranchId, int delegateId)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -33,15 +35,19 @@ namespace MainSystem
         {
             try
             {
-                if (txtDescription.Text != "")
+                if (pictureBox1.Image != null)
                 {
+                    Image image = pictureBox1.Image;
+                    MemoryStream memoryStream = new MemoryStream();
+                    image.Save(memoryStream, ImageFormat.Png);
+                    byte[] imageBt = memoryStream.ToArray();
+
                     dbconnection.Open();
-                    string query = "insert into special_order (Description,Dash_ID) values(@Description,@Dash_ID)";
+                    string query = "insert into special_order (Picture,Dash_ID) values(@Picture,@Dash_ID)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
+                    com.Parameters.Add("@Picture", MySqlDbType.LongBlob, 0).Value = imageBt;
                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16, 11).Value = DashBillNum;
                     com.ExecuteNonQuery();
-                    txtDescription.Text = "";
                     insertRequest();
                     dbconnection.Close();
                     MessageBox.Show("طلب رقم : " + branchBillNumber.ToString());
@@ -49,7 +55,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("يجب ادخال التفاصيل");
+                    MessageBox.Show("يجب ادخال صورة الطلب");
                 }
             }
             catch (Exception ex)
@@ -100,6 +106,18 @@ namespace MainSystem
             com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
             com.Parameters["@Delegate_ID"].Value = DelegateId;
             com.ExecuteNonQuery();
+        }
+
+        private void btnLoadPicture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = ("Image Files |*.png; *.bmp; *.jpg;*.jpeg; *.gif;");
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(openFileDialog1.FileName);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
         }
     }
 }

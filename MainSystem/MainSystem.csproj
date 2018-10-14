@@ -715,6 +715,12 @@
     <Compile Include="Login.designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="PointOfSale\AddSpecialOrderScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\AddSpecialOrderScanner.designer.cs">
+      <DependentUpon>AddSpecialOrderScanner.cs</DependentUpon>
+    </Compile>
     <Compile Include="PointOfSale\AddSpecialOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -744,6 +750,12 @@
     </Compile>
     <Compile Include="PointOfSale\ProductsDetails_Report.designer.cs">
       <DependentUpon>ProductsDetails_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PointOfSale\InformationProducts_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\InformationProducts_Report.designer.cs">
+      <DependentUpon>InformationProducts_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="PointOfSale\Products_Report.cs">
       <SubType>Form</SubType>
@@ -917,6 +929,12 @@
     </Compile>
     <Compile Include="Sales\QuantityUpdate2Sales.designer.cs">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\SpecialOrders_Report2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\SpecialOrders_Report2.designer.cs">
+      <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\SpecialOrders_Report.cs">
       <SubType>Form</SubType>
@@ -1105,6 +1123,12 @@
     </Compile>
     <Compile Include="Store\UpdateCodeStorage.designer.cs">
       <DependentUpon>UpdateCodeStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RequestImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RequestImage.designer.cs">
+      <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
     <Compile Include="TipImage.cs">
       <SubType>Form</SubType>
@@ -1398,6 +1422,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\AddSpecialOrderScanner.resx">
+      <DependentUpon>AddSpecialOrderScanner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\AddSpecialOrder.resx">
       <DependentUpon>AddSpecialOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -1412,6 +1439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\ProductsDetails_Report.resx">
       <DependentUpon>ProductsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\InformationProducts_Report.resx">
+      <DependentUpon>InformationProducts_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Products_Report.resx">
       <DependentUpon>Products_Report.cs</DependentUpon>
@@ -1508,6 +1538,9 @@
     <EmbeddedResource Include="Sales\QuantityUpdate2Sales.resx">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
+      <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\SpecialOrders_Report.resx">
       <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -1600,6 +1633,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\UpdateCodeStorage.resx">
       <DependentUpon>UpdateCodeStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RequestImage.resx">
+      <DependentUpon>RequestImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipImage.resx">
       <DependentUpon>TipImage.cs</DependentUpon>

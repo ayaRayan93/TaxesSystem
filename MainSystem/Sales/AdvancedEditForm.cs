@@ -31,7 +31,7 @@ namespace MainSystem
             dbconnection = new MySqlConnection(connection.connectionString);
             addedRecordIDs = new int[100];
 
-            this.SetBoundFieldName(txtRequestNum, "رقم الطلب");
+            this.SetBoundFieldName(txtRequestNum, "RequestNumber");
             this.SetBoundPropertyName(txtRequestNum, "EditValue");
 
             EmpBranchId = empBranchId;

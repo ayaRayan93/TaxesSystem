@@ -357,7 +357,7 @@ namespace MainSystem
         //Special Orders Report
         public void bindDisplaySpecialOrdersReport(XtraTabPage xtraTabPage)
         {
-            SpecialOrders_Report objForm = new SpecialOrders_Report();
+            SpecialOrders_Report2 objForm = new SpecialOrders_Report2();
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
