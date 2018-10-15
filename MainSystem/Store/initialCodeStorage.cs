@@ -462,10 +462,12 @@ namespace MainSystem
                 comType.Text = "";
                 comFactory.Text = "";
                 comGroup.Text = "";
+                comProduct.Text = "";
 
                 txtType.Text = "";
                 txtFactory.Text = "";
                 txtGroup.Text = "";
+                txtProduct.Text = "";
 
                 displayData();
             }

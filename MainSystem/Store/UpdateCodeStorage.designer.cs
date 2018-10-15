@@ -42,6 +42,7 @@
             this.labTotalMeter = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.comStorePlace = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
@@ -49,7 +50,6 @@
             this.comStore = new System.Windows.Forms.ComboBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -168,9 +168,9 @@
             this.label13.Location = new System.Drawing.Point(201, 67);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label13.Size = new System.Drawing.Size(115, 18);
+            this.label13.Size = new System.Drawing.Size(131, 18);
             this.label13.TabIndex = 32;
-            this.label13.Text = "اجمالي عدد الامتار";
+            this.label13.Text = "اجمالي عدد الوحدات";
             // 
             // label14
             // 
@@ -235,6 +235,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(927, 235);
             this.panel3.TabIndex = 39;
+            // 
+            // txtTotalMeter
+            // 
+            this.txtTotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtTotalMeter.Location = new System.Drawing.Point(52, 68);
+            this.txtTotalMeter.Name = "txtTotalMeter";
+            this.txtTotalMeter.Size = new System.Drawing.Size(143, 24);
+            this.txtTotalMeter.TabIndex = 39;
             // 
             // comStorePlace
             // 
@@ -326,15 +335,6 @@
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            // 
-            // txtTotalMeter
-            // 
-            this.txtTotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtTotalMeter.Location = new System.Drawing.Point(52, 68);
-            this.txtTotalMeter.Name = "txtTotalMeter";
-            this.txtTotalMeter.Size = new System.Drawing.Size(143, 24);
-            this.txtTotalMeter.TabIndex = 39;
             // 
             // UpdateCodeStorage
             // 

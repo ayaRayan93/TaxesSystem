@@ -459,6 +459,7 @@ namespace MainSystem
                 txtSetsID.Text = "";
                 txtSetQuantity.Text = "";
 
+                dataGridView1.Rows.Clear();
                 Search();
             }
             catch (Exception ex)

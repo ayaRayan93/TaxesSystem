@@ -285,7 +285,6 @@
             this.panSearchAddtionalTool.Name = "panSearchAddtionalTool";
             this.panSearchAddtionalTool.Size = new System.Drawing.Size(751, 74);
             this.panSearchAddtionalTool.TabIndex = 155;
-            this.panSearchAddtionalTool.Visible = false;
             // 
             // label21
             // 

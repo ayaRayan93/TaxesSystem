@@ -23,6 +23,9 @@ namespace MainSystem
         MainForm storeMainForm = null;
         bool loaded = false;
         bool load = false;
+        bool factoryFlage = false;
+        bool groupFlage = false;
+        bool flagProduct = false;
         bool flag = false;
         DataGridViewRow row1;
         public  Product_Record product_Record = null;
@@ -43,6 +46,7 @@ namespace MainSystem
            
         }
 
+        //events
         private void Products_Load(object sender, EventArgs e)
         {
             try
@@ -119,27 +123,91 @@ namespace MainSystem
                     switch (comBox.Name)
                     {
                         case "comType":
-                            txtType.Text = comType.SelectedValue.ToString();
-                            displayProducts();
+                            if (loaded)
+                            {
+                                txtType.Text = comType.SelectedValue.ToString();
+                                string query1 = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + txtType.Text;
+                                MySqlDataAdapter da1 = new MySqlDataAdapter(query1, dbconnection);
+                                DataTable dt1 = new DataTable();
+                                da1.Fill(dt1);
+                                comFactory.DataSource = dt1;
+                                comFactory.DisplayMember = dt1.Columns["Factory_Name"].ToString();
+                                comFactory.ValueMember = dt1.Columns["Factory_ID"].ToString();
+                                comFactory.Text = "";
+                                txtFactory.Text = "";
+                                if (txtType.Text == "1")
+                                {
+                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=" + txtType.Text;
+                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                                    DataTable dt2 = new DataTable();
+                                    da2.Fill(dt2);
+                                    comGroup.DataSource = dt2;
+                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+                                factoryFlage = true;
+
+                      
+                                comFactory.Focus();
+                            }
                             break;
                         case "comFactory":
-                            txtFactory.Text = comFactory.SelectedValue.ToString();
-                            displayProducts();
+                            if (factoryFlage)
+                            {
+                                txtFactory.Text = comFactory.SelectedValue.ToString();
+                                if (txtType.Text != "1")
+                                {
+                                    string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
+                                    MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
+                                    DataTable dt2f = new DataTable();
+                                    da2f.Fill(dt2f);
+                                    comGroup.DataSource = dt2f;
+                                    comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+                                groupFlage = true;
+                                
+                                comGroup.Focus();
+                            }
                             break;
                         case "comGroup":
-                            txtGroup.Text = comGroup.SelectedValue.ToString();
-                            displayProducts();
+                            if (groupFlage)
+                            {
+                                txtGroup.Text = comGroup.SelectedValue.ToString();
+
+                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
+                                MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
+                                DataTable dt3 = new DataTable();
+                                da3.Fill(dt3);
+                                comProduct.DataSource = dt3;
+                                comProduct.DisplayMember = dt3.Columns["Product_Name"].ToString();
+                                comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
+                                comProduct.Text = "";
+                                txtProduct.Text = "";
+                                
+                                comProduct.Focus();
+                                flagProduct = true;
+                            }
                             break;
+
                         case "comProduct":
-                            txtProduct.Text = comProduct.SelectedValue.ToString();
-                            displayProducts();
+                            if (flagProduct)
+                            {
+                                flagProduct = false;
+                                txtProduct.Text = comProduct.SelectedValue.ToString();
+                                comType.Focus();
+                            }
                             break;
                         case "comStore":
                             comStorePlace.Visible = true;
                             label8.Visible = true;
                             flag = false;
                             dbconnection.Open();
-                            string query = "select * from store_places where Store_ID="+comStore.SelectedValue;
+                            string query = "select * from store_places where Store_ID=" + comStore.SelectedValue;
                             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                             DataTable dt = new DataTable();
                             da.Fill(dt);
@@ -150,20 +218,20 @@ namespace MainSystem
                             dbconnection.Close();
                             displayProducts();
                             flag = true;
-                            
+
                             break;
                         case "comStorePlace":
-                            if(flag)
-                            displayProducts();
-                        
+                            if (flag)
+                                displayProducts();
+
                             break;
+
                     }
-                    dbconnection.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //  MessageBox.Show(ex.Message);
             }
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
@@ -295,7 +363,7 @@ namespace MainSystem
                         dbconnection.Open();
                         comand.ExecuteNonQuery();
                     
-                      //  UserControl.UserRecord("storage", "حذف", row1[0].ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("storage", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
                      
                         displayProducts();
                     }
@@ -318,22 +386,22 @@ namespace MainSystem
             try
             {
                 DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                //if (load)
-                //{
-                //    if (tipImage == null)
-                //    {
-                //        tipImage = new TipImage(row1[1].ToString());
-                //        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                //        tipImage.Show();
-                //    }
-                //    else
-                //    {
-                //        tipImage.Close();
-                //        tipImage = new TipImage(row1[1].ToString());
-                //        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                //        tipImage.Show();
-                //    }
-                //}
+                if (load)
+                {
+                    if (tipImage == null)
+                    {
+                        tipImage = new TipImage(row1[1].ToString());
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                    else
+                    {
+                        tipImage.Close();
+                        tipImage = new TipImage(row1[1].ToString());
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -362,8 +430,7 @@ namespace MainSystem
                     DataRowView a = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(rows[i]));
                     recordList.Add(a);
                 }
-               // DataRowView storeRow = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                storeMainForm.bindUpdateStorageForm(recordList, this);
+               storeMainForm.bindUpdateStorageForm(recordList, this);
             }
             catch (Exception ex)
             {
@@ -381,6 +448,28 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnNewChooes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comStore.Text = "";
+                comType.Text = "";
+                comFactory.Text = "";
+                comGroup.Text = "";
+                comProduct.Text = "";
+
+                txtType.Text = "";
+                txtFactory.Text = "";
+                txtGroup.Text = "";
+                txtProduct.Text = "";
+                displayProducts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
         //function
         public void displayProducts()
         {
@@ -430,7 +519,7 @@ namespace MainSystem
                 {
                     query1 += " and storage.Store_Place_ID=" + comStorePlace.SelectedValue;
                 }
-                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'المنتج', store.Store_Name as 'المخزن', storage.Supplier_Name as 'المورد',storage.Total_Meters as 'اجمالي عدد الامتار', storage.Storage_Date as 'تاريخ التخزين' , Store_Place_Code as 'مكان التخزين'  , storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") "+query1;
+                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف', store.Store_Name as 'المخزن', storage.Supplier_Name as 'المورد',storage.Total_Meters as 'اجمالي عدد الوحدات', storage.Storage_Date as 'تاريخ التخزين' , Store_Place_Code as 'مكان التخزين'  , storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") "+query1;
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -447,9 +536,5 @@ namespace MainSystem
         
         }
 
-        
-  
-
-      
     }
 }

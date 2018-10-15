@@ -63,6 +63,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.ImageProduct = new System.Windows.Forms.PictureBox();
+            this.btnNewChooes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -192,6 +193,7 @@
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnNewChooes);
             this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Name = "panel3";
@@ -365,13 +367,23 @@
             this.ImageProduct.TabStop = false;
             this.ImageProduct.Click += new System.EventHandler(this.ImageProduct_Click);
             // 
+            // btnNewChooes
+            // 
+            resources.ApplyResources(this.btnNewChooes, "btnNewChooes");
+            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChooes.FlatAppearance.BorderSize = 0;
+            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewChooes.Name = "btnNewChooes";
+            this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
+            // 
             // Product_Record
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel3);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(182)))), ((int)(((byte)(92)))));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Product_Record";
@@ -424,6 +436,7 @@
         private System.Windows.Forms.TextBox txtSort;
         private System.Windows.Forms.TextBox txtSize;
         private System.Windows.Forms.TextBox txtColor;
+        private System.Windows.Forms.Button btnNewChooes;
     }
 }
 

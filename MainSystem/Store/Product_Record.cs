@@ -610,6 +610,34 @@ namespace MainSystem
             }
         }
 
+        private void btnNewChooes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comType.Text = "";
+                comFactory.Text = "";
+                comGroup.Text = "";
+                comProduct.Text = "";
+                comColour.Text = "";
+                comSort.Text = "";
+                comSize.Text = "";
+
+                txtType.Text = "";
+                txtFactory.Text = "";
+                txtGroup.Text = "";
+                txtProduct.Text = "";
+                txtColor.Text = "";
+                txtSize.Text = "";
+                txtSort.Text = "";
+                txtClassification.Text = "";
+                txtCarton.Text = "";
+                txtDescription.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         //clear function
         public void clear()
         {

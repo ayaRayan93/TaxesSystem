@@ -254,7 +254,7 @@ namespace MainSystem
             comStore.Text = row["المخزن"].ToString();
             setComStorePlacesValue();
             comStorePlace.Text = row["مكان التخزين"].ToString();
-            labTotalMeter.Text = row["اجمالي عدد الامتار"].ToString();
+            txtTotalMeter.Text = row["اجمالي عدد الوحدات"].ToString();
             dateTimePicker1.Text = row["تاريخ التخزين"].ToString();
             txtNote.Text = row["ملاحظة"].ToString();
         }
