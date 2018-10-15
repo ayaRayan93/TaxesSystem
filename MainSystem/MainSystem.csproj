@@ -960,12 +960,6 @@
     <Compile Include="Sales\SetSellPrice.Designer.cs">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\SpecialOrder_Request.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\SpecialOrder_Request.designer.cs">
-      <DependentUpon>SpecialOrder_Request.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\UpdateSellPriceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1546,9 +1540,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SetSellPrice.resx">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\SpecialOrder_Request.resx">
-      <DependentUpon>SpecialOrder_Request.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\UpdateSellPriceForm.resx">
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
