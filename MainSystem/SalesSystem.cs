@@ -23,15 +23,14 @@ namespace MainSystem
     {
   
         public static XtraTabControl tabControlSales;
-
         
-
+        public static SpecialOrders_Report2 SpecialOrdersReport;
         public static Bill_Confirm objFormBillConfirm;
         public static Customer_Report objFormCustomer;
         public static XtraTabPage MainTabPageAddCustomer;
         public static XtraTabPage MainTabPageUpdateCustomer;
         public static XtraTabPage MainTabPagePrintCustomer;
-
+        
         Timer timer = new Timer();
         int EmpBranchId = 0;
 
@@ -357,13 +356,13 @@ namespace MainSystem
         //Special Orders Report
         public void bindDisplaySpecialOrdersReport(XtraTabPage xtraTabPage)
         {
-            SpecialOrders_Report objForm = new SpecialOrders_Report();
-            objForm.TopLevel = false;
+            SpecialOrdersReport = new SpecialOrders_Report2();
+            SpecialOrdersReport.TopLevel = false;
 
-            xtraTabPage.Controls.Add(objForm);
-            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            objForm.Dock = DockStyle.Fill;
-            objForm.Show();
+            xtraTabPage.Controls.Add(SpecialOrdersReport);
+            SpecialOrdersReport.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            SpecialOrdersReport.Dock = DockStyle.Fill;
+            SpecialOrdersReport.Show();
         }
 
         public XtraTabPage getTabPage(string text)
@@ -375,9 +374,7 @@ namespace MainSystem
                 }
             return null;
         }
-
-
-
+        
         //
         public void GetNonRequestedSpecialOrders(object sender, EventArgs e)
         {

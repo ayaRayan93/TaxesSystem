@@ -322,9 +322,8 @@ namespace MainSystem
                 item.Appearance.ForeColor = Color.Black;
             }
         }
-        
     }
-    
+
     public static class connection
     {
        public static string connectionString = "SERVER=192.168.1.200;DATABASE=cccs;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";

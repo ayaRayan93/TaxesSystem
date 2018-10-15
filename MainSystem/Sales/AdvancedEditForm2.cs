@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class AdvancedEditForm : EditFormUserControl
+    public partial class AdvancedEditForm2 : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
@@ -26,14 +26,16 @@ namespace MainSystem
         //int id;
         int EmpBranchId = 0;
 
-        public AdvancedEditForm(int empBranchId)
+        public AdvancedEditForm2(int empBranchId, int RequestNumber)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             addedRecordIDs = new int[100];
 
-            this.SetBoundFieldName(txtRequestNum, "RequestNumber");
-            this.SetBoundPropertyName(txtRequestNum, "EditValue");
+            //this.SetBoundFieldName(txtRequestNum, "RequestNumber");
+            //this.SetBoundPropertyName(txtRequestNum, "EditValue");
+
+            txtRequestNum.Text = RequestNumber.ToString();
 
             EmpBranchId = empBranchId;
 
@@ -125,7 +127,7 @@ namespace MainSystem
             {
                 if (Customer_Type == "عميل")
                 {
-                    label3.Visible = false;
+                    label4.Visible = false;
                     comEngCon.Visible = false;
                     label9.Visible = true;
                     comCustomer.Visible = true;
@@ -141,7 +143,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    label3.Visible = true;
+                    label4.Visible = true;
                     comEngCon.Visible = true;
                     label9.Visible = false;
                     comCustomer.Visible = false;
@@ -473,7 +475,7 @@ namespace MainSystem
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     string branchName = com.ExecuteScalar().ToString();*/
 
-                    /*string query = "select Request_ID from requests where BranchBillNumber=" + txtRequestNum.Text + " and Branch_ID=" + EmpBranchId;
+                    string query = "select Request_ID from requests where BranchBillNumber=" + txtRequestNum.Text + " and Branch_ID=" + EmpBranchId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     int RequestID = Convert.ToInt16(com.ExecuteScalar().ToString());
 
@@ -531,9 +533,11 @@ namespace MainSystem
 
                     query = "update special_order set Record=1 where SpecialOrder_ID=" + SpecialOrderID;
                     com = new MySqlCommand(query, dbconnection);
-                    com.ExecuteNonQuery();*/
-                    this.FindForm().Update();
+                    com.ExecuteNonQuery();
                     dbconnection.Close();
+                    MainForm.SpecialOrdersReport.search();
+                    //MainForm.mainForm.SpecialOrdersFunction();
+                    this.Close();
                 }
                 else
                 {
