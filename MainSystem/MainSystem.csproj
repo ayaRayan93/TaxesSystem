@@ -864,6 +864,12 @@
     <Compile Include="Sales\AdvancedEditForm.designer.cs">
       <DependentUpon>AdvancedEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Offer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Offer.designer.cs">
+      <DependentUpon>Offer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Bill_Confirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -899,6 +905,12 @@
     </Compile>
     <Compile Include="Sales\customPanel.Designer.cs">
       <DependentUpon>customPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Offer_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Offer_Record.designer.cs">
+      <DependentUpon>Offer_Record.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\ItemDetails.cs">
       <SubType>Form</SubType>
@@ -959,12 +971,6 @@
     </Compile>
     <Compile Include="Sales\SetSellPrice.Designer.cs">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\SpecialOrder_Request.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\SpecialOrder_Request.designer.cs">
-      <DependentUpon>SpecialOrder_Request.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\UpdateSellPriceForm.cs">
       <SubType>Form</SubType>
@@ -1499,6 +1505,9 @@
     <EmbeddedResource Include="Sales\AdvancedEditForm.resx">
       <DependentUpon>AdvancedEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Offer.resx">
+      <DependentUpon>Offer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\Bill_Confirm.resx">
       <DependentUpon>Bill_Confirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1516,6 +1525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\customPanel.resx">
       <DependentUpon>customPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Offer_Record.resx">
+      <DependentUpon>Offer_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\ItemDetails.resx">
       <DependentUpon>ItemDetails.cs</DependentUpon>
@@ -1546,9 +1558,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SetSellPrice.resx">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\SpecialOrder_Request.resx">
-      <DependentUpon>SpecialOrder_Request.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\UpdateSellPriceForm.resx">
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
@@ -1902,6 +1911,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\arrow-211-512.png" />
+    <None Include="Resources\arrow-150-xxl.png" />
     <None Include="Resources\icons8_Download_32.png" />
     <None Include="Resources\update.png" />
     <None Include="Resources\BackgroundBlue.jpg" />

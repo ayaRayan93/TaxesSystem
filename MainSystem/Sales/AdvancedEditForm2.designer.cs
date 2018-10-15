@@ -119,6 +119,7 @@
             this.comColor.Name = "comColor";
             this.comColor.Size = new System.Drawing.Size(100, 21);
             this.comColor.TabIndex = 10;
+            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comSize
             // 
@@ -129,6 +130,7 @@
             this.comSize.Name = "comSize";
             this.comSize.Size = new System.Drawing.Size(100, 21);
             this.comSize.TabIndex = 9;
+            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comSort
             // 
@@ -139,6 +141,7 @@
             this.comSort.Name = "comSort";
             this.comSort.Size = new System.Drawing.Size(100, 21);
             this.comSort.TabIndex = 11;
+            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // label16
             // 
@@ -390,9 +393,9 @@
             this.label10.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label10.Location = new System.Drawing.Point(470, 375);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(115, 17);
+            this.label10.Size = new System.Drawing.Size(126, 17);
             this.label10.TabIndex = 113;
-            this.label10.Text = "اجمالي عدد الامتار";
+            this.label10.Text = "اجمالي عدد الوحدات";
             // 
             // txtTotalMeters
             // 
@@ -602,6 +605,14 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -621,6 +632,14 @@
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.gridView2.Appearance.Row.Options.UseFont = true;
+            this.gridView2.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             // 

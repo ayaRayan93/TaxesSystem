@@ -314,6 +314,7 @@
             this.comColor.Name = "comColor";
             this.comColor.Size = new System.Drawing.Size(100, 24);
             this.comColor.TabIndex = 19;
+            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // btnSearch
             // 
@@ -339,6 +340,7 @@
             this.comSize.Name = "comSize";
             this.comSize.Size = new System.Drawing.Size(100, 24);
             this.comSize.TabIndex = 18;
+            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comGroup
             // 
@@ -360,6 +362,7 @@
             this.comSort.Name = "comSort";
             this.comSort.Size = new System.Drawing.Size(50, 24);
             this.comSort.TabIndex = 17;
+            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // label15
             // 

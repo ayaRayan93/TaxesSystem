@@ -59,8 +59,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-
+        
         private void navBarItemCustomers_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -146,7 +145,7 @@ namespace MainSystem
             }
         }
 
-        private void btnOffers_LinkClicked(object sender, NavBarLinkEventArgs e)
+        /*private void btnOffers_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
             {
@@ -172,34 +171,40 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void navBarItemSpecialOrdersReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        }*/
+        
+        private void navBarItemOfferReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            /*try
+            try
             {
                 restForeColorOfNavBarItem();
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.Blue;
-
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage("عرض الطلبات الخاصة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "عرض العروض");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("عرض الطلبات الخاصة");
-                    xtraTabPage = getTabPage("عرض الطلبات الخاصة");
+                    xtraTabControlSalesContent.TabPages.Add("عرض العروض");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "عرض العروض");
                 }
-                xtraTabPage.Controls.Clear();
 
+                xtraTabPage.Controls.Clear();
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-                bindDisplaySpecialOrdersReport(xtraTabPage);
+
+                Offer objForm = new Offer(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
         
         private void pictureBoxSale_Click(object sender, EventArgs e)
@@ -232,8 +237,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-
+        
         //functions
         //Products sell price
         public void bindDisplayProductsSellPriceForm(XtraTabPage xtraTabPage)
@@ -320,6 +324,27 @@ namespace MainSystem
         }
 
         //offers
+        public void bindRecordOfferForm(Offer offer)
+        {
+            Offer_Record objForm = new Offer_Record(offer, xtraTabControlSalesContent);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "أضافة عرض");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("أضافة عرض");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "أضافة عرض");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+
+        }
+
         public void bindDisplayOffersForm(XtraTabPage xtraTabPage)
         {
             //OffersSellPrice objForm = new OffersSellPrice();

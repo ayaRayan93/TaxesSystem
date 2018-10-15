@@ -429,6 +429,7 @@
             this.comColor.Name = "comColor";
             this.comColor.Size = new System.Drawing.Size(100, 24);
             this.comColor.TabIndex = 19;
+            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // btnSearch
             // 
@@ -466,6 +467,7 @@
             this.comSize.Name = "comSize";
             this.comSize.Size = new System.Drawing.Size(100, 24);
             this.comSize.TabIndex = 18;
+            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comType
             // 
@@ -510,6 +512,7 @@
             this.comSort.Name = "comSort";
             this.comSort.Size = new System.Drawing.Size(50, 24);
             this.comSort.TabIndex = 17;
+            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comProduct
             // 
@@ -698,7 +701,7 @@
             this.checkEditOffers.TabIndex = 16;
             this.checkEditOffers.CheckedChanged += new System.EventHandler(this.checkEditOffers_CheckedChanged);
             // 
-            // Products_Report
+            // Products_Report2Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -706,7 +709,7 @@
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Products_Report";
+            this.Name = "Products_Report2Sales";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.SearchProduct_Load);
