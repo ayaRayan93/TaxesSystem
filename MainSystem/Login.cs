@@ -18,6 +18,7 @@ namespace MainSystem
         MySqlConnection conn;
         MySqlConnection dbconnection;
         Timer t;
+        public static MainForm mainForm;
 
         public Login()
         {
@@ -48,8 +49,8 @@ namespace MainSystem
                             UserControl.userID = (int)result[0];
                             UserControl.userName = result[1].ToString();
                             UserControl.userType = (int)result[2];
-                            MainForm f = new MainForm();
-                            f.Show();
+                            mainForm = new MainForm();
+                            mainForm.Show();
                             this.Hide();
                         }
                         else
@@ -67,8 +68,8 @@ namespace MainSystem
                                 UserControl.userID = (int)result[0];
                                 UserControl.userName = result[1].ToString();
                                 UserControl.userType = (int)result[2];
-                                MainForm f = new MainForm();
-                                f.Show();
+                                mainForm = new MainForm();
+                                mainForm.Show();
                                 this.Hide();
                             }
                             else
@@ -142,8 +143,8 @@ namespace MainSystem
                                 UserControl.userID = (int)result[0];
                                 UserControl.userName = result[1].ToString();
                                 UserControl.userType = (int)result[2];
-                                MainForm f = new MainForm();
-                                f.Show();
+                                mainForm = new MainForm();
+                                mainForm.Show();
                                 this.Hide();
                             }
                             else
@@ -161,8 +162,8 @@ namespace MainSystem
                                     UserControl.userID = (int)result[0];
                                     UserControl.userName = result[1].ToString();
                                     UserControl.userType = (int)result[2];
-                                    MainForm f = new MainForm();
-                                    f.Show();
+                                    mainForm = new MainForm();
+                                    mainForm.Show();
                                     this.Hide();
                                 }
                                 else
