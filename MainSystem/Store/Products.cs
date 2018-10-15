@@ -226,6 +226,7 @@ namespace MainSystem
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
+
             TextBox txtBox = (TextBox)sender;
             string query;
             MySqlCommand com;
@@ -332,7 +333,7 @@ namespace MainSystem
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    //MessageBox.Show(ex.ToString());
                 }
                 dbconnection.Close();
             }
@@ -353,17 +354,24 @@ namespace MainSystem
         }
         private void btnNewChooes_Click(object sender, EventArgs e)
         {
-            foreach (Control item in panelControl1.Controls)
+            try
             {
-                if (item is TextBox)
-                    item.Text = "";
-                else if (item is ComboBox)
+                foreach (Control item in panelControl1.Controls)
                 {
-                    item.Text = "";
-                }
+                    if (item is TextBox)
+                        item.Text = "";
+                    else if (item is ComboBox)
+                    {
+                        item.Text = "";
+                    }
 
+                }
+                dataGridView1.DataSource = null;
             }
-            dataGridView1.DataSource = null;
+            catch (Exception ex)
+            {
+                // MessageBox.Show(ex.Message);
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {

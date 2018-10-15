@@ -45,8 +45,6 @@
             this.comStore = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnSearch = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -259,8 +257,6 @@
             this.panelControl1.Controls.Add(this.comStore);
             this.panelControl1.Controls.Add(this.label7);
             this.panelControl1.Controls.Add(this.btnSearch);
-            this.panelControl1.Controls.Add(this.textBox1);
-            this.panelControl1.Controls.Add(this.comboBox1);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Controls.Add(this.label2);
             this.panelControl1.Controls.Add(this.label4);
@@ -283,6 +279,7 @@
             // 
             // btnNewChooes
             // 
+            this.btnNewChooes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnNewChooes.FlatAppearance.BorderSize = 0;
             this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -294,10 +291,11 @@
             this.btnNewChooes.TabIndex = 134;
             this.btnNewChooes.Text = "اختيار اخر";
             this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
             // comStorePlace
             // 
-            this.comStorePlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comStorePlace.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comStorePlace.BackColor = System.Drawing.Color.White;
@@ -314,7 +312,7 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -328,7 +326,7 @@
             // 
             // comStore
             // 
-            this.comStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comStore.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comStore.BackColor = System.Drawing.Color.White;
@@ -344,7 +342,7 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -358,7 +356,7 @@
             // btnSearch
             // 
             this.btnSearch.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSearch.BorderRadius = 0;
@@ -393,39 +391,9 @@
             this.btnSearch.TextFont = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.textBox1.Location = new System.Drawing.Point(129, 42);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(54, 24);
-            this.textBox1.TabIndex = 25;
-            this.textBox1.TabStop = false;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(189, 42);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comboBox1.Size = new System.Drawing.Size(175, 24);
-            this.comboBox1.TabIndex = 26;
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -438,7 +406,7 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -451,7 +419,7 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -464,13 +432,13 @@
             // 
             // comFactory
             // 
-            this.comFactory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comFactory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comFactory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comFactory.BackColor = System.Drawing.Color.White;
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(189, 12);
+            this.comFactory.Location = new System.Drawing.Point(189, 13);
             this.comFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -480,11 +448,11 @@
             // 
             // txtProduct
             // 
-            this.txtProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txtProduct.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtProduct.BackColor = System.Drawing.Color.White;
             this.txtProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProduct.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtProduct.Location = new System.Drawing.Point(129, 12);
+            this.txtProduct.Location = new System.Drawing.Point(129, 44);
             this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(54, 24);
@@ -494,22 +462,23 @@
             // 
             // comProduct
             // 
-            this.comProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comProduct.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comProduct.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comProduct.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comProduct.BackColor = System.Drawing.Color.White;
             this.comProduct.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comProduct.FormattingEnabled = true;
-            this.comProduct.Location = new System.Drawing.Point(189, 12);
+            this.comProduct.Location = new System.Drawing.Point(188, 44);
             this.comProduct.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comProduct.Name = "comProduct";
             this.comProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comProduct.Size = new System.Drawing.Size(175, 24);
             this.comProduct.TabIndex = 20;
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // txtFactory
             // 
-            this.txtFactory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtFactory.BackColor = System.Drawing.Color.White;
             this.txtFactory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -519,10 +488,11 @@
             this.txtFactory.Size = new System.Drawing.Size(54, 24);
             this.txtFactory.TabIndex = 21;
             this.txtFactory.TabStop = false;
+            this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comGroup
             // 
-            this.comGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comGroup.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comGroup.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comGroup.BackColor = System.Drawing.Color.White;
@@ -538,20 +508,20 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label5.Location = new System.Drawing.Point(675, 40);
             this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 18);
+            this.label5.Size = new System.Drawing.Size(67, 18);
             this.label5.TabIndex = 18;
-            this.label5.Text = "المجوعة";
+            this.label5.Text = "المجموعة";
             // 
             // txtGroup
             // 
-            this.txtGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txtGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtGroup.BackColor = System.Drawing.Color.White;
             this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroup.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -565,7 +535,7 @@
             // 
             // comType
             // 
-            this.comType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.comType.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comType.BackColor = System.Drawing.Color.White;
@@ -581,7 +551,7 @@
             // 
             // txtType
             // 
-            this.txtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtType.BackColor = System.Drawing.Color.White;
             this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtType.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -595,7 +565,7 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -639,8 +609,6 @@
         private Bunifu.Framework.UI.BunifuTileButton btnDelete;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private Bunifu.Framework.UI.BunifuFlatButton btnSearch;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;

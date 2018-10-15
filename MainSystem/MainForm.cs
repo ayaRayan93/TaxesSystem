@@ -68,6 +68,7 @@ namespace MainSystem
            
         }
 
+        //events
         private void btnStores_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -84,7 +85,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnSales_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -101,7 +101,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnHR_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -118,7 +117,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnCars_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -135,7 +133,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnPOS_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -152,7 +149,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnBank_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -169,7 +165,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnReception_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -202,7 +197,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -229,7 +223,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void xtraTabControlMainContainer_CloseButtonClick(object sender, EventArgs e)
         {
             try
@@ -262,7 +255,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void xtraTabControlContent_Click(object sender, EventArgs e)
         {
             try
@@ -304,7 +296,6 @@ namespace MainSystem
                 }
             return null;
         }
-
         public bool IsTabPageSave()
         {
             for (int i = 0; i < xtraTabControlMainContainer.TabPages.Count; i++)
@@ -324,7 +315,6 @@ namespace MainSystem
             }
             return true;
         }
-
         public void restForeColorOfNavBarItem()
         {
             foreach (NavBarItem item in navBarControl1.Items)
