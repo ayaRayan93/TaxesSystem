@@ -581,7 +581,7 @@ namespace MainSystem
                         }
                         else
                         {
-                            query = "INSERT INTO sets (Set_Name,Factory_ID,Type_ID,Group_ID,Set_Photo) VALUES (@Set_Name,@Factory_ID,@Type_ID,@Group_ID,@Set_Photo)";
+                            query = "INSERT INTO sets (Set_Name,Factory_ID,Type_ID,Group_ID) VALUES (@Set_Name,@Factory_ID,@Type_ID,@Group_ID)";
                             comand = new MySqlCommand(query, dbconnection);
                             comand.Parameters.AddWithValue("@Set_Name", txtSetName.Text);
                             string q = "select Type_ID from type where Type_Name='" + dataGridView2.Rows[0].Cells[3].Value.ToString()+"'";
@@ -599,9 +599,9 @@ namespace MainSystem
                             comand.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                             comand.Parameters["@Group_ID"].Value = com.ExecuteScalar();
                      
-                            comand.Parameters.Add("@Set_Photo", MySqlDbType.LongBlob);
-                            comand.Parameters["@Set_Photo"].Value = selectedImage;
+
                             comand.ExecuteNonQuery();
+
                         }
 
                         query = "select Set_ID from sets order by Set_ID desc limit 1";
@@ -617,6 +617,12 @@ namespace MainSystem
                             comand.Parameters.AddWithValue("@Quantity", double.Parse(item.Cells[2].Value.ToString()));
                             comand.ExecuteNonQuery();
                         }
+
+                        query = "INSERT INTO set_photo (Set_ID,Set_Photo) VALUES (@Set_ID,@Set_Photo)";
+                        comand = new MySqlCommand(query, dbconnection);
+                        comand.Parameters.Add("@Set_Photo", MySqlDbType.LongBlob);
+                        comand.Parameters["@Set_Photo"].Value = selectedImage;
+                        comand.ExecuteNonQuery();
 
                         UserControl.ItemRecord("sets", "add",Convert.ToInt16(set_id.ToString()), DateTime.Now,"", dbconnection);
 

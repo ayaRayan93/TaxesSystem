@@ -1065,7 +1065,7 @@ namespace MainSystem
                     {
                         if (txtGroup.Text != "")
                         {
-                            if (comType.SelectedValue.ToString() != "1")
+                            if (comType.SelectedValue.ToString() != "1"&& comType.SelectedValue.ToString() != "2" && comType.SelectedValue.ToString() != "4")
                             {
                                 if (comFactory.Text != "")
                                 {
@@ -1095,7 +1095,7 @@ namespace MainSystem
 
                             query = "select Group_ID from groupo order by Group_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            //UserControl.UserRecord("groupo", "اضافة", com.ExecuteScalar().ToString(), DateTime.Now, dbconnection);
+                            UserControl.ItemRecord("groupo", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
                            
                             txtGroup.Text = "";
                         }
@@ -1129,7 +1129,7 @@ namespace MainSystem
                     {
                         if (txtGroup.Text != "")
                         {
-                            if (comType.SelectedValue.ToString() != "1")
+                            if (comType.SelectedValue.ToString() != "1" && comType.SelectedValue.ToString() != "2" && comType.SelectedValue.ToString() != "4")
                             {
                                 if (comFactory.Text != "")
                                 {
@@ -1159,7 +1159,7 @@ namespace MainSystem
 
                             query = "select Group_ID from groupo order by Group_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            //UserControl.UserRecord("groupo", "اضافة", com.ExecuteScalar().ToString(), DateTime.Now, dbconnection);
+                            UserControl.ItemRecord("groupo", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
                             txtGroup.Text = "";
                         }
@@ -1186,7 +1186,7 @@ namespace MainSystem
             {
                 if (load)
                 {
-                    if (comType.SelectedValue.ToString() != "1")
+                    if (comType.SelectedValue.ToString() != "1" && comType.SelectedValue.ToString() != "2"&& comType.SelectedValue.ToString() != "4")
                     {
                         flagFactory = false;
                         string query = "select distinct factory.Factory_ID, Factory_Name from factory inner join type_factory on type_factory.Factory_ID=factory.Factory_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
@@ -1262,7 +1262,6 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                // DataRowView row1 = (DataRowView)(((GridView)dataGridViewGroup.MainView).GetRow(((GridView)dataGridViewGroup.MainView).GetSelectedRows()[0]));
                 DataGridViewRow row1 = dataGridViewGroup.Rows[dataGridViewGroup.SelectedCells[0].RowIndex];
 
                 if (row1 != null)
@@ -1277,7 +1276,7 @@ namespace MainSystem
                         
                         updateTablesDB("groupo", "Group_ID", id);
 
-                        //UserControl.UserRecord("groupo", "حذف", row1.Cells[0].Value.ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("groupo", "حذف",Convert.ToInt16(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
                         if (comFactory.Text != "")
                         {
                             displayGroup(Convert.ToInt16(comFactory.SelectedValue));
@@ -1338,7 +1337,7 @@ namespace MainSystem
                             query = "select Product_ID from product order by Product_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
                             int id = Convert.ToInt16(com.ExecuteScalar());
-                            if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني")
+                            if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني"|| comTypeProduct.Text == "بورسلين" || comTypeProduct.Text == "بانيوهات")
                             {
                                 int Group_ID = 0;
                                 for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
@@ -1439,7 +1438,7 @@ namespace MainSystem
                                 query = "select Product_ID from product order by Product_ID desc limit 1";
                                 com = new MySqlCommand(query, dbconnection);
                                 int id = Convert.ToInt16(com.ExecuteScalar());
-                                if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني")
+                                if (comTypeProduct.Text == "سيراميك" || comTypeProduct.Text == "صيني" || comTypeProduct.Text == "بورسلين" || comTypeProduct.Text == "بانيوهات")
                                 {
                                     int Group_ID = 0;
                                     for (int i = 0; i < checkedListBox2.CheckedItems.Count; i++)
@@ -1541,7 +1540,7 @@ namespace MainSystem
             {
                 if (flagFactoryP)
                 {
-                    if (comTypeProduct.Text != "سيراميك" && comTypeProduct.Text != "صيني")
+                    if (comTypeProduct.Text != "سيراميك" && comTypeProduct.Text != "صيني" && comTypeProduct.Text != "بورسلين" && comTypeProduct.Text != "بانيوهات")
                     {
                         string query = "select * from groupo where Factory_ID=" + comFactoryGroup.SelectedValue;
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -1554,7 +1553,7 @@ namespace MainSystem
                         txtGroup2.Text = "";
                         comGroup.Focus();
                     }
-                    else if (comTypeProduct.Text == "صيني")
+                    else if (comTypeProduct.Text == "صيني" || comTypeProduct.Text == "بانيوهات")
                     {
                         dbconnection.Open();
                         string query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where type.Type_ID=" + comTypeProduct.SelectedValue.ToString()+" and Factory_ID="+txtFactory2.Text;
@@ -1662,7 +1661,7 @@ namespace MainSystem
                     flagFactoryP = false;
                     flagGroup = false;
                     txtType2.Text = comTypeProduct.SelectedValue.ToString();
-                    if (comTypeProduct.Text == "سيراميك" )
+                    if (comTypeProduct.Text == "سيراميك"|| comTypeProduct.Text == "بورسلين")
                     {
                         string query = "select distinct factory.Factory_ID, factory.Factory_Name from factory inner join type_factory on type_factory.Factory_ID=factory.Factory_ID where type_factory.Type_ID=" + comTypeProduct.SelectedValue.ToString();
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -1675,7 +1674,7 @@ namespace MainSystem
                         txtFactory2.Text = "";
 
                         dbconnection.Open();
-                        query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where type.Type_ID=" + comTypeProduct.SelectedValue.ToString() + " and Factory_ID=0";
+                        query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=type.Type_ID where type.Type_ID=1 and Factory_ID=0";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         MySqlDataReader dr = com.ExecuteReader();
 
@@ -2469,6 +2468,7 @@ namespace MainSystem
             dataGridViewFactory.Columns[1].Width = 120;
             dataGridViewFactory.Columns[2].Width = dataGridViewFactory.Width - 170;
         }
+
         public void displayFactory(int id)
         {
             string query = "select distinct Factory_ID as 'كود',Factory_Name as 'المصنع' from factory where Type_ID=" + id + " order by Factory_ID ";

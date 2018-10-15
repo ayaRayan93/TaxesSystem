@@ -402,18 +402,18 @@ namespace MainSystem
                     recordList.Add(a);
                 }
                 
-                if (recordList != null)
+                if (recordList.Count >0)
                 {
                     salesMainForm.bindUpdateSellPriceForm(recordList, this, "");
                 }
                 else
                 {
-                    MessageBox.Show("you must select an item");
+                    MessageBox.Show("يجب تحديد البند المراد تعديله.");
                 }
             }
             catch
             {
-                MessageBox.Show("you must select an item");
+                MessageBox.Show("يجب تحديد البند المراد تعديله.");
             }
         }
         private void btnReport_Click(object sender, EventArgs e)
