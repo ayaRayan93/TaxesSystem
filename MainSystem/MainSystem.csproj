@@ -1911,6 +1911,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_Collapse_Arrow_32.png" />
+    <None Include="Resources\icons8_Expand_Arrow_32.png" />
     <None Include="Resources\arrow-211-512.png" />
     <None Include="Resources\arrow-150-xxl.png" />
     <None Include="Resources\icons8_Download_32.png" />

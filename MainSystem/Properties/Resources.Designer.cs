@@ -593,6 +593,16 @@ namespace MainSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Collapse_Arrow_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Collapse_Arrow_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_Delete_Shield_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Delete_Shield_16", resourceCulture);
@@ -616,6 +626,16 @@ namespace MainSystem.Properties {
         internal static System.Drawing.Bitmap icons8_Download_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Download_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Expand_Arrow_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Expand_Arrow_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
