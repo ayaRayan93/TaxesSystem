@@ -46,6 +46,8 @@ namespace MainSystem
             }
            
         }
+
+        //events
         private void Products_Load(object sender, EventArgs e)
         {
             try
@@ -226,7 +228,6 @@ namespace MainSystem
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
-
             TextBox txtBox = (TextBox)sender;
             string query;
             MySqlCommand com;
@@ -455,8 +456,15 @@ namespace MainSystem
         {
             try
             {
-                DataRowView storeRow = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                storeMainForm.bindUpdateProductForm(storeRow,this);
+                if (((GridView)dataGridView1.MainView).GetSelectedRows().Count()>0)
+                {
+                    DataRowView storeRow = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
+                    storeMainForm.bindUpdateProductForm(storeRow, this);
+                }
+                else
+                {
+                    MessageBox.Show("يجب تحديد البند المراد تعديله.");
+                }
             }
             catch (Exception ex)
             {
