@@ -161,8 +161,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 DataRowView offerRow = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-
-
+                
                 if (offerRow != null)
                 {
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -175,9 +174,10 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                        // UserControl.UserRecord("sets", "delete", setRow[0].ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("offer", "حذف", Convert.ToInt16(offerRow[0].ToString()), DateTime.Now, "", dbconnection);
                         dbconnection.Close();
                         DisplayOffer();
+                        loadDataToBox();
                     }
                     else if (dialogResult == DialogResult.No)
                     { }
@@ -255,7 +255,7 @@ namespace MainSystem
 
         public void deleteOffer(int id)
         {
-            String query = "delete from offer where Offer_ID=" + id;
+            string query = "delete from offer where Offer_ID=" + id;
             MySqlCommand com = new MySqlCommand(query,dbconnection);
             com.ExecuteNonQuery();
             query = "delete from offer_details where Offer_ID=" + id;
