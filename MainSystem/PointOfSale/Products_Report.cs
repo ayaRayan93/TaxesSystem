@@ -2225,21 +2225,10 @@ namespace MainSystem
         {
             try
             {
-                if (DashBillNum != 0 && txtClient.Text != "" && txtPhone.Text != "")
+                if (DashBillNum != 0)
                 {
-                    int clientIdSO = 0;
                     int DelegateId = UserControl.LoginDelegate(dbconnection);
-
-                    dbconnection.Open();
-                    string query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        clientIdSO = Convert.ToInt16(com.ExecuteScalar().ToString());
-                    }
-                    dbconnection.Close();
-
-                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, DelegateId, clientIdSO);
+                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, DelegateId);
                     soForm.ShowDialog();
                 }
                 else
@@ -2251,7 +2240,6 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
         }
     }
 }
