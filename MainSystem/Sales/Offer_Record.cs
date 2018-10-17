@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace MainSystem
         List<DataRowView> myRows;
         DataRowView row1 = null;
         Offer offerForm;
+        byte[] selectedImage = null;
 
         public Offer_Record(Offer offer)
         {
@@ -464,6 +466,11 @@ namespace MainSystem
                     
                     gridView1.DeleteSelectedRows();
 
+                    if (gridView2.IsLastVisibleRow)
+                    {
+                        gridView2.FocusedRowHandle = gridView2.RowCount - 1;
+                    }
+
                     txtQuantityInOffer.Text = "";
                     txtCode.Text = "";
                 }
@@ -538,15 +545,24 @@ namespace MainSystem
         {
             try
             {
-                if (gridView2.SelectedRowsCount > 0 && txtOfferName.Text != "" && txtQuantity.Text != "" && txtPrice.Text != "")
+                if (gridView2.SelectedRowsCount > 0 && txtOfferName.Text != "" && txtPrice.Text != "")
                 {
-                    double quantity = 0;
-                    if (!double.TryParse(txtQuantity.Text, out quantity))
+                    string query = "select Offer_Name from offer where Offer_Name='" + txtOfferName.Text + "'";
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    MySqlDataReader dr = comand.ExecuteReader();
+                    while (dr.Read())
                     {
-                        MessageBox.Show("الكمية يجب ان تكون عدد");
-                        dbconnection.Close();
-                        return;
+                        if (dr["Offer_Name"].ToString() == txtOfferName.Text)
+                        {
+                            MessageBox.Show("هذا العرض موجود من قبل");
+                            dr.Close();
+                            dbconnection.Close();
+                            return;
+                        }
                     }
+                    dr.Close();
+                    dbconnection.Close();
 
                     double price = 0;
                     if (!double.TryParse(txtPrice.Text, out price))
@@ -555,9 +571,9 @@ namespace MainSystem
                         dbconnection.Close();
                         return;
                     }
-
+                    
                     dbconnection.Open();
-                    string query = "insert into offer (Offer_Name,Price,Delegate_Percent) values (@Offer_Name,@Price,@Delegate_Percent) ";
+                    query = "insert into offer (Offer_Name,Price,Delegate_Percent) values (@Offer_Name,@Price,@Delegate_Percent)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Offer_Name", MySqlDbType.VarChar);
                     com.Parameters["@Offer_Name"].Value = txtOfferName.Text;
@@ -565,8 +581,6 @@ namespace MainSystem
                     com.Parameters["@Price"].Value = price;
                     com.Parameters.Add("@Delegate_Percent", MySqlDbType.Decimal);
                     com.Parameters["@Delegate_Percent"].Value = txtDelegatePercent.Text;
-                    //com.Parameters.Add("@Offer_Quantity", MySqlDbType.Decimal);
-                    //com.Parameters["@Offer_Quantity"].Value = quantity;
                     com.ExecuteNonQuery();
 
                     query = "select Offer_ID from offer order by Offer_ID desc limit 1";
@@ -576,7 +590,6 @@ namespace MainSystem
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRowView item = (DataRowView)gridView2.GetRow(i);
-                        
                         query = "insert offer_details (Offer_ID,Data_ID,Quantity) values (@Offer_ID,@Data_ID,@Quantity)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
@@ -587,8 +600,23 @@ namespace MainSystem
                         com.Parameters["@Quantity"].Value = Convert.ToDouble(item["الكمية"].ToString());
                         com.ExecuteNonQuery();
                     }
+
+                    if (selectedImage != null)
+                    {
+                        query = "insert into offer_photo (Offer_ID,Photo) values (@Offer_ID,@Photo)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Offer_ID"].Value = id;
+                        com.Parameters.Add("@Photo", MySqlDbType.LongBlob);
+                        com.Parameters["@Photo"].Value = selectedImage;
+                        com.ExecuteNonQuery();
+                    }
+
+                    UserControl.ItemRecord("offer", "اضافة", id, DateTime.Now, "", dbconnection);
+
                     clear(tableLayoutPanel1);
                     offerForm.DisplayOffer();
+                    offerForm.loadDataToBox();
                 }
                 else
                 {
@@ -637,7 +665,62 @@ namespace MainSystem
                     }
                 }
                 gridControl1.DataSource = null;
+                gridControl2.DataSource = null;
+                ImageProduct.Image = null;
+            }
+        }
+
+        private void ImageProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFile = openFileDialog1.FileName;
+                    selectedImage = File.ReadAllBytes(selectedFile);
+                    ImageProduct.Image = Image.FromFile(openFileDialog1.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnNewChooes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Control item in panel3.Controls)
+                {
+                    if (item is TextBox)
+                    {
+                        item.Text = "";
+                    }
+                    else if (item is ComboBox)
+                    {
+                        item.Text = "";
+                    }
+                }
                 gridControl1.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                selectedImage = null;
+                ImageProduct.Image = null;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
