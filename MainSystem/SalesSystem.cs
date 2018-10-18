@@ -345,6 +345,51 @@ namespace MainSystem
 
         }
 
+        public void bindUpdateOfferForm(DataRowView prodRow, Offer offer)
+        {
+            Offer_Update objForm = new Offer_Update(prodRow, offer, xtraTabControlSalesContent);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تعديل عرض");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تعديل عرض");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "تعديل عرض");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            else if (xtraTabPage.ImageOptions.Image != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("There is unsave data To you wound override it?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    xtraTabPage.Controls.Clear();
+                    xtraTabPage.Controls.Add(objForm);
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                }
+            }
+            else
+            {
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+
+        }
+
         public void bindDisplayOffersForm(XtraTabPage xtraTabPage)
         {
             //OffersSellPrice objForm = new OffersSellPrice();

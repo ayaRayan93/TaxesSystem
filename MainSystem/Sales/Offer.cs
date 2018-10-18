@@ -145,14 +145,13 @@ namespace MainSystem
         {
             try
             {
-                DataRowView offerRow = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                /*storeMainForm.bindUpdateOfferForm(offerRow,this);*/
+                DataRowView setRow = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
+                salesMainForm.bindUpdateOfferForm(setRow, this);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-           
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -225,7 +224,7 @@ namespace MainSystem
                     q1 = txtOffersID.Text;
                 }
 
-                string query = "SELECT offer.Offer_ID as 'كود العرض',offer.Offer_Name as 'اسم العرض',offer_photo.Photo as 'الصورة' from offer left join offer_photo on offer.Offer_ID=offer_photo.Offer_ID where offer.Offer_ID IN(" + q1 + ") order by offer.Offer_ID";
+                string query = "SELECT offer.Offer_ID as 'كود العرض',offer.Offer_Name as 'اسم العرض',offer.Price as 'السعر',offer.Delegate_Percent as 'نسبة المندوب',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer left join offer_photo on offer.Offer_ID=offer_photo.Offer_ID where offer.Offer_ID IN(" + q1 + ") order by offer.Offer_ID";
 
                 MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
                 query = "SELECT offer.Offer_ID as 'كود العرض',data.Code as 'الكود',offer_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from offer_details inner join offer on offer.Offer_ID=offer_details.Offer_ID INNER JOIN data on data.Data_ID=offer_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID left join data_photo on data_photo.Data_ID=data.Data_ID where offer.Offer_ID IN(" + q1 + ") order by data.Data_ID";

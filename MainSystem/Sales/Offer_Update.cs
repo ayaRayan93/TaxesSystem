@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Offer_Record : Form
+    public partial class Offer_Update : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
@@ -26,13 +26,17 @@ namespace MainSystem
         DataRowView row1 = null;
         Offer offerForm;
         byte[] selectedImage = null;
+        DataRowView rowOffer = null;
+        XtraTabControl tabControlSalesContent;
 
-        public Offer_Record(Offer offer)
+        public Offer_Update(DataRowView RowOffer, Offer offer, XtraTabControl TabControlSalesContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             myRows = new List<DataRowView>();
             offerForm = offer;
+            rowOffer = RowOffer;
+            tabControlSalesContent = TabControlSalesContent;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,55 +54,7 @@ namespace MainSystem
                 comType.ValueMember = dt.Columns["Type_ID"].ToString();
                 comType.Text = "";
                 txtType.Text = "";
-
-                query = "select * from factory";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comFactory.DataSource = dt;
-                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
-                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
-                comFactory.Text = "";
-                txtFactory.Text = "";
-
-                query = "select * from groupo";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comGroup.DataSource = dt;
-                comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
-                comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
-                comGroup.Text = "";
-                txtGroup.Text = "";
-
-                query = "select * from product";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comProduct.DataSource = dt;
-                comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
-                comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
-                comProduct.Text = "";
-                txtProduct.Text = "";
-
-                query = "select * from size";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comSize.DataSource = dt;
-                comSize.DisplayMember = dt.Columns["Size_Value"].ToString();
-                comSize.ValueMember = dt.Columns["Size_ID"].ToString();
-                comSize.Text = "";
-
-                query = "select * from color";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comColor.DataSource = dt;
-                comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
-                comColor.ValueMember = dt.Columns["Color_ID"].ToString();
-                comColor.Text = "";
-
+                
                 query = "select * from sort";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -107,6 +63,26 @@ namespace MainSystem
                 comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
                 comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
                 comSort.Text = "";
+
+                txtOfferName.Text = rowOffer["اسم العرض"].ToString();
+                txtPrice.Text = rowOffer["السعر"].ToString();
+                txtDelegatePercent.Text = rowOffer["نسبة المندوب"].ToString();
+                txtDescription.Text = rowOffer["الوصف"].ToString();
+                
+                if (rowOffer["الصورة"].ToString() != "")
+                {
+                    selectedImage = (byte[])rowOffer["الصورة"];
+                    Image image = byteArrayToImage(selectedImage);
+                    ImageProduct.Image = image;
+                }
+
+                query = "select distinct data.Data_ID,data.Code as 'الكود', product.Product_Name as 'الاسم' , type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة' ,color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف', data.Description as 'الوصف',sum(storage.Total_Meters) as 'اجمالي عدد الوحدات',offer_details.Quantity as 'الكمية',sellprice.Sell_Price*offer_details.Quantity as 'السعر' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID left JOIN storage on storage.Data_ID=data.Data_ID INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID inner join offer_details on offer_details.Data_ID=data.Data_ID inner join offer on offer.Offer_ID=offer_details.offer_ID where offer.Offer_ID=" + rowOffer[0].ToString() + " group by data.Data_ID order by sellprice.Date desc";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                gridControl2.DataSource = dt;
+                gridView2.Columns[0].Visible = false;
+                gridView2.Columns["اجمالي عدد الوحدات"].Visible = false;
 
                 loaded = true;
             }
@@ -564,25 +540,8 @@ namespace MainSystem
         {
             try
             {
-                if (gridView2.SelectedRowsCount > 0 && txtOfferName.Text != "" && txtPrice.Text != "")
+                if (gridView2.SelectedRowsCount > 0 && txtPrice.Text != "")
                 {
-                    string query = "select Offer_Name from offer where Offer_Name='" + txtOfferName.Text + "'";
-                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                    dbconnection.Open();
-                    MySqlDataReader dr = comand.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        if (dr["Offer_Name"].ToString() == txtOfferName.Text)
-                        {
-                            MessageBox.Show("هذا العرض موجود من قبل");
-                            dr.Close();
-                            dbconnection.Close();
-                            return;
-                        }
-                    }
-                    dr.Close();
-                    dbconnection.Close();
-
                     double price = 0;
                     if (!double.TryParse(txtPrice.Text, out price))
                     {
@@ -592,10 +551,8 @@ namespace MainSystem
                     }
                     
                     dbconnection.Open();
-                    query = "insert into offer (Offer_Name,Price,Delegate_Percent,Description) values (@Offer_Name,@Price,@Delegate_Percent,@Description)";
+                    string query = "update offer set Price=@Price,Delegate_Percent=@Delegate_Percent,Description=@Description where Offer_ID=" + rowOffer[0].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Offer_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Offer_Name"].Value = txtOfferName.Text;
                     com.Parameters.Add("@Price", MySqlDbType.Decimal);
                     com.Parameters["@Price"].Value = price;
                     com.Parameters.Add("@Delegate_Percent", MySqlDbType.Decimal);
@@ -604,9 +561,9 @@ namespace MainSystem
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.ExecuteNonQuery();
 
-                    query = "select Offer_ID from offer order by Offer_ID desc limit 1";
+                    query = "delete from offer_details where Offer_ID=" + rowOffer[0].ToString();
                     com = new MySqlCommand(query, dbconnection);
-                    int id = Convert.ToInt16(com.ExecuteScalar());
+                    com.ExecuteNonQuery();
 
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
@@ -614,7 +571,7 @@ namespace MainSystem
                         query = "insert offer_details (Offer_ID,Data_ID,Quantity) values (@Offer_ID,@Data_ID,@Quantity)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
-                        com.Parameters["@Offer_ID"].Value = id;
+                        com.Parameters["@Offer_ID"].Value = rowOffer[0].ToString();
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = Convert.ToInt16(item[0].ToString());
                         com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
@@ -624,16 +581,41 @@ namespace MainSystem
 
                     if (selectedImage != null)
                     {
-                        query = "insert into offer_photo (Offer_ID,Photo) values (@Offer_ID,@Photo)";
+                        //selectedImage = ImageToByte(ImageProduct.Image);
+                        query = "select Photo from offer_photo where Offer_ID=" + rowOffer[0].ToString();
                         com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
-                        com.Parameters["@Offer_ID"].Value = id;
-                        com.Parameters.Add("@Photo", MySqlDbType.LongBlob);
-                        com.Parameters["@Photo"].Value = selectedImage;
-                        com.ExecuteNonQuery();
+                        if (com.ExecuteScalar() != null)
+                        {
+                            query = "update offer_photo set Photo=@Photo where Offer_ID=" + rowOffer[0].ToString();
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Photo", MySqlDbType.LongBlob);
+                            com.Parameters["@Photo"].Value = selectedImage;
+                            com.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            query = "insert into offer_photo (Offer_ID,Photo) values (@Offer_ID,@Photo)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
+                            com.Parameters["@Offer_ID"].Value = rowOffer[0].ToString();
+                            com.Parameters.Add("@Photo", MySqlDbType.LongBlob);
+                            com.Parameters["@Photo"].Value = selectedImage;
+                            com.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        query = "select Photo from offer_photo where Offer_ID=" + rowOffer[0].ToString();
+                        com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                            query = "delete from offer_photo where Offer_ID=" + rowOffer[0].ToString();
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                        }
                     }
 
-                    UserControl.ItemRecord("offer", "اضافة", id, DateTime.Now, "", dbconnection);
+                    UserControl.ItemRecord("offer", "تعديل", Convert.ToInt16(rowOffer[0].ToString()), DateTime.Now, "", dbconnection);
 
                     clear(tableLayoutPanel1);
                     offerForm.DisplayOffer();
@@ -743,6 +725,19 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
+        public static byte[] ImageToByte(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
     }
 }
