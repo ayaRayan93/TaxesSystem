@@ -48,7 +48,7 @@
             this.comDelegate = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comEngCon = new System.Windows.Forms.ComboBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radClient = new System.Windows.Forms.RadioButton();
             this.radEng = new System.Windows.Forms.RadioButton();
             this.radCon = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comSupplier = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radDealer = new System.Windows.Forms.RadioButton();
             this.txtRequestNum = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -322,20 +322,20 @@
             this.comEngCon.SelectedValueChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
             this.comEngCon.TextChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
             // 
-            // radioButton3
+            // radClient
             // 
-            this.radioButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.Location = new System.Drawing.Point(82, 9);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton3.Size = new System.Drawing.Size(56, 20);
-            this.radioButton3.TabIndex = 16;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "عميل";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radClient.AutoSize = true;
+            this.radClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radClient.Location = new System.Drawing.Point(82, 9);
+            this.radClient.Name = "radClient";
+            this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radClient.Size = new System.Drawing.Size(56, 20);
+            this.radClient.TabIndex = 16;
+            this.radClient.TabStop = true;
+            this.radClient.Text = "عميل";
+            this.radClient.UseVisualStyleBackColor = true;
+            this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radEng
             // 
@@ -554,20 +554,20 @@
             this.comSupplier.Size = new System.Drawing.Size(200, 24);
             this.comSupplier.TabIndex = 1;
             // 
-            // radioButton1
+            // radDealer
             // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(28, 9);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(48, 20);
-            this.radioButton1.TabIndex = 17;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "تاجر";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            this.radDealer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radDealer.AutoSize = true;
+            this.radDealer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDealer.Location = new System.Drawing.Point(28, 9);
+            this.radDealer.Name = "radDealer";
+            this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radDealer.Size = new System.Drawing.Size(48, 20);
+            this.radDealer.TabIndex = 17;
+            this.radDealer.TabStop = true;
+            this.radDealer.Text = "تاجر";
+            this.radDealer.UseVisualStyleBackColor = true;
+            this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // txtRequestNum
             // 
@@ -662,7 +662,7 @@
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.txtRequestNum);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.radDealer);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.comSupplier);
             this.Controls.Add(this.groupBox2);
@@ -678,7 +678,7 @@
             this.Controls.Add(this.txtTotalMeters);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCode);
-            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radClient);
             this.Controls.Add(this.radEng);
             this.Controls.Add(this.radCon);
             this.Controls.Add(this.label2);
@@ -690,7 +690,7 @@
             this.Name = "AdvancedEditForm2";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.AdvancedEditForm2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -720,7 +720,7 @@
         private System.Windows.Forms.ComboBox comDelegate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comEngCon;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radClient;
         private System.Windows.Forms.RadioButton radEng;
         private System.Windows.Forms.RadioButton radCon;
         private System.Windows.Forms.Label label9;
@@ -740,7 +740,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comSupplier;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radDealer;
         private System.Windows.Forms.TextBox txtRequestNum;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox comColor;

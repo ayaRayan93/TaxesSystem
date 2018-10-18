@@ -17,6 +17,7 @@ namespace MainSystem
     public partial class AdvancedEditForm2 : Form
     {
         MySqlConnection dbconnection;
+        MySqlConnection dbconnection2;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
@@ -33,6 +34,7 @@ namespace MainSystem
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
             addedRecordIDs = new int[100];
 
             //this.SetBoundFieldName(txtRequestNum, "RequestNumber");
@@ -62,61 +64,68 @@ namespace MainSystem
             comSize.AutoCompleteSource = AutoCompleteSource.ListItems;
             comSort.AutoCompleteMode = AutoCompleteMode.Suggest;
             comSort.AutoCompleteSource = AutoCompleteSource.ListItems;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
             try
             {
-                dbconnection.Open();
-
-                string query = "select * from type";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                comType.DataSource = dt;
-                comType.DisplayMember = dt.Columns["Type_Name"].ToString();
-                comType.ValueMember = dt.Columns["Type_ID"].ToString();
-                comType.Text = "";
-                
-                query = "select * from sort";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comSort.DataSource = dt;
-                comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
-                comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
-                comSort.Text = "";
-
-                query = "select * from delegate";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comDelegate.DataSource = dt;
-                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
-                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
-
-                query = "select * from supplier";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comSupplier.DataSource = dt;
-                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
-                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                comSupplier.Text = "";
-
-                query = "SELECT requests.Delegate_ID FROM requests where requests.BranchBillNumber="+ txtRequestNum.Text + " and requests.Branch_ID=" + EmpBranchId;
-                MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                comDelegate.SelectedValue = comand.ExecuteScalar().ToString();
-                
-                groupBox2.Visible = false;
-                loaded = true;
+                loadFunc();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection2.Close();
+        }
+
+        void loadFunc()
+        {
+            groupBox2.Visible = false;
+
+            dbconnection.Open();
+
+            string query = "select * from delegate";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            comDelegate.DataSource = dt;
+            comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+            comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+
+            query = "SELECT requests.Delegate_ID FROM requests where requests.BranchBillNumber=" + txtRequestNum.Text + " and requests.Branch_ID=" + EmpBranchId;
+            MySqlCommand comand = new MySqlCommand(query, dbconnection);
+            comDelegate.SelectedValue = comand.ExecuteScalar().ToString();
+            
+            dbconnection2.Open();
+            query = "SELECT customer.Customer_ID,customer.Customer_Type FROM requests INNER JOIN customer ON requests.Customer_ID = customer.Customer_ID where requests.BranchBillNumber=" + txtRequestNum.Text + " and requests.Branch_ID=" + EmpBranchId;
+            comand = new MySqlCommand(query, dbconnection2);
+            MySqlDataReader dr = comand.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    if (dr["Customer_Type"].ToString() == "مهندس")
+                    {
+                        radEng.Checked = true;
+                    }
+                    else if (dr["Customer_Type"].ToString() == "مقاول")
+                    {
+                        radCon.Checked = true;
+                    }
+                    else if (dr["Customer_Type"].ToString() == "تاجر")
+                    {
+                        radDealer.Checked = true;
+                    }
+                    comEngCon.SelectedValue = dr["Customer_ID"].ToString();
+                }
+                dr.Close();
+            }
+            else
+            {
+                query = "SELECT customer.Customer_ID FROM requests INNER JOIN customer ON requests.Client_ID = customer.Customer_ID where requests.BranchBillNumber=" + txtRequestNum.Text + " and requests.Branch_ID=" + EmpBranchId;
+                comand = new MySqlCommand(query, dbconnection);
+                radClient.Checked = true;
+                dbconnection.Open();
+                comCustomer.SelectedValue = comand.ExecuteScalar().ToString();
+            }
         }
 
         //check type of customer if engineer,client or contract 
@@ -163,7 +172,7 @@ namespace MainSystem
                 }
 
 
-                loaded = true;
+                //loaded = true;
             }
             catch (Exception ex)
             {
@@ -455,7 +464,7 @@ namespace MainSystem
             try
             {
                 /*&&comBranch.Text!=""&& int.TryParse(txtBranchID.Text,out branchId)&&comStore.Text!=""&&txtStoreID.Text!=""*/
-                if (comDelegate.Text != "" && txtEmployee.Text != "")
+                if (comDelegate.Text != "" && txtEmployee.Text != "" && (comCustomer.Text != "" || comEngCon.Text != ""))
                 {
                     dbconnection.Open();
 
@@ -469,10 +478,26 @@ namespace MainSystem
 
                     query = "update requests set Supplier_ID=@Supplier_ID,Customer_ID=@Customer_ID,Client_ID=@Client_ID,Employee_Name=@Employee_Name,Request_Date=@Request_Date,Receive_Date=@Receive_Date where BranchBillNumber=" + txtRequestNum.Text + " and Branch_ID=" + EmpBranchId;
                     com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                    com.Parameters["@Client_ID"].Value = comCustomer.SelectedValue;
-                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                    com.Parameters["@Customer_ID"].Value = comEngCon.SelectedValue;
+                    if (comCustomer.SelectedValue != null)
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = comCustomer.SelectedValue;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = null;
+                    }
+                    if (comEngCon.SelectedValue != null)
+                    {
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = comEngCon.SelectedValue;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = null;
+                    }
                     com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar);
                     com.Parameters["@Employee_Name"].Value = txtEmployee.Text;
                     com.Parameters.Add("@Request_Date", MySqlDbType.Date);
@@ -552,6 +577,48 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AdvancedEditForm2_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+
+                string query = "select * from type";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comType.DataSource = dt;
+                comType.DisplayMember = dt.Columns["Type_Name"].ToString();
+                comType.ValueMember = dt.Columns["Type_ID"].ToString();
+                comType.Text = "";
+
+                query = "select * from sort";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSort.DataSource = dt;
+                comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
+                comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
+                comSort.Text = "";
+
+                query = "select * from supplier";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSupplier.DataSource = dt;
+                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.Text = "";
+
+                loaded = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
     }
 }

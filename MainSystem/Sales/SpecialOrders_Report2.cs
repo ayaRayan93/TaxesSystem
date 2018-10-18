@@ -36,7 +36,6 @@ namespace MainSystem
         int EmpBranchId = 0;
         
         public static RequestImage tipImage = null;
-        DataRowView row1;
 
         public SpecialOrders_Report2()
         {
@@ -72,40 +71,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-        }
-        
-        //functions
-        public void search()
-        {
-            /*DataTable sourceData = new DataTable();
-            MySqlDataAdapter adapterCustomer = new MySqlDataAdapter("SELECT requests.BranchBillNumber as 'رقم الطلب',special_order.Picture as 'صورة الطلب' FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN requests ON special_order.SpecialOrder_ID = requests.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId, conn);
-            adapterCustomer.Fill(sourceData);
-            gridControl1.DataSource = sourceData;*/
-            conn.Open();
-            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,requests.BranchBillNumber,special_order.Picture FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN requests ON special_order.SpecialOrder_ID = requests.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId, conn);
-            MySqlDataReader dr = adapter.ExecuteReader();
-
-            BindingList<GridPicture> lista = new BindingList<GridPicture>();
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    byte[] img = (byte[])dr["Picture"];
-                    lista.Add(new GridPicture() { SpecialOrderID= Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), RequestNumber = Convert.ToInt16(dr["BranchBillNumber"].ToString()), Picture = img });
-                }
-                dr.Close();
-            }
-            gridControl1.DataSource = lista;
-        }
-
-        public XtraTabPage getTabPage(string text)
-        {
-            for (int i = 0; i < MainTabControlPS.TabPages.Count; i++)
-                if (MainTabControlPS.TabPages[i].Name == text)
-                {
-                    return MainTabControlPS.TabPages[i];
-                }
-            return null;
         }
 
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
@@ -173,6 +138,66 @@ namespace MainSystem
             }
         }
 
+        private void repositoryItemButtonEditDownloadProduct_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                byte[] bytes = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns[4]);
+                Image image = byteArrayToImage(bytes);
+                SaveFileDialog f = new SaveFileDialog();
+                f.Filter = "PNG(*.PNG)|*.png";
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    image.Save(f.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    AdvancedEditForm2 f2 = new AdvancedEditForm2(EmpBranchId, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
+                    f2.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        
+        //functions
+        public void search()
+        {
+            /*DataTable sourceData = new DataTable();
+            MySqlDataAdapter adapterCustomer = new MySqlDataAdapter("SELECT requests.BranchBillNumber as 'رقم الطلب',special_order.Picture as 'صورة الطلب' FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN requests ON special_order.SpecialOrder_ID = requests.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId, conn);
+            adapterCustomer.Fill(sourceData);
+            gridControl1.DataSource = sourceData;*/
+            conn.Open();
+            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,requests.BranchBillNumber,special_order.Picture,special_order.Product_Picture,special_order.Description FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN requests ON special_order.SpecialOrder_ID = requests.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId, conn);
+            MySqlDataReader dr = adapter.ExecuteReader();
+
+            BindingList<GridPicture> lista = new BindingList<GridPicture>();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    byte[] img = (byte[])dr["Picture"];
+                    byte[] imgProduct = (byte[])dr["Product_Picture"];
+                    lista.Add(new GridPicture() { SpecialOrderID = Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), RequestNumber = Convert.ToInt16(dr["BranchBillNumber"].ToString()), Picture = img, ProductPicture = imgProduct, RequestDescription = dr["Description"].ToString() });
+                }
+                dr.Close();
+            }
+            gridControl1.DataSource = lista;
+        }
+
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
             MemoryStream ms = new MemoryStream(byteArrayIn);
@@ -180,19 +205,14 @@ namespace MainSystem
             return returnImage;
         }
 
-        private void gridView1_DoubleClick(object sender, EventArgs e)
+        public XtraTabPage getTabPage(string text)
         {
-            try
-            {
-                //row1 = (DataRowView)gridView1.GetRow(gridView1.FocusedRowHandle);
-                
-                AdvancedEditForm2 f2 = new AdvancedEditForm2(EmpBranchId, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
-                f2.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            for (int i = 0; i < MainTabControlPS.TabPages.Count; i++)
+                if (MainTabControlPS.TabPages[i].Name == text)
+                {
+                    return MainTabControlPS.TabPages[i];
+                }
+            return null;
         }
     }
 
@@ -201,5 +221,7 @@ namespace MainSystem
         public int SpecialOrderID { get; set; }
         public int RequestNumber { get; set; }
         public byte[] Picture { get; set; }
+        public byte[] ProductPicture { get; set; }
+        public string RequestDescription { get; set; }
     }
 }
