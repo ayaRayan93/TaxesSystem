@@ -2228,7 +2228,7 @@ namespace MainSystem
                 if (DashBillNum != 0)
                 {
                     int DelegateId = UserControl.LoginDelegate(dbconnection);
-                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, DelegateId);
+                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, DelegateId,0);
                     soForm.ShowDialog();
                 }
                 else
