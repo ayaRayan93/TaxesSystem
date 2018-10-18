@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Offer_Record
+    partial class Offer_Update
     {
         /// <summary>
         /// Required designer variable.
@@ -68,12 +68,12 @@
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnRemove = new System.Windows.Forms.Button();
             this.ImageProduct = new System.Windows.Forms.PictureBox();
             this.txtDelegatePercent = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -89,8 +89,9 @@
             // txtOfferName
             // 
             this.txtOfferName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOfferName.Enabled = false;
             this.txtOfferName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOfferName.Location = new System.Drawing.Point(642, 21);
+            this.txtOfferName.Location = new System.Drawing.Point(642, 22);
             this.txtOfferName.Name = "txtOfferName";
             this.txtOfferName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtOfferName.Size = new System.Drawing.Size(200, 24);
@@ -101,7 +102,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(848, 25);
+            this.label2.Location = new System.Drawing.Point(848, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 17);
             this.label2.TabIndex = 80;
@@ -112,7 +113,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label4.Location = new System.Drawing.Point(550, 25);
+            this.label4.Location = new System.Drawing.Point(550, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 17);
             this.label4.TabIndex = 82;
@@ -122,7 +123,7 @@
             // 
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPrice.Location = new System.Drawing.Point(420, 21);
+            this.txtPrice.Location = new System.Drawing.Point(420, 22);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPrice.Size = new System.Drawing.Size(100, 24);
@@ -621,29 +622,6 @@
             this.panel1.Size = new System.Drawing.Size(954, 144);
             this.panel1.TabIndex = 96;
             // 
-            // txtDescription
-            // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescription.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDescription.Location = new System.Drawing.Point(642, 63);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDescription.Size = new System.Drawing.Size(200, 64);
-            this.txtDescription.TabIndex = 90;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label5.Location = new System.Drawing.Point(848, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 17);
-            this.label5.TabIndex = 89;
-            this.label5.Text = "الوصف";
-            // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -696,7 +674,30 @@
             this.label3.TabIndex = 85;
             this.label3.Text = "نسبة المندوب";
             // 
-            // Offer_Record
+            // txtDescription
+            // 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDescription.Location = new System.Drawing.Point(642, 63);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDescription.Size = new System.Drawing.Size(200, 64);
+            this.txtDescription.TabIndex = 92;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label5.Location = new System.Drawing.Point(848, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 17);
+            this.label5.TabIndex = 91;
+            this.label5.Text = "الوصف";
+            // 
+            // Offer_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -704,7 +705,7 @@
             this.ClientSize = new System.Drawing.Size(960, 746);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
-            this.Name = "Offer_Record";
+            this.Name = "Offer_Update";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "انشاء عرض";
             this.Load += new System.EventHandler(this.Form1_Load);
