@@ -19,6 +19,7 @@ namespace MainSystem
         DataGridViewRow row1 = null;
         int id = -1;
         int typeUpdateId = -1;
+        int groupUpdateId = -1;
         bool load = false;
         bool flagFactory = false;//in group tap
         bool flagFactoryP = false;//in product tap
@@ -488,18 +489,37 @@ namespace MainSystem
                 switch (txtbox.Name)
                 {
                     case "txtType":
-                        query = "select Type_ID as 'كود',Type_Name as 'الأسم' from type where Type_Name like'" + txtType.Text + "%'";
+                        query = "select Type_ID as 'كود',Type_Name as 'النوع' from type where Type_Name like'" + txtType.Text + "%'";
                         adapter = new MySqlDataAdapter(query, dbconnection);
                         dtaple = new DataTable();
                         adapter.Fill(dtaple);
                         dataGridView1.DataSource = dtaple;
                         break;
-                    case "txtType2":
-                        query = "select Type_Name from type where Type_ID='" + txtType2.Text + "'";
+                    case "txtType1":
+                        query = "select Type_Name from type where Type_ID='" + txtType1.Text + "'";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
+                            displayGroup_Type(Convert.ToInt16(txtType1.Text));
                             Name = (string)com.ExecuteScalar();
+                            comType.Text = Name;
+                            if (txtType1.Text == "1")
+                                txtGroup.Focus();
+                            txtFactory1.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("there is no item with this id");
+                            dbconnection.Close();
+                            return;
+                        }
+                        break;
+                    case "txtType2":
+                        query = "select Type_Name from type where Type_ID='" + txtType2.Text + "'";
+                        MySqlCommand com1 = new MySqlCommand(query, dbconnection);
+                        if (com1.ExecuteScalar() != null)
+                        {
+                            Name = (string)com1.ExecuteScalar();
                             comTypeProduct.Text = Name;
 
                             txtFactory2.Focus();
@@ -515,13 +535,31 @@ namespace MainSystem
                         }
                         break;
                     case "txtFactory":
-                        query = "select distinct factory.Factory_ID as 'كود',Factory_Name as 'المصنع',Type_Name as 'النوع' from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type  on type.Type_ID=type_factory.Type_ID where Factory_Name like'" + txtFactory.Text + "%'";
+                        query = "select distinct factory.Factory_ID as 'كود',Factory_Name as 'المصنع' from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type  on type.Type_ID=type_factory.Type_ID where Factory_Name like'" + txtFactory.Text + "%'";
                         adapter = new MySqlDataAdapter(query, dbconnection);
                         dtaple = new DataTable();
                         adapter.Fill(dtaple);
                         dataGridViewFactory.DataSource = dtaple;
                         break;
-                    case "txtFactory2":
+                     case "txtFactory1":
+                            query = "select Factory_Name from factory where Factory_ID='" + txtFactory1.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                displayGroup_Factory(Convert.ToInt16(txtFactory1.Text));
+                                Name = (string)com.ExecuteScalar();
+                                comFactory.Text = Name;
+
+                                txtGroup.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtFactory2":
                         query = "select Factory_Name from factory where Factory_ID='" + txtFactory2.Text + "'";
                         com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
@@ -544,7 +582,7 @@ namespace MainSystem
                     case "txtGroup":
                         if (comFactory2.Text != "")
                         {
-                            query = "select Group_ID as 'كود',Group_Name as 'الأسم' from Groupo where Group_Name like'" + txtGroup.Text + "%' and Factory_ID=" + comFactory2.SelectedValue;
+                            query = "select Group_ID as 'كود',Group_Name as 'المجموعة' from Groupo where Group_Name like'" + txtGroup.Text + "%' and Factory_ID=" + comFactory2.SelectedValue;
                             adapter = new MySqlDataAdapter(query, dbconnection);
                             dtaple = new DataTable();
                             adapter.Fill(dtaple);
@@ -554,15 +592,13 @@ namespace MainSystem
                     case "txtProduct":
                             if (comFactoryGroup.Text != "")
                             {
-
-
-                                query = "select Product_ID as 'كود',Product_Name as 'الأسم' from Product where Product_Name like'" + txtProduct.Text + "%'";
+                                query = "select Product_ID as 'كود',Product_Name as 'الصنف' from Product where Product_Name like'" + txtProduct.Text + "%'";
                                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                                 MySqlDataReader dr = comand.ExecuteReader();
                                 List<string> arr = new List<string>();
                                 while (dr.Read())
                                 {
-                                    arr.Add(dr["الأسم"].ToString());
+                                    arr.Add(dr["الصنف"].ToString());
                                 }
                                 dr.Close();
                                 string[] strarr = new string[arr.Count];
@@ -572,7 +608,7 @@ namespace MainSystem
                                 collection.AddRange(strarr);
 
                                 txtProduct.AutoCompleteCustomSource = collection;
-                            }
+                             }
                         break;
                     case "txtSort":
                         query = "select Sort_ID as 'كود',Sort_Value as 'الأسم' from Sort where Sort_Value like'" + txtSort.Text + "%'";
@@ -582,19 +618,19 @@ namespace MainSystem
                         dataGridViewSort.DataSource = dtaple;
                         break;
                     case "txtColor":
-                        //if (comType.Text != "")
-                        //{
-                        //    query = "select Color_ID as 'كود',Color_Name as 'الأسم' from Color where Color_Name like'" + txtColor.Text + "%' and Type_ID=" + comType.SelectedValue;
-                        //    adapter = new MySqlDataAdapter(query, dbconnection);
-                        //    dtaple = new DataTable();
-                        //    adapter.Fill(dtaple);
-                        //    dataGridViewColor.DataSource = dtaple;
-                        //}
-                        break;
+                            if (comType.Text != "")
+                            {
+                                query = "select Color_ID as 'كود',Color_Name as 'اللون' from Color where Color_Name like'" + txtColor.Text + "%' and Type_ID=" + comType.SelectedValue;
+                                adapter = new MySqlDataAdapter(query, dbconnection);
+                                dtaple = new DataTable();
+                                adapter.Fill(dtaple);
+                                dataGridViewColor.DataSource = dtaple;
+                            }
+                            break;
                     case "txtSize":
                         if (comFactory.Text != "")
                         {
-                            query = "select Size_ID as 'كود',Size_Value as 'الأسم' from Size where Size_Value like'" + txtSize.Text + "%' and Factory_ID=" + comFactory.SelectedValue;
+                            query = "select Size_ID as 'كود',Size_Value as 'المقاس' from Size where Size_Value like'" + txtSize.Text + "%' and Factory_ID=" + comFactory.SelectedValue;
                             adapter = new MySqlDataAdapter(query, dbconnection);
                             dtaple = new DataTable();
                             adapter.Fill(dtaple);
@@ -1026,7 +1062,6 @@ namespace MainSystem
                             }
                         }
                     }
-
                 }
                 else
                 {
@@ -1315,7 +1350,121 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }     
+        }
+        private void btnSaveGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "select Group_ID from groupo where Group_Name = '" + txtGroup.Text + "' and Group_ID not in("+groupUpdateId+")";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() == null)
+                {
+                    if (txtGroup.Text != "")
+                    {
+                        if (comType.SelectedValue.ToString() == "1" || comType.SelectedValue.ToString() == "2")
+                        {
+                            query = "update  groupo set Group_Name=@Group_Name,Factory_ID=@Factory_ID,Type_ID=@Type_ID where Group_ID="+ groupUpdateId;
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.AddWithValue("@Group_Name", txtGroup.Text);
+                            com.Parameters.AddWithValue("@Factory_ID", 0);
+                            com.Parameters.AddWithValue("@Type_ID", 1);
+                            com.ExecuteNonQuery();
+                            displayGroup(0);
+
+                        }
+                        else if (comType.SelectedValue.ToString() == "4")
+                        {
+                            query = "update  groupo set Group_Name=@Group_Name,Factory_ID=@Factory_ID,Type_ID=@Type_ID where Group_ID=" + groupUpdateId;
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.AddWithValue("@Group_Name", txtGroup.Text);
+                            com.Parameters.AddWithValue("@Factory_ID", -1);
+                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                            com.ExecuteNonQuery();
+                            displayGroup(0);
+                        }
+                        else
+                        {
+                            if (comFactory.Text != "")
+                            {
+                                query = "update  groupo set Group_Name=@Group_Name,Factory_ID=@Factory_ID,Type_ID=@Type_ID where Group_ID=" + groupUpdateId;
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.AddWithValue("@Group_Name", txtGroup.Text);
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactory.SelectedValue));
+                                com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                                com.ExecuteNonQuery();
+                                displayGroup(Convert.ToInt16(comFactory.SelectedValue));
+                            }
+                            else
+                            {
+                                MessageBox.Show("اختر المصنع");
+                            }
+                        }
+                        
+                        UserControl.ItemRecord("groupo", "تعديل", groupUpdateId, DateTime.Now, "", dbconnection);
+
+                        txtGroup.Text = "";
+                    }
+                    else
+                    {
+                        txtGroup.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This group already exist");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void btnUpdateGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                String type="", factory="", group="";
+                btnSaveGroup.Visible = true;
+                row1 = dataGridViewGroup.Rows[dataGridViewGroup.SelectedCells[0].RowIndex];
+                if (row1 != null)
+                {
+                    groupUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    string query = "select distinct * from groupo  where Group_ID=" + groupUpdateId;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader drGroup = com.ExecuteReader();
+                    while (drGroup.Read())
+                    {
+                        type = drGroup["Type_ID"].ToString();
+                        group = drGroup["Group_Name"].ToString();
+                        factory = drGroup["Factory_ID"].ToString();
+                    }
+                    drGroup.Close();
+                    txtType1.Text = type;
+                    txtGroup.Text = group;
+                    if (Convert.ToInt16(factory) > 0)
+                        txtFactory1.Text = factory;
+                    else
+                    {
+                        label6.Visible = false;
+                        comFactory.Visible = false;
+                        txtFactory1.Visible = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("اختار المجموعة المراد تعديلها.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void btnDeleteGroup_Click(object sender, EventArgs e)
         {
             try
@@ -1429,7 +1578,7 @@ namespace MainSystem
                                 displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
                             }
                             UserControl.ItemRecord("product", "اضافة", id , DateTime.Now,"", dbconnection);
-                            MessageBox.Show("Done");
+                         
                             txtProduct.Text = "";
                             txtProduct.Focus();
                         }
@@ -1457,7 +1606,6 @@ namespace MainSystem
                             com.ExecuteNonQuery();
                         }
 
-                        MessageBox.Show("Done");
                         txtProduct.Text = "";
                         txtProduct.Focus();
                         displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
@@ -1531,7 +1679,7 @@ namespace MainSystem
                                 }
                                 UserControl.ItemRecord("product", "اضافة", id, DateTime.Now, "", dbconnection);
 
-                                MessageBox.Show("Done");
+                              
                                 txtProduct.Text = "";
                                 txtProduct.Focus();
                             }
@@ -1559,7 +1707,7 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
                             }
 
-                            MessageBox.Show("Done");
+                         
                             txtProduct.Text = "";
                             txtProduct.Focus();
                             displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
@@ -2605,7 +2753,7 @@ namespace MainSystem
         }
         public void displayGroup(int type_id)
         {
-            string query = "select distinct Group_ID as 'كود',Group_Name as 'المجموعة' from groupo   where groupo.Type_ID=" + txtType2.Text + " and groupo.Factory_ID=" + type_id + " order by Group_ID";
+            string query = "select distinct Group_ID as 'كود',Group_Name as 'المجموعة' from groupo   where groupo.Type_ID=" + txtType1.Text + " and groupo.Factory_ID=" + txtFactory1.Text + " order by Group_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
