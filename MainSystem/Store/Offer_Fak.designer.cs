@@ -39,14 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtOfferQuantity = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTotalQuantityOffer = new System.Windows.Forms.TextBox();
-            this.panTopPart = new System.Windows.Forms.Panel();
-            this.btnNewChooes = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.ProductCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +48,14 @@
             this.ProductColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTotalQuantityOffer = new System.Windows.Forms.TextBox();
+            this.panTopPart = new System.Windows.Forms.Panel();
+            this.btnNewChooes = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panTopPart.SuspendLayout();
@@ -127,7 +127,7 @@
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(40, 16);
             this.label2.TabIndex = 135;
-            this.label2.Text = "الطقم";
+            this.label2.Text = "العرض";
             // 
             // groupBox1
             // 
@@ -195,6 +195,53 @@
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.Size = new System.Drawing.Size(854, 395);
             this.dataGridView1.TabIndex = 141;
+            // 
+            // ProductCode
+            // 
+            this.ProductCode.HeaderText = "الكود";
+            this.ProductCode.Name = "ProductCode";
+            this.ProductCode.Width = 200;
+            // 
+            // ProductQuantity
+            // 
+            this.ProductQuantity.HeaderText = "الكمية";
+            this.ProductQuantity.Name = "ProductQuantity";
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "اسم الصنف";
+            this.ProductName.Name = "ProductName";
+            // 
+            // Type_Name
+            // 
+            this.Type_Name.HeaderText = "النوع";
+            this.Type_Name.Name = "Type_Name";
+            // 
+            // Factory_Name
+            // 
+            this.Factory_Name.HeaderText = "المصنع";
+            this.Factory_Name.Name = "Factory_Name";
+            // 
+            // Group_Name
+            // 
+            this.Group_Name.HeaderText = "المجموعة";
+            this.Group_Name.Name = "Group_Name";
+            // 
+            // ProductColor
+            // 
+            this.ProductColor.HeaderText = "اللون";
+            this.ProductColor.Name = "ProductColor";
+            // 
+            // productSize
+            // 
+            this.productSize.HeaderText = "المقاس";
+            this.productSize.Name = "productSize";
+            // 
+            // ProductSort
+            // 
+            this.ProductSort.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ProductSort.HeaderText = "الفرز";
+            this.ProductSort.Name = "ProductSort";
             // 
             // button1
             // 
@@ -322,53 +369,6 @@
             this.bunifuTileButton1.Size = new System.Drawing.Size(100, 46);
             this.bunifuTileButton1.TabIndex = 0;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnDone_Click);
-            // 
-            // ProductCode
-            // 
-            this.ProductCode.HeaderText = "الكود";
-            this.ProductCode.Name = "ProductCode";
-            this.ProductCode.Width = 200;
-            // 
-            // ProductQuantity
-            // 
-            this.ProductQuantity.HeaderText = "الكمية";
-            this.ProductQuantity.Name = "ProductQuantity";
-            // 
-            // ProductName
-            // 
-            this.ProductName.HeaderText = "اسم الصنف";
-            this.ProductName.Name = "ProductName";
-            // 
-            // Type_Name
-            // 
-            this.Type_Name.HeaderText = "النوع";
-            this.Type_Name.Name = "Type_Name";
-            // 
-            // Factory_Name
-            // 
-            this.Factory_Name.HeaderText = "المصنع";
-            this.Factory_Name.Name = "Factory_Name";
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.HeaderText = "المجموعة";
-            this.Group_Name.Name = "Group_Name";
-            // 
-            // ProductColor
-            // 
-            this.ProductColor.HeaderText = "اللون";
-            this.ProductColor.Name = "ProductColor";
-            // 
-            // productSize
-            // 
-            this.productSize.HeaderText = "المقاس";
-            this.productSize.Name = "productSize";
-            // 
-            // ProductSort
-            // 
-            this.ProductSort.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ProductSort.HeaderText = "الفرز";
-            this.ProductSort.Name = "ProductSort";
             // 
             // Offer_Fak
             // 
