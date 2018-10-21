@@ -228,7 +228,7 @@ namespace MainSystem
             dbconnection.Open();
             int OfferID, StoreID;
             if (int.TryParse(txtOffersID.Text, out OfferID) && int.TryParse(txtStoreID.Text, out StoreID))
-                {
+            {
                 string query = "select Total_Meters from storage  where Offer_ID=" + OfferID + " and Store_ID=" + StoreID;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
@@ -238,7 +238,9 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("هذا الطقم لايوجد في المخزن");
+                    MessageBox.Show("هذا العرض لايوجد في المخزن");
+                    txtOfferQuantity.Text = "";
+                    txtTotalQuantityOffer.Text = "";
                 }
             }
             else
@@ -247,7 +249,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        //الطقم تفكيك
+        //العرض تفكيك
         public double fakOffer(double quantityOfferFak, int offerID)
         {
            
@@ -267,7 +269,7 @@ namespace MainSystem
             }
             else
             {
-                MessageBox.Show("هذا الطقم لايوجد في المخزن");
+                MessageBox.Show("هذا العرض لايوجد في المخزن");
             }
             return -1;
         }
@@ -294,10 +296,10 @@ namespace MainSystem
             }
             else
             {
-                MessageBox.Show("هذا الطقم لايوجد في المخزن");
+                MessageBox.Show("هذا العرض لايوجد في المخزن");
             }
         }
-        //increase the quantity of taqm items
+        //increase the quantity of offer items
         public void increaseItemsQuantity(double offerQuantity,int offerID)
         {
             if (offerQuantity > 0)
@@ -389,6 +391,7 @@ namespace MainSystem
             {
                 if (loaded)
                 {
+                    flag = false;
                     string query = "select Offer_ID,Offer_Name from offer";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
