@@ -206,7 +206,43 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+
+        private void navBarItemOfferStorage_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل كميات العروض");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("تسجيل كميات العروض");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل كميات العروض");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                OfferStorage objForm = new OfferStorage(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void pictureBoxSale_Click(object sender, EventArgs e)
         {
             try
@@ -354,6 +390,114 @@ namespace MainSystem
             {
                 xtraTabControlSalesContent.TabPages.Add("تعديل عرض");
                 xtraTabPage = getTabPage(xtraTabControlSalesContent, "تعديل عرض");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            else if (xtraTabPage.ImageOptions.Image != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("There is unsave data To you wound override it?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    xtraTabPage.Controls.Clear();
+                    xtraTabPage.Controls.Add(objForm);
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                }
+            }
+            else
+            {
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+
+        }
+
+        public void bindReportOffersForm(GridControl gridControl)
+        {
+            Offer_Report objForm = new Offer_Report(gridControl);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تقرير العروض");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تقرير العروض");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "تقرير العروض");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindOfferSetForm(OfferStorage offer)
+        {
+            Offer_Collect objForm = new Offer_Collect(offer);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تجميع عرض");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تجميع عرض");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "تجميع عرض");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            else if (xtraTabPage.ImageOptions.Image != null)
+            {
+                DialogResult dialogResult = MessageBox.Show("There is unsave data To you wound override it?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    xtraTabPage.Controls.Clear();
+                    xtraTabPage.Controls.Add(objForm);
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                }
+            }
+            else
+            {
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+
+        }
+
+        public void bindFakOfferForm(OfferStorage offer)
+        {
+            Offer_Fak objForm = new Offer_Fak(offer);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "فك عرض");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("فك عرض");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "فك عرض");
                 xtraTabPage.Controls.Clear();
                 xtraTabPage.Controls.Add(objForm);
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;

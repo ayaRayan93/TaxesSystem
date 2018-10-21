@@ -617,9 +617,11 @@ namespace MainSystem
 
                     UserControl.ItemRecord("offer", "تعديل", Convert.ToInt16(rowOffer[0].ToString()), DateTime.Now, "", dbconnection);
 
-                    clear(tableLayoutPanel1);
+                    //clear(tableLayoutPanel1);
                     offerForm.DisplayOffer();
                     offerForm.loadDataToBox();
+                    XtraTabPage xtraTabPage = getTabPage("تعديل عرض");
+                    tabControlSalesContent.TabPages.Remove(xtraTabPage);
                 }
                 else
                 {
@@ -738,6 +740,16 @@ namespace MainSystem
         {
             ImageConverter converter = new ImageConverter();
             return (byte[])converter.ConvertTo(img, typeof(byte[]));
+        }
+
+        public XtraTabPage getTabPage(string text)
+        {
+            for (int i = 0; i < tabControlSalesContent.TabPages.Count; i++)
+                if (tabControlSalesContent.TabPages[i].Text == text)
+                {
+                    return tabControlSalesContent.TabPages[i];
+                }
+            return null;
         }
     }
 }
