@@ -26,7 +26,7 @@ namespace MainSystem
         List<int> listOfRow2In;
         private string[] listOfCode;//code of item which added to bill
        
-        public CustomerReturnBill()
+        public CustomerReturnBill(MainForm mainForm)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -45,6 +45,7 @@ namespace MainSystem
             labBillNumber.Visible = false;
             comBillNumber.Visible = false;
         }
+
         private void CustomerReturnBill_Load(object sender, EventArgs e)
         {
             try
@@ -66,6 +67,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         //check type of customer if engineer,client or contract 
         private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
@@ -127,6 +129,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void comClient_SelectedValueChanged(object sender, EventArgs e)
         {
             if (loaded)
@@ -145,12 +148,17 @@ namespace MainSystem
                 }
             }
         }
+
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
         private void comCustomer_SelectedValueChanged(object sender, EventArgs e)
         {
             if (loaded)
             {
                 txtCustomerID.Text = comCustomer.SelectedValue.ToString();
+                if (txtBranchID.Text != "")
+                {
+                    DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
+                }
 
                 labClient.Visible = true;
                 comClient.Visible = true;
@@ -179,6 +187,7 @@ namespace MainSystem
             }
 
         }
+
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -240,6 +249,7 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
+
         private void comBillNumber_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -247,23 +257,24 @@ namespace MainSystem
                 if (flag && comBillNumber.Text != "")
                 {
                     int billNum = Convert.ToInt16(comBillNumber.Text);
-                    string query = "select  product_bill.Code as 'كود',product_bill.Quantity as ' الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'خصم البيع',product_bill.Price_Discount as 'السعر بعد الخصم' , type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة', product.Product_Name as 'المنتج' ,data.Colour as 'اللون', data.Size as 'المقاس', data.Sort as 'الفرز',data.Classification as 'التصنيف', data.Description as 'الوصف'  from product_bill inner join data on data.Code=product_bill.Code INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.Dash_Bill_ID=" + comBillNumber.SelectedValue;
+                    string query = "select data.Data_ID, data.Code as 'الكود',product_bill.Quantity as ' الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'خصم البيع',product_bill.PriceAD as 'السعر بعد الخصم' , product.Product_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة' ,color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف', data.Description as 'الوصف'  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue;
 
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dataGridView1.DataSource = dt;
+                    dataGridView1.Columns[0].Visible = false;
                     dataGridView2.Rows.Clear();
                     
                     dbconnection.Open();
-                    query = "select * from customer_bill where Dash_Bill_ID=" + comBillNumber.SelectedValue;
+                    query = "select * from customer_bill where CustomerBill_ID=" + comBillNumber.SelectedValue;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
                     {
                         //labBillTotalCostBD.Text = dr["Total_CostBD"].ToString();
                         labBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
-                        labBillDate.Text = dr["Bill_Date"].ToString();
+                        labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
                     }
                     dr.Close();
                 }
@@ -274,6 +285,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -283,11 +295,10 @@ namespace MainSystem
                 {
                     if (addedRecordIDs[i] == dataGridView1.SelectedCells[0].RowIndex + 1)
                         Added = true;
-
                 }
 
                 row1 = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                txtCode.Text = row1.Cells[0].Value.ToString();
+                txtCode.Text = row1.Cells["الكود"].Value.ToString();
                 txtTotalMeter.Text = row1.Cells["الكمية"].Value.ToString();
                 //   txtPrice.Text= row1.Cells["السعر"].Value.ToString();
                 txtPriceAD.Text = row1.Cells["السعر بعد الخصم"].Value.ToString();
@@ -299,16 +310,16 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void txtTotalMeter_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                double quantity, priceBD, priceAD;
-                if (/*txtPrice.Text!=""&&*/txtTotalMeter.Text != "" && txtPriceAD.Text != "")
+                double quantity, priceAD;
+                if (txtTotalMeter.Text != "" && txtPriceAD.Text != "")
                 {
-                    if (double.TryParse(txtTotalMeter.Text, out quantity) /*&& double.TryParse(txtPrice.Text, out priceBD) */&& double.TryParse(txtPriceAD.Text, out priceAD))
+                    if (double.TryParse(txtTotalMeter.Text, out quantity) & double.TryParse(txtPriceAD.Text, out priceAD))
                     {
-                        //  labTotalBD.Text = (priceBD * quantity).ToString();
                         labTotalAD.Text = (priceAD * quantity).ToString();
                     }
                     else
@@ -322,43 +333,39 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnAddToReturnBill_Click(object sender, EventArgs e)
         {
             try
             {
-                //bool exist = false;
-                //for (int i = 0; i < listOfCode.Length; i++)
-                //{
-                //    if (listOfCode[i] == txtCode.Text)
-                //        exist = true;
-                //}
-                if (/*!exist &&*/ !Added && row1 != null && txtCode.Text != "")
+                if (!Added && row1 != null && txtCode.Text != "")
                 {
                     addedRecordIDs[recordCount] = dataGridView1.SelectedCells[0].RowIndex + 1;
                     listOfCode[recordCount] = txtCode.Text;
                     dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].DefaultCellStyle.BackColor = Color.Silver;
                     recordCount++;
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[0].Value = txtCode.Text;
-                    dataGridView2.Rows[n].Cells[1].Value = txtTotalMeter.Text;
-                    dataGridView2.Rows[n].Cells[2].Value = txtPriceAD.Text;
-                    dataGridView2.Rows[n].Cells[3].Value = labTotalAD.Text;
+                    dataGridView2.Rows[n].Cells["Data_ID"].Value = row1.Cells["Data_ID"].Value;
+                    dataGridView2.Rows[n].Cells["Code"].Value = txtCode.Text;
+                    dataGridView2.Rows[n].Cells["Quantity"].Value = txtTotalMeter.Text;
+                    dataGridView2.Rows[n].Cells["priceAD"].Value = txtPriceAD.Text;
+                    dataGridView2.Rows[n].Cells["totalAD"].Value = labTotalAD.Text;
 
-                    dataGridView2.Rows[n].Cells[4].Value = row1.Cells[5].Value;
-                    dataGridView2.Rows[n].Cells[5].Value = row1.Cells[6].Value;
-                    dataGridView2.Rows[n].Cells[6].Value = row1.Cells[7].Value;
-                    dataGridView2.Rows[n].Cells[7].Value = row1.Cells[8].Value;
-                    dataGridView2.Rows[n].Cells[8].Value = row1.Cells[9].Value;
-                    dataGridView2.Rows[n].Cells[9].Value = row1.Cells[10].Value;
-                    dataGridView2.Rows[n].Cells[10].Value = row1.Cells[11].Value;
-                    dataGridView2.Rows[n].Cells[11].Value = row1.Cells[12].Value;
-                    dataGridView2.Rows[n].Cells[12].Value = row1.Cells[13].Value;
+                    dataGridView2.Rows[n].Cells["Type_Name"].Value = row1.Cells["النوع"].Value;
+                    dataGridView2.Rows[n].Cells["Factory_Name"].Value = row1.Cells["المصنع"].Value;
+                    dataGridView2.Rows[n].Cells["Group_Name"].Value = row1.Cells["المجموعة"].Value;
+                    dataGridView2.Rows[n].Cells["Product_Name"].Value = row1.Cells["الصنف"].Value;
+                    dataGridView2.Rows[n].Cells["Colour"].Value = row1.Cells["اللون"].Value;
+                    dataGridView2.Rows[n].Cells["Size"].Value = row1.Cells["المقاس"].Value;
+                    dataGridView2.Rows[n].Cells["Sort"].Value = row1.Cells["الفرز"].Value;
+                    dataGridView2.Rows[n].Cells["Classification"].Value = row1.Cells["التصنيف"].Value;
+                    dataGridView2.Rows[n].Cells["Description"].Value = row1.Cells["الوصف"].Value;
 
                     listOfRow2In.Add(n);
                     double totalAD = 0;
                     foreach (DataGridViewRow item in dataGridView2.Rows)
                     {
-                        totalAD += Convert.ToDouble(item.Cells[3].Value);
+                        totalAD += Convert.ToDouble(item.Cells["totalAD"].Value);
                     }
                     labTotalReturnBillAD.Text = totalAD.ToString();
                 }
@@ -372,6 +379,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnCreateReturnBill_Click(object sender, EventArgs e)
         {
             try
@@ -416,7 +424,7 @@ namespace MainSystem
                     }
                     dr1.Close();
                     com.Parameters.Add("@Date", MySqlDbType.Date);
-                    com.Parameters["@Date"].Value = dateTimePicker1.Value.Date;
+                    com.Parameters["@Date"].Value = DateTime.Now.Date;
                     if (txtInfo.Text != "")
                     {
                         com.Parameters.Add("@ReturnInfo", MySqlDbType.VarChar);
@@ -435,10 +443,10 @@ namespace MainSystem
                     com = new MySqlCommand(query, dbconnection);
                     int id = Convert.ToInt16(com.ExecuteScalar());
 
-                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Code,TotalMeter,PriceAD,TotalAD)values (@CustomerReturnBill_ID,@Code,@TotalMeter,@PriceAD,@TotalAD)";
+                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,TotalMeter,PriceAD,TotalAD)values (@CustomerReturnBill_ID,@Data_ID,@TotalMeter,@PriceAD,@TotalAD)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerReturnBill_ID", MySqlDbType.Int16);
-                    com.Parameters.Add("@Code", MySqlDbType.VarChar);
+                    com.Parameters.Add("@Data_ID", MySqlDbType.VarChar);
                     com.Parameters.Add("@TotalMeter", MySqlDbType.Decimal);
                     com.Parameters.Add("@PriceAD", MySqlDbType.Decimal);
                     com.Parameters.Add("@TotalAD", MySqlDbType.Decimal);
@@ -448,7 +456,7 @@ namespace MainSystem
                         {
                             com.Parameters["@CustomerReturnBill_ID"].Value = id;
 
-                            com.Parameters["@Code"].Value = row1.Cells[0].Value;
+                            com.Parameters["@Data_ID"].Value = row1.Cells[0].Value;
 
                             com.Parameters["@TotalMeter"].Value = Convert.ToDouble(row1.Cells[1].Value);
 
@@ -537,6 +545,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -581,6 +590,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -601,19 +611,7 @@ namespace MainSystem
                 }
             }
         }
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MainForm f = new MainForm();
-                f.Show();
-                this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         private void CustomerReturnBill_FormClosed(object sender, FormClosedEventArgs e)
         {
             try
@@ -626,6 +624,7 @@ namespace MainSystem
             }
            
         }
+
         //function
         //display bill number for selected customer/client
         public void DisplayBillNumber(int customerID, int clientID)
@@ -639,20 +638,34 @@ namespace MainSystem
                 {
                     dbconnection.Open();
 
+                    if (clientID > 0)
+                    {
+
+                        strQuery = " and Client_ID = " + clientID + "";
+                    }
                     if (customerID > 0)
                     {
 
-                        strQuery = " and  Customer_ID = " + customerID + "";
+                        strQuery += " and Customer_ID = " + customerID + "";
                     }
                     comBillNumber.DataSource = null;
                     flag = false;
-                    string query = "select Branch_BillNumber,Dash_Bill_ID from customer_bill where Client_ID=" + clientID + strQuery + " and Branch_ID=" + txtBranchID.Text;
+                    string query = "";
+
+                    if (strQuery != "")
+                    {
+                        query = "select Branch_BillNumber,CustomerBill_ID from customer_bill where Branch_ID=" + txtBranchID.Text + strQuery;
+                    }
+                    else
+                    {
+                        query = "select Branch_BillNumber,CustomerBill_ID from customer_bill where Branch_ID=" + txtBranchID.Text;
+                    }
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     comBillNumber.DataSource = dt;
                     comBillNumber.DisplayMember = dt.Columns["Branch_BillNumber"].ToString();
-                    comBillNumber.ValueMember= dt.Columns["Dash_Bill_ID"].ToString();
+                    comBillNumber.ValueMember= dt.Columns["CustomerBill_ID"].ToString();
                     comBillNumber.Text = "";
 
                     flag = true;
@@ -664,6 +677,7 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
+
         //clear all fields
         private void clrearAll()
         {
@@ -688,7 +702,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        //
+
         bool IsAdded(DataGridViewRow row1)
         {
             foreach (DataGridViewRow item in myRows)
@@ -698,6 +712,7 @@ namespace MainSystem
             }
             return false;
         }
+
         //return quantity to store
         public void INcreaseProductQuantity(int billNumber)
         {
@@ -708,14 +723,14 @@ namespace MainSystem
             int id;
             bool flag = false;
             double storageQ, productQ;
-            string query = "select Code,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber;
+            string query = "select Data_ID,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber;
             MySqlCommand com = new MySqlCommand(query, connectionReader);
             MySqlDataReader dr = com.ExecuteReader();
 
             while (dr.Read())
             {
 
-                string query2 = "select Storage_ID,Total_Meters from storage where Code='" + dr["Code"].ToString()+"'";
+                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID='" + dr["Data_ID"].ToString()+"'";
                 MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
                 MySqlDataReader dr2 = com2.ExecuteReader();
                 while (dr2.Read())
@@ -735,7 +750,7 @@ namespace MainSystem
                 }
                 dr2.Close();
 
-                query2 = "select StorageTaxesID,Total_Meters from storage_taxes where Code='" + dr["Code"].ToString()+"'";
+                query2 = "select StorageTaxesID,Total_Meters from storage_taxes where Data_ID='" + dr["Data_ID"].ToString()+"'";
                 com2 = new MySqlCommand(query2, connectionReader2);
                 dr2 = com2.ExecuteReader();
                 while (dr2.Read())
@@ -757,7 +772,7 @@ namespace MainSystem
 
                 if (!flag)
                 {
-                    MessageBox.Show(dr["Code"].ToString() + "not valid in store");
+                    MessageBox.Show(dr["Data_ID"].ToString() + "not valid in store");
                 }
                 flag = false;
             }
@@ -765,8 +780,6 @@ namespace MainSystem
             
             connectionReader2.Close();
             connectionReader.Close();
-           
         }
-
     }
 }
