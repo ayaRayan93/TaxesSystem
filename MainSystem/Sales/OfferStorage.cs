@@ -217,7 +217,7 @@ namespace MainSystem
                 {
                     q5 = txtStoreID.Text;
                 }
-                string query = "SELECT storage.Offer_ID as 'كود العرض',Offer_Name as 'اسم العرض',store.Store_Name as 'المخزن',storage.Total_Meters as 'الكمية',offer_photo.Photo as 'صورة' from offer left join offer_photo on offer_photo.Offer_ID=offer.Offer_ID inner join storage on storage.Offer_ID=offer.Offer_ID inner join store on storage.Store_ID=store.Store_ID where storage.Offer_ID IN(" + q3+") and storage.Store_ID IN ("+q5+ ") order by storage.Offer_ID";
+                string query = "SELECT offer.Offer_ID as 'كود العرض',Offer_Name as 'اسم العرض',sum(storage.Total_Meters) as 'الكمية',offer_photo.Photo as 'صورة' from offer left join offer_photo on offer_photo.Offer_ID=offer.Offer_ID inner join storage on storage.Offer_ID=offer.Offer_ID where storage.Offer_ID IN(" + q3+") and storage.Store_ID IN ("+q5+ ") group by storage.Offer_ID order by storage.Offer_ID";
 
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
@@ -227,17 +227,17 @@ namespace MainSystem
                     dbconnection.Close();
                     dbconnection.Open();
                     MySqlDataAdapter adapterOffers = new MySqlDataAdapter(query, dbconnection);
-                    query = "SELECT storage.Offer_ID as 'كود العرض',data.Code as 'الكود',offer_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN offer_details on data.Data_ID=offer_details.Data_ID INNER JOIN offer on offer.Offer_ID=offer_details.Offer_ID left join data_photo on data_photo.Data_ID=data.Data_ID inner join storage on storage.Offer_ID=offer.Offer_ID  order by data.Code";
+                    query = "SELECT offer.Offer_ID as 'كود العرض',data.Code as 'الكود',offer_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN offer_details on data.Data_ID=offer_details.Data_ID INNER JOIN offer on offer.Offer_ID=offer_details.Offer_ID left join data_photo on data_photo.Data_ID=data.Data_ID order by data.Code";
                     MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet11 = new DataSet();
 
                     //Create DataTable objects for representing database's tables 
                     adapterOffers.Fill(dataSet11, "offer");
-                    AdapterProducts.Fill(dataSet11, "products");
+                    AdapterProducts.Fill(dataSet11, "data");
 
                     //Set up a master-detail relationship between the DataTables 
                     DataColumn keyColumn = dataSet11.Tables["offer"].Columns["كود العرض"];
-                    DataColumn foreignKeyColumn = dataSet11.Tables["products"].Columns["كود العرض"];
+                    DataColumn foreignKeyColumn = dataSet11.Tables["data"].Columns["كود العرض"];
                     dataSet11.Relations.Add("بنود العرض", keyColumn, foreignKeyColumn);
 
                     //Bind the grid control to the data source 

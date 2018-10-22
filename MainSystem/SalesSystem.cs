@@ -206,8 +206,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-
+        
         private void navBarItemOfferStorage_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -241,6 +240,11 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        
+        private void navBarItemReturnBillRecord_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+
         }
 
         private void pictureBoxSale_Click(object sender, EventArgs e)

@@ -361,7 +361,7 @@
             this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.Save_321;
             this.bunifuTileButton1.ImagePosition = 1;
             this.bunifuTileButton1.ImageZoom = 25;
-            this.bunifuTileButton1.LabelPosition = 12;
+            this.bunifuTileButton1.LabelPosition = 15;
             this.bunifuTileButton1.LabelText = "حفظ";
             this.bunifuTileButton1.Location = new System.Drawing.Point(378, 4);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

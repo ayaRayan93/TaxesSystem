@@ -17,7 +17,7 @@ namespace MainSystem
 {
     public partial class Offer_Update : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
@@ -33,6 +33,9 @@ namespace MainSystem
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection1 = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
+            dbconnection3 = new MySqlConnection(connection.connectionString);
             myRows = new List<DataRowView>();
             offerForm = offer;
             rowOffer = RowOffer;
@@ -561,6 +564,21 @@ namespace MainSystem
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.ExecuteNonQuery();
 
+                    //فك كمية البنود
+                    dbconnection3.Open();
+                    query = "select storage.Store_ID,sum(Total_Meters) as 'الكمية' from storage  where Offer_ID=" + rowOffer[0].ToString() + " group by storage.Store_ID,storage.Offer_ID";
+                    com = new MySqlCommand(query, dbconnection3);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt16(rowOffer[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
+                        }
+                        dr.Close();
+                    }
+                    ////////////////////
+
                     query = "delete from offer_details where Offer_ID=" + rowOffer[0].ToString();
                     com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
@@ -633,6 +651,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection1.Close();
+            dbconnection2.Close();
+            dbconnection3.Close();
         }
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
@@ -643,49 +664,6 @@ namespace MainSystem
                 
                 txtCode.Text = row1["الكود"].ToString();
                 txtQuantityInOffer.Text = "1";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //clear function
-        public void clear(Control tlp)
-        {
-            foreach (Control co in tlp.Controls)
-            {
-                if (co is Panel || co is TableLayoutPanel)
-                {
-                    foreach (Control item in co.Controls)
-                    {
-                        if (item is System.Windows.Forms.ComboBox)
-                        {
-                            item.Text = "";
-                        }
-                        else if (item is TextBox)
-                        {
-                            item.Text = "";
-                        }
-                    }
-                }
-                gridControl1.DataSource = null;
-                gridControl2.DataSource = null;
-                ImageProduct.Image = null;
-            }
-        }
-
-        private void ImageProduct_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    string selectedFile = openFileDialog1.FileName;
-                    selectedImage = File.ReadAllBytes(selectedFile);
-                    ImageProduct.Image = Image.FromFile(openFileDialog1.FileName);
-                }
             }
             catch (Exception ex)
             {
@@ -723,7 +701,92 @@ namespace MainSystem
                 selectedImage = null;
                 ImageProduct.Image = null;
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //functions
+        public void clear(Control tlp)
+        {
+            foreach (Control co in tlp.Controls)
+            {
+                if (co is Panel || co is TableLayoutPanel)
+                {
+                    foreach (Control item in co.Controls)
+                    {
+                        if (item is System.Windows.Forms.ComboBox)
+                        {
+                            item.Text = "";
+                        }
+                        else if (item is TextBox)
+                        {
+                            item.Text = "";
+                        }
+                    }
+                }
+                gridControl1.DataSource = null;
+                gridControl2.DataSource = null;
+                ImageProduct.Image = null;
+            }
+        }
+        
+        public void increaseItemsQuantityInDB(double offerQuantity, int offerID, int storeID)
+        {
+            if (offerQuantity > 0)
+            {
+                dbconnection1.Open();
+                dbconnection2.Open();
+                string query = "select Data_ID,Quantity from offer_details  where Offer_ID=" + offerID;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    query = "select sum(Total_Meters) from storage where Data_ID='" + dr["Data_ID"].ToString() + "' group by Store_ID having Store_ID=" + storeID;
+                    MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
+                    double QuantityInStore = Convert.ToDouble(com1.ExecuteScalar());
+                    double QuantityInOffer = Convert.ToDouble(dr["Quantity"].ToString());
+                    double newQuantity = QuantityInOffer * offerQuantity;
+
+                    query = "select Storage_ID,Total_Meters from storage where Data_ID='" + dr["Data_ID"].ToString() + "' and Store_ID=" + storeID;
+                    com1 = new MySqlCommand(query, dbconnection1);
+                    MySqlDataReader dr2 = com1.ExecuteReader();
+                    int id = 0;
+                    while (dr2.Read())
+                    {
+                        double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                        //if (storageQ > newQuantity)
+                        //{
+                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        query = "update storage set Total_Meters=" + (storageQ + newQuantity) + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(query, dbconnection2);
+                        comm.ExecuteNonQuery();
+                        break;
+                        //}
+
+                    }
+                    dr2.Close();
+                }
+                dr.Close();
+            }
+            dbconnection1.Close();
+            dbconnection2.Close();
+        }
+
+        private void ImageProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFile = openFileDialog1.FileName;
+                    selectedImage = File.ReadAllBytes(selectedFile);
+                    ImageProduct.Image = Image.FromFile(openFileDialog1.FileName);
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

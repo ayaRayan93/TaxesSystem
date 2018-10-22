@@ -350,6 +350,7 @@
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.navBarItemReturnBillRecord = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1133,7 +1134,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup39;
+            this.navBarControl2.ActiveGroup = this.navBarGroup16;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1197,7 +1198,8 @@
             this.navBarItemConfirmBill,
             this.navBarItem4,
             this.navBarItemOfferReport,
-            this.navBarItemOfferStorage});
+            this.navBarItemOfferStorage,
+            this.navBarItemReturnBillRecord});
             this.navBarControl2.Location = new System.Drawing.Point(981, 0);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 164;
@@ -1209,7 +1211,6 @@
             // navBarGroup39
             // 
             this.navBarGroup39.Caption = "تكويد العروض";
-            this.navBarGroup39.Expanded = true;
             this.navBarGroup39.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOfferReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOfferStorage)});
@@ -1256,6 +1257,9 @@
             // navBarGroup16
             // 
             this.navBarGroup16.Caption = "المرتجعات";
+            this.navBarGroup16.Expanded = true;
+            this.navBarGroup16.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnBillRecord)});
             this.navBarGroup16.Name = "navBarGroup16";
             // 
             // navBarGroup17
@@ -3188,6 +3192,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // navBarItemReturnBillRecord
+            // 
+            this.navBarItemReturnBillRecord.Caption = "تسجيل مرتجع";
+            this.navBarItemReturnBillRecord.Name = "navBarItemReturnBillRecord";
+            this.navBarItemReturnBillRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnBillRecord_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3546,5 +3556,6 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup39;
         private DevExpress.XtraNavBar.NavBarItem navBarItemOfferReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemOfferStorage;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemReturnBillRecord;
     }
 }
