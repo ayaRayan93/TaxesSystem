@@ -21,6 +21,9 @@ namespace MainSystem
         int typeUpdateId = -1;
         int groupUpdateId = -1;
         int productUpdateId = -1;
+        int colorUpdateId = -1;
+        int SortUpdateId = -1;
+        int SizeUpdateId = -1;
         bool load = false;
         bool flagFactory = false;//in group tap
         bool flagFactoryP = false;//in product tap
@@ -537,7 +540,25 @@ namespace MainSystem
                             return;
                         }
                         break;
-                    case "txtFactory":
+                        case "txtType3":
+                            query = "select Type_Name from type where Type_ID='" + txtType3.Text + "'";
+                            MySqlCommand com3 = new MySqlCommand(query, dbconnection);
+                            if (com3.ExecuteScalar() != null)
+                            {
+                                displayColor(Convert.ToInt16(txtType3.Text));
+                                Name = (string)com3.ExecuteScalar();
+                                comType2.Text = Name;
+                                txtColor.Focus();
+                              
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtFactory":
                         query = "select distinct factory.Factory_ID as 'كود',Factory_Name as 'المصنع' from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type  on type.Type_ID=type_factory.Type_ID where Factory_Name like'" + txtFactory.Text + "%'";
                         adapter = new MySqlDataAdapter(query, dbconnection);
                         dtaple = new DataTable();
@@ -582,7 +603,24 @@ namespace MainSystem
                             return;
                         }
                         break;
-                    case "txtGroup":
+                        case "txtFactory3":
+                            query = "select Factory_Name from factory where Factory_ID='" + txtFactory3.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comFactory2.Text = Name;
+                                txtGroup_Size.Focus();
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtGroup":
                         if (comFactory2.Text != "")
                         {
                             query = "select Group_ID as 'كود',Group_Name as 'المجموعة' from Groupo where Group_Name like'" + txtGroup.Text + "%' and Factory_ID=" + comFactory2.SelectedValue;
@@ -602,6 +640,23 @@ namespace MainSystem
 
                                 txtProduct.Focus();
                                 displayProduct_Group(Convert.ToInt16(txtGroup2.Text));
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtGroup_Size":
+                            query = "select Group_Name from groupo where Group_ID='" + txtGroup_Size.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comGroup_Size.Text = Name;
+
+                                txtSize.Focus();
                             }
                             else
                             {
@@ -641,7 +696,7 @@ namespace MainSystem
                     case "txtColor":
                             if (comType.Text != "")
                             {
-                                query = "select Color_ID as 'كود',Color_Name as 'اللون' from Color where Color_Name like'" + txtColor.Text + "%' and Type_ID=" + comType.SelectedValue;
+                                query = "select Color_ID as 'كود',Color_Name as 'اللون' from Color where Color_Name like'" + txtColor.Text + "%' and Type_ID=" + comType2.SelectedValue;
                                 adapter = new MySqlDataAdapter(query, dbconnection);
                                 dtaple = new DataTable();
                                 adapter.Fill(dtaple);
@@ -651,7 +706,7 @@ namespace MainSystem
                     case "txtSize":
                         if (comFactory.Text != "")
                         {
-                            query = "select Size_ID as 'كود',Size_Value as 'المقاس' from Size where Size_Value like'" + txtSize.Text + "%' and Factory_ID=" + comFactory.SelectedValue;
+                            query = "select Size_ID as 'كود',Size_Value as 'المقاس' from Size where Size_Value like'" + txtSize.Text + "%' and Factory_ID=" + comFactory2.SelectedValue;
                             adapter = new MySqlDataAdapter(query, dbconnection);
                             dtaple = new DataTable();
                             adapter.Fill(dtaple);
@@ -787,6 +842,9 @@ namespace MainSystem
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.AddWithValue("@name", txtType.Text);
                     com.ExecuteNonQuery();
+                    displayType();
+                    btnSaveUpdateType.Visible = false;
+                    txtType.Text = "";
                 }
             }
             catch (Exception ex)
@@ -794,6 +852,17 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+        private void btnTypeDisplayAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                displayType();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void btnDeleteType_Click(object sender, EventArgs e)
         {
@@ -1423,8 +1492,15 @@ namespace MainSystem
                         }
                         
                         UserControl.ItemRecord("groupo", "تعديل", groupUpdateId, DateTime.Now, "", dbconnection);
-
+                        label6.Visible = true;
+                        comFactory.Visible = true;
+                        txtFactory1.Visible = true;
+                        comType.Text = "";
+                        txtType1.Text = "";
+                        comFactory.Text = "";
+                        txtFactory1.Text = "";
                         txtGroup.Text = "";
+                        btnSaveGroup.Visible = false;
                     }
                     else
                     {
@@ -1795,7 +1871,6 @@ namespace MainSystem
                         dr.Close();
 
                         chListBoxGroup.Visible = true;
-                        btnSelectAll.Visible = true;
                         comGroup.Visible = false;
                         txtGroup2.Visible = false;
                         label11.Visible = false;
@@ -1815,7 +1890,6 @@ namespace MainSystem
                         dr.Close();
 
                         chListBoxGroup.Visible = true;
-                        btnSelectAll.Visible = true;
                         comGroup.Visible = false;
                         txtGroup2.Visible = false;
                         label11.Visible = false;
@@ -1934,7 +2008,6 @@ namespace MainSystem
                     
 
                         chListBoxGroup.Visible = true;
-                        btnSelectAll.Visible = true;
                         comGroup.Visible = false;
                         txtGroup2.Visible = false;
                         label11.Visible = false;
@@ -1942,11 +2015,7 @@ namespace MainSystem
                     }
                     else
                     {
-                        chListBoxGroup.Visible = false;
-                        btnSelectAll.Visible = false;
-                        comGroup.Visible = true;
-                        txtGroup2.Visible = true;
-                        label11.Visible = true;
+                     
 
                         string query = "select distinct factory.Factory_ID, Factory_Name from factory inner join type_factory on type_factory.Factory_ID=factory.Factory_ID where type_factory.Type_ID=" + comTypeProduct.SelectedValue.ToString();
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -1957,6 +2026,11 @@ namespace MainSystem
                         comFactoryGroup.ValueMember = dt.Columns["Factory_ID"].ToString();
                         comFactoryGroup.Text = "";
                         txtFactory2.Text = "";
+
+                        chListBoxGroup.Visible = false;
+                        comGroup.Visible = true;
+                        txtGroup2.Visible = true;
+                        label11.Visible = true;
                     }
                     dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt16(txtType2.Text));
                     dataGridViewProduct.Columns[0].Width = 50;
@@ -1988,6 +2062,9 @@ namespace MainSystem
                     Product_Name = dr["Product_Name"].ToString();
                 }
                 dr.Close();
+                txtProduct.Text = Product_Name;
+                txtType2.Text = Type_ID;
+                dbconnection.Open();
                 queryx = "select distinct * from factory  inner join  type_factory on type_factory.Factory_ID=factory.Factory_ID  where  type_factory.Type_ID=" + Type_ID;
                 com = new MySqlCommand(queryx, dbconnection);
                 dr = com.ExecuteReader();
@@ -2001,12 +2078,17 @@ namespace MainSystem
                 comFactoryGroup.Visible = false;
                 txtFactory2.Visible = false;
                 label5.Visible = false;
+
+                comGroup.Visible = false;
+                txtGroup2.Visible = false;
+                label11.Visible = false;
+
                 if (Type_Name == "سيراميك" || Type_Name == "بورسلين" || Type_Name == "بانيوهات")
                 {
                     string query1 = "";
                     if (Type_Name == "سيراميك" || Type_Name == "بورسلين")
                     {
-                        query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID  where type.Type_ID=" + Type_ID + " and Factory_ID=0";
+                        query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID  where type.Type_ID=1 and Factory_ID=0";
                     }
                     else if (Type_Name == "بانيوهات")
                     {
@@ -2023,9 +2105,7 @@ namespace MainSystem
                         chListBoxGroup.Items.Add(dr1["Group_Name"].ToString() + "\t" + dr1["Group_ID"]);
                     dr1.Close();
 
-                    comGroup.Visible = false;
-                    txtGroup2.Visible = false;
-                    label11.Visible = false;
+                  
 
                     ////group
                     string query = "select Group_ID from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  where product.Product_ID=" + productUpdateId;
@@ -2056,9 +2136,8 @@ namespace MainSystem
                 {
                     chListBoxGroup.Items.Clear();
                 }
-                txtProduct.Text = Product_Name;
-                txtType2.Text = Type_ID;
-
+              
+                fun();
             }
             catch (Exception ex)
             {
@@ -2070,27 +2149,29 @@ namespace MainSystem
         {
             try
             {
-                if ((txtGroup2.Text != "" || chListBoxGroup.CheckedItems.Count > 0) && comFactoryGroup.Text != "" && comTypeProduct.Text != "")
+                if ((txtGroup2.Text != "" || chListBoxGroup.CheckedItems.Count > 0) && chListBoxFactory.CheckedItems.Count>0 && comTypeProduct.Text != "")
                 {
                     dbconnection.Open();
-                    string query = "select Product_ID from product where Product_Name = '" + txtProduct.Text + "' and Product_ID not in ("+id+")";
+                    string query = "select Product_ID from product where Product_Name = '" + txtProduct.Text + "' and Product_ID not in ("+ productUpdateId + ")";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() == null)
                     {
                         if (txtProduct.Text != "")
                         {
-                            query = "update  product set Product_Name=@name,Type_ID=@Type_ID where Product_ID="+id;
+                            query = "update  product set Product_Name=@name,Type_ID=@Type_ID where Product_ID="+ productUpdateId;
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtProduct.Text);
                             com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(txtType2.Text));
                            com.ExecuteNonQuery();
 
-                            query = "delete from product_factory_Group where Product_ID=" + id;
+                            query = "delete from product_factory_Group where Product_ID=" + productUpdateId;
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
 
-                            if (comTypeProduct.SelectedValue.ToString() == "1")
+                            int FactoryID = 0;
+                            for (int j = 0; j < chListBoxFactory.CheckedItems.Count; j++)
                             {
+                                FactoryID = Convert.ToInt16(chListBoxFactory.CheckedItems[j].ToString().Split('\t')[1]);
                                 int Group_ID = 0;
                                 for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                                 {
@@ -2098,16 +2179,15 @@ namespace MainSystem
                                     query = "insert into product_factory_Group (Product_ID,Group_ID,Factory_ID) values (@Product_ID,@Group_ID,@Factory_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
-                                    com.Parameters["@Product_ID"].Value = id;
+                                    com.Parameters["@Product_ID"].Value = productUpdateId;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
-                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(txtFactory2.Text));
+                                    com.Parameters.AddWithValue("@Factory_ID", FactoryID);
 
                                     com.ExecuteNonQuery();
                                 }
-                                displayProduct_Group(Group_ID);
                             }
-                            
+                             
                             UserControl.ItemRecord("product", "تعديل", id , DateTime.Now,"", dbconnection);
 
                             txtProduct.Text = "";
@@ -2115,12 +2195,21 @@ namespace MainSystem
                             txtFactory2.Text = "";
                             comTypeProduct.Text = "";
                             comFactoryGroup.Text = "";
+                            comGroup.Text = "";
+                            txtGroup.Text = "";
+
                             comGroup.Visible = true;
                             txtGroup2.Visible = true;
                             label11.Visible = true;
+                            comFactoryGroup.Visible = true;
+                            txtFactory2.Visible = true;
+                            label5.Visible = true;
+
                             btnSave_productUpdate.Visible = false;
                             chListBoxGroup.Visible = false;
-                            btnSelectAll.Visible = false;
+                            chListBoxFactory.Visible = false;
+                            labGroup.Visible = false;
+                            labFactory.Visible = false;
                             dataGridViewProduct.DataSource = null;
                             displayProductAll();
                            
@@ -2139,6 +2228,58 @@ namespace MainSystem
                 else
                 {
                     MessageBox.Show("select group");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void chListBoxFactory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Close();
+                dbconnection.Open();
+                if (comTypeProduct.Text != "سيراميك" && comTypeProduct.Text != "بورسلين" && comTypeProduct.Text != "بانيوهات")
+                {
+                    int FactoryID = Convert.ToInt16(chListBoxFactory.Items[chListBoxFactory.SelectedIndex].ToString().Split('\t')[1]);
+                    string query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID inner join factory on factory.Factory_ID=groupo.Factory_ID  where type.Type_ID=" + comTypeProduct.SelectedValue + " and factory.Factory_ID=" + FactoryID;
+                    MySqlCommand com1 = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr1 = com1.ExecuteReader();
+
+                    chListBoxGroup.Items.Clear();
+                    while (dr1.Read())
+                        chListBoxGroup.Items.Add(dr1["Group_Name"].ToString() + "\t" + dr1["Group_ID"]);
+                    dr1.Close();
+
+                    query = "select Group_ID from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  where product.Product_ID=" + productUpdateId + " and product_factory_Group.Factory_ID=" + FactoryID;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr2 = com.ExecuteReader();
+                    List<int> idList = new List<int>();
+
+                    while (dr2.Read())
+                    {
+                        idList.Add(Convert.ToInt16(dr2["Group_ID"].ToString()));
+                    }
+                    dr2.Close();
+
+                    for (int i = 0; i < chListBoxGroup.Items.Count; i++)
+                    {
+                        int GroupID = Convert.ToInt16(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
+                        for (int j = 0; j < idList.Count; j++)
+                        {
+                            if (GroupID == idList[j])
+                            {
+                                chListBoxGroup.SetItemChecked(i, true);
+                            }
+                        }
+                    }
+                    comGroup.Visible = false;
+                    txtGroup2.Visible = false;
+                    label11.Visible = false;
+                    chListBoxGroup.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -2262,6 +2403,65 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void btnUpdateColor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string type="";
+                btnSaveUpdateColor.Visible = true;
+                row1 = dataGridViewColor.Rows[dataGridViewColor.SelectedCells[0].RowIndex];
+              
+                if (row1 != null)
+                {
+                    txtColor.Text = row1.Cells[1].Value.ToString();
+                    dbconnection.Open();
+                    colorUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    string query = "select Type_ID from color where Color_ID=" + colorUpdateId;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    type = com.ExecuteScalar().ToString();
+                    txtType3.Text =type;
+                }
+                else
+                {
+                    MessageBox.Show("select row");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void btnSaveUpdateColor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "select Color_ID from color where Color_Name = '" + txtColor.Text + "' and Color_ID not in(" + colorUpdateId + ")";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() == null)
+                {
+                    if (txtColor.Text != "")
+                    {
+                        query = "update color set Color_Name=@name ,Type_ID=@Type_ID  where Color_ID=" + colorUpdateId;
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.AddWithValue("@name", txtColor.Text);
+                        com.Parameters.AddWithValue("@Type_ID", txtType3.Text);
+                        com.ExecuteNonQuery();
+                    }
+                }
+                btnSaveUpdateColor.Visible = false;
+                comType2.Text = "";
+                txtType3.Text = "";
+                txtColor.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void comType2_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2299,7 +2499,6 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                //   DataRowView row1 = (DataRowView)(((GridView)dataGridViewColor.MainView).GetRow(((GridView)dataGridViewColor.MainView).GetSelectedRows()[0]));
                 DataGridViewRow row1 = dataGridViewColor.Rows[dataGridViewColor.SelectedCells[0].RowIndex];
 
                 if (row1 != null)
@@ -2314,7 +2513,7 @@ namespace MainSystem
 
                         updateTablesDB("color", "Color_ID", id);
 
-                        //UserControl.UserRecord("color", "حذف", row1.Cells[0].Value.ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("color", "حذف",Convert.ToInt16(row1.Cells[0].Value), DateTime.Now,"", dbconnection);
 
                         if (comType2.Text != "")
                         {
@@ -2455,6 +2654,76 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void btnSizeUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Close();
+                dbconnection.Open();
+                btnSaveSizeUpdate.Visible = true;
+                string factory_ID="", group_ID="",size="";
+                row1 = dataGridViewSize.Rows[dataGridViewSize.SelectedCells[0].RowIndex];
+                size = row1.Cells[1].Value.ToString();
+                if (row1 != null)
+                {
+                    SizeUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    string query = "select Factory_ID,Group_ID from size where Size_ID=" + SizeUpdateId;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        factory_ID = dr[0].ToString();
+                        group_ID = dr[1].ToString();
+                    }
+                    dr.Close();
+                    txtFactory3.Text = factory_ID;
+                    txtGroup_Size.Text = group_ID;
+                    txtSize.Text = size;
+                }
+                else
+                {
+                    MessageBox.Show("select row");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void btnSaveSizeUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Size_ID not in(" + SizeUpdateId + ")";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() == null)
+                {
+                    if (txtSize.Text != "")
+                    {
+                        query = "update size set Size_Value=@name ,Factory_ID=@Factory_ID,Group_ID=@Group_ID  where Size_ID=" + SizeUpdateId;
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.AddWithValue("@name", txtSize.Text);
+                        com.Parameters.AddWithValue("@Factory_ID", txtFactory3.Text);
+                        com.Parameters.AddWithValue("@Group_ID", txtGroup_Size.Text);
+                        com.ExecuteNonQuery();
+                    }
+                }
+                btnSaveSizeUpdate.Visible = false;
+                comFactory2.Text = "";
+                txtFactory3.Text = "";
+                comGroup_Size.Text = "";
+                txtGroup_Size.Text = "";
+                txtSize.Text = "";
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void comFactory2_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -2475,6 +2744,7 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Close();
                 dbconnection.Open();
                 if (load)
                 {
@@ -2494,16 +2764,15 @@ namespace MainSystem
         {
             try
             {
-                if (txtFactory3.Text != "")
+                if (txtFactory3.Text != ""&& Convert.ToInt16(comGroup_Size.SelectedValue.ToString())>0)
                 {
                     txtGroup_Size.Text = comGroup_Size.SelectedValue.ToString();
-                    displaySize_group();
                     txtSize.Focus();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
         }
         private void btnDisplayAll_Click(object sender, EventArgs e)
@@ -2647,7 +2916,60 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        } 
+        }
+        private void btnUpdateSort_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                dbconnection.Open();
+                btnSaveSortUpdate.Visible = true;
+                row1 = dataGridViewSort.Rows[dataGridViewSort.SelectedCells[0].RowIndex];
+                if (row1 != null)
+                {
+                    SortUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    string query = "select Sort_Value from sort where Sort_ID=" + SortUpdateId;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    txtSort.Text = com.ExecuteScalar().ToString();
+
+                }
+                else
+                {
+                    MessageBox.Show("select row");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void btnSaveSortUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "select Sort_ID from sort where Sort_Value = '" + txtSort.Text + "' and Sort_ID not in(" + SortUpdateId + ")";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() == null)
+                {
+                    if (txtSort.Text != "")
+                    {
+                        query = "update sort set Sort_Value=@name   where Sort_ID=" + SortUpdateId;
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.AddWithValue("@name", txtSort.Text);
+                        com.ExecuteNonQuery();
+                    }
+                }
+                btnSaveSortUpdate.Visible = false;
+                txtSort.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void btnDeleteSort_Click(object sender, EventArgs e)
         {
             try
@@ -2687,8 +3009,18 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void btnSortDisplayAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                displaySort();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         #endregion
-
 
         //function 
         #region Type Tap
@@ -2709,7 +3041,6 @@ namespace MainSystem
             comType2.DataSource = dt;
             comType2.DisplayMember = dt.Columns["Type_Name"].ToString();
             comType2.ValueMember = dt.Columns["Type_ID"].ToString();
-
         }
         #endregion
 
@@ -2725,7 +3056,6 @@ namespace MainSystem
             dataGridViewFactory.Columns[0].Width = 50;
             dataGridViewFactory.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-
         public void displayFactory(int id)
         {
             string query = "select distinct Factory_ID as 'كود',Factory_Name as 'المصنع' from factory where Type_ID=" + id + " order by Factory_ID ";
@@ -2784,9 +3114,9 @@ namespace MainSystem
             dataGridViewGroup.Columns[0].Width = 50;
             dataGridViewGroup.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-        public void displayGroup(int type_id)
+        public void displayGroup(int id)
         {
-            string query = "select distinct Group_ID as 'كود',Group_Name as 'المجموعة' from groupo   where groupo.Type_ID=" + txtType1.Text + " and groupo.Factory_ID=" + txtFactory1.Text + " order by Group_ID";
+            string query = "select distinct Group_ID as 'كود',Group_Name as 'المجموعة' from groupo   where groupo.Type_ID=" + txtType1.Text + " and groupo.Factory_ID=" + id + " order by Group_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -2923,9 +3253,13 @@ namespace MainSystem
             string query = "";
             string fQuery = "select Type_ID from type_Factory where Factory_ID=" +id;
             MySqlCommand com =new MySqlCommand(fQuery, dbconnection);
-            if (com.ExecuteScalar() != null)
+            if (com.ExecuteScalar().ToString() == "1" || com.ExecuteScalar().ToString() == "2")
             {
-              query = "select * from groupo where Factory_ID in (0," + comFactory2.SelectedValue+")";
+                query = "select * from groupo where Factory_ID in (0)";
+            }
+            else if (com.ExecuteScalar().ToString() == "4")
+            {
+                query = "select * from groupo where Factory_ID= -1";
             }
             else
             {
@@ -2953,17 +3287,26 @@ namespace MainSystem
         #region Hellper Functions
         public void RestControls()
         {
-            displayType();
             comFactory.Text = "";
-            // comType.Text = "";
             comFactory2.Text = "";
-            comType2.Text = "";
             comFactoryGroup.Text = "";
+            comType.Text = "";
+            comType2.Text = "";
+            comTypeProduct.Text = "";
+            comGroup.Text = "";
+            comGroup_Size.Text = "";
+
             txtType.Text = "";
+            txtType2.Text = "";
+            txtType3.Text = "";
             txtSort.Text = "";
             txtProduct.Text = "";
             txtGroup.Text = "";
+            txtGroup2.Text = "";
+            txtGroup_Size.Text = "";
             txtFactory.Text = "";
+            txtFactory2.Text = "";
+            txtFactory3.Text = "";
             txtColor.Text = "";
             txtSize.Text = "";
             dataGridViewSize.DataSource = null;
@@ -3002,7 +3345,11 @@ namespace MainSystem
 
         public void fun()
         {
-            string queryx = "select distinct * from factory  inner join  product_factory_group on product_factory_group.Factory_ID=factory.Factory_ID group by product_factory_group.Factory_ID having  product_factory_group.Product_ID=" + productUpdateId;
+            dbconnection.Close();
+            dbconnection.Open();
+            // string queryx = "select distinct * from factory  inner join  product_factory_group on product_factory_group.Factory_ID=factory.Factory_ID group by product_factory_group.Factory_ID having  product_factory_group.Product_ID=" + productUpdateId;
+            string queryx = "select distinct * from factory  inner join  product_factory_group on product_factory_group.Factory_ID=factory.Factory_ID where product_factory_group.Product_ID=" + productUpdateId;
+
             MySqlCommand com = new MySqlCommand(queryx, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             List<int> idList = new List<int>();
@@ -3024,8 +3371,10 @@ namespace MainSystem
                     }
                 }
             }
+            dbconnection.Close();
 
         }
 
+       
     }
 }
