@@ -63,20 +63,22 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCreateReturnBill = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCreateReturnBill = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,13 +93,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -256,8 +258,10 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
             this.Code,
+            this.Type,
             this.Quantity,
             this.priceAD,
+            this.Discount,
             this.totalAD,
             this.Product_Name,
             this.Type_Name,
@@ -425,7 +429,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label13.Location = new System.Drawing.Point(695, 12);
+            this.label13.Location = new System.Drawing.Point(787, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(200, 17);
             this.label13.TabIndex = 191;
@@ -436,7 +440,7 @@
             this.labTotalReturnBillAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTotalReturnBillAD.AutoSize = true;
             this.labTotalReturnBillAD.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalReturnBillAD.Location = new System.Drawing.Point(576, 12);
+            this.labTotalReturnBillAD.Location = new System.Drawing.Point(668, 12);
             this.labTotalReturnBillAD.Name = "labTotalReturnBillAD";
             this.labTotalReturnBillAD.Size = new System.Drawing.Size(0, 17);
             this.labTotalReturnBillAD.TabIndex = 192;
@@ -480,7 +484,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label14.Location = new System.Drawing.Point(406, 12);
+            this.label14.Location = new System.Drawing.Point(508, 12);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(102, 17);
             this.label14.TabIndex = 197;
@@ -490,7 +494,7 @@
             // 
             this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInfo.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtInfo.Location = new System.Drawing.Point(149, 12);
+            this.txtInfo.Location = new System.Drawing.Point(251, 12);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -522,6 +526,45 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1050, 706);
             this.tableLayoutPanel1.TabIndex = 200;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.tableLayoutPanel3.ColumnCount = 4;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 647);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1044, 56);
+            this.tableLayoutPanel3.TabIndex = 166;
+            // 
+            // btnCreateReturnBill
+            // 
+            this.btnCreateReturnBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnCreateReturnBill.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnCreateReturnBill.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnCreateReturnBill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateReturnBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCreateReturnBill.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateReturnBill.ForeColor = System.Drawing.Color.White;
+            this.btnCreateReturnBill.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnCreateReturnBill.ImagePosition = 2;
+            this.btnCreateReturnBill.ImageZoom = 25;
+            this.btnCreateReturnBill.LabelPosition = 20;
+            this.btnCreateReturnBill.LabelText = "حفظ";
+            this.btnCreateReturnBill.Location = new System.Drawing.Point(526, 4);
+            this.btnCreateReturnBill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCreateReturnBill.Name = "btnCreateReturnBill";
+            this.btnCreateReturnBill.Size = new System.Drawing.Size(98, 48);
+            this.btnCreateReturnBill.TabIndex = 6;
+            this.btnCreateReturnBill.Click += new System.EventHandler(this.btnCreateReturnBill_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -535,10 +578,23 @@
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 94);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.comBillNumber);
+            this.panel2.Controls.Add(this.labBillNumber);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.txtBranchID);
+            this.panel2.Controls.Add(this.comBranch);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(516, 88);
+            this.panel2.TabIndex = 1;
             // 
             // panel1
             // 
@@ -554,18 +610,18 @@
             this.panel1.Size = new System.Drawing.Size(516, 88);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // radioButton1
             // 
-            this.panel2.Controls.Add(this.comBillNumber);
-            this.panel2.Controls.Add(this.labBillNumber);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.txtBranchID);
-            this.panel2.Controls.Add(this.comBranch);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(516, 88);
-            this.panel2.TabIndex = 1;
+            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(100, 3);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radioButton1.Size = new System.Drawing.Size(43, 17);
+            this.radioButton1.TabIndex = 161;
+            this.radioButton1.Text = "تاجر";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // panel3
             // 
@@ -598,6 +654,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnDelete);
             this.panel5.Controls.Add(this.txtInfo);
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.label13);
@@ -608,79 +665,20 @@
             this.panel5.Size = new System.Drawing.Size(1044, 64);
             this.panel5.TabIndex = 165;
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel3.ColumnCount = 4;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel3.Controls.Add(this.btnDelete, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 647);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1044, 56);
-            this.tableLayoutPanel3.TabIndex = 166;
-            // 
-            // btnCreateReturnBill
-            // 
-            this.btnCreateReturnBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnCreateReturnBill.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnCreateReturnBill.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnCreateReturnBill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCreateReturnBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCreateReturnBill.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateReturnBill.ForeColor = System.Drawing.Color.White;
-            this.btnCreateReturnBill.Image = global::MainSystem.Properties.Resources.File_32;
-            this.btnCreateReturnBill.ImagePosition = 2;
-            this.btnCreateReturnBill.ImageZoom = 25;
-            this.btnCreateReturnBill.LabelPosition = 20;
-            this.btnCreateReturnBill.LabelText = "حفظ";
-            this.btnCreateReturnBill.Location = new System.Drawing.Point(526, 4);
-            this.btnCreateReturnBill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCreateReturnBill.Name = "btnCreateReturnBill";
-            this.btnCreateReturnBill.Size = new System.Drawing.Size(98, 48);
-            this.btnCreateReturnBill.TabIndex = 6;
-            this.btnCreateReturnBill.Click += new System.EventHandler(this.btnCreateReturnBill_Click);
-            // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnDelete.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnDelete.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = global::MainSystem.Properties.Resources.File_32;
-            this.btnDelete.ImagePosition = 2;
-            this.btnDelete.ImageZoom = 25;
-            this.btnDelete.LabelPosition = 20;
-            this.btnDelete.LabelText = "حذف";
-            this.btnDelete.Location = new System.Drawing.Point(422, 4);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Location = new System.Drawing.Point(35, 12);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(98, 48);
-            this.btnDelete.TabIndex = 200;
+            this.btnDelete.Size = new System.Drawing.Size(157, 41);
+            this.btnDelete.TabIndex = 199;
+            this.btnDelete.Text = "حذف من فاتورة المرتجع";
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(100, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(43, 17);
-            this.radioButton1.TabIndex = 161;
-            this.radioButton1.Text = "تاجر";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // Data_ID
             // 
@@ -693,6 +691,11 @@
             this.Code.HeaderText = "الكود";
             this.Code.Name = "Code";
             // 
+            // Type
+            // 
+            this.Type.HeaderText = "الفئة";
+            this.Type.Name = "Type";
+            // 
             // Quantity
             // 
             this.Quantity.HeaderText = "اجمالي عدد الامتار";
@@ -702,6 +705,11 @@
             // 
             this.priceAD.HeaderText = "السعر";
             this.priceAD.Name = "priceAD";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
             // 
             // totalAD
             // 
@@ -764,25 +772,24 @@
             this.Name = "CustomerReturnBill";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerReturnBill";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CustomerReturnBill_FormClosed);
             this.Load += new System.EventHandler(this.CustomerReturnBill_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -832,12 +839,14 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Bunifu.Framework.UI.BunifuTileButton btnCreateReturnBill;
-        private Bunifu.Framework.UI.BunifuTileButton btnDelete;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceAD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type_Name;

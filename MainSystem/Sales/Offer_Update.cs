@@ -573,6 +573,7 @@ namespace MainSystem
                     {
                         while (dr.Read())
                         {
+                            RecordOfferQuantityInStorage(Convert.ToInt16(rowOffer[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
                             increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt16(rowOffer[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
                         }
                         dr.Close();
@@ -731,7 +732,24 @@ namespace MainSystem
                 ImageProduct.Image = null;
             }
         }
-        
+
+        //record to database
+        public void RecordOfferQuantityInStorage(int offerID, int storeID)
+        {
+            string query = "select sum(Total_Meters) from storage  where Offer_ID=" + offerID + " and Store_ID=" + storeID + " group by Store_ID";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                query = "delete from storage where Offer_ID=" + offerID + " and Store_ID=" + storeID;
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
+            }
+            else
+            {
+                MessageBox.Show("هذا العرض لايوجد في المخزن");
+            }
+        }
+
         public void increaseItemsQuantityInDB(double offerQuantity, int offerID, int storeID)
         {
             if (offerQuantity > 0)
