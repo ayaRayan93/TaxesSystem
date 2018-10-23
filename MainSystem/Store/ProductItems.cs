@@ -28,6 +28,7 @@ namespace MainSystem
         bool flagFactory = false;//in group tap
         bool flagFactoryP = false;//in product tap
         bool flagGroup = false;//in product tap
+        List<factory_Group> listFactory_Group = new List<factory_Group>();
         public ProductItems()
         {
             try
@@ -39,6 +40,7 @@ namespace MainSystem
                 txtType.Focus();
                 txtProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
                 txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
+              
             }
             catch (Exception e)
             {
@@ -2065,6 +2067,7 @@ namespace MainSystem
                 txtProduct.Text = Product_Name;
                 txtType2.Text = Type_ID;
                 dbconnection.Open();
+                chListBoxFactory.Items.Clear();
                 queryx = "select distinct * from factory  inner join  type_factory on type_factory.Factory_ID=factory.Factory_ID  where  type_factory.Type_ID=" + Type_ID;
                 com = new MySqlCommand(queryx, dbconnection);
                 dr = com.ExecuteReader();
@@ -2108,36 +2111,39 @@ namespace MainSystem
                   
 
                     ////group
-                    string query = "select Group_ID from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  where product.Product_ID=" + productUpdateId;
-                    com = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr2 = com.ExecuteReader();
-                    List<int> idList = new List<int>();
+                    //string query = "select Group_ID from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  where product.Product_ID=" + productUpdateId;
+                    //com = new MySqlCommand(query, dbconnection);
+                    //MySqlDataReader dr2 = com.ExecuteReader();
+                    //List<int> idList = new List<int>();
 
-                    while (dr2.Read())
-                    {
-                        idList.Add(Convert.ToInt16(dr2["Group_ID"].ToString()));
-                    }
-                    dr2.Close();
+                    //while (dr2.Read())
+                    //{
+                    //    idList.Add(Convert.ToInt16(dr2["Group_ID"].ToString()));
+                    //}
+                    //dr2.Close();
 
-                    for (int i = 0; i < chListBoxGroup.Items.Count; i++)
-                    {
-                        int GroupID = Convert.ToInt16(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
-                        for (int j = 0; j < idList.Count; j++)
-                        {
-                            if (GroupID == idList[j])
-                            {
-                                chListBoxGroup.SetItemChecked(i, true);
-                            }
-                        }
-                    }
+                    //for (int i = 0; i < chListBoxGroup.Items.Count; i++)
+                    //{
+                    //    int GroupID = Convert.ToInt16(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
+                    //    for (int j = 0; j < idList.Count; j++)
+                    //    {
+                    //        if (GroupID == idList[j])
+                    //        {
+                    //            chListBoxGroup.SetItemChecked(i, true);
+                    //        }
+                    //    }
+                    //}
 
                 }
                 else
                 {
                     chListBoxGroup.Items.Clear();
                 }
-              
+                
                 fun();
+                dbconnection.Close();
+                dbconnection.Open();
+                setProductFactoriesGroups();
             }
             catch (Exception ex)
             {
@@ -2242,9 +2248,9 @@ namespace MainSystem
             {
                 dbconnection.Close();
                 dbconnection.Open();
+                int FactoryID = Convert.ToInt16(chListBoxFactory.Items[chListBoxFactory.SelectedIndex].ToString().Split('\t')[1]);
                 if (comTypeProduct.Text != "سيراميك" && comTypeProduct.Text != "بورسلين" && comTypeProduct.Text != "بانيوهات")
                 {
-                    int FactoryID = Convert.ToInt16(chListBoxFactory.Items[chListBoxFactory.SelectedIndex].ToString().Split('\t')[1]);
                     string query = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID inner join factory on factory.Factory_ID=groupo.Factory_ID  where type.Type_ID=" + comTypeProduct.SelectedValue + " and factory.Factory_ID=" + FactoryID;
                     MySqlCommand com1 = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr1 = com1.ExecuteReader();
@@ -2254,39 +2260,77 @@ namespace MainSystem
                         chListBoxGroup.Items.Add(dr1["Group_Name"].ToString() + "\t" + dr1["Group_ID"]);
                     dr1.Close();
 
-                    query = "select Group_ID from product inner join product_factory_Group on product.Product_ID=product_factory_Group.Product_ID  where product.Product_ID=" + productUpdateId + " and product_factory_Group.Factory_ID=" + FactoryID;
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr2 = com.ExecuteReader();
-                    List<int> idList = new List<int>();
-
-                    while (dr2.Read())
+                    
+                }
+                List<int> idList = new List<int>();
+                factory_Group mfactory_Group = new factory_Group();
+                foreach (factory_Group item in listFactory_Group)
+                {
+                    if (item.Factory_ID == FactoryID)
                     {
-                        idList.Add(Convert.ToInt16(dr2["Group_ID"].ToString()));
+                        mfactory_Group = item;
+                        break;
                     }
-                    dr2.Close();
-
-                    for (int i = 0; i < chListBoxGroup.Items.Count; i++)
+                }
+                idList = mfactory_Group.Factory_GroupsID;
+                for (int i = 0; i < chListBoxGroup.Items.Count; i++)
+                {
+                    int GroupID = Convert.ToInt16(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
+                    for (int j = 0; j < idList.Count; j++)
                     {
-                        int GroupID = Convert.ToInt16(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
-                        for (int j = 0; j < idList.Count; j++)
+                        if (GroupID == idList[j])
                         {
-                            if (GroupID == idList[j])
-                            {
-                                chListBoxGroup.SetItemChecked(i, true);
-                            }
+                            chListBoxGroup.SetItemChecked(i, true);
                         }
                     }
-                    comGroup.Visible = false;
-                    txtGroup2.Visible = false;
-                    label11.Visible = false;
-                    chListBoxGroup.Visible = true;
                 }
+                comGroup.Visible = false;
+                txtGroup2.Visible = false;
+                label11.Visible = false;
+                chListBoxGroup.Visible = true;
+            
+            }
+            catch (Exception ex)
+            {
+               // MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void chListBoxFactory_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                int FactoryID = Convert.ToInt16(chListBoxFactory.Items[e.Index].ToString().Split('\t')[1]);
+                factory_Group factory_Group = new factory_Group(FactoryID, new List<int>());
+                listFactory_Group.Add(factory_Group);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
+        }
+
+        private void chListBoxGroup_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                int FactoryID = Convert.ToInt16(chListBoxFactory.Items[chListBoxFactory.SelectedIndex].ToString().Split('\t')[1]);
+                List<int> idList = new List<int>();
+                factory_Group mfactory_Group = new factory_Group();
+                foreach (factory_Group item in listFactory_Group)
+                {
+                    if (item.Factory_ID == FactoryID)
+                    {
+                        mfactory_Group = item;
+                        break;
+                    }
+                }
+                mfactory_Group.Factory_GroupsID.Add(Convert.ToInt16(chListBoxGroup.Items[e.Index].ToString()));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
@@ -3374,7 +3418,53 @@ namespace MainSystem
             dbconnection.Close();
 
         }
+        public void setProductFactoriesGroups()
+        {
+            listFactory_Group.Clear();
+            string query = "select DISTINCT Factory_ID from product_factory_group where Product_ID=" + productUpdateId;
+            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                factory_Group factory_Group = new factory_Group(Convert.ToInt16(dr[0].ToString()),new List<int>());
+                listFactory_Group.Add(factory_Group);
+            }
+            dr.Close();
+            foreach (factory_Group item in listFactory_Group)
+            {
+                factory_Group mfactory_Group = listFactory_Group[listFactory_Group.IndexOf(item)];
+                query = "select DISTINCT Group_ID from product_factory_group where Product_ID=" + productUpdateId+ " and Factory_ID="+item.Factory_ID;
+                com = new MySqlCommand(query, dbconnection);
+                dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    mfactory_Group.Factory_GroupsID.Add(Convert.ToInt16(dr[0].ToString()));
 
-       
+                }
+                dr.Close();
+            }
+        }
+
+      
+
+      
+    }
+
+    public class factory_Group
+    {
+        
+        public int Factory_ID { get; set; }
+        public List<int> Factory_GroupsID { get; set; }
+
+        public factory_Group()
+        {
+            Factory_GroupsID = new List<int>();
+        }
+        public factory_Group(int Factory_ID, List<int> Factory_GroupsID)
+        {
+            this.Factory_ID = Factory_ID;
+            this.Factory_GroupsID = Factory_GroupsID;
+        }
+      
     }
 }
