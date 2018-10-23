@@ -864,6 +864,12 @@
     <Compile Include="Sales\AdvancedEditForm.designer.cs">
       <DependentUpon>AdvancedEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\CustomerReturnBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\CustomerReturnBill.designer.cs">
+      <DependentUpon>CustomerReturnBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Offer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1016,6 +1022,12 @@
     <Compile Include="Store\Ataqm.designer.cs">
       <DependentUpon>Ataqm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\OfferStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\OfferStorage.designer.cs">
+      <DependentUpon>OfferStorage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\AtaqmStorage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1058,6 +1070,12 @@
     <Compile Include="Store\Product_Update.designer.cs">
       <DependentUpon>Product_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Offer_Fak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Offer_Fak.designer.cs">
+      <DependentUpon>Offer_Fak.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\SetFak.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1075,6 +1093,12 @@
     </Compile>
     <Compile Include="Store\SetReport.Designer.cs">
       <DependentUpon>SetReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Offer_Collect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Offer_Collect.designer.cs">
+      <DependentUpon>Offer_Collect.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\SetTagame3.cs">
       <SubType>Form</SubType>
@@ -1111,6 +1135,12 @@
     </Compile>
     <Compile Include="Store\Store_Record.designer.cs">
       <DependentUpon>Store_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Offer_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Offer_Report.Designer.cs">
+      <DependentUpon>Offer_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Store_Report.cs">
       <SubType>Form</SubType>
@@ -1511,6 +1541,9 @@
     <EmbeddedResource Include="Sales\AdvancedEditForm.resx">
       <DependentUpon>AdvancedEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\CustomerReturnBill.resx">
+      <DependentUpon>CustomerReturnBill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\Offer.resx">
       <DependentUpon>Offer.cs</DependentUpon>
     </EmbeddedResource>
@@ -1586,6 +1619,9 @@
     <EmbeddedResource Include="Store\Ataqm.resx">
       <DependentUpon>Ataqm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OfferStorage.resx">
+      <DependentUpon>OfferStorage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\AtaqmStorage.resx">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </EmbeddedResource>
@@ -1607,6 +1643,9 @@
     <EmbeddedResource Include="Store\Product_Update.resx">
       <DependentUpon>Product_Update.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Offer_Fak.resx">
+      <DependentUpon>Offer_Fak.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\SetFak.resx">
       <DependentUpon>SetFak.cs</DependentUpon>
     </EmbeddedResource>
@@ -1615,6 +1654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\SetReport.resx">
       <DependentUpon>SetReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Offer_Collect.resx">
+      <DependentUpon>Offer_Collect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\SetTagame3.resx">
       <DependentUpon>SetTagame3.cs</DependentUpon>
@@ -1633,6 +1675,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Store_Record.resx">
       <DependentUpon>Store_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Offer_Report.resx">
+      <DependentUpon>Offer_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Store_Report.resx">
       <DependentUpon>Store_Report.cs</DependentUpon>

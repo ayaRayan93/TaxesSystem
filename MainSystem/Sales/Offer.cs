@@ -199,7 +199,7 @@ namespace MainSystem
         {
             try
             {
-                /*storeMainForm.bindReportOffersForm(dataGridView1);*/
+                salesMainForm.bindReportOffersForm(dataGridView1);
             }
             catch (Exception ex)
             {

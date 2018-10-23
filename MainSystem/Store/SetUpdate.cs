@@ -18,7 +18,7 @@ namespace MainSystem
     {
         XtraTabPage xtraTabPage = null;
         XtraTabControl xtraTabControlStoresContent = null;
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3;
         DataRowView updateRow=null;
         DataGridViewRow row1 = null, row2 = null;
         bool loaded=false;
@@ -28,6 +28,7 @@ namespace MainSystem
         public static TipImage tipImage = null;
         Ataqm ataqm = null;
         byte[] selectedImage = null;
+
         public SetUpdate(DataRowView setRow,Ataqm ataqm, XtraTabControl xtraTabControlStoresContent)
         {
             try
@@ -36,6 +37,9 @@ namespace MainSystem
                 this.ataqm = ataqm;
                 this.xtraTabControlStoresContent = xtraTabControlStoresContent;
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnection1 = new MySqlConnection(connection.connectionString);
+                dbconnection2 = new MySqlConnection(connection.connectionString);
+                dbconnection3 = new MySqlConnection(connection.connectionString);
                 this.updateRow = setRow;
                
             }
@@ -441,6 +445,21 @@ namespace MainSystem
         {
             try
             {
+                //فك كمية البنود
+                dbconnection3.Open();
+                string query1 = "select storage.Store_ID,sum(Total_Meters) as 'الكمية' from storage  where Set_ID=" + updateRow[0].ToString() + " group by storage.Store_ID,storage.Set_ID";
+                MySqlCommand com1 = new MySqlCommand(query1, dbconnection3);
+                MySqlDataReader dr = com1.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt16(updateRow[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
+                    }
+                    dr.Close();
+                }
+                ////////////////////
+
                 dbconnection.Open();
                 deleteSet(Convert.ToInt16(updateRow[0].ToString()));
                 if (dataGridView2.Rows.Count > 0)
@@ -908,6 +927,47 @@ namespace MainSystem
                 ImageProduct.Image = null;
             }
         }
+        public void increaseItemsQuantityInDB(double TaqmQuantity, int setID, int storeID)
+        {
+            if (TaqmQuantity > 0)
+            {
+                dbconnection1.Open();
+                dbconnection2.Open();
+                string query = "select Data_ID,Quantity from set_details  where Set_ID=" + setID;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    query = "select sum(Total_Meters) from storage where Data_ID='" + dr["Data_ID"].ToString() + "' group by Store_ID having Store_ID=" + storeID;
+                    MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
+                    double QuantityInStore = Convert.ToDouble(com1.ExecuteScalar());
+                    double QuantityInSet = Convert.ToDouble(dr["Quantity"].ToString());
+                    double newQuantity = QuantityInSet * TaqmQuantity;
 
+                    query = "select Storage_ID,Total_Meters from storage where Data_ID='" + dr["Data_ID"].ToString() + "' and Store_ID=" + storeID;
+                    com1 = new MySqlCommand(query, dbconnection1);
+                    MySqlDataReader dr2 = com1.ExecuteReader();
+                    int id = 0;
+                    while (dr2.Read())
+                    {
+                        double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                        //if (storageQ > newQuantity)
+                        //{
+                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        query = "update storage set Total_Meters=" + (storageQ + newQuantity) + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(query, dbconnection2);
+                        comm.ExecuteNonQuery();
+                        break;
+                        //}
+
+                    }
+                    dr2.Close();
+                }
+                dr.Close();
+
+            }
+            dbconnection1.Close();
+            dbconnection2.Close();
+        }
     }
 }
