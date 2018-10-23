@@ -479,8 +479,8 @@ namespace MainSystem
                         }
                     }
                     IncreaseProductQuantity(id);
-                    MessageBox.Show("تم");
                     clrearAll();
+                    clear(tableLayoutPanel1);
                 }
                 else
                 {
@@ -627,20 +627,38 @@ namespace MainSystem
                 radClient.Checked = false;
                 radCon.Checked = false;
                 radEng.Checked = false;
+                comBranch.Text = "";
+                txtBranchID.Text = "";
 
-                comBillNumber.Text = comClient.Text = comCustomer.Text = txtPriceAD.Text= "";
-
-                txtClientID.Text = txtCustomerID.Text = txtCode.Text =/* txtPrice.Text = txtDiscount.Text = txtPrice.Text =*/ txtTotalMeter.Text = "";
-
-                labBillDate.Text = labBillTotalCostAD.Text =/* labBillTotalCostBD.Text = labTotalAD.Text = labTotalBD.Text =*/ labTotalReturnBillAD.Text = "";
+                labBillDate.Text = labBillTotalCostAD.Text = labTotalReturnBillAD.Text = labTotalAD.Text = "";
 
                 dataGridView1.DataSource = null;
                 dataGridView2.Rows.Clear();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void clear(Control tlp)
+        {
+            foreach (Control co in tlp.Controls)
+            {
+                if (co is Panel || co is TableLayoutPanel)
+                {
+                    foreach (Control item in co.Controls)
+                    {
+                        if (item is System.Windows.Forms.ComboBox)
+                        {
+                            item.Text = "";
+                        }
+                        else if (item is TextBox)
+                        {
+                            item.Text = "";
+                        }
+                    }
+                }
             }
         }
 
