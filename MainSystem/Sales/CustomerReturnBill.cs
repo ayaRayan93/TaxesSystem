@@ -25,8 +25,9 @@ namespace MainSystem
         List<int> listOfRow2In;
         int EmpBranchId = 0;
         int customerBillId = 0;
-       
-        public CustomerReturnBill(MainForm mainForm)
+        CustomerReturnBill_Report returnBillReport;
+
+        public CustomerReturnBill(CustomerReturnBill_Report ReturnBillReport)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -44,6 +45,8 @@ namespace MainSystem
 
             labBillNumber.Visible = false;
             comBillNumber.Visible = false;
+
+            returnBillReport = ReturnBillReport;
         }
 
         private void CustomerReturnBill_Load(object sender, EventArgs e)
@@ -258,12 +261,12 @@ namespace MainSystem
                 {
                     int billNum = Convert.ToInt16(comBillNumber.Text);
                     DataTable dtAll = new DataTable();
-                    string query = "select data.Data_ID, data.Code as 'الكود',product_bill.Type as 'الفئة',product_bill.Quantity as ' الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم' , product.Product_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة' ,color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف', data.Description as 'الوصف'  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'";
+                    string query = "select data.Data_ID, data.Code as 'الكود',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم' , product.Product_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة' ,color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع'  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
 
-                    query = "select sets.Set_ID as 'Data_ID',product_bill.Type as 'الفئة', product_bill.Quantity as ' الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم' , sets.Set_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة', sets.Description as 'الوصف' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON sets.Factory_ID = factory.Factory_ID INNER JOIN groupo ON sets.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم'";
+                    query = "select sets.Set_ID as 'Data_ID',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم' , sets.Set_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة', sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON sets.Factory_ID = factory.Factory_ID INNER JOIN groupo ON sets.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                     da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dtSet = new DataTable();
                     da.Fill(dtSet);
@@ -340,6 +343,17 @@ namespace MainSystem
             {
                 if (!IsAdded(row1) && row1 != null && txtCode.Text != "")
                 {
+                    double totalMeter = 0;
+                    if (!double.TryParse(txtTotalMeter.Text, out totalMeter))
+                    {
+                        MessageBox.Show("اجمالى عدد الوحدات يجب ان يكون رقم");
+                        return;
+                    }
+                    if (totalMeter > Convert.ToDouble(row1.Cells["الكمية"].Value))
+                    {
+                        MessageBox.Show("الكمية لا تكفى");
+                        return;
+                    }
                     myRows.Add(row1);
                     addedRecordIDs[recordCount] = dataGridView1.SelectedCells[0].RowIndex + 1;
                     dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].DefaultCellStyle.BackColor = Color.Silver;
@@ -352,7 +366,6 @@ namespace MainSystem
                     dataGridView2.Rows[n].Cells["priceAD"].Value = txtPriceAD.Text;
                     dataGridView2.Rows[n].Cells["totalAD"].Value = labTotalAD.Text;
                     dataGridView2.Rows[n].Cells["Discount"].Value = row1.Cells["نسبة الخصم"].Value;
-
                     dataGridView2.Rows[n].Cells["Type_Name"].Value = row1.Cells["النوع"].Value;
                     dataGridView2.Rows[n].Cells["Factory_Name"].Value = row1.Cells["المصنع"].Value;
                     dataGridView2.Rows[n].Cells["Group_Name"].Value = row1.Cells["المجموعة"].Value;
@@ -360,8 +373,16 @@ namespace MainSystem
                     dataGridView2.Rows[n].Cells["Colour"].Value = row1.Cells["اللون"].Value;
                     dataGridView2.Rows[n].Cells["Size"].Value = row1.Cells["المقاس"].Value;
                     dataGridView2.Rows[n].Cells["Sort"].Value = row1.Cells["الفرز"].Value;
-                    dataGridView2.Rows[n].Cells["Classification"].Value = row1.Cells["التصنيف"].Value;
+                    //dataGridView2.Rows[n].Cells["Classification"].Value = row1.Cells["التصنيف"].Value;
                     dataGridView2.Rows[n].Cells["Description"].Value = row1.Cells["الوصف"].Value;
+                    if (totalMeter == Convert.ToDouble(row1.Cells["الكمية"].Value))
+                    {
+                        dataGridView2.Rows[n].Cells["Returned"].Value = "نعم";
+                    }
+                    else if (totalMeter < Convert.ToDouble(row1.Cells["الكمية"].Value))
+                    {
+                        dataGridView2.Rows[n].Cells["Returned"].Value = "جزء";
+                    }
 
                     listOfRow2In.Add(n);
                     double totalAD = 0;
@@ -476,11 +497,19 @@ namespace MainSystem
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row1.Cells["totalAD"].Value);
                             com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row1.Cells["Discount"].Value);
                             com.ExecuteNonQuery();
+
+
+                            string queryf = "update product_bill set Returned='" + row1.Cells["Returned"].Value + "' where CustomerBill_ID=" + customerBillId + " and Data_ID=" + Convert.ToInt16(row1.Cells[0].Value) + " and Type='" + row1.Cells["Type"].Value + "'";
+                            MySqlCommand c = new MySqlCommand(queryf, dbconnection);
+                            c.ExecuteNonQuery();
                         }
                     }
-                    IncreaseProductQuantity(id);
+
+                    //IncreaseProductQuantity(id);
                     clrearAll();
                     clear(tableLayoutPanel1);
+                    returnBillReport.DisplayBillNumber();
+                    returnBillReport.DisplayBills();
                 }
                 else
                 {
