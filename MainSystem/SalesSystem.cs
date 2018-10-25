@@ -252,17 +252,17 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "عرض فواتير المرتجعات");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("تسجيل فاتورة مرتجع");
-                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
+                    xtraTabControlSalesContent.TabPages.Add("عرض فواتير المرتجعات");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "عرض فواتير المرتجعات");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
-                CustomerReturnBill objForm = new CustomerReturnBill(this);
+                CustomerReturnBill_Report objForm = new CustomerReturnBill_Report(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -567,15 +567,25 @@ namespace MainSystem
 
         }
 
-        public void bindDisplayOffersForm(XtraTabPage xtraTabPage)
+        public void bindRecordCustomerReturnBillForm(CustomerReturnBill_Report ReturnBillReport)
         {
-            //OffersSellPrice objForm = new OffersSellPrice();
-            //objForm.TopLevel = false;
+            CustomerReturnBill objForm = new CustomerReturnBill(ReturnBillReport);
 
-            //xtraTabPage.Controls.Add(objForm);
-            //objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            //objForm.Dock = DockStyle.Fill;
-            //objForm.Show();
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تسجيل فاتورة مرتجع");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+
         }
 
         //customers

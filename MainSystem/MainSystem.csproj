@@ -870,6 +870,12 @@
     <Compile Include="Sales\CustomerReturnBill.designer.cs">
       <DependentUpon>CustomerReturnBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\CustomerReturnBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\CustomerReturnBill_Report.designer.cs">
+      <DependentUpon>CustomerReturnBill_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Offer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1543,6 +1549,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\CustomerReturnBill.resx">
       <DependentUpon>CustomerReturnBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\CustomerReturnBill_Report.resx">
+      <DependentUpon>CustomerReturnBill_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Offer.resx">
       <DependentUpon>Offer.cs</DependentUpon>
