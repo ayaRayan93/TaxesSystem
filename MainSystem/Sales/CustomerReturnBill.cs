@@ -21,7 +21,7 @@ namespace MainSystem
         DataGridViewRow row1;
         private int[] addedRecordIDs;
         int recordCount = 0;
-        List<DataGridViewRow> myRows;
+        //List<DataGridViewRow> myRows;
         List<int> listOfRow2In;
         int EmpBranchId = 0;
         //int customerBillId = 0;
@@ -35,7 +35,7 @@ namespace MainSystem
             connectionReader2 = new MySqlConnection(connection.connectionString);
             addedRecordIDs = new int[100];
             listOfRow2In = new List<int>();
-            myRows = new List<DataGridViewRow>();
+            //myRows = new List<DataGridViewRow>();
             labClient.Visible = false;
             labCustomer.Visible = false;//label of مهندس/مقاول
             comClient.Visible = false;
@@ -299,8 +299,11 @@ namespace MainSystem
                             labBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
                             labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
 
-                            listBoxControlBills.Items.Add(comBillNumber.Text + ":" + comBranch.Text);
-                            listBoxControlCustomerBill.Items.Add(comBillNumber.SelectedValue.ToString());
+                            if (!listBoxControlCustomerBill.Items.Contains(comBillNumber.SelectedValue.ToString()))
+                            {
+                                listBoxControlBills.Items.Add(comBillNumber.Text + ":" + comBranch.Text);
+                                listBoxControlCustomerBill.Items.Add(comBillNumber.SelectedValue.ToString());
+                            }
                         }
                         dr.Close();
                     }
@@ -330,9 +333,20 @@ namespace MainSystem
                 {
                     labReturnedQuantity.Text = com.ExecuteScalar().ToString();
                 }
+                else
+                {
+                    labReturnedQuantity.Text = "0";
+                }
 
                 txtCode.Text = row1.Cells["الكود"].Value.ToString();
-                txtTotalMeter.Text = row1.Cells["الكمية"].Value.ToString();
+                if (labReturnedQuantity.Text == "")
+                {
+                    txtTotalMeter.Text = row1.Cells["الكمية"].Value.ToString();
+                }
+                else
+                {
+                    txtTotalMeter.Text = (Convert.ToDouble(row1.Cells["الكمية"].Value.ToString()) - Convert.ToDouble(labReturnedQuantity.Text)).ToString();
+                }
                 txtPriceAD.Text = row1.Cells["السعر بعد الخصم"].Value.ToString();
 
             }
@@ -390,7 +404,7 @@ namespace MainSystem
                         MessageBox.Show("الكمية لا تكفى");
                         return;
                     }
-                    myRows.Add(row1);
+                    //myRows.Add(row1);
                     addedRecordIDs[recordCount] = dataGridView1.SelectedCells[0].RowIndex + 1;
                     dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].DefaultCellStyle.BackColor = Color.Silver;
                     recordCount++;
@@ -584,7 +598,7 @@ namespace MainSystem
                     {
                         if (listOfRow2In[i] == dgv2Index)
                         {
-                            myRows.RemoveAt(dgv2Index);
+                            //myRows.RemoveAt(dgv2Index);
                             dataGridView2.Rows.Remove(dataGridView2.Rows[dgv2Index]);
                             dataGridView1.Rows[addedRecordIDs[i] - 1].DefaultCellStyle.BackColor = Color.White;
                             addedRecordIDs[i] = 0;
@@ -709,7 +723,10 @@ namespace MainSystem
                 comBranch.Text = "";
                 txtBranchID.Text = "";
 
-                labBillDate.Text = labBillTotalCostAD.Text = labTotalReturnBillAD.Text = labTotalAD.Text = "";
+                listBoxControlBills.Items.Clear();
+                listBoxControlCustomerBill.Items.Clear();
+
+                labBillDate.Text = labBillTotalCostAD.Text = labTotalReturnBillAD.Text = labTotalAD.Text = labReturnedQuantity.Text = "";
 
                 dataGridView1.DataSource = null;
                 dataGridView2.Rows.Clear();
@@ -767,9 +784,9 @@ namespace MainSystem
 
         bool IsAdded(DataGridViewRow row1)
         {
-            foreach (DataGridViewRow item in myRows)
+            foreach (DataGridViewRow item in dataGridView2.Rows)
             {
-                if (row1 == item)
+                if ((row1.Cells["Data_ID"].Value.ToString() == item.Cells["Data_ID"].Value.ToString()) && (row1.Cells["الفئة"].Value.ToString() == item.Cells["Type"].Value.ToString()) && (row1.Cells["CustomerBill_ID"].Value.ToString() == item.Cells["CustomerBill_ID"].Value.ToString()))
                     return true;
             }
             return false;

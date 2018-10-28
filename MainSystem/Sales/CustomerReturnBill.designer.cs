@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.comCustomer = new System.Windows.Forms.ComboBox();
@@ -46,23 +46,6 @@
             this.comBillNumber = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -99,6 +82,23 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -266,22 +266,22 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 148);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Size = new System.Drawing.Size(1044, 163);
             this.dataGridView1.TabIndex = 163;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -290,14 +290,14 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
@@ -321,98 +321,11 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 407);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Size = new System.Drawing.Size(1044, 163);
             this.dataGridView2.TabIndex = 164;
-            // 
-            // Data_ID
-            // 
-            this.Data_ID.HeaderText = "Data_ID";
-            this.Data_ID.Name = "Data_ID";
-            this.Data_ID.Visible = false;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "الكود";
-            this.Code.Name = "Code";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "الفئة";
-            this.Type.Name = "Type";
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "اجمالي عدد الوحدات";
-            this.Quantity.Name = "Quantity";
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "السعر";
-            this.priceAD.Name = "priceAD";
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "نسبة الخصم";
-            this.Discount.Name = "Discount";
-            // 
-            // totalAD
-            // 
-            this.totalAD.HeaderText = "الاجمالي";
-            this.totalAD.Name = "totalAD";
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.HeaderText = "الصنف";
-            this.Product_Name.Name = "Product_Name";
-            // 
-            // Type_Name
-            // 
-            this.Type_Name.HeaderText = "النوع";
-            this.Type_Name.Name = "Type_Name";
-            // 
-            // Factory_Name
-            // 
-            this.Factory_Name.HeaderText = "المصنع";
-            this.Factory_Name.Name = "Factory_Name";
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.HeaderText = "المجموعة";
-            this.Group_Name.Name = "Group_Name";
-            // 
-            // Colour
-            // 
-            this.Colour.HeaderText = "اللون";
-            this.Colour.Name = "Colour";
-            // 
-            // Size
-            // 
-            this.Size.HeaderText = "المقاس";
-            this.Size.Name = "Size";
-            // 
-            // Sort
-            // 
-            this.Sort.HeaderText = "الفرز";
-            this.Sort.Name = "Sort";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "الوصف";
-            this.Description.Name = "Description";
-            // 
-            // Returned
-            // 
-            this.Returned.HeaderText = "تم الاسترجاع";
-            this.Returned.Name = "Returned";
-            // 
-            // CustomerBill_ID
-            // 
-            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
-            this.CustomerBill_ID.Name = "CustomerBill_ID";
-            this.CustomerBill_ID.Visible = false;
             // 
             // label6
             // 
@@ -878,6 +791,93 @@
             this.btnDelete.Text = "حذف من فاتورة المرتجع";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // Data_ID
+            // 
+            this.Data_ID.HeaderText = "Data_ID";
+            this.Data_ID.Name = "Data_ID";
+            this.Data_ID.Visible = false;
+            // 
+            // Code
+            // 
+            this.Code.HeaderText = "الكود";
+            this.Code.Name = "Code";
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "الفئة";
+            this.Type.Name = "Type";
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "اجمالي عدد الوحدات";
+            this.Quantity.Name = "Quantity";
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "السعر";
+            this.priceAD.Name = "priceAD";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
+            // 
+            // totalAD
+            // 
+            this.totalAD.HeaderText = "الاجمالي";
+            this.totalAD.Name = "totalAD";
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الصنف";
+            this.Product_Name.Name = "Product_Name";
+            // 
+            // Type_Name
+            // 
+            this.Type_Name.HeaderText = "النوع";
+            this.Type_Name.Name = "Type_Name";
+            // 
+            // Factory_Name
+            // 
+            this.Factory_Name.HeaderText = "المصنع";
+            this.Factory_Name.Name = "Factory_Name";
+            // 
+            // Group_Name
+            // 
+            this.Group_Name.HeaderText = "المجموعة";
+            this.Group_Name.Name = "Group_Name";
+            // 
+            // Colour
+            // 
+            this.Colour.HeaderText = "اللون";
+            this.Colour.Name = "Colour";
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "المقاس";
+            this.Size.Name = "Size";
+            // 
+            // Sort
+            // 
+            this.Sort.HeaderText = "الفرز";
+            this.Sort.Name = "Sort";
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "الوصف";
+            this.Description.Name = "Description";
+            // 
+            // Returned
+            // 
+            this.Returned.HeaderText = "تم الاسترجاع";
+            this.Returned.Name = "Returned";
+            // 
+            // CustomerBill_ID
+            // 
+            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
+            this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.Visible = false;
             // 
             // CustomerReturnBill
             // 
