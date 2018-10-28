@@ -110,9 +110,9 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1")
+                                if (txtType.Text == "1"|| txtType.Text == "2")
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID="+txtType.Text;
+                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, conn);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -140,7 +140,7 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1")
+                                if (txtType.Text != "1"&& txtType.Text != "2")
                                 {
                                     string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, conn);
