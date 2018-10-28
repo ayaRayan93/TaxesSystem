@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.comCustomer = new System.Windows.Forms.ComboBox();
@@ -46,22 +46,6 @@
             this.comBillNumber = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -87,12 +71,34 @@
             this.btnCreateReturnBill = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnNewChooes = new System.Windows.Forms.Button();
+            this.listBoxControlCustomerBill = new DevExpress.XtraEditors.ListBoxControl();
+            this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labReturnedQuantity = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -100,6 +106,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -236,7 +244,7 @@
             this.labBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labBillNumber.AutoSize = true;
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.labBillNumber.Location = new System.Drawing.Point(247, 58);
+            this.labBillNumber.Location = new System.Drawing.Point(432, 57);
             this.labBillNumber.Name = "labBillNumber";
             this.labBillNumber.Size = new System.Drawing.Size(70, 18);
             this.labBillNumber.TabIndex = 161;
@@ -247,10 +255,10 @@
             this.comBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBillNumber.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBillNumber.FormattingEnabled = true;
-            this.comBillNumber.Location = new System.Drawing.Point(169, 54);
+            this.comBillNumber.Location = new System.Drawing.Point(326, 54);
             this.comBillNumber.Name = "comBillNumber";
             this.comBillNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comBillNumber.Size = new System.Drawing.Size(74, 24);
+            this.comBillNumber.Size = new System.Drawing.Size(100, 24);
             this.comBillNumber.TabIndex = 162;
             this.comBillNumber.SelectedValueChanged += new System.EventHandler(this.comBillNumber_SelectedValueChanged);
             // 
@@ -258,22 +266,22 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 148);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Size = new System.Drawing.Size(1044, 163);
             this.dataGridView1.TabIndex = 163;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -282,14 +290,14 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
@@ -307,104 +315,24 @@
             this.Size,
             this.Sort,
             this.Description,
-            this.Returned});
+            this.Returned,
+            this.CustomerBill_ID});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 407);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Size = new System.Drawing.Size(1044, 163);
             this.dataGridView2.TabIndex = 164;
-            // 
-            // Data_ID
-            // 
-            this.Data_ID.HeaderText = "Data_ID";
-            this.Data_ID.Name = "Data_ID";
-            this.Data_ID.Visible = false;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "الكود";
-            this.Code.Name = "Code";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "الفئة";
-            this.Type.Name = "Type";
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "اجمالي عدد الامتار";
-            this.Quantity.Name = "Quantity";
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "السعر";
-            this.priceAD.Name = "priceAD";
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "نسبة الخصم";
-            this.Discount.Name = "Discount";
-            // 
-            // totalAD
-            // 
-            this.totalAD.HeaderText = "الاجمالي";
-            this.totalAD.Name = "totalAD";
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.HeaderText = "الصنف";
-            this.Product_Name.Name = "Product_Name";
-            // 
-            // Type_Name
-            // 
-            this.Type_Name.HeaderText = "النوع";
-            this.Type_Name.Name = "Type_Name";
-            // 
-            // Factory_Name
-            // 
-            this.Factory_Name.HeaderText = "المصنع";
-            this.Factory_Name.Name = "Factory_Name";
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.HeaderText = "المجموعة";
-            this.Group_Name.Name = "Group_Name";
-            // 
-            // Colour
-            // 
-            this.Colour.HeaderText = "اللون";
-            this.Colour.Name = "Colour";
-            // 
-            // Size
-            // 
-            this.Size.HeaderText = "المقاس";
-            this.Size.Name = "Size";
-            // 
-            // Sort
-            // 
-            this.Sort.HeaderText = "الفرز";
-            this.Sort.Name = "Sort";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "الوصف";
-            this.Description.Name = "Description";
-            // 
-            // Returned
-            // 
-            this.Returned.HeaderText = "تم الاسترجاع";
-            this.Returned.Name = "Returned";
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(517, 53);
+            this.label6.Location = new System.Drawing.Point(591, 53);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 18);
             this.label6.TabIndex = 172;
@@ -414,7 +342,7 @@
             // 
             this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtCode.Location = new System.Drawing.Point(672, 11);
+            this.txtCode.Location = new System.Drawing.Point(746, 11);
             this.txtCode.Name = "txtCode";
             this.txtCode.ReadOnly = true;
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -426,7 +354,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label1.Location = new System.Drawing.Point(893, 14);
+            this.label1.Location = new System.Drawing.Point(967, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 18);
             this.label1.TabIndex = 166;
@@ -436,7 +364,7 @@
             // 
             this.txtTotalMeter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtTotalMeter.Location = new System.Drawing.Point(365, 11);
+            this.txtTotalMeter.Location = new System.Drawing.Point(439, 11);
             this.txtTotalMeter.Name = "txtTotalMeter";
             this.txtTotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtTotalMeter.Size = new System.Drawing.Size(145, 25);
@@ -448,7 +376,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(515, 14);
+            this.label2.Location = new System.Drawing.Point(589, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 18);
             this.label2.TabIndex = 168;
@@ -459,7 +387,7 @@
             this.labTotalAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTotalAD.AutoSize = true;
             this.labTotalAD.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.labTotalAD.Location = new System.Drawing.Point(437, 53);
+            this.labTotalAD.Location = new System.Drawing.Point(511, 53);
             this.labTotalAD.Name = "labTotalAD";
             this.labTotalAD.Size = new System.Drawing.Size(0, 18);
             this.labTotalAD.TabIndex = 171;
@@ -471,7 +399,7 @@
             this.btnAddToReturnBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToReturnBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToReturnBill.ForeColor = System.Drawing.Color.White;
-            this.btnAddToReturnBill.Location = new System.Drawing.Point(35, 27);
+            this.btnAddToReturnBill.Location = new System.Drawing.Point(35, 34);
             this.btnAddToReturnBill.Name = "btnAddToReturnBill";
             this.btnAddToReturnBill.Size = new System.Drawing.Size(157, 41);
             this.btnAddToReturnBill.TabIndex = 173;
@@ -525,7 +453,7 @@
             // 
             this.txtPriceAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPriceAD.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtPriceAD.Location = new System.Drawing.Point(672, 50);
+            this.txtPriceAD.Location = new System.Drawing.Point(746, 50);
             this.txtPriceAD.Name = "txtPriceAD";
             this.txtPriceAD.ReadOnly = true;
             this.txtPriceAD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -538,7 +466,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(855, 53);
+            this.label7.Location = new System.Drawing.Point(929, 53);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 18);
             this.label7.TabIndex = 186;
@@ -570,7 +498,7 @@
             this.comBranch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(169, 12);
+            this.comBranch.Location = new System.Drawing.Point(286, 15);
             this.comBranch.Name = "comBranch";
             this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBranch.Size = new System.Drawing.Size(140, 24);
@@ -581,10 +509,10 @@
             // 
             this.txtBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(114, 12);
+            this.txtBranchID.Location = new System.Drawing.Point(218, 15);
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBranchID.Size = new System.Drawing.Size(50, 24);
+            this.txtBranchID.Size = new System.Drawing.Size(62, 24);
             this.txtBranchID.TabIndex = 196;
             this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
@@ -593,7 +521,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label10.Location = new System.Drawing.Point(327, 16);
+            this.label10.Location = new System.Drawing.Point(449, 18);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 18);
             this.label10.TabIndex = 195;
@@ -698,13 +626,16 @@
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 99);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnNewChooes);
+            this.panel2.Controls.Add(this.listBoxControlCustomerBill);
+            this.panel2.Controls.Add(this.listBoxControlBills);
             this.panel2.Controls.Add(this.comBillNumber);
             this.panel2.Controls.Add(this.labBillNumber);
             this.panel2.Controls.Add(this.label10);
@@ -715,6 +646,40 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(516, 93);
             this.panel2.TabIndex = 1;
+            // 
+            // btnNewChooes
+            // 
+            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChooes.FlatAppearance.BorderSize = 0;
+            this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewChooes.Location = new System.Drawing.Point(6, 28);
+            this.btnNewChooes.Name = "btnNewChooes";
+            this.btnNewChooes.Size = new System.Drawing.Size(90, 35);
+            this.btnNewChooes.TabIndex = 200;
+            this.btnNewChooes.Text = "اختيار اخر";
+            this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
+            // 
+            // listBoxControlCustomerBill
+            // 
+            this.listBoxControlCustomerBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(218, 45);
+            this.listBoxControlCustomerBill.Name = "listBoxControlCustomerBill";
+            this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 43);
+            this.listBoxControlCustomerBill.TabIndex = 199;
+            this.listBoxControlCustomerBill.Visible = false;
+            // 
+            // listBoxControlBills
+            // 
+            this.listBoxControlBills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxControlBills.HorizontalScrollbar = true;
+            this.listBoxControlBills.Location = new System.Drawing.Point(111, 15);
+            this.listBoxControlBills.Name = "listBoxControlBills";
+            this.listBoxControlBills.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.listBoxControlBills.Size = new System.Drawing.Size(100, 63);
+            this.listBoxControlBills.TabIndex = 198;
             // 
             // panel1
             // 
@@ -760,6 +725,8 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel4.Controls.Add(this.labReturnedQuantity);
+            this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.btnAddToReturnBill);
             this.panel4.Controls.Add(this.labTotalAD);
             this.panel4.Controls.Add(this.label2);
@@ -774,6 +741,27 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1044, 84);
             this.panel4.TabIndex = 164;
+            // 
+            // labReturnedQuantity
+            // 
+            this.labReturnedQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labReturnedQuantity.AutoSize = true;
+            this.labReturnedQuantity.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.labReturnedQuantity.Location = new System.Drawing.Point(214, 14);
+            this.labReturnedQuantity.Name = "labReturnedQuantity";
+            this.labReturnedQuantity.Size = new System.Drawing.Size(0, 18);
+            this.labReturnedQuantity.TabIndex = 187;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label8.Location = new System.Drawing.Point(294, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(114, 18);
+            this.label8.TabIndex = 188;
+            this.label8.Text = "الكمية المسترجعة";
             // 
             // panel5
             // 
@@ -804,6 +792,93 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // Data_ID
+            // 
+            this.Data_ID.HeaderText = "Data_ID";
+            this.Data_ID.Name = "Data_ID";
+            this.Data_ID.Visible = false;
+            // 
+            // Code
+            // 
+            this.Code.HeaderText = "الكود";
+            this.Code.Name = "Code";
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "الفئة";
+            this.Type.Name = "Type";
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "اجمالي عدد الوحدات";
+            this.Quantity.Name = "Quantity";
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "السعر";
+            this.priceAD.Name = "priceAD";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
+            // 
+            // totalAD
+            // 
+            this.totalAD.HeaderText = "الاجمالي";
+            this.totalAD.Name = "totalAD";
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الصنف";
+            this.Product_Name.Name = "Product_Name";
+            // 
+            // Type_Name
+            // 
+            this.Type_Name.HeaderText = "النوع";
+            this.Type_Name.Name = "Type_Name";
+            // 
+            // Factory_Name
+            // 
+            this.Factory_Name.HeaderText = "المصنع";
+            this.Factory_Name.Name = "Factory_Name";
+            // 
+            // Group_Name
+            // 
+            this.Group_Name.HeaderText = "المجموعة";
+            this.Group_Name.Name = "Group_Name";
+            // 
+            // Colour
+            // 
+            this.Colour.HeaderText = "اللون";
+            this.Colour.Name = "Colour";
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "المقاس";
+            this.Size.Name = "Size";
+            // 
+            // Sort
+            // 
+            this.Sort.HeaderText = "الفرز";
+            this.Sort.Name = "Sort";
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "الوصف";
+            this.Description.Name = "Description";
+            // 
+            // Returned
+            // 
+            this.Returned.HeaderText = "تم الاسترجاع";
+            this.Returned.Name = "Returned";
+            // 
+            // CustomerBill_ID
+            // 
+            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
+            this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.Visible = false;
+            // 
             // CustomerReturnBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -825,6 +900,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -884,6 +961,11 @@
         private Bunifu.Framework.UI.BunifuTileButton btnCreateReturnBill;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label labReturnedQuantity;
+        private System.Windows.Forms.Label label8;
+        private DevExpress.XtraEditors.ListBoxControl listBoxControlCustomerBill;
+        private DevExpress.XtraEditors.ListBoxControl listBoxControlBills;
+        private System.Windows.Forms.Button btnNewChooes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
@@ -900,5 +982,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sort;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Returned;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerBill_ID;
     }
 }
