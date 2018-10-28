@@ -32,10 +32,10 @@ namespace MainSystem
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -381,18 +381,18 @@ namespace MainSystem
             // mTC_Content
             // 
             this.mTC_Content.Controls.Add(this.mTPSort);
-            this.mTC_Content.Controls.Add(this.mTPSize);
             this.mTC_Content.Controls.Add(this.mTPColor);
+            this.mTC_Content.Controls.Add(this.mTPSize);
             this.mTC_Content.Controls.Add(this.mTPProduct);
             this.mTC_Content.Controls.Add(this.mTPGroup);
             this.mTC_Content.Controls.Add(this.mTPFactory);
             this.mTC_Content.Controls.Add(this.mTPType);
             this.mTC_Content.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mTC_Content.ItemSize = new System.Drawing.Size(50, 50);
+            this.mTC_Content.ItemSize = new System.Drawing.Size(1, 1);
             this.mTC_Content.Location = new System.Drawing.Point(48, 164);
             this.mTC_Content.Name = "mTC_Content";
             this.mTC_Content.RightToLeftLayout = true;
-            this.mTC_Content.SelectedIndex = 2;
+            this.mTC_Content.SelectedIndex = 3;
             this.mTC_Content.Size = new System.Drawing.Size(808, 604);
             this.mTC_Content.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.mTC_Content.Style = MetroFramework.MetroColorStyle.Silver;
@@ -406,9 +406,9 @@ namespace MainSystem
             this.mTPSort.Controls.Add(this.tableLayoutPanel5);
             this.mTPSort.HorizontalScrollbarBarColor = true;
             this.mTPSort.HorizontalScrollbarSize = 0;
-            this.mTPSort.Location = new System.Drawing.Point(4, 5);
+            this.mTPSort.Location = new System.Drawing.Point(4, 54);
             this.mTPSort.Name = "mTPSort";
-            this.mTPSort.Size = new System.Drawing.Size(800, 595);
+            this.mTPSort.Size = new System.Drawing.Size(800, 546);
             this.mTPSort.TabIndex = 5;
             this.mTPSort.Text = "الفرز";
             this.mTPSort.VerticalScrollbarBarColor = true;
@@ -434,7 +434,7 @@ namespace MainSystem
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.47059F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(800, 595);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(800, 546);
             this.tableLayoutPanel5.TabIndex = 6;
             // 
             // tableLayoutPanel34
@@ -453,12 +453,12 @@ namespace MainSystem
             this.tableLayoutPanel34.Controls.Add(this.btnAddSort, 1, 0);
             this.tableLayoutPanel34.Controls.Add(this.btnUpdateSort, 2, 0);
             this.tableLayoutPanel34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel34.Location = new System.Drawing.Point(3, 537);
+            this.tableLayoutPanel34.Location = new System.Drawing.Point(3, 487);
             this.tableLayoutPanel34.Name = "tableLayoutPanel34";
             this.tableLayoutPanel34.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel34.RowCount = 1;
             this.tableLayoutPanel34.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel34.Size = new System.Drawing.Size(794, 55);
+            this.tableLayoutPanel34.Size = new System.Drawing.Size(794, 56);
             this.tableLayoutPanel34.TabIndex = 29;
             // 
             // btnDelete
@@ -478,7 +478,7 @@ namespace MainSystem
             this.btnDelete.Location = new System.Drawing.Point(322, 4);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(73, 47);
+            this.btnDelete.Size = new System.Drawing.Size(73, 48);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Click += new System.EventHandler(this.btnDeleteSort_Click);
             // 
@@ -499,7 +499,7 @@ namespace MainSystem
             this.btnAddSort.Location = new System.Drawing.Point(480, 4);
             this.btnAddSort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddSort.Name = "btnAddSort";
-            this.btnAddSort.Size = new System.Drawing.Size(73, 47);
+            this.btnAddSort.Size = new System.Drawing.Size(73, 48);
             this.btnAddSort.TabIndex = 3;
             this.btnAddSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
@@ -520,7 +520,7 @@ namespace MainSystem
             this.btnUpdateSort.Location = new System.Drawing.Point(401, 4);
             this.btnUpdateSort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateSort.Name = "btnUpdateSort";
-            this.btnUpdateSort.Size = new System.Drawing.Size(73, 47);
+            this.btnUpdateSort.Size = new System.Drawing.Size(73, 48);
             this.btnUpdateSort.TabIndex = 8;
             this.btnUpdateSort.Click += new System.EventHandler(this.btnUpdateSort_Click);
             // 
@@ -536,7 +536,7 @@ namespace MainSystem
             this.dataGridViewSort.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewSort.ColumnHeadersHeight = 25;
             this.dataGridViewSort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSort.Location = new System.Drawing.Point(83, 34);
+            this.dataGridViewSort.Location = new System.Drawing.Point(83, 31);
             this.dataGridViewSort.Name = "dataGridViewSort";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -549,7 +549,7 @@ namespace MainSystem
             this.tableLayoutPanel5.SetRowSpan(this.dataGridViewSort, 2);
             this.dataGridViewSort.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewSort.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewSort.Size = new System.Drawing.Size(234, 497);
+            this.dataGridViewSort.Size = new System.Drawing.Size(234, 450);
             this.dataGridViewSort.TabIndex = 30;
             // 
             // panel7
@@ -560,10 +560,10 @@ namespace MainSystem
             this.panel7.Controls.Add(this.label2);
             this.panel7.Controls.Add(this.txtSort);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(323, 34);
+            this.panel7.Location = new System.Drawing.Point(323, 31);
             this.panel7.Name = "panel7";
             this.tableLayoutPanel5.SetRowSpan(this.panel7, 2);
-            this.panel7.Size = new System.Drawing.Size(474, 497);
+            this.panel7.Size = new System.Drawing.Size(474, 450);
             this.panel7.TabIndex = 31;
             // 
             // btnSortDisplayAll
@@ -631,9 +631,9 @@ namespace MainSystem
             this.mTPSize.Controls.Add(this.tableLayoutPanelSize);
             this.mTPSize.HorizontalScrollbarBarColor = true;
             this.mTPSize.HorizontalScrollbarSize = 0;
-            this.mTPSize.Location = new System.Drawing.Point(4, 5);
+            this.mTPSize.Location = new System.Drawing.Point(4, 54);
             this.mTPSize.Name = "mTPSize";
-            this.mTPSize.Size = new System.Drawing.Size(800, 595);
+            this.mTPSize.Size = new System.Drawing.Size(800, 546);
             this.mTPSize.TabIndex = 4;
             this.mTPSize.Text = "المقاس";
             this.mTPSize.VerticalScrollbarBarColor = true;
@@ -659,7 +659,7 @@ namespace MainSystem
             this.tableLayoutPanelSize.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
             this.tableLayoutPanelSize.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.47059F));
             this.tableLayoutPanelSize.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanelSize.Size = new System.Drawing.Size(800, 595);
+            this.tableLayoutPanelSize.Size = new System.Drawing.Size(800, 546);
             this.tableLayoutPanelSize.TabIndex = 6;
             // 
             // panel6
@@ -676,10 +676,10 @@ namespace MainSystem
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.comFactory2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(323, 34);
+            this.panel6.Location = new System.Drawing.Point(323, 31);
             this.panel6.Name = "panel6";
             this.tableLayoutPanelSize.SetRowSpan(this.panel6, 2);
-            this.panel6.Size = new System.Drawing.Size(474, 497);
+            this.panel6.Size = new System.Drawing.Size(474, 450);
             this.panel6.TabIndex = 17;
             // 
             // btnSaveSizeUpdate
@@ -846,12 +846,12 @@ namespace MainSystem
             this.tableLayoutPanel35.Controls.Add(this.btnAddSize, 1, 0);
             this.tableLayoutPanel35.Controls.Add(this.btnSizeUpdate, 2, 0);
             this.tableLayoutPanel35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel35.Location = new System.Drawing.Point(3, 537);
+            this.tableLayoutPanel35.Location = new System.Drawing.Point(3, 487);
             this.tableLayoutPanel35.Name = "tableLayoutPanel35";
             this.tableLayoutPanel35.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel35.RowCount = 1;
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel35.Size = new System.Drawing.Size(794, 55);
+            this.tableLayoutPanel35.Size = new System.Drawing.Size(794, 56);
             this.tableLayoutPanel35.TabIndex = 30;
             // 
             // btnDeleteSize
@@ -871,7 +871,7 @@ namespace MainSystem
             this.btnDeleteSize.Location = new System.Drawing.Point(322, 4);
             this.btnDeleteSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteSize.Name = "btnDeleteSize";
-            this.btnDeleteSize.Size = new System.Drawing.Size(73, 47);
+            this.btnDeleteSize.Size = new System.Drawing.Size(73, 48);
             this.btnDeleteSize.TabIndex = 2;
             this.btnDeleteSize.Click += new System.EventHandler(this.btnDeleteSize_Click);
             // 
@@ -892,7 +892,7 @@ namespace MainSystem
             this.btnAddSize.Location = new System.Drawing.Point(480, 4);
             this.btnAddSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddSize.Name = "btnAddSize";
-            this.btnAddSize.Size = new System.Drawing.Size(73, 47);
+            this.btnAddSize.Size = new System.Drawing.Size(73, 48);
             this.btnAddSize.TabIndex = 3;
             this.btnAddSize.Click += new System.EventHandler(this.btnSize_Click);
             // 
@@ -913,7 +913,7 @@ namespace MainSystem
             this.btnSizeUpdate.Location = new System.Drawing.Point(401, 4);
             this.btnSizeUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSizeUpdate.Name = "btnSizeUpdate";
-            this.btnSizeUpdate.Size = new System.Drawing.Size(73, 47);
+            this.btnSizeUpdate.Size = new System.Drawing.Size(73, 48);
             this.btnSizeUpdate.TabIndex = 9;
             this.btnSizeUpdate.Click += new System.EventHandler(this.btnSizeUpdate_Click);
             // 
@@ -922,33 +922,33 @@ namespace MainSystem
             this.tableLayoutPanel32.ColumnCount = 1;
             this.tableLayoutPanel32.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel32.Location = new System.Drawing.Point(0, 125);
+            this.tableLayoutPanel32.Location = new System.Drawing.Point(0, 113);
             this.tableLayoutPanel32.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel32.Name = "tableLayoutPanel32";
             this.tableLayoutPanel32.RowCount = 2;
             this.tableLayoutPanel32.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel32.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel32.Size = new System.Drawing.Size(27, 409);
+            this.tableLayoutPanel32.Size = new System.Drawing.Size(27, 371);
             this.tableLayoutPanel32.TabIndex = 23;
             // 
             // dataGridViewSize
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSize.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSize.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewSize.ColumnHeadersHeight = 25;
             this.dataGridViewSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSize.Location = new System.Drawing.Point(30, 34);
+            this.dataGridViewSize.Location = new System.Drawing.Point(30, 31);
             this.dataGridViewSize.Name = "dataGridViewSize";
             this.tableLayoutPanelSize.SetRowSpan(this.dataGridViewSize, 2);
             this.dataGridViewSize.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewSize.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewSize.Size = new System.Drawing.Size(287, 497);
+            this.dataGridViewSize.Size = new System.Drawing.Size(287, 450);
             this.dataGridViewSize.TabIndex = 31;
             // 
             // mTPColor
@@ -1211,26 +1211,26 @@ namespace MainSystem
             // 
             // dataGridViewColor
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewColor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewColor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewColor.ColumnHeadersHeight = 25;
             this.dataGridViewColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewColor.Location = new System.Drawing.Point(25, 31);
             this.dataGridViewColor.Name = "dataGridViewColor";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewColor.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewColor.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.tableLayoutPanelColor.SetRowSpan(this.dataGridViewColor, 2);
             this.dataGridViewColor.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewColor.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1242,9 +1242,9 @@ namespace MainSystem
             this.mTPProduct.Controls.Add(this.tableLayoutPanelProduct);
             this.mTPProduct.HorizontalScrollbarBarColor = true;
             this.mTPProduct.HorizontalScrollbarSize = 0;
-            this.mTPProduct.Location = new System.Drawing.Point(4, 54);
+            this.mTPProduct.Location = new System.Drawing.Point(4, 5);
             this.mTPProduct.Name = "mTPProduct";
-            this.mTPProduct.Size = new System.Drawing.Size(800, 546);
+            this.mTPProduct.Size = new System.Drawing.Size(800, 595);
             this.mTPProduct.TabIndex = 2;
             this.mTPProduct.Text = "الصنف";
             this.mTPProduct.VerticalScrollbarBarColor = true;
@@ -1270,7 +1270,7 @@ namespace MainSystem
             this.tableLayoutPanelProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
             this.tableLayoutPanelProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.47059F));
             this.tableLayoutPanelProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanelProduct.Size = new System.Drawing.Size(800, 546);
+            this.tableLayoutPanelProduct.Size = new System.Drawing.Size(800, 595);
             this.tableLayoutPanelProduct.TabIndex = 6;
             // 
             // panel4
@@ -1294,10 +1294,10 @@ namespace MainSystem
             this.panel4.Controls.Add(this.comGroup);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(323, 31);
+            this.panel4.Location = new System.Drawing.Point(323, 34);
             this.panel4.Name = "panel4";
             this.tableLayoutPanelProduct.SetRowSpan(this.panel4, 2);
-            this.panel4.Size = new System.Drawing.Size(474, 450);
+            this.panel4.Size = new System.Drawing.Size(474, 497);
             this.panel4.TabIndex = 17;
             // 
             // labFactory
@@ -1564,12 +1564,12 @@ namespace MainSystem
             this.tableLayoutPanel15.Controls.Add(this.btnAddProduct, 1, 0);
             this.tableLayoutPanel15.Controls.Add(this.bunifuTileButton3, 2, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 487);
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 537);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(794, 56);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(794, 55);
             this.tableLayoutPanel15.TabIndex = 32;
             // 
             // btnDeleteProduct
@@ -1589,7 +1589,7 @@ namespace MainSystem
             this.btnDeleteProduct.Location = new System.Drawing.Point(322, 4);
             this.btnDeleteProduct.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
-            this.btnDeleteProduct.Size = new System.Drawing.Size(73, 48);
+            this.btnDeleteProduct.Size = new System.Drawing.Size(73, 47);
             this.btnDeleteProduct.TabIndex = 2;
             this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
             // 
@@ -1610,7 +1610,7 @@ namespace MainSystem
             this.btnAddProduct.Location = new System.Drawing.Point(480, 4);
             this.btnAddProduct.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(73, 48);
+            this.btnAddProduct.Size = new System.Drawing.Size(73, 47);
             this.btnAddProduct.TabIndex = 3;
             this.btnAddProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
@@ -1631,7 +1631,7 @@ namespace MainSystem
             this.bunifuTileButton3.Location = new System.Drawing.Point(401, 4);
             this.bunifuTileButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bunifuTileButton3.Name = "bunifuTileButton3";
-            this.bunifuTileButton3.Size = new System.Drawing.Size(73, 48);
+            this.bunifuTileButton3.Size = new System.Drawing.Size(73, 47);
             this.bunifuTileButton3.TabIndex = 5;
             this.bunifuTileButton3.Click += new System.EventHandler(this.btnProductUpdate_Click);
             // 
@@ -1641,13 +1641,13 @@ namespace MainSystem
             this.tableLayoutPanel28.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel28.Controls.Add(this.tableLayoutPanel1, 0, 1);
             this.tableLayoutPanel28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel28.Location = new System.Drawing.Point(0, 113);
+            this.tableLayoutPanel28.Location = new System.Drawing.Point(0, 125);
             this.tableLayoutPanel28.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel28.Name = "tableLayoutPanel28";
             this.tableLayoutPanel28.RowCount = 2;
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel28.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel28.Size = new System.Drawing.Size(24, 371);
+            this.tableLayoutPanel28.Size = new System.Drawing.Size(24, 409);
             this.tableLayoutPanel28.TabIndex = 21;
             // 
             // tableLayoutPanel1
@@ -1655,33 +1655,33 @@ namespace MainSystem
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 74);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 81);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.1497F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.8503F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(24, 297);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(24, 328);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
             // dataGridViewProduct
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewProduct.ColumnHeadersHeight = 25;
             this.dataGridViewProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewProduct.Location = new System.Drawing.Point(27, 31);
+            this.dataGridViewProduct.Location = new System.Drawing.Point(27, 34);
             this.dataGridViewProduct.Name = "dataGridViewProduct";
             this.tableLayoutPanelProduct.SetRowSpan(this.dataGridViewProduct, 2);
             this.dataGridViewProduct.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewProduct.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewProduct.Size = new System.Drawing.Size(290, 450);
+            this.dataGridViewProduct.Size = new System.Drawing.Size(290, 497);
             this.dataGridViewProduct.TabIndex = 33;
             // 
             // mTPGroup
@@ -1689,9 +1689,9 @@ namespace MainSystem
             this.mTPGroup.Controls.Add(this.tableLayoutPanelGroup);
             this.mTPGroup.HorizontalScrollbarBarColor = true;
             this.mTPGroup.HorizontalScrollbarSize = 0;
-            this.mTPGroup.Location = new System.Drawing.Point(4, 5);
+            this.mTPGroup.Location = new System.Drawing.Point(4, 54);
             this.mTPGroup.Name = "mTPGroup";
-            this.mTPGroup.Size = new System.Drawing.Size(800, 595);
+            this.mTPGroup.Size = new System.Drawing.Size(800, 546);
             this.mTPGroup.TabIndex = 1;
             this.mTPGroup.Text = "المجموعة";
             this.mTPGroup.VerticalScrollbarBarColor = true;
@@ -1716,7 +1716,7 @@ namespace MainSystem
             this.tableLayoutPanelGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
             this.tableLayoutPanelGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.47059F));
             this.tableLayoutPanelGroup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanelGroup.Size = new System.Drawing.Size(800, 595);
+            this.tableLayoutPanelGroup.Size = new System.Drawing.Size(800, 546);
             this.tableLayoutPanelGroup.TabIndex = 5;
             // 
             // panel3
@@ -1733,10 +1733,10 @@ namespace MainSystem
             this.panel3.Controls.Add(this.txtGroup);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(323, 34);
+            this.panel3.Location = new System.Drawing.Point(323, 31);
             this.panel3.Name = "panel3";
             this.tableLayoutPanelGroup.SetRowSpan(this.panel3, 2);
-            this.panel3.Size = new System.Drawing.Size(474, 497);
+            this.panel3.Size = new System.Drawing.Size(474, 450);
             this.panel3.TabIndex = 17;
             // 
             // btnSaveGroup
@@ -1903,12 +1903,12 @@ namespace MainSystem
             this.tableLayoutPanel37.Controls.Add(this.btnUpdateGroup, 2, 0);
             this.tableLayoutPanel37.Controls.Add(this.btnAddGroup, 1, 0);
             this.tableLayoutPanel37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel37.Location = new System.Drawing.Point(3, 537);
+            this.tableLayoutPanel37.Location = new System.Drawing.Point(3, 487);
             this.tableLayoutPanel37.Name = "tableLayoutPanel37";
             this.tableLayoutPanel37.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel37.RowCount = 1;
             this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel37.Size = new System.Drawing.Size(794, 55);
+            this.tableLayoutPanel37.Size = new System.Drawing.Size(794, 56);
             this.tableLayoutPanel37.TabIndex = 31;
             // 
             // btnDeleteGroup
@@ -1928,7 +1928,7 @@ namespace MainSystem
             this.btnDeleteGroup.Location = new System.Drawing.Point(322, 4);
             this.btnDeleteGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteGroup.Name = "btnDeleteGroup";
-            this.btnDeleteGroup.Size = new System.Drawing.Size(73, 47);
+            this.btnDeleteGroup.Size = new System.Drawing.Size(73, 48);
             this.btnDeleteGroup.TabIndex = 2;
             this.btnDeleteGroup.Click += new System.EventHandler(this.btnDeleteGroup_Click);
             // 
@@ -1949,7 +1949,7 @@ namespace MainSystem
             this.btnUpdateGroup.Location = new System.Drawing.Point(401, 4);
             this.btnUpdateGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateGroup.Name = "btnUpdateGroup";
-            this.btnUpdateGroup.Size = new System.Drawing.Size(73, 47);
+            this.btnUpdateGroup.Size = new System.Drawing.Size(73, 48);
             this.btnUpdateGroup.TabIndex = 6;
             this.btnUpdateGroup.Click += new System.EventHandler(this.btnUpdateGroup_Click);
             // 
@@ -1970,7 +1970,7 @@ namespace MainSystem
             this.btnAddGroup.Location = new System.Drawing.Point(480, 4);
             this.btnAddGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddGroup.Name = "btnAddGroup";
-            this.btnAddGroup.Size = new System.Drawing.Size(73, 47);
+            this.btnAddGroup.Size = new System.Drawing.Size(73, 48);
             this.btnAddGroup.TabIndex = 3;
             this.btnAddGroup.Click += new System.EventHandler(this.btnGroup_Click);
             // 
@@ -1986,12 +1986,12 @@ namespace MainSystem
             this.dataGridViewGroup.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewGroup.ColumnHeadersHeight = 25;
             this.dataGridViewGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewGroup.Location = new System.Drawing.Point(27, 34);
+            this.dataGridViewGroup.Location = new System.Drawing.Point(27, 31);
             this.dataGridViewGroup.Name = "dataGridViewGroup";
             this.tableLayoutPanelGroup.SetRowSpan(this.dataGridViewGroup, 2);
             this.dataGridViewGroup.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewGroup.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewGroup.Size = new System.Drawing.Size(290, 497);
+            this.dataGridViewGroup.Size = new System.Drawing.Size(290, 450);
             this.dataGridViewGroup.TabIndex = 32;
             // 
             // mTPFactory
@@ -1999,9 +1999,9 @@ namespace MainSystem
             this.mTPFactory.Controls.Add(this.tableLayoutPanelFactory);
             this.mTPFactory.HorizontalScrollbarBarColor = true;
             this.mTPFactory.HorizontalScrollbarSize = 0;
-            this.mTPFactory.Location = new System.Drawing.Point(4, 5);
+            this.mTPFactory.Location = new System.Drawing.Point(4, 54);
             this.mTPFactory.Name = "mTPFactory";
-            this.mTPFactory.Size = new System.Drawing.Size(800, 595);
+            this.mTPFactory.Size = new System.Drawing.Size(800, 546);
             this.mTPFactory.TabIndex = 0;
             this.mTPFactory.Text = "المصنع";
             this.mTPFactory.VerticalScrollbarBarColor = true;
@@ -2026,7 +2026,7 @@ namespace MainSystem
             this.tableLayoutPanelFactory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
             this.tableLayoutPanelFactory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.47059F));
             this.tableLayoutPanelFactory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanelFactory.Size = new System.Drawing.Size(800, 595);
+            this.tableLayoutPanelFactory.Size = new System.Drawing.Size(800, 546);
             this.tableLayoutPanelFactory.TabIndex = 6;
             // 
             // tableLayoutPanel21
@@ -2045,12 +2045,12 @@ namespace MainSystem
             this.tableLayoutPanel21.Controls.Add(this.btnAddFactory, 1, 0);
             this.tableLayoutPanel21.Controls.Add(this.btnUpdate, 2, 0);
             this.tableLayoutPanel21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 537);
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(3, 487);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel21.RowCount = 1;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(794, 55);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(794, 56);
             this.tableLayoutPanel21.TabIndex = 31;
             this.tableLayoutPanel21.Click += new System.EventHandler(this.btnFactory_Click);
             // 
@@ -2071,7 +2071,7 @@ namespace MainSystem
             this.btnFactoryDelete.Location = new System.Drawing.Point(322, 4);
             this.btnFactoryDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFactoryDelete.Name = "btnFactoryDelete";
-            this.btnFactoryDelete.Size = new System.Drawing.Size(73, 47);
+            this.btnFactoryDelete.Size = new System.Drawing.Size(73, 48);
             this.btnFactoryDelete.TabIndex = 2;
             this.btnFactoryDelete.Click += new System.EventHandler(this.btnDeleteFactory_Click);
             // 
@@ -2092,7 +2092,7 @@ namespace MainSystem
             this.btnAddFactory.Location = new System.Drawing.Point(480, 4);
             this.btnAddFactory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddFactory.Name = "btnAddFactory";
-            this.btnAddFactory.Size = new System.Drawing.Size(73, 47);
+            this.btnAddFactory.Size = new System.Drawing.Size(73, 48);
             this.btnAddFactory.TabIndex = 3;
             this.btnAddFactory.Click += new System.EventHandler(this.btnFactory_Click);
             // 
@@ -2113,7 +2113,7 @@ namespace MainSystem
             this.btnUpdate.Location = new System.Drawing.Point(401, 4);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(73, 47);
+            this.btnUpdate.Size = new System.Drawing.Size(73, 48);
             this.btnUpdate.TabIndex = 4;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -2129,12 +2129,12 @@ namespace MainSystem
             this.dataGridViewFactory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewFactory.ColumnHeadersHeight = 25;
             this.dataGridViewFactory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewFactory.Location = new System.Drawing.Point(38, 34);
+            this.dataGridViewFactory.Location = new System.Drawing.Point(38, 31);
             this.dataGridViewFactory.Name = "dataGridViewFactory";
             this.tableLayoutPanelFactory.SetRowSpan(this.dataGridViewFactory, 2);
             this.dataGridViewFactory.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewFactory.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewFactory.Size = new System.Drawing.Size(279, 497);
+            this.dataGridViewFactory.Size = new System.Drawing.Size(279, 450);
             this.dataGridViewFactory.TabIndex = 32;
             // 
             // panel1
@@ -2146,10 +2146,10 @@ namespace MainSystem
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtFactory);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(323, 34);
+            this.panel1.Location = new System.Drawing.Point(323, 31);
             this.panel1.Name = "panel1";
             this.tableLayoutPanelFactory.SetRowSpan(this.panel1, 2);
-            this.panel1.Size = new System.Drawing.Size(474, 497);
+            this.panel1.Size = new System.Drawing.Size(474, 450);
             this.panel1.TabIndex = 17;
             // 
             // button2
@@ -2228,9 +2228,9 @@ namespace MainSystem
             this.mTPType.Controls.Add(this.tableLayoutPanelType);
             this.mTPType.HorizontalScrollbarBarColor = true;
             this.mTPType.HorizontalScrollbarSize = 0;
-            this.mTPType.Location = new System.Drawing.Point(4, 5);
+            this.mTPType.Location = new System.Drawing.Point(4, 54);
             this.mTPType.Name = "mTPType";
-            this.mTPType.Size = new System.Drawing.Size(800, 595);
+            this.mTPType.Size = new System.Drawing.Size(800, 546);
             this.mTPType.TabIndex = 6;
             this.mTPType.Text = "النوع";
             this.mTPType.VerticalScrollbarBarColor = true;
@@ -2255,7 +2255,7 @@ namespace MainSystem
             this.tableLayoutPanelType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.64706F));
             this.tableLayoutPanelType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.47059F));
             this.tableLayoutPanelType.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanelType.Size = new System.Drawing.Size(800, 595);
+            this.tableLayoutPanelType.Size = new System.Drawing.Size(800, 546);
             this.tableLayoutPanelType.TabIndex = 6;
             // 
             // tableLayoutPanel3
@@ -2273,12 +2273,12 @@ namespace MainSystem
             this.tableLayoutPanel3.Controls.Add(this.btnUpdateType, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnAddType, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 537);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 487);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(794, 55);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(794, 56);
             this.tableLayoutPanel3.TabIndex = 30;
             // 
             // btnTypeDelete
@@ -2298,7 +2298,7 @@ namespace MainSystem
             this.btnTypeDelete.Location = new System.Drawing.Point(269, 4);
             this.btnTypeDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTypeDelete.Name = "btnTypeDelete";
-            this.btnTypeDelete.Size = new System.Drawing.Size(82, 47);
+            this.btnTypeDelete.Size = new System.Drawing.Size(82, 48);
             this.btnTypeDelete.TabIndex = 2;
             this.btnTypeDelete.Click += new System.EventHandler(this.btnDeleteType_Click);
             // 
@@ -2319,7 +2319,7 @@ namespace MainSystem
             this.btnUpdateType.Location = new System.Drawing.Point(357, 4);
             this.btnUpdateType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateType.Name = "btnUpdateType";
-            this.btnUpdateType.Size = new System.Drawing.Size(82, 47);
+            this.btnUpdateType.Size = new System.Drawing.Size(82, 48);
             this.btnUpdateType.TabIndex = 5;
             this.btnUpdateType.Click += new System.EventHandler(this.btnUpdateType_Click);
             // 
@@ -2340,7 +2340,7 @@ namespace MainSystem
             this.btnAddType.Location = new System.Drawing.Point(445, 4);
             this.btnAddType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddType.Name = "btnAddType";
-            this.btnAddType.Size = new System.Drawing.Size(82, 47);
+            this.btnAddType.Size = new System.Drawing.Size(82, 48);
             this.btnAddType.TabIndex = 3;
             this.btnAddType.Click += new System.EventHandler(this.btnType_Click);
             // 
@@ -2368,7 +2368,7 @@ namespace MainSystem
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(83, 34);
+            this.dataGridView1.Location = new System.Drawing.Point(83, 31);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -2388,7 +2388,7 @@ namespace MainSystem
             this.tableLayoutPanelType.SetRowSpan(this.dataGridView1, 2);
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.Size = new System.Drawing.Size(234, 497);
+            this.dataGridView1.Size = new System.Drawing.Size(234, 450);
             this.dataGridView1.TabIndex = 31;
             // 
             // panel2
@@ -2399,10 +2399,10 @@ namespace MainSystem
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.txtType);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(323, 34);
+            this.panel2.Location = new System.Drawing.Point(323, 31);
             this.panel2.Name = "panel2";
             this.tableLayoutPanelType.SetRowSpan(this.panel2, 2);
-            this.panel2.Size = new System.Drawing.Size(474, 497);
+            this.panel2.Size = new System.Drawing.Size(474, 450);
             this.panel2.TabIndex = 32;
             // 
             // btnTypeDisplayAll

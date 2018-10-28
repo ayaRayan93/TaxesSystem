@@ -306,7 +306,112 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        //customers Accounting
+        private void btnCustomerAccountStatment_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage("كشف حسابات العملاء");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("كشف حسابات العملاء");
+                    xtraTabPage = getTabPage("كشف حسابات العملاء");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                customerBills objForm = new customerBills();
+                objForm.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAgalAcountStatment_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage("كشف حسابات العملاءالاجل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("كشف حسابات العملاءالاجل");
+                    xtraTabPage = getTabPage("كشف حسابات العملاءالاجل");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                AccountStatement objForm = new AccountStatement();
+                objForm.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnTaswayAgalBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage("تسوية فواتير الاجل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("تسوية فواتير الاجل");
+                    xtraTabPage = getTabPage("تسوية فواتير الاجل");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                checkPaidBillsForm objForm = new checkPaidBillsForm();
+                objForm.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         //functions
         //Products sell price
         public void bindDisplayProductsSellPriceForm(XtraTabPage xtraTabPage)
@@ -391,7 +496,6 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
         //offers
         public void bindRecordOfferForm(Offer offer)
         {
