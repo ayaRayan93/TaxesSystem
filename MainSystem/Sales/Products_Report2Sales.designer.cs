@@ -52,6 +52,7 @@
             this.txtCodeSearch5 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnNewChosen = new System.Windows.Forms.Button();
             this.comColor = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -309,7 +310,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(298, 37);
             this.label9.TabIndex = 136;
-            this.label9.Text = "بحث بكود البند";
+            this.label9.Text = "بحث بكود الصنف";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel8
@@ -400,6 +401,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnNewChosen);
             this.panel3.Controls.Add(this.comColor);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.label4);
@@ -420,12 +422,27 @@
             this.panel3.Size = new System.Drawing.Size(713, 78);
             this.panel3.TabIndex = 0;
             // 
+            // btnNewChosen
+            // 
+            this.btnNewChosen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewChosen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChosen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChosen.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewChosen.ForeColor = System.Drawing.Color.White;
+            this.btnNewChosen.Location = new System.Drawing.Point(3, 6);
+            this.btnNewChosen.Name = "btnNewChosen";
+            this.btnNewChosen.Size = new System.Drawing.Size(57, 56);
+            this.btnNewChosen.TabIndex = 23;
+            this.btnNewChosen.Text = "اختيار اخر";
+            this.btnNewChosen.UseVisualStyleBackColor = false;
+            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
+            // 
             // comColor
             // 
             this.comColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comColor.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comColor.FormattingEnabled = true;
-            this.comColor.Location = new System.Drawing.Point(105, 35);
+            this.comColor.Location = new System.Drawing.Point(161, 35);
             this.comColor.Name = "comColor";
             this.comColor.Size = new System.Drawing.Size(100, 24);
             this.comColor.TabIndex = 19;
@@ -438,7 +455,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(7, 32);
+            this.btnSearch.Location = new System.Drawing.Point(63, 32);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(87, 30);
             this.btnSearch.TabIndex = 13;
@@ -451,7 +468,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label4.Location = new System.Drawing.Point(434, 38);
+            this.label4.Location = new System.Drawing.Point(462, 38);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label4.Size = new System.Drawing.Size(51, 19);
@@ -463,7 +480,7 @@
             this.comSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comSize.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comSize.FormattingEnabled = true;
-            this.comSize.Location = new System.Drawing.Point(104, 6);
+            this.comSize.Location = new System.Drawing.Point(160, 6);
             this.comSize.Name = "comSize";
             this.comSize.Size = new System.Drawing.Size(100, 24);
             this.comSize.TabIndex = 18;
@@ -474,9 +491,9 @@
             this.comType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(499, 6);
+            this.comType.Location = new System.Drawing.Point(529, 6);
             this.comType.Name = "comType";
-            this.comType.Size = new System.Drawing.Size(150, 24);
+            this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -485,9 +502,9 @@
             this.comGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(270, 6);
+            this.comGroup.Location = new System.Drawing.Point(328, 6);
             this.comGroup.Name = "comGroup";
-            this.comGroup.Size = new System.Drawing.Size(150, 24);
+            this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -508,7 +525,7 @@
             this.comSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comSort.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comSort.FormattingEnabled = true;
-            this.comSort.Location = new System.Drawing.Point(8, 6);
+            this.comSort.Location = new System.Drawing.Point(64, 6);
             this.comSort.Name = "comSort";
             this.comSort.Size = new System.Drawing.Size(50, 24);
             this.comSort.TabIndex = 17;
@@ -519,9 +536,9 @@
             this.comProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comProduct.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comProduct.FormattingEnabled = true;
-            this.comProduct.Location = new System.Drawing.Point(270, 35);
+            this.comProduct.Location = new System.Drawing.Point(328, 35);
             this.comProduct.Name = "comProduct";
-            this.comProduct.Size = new System.Drawing.Size(150, 24);
+            this.comProduct.Size = new System.Drawing.Size(120, 24);
             this.comProduct.TabIndex = 9;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -542,7 +559,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label11.Location = new System.Drawing.Point(62, 9);
+            this.label11.Location = new System.Drawing.Point(118, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 19);
             this.label11.TabIndex = 14;
@@ -553,7 +570,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label13.Location = new System.Drawing.Point(209, 38);
+            this.label13.Location = new System.Drawing.Point(265, 38);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(42, 19);
             this.label13.TabIndex = 16;
@@ -564,9 +581,9 @@
             this.comFactory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(499, 35);
+            this.comFactory.Location = new System.Drawing.Point(529, 35);
             this.comFactory.Name = "comFactory";
-            this.comFactory.Size = new System.Drawing.Size(150, 24);
+            this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -575,7 +592,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(424, 9);
+            this.label14.Location = new System.Drawing.Point(452, 9);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(71, 19);
@@ -587,7 +604,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label12.Location = new System.Drawing.Point(208, 9);
+            this.label12.Location = new System.Drawing.Point(264, 9);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 19);
             this.label12.TabIndex = 15;
@@ -784,5 +801,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnNewChosen;
     }
 }

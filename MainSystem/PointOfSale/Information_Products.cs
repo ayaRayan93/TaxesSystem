@@ -43,7 +43,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "SELECT data.Data_ID,data.Code as 'الكود',CONCAT(product.Product_Name, ' , ', type.Type_Name, ' , ', factory.Factory_Name, ' , ', groupo.Group_Name) as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',data.Description as 'الوصف',data_photo.Photo as 'الصورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN data_photo ON data_photo.Data_ID = data.Data_ID group by data.Data_ID order by sellprice.Date desc";
+                string query = "SELECT data.Data_ID,data.Code as 'الكود',CONCAT(product.Product_Name, ' , ', type.Type_Name, ' , ', factory.Factory_Name, ' , ', groupo.Group_Name) as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',data.Description as 'الوصف',data_photo.Photo as 'الصورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN data_photo ON data_photo.Data_ID = data.Data_ID group by data.Data_ID order by sellprice.Date desc";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -284,7 +284,7 @@ namespace MainSystem
                     fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
                 }
 
-                string query = "SELECT data.Data_ID,data.Code as 'الكود',CONCAT(product.Product_Name, ' , ', type.Type_Name, ' , ', factory.Factory_Name, ' , ', groupo.Group_Name) as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',data.Description as 'الوصف',data_photo.Photo as 'الصورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN data_photo ON data_photo.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by sellprice.Date desc";
+                string query = "SELECT data.Data_ID,data.Code as 'الكود',CONCAT(product.Product_Name, ' , ', type.Type_Name, ' , ', factory.Factory_Name, ' , ', groupo.Group_Name) as 'الاسم',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',data.Description as 'الوصف',data_photo.Photo as 'الصورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN data_photo ON data_photo.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by sellprice.Date desc";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -388,6 +388,29 @@ namespace MainSystem
                     return MainForm.tabControlPointSale.TabPages[i];
                 }
             return null;
+        }
+
+        private void btnNewChosen_Click(object sender, EventArgs e)
+        {
+            clear();
+
+            gridControl1.DataSource = null;
+        }
+
+        //clear function
+        public void clear()
+        {
+            foreach (Control co in this.groupBox1.Controls)
+            {
+                if (co is System.Windows.Forms.ComboBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
+            }
         }
     }
 }

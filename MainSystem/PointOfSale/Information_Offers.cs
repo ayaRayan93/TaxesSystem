@@ -37,13 +37,13 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'البيان',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=0 group by offer.Offer_ID", dbconnection);
+                MySqlDataAdapter adapter = new MySqlDataAdapter("select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=0 group by offer.Offer_ID", dbconnection);
                 DataTable dtf = new DataTable();
                 adapter.Fill(dtf);
                 gridControl1.DataSource = dtf;
                 layoutView1.Columns[0].Visible = false;
 
-                string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'البيان',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID group by offer.Offer_ID";
+                string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID group by offer.Offer_ID";
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
@@ -55,7 +55,7 @@ namespace MainSystem
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الكود"], dr["الكود"]);
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الاسم"], dr["الاسم"]);
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["السعر"], dr["السعر"]);
-                        layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["البيان"], dr["البيان"]);
+                        layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الوصف"], dr["الوصف"]);
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الصورة"], dr["الصورة"]);
                         layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الكمية"], dr["الكمية"]);
                     }
@@ -83,7 +83,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     checkEditOffers.Checked = false;
-                    string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'البيان',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + comOffer.SelectedValue.ToString() + " group by offer.Offer_ID";
+                    string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + comOffer.SelectedValue.ToString() + " group by offer.Offer_ID";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
@@ -111,7 +111,7 @@ namespace MainSystem
                 if (checkEditOffers.Checked)
                 {
                     comOffer.Text = "";
-                    string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'البيان',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID group by offer.Offer_ID";
+                    string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID group by offer.Offer_ID";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();

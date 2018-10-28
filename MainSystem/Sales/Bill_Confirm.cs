@@ -41,6 +41,12 @@ namespace MainSystem
             connectionReader = new MySqlConnection(connection.connectionString);
             connectionReader1 = new MySqlConnection(connection.connectionString);
             connectionReader2 = new MySqlConnection(connection.connectionString);
+
+            panel2.AutoScroll = false;
+            panel2.VerticalScroll.Enabled = false;
+            panel2.VerticalScroll.Visible = false;
+            panel2.VerticalScroll.Maximum = 0;
+            panel2.AutoScroll = true;
         }
         //events
         private void Form1_Load(object sender, EventArgs e)

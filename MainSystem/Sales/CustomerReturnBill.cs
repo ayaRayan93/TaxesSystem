@@ -423,7 +423,6 @@ namespace MainSystem
                     dataGridView2.Rows[n].Cells["Colour"].Value = row1.Cells["اللون"].Value;
                     dataGridView2.Rows[n].Cells["Size"].Value = row1.Cells["المقاس"].Value;
                     dataGridView2.Rows[n].Cells["Sort"].Value = row1.Cells["الفرز"].Value;
-                    //dataGridView2.Rows[n].Cells["Classification"].Value = row1.Cells["التصنيف"].Value;
                     dataGridView2.Rows[n].Cells["Description"].Value = row1.Cells["الوصف"].Value;
                     if ((totalMeter + returnedQuantity) == Convert.ToDouble(row1.Cells["الكمية"].Value))
                     {
@@ -569,7 +568,7 @@ namespace MainSystem
                         c2.ExecuteNonQuery();
                     }
 
-                    //IncreaseProductQuantity(id);
+                    IncreaseProductQuantity(id);
                     clrearAll();
                     clear(tableLayoutPanel1);
                     returnBillReport.DisplayBillNumber();

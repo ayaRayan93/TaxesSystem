@@ -620,5 +620,26 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
+        private void btnNewChosen_Click(object sender, EventArgs e)
+        {
+            clearCom();
+        }
+
+        //clear function
+        public void clearCom()
+        {
+            foreach (Control co in this.groupBox1.Controls)
+            {
+                if (co is System.Windows.Forms.ComboBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
+            }
+        }
     }
 }

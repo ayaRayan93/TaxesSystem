@@ -44,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.txtClient = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,6 +61,7 @@
             this.txtCodeSearch5 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnNewChosen = new System.Windows.Forms.Button();
             this.comColor = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.comSize = new System.Windows.Forms.ComboBox();
@@ -85,6 +85,8 @@
             this.btnSearchAll = new System.Windows.Forms.Button();
             this.checkEditSets = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
+            this.txtSetID = new System.Windows.Forms.TextBox();
+            this.txtOfferID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -92,7 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -260,6 +261,7 @@
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
             // tableLayoutPanel4
@@ -340,7 +342,6 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanel6.Controls.Add(this.checkEdit1, 7, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtClient, 6, 0);
             this.tableLayoutPanel6.Controls.Add(this.label6, 5, 0);
             this.tableLayoutPanel6.Controls.Add(this.label5, 3, 0);
@@ -354,17 +355,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1037, 34);
             this.tableLayoutPanel6.TabIndex = 14;
-            // 
-            // checkEdit1
-            // 
-            this.checkEdit1.Enabled = false;
-            this.checkEdit1.Location = new System.Drawing.Point(52, 3);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkEdit1.Properties.Appearance.Options.UseFont = true;
-            this.checkEdit1.Properties.Caption = "جديد";
-            this.checkEdit1.Size = new System.Drawing.Size(53, 20);
-            this.checkEdit1.TabIndex = 4;
             // 
             // txtClient
             // 
@@ -480,7 +470,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(298, 37);
             this.label9.TabIndex = 136;
-            this.label9.Text = "بحث بكود البند";
+            this.label9.Text = "بحث بكود الصنف";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel8
@@ -571,6 +561,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnNewChosen);
             this.panel3.Controls.Add(this.comColor);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.comSize);
@@ -591,12 +582,27 @@
             this.panel3.Size = new System.Drawing.Size(713, 74);
             this.panel3.TabIndex = 0;
             // 
+            // btnNewChosen
+            // 
+            this.btnNewChosen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewChosen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChosen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChosen.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewChosen.ForeColor = System.Drawing.Color.White;
+            this.btnNewChosen.Location = new System.Drawing.Point(4, 6);
+            this.btnNewChosen.Name = "btnNewChosen";
+            this.btnNewChosen.Size = new System.Drawing.Size(57, 56);
+            this.btnNewChosen.TabIndex = 22;
+            this.btnNewChosen.Text = "اختيار اخر";
+            this.btnNewChosen.UseVisualStyleBackColor = false;
+            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
+            // 
             // comColor
             // 
             this.comColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comColor.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comColor.FormattingEnabled = true;
-            this.comColor.Location = new System.Drawing.Point(107, 35);
+            this.comColor.Location = new System.Drawing.Point(164, 35);
             this.comColor.Name = "comColor";
             this.comColor.Size = new System.Drawing.Size(100, 24);
             this.comColor.TabIndex = 19;
@@ -609,7 +615,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(9, 32);
+            this.btnSearch.Location = new System.Drawing.Point(66, 32);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(87, 30);
             this.btnSearch.TabIndex = 13;
@@ -622,7 +628,7 @@
             this.comSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comSize.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comSize.FormattingEnabled = true;
-            this.comSize.Location = new System.Drawing.Point(106, 6);
+            this.comSize.Location = new System.Drawing.Point(163, 6);
             this.comSize.Name = "comSize";
             this.comSize.Size = new System.Drawing.Size(100, 24);
             this.comSize.TabIndex = 18;
@@ -633,9 +639,9 @@
             this.comGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(272, 6);
+            this.comGroup.Location = new System.Drawing.Point(331, 6);
             this.comGroup.Name = "comGroup";
-            this.comGroup.Size = new System.Drawing.Size(150, 24);
+            this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -644,7 +650,7 @@
             this.comSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comSort.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comSort.FormattingEnabled = true;
-            this.comSort.Location = new System.Drawing.Point(10, 6);
+            this.comSort.Location = new System.Drawing.Point(67, 6);
             this.comSort.Name = "comSort";
             this.comSort.Size = new System.Drawing.Size(50, 24);
             this.comSort.TabIndex = 17;
@@ -667,7 +673,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label13.Location = new System.Drawing.Point(211, 38);
+            this.label13.Location = new System.Drawing.Point(268, 38);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(42, 19);
             this.label13.TabIndex = 16;
@@ -678,7 +684,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(426, 9);
+            this.label14.Location = new System.Drawing.Point(454, 9);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(71, 19);
@@ -690,7 +696,7 @@
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label12.Location = new System.Drawing.Point(210, 9);
+            this.label12.Location = new System.Drawing.Point(267, 9);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 19);
             this.label12.TabIndex = 15;
@@ -701,9 +707,9 @@
             this.comFactory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(501, 35);
+            this.comFactory.Location = new System.Drawing.Point(531, 35);
             this.comFactory.Name = "comFactory";
-            this.comFactory.Size = new System.Drawing.Size(150, 24);
+            this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -712,7 +718,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label11.Location = new System.Drawing.Point(64, 9);
+            this.label11.Location = new System.Drawing.Point(121, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 19);
             this.label11.TabIndex = 14;
@@ -723,9 +729,9 @@
             this.comProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comProduct.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comProduct.FormattingEnabled = true;
-            this.comProduct.Location = new System.Drawing.Point(272, 35);
+            this.comProduct.Location = new System.Drawing.Point(331, 35);
             this.comProduct.Name = "comProduct";
-            this.comProduct.Size = new System.Drawing.Size(150, 24);
+            this.comProduct.Size = new System.Drawing.Size(120, 24);
             this.comProduct.TabIndex = 9;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -746,9 +752,9 @@
             this.comType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(501, 6);
+            this.comType.Location = new System.Drawing.Point(531, 6);
             this.comType.Name = "comType";
-            this.comType.Size = new System.Drawing.Size(150, 24);
+            this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -757,7 +763,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label4.Location = new System.Drawing.Point(436, 38);
+            this.label4.Location = new System.Drawing.Point(464, 38);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label4.Size = new System.Drawing.Size(51, 19);
@@ -767,22 +773,26 @@
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel7.ColumnCount = 8;
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6F));
+            this.tableLayoutPanel7.ColumnCount = 10;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel7.Controls.Add(this.label8, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.label10, 4, 0);
+            this.tableLayoutPanel7.Controls.Add(this.label10, 5, 0);
             this.tableLayoutPanel7.Controls.Add(this.comSet, 2, 0);
-            this.tableLayoutPanel7.Controls.Add(this.comOffer, 5, 0);
-            this.tableLayoutPanel7.Controls.Add(this.btnSearchAll, 7, 0);
-            this.tableLayoutPanel7.Controls.Add(this.checkEditSets, 3, 0);
-            this.tableLayoutPanel7.Controls.Add(this.checkEditOffers, 6, 0);
+            this.tableLayoutPanel7.Controls.Add(this.comOffer, 6, 0);
+            this.tableLayoutPanel7.Controls.Add(this.btnSearchAll, 9, 0);
+            this.tableLayoutPanel7.Controls.Add(this.checkEditSets, 4, 0);
+            this.tableLayoutPanel7.Controls.Add(this.checkEditOffers, 8, 0);
+            this.tableLayoutPanel7.Controls.Add(this.txtSetID, 3, 0);
+            this.tableLayoutPanel7.Controls.Add(this.txtOfferID, 7, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 136);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -797,7 +807,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label8.Location = new System.Drawing.Point(875, 0);
+            this.label8.Location = new System.Drawing.Point(917, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 19);
             this.label8.TabIndex = 0;
@@ -810,7 +820,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label10.Location = new System.Drawing.Point(441, 0);
+            this.label10.Location = new System.Drawing.Point(462, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(97, 19);
             this.label10.TabIndex = 1;
@@ -821,7 +831,7 @@
             // 
             this.comSet.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comSet.FormattingEnabled = true;
-            this.comSet.Location = new System.Drawing.Point(579, 3);
+            this.comSet.Location = new System.Drawing.Point(621, 3);
             this.comSet.Name = "comSet";
             this.comSet.Size = new System.Drawing.Size(290, 24);
             this.comSet.TabIndex = 2;
@@ -831,7 +841,7 @@
             // 
             this.comOffer.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comOffer.FormattingEnabled = true;
-            this.comOffer.Location = new System.Drawing.Point(145, 3);
+            this.comOffer.Location = new System.Drawing.Point(166, 3);
             this.comOffer.Name = "comOffer";
             this.comOffer.Size = new System.Drawing.Size(290, 24);
             this.comOffer.TabIndex = 3;
@@ -842,11 +852,11 @@
             this.btnSearchAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnSearchAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchAll.ForeColor = System.Drawing.Color.White;
             this.btnSearchAll.Location = new System.Drawing.Point(3, 3);
             this.btnSearchAll.Name = "btnSearchAll";
-            this.btnSearchAll.Size = new System.Drawing.Size(100, 24);
+            this.btnSearchAll.Size = new System.Drawing.Size(100, 28);
             this.btnSearchAll.TabIndex = 14;
             this.btnSearchAll.Text = "بحث عام";
             this.btnSearchAll.UseVisualStyleBackColor = false;
@@ -855,7 +865,7 @@
             // checkEditSets
             // 
             this.checkEditSets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkEditSets.Location = new System.Drawing.Point(544, 3);
+            this.checkEditSets.Location = new System.Drawing.Point(565, 3);
             this.checkEditSets.Name = "checkEditSets";
             this.checkEditSets.Properties.Caption = "";
             this.checkEditSets.Size = new System.Drawing.Size(25, 19);
@@ -871,6 +881,28 @@
             this.checkEditOffers.Size = new System.Drawing.Size(25, 19);
             this.checkEditOffers.TabIndex = 16;
             this.checkEditOffers.CheckedChanged += new System.EventHandler(this.checkEditOffers_CheckedChanged);
+            // 
+            // txtSetID
+            // 
+            this.txtSetID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSetID.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtSetID.Location = new System.Drawing.Point(596, 3);
+            this.txtSetID.Name = "txtSetID";
+            this.txtSetID.Size = new System.Drawing.Size(4, 23);
+            this.txtSetID.TabIndex = 17;
+            this.txtSetID.Visible = false;
+            this.txtSetID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxSearch_KeyDown);
+            // 
+            // txtOfferID
+            // 
+            this.txtOfferID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOfferID.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtOfferID.Location = new System.Drawing.Point(141, 3);
+            this.txtOfferID.Name = "txtOfferID";
+            this.txtOfferID.Size = new System.Drawing.Size(4, 23);
+            this.txtOfferID.TabIndex = 18;
+            this.txtOfferID.Visible = false;
+            this.txtOfferID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxSearch_KeyDown);
             // 
             // Products_Report
             // 
@@ -892,7 +924,6 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -928,7 +959,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtClient;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.Label label4;
@@ -967,5 +997,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButtonAddSpecialOrder;
+        private System.Windows.Forms.TextBox txtSetID;
+        private System.Windows.Forms.TextBox txtOfferID;
+        private System.Windows.Forms.Button btnNewChosen;
     }
 }
