@@ -65,7 +65,7 @@ namespace MainSystem
                             return;
                         }
 
-                        if (selRow["الكود"].ToString().Length >= 20)
+                        if (selRow["الكود"].ToString().Length >= 20 && Convert.ToDouble(selRow["الكرتنة"]) > 0)
                         {
                             if (cartonNumCheck())
                             { }

@@ -28,7 +28,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select Store_Name as 'المخزن' ,sum(Total_Meters) as 'الكمية' from storage where Data_ID=" + code + " group by Data_ID ,Store_ID";
+                string query = "select store.Store_Name as 'المخزن',sum(Total_Meters) as 'الكمية' from storage INNER JOIN store ON store.Store_ID = storage.Store_ID where Data_ID=" + code + " group by Data_ID ,store.Store_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
