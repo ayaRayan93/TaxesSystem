@@ -131,6 +131,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sales\accounting\AccountStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\AccountStatement.designer.cs">
+      <DependentUpon>AccountStatement.cs</DependentUpon>
+    </Compile>
     <Compile Include="BankSystem.cs" />
     <Compile Include="Bank\BankDepositAgl_Print.cs">
       <SubType>Form</SubType>
@@ -576,6 +582,18 @@
       <DependentUpon>SparePart_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="CarSystem.cs" />
+    <Compile Include="Sales\accounting\checkPaidBillsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\checkPaidBillsForm.designer.cs">
+      <DependentUpon>checkPaidBillsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting\customerBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\customerBills.designer.cs">
+      <DependentUpon>customerBills.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1179,6 +1197,9 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <EmbeddedResource Include="Sales\accounting\AccountStatement.resx">
+      <DependentUpon>AccountStatement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bank\BankDepositAgl_Print.resx">
       <DependentUpon>BankDepositAgl_Print.cs</DependentUpon>
     </EmbeddedResource>
@@ -1397,6 +1418,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cars\SparePart_Report.resx">
       <DependentUpon>SparePart_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\checkPaidBillsForm.resx">
+      <DependentUpon>checkPaidBillsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\customerBills.resx">
+      <DependentUpon>customerBills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\3lawaRecord.resx">
       <DependentUpon>3lawaRecord.cs</DependentUpon>
@@ -2005,6 +2032,7 @@
     <None Include="Resources\Trolley_80px.png" />
     <None Include="Resources\unsave %282%29.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -296,6 +296,7 @@ namespace MainSystem
                 }
             return null;
         }
+
         public bool IsTabPageSave()
         {
             for (int i = 0; i < xtraTabControlMainContainer.TabPages.Count; i++)
@@ -315,13 +316,25 @@ namespace MainSystem
             }
             return true;
         }
+
         public void restForeColorOfNavBarItem()
         {
-            foreach (NavBarItem item in navBarControl1.Items)
+            foreach (XtraTabPage tabPage in xtraTabControlMainContainer.TabPages)
             {
-                item.Appearance.ForeColor = Color.Black;
+                foreach (Control item in tabPage.Controls)
+                {
+                    if (item is NavBarControl)
+                    {
+                        foreach (NavBarItem navBar in navBarControl1.Items)
+                        {
+                            navBar.Appearance.ForeColor = Color.Black;
+                        }
+                    }
+                }
             }
         }
+
+   
     }
 
     public static class connection
