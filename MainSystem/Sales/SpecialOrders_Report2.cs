@@ -190,7 +190,11 @@ namespace MainSystem
                 while (dr.Read())
                 {
                     byte[] img = (byte[])dr["Picture"];
-                    byte[] imgProduct = (byte[])dr["Product_Picture"];
+                    byte[] imgProduct = null;
+                    if (dr["Product_Picture"].ToString() != "")
+                    {
+                        imgProduct = (byte[])dr["Product_Picture"];
+                    }
                     lista.Add(new GridPicture() { SpecialOrderID = Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), RequestNumber = Convert.ToInt16(dr["BranchBillNumber"].ToString()), Picture = img, ProductPicture = imgProduct, RequestDescription = dr["Description"].ToString() });
                 }
                 dr.Close();

@@ -252,17 +252,17 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "عرض فواتير المرتجعات");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("عرض فواتير المرتجعات");
-                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "عرض فواتير المرتجعات");
+                    xtraTabControlSalesContent.TabPages.Add("تسجيل فاتورة مرتجع");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
-                CustomerReturnBill_Report objForm = new CustomerReturnBill_Report(this);
+                CustomerReturnBill objForm = new CustomerReturnBill(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -673,7 +673,7 @@ namespace MainSystem
 
         public void bindRecordCustomerReturnBillForm(CustomerReturnBill_Report ReturnBillReport)
         {
-            CustomerReturnBill objForm = new CustomerReturnBill(ReturnBillReport);
+            /*CustomerReturnBill objForm = new CustomerReturnBill(ReturnBillReport);
 
             objForm.TopLevel = false;
             XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل فاتورة مرتجع");
@@ -689,7 +689,7 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
-
+            */
         }
 
         //customers

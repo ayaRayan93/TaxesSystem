@@ -25,9 +25,9 @@ namespace MainSystem
         List<int> listOfRow2In;
         int EmpBranchId = 0;
         //int customerBillId = 0;
-        CustomerReturnBill_Report returnBillReport;
+        MainForm salesMainForm;
 
-        public CustomerReturnBill(CustomerReturnBill_Report ReturnBillReport)
+        public CustomerReturnBill(MainForm SalesMainForm)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -46,7 +46,7 @@ namespace MainSystem
             labBillNumber.Visible = false;
             comBillNumber.Visible = false;
 
-            returnBillReport = ReturnBillReport;
+            salesMainForm = SalesMainForm;
         }
 
         private void CustomerReturnBill_Load(object sender, EventArgs e)
@@ -571,8 +571,8 @@ namespace MainSystem
                     IncreaseProductQuantity(id);
                     clrearAll();
                     clear(tableLayoutPanel1);
-                    returnBillReport.DisplayBillNumber();
-                    returnBillReport.DisplayBills();
+                    //returnBillReport.DisplayBillNumber();
+                    //returnBillReport.DisplayBills();
                 }
                 else
                 {
