@@ -322,7 +322,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPageInformationProducts.Name = "tabPageInformationProducts";
-                    tabPageInformationProducts.Text = "استفسار بنود";
+                    tabPageInformationProducts.Text = "كارت الاصناف";
                     panelInformationProducts.Name = "panelInformationProducts";
                     panelInformationProducts.Dock = DockStyle.Fill;
 
@@ -357,7 +357,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPageInformationProductsReport.Name = "tabPageInformationProductsReport";
-                    tabPageInformationProductsReport.Text = "استفسار عام";
+                    tabPageInformationProductsReport.Text = "تقرير الاصناف بسعر البيع";
                     panelInformationProductsReport.Name = "panelInformationProductsReport";
                     panelInformationProductsReport.Dock = DockStyle.Fill;
 
@@ -392,7 +392,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPageInformationSets.Name = "tabPageInformationSets";
-                    tabPageInformationSets.Text = "استفسار اطقم";
+                    tabPageInformationSets.Text = "كارت الاطقم";
                     panelInformationSets.Name = "panelInformationSets";
                     panelInformationSets.Dock = DockStyle.Fill;
 
@@ -427,7 +427,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPageInformationOffers.Name = "tabPageInformationOffers";
-                    tabPageInformationOffers.Text = "استفسار عروض";
+                    tabPageInformationOffers.Text = "كارت العروض";
                     panelInformationOffers.Name = "panelInformationOffers";
                     panelInformationOffers.Dock = DockStyle.Fill;
 

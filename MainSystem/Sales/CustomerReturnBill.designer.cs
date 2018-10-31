@@ -46,6 +46,23 @@
             this.comBillNumber = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -82,23 +99,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -327,6 +327,93 @@
             this.dataGridView2.Size = new System.Drawing.Size(1044, 163);
             this.dataGridView2.TabIndex = 164;
             // 
+            // Data_ID
+            // 
+            this.Data_ID.HeaderText = "Data_ID";
+            this.Data_ID.Name = "Data_ID";
+            this.Data_ID.Visible = false;
+            // 
+            // Code
+            // 
+            this.Code.HeaderText = "الكود";
+            this.Code.Name = "Code";
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "الفئة";
+            this.Type.Name = "Type";
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "اجمالي عدد الوحدات";
+            this.Quantity.Name = "Quantity";
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "السعر";
+            this.priceAD.Name = "priceAD";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
+            // 
+            // totalAD
+            // 
+            this.totalAD.HeaderText = "الاجمالي";
+            this.totalAD.Name = "totalAD";
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الصنف";
+            this.Product_Name.Name = "Product_Name";
+            // 
+            // Type_Name
+            // 
+            this.Type_Name.HeaderText = "النوع";
+            this.Type_Name.Name = "Type_Name";
+            // 
+            // Factory_Name
+            // 
+            this.Factory_Name.HeaderText = "المصنع";
+            this.Factory_Name.Name = "Factory_Name";
+            // 
+            // Group_Name
+            // 
+            this.Group_Name.HeaderText = "المجموعة";
+            this.Group_Name.Name = "Group_Name";
+            // 
+            // Colour
+            // 
+            this.Colour.HeaderText = "اللون";
+            this.Colour.Name = "Colour";
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "المقاس";
+            this.Size.Name = "Size";
+            // 
+            // Sort
+            // 
+            this.Sort.HeaderText = "الفرز";
+            this.Sort.Name = "Sort";
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "الوصف";
+            this.Description.Name = "Description";
+            // 
+            // Returned
+            // 
+            this.Returned.HeaderText = "تم الاسترجاع";
+            this.Returned.Name = "Returned";
+            // 
+            // CustomerBill_ID
+            // 
+            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
+            this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.Visible = false;
+            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -534,9 +621,9 @@
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label14.Location = new System.Drawing.Point(508, 12);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(95, 18);
+            this.label14.Size = new System.Drawing.Size(84, 18);
             this.label14.TabIndex = 197;
-            this.label14.Text = "سبب الاسترجاع";
+            this.label14.Text = "سبب الارتجاع";
             // 
             // txtInfo
             // 
@@ -649,6 +736,7 @@
             // 
             // btnNewChooes
             // 
+            this.btnNewChooes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnNewChooes.FlatAppearance.BorderSize = 0;
             this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -791,93 +879,6 @@
             this.btnDelete.Text = "حذف من فاتورة المرتجع";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // Data_ID
-            // 
-            this.Data_ID.HeaderText = "Data_ID";
-            this.Data_ID.Name = "Data_ID";
-            this.Data_ID.Visible = false;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "الكود";
-            this.Code.Name = "Code";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "الفئة";
-            this.Type.Name = "Type";
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "اجمالي عدد الوحدات";
-            this.Quantity.Name = "Quantity";
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "السعر";
-            this.priceAD.Name = "priceAD";
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "نسبة الخصم";
-            this.Discount.Name = "Discount";
-            // 
-            // totalAD
-            // 
-            this.totalAD.HeaderText = "الاجمالي";
-            this.totalAD.Name = "totalAD";
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.HeaderText = "الصنف";
-            this.Product_Name.Name = "Product_Name";
-            // 
-            // Type_Name
-            // 
-            this.Type_Name.HeaderText = "النوع";
-            this.Type_Name.Name = "Type_Name";
-            // 
-            // Factory_Name
-            // 
-            this.Factory_Name.HeaderText = "المصنع";
-            this.Factory_Name.Name = "Factory_Name";
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.HeaderText = "المجموعة";
-            this.Group_Name.Name = "Group_Name";
-            // 
-            // Colour
-            // 
-            this.Colour.HeaderText = "اللون";
-            this.Colour.Name = "Colour";
-            // 
-            // Size
-            // 
-            this.Size.HeaderText = "المقاس";
-            this.Size.Name = "Size";
-            // 
-            // Sort
-            // 
-            this.Sort.HeaderText = "الفرز";
-            this.Sort.Name = "Sort";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "الوصف";
-            this.Description.Name = "Description";
-            // 
-            // Returned
-            // 
-            this.Returned.HeaderText = "تم الاسترجاع";
-            this.Returned.Name = "Returned";
-            // 
-            // CustomerBill_ID
-            // 
-            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
-            this.CustomerBill_ID.Name = "CustomerBill_ID";
-            this.CustomerBill_ID.Visible = false;
             // 
             // CustomerReturnBill
             // 
