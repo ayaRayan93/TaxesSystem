@@ -524,13 +524,15 @@ namespace MainSystem
                         command.ExecuteNonQuery();
                         conn.Close();
 
-
+                        query2 = "select Data_ID from data order by Data_ID limit 1";
+                        comand = new MySqlCommand(query2, conn);
+                        int data_ID =Convert.ToInt16(comand.ExecuteScalar());
                         //save image as bytes
                         command = conn.CreateCommand();
                         if (selectedImage != null)
                         {
-                            command.CommandText = "INSERT INTO data_photo (Code,Photo,Type) VALUES (?Code,?Photo,?Type)";
-                            command.Parameters.AddWithValue("?Code", code);
+                            command.CommandText = "INSERT INTO data_photo (Data_ID,Photo,Type) VALUES (?Data_ID,?Photo,?Type)";
+                            command.Parameters.AddWithValue("?Data_ID", data_ID);
                             command.Parameters.AddWithValue("?Photo", selectedImage);
                             command.Parameters.AddWithValue("?Type", "بند");
                             conn.Open();

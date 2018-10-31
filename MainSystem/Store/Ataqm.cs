@@ -239,7 +239,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                        // UserControl.UserRecord("sets", "delete", setRow[0].ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("sets", "delete",Convert.ToInt16(setRow[0].ToString()), DateTime.Now,"", dbconnection);
                         dbconnection.Close();
                         DisplayAtaqm();
                         }
@@ -361,6 +361,7 @@ namespace MainSystem
            
                 //Bind the grid control to the data source 
                 dataGridView1.DataSource = dataSet11.Tables["Sets"];
+
                 loaded = true;               
             }
             catch (Exception ex)

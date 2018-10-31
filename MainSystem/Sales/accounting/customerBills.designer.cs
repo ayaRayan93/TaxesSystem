@@ -386,7 +386,6 @@
             this.Name = "customerBills";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerBills";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.customerBills_FormClosed);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

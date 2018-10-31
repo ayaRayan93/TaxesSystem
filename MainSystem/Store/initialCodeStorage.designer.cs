@@ -404,7 +404,7 @@
             // 
             // txtFactory
             // 
-            this.txtFactory.Location = new System.Drawing.Point(431, 61);
+            this.txtFactory.Location = new System.Drawing.Point(152, 31);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(55, 24);
             this.txtFactory.TabIndex = 4;
@@ -469,7 +469,7 @@
             // comFactory
             // 
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(492, 61);
+            this.comFactory.Location = new System.Drawing.Point(213, 31);
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
@@ -479,7 +479,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label4.Location = new System.Drawing.Point(350, 40);
+            this.label4.Location = new System.Drawing.Point(629, 70);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label4.Size = new System.Drawing.Size(67, 18);
@@ -490,16 +490,16 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(629, 67);
+            this.label2.Location = new System.Drawing.Point(350, 37);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(90, 18);
+            this.label2.Size = new System.Drawing.Size(49, 18);
             this.label2.TabIndex = 5;
-            this.label2.Text = "المصنع/المورد";
+            this.label2.Text = "المصنع";
             // 
             // txtGroup
             // 
-            this.txtGroup.Location = new System.Drawing.Point(152, 34);
+            this.txtGroup.Location = new System.Drawing.Point(431, 64);
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(55, 24);
             this.txtGroup.TabIndex = 7;
@@ -508,7 +508,7 @@
             // comGroup
             // 
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(213, 34);
+            this.comGroup.Location = new System.Drawing.Point(492, 64);
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
