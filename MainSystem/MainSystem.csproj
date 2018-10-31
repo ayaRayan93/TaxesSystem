@@ -131,6 +131,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bank\Bill_Items.cs" />
+    <Compile Include="Bank\Print_Bill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\Print_Bill_Report.designer.cs">
+      <DependentUpon>Print_Bill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\Print_Invoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\Print_Invoice.designer.cs">
+      <DependentUpon>Print_Invoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
@@ -1197,6 +1210,12 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <EmbeddedResource Include="Bank\Print_Bill_Report.resx">
+      <DependentUpon>Print_Bill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\Print_Invoice.resx">
+      <DependentUpon>Print_Invoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\AccountStatement.resx">
       <DependentUpon>AccountStatement.cs</DependentUpon>
     </EmbeddedResource>
