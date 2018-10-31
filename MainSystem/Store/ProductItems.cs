@@ -2644,7 +2644,7 @@ namespace MainSystem
                 if (comFactory2.Text != "")
                 {
                     dbconnection.Open();
-                    string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue)+"and Group_ID="+ txtGroup_Size.Text;
+                    string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue) + " and Group_ID="+ txtGroup_Size.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() == null)
                     {
@@ -2696,7 +2696,7 @@ namespace MainSystem
                         if (comFactory2.Text != "")
                         {
                             dbconnection.Open();
-                            string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue);
+                            string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue)+ " and Group_ID=" + txtGroup_Size.Text; ;
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() == null)
                             {
