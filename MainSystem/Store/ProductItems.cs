@@ -29,7 +29,9 @@ namespace MainSystem
         bool flagFactoryP = false;//in product tap
         bool flagGroup = false;//in product tap
         bool flagItemCheckGroup = true;
+        bool nonNumberEntered = false;
         List<factory_Group> listFactory_Group = new List<factory_Group>();
+        AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
         public ProductItems()
         {
             try
@@ -39,9 +41,6 @@ namespace MainSystem
                 mTC_Content.SelectedIndex = 6;
                 displayType();
                 txtType.Focus();
-                txtProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
-                txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
-              
             }
             catch (Exception e)
             {
@@ -674,19 +673,15 @@ namespace MainSystem
                                 query = "select Product_ID as 'كود',Product_Name as 'الصنف' from Product where Product_Name like'" + txtProduct.Text + "%'";
                                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                                 MySqlDataReader dr = comand.ExecuteReader();
-                                List<string> arr = new List<string>();
                                 while (dr.Read())
                                 {
-                                    arr.Add(dr["الصنف"].ToString());
+                                    collection.Add(dr["الصنف"].ToString());
                                 }
                                 dr.Close();
-                                string[] strarr = new string[arr.Count];
-                                arr.CopyTo(strarr);
-
-                                AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-                                collection.AddRange(strarr);
-
+                                txtProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
+                                txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
                                 txtProduct.AutoCompleteCustomSource = collection;
+                                nonNumberEntered = true;
                              }
                         break;
                     case "txtSort":
@@ -1768,9 +1763,6 @@ namespace MainSystem
                                             com.ExecuteNonQuery();
                                         }
                                         displayProduct_Group(Group_ID);
-
-
-
                                     }
                                     else
                                     {
@@ -2652,7 +2644,7 @@ namespace MainSystem
                 if (comFactory2.Text != "")
                 {
                     dbconnection.Open();
-                    string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue);
+                    string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue)+"and Group_ID="+ txtGroup_Size.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() == null)
                     {
@@ -3505,7 +3497,58 @@ namespace MainSystem
             }
             return true;
         }
-      
+
+        private void btnNewChoice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtProduct.Text = "";
+                txtType2.Text = "";
+                txtFactory2.Text = "";
+                comTypeProduct.Text = "";
+                comFactoryGroup.Text = "";
+                comGroup.Text = "";
+                txtGroup.Text = "";
+
+                comGroup.Visible = true;
+                txtGroup2.Visible = true;
+                label11.Visible = true;
+                comFactoryGroup.Visible = true;
+                txtFactory2.Visible = true;
+                label5.Visible = true;
+
+                btnSave_productUpdate.Visible = false;
+                chListBoxGroup.Visible = false;
+                chListBoxFactory.Visible = false;
+                labGroup.Visible = false;
+                labFactory.Visible = false;
+                dataGridViewProduct.DataSource = null;
+
+                comTypeProduct.Enabled = true;
+                txtType2.ReadOnly = false;
+
+                displayProductAll();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtProduct_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (nonNumberEntered == true)
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 
     public class factory_Group

@@ -29,6 +29,7 @@ namespace MainSystem
                 InitializeComponent();
                 this.salesMainForm = salesMainForm;
                 dbconnection = new MySqlConnection(connection.connectionString);
+             
             }
             catch (Exception ex)
             {
@@ -111,7 +112,7 @@ namespace MainSystem
                 comSort.Text = "";
 
                 loaded = true;
-
+                layoutControlItem16.Height = 228;
             }
             catch (Exception ex)
             {
@@ -142,9 +143,21 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1")
+                                if (txtType.Text == "1" || txtType.Text == "2")
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=" + txtType.Text;
+                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                                    DataTable dt2 = new DataTable();
+                                    da2.Fill(dt2);
+                                    comGroup.DataSource = dt2;
+                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+                                else if (txtType.Text == "4")
+                                {
+                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -164,6 +177,7 @@ namespace MainSystem
                                 comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
                                 comColor.ValueMember = dt.Columns["Color_ID"].ToString();
                                 comColor.Text = "";
+                                txtColor.Text = "";
                                 comFactory.Focus();
                             }
                             break;
@@ -171,7 +185,7 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1")
+                                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "4")
                                 {
                                     string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
@@ -194,6 +208,7 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
+                                txtSize.Text = "";
                                 comGroup.Focus();
                             }
                             break;
@@ -221,7 +236,7 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
-
+                                txtSize.Text = "";
                                 comProduct.Focus();
                                 flagProduct = true;
                             }
@@ -236,16 +251,19 @@ namespace MainSystem
                             }
                             break;
 
-                        case "comColour":
+                        case "comColor":
+                            txtColor.Text = comColor.SelectedValue.ToString();
                             comSize.Focus();
                             break;
 
                         case "comSize":
-                            txtClassification.Focus();
+                            txtSize.Text = comSize.SelectedValue.ToString();
+                            txtSort.Focus();
                             break;
 
                         case "comSort":
-                           
+                            txtSort.Text = comSort.SelectedValue.ToString();
+                            comClassfication.Focus();
                             break;
                     }
                 }
@@ -280,7 +298,6 @@ namespace MainSystem
                                     comType.Text = Name;
                                     txtFactory.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -343,6 +360,60 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
+                            case "txtColor":
+                                query = "select Color_Name from color where Color_ID='" + txtColor.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comColor.Text = Name;
+                                    txtSize.Focus();
+                                    dbconnection.Close();
+                                    displayProducts();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtSize":
+                                query = "select Size_Value from size where Size_ID='" + txtSize.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comSize.Text = Name;
+                                    txtSort.Focus();
+                                    dbconnection.Close();
+                                    displayProducts();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtSort":
+                                query = "select Sort_Value from sort where Sort_ID='" + txtSort.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comProduct.Text = Name;
+
+                                    dbconnection.Close();
+                                    displayProducts();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
                         }
 
                     }
@@ -378,11 +449,15 @@ namespace MainSystem
                 comColor.Text = "";
                 comSize.Text = "";
                 comSort.Text = "";
+                comClassfication.Text = "";
 
                 txtType.Text = "";
                 txtFactory.Text = "";
                 txtGroup.Text = "";
                 txtProduct.Text = "";
+                txtColor.Text = "";
+                txtSize.Text = "";
+                txtSort.Text = "";
                 displayProducts();
             }
             catch (Exception ex)
@@ -536,77 +611,94 @@ namespace MainSystem
         //function
         public void displayProducts()
         {
+            string q1, q2, q3, q4, fQuery = "";
+            if (txtType.Text == "")
+            {
+                q1 = "select Type_ID from data";
+            }
+            else
+            {
+                q1 = txtType.Text;
+            }
+            if (txtFactory.Text == "")
+            {
+                q2 = "select Factory_ID from data";
+            }
+            else
+            {
+                q2 = txtFactory.Text;
+            }
+            if (txtProduct.Text == "")
+            {
+                q3 = "select Product_ID from data";
+            }
+            else
+            {
+                q3 = txtProduct.Text;
+            }
+            if (txtGroup.Text == "")
+            {
+                q4 = "select Group_ID from data";
+            }
+            else
+            {
+                q4 = txtGroup.Text;
+            }
+
+            if (comSize.Text != "")
+            {
+                fQuery += "and size.Size_ID='" + comSize.SelectedValue + "'";
+            }
+
+            if (comColor.Text != "")
+            {
+                fQuery += "and color.Color_ID='" + comColor.SelectedValue + "'";
+            }
+            if (comSort.Text != "")
+            {
+                fQuery += "and Sort.Sort_ID='" + comSort.SelectedValue + "'";
+            }
+            if (comClassfication.Text != "")
+            {
+                fQuery += "and data.Classification='" + comClassfication.Text + "'";
+            }
+
+            string query = "SELECT data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery;
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = null;
+            GridView lView = new GridView(gridControl1);
+            gridControl1.MainView = lView;
+            lView.Appearance.Row.Font = gridView1.Appearance.Row.Font;
+            lView.Appearance.Row.TextOptions.HAlignment = gridView1.Appearance.Row.TextOptions.HAlignment;
+            lView.Appearance.HeaderPanel.Font = gridView1.Appearance.HeaderPanel.Font;
+            lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView1.Appearance.HeaderPanel.TextOptions.HAlignment;
+            gridControl1.DataSource = dt;
+            lView.Columns[0].Visible = false;
+            lView.Columns[1].Width = 140;
+        
+            fQuery = "";
+            chBoxSelectAll.Checked = false;
+        }
+        private void labSearch_Click(object sender, EventArgs e)
+        {
             try
             {
-
-                string q1, q2, q3, q4, fQuery = "";
-                if (txtType.Text == "")
+                layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+                if (layoutControlItem16.Height == 228)
                 {
-                    q1 = "select Type_ID from data";
+                    layoutControlItem16.Height = 130;
                 }
                 else
                 {
-                    q1 = txtType.Text;
+                    layoutControlItem16.Height = 228;
                 }
-                if (txtFactory.Text == "")
-                {
-                    q2 = "select Factory_ID from data";
-                }
-                else
-                {
-                    q2 = txtFactory.Text;
-                }
-                if (txtProduct.Text == "")
-                {
-                    q3 = "select Product_ID from data";
-                }
-                else
-                {
-                    q3 = txtProduct.Text;
-                }
-                if (txtGroup.Text == "")
-                {
-                    q4 = "select Group_ID from data";
-                }
-                else
-                {
-                    q4 = txtGroup.Text;
-                }
-                if (comSize.Text != "")
-                {
-                    fQuery += "and size.Size_ID='" + comSize.SelectedValue + "'";
-                }
-                if (txtClassification.Text != "")
-                {
-                    fQuery += "and data.Classification='" + txtClassification.Text + "'";
-                }
-                if (comColor.Text != "")
-                {
-                    fQuery += "and color.Color_ID='" + comColor.SelectedValue + "'";
-                }
-                if (comSort.Text != "")
-                {
-                    fQuery += "and Sort.Sort_ID='" + comSort.SelectedValue + "'";
-                }
-
-                query = "SELECT SellPrice.SellPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',sellprice.Price as 'السعر',sellprice.Last_Price as ' السعر بعد الزيادة',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sum(additional_increase_sellprice.AdditionalValue)as 'زيادات اضافية',sellprice.ProfitRatio as 'نسبة البيع',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسية المندوب',sellprice.Date as 'التاريخ'   from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID inner join additional_increase_sellprice on additional_increase_sellprice.SellPrice_ID=sellprice.SellPrice_ID where additional_increase_sellprice.Type='عادية' and  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery;
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                gridControl1.DataSource = dt;
-
-                gridView1.Columns[0].Visible = false;
-                gridView1.Columns[1].Width = 140;
-                gridView1.Columns[2].Width = 200;
-                fQuery = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-           }
-
-
+        }
     }
 }

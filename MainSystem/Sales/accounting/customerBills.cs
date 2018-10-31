@@ -386,10 +386,6 @@ namespace MainSystem
 
       
 
-        private void customerBills_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
 
       
     }

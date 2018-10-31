@@ -113,12 +113,10 @@ namespace MainSystem
 
                 if (comStorePlace.Text != "" && txtCode.Text != "")
                 {                 
-                    string query = "update Storage set Store_ID=@Store_ID,Store_Name=@Store_Name,Storage_Date=@Storage_Date,Data_ID=@Data_ID,Store_Place_ID=@Store_Place_ID,Total_Meters=@Total_Meters,Note=@Note where Storage_ID=" + rows[0][0].ToString();
+                    string query = "update Storage set Store_ID=@Store_ID,Storage_Date=@Storage_Date,Data_ID=@Data_ID,Store_Place_ID=@Store_Place_ID,Total_Meters=@Total_Meters,Note=@Note where Storage_ID=" + rows[0][0].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-                    com.Parameters.Add("@Store_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Store_Name"].Value = comStore.Text;
                     com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
                     com.Parameters["@Storage_Date"].Value = dateTimePicker1.Value;                  
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);

@@ -135,9 +135,21 @@ namespace MainSystem
                                 comFactory.ValueMember = dt1.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1")
+                                if (txtType.Text == "1" || txtType.Text == "2")
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=" + txtType.Text;
+                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                                    DataTable dt2 = new DataTable();
+                                    da2.Fill(dt2);
+                                    comGroup.DataSource = dt2;
+                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+                                else if (txtType.Text == "4")
+                                {
+                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -157,7 +169,7 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1")
+                                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "4")
                                 {
                                     string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
@@ -259,7 +271,6 @@ namespace MainSystem
                                     comType.Text = Name;
                                     txtFactory.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -523,10 +534,18 @@ namespace MainSystem
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+                dataGridView1.DataSource = null;
+                GridView lView = new GridView(dataGridView1);
+                dataGridView1.MainView = lView;
+                lView.Appearance.Row.Font = gridView2.Appearance.Row.Font;
+                lView.Appearance.Row.TextOptions.HAlignment = gridView2.Appearance.Row.TextOptions.HAlignment;
+                lView.Appearance.HeaderPanel.Font = gridView2.Appearance.HeaderPanel.Font;
+                lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView2.Appearance.HeaderPanel.TextOptions.HAlignment;
                 dataGridView1.DataSource = dt;
-                gridView2.Columns[0].Visible = false;
-                gridView2.Columns[1].Visible = false;
-                gridView2.Columns[2].Width = 200;
+                lView.Columns[0].Visible = false;
+                lView.Columns[1].Visible = false;
+                lView.Columns[2].Width = 200;
+                
                 load = true;
             }
             catch (Exception ex)

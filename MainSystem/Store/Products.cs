@@ -252,10 +252,7 @@ namespace MainSystem
                                     txtFactory.Focus();
                                     filterFactory();
                                     dbconnection.Close();
-                                    if (chBoxSelectAll.Checked)
-                                        displayProducts();
-                                    else
-                                        displayAllProducts();
+
                                 }
                                 else
                                 {
@@ -519,7 +516,7 @@ namespace MainSystem
                     DataRowView row = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
                     if (row != null)
                     {
-                        arrCode = row[1].ToString().ToCharArray();
+                        arrCode = row[4].ToString().ToCharArray();
                         string str = arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString() + "";
                         txtEditCode.Text = str;
                         txtEditCode.Focus();
@@ -599,7 +596,6 @@ namespace MainSystem
         {
             try
             {
-              
                 load = false;
                 string q1, q2, q3, q4;
                 if (txtType.Text == "")
@@ -879,21 +875,33 @@ namespace MainSystem
         }
         public void filterGroup()
         {
-            if (comFactory.Text != "" && txtType.Text != "1")
+            if (txtType.Text == "1" || txtType.Text == "2")
             {
-                string query = "select * from groupo where Factory_ID=" + comFactory.SelectedValue+" and Type_ID="+ txtType.Text;
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                comGroup.DataSource = dt;
-                comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
-                comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
+                string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                comGroup.DataSource = dt2;
+                comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                comGroup.Text = "";
+                txtGroup.Text = "";
+            }
+            else if (txtType.Text == "4")
+            {
+                string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
+                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                comGroup.DataSource = dt2;
+                comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
                 comGroup.Text = "";
                 txtGroup.Text = "";
             }
             else
             {
-                string query = "select * from groupo where Factory_ID=0 and Type_ID=" + txtType.Text;
+                string query = "select * from groupo where Factory_ID="+txtFactory.Text+" and Type_ID=" + txtType.Text;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

@@ -120,9 +120,21 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1")
+                                if (txtType.Text == "1" || txtType.Text == "2")
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=" + txtType.Text;
+                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                                    DataTable dt2 = new DataTable();
+                                    da2.Fill(dt2);
+                                    comGroup.DataSource = dt2;
+                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                                    comGroup.Text = "";
+                                    txtGroup.Text = "";
+                                }
+                                else if (txtType.Text == "4")
+                                {
+                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -618,10 +630,11 @@ namespace MainSystem
                             comand.ExecuteNonQuery();
                         }
 
-                        query = "INSERT INTO set_photo (Set_ID,Set_Photo) VALUES (@Set_ID,@Set_Photo)";
+                        query = "INSERT INTO set_photo (Set_ID,Photo) VALUES (@Set_ID,@Photo)";
                         comand = new MySqlCommand(query, dbconnection);
-                        comand.Parameters.Add("@Set_Photo", MySqlDbType.LongBlob);
-                        comand.Parameters["@Set_Photo"].Value = selectedImage;
+                        comand.Parameters.AddWithValue("@Set_ID", set_id);
+                        comand.Parameters.Add("@Photo", MySqlDbType.LongBlob);
+                        comand.Parameters["@Photo"].Value = selectedImage;
                         comand.ExecuteNonQuery();
 
                         UserControl.ItemRecord("sets", "add",Convert.ToInt16(set_id.ToString()), DateTime.Now,"", dbconnection);
