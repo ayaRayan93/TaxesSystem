@@ -225,6 +225,34 @@ namespace MainSystem
                         gridControl1.DataSource = sourceDataSet.Tables[0];
                         listBoxControlBills.Items.Clear();
                         listBoxControlBranchID.Items.Clear();
+                        listBoxControlDelegateId.Items.Clear();
+                    }
+                    else
+                    {
+                        if (listBoxControlBills.Items.Count > 0)
+                        {
+                            for(int i=0;i<listBoxControlBills.Items.Count;i++)
+                            {
+                                if ((Convert.ToInt16(listBoxControlBills.Items[i].ToString().Split(':')[0].Trim()) == billNumb))
+                                {
+                                    string q = "select Branch_Name from branch where Branch_ID=" + listBoxControlBranchID.Items[i].ToString();
+                                    MySqlCommand c = new MySqlCommand(q, dbconnection);
+                                    if (listBoxControlBills.Items[i].ToString().Split(':')[1].Trim() == c.ExecuteScalar().ToString())
+                                    {
+                                        MessageBox.Show("هذه الفاتورة تم اضافتها من قبل");
+                                        dbconnection.Close();
+                                        dbconnectionr.Close();
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            dbconnection.Close();
+                            dbconnectionr.Close();
+                            return;
+                        }
                     }
 
                     gridView1.Columns[0].Visible = false;
@@ -370,7 +398,8 @@ namespace MainSystem
                             
                         }
                         dataReader.Close();
-                        
+                        listBoxControlDelegateId.Items.Add(comDelegate.SelectedValue.ToString());
+
                         if (gridView1.IsLastVisibleRow)
                         {
                             gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -574,6 +603,17 @@ namespace MainSystem
                         {
                             query = "update dash set Confirmed=1 where Bill_Number=" + listBoxControlBills.Items[i].ToString().Split(':')[0].Trim() + " and Branch_ID=" + listBoxControlBranchID.Items[i].ToString() + " order by Dash_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                        }
+
+                        for (int i = 0; i < listBoxControlDelegateId.Items.Count; i++)
+                        {
+                            query = "insert into customer_bill_delegate (CustomerBill_ID,Delegate_ID) values(@CustomerBill_ID,@Delegate_ID)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                            com.Parameters["@CustomerBill_ID"].Value = CustomerBill_ID;
+                            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
+                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(listBoxControlDelegateId.Items[i].ToString());
                             com.ExecuteNonQuery();
                         }
 
@@ -1031,6 +1071,8 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], comeQuantity);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], comeRow1["السعر"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(comeRow1["السعر"].ToString()) * comeQuantity);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], comeRow1["بعد الخصم"].ToString());
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى بعد"], Convert.ToDouble(comeRow1["بعد الخصم"].ToString()) * comeQuantity);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النسبة"], comeRow1["الخصم"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], (Convert.ToDouble(comeRow1["السعر"].ToString()) * comeQuantity) * (Convert.ToDouble(comeRow1["الخصم"].ToString()) / 100));
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], comeRow1["الكرتنة"].ToString());
@@ -1047,6 +1089,8 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], comeQuantity);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], comeRow1["السعر"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(comeRow1["السعر"].ToString()) * comeQuantity);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], comeRow1["بعد الخصم"].ToString());
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى بعد"], Convert.ToDouble(comeRow1["بعد الخصم"].ToString()) * comeQuantity);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النسبة"], comeRow1["الخصم"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], (Convert.ToDouble(comeRow1["السعر"].ToString()) * comeQuantity) * (Convert.ToDouble(comeRow1["الخصم"].ToString()) / 100));
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Store_ID"], comeStoreId);
@@ -1067,6 +1111,30 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Dash_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Dash_ID"));
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], 1);
                     }
+
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+
+                    double sum = 0;
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
+                    }
+                    labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+
+                    double discount = 0;
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        if (gridView1.GetRowCellDisplayText(i, "الخصم").ToString() != "")
+                        {
+                            discount += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
+                        }
+                    }
+                    labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString();
+
+                    labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString();
                 }
             }
             catch(Exception ex)

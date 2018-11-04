@@ -18,7 +18,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(string ClientName, string PayType, int BillNumber, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Bill_Items> BillItems)
+        public void PrintInvoice(string ClientName, DateTime billDate, string PayType, int BillNumber, string BranchName, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Bill_Items> BillItems)
         {
             Print_Invoice report = new Print_Invoice();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)

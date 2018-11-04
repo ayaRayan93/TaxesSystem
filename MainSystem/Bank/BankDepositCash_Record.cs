@@ -25,6 +25,8 @@ namespace MainSystem
         int clientID = 0;
         string engName = "";
         string clientName = "";
+        string phoneNum = "";
+        string TypeBuy = "";
         //string delegateName = "";
         int branchID = 0;
         int ID = -1;
@@ -112,6 +114,7 @@ namespace MainSystem
                                 double amont = 0;
                                 flag2 = true;
                                 ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                                TypeBuy = dr["Type_Buy"].ToString();
 
                                 myConnection.Open();
                                 string query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='ايداع' group by Bill_Number";
@@ -134,40 +137,19 @@ namespace MainSystem
                                 paidAmount -= amont;
 
                                 txtTotalCost.Text = dr["Total_CostAD"].ToString();
-                                //txtPaidType.Text = dr["Type_Buy"].ToString();
-                                if (dr["Customer_ID"].ToString() != "")
-                                    customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
 
-                                clientID = Convert.ToInt16(dr["Client_ID"].ToString());
-                                //delegateID = Convert.ToInt16(dr["Delegate_ID"].ToString());
-                                //}
+                                if (dr["Customer_ID"].ToString() != "")
+                                {
+                                    customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                                }
+                                if (dr["Client_ID"].ToString() != "")
+                                {
+                                    clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                                }
                             }
                             dr.Close();
                             if (flag2 == true)
                             {
-                                //extract delgate info
-                                /*if (delegateID > 0)
-                                {
-                                    query = "select * from Delegate where Delegate_ID=" + delegateID;
-                                    com = new MySqlCommand(query, dbconnection);
-                                    dr = com.ExecuteReader();
-                                    while (dr.Read())
-                                    {
-                                        //txtDelegateName.Text = dr["Delegate_Name"].ToString();
-                                        delegateName = dr["Delegate_Name"].ToString();
-                                    }
-                                    dr.Close();
-                                }
-                                else
-                                {
-                                    dbconnection.Close();
-                                    flag2 = false;
-                                    txtTotalCost.Text = "";
-                                    txtPaidMoney.Text = "";
-                                    MessageBox.Show("لابد من وجود مندوب");
-                                    return;
-                                }*/
-
                                 double total = Convert.ToDouble(txtTotalCost.Text);
                                 txtRestMoney.Text = (total - paidAmount).ToString();
 
@@ -185,12 +167,12 @@ namespace MainSystem
                                     }
                                     dr.Close();
                                 }
-                                else
-                                {
-                                    MessageBox.Show("لابد من وجود عميل");
-                                    dbconnection.Close();
-                                    return;
-                                }
+                                //else
+                                //{
+                                //    MessageBox.Show("لابد من وجود عميل");
+                                //    dbconnection.Close();
+                                //    return;
+                                //}
                                 if (customerID > 0)
                                 {
                                     query = "select * from customer where Customer_ID=" + customerID;
@@ -577,6 +559,7 @@ namespace MainSystem
                                 xtraTabPage.ImageOptions.Image = null;
 
                                 //print bill
+                                printBill();
                                 //query = "SELECT size.Size_Value,color.Color_Name,product.Product_Name,type.Type_Name,groupo.Group_Name,factory.Factory_Name,sort.Sort_Value,product_bill.Code,product_bill.Price_Discount,product_bill.Discount,product_bill.Quantity FROM product_bill INNER JOIN data ON data.Code = product_bill.Code INNER JOIN size ON size.Size_ID = data.Size_ID INNER JOIN color ON color.Color_ID = data.Color_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID AND size.Factory_ID = factory.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID AND groupo.Factory_ID = factory.Factory_ID INNER JOIN type ON type.Type_ID = data.Type_ID AND factory.Type_ID = type.Type_ID AND color.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID AND product.Group_ID = groupo.Group_ID INNER JOIN sort ON sort.Sort_ID = data.Sort_ID where product_bill.CustomerBill_ID=" + ID;
                                 //com = new MySqlCommand(query, dbconnection);
                                 //com.ExecuteReader();
@@ -1479,6 +1462,28 @@ namespace MainSystem
             connectionReader2.Close();
             connectionReader1.Close();
             connectionReader.Close();
+        }
+
+        void printBill()
+        {
+            List<Bill_Items> bi = new List<Bill_Items>();
+            
+            //for (int i = 0; i < gridView1.RowCount; i++)
+            //{
+            //    Bill_Items item = new Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Color = gridView1.GetRowCellDisplayText(i, gridView1.Columns["اللون"]), Size = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المقاس"]), Sort = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفرز"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالى"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]) };
+            //    bi.Add(item);
+            //}
+
+            Print_Bill_Report f = new Print_Bill_Report();
+            if (clientID > 0)
+            {
+                //f.PrintInvoice(clientName, TypeBuy, billNumber, Convert.ToDouble(labTotalBillPriceBD.Text.Split('=')[1].Trim()), Convert.ToDouble(labTotalBillPriceAD.Text.Split('=')[1].Trim()), Convert.ToDouble(labTotalDiscount.Text.Split('=')[1].Trim()), bi);
+            }
+            else if (customerID > 0)
+            {
+                //f.PrintInvoice(engName, TypeBuy, billNumber, Convert.ToDouble(labTotalBillPriceBD.Text.Split('=')[1].Trim()), Convert.ToDouble(labTotalBillPriceAD.Text.Split('=')[1].Trim()), Convert.ToDouble(labTotalDiscount.Text.Split('=')[1].Trim()), bi);
+            }
+            f.ShowDialog();
         }
     }
 }

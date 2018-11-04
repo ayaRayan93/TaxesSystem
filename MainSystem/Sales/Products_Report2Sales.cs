@@ -289,13 +289,23 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns[2], dr["الاسم"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الوصف"], dr["الوصف"]);
                         
-                        query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم',sum(storage.Total_Meters)/COUNT(set_details.Data_ID) as 'الكمية' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by set_details.Set_ID, storage.Set_ID order by sellprice.Date desc";
+                        query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID order by sellprice.Date desc";
                         comand = new MySqlCommand(query, dbconnection3);
                         MySqlDataReader dr1 = comand.ExecuteReader();
                         while (dr1.Read())
                         {
                             price += Convert.ToDouble(dr1["السعر"].ToString());
                             priceF += Convert.ToDouble(dr1["بعد الخصم"].ToString());
+                            
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
+                        }
+                        dr1.Close();
+
+                        query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
+                        comand = new MySqlCommand(query, dbconnection3);
+                        dr1 = comand.ExecuteReader();
+                        while (dr1.Read())
+                        {
                             if (dr1["الكمية"].ToString() != "")
                             {
                                 totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
@@ -304,10 +314,9 @@ namespace MainSystem
                             {
                                 totalQuanity += 0;
                             }
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
                         }
                         dr1.Close();
-                        
+
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], price);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], priceF);
                         if (totalQuanity != 0)
