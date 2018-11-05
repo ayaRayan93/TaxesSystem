@@ -1532,7 +1532,6 @@ namespace MainSystem
             this.txtProduct.Size = new System.Drawing.Size(172, 27);
             this.txtProduct.TabIndex = 15;
             this.txtProduct.TextChanged += new System.EventHandler(this.txt_TextChanged);
-            this.txtProduct.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProduct_KeyPress);
             // 
             // comGroup
             // 

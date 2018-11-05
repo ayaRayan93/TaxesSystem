@@ -673,6 +673,7 @@ namespace MainSystem
             lView.Appearance.Row.Font = gridView1.Appearance.Row.Font;
             lView.Appearance.Row.TextOptions.HAlignment = gridView1.Appearance.Row.TextOptions.HAlignment;
             lView.Appearance.HeaderPanel.Font = gridView1.Appearance.HeaderPanel.Font;
+            lView.OptionsView.ColumnAutoWidth = gridView1.OptionsView.ColumnAutoWidth;
             lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView1.Appearance.HeaderPanel.TextOptions.HAlignment;
             gridControl1.DataSource = dt;
             lView.Columns[0].Visible = false;
