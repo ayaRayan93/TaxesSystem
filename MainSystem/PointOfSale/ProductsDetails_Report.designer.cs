@@ -37,7 +37,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -118,7 +117,6 @@
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
-            //this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // toolTipController1
@@ -139,7 +137,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnDelete, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnReport, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -190,27 +187,6 @@
             this.btnDelete.Size = new System.Drawing.Size(97, 46);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnReport.ImagePosition = 1;
-            this.btnReport.ImageZoom = 20;
-            this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(369, 4);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(97, 46);
-            this.btnReport.TabIndex = 3;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -340,7 +316,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private Bunifu.Framework.UI.BunifuTileButton btnDelete;
-        private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label1;

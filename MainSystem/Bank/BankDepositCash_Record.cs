@@ -107,6 +107,9 @@ namespace MainSystem
                     {
                         if (int.TryParse(txtBillNumber.Text, out billNumber))
                         {
+                            ID = -1;
+                            delegateName = "";
+
                             string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
@@ -118,8 +121,7 @@ namespace MainSystem
                                 ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
                                 TypeBuy = dr["Type_Buy"].ToString();
                                 billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
-                                delegateName = "";
-
+                                
                                 connectionReader3.Open();
                                 string q1 = "SELECT delegate.Delegate_Name FROM customer_bill INNER JOIN customer_bill_delegate ON customer_bill_delegate.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN delegate ON delegate.Delegate_ID = customer_bill_delegate.Delegate_ID where customer_bill.CustomerBill_ID=" + ID;
                                 MySqlCommand c1 = new MySqlCommand(q1, connectionReader3);
@@ -482,11 +484,11 @@ namespace MainSystem
                                 //    return;
                                 //}
 
-                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
+                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع";
-                                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "كاش";
+                                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = TypeBuy;
                                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = cmbBranch.SelectedValue;
                                 com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = cmbBranch.Text;
                                 com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = billNumber;
@@ -494,8 +496,8 @@ namespace MainSystem
                                 com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                                 com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
                                 com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = clientName;
                                 com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
+                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = customerID;
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                                 com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                                 com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
@@ -1550,11 +1552,11 @@ namespace MainSystem
             Print_Bill_Report f = new Print_Bill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName, delegateName, billDate, TypeBuy, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, delegateName, billDate, TypeBuy, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName, delegateName, billDate, TypeBuy, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, delegateName, billDate, TypeBuy, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             f.ShowDialog();
         }

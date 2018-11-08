@@ -299,7 +299,7 @@ namespace MainSystem
                             #region بند
                             if (dataReader["Type"].ToString().Trim() == "بند")
                             {
-                                query = "select distinct data.Data_ID, data.Code as 'الكود',concat(product.Product_Name,'/',type.Type_Name,'/',factory.Factory_Name,'/',groupo.Group_Name) as 'الاسم',concat(color.Color_Name,'-',size.Size_Value,'-',sort.Sort_Value) as 'المواصفات',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='بند'";
+                                query = "select distinct data.Data_ID, data.Code as 'الكود',concat(product.Product_Name,'/',type.Type_Name,'/',factory.Factory_Name,'/',groupo.Group_Name) as 'الاسم',concat(color.Color_Name,'-',size.Size_Value,'-',sort.Sort_Value) as 'المواصفات',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين' from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and data.Data_ID=" + dataReader["Data_ID"].ToString() + "  and dash_details.Type='بند'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -343,7 +343,7 @@ namespace MainSystem
                             #region طقم
                             else if (dataReader["Type"].ToString().Trim() == "طقم")
                             {
-                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين' FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + "  and dash_details.Type='طقم'";
+                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين' FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='طقم'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -483,6 +483,25 @@ namespace MainSystem
                     return;
                 GridView view = gridView1 as GridView;
                 view.DeleteRow(view.FocusedRowHandle);
+
+                double sum = 0;
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
+                }
+                labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+
+                double discount = 0;
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    if (gridView1.GetRowCellDisplayText(i, "الخصم").ToString() != "")
+                    {
+                        discount += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
+                    }
+                }
+                labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString();
+
+                labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString();
             }
             catch(Exception ex)
             {

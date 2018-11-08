@@ -24,17 +24,6 @@ namespace MainSystem
         XtraTabControl MainTabControlPointSale;
         int DelegateBranchID = 0;
 
-        //public static XtraTabPage MainTabPageAddPointSale;
-        //Panel panelAddBank;
-
-        //public static XtraTabPage MainTabPageUpdateDetails;
-        //Panel panelUpdateBank;
-
-        //public static XtraTabPage MainTabPagePrintingBank;
-        //Panel panelPrintingBank;
-
-        //public static Bank_Print bankPrint;
-
         public static GridControl gridcontrol;
         public static bool UpdateDetailsTextChangedFlag = false;
         bool PSloaded = false;
@@ -105,35 +94,6 @@ namespace MainSystem
             conn.Close();
         }
 
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //MainTabPagePrintingBank.Name = "tabPagePrintingBank";
-                //MainTabPagePrintingBank.Text = "طباعة البنوك";
-                //panelPrintingBank.Name = "panelPrintingBank";
-                //panelPrintingBank.Dock = DockStyle.Fill;
-                
-                //panelPrintingBank.Controls.Clear();
-                //bankPrint = new Bank_Print();
-                //bankPrint.Size = new Size(1059, 638);
-                //bankPrint.TopLevel = false;
-                //bankPrint.FormBorderStyle = FormBorderStyle.None;
-                //bankPrint.Dock = DockStyle.Fill;
-                //panelPrintingBank.Controls.Add(bankPrint);
-                //MainTabPagePrintingBank.Controls.Add(panelPrintingBank);
-                //MainTabControlBank.TabPages.Add(MainTabPagePrintingBank);
-                //bankPrint.Show();
-                //MainTabControlBank.SelectedTabPage = MainTabPagePrintingBank;
-
-                //Main.loadedPrintBank = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -168,26 +128,6 @@ namespace MainSystem
             }
         }
 
-        //private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
-        //{
-        //    try
-        //    {
-        //        GridView View = sender as GridView;
-        //        if (e.RowHandle >= 0)
-        //        {
-        //            string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["Error"]);
-        //            if (category == "1")
-        //            {
-        //                e.Appearance.BackColor = Color.Salmon;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
-
         //functions
         public void search()
         {
@@ -208,7 +148,6 @@ namespace MainSystem
             comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
             //comDelegate.SelectedIndex = delegateID;
 
-            comDelegate.SelectedValue = delegateID;
             txtBillNum.Text = billNum.ToString();
 
             query = "select * from customer";
@@ -233,12 +172,14 @@ namespace MainSystem
         public void loadFunc()
         {
             //,dash.Customer_ID as 'العميل'
+            comDelegate.SelectedValue = delegateID;
+
             conn.Open();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash_details.Type='بند'", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='بند'", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
 
-            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum+ " and (dash_details.Type='طقم' or dash_details.Type='عرض')", conn);
+            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum+ " and dash.Confirmed=0 and (dash_details.Type='طقم' or dash_details.Type='عرض')", conn);
             DataSet sourceDataSet2 = new DataSet();
             adapter.Fill(sourceDataSet2);
 
@@ -249,7 +190,7 @@ namespace MainSystem
             gridView1.Columns["DashDetails_ID"].Visible = false;
             gridView1.Columns["Store_ID"].Visible = false;
 
-            string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum;
+            string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0";
             MySqlCommand com = new MySqlCommand(query, conn);
             if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
             {
@@ -334,11 +275,11 @@ namespace MainSystem
                 try
                 {
                     conn.Open();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash_details.Type='بند'", conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='بند'", conn);
                     DataSet sourceDataSet = new DataSet();
                     adapter.Fill(sourceDataSet);
 
-                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and (dash_details.Type='طقم' or dash_details.Type='عرض')", conn);
+                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and (dash_details.Type='طقم' or dash_details.Type='عرض')", conn);
                     DataSet sourceDataSet2 = new DataSet();
                     adapter.Fill(sourceDataSet2);
 
@@ -349,7 +290,7 @@ namespace MainSystem
                     gridView1.Columns["DashDetails_ID"].Visible = false;
                     gridView1.Columns["Store_ID"].Visible = false;
 
-                    string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum;
+                    string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
                     {
@@ -477,7 +418,7 @@ namespace MainSystem
             {
                 if (PSloaded)
                 {
-                    string query = "update dash set Customer_ID=" + comCustomer.SelectedValue + " , Customer_Name='" + comCustomer.Text + "' where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum;
+                    string query = "update dash set Customer_ID=" + comCustomer.SelectedValue + " , Customer_Name='" + comCustomer.Text + "' where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed = 0";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     conn.Close();
                     conn.Open();

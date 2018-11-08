@@ -173,7 +173,7 @@ namespace MainSystem
                     int billnum = 0;
                     if (int.TryParse(txtBillNum.Text, out billnum))
                     {
-                        string q= "select * from dash where dash.Branch_ID=" + EmpBranchId + " and dash.Bill_Number=" + billnum + " order by dash.Dash_ID desc limit 1";
+                        string q= "select * from dash where dash.Branch_ID=" + EmpBranchId + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                         dbconnection5.Open();
                         MySqlCommand cc = new MySqlCommand(q, dbconnection5);
                         MySqlDataReader dr4 = cc.ExecuteReader();
@@ -219,7 +219,7 @@ namespace MainSystem
                             //dr4.Close();
 
                             //inner join customer on customer.Customer_ID=dash.Customer_ID 
-                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + EmpBranchId + " and dash.Bill_Number=" + billnum + " order by dash.Dash_ID desc limit 1";
+                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + EmpBranchId + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                             dbconnection2.Open();
                             MySqlCommand com = new MySqlCommand(qu, dbconnection2);
                             dr2 = com.ExecuteReader();
@@ -1845,7 +1845,7 @@ namespace MainSystem
                                                 #region bill already exist
                                                 else if (billExist)
                                                 {
-                                                    string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["الاسم"].ToString().Split(')')[0].Split('(')[1] + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                    string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["الاسم"].ToString().Split(')')[0].Split('(')[1] + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
                                                     MySqlCommand comm = new MySqlCommand(qq, dbconnection);
                                                     if (comm.ExecuteScalar() != null)
                                                     {

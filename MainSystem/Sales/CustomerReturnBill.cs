@@ -47,6 +47,18 @@ namespace MainSystem
             comBillNumber.Visible = false;
 
             salesMainForm = SalesMainForm;
+
+            panel1.AutoScroll = false;
+            panel1.VerticalScroll.Enabled = false;
+            panel1.VerticalScroll.Visible = false;
+            panel1.VerticalScroll.Maximum = 0;
+            panel1.AutoScroll = true;
+
+            panel2.AutoScroll = false;
+            panel2.VerticalScroll.Enabled = false;
+            panel2.VerticalScroll.Visible = false;
+            panel2.VerticalScroll.Maximum = 0;
+            panel2.AutoScroll = true;
         }
 
         private void CustomerReturnBill_Load(object sender, EventArgs e)
