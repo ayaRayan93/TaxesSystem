@@ -132,6 +132,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bank\Bill_Items.cs" />
+    <Compile Include="Sales\ReturnedBill_Items.cs" />
+    <Compile Include="Sales\Print_ReturnedInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\Print_ReturnedInvoice.designer.cs">
+      <DependentUpon>Print_ReturnedInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Print_ReturnedBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Print_ReturnedBill_Report.designer.cs">
+      <DependentUpon>Print_ReturnedBill_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bank\Print_Bill_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1210,6 +1223,12 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <EmbeddedResource Include="Sales\Print_ReturnedInvoice.resx">
+      <DependentUpon>Print_ReturnedInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Print_ReturnedBill_Report.resx">
+      <DependentUpon>Print_ReturnedBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bank\Print_Bill_Report.resx">
       <DependentUpon>Print_Bill_Report.cs</DependentUpon>
     </EmbeddedResource>

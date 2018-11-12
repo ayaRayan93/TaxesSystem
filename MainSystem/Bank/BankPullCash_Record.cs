@@ -14,7 +14,7 @@ namespace MainSystem
 {
     public partial class BankPullCash_Record : Form
     {
-        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2;
+        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3;
         bool flag2 = false;
         int billNumber = 0;
         bool flag = false;
@@ -44,6 +44,7 @@ namespace MainSystem
             connectionReader = new MySqlConnection(connection.connectionString);
             connectionReader1 = new MySqlConnection(connection.connectionString);
             connectionReader2 = new MySqlConnection(connection.connectionString);
+            connectionReader3 = new MySqlConnection(connection.connectionString);
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
@@ -526,7 +527,9 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
                                 dbconnection.Close();
                                 
-                                MessageBox.Show("تم");
+                                //print bill
+                                //printBill();
+
                                 clear();
                                 RestMoney.Text = "0";
                                 PaidMoney.Text = "0";
@@ -1244,6 +1247,75 @@ namespace MainSystem
             cmbBranch.SelectedIndex = -1;
 
             loaded = true;
+        }
+
+        void printBill()
+        {
+            List<Bill_Items> bi = new List<Bill_Items>();
+
+            //for (int i = 0; i < gridView1.RowCount; i++)
+            //{
+            //    Bill_Items item = new Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Color = gridView1.GetRowCellDisplayText(i, gridView1.Columns["اللون"]), Size = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المقاس"]), Sort = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفرز"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالى"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]) };
+            //    bi.Add(item);
+            //}
+            dbconnection.Open();
+            string query = "SELECT product_bill.Data_ID,product_bill.Type,product_bill.Price,product_bill.Discount,product_bill.PriceAD,product_bill.Quantity,product_bill.Store_Name,product_bill.Cartons FROM product_bill where product_bill.CustomerBill_ID=" /*+ ID*/;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                Bill_Items item;
+                connectionReader3.Open();
+                if (dr["Type"].ToString() == "بند")
+                {
+                    string q = "SELECT data.Code,concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'Product_Name' FROM data INNER JOIN type ON data.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID where Data_ID=" + dr["Data_ID"].ToString();
+                    MySqlCommand c = new MySqlCommand(q, connectionReader3);
+                    MySqlDataReader dr1 = c.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        bi.Add(item);
+                    }
+                    dr1.Close();
+                }
+                else if (dr["Type"].ToString() == "طقم")
+                {
+                    string q = "SELECT sets.Set_ID,sets.Set_Name FROM sets where Set_ID=" + dr["Data_ID"].ToString();
+                    MySqlCommand c = new MySqlCommand(q, connectionReader3);
+                    MySqlDataReader dr1 = c.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        item = new Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        bi.Add(item);
+                    }
+                    dr1.Close();
+                }
+                else if (dr["Type"].ToString() == "عرض")
+                {
+                    string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
+                    MySqlCommand c = new MySqlCommand(q, connectionReader3);
+                    MySqlDataReader dr1 = c.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        bi.Add(item);
+                    }
+                    dr1.Close();
+                }
+                connectionReader3.Close();
+            }
+            dbconnection.Close();
+
+            Print_ReturnedBill_Report f = new Print_ReturnedBill_Report();
+            //if (clientID > 0)
+            //{
+            //    f.PrintInvoice(clientName + " " + clientID, billDate, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+            //}
+            //else if (customerID > 0)
+            //{
+            //    f.PrintInvoice(engName + " " + customerID, billDate, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+            //}
+            f.ShowDialog();
         }
 
         /*public void DecreaseProductQuantity()

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.comCustomer = new System.Windows.Forms.ComboBox();
@@ -49,17 +49,11 @@
             this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Factory_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Group_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,16 +62,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.labTotalAD = new System.Windows.Forms.Label();
             this.btnAddToReturnBill = new System.Windows.Forms.Button();
             this.labBillDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.labBillTotalCostAD = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPriceAD = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.labTotalReturnBillAD = new System.Windows.Forms.Label();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.txtBranchID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -91,16 +82,21 @@
             this.btnNewChooes = new System.Windows.Forms.Button();
             this.listBoxControlCustomerBill = new DevExpress.XtraEditors.ListBoxControl();
             this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.labReturnedQuantity = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.txtBillTotalCostAD = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtReturnedQuantity = new System.Windows.Forms.TextBox();
+            this.txtTotalAD = new System.Windows.Forms.TextBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.txtTotalReturnBillAD = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -113,7 +109,9 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -267,66 +265,62 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 148);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 158);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridView1.Size = new System.Drawing.Size(1044, 163);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Size = new System.Drawing.Size(1044, 171);
             this.dataGridView1.TabIndex = 163;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
             this.Code,
             this.Type,
+            this.Product_Name,
             this.Quantity,
             this.priceAD,
             this.Discount,
             this.totalAD,
-            this.Product_Name,
-            this.Type_Name,
-            this.Factory_Name,
-            this.Group_Name,
-            this.Colour,
-            this.Size,
-            this.Sort,
             this.Description,
             this.Returned,
             this.CustomerBill_ID});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 407);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 410);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle20;
-            this.dataGridView2.Size = new System.Drawing.Size(1044, 163);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView2.Size = new System.Drawing.Size(1044, 171);
             this.dataGridView2.TabIndex = 164;
             // 
             // Data_ID
@@ -344,10 +338,16 @@
             // 
             this.Type.HeaderText = "الفئة";
             this.Type.Name = "Type";
+            this.Type.Visible = false;
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الاسم";
+            this.Product_Name.Name = "Product_Name";
             // 
             // Quantity
             // 
-            this.Quantity.HeaderText = "اجمالي عدد الوحدات";
+            this.Quantity.HeaderText = "الكمية";
             this.Quantity.Name = "Quantity";
             // 
             // priceAD
@@ -364,41 +364,6 @@
             // 
             this.totalAD.HeaderText = "الاجمالي";
             this.totalAD.Name = "totalAD";
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.HeaderText = "الصنف";
-            this.Product_Name.Name = "Product_Name";
-            // 
-            // Type_Name
-            // 
-            this.Type_Name.HeaderText = "النوع";
-            this.Type_Name.Name = "Type_Name";
-            // 
-            // Factory_Name
-            // 
-            this.Factory_Name.HeaderText = "المصنع";
-            this.Factory_Name.Name = "Factory_Name";
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.HeaderText = "المجموعة";
-            this.Group_Name.Name = "Group_Name";
-            // 
-            // Colour
-            // 
-            this.Colour.HeaderText = "اللون";
-            this.Colour.Name = "Colour";
-            // 
-            // Size
-            // 
-            this.Size.HeaderText = "المقاس";
-            this.Size.Name = "Size";
-            // 
-            // Sort
-            // 
-            this.Sort.HeaderText = "الفرز";
-            this.Sort.Name = "Sort";
             // 
             // Description
             // 
@@ -421,7 +386,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(591, 53);
+            this.label6.Location = new System.Drawing.Point(501, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 18);
             this.label6.TabIndex = 172;
@@ -429,13 +394,12 @@
             // 
             // txtCode
             // 
-            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtCode.Location = new System.Drawing.Point(746, 11);
+            this.txtCode.Location = new System.Drawing.Point(659, 3);
             this.txtCode.Name = "txtCode";
             this.txtCode.ReadOnly = true;
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCode.Size = new System.Drawing.Size(178, 25);
+            this.txtCode.Size = new System.Drawing.Size(200, 25);
             this.txtCode.TabIndex = 165;
             // 
             // label1
@@ -443,7 +407,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label1.Location = new System.Drawing.Point(967, 14);
+            this.label1.Location = new System.Drawing.Point(865, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 18);
             this.label1.TabIndex = 166;
@@ -451,12 +415,11 @@
             // 
             // txtTotalMeter
             // 
-            this.txtTotalMeter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtTotalMeter.Location = new System.Drawing.Point(439, 11);
+            this.txtTotalMeter.Location = new System.Drawing.Point(345, 3);
             this.txtTotalMeter.Name = "txtTotalMeter";
             this.txtTotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtTotalMeter.Size = new System.Drawing.Size(145, 25);
+            this.txtTotalMeter.Size = new System.Drawing.Size(150, 25);
             this.txtTotalMeter.TabIndex = 167;
             this.txtTotalMeter.TextChanged += new System.EventHandler(this.txtTotalMeter_TextChanged);
             // 
@@ -465,32 +428,21 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(589, 14);
+            this.label2.Location = new System.Drawing.Point(501, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(131, 18);
+            this.label2.Size = new System.Drawing.Size(47, 18);
             this.label2.TabIndex = 168;
-            this.label2.Text = "اجمالي عدد الوحدات";
-            // 
-            // labTotalAD
-            // 
-            this.labTotalAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labTotalAD.AutoSize = true;
-            this.labTotalAD.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.labTotalAD.Location = new System.Drawing.Point(511, 53);
-            this.labTotalAD.Name = "labTotalAD";
-            this.labTotalAD.Size = new System.Drawing.Size(0, 18);
-            this.labTotalAD.TabIndex = 171;
+            this.label2.Text = "الكمية";
             // 
             // btnAddToReturnBill
             // 
-            this.btnAddToReturnBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddToReturnBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnAddToReturnBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToReturnBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToReturnBill.ForeColor = System.Drawing.Color.White;
-            this.btnAddToReturnBill.Location = new System.Drawing.Point(35, 34);
+            this.btnAddToReturnBill.Location = new System.Drawing.Point(33, 37);
             this.btnAddToReturnBill.Name = "btnAddToReturnBill";
-            this.btnAddToReturnBill.Size = new System.Drawing.Size(157, 41);
+            this.btnAddToReturnBill.Size = new System.Drawing.Size(150, 29);
             this.btnAddToReturnBill.TabIndex = 173;
             this.btnAddToReturnBill.Text = "اضف الي فاتورة المرتجع";
             this.btnAddToReturnBill.UseVisualStyleBackColor = false;
@@ -501,7 +453,7 @@
             this.labBillDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labBillDate.AutoSize = true;
             this.labBillDate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labBillDate.Location = new System.Drawing.Point(312, 8);
+            this.labBillDate.Location = new System.Drawing.Point(329, 8);
             this.labBillDate.Name = "labBillDate";
             this.labBillDate.Size = new System.Drawing.Size(0, 17);
             this.labBillDate.TabIndex = 178;
@@ -511,28 +463,18 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label4.Location = new System.Drawing.Point(412, 8);
+            this.label4.Location = new System.Drawing.Point(429, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 18);
             this.label4.TabIndex = 177;
             this.label4.Text = "التاريخ";
-            // 
-            // labBillTotalCostAD
-            // 
-            this.labBillTotalCostAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labBillTotalCostAD.AutoSize = true;
-            this.labBillTotalCostAD.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labBillTotalCostAD.Location = new System.Drawing.Point(543, 8);
-            this.labBillTotalCostAD.Name = "labBillTotalCostAD";
-            this.labBillTotalCostAD.Size = new System.Drawing.Size(0, 17);
-            this.labBillTotalCostAD.TabIndex = 176;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(645, 8);
+            this.label5.Location = new System.Drawing.Point(744, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(166, 18);
             this.label5.TabIndex = 175;
@@ -540,13 +482,12 @@
             // 
             // txtPriceAD
             // 
-            this.txtPriceAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPriceAD.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtPriceAD.Location = new System.Drawing.Point(746, 50);
+            this.txtPriceAD.Location = new System.Drawing.Point(709, 37);
             this.txtPriceAD.Name = "txtPriceAD";
             this.txtPriceAD.ReadOnly = true;
             this.txtPriceAD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPriceAD.Size = new System.Drawing.Size(178, 25);
+            this.txtPriceAD.Size = new System.Drawing.Size(150, 25);
             this.txtPriceAD.TabIndex = 185;
             this.txtPriceAD.TextChanged += new System.EventHandler(this.txtTotalMeter_TextChanged);
             // 
@@ -555,7 +496,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(929, 53);
+            this.label7.Location = new System.Drawing.Point(865, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(107, 18);
             this.label7.TabIndex = 186;
@@ -566,21 +507,11 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label13.Location = new System.Drawing.Point(787, 12);
+            this.label13.Location = new System.Drawing.Point(787, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(205, 18);
             this.label13.TabIndex = 191;
             this.label13.Text = "اجمالي فاتورة المرتجع بعد الخصم";
-            // 
-            // labTotalReturnBillAD
-            // 
-            this.labTotalReturnBillAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labTotalReturnBillAD.AutoSize = true;
-            this.labTotalReturnBillAD.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalReturnBillAD.Location = new System.Drawing.Point(668, 12);
-            this.labTotalReturnBillAD.Name = "labTotalReturnBillAD";
-            this.labTotalReturnBillAD.Size = new System.Drawing.Size(0, 17);
-            this.labTotalReturnBillAD.TabIndex = 192;
             // 
             // comBranch
             // 
@@ -621,7 +552,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label14.Location = new System.Drawing.Point(508, 12);
+            this.label14.Location = new System.Drawing.Point(475, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(84, 18);
             this.label14.TabIndex = 197;
@@ -629,13 +560,12 @@
             // 
             // txtInfo
             // 
-            this.txtInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInfo.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtInfo.Location = new System.Drawing.Point(251, 12);
+            this.txtInfo.Location = new System.Drawing.Point(269, 3);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtInfo.Size = new System.Drawing.Size(244, 42);
+            this.txtInfo.Size = new System.Drawing.Size(200, 48);
             this.txtInfo.TabIndex = 198;
             // 
             // tableLayoutPanel1
@@ -653,12 +583,12 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1050, 706);
             this.tableLayoutPanel1.TabIndex = 200;
@@ -673,12 +603,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 646);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 647);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1044, 57);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1044, 56);
             this.tableLayoutPanel3.TabIndex = 166;
             // 
             // btnCreateReturnBill
@@ -698,7 +628,7 @@
             this.btnCreateReturnBill.Location = new System.Drawing.Point(526, 4);
             this.btnCreateReturnBill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateReturnBill.Name = "btnCreateReturnBill";
-            this.btnCreateReturnBill.Size = new System.Drawing.Size(98, 49);
+            this.btnCreateReturnBill.Size = new System.Drawing.Size(98, 48);
             this.btnCreateReturnBill.TabIndex = 6;
             this.btnCreateReturnBill.Click += new System.EventHandler(this.btnCreateReturnBill_Click);
             // 
@@ -715,9 +645,9 @@
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 99);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 104);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -734,7 +664,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(516, 93);
+            this.panel2.Size = new System.Drawing.Size(516, 98);
             this.panel2.TabIndex = 1;
             // 
             // btnNewChooes
@@ -758,7 +688,7 @@
             this.listBoxControlCustomerBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxControlCustomerBill.Location = new System.Drawing.Point(222, 36);
             this.listBoxControlCustomerBill.Name = "listBoxControlCustomerBill";
-            this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 43);
+            this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 33);
             this.listBoxControlCustomerBill.TabIndex = 199;
             this.listBoxControlCustomerBill.Visible = false;
             // 
@@ -772,6 +702,13 @@
             this.listBoxControlBills.Size = new System.Drawing.Size(100, 63);
             this.listBoxControlBills.TabIndex = 198;
             // 
+            // panel7
+            // 
+            this.panel7.Location = new System.Drawing.Point(3, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(513, 96);
+            this.panel7.TabIndex = 201;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.radioButton1);
@@ -784,7 +721,7 @@
             this.panel1.Location = new System.Drawing.Point(525, 3);
             this.panel1.Name = "panel1";
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(516, 93);
+            this.panel1.Size = new System.Drawing.Size(516, 98);
             this.panel1.TabIndex = 0;
             // 
             // radioButton1
@@ -801,102 +738,164 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
+            // panel6
+            // 
+            this.panel6.Location = new System.Drawing.Point(4, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(509, 98);
+            this.panel6.TabIndex = 162;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Controls.Add(this.txtBillTotalCostAD);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.labBillTotalCostAD);
             this.panel3.Controls.Add(this.labBillDate);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 108);
+            this.panel3.Location = new System.Drawing.Point(3, 113);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1044, 34);
+            this.panel3.Size = new System.Drawing.Size(1044, 39);
             this.panel3.TabIndex = 1;
+            // 
+            // txtBillTotalCostAD
+            // 
+            this.txtBillTotalCostAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBillTotalCostAD.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBillTotalCostAD.Location = new System.Drawing.Point(588, 5);
+            this.txtBillTotalCostAD.Name = "txtBillTotalCostAD";
+            this.txtBillTotalCostAD.ReadOnly = true;
+            this.txtBillTotalCostAD.Size = new System.Drawing.Size(150, 26);
+            this.txtBillTotalCostAD.TabIndex = 179;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel4.Controls.Add(this.labReturnedQuantity);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.btnAddToReturnBill);
-            this.panel4.Controls.Add(this.labTotalAD);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.txtTotalMeter);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.txtCode);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.txtPriceAD);
-            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.tableLayoutPanel4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 317);
+            this.panel4.Location = new System.Drawing.Point(3, 335);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1044, 84);
+            this.panel4.Size = new System.Drawing.Size(1044, 69);
             this.panel4.TabIndex = 164;
             // 
-            // labReturnedQuantity
+            // tableLayoutPanel4
             // 
-            this.labReturnedQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labReturnedQuantity.AutoSize = true;
-            this.labReturnedQuantity.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.labReturnedQuantity.Location = new System.Drawing.Point(214, 14);
-            this.labReturnedQuantity.Name = "labReturnedQuantity";
-            this.labReturnedQuantity.Size = new System.Drawing.Size(0, 18);
-            this.labReturnedQuantity.TabIndex = 187;
+            this.tableLayoutPanel4.ColumnCount = 8;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tableLayoutPanel4.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnAddToReturnBill, 6, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtCode, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label6, 3, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label8, 5, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtPriceAD, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label2, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label7, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtTotalMeter, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtReturnedQuantity, 6, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtTotalAD, 4, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1044, 69);
+            this.tableLayoutPanel4.TabIndex = 189;
             // 
             // label8
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label8.Location = new System.Drawing.Point(294, 14);
+            this.label8.Location = new System.Drawing.Point(189, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(114, 18);
             this.label8.TabIndex = 188;
             this.label8.Text = "الكمية المسترجعة";
             // 
+            // txtReturnedQuantity
+            // 
+            this.txtReturnedQuantity.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtReturnedQuantity.Location = new System.Drawing.Point(33, 3);
+            this.txtReturnedQuantity.Name = "txtReturnedQuantity";
+            this.txtReturnedQuantity.ReadOnly = true;
+            this.txtReturnedQuantity.Size = new System.Drawing.Size(150, 25);
+            this.txtReturnedQuantity.TabIndex = 189;
+            // 
+            // txtTotalAD
+            // 
+            this.txtTotalAD.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalAD.Location = new System.Drawing.Point(345, 37);
+            this.txtTotalAD.Name = "txtTotalAD";
+            this.txtTotalAD.ReadOnly = true;
+            this.txtTotalAD.Size = new System.Drawing.Size(150, 26);
+            this.txtTotalAD.TabIndex = 190;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel5.Controls.Add(this.btnDelete);
-            this.panel5.Controls.Add(this.txtInfo);
-            this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.label13);
-            this.panel5.Controls.Add(this.labTotalReturnBillAD);
+            this.panel5.Controls.Add(this.tableLayoutPanel5);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 576);
+            this.panel5.Location = new System.Drawing.Point(3, 587);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1044, 64);
+            this.panel5.Size = new System.Drawing.Size(1044, 54);
             this.panel5.TabIndex = 165;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 8;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.tableLayoutPanel5.Controls.Add(this.label14, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnDelete, 6, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtTotalReturnBillAD, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtInfo, 4, 0);
+            this.tableLayoutPanel5.Controls.Add(this.label13, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1044, 54);
+            this.tableLayoutPanel5.TabIndex = 201;
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(35, 12);
+            this.btnDelete.Location = new System.Drawing.Point(101, 3);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(157, 41);
+            this.btnDelete.Size = new System.Drawing.Size(150, 30);
             this.btnDelete.TabIndex = 199;
             this.btnDelete.Text = "حذف من فاتورة المرتجع";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // panel6
+            // txtTotalReturnBillAD
             // 
-            this.panel6.Location = new System.Drawing.Point(4, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(509, 93);
-            this.panel6.TabIndex = 162;
-            // 
-            // panel7
-            // 
-            this.panel7.Location = new System.Drawing.Point(3, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(513, 96);
-            this.panel7.TabIndex = 201;
+            this.txtTotalReturnBillAD.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalReturnBillAD.Location = new System.Drawing.Point(631, 3);
+            this.txtTotalReturnBillAD.Name = "txtTotalReturnBillAD";
+            this.txtTotalReturnBillAD.ReadOnly = true;
+            this.txtTotalReturnBillAD.Size = new System.Drawing.Size(150, 26);
+            this.txtTotalReturnBillAD.TabIndex = 200;
             // 
             // CustomerReturnBill
             // 
@@ -926,9 +925,11 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -954,16 +955,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTotalMeter;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labTotalAD;
         private System.Windows.Forms.Button btnAddToReturnBill;
         private System.Windows.Forms.Label labBillDate;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label labBillTotalCostAD;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPriceAD;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label labTotalReturnBillAD;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.TextBox txtBranchID;
         private System.Windows.Forms.Label label10;
@@ -980,29 +978,28 @@
         private Bunifu.Framework.UI.BunifuTileButton btnCreateReturnBill;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Label labReturnedQuantity;
         private System.Windows.Forms.Label label8;
         private DevExpress.XtraEditors.ListBoxControl listBoxControlCustomerBill;
         private DevExpress.XtraEditors.ListBoxControl listBoxControlBills;
         private System.Windows.Forms.Button btnNewChooes;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TextBox txtBillTotalCostAD;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TextBox txtReturnedQuantity;
+        private System.Windows.Forms.TextBox txtTotalAD;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TextBox txtTotalReturnBillAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalAD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Factory_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Colour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sort;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Returned;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerBill_ID;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
     }
 }

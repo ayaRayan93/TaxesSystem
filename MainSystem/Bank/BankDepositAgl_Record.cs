@@ -307,7 +307,7 @@ namespace MainSystem
 
                                 dbconnection.Open();
 
-                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
+                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع";
@@ -319,8 +319,8 @@ namespace MainSystem
                                 com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                                 com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
                                 com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = cmbName.Text;
                                 com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = cmbName.SelectedValue;
+                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                                 com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                                 com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;

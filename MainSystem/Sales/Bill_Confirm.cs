@@ -44,6 +44,24 @@ namespace MainSystem
             connectionReader2 = new MySqlConnection(connection.connectionString);
             connectionReader3 = new MySqlConnection(connection.connectionString);
 
+            string query = "select * from customer";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            comEngCon.DataSource = dt;
+            comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
+            comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
+            comEngCon.Text = "";
+
+            query = "select * from customer where Customer_Type='عميل'";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comClient.DataSource = dt;
+            comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+            comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+            comClient.Text = "";
+            
             panel2.AutoScroll = false;
             panel2.VerticalScroll.Enabled = false;
             panel2.VerticalScroll.Visible = false;
@@ -61,8 +79,8 @@ namespace MainSystem
                 this.comEngCon.AutoCompleteSource = AutoCompleteSource.ListItems;
                 this.comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
                 this.comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-                this.comDelegate.AutoCompleteMode = AutoCompleteMode.Suggest;
-                this.comDelegate.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //this.comDelegate.AutoCompleteMode = AutoCompleteMode.Suggest;
+                //this.comDelegate.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 EmpBranchId = UserControl.UserBranch(dbconnection);
 
@@ -79,7 +97,7 @@ namespace MainSystem
                 string qb = "select Branch_Name from branch where Branch_ID=" + EmpBranchId;
                 MySqlCommand cqb = new MySqlCommand(qb, dbconnection);
                 EmpBranchName = cqb.ExecuteScalar().ToString();
-
+                
                 loaded = true;
             }
             catch (Exception ex)
@@ -100,11 +118,6 @@ namespace MainSystem
             {
                 if (Customer_Type == "عميل")
                 {
-                    labelEng.Visible = false;
-                    comEngCon.Visible = false;
-                    labelClient.Visible = true;
-                    comClient.Visible = true;
-
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
                     DataTable dt = new DataTable();
@@ -114,14 +127,14 @@ namespace MainSystem
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEngCon.Text = "";
+
+                    labelEng.Visible = false;
+                    comEngCon.Visible = false;
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
                 }
                 else
                 {
-                    labelEng.Visible = true;
-                    comEngCon.Visible = true;
-                    labelClient.Visible = false;
-                    comClient.Visible = false;
-
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
                     DataTable dt = new DataTable();
@@ -131,6 +144,11 @@ namespace MainSystem
                     comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEngCon.Text = "";
+
+                    labelEng.Visible = true;
+                    comEngCon.Visible = true;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
                 }
 
                 loaded = true;
@@ -151,7 +169,7 @@ namespace MainSystem
                 {
                     labelClient.Visible = true;
                     comClient.Visible = true;
-                
+
                     string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
@@ -266,7 +284,7 @@ namespace MainSystem
                     gridView1.Columns["Dash_ID"].Visible = false;
                     gridView1.Columns["added"].Visible = false;
 
-                    string query = "SELECT dash.Customer_Name,customer.Customer_Type,delegate.Delegate_Name,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
+                    string query = "SELECT dash.Customer_ID,dash.Customer_Name,customer.Customer_Type,delegate.Delegate_ID,delegate.Delegate_Name,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     dataReader = com.ExecuteReader();
                     if (dataReader.HasRows)
@@ -276,24 +294,35 @@ namespace MainSystem
                         while (dataReader.Read())
                         {
                             connectionReader3.Close();
+                            comDelegate.Text = dataReader["Delegate_Name"].ToString();
+                            int d = Convert.ToInt16(dataReader["Delegate_ID"].ToString());
+                            comDelegate.SelectedValue = d;
+
+                            int ci = Convert.ToInt16(dataReader["Customer_ID"].ToString());
                             if (dataReader["Customer_Type"].ToString() == "عميل")
                             {
                                 radClient.Checked = true;
+                                comClient.Text = dataReader["Customer_Name"].ToString();
+                                comClient.SelectedValue = ci;
                             }
                             else if (dataReader["Customer_Type"].ToString() == "مهندس")
                             {
                                 radEng.Checked = true;
+                                comEngCon.Text = dataReader["Customer_Name"].ToString();
+                                comEngCon.SelectedValue = ci;
                             }
                             else if (dataReader["Customer_Type"].ToString() == "مقاول")
                             {
                                 radCon.Checked = true;
+                                comEngCon.Text = dataReader["Customer_Name"].ToString();
+                                comEngCon.SelectedValue = ci;
                             }
                             else if (dataReader["Customer_Type"].ToString() == "تاجر")
                             {
                                 radDealer.Checked = true;
+                                comEngCon.Text = dataReader["Customer_Name"].ToString();
+                                comEngCon.SelectedValue = ci;
                             }
-                            comClient.Text = dataReader["Customer_Name"].ToString();
-                            comDelegate.Text = dataReader["Delegate_Name"].ToString();
 
                             connectionReader3.Open();
                             #region بند
@@ -304,7 +333,7 @@ namespace MainSystem
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
                                 {
-                                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Price as 'بعد الخصم',(sellprice.Last_Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى بعد',(sellprice.Sell_Discount) as 'الخصم' from dash_details INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID where dash_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and dash_details.Type='بند' order by sellprice.Date desc limit 1";
+                                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Price as 'بعد الخصم',(sellprice.Last_Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى بعد',(sellprice.Sell_Discount) as 'الخصم' from dash_details INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID where dash_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and dash_details.Dash_ID=" + dataReader["Dash_ID"].ToString() + " and dash_details.Type='بند' order by sellprice.Date desc limit 1";
                                     MySqlCommand c = new MySqlCommand(q, connectionReader3);
                                     MySqlDataReader dataReader2 = c.ExecuteReader();
                                     while (dataReader2.Read())
@@ -362,18 +391,21 @@ namespace MainSystem
                                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Dash_ID"], dataReader["Dash_ID"].ToString());
                                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], 1);
                                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dataReader1["اجمالى الكراتين"].ToString());
-
-                                        query = "SELECT  sum(sellprice.Last_Price * set_details.Quantity) as 'السعر',sum(sellprice.Last_Price * dash_details.Quantity * set_details.Quantity) as 'الاجمالى' ,(sellprice.Sell_Discount) as 'الخصم' ,sum(sellprice.Sell_Price * set_details.Quantity) as 'بعد الخصم',sum(sellprice.Sell_Price * dash_details.Quantity * set_details.Quantity) as 'الاجمالى بعد' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN dash_details ON sets.Set_ID = dash_details.Data_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dataReader1[0] + " and dash_details.Type='طقم' group by set_details.Set_ID order by sellprice.Date desc";
+                                        //,sum(sellprice.Last_Price * dash_details.Quantity * set_details.Quantity) as 'الاجمالى'  ..,sum(sellprice.Sell_Price * dash_details.Quantity * set_details.Quantity) as 'الاجمالى بعد'
+                                        //sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN dash_details ON sets.Set_ID = dash_details.Data_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dataReader1[0] + " and dash_details.Type='طقم' group by set_details.Set_ID order by sellprice.Date desc
+                                        query = "SELECT  sum(sellprice.Last_Price * set_details.Quantity) as 'السعر' ,(sellprice.Sell_Discount) as 'الخصم' ,sum(sellprice.Sell_Price * set_details.Quantity) as 'بعد الخصم' FROM set_details INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where set_details.Set_ID=" + dataReader1[0] + " group by set_details.Set_ID order by sellprice.Date desc limit 1";
                                         com = new MySqlCommand(query, dbconnection3);
                                         MySqlDataReader dr1 = com.ExecuteReader();
                                         while (dr1.Read())
                                         {
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr1["السعر"].ToString());
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr1["بعد الخصم"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], dr1["الاجمالى"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى بعد"], dr1["الاجمالى بعد"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], dr1["الاجمالى"].ToString());
+                                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى بعد"], dr1["الاجمالى بعد"].ToString());
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(dr1["السعر"].ToString())* Convert.ToDouble(dataReader1["الكمية"].ToString()));
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى بعد"], Convert.ToDouble(dr1["بعد الخصم"].ToString()) * Convert.ToDouble(dataReader1["الكمية"].ToString()));
                                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النسبة"], dr1["الخصم"].ToString());
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], Convert.ToDouble(dr1["الاجمالى"].ToString()) * (Convert.ToDouble(dr1["الخصم"].ToString()) / 100));
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], (Convert.ToDouble(dr1["السعر"].ToString()) * Convert.ToDouble(dataReader1["الكمية"].ToString())) * (Convert.ToDouble(dr1["الخصم"].ToString()) / 100));
                                         }
                                         dr1.Close();
                                     }
@@ -785,7 +817,7 @@ namespace MainSystem
                     comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
                     comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
                     comDelegate.Text = "";
-
+                    
                     txtBillNo.Enabled = true;
                 }
             }

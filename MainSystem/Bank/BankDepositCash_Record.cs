@@ -14,7 +14,7 @@ namespace MainSystem
 {
     public partial class BankDepositCash_Record : Form
     {
-        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3;
+        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3, connectionReader4;
         
         bool flag2 = false;
         int billNumber = 0;
@@ -50,6 +50,7 @@ namespace MainSystem
             connectionReader1 = new MySqlConnection(connection.connectionString);
             connectionReader2 = new MySqlConnection(connection.connectionString);
             connectionReader3 = new MySqlConnection(connection.connectionString);
+            connectionReader4 = new MySqlConnection(connection.connectionString);
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
@@ -483,6 +484,15 @@ namespace MainSystem
                                 //    connectionReader.Close();
                                 //    return;
                                 //}
+                                connectionReader4.Open();
+                                string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and Transition='ايداع' and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
+                                MySqlCommand ct = new MySqlCommand(qt, connectionReader4);
+                                MySqlDataReader dtt = ct.ExecuteReader();
+                                if (!dtt.HasRows)
+                                {
+                                    DecreaseProductQuantity();
+                                }
+                                connectionReader4.Close();
 
                                 string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -565,14 +575,7 @@ namespace MainSystem
 
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
-
-                                string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
-                                MySqlCommand ct = new MySqlCommand(qt, dbconnection);
-                                MySqlDataReader dtt = ct.ExecuteReader();
-                                if (!dtt.HasRows)
-                                {
-                                    DecreaseProductQuantity();
-                                }
+                                
                                 dbconnection.Close();
 
                                 //print bill
@@ -618,6 +621,7 @@ namespace MainSystem
             connectionReader1.Close();
             connectionReader.Close();
             connectionReader3.Close();
+            connectionReader4.Close();
         }
 
         private void txtPaidMoney_TextChanged(object sender, EventArgs e)

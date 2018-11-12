@@ -1681,8 +1681,8 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
-                    double Carton = Convert.ToDouble(com.ExecuteScalar());
-                    double totalMeters = double.Parse(txtQuantity.Text);
+                    decimal Carton = Convert.ToDecimal(com.ExecuteScalar());
+                    decimal totalMeters = decimal.Parse(txtQuantity.Text);
                     if (totalMeters % Carton == 0)
                     {
                         MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");

@@ -273,12 +273,12 @@ namespace MainSystem
                 {
                     int billNum = Convert.ToInt16(comBillNumber.Text);
                     DataTable dtAll = new DataTable();
-                    string query = "select data.Data_ID, data.Code as 'الكود',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم' , product.Product_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع' ,groupo.Group_Name as 'المجموعة' ,color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                    string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
-
-                    query = "select sets.Set_ID as 'Data_ID',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم' , sets.Set_Name as 'الصنف', type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة', sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON sets.Factory_ID = factory.Factory_ID INNER JOIN groupo ON sets.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                    //type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة'
+                    query = "select sets.Set_ID as 'Data_ID',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                     da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dtSet = new DataTable();
                     da.Fill(dtSet);
@@ -289,14 +289,15 @@ namespace MainSystem
                     dataGridView1.DataSource = dtAll;
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns["CustomerBill_ID"].Visible = false;
+                    dataGridView1.Columns["الفئة"].Visible = false;
                     //dataGridView2.Rows.Clear();
 
                     txtCode.Text = "";
                     txtPriceAD.Text = "";
                     txtTotalMeter.Text = "";
-                    labTotalAD.Text = "";
-                    labReturnedQuantity.Text = "";
-                    labBillTotalCostAD.Text = "";
+                    txtTotalAD.Text = "";
+                    txtReturnedQuantity.Text = "";
+                    txtBillTotalCostAD.Text = "";
                     labBillDate.Text = "";
 
                     dbconnection.Open();
@@ -308,7 +309,7 @@ namespace MainSystem
                         while (dr.Read())
                         {
                             //customerBillId = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
-                            labBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
+                            txtBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
                             labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
 
                             if (!listBoxControlCustomerBill.Items.Contains(comBillNumber.SelectedValue.ToString()))
@@ -343,21 +344,21 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
-                    labReturnedQuantity.Text = com.ExecuteScalar().ToString();
+                    txtReturnedQuantity.Text = com.ExecuteScalar().ToString();
                 }
                 else
                 {
-                    labReturnedQuantity.Text = "0";
+                    txtReturnedQuantity.Text = "0";
                 }
 
                 txtCode.Text = row1.Cells["الكود"].Value.ToString();
-                if (labReturnedQuantity.Text == "")
+                if (txtReturnedQuantity.Text == "")
                 {
                     txtTotalMeter.Text = row1.Cells["الكمية"].Value.ToString();
                 }
                 else
                 {
-                    txtTotalMeter.Text = (Convert.ToDouble(row1.Cells["الكمية"].Value.ToString()) - Convert.ToDouble(labReturnedQuantity.Text)).ToString();
+                    txtTotalMeter.Text = (Convert.ToDouble(row1.Cells["الكمية"].Value.ToString()) - Convert.ToDouble(txtReturnedQuantity.Text)).ToString();
                 }
                 txtPriceAD.Text = row1.Cells["السعر بعد الخصم"].Value.ToString();
 
@@ -378,7 +379,7 @@ namespace MainSystem
                 {
                     if (double.TryParse(txtTotalMeter.Text, out quantity) & double.TryParse(txtPriceAD.Text, out priceAD))
                     {
-                        labTotalAD.Text = (priceAD * quantity).ToString();
+                        txtTotalAD.Text = (priceAD * quantity).ToString();
                     }
                     else
                     {
@@ -406,9 +407,9 @@ namespace MainSystem
                     }
 
                     double returnedQuantity = 0;
-                    if (labReturnedQuantity.Text != "")
+                    if (txtReturnedQuantity.Text != "")
                     {
-                        returnedQuantity = Convert.ToDouble(labReturnedQuantity.Text);
+                        returnedQuantity = Convert.ToDouble(txtReturnedQuantity.Text);
                     }
 
                     if ((totalMeter + returnedQuantity) > Convert.ToDouble(row1.Cells["الكمية"].Value))
@@ -426,15 +427,15 @@ namespace MainSystem
                     dataGridView2.Rows[n].Cells["Type"].Value = row1.Cells["الفئة"].Value;
                     dataGridView2.Rows[n].Cells["Quantity"].Value = txtTotalMeter.Text;
                     dataGridView2.Rows[n].Cells["priceAD"].Value = txtPriceAD.Text;
-                    dataGridView2.Rows[n].Cells["totalAD"].Value = labTotalAD.Text;
+                    dataGridView2.Rows[n].Cells["totalAD"].Value = txtTotalAD.Text;
                     dataGridView2.Rows[n].Cells["Discount"].Value = row1.Cells["نسبة الخصم"].Value;
-                    dataGridView2.Rows[n].Cells["Type_Name"].Value = row1.Cells["النوع"].Value;
-                    dataGridView2.Rows[n].Cells["Factory_Name"].Value = row1.Cells["المصنع"].Value;
-                    dataGridView2.Rows[n].Cells["Group_Name"].Value = row1.Cells["المجموعة"].Value;
-                    dataGridView2.Rows[n].Cells["Product_Name"].Value = row1.Cells["الصنف"].Value;
-                    dataGridView2.Rows[n].Cells["Colour"].Value = row1.Cells["اللون"].Value;
-                    dataGridView2.Rows[n].Cells["Size"].Value = row1.Cells["المقاس"].Value;
-                    dataGridView2.Rows[n].Cells["Sort"].Value = row1.Cells["الفرز"].Value;
+                    dataGridView2.Rows[n].Cells["Product_Name"].Value = row1.Cells["الاسم"].Value;
+                    //dataGridView2.Rows[n].Cells["Type_Name"].Value = row1.Cells["النوع"].Value;
+                    //dataGridView2.Rows[n].Cells["Factory_Name"].Value = row1.Cells["المصنع"].Value;
+                    //dataGridView2.Rows[n].Cells["Group_Name"].Value = row1.Cells["المجموعة"].Value;
+                    //dataGridView2.Rows[n].Cells["Colour"].Value = row1.Cells["اللون"].Value;
+                    //dataGridView2.Rows[n].Cells["Size"].Value = row1.Cells["المقاس"].Value;
+                    //dataGridView2.Rows[n].Cells["Sort"].Value = row1.Cells["الفرز"].Value;
                     dataGridView2.Rows[n].Cells["Description"].Value = row1.Cells["الوصف"].Value;
                     if ((totalMeter + returnedQuantity) == Convert.ToDouble(row1.Cells["الكمية"].Value))
                     {
@@ -453,7 +454,7 @@ namespace MainSystem
                     {
                         totalAD += Convert.ToDouble(item.Cells["totalAD"].Value);
                     }
-                    labTotalReturnBillAD.Text = totalAD.ToString();
+                    txtTotalReturnBillAD.Text = totalAD.ToString();
                 }
                 else
                 {
@@ -478,8 +479,7 @@ namespace MainSystem
                     int Branch_BillNumber = 1;
                     if (com.ExecuteScalar() != null)
                     {
-                        Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar());
-                        Branch_BillNumber++;
+                        Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
                     //Type_Buy
                     query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Client_ID,Date,TotalCostAD,ReturnInfo) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Client_ID,@Date,@TotalCostAD,@ReturnInfo)";
@@ -532,7 +532,7 @@ namespace MainSystem
                     com.Parameters.Add("@ReturnInfo", MySqlDbType.VarChar);
                     com.Parameters["@ReturnInfo"].Value = txtInfo.Text;
                     com.Parameters.Add("@TotalCostAD", MySqlDbType.Decimal);
-                    com.Parameters["@TotalCostAD"].Value = Convert.ToDouble(labTotalReturnBillAD.Text);
+                    com.Parameters["@TotalCostAD"].Value = Convert.ToDouble(txtTotalReturnBillAD.Text);
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnBill_ID from customer_return_bill order by CustomerReturnBill_ID desc limit 1";
@@ -581,6 +581,7 @@ namespace MainSystem
                     }
 
                     IncreaseProductQuantity(id);
+
                     clrearAll();
                     clear(tableLayoutPanel1);
                     //returnBillReport.DisplayBillNumber();
@@ -615,6 +616,13 @@ namespace MainSystem
                             addedRecordIDs[i] = 0;
                             listOfRow2In.Remove(dgv2Index);
                             recordCount--;
+
+                            double totalAD = 0;
+                            foreach (DataGridViewRow item in dataGridView2.Rows)
+                            {
+                                totalAD += Convert.ToDouble(item.Cells["totalAD"].Value);
+                            }
+                            txtTotalReturnBillAD.Text = totalAD.ToString();
                         }
                     }
                 }
@@ -737,7 +745,7 @@ namespace MainSystem
                 listBoxControlBills.Items.Clear();
                 listBoxControlCustomerBill.Items.Clear();
 
-                labBillDate.Text = labBillTotalCostAD.Text = labTotalReturnBillAD.Text = labTotalAD.Text = labReturnedQuantity.Text = "";
+                labBillDate.Text = txtBillTotalCostAD.Text = txtTotalReturnBillAD.Text = txtTotalAD.Text = txtReturnedQuantity.Text = txtCode.Text = txtPriceAD.Text = txtTotalMeter.Text = "";
 
                 dataGridView1.DataSource = null;
                 dataGridView2.Rows.Clear();
@@ -781,11 +789,11 @@ namespace MainSystem
                 txtCode.Text = "";
                 txtPriceAD.Text = "";
                 txtTotalMeter.Text = "";
-                labTotalAD.Text = "";
-                labReturnedQuantity.Text = "";
-                labBillTotalCostAD.Text = "";
+                txtTotalAD.Text = "";
+                txtReturnedQuantity.Text = "";
+                txtBillTotalCostAD.Text = "";
                 labBillDate.Text = "";
-                labTotalReturnBillAD.Text = "";
+                txtTotalReturnBillAD.Text = "";
             }
             catch(Exception ex)
             {
