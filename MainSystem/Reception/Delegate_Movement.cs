@@ -488,36 +488,29 @@ namespace MainSystem
         {
             try
             {
-                if (txtBill.Text != "")
-                {
-                    int billNum = -1;
-                    if (int.TryParse(txtBill.Text, out billNum))
-                    {
-                        //string query = "SELECT dash.Bill_Time FROM dash where dash.Branch_ID=" + EmpBranchId + "  and dash.Bill_Number=" + billNum;
-                        //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        //double BillTime = Convert.ToInt16(com.ExecuteScalar().ToString());
-
-                        string query = "insert into dash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + ")";
-                        MySqlCommand command = new MySqlCommand(query, dbconnection);
-                        dbconnection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("تم");
-                    }
-                    else
-                    {
-                        MessageBox.Show("رقم الفاتورة يجب ان يكون عدد");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("يجب ادخال رقم الفاتورة");
-                }
+                startFunc();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void txtBill_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    startFunc();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
+            }
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -862,6 +855,34 @@ namespace MainSystem
             com.ExecuteNonQuery();
             gridView1.SetFocusedRowCellValue(colTimer, time1);
             dbconnection.Close();
+        }
+
+        public void startFunc()
+        {
+            if (txtBill.Text != "")
+            {
+                int billNum = -1;
+                if (int.TryParse(txtBill.Text, out billNum))
+                {
+                    //string query = "SELECT dash.Bill_Time FROM dash where dash.Branch_ID=" + EmpBranchId + "  and dash.Bill_Number=" + billNum;
+                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    //double BillTime = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                    string query = "insert into dash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + ")";
+                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("تم");
+                }
+                else
+                {
+                    MessageBox.Show("رقم الفاتورة يجب ان يكون عدد");
+                }
+            }
+            else
+            {
+                MessageBox.Show("يجب ادخال رقم الفاتورة");
+            }
         }
     }
 
