@@ -365,7 +365,7 @@ namespace MainSystem
 
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
-                AccountStatement objForm = new AccountStatement();
+                AccountStatement objForm = new AccountStatement(this);
                 objForm.TopLevel = false;
 
                 xtraTabPage.Controls.Add(objForm);
@@ -763,7 +763,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindUpdateTaswayaCustomersForm()
+        public void bindUpdateTaswayaCustomersForm(DataRowView row)
         {
             if (!xtraTabControlSalesContent.Visible)
                 xtraTabControlSalesContent.Visible = true;
@@ -777,7 +777,7 @@ namespace MainSystem
             xtraTabPage.Controls.Clear();
             xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
-            UpdateCustomerTaswaya objForm = new UpdateCustomerTaswaya();
+            UpdateCustomerTaswaya objForm = new UpdateCustomerTaswaya(row,this);
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

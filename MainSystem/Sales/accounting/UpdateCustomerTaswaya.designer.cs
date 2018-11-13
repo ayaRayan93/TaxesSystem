@@ -360,7 +360,7 @@
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
             // 
-            // CustomerTaswaya
+            // UpdateCustomerTaswaya
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -368,7 +368,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(817, 571);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "CustomerTaswaya";
+            this.Name = "UpdateCustomerTaswaya";
             this.Text = "Form1";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panContent.ResumeLayout(false);

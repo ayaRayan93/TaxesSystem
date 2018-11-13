@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraTab;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +16,16 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         MySqlConnection dbconnection1;
-
+        MainForm saleMainForm;
         private string Customer_Type;
         private bool loaded = false;
         double safay = -1;
         int ClientID = -1;
         string ClientName = "";
-        public AccountStatement()
+        public AccountStatement(MainForm mainForm)
         {
             InitializeComponent();
+            saleMainForm = mainForm;
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnection1 = new MySqlConnection(connection.connectionString);
             labelClient.Visible = false;
@@ -39,6 +41,10 @@ namespace MainSystem
         {
             RadioButton radio = (RadioButton)sender;
             Customer_Type = radio.Text;
+            comClient.Text = "";
+            txtClientID.Text = "";
+            comEngCon.Text = "";
+            txtCustomerID.Text = "";
 
             loaded = false; //this is flag to prevent action of SelectedValueChanged event until datasource fill combobox
             try
@@ -60,7 +66,7 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
-                    comEngCon.Text = "";
+                    txtClientID.Text = "";
                 }
                 else
                 {
@@ -78,8 +84,8 @@ namespace MainSystem
                     comEngCon.DataSource = dt;
                     comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
-                    comClient.Text = "";
                     comEngCon.Text = "";
+                    txtCustomerID.Text = "";
                 }
 
                 loaded = true;
@@ -111,6 +117,7 @@ namespace MainSystem
             {
                 try
                 {
+                    loaded = false;
                     txtCustomerID.Text = comEngCon.SelectedValue.ToString();
                     labelClient.Visible = true;
                     comClient.Visible = true;
@@ -124,6 +131,7 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    loaded = true;
                 }
                 catch (Exception ex)
                 {
@@ -131,7 +139,6 @@ namespace MainSystem
                 }
             }
         }
-        
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -193,7 +200,6 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -204,13 +210,13 @@ namespace MainSystem
                 dataGridView2.Rows.Clear();
                 if (txtClientID.Text != "" || txtCustomerID.Text != "")
                 {
-                    int.TryParse(txtClientID.Text,out ClientID);
+                    int.TryParse(txtClientID.Text, out ClientID);
                     ClientName = comClient.Text;
                     displayBill();
                     displayReturnBill(dataGridView1);
                     displayPaidReturnBill();
                     displayPaidBill();
-                    double totalBill=0, TotalReturn = 0,rest=0,rest2=0;
+                    double totalBill = 0, TotalReturn = 0, rest = 0, rest2 = 0;
 
                     foreach (DataGridViewRow row1 in dataGridView1.Rows)
                     {
@@ -223,7 +229,7 @@ namespace MainSystem
                     labTotalReturnCost.Text = TotalReturn.ToString();
                     labRest.Text = rest.ToString();
 
-                    totalBill = 0; TotalReturn = 0; 
+                    totalBill = 0; TotalReturn = 0;
 
                     foreach (DataGridViewRow row1 in dataGridView2.Rows)
                     {
@@ -270,7 +276,7 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-               query = "select * from customer_bill where  Customer_ID=" + txtCustomerID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
+                query = "select * from customer_bill where  Customer_ID=" + txtCustomerID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
             }
             else
             {
@@ -285,36 +291,13 @@ namespace MainSystem
                 dataGridView1.Rows[n].Cells[0].Value = dr["Total_CostAD"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = "0.00";
                 dataGridView1.Rows[n].Cells[2].Value = dr["CustomerBill_ID"].ToString();
-                if (txtCustomerID.Text != "")
-                {
-                    String q = "select Customer_Name from customer where Customer_ID=" + dr["Customer_ID"].ToString();
-                    MySqlCommand com1 = new MySqlCommand(q, dbconnection);
-                    string Customer_Name = com1.ExecuteScalar().ToString();
-                    dataGridView1.Rows[n].Cells[3].Value = Customer_Name;
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[3].Value = "";
-                }
-                if (txtClientID.Text != "")
-                {
-                    String q = "select Customer_Name from customer where Customer_ID=" + dr["Client_ID"].ToString();
-                    MySqlCommand com1 = new MySqlCommand(q, dbconnection);
-                    string Customer_Name = com1.ExecuteScalar().ToString();
-                    dataGridView1.Rows[n].Cells[4].Value = Customer_Name;
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[4].Value = "";
-                }
-
-
-                dataGridView1.Rows[n].Cells[5].Value = dr["Bill_Date"].ToString();
+                dataGridView1.Rows[n].Cells[3].Value = dr["Type_Buy"].ToString();
+                dataGridView1.Rows[n].Cells[4].Value = dr["Bill_Date"].ToString();
             }
             dr.Close();
         }
         // display Customer return bills
-        public void displayReturnBill( DataGridView datagridview)
+        public void displayReturnBill(DataGridView datagridview)
         {
             DateTime date = dateTimeFrom.Value.Date;
             string d = date.ToString("yyyy-MM-dd");
@@ -327,14 +310,11 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                //   query = "select * from customer_return_bill where Client_ID is null and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "'";
                 query = "select * from customer_return_bill where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'";
-
             }
             else
             {
                 query = "select * from customer_return_bill where Client_ID=" + txtClientID.Text + " and Customer_ID is null and Date between '" + d + "' and '" + d2 + "'";
-
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();
@@ -345,31 +325,8 @@ namespace MainSystem
                 datagridview.Rows[n].Cells[0].Value = "0.00";
                 datagridview.Rows[n].Cells[1].Value = dr["TotalCostAD"].ToString();
                 datagridview.Rows[n].Cells[2].Value = dr["CustomerReturnBill_ID"].ToString();
-                if (txtCustomerID.Text != "")
-                {
-                    String q = "select Customer_Name from customer where Customer_ID=" + dr["Customer_ID"].ToString();
-                    MySqlCommand com1 = new MySqlCommand(q, dbconnection);
-                    string Customer_Name = com1.ExecuteScalar().ToString();
-                    datagridview.Rows[n].Cells[3].Value = Customer_Name;
-                }
-                else
-                {
-                    datagridview.Rows[n].Cells[3].Value = "";
-                }
-                if (txtClientID.Text != "")
-                {
-                    String q = "select Customer_Name from customer where Customer_ID=" + dr["Client_ID"].ToString();
-                    MySqlCommand com1 = new MySqlCommand(q, dbconnection);
-                    string Customer_Name = com1.ExecuteScalar().ToString();
-                    datagridview.Rows[n].Cells[4].Value = Customer_Name;
-                }
-                else
-                {
-                    datagridview.Rows[n].Cells[4].Value = "";
-                }
-
-
-                datagridview.Rows[n].Cells[5].Value = dr["Date"].ToString();
+                datagridview.Rows[n].Cells[3].Value = dr["Type_Buy"].ToString();
+                datagridview.Rows[n].Cells[4].Value = dr["Date"].ToString();
             }
             dr.Close();
         }
@@ -380,19 +337,25 @@ namespace MainSystem
             string d = date.ToString("yyyy-MM-dd");
             DateTime date2 = dateTimeTo.Value.Date;
             string d2 = date2.ToString("yyyy-MM-dd");
-            string query = "";
+            string query = "", query1 = "";
+            string Name = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Type='بيع'";
+                query = "select * from transitions where Client_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "' and Taswaya_Type='اضافة'";
+                Name = comClient.Text;
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Type='بيع'";
+                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query1 = "select * from customer_taswaya where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='اضافة'";
+                Name = comEngCon.Text;
             }
             else
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Type='بيع'";
-
+                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID is null and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='اضافة'";
+                Name = comClient.Text;
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();
@@ -400,11 +363,23 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[0].Value = dr["Transition_Amount"].ToString();
+                dataGridView2.Rows[n].Cells[0].Value = dr["Amount"].ToString();
                 dataGridView2.Rows[n].Cells[1].Value = "0.00";
                 dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[3].Value = dr["Beneficiary_Name"].ToString();
-               
+                dataGridView2.Rows[n].Cells[3].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
+            }
+            dr.Close();
+            com = new MySqlCommand(query1, dbconnection1);
+            dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                int n = dataGridView2.Rows.Add();
+                dataGridView2.Rows[n].Cells[0].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = "0.00";
+                dataGridView2.Rows[n].Cells[2].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[3].Value = dr["Taswaya_Type"].ToString();
                 dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -416,19 +391,24 @@ namespace MainSystem
             string d = date.ToString("yyyy-MM-dd");
             DateTime date2 = dateTimeTo.Value.Date;
             string d2 = date2.ToString("yyyy-MM-dd");
-            string query = "";
+            string query = "", query1 = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Type='مرتجع'";
+                query = "select * from transitions where Client_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "' and Taswaya_Type='خصم'";
+                Name = comClient.Text;
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Type='مرتجع'";
+                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query1 = "select * from customer_taswaya where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='خصم'";
+                Name = comEngCon.Text;
             }
             else
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Type='مرتجع'";
-
+                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID is null and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='خصم'";
+                Name = comClient.Text;
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();
@@ -437,10 +417,23 @@ namespace MainSystem
             {
                 int n = dataGridView2.Rows.Add();
                 dataGridView2.Rows[n].Cells[0].Value = "0.00";
-                dataGridView2.Rows[n].Cells[1].Value = dr["Transition_Amount"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = dr["Amount"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
                 dataGridView2.Rows[n].Cells[3].Value = dr["Beneficiary_Name"].ToString();
-               
+
+                dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
+            }
+            dr.Close();
+            com = new MySqlCommand(query1, dbconnection1);
+            dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                int n = dataGridView2.Rows.Add();
+                dataGridView2.Rows[n].Cells[0].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = "0.00";
+                dataGridView2.Rows[n].Cells[2].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[3].Value = dr["Taswaya_Type"].ToString();
                 dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -482,23 +475,12 @@ namespace MainSystem
         {
             try
             {
-                if (ClientID != -1 && safay != -1 && ClientName != "")
-                {
-                    //TaswayaForm f = new TaswayaForm(dateTimeFrom.Value.Date.ToString("yyyy-MM-dd"),dateTimeTo.Value.Date.ToString("yyyy-MM-dd"), ClientID, ClientName,safay);
-                    //f.Show();
-                    //this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("insert correct value");
-                }
+                saleMainForm.bindTaswayaCustomersForm(Customer_Type, txtCustomerID.Text, txtClientID.Text);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-     
     }
 }
