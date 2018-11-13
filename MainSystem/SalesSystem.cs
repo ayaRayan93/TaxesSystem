@@ -13,6 +13,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
+using MainSystem.Sales.accounting;
 
 namespace MainSystem
 {
@@ -354,11 +355,11 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage("كشف حسابات العملاءالاجل");
+                XtraTabPage xtraTabPage = getTabPage("كشف حساب عميل");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("كشف حسابات العملاءالاجل");
-                    xtraTabPage = getTabPage("كشف حسابات العملاءالاجل");
+                    xtraTabControlSalesContent.TabPages.Add("كشف حساب عميل");
+                    xtraTabPage = getTabPage("كشف حساب عميل");
                 }
                 xtraTabPage.Controls.Clear();
 
@@ -402,6 +403,34 @@ namespace MainSystem
                 checkPaidBillsForm objForm = new checkPaidBillsForm();
                 objForm.TopLevel = false;
 
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnCustomerTaswaya_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage("تسويات العملاء");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("تسويات العملاء");
+                    xtraTabPage = getTabPage("تسويات العملاء");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                CustomerTaswayaReport objForm = new CustomerTaswayaReport(this);
+                objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 objForm.Dock = DockStyle.Fill;
@@ -691,7 +720,70 @@ namespace MainSystem
             objForm.Show();
             */
         }
+        //taswaya customer
+        public void bindTaswayaCustomersForm(string customerType, string customerID, string clientID)
+        {
+            if (!xtraTabControlSalesContent.Visible)
+                xtraTabControlSalesContent.Visible = true;
 
+            XtraTabPage xtraTabPage = getTabPage("تسوية عميل");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تسوية عميل");
+                xtraTabPage = getTabPage("تسوية عميل");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+            CustomerTaswaya objForm = new CustomerTaswaya(customerType, customerID, clientID);
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindTaswayaCustomersForm()
+        {
+            if (!xtraTabControlSalesContent.Visible)
+                xtraTabControlSalesContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage("تسوية عميل");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تسوية عميل");
+                xtraTabPage = getTabPage("تسوية عميل");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+            CustomerTaswaya objForm = new CustomerTaswaya();
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindUpdateTaswayaCustomersForm()
+        {
+            if (!xtraTabControlSalesContent.Visible)
+                xtraTabControlSalesContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage("تعديل تسوية عميل");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تعديل تسوية عميل");
+                xtraTabPage = getTabPage("تعديل تسوية عميل");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+            UpdateCustomerTaswaya objForm = new UpdateCustomerTaswaya();
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         //customers
         public void bindDisplayCustomersForm(XtraTabPage xtraTabPage)
         {
