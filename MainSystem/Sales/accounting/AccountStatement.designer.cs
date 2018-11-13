@@ -461,9 +461,9 @@
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(425, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 16);
+            this.label3.Size = new System.Drawing.Size(30, 16);
             this.label3.TabIndex = 160;
-            this.label3.Text = "الي";
+            this.label3.Text = "الي ";
             // 
             // panFooter
             // 
