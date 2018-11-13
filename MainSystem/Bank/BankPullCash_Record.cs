@@ -1249,7 +1249,6 @@ namespace MainSystem
             loaded = true;
         }
 
-        //print return bill
         void printBill()
         {
             List<Bill_Items> bi = new List<Bill_Items>();
@@ -1265,10 +1264,6 @@ namespace MainSystem
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
-
-
-
-
                 Bill_Items item;
                 connectionReader3.Open();
                 if (dr["Type"].ToString() == "بند")
