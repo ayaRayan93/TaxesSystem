@@ -56,6 +56,16 @@
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReload = new System.Windows.Forms.Button();
+            this.radDealer = new System.Windows.Forms.RadioButton();
+            this.comEngCon = new System.Windows.Forms.ComboBox();
+            this.comClient = new System.Windows.Forms.ComboBox();
+            this.labelClient = new System.Windows.Forms.Label();
+            this.radCon = new System.Windows.Forms.RadioButton();
+            this.radEng = new System.Windows.Forms.RadioButton();
+            this.radClient = new System.Windows.Forms.RadioButton();
+            this.labelEng = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -69,12 +79,14 @@
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 39);
+            this.gridControl1.Location = new System.Drawing.Point(3, 123);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -83,7 +95,7 @@
             this.repositoryItemColorEdit1,
             this.repositoryItemButtonEdit1});
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(1037, 498);
+            this.gridControl1.Size = new System.Drawing.Size(1037, 414);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -245,9 +257,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1043, 600);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
@@ -380,7 +392,6 @@
             this.txtBill.Size = new System.Drawing.Size(101, 23);
             this.txtBill.TabIndex = 1;
             this.txtBill.Visible = false;
-            this.txtBill.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBill_KeyDown);
             // 
             // btnStart
             // 
@@ -411,19 +422,22 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.BackColor = System.Drawing.Color.GhostWhite;
-            this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48F));
-            this.tableLayoutPanel5.Controls.Add(this.btnReload, 1, 0);
+            this.tableLayoutPanel5.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel5.ColumnCount = 5;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.Controls.Add(this.panel2, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnReload, 3, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1037, 30);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1037, 114);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
             // btnReload
@@ -432,12 +446,134 @@
             this.btnReload.BackgroundImage = global::MainSystem.Properties.Resources.update;
             this.btnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReload.Location = new System.Drawing.Point(502, 3);
+            this.btnReload.Location = new System.Drawing.Point(364, 3);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(35, 24);
+            this.btnReload.Size = new System.Drawing.Size(50, 35);
             this.btnReload.TabIndex = 7;
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // radDealer
+            // 
+            this.radDealer.AutoSize = true;
+            this.radDealer.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.radDealer.Location = new System.Drawing.Point(108, 9);
+            this.radDealer.Name = "radDealer";
+            this.radDealer.Size = new System.Drawing.Size(49, 21);
+            this.radDealer.TabIndex = 144;
+            this.radDealer.TabStop = true;
+            this.radDealer.Text = "تاجر";
+            this.radDealer.UseVisualStyleBackColor = true;
+            this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // comEngCon
+            // 
+            this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comEngCon.FormattingEnabled = true;
+            this.comEngCon.Location = new System.Drawing.Point(108, 39);
+            this.comEngCon.Name = "comEngCon";
+            this.comEngCon.Size = new System.Drawing.Size(150, 24);
+            this.comEngCon.TabIndex = 142;
+            this.comEngCon.Visible = false;
+            this.comEngCon.SelectedValueChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
+            // 
+            // comClient
+            // 
+            this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comClient.FormattingEnabled = true;
+            this.comClient.Location = new System.Drawing.Point(108, 70);
+            this.comClient.Name = "comClient";
+            this.comClient.Size = new System.Drawing.Size(150, 24);
+            this.comClient.TabIndex = 135;
+            this.comClient.Visible = false;
+            // 
+            // labelClient
+            // 
+            this.labelClient.AutoSize = true;
+            this.labelClient.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelClient.Location = new System.Drawing.Point(301, 74);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(40, 17);
+            this.labelClient.TabIndex = 136;
+            this.labelClient.Text = "عميل";
+            this.labelClient.Visible = false;
+            // 
+            // radCon
+            // 
+            this.radCon.AutoSize = true;
+            this.radCon.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.radCon.Location = new System.Drawing.Point(163, 9);
+            this.radCon.Name = "radCon";
+            this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radCon.Size = new System.Drawing.Size(59, 21);
+            this.radCon.TabIndex = 137;
+            this.radCon.TabStop = true;
+            this.radCon.Text = "مقاول";
+            this.radCon.UseVisualStyleBackColor = true;
+            this.radCon.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // radEng
+            // 
+            this.radEng.AutoSize = true;
+            this.radEng.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.radEng.Location = new System.Drawing.Point(228, 9);
+            this.radEng.Name = "radEng";
+            this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radEng.Size = new System.Drawing.Size(71, 21);
+            this.radEng.TabIndex = 138;
+            this.radEng.TabStop = true;
+            this.radEng.Text = "مهندس";
+            this.radEng.UseVisualStyleBackColor = true;
+            this.radEng.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // radClient
+            // 
+            this.radClient.AutoSize = true;
+            this.radClient.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.radClient.Location = new System.Drawing.Point(305, 9);
+            this.radClient.Name = "radClient";
+            this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radClient.Size = new System.Drawing.Size(58, 21);
+            this.radClient.TabIndex = 139;
+            this.radClient.TabStop = true;
+            this.radClient.Text = "عميل";
+            this.radClient.UseVisualStyleBackColor = true;
+            this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // labelEng
+            // 
+            this.labelEng.AutoSize = true;
+            this.labelEng.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelEng.Location = new System.Drawing.Point(262, 43);
+            this.labelEng.Name = "labelEng";
+            this.labelEng.Size = new System.Drawing.Size(119, 17);
+            this.labelEng.TabIndex = 143;
+            this.labelEng.Text = "مهندس/مقاول/تاجر";
+            this.labelEng.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(471, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(460, 108);
+            this.panel2.TabIndex = 151;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.radDealer);
+            this.panel3.Controls.Add(this.comClient);
+            this.panel3.Controls.Add(this.comEngCon);
+            this.panel3.Controls.Add(this.labelEng);
+            this.panel3.Controls.Add(this.radClient);
+            this.panel3.Controls.Add(this.labelClient);
+            this.panel3.Controls.Add(this.radEng);
+            this.panel3.Controls.Add(this.radCon);
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(454, 102);
+            this.panel3.TabIndex = 0;
             // 
             // Delegate_Movement
             // 
@@ -463,6 +599,9 @@
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -496,6 +635,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private DevExpress.XtraGrid.Columns.GridColumn colTimer;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.RadioButton radDealer;
+        private System.Windows.Forms.ComboBox comEngCon;
+        private System.Windows.Forms.ComboBox comClient;
+        private System.Windows.Forms.Label labelClient;
+        private System.Windows.Forms.RadioButton radCon;
+        private System.Windows.Forms.RadioButton radEng;
+        private System.Windows.Forms.RadioButton radClient;
+        private System.Windows.Forms.Label labelEng;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 

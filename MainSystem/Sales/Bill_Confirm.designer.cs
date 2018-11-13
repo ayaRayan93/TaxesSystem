@@ -245,7 +245,7 @@
             this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radClient.Location = new System.Drawing.Point(240, 23);
+            this.radClient.Location = new System.Drawing.Point(240, 25);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(58, 21);
@@ -260,7 +260,7 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radEng.Location = new System.Drawing.Point(163, 23);
+            this.radEng.Location = new System.Drawing.Point(163, 25);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(71, 21);
@@ -275,7 +275,7 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radCon.Location = new System.Drawing.Point(98, 23);
+            this.radCon.Location = new System.Drawing.Point(98, 25);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(59, 21);

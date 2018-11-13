@@ -61,6 +61,12 @@ namespace MainSystem
             repositoryItemButtonEdit3 = new RepositoryItemButtonEdit();
             repositoryItemButtonEdit4 = new RepositoryItemButtonEdit();
 
+            panel2.AutoScroll = false;
+            panel2.VerticalScroll.Enabled = false;
+            panel2.VerticalScroll.Visible = false;
+            panel2.VerticalScroll.Maximum = 0;
+            panel2.AutoScroll = true;
+
             snd = new SoundPlayer();
 
             //Calculate the time of the actual work of the delegates
@@ -598,6 +604,83 @@ namespace MainSystem
             }
             dbconnection.Close();
             dbconnection5.Close();
+        }
+
+        private void radiotype_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            string Customer_Type = radio.Text;
+
+            loaded = false; //this is flag to prevent action of SelectedValueChanged event until datasource fill combobox
+            try
+            {
+                if (Customer_Type == "عميل")
+                {
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    comEngCon.Text = "";
+
+                    labelEng.Visible = false;
+                    comEngCon.Visible = false;
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+                }
+                else
+                {
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comEngCon.DataSource = dt;
+                    comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    comEngCon.Text = "";
+
+                    labelEng.Visible = true;
+                    comEngCon.Visible = true;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
+                }
+
+                loaded = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection2.Close();
+        }
+
+        private void comEngCon_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         //functions
