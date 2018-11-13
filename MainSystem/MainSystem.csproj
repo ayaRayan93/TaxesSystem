@@ -38,7 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Bunifu_UI_v1.5.3">
-      <HintPath>D:\sara\Codes\Bank_DX\BankDX\BankDX\BankDX\BankDX\bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -132,6 +132,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bank\Bill_Items.cs" />
+    <Compile Include="Sales\accounting\CustomerTaswaya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\CustomerTaswaya.designer.cs">
+      <DependentUpon>CustomerTaswaya.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting\CustomerTaswayaReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\CustomerTaswayaReport.designer.cs">
+      <DependentUpon>CustomerTaswayaReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting\UpdateCustomerTaswaya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\UpdateCustomerTaswaya.designer.cs">
+      <DependentUpon>UpdateCustomerTaswaya.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\ReturnedBill_Items.cs" />
     <Compile Include="Sales\Print_ReturnedInvoice.cs">
       <SubType>Component</SubType>
@@ -1223,6 +1241,15 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <EmbeddedResource Include="Sales\accounting\CustomerTaswaya.resx">
+      <DependentUpon>CustomerTaswaya.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\CustomerTaswayaReport.resx">
+      <DependentUpon>CustomerTaswayaReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\UpdateCustomerTaswaya.resx">
+      <DependentUpon>UpdateCustomerTaswaya.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\Print_ReturnedInvoice.resx">
       <DependentUpon>Print_ReturnedInvoice.cs</DependentUpon>
     </EmbeddedResource>
