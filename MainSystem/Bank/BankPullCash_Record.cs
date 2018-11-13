@@ -1265,6 +1265,7 @@ namespace MainSystem
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
+
                 Bill_Items item;
                 connectionReader3.Open();
                 if (dr["Type"].ToString() == "بند")
