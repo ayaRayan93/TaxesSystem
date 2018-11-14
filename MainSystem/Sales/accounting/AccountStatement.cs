@@ -341,13 +341,13 @@ namespace MainSystem
             string Name = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query = "select * from transitions where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "'  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
                 query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "' and Taswaya_Type='اضافة'";
                 Name = comClient.Text;
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query = "select * from transitions where Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
                 query1 = "select * from customer_taswaya where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='اضافة'";
                 Name = comEngCon.Text;
             }
@@ -378,8 +378,8 @@ namespace MainSystem
                 int n = dataGridView2.Rows.Add();
                 dataGridView2.Rows[n].Cells[0].Value = dr["Money_Paid"].ToString();
                 dataGridView2.Rows[n].Cells[1].Value = "0.00";
-                dataGridView2.Rows[n].Cells[2].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[3].Value = dr["Taswaya_Type"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = dr["CustomerTaswaya_ID"].ToString();
+                dataGridView2.Rows[n].Cells[3].Value = "تسوية";
                 dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -394,13 +394,13 @@ namespace MainSystem
             string query = "", query1 = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query = "select * from transitions where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "'  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
                 query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "' and Taswaya_Type='خصم'";
                 Name = comClient.Text;
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query = "select * from transitions where Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
                 query1 = "select * from customer_taswaya where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='خصم'";
                 Name = comEngCon.Text;
             }
@@ -419,8 +419,7 @@ namespace MainSystem
                 dataGridView2.Rows[n].Cells[0].Value = "0.00";
                 dataGridView2.Rows[n].Cells[1].Value = dr["Amount"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[3].Value = dr["Beneficiary_Name"].ToString();
-
+                dataGridView2.Rows[n].Cells[3].Value = dr["Type"].ToString();
                 dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -430,10 +429,10 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[0].Value = dr["Money_Paid"].ToString();
-                dataGridView2.Rows[n].Cells[1].Value = "0.00";
-                dataGridView2.Rows[n].Cells[2].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[3].Value = dr["Taswaya_Type"].ToString();
+                dataGridView2.Rows[n].Cells[0].Value = "0.00";
+                dataGridView2.Rows[n].Cells[1].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = dr["CustomerTaswaya_ID"].ToString(); ;
+                dataGridView2.Rows[n].Cells[3].Value = "تسوية";
                 dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
             }
             dr.Close();

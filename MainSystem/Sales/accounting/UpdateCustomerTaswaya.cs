@@ -16,15 +16,17 @@ namespace MainSystem.Sales.accounting
         MySqlConnection dbconnection;
         MySqlConnection dbconnection1;
         MainForm saleMainForm;
+        CustomerTaswayaReport CustomerTaswayaReport;
         DataRowView row;
         private string Customer_Type;
         private bool loaded = false;
         double safay = -1;
         int ClientID = -1;
+        int id = -1;
         string ClientName = "";
         string customerID="", clientID="";
         bool flag = false;
-        public UpdateCustomerTaswaya(DataRowView row, MainForm saleMainForm)
+        public UpdateCustomerTaswaya(DataRowView row, MainForm saleMainForm, CustomerTaswayaReport CustomerTaswayaReport)
         {
             try
             {
@@ -34,16 +36,15 @@ namespace MainSystem.Sales.accounting
                 dbconnection.Open();
                 this.row = row;
                 this.saleMainForm = saleMainForm;
+                this.CustomerTaswayaReport = CustomerTaswayaReport;
                 setData();
-            
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
-
         //check type of customer if engineer,client or contract 
         private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
@@ -177,31 +178,35 @@ namespace MainSystem.Sales.accounting
         {
             try
             {
-                dbconnection.Open();
-                string query = "insert into customer_taswaya (Customer_ID,Client_ID,Taswaya_Type,Money_Paid,Info,Date) values(@Customer_ID,@Client_ID,@Taswaya_Type,@Money_Paid,@Info,@Date)";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
-                com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
-                if (radioButton1.Checked)
+                if (id != -1)
                 {
-                    com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Taswaya_Type"].Value = radioButton1.Text;
-                }
-                else
-                {
-                    com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Taswaya_Type"].Value = radioButton2.Text;
-                }
-                com.Parameters.Add("@Money_Paid", MySqlDbType.Decimal);
-                com.Parameters["@Money_Paid"].Value = Convert.ToDouble(txtMoney.Text);
-                com.Parameters.Add("@Info", MySqlDbType.VarChar);
-                com.Parameters["@Info"].Value = txtInfo.Text;
-                com.Parameters.Add("@Date", MySqlDbType.Date);
-                com.Parameters["@Date"].Value = dateTimeFrom.Value.Date;
+                    dbconnection.Open();
+                    string query = "update  customer_taswaya set Client_ID=@Client_ID,Taswaya_Type=@Taswaya_Type,Money_Paid=@Money_Paid,Info=@Info,Date=@Date where CustomerTaswaya_ID=" + id;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                    com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                    com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                    if (radioButton1.Checked)
+                    {
+                        com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
+                        com.Parameters["@Taswaya_Type"].Value = radioButton1.Text;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
+                        com.Parameters["@Taswaya_Type"].Value = radioButton2.Text;
+                    }
+                    com.Parameters.Add("@Money_Paid", MySqlDbType.Decimal);
+                    com.Parameters["@Money_Paid"].Value = Convert.ToDouble(txtMoney.Text);
+                    com.Parameters.Add("@Info", MySqlDbType.VarChar);
+                    com.Parameters["@Info"].Value = txtInfo.Text;
+                    com.Parameters.Add("@Date", MySqlDbType.Date);
+                    com.Parameters["@Date"].Value = dateTimeFrom.Value.Date;
 
-                com.ExecuteNonQuery();
+                    com.ExecuteNonQuery();
+                    CustomerTaswayaReport.DisplayCustomerTaswaya();
+                }
             }
             catch (Exception ex)
             {
@@ -301,10 +306,9 @@ namespace MainSystem.Sales.accounting
                 }
             }
         }
-
         public void setData()
         {
-            int id = Convert.ToInt16(row[0].ToString());
+            id = Convert.ToInt16(row[0].ToString());
             string qeury = "select CustomerTaswaya_ID as 'الكود',customer_taswaya.Customer_ID,customer_taswaya.Client_ID,c2.Customer_Name as 'المهندس/مقاول/تاجر',c1.Customer_Name as 'العميل',Taswaya_Type ,Money_Paid ,Info ,Date  from customer_taswaya inner join customer as c1 on c1.Customer_ID=customer_taswaya.Client_ID inner join customer as c2 on c2.Customer_ID=customer_taswaya.Customer_ID where CustomerTaswaya_ID=" + id;
             MySqlCommand com = new MySqlCommand(qeury, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();

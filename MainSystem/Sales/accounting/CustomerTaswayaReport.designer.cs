@@ -33,7 +33,6 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panHeader = new System.Windows.Forms.Panel();
@@ -106,7 +105,6 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnDelete, 4, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 5, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -139,26 +137,6 @@
             this.btnDelete.Size = new System.Drawing.Size(73, 42);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnReport.ImagePosition = 1;
-            this.btnReport.ImageZoom = 22;
-            this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(240, 4);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(73, 42);
-            this.btnReport.TabIndex = 3;
             // 
             // btnUpdate
             // 
@@ -278,7 +256,6 @@
         private System.Windows.Forms.Panel panHeader;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private Bunifu.Framework.UI.BunifuTileButton btnDelete;
-        private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
         private System.Windows.Forms.Label label1;

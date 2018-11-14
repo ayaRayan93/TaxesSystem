@@ -276,7 +276,6 @@
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(182, 27);
             this.comEngCon.TabIndex = 178;
-            this.comEngCon.Visible = false;
             this.comEngCon.SelectedValueChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
             // 
             // comClient
@@ -288,7 +287,6 @@
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(182, 27);
             this.comClient.TabIndex = 173;
-            this.comClient.Visible = false;
             this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
             // 
             // labelClient
@@ -301,7 +299,6 @@
             this.labelClient.Size = new System.Drawing.Size(40, 19);
             this.labelClient.TabIndex = 174;
             this.labelClient.Text = "عميل";
-            this.labelClient.Visible = false;
             // 
             // radCon
             // 
@@ -358,7 +355,6 @@
             this.labelEng.Size = new System.Drawing.Size(133, 19);
             this.labelEng.TabIndex = 179;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
-            this.labelEng.Visible = false;
             // 
             // UpdateCustomerTaswaya
             // 

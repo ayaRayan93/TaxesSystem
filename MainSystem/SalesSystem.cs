@@ -763,7 +763,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindUpdateTaswayaCustomersForm(DataRowView row)
+        public void bindUpdateTaswayaCustomersForm(DataRowView row, CustomerTaswayaReport CustomerTaswayaReport)
         {
             if (!xtraTabControlSalesContent.Visible)
                 xtraTabControlSalesContent.Visible = true;
@@ -777,7 +777,7 @@ namespace MainSystem
             xtraTabPage.Controls.Clear();
             xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
-            UpdateCustomerTaswaya objForm = new UpdateCustomerTaswaya(row,this);
+            UpdateCustomerTaswaya objForm = new UpdateCustomerTaswaya(row,this, CustomerTaswayaReport);
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
