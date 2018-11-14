@@ -25,6 +25,7 @@ namespace MainSystem
         MySqlConnection dbconnection3;
         MySqlConnection dbconnection4;
         MySqlConnection dbconnection5;
+        MySqlConnection dbconnection6;
         MySqlDataReader dr;
         public static SoundPlayer snd;
         int EmpBranchId = 0;
@@ -54,6 +55,7 @@ namespace MainSystem
             dbconnection3 = new MySqlConnection(connection.connectionString);
             dbconnection4 = new MySqlConnection(connection.connectionString);
             dbconnection5 = new MySqlConnection(connection.connectionString);
+            dbconnection6 = new MySqlConnection(connection.connectionString);
 
             repositoryItemButtonEdit0 = new RepositoryItemButtonEdit();
             repositoryItemButtonEdit1_1 = new RepositoryItemButtonEdit();
@@ -66,6 +68,12 @@ namespace MainSystem
             panel2.VerticalScroll.Visible = false;
             panel2.VerticalScroll.Maximum = 0;
             panel2.AutoScroll = true;
+
+            panel4.AutoScroll = false;
+            panel4.VerticalScroll.Enabled = false;
+            panel4.VerticalScroll.Visible = false;
+            panel4.VerticalScroll.Maximum = 0;
+            panel4.AutoScroll = true;
 
             snd = new SoundPlayer();
 
@@ -127,6 +135,7 @@ namespace MainSystem
                 {
                     string query = "";
                     TimeSpan statustime = new TimeSpan();
+                    dbconnection.Close();
                     if (e.Action == CollectionChangeAction.Add)
                     {
                         if (Convert.ToInt16(gridView1.GetFocusedRowCellValue(colStatus)) == 4)
@@ -523,7 +532,7 @@ namespace MainSystem
         {
             try
             {
-                if (loaded)
+                if (loaded && gridView1.RowCount > 0)
                 {
                     if (gridView1.GetFocusedRowCellValue(colStatus).ToString() == "2")
                     {
@@ -596,6 +605,8 @@ namespace MainSystem
         {
             try
             {
+                loaded = false;
+                LoadGridData();
                 loadStatus();
             }
             catch (Exception ex)
@@ -616,7 +627,12 @@ namespace MainSystem
             {
                 if (Customer_Type == "عميل")
                 {
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    labelEng.Visible = false;
+                    comEngCon.Visible = false;
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+                    //dash INNER JOIN dash_delegate_bill ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN  ... ON customer.Customer_ID = dash.Customer_ID
+                    string query = "select distinct customer.Customer_ID,customer.Customer_Name from  customer  where customer.Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -625,15 +641,15 @@ namespace MainSystem
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEngCon.Text = "";
-
-                    labelEng.Visible = false;
-                    comEngCon.Visible = false;
-                    labelClient.Visible = true;
-                    comClient.Visible = true;
                 }
                 else
                 {
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    labelEng.Visible = true;
+                    comEngCon.Visible = true;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
+                    //dash INNER JOIN dash_delegate_bill ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN  .. ON customer.Customer_ID = dash.Customer_ID
+                    string query = "select distinct customer.Customer_ID,customer.Customer_Name from  customer  where customer.Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -642,11 +658,6 @@ namespace MainSystem
                     comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEngCon.Text = "";
-
-                    labelEng.Visible = true;
-                    comEngCon.Visible = true;
-                    labelClient.Visible = false;
-                    comClient.Visible = false;
                 }
 
                 loaded = true;
@@ -666,8 +677,8 @@ namespace MainSystem
                 {
                     labelClient.Visible = true;
                     comClient.Visible = true;
-
-                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    //dash INNER JOIN dash_delegate_bill ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN  ..  ON customer.Customer_ID = dash.Customer_ID
+                    string query = "select distinct customer.Customer_ID,customer.Customer_Name from  customer  where customer.Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -675,6 +686,8 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+
+                    gridSearch(comEngCon.SelectedValue.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -741,9 +754,9 @@ namespace MainSystem
 
         void loadStatus()
         {
-            dbconnection.Open();
             for (int i = 0; i < gridView1.RowCount; i++)
             {
+                dbconnection.Open();
                 TimeSpan dt = new TimeSpan();
                 TimeSpan atime = new TimeSpan();
                 TimeSpan stattime = new TimeSpan();
@@ -808,8 +821,8 @@ namespace MainSystem
                     gridView1.SetRowCellValue(i, colDeparture, dt);
                     gridView1.SetRowCellValue(i, colTimer, stattime);
                 }
+                dbconnection.Close();
             }
-            dbconnection.Close();
             loaded = true;
         }
 
@@ -947,14 +960,19 @@ namespace MainSystem
                 int billNum = -1;
                 if (int.TryParse(txtBill.Text, out billNum))
                 {
+                    dbconnection.Open();
                     //string query = "SELECT dash.Bill_Time FROM dash where dash.Branch_ID=" + EmpBranchId + "  and dash.Bill_Number=" + billNum;
                     //MySqlCommand com = new MySqlCommand(query, dbconnection);
                     //double BillTime = Convert.ToInt16(com.ExecuteScalar().ToString());
 
+                    //string query = "select Dash_Delegate_Bill_ID from dash_delegate_bill where Delegate_ID=" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + " and Bill_Number=" + billNum + " and Branch_ID=" + EmpBranchId;
+                    //MySqlCommand command = new MySqlCommand(query, dbconnection);
+                    //if (command.ExecuteScalar() == null)
+                    //{
                     string query = "insert into dash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + ")";
                     MySqlCommand command = new MySqlCommand(query, dbconnection);
-                    dbconnection.Open();
                     command.ExecuteNonQuery();
+                    //}
                     MessageBox.Show("تم");
                 }
                 else
@@ -965,6 +983,73 @@ namespace MainSystem
             else
             {
                 MessageBox.Show("يجب ادخال رقم الفاتورة");
+            }
+        }
+
+        private void comClient_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    gridSearch(comClient.SelectedValue.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
+                dbconnection6.Close();
+            }
+        }
+
+        public void gridSearch(string customId)
+        {
+            dbconnection.Open();
+            //MySqlCommand adapter = new MySqlCommand("SELECT DISTINCT dash.Delegate_ID,delegate.Delegate_Name FROM dash_delegate_bill INNER JOIN dash ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN delegate ON delegate.Delegate_ID = dash_delegate_bill.Delegate_ID where dash.Customer_ID=" + customId + " and dash.Branch_ID=" + EmpBranchId, dbconnection);
+            MySqlCommand adapter = new MySqlCommand("SELECT delegate_customer.Delegate_ID,delegate.Delegate_Name FROM delegate_customer INNER JOIN delegate ON delegate.Delegate_ID = delegate_customer.Delegate_ID where delegate_customer.Customer_ID=" + customId + " and delegate.Branch_ID=" + EmpBranchId, dbconnection);
+            dr = adapter.ExecuteReader();
+
+            BindingList<GridData> lista = new BindingList<GridData>();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    lista.Add(new GridData() { DelegateId = Convert.ToInt16(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1" });
+                }
+                dr.Close();
+                gridControl1.DataSource = lista;
+
+                dbconnection6.Open();
+                string query = "SELECT dash.Bill_Number,dash.Delegate_ID FROM dash where dash.Customer_ID=" + customId + " and dash.Branch_ID=" + EmpBranchId;
+                MySqlCommand c = new MySqlCommand(query, dbconnection6);
+                MySqlDataReader dr1 = c.ExecuteReader();
+                while (dr1.Read())
+                {
+                    txtRecomendedBill.Text = dr1["Bill_Number"].ToString();
+                }
+                dr1.Close();
+            }
+            else
+            {
+                gridControl1.DataSource = null;
+            }
+            
+            dbconnection.Close();
+
+            if (gridView1.IsLastVisibleRow)
+            {
+                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+            }
+            loaded = false;
+            loadStatus();
+        }
+
+        private void txtRecomendedBill_Click(object sender, EventArgs e)
+        {
+            if (txtRecomendedBill.Text != "")
+            {
+                txtBill.Text = txtRecomendedBill.Text;
             }
         }
     }
