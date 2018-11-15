@@ -107,6 +107,7 @@ namespace MainSystem.Sales.accounting
             }
             dbconnection.Close();
         }
+
         //functions
         public void DisplayCustomerTaswaya()
         {

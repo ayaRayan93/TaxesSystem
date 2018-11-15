@@ -276,7 +276,22 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from customer_bill where  Customer_ID=" + txtCustomerID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
+                query = "select * from customer_bill inner join customer on customer_bill.Client_ID=customer.Customer_ID where  customer_bill.Customer_ID=" + txtCustomerID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
+                MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
+                MySqlDataReader dr1 = com1.ExecuteReader();
+                dataGridView1.Columns[3].Visible = true;
+                while (dr1.Read())
+                {
+                    int n = dataGridView1.Rows.Add();
+                    dataGridView1.Rows[n].Cells[0].Value = dr1["Total_CostAD"].ToString();
+                    dataGridView1.Rows[n].Cells[1].Value = "0.00";
+                    dataGridView1.Rows[n].Cells[2].Value = dr1["CustomerBill_ID"].ToString();
+                    dataGridView1.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
+                    dataGridView1.Rows[n].Cells[4].Value = dr1["Type_Buy"].ToString();
+                    dataGridView1.Rows[n].Cells[5].Value = dr1["Bill_Date"].ToString();
+                }
+                dr1.Close();
+                return;
             }
             else
             {
@@ -291,10 +306,11 @@ namespace MainSystem
                 dataGridView1.Rows[n].Cells[0].Value = dr["Total_CostAD"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = "0.00";
                 dataGridView1.Rows[n].Cells[2].Value = dr["CustomerBill_ID"].ToString();
-                dataGridView1.Rows[n].Cells[3].Value = dr["Type_Buy"].ToString();
-                dataGridView1.Rows[n].Cells[4].Value = dr["Bill_Date"].ToString();
+                dataGridView1.Rows[n].Cells[4].Value = dr["Type_Buy"].ToString();
+                dataGridView1.Rows[n].Cells[5].Value = dr["Bill_Date"].ToString();
             }
             dr.Close();
+            dataGridView1.Columns[3].Visible = false;
         }
         // display Customer return bills
         public void displayReturnBill(DataGridView datagridview)
@@ -310,7 +326,22 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from customer_return_bill where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'";
+                query = "select * from customer_return_bill inner join customer on customer_return_bill.Client_ID=customer.Customer_ID where  customer_return_bill.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'";
+                MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
+                MySqlDataReader dr1 = com1.ExecuteReader();
+                datagridview.Columns[3].Visible = true;
+                while (dr1.Read())
+                {
+                    int n = datagridview.Rows.Add();
+                    datagridview.Rows[n].Cells[0].Value = "0.00";
+                    datagridview.Rows[n].Cells[1].Value = dr1["TotalCostAD"].ToString();
+                    datagridview.Rows[n].Cells[2].Value = dr1["CustomerReturnBill_ID"].ToString();
+                    datagridview.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
+                    datagridview.Rows[n].Cells[4].Value = dr1["Type_Buy"].ToString();
+                    datagridview.Rows[n].Cells[5].Value = dr1["Date"].ToString();
+                }
+                dr1.Close();
+                return;
             }
             else
             {
@@ -325,10 +356,11 @@ namespace MainSystem
                 datagridview.Rows[n].Cells[0].Value = "0.00";
                 datagridview.Rows[n].Cells[1].Value = dr["TotalCostAD"].ToString();
                 datagridview.Rows[n].Cells[2].Value = dr["CustomerReturnBill_ID"].ToString();
-                datagridview.Rows[n].Cells[3].Value = dr["Type_Buy"].ToString();
-                datagridview.Rows[n].Cells[4].Value = dr["Date"].ToString();
+                datagridview.Rows[n].Cells[4].Value = dr["Type_Buy"].ToString();
+                datagridview.Rows[n].Cells[5].Value = dr["Date"].ToString();
             }
             dr.Close();
+            datagridview.Columns[3].Visible = false;
         }
         // display Customer Paid bills
         public void displayPaidBill()
@@ -341,15 +373,45 @@ namespace MainSystem
             string Name = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "'  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query = "select * from transitions  where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "'  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
                 query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "' and Taswaya_Type='اضافة'";
                 Name = comClient.Text;
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
-                query1 = "select * from customer_taswaya where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='اضافة'";
-                Name = comEngCon.Text;
+                dataGridView2.Columns[3].Visible = true;
+                query = "select * from transitions inner join customer on transitions.Client_ID=customer.Customer_ID  where transitions.Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query1 = "select * from customer_taswaya inner join customer on customer_taswaya.Client_ID=customer.Customer_ID where  customer_taswaya.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='اضافة'";
+                MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
+                MySqlDataReader dr1 = com1.ExecuteReader();
+
+                while (dr1.Read())
+                {
+                    int n = dataGridView2.Rows.Add();
+                    dataGridView2.Rows[n].Cells[0].Value = dr1["Amount"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = "0.00";
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Transition_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Date"].ToString();
+                }
+                dr1.Close();
+
+                com1 = new MySqlCommand(query1, dbconnection1);
+                dr1 = com1.ExecuteReader();
+
+                while (dr1.Read())
+                {
+                    int n = dataGridView2.Rows.Add();
+                    dataGridView2.Rows[n].Cells[0].Value = dr1["Money_Paid"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = "0.00";
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["CustomerTaswaya_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Date"].ToString();
+                }
+                dr1.Close();
+                return;
             }
             else
             {
@@ -366,10 +428,11 @@ namespace MainSystem
                 dataGridView2.Rows[n].Cells[0].Value = dr["Amount"].ToString();
                 dataGridView2.Rows[n].Cells[1].Value = "0.00";
                 dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[3].Value = dr["Type"].ToString();
-                dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[5].Value = dr["Date"].ToString();
             }
             dr.Close();
+
             com = new MySqlCommand(query1, dbconnection1);
             dr = com.ExecuteReader();
 
@@ -379,10 +442,11 @@ namespace MainSystem
                 dataGridView2.Rows[n].Cells[0].Value = dr["Money_Paid"].ToString();
                 dataGridView2.Rows[n].Cells[1].Value = "0.00";
                 dataGridView2.Rows[n].Cells[2].Value = dr["CustomerTaswaya_ID"].ToString();
-                dataGridView2.Rows[n].Cells[3].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[5].Value = dr["Date"].ToString();
             }
             dr.Close();
+            dataGridView2.Columns[3].Visible = false;
         }
         // display Customer Paid Return bills
         public void displayPaidReturnBill()
@@ -400,9 +464,38 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions where Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
-                query1 = "select * from customer_taswaya where  Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='خصم'";
-                Name = comEngCon.Text;
+                query = "select * from transitions inner join customer on transitions.Client_ID=customer.Customer_ID where transitions.Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query1 = "select * from customer_taswaya inner join customer on customer_taswaya.Client_ID=customer.Customer_ID where  customer_taswaya.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='خصم'";
+                MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
+                MySqlDataReader dr1 = com1.ExecuteReader();
+                dataGridView2.Columns[3].Visible = true;
+                while (dr1.Read())
+                {
+                    int n = dataGridView2.Rows.Add();
+                    dataGridView2.Rows[n].Cells[0].Value =  "0.00";
+                    dataGridView2.Rows[n].Cells[1].Value = dr1["Amount"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Transition_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Date"].ToString();
+                }
+                dr1.Close();
+
+                com1 = new MySqlCommand(query1, dbconnection1);
+                dr1 = com1.ExecuteReader();
+
+                while (dr1.Read())
+                {
+                    int n = dataGridView2.Rows.Add();
+                    dataGridView2.Rows[n].Cells[0].Value = "0.00"; 
+                    dataGridView2.Rows[n].Cells[1].Value = dr1["Money_Paid"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["CustomerTaswaya_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Date"].ToString();
+                }
+                dr1.Close();
+                return;
             }
             else
             {
@@ -419,8 +512,8 @@ namespace MainSystem
                 dataGridView2.Rows[n].Cells[0].Value = "0.00";
                 dataGridView2.Rows[n].Cells[1].Value = dr["Amount"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[3].Value = dr["Type"].ToString();
-                dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[5].Value = dr["Date"].ToString();
             }
             dr.Close();
             com = new MySqlCommand(query1, dbconnection1);
@@ -432,10 +525,11 @@ namespace MainSystem
                 dataGridView2.Rows[n].Cells[0].Value = "0.00";
                 dataGridView2.Rows[n].Cells[1].Value = dr["Money_Paid"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = dr["CustomerTaswaya_ID"].ToString(); ;
-                dataGridView2.Rows[n].Cells[3].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[4].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[5].Value = dr["Date"].ToString();
             }
             dr.Close();
+            dataGridView2.Columns[3].Visible = false;
         }
         private void AccountStatement_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -481,5 +575,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+     
     }
 }

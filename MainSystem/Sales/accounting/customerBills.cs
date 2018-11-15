@@ -57,7 +57,7 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
-                    comEngCon.Text = "";
+                    txtClientID.Text = "";
                 }
                 else
                 {
@@ -75,8 +75,8 @@ namespace MainSystem
                     comEngCon.DataSource = dt;
                     comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
-                    comClient.Text = "";
                     comEngCon.Text = "";
+                    txtCustomerID.Text = "";
                 }
 
                 loaded = true;
@@ -121,6 +121,7 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    txtClientID.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -232,19 +233,19 @@ namespace MainSystem
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill,customer_return_bill where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID='" + txtCustomerID.Text + "' group by customer_bill.Client_ID,customer_bill.Customer_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID='" + txtCustomerID.Text + "' group by customer_bill.Client_ID,customer_bill.Customer_ID";
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill,customer_return_bill where  customer_bill.Customer_ID='" + txtCustomerID.Text + "' group by customer_bill.Customer_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where  customer_bill.Customer_ID='" + txtCustomerID.Text + "' group by customer_bill.Customer_ID";
             }
             else if (txtClientID.Text != "" && txtCustomerID.Text == "")
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill,customer_return_bill where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID is null group by customer_bill.Client_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID is null group by customer_bill.Client_ID";
             }
             else
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill,customer_return_bill  group by customer_bill.Client_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID  group by customer_bill.Client_ID";
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();
@@ -254,29 +255,20 @@ namespace MainSystem
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = dr["sum(Total_CostAD)"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = dr["sum(TotalCostAD)"].ToString();
-                if (dr["Customer_ID"].ToString() != "")
-                {
-                    String q = "select Customer_Name from customer where Customer_ID=" + dr["Customer_ID"].ToString();
-                    MySqlCommand com1 = new MySqlCommand(q, dbconnection);
-                    string Customer_Name = com1.ExecuteScalar().ToString();
-                    dataGridView1.Rows[n].Cells[2].Value = Customer_Name;
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[2].Value = "";
-                }
-                if (dr["Client_ID"].ToString() != "")
-                {
-                    String q = "select Customer_Name from customer where Customer_ID=" + dr["Client_ID"].ToString();
-                    MySqlCommand com1 = new MySqlCommand(q, dbconnection);
-                    string Customer_Name = com1.ExecuteScalar().ToString();
-                    dataGridView1.Rows[n].Cells[3].Value = Customer_Name;
-                }
-                else
-                {
-                    dataGridView1.Rows[n].Cells[3].Value = "";
-                }
 
+                if (!dr.IsDBNull(4))
+                    dataGridView1.Rows[n].Cells[2].Value = dr["Customer_Name"].ToString();
+                else
+                    dataGridView1.Rows[n].Cells[2].Value = "";
+
+                dataGridView1.Rows[n].Cells[3].Value = dr["Customer_ID"].ToString();
+
+                if (!dr.IsDBNull(5) )
+                    dataGridView1.Rows[n].Cells[4].Value = dr[5].ToString();
+                else
+                    dataGridView1.Rows[n].Cells[4].Value = "";
+
+                dataGridView1.Rows[n].Cells[5].Value = dr["Client_ID"].ToString();
             }
             dr.Close();
         }
