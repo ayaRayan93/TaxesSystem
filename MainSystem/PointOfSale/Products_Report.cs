@@ -114,7 +114,7 @@ namespace MainSystem
         {
             try
             {
-                //LoginDelegateID = UserControl.LoginDelegate(dbconnection);
+                LoginDelegateID = UserControl.LoginDelegate(dbconnection);
                 EmpBranchId = UserControl.UserBranch(dbconnection);
                 search();
                 search2();
@@ -199,7 +199,7 @@ namespace MainSystem
                                             //checkEdit1.Enabled = false;
                                             txtPhone.Text = dr3["Phone"].ToString();
                                             txtClient.Text = dr3["Customer_Name"].ToString();
-                                            LoginDelegateID = Convert.ToInt16(dr4["Delegate_ID"].ToString());
+                                            //LoginDelegateID = Convert.ToInt16(dr4["Delegate_ID"].ToString());
                                             ClintID = Convert.ToInt16(dr4["Customer_ID"].ToString());
                                             AddedToBill = true;
                                         }
@@ -227,12 +227,12 @@ namespace MainSystem
                             if (dr2.HasRows)
                             {
                                 billExist = true;
-                                main.test(LoginDelegateID, billnum);
+                                main.test(/*LoginDelegateID,*/ billnum);
                             }
                             else
                             {
                                 billExist = false;
-                                main.test(LoginDelegateID, billnum);
+                                main.test(/*LoginDelegateID,*/ billnum);
                             }
                         }
                         else
@@ -246,8 +246,8 @@ namespace MainSystem
                             billExist = false;
                             mainBillExist = false;
                             AddedToBill = false;
-                            LoginDelegateID = -1;
-                            main.test(LoginDelegateID, 0);
+                            //LoginDelegateID = -1;
+                            main.test(/*-1,*/ 0);
                             MessageBox.Show("هذه الفاتورة غير موجودة");
                         }
                     }
@@ -1638,7 +1638,7 @@ namespace MainSystem
                 MainForm.panelProductsDetailsReport.Name = "panelProductsDetailsReport";
                 MainForm.panelProductsDetailsReport.Dock = DockStyle.Fill;
 
-                MainForm.ProductsDetailsReport = new ProductsDetails_Report(main, LoginDelegateID, billNum);
+                MainForm.ProductsDetailsReport = new ProductsDetails_Report(main/*, LoginDelegateID*/, billNum);
                 MainForm.ProductsDetailsReport.Size = new Size(1109, 660);
                 MainForm.ProductsDetailsReport.TopLevel = false;
                 MainForm.ProductsDetailsReport.FormBorderStyle = FormBorderStyle.None;
@@ -1811,7 +1811,7 @@ namespace MainSystem
                                                     int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
 
 
-                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Cartons) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Cartons)";
+                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons)";
                                                     com = new MySqlCommand(query, dbconnection);
                                                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
                                                     if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
@@ -1827,9 +1827,17 @@ namespace MainSystem
                                                     com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
                                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
                                                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
                                                     com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
                                                     //com.Parameters.Add("@Error", MySqlDbType.Int16).Value = 0;
                                                     com.ExecuteNonQuery();
+
+                                                    /*query = "insert into delegate_dash (Dash_ID,Delegate_ID) values (@Dash_ID,@Delegate_ID)";
+                                                    com = new MySqlCommand(query, dbconnection);
+                                                    com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
+                                                    com.ExecuteNonQuery();*/
+
                                                     dbconnection.Close();
                                                     MessageBox.Show("تم");
                                                     txtQuantity.Text = "";
@@ -1839,7 +1847,7 @@ namespace MainSystem
                                                     //txtClient.Enabled = false;
                                                     //checkEdit1.Enabled = false;
                                                     //checkEdit1.Checked = false;
-                                                    main.test(LoginDelegateID, billNo);
+                                                    main.test(/*LoginDelegateID,*/ billNo);
                                                 }
                                                 #endregion
 
@@ -1859,7 +1867,7 @@ namespace MainSystem
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
                                                     int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
 
-                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Cartons) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Cartons)";
+                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons)";
                                                     com = new MySqlCommand(query, dbconnection);
                                                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
                                                     if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
@@ -1875,9 +1883,22 @@ namespace MainSystem
                                                     com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
                                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
                                                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
                                                     com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
                                                     //com.Parameters.Add("@Error", MySqlDbType.Int16).Value = 0;
                                                     com.ExecuteNonQuery();
+
+                                                    /*query = "SELECT delegate_dash.DelegateDash_ID FROM delegate_dash where delegate_dash.Dash_ID=" + dashId + " and delegate_dash.Delegate_ID=" + LoginDelegateID;
+                                                    com = new MySqlCommand(query, dbconnection);
+                                                    if (com.ExecuteScalar() == null)
+                                                    {
+                                                        query = "insert into delegate_dash (Dash_ID,Delegate_ID) values (@Dash_ID,@Delegate_ID)";
+                                                        com = new MySqlCommand(query, dbconnection);
+                                                        com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
+                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
+                                                        com.ExecuteNonQuery();
+                                                    }*/
+
                                                     dbconnection.Close();
                                                     MessageBox.Show("تم");
                                                     txtQuantity.Text = "";
@@ -1887,7 +1908,7 @@ namespace MainSystem
                                                     //txtClient.Enabled = false;
                                                     //checkEdit1.Enabled = false;
                                                     //checkEdit1.Checked = false;
-                                                    main.test(LoginDelegateID, billNo);
+                                                    main.test(/*LoginDelegateID,*/ billNo);
                                                 }
                                                 #endregion
 
@@ -2370,7 +2391,7 @@ namespace MainSystem
                 if (DashBillNum != 0 && txtClient.Text != "" && txtPhone.Text != "")
                 {
                     int clientIdSO = 0;
-                    int DelegateId = UserControl.LoginDelegate(dbconnection);
+                    //int DelegateId = UserControl.LoginDelegate(dbconnection);
 
                     dbconnection.Open();
                     string query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
@@ -2381,7 +2402,7 @@ namespace MainSystem
                     }
                     dbconnection.Close();
 
-                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, DelegateId, clientIdSO);
+                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, LoginDelegateID, clientIdSO);
                     soForm.ShowDialog();
                 }
                 else

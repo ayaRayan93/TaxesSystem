@@ -38,9 +38,7 @@
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comDelegate = new System.Windows.Forms.ComboBox();
             this.txtBillNum = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comCustomer = new System.Windows.Forms.ComboBox();
@@ -190,21 +188,19 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 8;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.ColumnCount = 6;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.Controls.Add(this.label1, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label2, 3, 1);
-            this.tableLayoutPanel3.Controls.Add(this.comDelegate, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.txtBillNum, 4, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 5, 1);
-            this.tableLayoutPanel3.Controls.Add(this.comCustomer, 6, 1);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.label2, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtBillNum, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 3, 1);
+            this.tableLayoutPanel3.Controls.Add(this.comCustomer, 4, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -214,47 +210,23 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1037, 54);
             this.tableLayoutPanel3.TabIndex = 6;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label1.Location = new System.Drawing.Point(886, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "المندوب";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label2.Location = new System.Drawing.Point(524, 10);
+            this.label2.Location = new System.Drawing.Point(704, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "الفاتورة";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comDelegate
-            // 
-            this.comDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(630, 13);
-            this.comDelegate.Name = "comDelegate";
-            this.comDelegate.Size = new System.Drawing.Size(250, 24);
-            this.comDelegate.TabIndex = 2;
-            this.comDelegate.SelectedIndexChanged += new System.EventHandler(this.comDelegate_SelectedIndexChanged);
-            this.comDelegate.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
             // txtBillNum
             // 
             this.txtBillNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.txtBillNum.Location = new System.Drawing.Point(421, 13);
+            this.txtBillNum.Location = new System.Drawing.Point(601, 13);
             this.txtBillNum.Name = "txtBillNum";
             this.txtBillNum.Size = new System.Drawing.Size(97, 23);
             this.txtBillNum.TabIndex = 3;
@@ -267,7 +239,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label3.Location = new System.Drawing.Point(318, 10);
+            this.label3.Location = new System.Drawing.Point(498, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 19);
             this.label3.TabIndex = 4;
@@ -278,7 +250,7 @@
             // 
             this.comCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.comCustomer.FormattingEnabled = true;
-            this.comCustomer.Location = new System.Drawing.Point(62, 13);
+            this.comCustomer.Location = new System.Drawing.Point(242, 13);
             this.comCustomer.Name = "comCustomer";
             this.comCustomer.Size = new System.Drawing.Size(250, 24);
             this.comCustomer.TabIndex = 5;
@@ -318,9 +290,7 @@
         private Bunifu.Framework.UI.BunifuTileButton btnDelete;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comDelegate;
         private System.Windows.Forms.TextBox txtBillNum;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comCustomer;

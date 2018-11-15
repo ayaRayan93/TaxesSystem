@@ -32,7 +32,6 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-        bool AddedToBill = false;
         XtraTabPage xtraTabPage;
 
         //public static XtraTabPage MainTabPageUpdatePSDetails;
@@ -41,14 +40,10 @@ namespace MainSystem
         public static GridControl gridcontrol;
         
         List<string> arr;
-        bool billExist = false;
-        bool mainBillExist = false;
-        int ClintID = 0;
         MainForm main;
         DataRow row1;
         public static TipImage tipImage = null;
         int EmpBranchId = 0;
-        int LoginDelegateID = -1;
         int DashBillNum = 0;
 
         string code1 = "0000";
@@ -106,13 +101,10 @@ namespace MainSystem
         {
             try
             {
-                //LoginDelegateID = UserControl.LoginDelegate(dbconnection);
                 EmpBranchId = UserControl.UserBranch(dbconnection);
                 search();
-                //search2();
                 foreach (GridColumn column in gridView1.Columns)
                     column.OptionsColumn.AllowSort = DefaultBoolean.False;
-                //column.Settings.AutoFilterCondition = AutoFilterCondition.Equals;
                 loaded = true;
             }
             catch (Exception ex)
@@ -1604,28 +1596,7 @@ namespace MainSystem
 
             return flag5;
         }
-
-        private void bunifuTileButtonAddSpecialOrder_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DashBillNum != 0)
-                {
-                    int DelegateId = UserControl.LoginDelegate(dbconnection);
-                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, EmpBranchId, DelegateId);
-                    soForm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("تاكد من رقم الفاتورة");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+        
         private void btnNewChosen_Click(object sender, EventArgs e)
         {
             clearCom();

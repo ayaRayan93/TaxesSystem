@@ -54,7 +54,7 @@ namespace MainSystem
         XtraTabPage tabPageInformationProductsReport;
         Panel panelInformationProductsReport;
 
-        public static int delegateID = -1;
+        //public static int delegateID = -1;
         public static int billNum = 0;
         bool flag = false;
 
@@ -103,7 +103,7 @@ namespace MainSystem
                 {
                     panelProductsDetailsReport.Dock = DockStyle.Fill;
 
-                    ProductsDetailsReport = new ProductsDetails_Report(this, delegateID, billNum);
+                    ProductsDetailsReport = new ProductsDetails_Report(this/*, delegateID*/, billNum);
                     ProductsDetailsReport.TopLevel = false;
                     ProductsDetailsReport.FormBorderStyle = FormBorderStyle.None;
                     ProductsDetailsReport.Dock = DockStyle.Fill;
@@ -201,7 +201,7 @@ namespace MainSystem
 
    
          //review
-         public void test(int DelegateId, int BillNum)
+         public void test(/*int DelegateId,*/ int BillNum)
         {
             int count = 0;
             string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + UserControl.UserBranch(conn);
@@ -225,7 +225,7 @@ namespace MainSystem
                 //delegateID = 0;
                 //billNum = 0;
             }
-            delegateID = DelegateId;
+            //delegateID = DelegateId;
             billNum = BillNum;
             dr.Close();
             conn.Close();
@@ -250,7 +250,7 @@ namespace MainSystem
                 panelProductsDetailsReport.Name = "panelProductsDetailsReport";
                 panelProductsDetailsReport.Dock = DockStyle.Fill;
                 
-                ProductsDetailsReport = new ProductsDetails_Report(this, delegateID, billNum);
+                ProductsDetailsReport = new ProductsDetails_Report(this/*, delegateID*/, billNum);
                 ProductsDetailsReport.Size = new Size(1109, 660);
                 ProductsDetailsReport.TopLevel = false;
                 ProductsDetailsReport.FormBorderStyle = FormBorderStyle.None;

@@ -124,7 +124,7 @@ namespace MainSystem
                                 billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
                                 
                                 connectionReader3.Open();
-                                string q1 = "SELECT delegate.Delegate_Name FROM customer_bill INNER JOIN customer_bill_delegate ON customer_bill_delegate.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN delegate ON delegate.Delegate_ID = customer_bill_delegate.Delegate_ID where customer_bill.CustomerBill_ID=" + ID;
+                                string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN delegate ON delegate.Delegate_ID = product_bill.Delegate_ID where customer_bill.CustomerBill_ID=" + ID;
                                 MySqlCommand c1 = new MySqlCommand(q1, connectionReader3);
                                 MySqlDataReader dr1 = c1.ExecuteReader();
                                 while (dr1.Read())
