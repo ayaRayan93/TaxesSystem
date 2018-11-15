@@ -32,17 +32,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labTotalPaid = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.labTotalBillCost = new System.Windows.Forms.Label();
             this.labTotalReturnCost = new System.Windows.Forms.Label();
             this.labRest = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type_Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panHeader = new System.Windows.Forms.Panel();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
@@ -68,11 +69,12 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -86,13 +88,14 @@
             this.labTotalPaid.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labTotalPaid.AutoSize = true;
             this.labTotalPaid.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalPaid.Location = new System.Drawing.Point(860, 13);
+            this.labTotalPaid.Location = new System.Drawing.Point(796, 13);
             this.labTotalPaid.Name = "labTotalPaid";
             this.labTotalPaid.Size = new System.Drawing.Size(0, 17);
             this.labTotalPaid.TabIndex = 168;
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,6 +109,7 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
+            this.Client_ID,
             this.Type,
             this.dataGridViewTextBoxColumn6});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -114,38 +118,10 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView2.RowHeadersWidth = 80;
+            this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.Size = new System.Drawing.Size(970, 191);
             this.dataGridView2.TabIndex = 167;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.HeaderText = "السدادات";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "سداد مرتد";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.HeaderText = "رقم فاتورة السداد";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // Type
-            // 
-            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type.HeaderText = "النوع";
-            this.Type.Name = "Type";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.HeaderText = "تاريخ";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // panel1
             // 
@@ -202,6 +178,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -215,6 +192,7 @@
             this.Bill,
             this.ReturnBill,
             this.BillNumber,
+            this.Client,
             this.Type_Buy,
             this.Date});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -223,8 +201,45 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView1.RowHeadersWidth = 80;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.Size = new System.Drawing.Size(970, 191);
             this.dataGridView1.TabIndex = 161;
+            // 
+            // Bill
+            // 
+            this.Bill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Bill.HeaderText = "مسحوبات";
+            this.Bill.Name = "Bill";
+            // 
+            // ReturnBill
+            // 
+            this.ReturnBill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ReturnBill.HeaderText = "المرتجعات";
+            this.ReturnBill.Name = "ReturnBill";
+            // 
+            // BillNumber
+            // 
+            this.BillNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BillNumber.HeaderText = "رقم الفاتورة";
+            this.BillNumber.Name = "BillNumber";
+            // 
+            // Client
+            // 
+            this.Client.HeaderText = "العميل";
+            this.Client.Name = "Client";
+            // 
+            // Type_Buy
+            // 
+            this.Type_Buy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Type_Buy.HeaderText = "النوع";
+            this.Type_Buy.Name = "Type_Buy";
+            // 
+            // Date
+            // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.HeaderText = "تاريخ";
+            this.Date.Name = "Date";
             // 
             // panHeader
             // 
@@ -491,7 +506,7 @@
             this.labTotalReturn2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labTotalReturn2.AutoSize = true;
             this.labTotalReturn2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalReturn2.Location = new System.Drawing.Point(771, 13);
+            this.labTotalReturn2.Location = new System.Drawing.Point(707, 13);
             this.labTotalReturn2.Name = "labTotalReturn2";
             this.labTotalReturn2.Size = new System.Drawing.Size(0, 17);
             this.labTotalReturn2.TabIndex = 169;
@@ -545,35 +560,40 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
             // 
-            // Bill
+            // dataGridViewTextBoxColumn1
             // 
-            this.Bill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Bill.HeaderText = "مسحوبات";
-            this.Bill.Name = "Bill";
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "السدادات";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
-            // ReturnBill
+            // dataGridViewTextBoxColumn2
             // 
-            this.ReturnBill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ReturnBill.HeaderText = "المرتجعات";
-            this.ReturnBill.Name = "ReturnBill";
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "مرتد سداد";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // BillNumber
+            // dataGridViewTextBoxColumn3
             // 
-            this.BillNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BillNumber.HeaderText = "رقم الفاتورة";
-            this.BillNumber.Name = "BillNumber";
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "رقم الفاتورة ";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
-            // Type_Buy
+            // Client_ID
             // 
-            this.Type_Buy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type_Buy.HeaderText = "النوع";
-            this.Type_Buy.Name = "Type_Buy";
+            this.Client_ID.HeaderText = "العميل";
+            this.Client_ID.Name = "Client_ID";
             // 
-            // Date
+            // Type
             // 
-            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Date.HeaderText = "تاريخ";
-            this.Date.Name = "Date";
+            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Type.HeaderText = "النوع";
+            this.Type.Name = "Type";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn6.HeaderText = "تاريخ";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // AccountStatement
             // 
@@ -633,15 +653,17 @@
         private System.Windows.Forms.Label labSafay;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type_Buy;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }
