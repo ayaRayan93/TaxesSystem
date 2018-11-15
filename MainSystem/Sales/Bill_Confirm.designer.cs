@@ -39,7 +39,6 @@
             this.rdbSoon = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
             this.comEngCon = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.radClient = new System.Windows.Forms.RadioButton();
             this.radEng = new System.Windows.Forms.RadioButton();
             this.radCon = new System.Windows.Forms.RadioButton();
@@ -63,11 +62,9 @@
             this.radDealer = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.listBoxControlDelegateId = new DevExpress.XtraEditors.ListBoxControl();
             this.listBoxControlBranchID = new DevExpress.XtraEditors.ListBoxControl();
             this.checkBoxAdd = new System.Windows.Forms.CheckBox();
             this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
-            this.comDelegate = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -80,7 +77,6 @@
             this.groupBox3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlDelegateId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBranchID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
             this.SuspendLayout();
@@ -228,17 +224,6 @@
             this.comEngCon.TabIndex = 142;
             this.comEngCon.Visible = false;
             this.comEngCon.SelectedValueChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(380, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 140;
-            this.label1.Text = "المندوب";
             // 
             // radClient
             // 
@@ -584,13 +569,10 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.listBoxControlDelegateId);
             this.panel3.Controls.Add(this.listBoxControlBranchID);
             this.panel3.Controls.Add(this.checkBoxAdd);
             this.panel3.Controls.Add(this.listBoxControlBills);
-            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.comDelegate);
             this.panel3.Controls.Add(this.txtBillNo);
             this.panel3.Controls.Add(this.comBranch);
             this.panel3.Controls.Add(this.label6);
@@ -598,15 +580,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(460, 121);
             this.panel3.TabIndex = 157;
-            // 
-            // listBoxControlDelegateId
-            // 
-            this.listBoxControlDelegateId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxControlDelegateId.Location = new System.Drawing.Point(185, 45);
-            this.listBoxControlDelegateId.Name = "listBoxControlDelegateId";
-            this.listBoxControlDelegateId.Size = new System.Drawing.Size(33, 68);
-            this.listBoxControlDelegateId.TabIndex = 157;
-            this.listBoxControlDelegateId.Visible = false;
             // 
             // listBoxControlBranchID
             // 
@@ -641,17 +614,6 @@
             this.listBoxControlBills.Size = new System.Drawing.Size(100, 69);
             this.listBoxControlBills.TabIndex = 155;
             // 
-            // comDelegate
-            // 
-            this.comDelegate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comDelegate.Enabled = false;
-            this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(224, 68);
-            this.comDelegate.Name = "comDelegate";
-            this.comDelegate.Size = new System.Drawing.Size(150, 24);
-            this.comDelegate.TabIndex = 152;
-            // 
             // Bill_Confirm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -680,7 +642,6 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlDelegateId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBranchID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
             this.ResumeLayout(false);
@@ -699,7 +660,6 @@
         private System.Windows.Forms.RadioButton rdbSoon;
         private System.Windows.Forms.Label labelEng;
         private System.Windows.Forms.ComboBox comEngCon;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radClient;
         private System.Windows.Forms.RadioButton radEng;
         private System.Windows.Forms.RadioButton radCon;
@@ -716,7 +676,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Bunifu.Framework.UI.BunifuTileButton btnDetails;
         private System.Windows.Forms.RadioButton radDealer;
-        private System.Windows.Forms.ComboBox comDelegate;
         private Bunifu.Framework.UI.BunifuTileButton btnConfirm;
         private System.Windows.Forms.CheckBox checkBoxAdd;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -727,7 +686,6 @@
         private DevExpress.XtraEditors.ListBoxControl listBoxControlBranchID;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraEditors.ListBoxControl listBoxControlDelegateId;
     }
 }
 

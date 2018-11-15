@@ -28,11 +28,11 @@ namespace MainSystem
         public static bool UpdateDetailsTextChangedFlag = false;
         bool PSloaded = false;
 
-        int delegateID = -1;
+        //int delegateID = -1;
         int billNum = 0;
         MainForm main;
 
-        public ProductsDetails_Report(MainForm min, int DelegateId, int BillNum)
+        public ProductsDetails_Report(MainForm min/*, int DelegateId*/, int BillNum)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -41,7 +41,7 @@ namespace MainSystem
 
             gridcontrol = gridControl1;
 
-            delegateID = DelegateId;
+            //delegateID = DelegateId;
             billNum = BillNum;
         }
 
@@ -139,20 +139,20 @@ namespace MainSystem
             //}
 
             conn.Open();
-            string query = "select * from delegate where Branch_ID=" + DelegateBranchID;
+            /*string query = "select * from delegate where Branch_ID=" + DelegateBranchID;
             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
             DataTable dt = new DataTable();
             da.Fill(dt);
             comDelegate.DataSource = dt;
             comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
-            comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+            comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();*/
             //comDelegate.SelectedIndex = delegateID;
 
             txtBillNum.Text = billNum.ToString();
 
-            query = "select * from customer";
-            da = new MySqlDataAdapter(query, conn);
-            dt = new DataTable();
+            string query = "select * from customer";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+            DataTable dt = new DataTable();
             da.Fill(dt);
             comCustomer.DataSource = dt;
             comCustomer.DisplayMember = dt.Columns["Customer_Name"].ToString();
@@ -172,7 +172,7 @@ namespace MainSystem
         public void loadFunc()
         {
             //,dash.Customer_ID as 'العميل'
-            comDelegate.SelectedValue = delegateID;
+            //comDelegate.SelectedValue = delegateID;
 
             conn.Open();
             MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',dash_details.Type as 'النوع',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='بند'", conn);
@@ -247,7 +247,7 @@ namespace MainSystem
                             string query = "delete from dash_details where DashDetails_ID=" + selRow[0].ToString();
                             MySqlCommand comand = new MySqlCommand(query, conn);
                             comand.ExecuteNonQuery();
-                            main.test(delegateID, billNum);
+                            main.test(/*delegateID,*/ billNum);
 
                             UserControl.ItemRecord("dash_details", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, conn);
                         }
@@ -308,7 +308,7 @@ namespace MainSystem
                         gridView1.Columns[i].Width = 150;
                     }
 
-                    main.test(delegateID, billNum);
+                    main.test(/*delegateID,*/ billNum);
                 }
                 catch (Exception ex)
                 {
@@ -385,7 +385,7 @@ namespace MainSystem
             {
                 if (PSloaded)
                 {
-                    delegateID = Convert.ToInt16(comDelegate.SelectedValue.ToString());
+                    //delegateID = Convert.ToInt16(comDelegate.SelectedValue.ToString());
                 }
             }
             catch(Exception ex)

@@ -608,6 +608,9 @@ namespace MainSystem
                 loaded = false;
                 LoadGridData();
                 loadStatus();
+                txtRecomendedBill.Text = "";
+                comEngCon.Text = "";
+                comClient.Text = "";
             }
             catch (Exception ex)
             {
@@ -1021,14 +1024,12 @@ namespace MainSystem
                 gridControl1.DataSource = lista;
 
                 dbconnection6.Open();
-                string query = "SELECT dash.Bill_Number,dash.Delegate_ID FROM dash where dash.Customer_ID=" + customId + " and dash.Branch_ID=" + EmpBranchId;
+                string query = "SELECT dash.Bill_Number FROM dash where dash.Customer_ID=" + customId + " and dash.Branch_ID=" + EmpBranchId+ " order by dash.Dash_ID desc limit 1";
                 MySqlCommand c = new MySqlCommand(query, dbconnection6);
-                MySqlDataReader dr1 = c.ExecuteReader();
-                while (dr1.Read())
+                if (c.ExecuteScalar() != null)
                 {
-                    txtRecomendedBill.Text = dr1["Bill_Number"].ToString();
+                    txtRecomendedBill.Text = c.ExecuteScalar().ToString();
                 }
-                dr1.Close();
             }
             else
             {
