@@ -462,10 +462,10 @@ namespace MainSystem
                 txtBill.Text = id.ToString();
                 //txtBill.TextAlign = ContentAlignment.MiddleCenter;
 
-                query = "insert into dash (Delegate_ID,Delegate_Name,Bill_Number,Branch_ID,Bill_Date) values (@Delegate_ID,@Delegate_Name,@Bill_Number,@Branch_ID,@Bill_Date)";
+                query = "insert into dash (Bill_Number,Branch_ID,Bill_Date) values (@Bill_Number,@Branch_ID,@Bill_Date)";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = delId;
-                com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar).Value = delName;
+                //com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = delId;
+                //com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar).Value = delName;
                 com.Parameters.Add("@Bill_Number", MySqlDbType.Int16).Value = id;
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16).Value = EmpBranchId;
                 com.Parameters.Add("@Bill_Date", MySqlDbType.DateTime).Value = DateTime.Now;

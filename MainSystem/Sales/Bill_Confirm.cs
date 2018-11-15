@@ -281,7 +281,7 @@ namespace MainSystem
                     //gridView1.Columns["الكرتنة"].Visible = false;
                     gridView1.Columns["Dash_ID"].Visible = false;
                     gridView1.Columns["added"].Visible = false;
-                    //gridView1.Columns["Delegate_ID"].Visible = false;
+                    gridView1.Columns["Delegate_ID"].Visible = false;
 
                     //,delegate.Delegate_ID,delegate.Delegate_Name .. INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID
                     string query = "SELECT dash.Customer_ID,dash.Customer_Name,customer.Customer_Type,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
