@@ -116,6 +116,14 @@ namespace MainSystem
             {
                 if (Customer_Type == "عميل")
                 {
+
+                    labelEng.Visible = false;
+                    comEngCon.Visible = false;
+                    txtCustomerID.Visible = false;
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+                    txtClientID.Visible = true;
+
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
                     DataTable dt = new DataTable();
@@ -125,14 +133,19 @@ namespace MainSystem
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEngCon.Text = "";
-
-                    labelEng.Visible = false;
-                    comEngCon.Visible = false;
-                    labelClient.Visible = true;
-                    comClient.Visible = true;
+                    txtClientID.Text = "";
+                    txtCustomerID.Text = "";
                 }
                 else
                 {
+
+                    labelEng.Visible = true;
+                    comEngCon.Visible = true;
+                    txtCustomerID.Visible = true;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
+                    txtClientID.Visible = false;
+
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
                     DataTable dt = new DataTable();
@@ -142,11 +155,8 @@ namespace MainSystem
                     comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEngCon.Text = "";
-
-                    labelEng.Visible = true;
-                    comEngCon.Visible = true;
-                    labelClient.Visible = false;
-                    comClient.Visible = false;
+                    txtCustomerID.Text = "";
+                    txtClientID.Text = "";
                 }
 
                 loaded = true;
@@ -165,9 +175,13 @@ namespace MainSystem
             {
                 try
                 {
+                    txtCustomerID.Text = comEngCon.SelectedValue.ToString();
+
                     labelClient.Visible = true;
                     comClient.Visible = true;
+                    txtClientID.Visible = true;
 
+                    loaded = false;
                     string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
@@ -176,11 +190,91 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    comClient.SelectedValue = -1;
+                    txtClientID.Text = "";
+                    loaded = true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void comClient_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    txtClientID.Text = comClient.SelectedValue.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            TextBox txtBox = (TextBox)sender;
+            string query;
+            MySqlCommand com;
+            string Name;
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txtBox.Text != "")
+                    {
+                        dbconnection.Open();
+                        switch (txtBox.Name)
+                        {
+                            case "txtCustomerID":
+                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comClient.Text = Name;
+                                    comClient.SelectedValue = txtClientID.Text;
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtEngConID":
+                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comEngCon.Text = Name;
+                                    comEngCon.SelectedValue = txtCustomerID.Text;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dbconnection.Close();
             }
         }
 
@@ -304,24 +398,28 @@ namespace MainSystem
                                 radClient.Checked = true;
                                 comClient.Text = dataReader["Customer_Name"].ToString();
                                 comClient.SelectedValue = ci;
+                                txtClientID.Text = ci.ToString();
                             }
                             else if (dataReader["Customer_Type"].ToString() == "مهندس")
                             {
                                 radEng.Checked = true;
                                 comEngCon.Text = dataReader["Customer_Name"].ToString();
                                 comEngCon.SelectedValue = ci;
+                                txtCustomerID.Text = ci.ToString();
                             }
                             else if (dataReader["Customer_Type"].ToString() == "مقاول")
                             {
                                 radCon.Checked = true;
                                 comEngCon.Text = dataReader["Customer_Name"].ToString();
                                 comEngCon.SelectedValue = ci;
+                                txtCustomerID.Text = ci.ToString();
                             }
                             else if (dataReader["Customer_Type"].ToString() == "تاجر")
                             {
                                 radDealer.Checked = true;
                                 comEngCon.Text = dataReader["Customer_Name"].ToString();
                                 comEngCon.SelectedValue = ci;
+                                txtCustomerID.Text = ci.ToString();
                             }
 
                             connectionReader3.Open();
@@ -550,7 +648,7 @@ namespace MainSystem
         {
             try
             {
-                if ((comClient.Text != "" || comEngCon.Text != "") && gridView1.RowCount > 0)
+                if ((txtClientID.Text != "" || txtCustomerID.Text != "") && gridView1.RowCount > 0)
                 {
                     List<int> pakagesIDs = new List<int>();
                     List<string> pakagesTypes = new List<string>();
@@ -585,10 +683,10 @@ namespace MainSystem
                         query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Customer_ID,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Customer_ID,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name)";
                         com = new MySqlCommand(query, dbconnection);
 
-                        if (comClient.Text != "")
+                        if (txtClientID.Text != "")
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(comClient.SelectedValue.ToString());
+                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
                         }
                         else
                         {
@@ -597,10 +695,10 @@ namespace MainSystem
                         }
 
 
-                        if (comEngCon.Text != "")
+                        if (txtCustomerID.Text != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                            com.Parameters["@Customer_ID"].Value = Convert.ToInt16(comEngCon.SelectedValue.ToString());
+                            com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
                         }
                         else
                         {

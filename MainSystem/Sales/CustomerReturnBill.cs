@@ -190,7 +190,7 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
-                    comClient.SelectedValue = 0;
+                    comClient.SelectedValue = -1;
                     txtClientID.Text = "";
                     loaded = true;
                     //DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
