@@ -75,7 +75,7 @@ namespace MainSystem.Sales.accounting
             try
             {
                 DataRowView row1 = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                salesMainForm.bindUpdateTaswayaCustomersForm(row1);
+                salesMainForm.bindUpdateTaswayaCustomersForm(row1,this);
             }
             catch
             {
