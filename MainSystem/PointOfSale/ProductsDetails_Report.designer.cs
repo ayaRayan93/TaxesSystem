@@ -42,6 +42,7 @@
             this.txtBillNum = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comCustomer = new System.Windows.Forms.ComboBox();
+            this.txtClientId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -188,19 +189,19 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 6;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
+            this.tableLayoutPanel3.ColumnCount = 7;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
             this.tableLayoutPanel3.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.txtBillNum, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 3, 1);
             this.tableLayoutPanel3.Controls.Add(this.comCustomer, 4, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtClientId, 5, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -216,7 +217,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label2.Location = new System.Drawing.Point(704, 10);
+            this.label2.Location = new System.Drawing.Point(751, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 19);
             this.label2.TabIndex = 1;
@@ -226,7 +227,7 @@
             // txtBillNum
             // 
             this.txtBillNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.txtBillNum.Location = new System.Drawing.Point(601, 13);
+            this.txtBillNum.Location = new System.Drawing.Point(648, 13);
             this.txtBillNum.Name = "txtBillNum";
             this.txtBillNum.Size = new System.Drawing.Size(97, 23);
             this.txtBillNum.TabIndex = 3;
@@ -239,7 +240,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label3.Location = new System.Drawing.Point(498, 10);
+            this.label3.Location = new System.Drawing.Point(545, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 19);
             this.label3.TabIndex = 4;
@@ -250,12 +251,21 @@
             // 
             this.comCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.comCustomer.FormattingEnabled = true;
-            this.comCustomer.Location = new System.Drawing.Point(242, 13);
+            this.comCustomer.Location = new System.Drawing.Point(289, 13);
             this.comCustomer.Name = "comCustomer";
             this.comCustomer.Size = new System.Drawing.Size(250, 24);
             this.comCustomer.TabIndex = 5;
             this.comCustomer.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
             this.comCustomer.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtClientId
+            // 
+            this.txtClientId.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtClientId.Location = new System.Drawing.Point(220, 13);
+            this.txtClientId.Name = "txtClientId";
+            this.txtClientId.Size = new System.Drawing.Size(60, 23);
+            this.txtClientId.TabIndex = 6;
+            this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
             // 
             // ProductsDetails_Report
             // 
@@ -294,5 +304,6 @@
         private System.Windows.Forms.TextBox txtBillNum;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comCustomer;
+        private System.Windows.Forms.TextBox txtClientId;
     }
 }

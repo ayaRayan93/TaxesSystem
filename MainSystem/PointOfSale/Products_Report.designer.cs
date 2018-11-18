@@ -44,12 +44,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtClient = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBillNum = new System.Windows.Forms.TextBox();
+            this.txtClientId = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
+            this.comClient = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -341,12 +342,13 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
-            this.tableLayoutPanel6.Controls.Add(this.txtClient, 6, 0);
             this.tableLayoutPanel6.Controls.Add(this.label6, 5, 0);
             this.tableLayoutPanel6.Controls.Add(this.label5, 3, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtPhone, 4, 0);
             this.tableLayoutPanel6.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtBillNum, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtClientId, 7, 0);
+            this.tableLayoutPanel6.Controls.Add(this.comClient, 6, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 6);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -354,17 +356,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(1037, 34);
             this.tableLayoutPanel6.TabIndex = 14;
-            // 
-            // txtClient
-            // 
-            this.txtClient.Enabled = false;
-            this.txtClient.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtClient.Location = new System.Drawing.Point(112, 3);
-            this.txtClient.Name = "txtClient";
-            this.txtClient.Size = new System.Drawing.Size(200, 23);
-            this.txtClient.TabIndex = 3;
-            this.txtClient.TextChanged += new System.EventHandler(this.txtClient_TextChanged);
-            this.txtClient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClient_KeyDown);
             // 
             // label6
             // 
@@ -426,6 +417,16 @@
             this.txtBillNum.TabIndex = 1;
             this.txtBillNum.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
+            // 
+            // txtClientId
+            // 
+            this.txtClientId.Enabled = false;
+            this.txtClientId.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtClientId.Location = new System.Drawing.Point(49, 3);
+            this.txtClientId.Name = "txtClientId";
+            this.txtClientId.Size = new System.Drawing.Size(56, 23);
+            this.txtClientId.TabIndex = 4;
+            this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
             // 
             // tableLayoutPanel3
             // 
@@ -903,6 +904,17 @@
             this.txtOfferID.Visible = false;
             this.txtOfferID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxSearch_KeyDown);
             // 
+            // comClient
+            // 
+            this.comClient.Enabled = false;
+            this.comClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comClient.FormattingEnabled = true;
+            this.comClient.Location = new System.Drawing.Point(111, 3);
+            this.comClient.Name = "comClient";
+            this.comClient.Size = new System.Drawing.Size(201, 24);
+            this.comClient.TabIndex = 5;
+            this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
+            // 
             // Products_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -957,7 +969,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtClient;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.Label label4;
@@ -999,5 +1010,7 @@
         private System.Windows.Forms.TextBox txtSetID;
         private System.Windows.Forms.TextBox txtOfferID;
         private System.Windows.Forms.Button btnNewChosen;
+        private System.Windows.Forms.TextBox txtClientId;
+        private System.Windows.Forms.ComboBox comClient;
     }
 }

@@ -273,12 +273,12 @@ namespace MainSystem
                 {
                     int billNum = Convert.ToInt16(comBillNumber.Text);
                     DataTable dtAll = new DataTable();
-                    string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                    string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
                     //type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة'
-                    query = "select sets.Set_ID as 'Data_ID',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                    query = "select sets.Set_ID as 'Data_ID',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                     da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dtSet = new DataTable();
                     da.Fill(dtSet);
@@ -290,6 +290,8 @@ namespace MainSystem
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns["CustomerBill_ID"].Visible = false;
                     dataGridView1.Columns["الفئة"].Visible = false;
+                    dataGridView1.Columns["الوصف"].Visible = false;
+                    dataGridView1.Columns["Delegate_ID"].Visible = false;
                     //dataGridView2.Rows.Clear();
 
                     txtCode.Text = "";
@@ -397,7 +399,8 @@ namespace MainSystem
         {
             try
             {
-                if (!IsAdded(row1) && row1 != null && txtCode.Text != "")
+                // && txtCode.Text != ""
+                if (!IsAdded(row1) && row1 != null)
                 {
                     double totalMeter = 0;
                     if (!double.TryParse(txtTotalMeter.Text, out totalMeter))
@@ -446,6 +449,7 @@ namespace MainSystem
                         dataGridView2.Rows[n].Cells["Returned"].Value = "جزء";
                     }
 
+                    dataGridView2.Rows[n].Cells["Delegate_ID"].Value = row1.Cells["Delegate_ID"].Value;
                     dataGridView2.Rows[n].Cells["CustomerBill_ID"].Value = row1.Cells["CustomerBill_ID"].Value;
 
                     listOfRow2In.Add(n);
@@ -539,7 +543,7 @@ namespace MainSystem
                     com = new MySqlCommand(query, dbconnection);
                     int id = Convert.ToInt16(com.ExecuteScalar());
 
-                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceAD,TotalAD,SellDiscount,CustomerBill_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID)";
+                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerReturnBill_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
@@ -549,6 +553,7 @@ namespace MainSystem
                     com.Parameters.Add("@TotalAD", MySqlDbType.Decimal);
                     com.Parameters.Add("@SellDiscount", MySqlDbType.Decimal);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
                     foreach (DataGridViewRow row2 in dataGridView2.Rows)
                     {
                         if (row2.Cells[0].Value != null)
@@ -561,6 +566,7 @@ namespace MainSystem
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
                             com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
                             com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(row2.Cells["CustomerBill_ID"].Value);
+                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(row2.Cells["Delegate_ID"].Value);
                             com.ExecuteNonQuery();
                             
                             string queryf = "update product_bill set Returned='" + row2.Cells["Returned"].Value + "' where CustomerBill_ID=" + row2.Cells["CustomerBill_ID"].Value + " and Data_ID=" + Convert.ToInt16(row2.Cells[0].Value) + " and Type='" + row2.Cells["Type"].Value + "'";

@@ -20,7 +20,7 @@ namespace MainSystem
 {
     public partial class ProductsDetails_Report : Form
     {
-        MySqlConnection conn;
+        MySqlConnection conn, conn2;
         XtraTabControl MainTabControlPointSale;
         int DelegateBranchID = 0;
 
@@ -36,6 +36,7 @@ namespace MainSystem
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            conn2 = new MySqlConnection(connection.connectionString);
             main = min;
             MainTabControlPointSale = MainForm.tabControlPointSale;
 
@@ -196,10 +197,12 @@ namespace MainSystem
             {
                 int CustomerId = Convert.ToInt16(com.ExecuteScalar().ToString());
                 comCustomer.SelectedValue = CustomerId;
+                txtClientId.Text = CustomerId.ToString();
             }
             else
             {
                 comCustomer.SelectedIndex = -1;
+                txtClientId.Text = "";
             }
             conn.Close();
 
@@ -296,10 +299,12 @@ namespace MainSystem
                     {
                         int CustomerId = Convert.ToInt16(com.ExecuteScalar().ToString());
                         comCustomer.SelectedValue = CustomerId;
+                        txtClientId.Text = CustomerId.ToString();
                     }
                     else
                     {
                         comCustomer.SelectedIndex = -1;
+                        txtClientId.Text = "";
                     }
                     conn.Close();
 
@@ -418,18 +423,50 @@ namespace MainSystem
             {
                 if (PSloaded)
                 {
-                    string query = "update dash set Customer_ID=" + comCustomer.SelectedValue + " , Customer_Name='" + comCustomer.Text + "' where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed = 0";
+                    txtClientId.Text = comCustomer.SelectedValue.ToString();
+                    string query = "update dash set Customer_ID=" + txtClientId.Text + " , Customer_Name='" + comCustomer.Text + "' where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed = 0";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     conn.Close();
                     conn.Open();
                     com.ExecuteNonQuery();
-                    conn.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                conn.Close();
+            }
+            conn.Close();
+        }
+
+        private void txtClientId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    conn2.Open();
+                    string query = "select customer.Customer_Name from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + txtClientId.Text + "";
+                    MySqlCommand com = new MySqlCommand(query, conn2);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            comCustomer.Text = dr["Customer_Name"].ToString();
+                            comCustomer.SelectedValue = txtClientId.Text;
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        comCustomer.Text = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn2.Close();
             }
         }
     }
