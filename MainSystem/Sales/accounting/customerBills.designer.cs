@@ -31,6 +31,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.labTotalBillCost = new System.Windows.Forms.Label();
             this.labTotalReturnCost = new System.Windows.Forms.Label();
@@ -38,6 +44,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeFrom = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
@@ -49,16 +59,6 @@
             this.radClient = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
-            this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
-            this.dateTimeFrom = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -70,6 +70,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,6 +104,42 @@
             this.dataGridView1.RowHeadersWidth = 80;
             this.dataGridView1.Size = new System.Drawing.Size(942, 335);
             this.dataGridView1.TabIndex = 161;
+            // 
+            // Bill
+            // 
+            this.Bill.HeaderText = "المسحوبات";
+            this.Bill.Name = "Bill";
+            this.Bill.ReadOnly = true;
+            // 
+            // ReturnBill
+            // 
+            this.ReturnBill.HeaderText = "المرتجعات";
+            this.ReturnBill.Name = "ReturnBill";
+            this.ReturnBill.ReadOnly = true;
+            // 
+            // Customer
+            // 
+            this.Customer.HeaderText = "مهندس/مقاول/تاجر";
+            this.Customer.Name = "Customer";
+            this.Customer.ReadOnly = true;
+            // 
+            // Customer_Code
+            // 
+            this.Customer_Code.HeaderText = "كود المهندس/المقاول/التاجر";
+            this.Customer_Code.Name = "Customer_Code";
+            this.Customer_Code.ReadOnly = true;
+            // 
+            // Client
+            // 
+            this.Client.HeaderText = "عميل";
+            this.Client.Name = "Client";
+            this.Client.ReadOnly = true;
+            // 
+            // Client_Code
+            // 
+            this.Client_Code.HeaderText = "كود العميل";
+            this.Client_Code.Name = "Client_Code";
+            this.Client_Code.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -200,6 +237,44 @@
             this.panHeader.Name = "panHeader";
             this.panHeader.Size = new System.Drawing.Size(956, 144);
             this.panHeader.TabIndex = 162;
+            // 
+            // dateTimeTo
+            // 
+            this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.Location = new System.Drawing.Point(217, 88);
+            this.dateTimeTo.Name = "dateTimeTo";
+            this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeTo.TabIndex = 183;
+            // 
+            // dateTimeFrom
+            // 
+            this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.Location = new System.Drawing.Point(217, 52);
+            this.dateTimeFrom.Name = "dateTimeFrom";
+            this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFrom.TabIndex = 184;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(432, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.TabIndex = 185;
+            this.label2.Text = "من";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(431, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 16);
+            this.label3.TabIndex = 186;
+            this.label3.Text = "الي";
             // 
             // txtClientID
             // 
@@ -338,80 +413,6 @@
             this.panFooter.Name = "panFooter";
             this.panFooter.Size = new System.Drawing.Size(956, 54);
             this.panFooter.TabIndex = 163;
-            // 
-            // dateTimeTo
-            // 
-            this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeTo.Location = new System.Drawing.Point(217, 88);
-            this.dateTimeTo.Name = "dateTimeTo";
-            this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeTo.TabIndex = 183;
-            // 
-            // dateTimeFrom
-            // 
-            this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeFrom.Location = new System.Drawing.Point(217, 52);
-            this.dateTimeFrom.Name = "dateTimeFrom";
-            this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeFrom.TabIndex = 184;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(432, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
-            this.label2.TabIndex = 185;
-            this.label2.Text = "من";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(431, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 16);
-            this.label3.TabIndex = 186;
-            this.label3.Text = "الي";
-            // 
-            // Bill
-            // 
-            this.Bill.HeaderText = "المسحوبات";
-            this.Bill.Name = "Bill";
-            this.Bill.ReadOnly = true;
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.HeaderText = "المرتجعات";
-            this.ReturnBill.Name = "ReturnBill";
-            this.ReturnBill.ReadOnly = true;
-            // 
-            // Customer
-            // 
-            this.Customer.HeaderText = "مهندس/مقاول/تاجر";
-            this.Customer.Name = "Customer";
-            this.Customer.ReadOnly = true;
-            // 
-            // Customer_Code
-            // 
-            this.Customer_Code.HeaderText = "كود المهندس/المقاول/التاجر";
-            this.Customer_Code.Name = "Customer_Code";
-            this.Customer_Code.ReadOnly = true;
-            // 
-            // Client
-            // 
-            this.Client.HeaderText = "عميل";
-            this.Client.Name = "Client";
-            this.Client.ReadOnly = true;
-            // 
-            // Client_Code
-            // 
-            this.Client_Code.HeaderText = "كود العميل";
-            this.Client_Code.Name = "Client_Code";
-            this.Client_Code.ReadOnly = true;
             // 
             // customerBills
             // 
