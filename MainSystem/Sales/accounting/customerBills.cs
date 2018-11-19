@@ -201,8 +201,8 @@ namespace MainSystem
                 dataGridView1.Rows.Clear();
              
                     displayBill();
-                   // displayReturnBill();
-                  //  displayPaidBill();
+                    //  displayReturnBill();
+                    //  displayPaidBill();
                     double totalBill=0, TotalReturn = 0,rest=0;
 
                     foreach (DataGridViewRow row1 in dataGridView1.Rows)
@@ -229,23 +229,26 @@ namespace MainSystem
         // display Customer bills
         public void displayBill()
         {
-        
+            DateTime date = dateTimeFrom.Value.Date;
+            string d = date.ToString("yyyy-MM-dd");
+            DateTime date2 = dateTimeTo.Value.Date;
+            string d2 = date2.ToString("yyyy-MM-dd");
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID='" + txtCustomerID.Text + "' group by customer_bill.Client_ID,customer_bill.Customer_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID='" + txtCustomerID.Text + "' and Bill_Date between '" + d + "' and '" + d2 + "' group by customer_bill.Client_ID,customer_bill.Customer_ID";
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where  customer_bill.Customer_ID='" + txtCustomerID.Text + "' group by customer_bill.Customer_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where  customer_bill.Customer_ID='" + txtCustomerID.Text + "' and Bill_Date between '" + d + "' and '" + d2 + "' group by customer_bill.Customer_ID";
             }
             else if (txtClientID.Text != "" && txtCustomerID.Text == "")
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID is null group by customer_bill.Client_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID ,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where customer_bill.Client_ID='" + txtClientID.Text + "' and customer_bill.Customer_ID is null and Bill_Date between '" + d + "' and '" + d2 + "' group by customer_bill.Client_ID";
             }
             else
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID  group by customer_bill.Client_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Bill_Date between '" + d + "' and '" + d2 + "' group by customer_bill.Client_ID";
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();
