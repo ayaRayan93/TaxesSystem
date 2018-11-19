@@ -117,7 +117,7 @@ namespace MainSystem
 
                             while (dr.Read())
                             {
-                                double amont = 0;
+                                //double amont = 0;
                                 flag2 = true;
                                 ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
                                 TypeBuy = dr["Type_Buy"].ToString();
@@ -146,15 +146,15 @@ namespace MainSystem
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 }
 
-                                query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
-                                com2 = new MySqlCommand(query3, myConnection);
-                                if (com2.ExecuteScalar() != null)
-                                {
-                                    amont = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                                }
+                                //query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
+                                //com2 = new MySqlCommand(query3, myConnection);
+                                //if (com2.ExecuteScalar() != null)
+                                //{
+                                //    amont = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                //}
                                 myConnection.Close();
 
-                                paidAmount -= amont;
+                                //paidAmount -= amont;
 
                                 totalCostBD = Convert.ToDouble(dr["Total_CostBD"].ToString());
                                 totalDiscount = Convert.ToDouble(dr["Total_Discount"].ToString());
@@ -472,18 +472,6 @@ namespace MainSystem
                                     }
                                 }
 
-                                dbconnection.Open();
-
-                                //DecreaseProductQuantity();
-
-                                //if (successFlag == false)
-                                //{
-                                //    dbconnection.Close();
-                                //    connectionReader2.Close();
-                                //    connectionReader1.Close();
-                                //    connectionReader.Close();
-                                //    return;
-                                //}
                                 connectionReader4.Open();
                                 string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and Transition='ايداع' and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
                                 MySqlCommand ct = new MySqlCommand(qt, connectionReader4);
@@ -494,6 +482,7 @@ namespace MainSystem
                                 }
                                 connectionReader4.Close();
 
+                                dbconnection.Open();
                                 string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 

@@ -21,12 +21,7 @@ namespace MainSystem
 {
     public partial class Products_Report : Form
     {
-        MySqlConnection dbconnection;
-        MySqlConnection dbconnection2;
-        MySqlConnection dbconnection3;
-        MySqlConnection dbconnection4;
-        MySqlConnection dbconnection5;
-        MySqlConnection dbconnection6;
+        MySqlConnection dbconnection, dbconnection2, dbconnection3, dbconnection4, dbconnection5, dbconnection6, dbconnection7;
         XtraTabControl MainTabControlPointSale;
         bool loaded = false;
         bool factoryFlage = false;
@@ -74,6 +69,7 @@ namespace MainSystem
             dbconnection4 = new MySqlConnection(connection.connectionString);
             dbconnection5 = new MySqlConnection(connection.connectionString);
             dbconnection6 = new MySqlConnection(connection.connectionString);
+            dbconnection7 = new MySqlConnection(connection.connectionString);
             //list_product = new List<Product>();
             MainTabControlPointSale = MainForm.tabControlPointSale;
 
@@ -2157,7 +2153,7 @@ namespace MainSystem
 
         public void search2()
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',data.Description as 'الوصف',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية',data.Description as 'الوصف',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
             DataTable dtf = new DataTable();
             adapter.Fill(dtf);
             gridControl1.DataSource = dtf;
@@ -2545,9 +2541,9 @@ namespace MainSystem
             {
                 try
                 {
-                    dbconnection.Open();
+                    dbconnection7.Open();
                     string query = "select customer_phone.Phone from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + comClient.SelectedValue.ToString() + " order by customer_phone.CustomerPhone_ID desc limit 1";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlCommand com = new MySqlCommand(query, dbconnection7);
                     if (com.ExecuteScalar() != null)
                     {
                         txtPhone.Text = com.ExecuteScalar().ToString();
@@ -2563,7 +2559,7 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
-                dbconnection.Close();
+                dbconnection7.Close();
             }
         }
     }

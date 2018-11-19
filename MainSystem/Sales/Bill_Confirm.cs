@@ -67,6 +67,12 @@ namespace MainSystem
             panel2.VerticalScroll.Visible = false;
             panel2.VerticalScroll.Maximum = 0;
             panel2.AutoScroll = true;
+            
+            panel4.AutoScroll = false;
+            panel4.VerticalScroll.Enabled = false;
+            panel4.VerticalScroll.Visible = false;
+            panel4.VerticalScroll.Maximum = 0;
+            panel4.AutoScroll = true;
         }
         //events
         private void Form1_Load(object sender, EventArgs e)

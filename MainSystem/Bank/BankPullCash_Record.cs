@@ -14,16 +14,16 @@ namespace MainSystem
 {
     public partial class BankPullCash_Record : Form
     {
-        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3;
+        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3, connectionReader4;
         bool flag2 = false;
         int billNumber = 0;
         bool flag = false;
         int customerID = 0;
-        int delegateID = 0;
+        //int delegateID = 0;
         int clientID = 0;
         string engName = "";
         string clientName = "";
-        string delegateName = "";
+        //string delegateName = "";
         int branchID = 0;
         int ID = -1;
         double paidAmount = 0;
@@ -45,6 +45,7 @@ namespace MainSystem
             connectionReader1 = new MySqlConnection(connection.connectionString);
             connectionReader2 = new MySqlConnection(connection.connectionString);
             connectionReader3 = new MySqlConnection(connection.connectionString);
+            connectionReader4 = new MySqlConnection(connection.connectionString);
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
@@ -101,57 +102,40 @@ namespace MainSystem
                         if (int.TryParse(txtBillNumber.Text, out billNumber))
                         {
                             dbconnection.Open();
-                            string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and Type_Buy='كاش'";
+                            string query = "select * from customer_return_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
 
                             while (dr.Read())
                             {
                                 flag2 = true;
-                                ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                                ID = Convert.ToInt16(dr["CustomerReturnBill_ID"].ToString());
 
                                 myConnection.Open();
-                                string query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='ايداع' group by Bill_Number";
+                                string query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
                                 MySqlCommand com2 = new MySqlCommand(query3, myConnection);
                                 if (com2.ExecuteScalar() != null)
                                 {
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 }
                                 myConnection.Close();
+
                                 txtPaidMoney.Text = (paidAmount).ToString();
+                                txtTotalCost.Text = dr["TotalCostAD"].ToString();
 
-                                txtTotalCost.Text = dr["Total_CostAD"].ToString();
                                 if (dr["Customer_ID"].ToString() != "")
+                                {
                                     customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                                }
 
-                                clientID = Convert.ToInt16(dr["Client_ID"].ToString());
-                                //delegateID = Convert.ToInt16(dr["Delegate_ID"].ToString());
+                                if (dr["Client_ID"].ToString() != "")
+                                {
+                                    clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                                }
                             }
                             dr.Close();
                             if (flag2 == true)
                             {
-                                //extract delgate info
-                                /*if (delegateID > 0)
-                                {
-                                    query = "select * from Delegate where Delegate_ID=" + delegateID;
-                                    com = new MySqlCommand(query, dbconnection);
-                                    dr = com.ExecuteReader();
-                                    while (dr.Read())
-                                    {
-                                        delegateName = dr["Delegate_Name"].ToString();
-                                    }
-                                    dr.Close();
-                                }
-                                else
-                                {
-                                    dbconnection.Close();
-                                    flag2 = false;
-                                    txtTotalCost.Text = "";
-                                    txtPullMoney.Text = "";
-                                    MessageBox.Show("لابد من وجود مندوب");
-                                    return;
-                                }*/
-
                                 //extract customer info
                                 if (clientID > 0)
                                 {
@@ -165,12 +149,12 @@ namespace MainSystem
                                     }
                                     dr.Close();
                                 }
-                                else
-                                {
-                                    MessageBox.Show("لابد من وجود عميل");
-                                    dbconnection.Close();
-                                    return;
-                                }
+                                //else
+                                //{
+                                //    MessageBox.Show("لابد من وجود عميل");
+                                //    dbconnection.Close();
+                                //    return;
+                                //}
                                 if (customerID > 0)
                                 {
                                     query = "select * from customer where Customer_ID=" + customerID;
@@ -442,6 +426,16 @@ namespace MainSystem
                                     }
                                 }
 
+                                connectionReader4.Open();
+                                string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and Transition='سحب' and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
+                                MySqlCommand ct = new MySqlCommand(qt, connectionReader4);
+                                MySqlDataReader dtt = ct.ExecuteReader();
+                                if (!dtt.HasRows)
+                                {
+                                    IncreaseProductQuantity(ID);
+                                }
+                                connectionReader4.Close();
+
 
                                 dbconnection.Open();
                                 string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
@@ -525,6 +519,7 @@ namespace MainSystem
 
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
+                                
                                 dbconnection.Close();
                                 
                                 //print bill
@@ -1247,6 +1242,105 @@ namespace MainSystem
             cmbBranch.SelectedIndex = -1;
 
             loaded = true;
+        }
+
+        //return quantity to store
+        public void IncreaseProductQuantity(int billNumber)
+        {
+            connectionReader.Open();
+            connectionReader2.Open();
+            string q;
+            int id;
+            bool flag = false;
+            double storageQ, productQ;
+            string query = "select Data_ID,Type,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber;
+            MySqlCommand com = new MySqlCommand(query, connectionReader);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                #region بند
+                if (dr["Type"].ToString() == "بند")
+                {
+                    string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                    MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                    MySqlDataReader dr2 = com2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+
+                        storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                        productQ = Convert.ToDouble(dr["TotalMeter"]);
+
+                        storageQ += productQ;
+                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                        comm.ExecuteNonQuery();
+                        flag = true;
+                        break;
+
+                    }
+                    dr2.Close();
+                }
+                #endregion
+
+                #region طقم
+                if (dr["Type"].ToString() == "طقم")
+                {
+                    string query2 = "select Storage_ID,Total_Meters from storage where Set_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                    MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                    MySqlDataReader dr2 = com2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+
+                        storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                        productQ = Convert.ToDouble(dr["TotalMeter"]);
+
+                        storageQ += productQ;
+                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                        comm.ExecuteNonQuery();
+                        flag = true;
+                        break;
+
+                    }
+                    dr2.Close();
+                }
+                #endregion
+
+                #region StorageTaxes
+                string query3 = "select StorageTaxesID,Total_Meters from storage_taxes where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                MySqlCommand com3 = new MySqlCommand(query3, connectionReader2);
+                MySqlDataReader dr3 = com3.ExecuteReader();
+                while (dr3.Read())
+                {
+
+                    storageQ = Convert.ToDouble(dr3["Total_Meters"]);
+                    productQ = Convert.ToDouble(dr["TotalMeter"]);
+
+                    storageQ += productQ;
+                    id = Convert.ToInt16(dr3["StorageTaxesID"]);
+                    q = "update storage_taxes set Total_Meters=" + storageQ + " where StorageTaxesID=" + id;
+                    MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                    comm.ExecuteNonQuery();
+                    flag = true;
+                    break;
+
+                }
+                dr3.Close();
+                #endregion
+
+                if (!flag)
+                {
+                    MessageBox.Show(dr["Data_ID"].ToString() + "not valid in store");
+                }
+                flag = false;
+            }
+            dr.Close();
+
+            connectionReader2.Close();
+            connectionReader.Close();
         }
 
         void printBill()

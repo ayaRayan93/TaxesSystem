@@ -50,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBillNum = new System.Windows.Forms.TextBox();
             this.txtClientId = new System.Windows.Forms.TextBox();
+            this.comClient = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -87,7 +88,6 @@
             this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
-            this.comClient = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -427,6 +427,17 @@
             this.txtClientId.Size = new System.Drawing.Size(56, 23);
             this.txtClientId.TabIndex = 4;
             this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
+            // 
+            // comClient
+            // 
+            this.comClient.Enabled = false;
+            this.comClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comClient.FormattingEnabled = true;
+            this.comClient.Location = new System.Drawing.Point(111, 3);
+            this.comClient.Name = "comClient";
+            this.comClient.Size = new System.Drawing.Size(201, 24);
+            this.comClient.TabIndex = 5;
+            this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -903,17 +914,6 @@
             this.txtOfferID.TabIndex = 18;
             this.txtOfferID.Visible = false;
             this.txtOfferID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxSearch_KeyDown);
-            // 
-            // comClient
-            // 
-            this.comClient.Enabled = false;
-            this.comClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(111, 3);
-            this.comClient.Name = "comClient";
-            this.comClient.Size = new System.Drawing.Size(201, 24);
-            this.comClient.TabIndex = 5;
-            this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
             // 
             // Products_Report
             // 
