@@ -1901,13 +1901,27 @@ namespace MainSystem
                                                 #region bill already exist
                                                 else if (billExist)
                                                 {
-                                                    string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["الاسم"].ToString().Split(')')[0].Split('(')[1] + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
-                                                    MySqlCommand comm = new MySqlCommand(qq, dbconnection);
-                                                    if (comm.ExecuteScalar() != null)
+                                                    if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "بند")
                                                     {
-                                                        MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
-                                                        dbconnection.Close();
-                                                        return;
+                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                        MySqlCommand comm = new MySqlCommand(qq, dbconnection);
+                                                        if (comm.ExecuteScalar() != null)
+                                                        {
+                                                            MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
+                                                            dbconnection.Close();
+                                                            return;
+                                                        }
+                                                    }
+                                                    else if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "طقم" || (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "عرض")
+                                                    {
+                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                        MySqlCommand comm = new MySqlCommand(qq, dbconnection);
+                                                        if (comm.ExecuteScalar() != null)
+                                                        {
+                                                            MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
+                                                            dbconnection.Close();
+                                                            return;
+                                                        }
                                                     }
 
                                                     string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + EmpBranchId + "  order by Dash_ID desc limit 1";

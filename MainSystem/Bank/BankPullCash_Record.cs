@@ -35,6 +35,10 @@ namespace MainSystem
         public static bool addBankPullCashTextChangedFlag = false;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
+        string TypeBuy = "";
+        DateTime billDate;
+        string branchName = "";
+        //string delegateName = "";
 
         public BankPullCash_Record()
         {
@@ -81,6 +85,7 @@ namespace MainSystem
                 {
                     if (int.TryParse(cmbBranch.SelectedValue.ToString(), out branchID))
                     {
+                        branchName = cmbBranch.Text;
                         txtBillNumber.Enabled = true;
                     }
                 }
@@ -110,6 +115,23 @@ namespace MainSystem
                             {
                                 flag2 = true;
                                 ID = Convert.ToInt16(dr["CustomerReturnBill_ID"].ToString());
+                                TypeBuy = dr["Type_Buy"].ToString();
+                                billDate = Convert.ToDateTime(dr["Date"].ToString());
+
+                                //connectionReader3.Open();
+                                //string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID INNER JOIN delegate ON delegate.Delegate_ID = customer_return_bill_details.Delegate_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
+                                //MySqlCommand c1 = new MySqlCommand(q1, connectionReader3);
+                                //MySqlDataReader dr1 = c1.ExecuteReader();
+                                //while (dr1.Read())
+                                //{
+                                //    if (delegateName != "")
+                                //    {
+                                //        delegateName += ",";
+                                //    }
+                                //    delegateName += dr1["Delegate_Name"].ToString();
+                                //}
+                                //dr1.Close();
+                                //connectionReader3.Close();
 
                                 myConnection.Open();
                                 string query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
@@ -119,9 +141,9 @@ namespace MainSystem
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 }
                                 myConnection.Close();
-
-                                txtPaidMoney.Text = (paidAmount).ToString();
+                                
                                 txtTotalCost.Text = dr["TotalCostAD"].ToString();
+                                txtRestMoney.Text = (Convert.ToDouble(dr["TotalCostAD"].ToString()) - paidAmount).ToString();
 
                                 if (dr["Customer_ID"].ToString() != "")
                                 {
@@ -389,15 +411,15 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (billNumber != 0 && branchID != 0 && txtPaidMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
+                    check = (billNumber != 0 && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (billNumber != 0 && branchID != 0 && txtPaidMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (billNumber != 0 && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (billNumber != 0 && branchID != 0 && txtPaidMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (billNumber != 0 && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
 
                 if(check)
@@ -406,7 +428,7 @@ namespace MainSystem
                     if (double.TryParse(txtPullMoney.Text, out outParse))
                     {
                         double restMoney = 0;
-                        if (double.TryParse(txtPaidMoney.Text, out restMoney))
+                        if (double.TryParse(txtRestMoney.Text, out restMoney))
                         {
                             if (outParse <= restMoney)
                             {
@@ -426,6 +448,7 @@ namespace MainSystem
                                     }
                                 }
 
+                                dbconnection.Open();
                                 connectionReader4.Open();
                                 string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and Transition='سحب' and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
                                 MySqlCommand ct = new MySqlCommand(qt, connectionReader4);
@@ -437,12 +460,11 @@ namespace MainSystem
                                 connectionReader4.Close();
 
 
-                                dbconnection.Open();
                                 string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
-                                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "كاش";
+                                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = TypeBuy;
                                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = cmbBranch.SelectedValue;
                                 com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = cmbBranch.Text;
                                 com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = billNumber;
@@ -507,18 +529,7 @@ namespace MainSystem
                                 com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                                 com.ExecuteNonQuery();
                                 //////////////////////
-
-                                if (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(txtPullMoney.Text) == 0)
-                                {
-                                    query = "update customer_bill set Paid_Status=0 where CustomerBill_ID=" + ID;
-                                }
-                                else if (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(txtPullMoney.Text) > 0)
-                                {
-                                    query = "update customer_bill set Paid_Status=2 where CustomerBill_ID=" + ID;
-                                }
-
-                                com = new MySqlCommand(query, dbconnection);
-                                com.ExecuteNonQuery();
+                                
                                 
                                 dbconnection.Close();
                                 
@@ -1310,7 +1321,7 @@ namespace MainSystem
                 #endregion
 
                 #region StorageTaxes
-                string query3 = "select StorageTaxesID,Total_Meters from storage_taxes where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                /*string query3 = "select StorageTaxesID,Total_Meters from storage_taxes where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
                 MySqlCommand com3 = new MySqlCommand(query3, connectionReader2);
                 MySqlDataReader dr3 = com3.ExecuteReader();
                 while (dr3.Read())
@@ -1328,7 +1339,7 @@ namespace MainSystem
                     break;
 
                 }
-                dr3.Close();
+                dr3.Close();*/
                 #endregion
 
                 if (!flag)
@@ -1346,12 +1357,7 @@ namespace MainSystem
         void printBill()
         {
             List<Bill_Items> bi = new List<Bill_Items>();
-
-            //for (int i = 0; i < gridView1.RowCount; i++)
-            //{
-            //    Bill_Items item = new Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Color = gridView1.GetRowCellDisplayText(i, gridView1.Columns["اللون"]), Size = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المقاس"]), Sort = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفرز"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالى"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]) };
-            //    bi.Add(item);
-            //}
+            
             dbconnection.Open();
             string query = "SELECT product_bill.Data_ID,product_bill.Type,product_bill.Price,product_bill.Discount,product_bill.PriceAD,product_bill.Quantity,product_bill.Store_Name,product_bill.Cartons FROM product_bill where product_bill.CustomerBill_ID=" /*+ ID*/;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -1401,229 +1407,15 @@ namespace MainSystem
             dbconnection.Close();
 
             Print_ReturnedBill_Report f = new Print_ReturnedBill_Report();
-            //if (clientID > 0)
-            //{
-            //    f.PrintInvoice(clientName + " " + clientID, billDate, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
-            //}
-            //else if (customerID > 0)
-            //{
-            //    f.PrintInvoice(engName + " " + customerID, billDate, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
-            //}
+            if (clientID > 0)
+            {
+                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
+            }
+            else if (customerID > 0)
+            {
+                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
+            }
             f.ShowDialog();
         }
-
-        /*public void DecreaseProductQuantity()
-        {
-            connectionReader.Open();
-            connectionReader1.Open();
-            connectionReader2.Open();
-            string q;
-            int id;
-            bool flag = false;
-            double storageQ, productQ;
-
-            string query = "select RecivedType from customer_bill where CustomerBill_ID=" + ID;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            string store = com.ExecuteScalar().ToString();
-            if (store != "العميل")
-            {
-                #region not customer
-                query = "select Code,Quantity,Set_ID from product_bill where CustomerBill_ID=" + ID;
-                com = new MySqlCommand(query, connectionReader);
-                MySqlDataReader dr = com.ExecuteReader();
-
-                while (dr.Read())
-                {
-                    if (dr["Code"].ToString().Length < 20)
-                    {
-                        query = "select Code,Quantity from offer_details where Offer_ID=" + Convert.ToInt16(dr["Code"].ToString());
-                        com = new MySqlCommand(query, connectionReader1);
-                        MySqlDataReader dr1 = com.ExecuteReader();
-
-                        while (dr1.Read())
-                        {
-                            query = "select sum(Total_Meters) from storage where Code='" + dr1["Code"].ToString() + "' and Store_Name='" + store + "'";
-                            com = new MySqlCommand(query, connectionReader2);
-                            double quantityInStore = 0;
-                            if (com.ExecuteScalar().ToString() != "")
-                            {
-                                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
-                            }
-                            productQ = Convert.ToDouble(dr1["Quantity"]) * Convert.ToDouble(dr["Quantity"]);
-                            if (quantityInStore >= productQ)
-                            {
-                                query = "select Storage_ID,Total_Meters from storage where Code='" + dr1["Code"].ToString() + "' and Store_Name='" + store + "'";
-                                com = new MySqlCommand(query, connectionReader2);
-                                MySqlDataReader dr2 = com.ExecuteReader();
-                                while (dr2.Read())
-                                {
-
-                                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-
-                                    if (storageQ > productQ)
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                        flag = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                    }
-                                }
-                                dr2.Close();
-
-                                if (!flag)
-                                {
-                                    MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                    return;
-                                }
-                                flag = false;
-                            }
-                            else
-                            {
-                                MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                return;
-                            }
-                        }
-                        dr1.Close();
-                    }
-                    else if (dr["Code"].ToString().Length == 20)
-                    {
-                        if (dr["Set_ID"].ToString() == "")
-                        {
-                            #region بند
-                            query = "select sum(Total_Meters) from storage where Code='" + dr["Code"].ToString() + "' and Store_Name='" + store + "'";
-                            com = new MySqlCommand(query, connectionReader2);
-                            double quantityInStore = 0;
-                            if (com.ExecuteScalar().ToString() != "")
-                            {
-                                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
-                            }
-                            productQ = Convert.ToDouble(dr["Quantity"]);
-                            if (quantityInStore >= productQ)
-                            {
-                                query = "select Storage_ID,Total_Meters from storage where Code='" + dr["Code"].ToString() + "' and Store_Name='" + store + "'";
-                                com = new MySqlCommand(query, connectionReader2);
-                                MySqlDataReader dr2 = com.ExecuteReader();
-                                while (dr2.Read())
-                                {
-
-                                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-
-                                    if (storageQ > productQ)
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                        flag = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                    }
-                                }
-                                dr2.Close();
-
-                                if (!flag)
-                                {
-                                    MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                    return;
-                                }
-                                flag = false;
-                            }
-                            else
-                            {
-                                MessageBox.Show(dr["Code"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                return;
-                            }
-                            #endregion
-                        }
-                        else
-                        {
-                            #region طقم
-                            query = "select Quantity from set_details where Set_ID=" + dr["Code"].ToString() + " order by SetDetails_ID limit 1";
-                            com = new MySqlCommand(query, dbconnection);
-                            double itemQuantity = Convert.ToDouble(com.ExecuteScalar());
-
-                            query = "select sum(Total_Meters) from storage where Code='" + dr["Set_ID"].ToString() + "' and Store_Name='" + store + "'";
-                            com = new MySqlCommand(query, connectionReader2);
-                            double quantityInStore = 0;
-                            if (com.ExecuteScalar().ToString() != "")
-                            {
-                                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
-                            }
-                            productQ = Convert.ToDouble(dr["Quantity"]) / itemQuantity;
-                            if (quantityInStore >= productQ)
-                            {
-                                query = "select Storage_ID,Total_Meters from storage where Code='" + dr["Set_ID"].ToString() + "' and Store_Name='" + store + "'";
-                                com = new MySqlCommand(query, connectionReader2);
-                                MySqlDataReader dr2 = com.ExecuteReader();
-                                while (dr2.Read())
-                                {
-
-                                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-
-                                    if (storageQ > productQ)
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                        flag = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
-                                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                                        comm.ExecuteNonQuery();
-                                        productQ -= storageQ;
-                                    }
-                                }
-                                dr2.Close();
-
-                                if (!flag)
-                                {
-                                    MessageBox.Show(dr["Set_ID"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                    return;
-                                }
-                                flag = false;
-                            }
-                            else
-                            {
-                                MessageBox.Show(dr["Set_ID"].ToString() + " لا يوجد منه كمية كافية فى المخزن");
-                                return;
-                            }
-                            #endregion
-                        }
-                    }
-                }
-                dr.Close();
-                //successFlag = true;
-
-                #endregion
-            }
-            connectionReader2.Close();
-            connectionReader1.Close();
-            connectionReader.Close();
-        }*/
     }
 }
