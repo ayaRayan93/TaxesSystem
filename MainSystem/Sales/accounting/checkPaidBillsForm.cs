@@ -254,8 +254,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-   
+        }   
         private void comClientName_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -274,7 +273,19 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                Display();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void btnDone_Click(object sender, EventArgs e)
         {
             try
@@ -351,6 +362,31 @@ namespace MainSystem
                 recivedMoney += money;
             }
             labRecivedMoney.Text = recivedMoney.ToString();
+        }
+
+        private void btnNewChooes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                radClient.Checked = false;
+                radCon.Checked = false;
+                radDealer.Checked = false;
+                radEng.Checked = false;
+
+                labelEng.Visible = false;
+                comEngCon.Visible = false;
+                txtCustomerID.Visible = false;
+                labelClient.Visible = false;
+                comClient.Visible = false;
+                txtClientID.Visible = false;
+                dataGridView1.DataSource = null;
+                if (dataGridView1.ColumnCount > 0)
+                    dataGridView1.Columns.Remove(dataGridView1.Columns[0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
