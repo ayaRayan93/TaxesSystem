@@ -26,6 +26,7 @@ namespace MainSystem
         int EmpBranchId = 0;
         //int customerBillId = 0;
         MainForm salesMainForm;
+        string type = "كاش";
 
         public CustomerReturnBill(MainForm SalesMainForm)
         {
@@ -265,6 +266,16 @@ namespace MainSystem
             }
         }
 
+        private void rdbSoon_CheckedChanged(object sender, EventArgs e)
+        {
+            type = "آجل";
+        }
+
+        private void rdbCash_CheckedChanged(object sender, EventArgs e)
+        {
+            type = "كاش";
+        }
+
         private void comBillNumber_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -476,7 +487,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                if (dataGridView2.Rows.Count > 0 && (comClient.Text != "" || comCustomer.Text != ""))
+                if (dataGridView2.Rows.Count > 0 && (comClient.Text != "" || comCustomer.Text != "") && txtStorePermission.Text != "")
                 {
                     string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" + txtBranchID.Text+ " order by CustomerReturnBill_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -486,7 +497,7 @@ namespace MainSystem
                         Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
                     //Type_Buy
-                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Client_ID,Date,TotalCostAD,ReturnInfo) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Client_ID,@Date,@TotalCostAD,@ReturnInfo)";
+                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Client_ID,Date,TotalCostAD,ReturnInfo,Store_Permission_Number,Type_Buy) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Client_ID,@Date,@TotalCostAD,@ReturnInfo,@Store_Permission_Number,@Type_Buy)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
@@ -494,6 +505,20 @@ namespace MainSystem
                     com.Parameters["@Branch_ID"].Value = EmpBranchId;
                     //com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     //com.Parameters["@CustomerBill_ID"].Value = customerBillId;
+
+                    int storeNum = 0;
+                    if (int.TryParse(txtStorePermission.Text, out storeNum))
+                    {
+                        com.Parameters.Add("@Store_Permission_Number", MySqlDbType.Int16);
+                        com.Parameters["@Store_Permission_Number"].Value = storeNum;
+                    }
+                    else
+                    {
+                        MessageBox.Show("اذن المخزن يجب ان يكون عدد");
+                        dbconnection.Close();
+                        return;
+                    }
+
                     if (comCustomer.Text != "")
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
@@ -537,6 +562,8 @@ namespace MainSystem
                     com.Parameters["@ReturnInfo"].Value = txtInfo.Text;
                     com.Parameters.Add("@TotalCostAD", MySqlDbType.Decimal);
                     com.Parameters["@TotalCostAD"].Value = Convert.ToDouble(txtTotalReturnBillAD.Text);
+                    com.Parameters.Add("@Type_Buy", MySqlDbType.VarChar);
+                    com.Parameters["@Type_Buy"].Value = type;
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnBill_ID from customer_return_bill order by CustomerReturnBill_ID desc limit 1";
@@ -586,7 +613,11 @@ namespace MainSystem
                         c2.ExecuteNonQuery();
                     }
 
-                    IncreaseProductQuantity(id);
+                    //IncreaseProductQuantity(id);
+
+                    UserControl.ItemRecord("customer_return_bill", "اضافة", id, DateTime.Now, "", dbconnection);
+                    
+                    MessageBox.Show("فاتورة رقم : " + Branch_BillNumber);
 
                     clrearAll();
                     clear(tableLayoutPanel1);
@@ -747,6 +778,7 @@ namespace MainSystem
                 radEng.Checked = false;
                 comBranch.Text = "";
                 txtBranchID.Text = "";
+                txtInfo.Text = txtStorePermission.Text = "";
 
                 listBoxControlBills.Items.Clear();
                 listBoxControlCustomerBill.Items.Clear();

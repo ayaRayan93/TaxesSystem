@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.comCustomer = new System.Windows.Forms.ComboBox();
@@ -46,6 +46,18 @@
             this.comBillNumber = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -73,8 +85,8 @@
             this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtBillTotalCostAD = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -86,18 +98,11 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtTotalReturnBillAD = new System.Windows.Forms.TextBox();
-            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtStorePermission = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbCash = new System.Windows.Forms.RadioButton();
+            this.rdbSoon = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -107,12 +112,15 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
+            this.panel7.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -124,7 +132,7 @@
             this.groupBox2.Controls.Add(this.labClient);
             this.groupBox2.Controls.Add(this.labCustomer);
             this.groupBox2.Controls.Add(this.txtCustomerID);
-            this.groupBox2.Location = new System.Drawing.Point(62, 23);
+            this.groupBox2.Location = new System.Drawing.Point(9, 25);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(388, 67);
             this.groupBox2.TabIndex = 160;
@@ -134,7 +142,7 @@
             // 
             this.txtClientID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientID.Location = new System.Drawing.Point(33, 37);
+            this.txtClientID.Location = new System.Drawing.Point(28, 37);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(50, 24);
@@ -146,7 +154,7 @@
             this.comCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comCustomer.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comCustomer.FormattingEnabled = true;
-            this.comCustomer.Location = new System.Drawing.Point(88, 11);
+            this.comCustomer.Location = new System.Drawing.Point(83, 11);
             this.comCustomer.Name = "comCustomer";
             this.comCustomer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comCustomer.Size = new System.Drawing.Size(159, 24);
@@ -158,7 +166,7 @@
             this.comClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(88, 37);
+            this.comClient.Location = new System.Drawing.Point(83, 37);
             this.comClient.Name = "comClient";
             this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClient.Size = new System.Drawing.Size(159, 24);
@@ -170,7 +178,7 @@
             this.labClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labClient.AutoSize = true;
             this.labClient.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.labClient.Location = new System.Drawing.Point(294, 41);
+            this.labClient.Location = new System.Drawing.Point(289, 41);
             this.labClient.Name = "labClient";
             this.labClient.Size = new System.Drawing.Size(38, 18);
             this.labClient.TabIndex = 108;
@@ -181,7 +189,7 @@
             this.labCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labCustomer.AutoSize = true;
             this.labCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.labCustomer.Location = new System.Drawing.Point(252, 15);
+            this.labCustomer.Location = new System.Drawing.Point(247, 15);
             this.labCustomer.Name = "labCustomer";
             this.labCustomer.Size = new System.Drawing.Size(122, 18);
             this.labCustomer.TabIndex = 105;
@@ -191,7 +199,7 @@
             // 
             this.txtCustomerID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerID.Location = new System.Drawing.Point(33, 11);
+            this.txtCustomerID.Location = new System.Drawing.Point(28, 11);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(50, 24);
@@ -203,7 +211,7 @@
             this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radClient.Location = new System.Drawing.Point(178, 3);
+            this.radClient.Location = new System.Drawing.Point(272, 5);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(56, 22);
@@ -217,7 +225,7 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radEng.Location = new System.Drawing.Point(355, 3);
+            this.radEng.Location = new System.Drawing.Point(125, 5);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(71, 22);
@@ -231,7 +239,7 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radCon.Location = new System.Drawing.Point(263, 3);
+            this.radCon.Location = new System.Drawing.Point(202, 5);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(64, 22);
@@ -245,7 +253,7 @@
             this.labBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labBillNumber.AutoSize = true;
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.labBillNumber.Location = new System.Drawing.Point(436, 48);
+            this.labBillNumber.Location = new System.Drawing.Point(360, 45);
             this.labBillNumber.Name = "labBillNumber";
             this.labBillNumber.Size = new System.Drawing.Size(70, 18);
             this.labBillNumber.TabIndex = 161;
@@ -256,7 +264,7 @@
             this.comBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBillNumber.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBillNumber.FormattingEnabled = true;
-            this.comBillNumber.Location = new System.Drawing.Point(330, 45);
+            this.comBillNumber.Location = new System.Drawing.Point(254, 42);
             this.comBillNumber.Name = "comBillNumber";
             this.comBillNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBillNumber.Size = new System.Drawing.Size(100, 24);
@@ -268,23 +276,23 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 158);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 168);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Size = new System.Drawing.Size(1044, 171);
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridView1.Size = new System.Drawing.Size(1044, 166);
             this.dataGridView1.TabIndex = 163;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -293,14 +301,14 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
@@ -316,14 +324,79 @@
             this.Delegate_ID,
             this.CustomerBill_ID});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 410);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 415);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView2.Size = new System.Drawing.Size(1044, 171);
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridView2.Size = new System.Drawing.Size(1044, 166);
             this.dataGridView2.TabIndex = 164;
+            // 
+            // Data_ID
+            // 
+            this.Data_ID.HeaderText = "Data_ID";
+            this.Data_ID.Name = "Data_ID";
+            this.Data_ID.Visible = false;
+            // 
+            // Code
+            // 
+            this.Code.HeaderText = "الكود";
+            this.Code.Name = "Code";
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "الفئة";
+            this.Type.Name = "Type";
+            this.Type.Visible = false;
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الاسم";
+            this.Product_Name.Name = "Product_Name";
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "الكمية";
+            this.Quantity.Name = "Quantity";
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "السعر";
+            this.priceAD.Name = "priceAD";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
+            // 
+            // totalAD
+            // 
+            this.totalAD.HeaderText = "الاجمالي";
+            this.totalAD.Name = "totalAD";
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "الوصف";
+            this.Description.Name = "Description";
+            this.Description.Visible = false;
+            // 
+            // Returned
+            // 
+            this.Returned.HeaderText = "تم الاسترجاع";
+            this.Returned.Name = "Returned";
+            // 
+            // Delegate_ID
+            // 
+            this.Delegate_ID.HeaderText = "Delegate_ID";
+            this.Delegate_ID.Name = "Delegate_ID";
+            this.Delegate_ID.Visible = false;
+            // 
+            // CustomerBill_ID
+            // 
+            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
+            this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.Visible = false;
             // 
             // label6
             // 
@@ -451,7 +524,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label13.Location = new System.Drawing.Point(787, 0);
+            this.label13.Location = new System.Drawing.Point(808, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(205, 18);
             this.label13.TabIndex = 191;
@@ -462,10 +535,10 @@
             this.comBranch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(290, 6);
+            this.comBranch.Location = new System.Drawing.Point(224, 7);
             this.comBranch.Name = "comBranch";
             this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comBranch.Size = new System.Drawing.Size(140, 24);
+            this.comBranch.Size = new System.Drawing.Size(130, 24);
             this.comBranch.TabIndex = 194;
             this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
@@ -473,10 +546,10 @@
             // 
             this.txtBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(222, 6);
+            this.txtBranchID.Location = new System.Drawing.Point(168, 7);
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBranchID.Size = new System.Drawing.Size(62, 24);
+            this.txtBranchID.Size = new System.Drawing.Size(50, 24);
             this.txtBranchID.TabIndex = 196;
             this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
@@ -485,7 +558,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label10.Location = new System.Drawing.Point(453, 9);
+            this.label10.Location = new System.Drawing.Point(360, 10);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 18);
             this.label10.TabIndex = 195;
@@ -496,7 +569,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label14.Location = new System.Drawing.Point(475, 0);
+            this.label14.Location = new System.Drawing.Point(548, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(84, 18);
             this.label14.TabIndex = 197;
@@ -505,11 +578,11 @@
             // txtInfo
             // 
             this.txtInfo.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtInfo.Location = new System.Drawing.Point(269, 3);
+            this.txtInfo.Location = new System.Drawing.Point(361, 3);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtInfo.Size = new System.Drawing.Size(200, 48);
+            this.txtInfo.Size = new System.Drawing.Size(181, 48);
             this.txtInfo.TabIndex = 198;
             // 
             // tableLayoutPanel1
@@ -527,7 +600,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
@@ -578,9 +651,11 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.Controls.Add(this.groupBox1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -588,27 +663,17 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 104);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 114);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnNewChooes);
-            this.panel2.Controls.Add(this.listBoxControlCustomerBill);
-            this.panel2.Controls.Add(this.listBoxControlBills);
-            this.panel2.Controls.Add(this.comBillNumber);
-            this.panel2.Controls.Add(this.labBillNumber);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.txtBranchID);
-            this.panel2.Controls.Add(this.comBranch);
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(108, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(516, 98);
+            this.panel2.Size = new System.Drawing.Size(516, 108);
             this.panel2.TabIndex = 1;
             // 
             // btnNewChooes
@@ -619,9 +684,9 @@
             this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewChooes.Location = new System.Drawing.Point(10, 19);
+            this.btnNewChooes.Location = new System.Drawing.Point(26, 9);
             this.btnNewChooes.Name = "btnNewChooes";
-            this.btnNewChooes.Size = new System.Drawing.Size(90, 35);
+            this.btnNewChooes.Size = new System.Drawing.Size(50, 54);
             this.btnNewChooes.TabIndex = 200;
             this.btnNewChooes.Text = "اختيار اخر";
             this.btnNewChooes.UseVisualStyleBackColor = false;
@@ -630,7 +695,7 @@
             // listBoxControlCustomerBill
             // 
             this.listBoxControlCustomerBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(222, 36);
+            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(168, 36);
             this.listBoxControlCustomerBill.Name = "listBoxControlCustomerBill";
             this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 33);
             this.listBoxControlCustomerBill.TabIndex = 199;
@@ -640,40 +705,55 @@
             // 
             this.listBoxControlBills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxControlBills.HorizontalScrollbar = true;
-            this.listBoxControlBills.Location = new System.Drawing.Point(115, 6);
+            this.listBoxControlBills.Location = new System.Drawing.Point(82, 5);
             this.listBoxControlBills.Name = "listBoxControlBills";
             this.listBoxControlBills.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.listBoxControlBills.Size = new System.Drawing.Size(100, 63);
+            this.listBoxControlBills.Size = new System.Drawing.Size(80, 63);
             this.listBoxControlBills.TabIndex = 198;
             // 
             // panel7
             // 
-            this.panel7.Location = new System.Drawing.Point(3, 0);
+            this.panel7.Controls.Add(this.labBillNumber);
+            this.panel7.Controls.Add(this.btnNewChooes);
+            this.panel7.Controls.Add(this.label10);
+            this.panel7.Controls.Add(this.txtBranchID);
+            this.panel7.Controls.Add(this.comBillNumber);
+            this.panel7.Controls.Add(this.listBoxControlBills);
+            this.panel7.Controls.Add(this.listBoxControlCustomerBill);
+            this.panel7.Controls.Add(this.comBranch);
+            this.panel7.Location = new System.Drawing.Point(31, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(513, 96);
+            this.panel7.Size = new System.Drawing.Size(448, 105);
             this.panel7.TabIndex = 201;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.radCon);
-            this.panel1.Controls.Add(this.radEng);
-            this.panel1.Controls.Add(this.radClient);
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(525, 3);
+            this.panel1.Location = new System.Drawing.Point(630, 3);
             this.panel1.Name = "panel1";
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panel1.Size = new System.Drawing.Size(516, 98);
+            this.panel1.Size = new System.Drawing.Size(411, 108);
             this.panel1.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.radCon);
+            this.panel6.Controls.Add(this.groupBox2);
+            this.panel6.Controls.Add(this.radioButton1);
+            this.panel6.Controls.Add(this.radClient);
+            this.panel6.Controls.Add(this.radEng);
+            this.panel6.Location = new System.Drawing.Point(3, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(405, 108);
+            this.panel6.TabIndex = 162;
             // 
             // radioButton1
             // 
             this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radioButton1.Location = new System.Drawing.Point(96, 3);
+            this.radioButton1.Location = new System.Drawing.Point(72, 5);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton1.Size = new System.Drawing.Size(47, 22);
@@ -681,13 +761,6 @@
             this.radioButton1.Text = "تاجر";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
-            // 
-            // panel6
-            // 
-            this.panel6.Location = new System.Drawing.Point(4, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(509, 98);
-            this.panel6.TabIndex = 162;
             // 
             // panel3
             // 
@@ -697,7 +770,7 @@
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.labBillDate);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 113);
+            this.panel3.Location = new System.Drawing.Point(3, 123);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1044, 39);
             this.panel3.TabIndex = 1;
@@ -717,7 +790,7 @@
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.Controls.Add(this.tableLayoutPanel4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 335);
+            this.panel4.Location = new System.Drawing.Point(3, 340);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1044, 69);
             this.panel4.TabIndex = 164;
@@ -795,20 +868,23 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 8;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.tableLayoutPanel5.ColumnCount = 9;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2F));
             this.tableLayoutPanel5.Controls.Add(this.label14, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnDelete, 6, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnDelete, 7, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtTotalReturnBillAD, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtInfo, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.label13, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.label3, 5, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtStorePermission, 6, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -824,7 +900,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(101, 3);
+            this.btnDelete.Location = new System.Drawing.Point(28, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(150, 30);
             this.btnDelete.TabIndex = 199;
@@ -835,76 +911,75 @@
             // txtTotalReturnBillAD
             // 
             this.txtTotalReturnBillAD.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalReturnBillAD.Location = new System.Drawing.Point(631, 3);
+            this.txtTotalReturnBillAD.Location = new System.Drawing.Point(652, 3);
             this.txtTotalReturnBillAD.Name = "txtTotalReturnBillAD";
             this.txtTotalReturnBillAD.ReadOnly = true;
             this.txtTotalReturnBillAD.Size = new System.Drawing.Size(150, 26);
             this.txtTotalReturnBillAD.TabIndex = 200;
             // 
-            // Data_ID
+            // label3
             // 
-            this.Data_ID.HeaderText = "Data_ID";
-            this.Data_ID.Name = "Data_ID";
-            this.Data_ID.Visible = false;
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label3.Location = new System.Drawing.Point(288, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 18);
+            this.label3.TabIndex = 201;
+            this.label3.Text = "اذن مخزن";
             // 
-            // Code
+            // txtStorePermission
             // 
-            this.Code.HeaderText = "الكود";
-            this.Code.Name = "Code";
+            this.txtStorePermission.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtStorePermission.Location = new System.Drawing.Point(184, 3);
+            this.txtStorePermission.Name = "txtStorePermission";
+            this.txtStorePermission.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtStorePermission.Size = new System.Drawing.Size(98, 25);
+            this.txtStorePermission.TabIndex = 202;
             // 
-            // Type
+            // groupBox1
             // 
-            this.Type.HeaderText = "الفئة";
-            this.Type.Name = "Type";
-            this.Type.Visible = false;
+            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.rdbCash);
+            this.groupBox1.Controls.Add(this.rdbSoon);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupBox1.Size = new System.Drawing.Size(99, 108);
+            this.groupBox1.TabIndex = 147;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "طريقة الاستلام";
             // 
-            // Product_Name
+            // rdbCash
             // 
-            this.Product_Name.HeaderText = "الاسم";
-            this.Product_Name.Name = "Product_Name";
+            this.rdbCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdbCash.AutoSize = true;
+            this.rdbCash.Checked = true;
+            this.rdbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbCash.Location = new System.Drawing.Point(24, 26);
+            this.rdbCash.Name = "rdbCash";
+            this.rdbCash.Size = new System.Drawing.Size(52, 20);
+            this.rdbCash.TabIndex = 98;
+            this.rdbCash.TabStop = true;
+            this.rdbCash.Text = "كاش";
+            this.rdbCash.UseVisualStyleBackColor = true;
+            this.rdbCash.CheckedChanged += new System.EventHandler(this.rdbCash_CheckedChanged);
             // 
-            // Quantity
+            // rdbSoon
             // 
-            this.Quantity.HeaderText = "الكمية";
-            this.Quantity.Name = "Quantity";
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "السعر";
-            this.priceAD.Name = "priceAD";
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "نسبة الخصم";
-            this.Discount.Name = "Discount";
-            // 
-            // totalAD
-            // 
-            this.totalAD.HeaderText = "الاجمالي";
-            this.totalAD.Name = "totalAD";
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "الوصف";
-            this.Description.Name = "Description";
-            this.Description.Visible = false;
-            // 
-            // Returned
-            // 
-            this.Returned.HeaderText = "تم الاسترجاع";
-            this.Returned.Name = "Returned";
-            // 
-            // Delegate_ID
-            // 
-            this.Delegate_ID.HeaderText = "Delegate_ID";
-            this.Delegate_ID.Name = "Delegate_ID";
-            this.Delegate_ID.Visible = false;
-            // 
-            // CustomerBill_ID
-            // 
-            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
-            this.CustomerBill_ID.Name = "CustomerBill_ID";
-            this.CustomerBill_ID.Visible = false;
+            this.rdbSoon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdbSoon.AutoSize = true;
+            this.rdbSoon.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbSoon.Location = new System.Drawing.Point(27, 62);
+            this.rdbSoon.Name = "rdbSoon";
+            this.rdbSoon.Size = new System.Drawing.Size(47, 20);
+            this.rdbSoon.TabIndex = 99;
+            this.rdbSoon.TabStop = true;
+            this.rdbSoon.Text = "آجل";
+            this.rdbSoon.UseVisualStyleBackColor = true;
+            this.rdbSoon.CheckedChanged += new System.EventHandler(this.rdbSoon_CheckedChanged);
             // 
             // CustomerReturnBill
             // 
@@ -926,11 +1001,13 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -939,6 +1016,8 @@
             this.panel5.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1011,5 +1090,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Returned;
         private System.Windows.Forms.DataGridViewTextBoxColumn Delegate_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerBill_ID;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtStorePermission;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdbCash;
+        private System.Windows.Forms.RadioButton rdbSoon;
     }
 }
