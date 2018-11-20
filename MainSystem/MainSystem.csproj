@@ -144,12 +144,6 @@
     <Compile Include="Sales\accounting\CustomerTaswayaReport.designer.cs">
       <DependentUpon>CustomerTaswayaReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\accounting\test1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\accounting\test1.Designer.cs">
-      <DependentUpon>test1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\accounting\UpdateCustomerTaswaya.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1252,9 +1246,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\CustomerTaswayaReport.resx">
       <DependentUpon>CustomerTaswayaReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\accounting\test1.resx">
-      <DependentUpon>test1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\UpdateCustomerTaswaya.resx">
       <DependentUpon>UpdateCustomerTaswaya.cs</DependentUpon>
