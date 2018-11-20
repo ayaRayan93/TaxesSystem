@@ -29,14 +29,9 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.labTotalBillCost = new System.Windows.Forms.Label();
             this.labTotalReturnCost = new System.Windows.Forms.Label();
@@ -59,6 +54,18 @@
             this.radClient = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paidCustomerBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paidReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -83,63 +90,30 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Bill,
             this.ReturnBill,
+            this.paidCustomerBill,
+            this.paidReturnBill,
             this.Customer,
-            this.Customer_Code,
             this.Client,
+            this.Customer_Code,
             this.Client_Code});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(10, 160);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 80;
             this.dataGridView1.Size = new System.Drawing.Size(942, 335);
             this.dataGridView1.TabIndex = 161;
-            // 
-            // Bill
-            // 
-            this.Bill.HeaderText = "المسحوبات";
-            this.Bill.Name = "Bill";
-            this.Bill.ReadOnly = true;
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.HeaderText = "المرتجعات";
-            this.ReturnBill.Name = "ReturnBill";
-            this.ReturnBill.ReadOnly = true;
-            // 
-            // Customer
-            // 
-            this.Customer.HeaderText = "مهندس/مقاول/تاجر";
-            this.Customer.Name = "Customer";
-            this.Customer.ReadOnly = true;
-            // 
-            // Customer_Code
-            // 
-            this.Customer_Code.HeaderText = "كود المهندس/المقاول/التاجر";
-            this.Customer_Code.Name = "Customer_Code";
-            this.Customer_Code.ReadOnly = true;
-            // 
-            // Client
-            // 
-            this.Client.HeaderText = "عميل";
-            this.Client.Name = "Client";
-            this.Client.ReadOnly = true;
-            // 
-            // Client_Code
-            // 
-            this.Client_Code.HeaderText = "كود العميل";
-            this.Client_Code.Name = "Client_Code";
-            this.Client_Code.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -406,6 +380,10 @@
             // 
             // panFooter
             // 
+            this.panFooter.Controls.Add(this.label5);
+            this.panFooter.Controls.Add(this.label7);
+            this.panFooter.Controls.Add(this.label1);
+            this.panFooter.Controls.Add(this.label4);
             this.panFooter.Controls.Add(this.label6);
             this.panFooter.Controls.Add(this.labRest);
             this.panFooter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -413,6 +391,94 @@
             this.panFooter.Name = "panFooter";
             this.panFooter.Size = new System.Drawing.Size(956, 54);
             this.panFooter.TabIndex = 163;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(672, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 16);
+            this.label1.TabIndex = 168;
+            this.label1.Text = "صافي السدادات";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label4.Location = new System.Drawing.Point(582, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 17);
+            this.label4.TabIndex = 167;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(835, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 16);
+            this.label5.TabIndex = 170;
+            this.label5.Text = "صافي المسحوبات";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label7.Location = new System.Drawing.Point(745, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 17);
+            this.label7.TabIndex = 169;
+            // 
+            // Bill
+            // 
+            this.Bill.HeaderText = "المسحوبات";
+            this.Bill.Name = "Bill";
+            this.Bill.ReadOnly = true;
+            // 
+            // ReturnBill
+            // 
+            this.ReturnBill.HeaderText = "المرتجعات";
+            this.ReturnBill.Name = "ReturnBill";
+            this.ReturnBill.ReadOnly = true;
+            // 
+            // paidCustomerBill
+            // 
+            this.paidCustomerBill.HeaderText = "السدادات";
+            this.paidCustomerBill.Name = "paidCustomerBill";
+            this.paidCustomerBill.ReadOnly = true;
+            // 
+            // paidReturnBill
+            // 
+            this.paidReturnBill.HeaderText = "مرتد سداد";
+            this.paidReturnBill.Name = "paidReturnBill";
+            this.paidReturnBill.ReadOnly = true;
+            // 
+            // Customer
+            // 
+            this.Customer.HeaderText = "مهندس/مقاول/تاجر";
+            this.Customer.Name = "Customer";
+            this.Customer.ReadOnly = true;
+            // 
+            // Client
+            // 
+            this.Client.HeaderText = "عميل";
+            this.Client.Name = "Client";
+            this.Client.ReadOnly = true;
+            // 
+            // Customer_Code
+            // 
+            this.Customer_Code.HeaderText = " المهندس/المقاول/التاجر";
+            this.Customer_Code.Name = "Customer_Code";
+            this.Customer_Code.ReadOnly = true;
+            // 
+            // Client_Code
+            // 
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Client_Code.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Client_Code.HeaderText = " العميل";
+            this.Client_Code.Name = "Client_Code";
+            this.Client_Code.ReadOnly = true;
             // 
             // customerBills
             // 
@@ -427,6 +493,7 @@
             this.Name = "customerBills";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerBills";
+            this.Load += new System.EventHandler(this.customerBills_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panHeader.ResumeLayout(false);
@@ -462,11 +529,17 @@
         private System.Windows.Forms.DateTimePicker dateTimeFrom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paidCustomerBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paidReturnBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Client;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Client_Code;
     }
 }
