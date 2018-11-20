@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.label2 = new System.Windows.Forms.Label();
@@ -135,7 +136,7 @@
             this.layoutControlItemRest = new DevExpress.XtraLayout.LayoutControlItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtPaidMoney = new System.Windows.Forms.TextBox();
+            this.txtRestMoney = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBillNumber = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -302,7 +303,7 @@
             this.dataLayoutControl1.Controls.Add(this.groupBox1);
             this.dataLayoutControl1.Controls.Add(this.label5);
             this.dataLayoutControl1.Controls.Add(this.label4);
-            this.dataLayoutControl1.Controls.Add(this.txtPaidMoney);
+            this.dataLayoutControl1.Controls.Add(this.txtRestMoney);
             this.dataLayoutControl1.Controls.Add(this.label1);
             this.dataLayoutControl1.Controls.Add(this.txtBillNumber);
             this.dataLayoutControl1.Controls.Add(this.label7);
@@ -1497,14 +1498,14 @@
             this.label4.TabIndex = 36;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtPaidMoney
+            // txtRestMoney
             // 
-            this.txtPaidMoney.Enabled = false;
-            this.txtPaidMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPaidMoney.Location = new System.Drawing.Point(31, 83);
-            this.txtPaidMoney.Name = "txtPaidMoney";
-            this.txtPaidMoney.Size = new System.Drawing.Size(389, 20);
-            this.txtPaidMoney.TabIndex = 35;
+            this.txtRestMoney.Enabled = false;
+            this.txtRestMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRestMoney.Location = new System.Drawing.Point(31, 83);
+            this.txtRestMoney.Name = "txtRestMoney";
+            this.txtRestMoney.Size = new System.Drawing.Size(389, 20);
+            this.txtRestMoney.TabIndex = 35;
             // 
             // label1
             // 
@@ -1727,11 +1728,11 @@
             this.layoutControlItem17.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem17.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem17.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem17.Control = this.txtPaidMoney;
+            this.layoutControlItem17.Control = this.txtRestMoney;
             this.layoutControlItem17.Location = new System.Drawing.Point(24, 76);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(493, 24);
-            this.layoutControlItem17.Text = "السدادات";
+            this.layoutControlItem17.Text = "المتبقى";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(97, 20);
             // 
             // layoutControlItem18
@@ -2131,7 +2132,7 @@
         private System.Windows.Forms.RadioButton radCredit;
         private System.Windows.Forms.RadioButton radCash;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPaidMoney;
+        private System.Windows.Forms.TextBox txtRestMoney;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBillNumber;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

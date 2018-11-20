@@ -472,6 +472,7 @@ namespace MainSystem
                                     }
                                 }
 
+                                dbconnection.Open();
                                 connectionReader4.Open();
                                 string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and Transition='ايداع' and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
                                 MySqlCommand ct = new MySqlCommand(qt, connectionReader4);
@@ -482,7 +483,6 @@ namespace MainSystem
                                 }
                                 connectionReader4.Close();
 
-                                dbconnection.Open();
                                 string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
