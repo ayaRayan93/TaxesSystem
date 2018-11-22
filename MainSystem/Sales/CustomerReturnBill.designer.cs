@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.comCustomer = new System.Windows.Forms.ComboBox();
@@ -51,8 +51,9 @@
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,11 +80,14 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreateReturnBill = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbCash = new System.Windows.Forms.RadioButton();
+            this.rdbSoon = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnNewChooes = new System.Windows.Forms.Button();
-            this.listBoxControlCustomerBill = new DevExpress.XtraEditors.ListBoxControl();
-            this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnNewChooes = new System.Windows.Forms.Button();
+            this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
+            this.listBoxControlCustomerBill = new DevExpress.XtraEditors.ListBoxControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -100,19 +104,17 @@
             this.txtTotalReturnBillAD = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtStorePermission = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdbCash = new System.Windows.Forms.RadioButton();
-            this.rdbSoon = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -120,7 +122,6 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -276,22 +277,22 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 168);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Size = new System.Drawing.Size(1044, 166);
             this.dataGridView1.TabIndex = 163;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -301,14 +302,14 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
@@ -316,8 +317,9 @@
             this.Type,
             this.Product_Name,
             this.Quantity,
-            this.priceAD,
+            this.priceBD,
             this.Discount,
+            this.priceAD,
             this.totalAD,
             this.Description,
             this.Returned,
@@ -327,9 +329,9 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 415);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Size = new System.Drawing.Size(1044, 166);
             this.dataGridView2.TabIndex = 164;
             // 
@@ -362,8 +364,13 @@
             // 
             // priceAD
             // 
-            this.priceAD.HeaderText = "السعر";
+            this.priceAD.HeaderText = "بعد الخصم";
             this.priceAD.Name = "priceAD";
+            // 
+            // priceBD
+            // 
+            this.priceBD.HeaderText = "السعر";
+            this.priceBD.Name = "priceBD";
             // 
             // Discount
             // 
@@ -667,6 +674,50 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1044, 114);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.rdbCash);
+            this.groupBox1.Controls.Add(this.rdbSoon);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupBox1.Size = new System.Drawing.Size(99, 108);
+            this.groupBox1.TabIndex = 147;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "طريقة السحب";
+            // 
+            // rdbCash
+            // 
+            this.rdbCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdbCash.AutoSize = true;
+            this.rdbCash.Checked = true;
+            this.rdbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbCash.Location = new System.Drawing.Point(24, 26);
+            this.rdbCash.Name = "rdbCash";
+            this.rdbCash.Size = new System.Drawing.Size(52, 20);
+            this.rdbCash.TabIndex = 98;
+            this.rdbCash.TabStop = true;
+            this.rdbCash.Text = "كاش";
+            this.rdbCash.UseVisualStyleBackColor = true;
+            this.rdbCash.CheckedChanged += new System.EventHandler(this.rdbCash_CheckedChanged);
+            // 
+            // rdbSoon
+            // 
+            this.rdbSoon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdbSoon.AutoSize = true;
+            this.rdbSoon.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbSoon.Location = new System.Drawing.Point(27, 62);
+            this.rdbSoon.Name = "rdbSoon";
+            this.rdbSoon.Size = new System.Drawing.Size(47, 20);
+            this.rdbSoon.TabIndex = 99;
+            this.rdbSoon.TabStop = true;
+            this.rdbSoon.Text = "آجل";
+            this.rdbSoon.UseVisualStyleBackColor = true;
+            this.rdbSoon.CheckedChanged += new System.EventHandler(this.rdbSoon_CheckedChanged);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.panel7);
@@ -675,6 +726,21 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(516, 108);
             this.panel2.TabIndex = 1;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.labBillNumber);
+            this.panel7.Controls.Add(this.btnNewChooes);
+            this.panel7.Controls.Add(this.label10);
+            this.panel7.Controls.Add(this.txtBranchID);
+            this.panel7.Controls.Add(this.comBillNumber);
+            this.panel7.Controls.Add(this.listBoxControlBills);
+            this.panel7.Controls.Add(this.listBoxControlCustomerBill);
+            this.panel7.Controls.Add(this.comBranch);
+            this.panel7.Location = new System.Drawing.Point(31, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(448, 105);
+            this.panel7.TabIndex = 201;
             // 
             // btnNewChooes
             // 
@@ -692,15 +758,6 @@
             this.btnNewChooes.UseVisualStyleBackColor = false;
             this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
-            // listBoxControlCustomerBill
-            // 
-            this.listBoxControlCustomerBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(168, 36);
-            this.listBoxControlCustomerBill.Name = "listBoxControlCustomerBill";
-            this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 33);
-            this.listBoxControlCustomerBill.TabIndex = 199;
-            this.listBoxControlCustomerBill.Visible = false;
-            // 
             // listBoxControlBills
             // 
             this.listBoxControlBills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -711,20 +768,14 @@
             this.listBoxControlBills.Size = new System.Drawing.Size(80, 63);
             this.listBoxControlBills.TabIndex = 198;
             // 
-            // panel7
+            // listBoxControlCustomerBill
             // 
-            this.panel7.Controls.Add(this.labBillNumber);
-            this.panel7.Controls.Add(this.btnNewChooes);
-            this.panel7.Controls.Add(this.label10);
-            this.panel7.Controls.Add(this.txtBranchID);
-            this.panel7.Controls.Add(this.comBillNumber);
-            this.panel7.Controls.Add(this.listBoxControlBills);
-            this.panel7.Controls.Add(this.listBoxControlCustomerBill);
-            this.panel7.Controls.Add(this.comBranch);
-            this.panel7.Location = new System.Drawing.Point(31, 3);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(448, 105);
-            this.panel7.TabIndex = 201;
+            this.listBoxControlCustomerBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(168, 36);
+            this.listBoxControlCustomerBill.Name = "listBoxControlCustomerBill";
+            this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 33);
+            this.listBoxControlCustomerBill.TabIndex = 199;
+            this.listBoxControlCustomerBill.Visible = false;
             // 
             // panel1
             // 
@@ -937,50 +988,6 @@
             this.txtStorePermission.Size = new System.Drawing.Size(98, 25);
             this.txtStorePermission.TabIndex = 202;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.rdbCash);
-            this.groupBox1.Controls.Add(this.rdbSoon);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(99, 108);
-            this.groupBox1.TabIndex = 147;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "طريقة الاستلام";
-            // 
-            // rdbCash
-            // 
-            this.rdbCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdbCash.AutoSize = true;
-            this.rdbCash.Checked = true;
-            this.rdbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbCash.Location = new System.Drawing.Point(24, 26);
-            this.rdbCash.Name = "rdbCash";
-            this.rdbCash.Size = new System.Drawing.Size(52, 20);
-            this.rdbCash.TabIndex = 98;
-            this.rdbCash.TabStop = true;
-            this.rdbCash.Text = "كاش";
-            this.rdbCash.UseVisualStyleBackColor = true;
-            this.rdbCash.CheckedChanged += new System.EventHandler(this.rdbCash_CheckedChanged);
-            // 
-            // rdbSoon
-            // 
-            this.rdbSoon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdbSoon.AutoSize = true;
-            this.rdbSoon.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbSoon.Location = new System.Drawing.Point(27, 62);
-            this.rdbSoon.Name = "rdbSoon";
-            this.rdbSoon.Size = new System.Drawing.Size(47, 20);
-            this.rdbSoon.TabIndex = 99;
-            this.rdbSoon.TabStop = true;
-            this.rdbSoon.Text = "آجل";
-            this.rdbSoon.UseVisualStyleBackColor = true;
-            this.rdbSoon.CheckedChanged += new System.EventHandler(this.rdbSoon_CheckedChanged);
-            // 
             // CustomerReturnBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1000,11 +1007,13 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControlCustomerBill)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -1016,8 +1025,6 @@
             this.panel5.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1083,8 +1090,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceAD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceBD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Returned;

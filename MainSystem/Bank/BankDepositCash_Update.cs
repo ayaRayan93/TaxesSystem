@@ -407,8 +407,8 @@ namespace MainSystem
                                         com = new MySqlCommand(query, dbconnection);
                                         com.ExecuteNonQuery();
 
-                                        MessageBox.Show("تم");
                                         dbconnection.Close();
+                                        MessageBox.Show("تم");
 
                                         updateBankDepositCashTextChangedFlag = false;
                                         xtraTabPage.ImageOptions.Image = null;
@@ -1055,7 +1055,7 @@ namespace MainSystem
         {
             try
             {
-                double amont = 0;
+                //double amont = 0;
                 ID = Convert.ToInt16(selRow[1].ToString());
 
                 myConnection.Open();
@@ -1066,15 +1066,15 @@ namespace MainSystem
                     paidAmount = Convert.ToDouble(com.ExecuteScalar().ToString());
                 }
                 
-                query = "SELECT sum(Amount) FROM transitions where Bill_Number=" + ID + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
-                com = new MySqlCommand(query, myConnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    amont = Convert.ToDouble(com.ExecuteScalar().ToString());
-                }
-                myConnection.Close();
+                //query = "SELECT sum(Amount) FROM transitions where Bill_Number=" + ID + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
+                //com = new MySqlCommand(query, myConnection);
+                //if (com.ExecuteScalar() != null)
+                //{
+                //    amont = Convert.ToDouble(com.ExecuteScalar().ToString());
+                //}
+                //myConnection.Close();
 
-                paidAmount -= amont;
+                //paidAmount -= amont;
 
                 dbconnection.Open();
                 query = "select Total_CostAD from customer_bill where Branch_BillNumber=" + ID + " and Branch_ID=" + branchID + " and Type_Buy='كاش'";

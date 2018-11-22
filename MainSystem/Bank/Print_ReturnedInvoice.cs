@@ -14,10 +14,11 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string client_Name, DateTime billDate, string pay_Type, int bill_Number, string branch_Name, double TotalBillPriceAD, List<Bill_Items> Bill_Items)
+        public void InitData(string client_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceAD, List<ReturnedBill_Items> Bill_Items)
         {
             Client_Name.Value = client_Name;
             Bill_Number.Value = bill_Number;
+            Branch_ID.Value = branchId;
             Branch_Name.Value = branch_Name;
             Bill_Date.Value = billDate.Date;
             FinalBillCost.Value = TotalBillPriceAD;
