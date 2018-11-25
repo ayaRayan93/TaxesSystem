@@ -368,7 +368,6 @@ namespace MainSystem
            
                 labBills.Text = (totalBill - TotalReturn) + "";
                 labpaid.Text = (totalPaidBill - TotalPaidReturn).ToString("000,000.00");
-
                 labRest.Text = ((totalBill - TotalReturn)- (totalPaidBill - TotalPaidReturn))+"";
 
             }
@@ -379,14 +378,7 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection1.Close();
         }
-        private void RefreshResources(Control ctrl, ComponentResourceManager res)
-        {
-            ctrl.SuspendLayout();
-            res.ApplyResources(ctrl, ctrl.Name, c);
-            foreach (Control control in ctrl.Controls)
-                RefreshResources(control, res); // recursion
-            ctrl.ResumeLayout(false);
-        }
+    
         //function
         // display Customer bills
         public void displayBill()
