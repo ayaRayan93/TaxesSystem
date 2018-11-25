@@ -250,6 +250,7 @@ namespace MainSystem
                     {
                         safay = rest + rest2;
                     }
+                    safay += Convert.ToDouble(labCustomerOpenAccount.Text);
                     labSafay.Text = safay.ToString();
                 }
             }
@@ -273,6 +274,9 @@ namespace MainSystem
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
                 query = "select * from customer_bill where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Bill_Date between '" + d + "' and '" + d2 + "'";
+                string q = "select Customer_OpenAccount from customer where Customer_ID=" + txtClientID.Text;
+                MySqlCommand c = new MySqlCommand(q, dbconnection);
+                labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
@@ -293,11 +297,19 @@ namespace MainSystem
                     dataGridView1.Rows[n].Cells[6].Value = dr1["Bill_Date"].ToString();
                 }
                 dr1.Close();
+
+                string q = "select Customer_OpenAccount from customer where Customer_ID=" + txtCustomerID.Text;
+                MySqlCommand c = new MySqlCommand(q, dbconnection);
+                labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
+
                 return;
             }
             else
             {
                 query = "select * from customer_bill where Client_ID=" + txtClientID.Text + " and Customer_ID is null and Bill_Date between '" + d + "' and '" + d2 + "'";
+                string q = "select Customer_OpenAccount from customer where Customer_ID=" + txtClientID.Text;
+                MySqlCommand c = new MySqlCommand(q, dbconnection);
+                labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();

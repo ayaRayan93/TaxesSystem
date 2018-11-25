@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -95,6 +96,9 @@
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtOpenAccount = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -130,6 +134,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOpenAccount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -138,7 +145,7 @@
             this.txtName.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(668, 89);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(268, 26);
+            this.txtName.Size = new System.Drawing.Size(281, 26);
             this.txtName.TabIndex = 0;
             this.txtName.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -147,7 +154,7 @@
             this.txtPhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.Location = new System.Drawing.Point(230, 89);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(268, 26);
+            this.txtPhone.Size = new System.Drawing.Size(281, 26);
             this.txtPhone.TabIndex = 1;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -156,7 +163,7 @@
             this.txtAddress.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(668, 143);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(268, 26);
+            this.txtAddress.Size = new System.Drawing.Size(281, 26);
             this.txtAddress.TabIndex = 2;
             this.txtAddress.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -166,7 +173,7 @@
             this.txtINF.Location = new System.Drawing.Point(230, 143);
             this.txtINF.Multiline = true;
             this.txtINF.Name = "txtINF";
-            this.txtINF.Size = new System.Drawing.Size(268, 134);
+            this.txtINF.Size = new System.Drawing.Size(281, 134);
             this.txtINF.TabIndex = 5;
             this.txtINF.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -217,7 +224,7 @@
             this.txtNationalID.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNationalID.Location = new System.Drawing.Point(668, 251);
             this.txtNationalID.Name = "txtNationalID";
-            this.txtNationalID.Size = new System.Drawing.Size(268, 26);
+            this.txtNationalID.Size = new System.Drawing.Size(281, 26);
             this.txtNationalID.TabIndex = 4;
             this.txtNationalID.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -226,7 +233,7 @@
             this.txtEmail.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(668, 197);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(268, 26);
+            this.txtEmail.Size = new System.Drawing.Size(281, 26);
             this.txtEmail.TabIndex = 3;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -314,6 +321,7 @@
             this.layoutControl1.Controls.Add(this.radMCon);
             this.layoutControl1.Controls.Add(this.radMDealer);
             this.layoutControl1.Controls.Add(this.txtEmail);
+            this.layoutControl1.Controls.Add(this.txtOpenAccount);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(3, 3);
             this.layoutControl1.Name = "layoutControl1";
@@ -429,9 +437,9 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(12, 434);
+            this.label6.Location = new System.Drawing.Point(12, 464);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1042, 85);
+            this.label6.Size = new System.Drawing.Size(1042, 55);
             this.label6.TabIndex = 44;
             // 
             // groupBox1
@@ -445,7 +453,7 @@
             this.groupBox1.Controls.Add(this.radCon);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.groupBox1.Location = new System.Drawing.Point(12, 305);
+            this.groupBox1.Location = new System.Drawing.Point(12, 335);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1042, 125);
             this.groupBox1.TabIndex = 43;
@@ -457,11 +465,11 @@
             // 
             this.labelName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.labelName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelName.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(670, 76);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(61, 26);
+            this.labelName.Size = new System.Drawing.Size(54, 23);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "الاسم";
             this.labelName.Visible = false;
@@ -486,9 +494,9 @@
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radEng.Location = new System.Drawing.Point(601, 30);
+            this.radEng.Location = new System.Drawing.Point(599, 30);
             this.radEng.Name = "radEng";
-            this.radEng.Size = new System.Drawing.Size(93, 30);
+            this.radEng.Size = new System.Drawing.Size(95, 30);
             this.radEng.TabIndex = 12;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -502,9 +510,9 @@
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radDealer.Location = new System.Drawing.Point(445, 30);
+            this.radDealer.Location = new System.Drawing.Point(443, 30);
             this.radDealer.Name = "radDealer";
-            this.radDealer.Size = new System.Drawing.Size(60, 30);
+            this.radDealer.Size = new System.Drawing.Size(62, 30);
             this.radDealer.TabIndex = 14;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -518,9 +526,9 @@
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radCon.Location = new System.Drawing.Point(511, 30);
+            this.radCon.Location = new System.Drawing.Point(510, 30);
             this.radCon.Name = "radCon";
-            this.radCon.Size = new System.Drawing.Size(84, 30);
+            this.radCon.Size = new System.Drawing.Size(85, 30);
             this.radCon.TabIndex = 13;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -608,7 +616,9 @@
             this.layoutControlItem26,
             this.layoutControlItem23,
             this.layoutControlItem27,
-            this.layoutControlItem28});
+            this.layoutControlItem28,
+            this.layoutControlItem29,
+            this.emptySpaceItem1});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1066, 531);
             this.layoutControlGroup1.TextVisible = false;
@@ -651,10 +661,12 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.layoutControlItem11.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem11.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem11.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem11.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem11.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem11.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem11.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem11.Control = this.txtPhone;
             this.layoutControlItem11.Location = new System.Drawing.Point(218, 77);
             this.layoutControlItem11.MaxSize = new System.Drawing.Size(390, 30);
@@ -663,14 +675,16 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(390, 30);
             this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem11.Text = "رقم التليفون";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(115, 26);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(102, 23);
             // 
             // layoutControlItem13
             // 
-            this.layoutControlItem13.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.layoutControlItem13.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem13.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem13.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem13.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem13.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem13.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem13.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem13.Control = this.txtNationalID;
             this.layoutControlItem13.Location = new System.Drawing.Point(656, 239);
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(390, 30);
@@ -679,7 +693,7 @@
             this.layoutControlItem13.Size = new System.Drawing.Size(390, 30);
             this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem13.Text = "الرقم القومى";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(115, 26);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(102, 23);
             // 
             // layoutControlItem2
             // 
@@ -692,10 +706,12 @@
             // 
             // layoutControlItem3
             // 
-            this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem3.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem3.Control = this.txtName;
             this.layoutControlItem3.Location = new System.Drawing.Point(656, 77);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(390, 30);
@@ -704,14 +720,16 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(390, 30);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.Text = "الاسم";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(115, 26);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(102, 23);
             // 
             // layoutControlItem12
             // 
-            this.layoutControlItem12.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.layoutControlItem12.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem12.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem12.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem12.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem12.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem12.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem12.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem12.Control = this.txtAddress;
             this.layoutControlItem12.Location = new System.Drawing.Point(656, 131);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(390, 30);
@@ -720,7 +738,7 @@
             this.layoutControlItem12.Size = new System.Drawing.Size(390, 30);
             this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem12.Text = "العنوان";
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(115, 26);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(102, 23);
             // 
             // layoutControlItem15
             // 
@@ -757,10 +775,12 @@
             // 
             // layoutControlItem10
             // 
-            this.layoutControlItem10.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.layoutControlItem10.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem10.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem10.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem10.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem10.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem10.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem10.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem10.Control = this.txtEmail;
             this.layoutControlItem10.Location = new System.Drawing.Point(656, 185);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(390, 30);
@@ -769,7 +789,7 @@
             this.layoutControlItem10.Size = new System.Drawing.Size(390, 30);
             this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem10.Text = "الايميل";
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(115, 26);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(102, 23);
             // 
             // layoutControlItem20
             // 
@@ -782,10 +802,13 @@
             // 
             // layoutControlItem14
             // 
-            this.layoutControlItem14.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
-            this.layoutControlItem14.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem14.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem14.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem14.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem14.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem14.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem14.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem14.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.layoutControlItem14.Control = this.txtINF;
             this.layoutControlItem14.Location = new System.Drawing.Point(218, 131);
             this.layoutControlItem14.MaxSize = new System.Drawing.Size(390, 138);
@@ -794,12 +817,12 @@
             this.layoutControlItem14.Size = new System.Drawing.Size(390, 138);
             this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem14.Text = "البيان";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(115, 26);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(102, 23);
             // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.groupBox1;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 293);
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 323);
             this.layoutControlItem18.MaxSize = new System.Drawing.Size(0, 129);
             this.layoutControlItem18.MinSize = new System.Drawing.Size(104, 129);
             this.layoutControlItem18.Name = "layoutControlItem18";
@@ -812,9 +835,9 @@
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.label6;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 422);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 452);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(1046, 89);
+            this.layoutControlItem7.Size = new System.Drawing.Size(1046, 59);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -937,6 +960,38 @@
             this.panel1.Size = new System.Drawing.Size(1072, 597);
             this.panel1.TabIndex = 35;
             // 
+            // txtOpenAccount
+            // 
+            this.txtOpenAccount.Location = new System.Drawing.Point(668, 305);
+            this.txtOpenAccount.Name = "txtOpenAccount";
+            this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOpenAccount.Properties.Appearance.Options.UseFont = true;
+            this.txtOpenAccount.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.txtOpenAccount.Size = new System.Drawing.Size(281, 26);
+            this.txtOpenAccount.StyleController = this.layoutControl1;
+            this.txtOpenAccount.TabIndex = 57;
+            // 
+            // layoutControlItem29
+            // 
+            this.layoutControlItem29.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem29.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem29.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem29.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem29.Control = this.txtOpenAccount;
+            this.layoutControlItem29.Location = new System.Drawing.Point(656, 293);
+            this.layoutControlItem29.Name = "layoutControlItem29";
+            this.layoutControlItem29.Size = new System.Drawing.Size(390, 30);
+            this.layoutControlItem29.Text = "رصيد افتتاحي";
+            this.layoutControlItem29.TextSize = new System.Drawing.Size(102, 23);
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 293);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(656, 30);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
             // Customer_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -985,6 +1040,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOpenAccount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1057,6 +1115,9 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
+        private DevExpress.XtraEditors.TextEdit txtOpenAccount;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }
 

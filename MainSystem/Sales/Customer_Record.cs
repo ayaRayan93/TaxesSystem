@@ -106,12 +106,12 @@ namespace MainSystem
                     dbconnection.Open();
                     if (checkPhonesExist())
                     {
-                        string query = "insert into customer (Customer_NationalID,Customer_Email,Customer_Name,Customer_Address,Customer_Info,Customer_Start,Customer_Type) values(@Customer_NationalID,@Customer_Email,@Customer_Name,@Customer_Address,@Customer_Info,@Customer_Start,@Customer_Type)";
+                        string query = "insert into customer (Customer_NationalID,Customer_Email,Customer_Name,Customer_Address,Customer_Info,Customer_Start,Customer_Type,Customer_OpenAccount) values(@Customer_NationalID,@Customer_Email,@Customer_Name,@Customer_Address,@Customer_Info,@Customer_Start,@Customer_Type,@Customer_OpenAccount)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Name"].Value = txtName.Text;
-                        //com.Parameters.Add("@Customer_Phone", MySqlDbType.VarChar, 255);
-                        //com.Parameters["@Customer_Phone"].Value = txtPhone.Text;
+                        com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
+                        com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
                         com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Address"].Value = txtAddress.Text;
                         com.Parameters.Add("@Customer_Email", MySqlDbType.VarChar, 255);
@@ -369,6 +369,7 @@ namespace MainSystem
                     {
                         item.Controls.Clear();
                     }
+                    txtOpenAccount.Text = "";
                 }
                 //}
             }
