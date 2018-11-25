@@ -19,11 +19,9 @@ namespace MainSystem
         int billNumber = 0;
         bool flag = false;
         int customerID = 0;
-        int delegateID = 0;
         int clientID = 0;
         string engName = "";
         string clientName = "";
-        string delegateName = "";
         int branchID = 0;
         int ID = -1;
         double paidAmount = 0;
@@ -101,57 +99,39 @@ namespace MainSystem
                     if (int.TryParse(txtBillNumber.Text, out billNumber))
                     {
                         dbconnection.Open();
-                        string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and Type_Buy='كاش'";
+                        string query = "select * from customer_return_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and Type_Buy='كاش'";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         MySqlDataReader dr = com.ExecuteReader();
 
                         while (dr.Read())
                         {
                             flag2 = true;
-                            ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                            ID = Convert.ToInt16(dr["CustomerReturnBill_ID"].ToString());
 
                             myConnection.Open();
-                            string query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='ايداع' group by Bill_Number";
+                            string query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
                             MySqlCommand com2 = new MySqlCommand(query3, myConnection);
                             if (com2.ExecuteScalar() != null)
                             {
                                 paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                             }
                             myConnection.Close();
-                            txtPaidMoney.Text = (paidAmount).ToString();
 
-                            txtTotalCost.Text = dr["Total_CostAD"].ToString();
+                            txtTotalCost.Text = dr["TotalCostAD"].ToString();
+                            txtPaidMoney.Text = (Convert.ToDouble(dr["TotalCostAD"].ToString()) - paidAmount).ToString();
+
                             if (dr["Customer_ID"].ToString() != "")
+                            {
                                 customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
-
-                            clientID = Convert.ToInt16(dr["Client_ID"].ToString());
-                            delegateID = Convert.ToInt16(dr["Delegate_ID"].ToString());
+                            }
+                            if (dr["Client_ID"].ToString() != "")
+                            {
+                                clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                            }
                         }
                         dr.Close();
                         if (flag2 == true)
                         {
-                            //extract delgate info
-                            if (delegateID > 0)
-                            {
-                                query = "select * from Delegate where Delegate_ID=" + delegateID;
-                                com = new MySqlCommand(query, dbconnection);
-                                dr = com.ExecuteReader();
-                                while (dr.Read())
-                                {
-                                    delegateName = dr["Delegate_Name"].ToString();
-                                }
-                                dr.Close();
-                            }
-                            else
-                            {
-                                dbconnection.Close();
-                                flag2 = false;
-                                txtTotalCost.Text = "";
-                                txtPullMoney.Text = "";
-                                MessageBox.Show("لابد من وجود مندوب");
-                                return;
-                            }
-
                             //extract customer info
                             if (clientID > 0)
                             {

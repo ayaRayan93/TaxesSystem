@@ -495,8 +495,22 @@ namespace MainSystem
                                 com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                                 com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
                                 com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
-                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = customerID;
+                                if (clientID > 0)
+                                {
+                                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+                                }
+                                if (customerID > 0)
+                                {
+                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = customerID;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                                }
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                                 com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                                 com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
@@ -1545,11 +1559,11 @@ namespace MainSystem
             Print_Bill_Report f = new Print_Bill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, delegateName, billDate, TypeBuy, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, delegateName, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, delegateName, billDate, TypeBuy, billNumber, branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, delegateName, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             f.ShowDialog();
         }

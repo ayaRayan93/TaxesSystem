@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.label2 = new System.Windows.Forms.Label();
@@ -1732,7 +1733,7 @@
             this.layoutControlItem17.Location = new System.Drawing.Point(24, 76);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(493, 24);
-            this.layoutControlItem17.Text = "السدادات";
+            this.layoutControlItem17.Text = "المتبقى";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(97, 20);
             // 
             // layoutControlItem18

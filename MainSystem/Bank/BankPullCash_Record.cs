@@ -460,7 +460,7 @@ namespace MainSystem
                                 connectionReader4.Close();
 
 
-                                string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
+                                string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Customer_ID,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Customer_ID,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
@@ -472,8 +472,22 @@ namespace MainSystem
                                 com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                                 com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
                                 com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = clientName;
+                                if (clientID > 0)
+                                {
+                                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+                                }
+                                if (customerID > 0)
+                                {
+                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = customerID;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                                }
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                                 com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                                 com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
@@ -534,7 +548,7 @@ namespace MainSystem
                                 dbconnection.Close();
                                 
                                 //print bill
-                                //printBill();
+                                printBill();
 
                                 clear();
                                 RestMoney.Text = "0";
@@ -1356,15 +1370,15 @@ namespace MainSystem
 
         void printBill()
         {
-            List<Bill_Items> bi = new List<Bill_Items>();
+            List<ReturnedBill_Items> bi = new List<ReturnedBill_Items>();
             
             dbconnection.Open();
-            string query = "SELECT product_bill.Data_ID,product_bill.Type,product_bill.Price,product_bill.Discount,product_bill.PriceAD,product_bill.Quantity,product_bill.Store_Name,product_bill.Cartons FROM product_bill where product_bill.CustomerBill_ID=" /*+ ID*/;
+            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
-                Bill_Items item;
+                ReturnedBill_Items item;
                 connectionReader3.Open();
                 if (dr["Type"].ToString() == "بند")
                 {
@@ -1373,7 +1387,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        item = new ReturnedBill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = Convert.ToDouble(dr["SellDiscount"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1385,7 +1399,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        item = new ReturnedBill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = Convert.ToDouble(dr["SellDiscount"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1397,7 +1411,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        item = new ReturnedBill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = 0 };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1409,11 +1423,11 @@ namespace MainSystem
             Print_ReturnedBill_Report f = new Print_ReturnedBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
+                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
+                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
             }
             f.ShowDialog();
         }

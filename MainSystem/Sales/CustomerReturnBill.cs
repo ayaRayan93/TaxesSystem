@@ -442,6 +442,7 @@ namespace MainSystem
                     dataGridView2.Rows[n].Cells["Quantity"].Value = txtTotalMeter.Text;
                     dataGridView2.Rows[n].Cells["priceAD"].Value = txtPriceAD.Text;
                     dataGridView2.Rows[n].Cells["totalAD"].Value = txtTotalAD.Text;
+                    dataGridView2.Rows[n].Cells["priceBD"].Value = row1.Cells["السعر"].Value;
                     dataGridView2.Rows[n].Cells["Discount"].Value = row1.Cells["نسبة الخصم"].Value;
                     dataGridView2.Rows[n].Cells["Product_Name"].Value = row1.Cells["الاسم"].Value;
                     //dataGridView2.Rows[n].Cells["Type_Name"].Value = row1.Cells["النوع"].Value;
@@ -570,12 +571,13 @@ namespace MainSystem
                     com = new MySqlCommand(query, dbconnection);
                     int id = Convert.ToInt16(com.ExecuteScalar());
 
-                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID)";
+                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceBD,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceBD,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerReturnBill_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Type", MySqlDbType.VarChar);
                     com.Parameters.Add("@TotalMeter", MySqlDbType.Decimal);
+                    com.Parameters.Add("@PriceBD", MySqlDbType.Decimal);
                     com.Parameters.Add("@PriceAD", MySqlDbType.Decimal);
                     com.Parameters.Add("@TotalAD", MySqlDbType.Decimal);
                     com.Parameters.Add("@SellDiscount", MySqlDbType.Decimal);
@@ -589,6 +591,7 @@ namespace MainSystem
                             com.Parameters["@Data_ID"].Value = Convert.ToInt16(row2.Cells[0].Value);
                             com.Parameters["@Type"].Value = row2.Cells["Type"].Value;
                             com.Parameters["@TotalMeter"].Value = Convert.ToDouble(row2.Cells["Quantity"].Value);
+                            com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
                             com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
@@ -626,7 +629,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("return bill is empty insert row");
+                    MessageBox.Show("تاكد من البيانات");
                 }
             }
             catch (Exception ex)
