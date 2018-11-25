@@ -24,7 +24,6 @@ namespace MainSystem
         int[] arrRestMoney;
         int[] arrPaidMoney;
         bool loaded = false;
-        public static bool updateBankDepositCashTextChangedFlag = false;
         DataRowView selRow;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
@@ -349,7 +348,7 @@ namespace MainSystem
                                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
                                         MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                         double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                                        amount2 -= Convert.ToDouble(selRow[5].ToString());
+                                        amount2 -= Convert.ToDouble(selRow["المبلغ"].ToString());
                                         amount2 += outParse;
                                         MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                         com3.ExecuteNonQuery();
@@ -408,9 +407,7 @@ namespace MainSystem
                                         com.ExecuteNonQuery();
 
                                         dbconnection.Close();
-                                        MessageBox.Show("تم");
-
-                                        updateBankDepositCashTextChangedFlag = false;
+                                        
                                         xtraTabPage.ImageOptions.Image = null;
                                         //Main.DepositCashShow.search();
                                         MainForm.tabControlBank.TabPages.Remove(BankDepositCash_Report.MainTabPageUpdateDepositCash);
@@ -1056,7 +1053,7 @@ namespace MainSystem
             try
             {
                 //double amont = 0;
-                ID = Convert.ToInt16(selRow[1].ToString());
+                ID = Convert.ToInt16(selRow["الفاتورة"].ToString());
 
                 myConnection.Open();
                 string query = "SELECT sum(Amount) FROM transitions where Bill_Number=" + ID + " and Branch_ID=" + branchID + " and Transition='ايداع' group by Bill_Number";
@@ -1102,12 +1099,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        updateBankDepositCashTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        updateBankDepositCashTextChangedFlag = false;
                     }
                 }
             }
@@ -1184,19 +1179,13 @@ namespace MainSystem
             cmbBranch.DataSource = dt;
             cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
             cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            cmbBranch.Text = selRow[2].ToString();
-            branchID = Convert.ToInt16(cmbBranch.SelectedValue.ToString());
-
-            //Transition_ID,Bill_Number,Branch_Name,Bank_ID,Transition_Case,Transition_Amount,Transition_Date,Transition_Type,Client_ID,Client_Name,Payday,Check_Number,Visa_Type,Operation_Number,Transition_Data
-            //query = "select Branch_BillNumber from customer_bill where CustomerBill_ID=" + selRow[1].ToString();
-            //MySqlCommand com = new MySqlCommand(query, dbconnection);
-            //string branchBillNum = com.ExecuteScalar().ToString();
-
+            cmbBranch.Text = selRow["الفرع"].ToString();
+            branchID = Convert.ToInt16(selRow["Branch_ID"].ToString());
+            
             dbconnection.Close();
-            //txtBillNumber.Text = branchBillNum;
-            txtBillNumber.Text = selRow[1].ToString();
+            txtBillNumber.Text = selRow["الفاتورة"].ToString();
 
-            if (selRow[7].ToString() == "نقدى")
+            if (selRow["طريقة الدفع"].ToString() == "نقدى")
             {
                 radioButtonSafe.Checked = true;
                 radCash.Checked = true;
@@ -1205,7 +1194,7 @@ namespace MainSystem
                 radBankAccount.Enabled = false;
                 radVisa.Enabled = false;
             }
-            else if (selRow[7].ToString() == "شيك")
+            else if (selRow["طريقة الدفع"].ToString() == "شيك")
             {
                 radioButtonSafe.Checked = true;
                 radCredit.Checked = true;
@@ -1214,7 +1203,7 @@ namespace MainSystem
                 radBankAccount.Enabled = false;
                 radVisa.Enabled = false;
             }
-            else if (selRow[7].ToString() == "حساب بنكى")
+            else if (selRow["طريقة الدفع"].ToString() == "حساب بنكى")
             {
                 radioButtonBank.Checked = true;
                 radBankAccount.Checked = true;
@@ -1223,7 +1212,7 @@ namespace MainSystem
                 radCash.Enabled = false;
                 radVisa.Enabled = false;
             }
-            else if (selRow[7].ToString() == "فيزا")
+            else if (selRow["طريقة الدفع"].ToString() == "فيزا")
             {
                 radioButtonBank.Checked = true;
                 radVisa.Checked = true;
@@ -1232,17 +1221,18 @@ namespace MainSystem
                 radBankAccount.Enabled = false;
                 radCash.Enabled = false;
             }
-            cmbBank.Text = selRow[4].ToString();
+            cmbBank.Text = selRow["الخزينة"].ToString();
+            cmbBank.SelectedValue = selRow["Bank_ID"].ToString();
 
-            txtPaidMoney.Text = selRow[5].ToString();
-            if (selRow[10].ToString() != "")
+            txtPaidMoney.Text = selRow["المبلغ"].ToString();
+            if (selRow["تاريخ الاستحقاق"].ToString() != "")
             {
-                dateEdit1.Text = Convert.ToDateTime(selRow[10].ToString()).ToShortDateString();
+                dateEdit1.Text = Convert.ToDateTime(selRow["تاريخ الاستحقاق"].ToString()).ToShortDateString();
             }
-            txtCheckNumber.Text = selRow[11].ToString();
-            txtVisaType.Text = selRow[12].ToString();
-            txtOperationNumber.Text = selRow[13].ToString();
-            txtDescrip.Text = selRow[14].ToString();
+            txtCheckNumber.Text = selRow["رقم الشيك/الكارت"].ToString();
+            txtVisaType.Text = selRow["نوع الكارت"].ToString();
+            txtOperationNumber.Text = selRow["رقم العملية"].ToString();
+            txtDescrip.Text = selRow["البيان"].ToString();
 
             loaded = true;
         }

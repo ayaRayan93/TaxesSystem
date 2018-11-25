@@ -37,7 +37,6 @@ namespace MainSystem
         int[] arrRestMoney;
         int[] arrPaidMoney;
         bool loaded = false;
-        public static bool addBankDepositCashTextChangedFlag = false;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
 
@@ -590,8 +589,7 @@ namespace MainSystem
                                 PaidMoney.Text = "0";
                                 txtPaidRest.Text = "0";
                                 txtPaidRest2.Text = "0";
-
-                                addBankDepositCashTextChangedFlag = false;
+                                
                                 xtraTabPage.ImageOptions.Image = null;
 
                             }
@@ -1235,12 +1233,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        addBankDepositCashTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        addBankDepositCashTextChangedFlag = false;
                     }
                 }
             }

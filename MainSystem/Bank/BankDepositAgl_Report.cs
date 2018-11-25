@@ -72,7 +72,7 @@ namespace MainSystem
         {
             try
             {
-                if (BankDepositAgl_Record.addBankDepositAglTextChangedFlag == false)
+                if (MainTabPageRecordDepositAgl.ImageOptions.Image == null)
                 {
                     MainTabPageRecordDepositAgl.Name = "tabPageRecordDepositAgl";
                     MainTabPageRecordDepositAgl.Text = "اضافة ايداع-آجل";
@@ -129,7 +129,7 @@ namespace MainSystem
 
                 if (selRow["Error"].ToString() == "0")
                 {
-                    if (BankDepositAgl_Update.UpdateBankDepositAglTextChangedFlag == false)
+                    if (MainTabPageUpdateDepositAgl.ImageOptions.Image == null)
                     {
                         if (selRow[0].ToString() != "")
                         {

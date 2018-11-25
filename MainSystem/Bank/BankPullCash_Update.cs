@@ -30,7 +30,6 @@ namespace MainSystem
         int[] arrRestMoney;
         int[] arrPaidMoney;
         bool loaded = false;
-        public static bool updateBankPullCashTextChangedFlag = false;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
         DataRowView selRow;
@@ -521,10 +520,7 @@ namespace MainSystem
                                         com = new MySqlCommand(query, dbconnection);
                                         com.ExecuteNonQuery();
                                         dbconnection.Close();
-
-                                        MessageBox.Show("تم");
-
-                                        updateBankPullCashTextChangedFlag = false;
+                                        
                                         xtraTabPage.ImageOptions.Image = null;
                                         MainForm.tabControlBank.TabPages.Remove(BankPullCash_Report.MainTabPageUpdatePullCash);
                                     }
@@ -1159,12 +1155,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        updateBankPullCashTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        updateBankPullCashTextChangedFlag = false;
                     }
                 }
             }
@@ -1242,7 +1236,7 @@ namespace MainSystem
             cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
             cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
             cmbBranch.Text = selRow["الفرع"].ToString();
-            branchID = Convert.ToInt16(cmbBranch.SelectedValue.ToString());
+            branchID = Convert.ToInt16(selRow["Branch_ID"].ToString());
             dbconnection.Close();
 
             //Transition_ID as 'التسلسل',Bill_Number as 'الفاتورة',Branch_Name as 'الفرع',Bank_ID,Bank_Name as 'الخزينة',Amount as 'المبلغ',Date as 'التاريخ',Payment_Method as 'طريقة الدفع',Client_ID,Client_Name as 'العميل',Payday as 'تاريخ الاستحقاق',Check_Number as 'رقم الشيك/الكارت',Visa_Type as 'نوع الكارت',Operation_Number as 'رقم العملية',Data as 'البيان',Error
@@ -1280,6 +1274,7 @@ namespace MainSystem
                 radCash.Enabled = false;
             }
             cmbBank.Text = selRow["الخزينة"].ToString();
+            cmbBank.SelectedValue = selRow["Bank_ID"].ToString();
 
             txtPullMoney.Text = selRow["المبلغ"].ToString();
             if (selRow["تاريخ الاستحقاق"].ToString() != "")

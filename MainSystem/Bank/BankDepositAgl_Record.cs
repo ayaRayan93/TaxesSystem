@@ -24,7 +24,6 @@ namespace MainSystem
         int[] arrPaidMoney;
         bool loaded = false;
         bool loadedPayType = false;
-        public static bool addBankDepositAglTextChangedFlag = false;
         XtraTabPage xtraTabPage;
 
         public BankDepositAgl_Record()
@@ -279,19 +278,19 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text !="" )/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtCheckNumber.Text != "" && txtVisaType.Text != "" && txtOperationNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtCheckNumber.Text != "" && txtVisaType.Text != "" && txtOperationNumber.Text != "");
                 }
 
                 if (check)
@@ -407,8 +406,7 @@ namespace MainSystem
                         PaidMoney.Text = "0";
                         txtPaidRest.Text = "0";
                         txtPaidRest2.Text = "0";
-
-                        addBankDepositAglTextChangedFlag = false;
+                        
                         xtraTabPage.ImageOptions.Image = null;
                     }
                     else
@@ -1070,12 +1068,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        addBankDepositAglTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        addBankDepositAglTextChangedFlag = false;
                     }
                 }
             }
