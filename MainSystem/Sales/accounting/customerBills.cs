@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +19,7 @@ namespace MainSystem
         MySqlConnection dbconnection1;
         private string Customer_Type;
         private bool loaded = false;
-
+        CultureInfo c;
         public customerBills()
         {
             InitializeComponent();
@@ -86,64 +88,98 @@ namespace MainSystem
 
         void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-
-            if (e.RowIndex == -1 && e.ColumnIndex > -1)
+            try
             {
+                if (e.RowIndex == -1 && e.ColumnIndex > -1)
+                {
 
-                Rectangle r2 = e.CellBounds;
+                    Rectangle r2 = e.CellBounds;
 
-                r2.Y += e.CellBounds.Height / 2;
+                    r2.Y += e.CellBounds.Height / 2;
 
-                r2.Height = e.CellBounds.Height / 2;
+                    r2.Height = e.CellBounds.Height / 2;
 
-                e.PaintBackground(r2, true);
+                    e.PaintBackground(r2, true);
                 
-                e.PaintContent(r2);
+                    e.PaintContent(r2);
 
-                e.Handled = true;
-
+                    e.Handled = true;
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         void dataGridView1_Paint(object sender, PaintEventArgs e)
         {
-
-            string[] monthes = { " السدادات", "الفواتير ", "الاسم", "الكود"};
-
-            for (int j = 0; j < 8;)
+            try
             {
-                Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
+                string[] monthes = { " الفواتير", "السدادات ", "الاسم", "الكود"};
+                Rectangle r2= this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
+                for (int j = 0; j < 6;)
+                {
+                    Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
 
-                int w2 = this.dataGridView1.GetCellDisplayRectangle(j + 1, -1, true).Width;
+                    int w2 = this.dataGridView1.GetCellDisplayRectangle(j + 1, -1, true).Width;
 
-                r1.X += -dataGridView1.Columns[0].Width;
+                    r1.X += -dataGridView1.Columns[0].Width;
 
-                r1.Y += 1;
+                    r1.Y += 1;
 
-                r1.Width = r1.Width + w2 - 2;
+                    r1.Width = r1.Width + w2 - 2;
 
-                r1.Height = r1.Height / 2 - 2;
+                    r1.Height = r1.Height / 2 - 2;
 
-                e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r1);
+                    e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r1);
 
-                StringFormat format = new StringFormat();
+                    StringFormat format = new StringFormat();
 
-                format.Alignment = StringAlignment.Center;
+                    format.Alignment = StringAlignment.Center;
 
-                format.LineAlignment = StringAlignment.Center;
+                    format.LineAlignment = StringAlignment.Center;
 
-                e.Graphics.DrawString(monthes[j / 2],
+                    e.Graphics.DrawString(monthes[j / 2],
+
+                        this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
+
+                        new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+
+                        r1,
+
+                        format);
+                    r2 = r1;
+                    j += 2;
+
+                }
+                r2.X += -(100);
+
+                r2.Y += 1;
+                r2.Width = 100;
+
+                r2.Height = 37;
+
+                e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r2);
+
+                StringFormat format1 = new StringFormat();
+
+                format1.Alignment = StringAlignment.Center;
+
+                format1.LineAlignment = StringAlignment.Center;
+
+                e.Graphics.DrawString(monthes[3],
 
                     this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
 
                     new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
 
-                    r1,
+                    r2,
 
-                    format);
-
-                j += 2;
-
+                    format1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -315,23 +351,25 @@ namespace MainSystem
                 dbconnection.Open();
                 dbconnection1.Open();
                 dataGridView1.Rows.Clear();
-             
-                    displayBill();
-                    //  displayReturnBill();
-                    //  displayPaidBill();
-                    double totalBill=0, TotalReturn = 0,rest=0;
 
-                    foreach (DataGridViewRow row1 in dataGridView1.Rows)
-                    {
-                        totalBill += Convert.ToDouble(row1.Cells[0].Value);
-                        TotalReturn += Convert.ToDouble(row1.Cells[1].Value);
-                        rest = totalBill - TotalReturn;
-                    }
+                displayBill();
+                //  displayReturnBill();
+                //  displayPaidBill();
+                double totalBill = 0, TotalReturn = 0, totalPaidBill = 0, TotalPaidReturn = 0;
 
-                    labTotalBillCost.Text = totalBill.ToString();
-                    labTotalReturnCost.Text = TotalReturn.ToString();
-                    labRest.Text = rest.ToString();
-                
+                foreach (DataGridViewRow row1 in dataGridView1.Rows)
+                {
+                    totalBill += Convert.ToDouble(row1.Cells[0].Value);
+                    TotalReturn += Convert.ToDouble(row1.Cells[1].Value);
+                    totalPaidBill += Convert.ToDouble(row1.Cells[2].Value);
+                    TotalPaidReturn += Convert.ToDouble(row1.Cells[3].Value);
+
+                }
+           
+                labBills.Text = (totalBill - TotalReturn) + "";
+                labpaid.Text = (totalPaidBill - TotalPaidReturn).ToString("000,000.00");
+                labRest.Text = ((totalBill - TotalReturn)- (totalPaidBill - TotalPaidReturn))+"";
+
             }
             catch (Exception ex)
             {
@@ -340,7 +378,7 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection1.Close();
         }
-
+    
         //function
         // display Customer bills
         public void displayBill()
@@ -364,7 +402,7 @@ namespace MainSystem
             }
             else
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD),customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Bill_Date between '" + d + "' and '" + d2 + "' group by customer_bill.Client_ID";
+                query = "select sum(TotalCostAD),sum(Total_CostAD), sum(tt1.Amount) as t1,sum(tt2.Amount)as t2,customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from transitions as tt1,transitions as tt2,customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Bill_Date between '" + d + "' and '" + d2 + "' and tt1.Transition='ايداع' and tt2.Transition='سحب'  group by customer_bill.Client_ID";
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();
@@ -374,20 +412,22 @@ namespace MainSystem
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = dr["sum(Total_CostAD)"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = dr["sum(TotalCostAD)"].ToString();
+                dataGridView1.Rows[n].Cells[2].Value = dr["t1"].ToString();
+                dataGridView1.Rows[n].Cells[3].Value = dr["t2"].ToString();
 
-                if (!dr.IsDBNull(4))
-                    dataGridView1.Rows[n].Cells[2].Value = dr["Customer_Name"].ToString();
-                else
-                    dataGridView1.Rows[n].Cells[2].Value = "";
-
-                dataGridView1.Rows[n].Cells[3].Value = dr["Customer_ID"].ToString();
-
-                if (!dr.IsDBNull(5) )
-                    dataGridView1.Rows[n].Cells[4].Value = dr[5].ToString();
+                if (!dr.IsDBNull(6))
+                    dataGridView1.Rows[n].Cells[4].Value = dr["Customer_Name"].ToString();
                 else
                     dataGridView1.Rows[n].Cells[4].Value = "";
 
-                dataGridView1.Rows[n].Cells[5].Value = dr["Client_ID"].ToString();
+                dataGridView1.Rows[n].Cells[5].Value = dr[7].ToString();
+
+                if (!dr.IsDBNull(4) )
+                    dataGridView1.Rows[n].Cells[6].Value = dr["Customer_ID"].ToString();
+                else
+                    dataGridView1.Rows[n].Cells[6].Value = "";
+
+                dataGridView1.Rows[n].Cells[7].Value = dr["Client_ID"].ToString();
             }
             dr.Close();
         }

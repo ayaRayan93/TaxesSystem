@@ -320,11 +320,11 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage("كشف حسابات العملاء");
+                XtraTabPage xtraTabPage = getTabPage("حركة عملاء لفترة");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("كشف حسابات العملاء");
-                    xtraTabPage = getTabPage("كشف حسابات العملاء");
+                    xtraTabControlSalesContent.TabPages.Add("حركة عملاء لفترة");
+                    xtraTabPage = getTabPage("حركة عملاء لفترة");
                 }
                 xtraTabPage.Controls.Clear();
 

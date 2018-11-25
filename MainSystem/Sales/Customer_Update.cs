@@ -40,7 +40,7 @@ namespace MainSystem
             try
             {
                 txtName.Text = selRow["الاسم"].ToString();
-                //txtPhone.Text = selRow["رقم التليفون"].ToString();
+                txtOpenAccount.Text = selRow["الرصيد الافتتاحي"].ToString();
                 txtAddress.Text = selRow["العنوان"].ToString();
                 txtEmail.Text = selRow["الايميل"].ToString();
                 txtNationalID.Text = selRow["الرقم القومى"].ToString();
@@ -147,10 +147,12 @@ namespace MainSystem
                     if (textBox.Text != "")
                     {
                         dbconnection.Open();
-                        string query = "update customer set Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type where Customer_ID=" + selRow[0].ToString();
+                        string query = "update customer set Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type , Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Address"].Value = txtAddress.Text;
+                        com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
+                        com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
                         com.Parameters.Add("@Customer_Email", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Email"].Value = txtEmail.Text;
                         if (txtNationalID.Text != "")
@@ -186,7 +188,7 @@ namespace MainSystem
                         
                         //MessageBox.Show("تم");
                         //clear();
-                        xtraTabPage.ImageOptions.Image = null;
+                       // xtraTabPage.ImageOptions.Image = null;
                         MainForm.objFormCustomer.search();
                         MainForm.tabControlSales.TabPages.Remove(MainForm.MainTabPageUpdateCustomer);
                     }

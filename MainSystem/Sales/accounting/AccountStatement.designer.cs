@@ -77,6 +77,8 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labCustomerOpenAccount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -89,10 +91,11 @@
             // 
             this.labTotalPaid.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labTotalPaid.AutoSize = true;
-            this.labTotalPaid.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalPaid.Location = new System.Drawing.Point(796, 13);
+            this.labTotalPaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTotalPaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labTotalPaid.Location = new System.Drawing.Point(862, 13);
             this.labTotalPaid.Name = "labTotalPaid";
-            this.labTotalPaid.Size = new System.Drawing.Size(0, 17);
+            this.labTotalPaid.Size = new System.Drawing.Size(0, 16);
             this.labTotalPaid.TabIndex = 168;
             // 
             // dataGridView2
@@ -121,6 +124,7 @@
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 80;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -175,6 +179,7 @@
             this.panel1.Controls.Add(this.labTotalReturnCost);
             this.panel1.Controls.Add(this.labRest);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.panel1.Location = new System.Drawing.Point(0, 311);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
@@ -185,6 +190,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(259, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 16);
@@ -195,29 +201,32 @@
             // 
             this.labTotalBillCost.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labTotalBillCost.AutoSize = true;
-            this.labTotalBillCost.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labTotalBillCost.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTotalBillCost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labTotalBillCost.Location = new System.Drawing.Point(862, 9);
             this.labTotalBillCost.Name = "labTotalBillCost";
-            this.labTotalBillCost.Size = new System.Drawing.Size(0, 17);
+            this.labTotalBillCost.Size = new System.Drawing.Size(0, 16);
             this.labTotalBillCost.TabIndex = 163;
             // 
             // labTotalReturnCost
             // 
             this.labTotalReturnCost.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labTotalReturnCost.AutoSize = true;
-            this.labTotalReturnCost.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalReturnCost.Location = new System.Drawing.Point(768, 9);
+            this.labTotalReturnCost.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTotalReturnCost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labTotalReturnCost.Location = new System.Drawing.Point(733, 9);
             this.labTotalReturnCost.Name = "labTotalReturnCost";
-            this.labTotalReturnCost.Size = new System.Drawing.Size(0, 17);
+            this.labTotalReturnCost.Size = new System.Drawing.Size(0, 16);
             this.labTotalReturnCost.TabIndex = 164;
             // 
             // labRest
             // 
             this.labRest.AutoSize = true;
-            this.labRest.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labRest.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labRest.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labRest.Location = new System.Drawing.Point(168, 10);
             this.labRest.Name = "labRest";
-            this.labRest.Size = new System.Drawing.Size(0, 17);
+            this.labRest.Size = new System.Drawing.Size(0, 16);
             this.labRest.TabIndex = 165;
             // 
             // dataGridView1
@@ -246,6 +255,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 80;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -502,6 +512,8 @@
             // panFooter
             // 
             this.panFooter.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panFooter.Controls.Add(this.label4);
+            this.panFooter.Controls.Add(this.labCustomerOpenAccount);
             this.panFooter.Controls.Add(this.label9);
             this.panFooter.Controls.Add(this.labTotalPaid);
             this.panFooter.Controls.Add(this.btnTaswaya);
@@ -511,6 +523,7 @@
             this.panFooter.Controls.Add(this.labSafay);
             this.panFooter.Controls.Add(this.label1);
             this.panFooter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panFooter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panFooter.Location = new System.Drawing.Point(0, 542);
             this.panFooter.Margin = new System.Windows.Forms.Padding(0);
             this.panFooter.Name = "panFooter";
@@ -556,19 +569,21 @@
             // 
             this.labTotalReturn2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labTotalReturn2.AutoSize = true;
-            this.labTotalReturn2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalReturn2.Location = new System.Drawing.Point(707, 13);
+            this.labTotalReturn2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTotalReturn2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labTotalReturn2.Location = new System.Drawing.Point(733, 13);
             this.labTotalReturn2.Name = "labTotalReturn2";
-            this.labTotalReturn2.Size = new System.Drawing.Size(0, 17);
+            this.labTotalReturn2.Size = new System.Drawing.Size(0, 16);
             this.labTotalReturn2.TabIndex = 169;
             // 
             // labRest2
             // 
             this.labRest2.AutoSize = true;
-            this.labRest2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labRest2.Location = new System.Drawing.Point(162, 22);
+            this.labRest2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labRest2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labRest2.Location = new System.Drawing.Point(168, 22);
             this.labRest2.Name = "labRest2";
-            this.labRest2.Size = new System.Drawing.Size(0, 17);
+            this.labRest2.Size = new System.Drawing.Size(0, 16);
             this.labRest2.TabIndex = 170;
             // 
             // labSafay
@@ -584,7 +599,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(270, 22);
+            this.label1.Location = new System.Drawing.Point(259, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 16);
             this.label1.TabIndex = 171;
@@ -610,6 +625,25 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(860, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 16);
+            this.label4.TabIndex = 178;
+            this.label4.Text = "الرصيد الافتتاحي";
+            // 
+            // labCustomerOpenAccount
+            // 
+            this.labCustomerOpenAccount.AutoSize = true;
+            this.labCustomerOpenAccount.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labCustomerOpenAccount.Location = new System.Drawing.Point(767, 98);
+            this.labCustomerOpenAccount.Name = "labCustomerOpenAccount";
+            this.labCustomerOpenAccount.Size = new System.Drawing.Size(0, 17);
+            this.labCustomerOpenAccount.TabIndex = 179;
             // 
             // AccountStatement
             // 
@@ -683,5 +717,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type_Buy;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labCustomerOpenAccount;
     }
 }
