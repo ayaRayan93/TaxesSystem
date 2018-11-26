@@ -115,15 +115,16 @@ namespace MainSystem
         {
             try
             {
-                string[] monthes = { " الفواتير", "السدادات ", "الاسم", "الكود"};
-                Rectangle r2= this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
-                for (int j = 0; j < 6;)
+                string[] monthes = { "الكود ", "الاسم ", "السدادات", "الفواتير" };
+                Rectangle r2 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
+                Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
+                for (int j = 2; j < 8;)
                 {
-                    Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
+                    r1 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
 
                     int w2 = this.dataGridView1.GetCellDisplayRectangle(j + 1, -1, true).Width;
 
-                    r1.X += -dataGridView1.Columns[0].Width;
+                    r1.X += 1;
 
                     r1.Y += 1;
 
@@ -131,7 +132,7 @@ namespace MainSystem
 
                     r1.Height = r1.Height / 2 - 2;
 
-                    e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r1);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(115, 129, 201)), r1);
 
                     StringFormat format = new StringFormat();
 
@@ -143,7 +144,7 @@ namespace MainSystem
 
                         this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
 
-                        new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+                        new SolidBrush(Color.White),
 
                         r1,
 
@@ -152,14 +153,14 @@ namespace MainSystem
                     j += 2;
 
                 }
-                r2.X += -(100);
+               
+                r2.X =1;
+                r2.Y = r1.Y;
+                r2.Width = 100 ;
 
-                r2.Y += 1;
-                r2.Width = 100;
-
-                r2.Height = 37;
-
-                e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r2);
+                r2.Height = 38;
+                
+                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(115, 129, 201)), r2);
 
                 StringFormat format1 = new StringFormat();
 
@@ -167,11 +168,11 @@ namespace MainSystem
 
                 format1.LineAlignment = StringAlignment.Center;
 
-                e.Graphics.DrawString(monthes[3],
+                e.Graphics.DrawString(monthes[0],
 
                     this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
 
-                    new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
+                    new SolidBrush(Color.White),
 
                     r2,
 
@@ -359,17 +360,16 @@ namespace MainSystem
 
                 foreach (DataGridViewRow row1 in dataGridView1.Rows)
                 {
-                    totalBill += Convert.ToDouble(row1.Cells[0].Value);
-                    TotalReturn += Convert.ToDouble(row1.Cells[1].Value);
-                    totalPaidBill += Convert.ToDouble(row1.Cells[2].Value);
-                    TotalPaidReturn += Convert.ToDouble(row1.Cells[3].Value);
+                    totalBill += Convert.ToDouble(row1.Cells[7].Value);
+                    TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
+                    totalPaidBill += Convert.ToDouble(row1.Cells[5].Value);
+                    TotalPaidReturn += Convert.ToDouble(row1.Cells[4].Value);
 
                 }
            
-                labBills.Text = (totalBill - TotalReturn) + "";
+                labBills.Text = (totalBill - TotalReturn).ToString("000,000.00");
                 labpaid.Text = (totalPaidBill - TotalPaidReturn).ToString("000,000.00");
-                labRest.Text = ((totalBill - TotalReturn)- (totalPaidBill - TotalPaidReturn))+"";
-
+                labRest.Text = ((totalBill - TotalReturn)- (totalPaidBill - TotalPaidReturn)).ToString("000,000.00");
             }
             catch (Exception ex)
             {
@@ -410,24 +410,24 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells[0].Value = dr["sum(Total_CostAD)"].ToString();
-                dataGridView1.Rows[n].Cells[1].Value = dr["sum(TotalCostAD)"].ToString();
-                dataGridView1.Rows[n].Cells[2].Value = dr["t1"].ToString();
-                dataGridView1.Rows[n].Cells[3].Value = dr["t2"].ToString();
+                dataGridView1.Rows[n].Cells[7].Value = dr["sum(Total_CostAD)"].ToString();
+                dataGridView1.Rows[n].Cells[6].Value = dr["sum(TotalCostAD)"].ToString();
+                dataGridView1.Rows[n].Cells[5].Value = dr["t1"].ToString();
+                dataGridView1.Rows[n].Cells[4].Value = dr["t2"].ToString();
 
                 if (!dr.IsDBNull(6))
-                    dataGridView1.Rows[n].Cells[4].Value = dr["Customer_Name"].ToString();
+                    dataGridView1.Rows[n].Cells[3].Value = dr["Customer_Name"].ToString();
                 else
-                    dataGridView1.Rows[n].Cells[4].Value = "";
+                    dataGridView1.Rows[n].Cells[3].Value = "";
 
-                dataGridView1.Rows[n].Cells[5].Value = dr[7].ToString();
+                dataGridView1.Rows[n].Cells[2].Value = dr[7].ToString();
 
                 if (!dr.IsDBNull(4) )
-                    dataGridView1.Rows[n].Cells[6].Value = dr["Customer_ID"].ToString();
+                    dataGridView1.Rows[n].Cells[1].Value = dr["Customer_ID"].ToString();
                 else
-                    dataGridView1.Rows[n].Cells[6].Value = "";
+                    dataGridView1.Rows[n].Cells[1].Value = "";
 
-                dataGridView1.Rows[n].Cells[7].Value = dr["Client_ID"].ToString();
+                dataGridView1.Rows[n].Cells[0].Value = dr["Client_ID"].ToString();
             }
             dr.Close();
         }
@@ -522,5 +522,6 @@ namespace MainSystem
             dr.Close();
         }
 
+       
     }
 }

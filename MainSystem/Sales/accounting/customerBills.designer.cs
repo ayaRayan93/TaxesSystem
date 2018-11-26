@@ -32,6 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paidReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paidCustomerBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.labTotalBillCost = new System.Windows.Forms.Label();
             this.labTotalReturnCost = new System.Windows.Forms.Label();
@@ -58,14 +66,6 @@
             this.labBills = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labpaid = new System.Windows.Forms.Label();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paidCustomerBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paidReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -88,14 +88,14 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Bill,
-            this.ReturnBill,
-            this.paidCustomerBill,
-            this.paidReturnBill,
-            this.Customer,
-            this.Client,
+            this.Client_Code,
             this.Customer_Code,
-            this.Client_Code});
+            this.Client,
+            this.Customer,
+            this.paidReturnBill,
+            this.paidCustomerBill,
+            this.ReturnBill,
+            this.Bill});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -109,11 +109,75 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 80;
             this.dataGridView1.Size = new System.Drawing.Size(942, 335);
             this.dataGridView1.TabIndex = 161;
+            // 
+            // Client_Code
+            // 
+            this.Client_Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Client_Code.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Client_Code.FillWeight = 20.30457F;
+            this.Client_Code.HeaderText = "ع";
+            this.Client_Code.Name = "Client_Code";
+            this.Client_Code.ReadOnly = true;
+            this.Client_Code.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Client_Code.Width = 50;
+            // 
+            // Customer_Code
+            // 
+            this.Customer_Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Customer_Code.FillWeight = 111.3851F;
+            this.Customer_Code.HeaderText = "م/م/ت";
+            this.Customer_Code.Name = "Customer_Code";
+            this.Customer_Code.ReadOnly = true;
+            this.Customer_Code.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Customer_Code.Width = 50;
+            // 
+            // Client
+            // 
+            this.Client.FillWeight = 111.3851F;
+            this.Client.HeaderText = "عميل";
+            this.Client.Name = "Client";
+            this.Client.ReadOnly = true;
+            // 
+            // Customer
+            // 
+            this.Customer.FillWeight = 111.3851F;
+            this.Customer.HeaderText = "مهندس/مقاول/تاجر";
+            this.Customer.Name = "Customer";
+            this.Customer.ReadOnly = true;
+            // 
+            // paidReturnBill
+            // 
+            this.paidReturnBill.FillWeight = 111.3851F;
+            this.paidReturnBill.HeaderText = "مرتد سداد";
+            this.paidReturnBill.Name = "paidReturnBill";
+            this.paidReturnBill.ReadOnly = true;
+            // 
+            // paidCustomerBill
+            // 
+            this.paidCustomerBill.FillWeight = 111.3851F;
+            this.paidCustomerBill.HeaderText = "السدادات";
+            this.paidCustomerBill.Name = "paidCustomerBill";
+            this.paidCustomerBill.ReadOnly = true;
+            // 
+            // ReturnBill
+            // 
+            this.ReturnBill.FillWeight = 111.3851F;
+            this.ReturnBill.HeaderText = "المرتجعات";
+            this.ReturnBill.Name = "ReturnBill";
+            this.ReturnBill.ReadOnly = true;
+            // 
+            // Bill
+            // 
+            this.Bill.FillWeight = 111.3851F;
+            this.Bill.HeaderText = "المسحوبات";
+            this.Bill.Name = "Bill";
+            this.Bill.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -154,7 +218,8 @@
             // 
             this.labRest.AutoSize = true;
             this.labRest.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labRest.Location = new System.Drawing.Point(87, 19);
+            this.labRest.ForeColor = System.Drawing.Color.DarkRed;
+            this.labRest.Location = new System.Drawing.Point(67, 20);
             this.labRest.Name = "labRest";
             this.labRest.Size = new System.Drawing.Size(0, 17);
             this.labRest.TabIndex = 165;
@@ -163,7 +228,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(214, 19);
+            this.label6.Location = new System.Drawing.Point(186, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(41, 16);
             this.label6.TabIndex = 166;
@@ -406,7 +471,8 @@
             // 
             this.labBills.AutoSize = true;
             this.labBills.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labBills.Location = new System.Drawing.Point(752, 20);
+            this.labBills.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labBills.Location = new System.Drawing.Point(715, 20);
             this.labBills.Name = "labBills";
             this.labBills.Size = new System.Drawing.Size(0, 17);
             this.labBills.TabIndex = 169;
@@ -415,7 +481,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(623, 20);
+            this.label1.Location = new System.Drawing.Point(604, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 16);
             this.label1.TabIndex = 168;
@@ -425,74 +491,11 @@
             // 
             this.labpaid.AutoSize = true;
             this.labpaid.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labpaid.Location = new System.Drawing.Point(505, 19);
+            this.labpaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labpaid.Location = new System.Drawing.Point(485, 20);
             this.labpaid.Name = "labpaid";
             this.labpaid.Size = new System.Drawing.Size(0, 17);
             this.labpaid.TabIndex = 167;
-            // 
-            // Bill
-            // 
-            this.Bill.FillWeight = 111.3851F;
-            this.Bill.HeaderText = "المسحوبات";
-            this.Bill.Name = "Bill";
-            this.Bill.ReadOnly = true;
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.FillWeight = 111.3851F;
-            this.ReturnBill.HeaderText = "المرتجعات";
-            this.ReturnBill.Name = "ReturnBill";
-            this.ReturnBill.ReadOnly = true;
-            // 
-            // paidCustomerBill
-            // 
-            this.paidCustomerBill.FillWeight = 111.3851F;
-            this.paidCustomerBill.HeaderText = "السدادات";
-            this.paidCustomerBill.Name = "paidCustomerBill";
-            this.paidCustomerBill.ReadOnly = true;
-            // 
-            // paidReturnBill
-            // 
-            this.paidReturnBill.FillWeight = 111.3851F;
-            this.paidReturnBill.HeaderText = "مرتد سداد";
-            this.paidReturnBill.Name = "paidReturnBill";
-            this.paidReturnBill.ReadOnly = true;
-            // 
-            // Customer
-            // 
-            this.Customer.FillWeight = 111.3851F;
-            this.Customer.HeaderText = "مهندس/مقاول/تاجر";
-            this.Customer.Name = "Customer";
-            this.Customer.ReadOnly = true;
-            // 
-            // Client
-            // 
-            this.Client.FillWeight = 111.3851F;
-            this.Client.HeaderText = "عميل";
-            this.Client.Name = "Client";
-            this.Client.ReadOnly = true;
-            // 
-            // Customer_Code
-            // 
-            this.Customer_Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Customer_Code.FillWeight = 111.3851F;
-            this.Customer_Code.HeaderText = "م/م/ت";
-            this.Customer_Code.Name = "Customer_Code";
-            this.Customer_Code.ReadOnly = true;
-            this.Customer_Code.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Customer_Code.Width = 50;
-            // 
-            // Client_Code
-            // 
-            this.Client_Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Client_Code.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Client_Code.FillWeight = 20.30457F;
-            this.Client_Code.HeaderText = "ع";
-            this.Client_Code.Name = "Client_Code";
-            this.Client_Code.ReadOnly = true;
-            this.Client_Code.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Client_Code.Width = 50;
             // 
             // customerBills
             // 
@@ -547,13 +550,13 @@
         private System.Windows.Forms.Label labBills;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labpaid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paidCustomerBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paidReturnBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Client_Code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer_Code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paidReturnBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paidCustomerBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
     }
 }

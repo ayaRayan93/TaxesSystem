@@ -30,28 +30,29 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labTotalPaid = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientCode2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientCode2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.labTotalBillCost = new System.Windows.Forms.Label();
             this.labTotalReturnCost = new System.Windows.Forms.Label();
             this.labRest = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type_Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panHeader = new System.Windows.Forms.Panel();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
@@ -69,6 +70,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labCustomerOpenAccount = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnTaswaya = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -77,8 +80,6 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.labCustomerOpenAccount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,27 +104,27 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(129)))), ((int)(((byte)(201)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.ColumnHeadersHeight = 40;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.Client_ID,
-            this.ClientCode2,
+            this.dataGridViewTextBoxColumn6,
             this.Type,
-            this.dataGridViewTextBoxColumn6});
+            this.ClientCode2,
+            this.Client_ID,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn1});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.EnableHeadersVisualStyles = false;
             this.dataGridView2.Location = new System.Drawing.Point(0, 351);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 80;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -131,33 +132,11 @@
             this.dataGridView2.Size = new System.Drawing.Size(970, 191);
             this.dataGridView2.TabIndex = 167;
             // 
-            // dataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn6
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.HeaderText = "السدادات";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "مرتد سداد";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.HeaderText = "رقم الفاتورة ";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // Client_ID
-            // 
-            this.Client_ID.HeaderText = "العميل";
-            this.Client_ID.Name = "Client_ID";
-            // 
-            // ClientCode2
-            // 
-            this.ClientCode2.HeaderText = "الكود";
-            this.ClientCode2.Name = "ClientCode2";
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn6.HeaderText = "تاريخ";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // Type
             // 
@@ -165,11 +144,33 @@
             this.Type.HeaderText = "النوع";
             this.Type.Name = "Type";
             // 
-            // dataGridViewTextBoxColumn6
+            // ClientCode2
             // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.HeaderText = "تاريخ";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.ClientCode2.HeaderText = "الكود";
+            this.ClientCode2.Name = "ClientCode2";
+            // 
+            // Client_ID
+            // 
+            this.Client_ID.HeaderText = "العميل";
+            this.Client_ID.Name = "Client_ID";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "رقم الفاتورة ";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "مرتد سداد";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "السدادات";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // panel1
             // 
@@ -234,61 +235,42 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(129)))), ((int)(((byte)(201)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Bill,
-            this.ReturnBill,
-            this.BillNumber,
-            this.Client,
-            this.ClientCode,
+            this.Date,
             this.Type_Buy,
-            this.Date});
+            this.ClientCode,
+            this.Client,
+            this.BillNumber,
+            this.ReturnBill,
+            this.Bill});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(0, 120);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 80;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.Size = new System.Drawing.Size(970, 191);
             this.dataGridView1.TabIndex = 161;
             // 
-            // Bill
+            // Date
             // 
-            this.Bill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Bill.HeaderText = "مسحوبات";
-            this.Bill.Name = "Bill";
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ReturnBill.HeaderText = "المرتجعات";
-            this.ReturnBill.Name = "ReturnBill";
-            // 
-            // BillNumber
-            // 
-            this.BillNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BillNumber.HeaderText = "رقم الفاتورة";
-            this.BillNumber.Name = "BillNumber";
-            // 
-            // Client
-            // 
-            this.Client.HeaderText = "العميل";
-            this.Client.Name = "Client";
-            // 
-            // ClientCode
-            // 
-            this.ClientCode.HeaderText = "الكود";
-            this.ClientCode.Name = "ClientCode";
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.HeaderText = "تاريخ";
+            this.Date.Name = "Date";
             // 
             // Type_Buy
             // 
@@ -296,11 +278,33 @@
             this.Type_Buy.HeaderText = "النوع";
             this.Type_Buy.Name = "Type_Buy";
             // 
-            // Date
+            // ClientCode
             // 
-            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Date.HeaderText = "تاريخ";
-            this.Date.Name = "Date";
+            this.ClientCode.HeaderText = "الكود";
+            this.ClientCode.Name = "ClientCode";
+            // 
+            // Client
+            // 
+            this.Client.HeaderText = "العميل";
+            this.Client.Name = "Client";
+            // 
+            // BillNumber
+            // 
+            this.BillNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BillNumber.HeaderText = "رقم الفاتورة";
+            this.BillNumber.Name = "BillNumber";
+            // 
+            // ReturnBill
+            // 
+            this.ReturnBill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ReturnBill.HeaderText = "المرتجعات";
+            this.ReturnBill.Name = "ReturnBill";
+            // 
+            // Bill
+            // 
+            this.Bill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Bill.HeaderText = "مسحوبات";
+            this.Bill.Name = "Bill";
             // 
             // panHeader
             // 
@@ -530,6 +534,26 @@
             this.panFooter.Size = new System.Drawing.Size(970, 150);
             this.panFooter.TabIndex = 168;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(860, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 16);
+            this.label4.TabIndex = 178;
+            this.label4.Text = "الرصيد الافتتاحي";
+            // 
+            // labCustomerOpenAccount
+            // 
+            this.labCustomerOpenAccount.AutoSize = true;
+            this.labCustomerOpenAccount.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labCustomerOpenAccount.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.labCustomerOpenAccount.Location = new System.Drawing.Point(767, 98);
+            this.labCustomerOpenAccount.Name = "labCustomerOpenAccount";
+            this.labCustomerOpenAccount.Size = new System.Drawing.Size(0, 17);
+            this.labCustomerOpenAccount.TabIndex = 179;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -590,6 +614,7 @@
             // 
             this.labSafay.AutoSize = true;
             this.labSafay.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labSafay.ForeColor = System.Drawing.Color.Firebrick;
             this.labSafay.Location = new System.Drawing.Point(439, 90);
             this.labSafay.Name = "labSafay";
             this.labSafay.Size = new System.Drawing.Size(0, 17);
@@ -625,25 +650,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(860, 98);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 16);
-            this.label4.TabIndex = 178;
-            this.label4.Text = "الرصيد الافتتاحي";
-            // 
-            // labCustomerOpenAccount
-            // 
-            this.labCustomerOpenAccount.AutoSize = true;
-            this.labCustomerOpenAccount.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labCustomerOpenAccount.Location = new System.Drawing.Point(767, 98);
-            this.labCustomerOpenAccount.Name = "labCustomerOpenAccount";
-            this.labCustomerOpenAccount.Size = new System.Drawing.Size(0, 17);
-            this.labCustomerOpenAccount.TabIndex = 179;
             // 
             // AccountStatement
             // 
@@ -703,21 +709,21 @@
         private System.Windows.Forms.Label labSafay;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Client_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type_Buy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labCustomerOpenAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type_Buy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
     }
 }

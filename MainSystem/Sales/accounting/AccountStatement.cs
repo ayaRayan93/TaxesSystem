@@ -220,8 +220,8 @@ namespace MainSystem
 
                     foreach (DataGridViewRow row1 in dataGridView1.Rows)
                     {
-                        totalBill += Convert.ToDouble(row1.Cells[0].Value);
-                        TotalReturn += Convert.ToDouble(row1.Cells[1].Value);
+                        totalBill += Convert.ToDouble(row1.Cells[6].Value);
+                        TotalReturn += Convert.ToDouble(row1.Cells[5].Value);
                         rest = totalBill - TotalReturn;
                     }
 
@@ -233,8 +233,8 @@ namespace MainSystem
 
                     foreach (DataGridViewRow row1 in dataGridView2.Rows)
                     {
-                        totalBill += Convert.ToDouble(row1.Cells[0].Value);
-                        TotalReturn += Convert.ToDouble(row1.Cells[1].Value);
+                        totalBill += Convert.ToDouble(row1.Cells[6].Value);
+                        TotalReturn += Convert.ToDouble(row1.Cells[5].Value);
                         rest2 = totalBill - TotalReturn;
                     }
 
@@ -284,17 +284,17 @@ namespace MainSystem
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
                 dataGridView1.Columns[3].Visible = true;
-                dataGridView1.Columns[4].Visible = true;
+                dataGridView1.Columns[2].Visible = true;
                 while (dr1.Read())
                 {
                     int n = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[n].Cells[0].Value = dr1["Total_CostAD"].ToString();
-                    dataGridView1.Rows[n].Cells[1].Value = "0.00";
-                    dataGridView1.Rows[n].Cells[2].Value = dr1["CustomerBill_ID"].ToString();
+                    dataGridView1.Rows[n].Cells[6].Value = dr1["Total_CostAD"].ToString();
+                    dataGridView1.Rows[n].Cells[5].Value = "0.00";
+                    dataGridView1.Rows[n].Cells[4].Value = dr1["CustomerBill_ID"].ToString();
                     dataGridView1.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView1.Rows[n].Cells[4].Value = dr1["Client_ID"].ToString();
-                    dataGridView1.Rows[n].Cells[5].Value = dr1["Type_Buy"].ToString();
-                    dataGridView1.Rows[n].Cells[6].Value = dr1["Bill_Date"].ToString();
+                    dataGridView1.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
+                    dataGridView1.Rows[n].Cells[1].Value = dr1["Type_Buy"].ToString();
+                    dataGridView1.Rows[n].Cells[0].Value = dr1["Bill_Date"].ToString();
                 }
                 dr1.Close();
 
@@ -317,15 +317,15 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells[0].Value = dr["Total_CostAD"].ToString();
-                dataGridView1.Rows[n].Cells[1].Value = "0.00";
-                dataGridView1.Rows[n].Cells[2].Value = dr["CustomerBill_ID"].ToString();
-                dataGridView1.Rows[n].Cells[5].Value = dr["Type_Buy"].ToString();
-                dataGridView1.Rows[n].Cells[6].Value = dr["Bill_Date"].ToString();
+                dataGridView1.Rows[n].Cells[6].Value = dr["Total_CostAD"].ToString();
+                dataGridView1.Rows[n].Cells[5].Value = "0.00";
+                dataGridView1.Rows[n].Cells[4].Value = dr["CustomerBill_ID"].ToString();
+                dataGridView1.Rows[n].Cells[1].Value = dr["Type_Buy"].ToString();
+                dataGridView1.Rows[n].Cells[0].Value = dr["Bill_Date"].ToString();
             }
             dr.Close();
             dataGridView1.Columns[3].Visible = false;
-            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
         }
         // display Customer return bills
         public void displayReturnBill(DataGridView datagridview)
@@ -345,17 +345,17 @@ namespace MainSystem
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
                 datagridview.Columns[3].Visible = true;
-                datagridview.Columns[4].Visible = true;
+                datagridview.Columns[2].Visible = true;
                 while (dr1.Read())
                 {
                     int n = datagridview.Rows.Add();
-                    datagridview.Rows[n].Cells[0].Value = "0.00";
-                    datagridview.Rows[n].Cells[1].Value = dr1["TotalCostAD"].ToString();
-                    datagridview.Rows[n].Cells[2].Value = dr1["CustomerReturnBill_ID"].ToString();
+                    datagridview.Rows[n].Cells[6].Value = "0.00";
+                    datagridview.Rows[n].Cells[5].Value = dr1["TotalCostAD"].ToString();
+                    datagridview.Rows[n].Cells[4].Value = dr1["CustomerReturnBill_ID"].ToString();
                     datagridview.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    datagridview.Rows[n].Cells[4].Value = dr1["Client_ID"].ToString();
-                    datagridview.Rows[n].Cells[5].Value = dr1["Type_Buy"].ToString();
-                    datagridview.Rows[n].Cells[6].Value = dr1["Date"].ToString();
+                    datagridview.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
+                    datagridview.Rows[n].Cells[1].Value = dr1["Type_Buy"].ToString();
+                    datagridview.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
                 return;
@@ -370,15 +370,15 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = datagridview.Rows.Add();
-                datagridview.Rows[n].Cells[0].Value = "0.00";
-                datagridview.Rows[n].Cells[1].Value = dr["TotalCostAD"].ToString();
-                datagridview.Rows[n].Cells[2].Value = dr["CustomerReturnBill_ID"].ToString();
-                datagridview.Rows[n].Cells[5].Value = dr["Type_Buy"].ToString();
-                datagridview.Rows[n].Cells[6].Value = dr["Date"].ToString();
+                datagridview.Rows[n].Cells[6].Value = "0.00";
+                datagridview.Rows[n].Cells[5].Value = dr["TotalCostAD"].ToString();
+                datagridview.Rows[n].Cells[4].Value = dr["CustomerReturnBill_ID"].ToString();
+                datagridview.Rows[n].Cells[1].Value = dr["Type_Buy"].ToString();
+                datagridview.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
             datagridview.Columns[3].Visible = false;
-            datagridview.Columns[4].Visible = false;
+            datagridview.Columns[2].Visible = false;
         }
         // display Customer Paid bills
         public void displayPaidBill()
@@ -406,13 +406,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[0].Value = dr1["Amount"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = "0.00";
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["Transition_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[6].Value = dr1["Amount"].ToString();
+                    dataGridView2.Rows[n].Cells[5].Value = "0.00";
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Transition_ID"].ToString();
                     dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[5].Value = dr1["Type"].ToString();
-                    dataGridView2.Rows[n].Cells[6].Value = dr1["Date"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
 
@@ -422,13 +422,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[0].Value = dr1["Money_Paid"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = "0.00";
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["CustomerTaswaya_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[6].Value = dr1["Money_Paid"].ToString();
+                    dataGridView2.Rows[n].Cells[5].Value = "0.00";
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["CustomerTaswaya_ID"].ToString();
                     dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[5].Value = "تسوية";
-                    dataGridView2.Rows[n].Cells[6].Value = dr1["Date"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
                 return;
@@ -445,11 +445,11 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[0].Value = dr["Amount"].ToString();
-                dataGridView2.Rows[n].Cells[1].Value = "0.00";
-                dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[5].Value = dr["Type"].ToString();
-                dataGridView2.Rows[n].Cells[6].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[6].Value = dr["Amount"].ToString();
+                dataGridView2.Rows[n].Cells[5].Value = "0.00";
+                dataGridView2.Rows[n].Cells[4].Value = dr["Transition_ID"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
 
@@ -459,15 +459,15 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[0].Value = dr["Money_Paid"].ToString();
-                dataGridView2.Rows[n].Cells[1].Value = "0.00";
-                dataGridView2.Rows[n].Cells[2].Value = dr["CustomerTaswaya_ID"].ToString();
-                dataGridView2.Rows[n].Cells[5].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[6].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[6].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[5].Value = "0.00";
+                dataGridView2.Rows[n].Cells[4].Value = dr["CustomerTaswaya_ID"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
             dataGridView2.Columns[3].Visible = false;
-            dataGridView2.Columns[4].Visible = false;
+            dataGridView2.Columns[2].Visible = false;
         }
         // display Customer Paid Return bills
         public void displayPaidReturnBill()
@@ -490,17 +490,17 @@ namespace MainSystem
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
                 dataGridView2.Columns[3].Visible = true;
-                dataGridView2.Columns[4].Visible = true;
+                dataGridView2.Columns[2].Visible = true;
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[0].Value =  "0.00";
-                    dataGridView2.Rows[n].Cells[1].Value = dr1["Amount"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["Transition_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[6].Value =  "0.00";
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Amount"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Transition_ID"].ToString();
                     dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[5].Value = dr1["Type"].ToString();
-                    dataGridView2.Rows[n].Cells[6].Value = dr1["Date"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
 
@@ -510,13 +510,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[0].Value = "0.00"; 
-                    dataGridView2.Rows[n].Cells[1].Value = dr1["Money_Paid"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["CustomerTaswaya_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[6].Value = "0.00"; 
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Money_Paid"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["CustomerTaswaya_ID"].ToString();
                     dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[5].Value = "تسوية";
-                    dataGridView2.Rows[n].Cells[6].Value = dr1["Date"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
                 return;
@@ -533,11 +533,11 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[0].Value = "0.00";
-                dataGridView2.Rows[n].Cells[1].Value = dr["Amount"].ToString();
-                dataGridView2.Rows[n].Cells[2].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[5].Value = dr["Type"].ToString();
-                dataGridView2.Rows[n].Cells[6].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[6].Value = "0.00";
+                dataGridView2.Rows[n].Cells[5].Value = dr["Amount"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = dr["Transition_ID"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
             com = new MySqlCommand(query1, dbconnection1);
@@ -554,7 +554,7 @@ namespace MainSystem
             }
             dr.Close();
             dataGridView2.Columns[3].Visible = false;
-            dataGridView2.Columns[4].Visible = false;
+            dataGridView2.Columns[2].Visible = false;
         }
         private void AccountStatement_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -601,6 +601,5 @@ namespace MainSystem
             }
         }
 
-     
     }
 }
