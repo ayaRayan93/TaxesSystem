@@ -322,7 +322,7 @@ namespace MainSystem
                                 return;
                             }
                         }
-
+                        
                         dbconnection.Open();
 
                         string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Customer_ID,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Customer_ID,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
@@ -407,24 +407,10 @@ namespace MainSystem
                         com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
-                        //////////////////////
-
-                        ////Paid_Status=0 لم يسدد اى شىء من المبلغ
-                        //if (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(txtPullMoney.Text) == 0)
-                        //{
-                        //    //تم سحب المبلغ كامل
-                        //    query = "update customer_bill set Paid_Status=0 where Client_ID=" + cmbName.SelectedValue;
-                        //}
-                        //else if (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(txtPullMoney.Text) > 0)
-                        //{
-                        //    //تم سحب جزء فقط منه
-                        //    query = "update customer_bill set Paid_Status=2 where Client_ID=" + cmbName.SelectedValue;
-                        //}
-
-                        //com = new MySqlCommand(query, dbconnection);
-                        //com.ExecuteNonQuery();
                         dbconnection.Close();
                         
+                        DecreaseClientPaied();
+
                         clear();
                         RestMoney.Text = "0";
                         PaidMoney.Text = "0";
@@ -1138,30 +1124,61 @@ namespace MainSystem
             com.ExecuteNonQuery();
             successFlagIncrease = true;
             dbconnection.Close();
-        }
+        }*/
 
         public void DecreaseClientPaied()
         {
             double paidMoney = Convert.ToDouble(txtPullMoney.Text);
+            string q1 = "";
+            if (comClient.Text != "")
+            {
+                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
+            }
+            if (comEng.Text != "")
+            {
+                if (q1 == "")
+                {
+                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
+                }
+                else
+                {
+                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
+                }
+            }
+
             dbconnection.Open();
-            string query = "select Money from client_rest_money where Client_ID=" + comClient.SelectedValue;
+            string query = "select Money from client_rest_money " + q1;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + " where Client_ID=" + comClient.SelectedValue;
+                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + q1;
+                com = new MySqlCommand(query, dbconnection);
             }
             else
             {
-                MessageBox.Show("هذا العميل لا يوجد له سدادات");
-                successFlagDecrease = false;
-                dbconnection.Close();
-                return;
+                query = "insert into client_rest_money (Client_ID,Customer_ID,Money) values (@Client_ID,@Customer_ID,@Money)";
+                com = new MySqlCommand(query, dbconnection);
+                if (comClient.Text != "")
+                {
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
+                }
+                else
+                {
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+                }
+                if (comEng.Text != "")
+                {
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
+                }
+                else
+                {
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                }
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = -1 * paidMoney;
             }
-            com = new MySqlCommand(query, dbconnection);
             com.ExecuteNonQuery();
-            successFlagDecrease = true;
             dbconnection.Close();
-        }*/
+        }
     }
 }

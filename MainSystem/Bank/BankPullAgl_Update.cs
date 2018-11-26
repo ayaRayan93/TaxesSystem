@@ -341,7 +341,8 @@ namespace MainSystem
                         {
                             if (textBox.Text != "")
                             {
-                                
+                                DecreaseClientPaied();
+
                                 dbconnection.Open();
 
                                 string query = "update Transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
@@ -1202,31 +1203,40 @@ namespace MainSystem
             com.ExecuteNonQuery();
             successFlagIncrease = true;
             dbconnection.Close();
-        }
+        }*/
 
         public void DecreaseClientPaied()
         {
             double paidMoney = Convert.ToDouble(txtPullMoney.Text);
+            string q1 = "";
+            if (comClient.Text != "")
+            {
+                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
+            }
+            if (comEng.Text != "")
+            {
+                if (q1 == "")
+                {
+                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
+                }
+                else
+                {
+                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
+                }
+            }
+
             dbconnection.Open();
-            string query = "select Money from client_rest_money where Client_ID=" + selRow["Client_ID"].ToString();
+            string query = "select Money from client_rest_money " + q1;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
                 restMoney += Convert.ToDouble(selRow["المبلغ"].ToString());
-                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + " where Client_ID=" + selRow["Client_ID"].ToString();
+                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + q1;
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
             }
-            else
-            {
-                MessageBox.Show("هذا العميل لا يوجد له سدادات");
-                successFlagDecrease = false;
-                dbconnection.Close();
-                return;
-            }
-            com = new MySqlCommand(query, dbconnection);
-            com.ExecuteNonQuery();
-            successFlagDecrease = true;
             dbconnection.Close();
-        }*/
+        }
     }
 }

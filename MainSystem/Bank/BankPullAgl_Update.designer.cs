@@ -473,6 +473,7 @@
             // radClient
             // 
             this.radClient.BackColor = System.Drawing.Color.White;
+            this.radClient.Enabled = false;
             this.radClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radClient.Location = new System.Drawing.Point(545, 31);
@@ -480,7 +481,6 @@
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(96, 25);
             this.radClient.TabIndex = 67;
-            this.radClient.TabStop = true;
             this.radClient.Text = "عميل";
             this.radClient.UseVisualStyleBackColor = false;
             this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
@@ -488,13 +488,13 @@
             // radDealer
             // 
             this.radDealer.BackColor = System.Drawing.Color.White;
+            this.radDealer.Enabled = false;
             this.radDealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radDealer.Location = new System.Drawing.Point(645, 31);
             this.radDealer.Name = "radDealer";
             this.radDealer.Size = new System.Drawing.Size(120, 25);
             this.radDealer.TabIndex = 66;
-            this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
             this.radDealer.UseVisualStyleBackColor = false;
             this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
@@ -502,6 +502,7 @@
             // radContractor
             // 
             this.radContractor.BackColor = System.Drawing.Color.White;
+            this.radContractor.Enabled = false;
             this.radContractor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radContractor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radContractor.Location = new System.Drawing.Point(769, 31);
@@ -509,7 +510,6 @@
             this.radContractor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radContractor.Size = new System.Drawing.Size(118, 25);
             this.radContractor.TabIndex = 65;
-            this.radContractor.TabStop = true;
             this.radContractor.Text = "مقاول";
             this.radContractor.UseVisualStyleBackColor = false;
             this.radContractor.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
@@ -517,6 +517,7 @@
             // radEng
             // 
             this.radEng.BackColor = System.Drawing.Color.White;
+            this.radEng.Enabled = false;
             this.radEng.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radEng.Location = new System.Drawing.Point(891, 31);
@@ -524,7 +525,6 @@
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(121, 25);
             this.radEng.TabIndex = 64;
-            this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = false;
             this.radEng.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);

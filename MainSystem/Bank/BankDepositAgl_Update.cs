@@ -346,6 +346,8 @@ namespace MainSystem
                                 //    return;
                                 //}
 
+                                IncreaseClientPaied();
+
                                 dbconnection.Open();
 
                                 string query = "update Transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
@@ -1262,27 +1264,40 @@ namespace MainSystem
             com.ExecuteNonQuery();
             successFlag = true;
             dbconnection.Close();
-        }
+        }*/
 
         public void IncreaseClientPaied()
         {
+            double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
+            string q1 = "";
+            if (comClient.Text != "")
+            {
+                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
+            }
+            if (comEng.Text != "")
+            {
+                if (q1 == "")
+                {
+                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
+                }
+                else
+                {
+                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
+                }
+            }
+
             dbconnection.Open();
-            string query = "select Money from client_rest_money where Client_ID=" + cmbName.SelectedValue;
+            string query = "select Money from client_rest_money " + q1;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                double sum = restMoney - Convert.ToDouble(selRow[4].ToString());
-                double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
-                query = "update client_rest_money set Money=" + (sum + paidMoney) + " where Client_ID=" + cmbName.SelectedValue;
+                double sum = restMoney - Convert.ToDouble(selRow["المبلغ"].ToString());
+                query = "update client_rest_money set Money=" + (sum + paidMoney) + q1;
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
             }
-            //else
-            //{
-            //    query = "insert into ClientRestMoney (Client_ID,Client_Name,Client_Rest_Money) values (" + cmbName.SelectedValue + ",'" + cmbName.Text + "'," + txtPaidMoney.Text + ")";
-            //}
-            com = new MySqlCommand(query, dbconnection);
-            com.ExecuteNonQuery();
             dbconnection.Close();
-        }*/
+        }
     }
 }
