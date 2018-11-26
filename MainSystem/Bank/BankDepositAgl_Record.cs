@@ -24,7 +24,6 @@ namespace MainSystem
         int[] arrPaidMoney;
         bool loaded = false;
         bool loadedPayType = false;
-        public static bool addBankDepositAglTextChangedFlag = false;
         XtraTabPage xtraTabPage;
 
         public BankDepositAgl_Record()
@@ -279,19 +278,19 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text !="" )/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {
-                    check = (comClient.Text != "" /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtCheckNumber.Text != "" && txtVisaType.Text != "" && txtOperationNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtCheckNumber.Text != "" && txtVisaType.Text != "" && txtOperationNumber.Text != "");
                 }
 
                 if (check)
@@ -401,14 +400,15 @@ namespace MainSystem
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
                         dbconnection.Close();
-                        
+
+                        IncreaseClientPaied();
+
                         clear();
                         RestMoney.Text = "0";
                         PaidMoney.Text = "0";
                         txtPaidRest.Text = "0";
                         txtPaidRest2.Text = "0";
-
-                        addBankDepositAglTextChangedFlag = false;
+                        
                         xtraTabPage.ImageOptions.Image = null;
                     }
                     else
@@ -1070,12 +1070,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        addBankDepositAglTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        addBankDepositAglTextChangedFlag = false;
                     }
                 }
             }
@@ -1146,7 +1144,7 @@ namespace MainSystem
 
             return flag5;
         }
-        
+
         /*public void DecreaseClientsAccounts()
         {
             dbconnection.Open();
@@ -1174,26 +1172,62 @@ namespace MainSystem
             com.ExecuteNonQuery();
             successFlag = true;
             dbconnection.Close();
-        }
+        }*/
 
         public void IncreaseClientPaied()
         {
             double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
+            string q1 = "";
+            if (comClient.Text != "")
+            {
+                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
+            }
+            if (comEng.Text != "")
+            {
+                if (q1 == "")
+                {
+                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
+                }
+                else
+                {
+                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
+                }
+            }
+
             dbconnection.Open();
-            string query = "select Money from client_rest_money where Client_ID=" + cmbName.SelectedValue;
+            string query = "select Money from client_rest_money " + q1;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update client_rest_money set Money=" + (restMoney + paidMoney) + " where Client_ID=" + cmbName.SelectedValue;
+                query = "update client_rest_money set Money=" + (restMoney + paidMoney) + q1;
+                com = new MySqlCommand(query, dbconnection);
             }
             else
             {
-                query = "insert into client_rest_money (Client_ID,Client_Name,Money) values (" + cmbName.SelectedValue + ",'" + cmbName.Text + "'," + paidMoney + ")";
+                query = "insert into client_rest_money (Client_ID,Customer_ID,Money) values (@Client_ID,@Customer_ID,@Money)";
+                com = new MySqlCommand(query, dbconnection);
+                if (comClient.Text != "")
+                {
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
+                }
+                else
+                {
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+                }
+                if (comEng.Text != "")
+                {
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
+                }
+                else
+                {
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                }
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = paidMoney;
             }
-            com = new MySqlCommand(query, dbconnection);
             com.ExecuteNonQuery();
             dbconnection.Close();
-        }*/
+
+        }
     }
 }

@@ -32,7 +32,6 @@ namespace MainSystem
         int[] arrRestMoney;
         int[] arrPaidMoney;
         bool loaded = false;
-        public static bool addBankPullCashTextChangedFlag = false;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
         string TypeBuy = "";
@@ -555,8 +554,7 @@ namespace MainSystem
                                 PaidMoney.Text = "0";
                                 txtPaidRest.Text = "0";
                                 txtPaidRest2.Text = "0";
-
-                                addBankPullCashTextChangedFlag = false;
+                                
                                 xtraTabPage.ImageOptions.Image = null;
                             }
                             else
@@ -1182,12 +1180,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        addBankPullCashTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        addBankPullCashTextChangedFlag = false;
                     }
                 }
             }

@@ -24,7 +24,6 @@ namespace MainSystem
         int[] arrPaidMoney;
         bool loaded = false;
         bool loadedBranch = false;
-        public static bool UpdateBankDepositAglTextChangedFlag = false;
         DataRowView selRow;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
@@ -59,6 +58,30 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void comCustomer_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    loaded = false;
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEng.SelectedValue.ToString() + ")";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    loaded = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
@@ -323,6 +346,8 @@ namespace MainSystem
                                 //    return;
                                 //}
 
+                                IncreaseClientPaied();
+
                                 dbconnection.Open();
 
                                 string query = "update Transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
@@ -380,7 +405,6 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
                                 dbconnection.Close();
                                 
-                                UpdateBankDepositAglTextChangedFlag = false;
                                 xtraTabPage.ImageOptions.Image = null;
                                 //Main.DepositAglShow.search();
                                 MainForm.tabControlBank.TabPages.Remove(BankDepositAgl_Report.MainTabPageUpdateDepositAgl);
@@ -1018,8 +1042,6 @@ namespace MainSystem
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     comEng.Text = "";
-                    //comClient.Enabled = true;
-                    //comEng.Enabled = false;
                 }
                 else
                 {
@@ -1032,8 +1054,6 @@ namespace MainSystem
                     comEng.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comEng.Text = "";
                     comClient.Text = "";
-                    //comClient.Enabled = false;
-                    //comEng.Enabled = true;
                 }
                 loaded = true;
             }
@@ -1054,12 +1074,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        UpdateBankDepositAglTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        UpdateBankDepositAglTextChangedFlag = false;
                     }
                 }
             }
@@ -1246,27 +1264,40 @@ namespace MainSystem
             com.ExecuteNonQuery();
             successFlag = true;
             dbconnection.Close();
-        }
+        }*/
 
         public void IncreaseClientPaied()
         {
+            double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
+            string q1 = "";
+            if (comClient.Text != "")
+            {
+                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
+            }
+            if (comEng.Text != "")
+            {
+                if (q1 == "")
+                {
+                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
+                }
+                else
+                {
+                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
+                }
+            }
+
             dbconnection.Open();
-            string query = "select Money from client_rest_money where Client_ID=" + cmbName.SelectedValue;
+            string query = "select Money from client_rest_money " + q1;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                double sum = restMoney - Convert.ToDouble(selRow[4].ToString());
-                double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
-                query = "update client_rest_money set Money=" + (sum + paidMoney) + " where Client_ID=" + cmbName.SelectedValue;
+                double sum = restMoney - Convert.ToDouble(selRow["المبلغ"].ToString());
+                query = "update client_rest_money set Money=" + (sum + paidMoney) + q1;
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
             }
-            //else
-            //{
-            //    query = "insert into ClientRestMoney (Client_ID,Client_Name,Client_Rest_Money) values (" + cmbName.SelectedValue + ",'" + cmbName.Text + "'," + txtPaidMoney.Text + ")";
-            //}
-            com = new MySqlCommand(query, dbconnection);
-            com.ExecuteNonQuery();
             dbconnection.Close();
-        }*/
+        }
     }
 }

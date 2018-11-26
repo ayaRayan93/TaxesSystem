@@ -16,8 +16,6 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         MySqlConnection myConnection;
-        bool successFlagIncrease = false;
-        bool successFlagDecrease = false;
         bool flag = false;
         int branchID = 0;
         string PaymentMethod = "";
@@ -27,7 +25,6 @@ namespace MainSystem
         bool loaded = false;
         bool loadedBranch = false;
         bool loadedPayType = false;
-        public static bool UpdateBankPullAglTextChangedFlag = false;
         XtraTabPage xtraTabPage;
         DataRowView selRow;
 
@@ -43,10 +40,10 @@ namespace MainSystem
             
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
-            cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-            cmbName.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbName.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comEng.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comEng.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void BankPullAgl_Update_Load(object sender, EventArgs e)
@@ -63,6 +60,30 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void comCustomer_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    loaded = false;
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEng.SelectedValue.ToString() + ")";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    loaded = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
@@ -218,138 +239,45 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
-        private void radEng_CheckedChanged(object sender, EventArgs e)
+
+        private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
+            RadioButton radio = (RadioButton)sender;
+            string Customer_Type = radio.Text;
             try
             {
                 loaded = false;
-                myConnection.Open();
-                string query = "select * from customer where Customer_Type='مهندس'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, myConnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbName.DataSource = dt;
-                cmbName.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                cmbName.ValueMember = dt.Columns["Customer_ID"].ToString();
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            myConnection.Close();
-        }
-
-        private void radContractor_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                loaded = false;
-                myConnection.Open();
-                string query = "select * from customer where Customer_Type='مقاول'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, myConnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbName.DataSource = dt;
-                cmbName.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                cmbName.ValueMember = dt.Columns["Customer_ID"].ToString();
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            myConnection.Close();
-        }
-
-        private void radDealer_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                loaded = false;
-                myConnection.Open();
-                string query = "select * from customer where Customer_Type='تاجر'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, myConnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbName.DataSource = dt;
-                cmbName.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                cmbName.ValueMember = dt.Columns["Customer_ID"].ToString();
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            myConnection.Close();
-        }
-
-        private void radClient_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                loaded = false;
-                myConnection.Open();
-                string query = "select * from customer where Customer_Type='عميل'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, myConnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbName.DataSource = dt;
-                cmbName.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                cmbName.ValueMember = dt.Columns["Customer_ID"].ToString();
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            myConnection.Close();
-        }
-
-        private void cmbName_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
+                if (Customer_Type == "عميل")
                 {
-                    dbconnection.Open();
-                    string query = "SELECT Money FROM client_rest_money where Client_ID=" + selRow["Client_ID"].ToString();
-                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                    if (comand.ExecuteScalar() != null)
-                    {
-                        double money = Convert.ToDouble(comand.ExecuteScalar());
-                        txtPaidMoney.Text = money.ToString();
-                    }
-                    else
-                    {
-                        txtPaidMoney.Text = "";
-                        MessageBox.Show("هذا العميل لا يوجد له سدادات");
-                    }
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    comEng.Text = "";
                 }
+                else
+                {
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comEng.DataSource = dt;
+                    comEng.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comEng.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comEng.Text = "";
+                    comClient.Text = "";
+                }
+                loaded = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-
-        private void cmbBranch_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loadedBranch)
-                {
-                    if (int.TryParse(cmbBranch.SelectedValue.ToString(), out branchID))
-                    {
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -359,177 +287,131 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (cmbName.Text != "" && txtPaidMoney.Text != "" && cmbBranch.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
+                    check = (cmbBank.Text != "" && txtPullMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (cmbName.Text != "" && txtPaidMoney.Text != "" && cmbBranch.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (cmbName.Text != "" && txtPaidMoney.Text != "" && cmbBranch.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
 
-                if(check)
+                if (check)
                 {
                     double outParse;
                     if (double.TryParse(txtPullMoney.Text, out outParse))
                     {
-                        double restMoney = 0;
-                        if (double.TryParse(txtPaidMoney.Text, out restMoney))
+                        string opNumString = null;
+                        if (txtOperationNumber.Text != "")
                         {
-                            if (outParse <= restMoney)
+                            int OpNum = 0;
+                            if (int.TryParse(txtOperationNumber.Text, out OpNum))
                             {
-                                string opNumString = null;
-                                if (txtOperationNumber.Text != "")
-                                {
-                                    int OpNum = 0;
-                                    if (int.TryParse(txtOperationNumber.Text, out OpNum))
-                                    {
-                                        opNumString = txtOperationNumber.Text;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("رقم العملية يجب ان يكون عدد");
-                                        dbconnection.Close();
-                                        return;
-                                    }
-                                }
-
-
-                                Form prompt = new Form()
-                                {
-                                    Width = 500,
-                                    Height = 220,
-                                    FormBorderStyle = FormBorderStyle.FixedDialog,
-                                    Text = "",
-                                    StartPosition = FormStartPosition.CenterScreen,
-                                    MaximizeBox = false,
-                                    MinimizeBox = false
-                                };
-                                Label textLabel = new Label() { Left = 340, Top = 20, Text = "ما هو سبب التعديل؟" };
-                                TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 385, Multiline = true, Height = 80, RightToLeft = RightToLeft };
-                                Button confirmation = new Button() { Text = "تأكيد", Left = 200, Width = 100, Top = 140, DialogResult = DialogResult.OK };
-                                prompt.Controls.Add(textBox);
-                                prompt.Controls.Add(confirmation);
-                                prompt.Controls.Add(textLabel);
-                                prompt.AcceptButton = confirmation;
-                                if (prompt.ShowDialog() == DialogResult.OK)
-                                {
-                                    if (textBox.Text != "")
-                                    {
-                                        IncreaseClientsAccounts();
-                                        if (successFlagIncrease == false)
-                                        {
-                                            MessageBox.Show("حدث خطأ اثناء التنفيذ");
-                                            dbconnection.Close();
-                                            return;
-                                        }
-
-                                        DecreaseClientPaied();
-                                        if (successFlagDecrease == false)
-                                        {
-                                            MessageBox.Show("حدث خطأ اثناء التنفيذ");
-                                            dbconnection.Close();
-                                            return;
-                                        }
-
-                                        dbconnection.Open();
-
-                                        string query = "update Transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
-                                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-
-                                        com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
-                                        com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
-
-                                        com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
-                                        MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
-                                        double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                                        amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
-                                        amount2 -= outParse;
-                                        MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
-                                        com3.ExecuteNonQuery();
-                                        
-                                        if (txtVisaType.Text != "")
-                                        {
-                                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                                        }
-                                        else
-                                        {
-                                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                                        }
-
-                                        if (dateEdit1.Text != "")
-                                        {
-                                            com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
-                                        }
-                                        else
-                                        {
-                                            com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = null;
-                                        }
-
-                                        if (txtCheckNumber.Text != "")
-                                        {
-                                            com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = txtCheckNumber.Text;
-                                        }
-                                        else
-                                        {
-                                            com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
-                                        }
-
-                                        com.ExecuteNonQuery();
-
-                                        //////////record adding/////////////
-                                        string TransitionID = selRow[0].ToString();
-
-                                        query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-                                        com = new MySqlCommand(query, dbconnection);
-                                        com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "transitions";
-                                        com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
-                                        com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
-                                        com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                                        com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
-                                        com.ExecuteNonQuery();
-                                        //////////////////////
-
-                                        //Paid_Status=0 لم يسدد اى شىء من المبلغ
-                                        //if (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(txtPullMoney.Text) == 0)
-                                        //{
-                                        //    //تم سحب المبلغ كامل
-                                        //    query = "update customer_bill set Paid_Status=0 where Client_ID=" + cmbName.SelectedValue;
-                                        //}
-                                        //else if (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(txtPullMoney.Text) > 0)
-                                        //{
-                                        //    //تم سحب جزء فقط منه
-                                        //    query = "update customer_bill set Paid_Status=2 where Client_ID=" + cmbName.SelectedValue;
-                                        //}
-
-                                        //com = new MySqlCommand(query, dbconnection);
-                                        //com.ExecuteNonQuery();
-                                        dbconnection.Close();
-
-                                        MessageBox.Show("تم");
-                                        
-                                        UpdateBankPullAglTextChangedFlag = false;
-                                        xtraTabPage.ImageOptions.Image = null;
-                                        MainForm.tabControlBank.TabPages.Remove(BankPullAgl_Report.MainTabPageUpdatePullAgl);
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("يجب كتابة السبب");
-                                    }
-                                }
-                                else
-                                { }
+                                opNumString = txtOperationNumber.Text;
                             }
                             else
                             {
-                                MessageBox.Show("برجاء التاكد من المبلغ المدفوع");
+                                MessageBox.Show("رقم العملية يجب ان يكون عدد");
                                 dbconnection.Close();
                                 return;
                             }
                         }
+
+
+                        Form prompt = new Form()
+                        {
+                            Width = 500,
+                            Height = 220,
+                            FormBorderStyle = FormBorderStyle.FixedDialog,
+                            Text = "",
+                            StartPosition = FormStartPosition.CenterScreen,
+                            MaximizeBox = false,
+                            MinimizeBox = false
+                        };
+                        Label textLabel = new Label() { Left = 340, Top = 20, Text = "ما هو سبب التعديل؟" };
+                        TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 385, Multiline = true, Height = 80, RightToLeft = RightToLeft };
+                        Button confirmation = new Button() { Text = "تأكيد", Left = 200, Width = 100, Top = 140, DialogResult = DialogResult.OK };
+                        prompt.Controls.Add(textBox);
+                        prompt.Controls.Add(confirmation);
+                        prompt.Controls.Add(textLabel);
+                        prompt.AcceptButton = confirmation;
+                        if (prompt.ShowDialog() == DialogResult.OK)
+                        {
+                            if (textBox.Text != "")
+                            {
+                                DecreaseClientPaied();
+
+                                dbconnection.Open();
+
+                                string query = "update Transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+
+                                com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
+                                com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
+
+                                com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
+                                MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                                double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
+                                amount2 -= outParse;
+                                MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                                com3.ExecuteNonQuery();
+
+                                if (txtVisaType.Text != "")
+                                {
+                                    com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
+                                }
+
+                                if (dateEdit1.Text != "")
+                                {
+                                    com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = null;
+                                }
+
+                                if (txtCheckNumber.Text != "")
+                                {
+                                    com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = txtCheckNumber.Text;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
+                                }
+
+                                com.ExecuteNonQuery();
+
+                                //////////record adding/////////////
+                                string TransitionID = selRow[0].ToString();
+
+                                query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
+                                com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "transitions";
+                                com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
+                                com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
+                                com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                                com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
+                                com.ExecuteNonQuery();
+                                dbconnection.Close();
+
+                                xtraTabPage.ImageOptions.Image = null;
+                                MainForm.tabControlBank.TabPages.Remove(BankPullAgl_Report.MainTabPageUpdatePullAgl);
+                            }
+                            else
+                            {
+                                MessageBox.Show("يجب كتابة السبب");
+                            }
+                        }
+                        else
+                        { }
                     }
                     else
                     {
@@ -543,7 +425,7 @@ namespace MainSystem
                     MessageBox.Show("برجاء ادخال جميع البيانات المطلوبة");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -1143,12 +1025,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        UpdateBankPullAglTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        UpdateBankPullAglTextChangedFlag = false;
                     }
                 }
             }
@@ -1218,52 +1098,40 @@ namespace MainSystem
         private void loadBranch()
         {
             dbconnection.Open();
-            string query = "select * from branch";
-            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cmbBranch.DataSource = dt;
-            cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-            cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            cmbBranch.Text = selRow["الفرع"].ToString();
-            branchID = Convert.ToInt16(cmbBranch.SelectedValue.ToString());
-            dbconnection.Close();
+            branchID = Convert.ToInt16(selRow["Branch_ID"].ToString());
+            string query = "";
+            string CustomerType = "";
 
-            //Transition_ID,Branch_Name,Bank_ID,Bank_Name,Amount,Date,Payment_Method,Client_ID,Client_Name,Payday,Check_Number,Visa_Type,Operation_Number,Data,Error
+            if (selRow["Customer_ID"].ToString() != "")
+            {
+                query = "select Customer_Type from customer where Customer_ID=" + selRow["Customer_ID"].ToString();
+                MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                CustomerType = comand.ExecuteScalar().ToString();
+                dbconnection.Close();
+            }
+            else
+            {
+                CustomerType = "عميل";
+            }
 
-            dbconnection.Open();
-            query = "select Customer_Type from customer where Customer_ID=" + selRow["Client_ID"].ToString();
-            MySqlCommand comand = new MySqlCommand(query, dbconnection);
-            string CustomerType = comand.ExecuteScalar().ToString();
             if (CustomerType == "عميل")
             {
                 radClient.Checked = true;
-                radEng.Enabled = false;
-                radContractor.Enabled = false;
-                radDealer.Enabled = false;
             }
             else if (CustomerType == "مهندس")
             {
                 radEng.Checked = true;
-                radClient.Enabled = false;
-                radContractor.Enabled = false;
-                radDealer.Enabled = false;
             }
             else if (CustomerType == "مقاول")
             {
                 radContractor.Checked = true;
-                radEng.Enabled = false;
-                radClient.Enabled = false;
-                radDealer.Enabled = false;
             }
             else if (CustomerType == "تاجر")
             {
                 radDealer.Checked = true;
-                radEng.Enabled = false;
-                radContractor.Enabled = false;
-                radClient.Enabled = false;
             }
-            cmbName.Text = selRow["العميل"].ToString();
+            comEng.Text = selRow["المهندس/المقاول/التاجر"].ToString();
+            comClient.Text = selRow["العميل"].ToString();
 
             if (selRow["طريقة الدفع"].ToString() == "نقدى")
             {
@@ -1312,7 +1180,7 @@ namespace MainSystem
             loadedBranch = true;
         }
 
-        public void IncreaseClientsAccounts()
+        /*public void IncreaseClientsAccounts()
         {
             dbconnection.Open();
             string query = "select Money from customer_accounts where Client_ID=" + selRow["Client_ID"].ToString();
@@ -1335,30 +1203,39 @@ namespace MainSystem
             com.ExecuteNonQuery();
             successFlagIncrease = true;
             dbconnection.Close();
-        }
+        }*/
 
         public void DecreaseClientPaied()
         {
             double paidMoney = Convert.ToDouble(txtPullMoney.Text);
+            string q1 = "";
+            if (comClient.Text != "")
+            {
+                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
+            }
+            if (comEng.Text != "")
+            {
+                if (q1 == "")
+                {
+                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
+                }
+                else
+                {
+                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
+                }
+            }
+
             dbconnection.Open();
-            string query = "select Money from client_rest_money where Client_ID=" + selRow["Client_ID"].ToString();
+            string query = "select Money from client_rest_money " + q1;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
                 restMoney += Convert.ToDouble(selRow["المبلغ"].ToString());
-                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + " where Client_ID=" + selRow["Client_ID"].ToString();
+                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + q1;
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
             }
-            else
-            {
-                MessageBox.Show("هذا العميل لا يوجد له سدادات");
-                successFlagDecrease = false;
-                dbconnection.Close();
-                return;
-            }
-            com = new MySqlCommand(query, dbconnection);
-            com.ExecuteNonQuery();
-            successFlagDecrease = true;
             dbconnection.Close();
         }
     }

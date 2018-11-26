@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comEng = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.labelOperationNumber = new System.Windows.Forms.Label();
             this.labelVisaType = new System.Windows.Forms.Label();
@@ -176,9 +178,7 @@
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.comEng = new System.Windows.Forms.ComboBox();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label2 = new System.Windows.Forms.Label();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
@@ -326,6 +326,24 @@
             this.dataLayoutControl1.Size = new System.Drawing.Size(1043, 600);
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(7, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1029, 20);
+            this.label2.TabIndex = 86;
+            // 
+            // comEng
+            // 
+            this.comEng.Enabled = false;
+            this.comEng.FormattingEnabled = true;
+            this.comEng.Location = new System.Drawing.Point(545, 60);
+            this.comEng.Name = "comEng";
+            this.comEng.Size = new System.Drawing.Size(368, 24);
+            this.comEng.TabIndex = 85;
+            this.comEng.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
             // 
             // label3
             // 
@@ -2011,15 +2029,6 @@
             this.layoutControlItem64.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem64.TextVisible = false;
             // 
-            // comEng
-            // 
-            this.comEng.Enabled = false;
-            this.comEng.FormattingEnabled = true;
-            this.comEng.Location = new System.Drawing.Point(545, 60);
-            this.comEng.Name = "comEng";
-            this.comEng.Size = new System.Drawing.Size(368, 24);
-            this.comEng.TabIndex = 85;
-            // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
@@ -2032,14 +2041,6 @@
             this.layoutControlItem9.Size = new System.Drawing.Size(495, 25);
             this.layoutControlItem9.Text = "مهندس/مقاول/تاجر";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(120, 20);
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(7, 85);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1029, 20);
-            this.label2.TabIndex = 86;
             // 
             // layoutControlItem10
             // 

@@ -71,7 +71,7 @@ namespace MainSystem
         {
             try
             {
-                if (BankPullCash_Record.addBankPullCashTextChangedFlag == false)
+                if (MainTabPageRecordPullCash.ImageOptions.Image == null)
                 {
                     MainTabPageRecordPullCash.Name = "tabPageRecordPullCash";
                     MainTabPageRecordPullCash.Text = "اضافة سحب-آجل";
@@ -128,7 +128,7 @@ namespace MainSystem
 
                 if (selRow["Error"].ToString() == "0")
                 {
-                    if (BankPullCash_Update.updateBankPullCashTextChangedFlag == false)
+                    if (MainTabPageUpdatePullCash.ImageOptions.Image == null)
                     {
                         if (selRow[0].ToString() != "")
                         {
@@ -316,15 +316,16 @@ namespace MainSystem
         //functions
         public void search()
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT transitions.Transition_ID as 'التسلسل',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',transitions.Bank_ID,transitions.Bank_Name as 'الخزينة',transitions.Amount as 'المبلغ',transitions.Date as 'التاريخ',transitions.Payment_Method as 'طريقة الدفع',transitions.Client_ID,customer.Customer_Name as 'العميل',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك/الكارت',transitions.Visa_Type as 'نوع الكارت',transitions.Operation_Number as 'رقم العملية',transitions.Data as 'البيان',transitions.Error,transitions.Branch_ID FROM transitions INNER JOIN customer ON transitions.Client_ID = customer.Customer_ID where transitions.Transition='سحب' and transitions.Type='كاش' order by transitions.Date", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT transitions.Transition_ID as 'التسلسل',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',transitions.Bank_ID,transitions.Bank_Name as 'الخزينة',transitions.Amount as 'المبلغ',transitions.Date as 'التاريخ',transitions.Payment_Method as 'طريقة الدفع',transitions.Customer_ID,customer1.Customer_Name as 'المهندس/المقاول/التاجر',transitions.Client_ID,customer2.Customer_Name as 'العميل',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك/الكارت',transitions.Visa_Type as 'نوع الكارت',transitions.Operation_Number as 'رقم العملية',transitions.Data as 'البيان',transitions.Error,transitions.Branch_ID FROM transitions left join customer as customer1 on customer1.Customer_ID=transitions.Customer_ID left join customer as customer2 on customer2.Customer_ID=transitions.Client_ID where transitions.Transition='سحب' and transitions.Type='كاش' order by transitions.Date", conn);
 
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
 
             gridControl1.DataSource = sourceDataSet.Tables[0];
-            gridView1.Columns[8].Visible = false;
-            gridView1.Columns[15].Visible = false;
-            gridView1.Columns[3].Visible = false;
+            gridView1.Columns["Client_ID"].Visible = false;
+            gridView1.Columns["Customer_ID"].Visible = false;
+            gridView1.Columns["Error"].Visible = false;
+            gridView1.Columns["Bank_ID"].Visible = false;
             gridView1.Columns["Branch_ID"].Visible = false;
 
             gridView1.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
