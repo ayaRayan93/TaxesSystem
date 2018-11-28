@@ -321,10 +321,15 @@ namespace MainSystem
                     xtraTabControlSalesContent.Visible = true;
 
                 XtraTabPage xtraTabPage = getTabPage("حركة عملاء لفترة");
+              
                 if (xtraTabPage == null)
                 {
                     xtraTabControlSalesContent.TabPages.Add("حركة عملاء لفترة");
                     xtraTabPage = getTabPage("حركة عملاء لفترة");
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+                {
+                    xtraTabPage.RightToLeft = RightToLeft.No;
                 }
                 xtraTabPage.Controls.Clear();
 
@@ -337,6 +342,7 @@ namespace MainSystem
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 objForm.Dock = DockStyle.Fill;
                 objForm.Show();
+               
             }
             catch (Exception ex)
             {
@@ -360,6 +366,10 @@ namespace MainSystem
                 {
                     xtraTabControlSalesContent.TabPages.Add("كشف حساب عميل");
                     xtraTabPage = getTabPage("كشف حساب عميل");
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+                {
+                    xtraTabPage.RightToLeft = RightToLeft.No;
                 }
                 xtraTabPage.Controls.Clear();
 
