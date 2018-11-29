@@ -95,7 +95,9 @@ namespace MainSystem
                     if (Customer_Type == "عميل" && flag)
                     {
                         if (comEnginner.Text != "")
-                        { }
+                        {
+
+                        }
                         else
                         {
                             MessageBox.Show("يجب اختيار الضامن");
@@ -185,6 +187,8 @@ namespace MainSystem
                 radDealer.Visible = true;
                 comEnginner.Visible = true;
                 labelName.Visible = true;
+                label5.Visible = true;
+                txtOpenAccount2.Visible = true;
             }
             else
             {
@@ -193,9 +197,12 @@ namespace MainSystem
                 radDealer.Visible = false;
                 comEnginner.Visible = false;
                 labelName.Visible = false;
+                label5.Visible = false;
+                txtOpenAccount2.Visible = false;
                 radEng.Checked = false;
                 radCon.Checked = false;
                 radDealer.Checked = false;
+
             }
         }
         //check type of CustomerGuide if engineer or contract
@@ -308,12 +315,14 @@ namespace MainSystem
                 id = (int)com.ExecuteScalar();
             }
 
-            query = "insert into Custmer_Client(Customer_ID,Client_ID)values(@Customer_ID,@Client_ID)";
+            query = "insert into Custmer_Client(Customer_ID,Client_ID,Customer_OpenAccount)values(@Customer_ID,@Client_ID,@Customer_OpenAccount)";
             com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
             com.Parameters["@Customer_ID"].Value = comEnginner.SelectedValue;
             com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11);
             com.Parameters["@Client_ID"].Value = id;
+            com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
+            com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount2.Text;
             com.ExecuteNonQuery();
         }
 
@@ -411,6 +420,8 @@ namespace MainSystem
 
             return flag5;
         }
+
+        
     }
    
 }

@@ -548,7 +548,7 @@
             // 
             this.labCustomerOpenAccount.AutoSize = true;
             this.labCustomerOpenAccount.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labCustomerOpenAccount.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.labCustomerOpenAccount.ForeColor = System.Drawing.Color.Blue;
             this.labCustomerOpenAccount.Location = new System.Drawing.Point(767, 98);
             this.labCustomerOpenAccount.Name = "labCustomerOpenAccount";
             this.labCustomerOpenAccount.Size = new System.Drawing.Size(0, 17);

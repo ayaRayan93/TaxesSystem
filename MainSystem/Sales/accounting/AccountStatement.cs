@@ -266,15 +266,17 @@ namespace MainSystem
         // display Customer bills
         public void displayBill()
         {
-            DateTime date = dateTimeFrom.Value.Date;
-            string d = date.ToString("yyyy-MM-dd");
-            DateTime date2 = dateTimeTo.Value.Date;
-            string d2 = date2.ToString("yyyy-MM-dd");
+            DateTime date = dateTimeFrom.Value;
+            string str = date.ToString();
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            str= date2.ToString();
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss") ;
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
                 query = "select * from customer_bill where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Bill_Date between '" + d + "' and '" + d2 + "'";
-                string q = "select Customer_OpenAccount from customer where Customer_ID=" + txtClientID.Text;
+                string q = "select Customer_OpenAccount from custmer_client where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
                 MySqlCommand c = new MySqlCommand(q, dbconnection);
                 labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
             }
