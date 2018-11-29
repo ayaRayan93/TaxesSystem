@@ -229,9 +229,20 @@ namespace MainSystem
                             comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
                             comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                             comFactory.Text = "";
-                            if (comType.SelectedValue.ToString() == "1")
+                            if (comType.SelectedValue.ToString() == "1" || comType.SelectedValue.ToString() == "2")
                             {
-                                string query2 = "select * from groupo where Factory_ID=0 and Type_ID=" + comType.SelectedValue.ToString();
+                                string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                                DataTable dt2 = new DataTable();
+                                da2.Fill(dt2);
+                                comGroup.DataSource = dt2;
+                                comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                                comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                                comGroup.Text = "";
+                            }
+                            else if (comType.SelectedValue.ToString() == "4")
+                            {
+                                string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                 DataTable dt2 = new DataTable();
                                 da2.Fill(dt2);
@@ -253,10 +264,11 @@ namespace MainSystem
                             comFactory.Focus();
                         }
                         break;
+
                     case "comFactory":
                         if (factoryFlage)
                         {
-                            if (comType.SelectedValue.ToString() != "1")
+                            if (comType.SelectedValue.ToString() != "1" && comType.SelectedValue.ToString() != "2" && comType.SelectedValue.ToString() != "4")
                             {
                                 string query2f = "select * from groupo where Factory_ID=" + comFactory.SelectedValue.ToString();
                                 MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
@@ -281,6 +293,7 @@ namespace MainSystem
                             comGroup.Focus();
                         }
                         break;
+
                     case "comGroup":
                         if (groupFlage)
                         {
@@ -311,7 +324,7 @@ namespace MainSystem
                     case "comProduct":
                         if (flagProduct)
                         {
-                            flagProduct = false;
+                            //flagProduct = false;
                             comColor.Focus();
                         }
                         break;
@@ -325,7 +338,7 @@ namespace MainSystem
                         break;
 
                     case "comSort":
-                        {  }
+                        { }
                         break;
                 }
             }

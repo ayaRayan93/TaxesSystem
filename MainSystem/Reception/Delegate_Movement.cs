@@ -157,9 +157,17 @@ namespace MainSystem
                             MySqlCommand command = new MySqlCommand(query, dbconnection);
                             dbconnection.Open();
                             command.ExecuteNonQuery();
-                            
-                            gridView1.FocusedRowHandle += 1;
-                            gridView1.FocusedRowHandle -= 1;
+
+                            if (gridView1.FocusedRowHandle != (gridView1.RowCount - 1))
+                            {
+                                gridView1.FocusedRowHandle += 1;
+                                gridView1.FocusedRowHandle -= 1;
+                            }
+                            else
+                            {
+                                gridView1.FocusedRowHandle -= 1;
+                                gridView1.FocusedRowHandle += 1;
+                            }
                         }
                         else
                         {
@@ -222,8 +230,16 @@ namespace MainSystem
                         gridView1.SelectionChanged -= gridView1_SelectionChanged;
                         gridView1.UnselectRow(gridView1.FocusedRowHandle);
                         gridView1.SelectionChanged += gridView1_SelectionChanged;
-                        gridView1.FocusedRowHandle += 1;
-                        gridView1.FocusedRowHandle -= 1;
+                        if (gridView1.FocusedRowHandle != (gridView1.RowCount - 1))
+                        {
+                            gridView1.FocusedRowHandle += 1;
+                            gridView1.FocusedRowHandle -= 1;
+                        }
+                        else
+                        {
+                            gridView1.FocusedRowHandle -= 1;
+                            gridView1.FocusedRowHandle += 1;
+                        }
 
                         radNewBill.Visible = false;
                         radOldBill.Visible = false;
@@ -375,16 +391,32 @@ namespace MainSystem
                         txtBill.Enabled = false;
                         btnStart.Visible = false;
                     }
-                    gridView1.FocusedRowHandle += 1;
-                    gridView1.FocusedRowHandle -= 1;
+                    if (gridView1.FocusedRowHandle != (gridView1.RowCount - 1))
+                    {
+                        gridView1.FocusedRowHandle += 1;
+                        gridView1.FocusedRowHandle -= 1;
+                    }
+                    else
+                    {
+                        gridView1.FocusedRowHandle -= 1;
+                        gridView1.FocusedRowHandle += 1;
+                    }
                 }
                 else
                 {
                     gridView1.SetFocusedRowCellValue(colStatus, -1);
                     gridView1.Columns[3].ColumnEdit = repositoryItemButtonEdit1;
                     //repositoryItemButtonEdit1.Appearance.Image = Properties.Resources.icons8_Delete_Shield_16;
-                    gridView1.FocusedRowHandle += 1;
-                    gridView1.FocusedRowHandle -= 1;
+                    if (gridView1.FocusedRowHandle != (gridView1.RowCount - 1))
+                    {
+                        gridView1.FocusedRowHandle += 1;
+                        gridView1.FocusedRowHandle -= 1;
+                    }
+                    else
+                    {
+                        gridView1.FocusedRowHandle -= 1;
+                        gridView1.FocusedRowHandle += 1;
+                    }
                     MessageBox.Show("هذا المندوب غير حاضر");
                 }
             }
