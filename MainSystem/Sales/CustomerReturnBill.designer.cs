@@ -275,6 +275,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -289,6 +290,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 168);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -300,6 +302,7 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -328,6 +331,7 @@
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 415);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -339,70 +343,83 @@
             // 
             this.Data_ID.HeaderText = "Data_ID";
             this.Data_ID.Name = "Data_ID";
+            this.Data_ID.ReadOnly = true;
             this.Data_ID.Visible = false;
             // 
             // Code
             // 
             this.Code.HeaderText = "الكود";
             this.Code.Name = "Code";
+            this.Code.ReadOnly = true;
             // 
             // Type
             // 
             this.Type.HeaderText = "الفئة";
             this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
             this.Type.Visible = false;
             // 
             // Product_Name
             // 
             this.Product_Name.HeaderText = "الاسم";
             this.Product_Name.Name = "Product_Name";
+            this.Product_Name.ReadOnly = true;
             // 
             // Quantity
             // 
             this.Quantity.HeaderText = "الكمية";
             this.Quantity.Name = "Quantity";
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "بعد الخصم";
-            this.priceAD.Name = "priceAD";
+            this.Quantity.ReadOnly = true;
             // 
             // priceBD
             // 
             this.priceBD.HeaderText = "السعر";
             this.priceBD.Name = "priceBD";
+            this.priceBD.ReadOnly = true;
             // 
             // Discount
             // 
             this.Discount.HeaderText = "نسبة الخصم";
             this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "بعد الخصم";
+            this.priceAD.Name = "priceAD";
+            this.priceAD.ReadOnly = true;
             // 
             // totalAD
             // 
             this.totalAD.HeaderText = "الاجمالي";
             this.totalAD.Name = "totalAD";
+            this.totalAD.ReadOnly = true;
             // 
             // Description
             // 
             this.Description.HeaderText = "الوصف";
             this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
             this.Description.Visible = false;
             // 
             // Returned
             // 
             this.Returned.HeaderText = "تم الاسترجاع";
             this.Returned.Name = "Returned";
+            this.Returned.ReadOnly = true;
             // 
             // Delegate_ID
             // 
             this.Delegate_ID.HeaderText = "Delegate_ID";
             this.Delegate_ID.Name = "Delegate_ID";
+            this.Delegate_ID.ReadOnly = true;
             this.Delegate_ID.Visible = false;
             // 
             // CustomerBill_ID
             // 
             this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
             this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.ReadOnly = true;
             this.CustomerBill_ID.Visible = false;
             // 
             // label6

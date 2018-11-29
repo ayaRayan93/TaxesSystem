@@ -14,7 +14,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string client_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceAD, List<ReturnedBill_Items> Bill_Items)
+        public void InitData(string client_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceAD, string returnInfo, List<ReturnedBill_Items> Bill_Items)
         {
             Client_Name.Value = client_Name;
             Bill_Number.Value = bill_Number;
@@ -23,6 +23,7 @@ namespace MainSystem
             Bill_Date.Value = billDate.Date;
             FinalBillCost.Value = TotalBillPriceAD;
             DateNow.Value = DateTime.Now;
+            ReturnInfo.Value = returnInfo;
             objectDataSource2.DataSource = Bill_Items;
         }
     }

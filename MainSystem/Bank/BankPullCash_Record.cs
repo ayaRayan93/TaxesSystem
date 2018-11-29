@@ -37,6 +37,7 @@ namespace MainSystem
         string TypeBuy = "";
         DateTime billDate;
         string branchName = "";
+        string returnInfo = "";
         //string delegateName = "";
 
         public BankPullCash_Record()
@@ -58,6 +59,12 @@ namespace MainSystem
 
             cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy/MM/dd";
+            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.EditFormat.FormatString = "yyyy/MM/dd";
+            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.Mask.EditMask = "yyyy/MM/dd";
         }
 
         private void BankPullCash_Record_Load(object sender, EventArgs e)
@@ -116,6 +123,7 @@ namespace MainSystem
                                 ID = Convert.ToInt16(dr["CustomerReturnBill_ID"].ToString());
                                 TypeBuy = dr["Type_Buy"].ToString();
                                 billDate = Convert.ToDateTime(dr["Date"].ToString());
+                                returnInfo = dr["ReturnInfo"].ToString();
 
                                 //connectionReader3.Open();
                                 //string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID INNER JOIN delegate ON delegate.Delegate_ID = customer_return_bill_details.Delegate_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
@@ -1419,11 +1427,11 @@ namespace MainSystem
             Print_ReturnedBill_Report f = new Print_ReturnedBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
+                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text),  bi);
+                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
             }
             f.ShowDialog();
         }

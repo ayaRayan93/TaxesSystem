@@ -43,6 +43,12 @@ namespace MainSystem
 
             cmbIncomeType.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbIncomeType.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy/MM/dd";
+            this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.EditFormat.FormatString = "yyyy/MM/dd";
+            this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEdit1.Properties.Mask.EditMask = "yyyy/MM/dd";
         }
 
         private void BankDepositIncome_Update_Load(object sender, EventArgs e)

@@ -686,7 +686,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         int Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
 
-                        query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Customer_ID,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Customer_ID,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name)";
+                        query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Customer_ID,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Customer_ID,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID)";
                         com = new MySqlCommand(query, dbconnection);
 
                         if (txtClientID.Text != "")
@@ -730,6 +730,8 @@ namespace MainSystem
                         com.Parameters["@Type_Buy"].Value = type;
                         com.Parameters.Add("@RecivedType", MySqlDbType.VarChar);
                         com.Parameters["@RecivedType"].Value = RecivedType;
+                        com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
+                        com.Parameters["@Employee_ID"].Value = UserControl.userID;
                         com.ExecuteNonQuery();
 
                         query = "select CustomerBill_ID from customer_bill order by CustomerBill_ID desc limit 1";

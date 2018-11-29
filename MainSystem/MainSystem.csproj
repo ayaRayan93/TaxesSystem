@@ -131,7 +131,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bank\BillAgl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\BillAgl.Designer.cs">
+      <DependentUpon>BillAgl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bank\Bill_Items.cs" />
+    <Compile Include="Bank\Print_AglCategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\Print_AglCategoriesBill_Report.designer.cs">
+      <DependentUpon>Print_AglCategoriesBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\Print_CategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\Print_CategoriesBill_Report.designer.cs">
+      <DependentUpon>Print_CategoriesBill_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\accounting\CustomerTaswaya.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -430,12 +448,6 @@
     </Compile>
     <Compile Include="Bank\BillCash.Designer.cs">
       <DependentUpon>BillCash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Bank\BillCashPrint.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Bank\BillCashPrint.Designer.cs">
-      <DependentUpon>BillCashPrint.cs</DependentUpon>
     </Compile>
     <Compile Include="Cars\CarDrivers.cs">
       <SubType>Form</SubType>
@@ -1241,6 +1253,15 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <EmbeddedResource Include="Bank\BillAgl.resx">
+      <DependentUpon>BillAgl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\Print_AglCategoriesBill_Report.resx">
+      <DependentUpon>Print_AglCategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\Print_CategoriesBill_Report.resx">
+      <DependentUpon>Print_CategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\CustomerTaswaya.resx">
       <DependentUpon>CustomerTaswaya.cs</DependentUpon>
     </EmbeddedResource>
@@ -1387,9 +1408,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\BillCash.resx">
       <DependentUpon>BillCash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BillCashPrint.resx">
-      <DependentUpon>BillCashPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cars\CarDrivers.resx">
       <DependentUpon>CarDrivers.cs</DependentUpon>
