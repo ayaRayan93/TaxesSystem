@@ -417,17 +417,26 @@ namespace MainSystem
                         com.ExecuteNonQuery();
 
                         //////////insert categories/////////
-                        query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@Transition_ID)";
+                        query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,r200,r100,r50,r20,r10,r5,r1,rH,rQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@r200,@r100,@r50,@r20,@r10,@r5,@r1,@rH,@rQ,@Transition_ID)";
                         com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0] - arrRestMoney[0];
-                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1] - arrRestMoney[1];
-                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2] - arrRestMoney[2];
-                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3] - arrRestMoney[3];
-                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4] - arrRestMoney[4];
-                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5] - arrRestMoney[5];
-                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6] - arrRestMoney[6];
-                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7] - arrRestMoney[7];
-                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8] - arrRestMoney[8];
+                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
+                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
+                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
+                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
+                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
+                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
+                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
+                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
+                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
+                        com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
+                        com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
+                        com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
+                        com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
+                        com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
+                        com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
+                        com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
+                        com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
+                        com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
                         com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(TransitionID);
                         com.ExecuteNonQuery();
                         flagCategoriesSuccess = false;
