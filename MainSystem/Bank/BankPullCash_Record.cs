@@ -40,6 +40,10 @@ namespace MainSystem
         string returnInfo = "";
         //string delegateName = "";
         XtraTabControl tabControlBank;
+        string TransitionID = "";
+        bool flagBillNotFirstTime = false;
+        bool flagCategoriesSuccess = false;
+        string ConfirmEmp = "";
 
         public BankPullCash_Record(BankPullCash_Report form, XtraTabControl MainTabControlBank)
         {
@@ -114,6 +118,9 @@ namespace MainSystem
                     {
                         if (int.TryParse(txtBillNumber.Text, out billNumber))
                         {
+                            ID = -1;
+                            flagBillNotFirstTime = false;
+
                             dbconnection.Open();
                             string query = "select * from customer_return_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -148,6 +155,13 @@ namespace MainSystem
                                 if (com2.ExecuteScalar() != null)
                                 {
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                }
+
+                                query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
+                                com2 = new MySqlCommand(query3, myConnection);
+                                if (com2.ExecuteScalar() != null)
+                                {
+                                    ConfirmEmp = com2.ExecuteScalar().ToString();
                                 }
                                 myConnection.Close();
                                 
@@ -433,6 +447,14 @@ namespace MainSystem
 
                 if(check)
                 {
+                    if (!flagCategoriesSuccess)
+                    {
+                        if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        {
+                            return;
+                        }
+                    }
+
                     double outParse;
                     if (double.TryParse(txtPullMoney.Text, out outParse))
                     {
@@ -465,6 +487,10 @@ namespace MainSystem
                                 if (!dtt.HasRows)
                                 {
                                     IncreaseProductQuantity(ID);
+                                }
+                                else
+                                {
+                                    flagBillNotFirstTime = true;
                                 }
                                 connectionReader4.Close();
 
@@ -540,7 +566,7 @@ namespace MainSystem
                                 //////////record adding/////////////
                                 query = "select Transition_ID from transitions order by Transition_ID desc limit 1";
                                 com = new MySqlCommand(query, dbconnection);
-                                string TransitionID = com.ExecuteScalar().ToString();
+                                TransitionID = com.ExecuteScalar().ToString();
 
                                 query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
                                 com = new MySqlCommand(query, dbconnection);
@@ -551,20 +577,70 @@ namespace MainSystem
                                 com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                                 com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                                 com.ExecuteNonQuery();
-                                //////////////////////
-                                
-                                
-                                dbconnection.Close();
-                                
-                                //print bill
-                                printBill();
 
+                                //////////insert categories/////////
+                                query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,r200,r100,r50,r20,r10,r5,r1,rH,rQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@r200,@r100,@r50,@r20,@r10,@r5,@r1,@rH,@rQ,@Transition_ID)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
+                                com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
+                                com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
+                                com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
+                                com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
+                                com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
+                                com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
+                                com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
+                                com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
+                                com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
+                                com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
+                                com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
+                                com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
+                                com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
+                                com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
+                                com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
+                                com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
+                                com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
+                                com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(TransitionID);
+                                com.ExecuteNonQuery();
+                                flagCategoriesSuccess = false;
+                                //////////////////////
+
+                                dbconnection.Close();
+
+                                if (!flagBillNotFirstTime)
+                                {
+                                    //print bill
+                                    printBill();
+                                    flagBillNotFirstTime = false;
+                                }
+
+                                //print bill
+                                printCategoriesBill();
+
+                                //finalFlag = true;
                                 clear();
+                                t200.Text = "";
+                                t100.Text = "";
+                                t50.Text = "";
+                                t20.Text = "";
+                                t10.Text = "";
+                                t5.Text = "";
+                                t1.Text = "";
+                                tH.Text = "";
+                                tQ.Text = "";
+                                r200.Text = "";
+                                r100.Text = "";
+                                r50.Text = "";
+                                r20.Text = "";
+                                r10.Text = "";
+                                r5.Text = "";
+                                r1.Text = "";
+                                rH.Text = "";
+                                rQ.Text = "";
                                 RestMoney.Text = "0";
                                 PaidMoney.Text = "0";
                                 txtPaidRest.Text = "0";
                                 txtPaidRest2.Text = "0";
-                                
+
                                 xtraTabPage.ImageOptions.Image = null;
                             }
                             else
@@ -892,8 +968,9 @@ namespace MainSystem
                             query = "update categories_money set a200=" + arrOFPhaat[0] + ",a100=" + arrOFPhaat[1] + ",a50=" + arrOFPhaat[2] + ",a20=" + arrOFPhaat[3] + ",a10=" + arrOFPhaat[4] + ",a5=" + arrOFPhaat[5] + ",a1=" + arrOFPhaat[6] + ",aH=" + arrOFPhaat[7] + ",aQ=" + arrOFPhaat[8] + " where Bank_ID=" + cmbBank.SelectedValue;
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
+                            flagCategoriesSuccess = true;
                             MessageBox.Show("تم");
-                            t200.Text = "";
+                            /*t200.Text = "";
                             t100.Text = "";
                             t50.Text = "";
                             t20.Text = "";
@@ -910,15 +987,15 @@ namespace MainSystem
                             r5.Text = "";
                             r1.Text = "";
                             rH.Text = "";
-                            rQ.Text = "";
+                            rQ.Text = "";*/
                             RestMoney.Text = "0";
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
                             layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            for (int i = 0; i < arrPaidMoney.Length; i++)
-                                arrPaidMoney[i] = arrRestMoney[i] = 0;
+                            //for (int i = 0; i < arrPaidMoney.Length; i++)
+                            //    arrPaidMoney[i] = arrRestMoney[i] = 0;
                             flag = false;
                         }
                         else
@@ -1132,8 +1209,9 @@ namespace MainSystem
                             string query = "update categories_money set a200=" + arrOFPhaat[0] + ",a100=" + arrOFPhaat[1] + ",a50=" + arrOFPhaat[2] + ",a20=" + arrOFPhaat[3] + ",a10=" + arrOFPhaat[4] + ",a5=" + arrOFPhaat[5] + ",a1=" + arrOFPhaat[6] + ",aH=" + arrOFPhaat[7] + ",aQ=" + arrOFPhaat[8] + " where Bank_ID=" + cmbBank.SelectedValue;
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
+                            flagCategoriesSuccess = true;
                             MessageBox.Show("تم");
-                            t200.Text = "";
+                            /*t200.Text = "";
                             t100.Text = "";
                             t50.Text = "";
                             t20.Text = "";
@@ -1150,15 +1228,15 @@ namespace MainSystem
                             r5.Text = "";
                             r1.Text = "";
                             rH.Text = "";
-                            rQ.Text = "";
+                            rQ.Text = "";*/
                             RestMoney.Text = "0";
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
                             layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            for (int i = 0; i < arrRestMoney.Length; i++)
-                                arrRestMoney[i] = arrPaidMoney[i] = 0;
+                            //for (int i = 0; i < arrRestMoney.Length; i++)
+                            //    arrRestMoney[i] = arrPaidMoney[i] = 0;
                             flag = false;
                         }
                         else
@@ -1436,6 +1514,24 @@ namespace MainSystem
                 f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
             }
             f.ShowDialog();
+        }
+
+        void printCategoriesBill()
+        {
+            Print_CategoriesBill_Report f = new Print_CategoriesBill_Report();
+            if (clientID > 0)
+            {
+                f.PrintInvoice(DateTime.Now, TransitionID, branchName, billNumber, clientName + " " + clientID, billDate, Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.userName, arrPaidMoney[0] - arrRestMoney[0], arrPaidMoney[1] - arrRestMoney[1], arrPaidMoney[2] - arrRestMoney[2], arrPaidMoney[3] - arrRestMoney[3], arrPaidMoney[4] - arrRestMoney[4], arrPaidMoney[5] - arrRestMoney[5], arrPaidMoney[6] - arrRestMoney[6], arrPaidMoney[7] - arrRestMoney[7], arrPaidMoney[8] - arrRestMoney[8]);
+            }
+            else if (customerID > 0)
+            {
+                f.PrintInvoice(DateTime.Now, TransitionID, branchName, billNumber, engName + " " + customerID, billDate, Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.userName, arrPaidMoney[0] - arrRestMoney[0], arrPaidMoney[1] - arrRestMoney[1], arrPaidMoney[2] - arrRestMoney[2], arrPaidMoney[3] - arrRestMoney[3], arrPaidMoney[4] - arrRestMoney[4], arrPaidMoney[5] - arrRestMoney[5], arrPaidMoney[6] - arrRestMoney[6], arrPaidMoney[7] - arrRestMoney[7], arrPaidMoney[8] - arrRestMoney[8]);
+            }
+            f.ShowDialog();
+            for (int i = 0; i < arrPaidMoney.Length; i++)
+                arrPaidMoney[i] = arrRestMoney[i] = 0;
+            for (int i = 0; i < arrRestMoney.Length; i++)
+                arrRestMoney[i] = arrPaidMoney[i] = 0;
         }
     }
 }

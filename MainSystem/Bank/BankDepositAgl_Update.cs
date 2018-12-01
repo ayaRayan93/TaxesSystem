@@ -411,7 +411,7 @@ namespace MainSystem
 
                                 com.ExecuteNonQuery();
 
-                                //////////insert categories/////////
+                                //////////update categories/////////
                                 query = "update transition_categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ,r200=@r200,r100=@r100,r50=@r50,r20=@r20,r10=@r10,r5=@r5,r1=@r1,rH=@rH,rQ=@rQ where Transition_ID=" + selRow[0].ToString();
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];

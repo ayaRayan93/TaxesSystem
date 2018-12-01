@@ -1110,7 +1110,14 @@ namespace MainSystem
                 {
                     paidAmount = Convert.ToDouble(com.ExecuteScalar().ToString());
                 }
-                
+
+                query = "SELECT users.User_Name FROM customer_bill INNER JOIN users ON users.User_ID = customer_bill.Employee_ID where customer_bill.Branch_BillNumber=" + ID + " and Branch_ID=" + branchID;
+                com = new MySqlCommand(query, myConnection);
+                if (com.ExecuteScalar() != null)
+                {
+                    ConfirmEmp = com.ExecuteScalar().ToString();
+                }
+
                 //query = "SELECT sum(Amount) FROM transitions where Bill_Number=" + ID + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
                 //com = new MySqlCommand(query, myConnection);
                 //if (com.ExecuteScalar() != null)
