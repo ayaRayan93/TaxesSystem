@@ -13,7 +13,7 @@ namespace MainSystem
 {
     public partial class checkPaidBillsForm : Form
     {
-        private MySqlConnection dbconnection;
+        private MySqlConnection dbconnection, dbconnectionR;
         private double recivedMoney = 0;
         int clientID = -1;
         private bool loaded=false;
@@ -26,15 +26,13 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                dbconnection.Open();
-                /* and Bill_Date between '"+DateFrom+"' and '"+DateTo+ "'*/
+                dbconnectionR = new MySqlConnection(connection.connectionString);
               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
         }
 
         private void checkPaidBillsForm_Load(object sender, EventArgs e)
@@ -138,6 +136,7 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    txtClientID.Text = "";
                     loaded = true;
                 }
                 catch (Exception ex)
@@ -319,21 +318,26 @@ namespace MainSystem
 
         public void Display()
         {
-            string query = "", query1 = ""; ;
+            string query = "";
+            double m=0;
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select distinct CustomerBill_ID as 'رقم الفاتورة' " +/* ,delegate.Delegate_Name as 'المندوب' */"" + ", Total_CostAD as 'اجمالي الفاتورة',customer_bill.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text + " and Paid_Status=0 and Type_Buy='آجل'";
-                query1 = "select Money from Client_Rest_Money where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                query = "select distinct Branch_BillNumber as 'رقم الفاتورة' , Total_CostAD as 'اجمالي الفاتورة',branch.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill inner join branch on branch.Branch_ID=customer_bill.Branch_ID " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text + " and Paid_Status=0 and Type_Buy='آجل'";
+             
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select distinct CustomerBill_ID as 'رقم الفاتورة' " +/* ,delegate.Delegate_Name as 'المندوب' */"" + ", Total_CostAD as 'اجمالي الفاتورة',customer_bill.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where  Customer_ID=" + txtCustomerID.Text + " and Paid_Status=0 and Type_Buy='آجل'";
-                query1 = "select Money from Client_Rest_Money where Customer_ID=" + txtCustomerID.Text;
+                query = "select distinct Branch_BillNumber as 'رقم الفاتورة' , Total_CostAD as 'اجمالي الفاتورة',branch.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill inner join branch on branch.Branch_ID=customer_bill.Branch_ID " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where  Customer_ID=" + txtCustomerID.Text + " and Paid_Status=0 and Type_Buy='آجل'";
+             
+            }
+            else if (txtClientID.Text != "" && txtCustomerID.Text == "")
+            {
+                query = "select distinct Branch_BillNumber as 'رقم الفاتورة', Total_CostAD as 'اجمالي الفاتورة',branch.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill inner join branch on branch.Branch_ID=customer_bill.Branch_ID " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + "  and Paid_Status=0 and Type_Buy='آجل'";
+          
             }
             else
             {
-                query = "select distinct CustomerBill_ID as 'رقم الفاتورة' " +/* ,delegate.Delegate_Name as 'المندوب' */"" + ", Total_CostAD as 'اجمالي الفاتورة',customer_bill.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + "  and Paid_Status=0 and Type_Buy='آجل'";
-                query1 = "select Money from Client_Rest_Money where Client_ID=" + txtClientID.Text;
+                return;
             }
 
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -342,11 +346,9 @@ namespace MainSystem
             if (dataGridView1.ColumnCount > 0)
                 dataGridView1.Columns.Remove(dataGridView1.Columns[4]);
             dataGridView1.DataSource = dt;
-            dataGridView1.Columns[1].Visible = false;
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.Name = "PaidOrNot";
-            checkColumn.HeaderText = "تم الدفع"; 
-       
+            checkColumn.HeaderText = "تم الدفع";     
             checkColumn.ReadOnly = false;
             checkColumn.FalseValue = false;
             checkColumn.TrueValue = true;
@@ -355,13 +357,7 @@ namespace MainSystem
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             checkColumn.Width = 100;
 
-            MySqlCommand com = new MySqlCommand(query1, dbconnection);
-            if (com.ExecuteScalar() != null)
-            {
-                double money = Convert.ToDouble(com.ExecuteScalar());
-                recivedMoney += money;
-            }
-            labRecivedMoney.Text = recivedMoney.ToString();
+            CheckAddingOpenAccount();
         }
 
         private void btnNewChooes_Click(object sender, EventArgs e)
@@ -382,11 +378,88 @@ namespace MainSystem
                 dataGridView1.DataSource = null;
                 if (dataGridView1.ColumnCount > 0)
                     dataGridView1.Columns.Remove(dataGridView1.Columns[0]);
+                labRecivedMoney.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void CheckAddingOpenAccount()
+        {
+            string query1 = "", q = "", q1 = "",q2="",q3="",q4="";
+            if (txtClientID.Text != "" && txtCustomerID.Text != "")
+            {
+                query1 = "select Money from Client_Rest_Money where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                q = "select Customer_OpenAccount,Flag from custmer_client where  Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                q1 = "update  custmer_client  set flag='Yes'   where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                q2 = "select ID from client_rest_money where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                q3 = "update Client_Rest_Money set Money=@Money where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                q4 = "insert into Client_Rest_Money (Customer_ID,Client_ID,Money) values (" + txtCustomerID.Text + ","+txtClientID.Text+",@Money)";
+            }
+            else if (txtClientID.Text == "" && txtCustomerID.Text != "")
+            {
+                query1 = "select Money from Client_Rest_Money where Customer_ID=" + txtCustomerID.Text+" and Client_ID is null";
+                q = "select Customer_OpenAccount,Flag from customer where Customer_ID=" + txtCustomerID.Text;
+                q1 = "update customer set Flag='Yes' where Customer_ID=" + txtCustomerID.Text;
+                q2 = "select ID from Client_Rest_Money where Customer_ID=" + txtCustomerID.Text + " and Client_ID is null";
+                q3 = "update Client_Rest_Money set Money=@Money where Customer_ID=" + txtCustomerID.Text + " and Client_ID is null";
+                q4 = "insert into Client_Rest_Money (Customer_ID,Money) values (" + txtCustomerID.Text + ",@Money)";
+            }
+            else if (txtClientID.Text != "" && txtCustomerID.Text == "")
+            {
+                query1 = "select Money from Client_Rest_Money where Client_ID=" + txtClientID.Text+" and Customer_ID is null";
+                q = "select Customer_OpenAccount,flag from customer  where Customer_ID=" + txtClientID.Text;
+                q1 = "update  customer  set Flag='Yes'  where Customer_ID=" + txtClientID.Text;
+                q2 = "select ID from Client_Rest_Money where Client_ID=" + txtClientID.Text + " and Customer_ID is null";
+                q3 = "update Client_Rest_Money set Money=@Money where Client_ID=" + txtClientID.Text + " and Customer_ID is null";
+                q4 = "insert into Client_Rest_Money (Client_ID,Money) values ("+ txtClientID.Text + ",@Money)";
+            }
+            else
+            {
+                return;
+            }
+            MySqlCommand com = new MySqlCommand(query1, dbconnection);
+
+            double money = Convert.ToDouble(com.ExecuteScalar());
+
+            double money1 = 0.0;
+            MySqlCommand com1 = new MySqlCommand(q, dbconnection);
+            MySqlDataReader dr = com1.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr[1].ToString() == "No")
+                {
+                    money1 = Convert.ToDouble(dr[0].ToString());
+                    money += money1;
+                    dbconnectionR.Open();
+                    MySqlCommand com2 = new MySqlCommand(q1, dbconnectionR);
+                    com2.ExecuteNonQuery();
+                    dbconnectionR.Close();
+                }
+                else
+                {
+                    
+                }
+            }
+            dr.Close();
+            com = new MySqlCommand(q2, dbconnection);
+            if (com.ExecuteScalar()!= null)
+            {
+                com1 = new MySqlCommand(q3,dbconnection);
+                com1.Parameters.Add("@Money", MySqlDbType.Decimal);
+                com1.Parameters["@Money"].Value = money;
+                com1.ExecuteNonQuery();
+            }
+            else
+            {
+                com1 = new MySqlCommand(q4, dbconnection);
+                com1.Parameters.Add("@Money", MySqlDbType.Decimal);
+                com1.Parameters["@Money"].Value = money;
+                com1.ExecuteNonQuery();
+            }
+            labRecivedMoney.Text = money.ToString();
         }
     }
 }

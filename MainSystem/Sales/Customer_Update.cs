@@ -63,7 +63,7 @@ namespace MainSystem
                 {
                     radClient.Checked = true;
 
-                    string query = "select customer1.Customer_Type as 'النوع', customer1.Customer_Name as 'المسئول' from customer as customer1 INNER JOIN custmer_client ON custmer_client.Customer_ID = customer1.Customer_ID INNER JOIN customer as customer2 ON custmer_client.Client_ID = customer2.Customer_ID where customer2.Customer_ID=" + selRow[0].ToString();
+                    string query = "select customer1.Customer_Type as 'النوع', customer1.Customer_Name as 'المسئول',custmer_client.Customer_OpenAccount from customer as customer1 INNER JOIN custmer_client ON custmer_client.Customer_ID = customer1.Customer_ID INNER JOIN customer as customer2 ON custmer_client.Client_ID = customer2.Customer_ID where customer2.Customer_ID=" + selRow[0].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection2);
                     MySqlDataReader dr = com.ExecuteReader();
                     if (dr.HasRows)
@@ -83,6 +83,7 @@ namespace MainSystem
                                 radDealer.Checked = true;
                             }
                             comEnginner.Text = dr["المسئول"].ToString();
+                            txtOpenAccount2.Text = dr["Customer_OpenAccount"].ToString();
                         }
                         dr.Close();
                     }
@@ -220,6 +221,8 @@ namespace MainSystem
                 radDealer.Visible = true;
                 comEnginner.Visible = true;
                 labelName.Visible = true;
+                label5.Visible = true;
+                txtOpenAccount2.Visible = true;
             }
             else
             {
@@ -231,6 +234,8 @@ namespace MainSystem
                 radEng.Checked = false;
                 radCon.Checked = false;
                 radDealer.Checked = false;
+                label5.Visible = false;
+                txtOpenAccount2.Visible = false;
             }
         }
         //check type of CustomerGuide if engineer or contract
@@ -290,20 +295,24 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() == null)
             {
-                query = "insert into Custmer_Client(Customer_ID,Client_ID) values(@Customer_ID,@Client_ID)";
+                query = "insert into Custmer_Client(Customer_ID,Client_ID,Customer_OpenAccount) values(@Customer_ID,@Client_ID,@Customer_OpenAccount)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 255);
                 com.Parameters["@Customer_ID"].Value = comEnginner.SelectedValue;
                 com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 255);
                 com.Parameters["@Client_ID"].Value = selRow[0].ToString();
+                com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
+                com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount2.Text;
                 com.ExecuteNonQuery();
             }
             else
             {
-                query = "update Custmer_Client set Customer_ID=@Customer_ID where Client_ID=" + selRow[0].ToString();
+                query = "update Custmer_Client set Customer_ID=@Customer_ID , Customer_OpenAccount=@Customer_OpenAccount where Client_ID=" + selRow[0].ToString();
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 255);
                 com.Parameters["@Customer_ID"].Value = comEnginner.SelectedValue;
+                com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
+                com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
                 com.ExecuteNonQuery();
             }
         }

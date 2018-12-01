@@ -52,7 +52,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelName = new System.Windows.Forms.Label();
             this.comEnginner = new System.Windows.Forms.ComboBox();
@@ -65,6 +64,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.txtOpenAccount = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -82,7 +82,6 @@
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -93,17 +92,19 @@
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtOpenAccount = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtOpenAccount2 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOpenAccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
@@ -121,7 +122,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
@@ -132,7 +132,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOpenAccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
@@ -247,7 +246,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1072, 597);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1072, 640);
             this.tableLayoutPanel1.TabIndex = 33;
             // 
             // tableLayoutPanel2
@@ -260,7 +259,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 540);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 583);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
@@ -301,7 +300,6 @@
             this.layoutControl1.Controls.Add(this.label11);
             this.layoutControl1.Controls.Add(this.label10);
             this.layoutControl1.Controls.Add(this.label9);
-            this.layoutControl1.Controls.Add(this.label6);
             this.layoutControl1.Controls.Add(this.groupBox1);
             this.layoutControl1.Controls.Add(this.label7);
             this.layoutControl1.Controls.Add(this.label4);
@@ -325,7 +323,7 @@
             this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1066, 531);
+            this.layoutControl1.Size = new System.Drawing.Size(1066, 574);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -426,17 +424,10 @@
             this.label9.Size = new System.Drawing.Size(936, 20);
             this.label9.TabIndex = 46;
             // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(12, 473);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1042, 46);
-            this.label6.TabIndex = 44;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtOpenAccount2);
             this.groupBox1.Controls.Add(this.labelName);
             this.groupBox1.Controls.Add(this.comEnginner);
             this.groupBox1.Controls.Add(this.radEng);
@@ -446,7 +437,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.groupBox1.Location = new System.Drawing.Point(12, 344);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1042, 125);
+            this.groupBox1.Size = new System.Drawing.Size(1042, 218);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ذات صلة";
@@ -456,11 +447,11 @@
             // 
             this.labelName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(670, 76);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(54, 23);
+            this.labelName.Size = new System.Drawing.Size(45, 19);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "الاسم";
             this.labelName.Visible = false;
@@ -574,6 +565,19 @@
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
+            // txtOpenAccount
+            // 
+            this.txtOpenAccount.Location = new System.Drawing.Point(667, 317);
+            this.txtOpenAccount.Name = "txtOpenAccount";
+            this.txtOpenAccount.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOpenAccount.Properties.Appearance.Options.UseBackColor = true;
+            this.txtOpenAccount.Properties.Appearance.Options.UseFont = true;
+            this.txtOpenAccount.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.txtOpenAccount.Size = new System.Drawing.Size(282, 22);
+            this.txtOpenAccount.StyleController = this.layoutControl1;
+            this.txtOpenAccount.TabIndex = 57;
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -595,7 +599,6 @@
             this.layoutControlItem20,
             this.layoutControlItem14,
             this.layoutControlItem18,
-            this.layoutControlItem7,
             this.layoutControlItem9,
             this.layoutControlItem19,
             this.layoutControlItem21,
@@ -610,7 +613,7 @@
             this.emptySpaceItem1,
             this.emptySpaceItem2});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1066, 531);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1066, 574);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem4
@@ -820,23 +823,13 @@
             // 
             this.layoutControlItem18.Control = this.groupBox1;
             this.layoutControlItem18.Location = new System.Drawing.Point(0, 332);
-            this.layoutControlItem18.MaxSize = new System.Drawing.Size(0, 129);
-            this.layoutControlItem18.MinSize = new System.Drawing.Size(104, 129);
+            this.layoutControlItem18.MinSize = new System.Drawing.Size(104, 24);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(1046, 129);
+            this.layoutControlItem18.Size = new System.Drawing.Size(1046, 222);
             this.layoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem18.Text = " ";
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.label6;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 461);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(1046, 50);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem9
             // 
@@ -944,27 +937,6 @@
             this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem28.TextVisible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1072, 597);
-            this.panel1.TabIndex = 35;
-            // 
-            // txtOpenAccount
-            // 
-            this.txtOpenAccount.Location = new System.Drawing.Point(667, 317);
-            this.txtOpenAccount.Name = "txtOpenAccount";
-            this.txtOpenAccount.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOpenAccount.Properties.Appearance.Options.UseBackColor = true;
-            this.txtOpenAccount.Properties.Appearance.Options.UseFont = true;
-            this.txtOpenAccount.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.txtOpenAccount.Size = new System.Drawing.Size(282, 22);
-            this.txtOpenAccount.StyleController = this.layoutControl1;
-            this.txtOpenAccount.TabIndex = 57;
-            // 
             // layoutControlItem29
             // 
             this.layoutControlItem29.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -993,12 +965,42 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(329, 29);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1072, 640);
+            this.panel1.TabIndex = 35;
+            // 
+            // txtOpenAccount2
+            // 
+            this.txtOpenAccount2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOpenAccount2.Location = new System.Drawing.Point(521, 117);
+            this.txtOpenAccount2.Name = "txtOpenAccount2";
+            this.txtOpenAccount2.Size = new System.Drawing.Size(143, 23);
+            this.txtOpenAccount2.TabIndex = 15;
+            this.txtOpenAccount2.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(670, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(115, 19);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "الرصيد الافتتاحي";
+            this.label5.Visible = false;
+            // 
             // Customer_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1072, 597);
+            this.ClientSize = new System.Drawing.Size(1072, 640);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "Customer_Record";
@@ -1011,6 +1013,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOpenAccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
@@ -1028,7 +1031,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
@@ -1039,7 +1041,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOpenAccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
@@ -1075,7 +1076,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.ComboBox comEnginner;
@@ -1093,7 +1093,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
@@ -1117,6 +1116,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtOpenAccount2;
     }
 }
 
