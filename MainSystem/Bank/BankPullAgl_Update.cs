@@ -27,13 +27,15 @@ namespace MainSystem
         bool loadedPayType = false;
         XtraTabPage xtraTabPage;
         DataRowView selRow;
+        XtraTabControl tabControlBank;
 
-        public BankPullAgl_Update(DataRowView SelRow)
+        public BankPullAgl_Update(DataRowView SelRow, BankPullAgl_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             myConnection = new MySqlConnection(connection.connectionString);
             selRow = SelRow;
+            tabControlBank = MainTabControlBank;
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
@@ -409,7 +411,7 @@ namespace MainSystem
                                 dbconnection.Close();
 
                                 xtraTabPage.ImageOptions.Image = null;
-                                MainForm.tabControlBank.TabPages.Remove(BankPullAgl_Report.MainTabPageUpdatePullAgl);
+                                tabControlBank.TabPages.Remove(xtraTabPage);
                             }
                             else
                             {
@@ -1027,7 +1029,7 @@ namespace MainSystem
             {
                 if (loaded || loadedBranch || loadedPayType)
                 {
-                    xtraTabPage = getTabPage("tabPageUpdatePullAgl");
+                    xtraTabPage = getTabPage("تعديل مرتد-آجل");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -1065,10 +1067,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlBank.TabPages.Count; i++)
-                if (MainForm.tabControlBank.TabPages[i].Name == text)
+            for (int i = 0; i < tabControlBank.TabPages.Count; i++)
+                if (tabControlBank.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlBank.TabPages[i];
+                    return tabControlBank.TabPages[i];
                 }
             return null;
         }

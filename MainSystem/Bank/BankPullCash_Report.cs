@@ -20,14 +20,9 @@ namespace MainSystem
     public partial class BankPullCash_Report : Form
     {
         MySqlConnection conn;
+        MainForm bankMainForm = null;
         XtraTabControl MainTabControlBank;
-
-        public static XtraTabPage MainTabPageRecordPullCash;
-        Panel panelRecordPullCash;
-
-        public static XtraTabPage MainTabPageUpdatePullCash;
-        Panel panelUpdatePullCash;
-
+        
         public static XtraTabPage MainTabPagePrintingPullCash;
         Panel panelPrintingPullCash;
         
@@ -35,18 +30,13 @@ namespace MainSystem
 
         public static GridControl gridcontrol;
 
-        public BankPullCash_Report()
+        public BankPullCash_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            bankMainForm = BankMainForm;
             MainTabControlBank = MainForm.tabControlBank;
-
-            MainTabPageRecordPullCash = new XtraTabPage();
-            panelRecordPullCash = new Panel();
-
-            MainTabPageUpdatePullCash = new XtraTabPage();
-            panelUpdatePullCash = new Panel();
-
+            
             MainTabPagePrintingPullCash = new XtraTabPage();
             panelPrintingPullCash = new Panel();
 
@@ -71,48 +61,7 @@ namespace MainSystem
         {
             try
             {
-                if (MainTabPageRecordPullCash.ImageOptions.Image == null)
-                {
-                    MainTabPageRecordPullCash.Name = "tabPageRecordPullCash";
-                    MainTabPageRecordPullCash.Text = "اضافة سحب-آجل";
-                    MainTabPageRecordPullCash.ImageOptions.Image = null;
-                    panelRecordPullCash.Name = "panelRecordPullCash";
-                    panelRecordPullCash.Dock = DockStyle.Fill;
-                    
-                    panelRecordPullCash.Controls.Clear();
-                    BankPullCash_Record form = new BankPullCash_Record();
-                    form.Size = new Size(1059, 638);
-                    form.TopLevel = false;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.Dock = DockStyle.Fill;
-                    panelRecordPullCash.Controls.Add(form);
-                    MainTabPageRecordPullCash.Controls.Add(panelRecordPullCash);
-                    MainTabControlBank.TabPages.Add(MainTabPageRecordPullCash);
-                    form.Show();
-                    MainTabControlBank.SelectedTabPage = MainTabPageRecordPullCash;
-                }
-                else
-                {
-                    if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                    {
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordPullCash;
-                        return;
-                    }
-                    else
-                    {
-                        panelRecordPullCash.Controls.Clear();
-                        MainTabPageRecordPullCash.ImageOptions.Image = null;
-                        BankPullCash_Record form = new BankPullCash_Record();
-                        form.Size = new Size(1059, 638);
-                        form.TopLevel = false;
-                        form.FormBorderStyle = FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        panelRecordPullCash.Controls.Add(form);
-                        form.Show();
-
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordPullCash;
-                    }
-                }
+                bankMainForm.bindRecordPullCashForm(this);
             }
             catch (Exception ex)
             {
@@ -124,69 +73,14 @@ namespace MainSystem
         {
             try
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-
-                if (selRow["Error"].ToString() == "0")
+                if (((GridView)gridView1).GetSelectedRows().Count() > 0)
                 {
-                    if (MainTabPageUpdatePullCash.ImageOptions.Image == null)
-                    {
-                        if (selRow[0].ToString() != "")
-                        {
-                            MainTabPageUpdatePullCash.Name = "tabPageUpdatePullCash";
-                            MainTabPageUpdatePullCash.Text = "تعديل سحب-آجل";
-                            MainTabPageUpdatePullCash.ImageOptions.Image = null;
-                            panelUpdatePullCash.Name = "PanelUpdatePullCash";
-                            panelUpdatePullCash.Dock = DockStyle.Fill;
-
-                            panelUpdatePullCash.Controls.Clear();
-                            BankPullCash_Update form = new BankPullCash_Update(selRow);
-                            form.Size = new Size(1059, 638);
-                            form.TopLevel = false;
-                            form.FormBorderStyle = FormBorderStyle.None;
-                            form.Dock = DockStyle.Fill;
-                            panelUpdatePullCash.Controls.Add(form);
-                            MainTabPageUpdatePullCash.Controls.Add(panelUpdatePullCash);
-                            MainTabControlBank.TabPages.Add(MainTabPageUpdatePullCash);
-                            form.Show();
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdatePullCash;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
-                    }
-                    else
-                    {
-                        if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        {
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdatePullCash;
-                            return;
-                        }
-                        else
-                        {
-                            if (selRow[0].ToString() != "")
-                            {
-                                panelUpdatePullCash.Controls.Clear();
-                                MainTabPageUpdatePullCash.ImageOptions.Image = null;
-                                BankPullCash_Update form = new BankPullCash_Update(selRow);
-                                form.Size = new Size(1059, 638);
-                                form.TopLevel = false;
-                                form.FormBorderStyle = FormBorderStyle.None;
-                                form.Dock = DockStyle.Fill;
-                                panelUpdatePullCash.Controls.Add(form);
-                                form.Show();
-                                MainTabControlBank.SelectedTabPage = MainTabPageUpdatePullCash;
-                            }
-                            else
-                            {
-                                MessageBox.Show("يجب ان تختار عنصر");
-                            }
-                        }
-                    }
+                    DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
+                    bankMainForm.bindUpdatePullCashForm(sellRow, this);
                 }
                 else
                 {
-                    MessageBox.Show("هذا العنصر تم حذفة من قبل");
+                    MessageBox.Show("يجب تحديد العنصر المراد تعديله");
                 }
             }
             catch (Exception ex)

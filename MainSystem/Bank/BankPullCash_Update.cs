@@ -33,8 +33,9 @@ namespace MainSystem
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
         DataRowView selRow;
+        XtraTabControl tabControlBank;
 
-        public BankPullCash_Update(DataRowView SelRow)
+        public BankPullCash_Update(DataRowView SelRow, BankPullCash_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -43,6 +44,7 @@ namespace MainSystem
             connectionReader1 = new MySqlConnection(connection.connectionString);
             connectionReader2 = new MySqlConnection(connection.connectionString);
             selRow = SelRow;
+            tabControlBank = MainTabControlBank;
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
@@ -528,7 +530,7 @@ namespace MainSystem
                                         dbconnection.Close();
                                         
                                         xtraTabPage.ImageOptions.Image = null;
-                                        MainForm.tabControlBank.TabPages.Remove(BankPullCash_Report.MainTabPageUpdatePullCash);
+                                        tabControlBank.TabPages.Remove(xtraTabPage);
                                     }
                                     else
                                     {
@@ -1157,7 +1159,7 @@ namespace MainSystem
             {
                 if (loaded || loadedPayType)
                 {
-                    xtraTabPage = getTabPage("tabPageUpdatePullCash");
+                    xtraTabPage = getTabPage("تعديل مرتد-كاش");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -1195,10 +1197,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlBank.TabPages.Count; i++)
-                if (MainForm.tabControlBank.TabPages[i].Name == text)
+            for (int i = 0; i < tabControlBank.TabPages.Count; i++)
+                if (tabControlBank.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlBank.TabPages[i];
+                    return tabControlBank.TabPages[i];
                 }
             return null;
         }

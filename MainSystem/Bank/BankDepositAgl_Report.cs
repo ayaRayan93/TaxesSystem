@@ -20,34 +20,23 @@ namespace MainSystem
     public partial class BankDepositAgl_Report : Form
     {
         MySqlConnection conn;
+        MainForm bankMainForm = null;
         XtraTabControl MainTabControlBank;
-
-        public static XtraTabPage MainTabPageRecordDepositAgl;
-        Panel panelRecordDepositAgl;
-
-        public static XtraTabPage MainTabPageUpdateDepositAgl;
-        Panel panelUpdateDepositAgl;
-
+        
         public static XtraTabPage MainTabPagePrintingDepositAgl;
         Panel panelPrintingDepositAgl;
-
-
+        
         public static BankDepositAgl_Print bankPrint;
 
         public static GridControl gridcontrol;
 
-        public BankDepositAgl_Report()
+        public BankDepositAgl_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            bankMainForm = BankMainForm;
             MainTabControlBank = MainForm.tabControlBank;
-
-            MainTabPageRecordDepositAgl = new XtraTabPage();
-            panelRecordDepositAgl = new Panel();
-
-            MainTabPageUpdateDepositAgl = new XtraTabPage();
-            panelUpdateDepositAgl = new Panel();
-
+            
             MainTabPagePrintingDepositAgl = new XtraTabPage();
             panelPrintingDepositAgl = new Panel();
 
@@ -72,48 +61,7 @@ namespace MainSystem
         {
             try
             {
-                if (MainTabPageRecordDepositAgl.ImageOptions.Image == null)
-                {
-                    MainTabPageRecordDepositAgl.Name = "tabPageRecordDepositAgl";
-                    MainTabPageRecordDepositAgl.Text = "اضافة ايداع-آجل";
-                    MainTabPageRecordDepositAgl.ImageOptions.Image = null;
-                    panelRecordDepositAgl.Name = "panelRecordDepositAgl";
-                    panelRecordDepositAgl.Dock = DockStyle.Fill;
-                    
-                    panelRecordDepositAgl.Controls.Clear();
-                    BankDepositAgl_Record form = new BankDepositAgl_Record();
-                    form.Size = new Size(1059, 638);
-                    form.TopLevel = false;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.Dock = DockStyle.Fill;
-                    panelRecordDepositAgl.Controls.Add(form);
-                    MainTabPageRecordDepositAgl.Controls.Add(panelRecordDepositAgl);
-                    MainTabControlBank.TabPages.Add(MainTabPageRecordDepositAgl);
-                    form.Show();
-                    MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositAgl;
-                }
-                else
-                {
-                    if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                    {
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositAgl;
-                        return;
-                    }
-                    else
-                    {
-                        panelRecordDepositAgl.Controls.Clear();
-                        MainTabPageRecordDepositAgl.ImageOptions.Image = null;
-                        BankDepositAgl_Record form = new BankDepositAgl_Record();
-                        form.Size = new Size(1059, 638);
-                        form.TopLevel = false;
-                        form.FormBorderStyle = FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        panelRecordDepositAgl.Controls.Add(form);
-                        form.Show();
-
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositAgl;
-                    }
-                }
+                bankMainForm.bindRecordDepositAglForm(this);
             }
             catch (Exception ex)
             {
@@ -125,69 +73,14 @@ namespace MainSystem
         {
             try
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-
-                if (selRow["Error"].ToString() == "0")
+                if (((GridView)gridView1).GetSelectedRows().Count() > 0)
                 {
-                    if (MainTabPageUpdateDepositAgl.ImageOptions.Image == null)
-                    {
-                        if (selRow[0].ToString() != "")
-                        {
-                            MainTabPageUpdateDepositAgl.Name = "tabPageUpdateDepositAgl";
-                            MainTabPageUpdateDepositAgl.Text = "تعديل ايداع-آجل";
-                            MainTabPageUpdateDepositAgl.ImageOptions.Image = null;
-                            panelUpdateDepositAgl.Name = "PanelUpdateDepositAgl";
-                            panelUpdateDepositAgl.Dock = DockStyle.Fill;
-
-                            panelUpdateDepositAgl.Controls.Clear();
-                            BankDepositAgl_Update form = new BankDepositAgl_Update(selRow);
-                            form.Size = new Size(1059, 638);
-                            form.TopLevel = false;
-                            form.FormBorderStyle = FormBorderStyle.None;
-                            form.Dock = DockStyle.Fill;
-                            panelUpdateDepositAgl.Controls.Add(form);
-                            MainTabPageUpdateDepositAgl.Controls.Add(panelUpdateDepositAgl);
-                            MainTabControlBank.TabPages.Add(MainTabPageUpdateDepositAgl);
-                            form.Show();
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositAgl;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
-                    }
-                    else
-                    {
-                        if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        {
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositAgl;
-                            return;
-                        }
-                        else
-                        {
-                            if (selRow[0].ToString() != "")
-                            {
-                                panelUpdateDepositAgl.Controls.Clear();
-                                MainTabPageUpdateDepositAgl.ImageOptions.Image = null;
-                                BankDepositAgl_Update form = new BankDepositAgl_Update(selRow);
-                                form.Size = new Size(1059, 638);
-                                form.TopLevel = false;
-                                form.FormBorderStyle = FormBorderStyle.None;
-                                form.Dock = DockStyle.Fill;
-                                panelUpdateDepositAgl.Controls.Add(form);
-                                form.Show();
-                                MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositAgl;
-                            }
-                            else
-                            {
-                                MessageBox.Show("يجب ان تختار عنصر");
-                            }
-                        }
-                    }
+                    DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
+                    bankMainForm.bindUpdateDepositAglForm(sellRow, this);
                 }
                 else
                 {
-                    MessageBox.Show("هذا العنصر تم حذفة من قبل");
+                    MessageBox.Show("يجب تحديد العنصر المراد تعديله");
                 }
             }
             catch (Exception ex)

@@ -39,8 +39,9 @@ namespace MainSystem
         string branchName = "";
         string returnInfo = "";
         //string delegateName = "";
+        XtraTabControl tabControlBank;
 
-        public BankPullCash_Record()
+        public BankPullCash_Record(BankPullCash_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -53,6 +54,7 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
+            tabControlBank = MainTabControlBank;
 
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -1184,7 +1186,7 @@ namespace MainSystem
             {
                 if (loaded || loadedPayType)
                 {
-                    xtraTabPage = getTabPage("tabPageRecordPullCash");
+                    xtraTabPage = getTabPage("اضافة مرتد-كاش");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -1222,10 +1224,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlBank.TabPages.Count; i++)
-                if (MainForm.tabControlBank.TabPages[i].Name == text)
+            for (int i = 0; i < tabControlBank.TabPages.Count; i++)
+                if (tabControlBank.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlBank.TabPages[i];
+                    return tabControlBank.TabPages[i];
                 }
             return null;
         }
