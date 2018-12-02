@@ -218,11 +218,10 @@ namespace MainSystem
                 {
                     DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                     DataGridViewCheckBoxCell x =row.Cells["PaidOrNot"] as DataGridViewCheckBoxCell;
-                  
-                    
-                    if (recivedMoney >= Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value))
+
+                    if (Convert.ToBoolean(row.Cells["PaidOrNot"].EditedFormattedValue) == false)
                     {
-                        if (Convert.ToBoolean(row.Cells["PaidOrNot"].EditedFormattedValue) == false)
+                        if (recivedMoney >= Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value))
                         {
                             recivedMoney -= Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
                             labRecivedMoney.Text = recivedMoney.ToString();
@@ -232,19 +231,20 @@ namespace MainSystem
                         }
                         else
                         {
-                            recivedMoney += Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
-                            labRecivedMoney.Text = recivedMoney.ToString();
-                            string query = "update customer_bill set Paid_Status=0 where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
-                            MySqlCommand com = new MySqlCommand(query, dbconnection);
-                            com.ExecuteNonQuery();
+                            MessageBox.Show("قيمة الفاتورة اكبر من المبلغ المدفوع");
+                            x.Value = x.FalseValue;
+                            dataGridView1.EndEdit();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("قيمة الفاتورة اكبر من المبلغ المدفوع");
-                        x.Value = x.FalseValue;
-                        dataGridView1.EndEdit();
+                        recivedMoney += Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
+                        labRecivedMoney.Text = recivedMoney.ToString();
+                        string query = "update customer_bill set Paid_Status=0 where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.ExecuteNonQuery();
                     }
+                    
                    
                 }
             }
@@ -459,6 +459,7 @@ namespace MainSystem
                 com1.Parameters["@Money"].Value = money;
                 com1.ExecuteNonQuery();
             }
+            recivedMoney = money;
             labRecivedMoney.Text = money.ToString();
         }
     }
