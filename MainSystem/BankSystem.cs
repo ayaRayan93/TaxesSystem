@@ -99,7 +99,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage =getTabPage(MainTabControlBank,"tabPageBankReport");
+                XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "tabPageBankReport");
                 if (xtraTabPage == null)
                 {
                     tabPageBankReport.Name = "tabPageBankReport";
@@ -126,7 +126,7 @@ namespace MainSystem
             }
         }
 
-      
+
         private void navBarItemDepositCash_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             try
@@ -143,7 +143,7 @@ namespace MainSystem
                     panelDepositCashReport.Name = "panelDepositCashReport";
                     panelDepositCashReport.Dock = DockStyle.Fill;
 
-                    DepositCashShow = new BankDepositCash_Report();
+                    DepositCashShow = new BankDepositCash_Report(this);
                     DepositCashShow.Size = new Size(1109, 660);
                     DepositCashShow.TopLevel = false;
                     DepositCashShow.FormBorderStyle = FormBorderStyle.None;
@@ -178,7 +178,7 @@ namespace MainSystem
                     panelDepositAglReport.Name = "panelDepositAglReport";
                     panelDepositAglReport.Dock = DockStyle.Fill;
 
-                    DepositAglShow = new BankDepositAgl_Report();
+                    DepositAglShow = new BankDepositAgl_Report(this);
                     DepositAglShow.Size = new Size(1109, 660);
                     DepositAglShow.TopLevel = false;
                     DepositAglShow.FormBorderStyle = FormBorderStyle.None;
@@ -283,7 +283,7 @@ namespace MainSystem
                     panelPullCashReport.Name = "panelPullCashReport";
                     panelPullCashReport.Dock = DockStyle.Fill;
 
-                    PullCashShow = new BankPullCash_Report();
+                    PullCashShow = new BankPullCash_Report(this);
                     PullCashShow.Size = new Size(1109, 660);
                     PullCashShow.TopLevel = false;
                     PullCashShow.FormBorderStyle = FormBorderStyle.None;
@@ -318,7 +318,7 @@ namespace MainSystem
                     panelPullAglReport.Name = "panelPullAglReport";
                     panelPullAglReport.Dock = DockStyle.Fill;
 
-                    PullAglShow = new BankPullAgl_Report();
+                    PullAglShow = new BankPullAgl_Report(this);
                     PullAglShow.Size = new Size(1109, 660);
                     PullAglShow.TopLevel = false;
                     PullAglShow.FormBorderStyle = FormBorderStyle.None;
@@ -443,7 +443,149 @@ namespace MainSystem
         }
 
         //functions
-     
-    }
+        public void bindRecordDepositAglForm(BankDepositAgl_Report form)
+        {
+            BankDepositAgl_Record objForm = new BankDepositAgl_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة ايداع-آجل");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة ايداع-آجل");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة ايداع-آجل");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
 
+        public void bindUpdateDepositAglForm(DataRowView sellRow, BankDepositAgl_Report form)
+        {
+            BankDepositAgl_Update objForm = new BankDepositAgl_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-آجل");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل ايداع-آجل");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-آجل");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindRecordDepositCashForm(BankDepositCash_Report form)
+        {
+            BankDepositCash_Record objForm = new BankDepositCash_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة ايداع-كاش");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة ايداع-كاش");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة ايداع-كاش");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdateDepositCashForm(DataRowView sellRow, BankDepositCash_Report form)
+        {
+            BankDepositCash_Update objForm = new BankDepositCash_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-كاش");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل ايداع-كاش");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-كاش");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindRecordPullAglForm(BankPullAgl_Report form)
+        {
+            BankPullAgl_Record objForm = new BankPullAgl_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد-آجل");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة مرتد-آجل");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد-آجل");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdatePullAglForm(DataRowView sellRow, BankPullAgl_Report form)
+        {
+            BankPullAgl_Update objForm = new BankPullAgl_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-آجل");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل مرتد-آجل");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-آجل");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+
+        public void bindRecordPullCashForm(BankPullCash_Report form)
+        {
+            BankPullCash_Record objForm = new BankPullCash_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد-كاش");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة مرتد-كاش");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد-كاش");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdatePullCashForm(DataRowView sellRow, BankPullCash_Report form)
+        {
+            BankPullCash_Update objForm = new BankPullCash_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-كاش");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل مرتد-كاش");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-كاش");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+    }
 }

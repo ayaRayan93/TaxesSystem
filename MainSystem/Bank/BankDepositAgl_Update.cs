@@ -14,11 +14,11 @@ namespace MainSystem
 {
     public partial class BankDepositAgl_Update : Form
     {
-        private MySqlConnection dbconnection;
+        MySqlConnection dbconnection;
         //bool successFlag = false;
         bool flag = false;
         int branchID = 0;
-        private string Transaction_Type = "";
+        string Transaction_Type = "";
         int[] arrOFPhaat; //count of each catagory value of money in store
         int[] arrRestMoney;
         int[] arrPaidMoney;
@@ -27,12 +27,15 @@ namespace MainSystem
         DataRowView selRow;
         XtraTabPage xtraTabPage;
         bool loadedPayType = false;
+        string branchName = "";
         bool flagCategoriesSuccess = false;
+        XtraTabControl tabControlBank;
 
-        public BankDepositAgl_Update(DataRowView SelRow)
+        public BankDepositAgl_Update(DataRowView SelRow, BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            tabControlBank = MainTabControlBank;
             selRow = SelRow;
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
@@ -305,7 +308,7 @@ namespace MainSystem
                 {
                     if (!flagCategoriesSuccess)
                     {
-                        if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        if (MessageBox.Show("هل انت متاكد من الفئات؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         {
                             return;
                         }
@@ -408,7 +411,7 @@ namespace MainSystem
 
                                 com.ExecuteNonQuery();
 
-                                //////////insert categories/////////
+                                //////////update categories/////////
                                 query = "update transition_categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ,r200=@r200,r100=@r100,r50=@r50,r20=@r20,r10=@r10,r5=@r5,r1=@r1,rH=@rH,rQ=@rQ where Transition_ID=" + selRow[0].ToString();
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
@@ -444,10 +447,13 @@ namespace MainSystem
                                 com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
                                 com.ExecuteNonQuery();
                                 dbconnection.Close();
+
+                                //print bill
+                                printCategoriesBill();
                                 
                                 xtraTabPage.ImageOptions.Image = null;
                                 //Main.DepositAglShow.search();
-                                MainForm.tabControlBank.TabPages.Remove(BankDepositAgl_Report.MainTabPageUpdateDepositAgl);
+                                tabControlBank.TabPages.Remove(xtraTabPage);
                             }
                             else
                             {
@@ -1112,7 +1118,7 @@ namespace MainSystem
             {
                 if (loaded || loadedBranch || loadedPayType)
                 {
-                    xtraTabPage = getTabPage("tabPageUpdateDepositAgl");
+                    xtraTabPage = getTabPage("تعديل ايداع-آجل");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -1153,10 +1159,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlBank.TabPages.Count; i++)
-                if (MainForm.tabControlBank.TabPages[i].Name == text)
+            for (int i = 0; i < tabControlBank.TabPages.Count; i++)
+                if (tabControlBank.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlBank.TabPages[i];
+                    return tabControlBank.TabPages[i];
                 }
             return null;
         }
@@ -1194,6 +1200,9 @@ namespace MainSystem
             dbconnection.Open();
             
             branchID = Convert.ToInt16(selRow["Branch_ID"].ToString());
+            
+            branchName = selRow["الفرع"].ToString();
+
             string query = "";
             string CustomerType = "";
 
@@ -1202,7 +1211,7 @@ namespace MainSystem
                  query = "select Customer_Type from customer where Customer_ID=" + selRow["Customer_ID"].ToString();
                  MySqlCommand comand = new MySqlCommand(query, dbconnection);
                  CustomerType = comand.ExecuteScalar().ToString();
-                 //dbconnection.Close();
+                 dbconnection.Close();
             }
             else
             {
@@ -1229,8 +1238,8 @@ namespace MainSystem
             //comEng.SelectedValue = selRow["Customer_ID"].ToString();
             comClient.Text = selRow["العميل"].ToString();
             //comClient.SelectedValue = selRow["Client_ID"].ToString();
-
-
+            
+            Transaction_Type = selRow["طريقة الدفع"].ToString();
             if (selRow["طريقة الدفع"].ToString() == "نقدى")
             {
                 radioButtonSafe.Checked = true;
@@ -1286,24 +1295,96 @@ namespace MainSystem
             while (dr.Read())
             {
                 t200.Text = dr["a200"].ToString();
+                if (dr["a200"].ToString() != "")
+                {
+                    arrPaidMoney[0] = Convert.ToInt16(dr["a200"].ToString());
+                }
                 t100.Text = dr["a100"].ToString();
+                if (dr["a100"].ToString() != "")
+                {
+                    arrPaidMoney[1] = Convert.ToInt16(dr["a100"].ToString());
+                }
                 t50.Text = dr["a50"].ToString();
+                if (dr["a50"].ToString() != "")
+                {
+                    arrPaidMoney[2] = Convert.ToInt16(dr["a50"].ToString());
+                }
                 t20.Text = dr["a20"].ToString();
+                if (dr["a20"].ToString() != "")
+                {
+                    arrPaidMoney[3] = Convert.ToInt16(dr["a20"].ToString());
+                }
                 t10.Text = dr["a10"].ToString();
+                if (dr["a10"].ToString() != "")
+                {
+                    arrPaidMoney[4] = Convert.ToInt16(dr["a10"].ToString());
+                }
                 t5.Text = dr["a5"].ToString();
+                if (dr["a5"].ToString() != "")
+                {
+                    arrPaidMoney[5] = Convert.ToInt16(dr["a5"].ToString());
+                }
                 t1.Text = dr["a1"].ToString();
+                if (dr["a1"].ToString() != "")
+                {
+                    arrPaidMoney[6] = Convert.ToInt16(dr["a1"].ToString());
+                }
                 tH.Text = dr["aH"].ToString();
+                if (dr["aH"].ToString() != "")
+                {
+                    arrPaidMoney[7] = Convert.ToInt16(dr["aH"].ToString());
+                }
                 tQ.Text = dr["aQ"].ToString();
-
+                if (dr["aQ"].ToString() != "")
+                {
+                    arrPaidMoney[8] = Convert.ToInt16(dr["aQ"].ToString());
+                }
+                ////****************************************////
                 r200.Text = dr["r200"].ToString();
+                if (dr["r200"].ToString() != "")
+                {
+                    arrRestMoney[0] = Convert.ToInt16(dr["r200"].ToString());
+                }
                 r100.Text = dr["r100"].ToString();
+                if (dr["r100"].ToString() != "")
+                {
+                    arrRestMoney[1] = Convert.ToInt16(dr["r100"].ToString());
+                }
                 r50.Text = dr["r50"].ToString();
+                if (dr["r50"].ToString() != "")
+                {
+                    arrRestMoney[2] = Convert.ToInt16(dr["r50"].ToString());
+                }
                 r20.Text = dr["r20"].ToString();
+                if (dr["r20"].ToString() != "")
+                {
+                    arrRestMoney[3] = Convert.ToInt16(dr["r20"].ToString());
+                }
                 r10.Text = dr["r10"].ToString();
+                if (dr["r10"].ToString() != "")
+                {
+                    arrRestMoney[4] = Convert.ToInt16(dr["r10"].ToString());
+                }
                 r5.Text = dr["r5"].ToString();
+                if (dr["r5"].ToString() != "")
+                {
+                    arrRestMoney[5] = Convert.ToInt16(dr["r5"].ToString());
+                }
                 r1.Text = dr["r1"].ToString();
+                if (dr["r1"].ToString() != "")
+                {
+                    arrRestMoney[6] = Convert.ToInt16(dr["r1"].ToString());
+                }
                 rH.Text = dr["rH"].ToString();
+                if (dr["rH"].ToString() != "")
+                {
+                    arrRestMoney[7] = Convert.ToInt16(dr["rH"].ToString());
+                }
                 rQ.Text = dr["rQ"].ToString();
+                if (dr["rQ"].ToString() != "")
+                {
+                    arrRestMoney[8] = Convert.ToInt16(dr["rQ"].ToString());
+                }
             }
             dr.Close();
             dbconnection.Close();
@@ -1369,6 +1450,24 @@ namespace MainSystem
                 com.ExecuteNonQuery();
             }
             dbconnection.Close();
+        }
+
+        void printCategoriesBill()
+        {
+            Print_AglCategoriesBill_Report f = new Print_AglCategoriesBill_Report();
+            if (comClient.Text != "")
+            {
+                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), branchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), Transaction_Type, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.userName, arrPaidMoney[0] - arrRestMoney[0], arrPaidMoney[1] - arrRestMoney[1], arrPaidMoney[2] - arrRestMoney[2], arrPaidMoney[3] - arrRestMoney[3], arrPaidMoney[4] - arrRestMoney[4], arrPaidMoney[5] - arrRestMoney[5], arrPaidMoney[6] - arrRestMoney[6], arrPaidMoney[7] - arrRestMoney[7], arrPaidMoney[8] - arrRestMoney[8]);
+            }
+            else if (comEng.Text != "")
+            {
+                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), branchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), Transaction_Type, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.userName, arrPaidMoney[0] - arrRestMoney[0], arrPaidMoney[1] - arrRestMoney[1], arrPaidMoney[2] - arrRestMoney[2], arrPaidMoney[3] - arrRestMoney[3], arrPaidMoney[4] - arrRestMoney[4], arrPaidMoney[5] - arrRestMoney[5], arrPaidMoney[6] - arrRestMoney[6], arrPaidMoney[7] - arrRestMoney[7], arrPaidMoney[8] - arrRestMoney[8]);
+            }
+            f.ShowDialog();
+            for (int i = 0; i < arrPaidMoney.Length; i++)
+                arrPaidMoney[i] = arrRestMoney[i] = 0;
+            for (int i = 0; i < arrRestMoney.Length; i++)
+                arrRestMoney[i] = arrPaidMoney[i] = 0;
         }
     }
 }

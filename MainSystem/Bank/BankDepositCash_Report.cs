@@ -20,14 +20,9 @@ namespace MainSystem
     public partial class BankDepositCash_Report : Form
     {
         MySqlConnection conn;
+        MainForm bankMainForm = null;
         XtraTabControl MainTabControlBank;
-
-        public static XtraTabPage MainTabPageRecordDepositCash;
-        Panel panelRecordDepositCash;
-
-        public static XtraTabPage MainTabPageUpdateDepositCash;
-        Panel panelUpdateDepositCash;
-
+        
         public static XtraTabPage MainTabPagePrintingDepositCash;
         Panel panelPrintingDepositCash;
 
@@ -36,22 +31,16 @@ namespace MainSystem
 
         public static GridControl gridcontrol;
 
-        public BankDepositCash_Report()
+        public BankDepositCash_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            bankMainForm = BankMainForm;
             MainTabControlBank = MainForm.tabControlBank;
-
-            MainTabPageRecordDepositCash = new XtraTabPage();
-            panelRecordDepositCash = new Panel();
-
-            MainTabPageUpdateDepositCash = new XtraTabPage();
-            panelUpdateDepositCash = new Panel();
-
+            
             MainTabPagePrintingDepositCash = new XtraTabPage();
             panelPrintingDepositCash = new Panel();
-
-
+            
             gridcontrol = gridControl1;
         }
 
@@ -72,47 +61,7 @@ namespace MainSystem
         {
             try
             {
-                if (MainTabPageRecordDepositCash.ImageOptions.Image == null)
-                {
-                    MainTabPageRecordDepositCash.Name = "tabPageRecordDepositCash";
-                    MainTabPageRecordDepositCash.Text = "اضافة ايداع-كاش";
-                    MainTabPageRecordDepositCash.ImageOptions.Image = null;
-                    panelRecordDepositCash.Name = "panelRecordDepositCash";
-                    panelRecordDepositCash.Dock = DockStyle.Fill;
-                    
-                    panelRecordDepositCash.Controls.Clear();
-                    BankDepositCash_Record form = new BankDepositCash_Record();
-                    form.Size = new Size(1059, 638);
-                    form.TopLevel = false;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.Dock = DockStyle.Fill;
-                    panelRecordDepositCash.Controls.Add(form);
-                    MainTabPageRecordDepositCash.Controls.Add(panelRecordDepositCash);
-                    MainTabControlBank.TabPages.Add(MainTabPageRecordDepositCash);
-                    form.Show();
-                    MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositCash;
-                }
-                else
-                {
-                    if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                    {
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositCash;
-                        return;
-                    }
-                    else
-                    {
-                        panelRecordDepositCash.Controls.Clear();
-                        MainTabPageRecordDepositCash.ImageOptions.Image = null;
-                        BankDepositCash_Record form = new BankDepositCash_Record();
-                        form.Size = new Size(1059, 638);
-                        form.TopLevel = false;
-                        form.FormBorderStyle = FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        panelRecordDepositCash.Controls.Add(form);
-                        form.Show();
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositCash;
-                    }
-                }
+                bankMainForm.bindRecordDepositCashForm(this);
             }
             catch (Exception ex)
             {
@@ -124,69 +73,14 @@ namespace MainSystem
         {
             try
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-
-                if (selRow["Error"].ToString() == "0")
+                if (((GridView)gridView1).GetSelectedRows().Count() > 0)
                 {
-                    if (MainTabPageUpdateDepositCash.ImageOptions.Image == null)
-                    {
-                        if (selRow[0].ToString() != "")
-                        {
-                            MainTabPageUpdateDepositCash.Name = "tabPageUpdateDepositCash";
-                            MainTabPageUpdateDepositCash.Text = "تعديل ايداع-كاش";
-                            MainTabPageUpdateDepositCash.ImageOptions.Image = null;
-                            panelUpdateDepositCash.Name = "panelUpdateDepositCash";
-                            panelUpdateDepositCash.Dock = DockStyle.Fill;
-
-                            panelUpdateDepositCash.Controls.Clear();
-                            BankDepositCash_Update form = new BankDepositCash_Update(selRow);
-                            form.Size = new Size(1059, 638);
-                            form.TopLevel = false;
-                            form.FormBorderStyle = FormBorderStyle.None;
-                            form.Dock = DockStyle.Fill;
-                            panelUpdateDepositCash.Controls.Add(form);
-                            MainTabPageUpdateDepositCash.Controls.Add(panelUpdateDepositCash);
-                            MainTabControlBank.TabPages.Add(MainTabPageUpdateDepositCash);
-                            form.Show();
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositCash;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
-                    }
-                    else
-                    {
-                        if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        {
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositCash;
-                            return;
-                        }
-                        else
-                        {
-                            if (selRow[0].ToString() != "")
-                            {
-                                panelUpdateDepositCash.Controls.Clear();
-                                MainTabPageUpdateDepositCash.ImageOptions.Image = null;
-                                BankDepositCash_Update form = new BankDepositCash_Update(selRow);
-                                form.Size = new Size(1059, 638);
-                                form.TopLevel = false;
-                                form.FormBorderStyle = FormBorderStyle.None;
-                                form.Dock = DockStyle.Fill;
-                                panelUpdateDepositCash.Controls.Add(form);
-                                form.Show();
-                                MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositCash;
-                            }
-                            else
-                            {
-                                MessageBox.Show("يجب ان تختار عنصر");
-                            }
-                        }
-                    }
+                    DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
+                    bankMainForm.bindUpdateDepositCashForm(sellRow, this);
                 }
                 else
                 {
-                    MessageBox.Show("هذا العنصر تم حذفة من قبل");
+                    MessageBox.Show("يجب تحديد العنصر المراد تعديله");
                 }
             }
             catch (Exception ex)

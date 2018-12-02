@@ -43,8 +43,9 @@ namespace MainSystem
         string TransitionID = "";
         string ConfirmEmp = "";
         bool flagBillNotFirstTime = false;
+        XtraTabControl tabControlBank;
 
-        public BankDepositCash_Record()
+        public BankDepositCash_Record(BankDepositCash_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -57,6 +58,7 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
+            tabControlBank = MainTabControlBank;
 
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -596,17 +598,26 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
 
                                 //////////insert categories/////////
-                                query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@Transition_ID)";
+                                query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,r200,r100,r50,r20,r10,r5,r1,rH,rQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@r200,@r100,@r50,@r20,@r10,@r5,@r1,@rH,@rQ,@Transition_ID)";
                                 com = new MySqlCommand(query, dbconnection);
-                                com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0] - arrRestMoney[0];
-                                com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1] - arrRestMoney[1];
-                                com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2] - arrRestMoney[2];
-                                com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3] - arrRestMoney[3];
-                                com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4] - arrRestMoney[4];
-                                com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5] - arrRestMoney[5];
-                                com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6] - arrRestMoney[6];
-                                com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7] - arrRestMoney[7];
-                                com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8] - arrRestMoney[8];
+                                com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
+                                com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
+                                com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
+                                com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
+                                com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
+                                com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
+                                com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
+                                com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
+                                com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
+                                com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
+                                com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
+                                com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
+                                com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
+                                com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
+                                com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
+                                com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
+                                com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
+                                com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
                                 com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(TransitionID);
                                 com.ExecuteNonQuery();
                                 flagCategoriesSuccess = false;
@@ -1302,7 +1313,7 @@ namespace MainSystem
             {
                 if (loaded || loadedPayType)
                 {
-                    xtraTabPage = getTabPage("tabPageRecordDepositCash");
+                    xtraTabPage = getTabPage("اضافة ايداع-كاش");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -1341,10 +1352,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlBank.TabPages.Count; i++)
-                if (MainForm.tabControlBank.TabPages[i].Name == text)
+            for (int i = 0; i < tabControlBank.TabPages.Count; i++)
+                if (tabControlBank.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlBank.TabPages[i];
+                    return tabControlBank.TabPages[i];
                 }
             return null;
         }
