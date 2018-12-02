@@ -267,10 +267,8 @@ namespace MainSystem
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string str = date.ToString();
             string d = date.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime date2 = dateTimeTo.Value;
-            str= date2.ToString();
             string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss") ;
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
