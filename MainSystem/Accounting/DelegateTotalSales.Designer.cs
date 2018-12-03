@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Accounting
+﻿namespace MainSystem
 {
     partial class DelegateTotalSales
     {
@@ -87,6 +87,7 @@
             this.txtDelegateID.Name = "txtDelegateID";
             this.txtDelegateID.Size = new System.Drawing.Size(48, 24);
             this.txtDelegateID.TabIndex = 194;
+            this.txtDelegateID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDelegateID_KeyDown);
             // 
             // comDelegate
             // 
@@ -97,7 +98,7 @@
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.Size = new System.Drawing.Size(173, 24);
             this.comDelegate.TabIndex = 192;
-            this.comDelegate.Visible = false;
+            this.comDelegate.SelectedValueChanged += new System.EventHandler(this.comDelegate_SelectedValueChanged);
             // 
             // labelDelegate
             // 
@@ -109,7 +110,6 @@
             this.labelDelegate.Size = new System.Drawing.Size(45, 16);
             this.labelDelegate.TabIndex = 193;
             this.labelDelegate.Text = "مندوب";
-            this.labelDelegate.Visible = false;
             // 
             // dateTimeTo
             // 
@@ -180,6 +180,14 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
@@ -191,6 +199,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DelegateTotalSales";
             this.Text = "DelegateTotalSales";
+            this.Load += new System.EventHandler(this.DelegateTotalSales_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

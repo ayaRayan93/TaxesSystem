@@ -1,4 +1,4 @@
-﻿using MainSystem.Accounting;
+﻿using MainSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DelegateTotalSales());
+            Application.Run(new Login());
         }
     }
 }
