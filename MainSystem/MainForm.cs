@@ -28,6 +28,7 @@ namespace MainSystem
         XtraTabPage BankTP;
         XtraTabPage ReceptionTP;
         XtraTabPage ShippingTP;
+        XtraTabPage AccountingTP;
         int index = 1;
         
         public MainForm()
@@ -51,7 +52,7 @@ namespace MainSystem
                 BankTP = xtraTabPageBank;
                 ReceptionTP = xtraTabPageReception;
                 ShippingTP = xtraTabPageShipping;
-
+                AccountingTP = xtraTabPageAccounting;
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageHR);
@@ -60,6 +61,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageBank);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageReception);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageShipping);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageAccounting);
             }
             catch (Exception ex)
             {
@@ -197,6 +199,23 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void AccountingSystem_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageAccounting))
+                {
+                    xtraTabControlMainContainer.TabPages.Insert(index, AccountingTP);
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageAccounting)];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -328,13 +347,14 @@ namespace MainSystem
                         foreach (NavBarItem navBar in navBarControl1.Items)
                         {
                             navBar.Appearance.ForeColor = Color.Black;
+                            navBar.Appearance.BackColor = Color.LightGray;
                         }
                     }
                 }
             }
         }
 
-    
+
     }
 
     public static class connection

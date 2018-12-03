@@ -357,6 +357,7 @@ namespace MainSystem
                 restForeColorOfNavBarItem();
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.Blue;
+                navBarItem.Appearance.BackColor = Color.White;
 
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
