@@ -17,7 +17,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DelegateTotalSales());
+            Application.Run(new Login());
         }
     }
 }

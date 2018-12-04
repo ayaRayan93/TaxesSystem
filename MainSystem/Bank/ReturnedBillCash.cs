@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace MainSystem
 {
-    public partial class BillCash : DevExpress.XtraReports.UI.XtraReport
+    public partial class ReturnedBillCash : DevExpress.XtraReports.UI.XtraReport
     {
-        public BillCash()
+        public ReturnedBillCash()
         {
             InitializeComponent();
         }

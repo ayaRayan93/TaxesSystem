@@ -6,21 +6,19 @@ using DevExpress.XtraReports.UI;
 
 namespace MainSystem
 {
-    public partial class BillCash : DevExpress.XtraReports.UI.XtraReport
+    public partial class ReturnedBillAgl : DevExpress.XtraReports.UI.XtraReport
     {
-        public BillCash()
+        public ReturnedBillAgl()
         {
             InitializeComponent();
         }
 
-        public void InitData(DateTime dateNow, string transitionID, string branchName, int billNumber, string clientName, DateTime billDate, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string visaType, string operationNumber, string description, string confirmEmp, string bankUserName, int qq200, int qq100, int qq50, int qq20, int qq10, int qq5, int qq1, int qqH, int qqQ, int rr200, int rr100, int rr50, int rr20, int rr10, int rr5, int rr1, int rrH, int rrQ)
+        public void InitData(DateTime dateNow, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string visaType, string operationNumber, string description, string bankUserName, int qq200, int qq100, int qq50, int qq20, int qq10, int qq5, int qq1, int qqH, int qqQ, int rr200, int rr100, int rr50, int rr20, int rr10, int rr5, int rr1, int rrH, int rrQ)
         {
             TransitionID.Value = transitionID;
             DateNow.Value = dateNow;
             Branch_Name.Value = branchName;
-            BillNumber.Value = billNumber;
             Client_Name.Value = clientName;
-            BillDate.Value = billDate;
             PaidMoney.Value = paidMoney;
             Description.Value = description;
             PaymentMethod.Value = paymentMethod;
@@ -30,7 +28,6 @@ namespace MainSystem
             Payday.Value = payday;
             VisaType.Value = visaType;
             OperationNumber.Value = operationNumber;
-            ConfirmEmp.Value = confirmEmp;
             BankUserName.Value = bankUserName;
             q200.Value = qq200;
             q100.Value = qq100;

@@ -11,16 +11,16 @@ using DevExpress.XtraEditors;
 
 namespace MainSystem
 {
-    public partial class Print_CategoriesBill_Report : DevExpress.XtraEditors.XtraForm
+    public partial class Print_ReturnedCategoriesBill_Report : DevExpress.XtraEditors.XtraForm
     {
-        public Print_CategoriesBill_Report()
+        public Print_ReturnedCategoriesBill_Report()
         {
             InitializeComponent();
         }
 
         public void PrintInvoice(DateTime dateNow, string TransitionID, string branchName, int billNumber, string clientName, DateTime billDate, double PaidMoney, string PaymentMethod, string bank, string CheckNumber, string Payday, string VisaType, string OperationNumber, string Description, string ConfirmEmp, string BankUserName, int q200, int q100, int q50, int q20, int q10, int q5, int q1, int qH, int qQ, int r200, int r100, int r50, int r20, int r10, int r5, int r1, int rH, int rQ)
         {
-            BillCash report = new BillCash();
+            ReturnedBillCash report = new ReturnedBillCash();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
