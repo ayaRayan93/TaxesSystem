@@ -1177,7 +1177,9 @@ namespace MainSystem
                 radDealer.Checked = true;
             }
             comEng.Text = selRow["المهندس/المقاول/التاجر"].ToString();
+            comEng.SelectedValue = selRow["Customer_ID"].ToString();
             comClient.Text = selRow["العميل"].ToString();
+            comClient.SelectedValue = selRow["Client_ID"].ToString();
 
             PaymentMethod = selRow["طريقة الدفع"].ToString();
             if (selRow["طريقة الدفع"].ToString() == "نقدى")

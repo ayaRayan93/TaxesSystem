@@ -1235,9 +1235,9 @@ namespace MainSystem
                 radClient.Checked = true;
             }
             comEng.Text = selRow["المهندس/المقاول/التاجر"].ToString();
-            //comEng.SelectedValue = selRow["Customer_ID"].ToString();
+            comEng.SelectedValue = selRow["Customer_ID"].ToString();
             comClient.Text = selRow["العميل"].ToString();
-            //comClient.SelectedValue = selRow["Client_ID"].ToString();
+            comClient.SelectedValue = selRow["Client_ID"].ToString();
             
             Transaction_Type = selRow["طريقة الدفع"].ToString();
             if (selRow["طريقة الدفع"].ToString() == "نقدى")
