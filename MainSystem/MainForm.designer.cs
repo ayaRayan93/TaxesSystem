@@ -3243,6 +3243,7 @@
             // 
             this.navBarItem154.Caption = "اجمالي مبيعات المندوبين لفترة";
             this.navBarItem154.Name = "navBarItem154";
+            this.navBarItem154.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateTotalSales_LinkClicked);
             // 
             // navBarGroup32
             // 
