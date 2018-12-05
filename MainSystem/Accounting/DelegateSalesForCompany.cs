@@ -13,11 +13,11 @@ using DevExpress.XtraGrid.Columns;
 
 namespace MainSystem
 {
-    public partial class DelegateTotalSales : DevExpress.XtraEditors.XtraForm
+    public partial class DelegateSalesForCompany : DevExpress.XtraEditors.XtraForm
     {
         private MySqlConnection dbconnection;
         bool loaded = false;
-        public DelegateTotalSales()
+        public DelegateSalesForCompany()
         {
             try
             {
@@ -28,10 +28,9 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-          
-        }
 
-        private void DelegateTotalSales_Load(object sender, EventArgs e)
+        }
+        private void DelegateSalesForCompany_Load(object sender, EventArgs e)
         {
             try
             {
@@ -45,6 +44,17 @@ namespace MainSystem
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
                 comDelegate.Text = "";
                 txtDelegateID.Text = "";
+
+                query = "select * from factory ";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comFactory.DataSource = dt;
+                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                comFactory.Text = "";
+                txtFactory.Text = "";
+
                 loaded = true;
             }
             catch (Exception ex)
@@ -53,6 +63,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void comDelegate_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -74,7 +85,55 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void comFactory_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    try
+                    {
+                        txtFactory.Text = comFactory.SelectedValue.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtFactory_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dbconnection.Open();
+                    string query = "select Factory_Name from factory where Factory_ID=" + txtFactory.Text + "";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        Name = (string)com.ExecuteScalar();
+                        comFactory.Text = Name;
+                    }
+                    else
+                    {
+                        MessageBox.Show("there is no item with this id");
+                        dbconnection.Close();
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void txtDelegateID_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -114,7 +173,7 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string query= "select CustomerBill_ID from customer_bill where Paid_Status=1 and Bill_Date between '" + d + "' and '" + d2 + "'";
+                string query = "select CustomerBill_ID from customer_bill where Paid_Status=1 and Bill_Date between '" + d + "' and '" + d2 + "'";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -135,7 +194,7 @@ namespace MainSystem
                 }
                 dr.Close();
                 str1 += 0;
-                query = "select (sum(product_bill.PriceAD*Quantity)-sum(TotalAD)) as 'الصافي',sum(TotalAD) as 'اجمالي المرتجعات',sum(product_bill.PriceAD*Quantity) as 'اجمالي المبيعات' from product_bill,customer_return_bill_details where customer_return_bill_details.CustomerBill_ID in(" + str1+ ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text+ " and product_bill.CustomerBill_ID in(" + str + ") and product_bill.Delegate_ID=" + txtDelegateID.Text;
+                query = "select (sum(product_bill.PriceAD*Quantity)-sum(TotalAD)) as 'الصافي',sum(TotalAD) as 'اجمالي المرتجعات',sum(product_bill.PriceAD*Quantity) as 'اجمالي المبيعات' , Delegate_Name as 'المندوب' from product_bill,customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  inner join data on data.Data_ID=customer_return_bill_details.Data_ID where customer_return_bill_details.CustomerBill_ID in(" + str1 + ") and data.Factory_ID=" + txtFactory.Text + " and product_bill.CustomerBill_ID in(" + str + ")";// and product_bill.Delegate_ID=" + txtDelegateID.Text;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
 
@@ -153,9 +212,9 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close(); 
+            dbconnection.Close();
         }
 
-     
+      
     }
 }
