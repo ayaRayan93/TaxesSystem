@@ -283,9 +283,9 @@ namespace MainSystem
                             MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + selRow["Bank_ID"].ToString(), conn);
                             com3.ExecuteNonQuery();
 
-                            query = "update customer_bill set Paid_Status=2 where Branch_ID=" + selRow["Branch_ID"].ToString() + " and Branch_BillNumber=" + selRow["Bill_Number"].ToString() + " and Type_Buy='كاش'";
-                            comand = new MySqlCommand(query, conn);
-                            comand.ExecuteNonQuery();
+                            //query = "update customer_bill set Paid_Status=2 where Branch_ID=" + selRow["Branch_ID"].ToString() + " and Branch_BillNumber=" + selRow["Bill_Number"].ToString() + " and Type_Buy='كاش'";
+                            //comand = new MySqlCommand(query, conn);
+                            //comand.ExecuteNonQuery();
                         }
                         conn.Close();
                         search();

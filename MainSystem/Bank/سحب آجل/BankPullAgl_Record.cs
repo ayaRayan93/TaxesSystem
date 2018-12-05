@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class BankDepositAgl_Record : Form
+    public partial class BankPullAgl_Record : Form
     {
         MySqlConnection dbconnection;
         bool flag = false;
@@ -25,11 +25,11 @@ namespace MainSystem
         bool loaded = false;
         bool loadedPayType = false;
         XtraTabPage xtraTabPage;
+        XtraTabControl tabControlBank;
         string TransitionID = "";
         bool flagCategoriesSuccess = false;
-        XtraTabControl tabControlBank;
 
-        public BankDepositAgl_Record(BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
+        public BankPullAgl_Record(BankPullAgl_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -37,9 +37,11 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
-
+            
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comEng.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comEng.AutoCompleteSource = AutoCompleteSource.ListItems;
             comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
             comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -50,7 +52,7 @@ namespace MainSystem
             this.dateEdit1.Properties.Mask.EditMask = "yyyy/MM/dd";
         }
 
-        private void BankDepositAgl_Record_Load(object sender, EventArgs e)
+        private void BankPullAgl_Record_Load(object sender, EventArgs e)
         {
             try
             {
@@ -60,13 +62,13 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 branchName = com.ExecuteScalar().ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
-
+        
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
         private void comCustomer_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -101,16 +103,16 @@ namespace MainSystem
                 radCash.Enabled = true;
                 radCredit.Enabled = true;
                 radBankAccount.Enabled = false;
-                radVisa.Enabled = false;
+                //radVisa.Enabled = false;
                 radBankAccount.Checked = false;
-                radVisa.Checked = false;
+                //radVisa.Checked = false;
                 layoutControlItemBank.Text = "خزينة";
                 layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelBank.Visible = true;
                 labelBank.Text = "*";
                 layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelPaidMoney.Visible = true;
-                labelPaidMoney.Text = "*";
+                labelPullMoney.Visible = true;
+                labelPullMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
                 layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -190,14 +192,14 @@ namespace MainSystem
                 radCash.Checked = false;
                 radCredit.Checked = false;
                 radBankAccount.Enabled = true;
-                radVisa.Enabled = true;
+                //radVisa.Enabled = true;
                 radBankAccount.Checked = true;
                 layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelBank.Visible = true;
                 labelBank.Text = "*";
                 layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelPaidMoney.Visible = true;
-                labelPaidMoney.Text = "*";
+                labelPullMoney.Visible = true;
+                labelPullMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
                 layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -228,7 +230,7 @@ namespace MainSystem
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
-                layoutControlItemPayDate.Text = "تاريخ الايداع";
+                layoutControlItemPayDate.Text = "تاريخ السحب";
                 layoutControlItemCheck.Text = "رقم الحساب";
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
@@ -246,33 +248,43 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-        private void radVisa_CheckedChanged(object sender, EventArgs e)
+        
+        private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
+            RadioButton radio = (RadioButton)sender;
+            string Customer_Type = radio.Text;
             try
             {
-                RadioButton r = (RadioButton)sender;
-                PaymentMethod = r.Text;
-                layoutControlItemBank.Text = "فيزا";
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelDate.Visible = false;
-                labelDate.Text = "";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelVisaType.Visible = true;
-                labelVisaType.Text = "*";
-                layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelOperationNumber.Visible = true;
-                labelOperationNumber.Text = "*";
-                layoutControlItemCheck.Text = "رقم الكارت";
-
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbBank.DataSource = dt;
-                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                loaded = false;
+                if (Customer_Type == "عميل")
+                {
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    comEng.Text = "";
+                    comClient.Enabled = true;
+                    comEng.Enabled = false;
+                }
+                else
+                {
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comEng.DataSource = dt;
+                    comEng.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comEng.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comEng.Text = "";
+                    comClient.Text = "";
+                    comClient.Enabled = false;
+                    comEng.Enabled = true;
+                }
+                loaded = true;
             }
             catch (Exception ex)
             {
@@ -280,7 +292,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -288,19 +300,15 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = ((comClient.Text != "" || comEng.Text !="" )/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") && cmbBank.Text != "" && txtPullMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
-                }
-                else if (PaymentMethod == "فيزا")
-                {
-                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtCheckNumber.Text != "" && txtVisaType.Text != "" && txtOperationNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
 
                 if (check)
@@ -314,8 +322,9 @@ namespace MainSystem
                     }
 
                     double outParse;
-                    if (double.TryParse(txtPaidMoney.Text, out outParse))
+                    if (double.TryParse(txtPullMoney.Text, out outParse))
                     {
+
                         string opNumString = null;
                         if (txtOperationNumber.Text != "")
                         {
@@ -334,18 +343,14 @@ namespace MainSystem
                         
                         dbconnection.Open();
 
-                        string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
+                        string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Customer_ID,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Customer_ID,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                        com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع";
+                        com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
                         com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "آجل";
                         com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = branchID;
                         com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = branchName;
                         com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = null;
-                        com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
-                        com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
-                        com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
-                        com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
                         if (comClient.Text != "")
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
@@ -362,15 +367,18 @@ namespace MainSystem
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
                         }
+                        com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
+                        com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
+                        com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
+                        com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
                         com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                         com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
 
-
-                        com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
+                        com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
                         MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                         double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                        amount2 += outParse;
+                        amount2 -= outParse;
                         MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                         com3.ExecuteNonQuery();
 
@@ -444,8 +452,8 @@ namespace MainSystem
                         flagCategoriesSuccess = false;
 
                         dbconnection.Close();
-
-                        IncreaseClientPaied();
+                        
+                        DecreaseClientPaied();
 
                         //print bill
                         printCategoriesBill();
@@ -475,6 +483,7 @@ namespace MainSystem
                         txtPaidRest2.Text = "0";
 
                         xtraTabPage.ImageOptions.Image = null;
+
                     }
                     else
                     {
@@ -495,50 +504,6 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void radiotype_CheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton radio = (RadioButton)sender;
-            string Customer_Type = radio.Text;
-            try
-            {
-                loaded = false;
-                if (Customer_Type == "عميل")
-                {
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comClient.DataSource = dt;
-                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
-                    comClient.Text = "";
-                    comEng.Text = "";
-                    comClient.Enabled = true;
-                    comEng.Enabled = false;
-                }
-                else
-                {
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comEng.DataSource = dt;
-                    comEng.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                    comEng.ValueMember = dt.Columns["Customer_ID"].ToString();
-                    comEng.Text = "";
-                    comClient.Text = "";
-                    comClient.Enabled = false;
-                    comEng.Enabled = true;
-                }
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-        
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
         {
             double totalPaid = 0;
@@ -548,11 +513,11 @@ namespace MainSystem
                 try
                 {
                     double total = 0;
-                    if (txtPaidMoney.Text != "" && double.TryParse(txtPaidMoney.Text, out total))
+                    if (txtPullMoney.Text != "" && double.TryParse(txtPullMoney.Text, out total))
                     {
                         if (cmbBank.Text == "")
                         {
-                            MessageBox.Show("يجب ان تختار الخزينة");
+                            MessageBox.Show("يجب ان تختار خزينة");
                             return;
                         }
                         dbconnection.Open();
@@ -561,11 +526,9 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() == null)
                         {
-                            query = "insert into categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,Bank_ID,Bank_Name)values(0,0,0,0,0,0,0,0,0,@Bank_ID,@Bank_Name) ";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Bank_ID", MySqlDbType.Int16).Value = cmbBank.SelectedValue;
-                            com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar).Value = cmbBank.Text;
-                            com.ExecuteNonQuery();
+                            MessageBox.Show("هذه الخزينة ليس بها فئات");
+                            dbconnection.Close();
+                            return;
                         }
 
                         if (!flag)
@@ -601,10 +564,18 @@ namespace MainSystem
                             case "200":
                                 if (int.TryParse(t200.Text, out num))
                                 {
-                                    arrOFPhaat[0] -= arrPaidMoney[0];
-                                    arrPaidMoney[0] = num;
-                                    arrOFPhaat[0] += num;
-                                    t100.Focus();
+                                    if (arrOFPhaat[0] >= num)
+                                    {
+                                        arrOFPhaat[0] += arrPaidMoney[0];
+                                        arrPaidMoney[0] = num;
+                                        arrOFPhaat[0] -= num;
+                                        t100.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -616,10 +587,18 @@ namespace MainSystem
                             case "100":
                                 if (int.TryParse(t100.Text, out num))
                                 {
-                                    arrOFPhaat[1] -= arrPaidMoney[1];
-                                    arrPaidMoney[1] = num;
-                                    arrOFPhaat[1] += num;
-                                    t50.Focus();
+                                    if (arrOFPhaat[1] >= num)
+                                    {
+                                        arrOFPhaat[1] += arrPaidMoney[1];
+                                        arrPaidMoney[1] = num;
+                                        arrOFPhaat[1] -= num;
+                                        t50.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -631,10 +610,18 @@ namespace MainSystem
                             case "50":
                                 if (int.TryParse(t50.Text, out num))
                                 {
-                                    arrOFPhaat[2] -= arrPaidMoney[2];
-                                    arrPaidMoney[2] = num;
-                                    arrOFPhaat[2] += num;
-                                    t20.Focus();
+                                    if (arrOFPhaat[2] >= num)
+                                    {
+                                        arrOFPhaat[2] += arrPaidMoney[2];
+                                        arrPaidMoney[2] = num;
+                                        arrOFPhaat[2] -= num;
+                                        t20.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -646,10 +633,18 @@ namespace MainSystem
                             case "20":
                                 if (int.TryParse(t20.Text, out num))
                                 {
-                                    arrOFPhaat[3] -= arrPaidMoney[3];
-                                    arrPaidMoney[3] = num;
-                                    arrOFPhaat[3] += num;
-                                    t10.Focus();
+                                    if (arrOFPhaat[3] >= num)
+                                    {
+                                        arrOFPhaat[3] += arrPaidMoney[3];
+                                        arrPaidMoney[3] = num;
+                                        arrOFPhaat[3] -= num;
+                                        t10.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -661,10 +656,18 @@ namespace MainSystem
                             case "10":
                                 if (int.TryParse(t10.Text, out num))
                                 {
-                                    arrOFPhaat[4] -= arrPaidMoney[4];
-                                    arrPaidMoney[4] = num;
-                                    arrOFPhaat[4] += num;
-                                    t5.Focus();
+                                    if (arrOFPhaat[4] >= num)
+                                    {
+                                        arrOFPhaat[4] += arrPaidMoney[4];
+                                        arrPaidMoney[4] = num;
+                                        arrOFPhaat[4] -= num;
+                                        t5.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -676,10 +679,18 @@ namespace MainSystem
                             case "5":
                                 if (int.TryParse(t5.Text, out num))
                                 {
-                                    arrOFPhaat[5] -= arrPaidMoney[5];
-                                    arrPaidMoney[5] = num;
-                                    arrOFPhaat[5] += num;
-                                    t1.Focus();
+                                    if (arrOFPhaat[5] >= num)
+                                    {
+                                        arrOFPhaat[5] += arrPaidMoney[5];
+                                        arrPaidMoney[5] = num;
+                                        arrOFPhaat[5] -= num;
+                                        t1.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -691,10 +702,18 @@ namespace MainSystem
                             case "1":
                                 if (int.TryParse(t1.Text, out num))
                                 {
-                                    arrOFPhaat[6] -= arrPaidMoney[6];
-                                    arrPaidMoney[6] = num;
-                                    arrOFPhaat[6] += num;
-                                    tH.Focus();
+                                    if (arrOFPhaat[6] >= num)
+                                    {
+                                        arrOFPhaat[6] += arrPaidMoney[6];
+                                        arrPaidMoney[6] = num;
+                                        arrOFPhaat[6] -= num;
+                                        tH.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -705,10 +724,18 @@ namespace MainSystem
                             case "H":
                                 if (int.TryParse(tH.Text, out num))
                                 {
-                                    arrOFPhaat[7] -= arrPaidMoney[7];
-                                    arrPaidMoney[7] = num;
-                                    arrOFPhaat[7] += num;
-                                    tQ.Focus();
+                                    if (arrOFPhaat[7] >= num)
+                                    {
+                                        arrOFPhaat[7] += arrPaidMoney[7];
+                                        arrPaidMoney[7] = num;
+                                        arrOFPhaat[7] -= num;
+                                        tQ.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -719,10 +746,18 @@ namespace MainSystem
                             case "Q":
                                 if (int.TryParse(tQ.Text, out num))
                                 {
-                                    arrOFPhaat[8] -= arrPaidMoney[8];
-                                    arrPaidMoney[8] = num;
-                                    arrOFPhaat[8] += num;
-                                    r200.Focus();
+                                    if (arrOFPhaat[8] >= num)
+                                    {
+                                        arrOFPhaat[8] += arrPaidMoney[8];
+                                        arrPaidMoney[8] = num;
+                                        arrOFPhaat[8] -= num;
+                                        r200.Focus();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("لا يوجد ما يكفى");
+                                        return;
+                                    }
                                 }
                                 else
                                 {
@@ -734,19 +769,18 @@ namespace MainSystem
 
                         totalPaid = arrPaidMoney[0] * 200 + arrPaidMoney[1] * 100 + arrPaidMoney[2] * 50 + arrPaidMoney[3] * 20 + arrPaidMoney[4] * 10 + arrPaidMoney[5] * 5 + arrPaidMoney[6] + arrPaidMoney[7] * 0.5 + arrPaidMoney[8] * 0.25;
                         PaidMoney.Text = totalPaid.ToString();
-                        if ((total - totalPaid) > 0)
+                        if ((total - totalPaid) + Convert.ToDouble(RestMoney.Text) > 0)
                         {
-                            txtPaidRest.Text = (total - totalPaid).ToString();
+                            txtPaidRest.Text = ((total - totalPaid) + Convert.ToDouble(RestMoney.Text)).ToString();
                             txtPaidRest2.Text = "0";
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.Red;
                         }
-                        else if((total - totalPaid) == 0)
+                        else if ((total - totalPaid) + Convert.ToDouble(RestMoney.Text) == 0)
                         {
                             txtPaidRest.Text = "0";
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-
                             txtPaidRest2.Text = "0";
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                         }
                         else
@@ -756,7 +790,7 @@ namespace MainSystem
 
                             txtPaidRest2.Text = (-1 * (sub + Convert.ToDouble(RestMoney.Text))).ToString();
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.Red;
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                         }
 
                         if ((Convert.ToDouble(txtPaidRest.Text) == 0) && (Convert.ToDouble(txtPaidRest2.Text) == 0))
@@ -789,7 +823,7 @@ namespace MainSystem
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             //for (int i = 0; i < arrPaidMoney.Length; i++)
                             //    arrPaidMoney[i] = arrRestMoney[i] = 0;
@@ -819,7 +853,7 @@ namespace MainSystem
             try
             {
                 double total = 0;
-                if (txtPaidMoney.Text != "" && double.TryParse(txtPaidMoney.Text, out total))
+                if (txtPullMoney.Text != "" && double.TryParse(txtPullMoney.Text, out total))
                 {
                     double totalRest = 0, test = 0;
                     if (RestMoney.Text != "")
@@ -841,18 +875,10 @@ namespace MainSystem
                             case "200":
                                 if (int.TryParse(r200.Text, out num))
                                 {
-                                    if (arrOFPhaat[0] >= num)
-                                    {
-                                        arrOFPhaat[0] += arrRestMoney[0];
-                                        arrRestMoney[0] = num;
-                                        arrOFPhaat[0] -= num;
-                                        r100.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[0] -= arrRestMoney[0];
+                                    arrRestMoney[0] = num;
+                                    arrOFPhaat[0] += num;
+                                    r100.Focus();
                                 }
                                 else
                                 {
@@ -864,18 +890,10 @@ namespace MainSystem
                             case "100":
                                 if (int.TryParse(r100.Text, out num))
                                 {
-                                    if (arrOFPhaat[1] >= num)
-                                    {
-                                        arrOFPhaat[1] += arrRestMoney[1];
-                                        arrRestMoney[1] = num;
-                                        arrOFPhaat[1] -= num;
-                                        r50.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[1] -= arrRestMoney[1];
+                                    arrRestMoney[1] = num;
+                                    arrOFPhaat[1] += num;
+                                    r50.Focus();
                                 }
                                 else
                                 {
@@ -887,18 +905,10 @@ namespace MainSystem
                             case "50":
                                 if (int.TryParse(r50.Text, out num))
                                 {
-                                    if (arrOFPhaat[2] >= num)
-                                    {
-                                        arrOFPhaat[2] += arrRestMoney[2];
-                                        arrRestMoney[2] = num;
-                                        arrOFPhaat[2] -= num;
-                                        r20.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[2] -= arrRestMoney[2];
+                                    arrRestMoney[2] = num;
+                                    arrOFPhaat[2] += num;
+                                    r20.Focus();
                                 }
                                 else
                                 {
@@ -910,18 +920,10 @@ namespace MainSystem
                             case "20":
                                 if (int.TryParse(r20.Text, out num))
                                 {
-                                    if (arrOFPhaat[3] >= num)
-                                    {
-                                        arrOFPhaat[3] += arrRestMoney[3];
-                                        arrRestMoney[3] = num;
-                                        arrOFPhaat[3] -= num;
-                                        r10.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[3] -= arrRestMoney[3];
+                                    arrRestMoney[3] = num;
+                                    arrOFPhaat[3] += num;
+                                    r10.Focus();
                                 }
                                 else
                                 {
@@ -933,18 +935,10 @@ namespace MainSystem
                             case "10":
                                 if (int.TryParse(r10.Text, out num))
                                 {
-                                    if (arrOFPhaat[4] >= num)
-                                    {
-                                        arrOFPhaat[4] += arrRestMoney[4];
-                                        arrRestMoney[4] = num;
-                                        arrOFPhaat[4] -= num;
-                                        r5.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[4] -= arrRestMoney[4];
+                                    arrRestMoney[4] = num;
+                                    arrOFPhaat[4] += num;
+                                    r5.Focus();
                                 }
                                 else
                                 {
@@ -956,18 +950,10 @@ namespace MainSystem
                             case "5":
                                 if (int.TryParse(r5.Text, out num))
                                 {
-                                    if (arrOFPhaat[5] >= num)
-                                    {
-                                        arrOFPhaat[5] += arrRestMoney[5];
-                                        arrRestMoney[5] = num;
-                                        arrOFPhaat[5] -= num;
-                                        r1.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[5] -= arrRestMoney[5];
+                                    arrRestMoney[5] = num;
+                                    arrOFPhaat[5] += num;
+                                    r1.Focus();
                                 }
                                 else
                                 {
@@ -979,18 +965,10 @@ namespace MainSystem
                             case "1":
                                 if (int.TryParse(r1.Text, out num))
                                 {
-                                    if (arrOFPhaat[6] >= 0)
-                                    {
-                                        arrOFPhaat[6] += arrRestMoney[6];
-                                        arrRestMoney[6] = num;
-                                        arrOFPhaat[6] -= num;
-                                        rH.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[6] -= arrRestMoney[6];
+                                    arrRestMoney[6] = num;
+                                    arrOFPhaat[6] += num;
+                                    rH.Focus();
                                 }
                                 else
                                 {
@@ -1002,18 +980,10 @@ namespace MainSystem
                             case "H":
                                 if (int.TryParse(rH.Text, out num))
                                 {
-                                    if (arrOFPhaat[7] >= 0)
-                                    {
-                                        arrOFPhaat[7] += arrRestMoney[7];
-                                        arrRestMoney[7] = num;
-                                        arrOFPhaat[7] -= num;
-                                        rQ.Focus();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[7] -= arrRestMoney[7];
+                                    arrRestMoney[7] = num;
+                                    arrOFPhaat[7] += num;
+                                    rQ.Focus();
                                 }
                                 else
                                 {
@@ -1025,17 +995,9 @@ namespace MainSystem
                             case "Q":
                                 if (int.TryParse(rQ.Text, out num))
                                 {
-                                    if (arrOFPhaat[8] >= 0)
-                                    {
-                                        arrOFPhaat[8] += arrRestMoney[8];
-                                        arrRestMoney[8] = num;
-                                        arrOFPhaat[8] -= num;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("لا يوجد ما يكفى");
-                                        return;
-                                    }
+                                    arrOFPhaat[8] -= arrRestMoney[8];
+                                    arrRestMoney[8] = num;
+                                    arrOFPhaat[8] += num;
                                 }
                                 else
                                 {
@@ -1048,27 +1010,27 @@ namespace MainSystem
                         totalRest = arrRestMoney[0] * 200 + arrRestMoney[1] * 100 + arrRestMoney[2] * 50 + arrRestMoney[3] * 20 + arrRestMoney[4] * 10 + arrRestMoney[5] * 5 + arrRestMoney[6] + arrRestMoney[7] * 0.5 + arrRestMoney[8] * 0.25;
                         RestMoney.Text = totalRest.ToString();
 
-                        if((Convert.ToDouble(RestMoney.Text)- (-1*(Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(PaidMoney.Text))))<0)
+                        if((Convert.ToDouble(RestMoney.Text)- (-1*(Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text))))<0)
                         {
                             txtPaidRest.Text = "0";
-                            txtPaidRest2.Text = (-1*((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(PaidMoney.Text)))))).ToString();
+                            txtPaidRest2.Text = (-1*((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text)))))).ToString();
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.Red;
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                         }
-                        else if ((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(PaidMoney.Text)))) == 0)
+                        else if ((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text)))) == 0)
                         {
                             txtPaidRest2.Text = "0";
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-
+                            
                             txtPaidRest.Text = "0";
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                         }
                         else
                         {
-                            double sub = (Convert.ToDouble(txtPaidMoney.Text) - Convert.ToDouble(PaidMoney.Text));
+                            double sub = (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text));
                             txtPaidRest.Text = (Convert.ToDouble(RestMoney.Text) - (-1 * sub)).ToString();
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.Red;
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.Red;
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                         }
                         
@@ -1102,7 +1064,7 @@ namespace MainSystem
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             //for (int i = 0; i < arrRestMoney.Length; i++)
                             //    arrRestMoney[i] = arrPaidMoney[i] = 0;
@@ -1131,9 +1093,9 @@ namespace MainSystem
         {
             try
             {
-                if (loaded /*|| loadedBranch*/ || loadedPayType)
+                if (loaded || loadedPayType)
                 {
-                    xtraTabPage = getTabPage("اضافة ايداع-آجل");
+                    xtraTabPage = getTabPage("اضافة مرتد-آجل");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -1155,8 +1117,6 @@ namespace MainSystem
         {
             foreach (Control co in this.panel1.Controls)
             {
-                //if (co is GroupBox)
-                //{
                 foreach (Control item in co.Controls)
                 {
                     if (item is ComboBox)
@@ -1168,7 +1128,6 @@ namespace MainSystem
                         item.Text = "";
                     }
                 }
-                //}
             }
         }
 
@@ -1187,63 +1146,56 @@ namespace MainSystem
             bool flag5 = false;
             foreach (Control co in this.panel1.Controls)
             {
-                //if (co is GroupBox)
-                //{
-                    foreach (Control item in co.Controls)
+                foreach (Control item in co.Controls)
+                {
+                    if (item is ComboBox)
                     {
-                        if (item is ComboBox)
-                        {
-                            if (item.Text == "")
-                                flag5 = true;
-                            else
-                                return false;
-                        }
-                        else if (item is TextBox)
-                        {
-                            if (item.Text == "")
-                                flag5 = true;
-                            else
-                                return false;
-                        }
+                        if (item.Text == "")
+                            flag5 = true;
+                        else
+                            return false;
                     }
-                //}
+                    else if (item is TextBox)
+                    {
+                        if (item.Text == "")
+                            flag5 = true;
+                        else
+                            return false;
+                    }
+                }
             }
 
             return flag5;
         }
 
-        /*public void DecreaseClientsAccounts()
+        //functions
+        /*public void IncreaseClientsAccounts()
         {
             dbconnection.Open();
-            string query = "select Money from customer_accounts where Client_ID=" + cmbName.SelectedValue;
+            string query = "select Money from customer_accounts where Client_ID=" + comClient.SelectedValue;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
-                //(Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text))
-                query = "update customer_accounts set Money=" + (restMoney - paidMoney) + " where Client_ID=" + cmbName.SelectedValue;
+                double paidMoney = Convert.ToDouble(txtPullMoney.Text);
+                query = "update customer_accounts set Money=" + (restMoney + paidMoney) + " where Client_ID=" + comClient.SelectedValue;
             }
             else
             {
                 MessageBox.Show("هذا العميل ليس له حساب آجل");
-                successFlag = false;
+                successFlagIncrease = false;
                 dbconnection.Close();
                 return;
             }
-            //else
-            //{
-            //    query = "insert into customer_accounts (Client_ID,Client_Name,Money) values (" + cmbName.SelectedValue + ",'" + cmbName.Text + "'," + txtRestMoney.Text + ")";
-            //}
             com = new MySqlCommand(query, dbconnection);
             com.ExecuteNonQuery();
-            successFlag = true;
+            successFlagIncrease = true;
             dbconnection.Close();
         }*/
 
-        public void IncreaseClientPaied()
+        public void DecreaseClientPaied()
         {
-            double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
+            double paidMoney = Convert.ToDouble(txtPullMoney.Text);
             string q1 = "";
             if (comClient.Text != "")
             {
@@ -1267,7 +1219,7 @@ namespace MainSystem
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update client_rest_money set Money=" + (restMoney + paidMoney) + q1;
+                query = "update client_rest_money set Money=" + (restMoney - paidMoney) + q1;
                 com = new MySqlCommand(query, dbconnection);
             }
             else
@@ -1290,23 +1242,22 @@ namespace MainSystem
                 {
                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
                 }
-                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = paidMoney;
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = -1 * paidMoney;
             }
             com.ExecuteNonQuery();
             dbconnection.Close();
-
         }
 
         void printCategoriesBill()
         {
-            Print_AglCategoriesBill_Report f = new Print_AglCategoriesBill_Report();
+            Print_ReturnedAglCategoriesBill_Report f = new Print_ReturnedAglCategoriesBill_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, TransitionID, branchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.userName, arrPaidMoney[0] - arrRestMoney[0], arrPaidMoney[1] - arrRestMoney[1], arrPaidMoney[2] - arrRestMoney[2], arrPaidMoney[3] - arrRestMoney[3], arrPaidMoney[4] - arrRestMoney[4], arrPaidMoney[5] - arrRestMoney[5], arrPaidMoney[6] - arrRestMoney[6], arrPaidMoney[7] - arrRestMoney[7], arrPaidMoney[8] - arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, TransitionID, branchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.userName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, TransitionID, branchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.userName, arrPaidMoney[0] - arrRestMoney[0], arrPaidMoney[1] - arrRestMoney[1], arrPaidMoney[2] - arrRestMoney[2], arrPaidMoney[3] - arrRestMoney[3], arrPaidMoney[4] - arrRestMoney[4], arrPaidMoney[5] - arrRestMoney[5], arrPaidMoney[6] - arrRestMoney[6], arrPaidMoney[7] - arrRestMoney[7], arrPaidMoney[8] - arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, TransitionID, branchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.userName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

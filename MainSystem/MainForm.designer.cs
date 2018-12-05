@@ -379,6 +379,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDelegateSalesForCompany = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
@@ -908,6 +909,7 @@
             this.navBarItem21,
             this.navBarItem22,
             this.navBarItem3});
+            this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
             this.navBarControl1.Location = new System.Drawing.Point(981, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 164;
@@ -924,6 +926,7 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
             this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarGroup1.SelectedLinkIndex = 0;
             // 
             // navBarItem1
             // 
@@ -1179,7 +1182,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup17;
+            this.navBarControl2.ActiveGroup = this.navBarGroup18;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1248,7 +1251,8 @@
             this.btnCustomerAccountStatment,
             this.btnAgalAcountStatment,
             this.btnTaswayAgalBills,
-            this.navBarItem153});
+            this.navBarItem153,
+            this.navBarItemSalesTransitions});
             this.navBarControl2.Location = new System.Drawing.Point(955, 0);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 190;
@@ -1260,7 +1264,6 @@
             // navBarGroup17
             // 
             this.navBarGroup17.Caption = "حسابات العملاء";
-            this.navBarGroup17.Expanded = true;
             this.navBarGroup17.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnCustomerAccountStatment),
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnAgalAcountStatment),
@@ -1347,6 +1350,9 @@
             // navBarGroup18
             // 
             this.navBarGroup18.Caption = "تقارير";
+            this.navBarGroup18.Expanded = true;
+            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions)});
             this.navBarGroup18.Name = "navBarGroup18";
             // 
             // navBarGroup39
@@ -3492,6 +3498,12 @@
             this.panel1.Size = new System.Drawing.Size(947, 515);
             this.panel1.TabIndex = 1;
             // 
+            // navBarItemSalesTransitions
+            // 
+            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
+            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
+            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
+            // 
             // navBarItemDelegateSalesForCompany
             // 
             this.navBarItemDelegateSalesForCompany.Caption = "مبيعات المندوبين لشركة";
@@ -3888,6 +3900,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem165;
         private DevExpress.XtraNavBar.NavBarItem navBarItem166;
         private DevExpress.XtraNavBar.NavBarItem navBarItem161;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSalesTransitions;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateSalesForCompany;
     }
 }

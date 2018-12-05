@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class BankPullAgl_Record
+    partial class BankPullCash_Update
     {
         /// <summary>
         /// Required designer variable.
@@ -31,36 +31,26 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comEng = new System.Windows.Forms.ComboBox();
-            this.labelBranch = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.labelOperationNumber = new System.Windows.Forms.Label();
             this.labelVisaType = new System.Windows.Forms.Label();
             this.labelCheckNumber = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
             this.labelDescrip = new System.Windows.Forms.Label();
-            this.labelPullMoney = new System.Windows.Forms.Label();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.labelPaidMoney = new System.Windows.Forms.Label();
             this.labelBank = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comClient = new System.Windows.Forms.ComboBox();
-            this.labelName = new System.Windows.Forms.Label();
-            this.radClient = new System.Windows.Forms.RadioButton();
-            this.radDealer = new System.Windows.Forms.RadioButton();
-            this.radContractor = new System.Windows.Forms.RadioButton();
-            this.radEng = new System.Windows.Forms.RadioButton();
             this.txtOperationNumber = new System.Windows.Forms.TextBox();
             this.txtVisaType = new System.Windows.Forms.TextBox();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.radBankAccount = new System.Windows.Forms.RadioButton();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.radCash = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -82,6 +72,7 @@
             this.layoutControlItem57 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
             this.label24 = new System.Windows.Forms.Label();
+            this.cmbBranch = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.txtCheckNumber = new System.Windows.Forms.TextBox();
@@ -144,11 +135,25 @@
             this.layoutControlItemPull = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemRest = new DevExpress.XtraLayout.LayoutControlItem();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtPaidMoney = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBillNumber = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelPaid = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.txtTotalCost = new System.Windows.Forms.TextBox();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItemStock = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemBank = new DevExpress.XtraLayout.LayoutControlItem();
@@ -158,28 +163,19 @@
             this.layoutControlItemCheck = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem66 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemVisaType = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemOperationNumber = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem61 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem62 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem63 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem65 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -190,7 +186,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -241,7 +237,14 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemBank)).BeginInit();
@@ -251,28 +254,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemVisaType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOperationNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem61)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem62)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem63)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem65)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -286,28 +280,19 @@
             // 
             // dataLayoutControl1
             // 
-            this.dataLayoutControl1.Controls.Add(this.label4);
-            this.dataLayoutControl1.Controls.Add(this.label3);
-            this.dataLayoutControl1.Controls.Add(this.comEng);
-            this.dataLayoutControl1.Controls.Add(this.labelBranch);
+            this.dataLayoutControl1.Controls.Add(this.label2);
             this.dataLayoutControl1.Controls.Add(this.labelOperationNumber);
             this.dataLayoutControl1.Controls.Add(this.labelVisaType);
             this.dataLayoutControl1.Controls.Add(this.labelCheckNumber);
-            this.dataLayoutControl1.Controls.Add(this.labelDate);
             this.dataLayoutControl1.Controls.Add(this.labelDescrip);
-            this.dataLayoutControl1.Controls.Add(this.labelPullMoney);
+            this.dataLayoutControl1.Controls.Add(this.labelDate);
+            this.dataLayoutControl1.Controls.Add(this.labelPaidMoney);
             this.dataLayoutControl1.Controls.Add(this.labelBank);
-            this.dataLayoutControl1.Controls.Add(this.label1);
-            this.dataLayoutControl1.Controls.Add(this.comClient);
-            this.dataLayoutControl1.Controls.Add(this.labelName);
-            this.dataLayoutControl1.Controls.Add(this.radClient);
-            this.dataLayoutControl1.Controls.Add(this.radDealer);
-            this.dataLayoutControl1.Controls.Add(this.radContractor);
-            this.dataLayoutControl1.Controls.Add(this.radEng);
             this.dataLayoutControl1.Controls.Add(this.txtOperationNumber);
             this.dataLayoutControl1.Controls.Add(this.txtVisaType);
             this.dataLayoutControl1.Controls.Add(this.layoutControl2);
             this.dataLayoutControl1.Controls.Add(this.label24);
+            this.dataLayoutControl1.Controls.Add(this.cmbBranch);
             this.dataLayoutControl1.Controls.Add(this.label32);
             this.dataLayoutControl1.Controls.Add(this.label31);
             this.dataLayoutControl1.Controls.Add(this.txtCheckNumber);
@@ -317,7 +302,14 @@
             this.dataLayoutControl1.Controls.Add(this.cmbBank);
             this.dataLayoutControl1.Controls.Add(this.groupBox1);
             this.dataLayoutControl1.Controls.Add(this.label5);
+            this.dataLayoutControl1.Controls.Add(this.label4);
+            this.dataLayoutControl1.Controls.Add(this.txtPaidMoney);
+            this.dataLayoutControl1.Controls.Add(this.label1);
+            this.dataLayoutControl1.Controls.Add(this.txtBillNumber);
+            this.dataLayoutControl1.Controls.Add(this.label7);
+            this.dataLayoutControl1.Controls.Add(this.labelPaid);
             this.dataLayoutControl1.Controls.Add(this.tableLayoutPanel2);
+            this.dataLayoutControl1.Controls.Add(this.txtTotalCost);
             this.dataLayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataLayoutControl1.Location = new System.Drawing.Point(0, 0);
             this.dataLayoutControl1.Name = "dataLayoutControl1";
@@ -328,219 +320,103 @@
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
-            // label4
+            // label2
             // 
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(7, 85);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1029, 20);
-            this.label4.TabIndex = 85;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1016, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 25);
-            this.label3.TabIndex = 84;
-            // 
-            // comEng
-            // 
-            this.comEng.Enabled = false;
-            this.comEng.FormattingEnabled = true;
-            this.comEng.Location = new System.Drawing.Point(545, 60);
-            this.comEng.Name = "comEng";
-            this.comEng.Size = new System.Drawing.Size(368, 24);
-            this.comEng.TabIndex = 83;
-            this.comEng.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
-            this.comEng.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // labelBranch
-            // 
-            this.labelBranch.BackColor = System.Drawing.Color.White;
-            this.labelBranch.ForeColor = System.Drawing.Color.Red;
-            this.labelBranch.Location = new System.Drawing.Point(7, 31);
-            this.labelBranch.Name = "labelBranch";
-            this.labelBranch.Size = new System.Drawing.Size(534, 25);
-            this.labelBranch.TabIndex = 82;
-            this.labelBranch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(7, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1029, 20);
+            this.label2.TabIndex = 71;
             // 
             // labelOperationNumber
             // 
             this.labelOperationNumber.BackColor = System.Drawing.Color.White;
             this.labelOperationNumber.ForeColor = System.Drawing.Color.Red;
-            this.labelOperationNumber.Location = new System.Drawing.Point(521, 473);
+            this.labelOperationNumber.Location = new System.Drawing.Point(524, 458);
             this.labelOperationNumber.Name = "labelOperationNumber";
             this.labelOperationNumber.Size = new System.Drawing.Size(20, 24);
-            this.labelOperationNumber.TabIndex = 80;
+            this.labelOperationNumber.TabIndex = 70;
             this.labelOperationNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelOperationNumber.Visible = false;
             // 
             // labelVisaType
             // 
             this.labelVisaType.BackColor = System.Drawing.Color.White;
             this.labelVisaType.ForeColor = System.Drawing.Color.Red;
-            this.labelVisaType.Location = new System.Drawing.Point(521, 445);
+            this.labelVisaType.Location = new System.Drawing.Point(524, 430);
             this.labelVisaType.Name = "labelVisaType";
             this.labelVisaType.Size = new System.Drawing.Size(20, 24);
-            this.labelVisaType.TabIndex = 79;
+            this.labelVisaType.TabIndex = 69;
             this.labelVisaType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelVisaType.Visible = false;
             // 
             // labelCheckNumber
             // 
             this.labelCheckNumber.BackColor = System.Drawing.Color.White;
             this.labelCheckNumber.ForeColor = System.Drawing.Color.Red;
-            this.labelCheckNumber.Location = new System.Drawing.Point(521, 417);
+            this.labelCheckNumber.Location = new System.Drawing.Point(524, 402);
             this.labelCheckNumber.Name = "labelCheckNumber";
             this.labelCheckNumber.Size = new System.Drawing.Size(20, 24);
-            this.labelCheckNumber.TabIndex = 78;
+            this.labelCheckNumber.TabIndex = 68;
             this.labelCheckNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelDate
-            // 
-            this.labelDate.BackColor = System.Drawing.Color.White;
-            this.labelDate.ForeColor = System.Drawing.Color.Red;
-            this.labelDate.Location = new System.Drawing.Point(521, 389);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(20, 24);
-            this.labelDate.TabIndex = 77;
-            this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelCheckNumber.Visible = false;
             // 
             // labelDescrip
             // 
             this.labelDescrip.BackColor = System.Drawing.Color.White;
             this.labelDescrip.ForeColor = System.Drawing.Color.Red;
-            this.labelDescrip.Location = new System.Drawing.Point(521, 330);
+            this.labelDescrip.Location = new System.Drawing.Point(524, 304);
             this.labelDescrip.Name = "labelDescrip";
-            this.labelDescrip.Size = new System.Drawing.Size(20, 55);
-            this.labelDescrip.TabIndex = 76;
+            this.labelDescrip.Size = new System.Drawing.Size(20, 66);
+            this.labelDescrip.TabIndex = 67;
+            this.labelDescrip.Visible = false;
             // 
-            // labelPullMoney
+            // labelDate
             // 
-            this.labelPullMoney.BackColor = System.Drawing.Color.White;
-            this.labelPullMoney.ForeColor = System.Drawing.Color.Red;
-            this.labelPullMoney.Location = new System.Drawing.Point(521, 302);
-            this.labelPullMoney.Name = "labelPullMoney";
-            this.labelPullMoney.Size = new System.Drawing.Size(20, 24);
-            this.labelPullMoney.TabIndex = 75;
-            this.labelPullMoney.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelDate.BackColor = System.Drawing.Color.White;
+            this.labelDate.ForeColor = System.Drawing.Color.Red;
+            this.labelDate.Location = new System.Drawing.Point(524, 374);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(20, 24);
+            this.labelDate.TabIndex = 66;
+            this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelDate.Visible = false;
+            // 
+            // labelPaidMoney
+            // 
+            this.labelPaidMoney.BackColor = System.Drawing.Color.White;
+            this.labelPaidMoney.ForeColor = System.Drawing.Color.Red;
+            this.labelPaidMoney.Location = new System.Drawing.Point(524, 276);
+            this.labelPaidMoney.Name = "labelPaidMoney";
+            this.labelPaidMoney.Size = new System.Drawing.Size(20, 24);
+            this.labelPaidMoney.TabIndex = 65;
+            this.labelPaidMoney.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelPaidMoney.Visible = false;
             // 
             // labelBank
             // 
             this.labelBank.BackColor = System.Drawing.Color.White;
             this.labelBank.ForeColor = System.Drawing.Color.Red;
-            this.labelBank.Location = new System.Drawing.Point(521, 274);
+            this.labelBank.Location = new System.Drawing.Point(524, 248);
             this.labelBank.Name = "labelBank";
             this.labelBank.Size = new System.Drawing.Size(20, 24);
-            this.labelBank.TabIndex = 74;
+            this.labelBank.TabIndex = 64;
             this.labelBank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(7, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(534, 21);
-            this.label1.TabIndex = 73;
-            this.label1.Text = "*";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // comClient
-            // 
-            this.comClient.Enabled = false;
-            this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(545, 109);
-            this.comClient.Name = "comClient";
-            this.comClient.Size = new System.Drawing.Size(368, 24);
-            this.comClient.TabIndex = 70;
-            this.comClient.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // labelName
-            // 
-            this.labelName.BackColor = System.Drawing.Color.White;
-            this.labelName.ForeColor = System.Drawing.Color.Red;
-            this.labelName.Location = new System.Drawing.Point(7, 109);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(534, 21);
-            this.labelName.TabIndex = 69;
-            this.labelName.Text = "*";
-            this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelName.Visible = false;
-            // 
-            // radClient
-            // 
-            this.radClient.BackColor = System.Drawing.Color.White;
-            this.radClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radClient.Location = new System.Drawing.Point(545, 31);
-            this.radClient.Name = "radClient";
-            this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radClient.Size = new System.Drawing.Size(96, 25);
-            this.radClient.TabIndex = 67;
-            this.radClient.TabStop = true;
-            this.radClient.Text = "عميل";
-            this.radClient.UseVisualStyleBackColor = false;
-            this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
-            // 
-            // radDealer
-            // 
-            this.radDealer.BackColor = System.Drawing.Color.White;
-            this.radDealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radDealer.Location = new System.Drawing.Point(645, 31);
-            this.radDealer.Name = "radDealer";
-            this.radDealer.Size = new System.Drawing.Size(120, 25);
-            this.radDealer.TabIndex = 66;
-            this.radDealer.TabStop = true;
-            this.radDealer.Text = "تاجر";
-            this.radDealer.UseVisualStyleBackColor = false;
-            this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
-            // 
-            // radContractor
-            // 
-            this.radContractor.BackColor = System.Drawing.Color.White;
-            this.radContractor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radContractor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radContractor.Location = new System.Drawing.Point(769, 31);
-            this.radContractor.Name = "radContractor";
-            this.radContractor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radContractor.Size = new System.Drawing.Size(118, 25);
-            this.radContractor.TabIndex = 65;
-            this.radContractor.TabStop = true;
-            this.radContractor.Text = "مقاول";
-            this.radContractor.UseVisualStyleBackColor = false;
-            this.radContractor.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
-            // 
-            // radEng
-            // 
-            this.radEng.BackColor = System.Drawing.Color.White;
-            this.radEng.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radEng.Location = new System.Drawing.Point(891, 31);
-            this.radEng.Name = "radEng";
-            this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(121, 25);
-            this.radEng.TabIndex = 64;
-            this.radEng.TabStop = true;
-            this.radEng.Text = "مهندس";
-            this.radEng.UseVisualStyleBackColor = false;
-            this.radEng.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            this.labelBank.Visible = false;
             // 
             // txtOperationNumber
             // 
-            this.txtOperationNumber.Location = new System.Drawing.Point(545, 473);
+            this.txtOperationNumber.Location = new System.Drawing.Point(548, 458);
             this.txtOperationNumber.Name = "txtOperationNumber";
-            this.txtOperationNumber.Size = new System.Drawing.Size(368, 24);
+            this.txtOperationNumber.Size = new System.Drawing.Size(388, 24);
             this.txtOperationNumber.TabIndex = 63;
-            this.txtOperationNumber.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // txtVisaType
             // 
-            this.txtVisaType.Location = new System.Drawing.Point(545, 445);
+            this.txtVisaType.Location = new System.Drawing.Point(548, 430);
             this.txtVisaType.Name = "txtVisaType";
-            this.txtVisaType.Size = new System.Drawing.Size(368, 24);
+            this.txtVisaType.Size = new System.Drawing.Size(388, 24);
             this.txtVisaType.TabIndex = 62;
-            this.txtVisaType.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // layoutControl2
             // 
@@ -552,46 +428,46 @@
             this.layoutControl2.Controls.Add(this.radioButtonSafe);
             this.layoutControl2.Controls.Add(this.radioButtonBank);
             this.layoutControl2.Controls.Add(this.label11);
-            this.layoutControl2.Location = new System.Drawing.Point(521, 158);
+            this.layoutControl2.Location = new System.Drawing.Point(524, 132);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl2.Root = this.Root;
-            this.layoutControl2.Size = new System.Drawing.Size(515, 112);
+            this.layoutControl2.Size = new System.Drawing.Size(512, 112);
             this.layoutControl2.TabIndex = 61;
             this.layoutControl2.Text = "layoutControl2";
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(156, 12);
+            this.label14.Location = new System.Drawing.Point(155, 12);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 25);
+            this.label14.Size = new System.Drawing.Size(91, 25);
             this.label14.TabIndex = 64;
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(429, 12);
+            this.label13.Location = new System.Drawing.Point(426, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 25);
             this.label13.TabIndex = 63;
             // 
             // layoutControl4
             // 
-            this.layoutControl4.Controls.Add(this.label2);
+            this.layoutControl4.Controls.Add(this.label3);
             this.layoutControl4.Controls.Add(this.radBankAccount);
             this.layoutControl4.Location = new System.Drawing.Point(12, 41);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl4.Root = this.layoutControlGroup4;
-            this.layoutControl4.Size = new System.Drawing.Size(236, 59);
+            this.layoutControl4.Size = new System.Drawing.Size(234, 59);
             this.layoutControl4.TabIndex = 62;
             this.layoutControl4.Text = "layoutControl4";
             // 
-            // label2
+            // label3
             // 
-            this.label2.Location = new System.Drawing.Point(162, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 25);
-            this.label2.TabIndex = 5;
+            this.label3.Location = new System.Drawing.Point(161, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 25);
+            this.label3.TabIndex = 7;
             // 
             // radBankAccount
             // 
@@ -599,7 +475,7 @@
             this.radBankAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.radBankAccount.Location = new System.Drawing.Point(12, 12);
             this.radBankAccount.Name = "radBankAccount";
-            this.radBankAccount.Size = new System.Drawing.Size(146, 25);
+            this.radBankAccount.Size = new System.Drawing.Size(145, 25);
             this.radBankAccount.TabIndex = 4;
             this.radBankAccount.TabStop = true;
             this.radBankAccount.Text = "حساب بنكى";
@@ -613,9 +489,9 @@
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem30,
             this.emptySpaceItem4,
-            this.layoutControlItem10});
+            this.layoutControlItem8});
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(236, 59);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(234, 59);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem30
@@ -623,7 +499,7 @@
             this.layoutControlItem30.Control = this.radBankAccount;
             this.layoutControlItem30.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(150, 29);
+            this.layoutControlItem30.Size = new System.Drawing.Size(149, 29);
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
@@ -632,28 +508,28 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(216, 10);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(214, 10);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem10
+            // layoutControlItem8
             // 
-            this.layoutControlItem10.Control = this.label2;
-            this.layoutControlItem10.Location = new System.Drawing.Point(150, 0);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(66, 29);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
+            this.layoutControlItem8.Control = this.label3;
+            this.layoutControlItem8.Location = new System.Drawing.Point(149, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(65, 29);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem8.TextVisible = false;
             // 
             // layoutControl3
             // 
             this.layoutControl3.Controls.Add(this.radCash);
             this.layoutControl3.Controls.Add(this.label6);
             this.layoutControl3.Controls.Add(this.radCredit);
-            this.layoutControl3.Location = new System.Drawing.Point(277, 41);
+            this.layoutControl3.Location = new System.Drawing.Point(275, 41);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl3.Root = this.layoutControlGroup3;
-            this.layoutControl3.Size = new System.Drawing.Size(226, 59);
+            this.layoutControl3.Size = new System.Drawing.Size(225, 59);
             this.layoutControl3.TabIndex = 61;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -664,7 +540,7 @@
             this.radCash.Enabled = false;
             this.radCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.radCash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radCash.Location = new System.Drawing.Point(134, 12);
+            this.radCash.Location = new System.Drawing.Point(133, 12);
             this.radCash.Name = "radCash";
             this.radCash.Size = new System.Drawing.Size(80, 25);
             this.radCash.TabIndex = 37;
@@ -677,7 +553,7 @@
             // label6
             // 
             this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(109, 12);
+            this.label6.Location = new System.Drawing.Point(108, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(21, 25);
             this.label6.TabIndex = 40;
@@ -691,7 +567,7 @@
             this.radCredit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.radCredit.Location = new System.Drawing.Point(12, 12);
             this.radCredit.Name = "radCredit";
-            this.radCredit.Size = new System.Drawing.Size(93, 25);
+            this.radCredit.Size = new System.Drawing.Size(92, 25);
             this.radCredit.TabIndex = 38;
             this.radCredit.Text = "شيك";
             this.radCredit.UseVisualStyleBackColor = false;
@@ -708,13 +584,13 @@
             this.layoutControlItem1,
             this.layoutControlItem20});
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(226, 59);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(225, 59);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.radCash;
-            this.layoutControlItem19.Location = new System.Drawing.Point(122, 0);
+            this.layoutControlItem19.Location = new System.Drawing.Point(121, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Size = new System.Drawing.Size(84, 29);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
@@ -725,13 +601,13 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(206, 10);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(205, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.label6;
-            this.layoutControlItem1.Location = new System.Drawing.Point(97, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(96, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(25, 29);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -742,7 +618,7 @@
             this.layoutControlItem20.Control = this.radCredit;
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(97, 29);
+            this.layoutControlItem20.Size = new System.Drawing.Size(96, 29);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
@@ -751,9 +627,9 @@
             this.radioButtonSafe.BackColor = System.Drawing.Color.White;
             this.radioButtonSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonSafe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioButtonSafe.Location = new System.Drawing.Point(277, 12);
+            this.radioButtonSafe.Location = new System.Drawing.Point(275, 12);
             this.radioButtonSafe.Name = "radioButtonSafe";
-            this.radioButtonSafe.Size = new System.Drawing.Size(148, 25);
+            this.radioButtonSafe.Size = new System.Drawing.Size(147, 25);
             this.radioButtonSafe.TabIndex = 58;
             this.radioButtonSafe.Text = "خزينة";
             this.radioButtonSafe.UseVisualStyleBackColor = false;
@@ -766,7 +642,7 @@
             this.radioButtonBank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radioButtonBank.Location = new System.Drawing.Point(12, 12);
             this.radioButtonBank.Name = "radioButtonBank";
-            this.radioButtonBank.Size = new System.Drawing.Size(140, 25);
+            this.radioButtonBank.Size = new System.Drawing.Size(139, 25);
             this.radioButtonBank.TabIndex = 59;
             this.radioButtonBank.Text = "بنك";
             this.radioButtonBank.UseVisualStyleBackColor = false;
@@ -775,7 +651,7 @@
             // label11
             // 
             this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(252, 12);
+            this.label11.Location = new System.Drawing.Point(250, 12);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(21, 88);
             this.label11.TabIndex = 60;
@@ -793,22 +669,22 @@
             this.layoutControlItem57,
             this.layoutControlItem58});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(515, 112);
+            this.Root.Size = new System.Drawing.Size(512, 112);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.radioButtonSafe;
-            this.layoutControlItem11.Location = new System.Drawing.Point(265, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(263, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(152, 29);
+            this.layoutControlItem11.Size = new System.Drawing.Size(151, 29);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.label11;
-            this.layoutControlItem23.Location = new System.Drawing.Point(240, 0);
+            this.layoutControlItem23.Location = new System.Drawing.Point(238, 0);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Size = new System.Drawing.Size(25, 92);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
@@ -819,7 +695,7 @@
             this.layoutControlItem22.Control = this.radioButtonBank;
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(144, 29);
+            this.layoutControlItem22.Size = new System.Drawing.Size(143, 29);
             this.layoutControlItem22.Text = "بنك";
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
@@ -827,9 +703,9 @@
             // layoutControlItem28
             // 
             this.layoutControlItem28.Control = this.layoutControl3;
-            this.layoutControlItem28.Location = new System.Drawing.Point(265, 29);
+            this.layoutControlItem28.Location = new System.Drawing.Point(263, 29);
             this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(230, 63);
+            this.layoutControlItem28.Size = new System.Drawing.Size(229, 63);
             this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem28.TextVisible = false;
             // 
@@ -838,14 +714,14 @@
             this.layoutControlItem29.Control = this.layoutControl4;
             this.layoutControlItem29.Location = new System.Drawing.Point(0, 29);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(240, 63);
+            this.layoutControlItem29.Size = new System.Drawing.Size(238, 63);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
             // layoutControlItem57
             // 
             this.layoutControlItem57.Control = this.label13;
-            this.layoutControlItem57.Location = new System.Drawing.Point(417, 0);
+            this.layoutControlItem57.Location = new System.Drawing.Point(414, 0);
             this.layoutControlItem57.Name = "layoutControlItem57";
             this.layoutControlItem57.Size = new System.Drawing.Size(78, 29);
             this.layoutControlItem57.TextSize = new System.Drawing.Size(0, 0);
@@ -854,24 +730,35 @@
             // layoutControlItem58
             // 
             this.layoutControlItem58.Control = this.label14;
-            this.layoutControlItem58.Location = new System.Drawing.Point(144, 0);
+            this.layoutControlItem58.Location = new System.Drawing.Point(143, 0);
             this.layoutControlItem58.Name = "layoutControlItem58";
-            this.layoutControlItem58.Size = new System.Drawing.Size(96, 29);
+            this.layoutControlItem58.Size = new System.Drawing.Size(95, 29);
             this.layoutControlItem58.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem58.TextVisible = false;
             // 
             // label24
             // 
             this.label24.BackColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(394, 158);
+            this.label24.Location = new System.Drawing.Point(394, 132);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(123, 369);
+            this.label24.Size = new System.Drawing.Size(126, 379);
             this.label24.TabIndex = 57;
+            // 
+            // cmbBranch
+            // 
+            this.cmbBranch.Enabled = false;
+            this.cmbBranch.FormattingEnabled = true;
+            this.cmbBranch.Location = new System.Drawing.Point(548, 31);
+            this.cmbBranch.Name = "cmbBranch";
+            this.cmbBranch.Size = new System.Drawing.Size(388, 24);
+            this.cmbBranch.TabIndex = 56;
+            this.cmbBranch.SelectedValueChanged += new System.EventHandler(this.cmbBranch_SelectedValueChanged);
+            this.cmbBranch.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label32
             // 
             this.label32.BackColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(7, 531);
+            this.label32.Location = new System.Drawing.Point(7, 515);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(1029, 20);
             this.label32.TabIndex = 55;
@@ -887,48 +774,49 @@
             // 
             // txtCheckNumber
             // 
-            this.txtCheckNumber.Location = new System.Drawing.Point(545, 417);
+            this.txtCheckNumber.Location = new System.Drawing.Point(548, 402);
             this.txtCheckNumber.Name = "txtCheckNumber";
-            this.txtCheckNumber.Size = new System.Drawing.Size(368, 24);
+            this.txtCheckNumber.Size = new System.Drawing.Size(388, 24);
             this.txtCheckNumber.TabIndex = 49;
             this.txtCheckNumber.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(545, 389);
+            this.dateEdit1.Location = new System.Drawing.Point(548, 374);
             this.dateEdit1.Name = "dateEdit1";
             this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(368, 20);
+            this.dateEdit1.Size = new System.Drawing.Size(388, 20);
             this.dateEdit1.StyleController = this.dataLayoutControl1;
             this.dateEdit1.TabIndex = 48;
             this.dateEdit1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // txtDescrip
             // 
-            this.txtDescrip.Location = new System.Drawing.Point(545, 330);
+            this.txtDescrip.Location = new System.Drawing.Point(548, 304);
             this.txtDescrip.Multiline = true;
             this.txtDescrip.Name = "txtDescrip";
-            this.txtDescrip.Size = new System.Drawing.Size(368, 55);
+            this.txtDescrip.Size = new System.Drawing.Size(388, 66);
             this.txtDescrip.TabIndex = 47;
             // 
             // txtPullMoney
             // 
-            this.txtPullMoney.Location = new System.Drawing.Point(545, 302);
+            this.txtPullMoney.Location = new System.Drawing.Point(548, 276);
             this.txtPullMoney.Name = "txtPullMoney";
-            this.txtPullMoney.Size = new System.Drawing.Size(368, 24);
+            this.txtPullMoney.Size = new System.Drawing.Size(388, 24);
             this.txtPullMoney.TabIndex = 46;
             this.txtPullMoney.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // cmbBank
             // 
+            this.cmbBank.Enabled = false;
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(545, 274);
+            this.cmbBank.Location = new System.Drawing.Point(548, 248);
             this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(368, 24);
+            this.cmbBank.Size = new System.Drawing.Size(388, 24);
             this.cmbBank.TabIndex = 44;
             this.cmbBank.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -939,9 +827,9 @@
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.groupBox1.Location = new System.Drawing.Point(7, 158);
+            this.groupBox1.Location = new System.Drawing.Point(7, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(383, 369);
+            this.groupBox1.Size = new System.Drawing.Size(383, 379);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "الفئات";
@@ -978,16 +866,16 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl1.Root = this.layoutControlGroup2;
-            this.layoutControl1.Size = new System.Drawing.Size(377, 347);
+            this.layoutControl1.Size = new System.Drawing.Size(377, 357);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // txtPaidRest2
             // 
-            this.txtPaidRest2.Enabled = false;
             this.txtPaidRest2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPaidRest2.Location = new System.Drawing.Point(12, 303);
+            this.txtPaidRest2.Location = new System.Drawing.Point(12, 301);
             this.txtPaidRest2.Name = "txtPaidRest2";
+            this.txtPaidRest2.ReadOnly = true;
             this.txtPaidRest2.Size = new System.Drawing.Size(96, 20);
             this.txtPaidRest2.TabIndex = 28;
             this.txtPaidRest2.Text = "0";
@@ -996,13 +884,13 @@
             // 
             this.label12.Location = new System.Drawing.Point(164, 12);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(48, 311);
+            this.label12.Size = new System.Drawing.Size(48, 309);
             this.label12.TabIndex = 27;
             // 
             // rQ
             // 
             this.rQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rQ.Location = new System.Drawing.Point(12, 255);
+            this.rQ.Location = new System.Drawing.Point(12, 253);
             this.rQ.Name = "rQ";
             this.rQ.Size = new System.Drawing.Size(96, 20);
             this.rQ.TabIndex = 26;
@@ -1012,7 +900,7 @@
             // tQ
             // 
             this.tQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tQ.Location = new System.Drawing.Point(216, 255);
+            this.tQ.Location = new System.Drawing.Point(216, 253);
             this.tQ.Name = "tQ";
             this.tQ.Size = new System.Drawing.Size(97, 20);
             this.tQ.TabIndex = 25;
@@ -1022,7 +910,7 @@
             // r1
             // 
             this.r1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r1.Location = new System.Drawing.Point(12, 207);
+            this.r1.Location = new System.Drawing.Point(12, 205);
             this.r1.Name = "r1";
             this.r1.Size = new System.Drawing.Size(96, 20);
             this.r1.TabIndex = 24;
@@ -1032,7 +920,7 @@
             // t1
             // 
             this.t1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1.Location = new System.Drawing.Point(216, 207);
+            this.t1.Location = new System.Drawing.Point(216, 205);
             this.t1.Name = "t1";
             this.t1.Size = new System.Drawing.Size(97, 20);
             this.t1.TabIndex = 23;
@@ -1041,18 +929,19 @@
             // 
             // RestMoney
             // 
-            this.RestMoney.Enabled = false;
             this.RestMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RestMoney.Location = new System.Drawing.Point(12, 279);
+            this.RestMoney.Location = new System.Drawing.Point(12, 277);
             this.RestMoney.Name = "RestMoney";
+            this.RestMoney.ReadOnly = true;
             this.RestMoney.Size = new System.Drawing.Size(96, 20);
             this.RestMoney.TabIndex = 22;
             this.RestMoney.Text = "0";
+            this.RestMoney.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // rH
             // 
             this.rH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rH.Location = new System.Drawing.Point(12, 231);
+            this.rH.Location = new System.Drawing.Point(12, 229);
             this.rH.Name = "rH";
             this.rH.Size = new System.Drawing.Size(96, 20);
             this.rH.TabIndex = 21;
@@ -1062,7 +951,7 @@
             // r5
             // 
             this.r5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r5.Location = new System.Drawing.Point(12, 183);
+            this.r5.Location = new System.Drawing.Point(12, 181);
             this.r5.Name = "r5";
             this.r5.Size = new System.Drawing.Size(96, 20);
             this.r5.TabIndex = 20;
@@ -1072,7 +961,7 @@
             // r10
             // 
             this.r10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r10.Location = new System.Drawing.Point(12, 159);
+            this.r10.Location = new System.Drawing.Point(12, 157);
             this.r10.Name = "r10";
             this.r10.Size = new System.Drawing.Size(96, 20);
             this.r10.TabIndex = 19;
@@ -1082,7 +971,7 @@
             // r20
             // 
             this.r20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r20.Location = new System.Drawing.Point(12, 135);
+            this.r20.Location = new System.Drawing.Point(12, 133);
             this.r20.Name = "r20";
             this.r20.Size = new System.Drawing.Size(96, 20);
             this.r20.TabIndex = 18;
@@ -1092,7 +981,7 @@
             // r50
             // 
             this.r50.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r50.Location = new System.Drawing.Point(12, 111);
+            this.r50.Location = new System.Drawing.Point(12, 109);
             this.r50.Name = "r50";
             this.r50.Size = new System.Drawing.Size(96, 20);
             this.r50.TabIndex = 17;
@@ -1101,28 +990,30 @@
             // 
             // txtPaidRest
             // 
-            this.txtPaidRest.Enabled = false;
             this.txtPaidRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPaidRest.Location = new System.Drawing.Point(216, 303);
+            this.txtPaidRest.Location = new System.Drawing.Point(216, 301);
             this.txtPaidRest.Name = "txtPaidRest";
+            this.txtPaidRest.ReadOnly = true;
             this.txtPaidRest.Size = new System.Drawing.Size(97, 20);
             this.txtPaidRest.TabIndex = 16;
             this.txtPaidRest.Text = "0";
+            this.txtPaidRest.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // PaidMoney
             // 
-            this.PaidMoney.Enabled = false;
             this.PaidMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PaidMoney.Location = new System.Drawing.Point(216, 279);
+            this.PaidMoney.Location = new System.Drawing.Point(216, 277);
             this.PaidMoney.Name = "PaidMoney";
+            this.PaidMoney.ReadOnly = true;
             this.PaidMoney.Size = new System.Drawing.Size(97, 20);
             this.PaidMoney.TabIndex = 15;
             this.PaidMoney.Text = "0";
+            this.PaidMoney.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // tH
             // 
             this.tH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tH.Location = new System.Drawing.Point(216, 231);
+            this.tH.Location = new System.Drawing.Point(216, 229);
             this.tH.Name = "tH";
             this.tH.Size = new System.Drawing.Size(97, 20);
             this.tH.TabIndex = 14;
@@ -1132,7 +1023,7 @@
             // t5
             // 
             this.t5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t5.Location = new System.Drawing.Point(216, 183);
+            this.t5.Location = new System.Drawing.Point(216, 181);
             this.t5.Name = "t5";
             this.t5.Size = new System.Drawing.Size(97, 20);
             this.t5.TabIndex = 13;
@@ -1142,7 +1033,7 @@
             // t10
             // 
             this.t10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t10.Location = new System.Drawing.Point(216, 159);
+            this.t10.Location = new System.Drawing.Point(216, 157);
             this.t10.Name = "t10";
             this.t10.Size = new System.Drawing.Size(97, 20);
             this.t10.TabIndex = 12;
@@ -1152,7 +1043,7 @@
             // t20
             // 
             this.t20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t20.Location = new System.Drawing.Point(216, 135);
+            this.t20.Location = new System.Drawing.Point(216, 133);
             this.t20.Name = "t20";
             this.t20.Size = new System.Drawing.Size(97, 20);
             this.t20.TabIndex = 11;
@@ -1162,7 +1053,7 @@
             // t50
             // 
             this.t50.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t50.Location = new System.Drawing.Point(216, 111);
+            this.t50.Location = new System.Drawing.Point(216, 109);
             this.t50.Name = "t50";
             this.t50.Size = new System.Drawing.Size(97, 20);
             this.t50.TabIndex = 10;
@@ -1172,7 +1063,7 @@
             // r100
             // 
             this.r100.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r100.Location = new System.Drawing.Point(12, 87);
+            this.r100.Location = new System.Drawing.Point(12, 85);
             this.r100.Name = "r100";
             this.r100.Size = new System.Drawing.Size(96, 20);
             this.r100.TabIndex = 9;
@@ -1182,7 +1073,7 @@
             // t100
             // 
             this.t100.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t100.Location = new System.Drawing.Point(216, 87);
+            this.t100.Location = new System.Drawing.Point(216, 85);
             this.t100.Name = "t100";
             this.t100.Size = new System.Drawing.Size(97, 20);
             this.t100.TabIndex = 8;
@@ -1192,7 +1083,7 @@
             // r200
             // 
             this.r200.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.r200.Location = new System.Drawing.Point(12, 63);
+            this.r200.Location = new System.Drawing.Point(12, 61);
             this.r200.Name = "r200";
             this.r200.Size = new System.Drawing.Size(96, 20);
             this.r200.TabIndex = 7;
@@ -1202,7 +1093,7 @@
             // t200
             // 
             this.t200.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t200.Location = new System.Drawing.Point(216, 63);
+            this.t200.Location = new System.Drawing.Point(216, 61);
             this.t200.Name = "t200";
             this.t200.Size = new System.Drawing.Size(97, 20);
             this.t200.TabIndex = 6;
@@ -1213,7 +1104,7 @@
             // 
             this.label10.Location = new System.Drawing.Point(12, 12);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(148, 47);
+            this.label10.Size = new System.Drawing.Size(148, 45);
             this.label10.TabIndex = 5;
             this.label10.Text = "الباقى";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1222,14 +1113,13 @@
             // 
             this.label9.Location = new System.Drawing.Point(216, 12);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(149, 47);
+            this.label9.Size = new System.Drawing.Size(149, 45);
             this.label9.TabIndex = 4;
             this.label9.Text = "المسحوب";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // layoutControlGroup2
             // 
-            this.layoutControlGroup2.DefaultLayoutType = DevExpress.XtraLayout.Utils.LayoutType.Horizontal;
             this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup2.GroupBordersVisible = false;
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -1260,25 +1150,25 @@
             this.layoutControlItemPull,
             this.layoutControlItemRest});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(377, 347);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(377, 357);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 315);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 313);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(357, 12);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(357, 24);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem34
             // 
             this.layoutControlItem34.Control = this.label9;
             this.layoutControlItem34.Location = new System.Drawing.Point(204, 0);
-            this.layoutControlItem34.MaxSize = new System.Drawing.Size(153, 51);
-            this.layoutControlItem34.MinSize = new System.Drawing.Size(153, 51);
+            this.layoutControlItem34.MaxSize = new System.Drawing.Size(153, 49);
+            this.layoutControlItem34.MinSize = new System.Drawing.Size(153, 49);
             this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(153, 51);
+            this.layoutControlItem34.Size = new System.Drawing.Size(153, 49);
             this.layoutControlItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem34.TextVisible = false;
@@ -1287,10 +1177,10 @@
             // 
             this.layoutControlItem35.Control = this.label10;
             this.layoutControlItem35.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem35.MaxSize = new System.Drawing.Size(152, 51);
-            this.layoutControlItem35.MinSize = new System.Drawing.Size(152, 51);
+            this.layoutControlItem35.MaxSize = new System.Drawing.Size(152, 49);
+            this.layoutControlItem35.MinSize = new System.Drawing.Size(152, 49);
             this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(152, 51);
+            this.layoutControlItem35.Size = new System.Drawing.Size(152, 49);
             this.layoutControlItem35.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
@@ -1302,7 +1192,7 @@
             this.layoutControlItem36.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem36.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem36.Control = this.t200;
-            this.layoutControlItem36.Location = new System.Drawing.Point(204, 51);
+            this.layoutControlItem36.Location = new System.Drawing.Point(204, 49);
             this.layoutControlItem36.Name = "layoutControlItem36";
             this.layoutControlItem36.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem36.Text = "200";
@@ -1315,7 +1205,7 @@
             this.layoutControlItem37.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem37.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem37.Control = this.r200;
-            this.layoutControlItem37.Location = new System.Drawing.Point(0, 51);
+            this.layoutControlItem37.Location = new System.Drawing.Point(0, 49);
             this.layoutControlItem37.Name = "layoutControlItem37";
             this.layoutControlItem37.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem37.Text = "200";
@@ -1328,7 +1218,7 @@
             this.layoutControlItem38.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem38.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem38.Control = this.t100;
-            this.layoutControlItem38.Location = new System.Drawing.Point(204, 75);
+            this.layoutControlItem38.Location = new System.Drawing.Point(204, 73);
             this.layoutControlItem38.Name = "layoutControlItem38";
             this.layoutControlItem38.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem38.Text = "100";
@@ -1341,7 +1231,7 @@
             this.layoutControlItem39.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem39.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem39.Control = this.r100;
-            this.layoutControlItem39.Location = new System.Drawing.Point(0, 75);
+            this.layoutControlItem39.Location = new System.Drawing.Point(0, 73);
             this.layoutControlItem39.Name = "layoutControlItem39";
             this.layoutControlItem39.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem39.Text = "100";
@@ -1354,7 +1244,7 @@
             this.layoutControlItem40.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem40.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem40.Control = this.t50;
-            this.layoutControlItem40.Location = new System.Drawing.Point(204, 99);
+            this.layoutControlItem40.Location = new System.Drawing.Point(204, 97);
             this.layoutControlItem40.Name = "layoutControlItem40";
             this.layoutControlItem40.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem40.Text = "50";
@@ -1367,7 +1257,7 @@
             this.layoutControlItem41.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem41.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem41.Control = this.t20;
-            this.layoutControlItem41.Location = new System.Drawing.Point(204, 123);
+            this.layoutControlItem41.Location = new System.Drawing.Point(204, 121);
             this.layoutControlItem41.Name = "layoutControlItem41";
             this.layoutControlItem41.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem41.Text = "20";
@@ -1380,7 +1270,7 @@
             this.layoutControlItem42.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem42.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem42.Control = this.t10;
-            this.layoutControlItem42.Location = new System.Drawing.Point(204, 147);
+            this.layoutControlItem42.Location = new System.Drawing.Point(204, 145);
             this.layoutControlItem42.Name = "layoutControlItem42";
             this.layoutControlItem42.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem42.Text = "10";
@@ -1393,7 +1283,7 @@
             this.layoutControlItem43.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem43.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem43.Control = this.t5;
-            this.layoutControlItem43.Location = new System.Drawing.Point(204, 171);
+            this.layoutControlItem43.Location = new System.Drawing.Point(204, 169);
             this.layoutControlItem43.Name = "layoutControlItem43";
             this.layoutControlItem43.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem43.Text = "5";
@@ -1406,7 +1296,7 @@
             this.layoutControlItem44.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem44.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem44.Control = this.tH;
-            this.layoutControlItem44.Location = new System.Drawing.Point(204, 219);
+            this.layoutControlItem44.Location = new System.Drawing.Point(204, 217);
             this.layoutControlItem44.Name = "layoutControlItem44";
             this.layoutControlItem44.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem44.Text = "0.5";
@@ -1419,7 +1309,7 @@
             this.layoutControlItem45.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem45.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem45.Control = this.PaidMoney;
-            this.layoutControlItem45.Location = new System.Drawing.Point(204, 267);
+            this.layoutControlItem45.Location = new System.Drawing.Point(204, 265);
             this.layoutControlItem45.Name = "layoutControlItem45";
             this.layoutControlItem45.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem45.Text = "الاجمالى";
@@ -1432,7 +1322,7 @@
             this.layoutControlItem47.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem47.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem47.Control = this.r50;
-            this.layoutControlItem47.Location = new System.Drawing.Point(0, 99);
+            this.layoutControlItem47.Location = new System.Drawing.Point(0, 97);
             this.layoutControlItem47.Name = "layoutControlItem47";
             this.layoutControlItem47.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem47.Text = "50";
@@ -1445,7 +1335,7 @@
             this.layoutControlItem48.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem48.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem48.Control = this.r20;
-            this.layoutControlItem48.Location = new System.Drawing.Point(0, 123);
+            this.layoutControlItem48.Location = new System.Drawing.Point(0, 121);
             this.layoutControlItem48.Name = "layoutControlItem48";
             this.layoutControlItem48.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem48.Text = "20";
@@ -1458,7 +1348,7 @@
             this.layoutControlItem49.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem49.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem49.Control = this.r10;
-            this.layoutControlItem49.Location = new System.Drawing.Point(0, 147);
+            this.layoutControlItem49.Location = new System.Drawing.Point(0, 145);
             this.layoutControlItem49.Name = "layoutControlItem49";
             this.layoutControlItem49.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem49.Text = "10";
@@ -1471,7 +1361,7 @@
             this.layoutControlItem50.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem50.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem50.Control = this.r5;
-            this.layoutControlItem50.Location = new System.Drawing.Point(0, 171);
+            this.layoutControlItem50.Location = new System.Drawing.Point(0, 169);
             this.layoutControlItem50.Name = "layoutControlItem50";
             this.layoutControlItem50.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem50.Text = "5";
@@ -1484,7 +1374,7 @@
             this.layoutControlItem51.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem51.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem51.Control = this.rH;
-            this.layoutControlItem51.Location = new System.Drawing.Point(0, 219);
+            this.layoutControlItem51.Location = new System.Drawing.Point(0, 217);
             this.layoutControlItem51.Name = "layoutControlItem51";
             this.layoutControlItem51.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem51.Text = "0.5";
@@ -1497,7 +1387,7 @@
             this.layoutControlItem52.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem52.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem52.Control = this.RestMoney;
-            this.layoutControlItem52.Location = new System.Drawing.Point(0, 267);
+            this.layoutControlItem52.Location = new System.Drawing.Point(0, 265);
             this.layoutControlItem52.Name = "layoutControlItem52";
             this.layoutControlItem52.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem52.Text = "الاجمالى";
@@ -1510,7 +1400,7 @@
             this.layoutControlItem24.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem24.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem24.Control = this.t1;
-            this.layoutControlItem24.Location = new System.Drawing.Point(204, 195);
+            this.layoutControlItem24.Location = new System.Drawing.Point(204, 193);
             this.layoutControlItem24.Name = "layoutControlItem24";
             this.layoutControlItem24.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem24.Text = "1";
@@ -1523,7 +1413,7 @@
             this.layoutControlItem25.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem25.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem25.Control = this.r1;
-            this.layoutControlItem25.Location = new System.Drawing.Point(0, 195);
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 193);
             this.layoutControlItem25.Name = "layoutControlItem25";
             this.layoutControlItem25.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem25.Text = "1";
@@ -1536,7 +1426,7 @@
             this.layoutControlItem26.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem26.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem26.Control = this.tQ;
-            this.layoutControlItem26.Location = new System.Drawing.Point(204, 243);
+            this.layoutControlItem26.Location = new System.Drawing.Point(204, 241);
             this.layoutControlItem26.Name = "layoutControlItem26";
             this.layoutControlItem26.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItem26.Text = "0.25";
@@ -1549,7 +1439,7 @@
             this.layoutControlItem27.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem27.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem27.Control = this.rQ;
-            this.layoutControlItem27.Location = new System.Drawing.Point(0, 243);
+            this.layoutControlItem27.Location = new System.Drawing.Point(0, 241);
             this.layoutControlItem27.Name = "layoutControlItem27";
             this.layoutControlItem27.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItem27.Text = "0.25";
@@ -1560,7 +1450,7 @@
             this.layoutControlItem55.Control = this.label12;
             this.layoutControlItem55.Location = new System.Drawing.Point(152, 0);
             this.layoutControlItem55.Name = "layoutControlItem55";
-            this.layoutControlItem55.Size = new System.Drawing.Size(52, 315);
+            this.layoutControlItem55.Size = new System.Drawing.Size(52, 313);
             this.layoutControlItem55.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem55.TextVisible = false;
             // 
@@ -1573,7 +1463,7 @@
             this.layoutControlItemPull.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemPull.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemPull.Control = this.txtPaidRest;
-            this.layoutControlItemPull.Location = new System.Drawing.Point(204, 291);
+            this.layoutControlItemPull.Location = new System.Drawing.Point(204, 289);
             this.layoutControlItemPull.Name = "layoutControlItemPull";
             this.layoutControlItemPull.Size = new System.Drawing.Size(153, 24);
             this.layoutControlItemPull.Text = "الفرق";
@@ -1588,7 +1478,7 @@
             this.layoutControlItemRest.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemRest.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemRest.Control = this.txtPaidRest2;
-            this.layoutControlItemRest.Location = new System.Drawing.Point(0, 291);
+            this.layoutControlItemRest.Location = new System.Drawing.Point(0, 289);
             this.layoutControlItemRest.Name = "layoutControlItemRest";
             this.layoutControlItemRest.Size = new System.Drawing.Size(152, 24);
             this.layoutControlItemRest.Text = "الفرق";
@@ -1598,11 +1488,73 @@
             // 
             this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(7, 134);
+            this.label5.Location = new System.Drawing.Point(7, 107);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(1029, 20);
+            this.label5.Size = new System.Drawing.Size(1029, 21);
             this.label5.TabIndex = 39;
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(524, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 20);
+            this.label4.TabIndex = 36;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtPaidMoney
+            // 
+            this.txtPaidMoney.Enabled = false;
+            this.txtPaidMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaidMoney.Location = new System.Drawing.Point(31, 83);
+            this.txtPaidMoney.Name = "txtPaidMoney";
+            this.txtPaidMoney.Size = new System.Drawing.Size(389, 20);
+            this.txtPaidMoney.TabIndex = 35;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(524, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 24);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "*";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtBillNumber
+            // 
+            this.txtBillNumber.Enabled = false;
+            this.txtBillNumber.Location = new System.Drawing.Point(31, 31);
+            this.txtBillNumber.Name = "txtBillNumber";
+            this.txtBillNumber.Size = new System.Drawing.Size(389, 24);
+            this.txtBillNumber.TabIndex = 28;
+            this.txtBillNumber.TextChanged += new System.EventHandler(this.txtBillNumber_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(7, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(20, 24);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelPaid
+            // 
+            this.labelPaid.BackColor = System.Drawing.Color.White;
+            this.labelPaid.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelPaid.ForeColor = System.Drawing.Color.Red;
+            this.labelPaid.Location = new System.Drawing.Point(7, 83);
+            this.labelPaid.Name = "labelPaid";
+            this.labelPaid.Size = new System.Drawing.Size(20, 20);
+            this.labelPaid.TabIndex = 12;
+            this.labelPaid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelPaid.Visible = false;
             // 
             // tableLayoutPanel2
             // 
@@ -1612,12 +1564,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.97305F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.51347F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 555);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 539);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1029, 38);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1029, 54);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // btnAdd
@@ -1637,9 +1589,19 @@
             this.btnAdd.Location = new System.Drawing.Point(462, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(106, 30);
+            this.btnAdd.Size = new System.Drawing.Size(106, 46);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtTotalCost
+            // 
+            this.txtTotalCost.Enabled = false;
+            this.txtTotalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalCost.Location = new System.Drawing.Point(548, 83);
+            this.txtTotalCost.Multiline = true;
+            this.txtTotalCost.Name = "txtTotalCost";
+            this.txtTotalCost.Size = new System.Drawing.Size(388, 20);
+            this.txtTotalCost.TabIndex = 6;
             // 
             // layoutControlGroup1
             // 
@@ -1650,7 +1612,14 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.emptySpaceItem1,
+            this.layoutControlItemStock,
             this.layoutControlItem7,
+            this.layoutControlItem9,
+            this.layoutControlItem15,
+            this.layoutControlItem4,
+            this.layoutControlItem6,
+            this.layoutControlItem17,
+            this.layoutControlItem18,
             this.layoutControlItem21,
             this.layoutControlItem5,
             this.layoutControlItemBank,
@@ -1660,28 +1629,19 @@
             this.layoutControlItemCheck,
             this.layoutControlItem31,
             this.layoutControlItem32,
+            this.layoutControlItem33,
             this.layoutControlItem66,
             this.layoutControlItem2,
             this.layoutControlItemVisaType,
             this.layoutControlItemOperationNumber,
-            this.layoutControlItem8,
-            this.layoutControlItem12,
-            this.layoutControlItem13,
-            this.layoutControlItem14,
-            this.layoutControlItem15,
-            this.layoutControlItem16,
+            this.layoutControlItem59,
+            this.layoutControlItem60,
             this.layoutControlItem61,
             this.layoutControlItem62,
-            this.layoutControlItem3,
-            this.layoutControlItem60,
             this.layoutControlItem63,
-            this.layoutControlItem4,
-            this.layoutControlItem6,
-            this.layoutControlItem33,
-            this.layoutControlItem59,
             this.layoutControlItem64,
-            this.layoutControlItem18,
-            this.layoutControlItem9});
+            this.layoutControlItem65,
+            this.layoutControlItem3});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1691,37 +1651,119 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(514, 494);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(517, 479);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(519, 30);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(516, 29);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItemStock
+            // 
+            this.layoutControlItemStock.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItemStock.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItemStock.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItemStock.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItemStock.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItemStock.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItemStock.Control = this.txtTotalCost;
+            this.layoutControlItemStock.Location = new System.Drawing.Point(541, 76);
+            this.layoutControlItemStock.Name = "layoutControlItemStock";
+            this.layoutControlItemStock.Size = new System.Drawing.Size(492, 24);
+            this.layoutControlItemStock.Text = "اجمالى المبلغ";
+            this.layoutControlItemStock.TextLocation = DevExpress.Utils.Locations.Right;
+            this.layoutControlItemStock.TextSize = new System.Drawing.Size(97, 20);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.tableLayoutPanel2;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 548);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 532);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(1033, 42);
+            this.layoutControlItem7.Size = new System.Drawing.Size(1033, 58);
             this.layoutControlItem7.Text = " ";
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.labelPaid;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 76);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(24, 24);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.label7;
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem4.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem4.Control = this.txtBillNumber;
+            this.layoutControlItem4.Location = new System.Drawing.Point(24, 24);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(493, 28);
+            this.layoutControlItem4.Text = "رقم الفاتورة";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(97, 24);
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.label1;
+            this.layoutControlItem6.Location = new System.Drawing.Point(517, 24);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem17.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem17.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem17.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem17.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem17.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem17.Control = this.txtPaidMoney;
+            this.layoutControlItem17.Location = new System.Drawing.Point(24, 76);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(493, 24);
+            this.layoutControlItem17.Text = "المتبقى";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(97, 20);
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.label4;
+            this.layoutControlItem18.Location = new System.Drawing.Point(517, 76);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(24, 24);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
+            // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.label5;
-            this.layoutControlItem21.Location = new System.Drawing.Point(0, 127);
+            this.layoutControlItem21.Location = new System.Drawing.Point(0, 100);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(1033, 24);
+            this.layoutControlItem21.Size = new System.Drawing.Size(1033, 25);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.groupBox1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 151);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 125);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(387, 373);
+            this.layoutControlItem5.Size = new System.Drawing.Size(387, 383);
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -1735,11 +1777,11 @@
             this.layoutControlItemBank.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemBank.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemBank.Control = this.cmbBank;
-            this.layoutControlItemBank.Location = new System.Drawing.Point(538, 267);
+            this.layoutControlItemBank.Location = new System.Drawing.Point(541, 241);
             this.layoutControlItemBank.Name = "layoutControlItemBank";
-            this.layoutControlItemBank.Size = new System.Drawing.Size(495, 28);
+            this.layoutControlItemBank.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemBank.Text = "خزينة";
-            this.layoutControlItemBank.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemBank.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemMoney
@@ -1751,11 +1793,11 @@
             this.layoutControlItemMoney.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemMoney.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemMoney.Control = this.txtPullMoney;
-            this.layoutControlItemMoney.Location = new System.Drawing.Point(538, 295);
+            this.layoutControlItemMoney.Location = new System.Drawing.Point(541, 269);
             this.layoutControlItemMoney.Name = "layoutControlItemMoney";
-            this.layoutControlItemMoney.Size = new System.Drawing.Size(495, 28);
+            this.layoutControlItemMoney.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemMoney.Text = "المبلغ المسحوب";
-            this.layoutControlItemMoney.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemMoney.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemComment
@@ -1767,11 +1809,11 @@
             this.layoutControlItemComment.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemComment.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemComment.Control = this.txtDescrip;
-            this.layoutControlItemComment.Location = new System.Drawing.Point(538, 323);
+            this.layoutControlItemComment.Location = new System.Drawing.Point(541, 297);
             this.layoutControlItemComment.Name = "layoutControlItemComment";
-            this.layoutControlItemComment.Size = new System.Drawing.Size(495, 59);
+            this.layoutControlItemComment.Size = new System.Drawing.Size(492, 70);
             this.layoutControlItemComment.Text = "البيان";
-            this.layoutControlItemComment.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemComment.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemPayDate
@@ -1783,11 +1825,11 @@
             this.layoutControlItemPayDate.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemPayDate.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemPayDate.Control = this.dateEdit1;
-            this.layoutControlItemPayDate.Location = new System.Drawing.Point(538, 382);
+            this.layoutControlItemPayDate.Location = new System.Drawing.Point(541, 367);
             this.layoutControlItemPayDate.Name = "layoutControlItemPayDate";
-            this.layoutControlItemPayDate.Size = new System.Drawing.Size(495, 28);
+            this.layoutControlItemPayDate.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
-            this.layoutControlItemPayDate.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemPayDate.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemCheck
@@ -1799,11 +1841,11 @@
             this.layoutControlItemCheck.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemCheck.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemCheck.Control = this.txtCheckNumber;
-            this.layoutControlItemCheck.Location = new System.Drawing.Point(538, 410);
+            this.layoutControlItemCheck.Location = new System.Drawing.Point(541, 395);
             this.layoutControlItemCheck.Name = "layoutControlItemCheck";
-            this.layoutControlItemCheck.Size = new System.Drawing.Size(495, 28);
+            this.layoutControlItemCheck.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemCheck.Text = "رقم الشيك";
-            this.layoutControlItemCheck.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemCheck.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem31
@@ -1818,27 +1860,42 @@
             // layoutControlItem32
             // 
             this.layoutControlItem32.Control = this.label32;
-            this.layoutControlItem32.Location = new System.Drawing.Point(0, 524);
+            this.layoutControlItem32.Location = new System.Drawing.Point(0, 508);
             this.layoutControlItem32.Name = "layoutControlItem32";
             this.layoutControlItem32.Size = new System.Drawing.Size(1033, 24);
             this.layoutControlItem32.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem32.TextVisible = false;
             // 
+            // layoutControlItem33
+            // 
+            this.layoutControlItem33.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem33.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem33.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem33.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem33.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem33.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem33.Control = this.cmbBranch;
+            this.layoutControlItem33.Location = new System.Drawing.Point(541, 24);
+            this.layoutControlItem33.Name = "layoutControlItem33";
+            this.layoutControlItem33.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItem33.Text = "الفرع";
+            this.layoutControlItem33.TextSize = new System.Drawing.Size(97, 24);
+            // 
             // layoutControlItem66
             // 
             this.layoutControlItem66.Control = this.label24;
-            this.layoutControlItem66.Location = new System.Drawing.Point(387, 151);
+            this.layoutControlItem66.Location = new System.Drawing.Point(387, 125);
             this.layoutControlItem66.Name = "layoutControlItem66";
-            this.layoutControlItem66.Size = new System.Drawing.Size(127, 373);
+            this.layoutControlItem66.Size = new System.Drawing.Size(130, 383);
             this.layoutControlItem66.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem66.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.layoutControl2;
-            this.layoutControlItem2.Location = new System.Drawing.Point(514, 151);
+            this.layoutControlItem2.Location = new System.Drawing.Point(517, 125);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(519, 116);
+            this.layoutControlItem2.Size = new System.Drawing.Size(516, 116);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -1851,11 +1908,11 @@
             this.layoutControlItemVisaType.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemVisaType.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemVisaType.Control = this.txtVisaType;
-            this.layoutControlItemVisaType.Location = new System.Drawing.Point(538, 438);
+            this.layoutControlItemVisaType.Location = new System.Drawing.Point(541, 423);
             this.layoutControlItemVisaType.Name = "layoutControlItemVisaType";
-            this.layoutControlItemVisaType.Size = new System.Drawing.Size(495, 28);
+            this.layoutControlItemVisaType.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemVisaType.Text = "نوع الكارت";
-            this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemOperationNumber
@@ -1867,71 +1924,35 @@
             this.layoutControlItemOperationNumber.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemOperationNumber.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemOperationNumber.Control = this.txtOperationNumber;
-            this.layoutControlItemOperationNumber.Location = new System.Drawing.Point(538, 466);
+            this.layoutControlItemOperationNumber.Location = new System.Drawing.Point(541, 451);
             this.layoutControlItemOperationNumber.Name = "layoutControlItemOperationNumber";
-            this.layoutControlItemOperationNumber.Size = new System.Drawing.Size(495, 28);
+            this.layoutControlItemOperationNumber.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemOperationNumber.Text = "رقم العملية";
-            this.layoutControlItemOperationNumber.TextSize = new System.Drawing.Size(120, 24);
+            this.layoutControlItemOperationNumber.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
-            // layoutControlItem8
+            // layoutControlItem59
             // 
-            this.layoutControlItem8.Control = this.label1;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 53);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(538, 25);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
+            this.layoutControlItem59.Control = this.labelBank;
+            this.layoutControlItem59.Location = new System.Drawing.Point(517, 241);
+            this.layoutControlItem59.Name = "layoutControlItem59";
+            this.layoutControlItem59.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem59.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem59.TextVisible = false;
             // 
-            // layoutControlItem12
+            // layoutControlItem60
             // 
-            this.layoutControlItem12.Control = this.labelBank;
-            this.layoutControlItem12.Location = new System.Drawing.Point(514, 267);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.labelPullMoney;
-            this.layoutControlItem13.Location = new System.Drawing.Point(514, 295);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.labelDescrip;
-            this.layoutControlItem14.Location = new System.Drawing.Point(514, 323);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(24, 59);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.labelDate;
-            this.layoutControlItem15.Location = new System.Drawing.Point(514, 382);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem15.TextVisible = false;
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.labelCheckNumber;
-            this.layoutControlItem16.Location = new System.Drawing.Point(514, 410);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem16.TextVisible = false;
+            this.layoutControlItem60.Control = this.labelPaidMoney;
+            this.layoutControlItem60.Location = new System.Drawing.Point(517, 269);
+            this.layoutControlItem60.Name = "layoutControlItem60";
+            this.layoutControlItem60.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem60.TextVisible = false;
             // 
             // layoutControlItem61
             // 
-            this.layoutControlItem61.Control = this.labelVisaType;
-            this.layoutControlItem61.Location = new System.Drawing.Point(514, 438);
+            this.layoutControlItem61.Control = this.labelDate;
+            this.layoutControlItem61.Location = new System.Drawing.Point(517, 367);
             this.layoutControlItem61.Name = "layoutControlItem61";
             this.layoutControlItem61.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem61.TextSize = new System.Drawing.Size(0, 0);
@@ -1939,116 +1960,50 @@
             // 
             // layoutControlItem62
             // 
-            this.layoutControlItem62.Control = this.labelOperationNumber;
-            this.layoutControlItem62.Location = new System.Drawing.Point(514, 466);
+            this.layoutControlItem62.Control = this.labelDescrip;
+            this.layoutControlItem62.Location = new System.Drawing.Point(517, 297);
             this.layoutControlItem62.Name = "layoutControlItem62";
-            this.layoutControlItem62.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem62.Size = new System.Drawing.Size(24, 70);
             this.layoutControlItem62.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem62.TextVisible = false;
             // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem3.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem3.Control = this.comClient;
-            this.layoutControlItem3.Location = new System.Drawing.Point(538, 102);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(495, 25);
-            this.layoutControlItem3.Text = "عميل";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(120, 20);
-            // 
-            // layoutControlItem60
-            // 
-            this.layoutControlItem60.Control = this.labelName;
-            this.layoutControlItem60.Location = new System.Drawing.Point(0, 102);
-            this.layoutControlItem60.Name = "layoutControlItem60";
-            this.layoutControlItem60.Size = new System.Drawing.Size(538, 25);
-            this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem60.TextVisible = false;
-            // 
             // layoutControlItem63
             // 
-            this.layoutControlItem63.Control = this.labelBranch;
-            this.layoutControlItem63.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem63.Control = this.labelCheckNumber;
+            this.layoutControlItem63.Location = new System.Drawing.Point(517, 395);
             this.layoutControlItem63.Name = "layoutControlItem63";
-            this.layoutControlItem63.Size = new System.Drawing.Size(538, 29);
+            this.layoutControlItem63.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem63.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem63.TextVisible = false;
             // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.radEng;
-            this.layoutControlItem4.Location = new System.Drawing.Point(884, 24);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(125, 29);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.radContractor;
-            this.layoutControlItem6.Location = new System.Drawing.Point(762, 24);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(122, 29);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
-            // layoutControlItem33
-            // 
-            this.layoutControlItem33.Control = this.radDealer;
-            this.layoutControlItem33.Location = new System.Drawing.Point(638, 24);
-            this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(124, 29);
-            this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem33.TextVisible = false;
-            // 
-            // layoutControlItem59
-            // 
-            this.layoutControlItem59.Control = this.radClient;
-            this.layoutControlItem59.Location = new System.Drawing.Point(538, 24);
-            this.layoutControlItem59.Name = "layoutControlItem59";
-            this.layoutControlItem59.Size = new System.Drawing.Size(100, 29);
-            this.layoutControlItem59.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem59.TextVisible = false;
-            // 
             // layoutControlItem64
             // 
-            this.layoutControlItem64.Control = this.label3;
-            this.layoutControlItem64.Location = new System.Drawing.Point(1009, 24);
+            this.layoutControlItem64.Control = this.labelVisaType;
+            this.layoutControlItem64.Location = new System.Drawing.Point(517, 423);
             this.layoutControlItem64.Name = "layoutControlItem64";
-            this.layoutControlItem64.Size = new System.Drawing.Size(24, 29);
+            this.layoutControlItem64.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem64.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem64.TextVisible = false;
             // 
-            // layoutControlItem18
+            // layoutControlItem65
             // 
-            this.layoutControlItem18.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
-            this.layoutControlItem18.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem18.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem18.Control = this.comEng;
-            this.layoutControlItem18.Location = new System.Drawing.Point(538, 53);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(495, 25);
-            this.layoutControlItem18.Text = "مهندس/مقاول/تاجر";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(120, 20);
+            this.layoutControlItem65.Control = this.labelOperationNumber;
+            this.layoutControlItem65.Location = new System.Drawing.Point(517, 451);
+            this.layoutControlItem65.Name = "layoutControlItem65";
+            this.layoutControlItem65.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem65.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem65.TextVisible = false;
             // 
-            // layoutControlItem9
+            // layoutControlItem3
             // 
-            this.layoutControlItem9.Control = this.label4;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 78);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(1033, 24);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
+            this.layoutControlItem3.Control = this.label2;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 52);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(1033, 24);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
             // 
-            // BankPullAgl_Record
+            // BankPullCash_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2056,11 +2011,11 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
             this.MaximizeBox = false;
-            this.Name = "BankPullAgl_Record";
+            this.Name = "BankPullCash_Update";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "اضافة فرع";
-            this.Load += new System.EventHandler(this.BankPullAgl_Record_Load);
+            this.Text = "BankPullCash_Update";
+            this.Load += new System.EventHandler(this.BankPullCash_Update_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
@@ -2071,7 +2026,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -2122,7 +2077,14 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemBank)).EndInit();
@@ -2132,28 +2094,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemCheck)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemVisaType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOperationNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem61)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem62)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem63)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem65)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2164,9 +2117,15 @@
         private DevExpress.XtraDataLayout.DataLayoutControl dataLayoutControl1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private System.Windows.Forms.TextBox txtTotalCost;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemStock;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private System.Windows.Forms.Label labelPaid;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private System.Windows.Forms.Label label7;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private System.Windows.Forms.TextBox txtCheckNumber;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private System.Windows.Forms.TextBox txtDescrip;
@@ -2177,6 +2136,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radCredit;
         private System.Windows.Forms.RadioButton radCash;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtPaidMoney;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBillNumber;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemBank;
@@ -2188,6 +2155,8 @@
         private System.Windows.Forms.Label label31;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem32;
+        private System.Windows.Forms.ComboBox cmbBranch;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
         private System.Windows.Forms.Label label24;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private System.Windows.Forms.TextBox RestMoney;
@@ -2273,44 +2242,24 @@
         private System.Windows.Forms.TextBox txtVisaType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemVisaType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOperationNumber;
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.RadioButton radClient;
-        private System.Windows.Forms.RadioButton radDealer;
-        private System.Windows.Forms.RadioButton radContractor;
-        private System.Windows.Forms.RadioButton radEng;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem59;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem60;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comClient;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private System.Windows.Forms.Label labelOperationNumber;
         private System.Windows.Forms.Label labelVisaType;
         private System.Windows.Forms.Label labelCheckNumber;
-        private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelDescrip;
-        private System.Windows.Forms.Label labelPullMoney;
+        private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.Label labelPaidMoney;
         private System.Windows.Forms.Label labelBank;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem59;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem60;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem61;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem62;
-        private System.Windows.Forms.Label labelBranch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem63;
-        private System.Windows.Forms.ComboBox comEng;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
-        private System.Windows.Forms.Label label3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem64;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem65;
         private System.Windows.Forms.Label label2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
-        private System.Windows.Forms.Label label4;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }
 

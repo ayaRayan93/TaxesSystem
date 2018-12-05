@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class BankPullCash_Update
+    partial class BankPullCash_Record
     {
         /// <summary>
         /// Required designer variable.
@@ -136,7 +136,7 @@
             this.layoutControlItemRest = new DevExpress.XtraLayout.LayoutControlItem();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtPaidMoney = new System.Windows.Forms.TextBox();
+            this.txtRestMoney = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtBillNumber = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -303,7 +303,7 @@
             this.dataLayoutControl1.Controls.Add(this.groupBox1);
             this.dataLayoutControl1.Controls.Add(this.label5);
             this.dataLayoutControl1.Controls.Add(this.label4);
-            this.dataLayoutControl1.Controls.Add(this.txtPaidMoney);
+            this.dataLayoutControl1.Controls.Add(this.txtRestMoney);
             this.dataLayoutControl1.Controls.Add(this.label1);
             this.dataLayoutControl1.Controls.Add(this.txtBillNumber);
             this.dataLayoutControl1.Controls.Add(this.label7);
@@ -746,7 +746,6 @@
             // 
             // cmbBranch
             // 
-            this.cmbBranch.Enabled = false;
             this.cmbBranch.FormattingEnabled = true;
             this.cmbBranch.Location = new System.Drawing.Point(548, 31);
             this.cmbBranch.Name = "cmbBranch";
@@ -812,7 +811,6 @@
             // 
             // cmbBank
             // 
-            this.cmbBank.Enabled = false;
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(548, 248);
             this.cmbBank.Name = "cmbBank";
@@ -872,10 +870,10 @@
             // 
             // txtPaidRest2
             // 
-            this.txtPaidRest2.Enabled = false;
             this.txtPaidRest2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidRest2.Location = new System.Drawing.Point(12, 301);
             this.txtPaidRest2.Name = "txtPaidRest2";
+            this.txtPaidRest2.ReadOnly = true;
             this.txtPaidRest2.Size = new System.Drawing.Size(96, 20);
             this.txtPaidRest2.TabIndex = 28;
             this.txtPaidRest2.Text = "0";
@@ -929,10 +927,10 @@
             // 
             // RestMoney
             // 
-            this.RestMoney.Enabled = false;
             this.RestMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RestMoney.Location = new System.Drawing.Point(12, 277);
             this.RestMoney.Name = "RestMoney";
+            this.RestMoney.ReadOnly = true;
             this.RestMoney.Size = new System.Drawing.Size(96, 20);
             this.RestMoney.TabIndex = 22;
             this.RestMoney.Text = "0";
@@ -990,10 +988,10 @@
             // 
             // txtPaidRest
             // 
-            this.txtPaidRest.Enabled = false;
             this.txtPaidRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidRest.Location = new System.Drawing.Point(216, 301);
             this.txtPaidRest.Name = "txtPaidRest";
+            this.txtPaidRest.ReadOnly = true;
             this.txtPaidRest.Size = new System.Drawing.Size(97, 20);
             this.txtPaidRest.TabIndex = 16;
             this.txtPaidRest.Text = "0";
@@ -1001,10 +999,10 @@
             // 
             // PaidMoney
             // 
-            this.PaidMoney.Enabled = false;
             this.PaidMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PaidMoney.Location = new System.Drawing.Point(216, 277);
             this.PaidMoney.Name = "PaidMoney";
+            this.PaidMoney.ReadOnly = true;
             this.PaidMoney.Size = new System.Drawing.Size(97, 20);
             this.PaidMoney.TabIndex = 15;
             this.PaidMoney.Text = "0";
@@ -1504,14 +1502,14 @@
             this.label4.TabIndex = 36;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtPaidMoney
+            // txtRestMoney
             // 
-            this.txtPaidMoney.Enabled = false;
-            this.txtPaidMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPaidMoney.Location = new System.Drawing.Point(31, 83);
-            this.txtPaidMoney.Name = "txtPaidMoney";
-            this.txtPaidMoney.Size = new System.Drawing.Size(389, 20);
-            this.txtPaidMoney.TabIndex = 35;
+            this.txtRestMoney.Enabled = false;
+            this.txtRestMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRestMoney.Location = new System.Drawing.Point(31, 83);
+            this.txtRestMoney.Name = "txtRestMoney";
+            this.txtRestMoney.Size = new System.Drawing.Size(389, 20);
+            this.txtRestMoney.TabIndex = 35;
             // 
             // label1
             // 
@@ -1531,7 +1529,8 @@
             this.txtBillNumber.Name = "txtBillNumber";
             this.txtBillNumber.Size = new System.Drawing.Size(389, 24);
             this.txtBillNumber.TabIndex = 28;
-            this.txtBillNumber.TextChanged += new System.EventHandler(this.txtBillNumber_TextChanged);
+            this.txtBillNumber.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtBillNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
             // 
             // label7
             // 
@@ -1733,7 +1732,7 @@
             this.layoutControlItem17.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem17.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem17.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem17.Control = this.txtPaidMoney;
+            this.layoutControlItem17.Control = this.txtRestMoney;
             this.layoutControlItem17.Location = new System.Drawing.Point(24, 76);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(493, 24);
@@ -2003,7 +2002,7 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // BankPullCash_Update
+            // BankPullCash_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2011,11 +2010,11 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
             this.MaximizeBox = false;
-            this.Name = "BankPullCash_Update";
+            this.Name = "BankPullCash_Record";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BankPullCash_Update";
-            this.Load += new System.EventHandler(this.BankPullCash_Update_Load);
+            this.Text = "BankPullCash_Record";
+            this.Load += new System.EventHandler(this.BankPullCash_Record_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
@@ -2137,7 +2136,7 @@
         private System.Windows.Forms.RadioButton radCredit;
         private System.Windows.Forms.RadioButton radCash;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPaidMoney;
+        private System.Windows.Forms.TextBox txtRestMoney;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBillNumber;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
