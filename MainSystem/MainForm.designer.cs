@@ -381,6 +381,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.navBarItemDelegateSalesForProduct = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemProductControl = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
@@ -3237,7 +3238,8 @@
             this.navBarItem166,
             this.navBarItem161,
             this.navBarItem154,
-            this.navBarItemDelegateSalesForCompany});
+            this.navBarItemDelegateSalesForCompany,
+            this.navBarItemDelegateSalesForProduct});
             this.navBarAccounting.Location = new System.Drawing.Point(927, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 218;
@@ -3252,7 +3254,8 @@
             this.navBarGroup40.Expanded = true;
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct)});
             this.navBarGroup40.Name = "navBarGroup40";
             // 
             // navBarItem154
@@ -3513,8 +3516,12 @@
             this.panel1.Size = new System.Drawing.Size(947, 515);
             this.panel1.TabIndex = 1;
             // 
+            // navBarItemDelegateSalesForProduct
             // navBarItemBillCopy
             // 
+            this.navBarItemDelegateSalesForProduct.Caption = "مبيعات مندوبين لصنف";
+            this.navBarItemDelegateSalesForProduct.Name = "navBarItemDelegateSalesForProduct";
+            this.navBarItemDelegateSalesForProduct.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForProduct_LinkClicked);
             this.navBarItemProductControl.Caption = "نسخة فاتورة بيع";
             this.navBarItemProductControl.Name = "navBarItemBillCopy";
             this.navBarItemProductControl.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
@@ -3911,6 +3918,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem161;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSalesTransitions;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateSalesForCompany;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateSalesForProduct;
         private DevExpress.XtraNavBar.NavBarItem navBarItemProductControl;
     }
 }
