@@ -61,28 +61,6 @@
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel23 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Branch_Name = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Client_Name = new DevExpress.XtraReports.Parameters.Parameter();
-            this.TransitionID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PaidMoney = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PaymentMethod = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Bank = new DevExpress.XtraReports.Parameters.Parameter();
-            this.CheckNumber = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Payday = new DevExpress.XtraReports.Parameters.Parameter();
-            this.VisaType = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OperationNumber = new DevExpress.XtraReports.Parameters.Parameter();
-            this.BankUserName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q200 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q100 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q50 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q20 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q10 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q5 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q1 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.qH = new DevExpress.XtraReports.Parameters.Parameter();
-            this.qQ = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Description = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrTable23 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow23 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell64 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -191,6 +169,28 @@
             this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Branch_Name = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Client_Name = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TransitionID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PaidMoney = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PaymentMethod = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Bank = new DevExpress.XtraReports.Parameters.Parameter();
+            this.CheckNumber = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Payday = new DevExpress.XtraReports.Parameters.Parameter();
+            this.VisaType = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OperationNumber = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BankUserName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q200 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q100 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q50 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q20 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q10 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q5 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.q1 = new DevExpress.XtraReports.Parameters.Parameter();
+            this.qH = new DevExpress.XtraReports.Parameters.Parameter();
+            this.qQ = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Description = new DevExpress.XtraReports.Parameters.Parameter();
             this.r1 = new DevExpress.XtraReports.Parameters.Parameter();
             this.r10 = new DevExpress.XtraReports.Parameters.Parameter();
             this.r100 = new DevExpress.XtraReports.Parameters.Parameter();
@@ -625,139 +625,6 @@
             this.xrLabel24.StylePriority.UseFont = false;
             this.xrLabel24.StylePriority.UseTextAlignment = false;
             this.xrLabel24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // Branch_Name
-            // 
-            this.Branch_Name.Description = "Branch_Name";
-            this.Branch_Name.Name = "Branch_Name";
-            // 
-            // Client_Name
-            // 
-            this.Client_Name.Description = "Client_Name";
-            this.Client_Name.Name = "Client_Name";
-            // 
-            // TransitionID
-            // 
-            this.TransitionID.Description = "TransitionID";
-            this.TransitionID.Name = "TransitionID";
-            this.TransitionID.Type = typeof(int);
-            this.TransitionID.ValueInfo = "0";
-            // 
-            // DateNow
-            // 
-            this.DateNow.Description = "dateNow";
-            this.DateNow.Name = "DateNow";
-            this.DateNow.Type = typeof(System.DateTime);
-            // 
-            // PaidMoney
-            // 
-            this.PaidMoney.Description = "PaidMoney";
-            this.PaidMoney.Name = "PaidMoney";
-            this.PaidMoney.Type = typeof(decimal);
-            this.PaidMoney.ValueInfo = "0";
-            // 
-            // PaymentMethod
-            // 
-            this.PaymentMethod.Description = "PaymentMethod";
-            this.PaymentMethod.Name = "PaymentMethod";
-            // 
-            // Bank
-            // 
-            this.Bank.Description = "bank";
-            this.Bank.Name = "Bank";
-            // 
-            // CheckNumber
-            // 
-            this.CheckNumber.Description = "CheckNumber";
-            this.CheckNumber.Name = "CheckNumber";
-            // 
-            // Payday
-            // 
-            this.Payday.Description = "Payday";
-            this.Payday.Name = "Payday";
-            // 
-            // VisaType
-            // 
-            this.VisaType.Description = "VisaType";
-            this.VisaType.Name = "VisaType";
-            // 
-            // OperationNumber
-            // 
-            this.OperationNumber.Description = "OperationNumber";
-            this.OperationNumber.Name = "OperationNumber";
-            // 
-            // BankUserName
-            // 
-            this.BankUserName.Description = "BankUserName";
-            this.BankUserName.Name = "BankUserName";
-            // 
-            // q200
-            // 
-            this.q200.Description = "q200";
-            this.q200.Name = "q200";
-            this.q200.Type = typeof(int);
-            this.q200.ValueInfo = "0";
-            // 
-            // q100
-            // 
-            this.q100.Description = "q100";
-            this.q100.Name = "q100";
-            this.q100.Type = typeof(int);
-            this.q100.ValueInfo = "0";
-            // 
-            // q50
-            // 
-            this.q50.Description = "q50";
-            this.q50.Name = "q50";
-            this.q50.Type = typeof(int);
-            this.q50.ValueInfo = "0";
-            // 
-            // q20
-            // 
-            this.q20.Description = "q20";
-            this.q20.Name = "q20";
-            this.q20.Type = typeof(int);
-            this.q20.ValueInfo = "0";
-            // 
-            // q10
-            // 
-            this.q10.Description = "q10";
-            this.q10.Name = "q10";
-            this.q10.Type = typeof(int);
-            this.q10.ValueInfo = "0";
-            // 
-            // q5
-            // 
-            this.q5.Description = "q5";
-            this.q5.Name = "q5";
-            this.q5.Type = typeof(int);
-            this.q5.ValueInfo = "0";
-            // 
-            // q1
-            // 
-            this.q1.Description = "q1";
-            this.q1.Name = "q1";
-            this.q1.Type = typeof(int);
-            this.q1.ValueInfo = "0";
-            // 
-            // qH
-            // 
-            this.qH.Description = "qH";
-            this.qH.Name = "qH";
-            this.qH.Type = typeof(int);
-            this.qH.ValueInfo = "0";
-            // 
-            // qQ
-            // 
-            this.qQ.Description = "qQ";
-            this.qQ.Name = "qQ";
-            this.qQ.Type = typeof(int);
-            this.qQ.ValueInfo = "0";
-            // 
-            // Description
-            // 
-            this.Description.Description = "Description";
-            this.Description.Name = "Description";
             // 
             // xrTable23
             // 
@@ -2068,6 +1935,139 @@
             this.xrTableCell34.Text = ":أمين الخزنة";
             this.xrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell34.Weight = 1.997230180584668D;
+            // 
+            // Branch_Name
+            // 
+            this.Branch_Name.Description = "Branch_Name";
+            this.Branch_Name.Name = "Branch_Name";
+            // 
+            // Client_Name
+            // 
+            this.Client_Name.Description = "Client_Name";
+            this.Client_Name.Name = "Client_Name";
+            // 
+            // TransitionID
+            // 
+            this.TransitionID.Description = "TransitionID";
+            this.TransitionID.Name = "TransitionID";
+            this.TransitionID.Type = typeof(int);
+            this.TransitionID.ValueInfo = "0";
+            // 
+            // DateNow
+            // 
+            this.DateNow.Description = "dateNow";
+            this.DateNow.Name = "DateNow";
+            this.DateNow.Type = typeof(System.DateTime);
+            // 
+            // PaidMoney
+            // 
+            this.PaidMoney.Description = "PaidMoney";
+            this.PaidMoney.Name = "PaidMoney";
+            this.PaidMoney.Type = typeof(decimal);
+            this.PaidMoney.ValueInfo = "0";
+            // 
+            // PaymentMethod
+            // 
+            this.PaymentMethod.Description = "PaymentMethod";
+            this.PaymentMethod.Name = "PaymentMethod";
+            // 
+            // Bank
+            // 
+            this.Bank.Description = "bank";
+            this.Bank.Name = "Bank";
+            // 
+            // CheckNumber
+            // 
+            this.CheckNumber.Description = "CheckNumber";
+            this.CheckNumber.Name = "CheckNumber";
+            // 
+            // Payday
+            // 
+            this.Payday.Description = "Payday";
+            this.Payday.Name = "Payday";
+            // 
+            // VisaType
+            // 
+            this.VisaType.Description = "VisaType";
+            this.VisaType.Name = "VisaType";
+            // 
+            // OperationNumber
+            // 
+            this.OperationNumber.Description = "OperationNumber";
+            this.OperationNumber.Name = "OperationNumber";
+            // 
+            // BankUserName
+            // 
+            this.BankUserName.Description = "BankUserName";
+            this.BankUserName.Name = "BankUserName";
+            // 
+            // q200
+            // 
+            this.q200.Description = "q200";
+            this.q200.Name = "q200";
+            this.q200.Type = typeof(int);
+            this.q200.ValueInfo = "0";
+            // 
+            // q100
+            // 
+            this.q100.Description = "q100";
+            this.q100.Name = "q100";
+            this.q100.Type = typeof(int);
+            this.q100.ValueInfo = "0";
+            // 
+            // q50
+            // 
+            this.q50.Description = "q50";
+            this.q50.Name = "q50";
+            this.q50.Type = typeof(int);
+            this.q50.ValueInfo = "0";
+            // 
+            // q20
+            // 
+            this.q20.Description = "q20";
+            this.q20.Name = "q20";
+            this.q20.Type = typeof(int);
+            this.q20.ValueInfo = "0";
+            // 
+            // q10
+            // 
+            this.q10.Description = "q10";
+            this.q10.Name = "q10";
+            this.q10.Type = typeof(int);
+            this.q10.ValueInfo = "0";
+            // 
+            // q5
+            // 
+            this.q5.Description = "q5";
+            this.q5.Name = "q5";
+            this.q5.Type = typeof(int);
+            this.q5.ValueInfo = "0";
+            // 
+            // q1
+            // 
+            this.q1.Description = "q1";
+            this.q1.Name = "q1";
+            this.q1.Type = typeof(int);
+            this.q1.ValueInfo = "0";
+            // 
+            // qH
+            // 
+            this.qH.Description = "qH";
+            this.qH.Name = "qH";
+            this.qH.Type = typeof(int);
+            this.qH.ValueInfo = "0";
+            // 
+            // qQ
+            // 
+            this.qQ.Description = "qQ";
+            this.qQ.Name = "qQ";
+            this.qQ.Type = typeof(int);
+            this.qQ.ValueInfo = "0";
+            // 
+            // Description
+            // 
+            this.Description.Description = "Description";
+            this.Description.Name = "Description";
             // 
             // r1
             // 
