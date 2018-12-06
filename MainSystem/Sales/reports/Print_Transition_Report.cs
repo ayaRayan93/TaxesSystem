@@ -18,14 +18,14 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(DateTime fromDate, DateTime toDate, List<Transition_Items> BillItems)
+        public void PrintInvoice(DateTime fromDate, DateTime toDate, string branch_Name, List<Transition_Items> BillItems)
         {
             Print_Transition report = new Print_Transition();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(fromDate, toDate, BillItems);
+            report.InitData(fromDate, toDate, branch_Name, BillItems);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

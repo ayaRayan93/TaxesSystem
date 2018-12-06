@@ -252,7 +252,7 @@
             this.xrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(24.95909F, 0F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(152.5408F, 80.31358F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(129.33F, 75.5F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // xrLabel3
