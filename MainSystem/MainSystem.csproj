@@ -131,6 +131,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\DelegateSalesForCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\DelegateSalesForCompany.Designer.cs">
+      <DependentUpon>DelegateSalesForCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\DelegateSalesForProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\DelegateSalesForProduct.Designer.cs">
+      <DependentUpon>DelegateSalesForProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\DelegateTotalSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1309,6 +1321,12 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <EmbeddedResource Include="Accounting\DelegateSalesForCompany.resx">
+      <DependentUpon>DelegateSalesForCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\DelegateSalesForProduct.resx">
+      <DependentUpon>DelegateSalesForProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateTotalSales.resx">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
     </EmbeddedResource>

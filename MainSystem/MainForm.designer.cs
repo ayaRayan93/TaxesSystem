@@ -380,6 +380,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemDelegateSalesForCompany = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3226,7 +3227,8 @@
             this.navBarItem165,
             this.navBarItem166,
             this.navBarItem161,
-            this.navBarItem154});
+            this.navBarItem154,
+            this.navBarItemDelegateSalesForCompany});
             this.navBarAccounting.Location = new System.Drawing.Point(927, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 218;
@@ -3240,7 +3242,8 @@
             this.navBarGroup40.Caption = "تقارير حسابات المناديب";
             this.navBarGroup40.Expanded = true;
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany)});
             this.navBarGroup40.Name = "navBarGroup40";
             // 
             // navBarItem154
@@ -3500,6 +3503,12 @@
             this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
             this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
             this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
+            // 
+            // navBarItemDelegateSalesForCompany
+            // 
+            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات المندوبين لشركة";
+            this.navBarItemDelegateSalesForCompany.Name = "navBarItemDelegateSalesForCompany";
+            this.navBarItemDelegateSalesForCompany.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompany_LinkClicked);
             // 
             // MainForm
             // 
@@ -3892,5 +3901,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem166;
         private DevExpress.XtraNavBar.NavBarItem navBarItem161;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSalesTransitions;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateSalesForCompany;
     }
 }
