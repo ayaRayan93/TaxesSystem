@@ -137,6 +137,12 @@
     <Compile Include="Accounting\DelegateTotalSales.Designer.cs">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\BillsTransitions_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\BillsTransitions_Print.designer.cs">
+      <DependentUpon>BillsTransitions_Print.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\Bills_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1077,6 +1083,19 @@
     <Compile Include="Sales\QuantityUpdate2Sales.designer.cs">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\Print_Transition_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\Print_Transition_Report.designer.cs">
+      <DependentUpon>Print_Transition_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\Transition_Items.cs" />
+    <Compile Include="Sales\reports\Print_Transition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\Print_Transition.designer.cs">
+      <DependentUpon>Print_Transition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\SpecialOrders_Report2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1292,6 +1311,9 @@
     <Compile Include="UserControl.cs" />
     <EmbeddedResource Include="Accounting\DelegateTotalSales.resx">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\BillsTransitions_Print.resx">
+      <DependentUpon>BillsTransitions_Print.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\Bills_Transitions_Report.resx">
       <DependentUpon>Bills_Transitions_Report.cs</DependentUpon>
@@ -1762,6 +1784,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\QuantityUpdate2Sales.resx">
       <DependentUpon>QuantityUpdate2Sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\Print_Transition_Report.resx">
+      <DependentUpon>Print_Transition_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\Print_Transition.resx">
+      <DependentUpon>Print_Transition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>

@@ -557,8 +557,8 @@ namespace MainSystem
                         com.Parameters.Add("@Type_Buy", MySqlDbType.VarChar);
                         com.Parameters["@Type_Buy"].Value = null;
                     }*/
-                    com.Parameters.Add("@Date", MySqlDbType.Date);
-                    com.Parameters["@Date"].Value = DateTime.Now.Date;
+                    com.Parameters.Add("@Date", MySqlDbType.DateTime);
+                    com.Parameters["@Date"].Value = DateTime.Now;
                     com.Parameters.Add("@ReturnInfo", MySqlDbType.VarChar);
                     com.Parameters["@ReturnInfo"].Value = txtInfo.Text;
                     com.Parameters.Add("@TotalCostAD", MySqlDbType.Decimal);
