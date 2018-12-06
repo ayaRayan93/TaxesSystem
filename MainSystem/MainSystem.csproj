@@ -191,7 +191,7 @@
     <Compile Include="Bank\ايداع آجل\BillAgl.Designer.cs">
       <DependentUpon>BillAgl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\Bill_Items.cs" />
+    <Compile Include="Bank\فاتورة البيع\Bill_Items.cs" />
     <Compile Include="Bank\ايداع آجل\Print_AglCategoriesBill_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,29 +223,29 @@
     <Compile Include="Sales\accounting\UpdateCustomerTaswaya.designer.cs">
       <DependentUpon>UpdateCustomerTaswaya.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\ReturnedBill_Items.cs" />
-    <Compile Include="Bank\Print_ReturnedInvoice.cs">
+    <Compile Include="Bank\فاتورة المرتجع\ReturnedBill_Items.cs" />
+    <Compile Include="Bank\فاتورة المرتجع\Print_ReturnedInvoice.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Bank\Print_ReturnedInvoice.designer.cs">
+    <Compile Include="Bank\فاتورة المرتجع\Print_ReturnedInvoice.designer.cs">
       <DependentUpon>Print_ReturnedInvoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\Print_ReturnedBill_Report.cs">
+    <Compile Include="Bank\فاتورة المرتجع\Print_ReturnedBill_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\Print_ReturnedBill_Report.designer.cs">
+    <Compile Include="Bank\فاتورة المرتجع\Print_ReturnedBill_Report.designer.cs">
       <DependentUpon>Print_ReturnedBill_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\Print_Bill_Report.cs">
+    <Compile Include="Bank\فاتورة البيع\Print_Bill_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\Print_Bill_Report.designer.cs">
+    <Compile Include="Bank\فاتورة البيع\Print_Bill_Report.designer.cs">
       <DependentUpon>Print_Bill_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\Print_Invoice.cs">
+    <Compile Include="Bank\فاتورة البيع\Print_Invoice.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Bank\Print_Invoice.designer.cs">
+    <Compile Include="Bank\فاتورة البيع\Print_Invoice.designer.cs">
       <DependentUpon>Print_Invoice.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.designer.cs">
@@ -1108,6 +1108,25 @@
     <Compile Include="Sales\reports\Print_Transition.designer.cs">
       <DependentUpon>Print_Transition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.designer.cs">
+      <DependentUpon>Bills_Copy_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Copy_Bill_Items.cs" />
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_CopyBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_CopyBill_Report.designer.cs">
+      <DependentUpon>Print_CopyBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.designer.cs">
+      <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\SpecialOrders_Report2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1366,16 +1385,16 @@
     <EmbeddedResource Include="Sales\accounting\UpdateCustomerTaswaya.resx">
       <DependentUpon>UpdateCustomerTaswaya.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\Print_ReturnedInvoice.resx">
+    <EmbeddedResource Include="Bank\فاتورة المرتجع\Print_ReturnedInvoice.resx">
       <DependentUpon>Print_ReturnedInvoice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\Print_ReturnedBill_Report.resx">
+    <EmbeddedResource Include="Bank\فاتورة المرتجع\Print_ReturnedBill_Report.resx">
       <DependentUpon>Print_ReturnedBill_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\Print_Bill_Report.resx">
+    <EmbeddedResource Include="Bank\فاتورة البيع\Print_Bill_Report.resx">
       <DependentUpon>Print_Bill_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\Print_Invoice.resx">
+    <EmbeddedResource Include="Bank\فاتورة البيع\Print_Invoice.resx">
       <DependentUpon>Print_Invoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\AccountStatement.resx">
@@ -1809,6 +1828,15 @@
     <EmbeddedResource Include="Sales\reports\Print_Transition.resx">
       <DependentUpon>Print_Transition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.resx">
+      <DependentUpon>Bills_Copy_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_CopyBill_Report.resx">
+      <DependentUpon>Print_CopyBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.resx">
+      <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </EmbeddedResource>
@@ -2217,7 +2245,9 @@
     <None Include="Resources\Trolley_80px.png" />
     <None Include="Resources\unsave %282%29.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Sales\reports\نسخة فاتورة المرتجع\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
