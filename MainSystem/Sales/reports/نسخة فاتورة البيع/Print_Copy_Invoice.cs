@@ -14,7 +14,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string client_Name, string delegate_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Bill_Items> Bill_Items)
+        public void InitData(string client_Name, string delegate_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Copy_Bill_Items> Bill_Items)
         {
             Client_Name.Value = client_Name;
             Delegate_Name.Value = delegate_Name;
@@ -27,7 +27,7 @@ namespace MainSystem
             FinalBillCost.Value = TotalBillPriceAD;
             FinalDiscount.Value = TotalDiscount;
             DateNow.Value = DateTime.Now;
-            objectDataSource1.DataSource = Bill_Items;
+            objectDataSource2.DataSource = Bill_Items;
         }
     }
 }

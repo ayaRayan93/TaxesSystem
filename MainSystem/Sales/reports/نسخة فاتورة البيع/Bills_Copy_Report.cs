@@ -20,6 +20,8 @@ namespace MainSystem
     public partial class Bills_Copy_Report : Form
     {
         MySqlConnection conn;
+        MySqlConnection connectionReader1;
+        MySqlConnection myConnection;
         MainForm bankMainForm = null;
         XtraTabControl MainTabControlBank;
         
@@ -31,11 +33,29 @@ namespace MainSystem
         public static GridControl gridcontrol;
         bool loaded = false;
         bool loadedBranch = false;
+        string delegateName = "";
+        int branchID = 0;
+        string branchName = "";
+        int billNumber = 0;
+        bool flag2 = false;
+        int customerID = 0;
+        int clientID = 0;
+        string engName = "";
+        string clientName = "";
+        string TypeBuy = "";
+        DateTime billDate;
+        int ID = -1;
+        string ConfirmEmp = "";
+        double totalCostBD = 0;
+        double totalCostAD = 0;
+        double totalDiscount = 0;
 
         public Bills_Copy_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            connectionReader1 = new MySqlConnection(connection.connectionString);
+            myConnection = new MySqlConnection(connection.connectionString);
             bankMainForm = BankMainForm;
             MainTabControlBank = MainForm.tabControlBank;
             
@@ -46,9 +66,6 @@ namespace MainSystem
 
             comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            this.dateTimePicker1.Format = DateTimePickerFormat.Short;
-            this.dateTimePicker2.Format = DateTimePickerFormat.Short;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
@@ -65,6 +82,52 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+        }
+
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loadedBranch)
+                {
+                    if (int.TryParse(comBranch.SelectedValue.ToString(), out branchID))
+                    {
+                        txtBranchID.Text = comBranch.SelectedValue.ToString();
+                        branchName = comBranch.Text;
+                        txtBillNum.Enabled = true;
+                        txtBillNum.Focus();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        private void txtBillNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (comBranch.Text != "")
+                    {
+                        search();
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب اختيار فرع");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
+                myConnection.Close();
+                connectionReader1.Close();
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -85,6 +148,13 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+            myConnection.Close();
+            connectionReader1.Close();
+        }
+
+        private void btnNewChosen_Click(object sender, EventArgs e)
+        {
+            clearCom();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -93,44 +163,7 @@ namespace MainSystem
             {
                 if (comBranch.Text != "")
                 {
-                    //int bilNum = 0;
-                    double costSale = 0;
-                    double costReturn = 0;
-                    List<Transition_Items> bi = new List<Transition_Items>();
-                    //DataTable dt = (DataTable)gridControl2.DataSource;
-                    for (int i = 0; i < gridView1.RowCount; i++)
-                    {
-                        /*if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]) != "")
-                        {
-                            bilNum = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]));
-                        }
-                        else
-                        {
-                            bilNum = 0;
-                        }*/
-                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["دائن"]) != "")
-                        {
-                            costSale = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["دائن"]));
-                        }
-                        else
-                        {
-                            costSale = 0;
-                        }
-                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["مدين"]) != "")
-                        {
-                            costReturn = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["مدين"]));
-                        }
-                        else
-                        {
-                            costReturn = 0;
-                        }
-                        //Transition_Items item = new Transition_Items() { ID = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"])/*, Branch_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفرع"])*/, Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
-                        //bi.Add(item);
-                    }
-
-                    Print_Transition_Report f = new Print_Transition_Report();
-                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
-                    f.ShowDialog();
+                    printBill();
                 }
                 else
                 {
@@ -162,49 +195,185 @@ namespace MainSystem
         public void search()
         {
             conn.Open();
-            MySqlDataAdapter adapterSale = new MySqlDataAdapter("SELECT customer_bill.CustomerBill_ID as 'ID','النوع',customer_bill.Branch_BillNumber as 'الفاتورة',customer_bill.Bill_Date as 'التاريخ',customer_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',customer_bill.Total_CostBD as 'الاجمالى',customer_bill.Total_Discount as 'الخصم',customer_bill.Total_CostAD as 'الصافى' FROM customer_bill left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'", conn);
-            DataTable saledt = new DataTable();
-            adapterSale.Fill(saledt);
-
-            MySqlDataAdapter adapterReturn = new MySqlDataAdapter("SELECT customer_return_bill.CustomerReturnBill_ID as 'ID','النوع',customer_return_bill.Branch_BillNumber as 'الفاتورة',customer_return_bill.Date as 'التاريخ',customer_return_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_return_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_return_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_return_bill.Client_ID) as 'العميل',customer_return_bill.TotalCostAD as 'الصافى' FROM customer_return_bill left join customer as customer1 on customer1.Customer_ID=customer_return_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_return_bill.Client_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and customer_return_bill.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'", conn);
-            DataTable returndt = new DataTable();
-            adapterReturn.Fill(returndt);
-
-            DataTable dtAll = new DataTable();
-            dtAll = saledt.Copy();
-            dtAll.Merge(returndt);
-
-            gridControl1.DataSource = dtAll;
-            gridView1.Columns[0].Visible = false;
-            gridView1.Columns["Customer_ID"].Visible = false;
-            gridView1.Columns["Client_ID"].Visible = false;
-            if (gridView1.IsLastVisibleRow)
+            //if (branchID > 0)
+            //{
+            if (int.TryParse(txtBillNum.Text, out billNumber))
             {
-                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
-            }
-            for (int i = 0; i < gridView1.RowCount; i++)
-            {
-                if (gridView1.GetRowCellDisplayText(i, "الاجمالى") != "")
+                ID = -1;
+                delegateName = "";
+
+                string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
+                MySqlCommand com = new MySqlCommand(query, conn);
+                MySqlDataReader dr = com.ExecuteReader();
+
+                while (dr.Read())
                 {
-                    gridView1.SetRowCellValue(i, "النوع", "بيع");
+                    flag2 = true;
+                    ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                    TypeBuy = dr["Type_Buy"].ToString();
+                    billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
+
+                    connectionReader1.Open();
+                    string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN delegate ON delegate.Delegate_ID = product_bill.Delegate_ID where customer_bill.CustomerBill_ID=" + ID;
+                    MySqlCommand c1 = new MySqlCommand(q1, connectionReader1);
+                    MySqlDataReader dr1 = c1.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        if (delegateName != "")
+                        {
+                            delegateName += ",";
+                        }
+                        delegateName += dr1["Delegate_Name"].ToString();
+                    }
+                    dr1.Close();
+                    connectionReader1.Close();
+
+                    myConnection.Open();
+                    string query3 = "SELECT users.User_Name FROM customer_bill INNER JOIN users ON users.User_ID = customer_bill.Employee_ID where customer_bill.CustomerBill_ID=" + ID;
+                    MySqlCommand com2 = new MySqlCommand(query3, myConnection);
+                    if (com2.ExecuteScalar() != null)
+                    {
+                        ConfirmEmp = com2.ExecuteScalar().ToString();
+                    }
+                    myConnection.Close();
+                    
+                    totalCostBD = Convert.ToDouble(dr["Total_CostBD"].ToString());
+                    totalDiscount = Convert.ToDouble(dr["Total_Discount"].ToString());
+                    totalCostAD = Convert.ToDouble(dr["Total_CostAD"].ToString());
+
+                    if (dr["Customer_ID"].ToString() != "")
+                    {
+                        customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                    }
+                    if (dr["Client_ID"].ToString() != "")
+                    {
+                        clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                    }
+                }
+                dr.Close();
+                if (flag2 == true)
+                {
+                    //extract customer info
+                    if (clientID > 0)
+                    {
+                        query = "select * from customer where Customer_ID=" + clientID;
+                        com = new MySqlCommand(query, conn);
+                        dr = com.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            clientName = dr["Customer_Name"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    if (customerID > 0)
+                    {
+                        query = "select * from customer where Customer_ID=" + customerID;
+                        com = new MySqlCommand(query, conn);
+                        dr = com.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            engName = dr["Customer_Name"].ToString();
+                        }
+                        dr.Close();
+                    }
+
+                    DataTable dtAll = new DataTable();
+                    query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dtProduct = new DataTable();
+                    da.Fill(dtProduct);
+
+                    query = "select sets.Set_ID as 'Data_ID',cast(sets.Set_ID as CHAR(50)) as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join sets on sets.Set_ID=product_bill.Data_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                    da = new MySqlDataAdapter(query, conn);
+                    DataTable dtSet = new DataTable();
+                    da.Fill(dtSet);
+
+                    dtAll = dtProduct.Copy();
+                    dtAll.Merge(dtSet);
+
+                    query = "select offer.Offer_ID as 'Data_ID',cast(offer.Offer_ID as CHAR(50)) as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join offer on offer.Offer_ID=product_bill.Data_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                    da = new MySqlDataAdapter(query, conn);
+                    DataTable dtOffer = new DataTable();
+                    da.Fill(dtOffer);
+
+                    dtAll.Merge(dtOffer);
+
+                    gridControl1.DataSource = dtAll;
+                    gridView1.Columns[0].Visible = false;
+                    gridView1.Columns["الفئة"].Visible = false;
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+
+                    if (!loaded)
+                    {
+                        for (int i = 1; i < gridView1.Columns.Count; i++)
+                        {
+                            gridView1.Columns[i].Width = 110;
+                        }
+                    }
+                    loaded = true;
+
+                    flag2 = false;
                 }
                 else
                 {
-                    gridView1.SetRowCellValue(i, "النوع", "مرتجع");
+                    //clear();
+                    MessageBox.Show("لا يوجد فاتورة بهذا الرقم فى الفرع");
                 }
+            }
+            else
+            {
+                MessageBox.Show("رقم الفاتورة يجب ان يكون رقم");
+            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("يجب ان تختار فرع اولا");
+            //}
+        }
+
+        public void clearCom()
+        {
+            foreach (Control co in this.tableLayoutPanel3.Controls)
+            {
+                if (co is System.Windows.Forms.ComboBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is DateTimePicker)
+                {
+                    dateTimePicker1.Value = DateTime.Now;
+                    dateTimePicker2.Value = DateTime.Now;
+                }
+            }
+        }
+
+        void printBill()
+        {
+            List<Copy_Bill_Items> bi = new List<Copy_Bill_Items>();
+
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                Copy_Bill_Items item = new Copy_Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]), Carton = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكراتين"]), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نسبة الخصم"]) };
+                bi.Add(item);
             }
 
-            if (!loaded)
+            Print_CopyBill_Report f = new Print_CopyBill_Report();
+            if (clientID > 0)
             {
-                for (int i = 1; i < gridView1.Columns.Count; i++)
-                {
-                    gridView1.Columns[i].Width = 110;
-                }
+                f.PrintInvoice(clientName + " " + clientID, "(" + TypeBuy + ")" + " " + delegateName, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
             }
-           
-            //labelSale.Text = totalSale.ToString();
-            //labelReturn.Text = totalReturn.ToString();
-            loaded = true;
+            else if (customerID > 0)
+            {
+                f.PrintInvoice(engName + " " + customerID, "(" + TypeBuy + ")" + " " + delegateName, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+            }
+            f.ShowDialog();
         }
     }
 }

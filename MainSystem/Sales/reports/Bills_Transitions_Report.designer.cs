@@ -166,7 +166,7 @@
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "تقرير";
+            this.btnReport.LabelText = "طباعة";
             this.btnReport.Location = new System.Drawing.Point(471, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";

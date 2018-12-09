@@ -18,9 +18,9 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(string ClientName, string DelegateName, DateTime billDate, string PayType, int BillNumber, string branchId, string BranchName, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Bill_Items> BillItems)
+        public void PrintInvoice(string ClientName, string DelegateName, DateTime billDate, string PayType, int BillNumber, string branchId, string BranchName, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Copy_Bill_Items> BillItems)
         {
-            Print_Invoice report = new Print_Invoice();
+            Print_Copy_Invoice report = new Print_Copy_Invoice();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
