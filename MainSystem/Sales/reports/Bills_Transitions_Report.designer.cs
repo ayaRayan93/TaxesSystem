@@ -47,6 +47,8 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.comBranch = new System.Windows.Forms.ComboBox();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
+            this.btnNewChosen = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1.SuspendLayout();
@@ -213,23 +215,28 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 9;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
+            this.tableLayoutPanel3.ColumnCount = 12;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.5F));
-            this.tableLayoutPanel3.Controls.Add(this.label2, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label1, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker2, 6, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnSearch, 7, 0);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel3.Controls.Add(this.label2, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label1, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker2, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnSearch, 9, 0);
             this.tableLayoutPanel3.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.comBranch, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtBranchID, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnNewChosen, 10, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -243,7 +250,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(396, 0);
+            this.label2.Location = new System.Drawing.Point(433, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 19);
             this.label2.TabIndex = 1;
@@ -254,7 +261,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(654, 0);
+            this.label1.Location = new System.Drawing.Point(639, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 19);
             this.label1.TabIndex = 0;
@@ -262,16 +269,18 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(447, 3);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(484, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(201, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(149, 20);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(189, 3);
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(278, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(201, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(149, 20);
             this.dateTimePicker2.TabIndex = 3;
             // 
             // btnSearch
@@ -280,7 +289,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(86, 3);
+            this.btnSearch.Location = new System.Drawing.Point(165, 3);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(97, 35);
             this.btnSearch.TabIndex = 4;
@@ -293,7 +302,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(912, 0);
+            this.label3.Location = new System.Drawing.Point(927, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 19);
             this.label3.TabIndex = 5;
@@ -303,10 +312,34 @@
             // 
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(706, 3);
+            this.comBranch.Location = new System.Drawing.Point(772, 3);
             this.comBranch.Name = "comBranch";
-            this.comBranch.Size = new System.Drawing.Size(200, 24);
+            this.comBranch.Size = new System.Drawing.Size(149, 24);
             this.comBranch.TabIndex = 6;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Enabled = false;
+            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBranchID.Location = new System.Drawing.Point(700, 3);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.Size = new System.Drawing.Size(66, 23);
+            this.txtBranchID.TabIndex = 11;
+            // 
+            // btnNewChosen
+            // 
+            this.btnNewChosen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChosen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChosen.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewChosen.ForeColor = System.Drawing.Color.White;
+            this.btnNewChosen.Location = new System.Drawing.Point(62, 3);
+            this.btnNewChosen.Name = "btnNewChosen";
+            this.btnNewChosen.Size = new System.Drawing.Size(97, 35);
+            this.btnNewChosen.TabIndex = 12;
+            this.btnNewChosen.Text = "اختيار اخر";
+            this.btnNewChosen.UseVisualStyleBackColor = false;
+            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
             // 
             // gridControl1
             // 
@@ -394,5 +427,7 @@
         private System.Windows.Forms.Label labelReturn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comBranch;
+        private System.Windows.Forms.TextBox txtBranchID;
+        private System.Windows.Forms.Button btnNewChosen;
     }
 }

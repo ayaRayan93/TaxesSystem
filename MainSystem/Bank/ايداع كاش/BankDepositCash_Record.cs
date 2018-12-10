@@ -1603,7 +1603,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1615,7 +1615,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1627,7 +1627,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToDouble(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();

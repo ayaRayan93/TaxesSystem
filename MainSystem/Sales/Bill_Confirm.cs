@@ -1024,6 +1024,17 @@ namespace MainSystem
                             }
                         }
                     }
+
+                    if (item.Name == "panel4")
+                    {
+                        foreach (Control item1 in item.Controls)
+                        {
+                            if (item1.Name == "panel5")
+                            {
+                                clear(item1);
+                            }
+                        }
+                    }
                 }
             }
             //}

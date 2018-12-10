@@ -71,7 +71,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.Text != "")
+                if (comBranch.Text != "" && txtBranchID.Text != "")
                 {
                     search();
                 }
@@ -91,7 +91,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.Text != "")
+                if (comBranch.Text != "" && txtBranchID.Text != "")
                 {
                     //int bilNum = 0;
                     double costSale = 0;
@@ -277,6 +277,59 @@ namespace MainSystem
             labelSale.Text = totalSale.ToString();
             labelReturn.Text = totalReturn.ToString();
             loaded = true;
+        }
+
+        private void btnNewChosen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                clearCom();
+                gridControl1.DataSource = null;
+                gridControl2.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void clearCom()
+        {
+            foreach (Control co in this.tableLayoutPanel3.Controls)
+            {
+                if (co is System.Windows.Forms.ComboBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is DateTimePicker)
+                {
+                    dateTimePicker1.Value = DateTime.Now;
+                    dateTimePicker2.Value = DateTime.Now;
+                }
+            }
+        }
+
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loadedBranch)
+                {
+                    int branchID = 0;
+                    if (int.TryParse(comBranch.SelectedValue.ToString(), out branchID))
+                    {
+                        txtBranchID.Text = comBranch.SelectedValue.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

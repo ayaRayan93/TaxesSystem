@@ -16,6 +16,6 @@ namespace MainSystem
         public double Cost { get; set; }
         public double Discount { get; set; }
         public double Total_Cost { get; set; }
-        public double Carton { get; set; }
+        public int Carton { get; set; }
     }
 }
