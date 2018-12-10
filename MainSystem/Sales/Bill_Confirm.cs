@@ -682,9 +682,13 @@ namespace MainSystem
                     dbconnection.Open();
                     if (checkQuantityInStore())
                     {
+                        int Branch_BillNumber = 1;
                         string query = "select Branch_BillNumber from customer_bill where Branch_ID=" + EmpBranchId + " order by CustomerBill_ID  Desc limit 1";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        int Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
+                        if (com.ExecuteScalar() != null)
+                        {
+                            Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
+                        }
 
                         query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Customer_ID,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Customer_ID,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID)";
                         com = new MySqlCommand(query, dbconnection);
@@ -1015,6 +1019,17 @@ namespace MainSystem
                         foreach (Control item1 in item.Controls)
                         {
                             if (item1.Name == "panel3")
+                            {
+                                clear(item1);
+                            }
+                        }
+                    }
+
+                    if (item.Name == "panel4")
+                    {
+                        foreach (Control item1 in item.Controls)
+                        {
+                            if (item1.Name == "panel5")
                             {
                                 clear(item1);
                             }
