@@ -420,54 +420,6 @@ namespace MainSystem
                 bi.Add(item);
             }
 
-            /*conn.Open();
-            string query = "SELECT product_bill.Data_ID,product_bill.Type,product_bill.Price,product_bill.Discount,product_bill.PriceAD,product_bill.Quantity,product_bill.Store_Name,product_bill.Cartons FROM product_bill where product_bill.CustomerBill_ID=" + ID;
-            MySqlCommand com = new MySqlCommand(query, conn);
-            MySqlDataReader dr = com.ExecuteReader();
-            while (dr.Read())
-            {
-                Copy_Bill_Items item;
-                connectionReader1.Open();
-                if (dr["Type"].ToString() == "بند")
-                {
-                    string q = "SELECT data.Code,type.Type_Name,concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'Product_Name' FROM data INNER JOIN type ON data.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID where Data_ID=" + dr["Data_ID"].ToString();
-                    MySqlCommand c = new MySqlCommand(q, connectionReader1);
-                    MySqlDataReader dr1 = c.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        item = new Copy_Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()), Type = dr1["Type_Name"].ToString() };
-                        bi.Add(item);
-                    }
-                    dr1.Close();
-                }
-                else if (dr["Type"].ToString() == "طقم")
-                {
-                    string q = "SELECT sets.Set_ID,sets.Set_Name FROM sets where Set_ID=" + dr["Data_ID"].ToString();
-                    MySqlCommand c = new MySqlCommand(q, connectionReader1);
-                    MySqlDataReader dr1 = c.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        item = new Copy_Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
-                        bi.Add(item);
-                    }
-                    dr1.Close();
-                }
-                else if (dr["Type"].ToString() == "عرض")
-                {
-                    string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
-                    MySqlCommand c = new MySqlCommand(q, connectionReader1);
-                    MySqlDataReader dr1 = c.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        item = new Copy_Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
-                        bi.Add(item);
-                    }
-                    dr1.Close();
-                }
-                connectionReader1.Close();
-            }
-            conn.Close();*/
-
             Print_CopyReturnedBill_Report f = new Print_CopyReturnedBill_Report();
             if (clientID > 0)
             {

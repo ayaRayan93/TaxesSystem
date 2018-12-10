@@ -404,7 +404,7 @@ namespace MainSystem
 
                     if (!loaded)
                     {
-                        for (int i = 1; i < gridView1.Columns.Count; i++)
+                        for (int i = 0; i < gridView1.Columns.Count; i++)
                         {
                             gridView1.Columns[i].Width = 110;
                         }
