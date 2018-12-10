@@ -230,7 +230,7 @@ namespace MainSystem
                     }
                     myConnection.Close();
                     
-                    totalCostAD = Convert.ToDouble(dr["Total_CostAD"].ToString());
+                    totalCostAD = Convert.ToDouble(dr["TotalCostAD"].ToString());
 
                     if (dr["Customer_ID"].ToString() != "")
                     {
@@ -268,14 +268,14 @@ namespace MainSystem
                         dr.Close();
                     }
 
-                    query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.TotalMeter as 'الكمية',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم' from customer_return_bill_details INNER JOIN customer_return_bill ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_return_bill_details.CustomerReturnBill_ID=0 and data.Data_ID=0";
+                    query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.TotalMeter as 'الكمية',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount' from customer_return_bill_details INNER JOIN customer_return_bill ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_return_bill_details.CustomerReturnBill_ID=0 and data.Data_ID=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
                     gridControl1.DataSource = dtProduct;
 
 
-                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية' FROM customer_return_bill_details INNER JOIN customer_return_bill ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID where customer_return_bill_details.CustomerReturnBill_ID=" + ID + " and customer_return_bill.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount' FROM customer_return_bill_details INNER JOIN customer_return_bill ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID where customer_return_bill_details.CustomerReturnBill_ID=" + ID + " and customer_return_bill.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
                     com = new MySqlCommand(query, conn);
                     dr = com.ExecuteReader();
                     while (dr.Read())
@@ -300,8 +300,7 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نسبة الخصم"], dr["نسبة الخصم"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dr["اجمالى الكراتين"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], dr["المخزن"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SellDiscount"], dr["SellDiscount"].ToString());
                                 }
                             }
                             dr1.Close();
@@ -324,8 +323,7 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نسبة الخصم"], dr["نسبة الخصم"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dr["اجمالى الكراتين"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], dr["المخزن"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SellDiscount"], dr["SellDiscount"].ToString());
                                 }
                             }
                             dr1.Close();
@@ -348,8 +346,7 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نسبة الخصم"], dr["نسبة الخصم"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dr["اجمالى الكراتين"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], dr["المخزن"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SellDiscount"], 0);
                                 }
                             }
                             dr1.Close();
@@ -359,6 +356,7 @@ namespace MainSystem
                     conn.Close();
                     
                     gridView1.Columns["الفئة"].Visible = false;
+                    gridView1.Columns["SellDiscount"].Visible = false;
                     if (gridView1.IsLastVisibleRow)
                     {
                         gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -366,7 +364,7 @@ namespace MainSystem
 
                     if (!loaded)
                     {
-                        for (int i = 1; i < gridView1.Columns.Count; i++)
+                        for (int i = 0; i < gridView1.Columns.Count; i++)
                         {
                             gridView1.Columns[i].Width = 110;
                         }
@@ -418,7 +416,7 @@ namespace MainSystem
 
             for (int i = 0; i < gridView1.RowCount; i++)
             {
-                CopyReturnedBill_Items item = new CopyReturnedBill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نسبة الخصم"]) };
+                CopyReturnedBill_Items item = new CopyReturnedBill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), CostBD = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["SellDiscount"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["بعد الخصم"])) };
                 bi.Add(item);
             }
 

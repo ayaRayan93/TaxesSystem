@@ -24,7 +24,7 @@ namespace MainSystem
             FinalBillCost.Value = TotalBillPriceAD;
             DateNow.Value = DateTime.Now;
             ReturnInfo.Value = returnInfo;
-            objectDataSource2.DataSource = Bill_Items;
+            objectDataSource1.DataSource = Bill_Items;
         }
     }
 }
