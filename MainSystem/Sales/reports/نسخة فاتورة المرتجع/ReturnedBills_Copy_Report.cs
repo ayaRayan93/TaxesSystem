@@ -33,7 +33,6 @@ namespace MainSystem
         public static GridControl gridcontrol;
         bool loaded = false;
         bool loadedBranch = false;
-        string delegateName = "";
         int branchID = 0;
         string branchName = "";
         int billNumber = 0;
@@ -202,12 +201,9 @@ namespace MainSystem
         public void search()
         {
             conn.Open();
-            //if (branchID > 0)
-            //{
             if (int.TryParse(txtBillNum.Text, out billNumber))
             {
                 ID = -1;
-                delegateName = "";
 
                 string query = "select * from customer_return_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
                 MySqlCommand com = new MySqlCommand(query, conn);
@@ -220,6 +216,7 @@ namespace MainSystem
                     TypeBuy = dr["Type_Buy"].ToString();
                     billDate = Convert.ToDateTime(dr["Date"].ToString());
                     returnInfo = dr["ReturnInfo"].ToString();
+                    dateTimePicker1.Value = billDate;
 
                     myConnection.Open();
                     string query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
@@ -253,10 +250,13 @@ namespace MainSystem
                         while (dr.Read())
                         {
                             clientName = dr["Customer_Name"].ToString();
+                            comClient.Text = dr["Customer_Name"].ToString();
+                            comClient.SelectedValue = clientID;
+                            txtClientId.Text = clientID.ToString();
                         }
                         dr.Close();
                     }
-                    if (customerID > 0)
+                    else if (customerID > 0)
                     {
                         query = "select * from customer where Customer_ID=" + customerID;
                         com = new MySqlCommand(query, conn);
@@ -264,6 +264,9 @@ namespace MainSystem
                         while (dr.Read())
                         {
                             engName = dr["Customer_Name"].ToString();
+                            comClient.Text = dr["Customer_Name"].ToString();
+                            comClient.SelectedValue = customerID;
+                            txtClientId.Text = customerID.ToString();
                         }
                         dr.Close();
                     }
@@ -275,7 +278,7 @@ namespace MainSystem
                     gridControl1.DataSource = dtProduct;
 
 
-                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount' FROM customer_return_bill_details INNER JOIN customer_return_bill ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID where customer_return_bill_details.CustomerReturnBill_ID=" + ID + " and customer_return_bill.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount' FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
                     com = new MySqlCommand(query, conn);
                     dr = com.ExecuteReader();
                     while (dr.Read())
@@ -383,11 +386,6 @@ namespace MainSystem
             {
                 MessageBox.Show("رقم الفاتورة يجب ان يكون رقم");
             }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("يجب ان تختار فرع اولا");
-            //}
         }
 
         public void clearCom()
@@ -402,10 +400,20 @@ namespace MainSystem
                 {
                     co.Text = "";
                 }
+            }
+            foreach (Control co in this.tableLayoutPanel4.Controls)
+            {
+                if (co is System.Windows.Forms.ComboBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
                 else if (co is DateTimePicker)
                 {
                     dateTimePicker1.Value = DateTime.Now;
-                    dateTimePicker2.Value = DateTime.Now;
                 }
             }
         }

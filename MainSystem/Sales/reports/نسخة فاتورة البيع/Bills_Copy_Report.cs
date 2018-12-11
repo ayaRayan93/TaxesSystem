@@ -203,8 +203,6 @@ namespace MainSystem
         public void search()
         {
             conn.Open();
-            //if (branchID > 0)
-            //{
             if (int.TryParse(txtBillNum.Text, out billNumber))
             {
                 ID = -1;
@@ -220,6 +218,7 @@ namespace MainSystem
                     ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
                     TypeBuy = dr["Type_Buy"].ToString();
                     billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
+                    dateTimePicker1.Value = billDate;
 
                     connectionReader1.Open();
                     string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN delegate ON delegate.Delegate_ID = product_bill.Delegate_ID where customer_bill.CustomerBill_ID=" + ID;
@@ -270,10 +269,13 @@ namespace MainSystem
                         while (dr.Read())
                         {
                             clientName = dr["Customer_Name"].ToString();
+                            comClient.Text = dr["Customer_Name"].ToString();
+                            comClient.SelectedValue = clientID;
+                            txtClientId.Text = clientID.ToString();
                         }
                         dr.Close();
                     }
-                    if (customerID > 0)
+                    else if (customerID > 0)
                     {
                         query = "select * from customer where Customer_ID=" + customerID;
                         com = new MySqlCommand(query, conn);
@@ -281,39 +283,21 @@ namespace MainSystem
                         while (dr.Read())
                         {
                             engName = dr["Customer_Name"].ToString();
+                            comClient.Text = dr["Customer_Name"].ToString();
+                            comClient.SelectedValue = customerID;
+                            txtClientId.Text = customerID.ToString();
                         }
                         dr.Close();
                     }
 
-                    /*DataTable dtAll = new DataTable();
-                    query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                    DataTable dtProduct = new DataTable();
-                    da.Fill(dtProduct);
-
-                    query = "select sets.Set_ID as 'Data_ID',cast(sets.Set_ID as CHAR(50)) as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join sets on sets.Set_ID=product_bill.Data_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-                    da = new MySqlDataAdapter(query, conn);
-                    DataTable dtSet = new DataTable();
-                    da.Fill(dtSet);
-
-                    dtAll = dtProduct.Copy();
-                    dtAll.Merge(dtSet);
-
-                    query = "select offer.Offer_ID as 'Data_ID',cast(offer.Offer_ID as CHAR(50)) as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join offer on offer.Offer_ID=product_bill.Data_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-                    da = new MySqlDataAdapter(query, conn);
-                    DataTable dtOffer = new DataTable();
-                    da.Fill(dtOffer);
-
-                    dtAll.Merge(dtOffer);*/
-
-                    query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'اجمالى الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' and data.Data_ID=0";
+                    query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'اجمالى الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and data.Data_ID=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
                     gridControl1.DataSource = dtProduct;
 
 
-                    query = "SELECT product_bill.Data_ID,product_bill.Type as 'الفئة',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Quantity as 'الكمية',product_bill.Store_Name as 'المخزن',product_bill.Cartons as 'اجمالى الكراتين' FROM product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID where product_bill.CustomerBill_ID=" + ID + " and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                    query = "SELECT product_bill.Data_ID,product_bill.Type as 'الفئة',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Quantity as 'الكمية',product_bill.Store_Name as 'المخزن',product_bill.Cartons as 'اجمالى الكراتين' FROM product_bill where product_bill.CustomerBill_ID=" + ID;
                     com = new MySqlCommand(query, conn);
                     dr = com.ExecuteReader();
                     while (dr.Read())
@@ -415,7 +399,6 @@ namespace MainSystem
                 }
                 else
                 {
-                    //clear();
                     MessageBox.Show("لا يوجد فاتورة بهذا الرقم فى الفرع");
                 }
             }
@@ -423,11 +406,6 @@ namespace MainSystem
             {
                 MessageBox.Show("رقم الفاتورة يجب ان يكون رقم");
             }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("يجب ان تختار فرع اولا");
-            //}
         }
 
         public void clearCom()
@@ -442,10 +420,20 @@ namespace MainSystem
                 {
                     co.Text = "";
                 }
+            }
+            foreach (Control co in this.tableLayoutPanel4.Controls)
+            {
+                if (co is System.Windows.Forms.ComboBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
                 else if (co is DateTimePicker)
                 {
                     dateTimePicker1.Value = DateTime.Now;
-                    dateTimePicker2.Value = DateTime.Now;
                 }
             }
         }
@@ -459,54 +447,6 @@ namespace MainSystem
                 Copy_Bill_Items item = new Copy_Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]), Carton = Convert.ToInt16(gridView1.GetRowCellDisplayText(i, gridView1.Columns["اجمالى الكراتين"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نسبة الخصم"]) };
                 bi.Add(item);
             }
-
-            /*conn.Open();
-            string query = "SELECT product_bill.Data_ID,product_bill.Type,product_bill.Price,product_bill.Discount,product_bill.PriceAD,product_bill.Quantity,product_bill.Store_Name,product_bill.Cartons FROM product_bill where product_bill.CustomerBill_ID=" + ID;
-            MySqlCommand com = new MySqlCommand(query, conn);
-            MySqlDataReader dr = com.ExecuteReader();
-            while (dr.Read())
-            {
-                Copy_Bill_Items item;
-                connectionReader1.Open();
-                if (dr["Type"].ToString() == "بند")
-                {
-                    string q = "SELECT data.Code,type.Type_Name,concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'Product_Name' FROM data INNER JOIN type ON data.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID where Data_ID=" + dr["Data_ID"].ToString();
-                    MySqlCommand c = new MySqlCommand(q, connectionReader1);
-                    MySqlDataReader dr1 = c.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        item = new Copy_Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()), Type = dr1["Type_Name"].ToString() };
-                        bi.Add(item);
-                    }
-                    dr1.Close();
-                }
-                else if (dr["Type"].ToString() == "طقم")
-                {
-                    string q = "SELECT sets.Set_ID,sets.Set_Name FROM sets where Set_ID=" + dr["Data_ID"].ToString();
-                    MySqlCommand c = new MySqlCommand(q, connectionReader1);
-                    MySqlDataReader dr1 = c.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        item = new Copy_Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
-                        bi.Add(item);
-                    }
-                    dr1.Close();
-                }
-                else if (dr["Type"].ToString() == "عرض")
-                {
-                    string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
-                    MySqlCommand c = new MySqlCommand(q, connectionReader1);
-                    MySqlDataReader dr1 = c.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        item = new Copy_Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
-                        bi.Add(item);
-                    }
-                    dr1.Close();
-                }
-                connectionReader1.Close();
-            }
-            conn.Close();*/
 
             Print_CopyBill_Report f = new Print_CopyBill_Report();
             if (clientID > 0)
