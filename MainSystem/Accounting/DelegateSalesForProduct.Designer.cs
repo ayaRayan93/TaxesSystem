@@ -269,12 +269,12 @@
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Cost,
-            this.Quantity,
-            this.QuantityReturned,
-            this.QuantitySaled,
+            this.Data_ID,
             this.CodeName,
-            this.Data_ID});
+            this.QuantitySaled,
+            this.QuantityReturned,
+            this.Quantity,
+            this.Cost});
             this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(584, 396, 260, 282);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -287,7 +287,7 @@
             this.Cost.FieldName = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.Visible = true;
-            this.Cost.VisibleIndex = 4;
+            this.Cost.VisibleIndex = 0;
             // 
             // Quantity
             // 
@@ -295,7 +295,7 @@
             this.Quantity.FieldName = "Quantity";
             this.Quantity.Name = "Quantity";
             this.Quantity.Visible = true;
-            this.Quantity.VisibleIndex = 3;
+            this.Quantity.VisibleIndex = 1;
             // 
             // QuantityReturned
             // 
@@ -311,7 +311,7 @@
             this.QuantitySaled.FieldName = "QuantitySaled";
             this.QuantitySaled.Name = "QuantitySaled";
             this.QuantitySaled.Visible = true;
-            this.QuantitySaled.VisibleIndex = 1;
+            this.QuantitySaled.VisibleIndex = 3;
             // 
             // CodeName
             // 
@@ -319,7 +319,7 @@
             this.CodeName.FieldName = "CodeName";
             this.CodeName.Name = "CodeName";
             this.CodeName.Visible = true;
-            this.CodeName.VisibleIndex = 0;
+            this.CodeName.VisibleIndex = 4;
             // 
             // Data_ID
             // 

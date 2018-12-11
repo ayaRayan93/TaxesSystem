@@ -81,7 +81,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(896, 551);
             this.tableLayoutPanel1.TabIndex = 1;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // panel1
             // 
@@ -104,7 +103,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(896, 100);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label1
             // 
@@ -118,7 +116,6 @@
             this.label1.Size = new System.Drawing.Size(49, 18);
             this.label1.TabIndex = 197;
             this.label1.Text = "المصنع";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label4
             // 
@@ -132,7 +129,6 @@
             this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 198;
             this.label4.Text = "الصنف";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // comFactory
             // 
@@ -148,7 +144,6 @@
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(175, 24);
             this.comFactory.TabIndex = 196;
-            this.comFactory.SelectedIndexChanged += new System.EventHandler(this.comFactory_SelectedIndexChanged);
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
             // 
             // txtFactory
@@ -163,7 +158,6 @@
             this.txtFactory.Size = new System.Drawing.Size(53, 24);
             this.txtFactory.TabIndex = 195;
             this.txtFactory.TabStop = false;
-            this.txtFactory.TextChanged += new System.EventHandler(this.txtFactory_TextChanged);
             this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFactory_KeyDown);
             // 
             // txtDelegateID
@@ -174,8 +168,7 @@
             this.txtDelegateID.Name = "txtDelegateID";
             this.txtDelegateID.Size = new System.Drawing.Size(53, 24);
             this.txtDelegateID.TabIndex = 194;
-            this.txtDelegateID.TextChanged += new System.EventHandler(this.txtDelegateID_TextChanged);
-            this.txtDelegateID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFactory_KeyDown);
+            this.txtDelegateID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDelegateID_KeyDown);
             // 
             // comDelegate
             // 
@@ -187,8 +180,7 @@
             this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDelegate.Size = new System.Drawing.Size(175, 24);
             this.comDelegate.TabIndex = 192;
-            this.comDelegate.SelectedIndexChanged += new System.EventHandler(this.comDelegate_SelectedIndexChanged);
-            this.comDelegate.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
+            this.comDelegate.SelectedValueChanged += new System.EventHandler(this.comDelegate_SelectedValueChanged);
             // 
             // labelDelegate
             // 
@@ -200,7 +192,6 @@
             this.labelDelegate.Size = new System.Drawing.Size(45, 16);
             this.labelDelegate.TabIndex = 193;
             this.labelDelegate.Text = "مندوب";
-            this.labelDelegate.Click += new System.EventHandler(this.labelDelegate_Click);
             // 
             // dateTimeTo
             // 
@@ -209,7 +200,6 @@
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
             this.dateTimeTo.TabIndex = 188;
-            this.dateTimeTo.ValueChanged += new System.EventHandler(this.dateTimeTo_ValueChanged);
             // 
             // dateTimeFrom
             // 
@@ -218,7 +208,6 @@
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFrom.TabIndex = 189;
-            this.dateTimeFrom.ValueChanged += new System.EventHandler(this.dateTimeFrom_ValueChanged);
             // 
             // label2
             // 
@@ -230,7 +219,6 @@
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 190;
             this.label2.Text = "من";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -242,7 +230,6 @@
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 191;
             this.label3.Text = "الي";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // gridControl1
             // 
@@ -255,7 +242,6 @@
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 

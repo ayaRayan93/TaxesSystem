@@ -119,6 +119,7 @@ namespace MainSystem
                     {
                         Name = (string)com.ExecuteScalar();
                         comFactory.Text = Name;
+                        txtDelegateID.Focus();
                     }
                     else
                     {
@@ -147,6 +148,7 @@ namespace MainSystem
                     {
                         Name = (string)com.ExecuteScalar();
                         comDelegate.Text = Name;
+                        txtFactory.Focus();
                     }
                     else
                     {
@@ -215,74 +217,5 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comFactory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtFactory_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDelegateID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comDelegate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelDelegate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimeTo_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimeFrom_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

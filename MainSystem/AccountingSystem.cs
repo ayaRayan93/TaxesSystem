@@ -105,6 +105,11 @@ namespace MainSystem
                 {
                     xtraTabControlAccounting.TabPages.Add("مبيعات المندوبين لصنف");
                     xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات المندوبين لصنف");
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+                else
+                {
+                    xtraTabPage.RightToLeft = RightToLeft.No;
                 }
 
                 xtraTabPage.Controls.Clear();
