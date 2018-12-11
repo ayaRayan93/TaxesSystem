@@ -198,14 +198,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 //peraper datasource
-                DataTable _Table = new DataTable("Table");
-
-                _Table.Columns.Add(new DataColumn("Data_ID", typeof(int)));
-                _Table.Columns.Add(new DataColumn("CodeName", typeof(string)));
-                _Table.Columns.Add(new DataColumn("QuantitySaled", typeof(string)));
-                _Table.Columns.Add(new DataColumn("QuantityReturned", typeof(string)));
-                _Table.Columns.Add(new DataColumn("Cost", typeof(string)));
-                _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
+                DataTable _Table = peraperDataTable();
 
                 DateTime date = dateTimeFrom.Value;
                 string d = date.ToString("yyyy-MM-dd HH:mm:ss");
@@ -215,7 +208,7 @@ namespace MainSystem
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
 
                 _Table = getSoldQuantity(_Table,itemName,DataTableRelations,d,d2);
-                _Table = getSoldQuantity(_Table, itemName, DataTableRelations, d, d2);
+                _Table = getReturnedQuantity(_Table, itemName, DataTableRelations, d, d2);
 
                 gridControl1.DataSource = _Table;
             }
@@ -230,7 +223,7 @@ namespace MainSystem
         //functions
         public DataTable getSoldQuantity(DataTable _Table,string itemName,string DataTableRelations,string dateFrom,string dateTo)
         {
-            string query = "select product_bill.Data_ID," + itemName + ",sum(Quantity) as 'الكمية' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and Bill_Date between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code ,customer_bill.CustomerBill_ID ,delegate.Delegate_ID ";
+            string query = "select product_bill.Data_ID," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and Bill_Date between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code ,customer_bill.CustomerBill_ID ,delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
 
@@ -241,7 +234,8 @@ namespace MainSystem
                 row["Data_ID"] = dr[0].ToString();
                 row["CodeName"] = dr[1].ToString();
                 row["QuantitySaled"] = dr[2].ToString();
-        
+                row["Quantity"] = dr[2].ToString();
+                row["Cost"] =Convert.ToDouble(dr[2].ToString())* Convert.ToDouble(dr[3].ToString());
                 _Table.Rows.Add(row);
             }
             dr.Close();
@@ -250,34 +244,61 @@ namespace MainSystem
         }
         public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo)
         {
-            string query = "select customer_return_bill_details.Data_ID,sum(Quantity) as 'الكمية',"+itemName+" from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where Paid_Status=1 and Bill_Date between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code ,customer_return_bill.CustomerReturnBill_ID ,delegate.Delegate_ID ";
+            string query = "select customer_return_bill_details.Data_ID," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where Date between '" + dateFrom + "' and '" + dateTo + "' and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code ,customer_return_bill.CustomerReturnBill_ID ,delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
-
+            DataTable temp = peraperDataTable();
+            DataTable temp1 = peraperDataTable();
+            bool flag = true;
             while (dr.Read())
             {
                 foreach (DataRow item in _Table.Rows)
                 {
                     if (item[0].ToString() == dr[0].ToString())
                     {
-                        item["QuantityReturned"] = dr[1].ToString();
-                        item["Quantity"] = Convert.ToDouble(item[1].ToString()) - Convert.ToDouble(dr[1].ToString());
+                        item["QuantityReturned"] = dr[2].ToString();
+                        item["Quantity"] = (Convert.ToDouble(item[2].ToString()) - Convert.ToDouble(dr[2].ToString())).ToString();
+                        item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        flag = false;
                     }
-                    else
-                    {
-                        DataRow row = _Table.NewRow();
 
-                        row["QuantityReturned"] = dr[1].ToString();
-                        row["Data_ID"] = dr[0].ToString();
-                        row["CodeName"] = dr[2].ToString();
-
-                        _Table.Rows.Add(row);
-                    }
                 }
-          
+                if (flag)
+                {
+                    DataRow row = temp.NewRow();
+
+                    row["QuantityReturned"] = dr[2].ToString();
+                    row["Quantity"] = dr[2].ToString();
+                    row["Data_ID"] = dr[0].ToString();
+                    row["CodeName"] = dr[1].ToString();
+                    row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+
+                    temp.Rows.Add(row);
+                }
+
+
+
             }
             dr.Close();
+            foreach (DataRow item in temp.Rows)
+            {
+                _Table.Rows.Add(item.ItemArray);
+            }
+          
 
+            return _Table;
+        }
+
+        public DataTable peraperDataTable()
+        {
+            DataTable _Table = new DataTable("Table");
+
+            _Table.Columns.Add(new DataColumn("Data_ID", typeof(int)) );
+            _Table.Columns.Add(new DataColumn("CodeName", typeof(string)));
+            _Table.Columns.Add(new DataColumn("QuantitySaled", typeof(string)));
+            _Table.Columns.Add(new DataColumn("QuantityReturned", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Cost", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
         }
     }
