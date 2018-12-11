@@ -345,6 +345,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemReturnedBillCopy_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "نسخة فاتورة مرتجع");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("نسخة فاتورة مرتجع");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "نسخة فاتورة مرتجع");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                ReturnedBills_Copy_Report objForm = new ReturnedBills_Copy_Report(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void pictureBoxSale_Click(object sender, EventArgs e)
         {
             try

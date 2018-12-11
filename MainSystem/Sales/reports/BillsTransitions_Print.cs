@@ -98,7 +98,7 @@ namespace MainSystem
             PageImageBrick pageImageBrick;
 
             // Define the image to display.
-            Image pageImage = MainSystem.Properties.Resources.Logo;
+            Image pageImage = MainSystem.Properties.Resources.logo_option2;
 
             // Display the PageImageBrick containing the DevExpress logo.
             pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(856, 0, 100, 80), BorderSide.None, Color.Transparent);
@@ -112,7 +112,8 @@ namespace MainSystem
 
 
             // Declare text strings.
-            string devexpress = "حركة السداد";
+            //string devexpress = "حركة السداد";
+            string devexpress = "حركة الفواتير";
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics2 = e.Graph;
             brickGraphics2.BackColor = Color.White;

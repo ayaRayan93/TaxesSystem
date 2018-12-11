@@ -1108,6 +1108,12 @@
     <Compile Include="Sales\reports\Print_Transition.designer.cs">
       <DependentUpon>Print_Transition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\CopyBills_Transitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\CopyBills_Transitions_Report.designer.cs">
+      <DependentUpon>CopyBills_Transitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1127,6 +1133,25 @@
     <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.designer.cs">
       <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedBill_Report.designer.cs">
+      <DependentUpon>Print_CopyReturnedBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.designer.cs">
+      <DependentUpon>Print_CopyReturnedInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.designer.cs">
+      <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\CopyReturnedBill_Items.cs" />
     <Compile Include="Sales\SpecialOrders_Report2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1828,6 +1853,9 @@
     <EmbeddedResource Include="Sales\reports\Print_Transition.resx">
       <DependentUpon>Print_Transition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\CopyBills_Transitions_Report.resx">
+      <DependentUpon>CopyBills_Transitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.resx">
       <DependentUpon>Bills_Copy_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -1836,6 +1864,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.resx">
       <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedBill_Report.resx">
+      <DependentUpon>Print_CopyReturnedBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.resx">
+      <DependentUpon>Print_CopyReturnedInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.resx">
+      <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
@@ -2245,9 +2282,7 @@
     <None Include="Resources\Trolley_80px.png" />
     <None Include="Resources\unsave %282%29.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sales\reports\نسخة فاتورة المرتجع\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

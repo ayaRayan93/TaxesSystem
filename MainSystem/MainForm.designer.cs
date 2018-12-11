@@ -110,6 +110,7 @@
             this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup14 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemCustomers = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -1255,7 +1256,8 @@
             this.btnTaswayAgalBills,
             this.navBarItem153,
             this.navBarItemSalesTransitions,
-            this.navBarItemBillCopy});
+            this.navBarItemBillCopy,
+            this.navBarItemReturnedBillCopy});
             this.navBarControl2.Location = new System.Drawing.Point(955, 0);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 190;
@@ -1270,7 +1272,8 @@
             this.navBarGroup18.Expanded = true;
             this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy)});
             this.navBarGroup18.Name = "navBarGroup18";
             // 
             // navBarItemSalesTransitions
@@ -1281,9 +1284,15 @@
             // 
             // navBarItemBillCopy
             // 
-            this.navBarItemBillCopy.Caption = "نسخة فاتورة بيع";
+            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة بيع";
             this.navBarItemBillCopy.Name = "navBarItemBillCopy";
             this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
+            // 
+            // navBarItemReturnedBillCopy
+            // 
+            this.navBarItemReturnedBillCopy.Caption = "استعلام عن فاتورة مرتجع";
+            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
+            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
             // 
             // navBarGroup14
             // 
@@ -3922,5 +3931,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateSalesForCompany;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateSalesForProduct;
         private DevExpress.XtraNavBar.NavBarItem navBarItemBillCopy;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemReturnedBillCopy;
     }
 }

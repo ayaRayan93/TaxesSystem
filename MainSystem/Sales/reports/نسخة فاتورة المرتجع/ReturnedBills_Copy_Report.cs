@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Bills_Copy_Report : Form
+    public partial class ReturnedBills_Copy_Report : Form
     {
         MySqlConnection conn;
         MySqlConnection connectionReader1;
@@ -33,7 +33,6 @@ namespace MainSystem
         public static GridControl gridcontrol;
         bool loaded = false;
         bool loadedBranch = false;
-        string delegateName = "";
         int branchID = 0;
         string branchName = "";
         int billNumber = 0;
@@ -46,11 +45,10 @@ namespace MainSystem
         DateTime billDate;
         int ID = -1;
         string ConfirmEmp = "";
-        double totalCostBD = 0;
         double totalCostAD = 0;
-        double totalDiscount = 0;
+        string returnInfo = "";
 
-        public Bills_Copy_Report(MainForm BankMainForm)
+        public ReturnedBills_Copy_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -206,37 +204,22 @@ namespace MainSystem
             if (int.TryParse(txtBillNum.Text, out billNumber))
             {
                 ID = -1;
-                delegateName = "";
 
-                string query = "select * from customer_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
+                string query = "select * from customer_return_bill where Branch_BillNumber=" + billNumber + " and Branch_ID=" + branchID + " and (Type_Buy='كاش' or Type_Buy='آجل')";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 MySqlDataReader dr = com.ExecuteReader();
 
                 while (dr.Read())
                 {
                     flag2 = true;
-                    ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                    ID = Convert.ToInt16(dr["CustomerReturnBill_ID"].ToString());
                     TypeBuy = dr["Type_Buy"].ToString();
-                    billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
+                    billDate = Convert.ToDateTime(dr["Date"].ToString());
+                    returnInfo = dr["ReturnInfo"].ToString();
                     dateTimePicker1.Value = billDate;
 
-                    connectionReader1.Open();
-                    string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN delegate ON delegate.Delegate_ID = product_bill.Delegate_ID where customer_bill.CustomerBill_ID=" + ID;
-                    MySqlCommand c1 = new MySqlCommand(q1, connectionReader1);
-                    MySqlDataReader dr1 = c1.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        if (delegateName != "")
-                        {
-                            delegateName += ",";
-                        }
-                        delegateName += dr1["Delegate_Name"].ToString();
-                    }
-                    dr1.Close();
-                    connectionReader1.Close();
-
                     myConnection.Open();
-                    string query3 = "SELECT users.User_Name FROM customer_bill INNER JOIN users ON users.User_ID = customer_bill.Employee_ID where customer_bill.CustomerBill_ID=" + ID;
+                    string query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
                     MySqlCommand com2 = new MySqlCommand(query3, myConnection);
                     if (com2.ExecuteScalar() != null)
                     {
@@ -244,9 +227,7 @@ namespace MainSystem
                     }
                     myConnection.Close();
                     
-                    totalCostBD = Convert.ToDouble(dr["Total_CostBD"].ToString());
-                    totalDiscount = Convert.ToDouble(dr["Total_Discount"].ToString());
-                    totalCostAD = Convert.ToDouble(dr["Total_CostAD"].ToString());
+                    totalCostAD = Convert.ToDouble(dr["TotalCostAD"].ToString());
 
                     if (dr["Customer_ID"].ToString() != "")
                     {
@@ -290,14 +271,14 @@ namespace MainSystem
                         dr.Close();
                     }
 
-                    query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'اجمالى الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and data.Data_ID=0";
+                    query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.TotalMeter as 'الكمية',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount' from customer_return_bill_details INNER JOIN customer_return_bill ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_return_bill_details.CustomerReturnBill_ID=0 and data.Data_ID=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
                     gridControl1.DataSource = dtProduct;
 
 
-                    query = "SELECT product_bill.Data_ID,product_bill.Type as 'الفئة',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Quantity as 'الكمية',product_bill.Store_Name as 'المخزن',product_bill.Cartons as 'اجمالى الكراتين' FROM product_bill where product_bill.CustomerBill_ID=" + ID;
+                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount' FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
                     com = new MySqlCommand(query, conn);
                     dr = com.ExecuteReader();
                     while (dr.Read())
@@ -322,8 +303,7 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نسبة الخصم"], dr["نسبة الخصم"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dr["اجمالى الكراتين"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], dr["المخزن"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SellDiscount"], dr["SellDiscount"].ToString());
                                 }
                             }
                             dr1.Close();
@@ -346,8 +326,7 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نسبة الخصم"], dr["نسبة الخصم"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dr["اجمالى الكراتين"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], dr["المخزن"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SellDiscount"], dr["SellDiscount"].ToString());
                                 }
                             }
                             dr1.Close();
@@ -370,8 +349,7 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نسبة الخصم"], dr["نسبة الخصم"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اجمالى الكراتين"], dr["اجمالى الكراتين"].ToString());
-                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], dr["المخزن"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SellDiscount"], 0);
                                 }
                             }
                             dr1.Close();
@@ -381,6 +359,7 @@ namespace MainSystem
                     conn.Close();
                     
                     gridView1.Columns["الفئة"].Visible = false;
+                    gridView1.Columns["SellDiscount"].Visible = false;
                     if (gridView1.IsLastVisibleRow)
                     {
                         gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -399,6 +378,7 @@ namespace MainSystem
                 }
                 else
                 {
+                    //clear();
                     MessageBox.Show("لا يوجد فاتورة بهذا الرقم فى الفرع");
                 }
             }
@@ -440,22 +420,22 @@ namespace MainSystem
 
         void printBill()
         {
-            List<Copy_Bill_Items> bi = new List<Copy_Bill_Items>();
+            List<CopyReturnedBill_Items> bi = new List<CopyReturnedBill_Items>();
 
             for (int i = 0; i < gridView1.RowCount; i++)
             {
-                Copy_Bill_Items item = new Copy_Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]), Carton = Convert.ToInt16(gridView1.GetRowCellDisplayText(i, gridView1.Columns["اجمالى الكراتين"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نسبة الخصم"]) };
+                CopyReturnedBill_Items item = new CopyReturnedBill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), CostBD = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["SellDiscount"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["بعد الخصم"])) };
                 bi.Add(item);
             }
 
-            Print_CopyBill_Report f = new Print_CopyBill_Report();
+            Print_CopyReturnedBill_Report f = new Print_CopyReturnedBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, "(" + TypeBuy + ")" + " " + delegateName, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, "(" + TypeBuy + ")" + " " + delegateName, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi);
             }
             f.ShowDialog();
         }
