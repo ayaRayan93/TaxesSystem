@@ -42,7 +42,7 @@ namespace MainSystem
             MainTabPagePrintingTransitions = new XtraTabPage();
             panelPrintingTransitions = new Panel();
             
-            gridcontrol = gridControl2;
+            gridcontrol = gridControl1;
 
             comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -325,6 +325,37 @@ namespace MainSystem
                     {
                         txtBranchID.Text = comBranch.SelectedValue.ToString();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBillReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comBranch.Text != "" && txtBranchID.Text != "")
+                {
+                    /*List<Transition_Items> bi = new List<Transition_Items>();
+                    //DataTable dt = (DataTable)gridControl2.DataSource;
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        Transition_Items item = new Transition_Items() { ID = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]), Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
+                        bi.Add(item);
+                    }*/
+
+                    gridcontrol = gridControl1;
+                    BillsTransitions_Print f = new BillsTransitions_Print();
+                    //Print_Transition_Report f = new Print_Transition_Report();
+                    //f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
+                    f.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("يجب اختيار فرع");
                 }
             }
             catch (Exception ex)
