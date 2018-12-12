@@ -495,7 +495,7 @@ namespace MainSystem
                                 connectionReader4.Close();
 
 
-                                string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Customer_ID,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Customer_ID,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error)";
+                                string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Customer_ID,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Customer_ID,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
@@ -506,7 +506,7 @@ namespace MainSystem
                                 com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
                                 com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                                 com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
-                                com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
+                                com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                                 if (clientID > 0)
                                 {
                                     com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
@@ -560,6 +560,8 @@ namespace MainSystem
                                 {
                                     com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
                                 }
+                                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
+                                com.Parameters["@Employee_ID"].Value = UserControl.userID;
 
                                 com.ExecuteNonQuery();
 

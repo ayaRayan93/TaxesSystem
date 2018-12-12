@@ -1114,6 +1114,54 @@
     <Compile Include="Sales\reports\نسخة ايصال السداد\BillTransitionCopy_Report.designer.cs">
       <DependentUpon>BillTransitionCopy_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الآجل\BillAglCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الآجل\BillAglCopy.Designer.cs">
+      <DependentUpon>BillAglCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الآجل\PrintCopy_AglCategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الآجل\PrintCopy_AglCategoriesBill_Report.designer.cs">
+      <DependentUpon>PrintCopy_AglCategoriesBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الكاش\BillCashCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الكاش\BillCashCopy.Designer.cs">
+      <DependentUpon>BillCashCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الكاش\PrintCopy_CategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الكاش\PrintCopy_CategoriesBill_Report.designer.cs">
+      <DependentUpon>PrintCopy_CategoriesBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الآجل\PrintCopy_ReturnedAglCategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الآجل\PrintCopy_ReturnedAglCategoriesBill_Report.designer.cs">
+      <DependentUpon>PrintCopy_ReturnedAglCategoriesBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الآجل\ReturnedBillAglCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الآجل\ReturnedBillAglCopy.Designer.cs">
+      <DependentUpon>ReturnedBillAglCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الكاش\PrintCopy_ReturnedCategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الكاش\PrintCopy_ReturnedCategoriesBill_Report.designer.cs">
+      <DependentUpon>PrintCopy_ReturnedCategoriesBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الكاش\ReturnedBillCashCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الكاش\ReturnedBillCashCopy.Designer.cs">
+      <DependentUpon>ReturnedBillCashCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1855,6 +1903,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\BillTransitionCopy_Report.resx">
       <DependentUpon>BillTransitionCopy_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الآجل\BillAglCopy.resx">
+      <DependentUpon>BillAglCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الآجل\PrintCopy_AglCategoriesBill_Report.resx">
+      <DependentUpon>PrintCopy_AglCategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الكاش\BillCashCopy.resx">
+      <DependentUpon>BillCashCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة الايداع الكاش\PrintCopy_CategoriesBill_Report.resx">
+      <DependentUpon>PrintCopy_CategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الآجل\PrintCopy_ReturnedAglCategoriesBill_Report.resx">
+      <DependentUpon>PrintCopy_ReturnedAglCategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الآجل\ReturnedBillAglCopy.resx">
+      <DependentUpon>ReturnedBillAglCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الكاش\PrintCopy_ReturnedCategoriesBill_Report.resx">
+      <DependentUpon>PrintCopy_ReturnedCategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة ايصال السداد\نسخة السحب الكاش\ReturnedBillCashCopy.resx">
+      <DependentUpon>ReturnedBillCashCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Bills_Copy_Report.resx">
       <DependentUpon>Bills_Copy_Report.cs</DependentUpon>
