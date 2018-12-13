@@ -10,6 +10,7 @@ namespace MainSystem
     {
         public string Code { get; set; }
         public string Product_Type { get; set; }
+        public string Type { get; set; }
         public string Product_Name { get; set; }
         public double Quantity { get; set; }
         public double CostBD { get; set; }

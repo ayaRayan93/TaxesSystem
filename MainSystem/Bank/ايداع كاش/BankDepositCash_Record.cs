@@ -468,14 +468,22 @@ namespace MainSystem
 
                 if (check)
                 {
-                    if(!flagCategoriesSuccess)
+                    if (Convert.ToDouble(txtRestMoney.Text) > 0)
+                    { }
+                    else
+                    {
+                        MessageBox.Show("لا يوجد متبقى على الفاتورة");
+                        return;
+                    }
+
+                    if (!flagCategoriesSuccess)
                     {
                         if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         {
                             return;
                         }
                     }
-
+                    
                     double outParse;
                     if (double.TryParse(txtPaidMoney.Text, out outParse))
                     {
@@ -515,7 +523,7 @@ namespace MainSystem
                                 }
                                 connectionReader4.Close();
 
-                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
+                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error,Employee_ID) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error,@Employee_ID)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع";
@@ -526,7 +534,7 @@ namespace MainSystem
                                 com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
                                 com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                                 com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
-                                com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
+                                com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                                 if (clientID > 0)
                                 {
                                     com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
@@ -580,6 +588,8 @@ namespace MainSystem
                                 {
                                     com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
                                 }
+                                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
+                                com.Parameters["@Employee_ID"].Value = UserControl.userID;
 
                                 com.ExecuteNonQuery();
                                 //////////record adding/////////////
@@ -1598,12 +1608,12 @@ namespace MainSystem
                 connectionReader3.Open();
                 if (dr["Type"].ToString() == "بند")
                 {
-                    string q = "SELECT data.Code,concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'Product_Name' FROM data INNER JOIN type ON data.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID where Data_ID=" + dr["Data_ID"].ToString();
+                    string q = "SELECT data.Code,type.Type_Name,concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'Product_Name' FROM data INNER JOIN type ON data.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID where Data_ID=" + dr["Data_ID"].ToString();
                     MySqlCommand c = new MySqlCommand(q, connectionReader3);
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();

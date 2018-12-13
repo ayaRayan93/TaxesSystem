@@ -74,6 +74,8 @@
             this.ImageProduct = new System.Windows.Forms.PictureBox();
             this.txtDelegatePercent = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -186,11 +188,11 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 165F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(960, 746);
             this.tableLayoutPanel1.TabIndex = 90;
@@ -217,10 +219,11 @@
             this.panel3.Controls.Add(this.comFactory);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.panel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(954, 69);
+            this.panel3.Size = new System.Drawing.Size(954, 84);
             this.panel3.TabIndex = 93;
             // 
             // btnNewChooes
@@ -553,11 +556,11 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 78);
+            this.gridControl1.Location = new System.Drawing.Point(3, 93);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(954, 204);
+            this.gridControl1.Size = new System.Drawing.Size(954, 189);
             this.gridControl1.TabIndex = 94;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -584,7 +587,7 @@
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(954, 204);
+            this.gridControl2.Size = new System.Drawing.Size(954, 189);
             this.gridControl2.TabIndex = 95;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -615,10 +618,11 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtPrice);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 538);
+            this.panel1.Location = new System.Drawing.Point(3, 523);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(954, 144);
+            this.panel1.Size = new System.Drawing.Size(954, 159);
             this.panel1.TabIndex = 96;
             // 
             // txtDescription
@@ -696,6 +700,20 @@
             this.label3.TabIndex = 85;
             this.label3.Text = "نسبة المندوب";
             // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(948, 78);
+            this.panel2.TabIndex = 140;
+            // 
+            // panel4
+            // 
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(948, 156);
+            this.panel4.TabIndex = 91;
+            // 
             // Offer_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -772,6 +790,8 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

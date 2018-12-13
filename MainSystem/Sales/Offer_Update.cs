@@ -40,6 +40,18 @@ namespace MainSystem
             offerForm = offer;
             rowOffer = RowOffer;
             tabControlSalesContent = TabControlSalesContent;
+            
+            panel3.AutoScroll = false;
+            panel3.VerticalScroll.Enabled = false;
+            panel3.VerticalScroll.Visible = false;
+            panel3.VerticalScroll.Maximum = 0;
+            panel3.AutoScroll = true;
+
+            panel1.AutoScroll = false;
+            panel1.VerticalScroll.Enabled = false;
+            panel1.VerticalScroll.Visible = false;
+            panel1.VerticalScroll.Maximum = 0;
+            panel1.AutoScroll = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)

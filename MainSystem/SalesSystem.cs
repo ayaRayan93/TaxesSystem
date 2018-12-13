@@ -321,11 +321,11 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "نسخة فاتورة بيع");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن فاتورة بيع");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("نسخة فاتورة بيع");
-                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "نسخة فاتورة بيع");
+                    xtraTabControlSalesContent.TabPages.Add("استعلام عن فاتورة بيع");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن فاتورة بيع");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -355,17 +355,51 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "نسخة فاتورة مرتجع");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن فاتورة مرتجع");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("نسخة فاتورة مرتجع");
-                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "نسخة فاتورة مرتجع");
+                    xtraTabControlSalesContent.TabPages.Add("استعلام عن فاتورة مرتجع");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن فاتورة مرتجع");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
 
                 ReturnedBills_Copy_Report objForm = new ReturnedBills_Copy_Report(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemTransitionCopy_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن سداد");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("استعلام عن سداد");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن سداد");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                BillTransitionCopy_Report objForm = new BillTransitionCopy_Report(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
