@@ -68,7 +68,8 @@ namespace MainSystem
                                     txtBillNum.Text = "";
                                 }
 
-                                if (dr1["Client_ID"].ToString() != "")
+                                txtClient.Text = dr1["Client_Name"].ToString() + " " + dr1["Client_ID"].ToString();
+                                /*if (dr1["Client_ID"].ToString() != "")
                                 {
                                     conn2.Open();
                                     string q = "select Customer_Name from customer where Customer_ID=" + dr1["Client_ID"].ToString();
@@ -93,7 +94,7 @@ namespace MainSystem
                                 else
                                 {
                                     txtClient.Text = "";
-                                }
+                                }*/
 
                                 if (dr1["Transition"].ToString() == "ايداع" && dr1["Type"].ToString() == "كاش")
                                 {

@@ -254,17 +254,25 @@ namespace MainSystem
                     if (dr["Customer_ID"].ToString() != "")
                     {
                         customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                        engName = dr["Customer_Name"].ToString();
+                        comClient.Text = dr["Customer_Name"].ToString();
+                        comClient.SelectedValue = customerID;
+                        txtClientId.Text = customerID.ToString();
                     }
                     if (dr["Client_ID"].ToString() != "")
                     {
                         clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                        clientName = dr["Client_Name"].ToString();
+                        comClient.Text = dr["Client_Name"].ToString();
+                        comClient.SelectedValue = clientID;
+                        txtClientId.Text = clientID.ToString();
                     }
                 }
                 dr.Close();
                 if (flag2 == true)
                 {
                     //extract customer info
-                    if (clientID > 0)
+                    /*if (clientID > 0)
                     {
                         query = "select * from customer where Customer_ID=" + clientID;
                         com = new MySqlCommand(query, conn);
@@ -291,7 +299,7 @@ namespace MainSystem
                             txtClientId.Text = customerID.ToString();
                         }
                         dr.Close();
-                    }
+                    }*/
 
                     query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'اجمالى الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and data.Data_ID=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
