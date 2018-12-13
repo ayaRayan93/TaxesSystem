@@ -16,6 +16,7 @@ namespace MainSystem
     {
         private MySqlConnection dbconnection;
         public bool loaded = false;
+
         public DelegateSalesForProduct()
         {
             try
@@ -64,7 +65,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void dateTimeFrom_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -75,7 +75,7 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string query = "select factory.Factory_ID,Factory_Name from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID  where Paid_Status=1 and Bill_Date between '" + d + "' and '" + d2 + "'";
+                string query = "select DISTINCT factory.Factory_ID,Factory_Name from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID  where Paid_Status=1 and Bill_Date between '" + d + "' and '" + d2 + "'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -91,7 +91,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void comDelegate_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -191,7 +190,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -204,7 +202,7 @@ namespace MainSystem
                 string d = date.ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
-                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value ," +/*sort.Sort_Value*/"" + " data.Classification,data.Description)as 'البند'";
+                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
 
                 _Table = getSoldQuantity(_Table,itemName,DataTableRelations,d,d2);
@@ -219,7 +217,20 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
+        private void newChoose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDelegateID.Text = "";
+                comDelegate.Text = "";
+                txtFactory.Text = "";
+                comFactory.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         //functions
         public DataTable getSoldQuantity(DataTable _Table,string itemName,string DataTableRelations,string dateFrom,string dateTo)
         {
@@ -248,7 +259,6 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
-            DataTable temp1 = peraperDataTable();
             bool flag = true;
             while (dr.Read())
             {
@@ -275,9 +285,7 @@ namespace MainSystem
 
                     temp.Rows.Add(row);
                 }
-
-
-
+                
             }
             dr.Close();
             foreach (DataRow item in temp.Rows)
@@ -285,10 +293,8 @@ namespace MainSystem
                 _Table.Rows.Add(item.ItemArray);
             }
           
-
             return _Table;
         }
-
         public DataTable peraperDataTable()
         {
             DataTable _Table = new DataTable("Table");
@@ -301,6 +307,8 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
         }
+
+      
     }
 
 }
