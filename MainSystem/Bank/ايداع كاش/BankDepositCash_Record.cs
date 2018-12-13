@@ -468,14 +468,22 @@ namespace MainSystem
 
                 if (check)
                 {
-                    if(!flagCategoriesSuccess)
+                    if (Convert.ToDouble(txtRestMoney.Text) > 0)
+                    { }
+                    else
+                    {
+                        MessageBox.Show("لا يوجد متبقى على الفاتورة");
+                        return;
+                    }
+
+                    if (!flagCategoriesSuccess)
                     {
                         if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         {
                             return;
                         }
                     }
-
+                    
                     double outParse;
                     if (double.TryParse(txtPaidMoney.Text, out outParse))
                     {

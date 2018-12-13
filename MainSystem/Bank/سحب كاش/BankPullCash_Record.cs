@@ -447,6 +447,14 @@ namespace MainSystem
 
                 if(check)
                 {
+                    if (Convert.ToDouble(txtRestMoney.Text) > 0)
+                    { }
+                    else
+                    {
+                        MessageBox.Show("لا يوجد متبقى للفاتورة");
+                        return;
+                    }
+
                     if (!flagCategoriesSuccess)
                     {
                         if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)

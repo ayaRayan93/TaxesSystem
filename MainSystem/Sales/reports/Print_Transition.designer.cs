@@ -194,7 +194,7 @@
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.StyleName = "xrControlStyle2";
             this.xrTableCell22.Text = "xrTableCell22";
-            this.xrTableCell22.Weight = 3.0694390889359555D;
+            this.xrTableCell22.Weight = 2.6296132471697717D;
             // 
             // xrTableCell21
             // 
@@ -203,7 +203,7 @@
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.StyleName = "xrControlStyle2";
             this.xrTableCell21.Text = "xrTableCell21";
-            this.xrTableCell21.Weight = 2.170052793336378D;
+            this.xrTableCell21.Weight = 2.2050045759533115D;
             // 
             // xrTableCell9
             // 
@@ -213,7 +213,7 @@
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StyleName = "xrControlStyle2";
             this.xrTableCell9.Text = "xrTableCell9";
-            this.xrTableCell9.Weight = 2.427469293747047D;
+            this.xrTableCell9.Weight = 2.4274670126713334D;
             // 
             // xrTableCell19
             // 
@@ -222,7 +222,7 @@
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.StyleName = "xrControlStyle2";
             this.xrTableCell19.Text = "xrTableCell19";
-            this.xrTableCell19.Weight = 2.01366039774414D;
+            this.xrTableCell19.Weight = 2.0136588009911409D;
             // 
             // xrTableCell3
             // 
@@ -233,7 +233,7 @@
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell3.Summary = xrSummary1;
             this.xrTableCell3.Text = "xrTableCell3";
-            this.xrTableCell3.Weight = 1.1886825030700239D;
+            this.xrTableCell3.Weight = 1.5935604400479866D;
             // 
             // TopMargin
             // 
@@ -302,7 +302,7 @@
             // 
             // xrTable7
             // 
-            this.xrTable7.LocationFloat = new DevExpress.Utils.PointFloat(612.7025F, 0F);
+            this.xrTable7.LocationFloat = new DevExpress.Utils.PointFloat(599.1609F, 0F);
             this.xrTable7.Name = "xrTable7";
             this.xrTable7.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow7});
@@ -412,7 +412,7 @@
             this.xrTableCell13.StylePriority.UseBorderWidth = false;
             this.xrTableCell13.StylePriority.UseFont = false;
             this.xrTableCell13.Text = "التاريخ";
-            this.xrTableCell13.Weight = 1.4287386391434453D;
+            this.xrTableCell13.Weight = 1.2240111901593305D;
             // 
             // xrTableCell1
             // 
@@ -423,7 +423,7 @@
             this.xrTableCell1.StylePriority.UseBorderWidth = false;
             this.xrTableCell1.StylePriority.UseFont = false;
             this.xrTableCell1.Text = "رقم الفاتورة";
-            this.xrTableCell1.Weight = 1.0100987497896621D;
+            this.xrTableCell1.Weight = 1.0263678247832653D;
             // 
             // xrTableCell11
             // 
@@ -432,7 +432,7 @@
             this.xrTableCell11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseFont = false;
-            this.xrTableCell11.Weight = 2.0672202760215983D;
+            this.xrTableCell11.Weight = 2.0672192142448D;
             // 
             // xrTable6
             // 
@@ -479,8 +479,8 @@
             this.xrTableCell6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseFont = false;
-            this.xrTableCell6.Text = "م";
-            this.xrTableCell6.Weight = 0.55329907258816435D;
+            this.xrTableCell6.Text = "التسلسل";
+            this.xrTableCell6.Weight = 0.74175850835547441D;
             // 
             // ReportHeader
             // 

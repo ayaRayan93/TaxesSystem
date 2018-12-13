@@ -111,6 +111,7 @@
             this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup14 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemCustomers = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -384,7 +385,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1287,15 +1287,21 @@
             // 
             // navBarItemBillCopy
             // 
-            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة بيع";
+            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
             this.navBarItemBillCopy.Name = "navBarItemBillCopy";
             this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
             // 
             // navBarItemReturnedBillCopy
             // 
-            this.navBarItemReturnedBillCopy.Caption = "استعلام عن فاتورة مرتجع";
+            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
             this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
             this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
+            // 
+            // navBarItemTransitionCopy
+            // 
+            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
+            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
+            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
             // 
             // navBarGroup14
             // 
@@ -3539,12 +3545,6 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel1.Size = new System.Drawing.Size(947, 515);
             this.panel1.TabIndex = 1;
-            // 
-            // navBarItemTransitionCopy
-            // 
-            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
-            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
-            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
             // 
             // MainForm
             // 
