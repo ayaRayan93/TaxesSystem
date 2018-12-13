@@ -498,7 +498,7 @@ namespace MainSystem
                         Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
                     //Type_Buy
-                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Client_ID,Date,TotalCostAD,ReturnInfo,Store_Permission_Number,Type_Buy,Employee_ID) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Client_ID,@Date,@TotalCostAD,@ReturnInfo,@Store_Permission_Number,@Type_Buy,@Employee_ID)";
+                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Customer_Name,Client_ID,Client_Name,Date,TotalCostAD,ReturnInfo,Store_Permission_Number,Type_Buy,Employee_ID) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Customer_Name,@Client_ID,@Client_Name,@Date,@TotalCostAD,@ReturnInfo,@Store_Permission_Number,@Type_Buy,@Employee_ID)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
@@ -523,22 +523,30 @@ namespace MainSystem
                     if (comCustomer.Text != "")
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(comCustomer.SelectedValue.ToString());
+                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                        com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                        com.Parameters["@Customer_Name"].Value = comCustomer.Text;
                     }
                     else
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                         com.Parameters["@Customer_ID"].Value = null;
+                        com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                        com.Parameters["@Customer_Name"].Value = null;
                     }
                     if (comClient.Text != "")
                     {
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(comClient.SelectedValue.ToString());
+                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                        com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                        com.Parameters["@Client_Name"].Value = comClient.Text;
                     }
                     else
                     {
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                         com.Parameters["@Client_ID"].Value = null;
+                        com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                        com.Parameters["@Client_Name"].Value = null;
                     }
                     /*query = "select customer_bill.Type_Buy from customer_bill where customer_bill.CustomerBill_ID=" + customerBillId;
                     MySqlCommand com1 = new MySqlCommand(query, dbconnection);

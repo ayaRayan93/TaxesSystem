@@ -690,18 +690,22 @@ namespace MainSystem
                             Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
                         }
 
-                        query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Customer_ID,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Customer_ID,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID)";
+                        query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Client_Name,Customer_ID,Customer_Name,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID)";
                         com = new MySqlCommand(query, dbconnection);
 
                         if (txtClientID.Text != "")
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                             com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                            com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Client_Name"].Value = comClient.Text;
                         }
                         else
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                             com.Parameters["@Client_ID"].Value = null;
+                            com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Client_Name"].Value = null;
                         }
 
 
@@ -709,11 +713,15 @@ namespace MainSystem
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                             com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Customer_Name"].Value = comEngCon.Text;
                         }
                         else
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                             com.Parameters["@Customer_ID"].Value = null;
+                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Customer_Name"].Value = null;
                         }
                         
                         com.Parameters.Add("@Total_CostBD", MySqlDbType.Double);

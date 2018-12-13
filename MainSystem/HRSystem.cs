@@ -222,6 +222,34 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemUserReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlHRContent.Visible)
+                    xtraTabControlHRContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlHRContent, "تقرير المستخدمين");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlHRContent.TabPages.Add("تقرير المستخدمين");
+                    xtraTabPage = getTabPage(xtraTabControlHRContent, "تقرير المستخدمين");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlHRContent.SelectedTabPage = xtraTabPage;
+                bindDisplayUserForm(xtraTabPage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //Employee Main form functions
         public void bindDisplayEmployeesForm(XtraTabPage xtraTabPage)
         {
@@ -436,10 +464,17 @@ namespace MainSystem
             objForm.Show();
         }
 
-       
+
         //functions
-   
+        public void bindDisplayUserForm(XtraTabPage xtraTabPage)
+        {
+            UserRecord objForm = new UserRecord(this);
+            objForm.TopLevel = false;
 
-
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
     }
 }

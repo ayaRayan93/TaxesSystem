@@ -149,6 +149,18 @@
     <Compile Include="Accounting\DelegateTotalSales.Designer.cs">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="HR\UserRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\UserRecord.designer.cs">
+      <DependentUpon>UserRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HR\Users.designer.cs">
+      <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\BillsTransitions_Print.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1421,6 +1433,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateTotalSales.resx">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR\UserRecord.resx">
+      <DependentUpon>UserRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR\Users.resx">
+      <DependentUpon>Users.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\تقرير حركة السدادات\BillsTransitions_Print.resx">
       <DependentUpon>BillsTransitions_Print.cs</DependentUpon>
