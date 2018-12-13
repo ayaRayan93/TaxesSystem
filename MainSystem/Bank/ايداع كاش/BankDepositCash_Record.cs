@@ -523,7 +523,7 @@ namespace MainSystem
                                 }
                                 connectionReader4.Close();
 
-                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Customer_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error,Employee_ID) values(@Branch_ID,@Branch_Name,@Client_ID,@Customer_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error,@Employee_ID)";
+                                string query = "insert into Transitions (Branch_ID,Branch_Name,Client_ID,Client_Name,Customer_ID,Customer_Name,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error,Employee_ID) values(@Branch_ID,@Branch_Name,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error,@Employee_ID)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع";
@@ -538,18 +538,22 @@ namespace MainSystem
                                 if (clientID > 0)
                                 {
                                     com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = clientID;
+                                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = clientName;
                                 }
                                 else
                                 {
                                     com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+                                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = null;
                                 }
                                 if (customerID > 0)
                                 {
                                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = customerID;
+                                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = engName;
                                 }
                                 else
                                 {
                                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = null;
                                 }
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                                 com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
