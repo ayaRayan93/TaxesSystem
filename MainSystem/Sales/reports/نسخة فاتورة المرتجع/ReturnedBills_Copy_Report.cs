@@ -155,7 +155,6 @@ namespace MainSystem
             try
             {
                 clearCom();
-                gridControl1.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -228,6 +227,7 @@ namespace MainSystem
                     myConnection.Close();
                     
                     totalCostAD = Convert.ToDouble(dr["TotalCostAD"].ToString());
+                    txtFinal.Text = dr["TotalCostAD"].ToString();
 
                     if (dr["Customer_ID"].ToString() != "")
                     {
@@ -365,6 +365,16 @@ namespace MainSystem
                         gridView1.FocusedRowHandle = gridView1.RowCount - 1;
                     }
 
+                    double totalB = 0;
+                    double totalD = 0;
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        totalB += (Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر").ToString())* Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString()));
+                        totalD += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "SellDiscount").ToString());
+                    }
+                    txtTotal.Text = totalB.ToString();
+                    txtDiscount.Text = totalD.ToString();
+
                     if (!loaded)
                     {
                         for (int i = 0; i < gridView1.Columns.Count; i++)
@@ -378,12 +388,13 @@ namespace MainSystem
                 }
                 else
                 {
-                    //clear();
+                    clearCom();
                     MessageBox.Show("لا يوجد فاتورة بهذا الرقم فى الفرع");
                 }
             }
             else
             {
+                clearCom();
                 MessageBox.Show("رقم الفاتورة يجب ان يكون رقم");
             }
         }
@@ -416,6 +427,10 @@ namespace MainSystem
                     dateTimePicker1.Value = DateTime.Now;
                 }
             }
+            txtTotal.Text = "";
+            txtDiscount.Text = "";
+            txtFinal.Text = "";
+            gridControl1.DataSource = null;
         }
 
         void printBill()

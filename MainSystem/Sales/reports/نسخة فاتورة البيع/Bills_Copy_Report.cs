@@ -157,7 +157,6 @@ namespace MainSystem
             try
             {
                 clearCom();
-                gridControl1.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -247,6 +246,10 @@ namespace MainSystem
                     totalCostBD = Convert.ToDouble(dr["Total_CostBD"].ToString());
                     totalDiscount = Convert.ToDouble(dr["Total_Discount"].ToString());
                     totalCostAD = Convert.ToDouble(dr["Total_CostAD"].ToString());
+                    
+                    txtTotal.Text = dr["Total_CostBD"].ToString();
+                    txtDiscount.Text = dr["Total_Discount"].ToString();
+                    txtFinal.Text = dr["Total_CostAD"].ToString();
 
                     if (dr["Customer_ID"].ToString() != "")
                     {
@@ -399,11 +402,13 @@ namespace MainSystem
                 }
                 else
                 {
+                    clearCom();
                     MessageBox.Show("لا يوجد فاتورة بهذا الرقم فى الفرع");
                 }
             }
             else
             {
+                clearCom();
                 MessageBox.Show("رقم الفاتورة يجب ان يكون رقم");
             }
         }
@@ -436,6 +441,10 @@ namespace MainSystem
                     dateTimePicker1.Value = DateTime.Now;
                 }
             }
+            txtTotal.Text = "";
+            txtDiscount.Text = "";
+            txtFinal.Text = "";
+            gridControl1.DataSource = null;
         }
 
         void printBill()
