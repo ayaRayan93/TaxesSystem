@@ -145,18 +145,20 @@
             this.xtraTabPageHR = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlHRContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl3 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup19 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem37 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup24 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemUserReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup20 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem38 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem39 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem40 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem41 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem42 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup19 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem33 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem34 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem35 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem36 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem37 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup21 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem43 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem44 = new DevExpress.XtraNavBar.NavBarItem();
@@ -169,8 +171,6 @@
             this.navBarItem50 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup23 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem51 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup24 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem52 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem53 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem54 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem55 = new DevExpress.XtraNavBar.NavBarItem();
@@ -1519,7 +1519,7 @@
             // 
             // navBarControl3
             // 
-            this.navBarControl3.ActiveGroup = this.navBarGroup19;
+            this.navBarControl3.ActiveGroup = this.navBarGroup24;
             this.navBarControl3.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl3.Appearance.Background.Options.UseFont = true;
             this.navBarControl3.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1593,7 +1593,7 @@
             this.navBarItem48,
             this.navBarItem49,
             this.navBarItem50,
-            this.navBarItem52});
+            this.navBarItemUserReport});
             this.navBarControl3.Location = new System.Drawing.Point(931, 0);
             this.navBarControl3.Name = "navBarControl3";
             this.navBarControl3.OptionsNavPane.ExpandedWidth = 214;
@@ -1602,43 +1602,19 @@
             this.navBarControl3.TabIndex = 3;
             this.navBarControl3.Text = "navBarControl3";
             // 
-            // navBarGroup19
+            // navBarGroup24
             // 
-            this.navBarGroup19.Caption = "البيانات المالية";
-            this.navBarGroup19.Expanded = true;
-            this.navBarGroup19.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37)});
-            this.navBarGroup19.Name = "navBarGroup19";
+            this.navBarGroup24.Caption = "الادوات";
+            this.navBarGroup24.Expanded = true;
+            this.navBarGroup24.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemUserReport)});
+            this.navBarGroup24.Name = "navBarGroup24";
             // 
-            // navBarItem33
+            // navBarItemUserReport
             // 
-            this.navBarItem33.Caption = "الرواتب";
-            this.navBarItem33.Name = "navBarItem33";
-            this.navBarItem33.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnSalaryRecord_LinkClicked);
-            // 
-            // navBarItem34
-            // 
-            this.navBarItem34.Caption = "الحوافز";
-            this.navBarItem34.Name = "navBarItem34";
-            // 
-            // navBarItem35
-            // 
-            this.navBarItem35.Caption = "السلف";
-            this.navBarItem35.Name = "navBarItem35";
-            // 
-            // navBarItem36
-            // 
-            this.navBarItem36.Caption = "مكافئات";
-            this.navBarItem36.Name = "navBarItem36";
-            // 
-            // navBarItem37
-            // 
-            this.navBarItem37.Caption = "العلاوات";
-            this.navBarItem37.Name = "navBarItem37";
+            this.navBarItemUserReport.Caption = "تسجيل المستخدمين";
+            this.navBarItemUserReport.Name = "navBarItemUserReport";
+            this.navBarItemUserReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemUserReport_LinkClicked);
             // 
             // navBarGroup20
             // 
@@ -1680,6 +1656,43 @@
             this.navBarItem42.Caption = "تقرير البيانات الشخصية للموظفين";
             this.navBarItem42.Name = "navBarItem42";
             this.navBarItem42.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem9_LinkClicked);
+            // 
+            // navBarGroup19
+            // 
+            this.navBarGroup19.Caption = "البيانات المالية";
+            this.navBarGroup19.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem33),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem34),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem35),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem36),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem37)});
+            this.navBarGroup19.Name = "navBarGroup19";
+            // 
+            // navBarItem33
+            // 
+            this.navBarItem33.Caption = "الرواتب";
+            this.navBarItem33.Name = "navBarItem33";
+            this.navBarItem33.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnSalaryRecord_LinkClicked);
+            // 
+            // navBarItem34
+            // 
+            this.navBarItem34.Caption = "الحوافز";
+            this.navBarItem34.Name = "navBarItem34";
+            // 
+            // navBarItem35
+            // 
+            this.navBarItem35.Caption = "السلف";
+            this.navBarItem35.Name = "navBarItem35";
+            // 
+            // navBarItem36
+            // 
+            this.navBarItem36.Caption = "مكافئات";
+            this.navBarItem36.Name = "navBarItem36";
+            // 
+            // navBarItem37
+            // 
+            this.navBarItem37.Caption = "العلاوات";
+            this.navBarItem37.Name = "navBarItem37";
             // 
             // navBarGroup21
             // 
@@ -1752,18 +1765,6 @@
             // 
             this.navBarItem51.Caption = "تسجيل الاجازات";
             this.navBarItem51.Name = "navBarItem51";
-            // 
-            // navBarGroup24
-            // 
-            this.navBarGroup24.Caption = "الادوات";
-            this.navBarGroup24.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem52)});
-            this.navBarGroup24.Name = "navBarGroup24";
-            // 
-            // navBarItem52
-            // 
-            this.navBarItem52.Caption = "تسجيل المستخدمين";
-            this.navBarItem52.Name = "navBarItem52";
             // 
             // navBarItem53
             // 
@@ -2635,7 +2636,7 @@
             // 
             // navBarControl5
             // 
-            this.navBarControl5.ActiveGroup = this.navBarGroup38;
+            this.navBarControl5.ActiveGroup = this.navBarGroupDelegateMovement;
             this.navBarControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControl5.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2699,7 +2700,6 @@
             this.navBarGroup38.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroup38.Appearance.Options.UseFont = true;
             this.navBarGroup38.Caption = "تقارير بيانية شهرية";
-            this.navBarGroup38.Expanded = true;
             this.navBarGroup38.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemGraphic_Report)});
             this.navBarGroup38.Name = "navBarGroup38";
@@ -2717,6 +2717,7 @@
             this.navBarGroupDelegateMovement.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroupDelegateMovement.Appearance.Options.UseFont = true;
             this.navBarGroupDelegateMovement.Caption = "حركة المندوبين";
+            this.navBarGroupDelegateMovement.Expanded = true;
             this.navBarGroupDelegateMovement.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem107)});
             this.navBarGroupDelegateMovement.Name = "navBarGroupDelegateMovement";
@@ -3717,7 +3718,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup23;
         private DevExpress.XtraNavBar.NavBarItem navBarItem51;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup24;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem52;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemUserReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItem53;
         private DevExpress.XtraNavBar.NavBarItem navBarItem54;
         private DevExpress.XtraNavBar.NavBarItem navBarItem55;
