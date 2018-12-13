@@ -53,11 +53,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(509, 109);
+            this.label1.Location = new System.Drawing.Point(503, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 18);
+            this.label1.Size = new System.Drawing.Size(59, 18);
             this.label1.TabIndex = 28;
-            this.label1.Text = "اسم الموظف";
+            this.label1.Text = "الموظف";
             // 
             // comEmployee
             // 
@@ -75,7 +75,7 @@
             // txtEmployee_Number
             // 
             this.txtEmployee_Number.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtEmployee_Number.Location = new System.Drawing.Point(466, 262);
+            this.txtEmployee_Number.Location = new System.Drawing.Point(476, 255);
             this.txtEmployee_Number.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmployee_Number.Name = "txtEmployee_Number";
             this.txtEmployee_Number.Size = new System.Drawing.Size(166, 23);
@@ -89,16 +89,16 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label2.Location = new System.Drawing.Point(302, 265);
+            this.label2.Location = new System.Drawing.Point(312, 257);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 18);
+            this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 31;
-            this.label2.Text = "الراتب الاساسى";
+            this.label2.Text = "الرقم السرى";
             // 
             // txtSalary
             // 
             this.txtSalary.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSalary.Location = new System.Drawing.Point(129, 261);
+            this.txtSalary.Location = new System.Drawing.Point(139, 255);
             this.txtSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(166, 23);
@@ -118,13 +118,13 @@
             // 
             this.rDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rDelegate.AutoSize = true;
-            this.rDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rDelegate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.rDelegate.Location = new System.Drawing.Point(362, 48);
             this.rDelegate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rDelegate.Name = "rDelegate";
             this.rDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rDelegate.Size = new System.Drawing.Size(62, 20);
+            this.rDelegate.Size = new System.Drawing.Size(67, 20);
             this.rDelegate.TabIndex = 62;
             this.rDelegate.Text = "مندوب";
             this.rDelegate.UseVisualStyleBackColor = true;
@@ -135,13 +135,13 @@
             this.rEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rEmployee.AutoSize = true;
             this.rEmployee.Checked = true;
-            this.rEmployee.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rEmployee.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.rEmployee.Location = new System.Drawing.Point(457, 48);
             this.rEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rEmployee.Name = "rEmployee";
             this.rEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rEmployee.Size = new System.Drawing.Size(63, 20);
+            this.rEmployee.Size = new System.Drawing.Size(67, 20);
             this.rEmployee.TabIndex = 61;
             this.rEmployee.TabStop = true;
             this.rEmployee.Text = "موظف";
@@ -163,11 +163,11 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label9.Location = new System.Drawing.Point(650, 262);
+            this.label9.Location = new System.Drawing.Point(647, 257);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(79, 18);
+            this.label9.Size = new System.Drawing.Size(43, 18);
             this.label9.TabIndex = 64;
-            this.label9.Text = "رقم وظيفي";
+            this.label9.Text = "الاسم";
             // 
             // tableLayoutPanel2
             // 
@@ -227,9 +227,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label3.Location = new System.Drawing.Point(509, 175);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 18);
+            this.label3.Size = new System.Drawing.Size(46, 18);
             this.label3.TabIndex = 72;
-            this.label3.Text = "اسم الموظف";
+            this.label3.Text = "القسم";
             // 
             // UserRecord
             // 
