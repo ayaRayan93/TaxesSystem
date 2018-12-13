@@ -193,7 +193,7 @@ namespace MainSystem
                 else 
                 {
                     #region Add New Delegate
-                    string query = "update Delegate set Delegate_Number=@Delegate_Number ,Delegate_Name=@Delegate_Name ,Delegate_Phone=@Delegate_Phone,Delegate_Address=@Delegate_Address,Delegate_Mail=@Delegate_Mail,Delegate_Birth_Date=@Delegate_Birth_Date,Delegate_Qualification=@Delegate_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Delegate_Start_Date=@Delegate_Start_Date,Delegate_Branch_ID=@Delegate_Branch_ID,Delegate_Job=@Delegate_Job,Delegate_Department=@Delegate_Department,Delegate_Salary=@Delegate_Salary,Delegate_Photo=@Delegate_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Delegate_Taraget=@Delegate_Taraget,Delegate_Info=@Delegate_Info where Delegate_ID=" + row[1].ToString();
+                    string query = "update Delegate set Delegate_Number=@Delegate_Number ,Delegate_Name=@Delegate_Name ,Delegate_Phone=@Delegate_Phone,Delegate_Address=@Delegate_Address,Delegate_Mail=@Delegate_Mail,Delegate_Birth_Date=@Delegate_Birth_Date,Delegate_Qualification=@Delegate_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Delegate_Start_Date=@Delegate_Start_Date,Branch_ID=@Branch_ID,Delegate_Job=@Delegate_Job,Delegate_Department=@Delegate_Department,Delegate_Salary=@Delegate_Salary,Delegate_Photo=@Delegate_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Delegate_Taraget=@Delegate_Taraget,Delegate_Info=@Delegate_Info where Delegate_ID=" + row[1].ToString();
                     MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -240,8 +240,8 @@ namespace MainSystem
                     cmd.Parameters["@Delegate_Birth_Date"].Value = dateTimePickerBirthDate.Value;
                     cmd.Parameters.Add("@Delegate_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Mail"].Value = txtMail.Text;
-                    cmd.Parameters.Add("@Delegate_Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Delegate_Branch_ID"].Value = comBranch.SelectedValue;
+                    cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
                     cmd.Parameters.Add("@Delegate_Department", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Department"].Value = txtDepartment.Text;
                     cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
