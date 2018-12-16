@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.comEmployee = new System.Windows.Forms.ComboBox();
-            this.txtEmployee_Name = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -40,6 +40,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.comDepartment = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -50,8 +52,8 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(503, 139);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.label1.Location = new System.Drawing.Point(513, 139);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 18);
             this.label1.TabIndex = 28;
@@ -61,33 +63,32 @@
             // 
             this.comEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comEmployee.FormattingEnabled = true;
-            this.comEmployee.Location = new System.Drawing.Point(314, 136);
+            this.comEmployee.Location = new System.Drawing.Point(324, 136);
             this.comEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comEmployee.Name = "comEmployee";
             this.comEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEmployee.Size = new System.Drawing.Size(185, 24);
             this.comEmployee.TabIndex = 2;
-            this.comEmployee.SelectedIndexChanged += new System.EventHandler(this.comEmployee_SelectedIndexChanged);
+            this.comEmployee.SelectedValueChanged += new System.EventHandler(this.comEmployee_SelectedValueChanged);
             this.comEmployee.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
-            // txtEmployee_Name
+            // txtName
             // 
-            this.txtEmployee_Name.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtEmployee_Name.Location = new System.Drawing.Point(476, 213);
-            this.txtEmployee_Name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmployee_Name.Name = "txtEmployee_Name";
-            this.txtEmployee_Name.Size = new System.Drawing.Size(166, 23);
-            this.txtEmployee_Name.TabIndex = 1;
-            this.txtEmployee_Name.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            this.txtEmployee_Name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmployeeNumber_KeyDown);
+            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtName.Location = new System.Drawing.Point(486, 244);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(166, 23);
+            this.txtName.TabIndex = 1;
+            this.txtName.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label2.Location = new System.Drawing.Point(322, 215);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.label2.Location = new System.Drawing.Point(332, 246);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 31;
@@ -96,7 +97,7 @@
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPassword.Location = new System.Drawing.Point(149, 213);
+            this.txtPassword.Location = new System.Drawing.Point(159, 244);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(166, 23);
@@ -117,7 +118,7 @@
             this.rDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rDelegate.AutoSize = true;
             this.rDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rDelegate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.rDelegate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.rDelegate.Location = new System.Drawing.Point(362, 78);
             this.rDelegate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rDelegate.Name = "rDelegate";
@@ -134,7 +135,7 @@
             this.rEmployee.AutoSize = true;
             this.rEmployee.Checked = true;
             this.rEmployee.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.rEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.rEmployee.Location = new System.Drawing.Point(457, 78);
             this.rEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rEmployee.Name = "rEmployee";
@@ -160,8 +161,8 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label9.Location = new System.Drawing.Point(647, 215);
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.label9.Location = new System.Drawing.Point(657, 246);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 18);
             this.label9.TabIndex = 64;
@@ -204,7 +205,31 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(101, 45);
             this.btnAdd.TabIndex = 71;
-            this.btnAdd.Click += new System.EventHandler(this.btnAddSalary_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // comDepartment
+            // 
+            this.comDepartment.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comDepartment.Enabled = false;
+            this.comDepartment.FormattingEnabled = true;
+            this.comDepartment.Location = new System.Drawing.Point(321, 183);
+            this.comDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comDepartment.Name = "comDepartment";
+            this.comDepartment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comDepartment.Size = new System.Drawing.Size(185, 24);
+            this.comDepartment.TabIndex = 71;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.label3.Location = new System.Drawing.Point(510, 186);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 18);
+            this.label3.TabIndex = 72;
+            this.label3.Text = "القسم";
             // 
             // UserRecord
             // 
@@ -212,6 +237,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(870, 539);
+            this.Controls.Add(this.comDepartment);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView2);
@@ -220,7 +247,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtEmployee_Name);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.comEmployee);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -240,7 +267,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comEmployee;
-        private System.Windows.Forms.TextBox txtEmployee_Name;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -250,5 +277,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private System.Windows.Forms.ComboBox comDepartment;
+        private System.Windows.Forms.Label label3;
     }
 }

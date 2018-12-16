@@ -21,7 +21,8 @@ namespace MainSystem
     }
     public partial class MainForm 
     {
-      
+        public XtraTabPage xtraTabPageUser = new XtraTabPage();
+
         //employees
         private void navBarItem2_ItemClicked(object sender, EventArgs e)
         {
@@ -233,16 +234,16 @@ namespace MainSystem
                 if (!xtraTabControlHRContent.Visible)
                     xtraTabControlHRContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlHRContent, "تقرير المستخدمين");
-                if (xtraTabPage == null)
+                xtraTabPageUser = getTabPage(xtraTabControlHRContent, "اضافة مستخدم");
+                if (xtraTabPageUser == null)
                 {
-                    xtraTabControlHRContent.TabPages.Add("تقرير المستخدمين");
-                    xtraTabPage = getTabPage(xtraTabControlHRContent, "تقرير المستخدمين");
+                    xtraTabControlHRContent.TabPages.Add("اضافة مستخدم");
+                    xtraTabPageUser = getTabPage(xtraTabControlHRContent, "اضافة مستخدم");
                 }
-                xtraTabPage.Controls.Clear();
+                xtraTabPageUser.Controls.Clear();
 
-                xtraTabControlHRContent.SelectedTabPage = xtraTabPage;
-                bindDisplayUserForm(xtraTabPage);
+                xtraTabControlHRContent.SelectedTabPage = xtraTabPageUser;
+                bindDisplayUserForm(xtraTabPageUser);
             }
             catch (Exception ex)
             {
@@ -468,7 +469,7 @@ namespace MainSystem
         //functions
         public void bindDisplayUserForm(XtraTabPage xtraTabPage)
         {
-            UserRecord objForm = new UserRecord(this);
+            UserRecord objForm = new UserRecord(this, xtraTabControlHRContent);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
