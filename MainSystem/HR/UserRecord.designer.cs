@@ -53,7 +53,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.label1.Location = new System.Drawing.Point(513, 139);
+            this.label1.Location = new System.Drawing.Point(516, 139);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 18);
             this.label1.TabIndex = 28;
@@ -63,7 +63,7 @@
             // 
             this.comEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comEmployee.FormattingEnabled = true;
-            this.comEmployee.Location = new System.Drawing.Point(324, 136);
+            this.comEmployee.Location = new System.Drawing.Point(327, 136);
             this.comEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comEmployee.Name = "comEmployee";
             this.comEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -75,7 +75,7 @@
             // txtName
             // 
             this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtName.Location = new System.Drawing.Point(486, 244);
+            this.txtName.Location = new System.Drawing.Point(489, 244);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(166, 23);
@@ -88,7 +88,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.label2.Location = new System.Drawing.Point(332, 246);
+            this.label2.Location = new System.Drawing.Point(335, 246);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 31;
@@ -97,7 +97,7 @@
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPassword.Location = new System.Drawing.Point(159, 244);
+            this.txtPassword.Location = new System.Drawing.Point(162, 244);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(166, 23);
@@ -118,7 +118,7 @@
             this.rDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rDelegate.AutoSize = true;
             this.rDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rDelegate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.rDelegate.ForeColor = System.Drawing.Color.DarkBlue;
             this.rDelegate.Location = new System.Drawing.Point(362, 78);
             this.rDelegate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rDelegate.Name = "rDelegate";
@@ -135,7 +135,7 @@
             this.rEmployee.AutoSize = true;
             this.rEmployee.Checked = true;
             this.rEmployee.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.rEmployee.ForeColor = System.Drawing.Color.DarkBlue;
             this.rEmployee.Location = new System.Drawing.Point(457, 78);
             this.rEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rEmployee.Name = "rEmployee";
@@ -162,7 +162,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.label9.Location = new System.Drawing.Point(657, 246);
+            this.label9.Location = new System.Drawing.Point(660, 246);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 18);
             this.label9.TabIndex = 64;
@@ -172,10 +172,9 @@
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.78479F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.33766F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.75F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 486);
@@ -212,7 +211,7 @@
             this.comDepartment.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comDepartment.Enabled = false;
             this.comDepartment.FormattingEnabled = true;
-            this.comDepartment.Location = new System.Drawing.Point(321, 183);
+            this.comDepartment.Location = new System.Drawing.Point(324, 183);
             this.comDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comDepartment.Name = "comDepartment";
             this.comDepartment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -225,7 +224,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.label3.Location = new System.Drawing.Point(510, 186);
+            this.label3.Location = new System.Drawing.Point(513, 186);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 18);
             this.label3.TabIndex = 72;
