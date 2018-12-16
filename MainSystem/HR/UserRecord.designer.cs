@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.comEmployee = new System.Windows.Forms.ComboBox();
-            this.txtEmployee_Number = new System.Windows.Forms.TextBox();
+            this.txtEmployee_Name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSalary = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.rDelegate = new System.Windows.Forms.RadioButton();
             this.rEmployee = new System.Windows.Forms.RadioButton();
@@ -40,8 +40,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -53,7 +51,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(503, 109);
+            this.label1.Location = new System.Drawing.Point(503, 139);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 18);
             this.label1.TabIndex = 28;
@@ -63,7 +61,7 @@
             // 
             this.comEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comEmployee.FormattingEnabled = true;
-            this.comEmployee.Location = new System.Drawing.Point(314, 106);
+            this.comEmployee.Location = new System.Drawing.Point(314, 136);
             this.comEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comEmployee.Name = "comEmployee";
             this.comEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -72,16 +70,16 @@
             this.comEmployee.SelectedIndexChanged += new System.EventHandler(this.comEmployee_SelectedIndexChanged);
             this.comEmployee.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
-            // txtEmployee_Number
+            // txtEmployee_Name
             // 
-            this.txtEmployee_Number.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtEmployee_Number.Location = new System.Drawing.Point(476, 255);
-            this.txtEmployee_Number.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmployee_Number.Name = "txtEmployee_Number";
-            this.txtEmployee_Number.Size = new System.Drawing.Size(166, 23);
-            this.txtEmployee_Number.TabIndex = 1;
-            this.txtEmployee_Number.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            this.txtEmployee_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmployeeNumber_KeyDown);
+            this.txtEmployee_Name.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtEmployee_Name.Location = new System.Drawing.Point(476, 213);
+            this.txtEmployee_Name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEmployee_Name.Name = "txtEmployee_Name";
+            this.txtEmployee_Name.Size = new System.Drawing.Size(166, 23);
+            this.txtEmployee_Name.TabIndex = 1;
+            this.txtEmployee_Name.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtEmployee_Name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmployeeNumber_KeyDown);
             // 
             // label2
             // 
@@ -89,21 +87,21 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label2.Location = new System.Drawing.Point(312, 257);
+            this.label2.Location = new System.Drawing.Point(322, 215);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 31;
             this.label2.Text = "الرقم السرى";
             // 
-            // txtSalary
+            // txtPassword
             // 
-            this.txtSalary.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSalary.Location = new System.Drawing.Point(139, 255);
-            this.txtSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSalary.Name = "txtSalary";
-            this.txtSalary.Size = new System.Drawing.Size(166, 23);
-            this.txtSalary.TabIndex = 3;
-            this.txtSalary.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPassword.Location = new System.Drawing.Point(149, 213);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(166, 23);
+            this.txtPassword.TabIndex = 3;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // dataGridView1
             // 
@@ -120,7 +118,7 @@
             this.rDelegate.AutoSize = true;
             this.rDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rDelegate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.rDelegate.Location = new System.Drawing.Point(362, 48);
+            this.rDelegate.Location = new System.Drawing.Point(362, 78);
             this.rDelegate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rDelegate.Name = "rDelegate";
             this.rDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -137,7 +135,7 @@
             this.rEmployee.Checked = true;
             this.rEmployee.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rEmployee.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.rEmployee.Location = new System.Drawing.Point(457, 48);
+            this.rEmployee.Location = new System.Drawing.Point(457, 78);
             this.rEmployee.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rEmployee.Name = "rEmployee";
             this.rEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -163,7 +161,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label9.Location = new System.Drawing.Point(647, 257);
+            this.label9.Location = new System.Drawing.Point(647, 215);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 18);
             this.label9.TabIndex = 64;
@@ -208,46 +206,21 @@
             this.btnAdd.TabIndex = 71;
             this.btnAdd.Click += new System.EventHandler(this.btnAddSalary_Click);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(314, 172);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comboBox1.Size = new System.Drawing.Size(185, 24);
-            this.comboBox1.TabIndex = 71;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label3.Location = new System.Drawing.Point(509, 175);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 18);
-            this.label3.TabIndex = 72;
-            this.label3.Text = "القسم";
-            // 
             // UserRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(870, 539);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.rDelegate);
             this.Controls.Add(this.rEmployee);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.txtSalary);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtEmployee_Number);
+            this.Controls.Add(this.txtEmployee_Name);
             this.Controls.Add(this.comEmployee);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -255,9 +228,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UserRecord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form5";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SalaryRecord_FormClosed);
-            this.Load += new System.EventHandler(this.SalaryRecord_Load);
+            this.Load += new System.EventHandler(this.UserRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -269,9 +240,9 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comEmployee;
-        private System.Windows.Forms.TextBox txtEmployee_Number;
+        private System.Windows.Forms.TextBox txtEmployee_Name;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSalary;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.RadioButton rDelegate;
         private System.Windows.Forms.RadioButton rEmployee;
@@ -279,7 +250,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label3;
     }
 }

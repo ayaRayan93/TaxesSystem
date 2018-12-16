@@ -35,7 +35,7 @@ namespace MainSystem
 
         }
      
-        private void SalaryRecord_Load(object sender, EventArgs e)
+        private void UserRecord_Load(object sender, EventArgs e)
         {
             try
             {
@@ -49,9 +49,8 @@ namespace MainSystem
                 comEmployee.DisplayMember = dt.Columns["Employee_Name"].ToString();
                 comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
                 comEmployee.Text = "";
-
+                
                 load = true;
-
             }
             catch (Exception ee)
             {
@@ -71,13 +70,13 @@ namespace MainSystem
                     {
                         string query = "SELECT Employee_Number FROM employee WHERE Employee_ID = " + comEmployee.SelectedValue;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        txtEmployee_Number.Text = com.ExecuteScalar().ToString();
+                        txtEmployee_Name.Text = com.ExecuteScalar().ToString();
                     }
                     else if (rDelegate.Checked)
                     {
                         string query = "SELECT Delegate_Number FROM delegate WHERE Delegate_ID = " + comEmployee.SelectedValue;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        txtEmployee_Number.Text = com.ExecuteScalar().ToString();
+                        txtEmployee_Name.Text = com.ExecuteScalar().ToString();
                     }
 
                     load = false;
@@ -99,7 +98,7 @@ namespace MainSystem
                 {
                     if (rEmployee.Checked)
                     {
-                        string query = "SELECT Employee_Name,Employee_ID FROM employee WHERE Employee_Number = " + txtEmployee_Number.Text;
+                        string query = "SELECT Employee_Name,Employee_ID FROM employee WHERE Employee_Number = " + txtEmployee_Name.Text;
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         dbconnection.Close();
                         DataTable dt = new DataTable();
@@ -110,7 +109,7 @@ namespace MainSystem
                     }
                     else if (rDelegate.Checked)
                     {
-                        string query = "SELECT Delegate_Name,Delegate_ID FROM delegate WHERE Delegate_Number = " + txtEmployee_Number.Text;
+                        string query = "SELECT Delegate_Name,Delegate_ID FROM delegate WHERE Delegate_Number = " + txtEmployee_Name.Text;
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         dbconnection.Close();
                         DataTable dt = new DataTable();
@@ -148,8 +147,8 @@ namespace MainSystem
                 cmd.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11);
                 cmd.Parameters["@Employee_ID"].Value =Convert.ToInt16( comEmployee.SelectedValue);
                 cmd.Parameters.Add("@Salary", MySqlDbType.Decimal, 10);
-                if (txtSalary.Text != "")
-                    cmd.Parameters["@Salary"].Value =Convert.ToDecimal(txtSalary.Text);
+                if (txtPassword.Text != "")
+                    cmd.Parameters["@Salary"].Value =Convert.ToDecimal(txtPassword.Text);
                 else
                     cmd.Parameters["@Salary"].Value = 0.00;
                 
@@ -232,19 +231,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-
-        private void SalaryRecord_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try
-            {
-                Environment.Exit(0);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-         
         }
 
         private void txtBox_TextChanged(object sender, EventArgs e)
