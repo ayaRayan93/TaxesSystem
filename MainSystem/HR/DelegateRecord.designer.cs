@@ -92,7 +92,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label3.Location = new System.Drawing.Point(957, 148);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 16);
+            this.label3.Size = new System.Drawing.Size(45, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "العنوان";
             // 
@@ -114,7 +114,7 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label5.Location = new System.Drawing.Point(957, 246);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 16);
+            this.label5.Size = new System.Drawing.Size(84, 16);
             this.label5.TabIndex = 6;
             this.label5.Text = "تاريخ بدء العمل";
             // 
@@ -125,7 +125,7 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label6.Location = new System.Drawing.Point(957, 303);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 16);
+            this.label6.Size = new System.Drawing.Size(85, 16);
             this.label6.TabIndex = 7;
             this.label6.Text = "الهدف الشهرى";
             // 
@@ -136,7 +136,7 @@
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label7.Location = new System.Drawing.Point(957, 353);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 16);
+            this.label7.Size = new System.Drawing.Size(83, 16);
             this.label7.TabIndex = 8;
             this.label7.Text = "الراتب الشهرى";
             // 
@@ -158,7 +158,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label9.Location = new System.Drawing.Point(957, 457);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 16);
+            this.label9.Size = new System.Drawing.Size(93, 16);
             this.label9.TabIndex = 10;
             this.label9.Text = "البريد الالكترونى";
             // 
@@ -169,7 +169,7 @@
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label10.Location = new System.Drawing.Point(469, 303);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 16);
+            this.label10.Size = new System.Drawing.Size(34, 16);
             this.label10.TabIndex = 11;
             this.label10.Text = "الفرع";
             // 
@@ -180,7 +180,7 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label11.Location = new System.Drawing.Point(469, 469);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 16);
+            this.label11.Size = new System.Drawing.Size(95, 16);
             this.label11.TabIndex = 12;
             this.label11.Text = "معلومات اضافيه";
             // 
@@ -318,7 +318,7 @@
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label14.Location = new System.Drawing.Point(469, 428);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(76, 16);
+            this.label14.Size = new System.Drawing.Size(77, 16);
             this.label14.TabIndex = 30;
             this.label14.Text = "ساعات العمل";
             // 
@@ -385,6 +385,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(127, 45);
             this.btnAdd.TabIndex = 71;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // DelegateRecord
             // 
@@ -426,8 +427,6 @@
             this.Name = "DelegateRecord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form3";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_FormClosed);
-            this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -15,45 +15,43 @@ namespace MainSystem
 {
     public partial class DelegateRecord : Form
     {
-        public DelegateRecord()
-        {
-            InitializeComponent();
-        }
-
         MySqlConnection con;
         MySqlCommand cmd;
-
-        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        public DelegateRecord()
         {
-            Environment.Exit(0);
+            try
+            {
+                InitializeComponent();
+                con = new MySqlConnection(connection.connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog opf = new OpenFileDialog();
             opf.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             if (opf.ShowDialog() == DialogResult.OK)
             {
-                //pictureBox1.Image = Image.FromFile(opf.FileName);
+                ImageBox.Image = Image.FromFile(opf.FileName);
 
             }
         }
 
-        private void Form3_Load(object sender, EventArgs e)
-        {
-          //  con = new MySqlConnection(conn.str);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             byte[] img = null;
 
-            //if (pictureBox1.Image != null)
-            //{
-            //    MemoryStream ms = new MemoryStream();
-            //    pictureBox1.Image.Save(ms, pictureBox1.Image.RawFormat);
-            //    img = ms.ToArray();
-            //}
+            if (ImageBox.Image != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                ImageBox.Image.Save(ms, ImageBox.Image.RawFormat);
+                img = ms.ToArray();
+            }
             double x, y;
 
             if (textBox5.Text == "")
@@ -73,7 +71,7 @@ namespace MainSystem
                 y = Double.Parse(textBox6.Text);
             }
 
-            string insert = "INSERT INTO delegate (Delegate_Name,Delegate_Phone,Delegate_Address,Delegate_Info,Delegate_Qualification,Delegate_Start,Delegate_Target,Delegate_Birth,Delegate_Salary,Delegate_Mail,Delegate_Branch,Delegate_Photo,National_ID,Social_Status,Job_Hours) VALUES (@Delegate_Name,@Delegate_Phone,@Delegate_Address,@Delegate_Info,@Delegate_Qualification,@Delegate_Start,@Delegate_Target,@Delegate_Birth,@Delegate_Salary,@Delegate_Mail,@Delegate_Branch,@Delegate_Photo,@National_ID,@Social_Status,@Job_Hours)";
+            string insert = "INSERT INTO delegate (Delegate_Name,Delegate_Phone,Delegate_Address,Delegate_Info,Delegate_Qualification,Delegate_Start,Delegate_Target,Delegate_Birth,Delegate_Salary,Delegate_Mail,Branch_ID,Delegate_Photo,National_ID,Social_Status,Job_Hours) VALUES (@Delegate_Name,@Delegate_Phone,@Delegate_Address,@Delegate_Info,@Delegate_Qualification,@Delegate_Start,@Delegate_Target,@Delegate_Birth,@Delegate_Salary,@Delegate_Mail,@Branch_ID,@Delegate_Photo,@National_ID,@Social_Status,@Job_Hours)";
 
             try
             {
@@ -98,8 +96,8 @@ namespace MainSystem
                 cmd.Parameters["@Delegate_Birth"].Value = dateTimePicker2.Value;
                 cmd.Parameters.Add("@Delegate_Mail", MySqlDbType.VarChar, 255);
                 cmd.Parameters["@Delegate_Mail"].Value = textBox7.Text;
-                cmd.Parameters.Add("@Delegate_Branch", MySqlDbType.VarChar, 255);
-                cmd.Parameters["@Delegate_Branch"].Value = textBox8.Text;
+                cmd.Parameters.Add("@Branch_ID", MySqlDbType.VarChar, 255);
+                cmd.Parameters["@Branch_ID"].Value = textBox8.Text;
                 cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
                 cmd.Parameters["@Delegate_Info"].Value = textBox9.Text;
                 cmd.Parameters.Add("@Delegate_Photo", MySqlDbType.Blob);
@@ -126,9 +124,9 @@ namespace MainSystem
                     textBox9.Clear();
                     textBox10.Clear();
                     textBox11.Clear();
-                    
 
-                   // pictureBox1.Image = null;
+
+                    ImageBox.Image = null;
                 }
 
                 con.Close();
@@ -138,12 +136,6 @@ namespace MainSystem
                 MessageBox.Show(""+ee);
             }
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //Form2 f2 = new Form2();
-            //this.Hide();
-            //f2.Show();
-        }
+        
     }
 }

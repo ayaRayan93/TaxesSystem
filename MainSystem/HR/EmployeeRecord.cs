@@ -175,7 +175,7 @@ namespace MainSystem
                         string query = "select Employee_ID from employee order by Employee_ID desc limit 1";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                      //  UserControl.UserRecord("employee", "اضافة",com.ExecuteScalar().ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("employee", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
                         XtraTabPage xtraTabPage = getTabPage("أضافة موظف");
                         xtraTabPage.ImageOptions.Image = null;
@@ -184,7 +184,7 @@ namespace MainSystem
                 else if (rDelegate.Checked)
                 {
                     #region Add New Delegate
-                    string insert = "INSERT INTO Delegate (Delegate_Number,Delegate_Name,Delegate_Phone,Delegate_Address,Delegate_Info,Delegate_Qualification,Delegate_Start_Date,Delegate_Job,Delegate_Department,Delegate_Birth_Date,Delegate_Salary,Delegate_Mail,Delegate_Branch_ID,Delegate_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears,Delegate_Taraget) VALUES (@Delegate_Number,@Delegate_Name,@Delegate_Phone,@Delegate_Address,@Delegate_Info,@Delegate_Qualification,@Delegate_Start,@Delegate_Job,@Delegate_Department,@Delegate_Birth,@Delegate_Salary,@Delegate_Mail,@Delegate_Branch_ID,@Delegate_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears,@Delegate_Taraget)";
+                    string insert = "INSERT INTO Delegate (Delegate_Number,Delegate_Name,Delegate_Phone,Delegate_Address,Delegate_Info,Delegate_Qualification,Delegate_Start_Date,Delegate_Job,Delegate_Department,Delegate_Birth_Date,Delegate_Salary,Delegate_Mail,Branch_ID,Delegate_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears,Delegate_Taraget) VALUES (@Delegate_Number,@Delegate_Name,@Delegate_Phone,@Delegate_Address,@Delegate_Info,@Delegate_Qualification,@Delegate_Start,@Delegate_Job,@Delegate_Department,@Delegate_Birth,@Delegate_Salary,@Delegate_Mail,@Branch_ID,@Delegate_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears,@Delegate_Taraget)";
                     MySqlCommand cmd = new MySqlCommand(insert, dbconnection);
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -231,8 +231,8 @@ namespace MainSystem
                     cmd.Parameters["@Delegate_Birth"].Value = dateTimePickerBirthDate.Value;
                     cmd.Parameters.Add("@Delegate_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Mail"].Value = txtMail.Text;
-                    cmd.Parameters.Add("@Delegate_Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Delegate_Branch_ID"].Value = comBranch.SelectedValue;
+                    cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
                     cmd.Parameters.Add("@Delegate_Department", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Department"].Value = txtDepartment.Text;
                     cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
@@ -275,7 +275,7 @@ namespace MainSystem
 
                         string query = "select Delegate_ID from delegate order by Delegate_ID desc limit 1";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        //UserControl.UserRecord("delegate", "اضافة",com.ExecuteScalar().ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("delegate", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
                         XtraTabPage xtraTabPage = getTabPage("أضافة موظف");
                         xtraTabPage.ImageOptions.Image = null;
