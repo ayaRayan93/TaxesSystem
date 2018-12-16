@@ -120,37 +120,29 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-       
-
+        
         private void navBarItemCustomerShow_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             try
             {
                 restForeColorOfNavBarItem();
                 NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
+                navBarItem.Appearance.ForeColor = Color.Blue;
 
-                XtraTabPage xtraTabPage =getTabPage(xtraTabControlPointSale,"tabPageCustomerReport");
+                if (!xtraTabControlPointSale.Visible)
+                    xtraTabControlPointSale.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "العملاء");
                 if (xtraTabPage == null)
                 {
-                    tabPageCustomerReport.Name = "tabPageCustomerReport";
-                    tabPageCustomerReport.Text = "عرض العملاء";
-                    panelCustomerReport.Name = "panelCustomerReport";
-                    panelCustomerReport.Dock = DockStyle.Fill;
-
-                    CustomerReport = new Customer_Report();
-                    CustomerReport.Size = new Size(1109, 660);
-                    CustomerReport.TopLevel = false;
-                    CustomerReport.FormBorderStyle = FormBorderStyle.None;
-                    CustomerReport.Dock = DockStyle.Fill;
+                    xtraTabControlPointSale.TabPages.Add("العملاء");
+                    xtraTabPage = getTabPage(xtraTabControlPointSale, "العملاء");
+                    bindDisplayCustomersForm(xtraTabPage);
                 }
-                panelCustomerReport.Controls.Clear();
-                panelCustomerReport.Controls.Add(CustomerReport);
-                tabPageCustomerReport.Controls.Add(panelCustomerReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageCustomerReport);
-                CustomerReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageCustomerReport;
+                //xtraTabPage.Controls.Clear();
+
+                xtraTabControlPointSale.SelectedTabPage = xtraTabPage;
+
             }
             catch (Exception ex)
             {
@@ -273,42 +265,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-        /*private void navBarItemConfirmBill_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
-
-                XtraTabPage xtraTabPage =getTabPage(xtraTabControlPointSale,"tabPageBillConfirm");
-                if (xtraTabPage == null)
-                {
-                    tabPageBillConfirm.Name = "tabPageBillConfirm";
-                    tabPageBillConfirm.Text = "تاكيد فاتورة";
-                    panelBillConfirm.Name = "panelBillConfirm";
-                    panelBillConfirm.Dock = DockStyle.Fill;
-
-                    BillConfirm = new Bill_Confirm();
-                    BillConfirm.Size = new Size(1109, 660);
-                    BillConfirm.TopLevel = false;
-                    BillConfirm.FormBorderStyle = FormBorderStyle.None;
-                    BillConfirm.Dock = DockStyle.Fill;
-                }
-                panelBillConfirm.Controls.Clear();
-                panelBillConfirm.Controls.Add(BillConfirm);
-                tabPageBillConfirm.Controls.Add(panelBillConfirm);
-                xtraTabControlPointSale.TabPages.Add(tabPageBillConfirm);
-                BillConfirm.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageBillConfirm;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }*/
 
         private void navBarItemInformationProducts_LinkClicked(object sender, NavBarLinkEventArgs e)
         {

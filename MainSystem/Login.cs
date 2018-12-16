@@ -32,7 +32,8 @@ namespace MainSystem
         {
             try
             {
-                string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass and (User_Type=0 or User_Type=5)";
+                /* and (User_Type=0 or User_Type=5)*/
+                string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass";
                 conn.Open();
                 MySqlCommand comand = new MySqlCommand(query, conn);
                 comand.Parameters.AddWithValue("@Name", txtName.Text);
@@ -53,9 +54,33 @@ namespace MainSystem
                             mainForm.Show();
                             this.Hide();
                         }
-                        else
+                        else if ((int)result[2] == 5)
                         {
                             string q = "SELECT delegate.Branch_ID FROM users INNER JOIN delegate ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + (int)result[0];
+                            MySqlCommand com = new MySqlCommand(q, dbconnection);
+                            dbconnection.Open();
+                            int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                            int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                            if (EmpBranchID1 == EmpBranchID2)
+                            {
+                                UserControl.userID = (int)result[0];
+                                UserControl.userName = result[1].ToString();
+                                UserControl.userType = (int)result[2];
+                                mainForm = new MainForm();
+                                mainForm.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("حاول مرة اخرى");
+                            }
+                        }
+                        else
+                        {
+                            string q = "SELECT employee.Branch_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
                             MySqlCommand com = new MySqlCommand(q, dbconnection);
                             dbconnection.Open();
                             int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
@@ -127,7 +152,8 @@ namespace MainSystem
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass and (User_Type=0 or User_Type=5)";
+                    /* and (User_Type=0 or User_Type=5)*/
+                    string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass";
                     conn.Open();
                     MySqlCommand comand = new MySqlCommand(query, conn);
                     comand.Parameters.AddWithValue("@Name", txtName.Text);
@@ -147,9 +173,33 @@ namespace MainSystem
                                 mainForm.Show();
                                 this.Hide();
                             }
-                            else
+                            else if((int)result[2] == 5)
                             {
                                 string q = "SELECT delegate.Branch_ID FROM users INNER JOIN delegate ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + (int)result[0];
+                                MySqlCommand com = new MySqlCommand(q, dbconnection);
+                                dbconnection.Open();
+                                int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                                if (EmpBranchID1 == EmpBranchID2)
+                                {
+                                    UserControl.userID = (int)result[0];
+                                    UserControl.userName = result[1].ToString();
+                                    UserControl.userType = (int)result[2];
+                                    mainForm = new MainForm();
+                                    mainForm.Show();
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("حاول مرة اخرى");
+                                }
+                            }
+                            else
+                            {
+                                string q = "SELECT employee.Branch_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
                                 MySqlCommand com = new MySqlCommand(q, dbconnection);
                                 dbconnection.Open();
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
