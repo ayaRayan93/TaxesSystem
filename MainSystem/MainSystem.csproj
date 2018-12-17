@@ -161,6 +161,12 @@
     <Compile Include="HR\Users.designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Customer_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Customer_Record.designer.cs">
+      <DependentUpon>Customer_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\BillsTransitions_Print.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1035,12 +1041,6 @@
     <Compile Include="Sales\Customer_Print.designer.cs">
       <DependentUpon>Customer_Print.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\Customer_Record.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\Customer_Record.designer.cs">
-      <DependentUpon>Customer_Record.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\Customer_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1439,6 +1439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HR\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Customer_Record.resx">
+      <DependentUpon>Customer_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\تقرير حركة السدادات\BillsTransitions_Print.resx">
       <DependentUpon>BillsTransitions_Print.cs</DependentUpon>
@@ -1876,9 +1879,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Print.resx">
       <DependentUpon>Customer_Print.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\Customer_Record.resx">
-      <DependentUpon>Customer_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Report.resx">
       <DependentUpon>Customer_Report.cs</DependentUpon>
