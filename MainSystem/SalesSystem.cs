@@ -20,7 +20,7 @@ namespace MainSystem
     class SalesSystem
     {
     }
-    public partial class MainForm 
+    public partial class MainForm
     {
   
         public static XtraTabControl tabControlSales;

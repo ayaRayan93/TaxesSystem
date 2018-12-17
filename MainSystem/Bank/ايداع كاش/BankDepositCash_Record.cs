@@ -637,7 +637,7 @@ namespace MainSystem
                                 flagCategoriesSuccess = false;
                                 //////////////////////
 
-                                if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0)
+                                if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 || checkBoxTaswya.Checked == true)
                                 {
                                     query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
                                 }
@@ -685,9 +685,9 @@ namespace MainSystem
                                 PaidMoney.Text = "0";
                                 txtPaidRest.Text = "0";
                                 txtPaidRest2.Text = "0";
+                                checkBoxTaswya.Checked = false;
                                 
                                 xtraTabPage.ImageOptions.Image = null;
-
                             }
                             else
                             {
@@ -1363,7 +1363,7 @@ namespace MainSystem
                 // ImageProduct.Image = null;
             }
         }
-
+        
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < tabControlBank.TabPages.Count; i++)
@@ -1653,11 +1653,11 @@ namespace MainSystem
             Print_Bill_Report f = new Print_Bill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, "(" + TypeBuy + ")" + " " + delegateName, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, delegateName + " " + "(" + TypeBuy + ")", billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, "(" + TypeBuy + ")" + " " + delegateName, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, delegateName + " " + "(" + TypeBuy + ")", billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             f.ShowDialog();
         }
