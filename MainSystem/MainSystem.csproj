@@ -149,6 +149,12 @@
     <Compile Include="Accounting\DelegateTotalSales.Designer.cs">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\GetDelegateProfit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
+      <DependentUpon>GetDelegateProfit.cs</DependentUpon>
+    </Compile>
     <Compile Include="HR\UserRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1433,6 +1439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateTotalSales.resx">
       <DependentUpon>DelegateTotalSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
+      <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\UserRecord.resx">
       <DependentUpon>UserRecord.cs</DependentUpon>

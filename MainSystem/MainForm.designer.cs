@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
@@ -273,8 +274,6 @@
             this.xtraTabPageReception = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl5 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup38 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemGraphic_Report = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupDelegateMovement = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem107 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup33 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -293,6 +292,8 @@
             this.navBarItemDelegateExistence = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDelegateAbsence = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup37 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarGroup38 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemGraphic_Report = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem110 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem111 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem112 = new DevExpress.XtraNavBar.NavBarItem();
@@ -382,8 +383,9 @@
             this.pictureBoxSale = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DelegateProfit = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -2694,23 +2696,6 @@
             this.navBarControl5.TabIndex = 3;
             this.navBarControl5.Text = "navBarControl1";
             // 
-            // navBarGroup38
-            // 
-            this.navBarGroup38.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            this.navBarGroup38.Appearance.Options.UseFont = true;
-            this.navBarGroup38.Caption = "تقارير بيانية شهرية";
-            this.navBarGroup38.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemGraphic_Report)});
-            this.navBarGroup38.Name = "navBarGroup38";
-            // 
-            // navBarItemGraphic_Report
-            // 
-            this.navBarItemGraphic_Report.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemGraphic_Report.Appearance.Options.UseFont = true;
-            this.navBarItemGraphic_Report.Caption = "الاشهر الاكثر عمل";
-            this.navBarItemGraphic_Report.Name = "navBarItemGraphic_Report";
-            this.navBarItemGraphic_Report.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemGraphic_Report_LinkClicked);
-            // 
             // navBarGroupDelegateMovement
             // 
             this.navBarGroupDelegateMovement.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
@@ -2865,6 +2850,23 @@
             this.navBarGroup37.Appearance.Options.UseFont = true;
             this.navBarGroup37.Caption = "تقارير بيانية يومية";
             this.navBarGroup37.Name = "navBarGroup37";
+            // 
+            // navBarGroup38
+            // 
+            this.navBarGroup38.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
+            this.navBarGroup38.Appearance.Options.UseFont = true;
+            this.navBarGroup38.Caption = "تقارير بيانية شهرية";
+            this.navBarGroup38.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemGraphic_Report)});
+            this.navBarGroup38.Name = "navBarGroup38";
+            // 
+            // navBarItemGraphic_Report
+            // 
+            this.navBarItemGraphic_Report.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemGraphic_Report.Appearance.Options.UseFont = true;
+            this.navBarItemGraphic_Report.Caption = "الاشهر الاكثر عمل";
+            this.navBarItemGraphic_Report.Name = "navBarItemGraphic_Report";
+            this.navBarItemGraphic_Report.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemGraphic_Report_LinkClicked);
             // 
             // navBarItem110
             // 
@@ -3263,7 +3265,8 @@
             this.navBarItem161,
             this.navBarItem154,
             this.navBarItemDelegateSalesForCompany,
-            this.navBarItemDelegateSalesForProduct});
+            this.navBarItemDelegateSalesForProduct,
+            this.DelegateProfit});
             this.navBarAccounting.Location = new System.Drawing.Point(892, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 253;
@@ -3279,7 +3282,8 @@
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.DelegateProfit)});
             this.navBarGroup40.Name = "navBarGroup40";
             // 
             // navBarItem154
@@ -3545,6 +3549,12 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel1.Size = new System.Drawing.Size(947, 515);
             this.panel1.TabIndex = 1;
+            // 
+            // DelegateProfit
+            // 
+            this.DelegateProfit.Caption = "حساب نسبة المندوب";
+            this.DelegateProfit.Name = "DelegateProfit";
+            this.DelegateProfit.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.DelegateProfit_LinkClicked);
             // 
             // MainForm
             // 
@@ -3942,5 +3952,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemBillCopy;
         private DevExpress.XtraNavBar.NavBarItem navBarItemReturnedBillCopy;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTransitionCopy;
+        private DevExpress.XtraNavBar.NavBarItem DelegateProfit;
     }
 }
