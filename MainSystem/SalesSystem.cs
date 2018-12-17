@@ -74,11 +74,11 @@ namespace MainSystem
                     if (!xtraTabControlSalesContent.Visible)
                         xtraTabControlSalesContent.Visible = true;
 
-                    XtraTabPage xtraTabPage = getTabPage("العملاء");
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "العملاء");
                     if (xtraTabPage == null)
                     {
                         xtraTabControlSalesContent.TabPages.Add("العملاء");
-                        xtraTabPage = getTabPage("العملاء");
+                        xtraTabPage = getTabPage(xtraTabControlSalesContent, "العملاء");
                         bindDisplayCustomersForm(xtraTabPage);
                     }
                     //xtraTabPage.Controls.Clear();
@@ -966,7 +966,7 @@ namespace MainSystem
         //customers
         public void bindDisplayCustomersForm(XtraTabPage xtraTabPage)
         {
-            objFormCustomer = new Customer_Report();
+            objFormCustomer = new Customer_Report(xtraTabControlSalesContent);
             objFormCustomer.TopLevel = false;
 
             xtraTabPage.Controls.Add(objFormCustomer);

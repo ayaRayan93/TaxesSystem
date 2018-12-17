@@ -27,7 +27,7 @@ namespace MainSystem
         public static bool loadedPrintCustomer = false;
 
 
-        public static Customer_Report CustomerReport;
+        public static Customer_Report2 CustomerReport;
         public static Products_Report ProductsReport;
         public static ProductsDetails_Report ProductsDetailsReport;
         public static Bill_Confirm BillConfirm;
@@ -36,6 +36,10 @@ namespace MainSystem
         public static Information_Offers InformationOffers;
         public static InformationProducts_Report InformationProductsReport;
 
+
+        public static XtraTabPage MainTabPageAddCustomer2;
+        public static XtraTabPage MainTabPageUpdateCustomer2;
+        public static XtraTabPage MainTabPagePrintCustomer2;
 
         XtraTabPage tabPageCustomerReport;
         Panel panelCustomerReport;
@@ -78,6 +82,10 @@ namespace MainSystem
             panelInformationOffers = new Panel();
             tabPageInformationProductsReport = new XtraTabPage();
             panelInformationProductsReport = new Panel();
+
+            MainTabPageAddCustomer2 = new XtraTabPage();
+            MainTabPageUpdateCustomer2 = new XtraTabPage();
+            MainTabPagePrintCustomer2 = new XtraTabPage();
 
             tabControlPointSale = xtraTabControlPointSale;
         }
@@ -137,7 +145,7 @@ namespace MainSystem
                 {
                     xtraTabControlPointSale.TabPages.Add("العملاء");
                     xtraTabPage = getTabPage(xtraTabControlPointSale, "العملاء");
-                    bindDisplayCustomersForm(xtraTabPage);
+                    bindDisplayCustomersPSForm(xtraTabPage);
                 }
                 //xtraTabPage.Controls.Clear();
 
@@ -441,5 +449,15 @@ namespace MainSystem
             }
         }
 
+        public void bindDisplayCustomersPSForm(XtraTabPage xtraTabPage)
+        {
+            CustomerReport = new Customer_Report2(xtraTabControlPointSale);
+            CustomerReport.TopLevel = false;
+
+            xtraTabPage.Controls.Add(CustomerReport);
+            CustomerReport.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            CustomerReport.Dock = DockStyle.Fill;
+            CustomerReport.Show();
+        }
     }
 }

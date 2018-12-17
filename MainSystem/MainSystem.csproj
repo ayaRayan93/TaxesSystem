@@ -161,6 +161,12 @@
     <Compile Include="HR\Users.designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="PointOfSale\Customer_Report2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\Customer_Report2.designer.cs">
+      <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Customer_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1439,6 +1445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HR\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
+      <DependentUpon>Customer_Report2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Record.resx">
       <DependentUpon>Customer_Record.cs</DependentUpon>
