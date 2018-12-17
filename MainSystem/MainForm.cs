@@ -67,7 +67,100 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (UserControl.userType == 0)
+            {
+                btnCars.Enabled = true;
+                btnCars.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                TIElsha7n.Enabled = true;
+                TIElsha7n.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
+                btnBuying.Enabled = true;
+                btnBuying.Checked = true;
+                btnHR.Enabled = true;
+                btnHR.Checked = true;
+                btnCustomerService.Enabled = true;
+                btnCustomerService.Checked = true;
+                btnCoding.Enabled = true;
+                btnCoding.Checked = true;
+                btnReports.Enabled = true;
+                btnReports.Checked = true;
+            }
+            else if (UserControl.userType == 1)
+            {
+                btnCars.Enabled = true;
+                btnCars.Checked = true;
+            }
+            else if (UserControl.userType == 2)
+            {
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+            }
+            else if (UserControl.userType == 3)
+            {
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+            }
+            else if (UserControl.userType == 4)
+            {
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+            }
+            else if (UserControl.userType == 5)
+            {
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+            }
+            else if (UserControl.userType == 6 || UserControl.userType == 7)
+            {
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+            }
+            else if (UserControl.userType == 8)
+            {
+                TIElsha7n.Enabled = true;
+                TIElsha7n.Checked = true;
+            }
+            else if (UserControl.userType == 9)
+            {
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
+            }
+            else if (UserControl.userType == 10)
+            {
+                btnBuying.Enabled = true;
+                btnBuying.Checked = true;
+            }
+            else if (UserControl.userType == 11)
+            {
+                btnHR.Enabled = true;
+                btnHR.Checked = true;
+            }
+            else if (UserControl.userType == 12)
+            {
+                btnCustomerService.Enabled = true;
+                btnCustomerService.Checked = true;
+            }
+            else if (UserControl.userType == 13)
+            {
+                btnCoding.Enabled = true;
+                btnCoding.Checked = true;
+            }
         }
 
         //events

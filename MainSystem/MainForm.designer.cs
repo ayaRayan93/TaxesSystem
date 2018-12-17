@@ -29,30 +29,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement16 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement17 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement18 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement20 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement21 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement22 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement23 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement24 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement25 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement26 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement27 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement28 = new DevExpress.XtraEditors.TileItemElement();
             this.xtraTabControlMainContainer = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageMain = new DevExpress.XtraTab.XtraTabPage();
             this.tcMainContent = new DevExpress.XtraEditors.TileControl();
             this.tileGroup2 = new DevExpress.XtraEditors.TileGroup();
-            this.tileItem11 = new DevExpress.XtraEditors.TileItem();
+            this.btnCustomerService = new DevExpress.XtraEditors.TileItem();
             this.btnPOS = new DevExpress.XtraEditors.TileItem();
             this.btnSales = new DevExpress.XtraEditors.TileItem();
-            this.tileItem14 = new DevExpress.XtraEditors.TileItem();
-            this.tileItem9 = new DevExpress.XtraEditors.TileItem();
+            this.btnReports = new DevExpress.XtraEditors.TileItem();
+            this.btnCoding = new DevExpress.XtraEditors.TileItem();
             this.tileGroup3 = new DevExpress.XtraEditors.TileGroup();
             this.btnStores = new DevExpress.XtraEditors.TileItem();
             this.tileItem2 = new DevExpress.XtraEditors.TileItem();
@@ -60,7 +62,7 @@
             this.tileGroup4 = new DevExpress.XtraEditors.TileGroup();
             this.btnCars = new DevExpress.XtraEditors.TileItem();
             this.TIElsha7n = new DevExpress.XtraEditors.TileItem();
-            this.tileItem1 = new DevExpress.XtraEditors.TileItem();
+            this.btnBuying = new DevExpress.XtraEditors.TileItem();
             this.btnBank = new DevExpress.XtraEditors.TileItem();
             this.AccountingSystem = new DevExpress.XtraEditors.TileItem();
             this.الاستقبال = new DevExpress.XtraEditors.TileGroup();
@@ -216,6 +218,8 @@
             this.xtraTabPagePOS = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlPointSale = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControlPointSaleReport = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupReportPointSale = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemShow = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup31 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemInformationProducts = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemInformationSets = new DevExpress.XtraNavBar.NavBarItem();
@@ -223,8 +227,6 @@
             this.navBarItemInformationProductsReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupBillRecord = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemProductsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroupReportPointSale = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemShow = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPointSaleRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPull = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDeposit = new DevExpress.XtraNavBar.NavBarItem();
@@ -498,31 +500,32 @@
             // 
             // tileGroup2
             // 
-            this.tileGroup2.Items.Add(this.tileItem11);
+            this.tileGroup2.Items.Add(this.btnCustomerService);
             this.tileGroup2.Items.Add(this.btnPOS);
             this.tileGroup2.Items.Add(this.btnSales);
-            this.tileGroup2.Items.Add(this.tileItem14);
-            this.tileGroup2.Items.Add(this.tileItem9);
+            this.tileGroup2.Items.Add(this.btnReports);
+            this.tileGroup2.Items.Add(this.btnCoding);
             this.tileGroup2.Name = "tileGroup2";
             // 
-            // tileItem11
+            // btnCustomerService
             // 
-            this.tileItem11.AppearanceItem.Hovered.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.tileItem11.AppearanceItem.Hovered.Options.UseFont = true;
-            this.tileItem11.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(146)))), ((int)(((byte)(209)))));
-            this.tileItem11.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tileItem11.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileItem11.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileItem11.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            tileItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement1.Text = "خدمة العملاء";
-            tileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.tileItem11.Elements.Add(tileItemElement1);
-            this.tileItem11.Id = 12;
-            this.tileItem11.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
-            this.tileItem11.Name = "tileItem11";
+            this.btnCustomerService.AppearanceItem.Hovered.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnCustomerService.AppearanceItem.Hovered.Options.UseFont = true;
+            this.btnCustomerService.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(146)))), ((int)(((byte)(209)))));
+            this.btnCustomerService.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomerService.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnCustomerService.AppearanceItem.Normal.Options.UseFont = true;
+            this.btnCustomerService.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
+            tileItemElement15.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            tileItemElement15.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement15.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement15.Text = "خدمة العملاء";
+            tileItemElement15.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnCustomerService.Elements.Add(tileItemElement15);
+            this.btnCustomerService.Enabled = false;
+            this.btnCustomerService.Id = 12;
+            this.btnCustomerService.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
+            this.btnCustomerService.Name = "btnCustomerService";
             // 
             // btnPOS
             // 
@@ -531,13 +534,13 @@
             this.btnPOS.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPOS.AppearanceItem.Normal.Options.UseFont = true;
             this.btnPOS.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.btnPOS.Checked = true;
-            tileItemElement2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            tileItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement2.Text = "نقطة البيع";
-            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnPOS.Elements.Add(tileItemElement2);
+            tileItemElement16.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            tileItemElement16.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement16.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement16.Text = "نقطة البيع";
+            tileItemElement16.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnPOS.Elements.Add(tileItemElement16);
+            this.btnPOS.Enabled = false;
             this.btnPOS.Id = 11;
             this.btnPOS.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.btnPOS.Name = "btnPOS";
@@ -550,51 +553,53 @@
             this.btnSales.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnSales.AppearanceItem.Normal.Options.UseFont = true;
             this.btnSales.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.btnSales.Checked = true;
-            tileItemElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            tileItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement3.Text = "المبيعات";
-            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnSales.Elements.Add(tileItemElement3);
+            tileItemElement17.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            tileItemElement17.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement17.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement17.Text = "المبيعات";
+            tileItemElement17.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnSales.Elements.Add(tileItemElement17);
+            this.btnSales.Enabled = false;
             this.btnSales.Id = 13;
             this.btnSales.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.btnSales.Name = "btnSales";
             this.btnSales.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnSales_ItemClick);
             // 
-            // tileItem14
+            // btnReports
             // 
-            this.tileItem14.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(100)))), ((int)(((byte)(103)))));
-            this.tileItem14.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tileItem14.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileItem14.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileItem14.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            tileItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement4.Text = "التقاير";
-            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.tileItem14.Elements.Add(tileItemElement4);
-            this.tileItem14.Id = 19;
-            this.tileItem14.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
-            this.tileItem14.Name = "tileItem14";
+            this.btnReports.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(100)))), ((int)(((byte)(103)))));
+            this.btnReports.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnReports.AppearanceItem.Normal.Options.UseFont = true;
+            this.btnReports.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
+            tileItemElement18.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            tileItemElement18.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement18.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement18.Text = "التقاير";
+            tileItemElement18.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnReports.Elements.Add(tileItemElement18);
+            this.btnReports.Enabled = false;
+            this.btnReports.Id = 19;
+            this.btnReports.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
+            this.btnReports.Name = "btnReports";
             // 
-            // tileItem9
+            // btnCoding
             // 
-            this.tileItem9.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(75)))), ((int)(((byte)(79)))));
-            this.tileItem9.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tileItem9.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileItem9.AppearanceItem.Normal.Options.UseFont = true;
-            this.tileItem9.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
-            tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement5.Text = "أفرع الشركة";
-            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.tileItem9.Elements.Add(tileItemElement5);
-            this.tileItem9.Id = 18;
-            this.tileItem9.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
-            this.tileItem9.Name = "tileItem9";
+            this.btnCoding.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(75)))), ((int)(((byte)(79)))));
+            this.btnCoding.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoding.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnCoding.AppearanceItem.Normal.Options.UseFont = true;
+            this.btnCoding.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
+            tileItemElement19.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_48;
+            tileItemElement19.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement19.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement19.Text = "التكويد";
+            tileItemElement19.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnCoding.Elements.Add(tileItemElement19);
+            this.btnCoding.Enabled = false;
+            this.btnCoding.Id = 18;
+            this.btnCoding.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
+            this.btnCoding.Name = "btnCoding";
             // 
             // tileGroup3
             // 
@@ -610,13 +615,13 @@
             this.btnStores.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnStores.AppearanceItem.Normal.Options.UseFont = true;
             this.btnStores.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.btnStores.Checked = true;
-            tileItemElement6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
-            tileItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement6.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement6.Text = "المخازن";
-            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnStores.Elements.Add(tileItemElement6);
+            tileItemElement20.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            tileItemElement20.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement20.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement20.Text = "المخازن";
+            tileItemElement20.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnStores.Elements.Add(tileItemElement20);
+            this.btnStores.Enabled = false;
             this.btnStores.Id = 9;
             this.btnStores.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.btnStores.Name = "btnStores";
@@ -627,10 +632,10 @@
             this.tileItem2.AppearanceItem.Normal.BackColor = System.Drawing.Color.Transparent;
             this.tileItem2.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileItem2.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement7.ImageOptions.Image = global::MainSystem.Properties.Resources.Logo2;
-            tileItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement7.Text = "";
-            this.tileItem2.Elements.Add(tileItemElement7);
+            tileItemElement21.ImageOptions.Image = global::MainSystem.Properties.Resources.Logo2;
+            tileItemElement21.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement21.Text = "";
+            this.tileItem2.Elements.Add(tileItemElement21);
             this.tileItem2.Id = 25;
             this.tileItem2.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.tileItem2.Name = "tileItem2";
@@ -642,13 +647,13 @@
             this.btnHR.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnHR.AppearanceItem.Normal.Options.UseFont = true;
             this.btnHR.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.btnHR.Checked = true;
-            tileItemElement8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
-            tileItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement8.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement8.Text = "شئون العاملين";
-            tileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnHR.Elements.Add(tileItemElement8);
+            tileItemElement22.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            tileItemElement22.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement22.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement22.Text = "شئون العاملين";
+            tileItemElement22.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnHR.Elements.Add(tileItemElement22);
+            this.btnHR.Enabled = false;
             this.btnHR.Id = 23;
             this.btnHR.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.btnHR.Name = "btnHR";
@@ -658,7 +663,7 @@
             // 
             this.tileGroup4.Items.Add(this.btnCars);
             this.tileGroup4.Items.Add(this.TIElsha7n);
-            this.tileGroup4.Items.Add(this.tileItem1);
+            this.tileGroup4.Items.Add(this.btnBuying);
             this.tileGroup4.Items.Add(this.btnBank);
             this.tileGroup4.Items.Add(this.AccountingSystem);
             this.tileGroup4.Name = "tileGroup4";
@@ -670,13 +675,13 @@
             this.btnCars.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCars.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCars.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.btnCars.Checked = true;
-            tileItemElement9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image7")));
-            tileItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement9.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement9.Text = "أدارة السيارات";
-            tileItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnCars.Elements.Add(tileItemElement9);
+            tileItemElement23.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image6")));
+            tileItemElement23.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement23.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement23.Text = "أدارة السيارات";
+            tileItemElement23.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnCars.Elements.Add(tileItemElement23);
+            this.btnCars.Enabled = false;
             this.btnCars.Id = 4;
             this.btnCars.Name = "btnCars";
             this.btnCars.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnCars_ItemClick);
@@ -696,32 +701,33 @@
             this.TIElsha7n.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TIElsha7n.AppearanceItem.Normal.Options.UseFont = true;
             this.TIElsha7n.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.TIElsha7n.Checked = true;
-            tileItemElement10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image8")));
-            tileItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement10.Text = "الشحن";
-            tileItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.TIElsha7n.Elements.Add(tileItemElement10);
+            tileItemElement24.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image7")));
+            tileItemElement24.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement24.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement24.Text = "الشحن";
+            tileItemElement24.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.TIElsha7n.Elements.Add(tileItemElement24);
+            this.TIElsha7n.Enabled = false;
             this.TIElsha7n.Id = 3;
             this.TIElsha7n.Name = "TIElsha7n";
             this.TIElsha7n.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.TIElsha7n_ItemClick);
             // 
-            // tileItem1
+            // btnBuying
             // 
-            this.tileItem1.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(184)))), ((int)(((byte)(74)))));
-            this.tileItem1.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tileItem1.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.tileItem1.AppearanceItem.Normal.Options.UseFont = true;
-            tileItemElement11.ImageOptions.Image = global::MainSystem.Properties.Resources.Shopping_Cart_80px;
-            tileItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement11.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement11.Text = "المشتريات";
-            tileItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.tileItem1.Elements.Add(tileItemElement11);
-            this.tileItem1.Id = 24;
-            this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
-            this.tileItem1.Name = "tileItem1";
+            this.btnBuying.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(184)))), ((int)(((byte)(74)))));
+            this.btnBuying.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuying.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnBuying.AppearanceItem.Normal.Options.UseFont = true;
+            tileItemElement25.ImageOptions.Image = global::MainSystem.Properties.Resources.Shopping_Cart_80px;
+            tileItemElement25.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement25.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement25.Text = "المشتريات";
+            tileItemElement25.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnBuying.Elements.Add(tileItemElement25);
+            this.btnBuying.Enabled = false;
+            this.btnBuying.Id = 24;
+            this.btnBuying.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            this.btnBuying.Name = "btnBuying";
             // 
             // btnBank
             // 
@@ -730,13 +736,13 @@
             this.btnBank.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBank.AppearanceItem.Normal.Options.UseFont = true;
             this.btnBank.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.btnBank.Checked = true;
-            tileItemElement12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image9")));
-            tileItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement12.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement12.Text = "النقدية والبنوك";
-            tileItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnBank.Elements.Add(tileItemElement12);
+            tileItemElement26.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image8")));
+            tileItemElement26.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement26.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement26.Text = "النقدية والبنوك";
+            tileItemElement26.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnBank.Elements.Add(tileItemElement26);
+            this.btnBank.Enabled = false;
             this.btnBank.Id = 17;
             this.btnBank.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.btnBank.Name = "btnBank";
@@ -749,13 +755,13 @@
             this.AccountingSystem.AppearanceItem.Normal.Options.UseBackColor = true;
             this.AccountingSystem.AppearanceItem.Normal.Options.UseFont = true;
             this.AccountingSystem.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            this.AccountingSystem.Checked = true;
-            tileItemElement13.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image10")));
-            tileItemElement13.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement13.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement13.Text = "الحسابات";
-            tileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.AccountingSystem.Elements.Add(tileItemElement13);
+            tileItemElement27.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image9")));
+            tileItemElement27.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement27.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement27.Text = "الحسابات";
+            tileItemElement27.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.AccountingSystem.Elements.Add(tileItemElement27);
+            this.AccountingSystem.Enabled = false;
             this.AccountingSystem.Id = 16;
             this.AccountingSystem.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.AccountingSystem.Name = "AccountingSystem";
@@ -774,10 +780,10 @@
             this.btnReception.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseFont = true;
-            this.btnReception.Checked = true;
-            tileItemElement14.Text = "الاستقبال";
-            tileItemElement14.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.btnReception.Elements.Add(tileItemElement14);
+            tileItemElement28.Text = "الاستقبال";
+            tileItemElement28.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.btnReception.Elements.Add(tileItemElement28);
+            this.btnReception.Enabled = false;
             this.btnReception.Id = 26;
             this.btnReception.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.btnReception.Name = "btnReception";
@@ -2139,7 +2145,7 @@
             // 
             // navBarControlPointSaleReport
             // 
-            this.navBarControlPointSaleReport.ActiveGroup = this.navBarGroup31;
+            this.navBarControlPointSaleReport.ActiveGroup = this.navBarGroupReportPointSale;
             this.navBarControlPointSaleReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlPointSaleReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlPointSaleReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2185,12 +2191,29 @@
             this.navBarControlPointSaleReport.TabIndex = 3;
             this.navBarControlPointSaleReport.Text = "navBarControl1";
             // 
+            // navBarGroupReportPointSale
+            // 
+            this.navBarGroupReportPointSale.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroupReportPointSale.Appearance.Options.UseFont = true;
+            this.navBarGroupReportPointSale.Caption = "العملاء";
+            this.navBarGroupReportPointSale.Expanded = true;
+            this.navBarGroupReportPointSale.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShow)});
+            this.navBarGroupReportPointSale.Name = "navBarGroupReportPointSale";
+            // 
+            // navBarItemShow
+            // 
+            this.navBarItemShow.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemShow.Appearance.Options.UseFont = true;
+            this.navBarItemShow.Caption = "تقرير";
+            this.navBarItemShow.Name = "navBarItemShow";
+            this.navBarItemShow.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomerShow_LinkClicked);
+            // 
             // navBarGroup31
             // 
             this.navBarGroup31.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroup31.Appearance.Options.UseFont = true;
             this.navBarGroup31.Caption = "استعلامات";
-            this.navBarGroup31.Expanded = true;
             this.navBarGroup31.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationProducts),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationSets),
@@ -2246,23 +2269,6 @@
             this.navBarItemProductsReport.Caption = "تسجيل";
             this.navBarItemProductsReport.Name = "navBarItemProductsReport";
             this.navBarItemProductsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemProductsReport_LinkClicked);
-            // 
-            // navBarGroupReportPointSale
-            // 
-            this.navBarGroupReportPointSale.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.navBarGroupReportPointSale.Appearance.Options.UseFont = true;
-            this.navBarGroupReportPointSale.Caption = "العملاء";
-            this.navBarGroupReportPointSale.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShow)});
-            this.navBarGroupReportPointSale.Name = "navBarGroupReportPointSale";
-            // 
-            // navBarItemShow
-            // 
-            this.navBarItemShow.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.navBarItemShow.Appearance.Options.UseFont = true;
-            this.navBarItemShow.Caption = "تقرير";
-            this.navBarItemShow.Name = "navBarItemShow";
-            this.navBarItemShow.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemShow_LinkClicked);
             // 
             // navBarItemPointSaleRecord
             // 
@@ -3568,6 +3574,7 @@
             this.Text = "المركز التجاري للسيراميك";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).EndInit();
             this.xtraTabControlMainContainer.ResumeLayout(false);
             this.xtraTabPageMain.ResumeLayout(false);
@@ -3623,17 +3630,17 @@
         private DevExpress.XtraEditors.TileItem btnHR;
         private DevExpress.XtraEditors.TileGroup tileGroup4;
         private DevExpress.XtraEditors.TileItem btnPOS;
-        private DevExpress.XtraEditors.TileItem tileItem11;
+        private DevExpress.XtraEditors.TileItem btnCustomerService;
         private DevExpress.XtraEditors.TileItem btnSales;
-        private DevExpress.XtraEditors.TileItem tileItem9;
-        private DevExpress.XtraEditors.TileItem tileItem14;
+        private DevExpress.XtraEditors.TileItem btnCoding;
+        private DevExpress.XtraEditors.TileItem btnReports;
         private DevExpress.XtraTab.XtraTabPage xtraTabPageStores;
         private System.Windows.Forms.Panel panMain;
         private System.Windows.Forms.Panel panContent;
         private System.Windows.Forms.Panel panHeader;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlMainContainer;
-        private DevExpress.XtraEditors.TileItem tileItem1;
+        private DevExpress.XtraEditors.TileItem btnBuying;
         private DevExpress.XtraEditors.TileItem tileItem2;
         private System.Windows.Forms.Panel panStoreContent;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlStoresContent;

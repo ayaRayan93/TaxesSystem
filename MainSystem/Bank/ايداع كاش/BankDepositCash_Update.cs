@@ -437,7 +437,7 @@ namespace MainSystem
                                         com.ExecuteNonQuery();
                                         //////////////////////
 
-                                        if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0)
+                                        if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 || checkBoxTaswya.Checked == true)
                                         {
                                             query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
                                         }

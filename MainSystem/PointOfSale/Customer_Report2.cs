@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Customer_Report : Form
+    public partial class Customer_Report2 : Form
     {
         MySqlConnection conn;
         XtraTabControl mainTabControl;
@@ -30,7 +30,7 @@ namespace MainSystem
 
         public static GridControl gridcontrol;
 
-        public Customer_Report(XtraTabControl tabControl)
+        public Customer_Report2(XtraTabControl tabControl)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -60,23 +60,23 @@ namespace MainSystem
         {
             try
             {
-                XtraTabPage xtraTabPage = getTabPage("tabPageAddCustomer");
+                XtraTabPage xtraTabPage = getTabPage("tabPageAddCustomer2");
                 if (xtraTabPage == null)
                 {
-                    MainForm.MainTabPageAddCustomer.Controls.Clear();
+                    MainForm.MainTabPageAddCustomer2.Controls.Clear();
                     Customer_Record form = new Customer_Record();
-                    MainForm.MainTabPageAddCustomer.Name = "tabPageAddCustomer";
-                    MainForm.MainTabPageAddCustomer.Text = "اضافة عميل";
-                    MainForm.MainTabPageAddCustomer.ImageOptions.Image = null;
+                    MainForm.MainTabPageAddCustomer2.Name = "tabPageAddCustomer2";
+                    MainForm.MainTabPageAddCustomer2.Text = "اضافة عميل";
+                    MainForm.MainTabPageAddCustomer2.ImageOptions.Image = null;
                     //panelAddCustomer.Name = "panelAddCustomer";
                     //panelAddCustomer.Dock = DockStyle.Fill;
                     form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     form.Dock = DockStyle.Fill;
                     form.TopLevel = false;
                     //panelAddCustomer.Controls.Add(form);
-                    MainForm.MainTabPageAddCustomer.Controls.Add(form);
-                    mainTabControl.TabPages.Add(MainForm.MainTabPageAddCustomer);
-                    mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer;
+                    MainForm.MainTabPageAddCustomer2.Controls.Add(form);
+                    mainTabControl.TabPages.Add(MainForm.MainTabPageAddCustomer2);
+                    mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer2;
                     form.Show();
                 }
                 else if (xtraTabPage.ImageOptions.Image != null)
@@ -84,34 +84,34 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        MainForm.MainTabPageAddCustomer.ImageOptions.Image = null;
-                        MainForm.MainTabPageAddCustomer.Controls.Clear();
+                        MainForm.MainTabPageAddCustomer2.ImageOptions.Image = null;
+                        MainForm.MainTabPageAddCustomer2.Controls.Clear();
                         //panelAddCustomer.Controls.Clear();
-                        mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer;
+                        mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer2;
                         Customer_Record form = new Customer_Record();
                         form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         form.Dock = DockStyle.Fill;
                         form.TopLevel = false;
                         //panelAddCustomer.Controls.Add(form);
-                        MainForm.MainTabPageAddCustomer.Controls.Add(form);
+                        MainForm.MainTabPageAddCustomer2.Controls.Add(form);
                         form.Show();
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-                        mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer;
+                        mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer2;
                     }
                 }
                 else
                 {
-                    MainForm.MainTabPageAddCustomer.Controls.Clear();
+                    MainForm.MainTabPageAddCustomer2.Controls.Clear();
                     //panelAddCustomer.Controls.Clear();
-                    mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer;
+                    mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer2;
                     Customer_Record form = new Customer_Record();
                     form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     form.Dock = DockStyle.Fill;
                     form.TopLevel = false;
                     //panelAddCustomer.Controls.Add(form);
-                    MainForm.MainTabPageAddCustomer.Controls.Add(form);
+                    MainForm.MainTabPageAddCustomer2.Controls.Add(form);
                     form.Show();
                 }
             }
@@ -128,60 +128,60 @@ namespace MainSystem
                 DataRowView selRow = (DataRowView)gridView1.GetRow(gridView1.GetSelectedRows()[0]);
                 if (selRow[0].ToString() != "")
                 {
-                    XtraTabPage xtraTabPage = getTabPage("tabPageUpdateCustomer");
+                    XtraTabPage xtraTabPage = getTabPage("tabPageUpdateCustomer2");
                     if (xtraTabPage == null)
                     {
                         Customer_Update form = new Customer_Update(selRow);
-                        MainForm.MainTabPageUpdateCustomer.Name = "tabPageUpdateCustomer";
-                        MainForm.MainTabPageUpdateCustomer.Text = "تعديل بيانات عميل";
-                        MainForm.MainTabPageUpdateCustomer.ImageOptions.Image = null;
+                        MainForm.MainTabPageUpdateCustomer2.Name = "tabPageUpdateCustomer2";
+                        MainForm.MainTabPageUpdateCustomer2.Text = "تعديل بيانات عميل";
+                        MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
                         //panelUpdateCustomer.Name = "panelUpdateCustomer";
                         //panelUpdateCustomer.Dock = DockStyle.Fill;
-                        MainForm.MainTabPageUpdateCustomer.Controls.Clear();
+                        MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
                         form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         form.Dock = DockStyle.Fill;
                         form.TopLevel = false;
                         form.Show();
                         //panelUpdateCustomer.Controls.Add(form);
-                        MainForm.MainTabPageUpdateCustomer.Controls.Add(form);
-                        mainTabControl.TabPages.Add(MainForm.MainTabPageUpdateCustomer);
-                        mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer;
+                        MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
+                        mainTabControl.TabPages.Add(MainForm.MainTabPageUpdateCustomer2);
+                        mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
                     }
                     else if (xtraTabPage.ImageOptions.Image != null)
                     {
                         DialogResult dialogResult = MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            MainForm.MainTabPageUpdateCustomer.ImageOptions.Image = null;
+                            MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
                             Customer_Update form = new Customer_Update(selRow);
                             form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                             form.Dock = DockStyle.Fill;
                             form.TopLevel = false;
                             form.Show();
-                            MainForm.MainTabPageUpdateCustomer.Controls.Clear();
+                            MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
                             //panelUpdateCustomer.Controls.Clear();
                             //panelUpdateCustomer.Controls.Add(form);
-                            MainForm.MainTabPageUpdateCustomer.Controls.Add(form);
-                            mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer;
+                            MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
+                            mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
                         }
                         else if (dialogResult == DialogResult.No)
                         {
-                            mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer;
+                            mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
                         }
                     }
                     else
                     {
-                        MainForm.MainTabPageUpdateCustomer.ImageOptions.Image = null;
+                        MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
                         Customer_Update form = new Customer_Update(selRow);
                         form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         form.Dock = DockStyle.Fill;
                         form.TopLevel = false;
                         form.Show();
-                        MainForm.MainTabPageUpdateCustomer.Controls.Clear();
+                        MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
                         //panelUpdateCustomer.Controls.Clear();
                         //panelUpdateCustomer.Controls.Add(form);
-                        MainForm.MainTabPageUpdateCustomer.Controls.Add(form);
-                        mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer;
+                        MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
+                        mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
                     }
                 }
             }
@@ -209,8 +209,8 @@ namespace MainSystem
         {
             try
             {
-                MainForm.MainTabPagePrintCustomer.Name = "tabPagePrintCustomer";
-                MainForm.MainTabPagePrintCustomer.Text = "طباعة العملاء";
+                MainForm.MainTabPagePrintCustomer2.Name = "tabPagePrintCustomer2";
+                MainForm.MainTabPagePrintCustomer2.Text = "طباعة العملاء";
                 //panelPrintCustomer.Name = "panelPrintCustomer";
                 //panelPrintCustomer.Dock = DockStyle.Fill;
 
@@ -221,10 +221,10 @@ namespace MainSystem
                 customerPrint.FormBorderStyle = FormBorderStyle.None;
                 customerPrint.Dock = DockStyle.Fill;
                 //panelPrintCustomer.Controls.Add(customerPrint);
-                MainForm.MainTabPagePrintCustomer.Controls.Add(customerPrint);
-                mainTabControl.TabPages.Add(MainForm.MainTabPagePrintCustomer);
+                MainForm.MainTabPagePrintCustomer2.Controls.Add(customerPrint);
+                mainTabControl.TabPages.Add(MainForm.MainTabPagePrintCustomer2);
                 customerPrint.Show();
-                mainTabControl.SelectedTabPage = MainForm.MainTabPagePrintCustomer;
+                mainTabControl.SelectedTabPage = MainForm.MainTabPagePrintCustomer2;
 
                 MainForm.loadedPrintCustomer = true;
             }

@@ -178,6 +178,7 @@
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem65 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.checkBoxTaswya = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -1593,6 +1594,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.97305F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.51347F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.checkBoxTaswya, 2, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 539);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -2033,6 +2035,18 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // checkBoxTaswya
+            // 
+            this.checkBoxTaswya.AutoSize = true;
+            this.checkBoxTaswya.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxTaswya.ForeColor = System.Drawing.Color.White;
+            this.checkBoxTaswya.Location = new System.Drawing.Point(393, 3);
+            this.checkBoxTaswya.Name = "checkBoxTaswya";
+            this.checkBoxTaswya.Size = new System.Drawing.Size(63, 22);
+            this.checkBoxTaswya.TabIndex = 2;
+            this.checkBoxTaswya.Text = "تسوية";
+            this.checkBoxTaswya.UseVisualStyleBackColor = true;
+            // 
             // BankDepositCash_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -2106,6 +2120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPaid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRest)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemStock)).EndInit();
@@ -2293,6 +2308,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem65;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private System.Windows.Forms.CheckBox checkBoxTaswya;
     }
 }
 
