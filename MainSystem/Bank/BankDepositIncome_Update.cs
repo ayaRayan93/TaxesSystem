@@ -22,11 +22,12 @@ namespace MainSystem
         int[] arrRestMoney;
         int[] arrPaidMoney;
         bool loaded = false;
-        public static bool updateBankDepositIncomeTextChangedFlag = false;
         DataRowView selRow;
         XtraTabPage xtraTabPage;
+        bool flagCategoriesSuccess = false;
+        XtraTabControl tabControlBank;
 
-        public BankDepositIncome_Update(DataRowView SelRow)
+        public BankDepositIncome_Update(DataRowView SelRow, BankDepositIncome_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -34,6 +35,7 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
+            tabControlBank = MainTabControlBank;
 
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -293,6 +295,14 @@ namespace MainSystem
 
                 if (check)
                 {
+                    if (!flagCategoriesSuccess)
+                    {
+                        if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        {
+                            return;
+                        }
+                    }
+
                     double outParse;
                     if (double.TryParse(txtPaidMoney.Text, out outParse))
                     {
@@ -378,6 +388,31 @@ namespace MainSystem
 
                                 com.ExecuteNonQuery();
 
+                                //////////insert categories/////////
+                                query = "update transition_categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ,r200=@r200,r100=@r100,r50=@r50,r20=@r20,r10=@r10,r5=@r5,r1=@r1,rH=@rH,rQ=@rQ where Transition_ID=" + selRow[0].ToString();
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
+                                com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
+                                com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
+                                com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
+                                com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
+                                com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
+                                com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
+                                com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
+                                com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
+                                com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
+                                com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
+                                com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
+                                com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
+                                com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
+                                com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
+                                com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
+                                com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
+                                com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
+                                //com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(selRow[0].ToString());
+                                com.ExecuteNonQuery();
+                                flagCategoriesSuccess = false;
+
                                 //////////record editing/////////////
                                 query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
                                 com = new MySqlCommand(query, dbconnection);
@@ -389,14 +424,11 @@ namespace MainSystem
                                 com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
                                 com.ExecuteNonQuery();
                                 //////////////////////
-
-                                MessageBox.Show("تم");
+                                
                                 dbconnection.Close();
 
-                                updateBankDepositIncomeTextChangedFlag = false;
                                 xtraTabPage.ImageOptions.Image = null;
-                                //Main.DepositIncomeShow.search();
-                                MainForm.tabControlBank.TabPages.Remove(BankDepositIncome_Report.MainTabPageUpdateDepositIncome);
+                                tabControlBank.TabPages.Remove(xtraTabPage);
                             }
                             else
                             {
@@ -651,8 +683,9 @@ namespace MainSystem
                             query = "update categories_money set a200=" + arrOFPhaat[0] + ",a100=" + arrOFPhaat[1] + ",a50=" + arrOFPhaat[2] + ",a20=" + arrOFPhaat[3] + ",a10=" + arrOFPhaat[4] + ",a5=" + arrOFPhaat[5] + ",a1=" + arrOFPhaat[6] + ",aH=" + arrOFPhaat[7] + ",aQ=" + arrOFPhaat[8] + " where Bank_ID=" + cmbBank.SelectedValue;
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
+                            flagCategoriesSuccess = true;
                             MessageBox.Show("تم");
-                            t200.Text = "";
+                            /*t200.Text = "";
                             t100.Text = "";
                             t50.Text = "";
                             t20.Text = "";
@@ -669,15 +702,15 @@ namespace MainSystem
                             r5.Text = "";
                             r1.Text = "";
                             rH.Text = "";
-                            rQ.Text = "";
+                            rQ.Text = "";*/
                             RestMoney.Text = "0";
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
                             layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            for (int i = 0; i < arrPaidMoney.Length; i++)
-                                arrPaidMoney[i] = arrRestMoney[i] = 0;
+                            //for (int i = 0; i < arrPaidMoney.Length; i++)
+                            //    arrPaidMoney[i] = arrRestMoney[i] = 0;
                             flag = false;
                         }
                         else
@@ -963,8 +996,9 @@ namespace MainSystem
                             string query = "update categories_money set a200=" + arrOFPhaat[0] + ",a100=" + arrOFPhaat[1] + ",a50=" + arrOFPhaat[2] + ",a20=" + arrOFPhaat[3] + ",a10=" + arrOFPhaat[4] + ",a5=" + arrOFPhaat[5] + ",a1=" + arrOFPhaat[6] + ",aH=" + arrOFPhaat[7] + ",aQ=" + arrOFPhaat[8] + " where Bank_ID=" + cmbBank.SelectedValue;
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
+                            flagCategoriesSuccess = true;
                             MessageBox.Show("تم");
-                            t200.Text = "";
+                            /*t200.Text = "";
                             t100.Text = "";
                             t50.Text = "";
                             t20.Text = "";
@@ -981,15 +1015,15 @@ namespace MainSystem
                             r5.Text = "";
                             r1.Text = "";
                             rH.Text = "";
-                            rQ.Text = "";
+                            rQ.Text = "";*/
                             RestMoney.Text = "0";
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
                             layoutControlItemPaid.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            for (int i = 0; i < arrRestMoney.Length; i++)
-                                arrRestMoney[i] = arrPaidMoney[i] = 0;
+                            //for (int i = 0; i < arrRestMoney.Length; i++)
+                            //    arrRestMoney[i] = arrPaidMoney[i] = 0;
                             flag = false;
                         }
                         else
@@ -1017,16 +1051,14 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    xtraTabPage = getTabPage("tabPageUpdateDepositIncome");
+                    xtraTabPage = getTabPage("تعديل ايداع-ايراد");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        updateBankDepositIncomeTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        updateBankDepositIncomeTextChangedFlag = false;
                     }
                 }
             }
@@ -1057,10 +1089,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlBank.TabPages.Count; i++)
-                if (MainForm.tabControlBank.TabPages[i].Name == text)
+            for (int i = 0; i < tabControlBank.TabPages.Count; i++)
+                if (tabControlBank.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlBank.TabPages[i];
+                    return tabControlBank.TabPages[i];
                 }
             return null;
         }
