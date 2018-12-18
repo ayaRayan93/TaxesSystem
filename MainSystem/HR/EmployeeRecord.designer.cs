@@ -56,7 +56,6 @@
             this.dateTimePickerBirthDate = new System.Windows.Forms.DateTimePicker();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtDepartment = new System.Windows.Forms.TextBox();
             this.txtWorkType = new System.Windows.Forms.TextBox();
             this.dateTimePickerStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtJob = new System.Windows.Forms.TextBox();
@@ -75,6 +74,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.comDepartment = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
@@ -100,6 +100,7 @@
             this.panel2.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.panel2.AutoScrollMinSize = new System.Drawing.Size(2, 2);
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.comDepartment);
             this.panel2.Controls.Add(this.txtTaraget);
             this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.rDelegate);
@@ -126,7 +127,6 @@
             this.panel2.Controls.Add(this.dateTimePickerBirthDate);
             this.panel2.Controls.Add(this.txtNotes);
             this.panel2.Controls.Add(this.txtPhone);
-            this.panel2.Controls.Add(this.txtDepartment);
             this.panel2.Controls.Add(this.txtWorkType);
             this.panel2.Controls.Add(this.dateTimePickerStartDate);
             this.panel2.Controls.Add(this.txtJob);
@@ -447,16 +447,6 @@
             this.txtPhone.TabIndex = 94;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
-            // txtDepartment
-            // 
-            this.txtDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDepartment.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDepartment.Location = new System.Drawing.Point(596, 575);
-            this.txtDepartment.Name = "txtDepartment";
-            this.txtDepartment.Size = new System.Drawing.Size(326, 24);
-            this.txtDepartment.TabIndex = 92;
-            this.txtDepartment.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
             // txtWorkType
             // 
             this.txtWorkType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -676,6 +666,16 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAddEmployee_Click);
             // 
+            // comDepartment
+            // 
+            this.comDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comDepartment.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comDepartment.FormattingEnabled = true;
+            this.comDepartment.Location = new System.Drawing.Point(722, 573);
+            this.comDepartment.Name = "comDepartment";
+            this.comDepartment.Size = new System.Drawing.Size(200, 24);
+            this.comDepartment.TabIndex = 124;
+            // 
             // EmployeeRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,7 +722,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerBirthDate;
         private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtDepartment;
         private System.Windows.Forms.TextBox txtWorkType;
         private System.Windows.Forms.DateTimePicker dateTimePickerStartDate;
         private System.Windows.Forms.TextBox txtJob;
@@ -745,5 +744,6 @@
         private System.Windows.Forms.RadioButton rEmployee;
         private System.Windows.Forms.TextBox txtTaraget;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox comDepartment;
     }
 }

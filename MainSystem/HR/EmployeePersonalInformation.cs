@@ -59,12 +59,12 @@ namespace MainSystem
         //display all employee
         public void displayEmployee()
         {
-            string query = "select Employee_ID as 'id', Employee_Number as 'الرقم الوظيفي',Employee_Name as 'اسم الموظف',Employee_Qualification as 'المؤهل العلمي',SocialInsuranceNumber as 'رقم التامين الاجتماعي',National_ID as 'الرقم القومي',Employee_Start_Date as 'تاريخ بدءالعمل',Branch_Name as 'الفرع',Employee_Job as 'الوظيفة',Employee_Department as 'مكان العمل',EmploymentType as 'نوع التوظيف',ExperienceYears as 'عدد سنوات الخبرة' from employee inner join branch on employee.Employee_Branch_ID=branch.Branch_ID";
+            string query = "select Employee_ID as 'id', Employee_Number as 'الرقم الوظيفي',Employee_Name as 'اسم الموظف',Employee_Qualification as 'المؤهل العلمي',SocialInsuranceNumber as 'رقم التامين الاجتماعي',National_ID as 'الرقم القومي',Employee_Start_Date as 'تاريخ بدءالعمل',Branch_Name as 'الفرع',Employee_Job as 'الوظيفة',Department_Name as 'مكان العمل',EmploymentType as 'نوع التوظيف',ExperienceYears as 'عدد سنوات الخبرة' from employee inner join branch on employee.Branch_ID=branch.Branch_ID inner join departments on departments.Department_ID=employee.Department_ID";
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
             DataSet dataSet1 = new DataSet();
             adapter.Fill(dataSet1);
 
-            query = "select  Delegate_ID as 'id', Delegate_Number as 'الرقم الوظيفي',Delegate_Name as 'اسم الموظف',Delegate_Qualification as 'المؤهل العلمي',SocialInsuranceNumber as 'رقم التامين الاجتماعي',National_ID as 'الرقم القومي',Delegate_Start_Date as 'تاريخ التعيين',Branch_Name as 'الفرع',Delegate_Job as 'الوظيفة',Delegate_Department as 'مكان العمل',EmploymentType as 'نوع التوظيف',ExperienceYears as 'عدد سنوات الخبرة' from Delegate inner join branch on Delegate.Branch_ID=branch.Branch_ID";
+            query = "select  Delegate_ID as 'id', Delegate_Number as 'الرقم الوظيفي',Delegate_Name as 'اسم الموظف',Delegate_Qualification as 'المؤهل العلمي',SocialInsuranceNumber as 'رقم التامين الاجتماعي',National_ID as 'الرقم القومي',Delegate_Start_Date as 'تاريخ التعيين',Branch_Name as 'الفرع',Delegate_Job as 'الوظيفة',Department_Name as 'مكان العمل',EmploymentType as 'نوع التوظيف',ExperienceYears as 'عدد سنوات الخبرة' from Delegate inner join branch on Delegate.Branch_ID=branch.Branch_ID inner join departments on departments.Department_ID=Delegate.Department_ID";
             adapter = new MySqlDataAdapter(query, dbconnection);
             DataSet dataSet2 = new DataSet();
             adapter.Fill(dataSet2);
