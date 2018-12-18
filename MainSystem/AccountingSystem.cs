@@ -89,7 +89,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemDelegateSalesForProduct_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -116,6 +115,45 @@ namespace MainSystem
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
                 DelegateSalesForProduct objForm = new DelegateSalesForProduct();
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void DelegateProfit_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "حساب نسبة المندوب");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("حساب نسبة المندوب");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "حساب نسبة المندوب");
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+                else
+                {
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                GetDelegateProfit objForm = new GetDelegateProfit();
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);

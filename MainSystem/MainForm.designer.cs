@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             DevExpress.XtraEditors.TileItemElement tileItemElement16 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement17 = new DevExpress.XtraEditors.TileItemElement();
@@ -385,6 +387,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DelegateProfit = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3268,7 +3271,8 @@
             this.navBarItem161,
             this.navBarItem154,
             this.navBarItemDelegateSalesForCompany,
-            this.navBarItemDelegateSalesForProduct});
+            this.navBarItemDelegateSalesForProduct,
+            this.DelegateProfit});
             this.navBarAccounting.Location = new System.Drawing.Point(892, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 253;
@@ -3284,7 +3288,8 @@
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.DelegateProfit)});
             this.navBarGroup40.Name = "navBarGroup40";
             // 
             // navBarItem154
@@ -3550,6 +3555,12 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel1.Size = new System.Drawing.Size(947, 515);
             this.panel1.TabIndex = 1;
+            // 
+            // DelegateProfit
+            // 
+            this.DelegateProfit.Caption = "حساب نسبة المندوب";
+            this.DelegateProfit.Name = "DelegateProfit";
+            this.DelegateProfit.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.DelegateProfit_LinkClicked);
             // 
             // MainForm
             // 
@@ -3948,5 +3959,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemBillCopy;
         private DevExpress.XtraNavBar.NavBarItem navBarItemReturnedBillCopy;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTransitionCopy;
+        private DevExpress.XtraNavBar.NavBarItem DelegateProfit;
     }
 }
