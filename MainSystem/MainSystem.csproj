@@ -336,28 +336,28 @@
     <Compile Include="Bank\ايداع كاش\BankDepositCash_Update.designer.cs">
       <DependentUpon>BankDepositCash_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Print.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Print.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Print.designer.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Print.designer.cs">
       <DependentUpon>BankDepositIncome_Print.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Record.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Record.designer.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Record.designer.cs">
       <DependentUpon>BankDepositIncome_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Report.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Report.designer.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Report.designer.cs">
       <DependentUpon>BankDepositIncome_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Update.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Update.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankDepositIncome_Update.designer.cs">
+    <Compile Include="Bank\ايداع ايراد\BankDepositIncome_Update.designer.cs">
       <DependentUpon>BankDepositIncome_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Bank\BankDepositPayAccount_Print.cs">
@@ -432,28 +432,28 @@
     <Compile Include="Bank\سحب كاش\BankPullCash_Update.designer.cs">
       <DependentUpon>BankPullCash_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Print.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Print.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Print.designer.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Print.designer.cs">
       <DependentUpon>BankPullExpense_Print.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Record.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Record.designer.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Record.designer.cs">
       <DependentUpon>BankPullExpense_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Report.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Report.designer.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Report.designer.cs">
       <DependentUpon>BankPullExpense_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Update.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Update.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\BankPullExpense_Update.designer.cs">
+    <Compile Include="Bank\سحب مصروف\BankPullExpense_Update.designer.cs">
       <DependentUpon>BankPullExpense_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Bank\BankPullPayAccount_Print.cs">
@@ -1536,16 +1536,16 @@
     <EmbeddedResource Include="Bank\ايداع كاش\BankDepositCash_Update.resx">
       <DependentUpon>BankDepositCash_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankDepositIncome_Print.resx">
+    <EmbeddedResource Include="Bank\ايداع ايراد\BankDepositIncome_Print.resx">
       <DependentUpon>BankDepositIncome_Print.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankDepositIncome_Record.resx">
+    <EmbeddedResource Include="Bank\ايداع ايراد\BankDepositIncome_Record.resx">
       <DependentUpon>BankDepositIncome_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankDepositIncome_Report.resx">
+    <EmbeddedResource Include="Bank\ايداع ايراد\BankDepositIncome_Report.resx">
       <DependentUpon>BankDepositIncome_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankDepositIncome_Update.resx">
+    <EmbeddedResource Include="Bank\ايداع ايراد\BankDepositIncome_Update.resx">
       <DependentUpon>BankDepositIncome_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\BankDepositPayAccount_Print.resx">
@@ -1584,16 +1584,16 @@
     <EmbeddedResource Include="Bank\سحب كاش\BankPullCash_Update.resx">
       <DependentUpon>BankPullCash_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankPullExpense_Print.resx">
+    <EmbeddedResource Include="Bank\سحب مصروف\BankPullExpense_Print.resx">
       <DependentUpon>BankPullExpense_Print.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankPullExpense_Record.resx">
+    <EmbeddedResource Include="Bank\سحب مصروف\BankPullExpense_Record.resx">
       <DependentUpon>BankPullExpense_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankPullExpense_Report.resx">
+    <EmbeddedResource Include="Bank\سحب مصروف\BankPullExpense_Report.resx">
       <DependentUpon>BankPullExpense_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\BankPullExpense_Update.resx">
+    <EmbeddedResource Include="Bank\سحب مصروف\BankPullExpense_Update.resx">
       <DependentUpon>BankPullExpense_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\BankPullPayAccount_Print.resx">
