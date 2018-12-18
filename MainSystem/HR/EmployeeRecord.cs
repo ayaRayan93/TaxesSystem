@@ -48,6 +48,15 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = "";
 
+                query = "select * from departments";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comDepartment.DataSource = dt;
+                comDepartment.DisplayMember = dt.Columns["Department_Name"].ToString();
+                comDepartment.ValueMember = dt.Columns["Department_ID"].ToString();
+                comDepartment.Text = "";
+
                 VScrollBar myScrollBar = new VScrollBar();
 
                 myScrollBar.Height = panel1.Height;
@@ -94,7 +103,7 @@ namespace MainSystem
                 if (rEmployee.Checked)
                 {
                     #region Add New Employee
-                    string insert = "INSERT INTO Employee (Employee_Number,Employee_Name,Employee_Phone,Employee_Address,Employee_Info,Employee_Qualification,Employee_Start_Date,Employee_Job,Employee_Department,Employee_Birth_Date,Employee_Salary,Employee_Mail,Employee_Branch_ID,Employee_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears) VALUES (@Employee_Number,@Employee_Name,@Employee_Phone,@Employee_Address,@Employee_Info,@Employee_Qualification,@Employee_Start,@Employee_Job,@Employee_Department,@Employee_Birth,@Employee_Salary,@Employee_Mail,@Employee_Branch_ID,@Employee_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears)";
+                    string insert = "INSERT INTO Employee (Employee_Number,Employee_Name,Employee_Phone,Employee_Address,Employee_Info,Employee_Qualification,Employee_Start_Date,Employee_Job,Department_ID,Employee_Birth_Date,Employee_Salary,Employee_Mail,Branch_ID,Employee_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears) VALUES (@Employee_Number,@Employee_Name,@Employee_Phone,@Employee_Address,@Employee_Info,@Employee_Qualification,@Employee_Start,@Employee_Job,@Department_ID,@Employee_Birth,@Employee_Salary,@Employee_Mail,@Branch_ID,@Employee_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears)";
                     MySqlCommand cmd = new MySqlCommand(insert, dbconnection);
                     cmd.Parameters.Add("@Employee_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -141,10 +150,10 @@ namespace MainSystem
                     cmd.Parameters["@Employee_Birth"].Value = dateTimePickerBirthDate.Value;
                     cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
-                    cmd.Parameters.Add("@Employee_Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Employee_Branch_ID"].Value = comBranch.SelectedValue;
-                    cmd.Parameters.Add("@Employee_Department", MySqlDbType.VarChar, 255);
-                    cmd.Parameters["@Employee_Department"].Value = txtDepartment.Text;
+                    cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                    cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
                     cmd.Parameters.Add("@Employee_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Employee_Photo", MySqlDbType.Blob);
@@ -184,7 +193,7 @@ namespace MainSystem
                 else if (rDelegate.Checked)
                 {
                     #region Add New Delegate
-                    string insert = "INSERT INTO Delegate (Delegate_Number,Delegate_Name,Delegate_Phone,Delegate_Address,Delegate_Info,Delegate_Qualification,Delegate_Start_Date,Delegate_Job,Delegate_Department,Delegate_Birth_Date,Delegate_Salary,Delegate_Mail,Branch_ID,Delegate_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears,Delegate_Taraget) VALUES (@Delegate_Number,@Delegate_Name,@Delegate_Phone,@Delegate_Address,@Delegate_Info,@Delegate_Qualification,@Delegate_Start,@Delegate_Job,@Delegate_Department,@Delegate_Birth,@Delegate_Salary,@Delegate_Mail,@Branch_ID,@Delegate_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears,@Delegate_Taraget)";
+                    string insert = "INSERT INTO Delegate (Delegate_Number,Delegate_Name,Delegate_Phone,Delegate_Address,Delegate_Info,Delegate_Qualification,Delegate_Start_Date,Delegate_Job,Department_ID,Delegate_Birth_Date,Delegate_Salary,Delegate_Mail,Branch_ID,Delegate_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears,Delegate_Taraget) VALUES (@Delegate_Number,@Delegate_Name,@Delegate_Phone,@Delegate_Address,@Delegate_Info,@Delegate_Qualification,@Delegate_Start,@Delegate_Job,@Department_ID,@Delegate_Birth,@Delegate_Salary,@Delegate_Mail,@Branch_ID,@Delegate_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears,@Delegate_Taraget)";
                     MySqlCommand cmd = new MySqlCommand(insert, dbconnection);
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -233,8 +242,8 @@ namespace MainSystem
                     cmd.Parameters["@Delegate_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
-                    cmd.Parameters.Add("@Delegate_Department", MySqlDbType.VarChar, 255);
-                    cmd.Parameters["@Delegate_Department"].Value = txtDepartment.Text;
+                    cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Department_ID"].Value =comDepartment.SelectedValue;
                     cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Delegate_Photo", MySqlDbType.Blob);
@@ -286,7 +295,7 @@ namespace MainSystem
             }
             catch (Exception ee)
             {
-                MessageBox.Show("" + ee);
+                MessageBox.Show("يوجد خطأ في البيانات");
             }
             dbconnection.Close();
         }

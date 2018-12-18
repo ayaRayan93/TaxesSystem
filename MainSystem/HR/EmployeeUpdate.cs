@@ -51,6 +51,14 @@ namespace MainSystem
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = row[12].ToString();
+                query = "select * from departments";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comDepartment.DataSource = dt;
+                comDepartment.DisplayMember = dt.Columns["Department_Name"].ToString();
+                comDepartment.ValueMember = dt.Columns["Department_ID"].ToString();
+                comDepartment.Text = row["Department_Name"].ToString();
                 setData();
                 load = true;
             }
@@ -110,7 +118,7 @@ namespace MainSystem
                 if (row[0].ToString() == "موظف")
                 {
                     #region Add New Employee
-                    string query = "update employee set Employee_Number=@Employee_Number ,Employee_Name=@Employee_Name ,Employee_Phone=@Employee_Phone,Employee_Address=@Employee_Address,Employee_Mail=@Employee_Mail,Employee_Birth_Date=@Employee_Birth_Date,Employee_Qualification=@Employee_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Employee_Start_Date=@Employee_Start_Date,Employee_Branch_ID=@Employee_Branch_ID,Employee_Job=@Employee_Job,Employee_Department=@Employee_Department,Employee_Salary=@Employee_Salary,Employee_Photo=@Employee_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Employee_Info=@Employee_Info where Employee_ID=" + row[1].ToString();
+                    string query = "update employee set Employee_Number=@Employee_Number ,Employee_Name=@Employee_Name ,Employee_Phone=@Employee_Phone,Employee_Address=@Employee_Address,Employee_Mail=@Employee_Mail,Employee_Birth_Date=@Employee_Birth_Date,Employee_Qualification=@Employee_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Employee_Start_Date=@Employee_Start_Date,Branch_ID=@Branch_ID,Employee_Job=@Employee_Job,Department_ID=@Department_ID,Employee_Salary=@Employee_Salary,Employee_Photo=@Employee_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Employee_Info=@Employee_Info where Employee_ID=" + row[1].ToString();
                     MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                     cmd.Parameters.Add("@Employee_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -157,10 +165,10 @@ namespace MainSystem
                     cmd.Parameters["@Employee_Birth_Date"].Value = dateTimePickerBirthDate.Value;
                     cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
-                    cmd.Parameters.Add("@Employee_Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Employee_Branch_ID"].Value = comBranch.SelectedValue;
-                    cmd.Parameters.Add("@Employee_Department", MySqlDbType.VarChar, 255);
-                    cmd.Parameters["@Employee_Department"].Value = txtDepartment.Text;
+                    cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                    cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
                     cmd.Parameters.Add("@Employee_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Employee_Photo", MySqlDbType.Blob);
@@ -193,7 +201,7 @@ namespace MainSystem
                 else 
                 {
                     #region Add New Delegate
-                    string query = "update Delegate set Delegate_Number=@Delegate_Number ,Delegate_Name=@Delegate_Name ,Delegate_Phone=@Delegate_Phone,Delegate_Address=@Delegate_Address,Delegate_Mail=@Delegate_Mail,Delegate_Birth_Date=@Delegate_Birth_Date,Delegate_Qualification=@Delegate_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Delegate_Start_Date=@Delegate_Start_Date,Branch_ID=@Branch_ID,Delegate_Job=@Delegate_Job,Delegate_Department=@Delegate_Department,Delegate_Salary=@Delegate_Salary,Delegate_Photo=@Delegate_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Delegate_Taraget=@Delegate_Taraget,Delegate_Info=@Delegate_Info where Delegate_ID=" + row[1].ToString();
+                    string query = "update Delegate set Delegate_Number=@Delegate_Number ,Delegate_Name=@Delegate_Name ,Delegate_Phone=@Delegate_Phone,Delegate_Address=@Delegate_Address,Delegate_Mail=@Delegate_Mail,Delegate_Birth_Date=@Delegate_Birth_Date,Delegate_Qualification=@Delegate_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Delegate_Start_Date=@Delegate_Start_Date,Branch_ID=@Branch_ID,Delegate_Job=@Delegate_Job,Department_ID=@Department_ID,Delegate_Salary=@Delegate_Salary,Delegate_Photo=@Delegate_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Delegate_Taraget=@Delegate_Taraget,Delegate_Info=@Delegate_Info where Delegate_ID=" + row[1].ToString();
                     MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -242,8 +250,8 @@ namespace MainSystem
                     cmd.Parameters["@Delegate_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
-                    cmd.Parameters.Add("@Delegate_Department", MySqlDbType.VarChar, 255);
-                    cmd.Parameters["@Delegate_Department"].Value = txtDepartment.Text;
+                    cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
+                    cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
                     cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Delegate_Photo", MySqlDbType.Blob);
@@ -321,7 +329,7 @@ namespace MainSystem
             txtJob.Text = row["الوظيفة"].ToString();
             dateTimePickerStartDate.Text = row["تاريخ التعيين"].ToString();
             txtWorkType.Text = row["نوع التوظيف"].ToString();
-            txtDepartment.Text = row["مكان العمل"].ToString();
+            comDepartment.Text = row["مكان العمل"].ToString();
             txtQualification.Text = row["المؤهل العلمي"].ToString();
             txtExperienceYears.Text = row["عدد سنوات الخبرة"].ToString();
             txtSalary.Text = row["الراتب الاساسي"].ToString();
@@ -373,7 +381,7 @@ namespace MainSystem
             txtJob.Text == row["الوظيفة"].ToString()&&
             d== row["تاريخ التعيين"].ToString().Split(' ')[0] &&
             txtWorkType.Text == row["نوع التوظيف"].ToString()&&
-            txtDepartment.Text == row["مكان العمل"].ToString()&&
+            comDepartment.Text == row["مكان العمل"].ToString()&&
             txtQualification.Text == row["المؤهل العلمي"].ToString()&&
             txtExperienceYears.Text == row["عدد سنوات الخبرة"].ToString()&&
             txtSalary.Text == row["الراتب الاساسي"].ToString()&&

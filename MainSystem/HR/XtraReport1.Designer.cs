@@ -171,7 +171,7 @@
             columnExpression12.ColumnName = "Employee_Start_Date";
             columnExpression12.Table = table1;
             column12.Expression = columnExpression12;
-            columnExpression13.ColumnName = "Employee_Branch_ID";
+            columnExpression13.ColumnName = "Branch_ID";
             columnExpression13.Table = table1;
             column13.Expression = columnExpression13;
             columnExpression14.ColumnName = "Employee_Job";
