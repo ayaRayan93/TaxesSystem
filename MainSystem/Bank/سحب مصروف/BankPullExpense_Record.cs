@@ -1176,14 +1176,25 @@ namespace MainSystem
             }
             else
             {
-                string q = "insert into expenses_type (Type) values (@Type)";
+                int ExpenseType_ID = 0;
+                string q = "select ID from expenses_type where Type='" + cmbExpenseType.Text + "'";
                 MySqlCommand comand = new MySqlCommand(q, dbconnection);
-                comand.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = cmbExpenseType.Text;
-                comand.ExecuteNonQuery();
+                if (comand.ExecuteScalar() == null)
+                {
+                    q = "insert into expenses_type (Type) values (@Type)";
+                    comand = new MySqlCommand(q, dbconnection);
+                    comand.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = cmbExpenseType.Text;
+                    comand.ExecuteNonQuery();
 
-                q = "select ID from expenses_type order by ID desc limit 1";
-                comand = new MySqlCommand(q, dbconnection);
-                int ExpenseType_ID = Convert.ToInt16(comand.ExecuteScalar().ToString());
+                    q = "select ID from expenses_type order by ID desc limit 1";
+                    comand = new MySqlCommand(q, dbconnection);
+                    ExpenseType_ID = Convert.ToInt16(comand.ExecuteScalar().ToString());
+                }
+                else
+                {
+                    cmbExpenseType.SelectedValue = comand.ExecuteScalar();
+                    ExpenseType_ID = Convert.ToInt16(cmbExpenseType.SelectedValue.ToString());
+                }
 
                 com.Parameters.Add("@ExpenseType_ID", MySqlDbType.Int16, 11).Value = ExpenseType_ID;
             }
