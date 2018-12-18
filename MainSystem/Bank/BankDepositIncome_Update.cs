@@ -1198,6 +1198,107 @@ namespace MainSystem
             txtOperationNumber.Text = selRow[12].ToString();
             txtDescrip.Text = selRow[13].ToString();
 
+            dbconnection.Open();
+            query = "select * from transition_categories_money where Transition_ID=" + selRow[0].ToString();
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                t200.Text = dr["a200"].ToString();
+                if (dr["a200"].ToString() != "")
+                {
+                    arrPaidMoney[0] = Convert.ToInt16(dr["a200"].ToString());
+                }
+                t100.Text = dr["a100"].ToString();
+                if (dr["a100"].ToString() != "")
+                {
+                    arrPaidMoney[1] = Convert.ToInt16(dr["a100"].ToString());
+                }
+                t50.Text = dr["a50"].ToString();
+                if (dr["a50"].ToString() != "")
+                {
+                    arrPaidMoney[2] = Convert.ToInt16(dr["a50"].ToString());
+                }
+                t20.Text = dr["a20"].ToString();
+                if (dr["a20"].ToString() != "")
+                {
+                    arrPaidMoney[3] = Convert.ToInt16(dr["a20"].ToString());
+                }
+                t10.Text = dr["a10"].ToString();
+                if (dr["a10"].ToString() != "")
+                {
+                    arrPaidMoney[4] = Convert.ToInt16(dr["a10"].ToString());
+                }
+                t5.Text = dr["a5"].ToString();
+                if (dr["a5"].ToString() != "")
+                {
+                    arrPaidMoney[5] = Convert.ToInt16(dr["a5"].ToString());
+                }
+                t1.Text = dr["a1"].ToString();
+                if (dr["a1"].ToString() != "")
+                {
+                    arrPaidMoney[6] = Convert.ToInt16(dr["a1"].ToString());
+                }
+                tH.Text = dr["aH"].ToString();
+                if (dr["aH"].ToString() != "")
+                {
+                    arrPaidMoney[7] = Convert.ToInt16(dr["aH"].ToString());
+                }
+                tQ.Text = dr["aQ"].ToString();
+                if (dr["aQ"].ToString() != "")
+                {
+                    arrPaidMoney[8] = Convert.ToInt16(dr["aQ"].ToString());
+                }
+                ////****************************************////
+                r200.Text = dr["r200"].ToString();
+                if (dr["r200"].ToString() != "")
+                {
+                    arrRestMoney[0] = Convert.ToInt16(dr["r200"].ToString());
+                }
+                r100.Text = dr["r100"].ToString();
+                if (dr["r100"].ToString() != "")
+                {
+                    arrRestMoney[1] = Convert.ToInt16(dr["r100"].ToString());
+                }
+                r50.Text = dr["r50"].ToString();
+                if (dr["r50"].ToString() != "")
+                {
+                    arrRestMoney[2] = Convert.ToInt16(dr["r50"].ToString());
+                }
+                r20.Text = dr["r20"].ToString();
+                if (dr["r20"].ToString() != "")
+                {
+                    arrRestMoney[3] = Convert.ToInt16(dr["r20"].ToString());
+                }
+                r10.Text = dr["r10"].ToString();
+                if (dr["r10"].ToString() != "")
+                {
+                    arrRestMoney[4] = Convert.ToInt16(dr["r10"].ToString());
+                }
+                r5.Text = dr["r5"].ToString();
+                if (dr["r5"].ToString() != "")
+                {
+                    arrRestMoney[5] = Convert.ToInt16(dr["r5"].ToString());
+                }
+                r1.Text = dr["r1"].ToString();
+                if (dr["r1"].ToString() != "")
+                {
+                    arrRestMoney[6] = Convert.ToInt16(dr["r1"].ToString());
+                }
+                rH.Text = dr["rH"].ToString();
+                if (dr["rH"].ToString() != "")
+                {
+                    arrRestMoney[7] = Convert.ToInt16(dr["rH"].ToString());
+                }
+                rQ.Text = dr["rQ"].ToString();
+                if (dr["rQ"].ToString() != "")
+                {
+                    arrRestMoney[8] = Convert.ToInt16(dr["rQ"].ToString());
+                }
+            }
+            dr.Close();
+            dbconnection.Close();
+
             loaded = true;
         }
 
