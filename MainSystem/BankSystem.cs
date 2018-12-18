@@ -248,7 +248,7 @@ namespace MainSystem
                     panelDepositIncomeReport.Name = "panelDepositIncome";
                     panelDepositIncomeReport.Dock = DockStyle.Fill;
 
-                    DepositIncomeShow = new BankDepositIncome_Report();
+                    DepositIncomeShow = new BankDepositIncome_Report(this);
                     DepositIncomeShow.Size = new Size(1109, 660);
                     DepositIncomeShow.TopLevel = false;
                     DepositIncomeShow.FormBorderStyle = FormBorderStyle.None;
@@ -579,6 +579,42 @@ namespace MainSystem
             {
                 MainTabControlBank.TabPages.Add("تعديل مرتد-كاش");
                 xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-كاش");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindRecordDepositIncomeForm(BankDepositIncome_Report form)
+        {
+            BankDepositIncome_Record objForm = new BankDepositIncome_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة ايداع-ايراد");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة ايداع-ايراد");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة ايداع-ايراد");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdateDepositIncomeForm(DataRowView sellRow, BankDepositIncome_Report form)
+        {
+            BankDepositIncome_Update objForm = new BankDepositIncome_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-ايراد");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل ايداع-ايراد");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-ايراد");
             }
             xtraTabPage.Controls.Clear();
             xtraTabPage.Controls.Add(objForm);

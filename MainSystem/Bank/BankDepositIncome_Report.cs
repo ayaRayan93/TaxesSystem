@@ -34,12 +34,14 @@ namespace MainSystem
         public static BankDepositIncome_Print bankPrint;
 
         public static GridControl gridcontrol;
+        MainForm bankMainForm = null;
 
-        public BankDepositIncome_Report()
+        public BankDepositIncome_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             MainTabControlBank = MainForm.tabControlBank;
+            bankMainForm = BankMainForm;
 
             MainTabPageRecordDepositIncome = new XtraTabPage();
             panelRecordDepositIncome = new Panel();
@@ -71,47 +73,7 @@ namespace MainSystem
         {
             try
             {
-                if (BankDepositIncome_Record.addBankDepositIncomeTextChangedFlag == false)
-                {
-                    MainTabPageRecordDepositIncome.Name = "tabPageRecordDepositIncome";
-                    MainTabPageRecordDepositIncome.Text = "اضافة ايراد";
-                    MainTabPageRecordDepositIncome.ImageOptions.Image = null;
-                    panelRecordDepositIncome.Name = "panelRecordDepositIncome";
-                    panelRecordDepositIncome.Dock = DockStyle.Fill;
-                    
-                    panelRecordDepositIncome.Controls.Clear();
-                    BankDepositIncome_Record form = new BankDepositIncome_Record();
-                    form.Size = new Size(1059, 638);
-                    form.TopLevel = false;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.Dock = DockStyle.Fill;
-                    panelRecordDepositIncome.Controls.Add(form);
-                    MainTabPageRecordDepositIncome.Controls.Add(panelRecordDepositIncome);
-                    MainTabControlBank.TabPages.Add(MainTabPageRecordDepositIncome);
-                    form.Show();
-                    MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositIncome;
-                }
-                else
-                {
-                    if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                    {
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositIncome;
-                        return;
-                    }
-                    else
-                    {
-                        panelRecordDepositIncome.Controls.Clear();
-                        MainTabPageRecordDepositIncome.ImageOptions.Image = null;
-                        BankDepositIncome_Record form = new BankDepositIncome_Record();
-                        form.Size = new Size(1059, 638);
-                        form.TopLevel = false;
-                        form.FormBorderStyle = FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        panelRecordDepositIncome.Controls.Add(form);
-                        form.Show();
-                        MainTabControlBank.SelectedTabPage = MainTabPageRecordDepositIncome;
-                    }
-                }
+                bankMainForm.bindRecordDepositIncomeForm(this);
             }
             catch (Exception ex)
             {
@@ -123,69 +85,21 @@ namespace MainSystem
         {
             try
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-
-                if (selRow["Error"].ToString() == "0")
+                if (((GridView)gridView1).GetSelectedRows().Count() > 0)
                 {
-                    if (BankDepositIncome_Update.updateBankDepositIncomeTextChangedFlag == false)
+                    DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
+                    if (sellRow["Error"].ToString() == "0")
                     {
-                        if (selRow[0].ToString() != "")
-                        {
-                            MainTabPageUpdateDepositIncome.Name = "tabPageUpdateDepositIncome";
-                            MainTabPageUpdateDepositIncome.Text = "تعديل ايراد";
-                            MainTabPageUpdateDepositIncome.ImageOptions.Image = null;
-                            panelUpdateDepositIncome.Name = "panelUpdateDepositIncome";
-                            panelUpdateDepositIncome.Dock = DockStyle.Fill;
-
-                            panelUpdateDepositIncome.Controls.Clear();
-                            BankDepositIncome_Update form = new BankDepositIncome_Update(selRow);
-                            form.Size = new Size(1059, 638);
-                            form.TopLevel = false;
-                            form.FormBorderStyle = FormBorderStyle.None;
-                            form.Dock = DockStyle.Fill;
-                            panelUpdateDepositIncome.Controls.Add(form);
-                            MainTabPageUpdateDepositIncome.Controls.Add(panelUpdateDepositIncome);
-                            MainTabControlBank.TabPages.Add(MainTabPageUpdateDepositIncome);
-                            form.Show();
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositIncome;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
+                        bankMainForm.bindUpdateDepositIncomeForm(sellRow, this);
                     }
                     else
                     {
-                        if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        {
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositIncome;
-                            return;
-                        }
-                        else
-                        {
-                            if (selRow[0].ToString() != "")
-                            {
-                                panelUpdateDepositIncome.Controls.Clear();
-                                MainTabPageUpdateDepositIncome.ImageOptions.Image = null;
-                                BankDepositIncome_Update form = new BankDepositIncome_Update(selRow);
-                                form.Size = new Size(1059, 638);
-                                form.TopLevel = false;
-                                form.FormBorderStyle = FormBorderStyle.None;
-                                form.Dock = DockStyle.Fill;
-                                panelUpdateDepositIncome.Controls.Add(form);
-                                form.Show();
-                                MainTabControlBank.SelectedTabPage = MainTabPageUpdateDepositIncome;
-                            }
-                            else
-                            {
-                                MessageBox.Show("يجب ان تختار عنصر");
-                            }
-                        }
+                        MessageBox.Show("هذا العنصر تم حذفة من قبل");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("هذا العنصر تم حذفة من قبل");
+                    MessageBox.Show("يجب تحديد العنصر المراد تعديله");
                 }
             }
             catch (Exception ex)
