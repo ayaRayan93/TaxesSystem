@@ -64,7 +64,14 @@ namespace MainSystem
                 {
                     try
                     {
+                        dbconnection.Open();
                         txtDelegateID.Text = comDelegate.SelectedValue.ToString();
+                        string query = "select Date_To from Delegates_Profit where Delegate_ID=" + txtDelegateID.Text + " order by Delegate_Profit_ID limit 1";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                            dateTimeFrom.Text = com.ExecuteScalar().ToString();
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -76,6 +83,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
  
         private void txtDelegateID_KeyDown(object sender, KeyEventArgs e)
@@ -91,11 +99,11 @@ namespace MainSystem
                     {
                         Name = (string)com.ExecuteScalar();
                         comDelegate.Text = Name;
-                        query = "select Date_To from Delegates_Profit where Delegate_ID=" + txtDelegateID.Text ;
+                        query = "select Date_To from Delegates_Profit where Delegate_ID=" + txtDelegateID.Text+ " order by Delegate_Profit_ID limit 1";
                         com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
-                           // dateTimeFrom.Value.Date = (com.ExecuteScalar().ToString();
+                            dateTimeFrom.Text = com.ExecuteScalar().ToString();
                         }
                     }
                     else
@@ -438,6 +446,7 @@ namespace MainSystem
             comDelegate.Text = "";
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
+            labTotalDelegateProfit.Text = "";
         }
     }
 }
