@@ -447,7 +447,31 @@ namespace MainSystem
             }
         }
 
-      
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Application.Exit();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void pictureBoxLogout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Login loginForm = new Login();
+                loginForm.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 
     public static class connection

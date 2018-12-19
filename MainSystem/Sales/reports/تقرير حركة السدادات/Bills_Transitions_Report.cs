@@ -287,6 +287,9 @@ namespace MainSystem
                 clearCom();
                 gridControl1.DataSource = null;
                 gridControl2.DataSource = null;
+                txtSale.Text = "0";
+                txtReturn.Text = "0";
+                txtFinal.Text = "0";
             }
             catch (Exception ex)
             {

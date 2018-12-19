@@ -2358,6 +2358,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Shutdown_48px.png" />
     <None Include="Resources\icons8_Workspace_48.png" />
     <None Include="Resources\icons8_Workspace_64.png" />
     <None Include="Resources\Workspace_104px.png" />

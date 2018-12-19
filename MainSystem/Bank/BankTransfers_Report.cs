@@ -70,7 +70,7 @@ namespace MainSystem
         {
             try
             {
-                if (BankTransfers_Record.addBankTransferTextChangedFlag == false)
+                if (MainTabPageRecordBankTransfer.ImageOptions.Image == null)
                 {
                     MainTabPageRecordBankTransfer.Name = "tabPageRecordBankTransfer";
                     MainTabPageRecordBankTransfer.Text = "اضافة تحويل";
@@ -127,7 +127,7 @@ namespace MainSystem
 
                 if (selRow["Error"].ToString() == "0")
                 {
-                    if (BankTransfers_Update.updateBankTransferTextChangedFlag == false)
+                    if (MainTabPageUpdateBankTransfer.ImageOptions.Image == null)
                     {
                         if (selRow[0].ToString() != "")
                         {
