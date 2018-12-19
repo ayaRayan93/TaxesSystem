@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,12 +85,18 @@ namespace MainSystem
                 if (e.KeyCode == Keys.Enter)
                 {
                     dbconnection.Open();
-                    string query = "select Delegate_Name from delegate where Delegate_ID=" + txtDelegateID.Text + "";
+                    string query = "select Delegate_Name from delegate where Delegate_ID=" + txtDelegateID.Text ;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
                         Name = (string)com.ExecuteScalar();
                         comDelegate.Text = Name;
+                        query = "select Date_To from Delegates_Profit where Delegate_ID=" + txtDelegateID.Text ;
+                        com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                           // dateTimeFrom.Value.Date = (com.ExecuteScalar().ToString();
+                        }
                     }
                     else
                     {
@@ -141,7 +148,92 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "PercentageDelegate")
+                {
+                    GridView view = (GridView)sender;
+                    DataRow dataRow = view.GetFocusedDataRow();
+                    double oldValue = Convert.ToDouble(dataRow["ValueDelegate"].ToString());
+                    double totalValue = Convert.ToDouble(labTotalDelegateProfit.Text);
+                    totalValue -= oldValue;
+                    double cellValue = Convert.ToDouble(e.Value);
+                    double totalItemValue = Convert.ToDouble(dataRow["Quantity"].ToString());
+                    double re = cellValue * totalItemValue;
 
+                    view.SetRowCellValue(view.GetSelectedRows()[0], "ValueDelegate", re);
+
+                    labTotalDelegateProfit.Text = (cellValue * totalItemValue) + totalValue + "";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                GridView view = (GridView)sender;
+                DataRow dataRow = view.GetFocusedDataRow();
+                double total = 0.0;
+                double result = Convert.ToDouble(labTotalDelegateProfit.Text);
+                total = Convert.ToDouble(dataRow["ValueDelegate"].ToString());
+                if (view.GetFocusedValue().ToString() == "True")
+                {
+                    result = result - total;
+                }
+                else
+                {
+                    result = result + total;
+                }
+
+                labTotalDelegateProfit.Text = result.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                if (txtDelegateID.Text != "" && labTotalDelegateProfit.Text != "")
+                {
+                    string query = "INSERT INTO Delegates_Profit (Delegate_ID,Delegate_Profit, Date_From, Date_To) VALUES(@Delegate_ID,@Delegate_Profit, @Date_From, @Date_To)";
+                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+
+                    command.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
+                    command.Parameters["@Delegate_ID"].Value = txtDelegateID.Text;
+                    command.Parameters.Add("@Delegate_Profit", MySqlDbType.Double);
+                    command.Parameters["@Delegate_Profit"].Value = labTotalDelegateProfit.Text;
+                    command.Parameters.Add("@Date_From", MySqlDbType.Date);
+                    command.Parameters["@Date_From"].Value = dateTimeFrom.Value.Date;
+                    command.Parameters.Add("@Date_To", MySqlDbType.Date);
+                    command.Parameters["@Date_To"].Value = dateTimeTo.Value.Date;
+
+                    command.ExecuteNonQuery();
+                    reset();
+                }
+                else
+                {
+                    MessageBox.Show("ادخل البيانات بالكامل");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void newChoose_Click(object sender, EventArgs e)
         {
             try
@@ -338,18 +430,14 @@ namespace MainSystem
             return _Table;
         }
 
-        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        public void reset()
         {
-            try
-            {
-                double cellValue = Convert.ToDouble(e.Value);
-                double totalValue = Convert.ToDouble(labTotalDelegateProfit.Text);
-                labTotalDelegateProfit.Text = cellValue + totalValue + "";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            dateTimeFrom.Value = DateTime.Now;
+            dateTimeTo.Value = DateTime.Now;
+            txtDelegateID.Text = "";
+            comDelegate.Text = "";
+            gridControl1.DataSource = null;
+            gridControl2.DataSource = null;
         }
     }
 }
