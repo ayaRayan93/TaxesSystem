@@ -2995,6 +2995,7 @@
             this.xtraTabControlShipping.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlShipping.Size = new System.Drawing.Size(985, 523);
             this.xtraTabControlShipping.TabIndex = 2;
+            this.xtraTabControlShipping.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControlShippingReport
             // 
