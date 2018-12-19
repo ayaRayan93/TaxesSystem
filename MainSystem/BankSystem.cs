@@ -349,11 +349,11 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPagePullExpensesReport.Name = "tabPagePullExpenseReport";
-                    tabPagePullExpensesReport.Text = "عرض السحوبات-آجل";
+                    tabPagePullExpensesReport.Text = "عرض السحوبات-مصروفات";
                     panelPullExpensesReport.Name = "panelPullExpenseReport";
                     panelPullExpensesReport.Dock = DockStyle.Fill;
 
-                    PullExpensesShow = new BankPullExpense_Report();
+                    PullExpensesShow = new BankPullExpense_Report(this);
                     PullExpensesShow.Size = new Size(1109, 660);
                     PullExpensesShow.TopLevel = false;
                     PullExpensesShow.FormBorderStyle = FormBorderStyle.None;
@@ -615,6 +615,42 @@ namespace MainSystem
             {
                 MainTabControlBank.TabPages.Add("تعديل ايداع-ايراد");
                 xtraTabPage = getTabPage(MainTabControlBank, "تعديل ايداع-ايراد");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindRecordPullExpenseForm(BankPullExpense_Report form)
+        {
+            BankPullExpense_Record objForm = new BankPullExpense_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد-مصروف");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة مرتد-مصروف");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد-مصروف");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdatePullExpenseForm(DataRowView sellRow, BankPullExpense_Report form)
+        {
+            BankPullExpense_Update objForm = new BankPullExpense_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-مصروف");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل مرتد-مصروف");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد-مصروف");
             }
             xtraTabPage.Controls.Clear();
             xtraTabPage.Controls.Add(objForm);

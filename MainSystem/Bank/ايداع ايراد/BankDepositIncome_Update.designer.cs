@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class BankPullExpense_Record
+    partial class BankDepositIncome_Update
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtClient = new System.Windows.Forms.TextBox();
-            this.cmbExpenseType = new System.Windows.Forms.ComboBox();
+            this.cmbIncomeType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelOperationNumber = new System.Windows.Forms.Label();
             this.labelVisaType = new System.Windows.Forms.Label();
@@ -51,11 +50,13 @@
             this.label13 = new System.Windows.Forms.Label();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
             this.label8 = new System.Windows.Forms.Label();
+            this.radVisa = new System.Windows.Forms.RadioButton();
             this.radBankAccount = new System.Windows.Forms.RadioButton();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem53 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem54 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.radCash = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -83,7 +84,7 @@
             this.txtCheckNumber = new System.Windows.Forms.TextBox();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.txtDescrip = new System.Windows.Forms.TextBox();
-            this.txtPullMoney = new System.Windows.Forms.TextBox();
+            this.txtPaidMoney = new System.Windows.Forms.TextBox();
             this.cmbBank = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
@@ -137,7 +138,7 @@
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem55 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItemPull = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItemPaid = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemRest = new DevExpress.XtraLayout.LayoutControlItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -184,7 +185,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -230,7 +232,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem55)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPull)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPaid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRest)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -281,7 +283,7 @@
             this.dataLayoutControl1.Controls.Add(this.label4);
             this.dataLayoutControl1.Controls.Add(this.label3);
             this.dataLayoutControl1.Controls.Add(this.txtClient);
-            this.dataLayoutControl1.Controls.Add(this.cmbExpenseType);
+            this.dataLayoutControl1.Controls.Add(this.cmbIncomeType);
             this.dataLayoutControl1.Controls.Add(this.label2);
             this.dataLayoutControl1.Controls.Add(this.labelOperationNumber);
             this.dataLayoutControl1.Controls.Add(this.labelVisaType);
@@ -300,7 +302,7 @@
             this.dataLayoutControl1.Controls.Add(this.txtCheckNumber);
             this.dataLayoutControl1.Controls.Add(this.dateEdit1);
             this.dataLayoutControl1.Controls.Add(this.txtDescrip);
-            this.dataLayoutControl1.Controls.Add(this.txtPullMoney);
+            this.dataLayoutControl1.Controls.Add(this.txtPaidMoney);
             this.dataLayoutControl1.Controls.Add(this.cmbBank);
             this.dataLayoutControl1.Controls.Add(this.groupBox1);
             this.dataLayoutControl1.Controls.Add(this.label1);
@@ -332,6 +334,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 24);
             this.label4.TabIndex = 75;
+            this.label4.Text = "*";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -344,18 +347,20 @@
             // 
             // txtClient
             // 
+            this.txtClient.Enabled = false;
             this.txtClient.Location = new System.Drawing.Point(548, 83);
             this.txtClient.Name = "txtClient";
             this.txtClient.Size = new System.Drawing.Size(388, 24);
             this.txtClient.TabIndex = 73;
             // 
-            // cmbExpenseType
+            // cmbIncomeType
             // 
-            this.cmbExpenseType.FormattingEnabled = true;
-            this.cmbExpenseType.Location = new System.Drawing.Point(548, 31);
-            this.cmbExpenseType.Name = "cmbExpenseType";
-            this.cmbExpenseType.Size = new System.Drawing.Size(388, 24);
-            this.cmbExpenseType.TabIndex = 72;
+            this.cmbIncomeType.Enabled = false;
+            this.cmbIncomeType.FormattingEnabled = true;
+            this.cmbIncomeType.Location = new System.Drawing.Point(548, 31);
+            this.cmbIncomeType.Name = "cmbIncomeType";
+            this.cmbIncomeType.Size = new System.Drawing.Size(388, 24);
+            this.cmbIncomeType.TabIndex = 72;
             // 
             // label2
             // 
@@ -490,6 +495,7 @@
             // layoutControl4
             // 
             this.layoutControl4.Controls.Add(this.label8);
+            this.layoutControl4.Controls.Add(this.radVisa);
             this.layoutControl4.Controls.Add(this.radBankAccount);
             this.layoutControl4.Location = new System.Drawing.Point(12, 41);
             this.layoutControl4.Name = "layoutControl4";
@@ -501,18 +507,31 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(159, 12);
+            this.label8.Location = new System.Drawing.Point(90, 12);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 25);
-            this.label8.TabIndex = 5;
+            this.label8.Size = new System.Drawing.Size(21, 25);
+            this.label8.TabIndex = 6;
+            // 
+            // radVisa
+            // 
+            this.radVisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.radVisa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.radVisa.Location = new System.Drawing.Point(12, 12);
+            this.radVisa.Name = "radVisa";
+            this.radVisa.Size = new System.Drawing.Size(74, 25);
+            this.radVisa.TabIndex = 5;
+            this.radVisa.TabStop = true;
+            this.radVisa.Text = "فيزا";
+            this.radVisa.UseVisualStyleBackColor = true;
+            this.radVisa.CheckedChanged += new System.EventHandler(this.radVisa_CheckedChanged);
             // 
             // radBankAccount
             // 
             this.radBankAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.radBankAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radBankAccount.Location = new System.Drawing.Point(12, 12);
+            this.radBankAccount.Location = new System.Drawing.Point(115, 12);
             this.radBankAccount.Name = "radBankAccount";
-            this.radBankAccount.Size = new System.Drawing.Size(143, 25);
+            this.radBankAccount.Size = new System.Drawing.Size(107, 25);
             this.radBankAccount.TabIndex = 4;
             this.radBankAccount.TabStop = true;
             this.radBankAccount.Text = "حساب بنكى";
@@ -526,7 +545,8 @@
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem30,
             this.emptySpaceItem4,
-            this.layoutControlItem13});
+            this.layoutControlItem53,
+            this.layoutControlItem54});
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(234, 59);
             this.layoutControlGroup4.TextVisible = false;
@@ -534,9 +554,9 @@
             // layoutControlItem30
             // 
             this.layoutControlItem30.Control = this.radBankAccount;
-            this.layoutControlItem30.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem30.Location = new System.Drawing.Point(103, 0);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(147, 29);
+            this.layoutControlItem30.Size = new System.Drawing.Size(111, 29);
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
@@ -548,14 +568,23 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(214, 10);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem13
+            // layoutControlItem53
             // 
-            this.layoutControlItem13.Control = this.label8;
-            this.layoutControlItem13.Location = new System.Drawing.Point(147, 0);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(67, 29);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
+            this.layoutControlItem53.Control = this.radVisa;
+            this.layoutControlItem53.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem53.Name = "layoutControlItem53";
+            this.layoutControlItem53.Size = new System.Drawing.Size(78, 29);
+            this.layoutControlItem53.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem53.TextVisible = false;
+            // 
+            // layoutControlItem54
+            // 
+            this.layoutControlItem54.Control = this.label8;
+            this.layoutControlItem54.Location = new System.Drawing.Point(78, 0);
+            this.layoutControlItem54.Name = "layoutControlItem54";
+            this.layoutControlItem54.Size = new System.Drawing.Size(25, 29);
+            this.layoutControlItem54.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem54.TextVisible = false;
             // 
             // layoutControl3
             // 
@@ -783,6 +812,7 @@
             // 
             // cmbBranch
             // 
+            this.cmbBranch.Enabled = false;
             this.cmbBranch.FormattingEnabled = true;
             this.cmbBranch.Location = new System.Drawing.Point(31, 31);
             this.cmbBranch.Name = "cmbBranch";
@@ -838,16 +868,17 @@
             this.txtDescrip.Size = new System.Drawing.Size(388, 53);
             this.txtDescrip.TabIndex = 47;
             // 
-            // txtPullMoney
+            // txtPaidMoney
             // 
-            this.txtPullMoney.Location = new System.Drawing.Point(548, 279);
-            this.txtPullMoney.Name = "txtPullMoney";
-            this.txtPullMoney.Size = new System.Drawing.Size(388, 24);
-            this.txtPullMoney.TabIndex = 46;
-            this.txtPullMoney.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtPaidMoney.Location = new System.Drawing.Point(548, 279);
+            this.txtPaidMoney.Name = "txtPaidMoney";
+            this.txtPaidMoney.Size = new System.Drawing.Size(388, 24);
+            this.txtPaidMoney.TabIndex = 46;
+            this.txtPaidMoney.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // cmbBank
             // 
+            this.cmbBank.Enabled = false;
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(548, 251);
             this.cmbBank.Name = "cmbBank";
@@ -907,10 +938,10 @@
             // 
             // txtPaidRest2
             // 
-            this.txtPaidRest2.Enabled = false;
             this.txtPaidRest2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidRest2.Location = new System.Drawing.Point(12, 298);
             this.txtPaidRest2.Name = "txtPaidRest2";
+            this.txtPaidRest2.ReadOnly = true;
             this.txtPaidRest2.Size = new System.Drawing.Size(96, 20);
             this.txtPaidRest2.TabIndex = 28;
             this.txtPaidRest2.Text = "0";
@@ -964,10 +995,10 @@
             // 
             // RestMoney
             // 
-            this.RestMoney.Enabled = false;
             this.RestMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RestMoney.Location = new System.Drawing.Point(12, 274);
             this.RestMoney.Name = "RestMoney";
+            this.RestMoney.ReadOnly = true;
             this.RestMoney.Size = new System.Drawing.Size(96, 20);
             this.RestMoney.TabIndex = 22;
             this.RestMoney.Text = "0";
@@ -1025,10 +1056,10 @@
             // 
             // txtPaidRest
             // 
-            this.txtPaidRest.Enabled = false;
             this.txtPaidRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidRest.Location = new System.Drawing.Point(216, 298);
             this.txtPaidRest.Name = "txtPaidRest";
+            this.txtPaidRest.ReadOnly = true;
             this.txtPaidRest.Size = new System.Drawing.Size(97, 20);
             this.txtPaidRest.TabIndex = 16;
             this.txtPaidRest.Text = "0";
@@ -1036,10 +1067,10 @@
             // 
             // PaidMoney
             // 
-            this.PaidMoney.Enabled = false;
             this.PaidMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PaidMoney.Location = new System.Drawing.Point(216, 274);
             this.PaidMoney.Name = "PaidMoney";
+            this.PaidMoney.ReadOnly = true;
             this.PaidMoney.Size = new System.Drawing.Size(97, 20);
             this.PaidMoney.TabIndex = 15;
             this.PaidMoney.Text = "0";
@@ -1150,7 +1181,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(149, 42);
             this.label9.TabIndex = 4;
-            this.label9.Text = "المسحوب";
+            this.label9.Text = "المدفوع";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // layoutControlGroup2
@@ -1182,7 +1213,7 @@
             this.layoutControlItem26,
             this.layoutControlItem27,
             this.layoutControlItem55,
-            this.layoutControlItemPull,
+            this.layoutControlItemPaid,
             this.layoutControlItemRest});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(377, 354);
@@ -1489,20 +1520,20 @@
             this.layoutControlItem55.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem55.TextVisible = false;
             // 
-            // layoutControlItemPull
+            // layoutControlItemPaid
             // 
-            this.layoutControlItemPull.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItemPull.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItemPull.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItemPull.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItemPull.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItemPull.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItemPull.Control = this.txtPaidRest;
-            this.layoutControlItemPull.Location = new System.Drawing.Point(204, 286);
-            this.layoutControlItemPull.Name = "layoutControlItemPull";
-            this.layoutControlItemPull.Size = new System.Drawing.Size(153, 24);
-            this.layoutControlItemPull.Text = "الفرق";
-            this.layoutControlItemPull.TextSize = new System.Drawing.Size(49, 18);
+            this.layoutControlItemPaid.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItemPaid.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItemPaid.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItemPaid.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItemPaid.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItemPaid.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItemPaid.Control = this.txtPaidRest;
+            this.layoutControlItemPaid.Location = new System.Drawing.Point(204, 286);
+            this.layoutControlItemPaid.Name = "layoutControlItemPaid";
+            this.layoutControlItemPaid.Size = new System.Drawing.Size(153, 24);
+            this.layoutControlItemPaid.Text = "الفرق";
+            this.layoutControlItemPaid.TextSize = new System.Drawing.Size(49, 18);
             // 
             // layoutControlItemRest
             // 
@@ -1693,11 +1724,11 @@
             this.layoutControlItemMoney.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItemMoney.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemMoney.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItemMoney.Control = this.txtPullMoney;
+            this.layoutControlItemMoney.Control = this.txtPaidMoney;
             this.layoutControlItemMoney.Location = new System.Drawing.Point(541, 272);
             this.layoutControlItemMoney.Name = "layoutControlItemMoney";
             this.layoutControlItemMoney.Size = new System.Drawing.Size(492, 28);
-            this.layoutControlItemMoney.Text = "المبلغ المسحوب";
+            this.layoutControlItemMoney.Text = "المبلغ المدفوع";
             this.layoutControlItemMoney.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
@@ -1912,11 +1943,11 @@
             this.layoutControlItem4.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem4.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem4.Control = this.cmbExpenseType;
+            this.layoutControlItem4.Control = this.cmbIncomeType;
             this.layoutControlItem4.Location = new System.Drawing.Point(541, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(492, 28);
-            this.layoutControlItem4.Text = "نوع المصروف";
+            this.layoutControlItem4.Text = "نوع الايراد";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(97, 24);
             // 
             // layoutControlItem8
@@ -1931,7 +1962,7 @@
             this.layoutControlItem8.Location = new System.Drawing.Point(541, 76);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(492, 28);
-            this.layoutControlItem8.Text = "الاسم";
+            this.layoutControlItem8.Text = "العميل";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(97, 24);
             // 
             // layoutControlItem9
@@ -1961,7 +1992,7 @@
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
-            // BankPullExpense_Record
+            // BankDepositIncome_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1969,11 +2000,11 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
             this.MaximizeBox = false;
-            this.Name = "BankPullExpense_Record";
+            this.Name = "BankDepositIncome_Update";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BankPullExpense_Record";
-            this.Load += new System.EventHandler(this.BankPullExpense_Record_Load);
+            this.Text = "BankDepositIncome_Update";
+            this.Load += new System.EventHandler(this.BankDepositIncome_Update_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
@@ -1984,7 +2015,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -2030,7 +2062,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem55)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPull)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPaid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemRest)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -2082,7 +2114,7 @@
         private System.Windows.Forms.TextBox txtCheckNumber;
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private System.Windows.Forms.TextBox txtDescrip;
-        private System.Windows.Forms.TextBox txtPullMoney;
+        private System.Windows.Forms.TextBox txtPaidMoney;
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
@@ -2137,7 +2169,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem43;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem44;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem45;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemPull;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemPaid;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem47;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem48;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem49;
@@ -2170,10 +2202,14 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
         private DevExpress.XtraLayout.LayoutControl layoutControl4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton radVisa;
         private System.Windows.Forms.RadioButton radBankAccount;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem53;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem54;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private System.Windows.Forms.TextBox txtPaidRest2;
         private System.Windows.Forms.Label label12;
@@ -2203,7 +2239,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem65;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.ComboBox cmbExpenseType;
+        private System.Windows.Forms.ComboBox cmbIncomeType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -2213,8 +2249,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
-        private System.Windows.Forms.Label label8;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }
 

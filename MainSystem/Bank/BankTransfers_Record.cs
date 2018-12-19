@@ -18,13 +18,20 @@ namespace MainSystem
         bool loaded = false;
         //string User_ID = "";
         XtraTabPage xtraTabPage;
-        public static bool addBankTransferTextChangedFlag = false;
+        int[] arrOFPhaatPlus;
+        int[] arrOFPhaatMinus;
+        int[] arrPaidMoneyPlus;
+        bool flag = false;
+        bool flagCategoriesSuccess = false;
 
         public BankTransfers_Record()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             //User_ID = user_ID;
+            arrOFPhaatPlus = new int[9];
+            arrOFPhaatMinus = new int[9];
+            arrPaidMoneyPlus = new int[9];
         }
 
         private void BankTransfers_Record_Load(object sender, EventArgs e)
@@ -214,6 +221,14 @@ namespace MainSystem
                             return;
                         }
 
+                        if (!flagCategoriesSuccess)
+                        {
+                            if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                            {
+                                return;
+                            }
+                        }
+
                         string q = "UPDATE bank SET Bank_Stock = " + (FromBank_Stock - money) + " where Bank_ID=" + comFromBank.SelectedValue;
                         MySqlCommand command = new MySqlCommand(q, dbconnection);
                         command.ExecuteNonQuery();
@@ -233,7 +248,7 @@ namespace MainSystem
                         com.Parameters.Add("@ToBank_ID", MySqlDbType.Int16, 11).Value = comToBank.SelectedValue;
                         com.Parameters.Add("@ToBank_Name", MySqlDbType.VarChar, 255).Value = comToBank.Text;
                         com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = money;
-                        com.Parameters.Add("@Date", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
+                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                         com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
                         com.ExecuteNonQuery();
@@ -253,11 +268,39 @@ namespace MainSystem
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
                         //////////////////////
-                        dbconnection.Close();
 
-                        MessageBox.Show("تم");
+                        query = "insert into transfer_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,BankTransfer_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@BankTransfer_ID)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[0];
+                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[1];
+                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[2];
+                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[3];
+                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[4];
+                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[5];
+                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[6];
+                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[7];
+                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[8];
+                        com.Parameters.Add("@BankTransfer_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(bankTransferID);
+                        com.ExecuteNonQuery();
+
+                        dbconnection.Close();
+                        flagCategoriesSuccess = false;
+
                         clear();
-                        addBankTransferTextChangedFlag = false;
+                        t200.Text = "";
+                        t100.Text = "";
+                        t50.Text = "";
+                        t20.Text = "";
+                        t10.Text = "";
+                        t5.Text = "";
+                        t1.Text = "";
+                        tH.Text = "";
+                        tQ.Text = "";
+                        PaidMoney.Text = "0";
+
+                        for (int i = 0; i < arrPaidMoneyPlus.Length; i++)
+                            arrPaidMoneyPlus[i] = 0;
+                        
                         xtraTabPage.ImageOptions.Image = null;
                     }
                     else
@@ -277,6 +320,261 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
+        {
+            double totalPaid = 0;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    double total = 0;
+                    if (txtMoney.Text != "" && double.TryParse(txtMoney.Text, out total))
+                    {
+                        if (comFromBank.Text == "" && comToBank.Text == "")
+                        {
+                            MessageBox.Show("يجب ان تختار الخزينة");
+                            return;
+                        }
+                        dbconnection.Open();
+                        
+                        if (!flag)
+                        {
+                            string query2 = "select * from categories_money where Bank_ID=" + comToBank.SelectedValue;
+                            MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
+                            MySqlDataReader dr = com2.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                arrOFPhaatPlus[0] = Convert.ToInt16(dr["a200"]);
+                                arrOFPhaatPlus[1] = Convert.ToInt16(dr["a100"]);
+                                arrOFPhaatPlus[2] = Convert.ToInt16(dr["a50"]);
+                                arrOFPhaatPlus[3] = Convert.ToInt16(dr["a20"]);
+                                arrOFPhaatPlus[4] = Convert.ToInt16(dr["a10"]);
+                                arrOFPhaatPlus[5] = Convert.ToInt16(dr["a5"]);
+                                arrOFPhaatPlus[6] = Convert.ToInt16(dr["a1"]);
+                                arrOFPhaatPlus[7] = Convert.ToInt16(dr["aH"]);
+                                arrOFPhaatPlus[8] = Convert.ToInt16(dr["aQ"]);
+                            }
+                            dr.Close();
+
+                            query2 = "select * from categories_money where Bank_ID=" + comFromBank.SelectedValue;
+                            com2 = new MySqlCommand(query2, dbconnection);
+                            MySqlDataReader dr2 = com2.ExecuteReader();
+                            while (dr2.Read())
+                            {
+                                arrOFPhaatMinus[0] = Convert.ToInt16(dr2["a200"]);
+                                arrOFPhaatMinus[1] = Convert.ToInt16(dr2["a100"]);
+                                arrOFPhaatMinus[2] = Convert.ToInt16(dr2["a50"]);
+                                arrOFPhaatMinus[3] = Convert.ToInt16(dr2["a20"]);
+                                arrOFPhaatMinus[4] = Convert.ToInt16(dr2["a10"]);
+                                arrOFPhaatMinus[5] = Convert.ToInt16(dr2["a5"]);
+                                arrOFPhaatMinus[6] = Convert.ToInt16(dr2["a1"]);
+                                arrOFPhaatMinus[7] = Convert.ToInt16(dr2["aH"]);
+                                arrOFPhaatMinus[8] = Convert.ToInt16(dr2["aQ"]);
+                            }
+                            dr2.Close();
+                            flag = true;
+                        }
+                        dbconnection.Close();
+                        if (PaidMoney.Text != "")
+                        {
+                            totalPaid = Convert.ToDouble(PaidMoney.Text);
+                        }
+                        TextBox txt = (TextBox)sender;
+                        string txtValue = txt.Name.Split('t')[1];
+                        int num;
+                        num = 0;
+                        switch (txtValue)
+                        {
+                            case "200":
+                                if (int.TryParse(t200.Text, out num))
+                                {
+                                    arrOFPhaatPlus[0] -= arrPaidMoneyPlus[0];
+                                    arrOFPhaatMinus[0] += arrPaidMoneyPlus[0];
+                                    arrPaidMoneyPlus[0] = num;
+                                    arrOFPhaatPlus[0] += num;
+                                    arrOFPhaatMinus[0] -= num;
+                                    t100.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+
+                            case "100":
+                                if (int.TryParse(t100.Text, out num))
+                                {
+                                    arrOFPhaatPlus[1] -= arrPaidMoneyPlus[1];
+                                    arrOFPhaatMinus[1] += arrPaidMoneyPlus[1];
+                                    arrPaidMoneyPlus[1] = num;
+                                    arrOFPhaatPlus[1] += num;
+                                    arrOFPhaatMinus[1] -= num;
+                                    t50.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+
+                            case "50":
+                                if (int.TryParse(t50.Text, out num))
+                                {
+                                    arrOFPhaatPlus[2] -= arrPaidMoneyPlus[2];
+                                    arrOFPhaatMinus[2] += arrPaidMoneyPlus[2];
+                                    arrPaidMoneyPlus[2] = num;
+                                    arrOFPhaatPlus[2] += num;
+                                    arrOFPhaatMinus[2] -= num;
+                                    t20.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+
+                            case "20":
+                                if (int.TryParse(t20.Text, out num))
+                                {
+                                    arrOFPhaatPlus[3] -= arrPaidMoneyPlus[3];
+                                    arrOFPhaatMinus[3] += arrPaidMoneyPlus[3];
+                                    arrPaidMoneyPlus[3] = num;
+                                    arrOFPhaatPlus[3] += num;
+                                    arrOFPhaatMinus[3] -= num;
+                                    t10.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+
+                            case "10":
+                                if (int.TryParse(t10.Text, out num))
+                                {
+                                    arrOFPhaatPlus[4] -= arrPaidMoneyPlus[4];
+                                    arrOFPhaatMinus[4] += arrPaidMoneyPlus[4];
+                                    arrPaidMoneyPlus[4] = num;
+                                    arrOFPhaatPlus[4] += num;
+                                    arrOFPhaatMinus[4] -= num;
+                                    t5.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+
+                            case "5":
+                                if (int.TryParse(t5.Text, out num))
+                                {
+                                    arrOFPhaatPlus[5] -= arrPaidMoneyPlus[5];
+                                    arrOFPhaatMinus[5] += arrPaidMoneyPlus[5];
+                                    arrPaidMoneyPlus[5] = num;
+                                    arrOFPhaatPlus[5] += num;
+                                    arrOFPhaatMinus[5] -= num;
+                                    t1.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+
+                            case "1":
+                                if (int.TryParse(t1.Text, out num))
+                                {
+                                    arrOFPhaatPlus[6] -= arrPaidMoneyPlus[6];
+                                    arrOFPhaatMinus[6] += arrPaidMoneyPlus[6];
+                                    arrPaidMoneyPlus[6] = num;
+                                    arrOFPhaatPlus[6] += num;
+                                    arrOFPhaatMinus[6] -= num;
+                                    tH.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+                            case "H":
+                                if (int.TryParse(tH.Text, out num))
+                                {
+                                    arrOFPhaatPlus[7] -= arrPaidMoneyPlus[7];
+                                    arrOFPhaatMinus[7] += arrPaidMoneyPlus[7];
+                                    arrPaidMoneyPlus[7] = num;
+                                    arrOFPhaatPlus[7] += num;
+                                    arrOFPhaatMinus[7] -= num;
+                                    tQ.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+                            case "Q":
+                                if (int.TryParse(tQ.Text, out num))
+                                {
+                                    arrOFPhaatPlus[8] -= arrPaidMoneyPlus[8];
+                                    arrOFPhaatMinus[8] += arrPaidMoneyPlus[8];
+                                    arrPaidMoneyPlus[8] = num;
+                                    arrOFPhaatPlus[8] += num;
+                                    arrOFPhaatMinus[8] -= num;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("القيمة المدخلة يجب ان تكون عدد");
+                                    return;
+                                }
+                                break;
+                        }
+
+                        totalPaid = arrPaidMoneyPlus[0] * 200 + arrPaidMoneyPlus[1] * 100 + arrPaidMoneyPlus[2] * 50 + arrPaidMoneyPlus[3] * 20 + arrPaidMoneyPlus[4] * 10 + arrPaidMoneyPlus[5] * 5 + arrPaidMoneyPlus[6] + arrPaidMoneyPlus[7] * 0.5 + arrPaidMoneyPlus[8] * 0.25;
+                        PaidMoney.Text = totalPaid.ToString();
+                        
+                        if ((total - totalPaid) == 0)
+                        {
+                            dbconnection.Open();
+                            string query = "update categories_money set a200=" + arrOFPhaatPlus[0] + ",a100=" + arrOFPhaatPlus[1] + ",a50=" + arrOFPhaatPlus[2] + ",a20=" + arrOFPhaatPlus[3] + ",a10=" + arrOFPhaatPlus[4] + ",a5=" + arrOFPhaatPlus[5] + ",a1=" + arrOFPhaatPlus[6] + ",aH=" + arrOFPhaatPlus[7] + ",aQ=" + arrOFPhaatPlus[8] + " where Bank_ID=" + comToBank.SelectedValue;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+
+                            query = "update categories_money set a200=" + arrOFPhaatMinus[0] + ",a100=" + arrOFPhaatMinus[1] + ",a50=" + arrOFPhaatMinus[2] + ",a20=" + arrOFPhaatMinus[3] + ",a10=" + arrOFPhaatMinus[4] + ",a5=" + arrOFPhaatMinus[5] + ",a1=" + arrOFPhaatMinus[6] + ",aH=" + arrOFPhaatMinus[7] + ",aQ=" + arrOFPhaatMinus[8] + " where Bank_ID=" + comFromBank.SelectedValue;
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                            flagCategoriesSuccess = true;
+                            MessageBox.Show("تم");
+                            
+                            PaidMoney.Text = "0";
+                            flag = false;
+                        }
+                        else
+                        { }
+                        dbconnection.Close();
+                    }
+                    else
+                    {
+                        dbconnection.Close();
+                        MessageBox.Show("تاكد من المبلغ المدفوع اولا");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
+            }
+        }
+        
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -287,12 +585,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        addBankTransferTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        addBankTransferTextChangedFlag = false;
                     }
                 }
             }

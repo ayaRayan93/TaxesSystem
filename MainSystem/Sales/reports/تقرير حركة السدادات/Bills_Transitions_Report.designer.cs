@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -43,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFinal = new System.Windows.Forms.TextBox();
+            this.btnBillReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +55,6 @@
             this.btnNewChosen = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnBillReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -118,7 +117,9 @@
             this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.gridView2.Appearance.Row.Options.UseFont = true;
+            this.gridView2.Appearance.Row.Options.UseForeColor = true;
             this.gridView2.Appearance.Row.Options.UseTextOptions = true;
             this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -266,6 +267,27 @@
             this.txtFinal.Name = "txtFinal";
             this.txtFinal.Size = new System.Drawing.Size(99, 23);
             this.txtFinal.TabIndex = 7;
+            // 
+            // btnBillReport
+            // 
+            this.btnBillReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnBillReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnBillReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnBillReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBillReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBillReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnBillReport.ForeColor = System.Drawing.Color.White;
+            this.btnBillReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnBillReport.ImagePosition = 1;
+            this.btnBillReport.ImageZoom = 20;
+            this.btnBillReport.LabelPosition = 18;
+            this.btnBillReport.LabelText = "طباعة الفواتير";
+            this.btnBillReport.Location = new System.Drawing.Point(834, 4);
+            this.btnBillReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBillReport.Name = "btnBillReport";
+            this.btnBillReport.Size = new System.Drawing.Size(97, 46);
+            this.btnBillReport.TabIndex = 5;
+            this.btnBillReport.Click += new System.EventHandler(this.btnBillReport_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -416,7 +438,9 @@
             this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -432,27 +456,6 @@
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
-            // 
-            // btnBillReport
-            // 
-            this.btnBillReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnBillReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnBillReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnBillReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBillReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBillReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnBillReport.ForeColor = System.Drawing.Color.White;
-            this.btnBillReport.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnBillReport.ImagePosition = 1;
-            this.btnBillReport.ImageZoom = 20;
-            this.btnBillReport.LabelPosition = 18;
-            this.btnBillReport.LabelText = "طباعة الفواتير";
-            this.btnBillReport.Location = new System.Drawing.Point(834, 4);
-            this.btnBillReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnBillReport.Name = "btnBillReport";
-            this.btnBillReport.Size = new System.Drawing.Size(97, 46);
-            this.btnBillReport.TabIndex = 5;
-            this.btnBillReport.Click += new System.EventHandler(this.btnBillReport_Click);
             // 
             // Bills_Transitions_Report
             // 

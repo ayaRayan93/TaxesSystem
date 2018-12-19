@@ -35,28 +35,28 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panelUpdateZone = new System.Windows.Forms.Panel();
+            this.checkedListBoxAddArea = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxDeleteArea = new System.Windows.Forms.CheckedListBox();
+            this.btnUpdateZone = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtZoneNameUpdate = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelAddZone = new System.Windows.Forms.Panel();
             this.checkedListBoxAreas = new System.Windows.Forms.CheckedListBox();
             this.btnAddZone = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtZoneNameAdd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkedListBoxAddArea = new System.Windows.Forms.CheckedListBox();
-            this.btnUpdateZone = new System.Windows.Forms.Button();
-            this.txtZoneNameUpdate = new System.Windows.Forms.TextBox();
-            this.checkedListBoxDeleteArea = new System.Windows.Forms.CheckedListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panelUpdateZone = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panelAddZone.SuspendLayout();
             this.panelUpdateZone.SuspendLayout();
+            this.panelAddZone.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -169,6 +169,100 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(931, 304);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
+            // panelUpdateZone
+            // 
+            this.panelUpdateZone.AutoScroll = true;
+            this.panelUpdateZone.Controls.Add(this.checkedListBoxAddArea);
+            this.panelUpdateZone.Controls.Add(this.checkedListBoxDeleteArea);
+            this.panelUpdateZone.Controls.Add(this.btnUpdateZone);
+            this.panelUpdateZone.Controls.Add(this.label3);
+            this.panelUpdateZone.Controls.Add(this.txtZoneNameUpdate);
+            this.panelUpdateZone.Controls.Add(this.label4);
+            this.panelUpdateZone.Controls.Add(this.label2);
+            this.panelUpdateZone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUpdateZone.Location = new System.Drawing.Point(3, 3);
+            this.panelUpdateZone.Name = "panelUpdateZone";
+            this.panelUpdateZone.Size = new System.Drawing.Size(460, 298);
+            this.panelUpdateZone.TabIndex = 11;
+            // 
+            // checkedListBoxAddArea
+            // 
+            this.checkedListBoxAddArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxAddArea.CheckOnClick = true;
+            this.checkedListBoxAddArea.FormattingEnabled = true;
+            this.checkedListBoxAddArea.Location = new System.Drawing.Point(241, 55);
+            this.checkedListBoxAddArea.Name = "checkedListBoxAddArea";
+            this.checkedListBoxAddArea.Size = new System.Drawing.Size(120, 199);
+            this.checkedListBoxAddArea.TabIndex = 7;
+            // 
+            // checkedListBoxDeleteArea
+            // 
+            this.checkedListBoxDeleteArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxDeleteArea.CheckOnClick = true;
+            this.checkedListBoxDeleteArea.FormattingEnabled = true;
+            this.checkedListBoxDeleteArea.Location = new System.Drawing.Point(21, 56);
+            this.checkedListBoxDeleteArea.Name = "checkedListBoxDeleteArea";
+            this.checkedListBoxDeleteArea.Size = new System.Drawing.Size(120, 199);
+            this.checkedListBoxDeleteArea.TabIndex = 9;
+            // 
+            // btnUpdateZone
+            // 
+            this.btnUpdateZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateZone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdateZone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateZone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnUpdateZone.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateZone.Location = new System.Drawing.Point(150, 261);
+            this.btnUpdateZone.Name = "btnUpdateZone";
+            this.btnUpdateZone.Size = new System.Drawing.Size(80, 30);
+            this.btnUpdateZone.TabIndex = 10;
+            this.btnUpdateZone.Text = "تعديل";
+            this.btnUpdateZone.UseVisualStyleBackColor = false;
+            this.btnUpdateZone.Click += new System.EventHandler(this.btnUpdateZone_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label3.Location = new System.Drawing.Point(367, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 17);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "اضافة منطقة";
+            // 
+            // txtZoneNameUpdate
+            // 
+            this.txtZoneNameUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtZoneNameUpdate.Enabled = false;
+            this.txtZoneNameUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtZoneNameUpdate.Location = new System.Drawing.Point(103, 15);
+            this.txtZoneNameUpdate.Name = "txtZoneNameUpdate";
+            this.txtZoneNameUpdate.Size = new System.Drawing.Size(150, 24);
+            this.txtZoneNameUpdate.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label4.Location = new System.Drawing.Point(147, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "حذف منطقه";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label2.Location = new System.Drawing.Point(259, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "اسم الزون";
+            // 
             // panelAddZone
             // 
             this.panelAddZone.AutoScroll = true;
@@ -239,100 +333,6 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "اسم الزون";
             // 
-            // checkedListBoxAddArea
-            // 
-            this.checkedListBoxAddArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBoxAddArea.CheckOnClick = true;
-            this.checkedListBoxAddArea.FormattingEnabled = true;
-            this.checkedListBoxAddArea.Location = new System.Drawing.Point(241, 55);
-            this.checkedListBoxAddArea.Name = "checkedListBoxAddArea";
-            this.checkedListBoxAddArea.Size = new System.Drawing.Size(120, 199);
-            this.checkedListBoxAddArea.TabIndex = 7;
-            // 
-            // btnUpdateZone
-            // 
-            this.btnUpdateZone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateZone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnUpdateZone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateZone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnUpdateZone.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateZone.Location = new System.Drawing.Point(150, 261);
-            this.btnUpdateZone.Name = "btnUpdateZone";
-            this.btnUpdateZone.Size = new System.Drawing.Size(80, 30);
-            this.btnUpdateZone.TabIndex = 10;
-            this.btnUpdateZone.Text = "تعديل";
-            this.btnUpdateZone.UseVisualStyleBackColor = false;
-            this.btnUpdateZone.Click += new System.EventHandler(this.btnUpdateZone_Click);
-            // 
-            // txtZoneNameUpdate
-            // 
-            this.txtZoneNameUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtZoneNameUpdate.Enabled = false;
-            this.txtZoneNameUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtZoneNameUpdate.Location = new System.Drawing.Point(103, 15);
-            this.txtZoneNameUpdate.Name = "txtZoneNameUpdate";
-            this.txtZoneNameUpdate.Size = new System.Drawing.Size(150, 24);
-            this.txtZoneNameUpdate.TabIndex = 4;
-            // 
-            // checkedListBoxDeleteArea
-            // 
-            this.checkedListBoxDeleteArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBoxDeleteArea.CheckOnClick = true;
-            this.checkedListBoxDeleteArea.FormattingEnabled = true;
-            this.checkedListBoxDeleteArea.Location = new System.Drawing.Point(21, 56);
-            this.checkedListBoxDeleteArea.Name = "checkedListBoxDeleteArea";
-            this.checkedListBoxDeleteArea.Size = new System.Drawing.Size(120, 199);
-            this.checkedListBoxDeleteArea.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(259, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "اسم الزون";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label4.Location = new System.Drawing.Point(147, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "حذف منطقه";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label3.Location = new System.Drawing.Point(367, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 17);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "اضافة منطقة";
-            // 
-            // panelUpdateZone
-            // 
-            this.panelUpdateZone.AutoScroll = true;
-            this.panelUpdateZone.Controls.Add(this.checkedListBoxAddArea);
-            this.panelUpdateZone.Controls.Add(this.checkedListBoxDeleteArea);
-            this.panelUpdateZone.Controls.Add(this.btnUpdateZone);
-            this.panelUpdateZone.Controls.Add(this.label3);
-            this.panelUpdateZone.Controls.Add(this.txtZoneNameUpdate);
-            this.panelUpdateZone.Controls.Add(this.label4);
-            this.panelUpdateZone.Controls.Add(this.label2);
-            this.panelUpdateZone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelUpdateZone.Location = new System.Drawing.Point(3, 3);
-            this.panelUpdateZone.Name = "panelUpdateZone";
-            this.panelUpdateZone.Size = new System.Drawing.Size(460, 298);
-            this.panelUpdateZone.TabIndex = 11;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 4;
@@ -380,6 +380,16 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -397,10 +407,10 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panelAddZone.ResumeLayout(false);
-            this.panelAddZone.PerformLayout();
             this.panelUpdateZone.ResumeLayout(false);
             this.panelUpdateZone.PerformLayout();
+            this.panelAddZone.ResumeLayout(false);
+            this.panelAddZone.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);

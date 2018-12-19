@@ -21,13 +21,7 @@ namespace MainSystem
     {
         MySqlConnection conn;
         XtraTabControl MainTabControlBank;
-
-        public static XtraTabPage MainTabPageRecordDepositIncome;
-        Panel panelRecordDepositIncome;
-
-        public static XtraTabPage MainTabPageUpdateDepositIncome;
-        Panel panelUpdateDepositIncome;
-
+        
         public static XtraTabPage MainTabPagePrintingDepositIncome;
         Panel panelPrintingDepositIncome;
         
@@ -42,17 +36,10 @@ namespace MainSystem
             conn = new MySqlConnection(connection.connectionString);
             MainTabControlBank = MainForm.tabControlBank;
             bankMainForm = BankMainForm;
-
-            MainTabPageRecordDepositIncome = new XtraTabPage();
-            panelRecordDepositIncome = new Panel();
-
-            MainTabPageUpdateDepositIncome = new XtraTabPage();
-            panelUpdateDepositIncome = new Panel();
-
+            
             MainTabPagePrintingDepositIncome = new XtraTabPage();
             panelPrintingDepositIncome = new Panel();
-
-
+            
             gridcontrol = gridControl1;
         }
 
