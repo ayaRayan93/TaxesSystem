@@ -64,7 +64,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     MainForm.MainTabPageAddCustomer2.Controls.Clear();
-                    Customer_Record form = new Customer_Record();
+                    Customer_Record form = new Customer_Record(mainTabControl);
                     MainForm.MainTabPageAddCustomer2.Name = "tabPageAddCustomer2";
                     MainForm.MainTabPageAddCustomer2.Text = "اضافة عميل";
                     MainForm.MainTabPageAddCustomer2.ImageOptions.Image = null;
@@ -88,7 +88,7 @@ namespace MainSystem
                         MainForm.MainTabPageAddCustomer2.Controls.Clear();
                         //panelAddCustomer.Controls.Clear();
                         mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer2;
-                        Customer_Record form = new Customer_Record();
+                        Customer_Record form = new Customer_Record(mainTabControl);
                         form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         form.Dock = DockStyle.Fill;
                         form.TopLevel = false;
@@ -106,7 +106,7 @@ namespace MainSystem
                     MainForm.MainTabPageAddCustomer2.Controls.Clear();
                     //panelAddCustomer.Controls.Clear();
                     mainTabControl.SelectedTabPage = MainForm.MainTabPageAddCustomer2;
-                    Customer_Record form = new Customer_Record();
+                    Customer_Record form = new Customer_Record(mainTabControl);
                     form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     form.Dock = DockStyle.Fill;
                     form.TopLevel = false;
@@ -131,7 +131,7 @@ namespace MainSystem
                     XtraTabPage xtraTabPage = getTabPage("tabPageUpdateCustomer2");
                     if (xtraTabPage == null)
                     {
-                        Customer_Update form = new Customer_Update(selRow);
+                        Customer_Update form = new Customer_Update(selRow, mainTabControl);
                         MainForm.MainTabPageUpdateCustomer2.Name = "tabPageUpdateCustomer2";
                         MainForm.MainTabPageUpdateCustomer2.Text = "تعديل بيانات عميل";
                         MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
@@ -153,7 +153,7 @@ namespace MainSystem
                         if (dialogResult == DialogResult.Yes)
                         {
                             MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
-                            Customer_Update form = new Customer_Update(selRow);
+                            Customer_Update form = new Customer_Update(selRow, mainTabControl);
                             form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                             form.Dock = DockStyle.Fill;
                             form.TopLevel = false;
@@ -172,7 +172,7 @@ namespace MainSystem
                     else
                     {
                         MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
-                        Customer_Update form = new Customer_Update(selRow);
+                        Customer_Update form = new Customer_Update(selRow, mainTabControl);
                         form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                         form.Dock = DockStyle.Fill;
                         form.TopLevel = false;

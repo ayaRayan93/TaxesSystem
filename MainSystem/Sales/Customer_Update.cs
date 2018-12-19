@@ -21,16 +21,18 @@ namespace MainSystem
         bool flag = false;    //to check if the customer have guide or not
         XtraTabPage xtraTabPage;
         DataRowView selRow;
+        XtraTabControl mainTabControl;
 
         bool loadedflag = false;
 
-        public Customer_Update(DataRowView SelRow)
+        public Customer_Update(DataRowView SelRow, XtraTabControl tabControl)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnection2 = new MySqlConnection(connection.connectionString);
             selRow = SelRow;
-            
+            mainTabControl = tabControl;
+
             comEnginner.AutoCompleteMode = AutoCompleteMode.Suggest;
             comEnginner.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
@@ -190,8 +192,9 @@ namespace MainSystem
                         //MessageBox.Show("تم");
                         //clear();
                        // xtraTabPage.ImageOptions.Image = null;
-                        MainForm.objFormCustomer.search();
-                        MainForm.tabControlSales.TabPages.Remove(MainForm.MainTabPageUpdateCustomer);
+                        //MainForm.objFormCustomer.search();
+                        mainTabControl.TabPages.Remove(MainForm.MainTabPageUpdateCustomer);
+                        mainTabControl.TabPages.Remove(MainForm.MainTabPageUpdateCustomer2);
                     }
                     else
                     {
@@ -325,7 +328,7 @@ namespace MainSystem
                 {
                     //if (comEnginner.Text != "")
                     //{
-                        xtraTabPage = getTabPage("tabPageUpdateCustomer");
+                        xtraTabPage = getTabPage("تعديل بيانات عميل");
                         if (!IsClear())
                         {
                             xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -367,10 +370,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlSales.TabPages.Count; i++)
-                if (MainForm.tabControlSales.TabPages[i].Name == text)
+            for (int i = 0; i < mainTabControl.TabPages.Count; i++)
+                if (mainTabControl.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlSales.TabPages[i];
+                    return mainTabControl.TabPages[i];
                 }
             return null;
         }

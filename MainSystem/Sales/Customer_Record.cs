@@ -20,12 +20,14 @@ namespace MainSystem
         string Customer_Type = "";
         bool flag = false; //to check if the customer have guide or not
         XtraTabPage xtraTabPage;
+        XtraTabControl mainTabControl;
 
-        public Customer_Record()
+        public Customer_Record(XtraTabControl tabControl)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            
+            mainTabControl = tabControl;
+
             comEnginner.AutoCompleteMode = AutoCompleteMode.Suggest;
             comEnginner.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
@@ -154,7 +156,7 @@ namespace MainSystem
                         //MessageBox.Show("تم");
                         clear();
                         xtraTabPage.ImageOptions.Image = null;
-                        MainForm.objFormCustomer.search();
+                        //MainForm.objFormCustomer.search();
                     }
                     else
                     {
@@ -332,7 +334,7 @@ namespace MainSystem
             {
                 //if (comEnginner.Text != "")
                 //{
-                    xtraTabPage = getTabPage("tabPageAddCustomer");
+                    xtraTabPage = getTabPage("اضافة عميل");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
@@ -386,10 +388,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlSales.TabPages.Count; i++)
-                if (MainForm.tabControlSales.TabPages[i].Name == text)
+            for (int i = 0; i < mainTabControl.TabPages.Count; i++)
+                if (mainTabControl.TabPages[i].Text == text)
                 {
-                    return MainForm.tabControlSales.TabPages[i];
+                    return mainTabControl.TabPages[i];
                 }
             return null;
         }
