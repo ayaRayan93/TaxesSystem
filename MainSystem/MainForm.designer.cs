@@ -2142,6 +2142,7 @@
             this.xtraTabControlPointSale.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlPointSale.Size = new System.Drawing.Size(985, 523);
             this.xtraTabControlPointSale.TabIndex = 2;
+            this.xtraTabControlPointSale.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlPointSale_SelectedPageChanged);
             this.xtraTabControlPointSale.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControlPointSaleReport

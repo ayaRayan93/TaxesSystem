@@ -99,7 +99,6 @@ namespace MainSystem
                 {
                     CustomerReport.search();
                 }
-
                 //else if (xtraTabControlPointSale.SelectedTabPage == Customer_Report.MainTabPagePrintCustomer)
                 //{
                 //    if (loadedPrintCustomer)
