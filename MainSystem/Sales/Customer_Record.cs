@@ -36,28 +36,31 @@ namespace MainSystem
         {
             try
             {
-                dbconnection.Open();
-                if (checkPhoneExist())
+                if (txtPhone.Text != "")
                 {
-                    for (int i = 0; i < checkedListBoxControlPhone.ItemCount; i++)
+                    dbconnection.Open();
+                    if (checkPhoneExist())
                     {
-                        if (txtPhone.Text == checkedListBoxControlPhone.Items[i].Value.ToString())
+                        for (int i = 0; i < checkedListBoxControlPhone.ItemCount; i++)
                         {
-                            MessageBox.Show("هذا الرقم تم اضافتة");
-                            dbconnection.Close();
-                            return;
+                            if (txtPhone.Text == checkedListBoxControlPhone.Items[i].Value.ToString())
+                            {
+                                MessageBox.Show("هذا الرقم تم اضافتة");
+                                dbconnection.Close();
+                                return;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("هذا الرقم موجود من قبل");
-                    dbconnection.Close();
-                    return;
-                }
+                    else
+                    {
+                        MessageBox.Show("هذا الرقم موجود من قبل");
+                        dbconnection.Close();
+                        return;
+                    }
 
-                checkedListBoxControlPhone.Items.Add(txtPhone.Text);
-                txtPhone.Text = "";
+                    checkedListBoxControlPhone.Items.Add(txtPhone.Text);
+                    txtPhone.Text = "";
+                }
             }
             catch (Exception ex)
             {

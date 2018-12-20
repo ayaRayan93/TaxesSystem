@@ -26,7 +26,7 @@ namespace MainSystem
         //Panel panelUpdateCustomer;
         //Panel panelPrintCustomer;
 
-        public static Customer_Print customerPrint;
+        public static Customer_Print2 customerPrint;
 
         public static GridControl gridcontrol;
 
@@ -211,21 +211,15 @@ namespace MainSystem
             {
                 MainForm.MainTabPagePrintCustomer2.Name = "tabPagePrintCustomer2";
                 MainForm.MainTabPagePrintCustomer2.Text = "طباعة العملاء";
-                //panelPrintCustomer.Name = "panelPrintCustomer";
-                //panelPrintCustomer.Dock = DockStyle.Fill;
-
-                //panelPrintCustomer.Controls.Clear();
-                customerPrint = new Customer_Print();
+                customerPrint = new Customer_Print2();
                 customerPrint.Size = new Size(1059, 638);
                 customerPrint.TopLevel = false;
                 customerPrint.FormBorderStyle = FormBorderStyle.None;
                 customerPrint.Dock = DockStyle.Fill;
-                //panelPrintCustomer.Controls.Add(customerPrint);
                 MainForm.MainTabPagePrintCustomer2.Controls.Add(customerPrint);
                 mainTabControl.TabPages.Add(MainForm.MainTabPagePrintCustomer2);
                 customerPrint.Show();
                 mainTabControl.SelectedTabPage = MainForm.MainTabPagePrintCustomer2;
-
                 MainForm.loadedPrintCustomer = true;
             }
             catch (Exception ex)
