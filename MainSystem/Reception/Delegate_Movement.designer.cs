@@ -58,6 +58,8 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtClientID = new System.Windows.Forms.TextBox();
+            this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
             this.comClient = new System.Windows.Forms.ComboBox();
             this.comEngCon = new System.Windows.Forms.ComboBox();
@@ -473,6 +475,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txtClientID);
+            this.panel3.Controls.Add(this.txtCustomerID);
             this.panel3.Controls.Add(this.radDealer);
             this.panel3.Controls.Add(this.comClient);
             this.panel3.Controls.Add(this.comEngCon);
@@ -485,6 +489,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(353, 102);
             this.panel3.TabIndex = 0;
+            // 
+            // txtClientID
+            // 
+            this.txtClientID.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtClientID.Location = new System.Drawing.Point(14, 70);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.Size = new System.Drawing.Size(56, 23);
+            this.txtClientID.TabIndex = 146;
+            this.txtClientID.Visible = false;
+            this.txtClientID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // txtCustomerID
+            // 
+            this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtCustomerID.Location = new System.Drawing.Point(14, 40);
+            this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.Size = new System.Drawing.Size(56, 23);
+            this.txtCustomerID.TabIndex = 145;
+            this.txtCustomerID.Visible = false;
+            this.txtCustomerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // radDealer
             // 
@@ -505,7 +529,7 @@
             this.comClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(47, 70);
+            this.comClient.Location = new System.Drawing.Point(76, 69);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(150, 24);
             this.comClient.TabIndex = 135;
@@ -517,7 +541,7 @@
             this.comEngCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(47, 39);
+            this.comEngCon.Location = new System.Drawing.Point(76, 39);
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(150, 24);
             this.comEngCon.TabIndex = 142;
@@ -529,7 +553,7 @@
             this.labelEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelEng.AutoSize = true;
             this.labelEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelEng.Location = new System.Drawing.Point(201, 43);
+            this.labelEng.Location = new System.Drawing.Point(230, 43);
             this.labelEng.Name = "labelEng";
             this.labelEng.Size = new System.Drawing.Size(119, 17);
             this.labelEng.TabIndex = 143;
@@ -556,7 +580,7 @@
             this.labelClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelClient.Location = new System.Drawing.Point(240, 74);
+            this.labelClient.Location = new System.Drawing.Point(269, 73);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(40, 17);
             this.labelClient.TabIndex = 136;
@@ -724,6 +748,8 @@
         private System.Windows.Forms.TextBox txtRecomendedBill;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraGrid.Columns.GridColumn colWorkTimer;
+        private System.Windows.Forms.TextBox txtClientID;
+        private System.Windows.Forms.TextBox txtCustomerID;
     }
 }
 

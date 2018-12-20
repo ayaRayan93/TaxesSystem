@@ -33,6 +33,12 @@ namespace MainSystem
             dbconnection2 = new MySqlConnection(connection.connectionString);
 
             main = Min;
+
+            panel1.AutoScroll = false;
+            panel1.VerticalScroll.Enabled = false;
+            panel1.VerticalScroll.Visible = false;
+            panel1.VerticalScroll.Maximum = 0;
+            panel1.AutoScroll = true;
         }
 
         private void Information_Products_Load(object sender, EventArgs e)
@@ -464,7 +470,7 @@ namespace MainSystem
         //clear function
         public void clear()
         {
-            foreach (Control co in this.groupBox1.Controls)
+            foreach (Control co in this.panel2.Controls)
             {
                 if (co is System.Windows.Forms.ComboBox)
                 {

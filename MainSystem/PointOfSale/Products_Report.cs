@@ -1899,7 +1899,7 @@ namespace MainSystem
                                                     com.ExecuteNonQuery();*/
 
                                                     dbconnection.Close();
-                                                    MessageBox.Show("تم");
+                                                    //MessageBox.Show("تم");
                                                     txtQuantity.Text = "";
                                                     comStore.Text = "";
                                                     //txtBillNum.Enabled = false;

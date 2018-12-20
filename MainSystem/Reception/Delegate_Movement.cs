@@ -127,6 +127,69 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            string query;
+            MySqlCommand com;
+            string Name;
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txtBox.Text != "")
+                    {
+                        dbconnection.Open();
+                        switch (txtBox.Name)
+                        {
+                            case "txtClientID":
+                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    dbconnection.Close();
+                                    comClient.Text = Name;
+                                    comClient.SelectedValue = txtClientID.Text;
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtCustomerID":
+                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    dbconnection.Close();
+                                    comEngCon.Text = Name;
+                                    comEngCon.SelectedValue = txtCustomerID.Text;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dbconnection.Close();
+            }
+        }
+
         private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             try
@@ -643,6 +706,8 @@ namespace MainSystem
                 txtRecomendedBill.Text = "";
                 comEngCon.Text = "";
                 comClient.Text = "";
+                txtClientID.Text = "";
+                txtCustomerID.Text = "";
             }
             catch (Exception ex)
             {
@@ -664,8 +729,10 @@ namespace MainSystem
                 {
                     labelEng.Visible = false;
                     comEngCon.Visible = false;
+                    txtCustomerID.Visible = false;
                     labelClient.Visible = true;
                     comClient.Visible = true;
+                    txtClientID.Visible = true;
                     //dash INNER JOIN dash_delegate_bill ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN  ... ON customer.Customer_ID = dash.Customer_ID
                     string query = "select distinct customer.Customer_ID,customer.Customer_Name from  customer  where customer.Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
@@ -675,14 +742,18 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    txtClientID.Text = "";
                     comEngCon.Text = "";
+                    txtCustomerID.Text = "";
                 }
                 else
                 {
                     labelEng.Visible = true;
                     comEngCon.Visible = true;
+                    txtCustomerID.Visible = true;
                     labelClient.Visible = false;
                     comClient.Visible = false;
+                    txtClientID.Visible = false;
                     //dash INNER JOIN dash_delegate_bill ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN  .. ON customer.Customer_ID = dash.Customer_ID
                     string query = "select distinct customer.Customer_ID,customer.Customer_Name from  customer  where customer.Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
@@ -692,7 +763,9 @@ namespace MainSystem
                     comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    txtClientID.Text = "";
                     comEngCon.Text = "";
+                    txtCustomerID.Text = "";
                 }
 
                 loaded = true;
@@ -710,10 +783,13 @@ namespace MainSystem
             {
                 try
                 {
+                    txtCustomerID.Text = comEngCon.SelectedValue.ToString();
                     labelClient.Visible = true;
                     comClient.Visible = true;
+                    txtClientID.Visible = true;
+                    loaded = false;
                     //dash INNER JOIN dash_delegate_bill ON dash_delegate_bill.Bill_Number = dash.Bill_Number AND dash_delegate_bill.Branch_ID = dash.Branch_ID INNER JOIN  ..  ON customer.Customer_ID = dash.Customer_ID
-                    string query = "select distinct customer.Customer_ID,customer.Customer_Name from  customer  where customer.Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    string query = "select distinct customer.Customer_ID,customer.Customer_Name from customer where customer.Customer_ID in (select custmer_client.Client_ID from custmer_client where custmer_client.Customer_ID=" + comEngCon.SelectedValue.ToString() + ")";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -721,6 +797,8 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
+                    txtClientID.Text = "";
+                    loaded = true;
 
                     gridSearch(comEngCon.SelectedValue.ToString());
                 }
@@ -1045,6 +1123,7 @@ namespace MainSystem
             {
                 try
                 {
+                    txtClientID.Text = comClient.SelectedValue.ToString();
                     gridSearch(comClient.SelectedValue.ToString());
                 }
                 catch (Exception ex)
