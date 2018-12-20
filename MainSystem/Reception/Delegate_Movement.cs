@@ -1056,7 +1056,7 @@ namespace MainSystem
                 gridControl1.DataSource = lista;
 
                 dbconnection6.Open();
-                string query = "SELECT dash.Bill_Number FROM dash where dash.Customer_ID=" + customId + " and dash.Branch_ID=" + EmpBranchId+ " order by dash.Dash_ID desc limit 1";
+                string query = "SELECT dash.Bill_Number FROM dash where dash.Customer_ID=" + customId + " and dash.Branch_ID=" + EmpBranchId+ " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                 MySqlCommand c = new MySqlCommand(query, dbconnection6);
                 if (c.ExecuteScalar() != null)
                 {
@@ -1066,6 +1066,7 @@ namespace MainSystem
             else
             {
                 gridControl1.DataSource = null;
+                txtRecomendedBill.Text = "";
             }
             
             dbconnection.Close();

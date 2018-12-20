@@ -16,11 +16,11 @@ using DevExpress.XtraBars.Docking2010;
 
 namespace MainSystem
 {
-    public partial class Customer_Print : DevExpress.XtraEditors.XtraForm
+    public partial class Customer_Print2 : DevExpress.XtraEditors.XtraForm
     {
         public GridControl mGridControl;
 
-        public Customer_Print()
+        public Customer_Print2()
         {
             InitializeComponent();
             mGridControl = new GridControl();
@@ -53,7 +53,7 @@ namespace MainSystem
         public void display()
         {
             PrintableComponentLink printableComponentLink = new PrintableComponentLink();
-            mGridControl = Customer_Report.gridcontrol;
+            mGridControl = Customer_Report2.gridcontrol;
             //printingSystem1.Begin();
             printableComponentLink.Component = mGridControl;
             printableComponentLink.RightToLeftLayout = true;
@@ -63,6 +63,7 @@ namespace MainSystem
             printableComponentLink.CreateReportHeaderArea += PrintableComponentLink_CreateReportHeaderArea;
             printableComponentLink.CreateMarginalFooterArea += PrintableComponentLink_CreateMarginalFooterArea;
             printableComponentLink.CreateDocument();
+            /*printableComponentLink.ShowPreview();*/
             //printingSystem1.End();
         }
 
@@ -98,7 +99,7 @@ namespace MainSystem
             PageImageBrick pageImageBrick;
 
             // Define the image to display.
-            Image pageImage = MainSystem.Properties.Resources.Logo;
+            Image pageImage = MainSystem.Properties.Resources.logo_option2;
 
             // Display the PageImageBrick containing the DevExpress logo.
             pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(856, 0, 100, 80), BorderSide.None, Color.Transparent);
