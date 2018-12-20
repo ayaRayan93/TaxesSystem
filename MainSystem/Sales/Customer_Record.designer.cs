@@ -42,6 +42,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnDeletePhone = new System.Windows.Forms.Button();
             this.btnAddPhone = new System.Windows.Forms.Button();
             this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
@@ -97,9 +98,8 @@
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -143,7 +143,7 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(553, 89);
+            this.txtName.Location = new System.Drawing.Point(567, 89);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(222, 26);
             this.txtName.TabIndex = 0;
@@ -152,7 +152,7 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(197, 89);
+            this.txtPhone.Location = new System.Drawing.Point(211, 89);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(189, 26);
             this.txtPhone.TabIndex = 1;
@@ -161,7 +161,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(553, 143);
+            this.txtAddress.Location = new System.Drawing.Point(567, 143);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(222, 26);
             this.txtAddress.TabIndex = 2;
@@ -170,7 +170,7 @@
             // txtINF
             // 
             this.txtINF.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtINF.Location = new System.Drawing.Point(197, 143);
+            this.txtINF.Location = new System.Drawing.Point(211, 143);
             this.txtINF.Multiline = true;
             this.txtINF.Name = "txtINF";
             this.txtINF.Size = new System.Drawing.Size(189, 134);
@@ -181,7 +181,7 @@
             // 
             this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radioButton1.Location = new System.Drawing.Point(359, 36);
+            this.radioButton1.Location = new System.Drawing.Point(373, 36);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton1.Size = new System.Drawing.Size(83, 25);
@@ -195,7 +195,7 @@
             // 
             this.radioButton2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radioButton2.Location = new System.Drawing.Point(12, 36);
+            this.radioButton2.Location = new System.Drawing.Point(26, 36);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton2.Size = new System.Drawing.Size(343, 25);
@@ -209,7 +209,7 @@
             // 
             this.radioButton3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radioButton3.Location = new System.Drawing.Point(446, 36);
+            this.radioButton3.Location = new System.Drawing.Point(460, 36);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton3.Size = new System.Drawing.Size(85, 25);
@@ -222,7 +222,7 @@
             // txtNationalID
             // 
             this.txtNationalID.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationalID.Location = new System.Drawing.Point(553, 251);
+            this.txtNationalID.Location = new System.Drawing.Point(567, 251);
             this.txtNationalID.Name = "txtNationalID";
             this.txtNationalID.Size = new System.Drawing.Size(222, 26);
             this.txtNationalID.TabIndex = 4;
@@ -231,7 +231,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(553, 197);
+            this.txtEmail.Location = new System.Drawing.Point(567, 197);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(222, 26);
             this.txtEmail.TabIndex = 3;
@@ -249,7 +249,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(898, 640);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(912, 640);
             this.tableLayoutPanel1.TabIndex = 33;
             // 
             // tableLayoutPanel2
@@ -267,7 +267,7 @@
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(892, 54);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(906, 54);
             this.tableLayoutPanel2.TabIndex = 35;
             // 
             // btnAdd
@@ -284,10 +284,10 @@
             this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(405, 4);
+            this.btnAdd.Location = new System.Drawing.Point(412, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(83, 46);
+            this.btnAdd.Size = new System.Drawing.Size(84, 46);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -327,9 +327,16 @@
             this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(892, 574);
+            this.layoutControl1.Size = new System.Drawing.Size(906, 574);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(2, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 550);
+            this.label6.TabIndex = 58;
             // 
             // btnDeletePhone
             // 
@@ -337,7 +344,7 @@
             this.btnDeletePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDeletePhone.ForeColor = System.Drawing.Color.White;
-            this.btnDeletePhone.Location = new System.Drawing.Point(12, 244);
+            this.btnDeletePhone.Location = new System.Drawing.Point(26, 244);
             this.btnDeletePhone.Name = "btnDeletePhone";
             this.btnDeletePhone.Size = new System.Drawing.Size(151, 33);
             this.btnDeletePhone.TabIndex = 56;
@@ -351,7 +358,7 @@
             this.btnAddPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPhone.ForeColor = System.Drawing.Color.White;
-            this.btnAddPhone.Location = new System.Drawing.Point(12, 89);
+            this.btnAddPhone.Location = new System.Drawing.Point(26, 89);
             this.btnAddPhone.Name = "btnAddPhone";
             this.btnAddPhone.Size = new System.Drawing.Size(151, 26);
             this.btnAddPhone.TabIndex = 55;
@@ -364,7 +371,7 @@
             this.checkedListBoxControlPhone.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBoxControlPhone.Appearance.Options.UseFont = true;
             this.checkedListBoxControlPhone.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(12, 143);
+            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(26, 143);
             this.checkedListBoxControlPhone.Name = "checkedListBoxControlPhone";
             this.checkedListBoxControlPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkedListBoxControlPhone.Size = new System.Drawing.Size(151, 97);
@@ -373,14 +380,14 @@
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(167, 143);
+            this.label15.Location = new System.Drawing.Point(181, 143);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(26, 134);
             this.label15.TabIndex = 53;
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(526, 143);
+            this.label14.Location = new System.Drawing.Point(540, 143);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(23, 134);
             this.label14.TabIndex = 52;
@@ -389,7 +396,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(167, 89);
+            this.label13.Location = new System.Drawing.Point(181, 89);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(26, 26);
             this.label13.TabIndex = 51;
@@ -400,7 +407,7 @@
             // 
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(526, 89);
+            this.label12.Location = new System.Drawing.Point(540, 89);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(23, 26);
             this.label12.TabIndex = 50;
@@ -409,21 +416,21 @@
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(495, 143);
+            this.label11.Location = new System.Drawing.Point(509, 143);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(27, 134);
             this.label11.TabIndex = 48;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(495, 89);
+            this.label10.Location = new System.Drawing.Point(509, 89);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 26);
             this.label10.TabIndex = 47;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(12, 12);
+            this.label9.Location = new System.Drawing.Point(26, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(868, 20);
             this.label9.TabIndex = 46;
@@ -439,7 +446,7 @@
             this.groupBox1.Controls.Add(this.radCon);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.groupBox1.Location = new System.Drawing.Point(12, 332);
+            this.groupBox1.Location = new System.Drawing.Point(26, 332);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(868, 230);
             this.groupBox1.TabIndex = 43;
@@ -546,35 +553,35 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(553, 173);
+            this.label7.Location = new System.Drawing.Point(567, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(327, 20);
             this.label7.TabIndex = 42;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 281);
+            this.label4.Location = new System.Drawing.Point(26, 281);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(868, 20);
             this.label4.TabIndex = 39;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(553, 227);
+            this.label3.Location = new System.Drawing.Point(567, 227);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(327, 20);
             this.label3.TabIndex = 38;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 119);
+            this.label2.Location = new System.Drawing.Point(26, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(868, 20);
             this.label2.TabIndex = 37;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 65);
+            this.label1.Location = new System.Drawing.Point(26, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(868, 20);
             this.label1.TabIndex = 36;
@@ -583,7 +590,7 @@
             // 
             this.radioButton4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radioButton4.Location = new System.Drawing.Point(535, 36);
+            this.radioButton4.Location = new System.Drawing.Point(549, 36);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(70, 25);
             this.radioButton4.TabIndex = 8;
@@ -594,7 +601,7 @@
             // 
             // txtOpenAccount
             // 
-            this.txtOpenAccount.Location = new System.Drawing.Point(553, 305);
+            this.txtOpenAccount.Location = new System.Drawing.Point(567, 305);
             this.txtOpenAccount.Name = "txtOpenAccount";
             this.txtOpenAccount.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1028,21 +1035,6 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(275, 29);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(898, 640);
-            this.panel1.TabIndex = 35;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(-12, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 550);
-            this.label6.TabIndex = 58;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.label6;
@@ -1051,6 +1043,14 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(24, 554);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(912, 640);
+            this.panel1.TabIndex = 35;
             // 
             // Customer_Record
             // 

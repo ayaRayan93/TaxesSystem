@@ -42,6 +42,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnDeletePhone = new System.Windows.Forms.Button();
             this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.btnAddPhone = new System.Windows.Forms.Button();
@@ -98,9 +99,8 @@
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -333,6 +333,13 @@
             this.layoutControl1.Size = new System.Drawing.Size(892, 574);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(-12, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 550);
+            this.label6.TabIndex = 58;
             // 
             // btnDeletePhone
             // 
@@ -1038,21 +1045,6 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(543, 31);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(898, 640);
-            this.panel1.TabIndex = 35;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(-12, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 550);
-            this.label6.TabIndex = 58;
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.label6;
@@ -1061,6 +1053,14 @@
             this.layoutControlItem7.Size = new System.Drawing.Size(24, 554);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(898, 640);
+            this.panel1.TabIndex = 35;
             // 
             // Customer_Update
             // 
