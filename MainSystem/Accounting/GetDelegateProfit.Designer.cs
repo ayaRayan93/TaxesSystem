@@ -97,7 +97,7 @@
             // 
             this.txtDelegateID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDelegateID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegateID.Location = new System.Drawing.Point(224, 50);
+            this.txtDelegateID.Location = new System.Drawing.Point(531, 39);
             this.txtDelegateID.Name = "txtDelegateID";
             this.txtDelegateID.Size = new System.Drawing.Size(48, 24);
             this.txtDelegateID.TabIndex = 194;
@@ -108,7 +108,7 @@
             this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(279, 50);
+            this.comDelegate.Location = new System.Drawing.Point(586, 39);
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.Size = new System.Drawing.Size(173, 24);
             this.comDelegate.TabIndex = 192;
@@ -119,7 +119,7 @@
             this.labelDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelDelegate.AutoSize = true;
             this.labelDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDelegate.Location = new System.Drawing.Point(458, 54);
+            this.labelDelegate.Location = new System.Drawing.Point(765, 43);
             this.labelDelegate.Name = "labelDelegate";
             this.labelDelegate.Size = new System.Drawing.Size(45, 16);
             this.labelDelegate.TabIndex = 193;
@@ -128,7 +128,7 @@
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeTo.Location = new System.Drawing.Point(548, 54);
+            this.dateTimeTo.Location = new System.Drawing.Point(232, 57);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
             this.dateTimeTo.TabIndex = 188;
@@ -136,7 +136,7 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeFrom.Location = new System.Drawing.Point(548, 18);
+            this.dateTimeFrom.Location = new System.Drawing.Point(232, 21);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFrom.TabIndex = 189;
@@ -146,7 +146,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(763, 19);
+            this.label2.Location = new System.Drawing.Point(447, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 190;
@@ -253,7 +253,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(762, 54);
+            this.label3.Location = new System.Drawing.Point(446, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 191;
@@ -335,6 +335,8 @@
             // repositoryItemCheckEdit1
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.ImageOptions.ImageChecked = global::MainSystem.Properties.Resources.Trolley_80px;
+            this.repositoryItemCheckEdit1.ImageOptions.ImageUnchecked = global::MainSystem.Properties.Resources.closeIcon;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // repositoryItemCheckedComboBoxEdit1
