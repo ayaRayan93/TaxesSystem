@@ -39,6 +39,7 @@
             this.colButton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colTimer = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colWorkTimer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAttend = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDeparture = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorEdit();
@@ -126,6 +127,7 @@
             this.colStatus,
             this.colButton,
             this.colTimer,
+            this.colWorkTimer,
             this.colAttend,
             this.colDeparture});
             this.gridView1.GridControl = this.gridControl1;
@@ -151,7 +153,7 @@
             this.colDelegateID.Caption = "التسلسل";
             this.colDelegateID.FieldName = "DelegateId";
             this.colDelegateID.Name = "colDelegateID";
-            this.colDelegateID.Width = 200;
+            this.colDelegateID.Width = 100;
             // 
             // colDelegate
             // 
@@ -163,7 +165,7 @@
             this.colDelegate.OptionsColumn.ReadOnly = true;
             this.colDelegate.Visible = true;
             this.colDelegate.VisibleIndex = 1;
-            this.colDelegate.Width = 215;
+            this.colDelegate.Width = 200;
             // 
             // repositoryItemTextEdit1
             // 
@@ -179,7 +181,7 @@
             this.colStatus.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colStatus.Visible = true;
             this.colStatus.VisibleIndex = 2;
-            this.colStatus.Width = 209;
+            this.colStatus.Width = 200;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -197,7 +199,7 @@
             this.colButton.OptionsColumn.AllowEdit = false;
             this.colButton.Visible = true;
             this.colButton.VisibleIndex = 3;
-            this.colButton.Width = 28;
+            this.colButton.Width = 25;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -215,7 +217,17 @@
             this.colTimer.OptionsColumn.AllowEdit = false;
             this.colTimer.Visible = true;
             this.colTimer.VisibleIndex = 4;
-            this.colTimer.Width = 150;
+            this.colTimer.Width = 120;
+            // 
+            // colWorkTimer
+            // 
+            this.colWorkTimer.Caption = "ساعات العمل";
+            this.colWorkTimer.FieldName = "WorkTimer";
+            this.colWorkTimer.Name = "colWorkTimer";
+            this.colWorkTimer.OptionsColumn.AllowEdit = false;
+            this.colWorkTimer.Visible = true;
+            this.colWorkTimer.VisibleIndex = 5;
+            this.colWorkTimer.Width = 120;
             // 
             // colAttend
             // 
@@ -225,8 +237,8 @@
             this.colAttend.OptionsColumn.AllowEdit = false;
             this.colAttend.OptionsColumn.ReadOnly = true;
             this.colAttend.Visible = true;
-            this.colAttend.VisibleIndex = 5;
-            this.colAttend.Width = 150;
+            this.colAttend.VisibleIndex = 6;
+            this.colAttend.Width = 148;
             // 
             // colDeparture
             // 
@@ -236,8 +248,8 @@
             this.colDeparture.OptionsColumn.AllowEdit = false;
             this.colDeparture.OptionsColumn.ReadOnly = true;
             this.colDeparture.Visible = true;
-            this.colDeparture.VisibleIndex = 6;
-            this.colDeparture.Width = 150;
+            this.colDeparture.VisibleIndex = 7;
+            this.colDeparture.Width = 147;
             // 
             // repositoryItemColorEdit1
             // 
@@ -711,6 +723,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox txtRecomendedBill;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraGrid.Columns.GridColumn colWorkTimer;
     }
 }
 

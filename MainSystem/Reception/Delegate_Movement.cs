@@ -795,6 +795,7 @@ namespace MainSystem
                 TimeSpan dt = new TimeSpan();
                 TimeSpan atime = new TimeSpan();
                 TimeSpan stattime = new TimeSpan();
+                TimeSpan worktime = new TimeSpan();
 
                 string query = "SELECT attendance.Status FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'";
                 MySqlCommand command = new MySqlCommand(query, dbconnection);
@@ -827,7 +828,7 @@ namespace MainSystem
                     }
 
                     dbconnection5.Open();
-                    MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time',cast(Status_Duration as time) as 'Status_Duration' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection5);
+                    MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time',cast(Status_Duration as time) as 'Status_Duration',cast(Work_Duration as time) as 'Work_Duration' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection5);
                     MySqlDataReader dr2 = adapter2.ExecuteReader();
                     if (dr2.HasRows)
                     {
@@ -837,10 +838,13 @@ namespace MainSystem
                             { }
                             if (TimeSpan.TryParse(dr2["Status_Duration"].ToString(), out stattime))
                             { }
+                            if (TimeSpan.TryParse(dr2["Work_Duration"].ToString(), out worktime))
+                            { }
 
                             gridView1.SetRowCellValue(i, colAttend, TimeSpan.Parse(dr2["Attendance_Time"].ToString()));
                             gridView1.SetRowCellValue(i, colDeparture, dt);
                             gridView1.SetRowCellValue(i, colTimer, stattime);
+                            gridView1.SetRowCellValue(i, colWorkTimer, worktime);
                             //lista.Add(new GridData() { DelegateId = Convert.ToInt16(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1", AttendId = TimeSpan.Parse(dr2["Attendance_Time"].ToString()), DepartureId = dt });
                         }
                         dr2.Close();
@@ -855,6 +859,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(i, colAttend, atime);
                     gridView1.SetRowCellValue(i, colDeparture, dt);
                     gridView1.SetRowCellValue(i, colTimer, stattime);
+                    gridView1.SetRowCellValue(i, colWorkTimer, worktime);
                 }
                 dbconnection.Close();
             }
@@ -900,6 +905,19 @@ namespace MainSystem
                             dr1.Close();
                         }
                         dbconnection3.Close();
+                        
+                        TimeSpan worktime = new TimeSpan();
+                        TimeSpan time1 = TimeSpan.FromMinutes(1);
+                        string q2 = "select cast(Work_Duration as time) from attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
+                        MySqlCommand com = new MySqlCommand(q2, dbconnection2);
+                        if (TimeSpan.TryParse(com.ExecuteScalar().ToString(), out worktime))
+                        { }
+
+                        worktime = worktime.Add(time1);
+                        q2 = "update attendance set Work_Duration='" + worktime + "' where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
+                        com = new MySqlCommand(q2, dbconnection2);
+                        com.ExecuteNonQuery();
+                        gridView1.SetRowCellValue(i, colWorkTimer, worktime);
                     }
 
                     else if (gridView1.GetRowCellDisplayText(i, colStatus).ToString() == "متاح")
@@ -1100,6 +1118,7 @@ namespace MainSystem
         public string DelegateName { get; set; }
         public string StatusID { get; set; }
         public TimeSpan StatusTimer { get; set; }
+        public TimeSpan WorkTimer { get; set; }
         public TimeSpan AttendId { get; set; }
         public TimeSpan DepartureId { get; set; }
     }
