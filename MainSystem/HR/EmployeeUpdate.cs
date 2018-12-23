@@ -58,7 +58,7 @@ namespace MainSystem
                 comDepartment.DataSource = dt;
                 comDepartment.DisplayMember = dt.Columns["Department_Name"].ToString();
                 comDepartment.ValueMember = dt.Columns["Department_ID"].ToString();
-                comDepartment.Text = row["Department_Name"].ToString();
+                comDepartment.Text = row["مكان العمل"].ToString();
                 setData();
                 load = true;
             }
@@ -287,7 +287,7 @@ namespace MainSystem
                     {
                         MessageBox.Show("تم تعديل البيانات بنجاح");
                         Employees.displayEmployee();
-                     //   UserControl.UserRecord("delegate", "تعديل", row[1].ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("delegate", "تعديل",Convert.ToInt16(row[1].ToString()), DateTime.Now,"", dbconnection);
                     }
                 }
                
