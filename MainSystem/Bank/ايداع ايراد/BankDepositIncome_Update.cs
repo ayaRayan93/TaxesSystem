@@ -16,7 +16,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool flag = false;
-        int branchID = 0;
+        //int branchID = 0;
         string PaymentMethod;
         int[] arrOFPhaat; //count of each catagory value of money in store
         int[] arrRestMoney;
@@ -26,6 +26,7 @@ namespace MainSystem
         XtraTabPage xtraTabPage;
         bool flagCategoriesSuccess = false;
         XtraTabControl tabControlBank;
+        int transitionbranchID = 0;
 
         public BankDepositIncome_Update(DataRowView SelRow, BankDepositIncome_Report form, XtraTabControl MainTabControlBank)
         {
@@ -39,9 +40,6 @@ namespace MainSystem
 
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cmbIncomeType.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbIncomeType.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -59,6 +57,7 @@ namespace MainSystem
             {
                 if (!loaded)
                 {
+                    transitionbranchID = UserControl.UserBranch(dbconnection);
                     loadBranch();
                 }
             }
@@ -67,22 +66,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-
-        private void cmbBranch_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    if (int.TryParse(cmbBranch.SelectedValue.ToString(), out branchID))
-                    {}
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
@@ -113,7 +96,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
 
                 radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='خزينة'";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -255,7 +238,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "*";
                 layoutControlItemCheck.Text = "رقم الكارت";
 
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -1128,19 +1111,10 @@ namespace MainSystem
         private void loadBranch()
         {
             dbconnection.Open();
-            string query = "select * from branch";
+
+            string query = "select * from income_Type";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
-            da.Fill(dt);
-            cmbBranch.DataSource = dt;
-            cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-            cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            cmbBranch.Text = selRow[2].ToString();
-            branchID = Convert.ToInt16(cmbBranch.SelectedValue.ToString());
-
-            query = "select * from income_Type";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
             da.Fill(dt);
             cmbIncomeType.DataSource = dt;
             cmbIncomeType.DisplayMember = dt.Columns["Type"].ToString();

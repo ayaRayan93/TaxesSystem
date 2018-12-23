@@ -17,7 +17,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         MySqlConnection myConnection;
         bool flag = false;
-        int branchID = 0;
+        //int branchID = 0;
         string PaymentMethod = "";
         int[] arrOFPhaat; //count of each catagory value of money in store
         int[] arrRestMoney;
@@ -29,6 +29,7 @@ namespace MainSystem
         DataRowView selRow;
         XtraTabControl tabControlBank;
         bool flagCategoriesSuccess = false;
+        int transitionbranchID = 0;
 
         public BankPullAgl_Update(DataRowView SelRow, BankPullAgl_Report form, XtraTabControl MainTabControlBank)
         {
@@ -61,6 +62,7 @@ namespace MainSystem
             {
                 if (!loadedBranch)
                 {
+                    transitionbranchID = UserControl.UserBranch(dbconnection);
                     loadBranch();
                 }
             }
@@ -123,7 +125,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
 
                 radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='خزينة'";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -1144,7 +1146,6 @@ namespace MainSystem
         private void loadBranch()
         {
             dbconnection.Open();
-            branchID = Convert.ToInt16(selRow["Branch_ID"].ToString());
             string query = "";
             string CustomerType = "";
 

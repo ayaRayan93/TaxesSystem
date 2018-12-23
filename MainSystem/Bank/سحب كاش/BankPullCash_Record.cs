@@ -44,6 +44,7 @@ namespace MainSystem
         bool flagBillNotFirstTime = false;
         bool flagCategoriesSuccess = false;
         string ConfirmEmp = "";
+        int transitionbranchID = 0;
 
         public BankPullCash_Record(BankPullCash_Report form, XtraTabControl MainTabControlBank)
         {
@@ -79,6 +80,7 @@ namespace MainSystem
             {
                 if (!loaded)
                 {
+                    transitionbranchID = UserControl.UserBranch(dbconnection);
                     loadBranch();
                 }
             }
@@ -267,7 +269,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
 
                 radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='خزينة'";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -411,7 +413,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "*";
                 layoutControlItemCheck.Text = "رقم الكارت";
 
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -503,11 +505,12 @@ namespace MainSystem
                                 connectionReader4.Close();
 
 
-                                string query = "insert into Transitions (Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID) values(@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID)";
+                                string query = "insert into Transitions (TransitionBranch_ID,Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID) values(@TransitionBranch_ID,@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
                                 com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = TypeBuy;
+                                com.Parameters.Add("@TransitionBranch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
                                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = cmbBranch.SelectedValue;
                                 com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = cmbBranch.Text;
                                 com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = billNumber;

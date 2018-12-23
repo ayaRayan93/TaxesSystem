@@ -30,6 +30,7 @@ namespace MainSystem
         string ConfirmEmp = "";
         bool flagCategoriesSuccess = false;
         XtraTabControl tabControlBank;
+        int transitionbranchID = 0;
 
         public BankDepositCash_Update(DataRowView SelRow, BankDepositCash_Report form, XtraTabControl MainTabControlBank)
         {
@@ -61,6 +62,7 @@ namespace MainSystem
             {
                 if (!loaded)
                 {
+                    transitionbranchID = UserControl.UserBranch(dbconnection);
                     loadBranch();
                 }
             }
@@ -117,7 +119,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
 
                 radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='خزينة'";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -261,7 +263,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "*";
                 layoutControlItemCheck.Text = "رقم الكارت";
 
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
