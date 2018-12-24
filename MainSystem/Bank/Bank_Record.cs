@@ -205,6 +205,11 @@ namespace MainSystem
                                 {
                                     checkedListBoxControlUser.Items.RemoveAt(0);
                                 }
+                                cont = checkedListBoxControlUserID.ItemCount;
+                                for (int i = 0; i < cont; i++)
+                                {
+                                    checkedListBoxControlUserID.Items.RemoveAt(0);
+                                }
                                 labelEmp.Visible = false;
                                 comBankUsers.Visible = false;
                                 btnAddUserToBank.Visible = false;
