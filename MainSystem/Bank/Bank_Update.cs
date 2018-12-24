@@ -275,7 +275,7 @@ namespace MainSystem
             comBankUsers.DataSource = dt;
             comBankUsers.DisplayMember = dt.Columns["Bank_Name"].ToString();
             comBankUsers.ValueMember = dt.Columns["Bank_ID"].ToString();
-            //comBankUsers.SelectedIndex = -1;
+            comBankUsers.SelectedIndex = -1;
 
             cmbType.Text = selRow[1].ToString();
 
