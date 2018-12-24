@@ -38,11 +38,18 @@ namespace MainSystem
                 dbconnection = new MySqlConnection(connection.connectionString);
                 InitializeComponent();
                 //bankSystem
-                initialize();
-                ReceptionSystem();
-                POSSystem();
-                SalesMainForm();
-                ShippingForm();
+                if (UserControl.userType == 5)
+                {
+                    POSSystem();
+                }
+                else
+                {
+                    initialize();
+                    ReceptionSystem();
+                    SalesMainForm();
+                    ShippingForm();
+                    POSSystem();
+                }
 
                 StoreTP = xtraTabPageStores;
                 SalesTP =xtraTabPageSales;

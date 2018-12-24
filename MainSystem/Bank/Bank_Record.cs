@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -391,5 +392,57 @@ namespace MainSystem
 
             loaded = true;
         }
+
+        private void btnAddUserToBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comBankUsers.SelectedIndex != -1 && comBankUsers.SelectedValue != null)
+                {
+                    conn.Open();
+                    
+                    for (int i = 0; i < checkedListBoxControlEmp.ItemCount; i++)
+                    {
+                        if (comBankUsers.Text == checkedListBoxControlEmp.Items[i].Value.ToString())
+                        {
+                            MessageBox.Show("هذا الرقم تم اضافتة");
+                            conn.Close();
+                            return;
+                        }
+                    }
+
+                    checkedListBoxControlEmp.Items.Add(comBankUsers.Text);
+                    comBankUsers.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (checkedListBoxControlEmp.CheckedItemsCount > 0)
+                {
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                        return;
+
+                    ArrayList temp = new ArrayList();
+                    foreach (int index in checkedListBoxControlEmp.CheckedIndices)
+                        temp.Add(checkedListBoxControlEmp.Items[index]);
+                    foreach (object item in temp)
+                        checkedListBoxControlEmp.Items.Remove(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    
     }
 }
