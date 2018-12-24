@@ -17,7 +17,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         bool successFlag = false;
         bool flag = false;
-        int branchID = 0;
+        //int branchID = 0;
         int ID = -1;
         private string PaymentMethod;
         int[] arrOFPhaat; //count of each catagory value of money in store
@@ -27,6 +27,7 @@ namespace MainSystem
         XtraTabPage xtraTabPage;
         XtraTabControl tabControlBank;
         bool flagCategoriesSuccess = false;
+        int transitionbranchID = 0;
 
         public BankPullExpense_Record(BankPullExpense_Report form, XtraTabControl MainTabControlBank)
         {
@@ -39,9 +40,6 @@ namespace MainSystem
 
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             cmbExpenseType.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbExpenseType.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -59,6 +57,7 @@ namespace MainSystem
             {
                 if (!loaded)
                 {
+                    transitionbranchID = UserControl.UserBranch(dbconnection);
                     loadBranch();
                 }
             }
@@ -67,22 +66,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-
-        private void cmbBranch_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    if (int.TryParse(cmbBranch.SelectedValue.ToString(), out branchID))
-                    {}
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
@@ -113,7 +96,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
 
                 radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='خزينة'";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -255,7 +238,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "*";
                 layoutControlItemCheck.Text = "رقم الكارت";
 
-                string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -328,13 +311,14 @@ namespace MainSystem
                         }
 
                         dbconnection.Open();
-                        string query = "insert into Transitions (Branch_ID,Branch_Name,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Employee_ID,Error) values(@Branch_ID,@Branch_Name,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Employee_ID,@Error)";
+                        string query = "insert into Transitions (TransitionBranch_ID,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Employee_ID,Error) values(@TransitionBranch_ID,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Employee_ID,@Error)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
                         com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "مصروف";
-                        com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = cmbBranch.SelectedValue;
-                        com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = cmbBranch.Text;
+                        com.Parameters.Add("@TransitionBranch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+                        //com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = cmbBranch.SelectedValue;
+                        //com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = cmbBranch.Text;
                         com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = ID;
                         com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
                         com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
@@ -1143,18 +1127,10 @@ namespace MainSystem
         private void loadBranch()
         {
             dbconnection.Open();
-            string query = "select * from branch";
+            
+            string query = "select * from expenses_type";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
-            da.Fill(dt);
-            cmbBranch.DataSource = dt;
-            cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-            cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            cmbBranch.SelectedIndex = -1;
-
-            query = "select * from expenses_type";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
             da.Fill(dt);
             cmbExpenseType.DataSource = dt;
             cmbExpenseType.DisplayMember = dt.Columns["Type"].ToString();

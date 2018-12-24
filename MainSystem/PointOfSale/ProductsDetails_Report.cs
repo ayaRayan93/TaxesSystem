@@ -133,7 +133,7 @@ namespace MainSystem
         public void search()
         {
             PSloaded = false;
-            DelegateBranchID = UserControl.UserBranch(conn);
+            DelegateBranchID = UserControl.DelegateBranch(conn);
             //if (delegateID == -1)
             //{
             //    delegateID = -1;

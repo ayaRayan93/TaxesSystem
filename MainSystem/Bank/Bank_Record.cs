@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,6 @@ namespace MainSystem
     {
         MySqlConnection conn;
         bool loaded = false;
-        public static bool addBankTextChangedFlag = false;
         XtraTabPage xtraTabPage;
 
         public Bank_Record()
@@ -96,7 +96,7 @@ namespace MainSystem
                             if (double.TryParse(txtStock.Text, out stock))
                             {
                                 MySqlCommand command = conn.CreateCommand();
-                                command.CommandText = "INSERT INTO bank (Bank_Type,Bank_Name,Branch_ID,Branch_Name,Bank_Stock,Start_Date,Bank_Info,Bank_Account,BankAccount_Type,BankVisa_ID,BankVisa,Machine_ID,User_ID,User_Name) VALUES (?Bank_Type,?Bank_Name,?Branch_ID,?Branch_Name,?Bank_Stock,?Start_Date,?Bank_Info,?Bank_Account,?BankAccount_Type,?BankVisa_ID,?BankVisa,?Machine_ID,?User_ID,?User_Name)";
+                                command.CommandText = "INSERT INTO bank (Bank_Type,Bank_Name,Branch_ID,Branch_Name,Bank_Stock,Start_Date,Bank_Info,Bank_Account,BankAccount_Type,BankVisa_ID,BankVisa,Machine_ID) VALUES (?Bank_Type,?Bank_Name,?Branch_ID,?Branch_Name,?Bank_Stock,?Start_Date,?Bank_Info,?Bank_Account,?BankAccount_Type,?BankVisa_ID,?BankVisa,?Machine_ID)";
 
                                 if (cmbType.Text == "خزينة")
                                 {
@@ -137,8 +137,8 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("?Bank_Stock", stock);
                                 command.Parameters.AddWithValue("?Start_Date", dateEdit1.DateTime.Date);
                                 command.Parameters.AddWithValue("?Bank_Info", txtInformation.Text);
-                                command.Parameters.AddWithValue("?User_ID", UserControl.userID);
-                                command.Parameters.AddWithValue("?User_Name", UserControl.userName);
+                                //command.Parameters.AddWithValue("?User_ID", UserControl.userID);
+                                //command.Parameters.AddWithValue("?User_Name", UserControl.userName);
                                 conn.Open();
                                 command.ExecuteNonQuery();
 
@@ -158,8 +158,17 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
                                 //////////////////////
 
+                                for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                                {
+                                    query = "insert into bank_users (Bank_ID,User_ID) values (@Bank_ID,@User_ID)";
+                                    command = new MySqlCommand(query, conn);
+                                    command.Parameters.AddWithValue("@Bank_ID", BankID);
+                                    command.Parameters.AddWithValue("@User_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
+                                    command.ExecuteNonQuery();
+                                }
+
                                 conn.Close();
-                                MessageBox.Show("تمت الاضافة");
+                                //MessageBox.Show("تمت الاضافة");
                                 cmbType.SelectedIndex = -1;
                                 txtName.Text = "";
                                 cmbBranch.SelectedIndex = -1;
@@ -189,9 +198,25 @@ namespace MainSystem
                                 labelBank.Text = "";
                                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                 labelID.Text = "";
+
+                                comBankUsers.SelectedIndex = -1;
+                                int cont = checkedListBoxControlUser.ItemCount;
+                                for (int i = 0; i < cont; i++)
+                                {
+                                    checkedListBoxControlUser.Items.RemoveAt(0);
+                                }
+                                cont = checkedListBoxControlUserID.ItemCount;
+                                for (int i = 0; i < cont; i++)
+                                {
+                                    checkedListBoxControlUserID.Items.RemoveAt(0);
+                                }
+                                labelEmp.Visible = false;
+                                comBankUsers.Visible = false;
+                                btnAddUserToBank.Visible = false;
+                                checkedListBoxControlUser.Visible = false;
+                                btnDeleteUser.Visible = false;
                                 loadBranch();
                                 xtraTabPage.ImageOptions.Image = null;
-                                addBankTextChangedFlag = false;
                             }
                             else
                             {
@@ -281,6 +306,11 @@ namespace MainSystem
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelID.Text = "*";
             }
+            labelEmp.Visible = true;
+            comBankUsers.Visible = true;
+            btnAddUserToBank.Visible = true;
+            checkedListBoxControlUser.Visible = true;
+            btnDeleteUser.Visible = true;
         }
 
         private void txtBox_TextChanged(object sender, EventArgs e)
@@ -293,12 +323,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        addBankTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        addBankTextChangedFlag = false;
                     }
                 }
             }
@@ -389,7 +417,79 @@ namespace MainSystem
             cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
             cmbBank.SelectedIndex = -1;
 
+            query = "select User_ID,User_Name from users where User_ID Not in(" + "select User_ID from bank_users " + ")";
+            da = new MySqlDataAdapter(query, conn);
+            dt = new DataTable();
+            da.Fill(dt);
+            comBankUsers.DataSource = dt;
+            comBankUsers.DisplayMember = dt.Columns["User_Name"].ToString();
+            comBankUsers.ValueMember = dt.Columns["User_ID"].ToString();
+            comBankUsers.SelectedIndex = -1;
+
             loaded = true;
         }
+
+        private void btnAddUserToBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comBankUsers.Text != "" && comBankUsers.SelectedIndex != -1 && comBankUsers.SelectedValue != null)
+                {
+                    conn.Open();
+                    
+                    for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                    {
+                        if (comBankUsers.SelectedValue.ToString() == checkedListBoxControlUserID.Items[i].Value.ToString())
+                        {
+                            MessageBox.Show("هذا الموظف تم اضافتة");
+                            conn.Close();
+                            return;
+                        }
+                    }
+
+                    checkedListBoxControlUserID.Items.Add(comBankUsers.SelectedValue.ToString());
+                    checkedListBoxControlUser.Items.Add(comBankUsers.Text);
+                    comBankUsers.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (checkedListBoxControlUser.CheckedItemsCount > 0)
+                {
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                        return;
+
+                    ArrayList temp = new ArrayList();
+                    ArrayList tempId = new ArrayList();
+                    foreach (int index in checkedListBoxControlUser.CheckedIndices)
+                    {
+                        temp.Add(checkedListBoxControlUser.Items[index]);
+                        tempId.Add(checkedListBoxControlUserID.Items[index]);
+                    }
+                    foreach (object item in temp)
+                    {
+                        checkedListBoxControlUser.Items.Remove(item);
+                    }
+                    foreach (object item in tempId)
+                    {
+                        checkedListBoxControlUserID.Items.Remove(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    
     }
 }

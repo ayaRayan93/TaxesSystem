@@ -225,6 +225,7 @@ namespace MainSystem
             gridView1.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             gridView1.Columns[15].Visible = false;
             gridView1.Columns[3].Visible = false;
+            gridView1.Columns["الفرع"].Visible = false;
             for (int i = 1; i < gridView1.Columns.Count; i++)
             {
                 gridView1.Columns[i].Width = 150;
