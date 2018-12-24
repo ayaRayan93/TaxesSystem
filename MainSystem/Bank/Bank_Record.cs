@@ -160,10 +160,10 @@ namespace MainSystem
 
                                 for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
                                 {
-                                    query = "insert into bank_users (Bank_ID,User_ID) values (@Bank_ID,@User_ID)";
+                                    query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
                                     command = new MySqlCommand(query, conn);
                                     command.Parameters.AddWithValue("@Bank_ID", BankID);
-                                    command.Parameters.AddWithValue("@User_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
+                                    command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
                                     command.ExecuteNonQuery();
                                 }
 
@@ -417,13 +417,13 @@ namespace MainSystem
             cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
             cmbBank.SelectedIndex = -1;
 
-            query = "select User_ID,User_Name from users where User_ID Not in(" + "select User_ID from bank_users " + ")";
+            query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
             da = new MySqlDataAdapter(query, conn);
             dt = new DataTable();
             da.Fill(dt);
             comBankUsers.DataSource = dt;
-            comBankUsers.DisplayMember = dt.Columns["User_Name"].ToString();
-            comBankUsers.ValueMember = dt.Columns["User_ID"].ToString();
+            comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
+            comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
             comBankUsers.SelectedIndex = -1;
 
             loaded = true;
@@ -465,7 +465,7 @@ namespace MainSystem
             {
                 if (checkedListBoxControlUser.CheckedItemsCount > 0)
                 {
-                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                         return;
 
                     ArrayList temp = new ArrayList();
@@ -490,6 +490,5 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-    
     }
 }

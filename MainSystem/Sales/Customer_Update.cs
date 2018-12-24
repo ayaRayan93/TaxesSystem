@@ -486,7 +486,7 @@ namespace MainSystem
             {
                 if (checkedListBoxControlPhone.CheckedItemsCount > 0)
                 {
-                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                         return;
 
                     dbconnection.Open();

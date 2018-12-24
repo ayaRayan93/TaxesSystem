@@ -126,7 +126,7 @@ namespace MainSystem
             {
                 DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
 
-                if (Bank_Update.updateBankTextChangedFlag == false)
+                if (MainTabPageUpdateBank.ImageOptions.Image == null)
                 {
                     if (selRow[0].ToString() != "")
                     {

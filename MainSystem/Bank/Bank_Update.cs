@@ -16,7 +16,6 @@ namespace MainSystem
     {
         MySqlConnection conn;
         bool loaded = false;
-        public static bool updateBankTextChangedFlag = false;
         DataRowView selRow;
         XtraTabPage xtraTabPage;
 
@@ -97,7 +96,7 @@ namespace MainSystem
                                 if (double.TryParse(txtStock.Text, out stock))
                                 {
                                     MySqlCommand command = conn.CreateCommand();
-                                    command.CommandText = "update bank set Bank_Stock=?Bank_Stock,Start_Date=?Start_Date,Bank_Info=?Bank_Info,Bank_Account=?Bank_Account,BankAccount_Type=?BankAccount_Type,User_ID=?User_ID,User_Name=?User_Name where Bank_ID=" + selRow[0].ToString();
+                                    command.CommandText = "update bank set Bank_Stock=?Bank_Stock,Start_Date=?Start_Date,Bank_Info=?Bank_Info,Bank_Account=?Bank_Account,BankAccount_Type=?BankAccount_Type where Bank_ID=" + selRow[0].ToString();
 
                                     if (cmbType.Text == "خزينة")
                                     {
@@ -117,8 +116,8 @@ namespace MainSystem
                                     command.Parameters.AddWithValue("?Bank_Stock", stock);
                                     command.Parameters.AddWithValue("?Start_Date", dateEdit1.DateTime.Date);
                                     command.Parameters.AddWithValue("?Bank_Info", txtInformation.Text);
-                                    command.Parameters.AddWithValue("?User_ID", UserControl.userID);
-                                    command.Parameters.AddWithValue("?User_Name", UserControl.userName);
+                                    //command.Parameters.AddWithValue("?User_ID", UserControl.userID);
+                                    //command.Parameters.AddWithValue("?User_Name", UserControl.userName);
                                     conn.Open();
                                     command.ExecuteNonQuery();
 
@@ -137,8 +136,7 @@ namespace MainSystem
                                     conn.Close();
                                     MessageBox.Show("تم التعديل");
                                     xtraTabPage.ImageOptions.Image = null;
-                                    updateBankTextChangedFlag = false;
-                                    MainForm.tabControlBank.TabPages.Remove(Bank_Report.MainTabPageUpdateBank);
+                                    MainForm.tabControlBank.TabPages.Remove(xtraTabPage);
                                 }
                                 else
                                 {
@@ -176,12 +174,10 @@ namespace MainSystem
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        updateBankTextChangedFlag = true;
                     }
                     else
                     {
                         xtraTabPage.ImageOptions.Image = null;
-                        updateBankTextChangedFlag = false;
                     }
                 }
             }
@@ -271,7 +267,16 @@ namespace MainSystem
             cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
             cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
             cmbBank.SelectedIndex = -1;
-            
+
+            query = "SELECT employee.Employee_Name,bank_employee.Employee_ID FROM bank_employee INNER JOIN employee ON bank_employee.Employee_ID = employee.Employee_ID";
+            da = new MySqlDataAdapter(query, conn);
+            dt = new DataTable();
+            da.Fill(dt);
+            comBankUsers.DataSource = dt;
+            comBankUsers.DisplayMember = dt.Columns["Bank_Name"].ToString();
+            comBankUsers.ValueMember = dt.Columns["Bank_ID"].ToString();
+            comBankUsers.SelectedIndex = -1;
+
             cmbType.Text = selRow[1].ToString();
 
             if (cmbType.Text == "خزينة")
