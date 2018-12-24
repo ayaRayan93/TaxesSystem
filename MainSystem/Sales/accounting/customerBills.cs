@@ -383,10 +383,10 @@ namespace MainSystem
         // display Customer bills
         public void displayBill()
         {
-            DateTime date = dateTimeFrom.Value.Date;
-            string d = date.ToString("yyyy-MM-dd");
-            DateTime date2 = dateTimeTo.Value.Date;
-            string d2 = date2.ToString("yyyy-MM-dd");
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -402,7 +402,7 @@ namespace MainSystem
             }
             else
             {
-                query = "select sum(TotalCostAD),sum(Total_CostAD), sum(tt1.Amount) as t1,sum(tt2.Amount)as t2,customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from transitions as tt1,transitions as tt2,customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Bill_Date between '" + d + "' and '" + d2 + "' and tt1.Transition='ايداع' and tt2.Transition='سحب'  group by customer_bill.Client_ID";
+               query = "select sum(TotalCostAD),sum(Total_CostAD), sum(tt1.Amount) as t1,sum(tt2.Amount)as t2,customer_bill.Customer_ID,customer_bill.Client_ID,c1.Customer_Name,c2.Customer_Name from transitions as tt1,transitions as tt2,customer_return_bill, customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Bill_Date between '" + d + "' and '" + d2 + "' and tt1.Transition='ايداع' and tt2.Transition='سحب'  group by customer_bill.Client_ID";
             }
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             MySqlDataReader dr = com.ExecuteReader();

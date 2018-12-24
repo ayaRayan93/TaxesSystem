@@ -330,10 +330,10 @@ namespace MainSystem
         // display Customer return bills
         public void displayReturnBill(DataGridView datagridview)
         {
-            DateTime date = dateTimeFrom.Value.Date;
-            string d = date.ToString("yyyy-MM-dd");
-            DateTime date2 = dateTimeTo.Value.Date;
-            string d2 = date2.ToString("yyyy-MM-dd");
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -383,10 +383,10 @@ namespace MainSystem
         // display Customer Paid bills
         public void displayPaidBill()
         {
-            DateTime date = dateTimeFrom.Value.Date;
-            string d = date.ToString("yyyy-MM-dd");
-            DateTime date2 = dateTimeTo.Value.Date;
-            string d2 = date2.ToString("yyyy-MM-dd");
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "", query1 = "";
             string Name = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
@@ -472,10 +472,10 @@ namespace MainSystem
         // display Customer Paid Return bills
         public void displayPaidReturnBill()
         {
-            DateTime date = dateTimeFrom.Value.Date;
-            string d = date.ToString("yyyy-MM-dd");
-            DateTime date2 = dateTimeTo.Value.Date;
-            string d2 = date2.ToString("yyyy-MM-dd");
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
             string query = "", query1 = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
