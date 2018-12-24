@@ -70,7 +70,7 @@ namespace MainSystem
         {
             try
             {
-                if (Bank_Record.addBankTextChangedFlag == false)
+                if (MainTabPageAddBank.ImageOptions.Image == null)
                 {
                     MainTabPageAddBank.Name = "tabPageAddBank";
                     MainTabPageAddBank.Text = "اضافة بنك";

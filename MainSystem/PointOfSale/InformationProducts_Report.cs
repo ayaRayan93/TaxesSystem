@@ -101,7 +101,7 @@ namespace MainSystem
         {
             try
             {
-                EmpBranchId = UserControl.UserBranch(dbconnection);
+                EmpBranchId = UserControl.DelegateBranch(dbconnection);
                 search();
                 search2();
                 foreach (GridColumn column in gridView1.Columns)

@@ -34,10 +34,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDeleteUser = new System.Windows.Forms.Button();
-            this.checkedListBoxControlEmp = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.checkedListBoxControlUserID = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.checkedListBoxControlUser = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.btnAddUserToBank = new System.Windows.Forms.Button();
             this.comBankUsers = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.labelEmp = new System.Windows.Forms.Label();
             this.labelInfo = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -113,7 +114,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlEmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUserID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -224,10 +226,11 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnDeleteUser);
-            this.panel2.Controls.Add(this.checkedListBoxControlEmp);
+            this.panel2.Controls.Add(this.checkedListBoxControlUserID);
+            this.panel2.Controls.Add(this.checkedListBoxControlUser);
             this.panel2.Controls.Add(this.btnAddUserToBank);
             this.panel2.Controls.Add(this.comBankUsers);
-            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.labelEmp);
             this.panel2.Location = new System.Drawing.Point(7, 355);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1029, 162);
@@ -246,18 +249,34 @@
             this.btnDeleteUser.TabIndex = 58;
             this.btnDeleteUser.Text = "-";
             this.btnDeleteUser.UseVisualStyleBackColor = false;
+            this.btnDeleteUser.Visible = false;
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
-            // checkedListBoxControlEmp
+            // checkedListBoxControlUserID
             // 
-            this.checkedListBoxControlEmp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBoxControlEmp.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBoxControlEmp.Appearance.Options.UseFont = true;
-            this.checkedListBoxControlEmp.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlEmp.Location = new System.Drawing.Point(417, 43);
-            this.checkedListBoxControlEmp.Name = "checkedListBoxControlEmp";
-            this.checkedListBoxControlEmp.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkedListBoxControlEmp.Size = new System.Drawing.Size(142, 97);
-            this.checkedListBoxControlEmp.TabIndex = 57;
+            this.checkedListBoxControlUserID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxControlUserID.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBoxControlUserID.Appearance.Options.UseFont = true;
+            this.checkedListBoxControlUserID.Cursor = System.Windows.Forms.Cursors.Default;
+            this.checkedListBoxControlUserID.Location = new System.Drawing.Point(565, 43);
+            this.checkedListBoxControlUserID.Name = "checkedListBoxControlUserID";
+            this.checkedListBoxControlUserID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkedListBoxControlUserID.Size = new System.Drawing.Size(52, 97);
+            this.checkedListBoxControlUserID.TabIndex = 57;
+            this.checkedListBoxControlUserID.Visible = false;
+            // 
+            // checkedListBoxControlUser
+            // 
+            this.checkedListBoxControlUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBoxControlUser.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBoxControlUser.Appearance.Options.UseFont = true;
+            this.checkedListBoxControlUser.Cursor = System.Windows.Forms.Cursors.Default;
+            this.checkedListBoxControlUser.Location = new System.Drawing.Point(417, 43);
+            this.checkedListBoxControlUser.Name = "checkedListBoxControlUser";
+            this.checkedListBoxControlUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkedListBoxControlUser.Size = new System.Drawing.Size(142, 97);
+            this.checkedListBoxControlUser.TabIndex = 57;
+            this.checkedListBoxControlUser.Visible = false;
             // 
             // btnAddUserToBank
             // 
@@ -273,6 +292,7 @@
             this.btnAddUserToBank.TabIndex = 29;
             this.btnAddUserToBank.Text = "+";
             this.btnAddUserToBank.UseVisualStyleBackColor = false;
+            this.btnAddUserToBank.Visible = false;
             this.btnAddUserToBank.Click += new System.EventHandler(this.btnAddUserToBank_Click);
             // 
             // comBankUsers
@@ -283,17 +303,19 @@
             this.comBankUsers.Name = "comBankUsers";
             this.comBankUsers.Size = new System.Drawing.Size(142, 24);
             this.comBankUsers.TabIndex = 30;
+            this.comBankUsers.Visible = false;
             // 
-            // label14
+            // labelEmp
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label14.Location = new System.Drawing.Point(565, 17);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(107, 17);
-            this.label14.TabIndex = 31;
-            this.label14.Text = "الموظف المسئول";
+            this.labelEmp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelEmp.AutoSize = true;
+            this.labelEmp.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelEmp.Location = new System.Drawing.Point(565, 17);
+            this.labelEmp.Name = "labelEmp";
+            this.labelEmp.Size = new System.Drawing.Size(107, 17);
+            this.labelEmp.TabIndex = 31;
+            this.labelEmp.Text = "الموظف المسئول";
+            this.labelEmp.Visible = false;
             // 
             // labelInfo
             // 
@@ -1086,8 +1108,11 @@
             // 
             this.layoutControlItem25.Control = this.label15;
             this.layoutControlItem25.Location = new System.Drawing.Point(0, 324);
+            this.layoutControlItem25.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem25.MinSize = new System.Drawing.Size(24, 24);
             this.layoutControlItem25.Name = "layoutControlItem25";
             this.layoutControlItem25.Size = new System.Drawing.Size(1033, 24);
+            this.layoutControlItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem25.TextVisible = false;
             // 
@@ -1109,7 +1134,8 @@
             this.dataLayoutControl1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlEmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUserID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -1230,12 +1256,13 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAddUserToBank;
         private System.Windows.Forms.ComboBox comBankUsers;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelEmp;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnDeleteUser;
-        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlEmp;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlUser;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlUserID;
     }
 }
 
