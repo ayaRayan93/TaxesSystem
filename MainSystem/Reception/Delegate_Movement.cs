@@ -139,6 +139,14 @@ namespace MainSystem
                 {
                     if (txtBox.Text != "")
                     {
+                        radNewBill.Visible = false;
+                        radOldBill.Visible = false;
+                        txtBill.Visible = false;
+                        labBill.Visible = false;
+                        txtBill.Text = "";
+                        txtBill.Enabled = false;
+                        btnStart.Visible = false;
+
                         dbconnection.Open();
                         switch (txtBox.Name)
                         {
@@ -798,6 +806,15 @@ namespace MainSystem
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
                     txtClientID.Text = "";
+
+                    radNewBill.Visible = false;
+                    radOldBill.Visible = false;
+                    txtBill.Visible = false;
+                    labBill.Visible = false;
+                    txtBill.Text = "";
+                    txtBill.Enabled = false;
+                    btnStart.Visible = false;
+
                     loaded = true;
 
                     gridSearch(comEngCon.SelectedValue.ToString());
@@ -1124,6 +1141,13 @@ namespace MainSystem
                 try
                 {
                     txtClientID.Text = comClient.SelectedValue.ToString();
+                    radNewBill.Visible = false;
+                    radOldBill.Visible = false;
+                    txtBill.Visible = false;
+                    labBill.Visible = false;
+                    txtBill.Text = "";
+                    txtBill.Enabled = false;
+                    btnStart.Visible = false;
                     gridSearch(comClient.SelectedValue.ToString());
                 }
                 catch (Exception ex)
@@ -1158,6 +1182,10 @@ namespace MainSystem
                 if (c.ExecuteScalar() != null)
                 {
                     txtRecomendedBill.Text = c.ExecuteScalar().ToString();
+                }
+                else
+                {
+                    txtRecomendedBill.Text = "";
                 }
             }
             else

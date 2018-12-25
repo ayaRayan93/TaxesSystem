@@ -89,7 +89,7 @@ namespace MainSystem
             tabPageDelegateBillTimeReport = new XtraTabPage();
             panelDelegateBillTimeReport = new Panel();
 
-            tabControlReception = xtraTabControl1;
+            tabControlReception = xtraTabControlReception;
         }
 
       
@@ -97,7 +97,7 @@ namespace MainSystem
         {
             try
             {
-                if (xtraTabControlPointSale.SelectedTabPage == tabPageDelegateBusyBillReport)
+                if (xtraTabControlReception.SelectedTabPage == tabPageDelegateBusyBillReport)
                 {
                     DelegateBusyBillReport.search();
                 }
@@ -148,7 +148,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1, "xtraTabPageReception");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception, "xtraTabPageReception");
                 if (xtraTabPage == null)
                 {
                     tabPageDelegateMovement.Name = "xtraTabPageReception";
@@ -165,9 +165,9 @@ namespace MainSystem
                 panelDelegateMovement.Controls.Clear();
                 panelDelegateMovement.Controls.Add(DelegateMovementShow);
                 tabPageDelegateMovement.Controls.Add(panelDelegateMovement);
-                xtraTabControl1.TabPages.Add(tabPageDelegateMovement);
+                xtraTabControlReception.TabPages.Add(tabPageDelegateMovement);
                 DelegateMovementShow.Show();
-                xtraTabControl1.SelectedTabPage = tabPageDelegateMovement;
+                xtraTabControlReception.SelectedTabPage = tabPageDelegateMovement;
             }
             catch (Exception ex)
             {
@@ -184,7 +184,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageGraphicActiveMonthReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageGraphicActiveMonthReport");
                 if (xtraTabPage == null)
                 {
                     tabPageGraphicActiveMonthReport.Name = "tabPageGraphicActiveMonthReport";
@@ -201,9 +201,9 @@ namespace MainSystem
                 panelGraphicActiveMonthReport.Controls.Clear();
                 panelGraphicActiveMonthReport.Controls.Add(GraphicActiveMonthReport);
                 tabPageGraphicActiveMonthReport.Controls.Add(panelGraphicActiveMonthReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageGraphicActiveMonthReport);
+                xtraTabControlReception.TabPages.Add(tabPageGraphicActiveMonthReport);
                 GraphicActiveMonthReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageGraphicActiveMonthReport;
+                xtraTabControlReception.SelectedTabPage = tabPageGraphicActiveMonthReport;
             }
             catch (Exception ex)
             {
@@ -219,7 +219,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageDelegateAbsenceReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageDelegateAbsenceReport");
                 if (xtraTabPage == null)
                 {
                     tabPageDelegateAbsenceReport.Name = "tabPageDelegateAbsenceReport";
@@ -236,9 +236,9 @@ namespace MainSystem
                 panelDelegateAbsenceReport.Controls.Clear();
                 panelDelegateAbsenceReport.Controls.Add(DelegateAbsenceReport);
                 tabPageDelegateAbsenceReport.Controls.Add(panelDelegateAbsenceReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageDelegateAbsenceReport);
+                xtraTabControlReception.TabPages.Add(tabPageDelegateAbsenceReport);
                 DelegateAbsenceReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageDelegateAbsenceReport;
+                xtraTabControlReception.SelectedTabPage = tabPageDelegateAbsenceReport;
             }
             catch (Exception ex)
             {
@@ -254,7 +254,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageCommitmentReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageCommitmentReport");
                 if (xtraTabPage == null)
                 {
                     tabPageCommitmentReport.Name = "tabPageCommitmentReport";
@@ -271,9 +271,9 @@ namespace MainSystem
                 panelCommitmentReport.Controls.Clear();
                 panelCommitmentReport.Controls.Add(CommitmentReport);
                 tabPageCommitmentReport.Controls.Add(panelCommitmentReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageCommitmentReport);
+                xtraTabControlReception.TabPages.Add(tabPageCommitmentReport);
                 CommitmentReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageCommitmentReport;
+                xtraTabControlReception.SelectedTabPage = tabPageCommitmentReport;
             }
             catch (Exception ex)
             {
@@ -289,7 +289,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageGraphicDelegateExistenceReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageGraphicDelegateExistenceReport");
                 if (xtraTabPage == null)
                 {
                     tabPageGraphicDelegateExistenceReport.Name = "tabPageGraphicDelegateExistenceReport";
@@ -306,9 +306,9 @@ namespace MainSystem
                 panelGraphicDelegateExistenceReport.Controls.Clear();
                 panelGraphicDelegateExistenceReport.Controls.Add(GraphicDelegateExistenceReport);
                 tabPageGraphicDelegateExistenceReport.Controls.Add(panelGraphicDelegateExistenceReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageGraphicDelegateExistenceReport);
+                xtraTabControlReception.TabPages.Add(tabPageGraphicDelegateExistenceReport);
                 GraphicDelegateExistenceReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageGraphicDelegateExistenceReport;
+                xtraTabControlReception.SelectedTabPage = tabPageGraphicDelegateExistenceReport;
             }
             catch (Exception ex)
             {
@@ -324,7 +324,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageGraphicDelegateBusyReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageGraphicDelegateBusyReport");
                 if (xtraTabPage == null)
                 {
                     tabPageGraphicDelegateBusyReport.Name = "tabPageGraphicDelegateBusyReport";
@@ -341,9 +341,9 @@ namespace MainSystem
                 panelGraphicDelegateBusyReport.Controls.Clear();
                 panelGraphicDelegateBusyReport.Controls.Add(GraphicDelegateBusyReport);
                 tabPageGraphicDelegateBusyReport.Controls.Add(panelGraphicDelegateBusyReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageGraphicDelegateBusyReport);
+                xtraTabControlReception.TabPages.Add(tabPageGraphicDelegateBusyReport);
                 GraphicDelegateBusyReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageGraphicDelegateBusyReport;
+                xtraTabControlReception.SelectedTabPage = tabPageGraphicDelegateBusyReport;
             }
             catch (Exception ex)
             {
@@ -359,7 +359,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageGraphicDelegateAvailableReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageGraphicDelegateAvailableReport");
                 if (xtraTabPage == null)
                 {
                     tabPageGraphicDelegateAvailableReport.Name = "tabPageGraphicDelegateAvailableReport";
@@ -376,9 +376,9 @@ namespace MainSystem
                 panelGraphicDelegateAvailableReport.Controls.Clear();
                 panelGraphicDelegateAvailableReport.Controls.Add(GraphicDelegateAvailableReport);
                 tabPageGraphicDelegateAvailableReport.Controls.Add(panelGraphicDelegateAvailableReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageGraphicDelegateAvailableReport);
+                xtraTabControlReception.TabPages.Add(tabPageGraphicDelegateAvailableReport);
                 GraphicDelegateAvailableReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageGraphicDelegateAvailableReport;
+                xtraTabControlReception.SelectedTabPage = tabPageGraphicDelegateAvailableReport;
             }
             catch (Exception ex)
             {
@@ -394,7 +394,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageGraphicDelegateBreakReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageGraphicDelegateBreakReport");
                 if (xtraTabPage == null)
                 {
                     tabPageGraphicDelegateBreakReport.Name = "tabPageGraphicDelegateBreakReport";
@@ -411,9 +411,9 @@ namespace MainSystem
                 panelGraphicDelegateBreakReport.Controls.Clear();
                 panelGraphicDelegateBreakReport.Controls.Add(GraphicDelegateBreakReport);
                 tabPageGraphicDelegateBreakReport.Controls.Add(panelGraphicDelegateBreakReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageGraphicDelegateBreakReport);
+                xtraTabControlReception.TabPages.Add(tabPageGraphicDelegateBreakReport);
                 GraphicDelegateBreakReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageGraphicDelegateBreakReport;
+                xtraTabControlReception.SelectedTabPage = tabPageGraphicDelegateBreakReport;
             }
             catch (Exception ex)
             {
@@ -429,7 +429,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageGraphicDelegateAbsenceReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageGraphicDelegateAbsenceReport");
                 if (xtraTabPage == null)
                 {
                     tabPageGraphicDelegateAbsenceReport.Name = "tabPageGraphicDelegateAbsenceReport";
@@ -446,9 +446,9 @@ namespace MainSystem
                 panelGraphicDelegateAbsenceReport.Controls.Clear();
                 panelGraphicDelegateAbsenceReport.Controls.Add(GraphicDelegateAbsenceReport);
                 tabPageGraphicDelegateAbsenceReport.Controls.Add(panelGraphicDelegateAbsenceReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageGraphicDelegateAbsenceReport);
+                xtraTabControlReception.TabPages.Add(tabPageGraphicDelegateAbsenceReport);
                 GraphicDelegateAbsenceReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageGraphicDelegateAbsenceReport;
+                xtraTabControlReception.SelectedTabPage = tabPageGraphicDelegateAbsenceReport;
             }
             catch (Exception ex)
             {
@@ -464,7 +464,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageDelegateBusyBillReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageDelegateBusyBillReport");
                 if (xtraTabPage == null)
                 {
                     tabPageDelegateBusyBillReport.Name = "tabPageDelegateBusyBillReport";
@@ -481,9 +481,9 @@ namespace MainSystem
                 panelDelegateBusyBillReport.Controls.Clear();
                 panelDelegateBusyBillReport.Controls.Add(DelegateBusyBillReport);
                 tabPageDelegateBusyBillReport.Controls.Add(panelDelegateBusyBillReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageDelegateBusyBillReport);
+                xtraTabControlReception.TabPages.Add(tabPageDelegateBusyBillReport);
                 DelegateBusyBillReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageDelegateBusyBillReport;
+                xtraTabControlReception.SelectedTabPage = tabPageDelegateBusyBillReport;
             }
             catch (Exception ex)
             {
@@ -499,7 +499,7 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControl1,"tabPageDelegateBillTimeReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception,"tabPageDelegateBillTimeReport");
                 if (xtraTabPage == null)
                 {
                     tabPageDelegateBillTimeReport.Name = "tabPageDelegateBillTimeReport";
@@ -516,17 +516,14 @@ namespace MainSystem
                 panelDelegateBillTimeReport.Controls.Clear();
                 panelDelegateBillTimeReport.Controls.Add(DelegateBillTimeReport);
                 tabPageDelegateBillTimeReport.Controls.Add(panelDelegateBillTimeReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageDelegateBillTimeReport);
+                xtraTabControlReception.TabPages.Add(tabPageDelegateBillTimeReport);
                 DelegateBillTimeReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageDelegateBillTimeReport;
+                xtraTabControlReception.SelectedTabPage = tabPageDelegateBillTimeReport;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-    
     }
 }

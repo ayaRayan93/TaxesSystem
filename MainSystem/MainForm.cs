@@ -29,6 +29,7 @@ namespace MainSystem
         XtraTabPage ReceptionTP;
         XtraTabPage ShippingTP;
         XtraTabPage AccountingTP;
+        XtraTabPage CodingTP;
         int index = 1;
         
         public MainForm()
@@ -60,6 +61,7 @@ namespace MainSystem
                 ReceptionTP = xtraTabPageReception;
                 ShippingTP = xtraTabPageShipping;
                 AccountingTP = xtraTabPageAccounting;
+                CodingTP = xtraTabPageCoding;
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageHR);
@@ -69,6 +71,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageReception);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageShipping);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageAccounting);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
             }
             catch (Exception ex)
             {
@@ -473,6 +476,23 @@ namespace MainSystem
                 Login loginForm = new Login();
                 loginForm.Show();
                 this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCoding_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCoding))
+                {
+                    xtraTabControlMainContainer.TabPages.Insert(index, CodingTP);
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCoding)];
             }
             catch (Exception ex)
             {

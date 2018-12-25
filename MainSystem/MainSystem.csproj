@@ -155,6 +155,30 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Coding\Branch_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Coding\Branch_Print.designer.cs">
+      <DependentUpon>Branch_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Coding\Branch_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Coding\Branch_Record.designer.cs">
+      <DependentUpon>Branch_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Coding\Branch_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Coding\Branch_Report.designer.cs">
+      <DependentUpon>Branch_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Coding\Branch_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Coding\Branch_Update.designer.cs">
+      <DependentUpon>Branch_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="HR\UserRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1285,6 +1309,7 @@
     <Compile Include="Shipping\Zone_Report.designer.cs">
       <DependentUpon>Zone_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="CodingSystem.cs" />
     <Compile Include="StoreSystem.cs" />
     <Compile Include="Store\Ataqm.cs">
       <SubType>Form</SubType>
@@ -1454,6 +1479,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Coding\Branch_Print.resx">
+      <DependentUpon>Branch_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Coding\Branch_Record.resx">
+      <DependentUpon>Branch_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Coding\Branch_Report.resx">
+      <DependentUpon>Branch_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Coding\Branch_Update.resx">
+      <DependentUpon>Branch_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\UserRecord.resx">
       <DependentUpon>UserRecord.cs</DependentUpon>
