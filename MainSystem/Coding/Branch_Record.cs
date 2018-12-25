@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraTab;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,13 @@ namespace MainSystem
     public partial class Branch_Record : Form
     {
         MySqlConnection conn;
-        public static bool addBranchTextChangedFlag = false;
+        XtraTabControl tabControlBranch;
 
-        public Branch_Record()
+        public Branch_Record(Branch_Report form, XtraTabControl MainTabControlBranch)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            tabControlBranch = MainTabControlBranch;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -54,10 +56,9 @@ namespace MainSystem
                         txtPostalCode.Text = "";
                         MessageBox.Show("تمت الاضافة");
 
-                        Branch_Report bReport = new Branch_Report();
-                        bReport.search();
-
-                        addBranchTextChangedFlag = false;
+                        //Branch_Report bReport = new Branch_Report();
+                        //bReport.search();
+                        
                     }
                     else
                     {
@@ -80,7 +81,6 @@ namespace MainSystem
         {
             try
             {
-                addBranchTextChangedFlag = true;
             }
             catch (Exception ex)
             {

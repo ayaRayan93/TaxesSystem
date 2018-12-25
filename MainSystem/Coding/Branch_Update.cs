@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraTab;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,35 @@ namespace MainSystem
     public partial class Branch_Update : Form
     {
         MySqlConnection conn;
-        public static bool updateBranchTextChangedFlag = false;
         DataRowView celRow;
+        XtraTabControl tabControlBranch;
+        XtraTabPage xtraTabPage;
+        bool loaded = false;
 
-        public Branch_Update(DataRowView CelRow)
+        public Branch_Update(DataRowView CelRow, Branch_Report form, XtraTabControl MainTabControlBranch)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             celRow = CelRow;
+            tabControlBranch = MainTabControlBranch;
+        }
+
+        private void Branch_Update_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                txtName.Text = celRow[1].ToString();
+                txtAddress.Text = celRow[2].ToString();
+                txtPhone.Text = celRow[3].ToString();
+                txtEmail.Text = celRow[4].ToString();
+                txtFax.Text = celRow[5].ToString();
+                txtPostalCode.Text = celRow[6].ToString();
+                loaded = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -54,14 +76,12 @@ namespace MainSystem
                         //txtEmail.Text = "";
                         //txtFax.Text = "";
                         //txtPostalCode.Text = "";
-                        MessageBox.Show("تم التعديل");
 
-                        Branch_Report bReport = new Branch_Report();
-                        bReport.search();
-
-                        updateBranchTextChangedFlag = false;
-
-                        /*Main.tabControlBranch.TabPages.Remove(Main.tabPageUpdateBranch);*/
+                        //Branch_Report bReport = new Branch_Report();
+                        //bReport.search();
+                        
+                        xtraTabPage = getTabPage("تعديل فرع");
+                        tabControlBranch.TabPages.Remove(xtraTabPage);
                     }
                     else
                     {
@@ -84,7 +104,18 @@ namespace MainSystem
         {
             try
             {
-                updateBranchTextChangedFlag = true;
+                if (loaded)
+                {
+                    xtraTabPage = getTabPage("تعديل فرع");
+                    if (!IsClear())
+                    {
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                    }
+                    else
+                    {
+                        xtraTabPage.ImageOptions.Image = null;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -92,22 +123,41 @@ namespace MainSystem
             }
         }
 
-        private void Branch_Update_Load(object sender, EventArgs e)
+        public XtraTabPage getTabPage(string text)
         {
-            try
+            for (int i = 0; i < tabControlBranch.TabPages.Count; i++)
+                if (tabControlBranch.TabPages[i].Text == text)
+                {
+                    return tabControlBranch.TabPages[i];
+                }
+            return null;
+        }
+
+        public bool IsClear()
+        {
+            bool flag5 = false;
+            foreach (Control co in this.panel1.Controls)
             {
-                txtName.Text = celRow[1].ToString();
-                txtAddress.Text = celRow[2].ToString();
-                txtPhone.Text = celRow[3].ToString();
-                txtEmail.Text = celRow[4].ToString();
-                txtFax.Text = celRow[5].ToString();
-                txtPostalCode.Text = celRow[6].ToString();
-                updateBranchTextChangedFlag = false;
+                foreach (Control item in co.Controls)
+                {
+                    if (item is ComboBox)
+                    {
+                        if (item.Text == "")
+                            flag5 = true;
+                        else
+                            return false;
+                    }
+                    else if (item is TextBox)
+                    {
+                        if (item.Text == "")
+                            flag5 = true;
+                        else
+                            return false;
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+            return flag5;
         }
     }
 

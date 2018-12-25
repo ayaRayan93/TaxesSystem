@@ -20,12 +20,8 @@ namespace MainSystem
     public partial class Branch_Report : Form
     {
         MySqlConnection conn;
+        MainForm branchMainForm = null;
         XtraTabControl MainTabControlBranch;
-        XtraTabPage MainTabPageAddBranch;
-        Panel panelAddBranch;
-
-        XtraTabPage MainTabPageUpdateBranch;
-        Panel panelUpdateBranch;
 
         XtraTabPage MainTabPagePrintingBranch;
         Panel panelPrintingBranch;
@@ -34,19 +30,15 @@ namespace MainSystem
 
         public static GridControl gridcontrol;
 
-        public Branch_Report()
+        public Branch_Report(MainForm BranchMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
-            /*MainTabControlBranch = Main.tabControlBranch;
-            MainTabPageAddBranch = Main.tabPageAddBranch;
-            panelAddBranch = Main.PanelAddBranch;
+            branchMainForm = BranchMainForm;
+            MainTabControlBranch = MainForm.tabControlBranch;
 
-            MainTabPageUpdateBranch = Main.tabPageUpdateBranch;
-            panelUpdateBranch = Main.PanelUpdateBranch;
-
-            MainTabPagePrintingBranch = Main.tabPagePrintingBranch;
-            panelPrintingBranch = Main.PanelPrintingBranch;*/
+            MainTabPagePrintingBranch = new XtraTabPage();
+            panelPrintingBranch = new Panel();
 
             gridcontrol = gridControl1;
         }
@@ -68,18 +60,7 @@ namespace MainSystem
         {
             try
             {
-                MainTabControlBranch.TabPages.Add(MainTabPageAddBranch);
-
-                MainTabControlBranch.SelectedTabPage = MainTabPageAddBranch;
-
-                panelAddBranch.Controls.Clear();
-                Branch_Record form = new Branch_Record();
-                form.Size = new Size(1059, 638);
-                form.TopLevel = false;
-                form.FormBorderStyle = FormBorderStyle.None;
-                form.Dock = DockStyle.Fill;
-                panelAddBranch.Controls.Add(form);
-                form.Show();
+                branchMainForm.bindRecordBranchForm(this);
             }
             catch (Exception ex)
             {
@@ -91,25 +72,14 @@ namespace MainSystem
         {
             try
             {
-                MainTabControlBranch.TabPages.Add(MainTabPageUpdateBranch);
-
-                MainTabControlBranch.SelectedTabPage = MainTabPageUpdateBranch;
-
-                panelUpdateBranch.Controls.Clear();
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                if (selRow[0].ToString() != "")
+                if (((GridView)gridView1).GetSelectedRows().Count() > 0)
                 {
-                    Branch_Update form = new Branch_Update(selRow);
-                    form.Size = new Size(1059, 638);
-                    form.TopLevel = false;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.Dock = DockStyle.Fill;
-                    panelUpdateBranch.Controls.Add(form);
-                    form.Show();
+                    DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
+                    branchMainForm.bindUpdateBranchForm(sellRow, this);
                 }
                 else
                 {
-                    MessageBox.Show("يجب ان تختار عنصر");
+                    MessageBox.Show("يجب تحديد العنصر المراد تعديله");
                 }
             }
             catch (Exception ex)

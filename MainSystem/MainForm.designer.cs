@@ -3533,6 +3533,7 @@
             this.xtraTabControlCoding.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlCoding.Size = new System.Drawing.Size(985, 702);
             this.xtraTabControlCoding.TabIndex = 4;
+            this.xtraTabControlCoding.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControl6
             // 
