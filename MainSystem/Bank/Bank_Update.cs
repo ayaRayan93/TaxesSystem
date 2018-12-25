@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace MainSystem
 {
@@ -132,10 +133,22 @@ namespace MainSystem
                                     command.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
                                     command.ExecuteNonQuery();
                                     //////////////////////
+                                    
+                                    query = "delete from bank_employee where Bank_ID=" + selRow[0].ToString();
+                                    command = new MySqlCommand(query, conn);
+                                    command.ExecuteNonQuery();
+
+                                    for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                                    {
+                                        query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
+                                        command = new MySqlCommand(query, conn);
+                                        command.Parameters.AddWithValue("@Bank_ID", selRow[0].ToString());
+                                        command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
+                                        command.ExecuteNonQuery();
+                                    }
 
                                     conn.Close();
-                                    MessageBox.Show("تم التعديل");
-                                    xtraTabPage.ImageOptions.Image = null;
+                                    //xtraTabPage.ImageOptions.Image = null;
                                     MainForm.tabControlBank.TabPages.Remove(xtraTabPage);
                                 }
                                 else
@@ -173,7 +186,7 @@ namespace MainSystem
                     xtraTabPage = getTabPage("tabPageUpdateBank");
                     if (!IsClear())
                     {
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
                     }
                     else
                     {
@@ -268,14 +281,23 @@ namespace MainSystem
             cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
             cmbBank.SelectedIndex = -1;
 
-            query = "SELECT employee.Employee_Name,bank_employee.Employee_ID FROM bank_employee INNER JOIN employee ON bank_employee.Employee_ID = employee.Employee_ID";
+            query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee where bank_employee.Bank_ID <> " + selRow[0].ToString() + ")";
             da = new MySqlDataAdapter(query, conn);
             dt = new DataTable();
             da.Fill(dt);
             comBankUsers.DataSource = dt;
-            comBankUsers.DisplayMember = dt.Columns["Bank_Name"].ToString();
-            comBankUsers.ValueMember = dt.Columns["Bank_ID"].ToString();
+            comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
+            comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
             comBankUsers.SelectedIndex = -1;
+
+            query = "select bank_employee.Employee_ID,employee.Employee_Name from bank_employee INNER JOIN employee ON employee.Employee_ID = bank_employee.Employee_ID where bank_employee.Bank_ID = " + selRow[0].ToString();
+            MySqlCommand com = new MySqlCommand(query, conn);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                checkedListBoxControlUserID.Items.Add(dr["Employee_ID"].ToString());
+                checkedListBoxControlUser.Items.Add(dr["Employee_Name"].ToString());
+            }
 
             cmbType.Text = selRow[1].ToString();
 
@@ -361,6 +383,68 @@ namespace MainSystem
             }
 
             loaded = true;
+        }
+
+        private void btnAddUserToBank_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comBankUsers.Text != "" && comBankUsers.SelectedIndex != -1 && comBankUsers.SelectedValue != null)
+                {
+                    conn.Open();
+
+                    for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                    {
+                        if (comBankUsers.SelectedValue.ToString() == checkedListBoxControlUserID.Items[i].Value.ToString())
+                        {
+                            MessageBox.Show("هذا الموظف تم اضافتة");
+                            conn.Close();
+                            return;
+                        }
+                    }
+
+                    checkedListBoxControlUserID.Items.Add(comBankUsers.SelectedValue.ToString());
+                    checkedListBoxControlUser.Items.Add(comBankUsers.Text);
+                    comBankUsers.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (checkedListBoxControlUser.CheckedItemsCount > 0)
+                {
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                        return;
+
+                    ArrayList temp = new ArrayList();
+                    ArrayList tempId = new ArrayList();
+                    foreach (int index in checkedListBoxControlUser.CheckedIndices)
+                    {
+                        temp.Add(checkedListBoxControlUser.Items[index]);
+                        tempId.Add(checkedListBoxControlUserID.Items[index]);
+                    }
+                    foreach (object item in temp)
+                    {
+                        checkedListBoxControlUser.Items.Remove(item);
+                    }
+                    foreach (object item in tempId)
+                    {
+                        checkedListBoxControlUserID.Items.Remove(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

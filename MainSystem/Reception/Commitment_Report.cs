@@ -29,7 +29,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from delegate where Branch_ID=" + UserControl.UserBranch(conn) + " and Error=0";
+                string query = "select * from delegate where Branch_ID=" + UserControl.UserBranch(conn) + "";
                 conn.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();

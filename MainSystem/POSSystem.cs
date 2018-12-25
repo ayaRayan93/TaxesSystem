@@ -203,7 +203,7 @@ namespace MainSystem
          public void test(/*int DelegateId,*/ int BillNum)
         {
             int count = 0;
-            string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + UserControl.UserBranch(conn);
+            string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + UserControl.DelegateBranch(conn);
             MySqlCommand com = new MySqlCommand(query, conn);
             conn.Open();
             MySqlDataReader dr = com.ExecuteReader();
