@@ -301,7 +301,6 @@ namespace MainSystem
                 string q = "select Customer_OpenAccount from customer where Customer_ID=" + txtCustomerID.Text;
                 MySqlCommand c = new MySqlCommand(q, dbconnection);
                 labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
-
                 return;
             }
             else
