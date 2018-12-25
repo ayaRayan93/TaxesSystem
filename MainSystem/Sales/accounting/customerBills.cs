@@ -353,9 +353,11 @@ namespace MainSystem
                 dbconnection1.Open();
                 dataGridView1.Rows.Clear();
 
-                displayBill();
-                //  displayReturnBill();
-                //  displayPaidBill();
+                customers_Bills();
+                customers_returnBills();
+                customersPaid_Bills();
+                customersPaid_returnBills();
+
                 double totalBill = 0, TotalReturn = 0, totalPaidBill = 0, TotalPaidReturn = 0;
 
                 foreach (DataGridViewRow row1 in dataGridView1.Rows)
@@ -378,9 +380,246 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection1.Close();
         }
-    
+
         //function
         // display Customer bills
+        public void customers_Bills()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string query = "";
+            if (txtClientID.Text != "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(Total_CostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill left JOIN customer as c1 on customer_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_bill.Client_ID = c2.Customer_ID where Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Customer_ID = '" + txtCustomerID.Text + "' and customer_bill.Client_ID ='"+txtClientID.Text+"' GROUP BY customer_bill.Customer_ID";
+            }
+            else if (txtClientID.Text == "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(Total_CostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill left JOIN customer as c1 on customer_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_bill.Client_ID = c2.Customer_ID where Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Customer_ID = '" + txtCustomerID.Text + "' and customer_bill.Client_ID is null GROUP BY customer_bill.Customer_ID";
+            }
+            else if (txtClientID.Text != "" && txtCustomerID.Text == "")
+            {
+                 query = "SELECT sum(Total_CostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill left JOIN customer as c1 on customer_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_bill.Client_ID = c2.Customer_ID where Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Client_ID = '" + txtClientID.Text + "' and customer_bill.Customer_ID is null GROUP BY customer_bill.Client_ID";
+            }
+            else
+            {
+                query = "SELECT sum(Total_CostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_bill.Customer_ID,customer_bill.Client_ID from customer_bill left JOIN customer as c1 on customer_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_bill.Client_ID = c2.Customer_ID where Bill_Date between '" + d+"' and '"+d2+"' GROUP BY customer_bill.Client_ID,customer_bill.Customer_ID";
+            }
+            MySqlCommand com = new MySqlCommand(query, dbconnection1);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                int n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells[7].Value = dr["sum(Total_CostAD)"].ToString();
+              
+
+                if (!dr.IsDBNull(1))
+                    dataGridView1.Rows[n].Cells[3].Value = dr["Customer_Name"].ToString();
+                else
+                    dataGridView1.Rows[n].Cells[3].Value = "";
+
+                dataGridView1.Rows[n].Cells[2].Value = dr["Client_Name"].ToString();
+
+                if (!dr.IsDBNull(3))
+                    dataGridView1.Rows[n].Cells[1].Value = dr["Customer_ID"].ToString();
+                else
+                    dataGridView1.Rows[n].Cells[1].Value = "";
+
+                dataGridView1.Rows[n].Cells[0].Value = dr["Client_ID"].ToString();
+            }
+            dr.Close();
+        }
+        public void customers_returnBills()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string query = "";
+            if (txtClientID.Text != "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(TotalCostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_return_bill.Customer_ID,customer_return_bill.Client_ID from customer_return_bill left JOIN customer as c1 on customer_return_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_return_bill.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Customer_ID = '" + txtCustomerID.Text + "' and customer_return_bill.Client_ID ='" + txtClientID.Text + "' GROUP BY customer_return_bill.Customer_ID";
+            }
+            else if (txtClientID.Text == "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(TotalCostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_return_bill.Customer_ID,customer_return_bill.Client_ID from customer_return_bill left JOIN customer as c1 on customer_return_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_return_bill.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Customer_ID = '" + txtCustomerID.Text + "' and customer_return_bill.Client_ID is null GROUP BY customer_return_bill.Customer_ID";
+            }
+            else if (txtClientID.Text != "" && txtCustomerID.Text == "")
+            {
+                query = "SELECT sum(TotalCostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_return_bill.Customer_ID,customer_return_bill.Client_ID from customer_return_bill left JOIN customer as c1 on customer_return_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_return_bill.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Client_ID = '" + txtClientID.Text + "' and customer_return_bill.Customer_ID is null GROUP BY customer_return_bill.Client_ID";
+            }
+            else
+            {
+                query = "SELECT sum(TotalCostAD),c1.Customer_Name ,c2.Customer_Name as Client_Name,customer_return_bill.Customer_ID,customer_return_bill.Client_ID from customer_return_bill left JOIN customer as c1 on customer_return_bill.Customer_ID = c1.Customer_ID left JOIN customer as c2 on customer_return_bill.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' GROUP BY customer_return_bill.Client_ID,customer_return_bill.Customer_ID";
+            }
+            MySqlCommand com = new MySqlCommand(query, dbconnection1);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                bool flag = true;
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells["Customer_Code"].ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].ToString() == dr["Client_ID"].ToString())
+                    {
+                        item.Cells[6].Value = dr["sum(TotalCostAD)"].ToString();
+                        flag = false;
+                    }
+                }
+                if (flag)
+                {
+                    int n = dataGridView1.Rows.Add();
+                    dataGridView1.Rows[n].Cells[6].Value = dr["sum(TotalCostAD)"].ToString();
+
+                    if (!dr.IsDBNull(1))
+                        dataGridView1.Rows[n].Cells[3].Value = dr["Customer_Name"].ToString();
+                    else
+                        dataGridView1.Rows[n].Cells[3].Value = "";
+
+                    dataGridView1.Rows[n].Cells[2].Value = dr["Client_Name"].ToString();
+
+                    if (!dr.IsDBNull(3))
+                        dataGridView1.Rows[n].Cells[1].Value = dr["Customer_ID"].ToString();
+                    else
+                        dataGridView1.Rows[n].Cells[1].Value = "";
+
+                    dataGridView1.Rows[n].Cells[0].Value = dr["Client_ID"].ToString();
+                }
+            }
+            dr.Close();
+        }
+
+        public void customersPaid_Bills()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string query = "";
+            if (txtClientID.Text != "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and transitions.Customer_ID = '" + txtCustomerID.Text + "' and transitions.Client_ID ='" + txtClientID.Text + "' and Transition='ايداع' GROUP BY transitions.Customer_ID";
+            }
+            else if (txtClientID.Text == "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and transitions.Customer_ID = '" + txtCustomerID.Text + "' and transitions.Client_ID is null and Transition='ايداع' GROUP BY transitions.Customer_ID";
+            }
+            else if (txtClientID.Text != "" && txtCustomerID.Text == "")
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and transitions.Client_ID = '" + txtClientID.Text + "' and transitions.Customer_ID is null and Transition='ايداع' GROUP BY transitions.Client_ID";
+            }
+            else
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and Transition='ايداع' GROUP BY transitions.Client_ID,transitions.Customer_ID";
+            }
+            MySqlCommand com = new MySqlCommand(query, dbconnection1);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                bool flag = true;
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells["Customer_Code"].ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].ToString() == dr["Client_ID"].ToString())
+                    {
+                        item.Cells[5].Value = dr["sum(Amount)"].ToString();
+                        flag = false;
+                    }
+                }
+                if (flag)
+                {
+                    int n = dataGridView1.Rows.Add();
+                    dataGridView1.Rows[n].Cells[5].Value = dr["sum(Amount)"].ToString();
+
+                    if (!dr.IsDBNull(1))
+                        dataGridView1.Rows[n].Cells[3].Value = dr["Customer_Name"].ToString();
+                    else
+                        dataGridView1.Rows[n].Cells[3].Value = "";
+
+                    dataGridView1.Rows[n].Cells[2].Value = dr["Client_Name"].ToString();
+
+                    if (!dr.IsDBNull(3))
+                        dataGridView1.Rows[n].Cells[1].Value = dr["Customer_ID"].ToString();
+                    else
+                        dataGridView1.Rows[n].Cells[1].Value = "";
+
+                    dataGridView1.Rows[n].Cells[0].Value = dr["Client_ID"].ToString();
+                }
+            }
+            dr.Close();
+        }
+        public void customersPaid_returnBills()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string query = "";
+            if (txtClientID.Text != "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and transitions.Customer_ID = '" + txtCustomerID.Text + "' and transitions.Client_ID ='" + txtClientID.Text + "' and Transition='سحب' GROUP BY transitions.Customer_ID";
+            }
+            else if (txtClientID.Text == "" && txtCustomerID.Text != "")
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and transitions.Customer_ID = '" + txtCustomerID.Text + "' and transitions.Client_ID is null and Transition='سحب' GROUP BY transitions.Customer_ID";
+            }
+            else if (txtClientID.Text != "" && txtCustomerID.Text == "")
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and transitions.Client_ID = '" + txtClientID.Text + "' and transitions.Customer_ID is null and Transition='سحب' GROUP BY transitions.Client_ID";
+            }
+            else
+            {
+                query = "SELECT sum(Amount),c1.Customer_Name ,c2.Customer_Name as Client_Name,transitions.Customer_ID,transitions.Client_ID from transitions left JOIN customer as c1 on transitions.Customer_ID = c1.Customer_ID left JOIN customer as c2 on transitions.Client_ID = c2.Customer_ID where Date between '" + d + "' and '" + d2 + "' and Transition='سحب' GROUP BY transitions.Client_ID,transitions.Customer_ID";
+            }
+            MySqlCommand com = new MySqlCommand(query, dbconnection1);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                bool flag = true;
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells["Customer_Code"].ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].ToString() == dr["Client_ID"].ToString())
+                    {
+                        item.Cells[4].Value = dr["sum(Amount)"].ToString();
+                        flag = false;
+                    }
+                }
+                if (flag)
+                {
+                    int n = dataGridView1.Rows.Add();
+                    dataGridView1.Rows[n].Cells[4].Value = dr["sum(Amount)"].ToString();
+
+                    if (!dr.IsDBNull(1))
+                        dataGridView1.Rows[n].Cells[3].Value = dr["Customer_Name"].ToString();
+                    else
+                        dataGridView1.Rows[n].Cells[3].Value = "";
+
+                    dataGridView1.Rows[n].Cells[2].Value = dr["Client_Name"].ToString();
+
+                    if (!dr.IsDBNull(3))
+                        dataGridView1.Rows[n].Cells[1].Value = dr["Customer_ID"].ToString();
+                    else
+                        dataGridView1.Rows[n].Cells[1].Value = "";
+
+                    dataGridView1.Rows[n].Cells[0].Value = dr["Client_ID"].ToString();
+                }
+            }
+            dr.Close();
+        }
+
+
+
+
+
+
+
+
+
+
+
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
@@ -431,6 +670,7 @@ namespace MainSystem
             }
             dr.Close();
         }
+
 
         // display Customer return bills
         public void displayReturnBill()
