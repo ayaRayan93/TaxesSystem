@@ -50,6 +50,7 @@ namespace MainSystem
                     SalesMainForm();
                     ShippingForm();
                     POSSystem();
+                    initializeBranch();
                 }
 
                 StoreTP = xtraTabPageStores;
