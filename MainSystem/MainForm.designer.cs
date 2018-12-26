@@ -2552,6 +2552,7 @@
             this.navBarItem93.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.navBarItem93.Appearance.Options.UseFont = true;
             this.navBarItem93.Caption = "ايراد";
+            this.navBarItem93.Enabled = false;
             this.navBarItem93.Name = "navBarItem93";
             this.navBarItem93.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncome_LinkClicked);
             // 
@@ -2605,6 +2606,7 @@
             this.navBarItem97.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.navBarItem97.Appearance.Options.UseFont = true;
             this.navBarItem97.Caption = "مصروف";
+            this.navBarItem97.Enabled = false;
             this.navBarItem97.Name = "navBarItem97";
             this.navBarItem97.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpense_LinkClicked);
             // 
