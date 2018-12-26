@@ -215,9 +215,10 @@ namespace MainSystem
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("تم تعديل البيانات بنجاح");
                         Employees.displayEmployee();
                         UserControl.ItemRecord("employee", "تعديل", Convert.ToInt16(row[1].ToString()), DateTime.Now, "", dbconnection);
+                        XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
+                        xtraTabControlHRContent.TabPages.Remove(xtraTabPage);
                     }
                 }
                 else
@@ -319,12 +320,13 @@ namespace MainSystem
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("تم تعديل البيانات بنجاح");
                         Employees.displayEmployee();
                         UserControl.ItemRecord("delegate", "تعديل",Convert.ToInt16(row[1].ToString()), DateTime.Now,"", dbconnection);
+                        XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
+                        xtraTabControlHRContent.TabPages.Remove(xtraTabPage);
                     }
                 }
-               
+
             }
             catch (Exception ex)
             {
