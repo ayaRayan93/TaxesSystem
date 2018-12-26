@@ -30,6 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labelBranch = new System.Windows.Forms.Label();
+            this.labelDepartement = new System.Windows.Forms.Label();
             this.comDepartment = new System.Windows.Forms.ComboBox();
             this.txtTaraget = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -75,8 +77,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.labelDepartement = new System.Windows.Forms.Label();
-            this.labelBranch = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
@@ -152,6 +152,32 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1078, 628);
             this.panel2.TabIndex = 72;
+            // 
+            // labelBranch
+            // 
+            this.labelBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelBranch.AutoSize = true;
+            this.labelBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelBranch.Location = new System.Drawing.Point(699, 522);
+            this.labelBranch.Name = "labelBranch";
+            this.labelBranch.Size = new System.Drawing.Size(17, 24);
+            this.labelBranch.TabIndex = 126;
+            this.labelBranch.Text = "*";
+            this.labelBranch.Visible = false;
+            // 
+            // labelDepartement
+            // 
+            this.labelDepartement.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelDepartement.AutoSize = true;
+            this.labelDepartement.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDepartement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelDepartement.Location = new System.Drawing.Point(699, 565);
+            this.labelDepartement.Name = "labelDepartement";
+            this.labelDepartement.Size = new System.Drawing.Size(17, 24);
+            this.labelDepartement.TabIndex = 125;
+            this.labelDepartement.Text = "*";
+            this.labelDepartement.Visible = false;
             // 
             // comDepartment
             // 
@@ -545,9 +571,9 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(406, 385);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 18);
+            this.label9.Size = new System.Drawing.Size(44, 18);
             this.label9.TabIndex = 107;
-            this.label9.Text = "التلفون";
+            this.label9.Text = "التليفون";
             // 
             // label8
             // 
@@ -683,32 +709,6 @@
             this.btnAdd.Size = new System.Drawing.Size(127, 45);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAddEmployee_Click);
-            // 
-            // labelDepartement
-            // 
-            this.labelDepartement.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelDepartement.AutoSize = true;
-            this.labelDepartement.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDepartement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDepartement.Location = new System.Drawing.Point(699, 565);
-            this.labelDepartement.Name = "labelDepartement";
-            this.labelDepartement.Size = new System.Drawing.Size(17, 24);
-            this.labelDepartement.TabIndex = 125;
-            this.labelDepartement.Text = "*";
-            this.labelDepartement.Visible = false;
-            // 
-            // labelBranch
-            // 
-            this.labelBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelBranch.AutoSize = true;
-            this.labelBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelBranch.Location = new System.Drawing.Point(699, 522);
-            this.labelBranch.Name = "labelBranch";
-            this.labelBranch.Size = new System.Drawing.Size(17, 24);
-            this.labelBranch.TabIndex = 126;
-            this.labelBranch.Text = "*";
-            this.labelBranch.Visible = false;
             // 
             // EmployeeRecord
             // 
