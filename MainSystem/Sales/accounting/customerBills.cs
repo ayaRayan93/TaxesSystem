@@ -366,7 +366,6 @@ namespace MainSystem
                     TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
                     totalPaidBill += Convert.ToDouble(row1.Cells[5].Value);
                     TotalPaidReturn += Convert.ToDouble(row1.Cells[4].Value);
-
                 }
            
                 labBills.Text = (totalBill - TotalReturn).ToString("000,000.00");
@@ -462,7 +461,7 @@ namespace MainSystem
                 bool flag = true;
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    if (item.Cells["Customer_Code"].ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].ToString() == dr["Client_ID"].ToString())
+                    if (item.Cells["Customer_Code"].Value.ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].Value.ToString() == dr["Client_ID"].ToString())
                     {
                         item.Cells[6].Value = dr["sum(TotalCostAD)"].ToString();
                         flag = false;
@@ -522,7 +521,8 @@ namespace MainSystem
                 bool flag = true;
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    if (item.Cells["Customer_Code"].ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].ToString() == dr["Client_ID"].ToString())
+           
+                    if (item.Cells["Customer_Code"].Value.ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].Value.ToString() == dr["Client_ID"].ToString())
                     {
                         item.Cells[5].Value = dr["sum(Amount)"].ToString();
                         flag = false;
@@ -581,7 +581,7 @@ namespace MainSystem
                 bool flag = true;
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    if (item.Cells["Customer_Code"].ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].ToString() == dr["Client_ID"].ToString())
+                    if (item.Cells["Customer_Code"].Value.ToString() == dr["Customer_ID"].ToString() && item.Cells["Client_Code"].Value.ToString() == dr["Client_ID"].ToString())
                     {
                         item.Cells[4].Value = dr["sum(Amount)"].ToString();
                         flag = false;
@@ -670,8 +670,6 @@ namespace MainSystem
             }
             dr.Close();
         }
-
-
         // display Customer return bills
         public void displayReturnBill()
         {
@@ -728,7 +726,6 @@ namespace MainSystem
             }
             dr.Close();
         }
-
         // display Customer Paid bills
         public void displayPaidBill()
         {
