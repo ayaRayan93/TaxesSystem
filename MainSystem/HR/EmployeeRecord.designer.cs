@@ -75,6 +75,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.labelDepartement = new System.Windows.Forms.Label();
+            this.labelBranch = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
@@ -100,6 +102,8 @@
             this.panel2.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.panel2.AutoScrollMinSize = new System.Drawing.Size(2, 2);
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.labelBranch);
+            this.panel2.Controls.Add(this.labelDepartement);
             this.panel2.Controls.Add(this.comDepartment);
             this.panel2.Controls.Add(this.txtTaraget);
             this.panel2.Controls.Add(this.label19);
@@ -156,6 +160,7 @@
             this.comDepartment.FormattingEnabled = true;
             this.comDepartment.Location = new System.Drawing.Point(722, 565);
             this.comDepartment.Name = "comDepartment";
+            this.comDepartment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDepartment.Size = new System.Drawing.Size(200, 24);
             this.comDepartment.TabIndex = 124;
             // 
@@ -266,6 +271,7 @@
             this.comBranch.FormattingEnabled = true;
             this.comBranch.Location = new System.Drawing.Point(722, 522);
             this.comBranch.Name = "comBranch";
+            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBranch.Size = new System.Drawing.Size(200, 24);
             this.comBranch.TabIndex = 91;
             this.comBranch.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -678,6 +684,32 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAddEmployee_Click);
             // 
+            // labelDepartement
+            // 
+            this.labelDepartement.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelDepartement.AutoSize = true;
+            this.labelDepartement.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDepartement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelDepartement.Location = new System.Drawing.Point(699, 565);
+            this.labelDepartement.Name = "labelDepartement";
+            this.labelDepartement.Size = new System.Drawing.Size(17, 24);
+            this.labelDepartement.TabIndex = 125;
+            this.labelDepartement.Text = "*";
+            this.labelDepartement.Visible = false;
+            // 
+            // labelBranch
+            // 
+            this.labelBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelBranch.AutoSize = true;
+            this.labelBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelBranch.Location = new System.Drawing.Point(699, 522);
+            this.labelBranch.Name = "labelBranch";
+            this.labelBranch.Size = new System.Drawing.Size(17, 24);
+            this.labelBranch.TabIndex = 126;
+            this.labelBranch.Text = "*";
+            this.labelBranch.Visible = false;
+            // 
             // EmployeeRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,5 +779,7 @@
         private System.Windows.Forms.TextBox txtTaraget;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox comDepartment;
+        private System.Windows.Forms.Label labelBranch;
+        private System.Windows.Forms.Label labelDepartement;
     }
 }
