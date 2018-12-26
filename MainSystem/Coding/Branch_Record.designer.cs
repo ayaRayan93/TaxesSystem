@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,28 +55,22 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label7 = new System.Windows.Forms.Label();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label8 = new System.Windows.Forms.Label();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label9 = new System.Windows.Forms.Label();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label10 = new System.Windows.Forms.Label();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label11 = new System.Windows.Forms.Label();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label12 = new System.Windows.Forms.Label();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
@@ -80,18 +80,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
@@ -138,6 +138,54 @@
             this.dataLayoutControl1.Size = new System.Drawing.Size(917, 600);
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(7, 7);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(903, 20);
+            this.label12.TabIndex = 22;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(7, 31);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(275, 26);
+            this.label11.TabIndex = 21;
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(7, 180);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(903, 20);
+            this.label10.TabIndex = 20;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(7, 126);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(903, 20);
+            this.label9.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(7, 61);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(903, 20);
+            this.label8.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(690, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(220, 26);
+            this.label7.TabIndex = 17;
             // 
             // label6
             // 
@@ -193,11 +241,10 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.88889F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.88889F));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(7, 537);
@@ -222,10 +269,10 @@
             this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(455, 4);
+            this.btnAdd.Location = new System.Drawing.Point(410, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(94, 48);
+            this.btnAdd.Size = new System.Drawing.Size(84, 48);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -372,25 +419,6 @@
             this.layoutControlItem2.TextLocation = DevExpress.Utils.Locations.Right;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(102, 26);
             // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem3.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem3.Control = this.txtPhone;
-            this.layoutControlItem3.Location = new System.Drawing.Point(24, 78);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 41);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(129, 41);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(430, 41);
-            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem3.Text = "رقم التليفون";
-            this.layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Right;
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(102, 26);
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -409,26 +437,6 @@
             this.layoutControlItem4.Text = "الايميل";
             this.layoutControlItem4.TextLocation = DevExpress.Utils.Locations.Right;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(102, 26);
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItem5.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItem5.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem5.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem5.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem5.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem5.Control = this.txtFax;
-            this.layoutControlItem5.CustomizationFormText = "فاكس";
-            this.layoutControlItem5.Location = new System.Drawing.Point(24, 143);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 30);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(129, 30);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(430, 30);
-            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem5.Text = "فاكس";
-            this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Right;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(102, 26);
             // 
             // layoutControlItem6
             // 
@@ -479,15 +487,6 @@
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.label3;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 78);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(24, 41);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.label4;
@@ -496,15 +495,6 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(24, 30);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.label5;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 143);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(24, 30);
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem13
             // 
@@ -515,13 +505,33 @@
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
-            // label7
+            // layoutControlItem3
             // 
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(690, 31);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(220, 26);
-            this.label7.TabIndex = 17;
+            this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem3.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem3.Control = this.txtPhone;
+            this.layoutControlItem3.Location = new System.Drawing.Point(24, 78);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 41);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(129, 41);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(430, 41);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem3.Text = "رقم التليفون";
+            this.layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Right;
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(102, 26);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.label3;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 78);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(24, 41);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
             // 
             // layoutControlItem14
             // 
@@ -532,13 +542,34 @@
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
-            // label8
+            // layoutControlItem5
             // 
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(7, 61);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(903, 20);
-            this.label8.TabIndex = 18;
+            this.layoutControlItem5.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem5.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem5.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem5.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem5.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem5.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem5.Control = this.txtFax;
+            this.layoutControlItem5.CustomizationFormText = "فاكس";
+            this.layoutControlItem5.Location = new System.Drawing.Point(24, 143);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 30);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(129, 30);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(430, 30);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.Text = "فاكس";
+            this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Right;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(102, 26);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.label5;
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 143);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(24, 30);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem15
             // 
@@ -552,14 +583,6 @@
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(7, 126);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(903, 20);
-            this.label9.TabIndex = 19;
-            // 
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.label9;
@@ -571,14 +594,6 @@
             this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(7, 180);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(903, 20);
-            this.label10.TabIndex = 20;
             // 
             // layoutControlItem17
             // 
@@ -592,14 +607,6 @@
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem17.TextVisible = false;
             // 
-            // label11
-            // 
-            this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(7, 31);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(275, 26);
-            this.label11.TabIndex = 21;
-            // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.label11;
@@ -608,14 +615,6 @@
             this.layoutControlItem18.Size = new System.Drawing.Size(279, 30);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
-            // 
-            // label12
-            // 
-            this.label12.BackColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(7, 7);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(903, 20);
-            this.label12.TabIndex = 22;
             // 
             // layoutControlItem19
             // 
@@ -649,18 +648,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
