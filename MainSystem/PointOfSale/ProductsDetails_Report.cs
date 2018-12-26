@@ -11,7 +11,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -133,7 +135,8 @@ namespace MainSystem
         public void search()
         {
             PSloaded = false;
-            DelegateBranchID = UserControl.DelegateBranch(conn);
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+            DelegateBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
             //if (delegateID == -1)
             //{
             //    delegateID = -1;

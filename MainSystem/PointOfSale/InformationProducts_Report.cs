@@ -12,7 +12,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -101,7 +103,8 @@ namespace MainSystem
         {
             try
             {
-                EmpBranchId = UserControl.DelegateBranch(dbconnection);
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                EmpBranchId = Convert.ToInt16(System.IO.File.ReadAllText(path));
                 search();
                 search2();
                 foreach (GridColumn column in gridView1.Columns)

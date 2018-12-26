@@ -54,7 +54,7 @@ namespace MainSystem
             return EmpBranchID;
         }
 
-        public static int DelegateBranch(MySqlConnection conn)
+        /*public static int DelegateBranch(MySqlConnection conn)
         {
             int DelegateBranchID = 0;
             if (userType != 0)
@@ -72,8 +72,8 @@ namespace MainSystem
             }
 
             return DelegateBranchID;
-        }
-
+        }*/
+        
         public static int LoginDelegate(MySqlConnection conn)
         {
             conn.Open();
