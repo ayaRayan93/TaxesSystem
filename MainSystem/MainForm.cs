@@ -50,6 +50,7 @@ namespace MainSystem
                     SalesMainForm();
                     ShippingForm();
                     POSSystem();
+                    initializeBranch();
                 }
 
                 StoreTP = xtraTabPageStores;
@@ -319,6 +320,23 @@ namespace MainSystem
             }
         }
 
+        private void btnCoding_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCoding))
+                {
+                    xtraTabControlMainContainer.TabPages.Insert(index, CodingTP);
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCoding)];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -461,9 +479,12 @@ namespace MainSystem
         {
             try
             {
+                Form form = this as Form;
+                form.FormClosing -= MainForm_FormClosing;
                 Application.Exit();
+                //form.FormClosing += MainForm_FormClosing;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -476,23 +497,6 @@ namespace MainSystem
                 Login loginForm = new Login();
                 loginForm.Show();
                 this.Hide();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnCoding_ItemClick(object sender, TileItemEventArgs e)
-        {
-            try
-            {
-                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCoding))
-                {
-                    xtraTabControlMainContainer.TabPages.Insert(index, CodingTP);
-                    index++;
-                }
-                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCoding)];
             }
             catch (Exception ex)
             {

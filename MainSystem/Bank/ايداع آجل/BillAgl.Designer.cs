@@ -252,7 +252,7 @@
             this.xrLabel15,
             this.xrLine1,
             this.xrLine2});
-            this.ReportHeader.HeightF = 123.3333F;
+            this.ReportHeader.HeightF = 123.3334F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrPictureBox1
@@ -260,7 +260,7 @@
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(24.58331F, 12.49998F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(125.0001F, 100F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 100F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // xrLabel1

@@ -2156,7 +2156,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Skin\devexpress design.blob" />
     <None Include="Store\packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2405,7 +2404,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
-    <Content Include="Skin\devexpress design.skin.xml" />
     <None Include="Resources\Shutdown_48px.png" />
     <None Include="Resources\icons8_Workspace_48.png" />
     <None Include="Resources\icons8_Workspace_64.png" />

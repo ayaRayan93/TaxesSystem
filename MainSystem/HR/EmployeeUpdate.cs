@@ -50,7 +50,7 @@ namespace MainSystem
                 comBranch.DataSource = dt;
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.Text = row[12].ToString();
+                comBranch.Text = row["الفرع"].ToString();
                 query = "select * from departments";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -166,9 +166,31 @@ namespace MainSystem
                     cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                    if (comBranch.Text != "")
+                    {
+                        cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                        labelBranch.Visible = false;
+                    }
+                    else
+                    {
+                        comBranch.Focus();
+                        labelBranch.Visible = true;
+                        dbconnection.Close();
+                        return;
+                    }
                     cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
+                    if (comDepartment.Text != "")
+                    {
+                        cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
+                        labelDepartement.Visible = false;
+                    }
+                    else
+                    {
+                        comDepartment.Focus();
+                        labelDepartement.Visible = true;
+                        dbconnection.Close();
+                        return;
+                    }
                     cmd.Parameters.Add("@Employee_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Employee_Photo", MySqlDbType.Blob);
@@ -193,15 +215,17 @@ namespace MainSystem
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("تم تعديل البيانات بنجاح");
                         Employees.displayEmployee();
-                       // UserControl.UserRecord("employee", "تعديل", row[1].ToString(), DateTime.Now, dbconnection);
+                        UserControl.ItemRecord("employee", "تعديل", Convert.ToInt16(row[1].ToString()), DateTime.Now, "", dbconnection);
+                        XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
+                        xtraTabControlHRContent.TabPages.Remove(xtraTabPage);
                     }
                 }
-                else 
+                else
                 {
                     #region Add New Delegate
-                    string query = "update Delegate set Delegate_Number=@Delegate_Number ,Delegate_Name=@Delegate_Name ,Delegate_Phone=@Delegate_Phone,Delegate_Address=@Delegate_Address,Delegate_Mail=@Delegate_Mail,Delegate_Birth_Date=@Delegate_Birth_Date,Delegate_Qualification=@Delegate_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Delegate_Start_Date=@Delegate_Start_Date,Branch_ID=@Branch_ID,Delegate_Job=@Delegate_Job,Department_ID=@Department_ID,Delegate_Salary=@Delegate_Salary,Delegate_Photo=@Delegate_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Delegate_Taraget=@Delegate_Taraget,Delegate_Info=@Delegate_Info where Delegate_ID=" + row[1].ToString();
+                    //,Department_ID = @Department_ID
+                    string query = "update Delegate set Delegate_Number=@Delegate_Number ,Delegate_Name=@Delegate_Name ,Delegate_Phone=@Delegate_Phone,Delegate_Address=@Delegate_Address,Delegate_Mail=@Delegate_Mail,Delegate_Birth_Date=@Delegate_Birth_Date,Delegate_Qualification=@Delegate_Qualification,SocialInsuranceNumber=@SocialInsuranceNumber,National_ID=@National_ID,Social_Status=@Social_Status,Delegate_Start_Date=@Delegate_Start_Date,Branch_ID=@Branch_ID,Delegate_Job=@Delegate_Job,Delegate_Salary=@Delegate_Salary,Delegate_Photo=@Delegate_Photo,EmploymentType=@EmploymentType,ExperienceYears=@ExperienceYears,Delegate_Taraget=@Delegate_Taraget,Delegate_Info=@Delegate_Info where Delegate_ID=" + row[1].ToString();
                     MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
@@ -249,9 +273,20 @@ namespace MainSystem
                     cmd.Parameters.Add("@Delegate_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
-                    cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
+                    if (comBranch.Text != "")
+                    {
+                        cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                        labelBranch.Visible = false;
+                    }
+                    else
+                    {
+                        comBranch.Focus();
+                        labelBranch.Visible = true;
+                        dbconnection.Close();
+                        return;
+                    }
+                    //cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
+                    //cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
                     cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Delegate_Photo", MySqlDbType.Blob);
@@ -285,12 +320,13 @@ namespace MainSystem
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("تم تعديل البيانات بنجاح");
                         Employees.displayEmployee();
                         UserControl.ItemRecord("delegate", "تعديل",Convert.ToInt16(row[1].ToString()), DateTime.Now,"", dbconnection);
+                        XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
+                        xtraTabControlHRContent.TabPages.Remove(xtraTabPage);
                     }
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -343,11 +379,14 @@ namespace MainSystem
             {
                 label19.Visible = false;
                 txtTaraget.Visible = false;
+                comDepartment.Enabled = true;
             }
             else
             {
                 label19.Visible = true;
                 txtTaraget.Visible = true;
+                comDepartment.Enabled = false;
+                comDepartment.DropDownStyle = ComboBoxStyle.DropDownList;
                 txtTaraget.Text= row["الهدف الشهري"].ToString();
             }
 

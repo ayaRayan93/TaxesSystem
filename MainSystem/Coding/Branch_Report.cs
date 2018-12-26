@@ -106,6 +106,7 @@ namespace MainSystem
         {
             try
             {
+                MainTabPagePrintingBranch.Text = "طباعة الافرع";
                 MainTabControlBranch.TabPages.Add(MainTabPagePrintingBranch);
 
                 MainTabControlBranch.SelectedTabPage = MainTabPagePrintingBranch;

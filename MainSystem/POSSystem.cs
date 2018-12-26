@@ -13,6 +13,8 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
+using System.IO;
+using System.Reflection;
 
 namespace MainSystem
 {
@@ -203,7 +205,10 @@ namespace MainSystem
          public void test(/*int DelegateId,*/ int BillNum)
         {
             int count = 0;
-            string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + UserControl.DelegateBranch(conn);
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+            int DelegateBranchId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+            string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + DelegateBranchId;
             MySqlCommand com = new MySqlCommand(query, conn);
             conn.Open();
             MySqlDataReader dr = com.ExecuteReader();

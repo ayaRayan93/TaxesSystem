@@ -30,6 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labelBranch = new System.Windows.Forms.Label();
+            this.labelDepartement = new System.Windows.Forms.Label();
             this.comDepartment = new System.Windows.Forms.ComboBox();
             this.txtTaraget = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -100,6 +102,8 @@
             this.panel2.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.panel2.AutoScrollMinSize = new System.Drawing.Size(2, 2);
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel2.Controls.Add(this.labelBranch);
+            this.panel2.Controls.Add(this.labelDepartement);
             this.panel2.Controls.Add(this.comDepartment);
             this.panel2.Controls.Add(this.txtTaraget);
             this.panel2.Controls.Add(this.label19);
@@ -149,6 +153,32 @@
             this.panel2.Size = new System.Drawing.Size(1078, 628);
             this.panel2.TabIndex = 72;
             // 
+            // labelBranch
+            // 
+            this.labelBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelBranch.AutoSize = true;
+            this.labelBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelBranch.Location = new System.Drawing.Point(699, 522);
+            this.labelBranch.Name = "labelBranch";
+            this.labelBranch.Size = new System.Drawing.Size(17, 24);
+            this.labelBranch.TabIndex = 126;
+            this.labelBranch.Text = "*";
+            this.labelBranch.Visible = false;
+            // 
+            // labelDepartement
+            // 
+            this.labelDepartement.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelDepartement.AutoSize = true;
+            this.labelDepartement.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDepartement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelDepartement.Location = new System.Drawing.Point(699, 565);
+            this.labelDepartement.Name = "labelDepartement";
+            this.labelDepartement.Size = new System.Drawing.Size(17, 24);
+            this.labelDepartement.TabIndex = 125;
+            this.labelDepartement.Text = "*";
+            this.labelDepartement.Visible = false;
+            // 
             // comDepartment
             // 
             this.comDepartment.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -156,6 +186,7 @@
             this.comDepartment.FormattingEnabled = true;
             this.comDepartment.Location = new System.Drawing.Point(722, 565);
             this.comDepartment.Name = "comDepartment";
+            this.comDepartment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDepartment.Size = new System.Drawing.Size(200, 24);
             this.comDepartment.TabIndex = 124;
             // 
@@ -266,6 +297,7 @@
             this.comBranch.FormattingEnabled = true;
             this.comBranch.Location = new System.Drawing.Point(722, 522);
             this.comBranch.Name = "comBranch";
+            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBranch.Size = new System.Drawing.Size(200, 24);
             this.comBranch.TabIndex = 91;
             this.comBranch.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -539,9 +571,9 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(406, 385);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 18);
+            this.label9.Size = new System.Drawing.Size(44, 18);
             this.label9.TabIndex = 107;
-            this.label9.Text = "التلفون";
+            this.label9.Text = "التليفون";
             // 
             // label8
             // 
@@ -747,5 +779,7 @@
         private System.Windows.Forms.TextBox txtTaraget;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox comDepartment;
+        private System.Windows.Forms.Label labelBranch;
+        private System.Windows.Forms.Label labelDepartement;
     }
 }

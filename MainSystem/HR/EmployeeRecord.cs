@@ -151,9 +151,31 @@ namespace MainSystem
                     cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                    if (comBranch.Text != "")
+                    {
+                        cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                        labelBranch.Visible = false;
+                    }
+                    else
+                    {
+                        comBranch.Focus();
+                        labelBranch.Visible = true;
+                        dbconnection.Close();
+                        return;
+                    }
                     cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
+                    if (comDepartment.Text != "")
+                    {
+                        cmd.Parameters["@Department_ID"].Value = comDepartment.SelectedValue;
+                        labelDepartement.Visible = false;
+                    }
+                    else
+                    {
+                        comDepartment.Focus();
+                        labelDepartement.Visible = true;
+                        dbconnection.Close();
+                        return;
+                    }
                     cmd.Parameters.Add("@Employee_Info", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Info"].Value = txtNotes.Text;
                     cmd.Parameters.Add("@Employee_Photo", MySqlDbType.Blob);
@@ -241,7 +263,18 @@ namespace MainSystem
                     cmd.Parameters.Add("@Delegate_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Delegate_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                    if (comBranch.Text != "")
+                    {
+                        cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
+                        labelBranch.Visible = false;
+                    }
+                    else
+                    {
+                        comBranch.Focus();
+                        labelBranch.Visible = true;
+                        dbconnection.Close();
+                        return;
+                    }
                     cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
                     cmd.Parameters["@Department_ID"].Value =comDepartment.SelectedValue;
                     cmd.Parameters.Add("@Delegate_Info", MySqlDbType.VarChar, 255);
@@ -330,6 +363,8 @@ namespace MainSystem
             {
                 label19.Visible = true;
                 txtTaraget.Visible = true;
+                comDepartment.Text = "نقطة البيع";
+                comDepartment.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -343,6 +378,9 @@ namespace MainSystem
             {
                 label19.Visible = false;
                 txtTaraget.Visible = false;
+                comDepartment.Text = "";
+                comDepartment.SelectedIndex = -1;
+                comDepartment.Enabled = true;
             }
             catch (Exception ex)
             {
