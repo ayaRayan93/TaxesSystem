@@ -17,8 +17,7 @@ namespace MainSystem
         public static int EmpID;
         public static string EmpType;
         public static int EmpBranchID;
-
-
+        
         public static void ItemRecord(string tableName, string status, int recordID, DateTime date, string reason, MySqlConnection conn)
         {
             string query = "insert into UserControl (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason)values (@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
@@ -37,55 +36,5 @@ namespace MainSystem
             com.Parameters["@UserControl_Reason"].Value = reason;
             com.ExecuteNonQuery();
         }
-
-        /*public static int UserBranch(MySqlConnection conn)
-        {
-            int EmpBranchID = 0;
-            if (userType != 0)
-            {
-                string query = "SELECT employee.Branch_ID FROM employee INNER JOIN users ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + userID;
-                MySqlCommand com = new MySqlCommand(query, conn);
-                conn.Open();
-                EmpBranchID = Convert.ToInt16(com.ExecuteScalar().ToString());
-                conn.Close();
-            }
-            else
-            {
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
-            }
-
-            return EmpBranchID;
-        }
-
-        public static int DelegateBranch(MySqlConnection conn)
-        {
-            int DelegateBranchID = 0;
-            if (userType != 0)
-            {
-                string query = "SELECT delegate.Branch_ID FROM delegate INNER JOIN users ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + userID;
-                MySqlCommand com = new MySqlCommand(query, conn);
-                conn.Open();
-                DelegateBranchID = Convert.ToInt16(com.ExecuteScalar().ToString());
-                conn.Close();
-            }
-            else
-            {
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                DelegateBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
-            }
-
-            return DelegateBranchID;
-        }
-        
-        public static int LoginDelegate(MySqlConnection conn)
-        {
-            conn.Open();
-            string query = "SELECT users.Employee_ID FROM users INNER JOIN delegate ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + userID;
-            MySqlCommand com = new MySqlCommand(query, conn);
-            int LoginDelegateID = Convert.ToInt16(com.ExecuteScalar().ToString());
-            conn.Close();
-            return LoginDelegateID;
-        }*/
     }
 }
