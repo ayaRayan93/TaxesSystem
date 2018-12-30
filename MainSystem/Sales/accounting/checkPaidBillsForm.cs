@@ -26,8 +26,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                dbconnectionR = new MySqlConnection(connection.connectionString);
-              
+                dbconnectionR = new MySqlConnection(connection.connectionString);           
             }
             catch (Exception ex)
             {
@@ -225,7 +224,7 @@ namespace MainSystem
                         {
                             recivedMoney -= Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
                             labRecivedMoney.Text = recivedMoney.ToString();
-                            string query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
+                            string query = "update customer_bill set Paid_Status=1 ,AgelBill_PaidDate="+DateTime.Now.Date+" where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
                         }
@@ -240,7 +239,7 @@ namespace MainSystem
                     {
                         recivedMoney += Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
                         labRecivedMoney.Text = recivedMoney.ToString();
-                        string query = "update customer_bill set Paid_Status=0 where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
+                        string query = "update customer_bill set Paid_Status=0 ,AgelBill_PaidDate=Null where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                     }
@@ -332,8 +331,7 @@ namespace MainSystem
             }
             else if (txtClientID.Text != "" && txtCustomerID.Text == "")
             {
-                query = "select distinct Branch_BillNumber as 'رقم الفاتورة', Total_CostAD as 'اجمالي الفاتورة',branch.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill inner join branch on branch.Branch_ID=customer_bill.Branch_ID " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + "  and Paid_Status=0 and Type_Buy='آجل'";
-          
+                query = "select distinct Branch_BillNumber as 'رقم الفاتورة', Total_CostAD as 'اجمالي الفاتورة',branch.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill inner join branch on branch.Branch_ID=customer_bill.Branch_ID " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + "  and Paid_Status=0 and Type_Buy='آجل'";       
             }
             else
             {

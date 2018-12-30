@@ -200,7 +200,7 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Date between '" + d + "' and '" + d2 + "'";
+                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "'";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -209,6 +209,17 @@ namespace MainSystem
                     str += dr[0].ToString() + ",";
                 }
                 dr.Close();
+
+                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "'";
+                com = new MySqlCommand(query, dbconnection);
+                dr = com.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    str += dr[0].ToString() + ",";
+                }
+                dr.Close();
+
                 str += 0;
 
                 query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "'";
