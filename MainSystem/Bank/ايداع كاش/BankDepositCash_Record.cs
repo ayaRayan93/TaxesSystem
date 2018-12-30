@@ -80,7 +80,7 @@ namespace MainSystem
             {
                 if (!loaded)
                 {
-                    transitionbranchID = UserControl.UserBranch(dbconnection);
+                    transitionbranchID = UserControl.EmpBranchID;
                     loadBranch();
                 }
             }
@@ -640,7 +640,11 @@ namespace MainSystem
                                 flagCategoriesSuccess = false;
                                 //////////////////////
 
-                                if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 || checkBoxTaswya.Checked == true)
+                                if (TypeBuy == "آجل" && outParse == 0)
+                                {
+                                    query = "update customer_bill set Paid_Status=0 where CustomerBill_ID=" + ID;
+                                }
+                                else if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 || checkBoxTaswya.Checked == true)
                                 {
                                     query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
                                 }

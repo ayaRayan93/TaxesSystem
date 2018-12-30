@@ -86,7 +86,7 @@ namespace MainSystem
                 this.comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
                 this.comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                EmpBranchId = UserControl.UserBranch(dbconnection);
+                EmpBranchId = UserControl.EmpBranchID;
 
                 dbconnection.Open();
                 string query = "select * from branch";

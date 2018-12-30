@@ -57,7 +57,7 @@ namespace MainSystem
         {
             try
             {
-                transitionbranchID = UserControl.UserBranch(dbconnection);
+                transitionbranchID = UserControl.EmpBranchID;
                 dbconnection.Open();
                 string query = "select Branch_Name from branch where Branch_ID=" + transitionbranchID;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);

@@ -1260,12 +1260,6 @@
     <Compile Include="Sales\SpecialOrders_Report2.designer.cs">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\SpecialOrders_Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\SpecialOrders_Report.designer.cs">
-      <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\UpdateSellPrice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2030,9 +2024,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\SpecialOrders_Report.resx">
-      <DependentUpon>SpecialOrders_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\UpdateSellPrice.resx">
       <DependentUpon>UpdateSellPrice.cs</DependentUpon>

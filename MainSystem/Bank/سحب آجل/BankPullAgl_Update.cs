@@ -62,7 +62,7 @@ namespace MainSystem
             {
                 if (!loadedBranch)
                 {
-                    transitionbranchID = UserControl.UserBranch(dbconnection);
+                    transitionbranchID = UserControl.EmpBranchID;
                     loadBranch();
                 }
             }

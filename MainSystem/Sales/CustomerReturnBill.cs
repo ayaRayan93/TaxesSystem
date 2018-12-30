@@ -76,7 +76,7 @@ namespace MainSystem
                 comBranch.Text = "";
                 txtBranchID.Text = "";
                 comBranchLoaded = true;
-                EmpBranchId = UserControl.UserBranch(dbconnection);
+                EmpBranchId = UserControl.EmpBranchID;
             }
             catch (Exception ex)
             {

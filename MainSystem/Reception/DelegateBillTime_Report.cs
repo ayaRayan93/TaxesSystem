@@ -30,7 +30,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from delegate where Branch_ID=" + UserControl.UserBranch(conn) + "";
+                string query = "select * from delegate where Branch_ID=" + UserControl.EmpBranchID + "";
                 conn.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -64,7 +64,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    query = "SELECT dash.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Bill_Time as 'الوقت المستغرق' FROM dash where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.UserBranch(conn);
+                    query = "SELECT dash.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Bill_Time as 'الوقت المستغرق' FROM dash where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID;
                 }
 
                 conn.Open();

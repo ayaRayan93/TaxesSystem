@@ -55,7 +55,7 @@ namespace MainSystem
         {
             try
             {
-                transitionbranchID = UserControl.UserBranch(dbconnection);
+                transitionbranchID = UserControl.EmpBranchID;
                 //branchID = UserControl.UserBranch(dbconnection);
                 dbconnection.Open();
                 string query = "select Branch_Name from branch where Branch_ID=" + transitionbranchID;
