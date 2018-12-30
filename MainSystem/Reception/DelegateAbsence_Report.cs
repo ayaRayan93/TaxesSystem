@@ -30,7 +30,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from delegate where Branch_ID=" + UserControl.UserBranch(conn) + "";
+                string query = "select * from delegate where Branch_ID=" + UserControl.EmpBranchID + "";
                 conn.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -127,7 +127,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    query = "select Attendance_ID as 'التسلسل', Name as 'المندوب', Absence_Date as 'تاريخ الغياب' from attendance INNER JOIN delegate ON attendance.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(Absence_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and delegate.Branch_ID=" + UserControl.UserBranch(conn) + " and Absence_Date is not null and attendance.Error=0";
+                    query = "select Attendance_ID as 'التسلسل', Name as 'المندوب', Absence_Date as 'تاريخ الغياب' from attendance INNER JOIN delegate ON attendance.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(Absence_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and delegate.Branch_ID=" + UserControl.EmpBranchID + " and Absence_Date is not null and attendance.Error=0";
                 }
 
                 conn.Open();

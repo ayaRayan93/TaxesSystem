@@ -14,6 +14,10 @@ namespace MainSystem
         public static int userID;
         public static string userName;
         public static int userType;
+        public static int EmpID;
+        public static string EmpType;
+        public static int EmpBranchID;
+
 
         public static void ItemRecord(string tableName, string status, int recordID, DateTime date, string reason, MySqlConnection conn)
         {
@@ -34,7 +38,7 @@ namespace MainSystem
             com.ExecuteNonQuery();
         }
 
-        public static int UserBranch(MySqlConnection conn)
+        /*public static int UserBranch(MySqlConnection conn)
         {
             int EmpBranchID = 0;
             if (userType != 0)
@@ -54,7 +58,7 @@ namespace MainSystem
             return EmpBranchID;
         }
 
-        /*public static int DelegateBranch(MySqlConnection conn)
+        public static int DelegateBranch(MySqlConnection conn)
         {
             int DelegateBranchID = 0;
             if (userType != 0)
@@ -72,7 +76,7 @@ namespace MainSystem
             }
 
             return DelegateBranchID;
-        }*/
+        }
         
         public static int LoginDelegate(MySqlConnection conn)
         {
@@ -82,6 +86,6 @@ namespace MainSystem
             int LoginDelegateID = Convert.ToInt16(com.ExecuteScalar().ToString());
             conn.Close();
             return LoginDelegateID;
-        }
+        }*/
     }
 }

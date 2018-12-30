@@ -18,20 +18,16 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         int DashBillNum = 0;
-        int EmpBranchId = 0;
         int branchBillNumber = 0;
-        int DelegateId = 0;
         int ClientId = 0;
         byte[] selectedRequestImage = null;
         byte[] selectedProductImage = null;
 
-        public AddSpecialOrderScanner(int dashBillNum, int empBranchId, int delegateId, int clientId)
+        public AddSpecialOrderScanner(int dashBillNum, int clientId)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             DashBillNum = dashBillNum;
-            EmpBranchId = empBranchId;
-            DelegateId = delegateId;
             ClientId = clientId;
         }
 
@@ -41,11 +37,6 @@ namespace MainSystem
             {
                 if (pictureBoxRequest.Image != null)
                 {
-                    //Image image = pictureBoxRequest.Image;
-                    //MemoryStream memoryStream = new MemoryStream();
-                    //image.Save(memoryStream, ImageFormat.Png);
-                    //byte[] imageBt = memoryStream.ToArray();
-
                     dbconnection.Open();
                     string query = "insert into special_order (Picture,Product_Picture,Dash_ID,Description) values(@Picture,@Product_Picture,@Dash_ID,@Description)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -84,7 +75,7 @@ namespace MainSystem
             int SpecialOrderID = 0;
             string cutomerType = "";
 
-            string query = "select BranchBillNumber from requests where Branch_ID=" + EmpBranchId + " order by Request_ID desc limit 1";
+            string query = "select BranchBillNumber from requests where Branch_ID=" + UserControl.EmpBranchID + " order by Request_ID desc limit 1";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
@@ -108,43 +99,41 @@ namespace MainSystem
             {
                 cutomerType = com.ExecuteScalar().ToString();
             }
-
-            /*query = "select Branch_Name from Branch where Branch_ID=" + EmpBranchId;
-            com = new MySqlCommand(query, dbconnection);
-            string BranchName = com.ExecuteScalar().ToString();*/
-
+            
             if (cutomerType == "عميل")
             {
-                query = "insert into requests (Branch_ID,BranchBillNumber,SpecialOrder_ID,Delegate_ID,Client_ID) values (@Branch_ID,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID,@Client_ID)";
+                query = "insert into requests (Branch_ID,BranchBillNumber,SpecialOrder_ID,Delegate_ID,Client_ID,Emp_Type) values (@Branch_ID,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID,@Client_ID,@Emp_Type)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                com.Parameters["@Branch_ID"].Value = EmpBranchId;
-                //com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
-                //com.Parameters["@Branch_Name"].Value = BranchName;
+                com.Parameters["@Branch_ID"].Value = UserControl.EmpBranchID;
                 com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16);
                 com.Parameters["@BranchBillNumber"].Value = branchBillNumber;
                 com.Parameters.Add("@SpecialOrder_ID", MySqlDbType.Int16);
                 com.Parameters["@SpecialOrder_ID"].Value = SpecialOrderID;
                 com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
-                com.Parameters["@Delegate_ID"].Value = DelegateId;
+                com.Parameters["@Delegate_ID"].Value = UserControl.EmpID;
                 com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                 com.Parameters["@Client_ID"].Value = ClientId;
+                com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar);
+                com.Parameters["@Emp_Type"].Value = UserControl.EmpType;
                 com.ExecuteNonQuery();
             }
             else
             {
-                query = "insert into requests (Branch_ID,BranchBillNumber,SpecialOrder_ID,Delegate_ID,Customer_ID) values (@Branch_ID,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID,@Customer_ID)";
+                query = "insert into requests (Branch_ID,BranchBillNumber,SpecialOrder_ID,Delegate_ID,Customer_ID,Emp_Type) values (@Branch_ID,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID,@Customer_ID,@Emp_Type)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                com.Parameters["@Branch_ID"].Value = EmpBranchId;
+                com.Parameters["@Branch_ID"].Value = UserControl.EmpBranchID;
                 com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16);
                 com.Parameters["@BranchBillNumber"].Value = branchBillNumber;
                 com.Parameters.Add("@SpecialOrder_ID", MySqlDbType.Int16);
                 com.Parameters["@SpecialOrder_ID"].Value = SpecialOrderID;
                 com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
-                com.Parameters["@Delegate_ID"].Value = DelegateId;
+                com.Parameters["@Delegate_ID"].Value = UserControl.EmpID;
                 com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                 com.Parameters["@Customer_ID"].Value = ClientId;
+                com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar);
+                com.Parameters["@Emp_Type"].Value = UserControl.EmpType;
                 com.ExecuteNonQuery();
             }
         }

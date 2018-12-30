@@ -46,8 +46,7 @@ namespace MainSystem
         string productType = "";
         DataRow row1;
         public static TipImage tipImage = null;
-        int EmpBranchId = 0;
-        int LoginDelegateID = -1;
+        
         int DashBillNum = 0;
         int cartons = 0;
 
@@ -112,9 +111,6 @@ namespace MainSystem
         {
             try
             {
-                LoginDelegateID = UserControl.LoginDelegate(dbconnection);
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                EmpBranchId = Convert.ToInt16(System.IO.File.ReadAllText(path));
                 search();
                 search2();
                 foreach (GridColumn column in gridView1.Columns)
@@ -177,7 +173,7 @@ namespace MainSystem
                     int billnum = 0;
                     if (int.TryParse(txtBillNum.Text, out billnum))
                     {
-                        string q= "select * from dash where dash.Branch_ID=" + EmpBranchId + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                        string q= "select * from dash where dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                         dbconnection5.Open();
                         MySqlCommand cc = new MySqlCommand(q, dbconnection5);
                         MySqlDataReader dr4 = cc.ExecuteReader();
@@ -228,7 +224,7 @@ namespace MainSystem
                             //dr4.Close();
 
                             //inner join customer on customer.Customer_ID=dash.Customer_ID 
-                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + EmpBranchId + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                             dbconnection2.Open();
                             MySqlCommand com = new MySqlCommand(qu, dbconnection2);
                             dr2 = com.ExecuteReader();
@@ -1849,7 +1845,7 @@ namespace MainSystem
                                                         //    }
                                                         //}
                                                         
-                                                        query = "update dash set Customer_ID=@Customer_ID,Customer_Name=@Customer_Name where Bill_Number=" + billNo + " and Branch_ID=" + EmpBranchId + " order by Dash_ID desc limit 1";
+                                                        query = "update dash set Customer_ID=@Customer_ID,Customer_Name=@Customer_Name where Bill_Number=" + billNo + " and Branch_ID=" + UserControl.EmpBranchID + " order by Dash_ID desc limit 1";
                                                         com = new MySqlCommand(query, dbconnection);
                                                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16).Value = ClintID;
                                                         com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar).Value = comClient.Text;
@@ -1869,12 +1865,12 @@ namespace MainSystem
                                                 {
                                                     billExist = true;
 
-                                                    string q = "select Dash_ID from dash where Branch_ID=" + EmpBranchId + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
+                                                    string q = "select Dash_ID from dash where Branch_ID=" + UserControl.EmpBranchID + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
                                                     int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
 
 
-                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons)";
+                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
                                                     com = new MySqlCommand(query, dbconnection);
                                                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
                                                     if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
@@ -1890,27 +1886,15 @@ namespace MainSystem
                                                     com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
                                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
                                                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
+                                                    com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = UserControl.EmpID;
                                                     com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
-                                                    //com.Parameters.Add("@Error", MySqlDbType.Int16).Value = 0;
                                                     com.ExecuteNonQuery();
-
-                                                    /*query = "insert into delegate_dash (Dash_ID,Delegate_ID) values (@Dash_ID,@Delegate_ID)";
-                                                    com = new MySqlCommand(query, dbconnection);
-                                                    com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
-                                                    com.ExecuteNonQuery();*/
-
+                                                    
                                                     dbconnection.Close();
-                                                    //MessageBox.Show("تم");
                                                     txtQuantity.Text = "";
                                                     comStore.Text = "";
-                                                    //txtBillNum.Enabled = false;
-                                                    //txtPhone.Enabled = false;
-                                                    //txtClient.Enabled = false;
-                                                    //checkEdit1.Enabled = false;
-                                                    //checkEdit1.Checked = false;
-                                                    main.test(/*LoginDelegateID,*/ billNo);
+                                                    main.test(billNo);
                                                 }
                                                 #endregion
 
@@ -1919,7 +1903,7 @@ namespace MainSystem
                                                 {
                                                     if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "بند")
                                                     {
-                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
                                                         MySqlCommand comm = new MySqlCommand(qq, dbconnection);
                                                         if (comm.ExecuteScalar() != null)
                                                         {
@@ -1930,7 +1914,7 @@ namespace MainSystem
                                                     }
                                                     else if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "طقم" || (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "عرض")
                                                     {
-                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + EmpBranchId + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
                                                         MySqlCommand comm = new MySqlCommand(qq, dbconnection);
                                                         if (comm.ExecuteScalar() != null)
                                                         {
@@ -1940,11 +1924,11 @@ namespace MainSystem
                                                         }
                                                     }
 
-                                                    string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + EmpBranchId + "  order by Dash_ID desc limit 1";
+                                                    string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + UserControl.EmpBranchID + "  order by Dash_ID desc limit 1";
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
                                                     int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
 
-                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons)";
+                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
                                                     com = new MySqlCommand(query, dbconnection);
                                                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
                                                     if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
@@ -1960,47 +1944,33 @@ namespace MainSystem
                                                     com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
                                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
                                                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
+                                                    com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = UserControl.EmpID;
                                                     com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
-                                                    //com.Parameters.Add("@Error", MySqlDbType.Int16).Value = 0;
                                                     com.ExecuteNonQuery();
-
-                                                    /*query = "SELECT delegate_dash.DelegateDash_ID FROM delegate_dash where delegate_dash.Dash_ID=" + dashId + " and delegate_dash.Delegate_ID=" + LoginDelegateID;
-                                                    com = new MySqlCommand(query, dbconnection);
-                                                    if (com.ExecuteScalar() == null)
-                                                    {
-                                                        query = "insert into delegate_dash (Dash_ID,Delegate_ID) values (@Dash_ID,@Delegate_ID)";
-                                                        com = new MySqlCommand(query, dbconnection);
-                                                        com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
-                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = LoginDelegateID;
-                                                        com.ExecuteNonQuery();
-                                                    }*/
-
+                                                    
                                                     dbconnection.Close();
-                                                    //MessageBox.Show("تم");
                                                     txtQuantity.Text = "";
                                                     comStore.Text = "";
-                                                    //txtBillNum.Enabled = false;
-                                                    //txtPhone.Enabled = false;
-                                                    //txtClient.Enabled = false;
-                                                    //checkEdit1.Enabled = false;
-                                                    //checkEdit1.Checked = false;
-                                                    main.test(/*LoginDelegateID,*/ billNo);
+                                                    main.test(billNo);
                                                 }
                                                 #endregion
 
-                                                dbconnection.Open();
-                                                query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + LoginDelegateID + " and delegate_customer.Customer_ID=" + ClintID;
-                                                com = new MySqlCommand(query, dbconnection);
-                                                if (com.ExecuteScalar() == null)
+                                                if (UserControl.userType != 0)
                                                 {
-                                                    query = "insert into delegate_customer (Customer_ID,Delegate_ID) values(@Customer_ID,@Delegate_ID)";
+                                                    dbconnection.Open();
+                                                    query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + UserControl.EmpID + " and delegate_customer.Customer_ID=" + ClintID;
                                                     com = new MySqlCommand(query, dbconnection);
-                                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = LoginDelegateID;
-                                                    com.ExecuteNonQuery();
+                                                    if (com.ExecuteScalar() == null)
+                                                    {
+                                                        query = "insert into delegate_customer (Customer_ID,Delegate_ID) values(@Customer_ID,@Delegate_ID)";
+                                                        com = new MySqlCommand(query, dbconnection);
+                                                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
+                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
+                                                        com.ExecuteNonQuery();
+                                                    }
+                                                    dbconnection.Close();
                                                 }
-                                                dbconnection.Close();
                                             }
                                             else
                                             {
@@ -2082,38 +2052,7 @@ namespace MainSystem
             comType.DisplayMember = dt.Columns["Type_Name"].ToString();
             comType.ValueMember = dt.Columns["Type_ID"].ToString();
             comType.Text = "";
-            //txtType.Text = "";
-
-            /*query = "select * from factory";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comFactory.DataSource = dt;
-            comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
-            comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
-            comFactory.Text = "";
-            //txtFactory.Text = "";
-
-            query = "select * from groupo";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comGroup.DataSource = dt;
-            comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
-            comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
-            comGroup.Text = "";
-            //txtGroup.Text = "";
-
-            query = "select * from product";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comProduct.DataSource = dt;
-            comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
-            comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
-            comProduct.Text = "";
-            //txtProduct.Text = "";*/
-
+            
             query = "select * from sets";
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();
@@ -2140,25 +2079,7 @@ namespace MainSystem
             comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
             comStore.ValueMember = dt.Columns["Store_ID"].ToString();
             comStore.Text = "";
-
-            /*query = "select * from size";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comSize.DataSource = dt;
-            comSize.DisplayMember = dt.Columns["Size_Value"].ToString();
-            comSize.ValueMember = dt.Columns["Size_ID"].ToString();
-            comSize.Text = "";
-
-            query = "select * from color";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comColor.DataSource = dt;
-            comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
-            comColor.ValueMember = dt.Columns["Color_ID"].ToString();
-            comColor.Text = "";*/
-
+            
             query = "select * from sort";
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();
@@ -2495,7 +2416,7 @@ namespace MainSystem
                     }
                     dbconnection.Close();
 
-                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, EmpBranchId, LoginDelegateID, clientIdSO);
+                    AddSpecialOrderScanner soForm = new AddSpecialOrderScanner(DashBillNum, clientIdSO);
                     soForm.ShowDialog();
                 }
                 else

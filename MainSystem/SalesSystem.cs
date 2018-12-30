@@ -45,7 +45,7 @@ namespace MainSystem
                 MainTabPageUpdateCustomer = new XtraTabPage();
                 MainTabPagePrintCustomer = new XtraTabPage();
 
-                EmpBranchId = UserControl.UserBranch(dbconnection);
+                EmpBranchId = UserControl.EmpBranchID;
 
                 SpecialOrdersFunction();
 

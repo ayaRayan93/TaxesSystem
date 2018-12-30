@@ -38,7 +38,7 @@ namespace MainSystem
 
         public void search()
         {
-            string query = "SELECT dash_delegate_bill.Delegate_ID,dash_delegate_bill.Delegate_Name as 'المندوب',dash_delegate_bill.Bill_Number as 'الفاتورة' FROM dash_delegate_bill where dash_delegate_bill.Branch_ID=" + UserControl.UserBranch(conn);
+            string query = "SELECT dash_delegate_bill.Delegate_ID,dash_delegate_bill.Delegate_Name as 'المندوب',dash_delegate_bill.Bill_Number as 'الفاتورة' FROM dash_delegate_bill where dash_delegate_bill.Branch_ID=" + UserControl.EmpBranchID;
             conn.Open();
             MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
             DataSet dset = new DataSet();

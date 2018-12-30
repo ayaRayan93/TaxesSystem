@@ -841,7 +841,7 @@ namespace MainSystem
 
         private void LoadGridData()
         {
-            EmpBranchId = UserControl.UserBranch(dbconnection);
+            EmpBranchId = UserControl.EmpBranchID;
             //and delegate.Error=0
             dbconnection.Open();
             MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate where delegate.Branch_ID=" + EmpBranchId + "", dbconnection);
@@ -1109,18 +1109,11 @@ namespace MainSystem
                 if (int.TryParse(txtBill.Text, out billNum))
                 {
                     dbconnection.Open();
-                    //string query = "SELECT dash.Bill_Time FROM dash where dash.Branch_ID=" + EmpBranchId + "  and dash.Bill_Number=" + billNum;
-                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    //double BillTime = Convert.ToInt16(com.ExecuteScalar().ToString());
-
-                    //string query = "select Dash_Delegate_Bill_ID from dash_delegate_bill where Delegate_ID=" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + " and Bill_Number=" + billNum + " and Branch_ID=" + EmpBranchId;
-                    //MySqlCommand command = new MySqlCommand(query, dbconnection);
-                    //if (command.ExecuteScalar() == null)
-                    //{
+                    
                     string query = "insert into dash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + ")";
                     MySqlCommand command = new MySqlCommand(query, dbconnection);
                     command.ExecuteNonQuery();
-                    //}
+                    
                     MessageBox.Show("تم");
                 }
                 else

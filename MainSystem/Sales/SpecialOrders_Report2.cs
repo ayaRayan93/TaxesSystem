@@ -49,7 +49,7 @@ namespace MainSystem
 
             gridcontrol = gridControl1;
 
-            EmpBranchId = UserControl.UserBranch(conn);
+            EmpBranchId = UserControl.EmpBranchID;
             
             //gridView1.PostEditor();
             //gridView1.UpdateCurrentRow();
