@@ -32,15 +32,13 @@ namespace MainSystem
         {
             try
             {
-                /* and (User_Type=0 or User_Type=5)*/
                 string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass";
                 conn.Open();
                 MySqlCommand comand = new MySqlCommand(query, conn);
                 comand.Parameters.AddWithValue("@Name", txtName.Text);
                 comand.Parameters.AddWithValue("@Pass", txtPassword.Text);
                 MySqlDataReader result = comand.ExecuteReader();
-
-                //if (result != null)
+                
                 if (result.HasRows)
                 {
                     while (result.Read())
@@ -175,7 +173,6 @@ namespace MainSystem
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    /* and (User_Type=0 or User_Type=5)*/
                     string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass";
                     conn.Open();
                     MySqlCommand comand = new MySqlCommand(query, conn);
