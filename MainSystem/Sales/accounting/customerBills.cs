@@ -413,7 +413,6 @@ namespace MainSystem
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[7].Value = dr["sum(Total_CostAD)"].ToString();
               
-
                 if (!dr.IsDBNull(1))
                     dataGridView1.Rows[n].Cells[3].Value = dr["Customer_Name"].ToString();
                 else
