@@ -193,7 +193,8 @@ namespace MainSystem
 
                                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
                                 UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
-                                
+
+                                dbconnection.Open();
                                 string query2 = "SELECT users.Employee_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
                                 MySqlCommand com = new MySqlCommand(query2, dbconnection);
                                 UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
