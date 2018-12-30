@@ -53,11 +53,10 @@ namespace MainSystem
                             UserControl.EmpType = "مدير";
 
                             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                            int EmpBranchID1 = Convert.ToInt16(System.IO.File.ReadAllText(path));
-                            UserControl.EmpBranchID = EmpBranchID1;
-
+                            UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                            
                             string query2 = "SELECT users.Employee_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
-                            MySqlCommand com = new MySqlCommand(query2, conn);
+                            MySqlCommand com = new MySqlCommand(query2, dbconnection);
                             UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
 
                             mainForm = new MainForm();
@@ -83,7 +82,7 @@ namespace MainSystem
                                 UserControl.EmpBranchID = EmpBranchID2;
 
                                 string query2 = "SELECT users.Employee_ID FROM users INNER JOIN delegate ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + (int)result[0];
-                                com = new MySqlCommand(query2, conn);
+                                com = new MySqlCommand(query2, dbconnection);
                                 UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
                                 
                                 mainForm = new MainForm();
@@ -114,7 +113,7 @@ namespace MainSystem
                                 UserControl.EmpBranchID = EmpBranchID2;
 
                                 string query2 = "SELECT users.Employee_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
-                                com = new MySqlCommand(query2, conn);
+                                com = new MySqlCommand(query2, dbconnection);
                                 UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
 
                                 mainForm = new MainForm();
@@ -193,11 +192,20 @@ namespace MainSystem
                                 UserControl.userID = (int)result[0];
                                 UserControl.userName = result[1].ToString();
                                 UserControl.userType = (int)result[2];
+                                UserControl.EmpType = "مدير";
+
+                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                
+                                string query2 = "SELECT users.Employee_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
+                                MySqlCommand com = new MySqlCommand(query2, dbconnection);
+                                UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
+
                                 mainForm = new MainForm();
                                 mainForm.Show();
                                 this.Hide();
                             }
-                            else if((int)result[2] == 5)
+                            else if ((int)result[2] == 5)
                             {
                                 string q = "SELECT delegate.Branch_ID FROM users INNER JOIN delegate ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + (int)result[0];
                                 MySqlCommand com = new MySqlCommand(q, dbconnection);
@@ -212,6 +220,13 @@ namespace MainSystem
                                     UserControl.userID = (int)result[0];
                                     UserControl.userName = result[1].ToString();
                                     UserControl.userType = (int)result[2];
+                                    UserControl.EmpType = "مندوب";
+                                    UserControl.EmpBranchID = EmpBranchID2;
+
+                                    string query2 = "SELECT users.Employee_ID FROM users INNER JOIN delegate ON users.Employee_ID = delegate.Delegate_ID where users.User_ID=" + (int)result[0];
+                                    com = new MySqlCommand(query2, dbconnection);
+                                    UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
+
                                     mainForm = new MainForm();
                                     mainForm.Show();
                                     this.Hide();
@@ -236,6 +251,13 @@ namespace MainSystem
                                     UserControl.userID = (int)result[0];
                                     UserControl.userName = result[1].ToString();
                                     UserControl.userType = (int)result[2];
+                                    UserControl.EmpType = "موظف";
+                                    UserControl.EmpBranchID = EmpBranchID2;
+
+                                    string query2 = "SELECT users.Employee_ID FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
+                                    com = new MySqlCommand(query2, dbconnection);
+                                    UserControl.EmpID = Convert.ToInt16(com.ExecuteScalar().ToString());
+
                                     mainForm = new MainForm();
                                     mainForm.Show();
                                     this.Hide();
