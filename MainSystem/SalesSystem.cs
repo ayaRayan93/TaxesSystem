@@ -453,7 +453,7 @@ namespace MainSystem
                         xtraTabControlMainContainer.TabPages.Insert(1, SalesTP);
                         flag = true;
                     }
-                    xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[1];
+                    xtraTabControlMainContainer.SelectedTabPage = SalesTP;
 
                     if (!xtraTabControlSalesContent.Visible)
                         xtraTabControlSalesContent.Visible = true;

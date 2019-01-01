@@ -100,7 +100,7 @@
             this.btnLogin.Size = new System.Drawing.Size(92, 30);
             this.btnLogin.TabIndex = 20;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-           // 
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

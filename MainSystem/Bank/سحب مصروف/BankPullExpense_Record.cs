@@ -364,7 +364,7 @@ namespace MainSystem
                             com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
                         }
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-                        com.Parameters["@Employee_ID"].Value = UserControl.userID;
+                        com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
 
                         com.ExecuteNonQuery();
 
