@@ -38,9 +38,17 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
-            
-            cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            if (UserControl.userType == 0)
+            {
+                cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
+                cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
+            }
+            else
+            {
+                cmbBank.Enabled = false;
+                cmbBank.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
             comEng.AutoCompleteMode = AutoCompleteMode.Suggest;
             comEng.AutoCompleteSource = AutoCompleteSource.ListItems;
             comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -131,7 +139,30 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                if (UserControl.userType == 0)
+                {
+                    cmbBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    dbconnection.Open();
+                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            cmbBank.Text = dr["Bank_Name"].ToString();
+                            cmbBank.SelectedValue = dr["Bank_ID"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        cmbBank.SelectedIndex = -1;
+                    }
+                }
                 loadedPayType = true;
             }
             catch (Exception ex)
@@ -241,7 +272,30 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                if (UserControl.userType == 0)
+                {
+                    cmbBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    dbconnection.Open();
+                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            cmbBank.Text = dr["Bank_Name"].ToString();
+                            cmbBank.SelectedValue = dr["Bank_ID"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        cmbBank.SelectedIndex = -1;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -344,12 +398,13 @@ namespace MainSystem
                         
                         dbconnection.Open();
 
-                        string query = "insert into Transitions (TransitionBranch_ID,Transition,Type,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID) values(@TransitionBranch_ID,@Transition,@Type,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID)";
+                        string query = "insert into Transitions (TransitionBranch_ID,TransitionBranch_Name,Transition,Type,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Transition,@Type,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
                         com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "آجل";
                         com.Parameters.Add("@TransitionBranch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+                        com.Parameters.Add("@TransitionBranch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
                         //com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = branchID;
                         //com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = branchName;
                         //com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = null;
@@ -414,8 +469,8 @@ namespace MainSystem
                         {
                             com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
                         }
-                        com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-                        com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
+                        com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
+                        com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
 
                         com.ExecuteNonQuery();
 
