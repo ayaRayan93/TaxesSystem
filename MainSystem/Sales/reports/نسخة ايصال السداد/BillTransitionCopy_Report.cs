@@ -51,6 +51,7 @@ namespace MainSystem
                                 txtOperation.Text = dr1["Transition"].ToString();
                                 txtType.Text = dr1["Type"].ToString();
                                 txtDate.Text = Convert.ToDateTime(dr1["Date"].ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+                                txtTransitionBranch.Text = dr1["TransitionBranch_Name"].ToString();
                                 if (dr1["Branch_ID"].ToString() != "")
                                 {
                                     txtBranch.Text = dr1["Branch_Name"].ToString()/* + " " + dr1["Branch_ID"].ToString()*/;
@@ -138,8 +139,9 @@ namespace MainSystem
                                 txtCheckDate.Text = dr1["Payday"].ToString();
                                 txtCartType.Text = dr1["Visa_Type"].ToString();
                                 txtOperationNum.Text = dr1["Operation_Number"].ToString();
+                                username = dr1["Employee_Name"].ToString();
 
-                                conn2.Open();
+                                /*conn2.Open();
                                 string qt = "SELECT users.User_Name FROM transitions INNER JOIN users ON transitions.Employee_ID = users.User_ID where transitions.Transition_ID=" + transitionId;
                                 MySqlCommand ct = new MySqlCommand(qt, conn2);
                                 if (ct.ExecuteScalar() != null)
@@ -150,7 +152,7 @@ namespace MainSystem
                                 {
                                     username = "";
                                 }
-                                conn2.Close();
+                                conn2.Close();*/
                             }
                             dr1.Close();
                         }
@@ -296,7 +298,7 @@ namespace MainSystem
                     else if (txtOperation.Text == "ايداع" && txtType.Text == "آجل")
                     {
                         PrintCopy_AglCategoriesBill_Report f = new PrintCopy_AglCategoriesBill_Report();
-                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
                         f.ShowDialog();
                     }
                     else if (txtOperation.Text == "سحب" && txtType.Text == "كاش")
@@ -308,7 +310,7 @@ namespace MainSystem
                     else if (txtOperation.Text == "سحب" && txtType.Text == "آجل")
                     {
                         PrintCopy_ReturnedAglCategoriesBill_Report f = new PrintCopy_ReturnedAglCategoriesBill_Report();
-                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
                         f.ShowDialog();
                     }
                     for (int i = 0; i < arrPaidMoney.Length; i++)

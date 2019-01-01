@@ -149,6 +149,7 @@ namespace MainSystem
 
                                     conn.Close();
                                     //xtraTabPage.ImageOptions.Image = null;
+                                    xtraTabPage = getTabPage("tabPageUpdateBank");
                                     MainForm.tabControlBank.TabPages.Remove(xtraTabPage);
                                 }
                                 else

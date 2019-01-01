@@ -333,6 +333,7 @@
             // 
             // comEng
             // 
+            this.comEng.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comEng.Enabled = false;
             this.comEng.FormattingEnabled = true;
             this.comEng.Location = new System.Drawing.Point(545, 60);
@@ -431,6 +432,7 @@
             // 
             // comClient
             // 
+            this.comClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comClient.Enabled = false;
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(545, 109);
@@ -618,7 +620,7 @@
             this.layoutControlItem53,
             this.layoutControlItem54});
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(236, 59);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(236, 83);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem30
@@ -635,7 +637,7 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(216, 10);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(216, 34);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem53
@@ -720,7 +722,7 @@
             this.layoutControlItem1,
             this.layoutControlItem20});
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(226, 59);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(226, 83);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem19
@@ -737,7 +739,7 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(206, 10);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(206, 34);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
@@ -937,6 +939,7 @@
             // 
             // cmbBank
             // 
+            this.cmbBank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBank.Enabled = false;
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(545, 274);
@@ -1283,7 +1286,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 315);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(340, 10);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(357, 20);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem34
