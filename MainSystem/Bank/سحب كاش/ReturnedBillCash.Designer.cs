@@ -341,7 +341,7 @@
             this.xrLabel25.SizeF = new System.Drawing.SizeF(81.25F, 25F);
             this.xrLabel25.StylePriority.UseFont = false;
             this.xrLabel25.StylePriority.UseTextAlignment = false;
-            this.xrLabel25.Text = ":الفــــــــــرع";
+            this.xrLabel25.Text = ":فرع الفاتورة";
             this.xrLabel25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLabel26

@@ -574,7 +574,7 @@ namespace MainSystem
                     com.Parameters.Add("@Type_Buy", MySqlDbType.VarChar);
                     com.Parameters["@Type_Buy"].Value = type;
                     com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-                    com.Parameters["@Employee_ID"].Value = UserControl.userID;
+                    com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnBill_ID from customer_return_bill order by CustomerReturnBill_ID desc limit 1";

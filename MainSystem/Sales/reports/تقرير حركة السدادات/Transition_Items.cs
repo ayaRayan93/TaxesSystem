@@ -12,7 +12,7 @@ namespace MainSystem
         public string Operation_Type { get; set; }
         public string Type { get; set; }
         public string Bill_Number { get; set; }
-        public string Branch_Name { get; set; }
+        //public string Branch_Name { get; set; }
         public string Date { get; set; }
         public string Client { get; set; }
         public double CostSale { get; set; }

@@ -15,9 +15,11 @@ namespace MainSystem
         public static string userName;
         public static int userType;
         public static int EmpID;
+        public static string EmpName;
         public static string EmpType;
         public static int EmpBranchID;
-        
+        public static string EmpBranchName;
+
         public static void ItemRecord(string tableName, string status, int recordID, DateTime date, string reason, MySqlConnection conn)
         {
             string query = "insert into UserControl (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason)values (@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
