@@ -212,6 +212,7 @@
             this.r50 = new DevExpress.XtraReports.Parameters.Parameter();
             this.rH = new DevExpress.XtraReports.Parameters.Parameter();
             this.rQ = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TransitionBranch_Name = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable22)).BeginInit();
@@ -2291,6 +2292,11 @@
             this.rQ.Type = typeof(int);
             this.rQ.ValueInfo = "0";
             // 
+            // TransitionBranch_Name
+            // 
+            this.TransitionBranch_Name.Description = "TransitionBranch_Name";
+            this.TransitionBranch_Name.Name = "TransitionBranch_Name";
+            // 
             // ReturnedBillCashCopy
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2335,7 +2341,8 @@
             this.r5,
             this.r50,
             this.rH,
-            this.rQ});
+            this.rQ,
+            this.TransitionBranch_Name});
             this.Version = "18.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable23)).EndInit();
@@ -2549,5 +2556,6 @@
         private DevExpress.XtraReports.Parameters.Parameter rH;
         private DevExpress.XtraReports.Parameters.Parameter rQ;
         private DevExpress.XtraReports.UI.XRLabel xrLabel27;
+        private DevExpress.XtraReports.Parameters.Parameter TransitionBranch_Name;
     }
 }

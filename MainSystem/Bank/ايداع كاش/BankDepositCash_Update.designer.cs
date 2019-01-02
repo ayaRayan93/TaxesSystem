@@ -145,6 +145,7 @@
             this.labelStock = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.checkBoxTaswya = new System.Windows.Forms.CheckBox();
             this.txtTotalCost = new System.Windows.Forms.TextBox();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -178,7 +179,6 @@
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem65 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.checkBoxTaswya = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -776,6 +776,7 @@
             // 
             // cmbBranch
             // 
+            this.cmbBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBranch.Enabled = false;
             this.cmbBranch.FormattingEnabled = true;
             this.cmbBranch.Location = new System.Drawing.Point(548, 31);
@@ -842,6 +843,7 @@
             // 
             // cmbBank
             // 
+            this.cmbBank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBank.Enabled = false;
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(548, 248);
@@ -1624,6 +1626,18 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // checkBoxTaswya
+            // 
+            this.checkBoxTaswya.AutoSize = true;
+            this.checkBoxTaswya.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxTaswya.ForeColor = System.Drawing.Color.White;
+            this.checkBoxTaswya.Location = new System.Drawing.Point(393, 3);
+            this.checkBoxTaswya.Name = "checkBoxTaswya";
+            this.checkBoxTaswya.Size = new System.Drawing.Size(63, 22);
+            this.checkBoxTaswya.TabIndex = 2;
+            this.checkBoxTaswya.Text = "تسوية";
+            this.checkBoxTaswya.UseVisualStyleBackColor = true;
+            // 
             // txtTotalCost
             // 
             this.txtTotalCost.Enabled = false;
@@ -2034,18 +2048,6 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(1033, 24);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // checkBoxTaswya
-            // 
-            this.checkBoxTaswya.AutoSize = true;
-            this.checkBoxTaswya.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxTaswya.ForeColor = System.Drawing.Color.White;
-            this.checkBoxTaswya.Location = new System.Drawing.Point(393, 3);
-            this.checkBoxTaswya.Name = "checkBoxTaswya";
-            this.checkBoxTaswya.Size = new System.Drawing.Size(63, 22);
-            this.checkBoxTaswya.TabIndex = 2;
-            this.checkBoxTaswya.Text = "تسوية";
-            this.checkBoxTaswya.UseVisualStyleBackColor = true;
             // 
             // BankDepositCash_Update
             // 

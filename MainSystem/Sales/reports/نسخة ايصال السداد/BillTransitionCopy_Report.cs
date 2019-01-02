@@ -100,13 +100,13 @@ namespace MainSystem
                                 if (dr1["Transition"].ToString() == "ايداع" && dr1["Type"].ToString() == "كاش")
                                 {
                                     conn2.Open();
-                                    string q = "select DATE_FORMAT(Bill_Date,'%Y-%m-%d') as date,users.User_Name from customer_bill INNER JOIN users ON users.User_ID = customer_bill.Employee_ID where Branch_BillNumber=" + dr1["Bill_Number"].ToString() + " and Branch_ID=" + dr1["Branch_ID"].ToString();
+                                    string q = "select DATE_FORMAT(customer_bill.Bill_Date,'%Y-%m-%d') as date,customer_bill.Employee_Name from customer_bill where Branch_BillNumber=" + dr1["Bill_Number"].ToString() + " and Branch_ID=" + dr1["Branch_ID"].ToString();
                                     MySqlCommand com = new MySqlCommand(q, conn2);
                                     MySqlDataReader dr = com.ExecuteReader();
                                     while(dr.Read())
                                     {
                                         txtBillDate.Text = dr["date"].ToString();
-                                        confirmEmp = dr["User_Name"].ToString();
+                                        confirmEmp = dr["Employee_Name"].ToString();
                                     }
                                     dr.Close();
                                     conn2.Close();
@@ -114,13 +114,13 @@ namespace MainSystem
                                 else if (dr1["Transition"].ToString() == "سحب" && dr1["Type"].ToString() == "كاش")
                                 {
                                     conn2.Open();
-                                    string q = "select DATE_FORMAT(Date,'%Y-%m-%d') as date,users.User_Name from customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where Branch_BillNumber=" + dr1["Bill_Number"].ToString() + " and Branch_ID=" + dr1["Branch_ID"].ToString();
+                                    string q = "select DATE_FORMAT(customer_return_bill.Date,'%Y-%m-%d') as date,customer_return_bill.Employee_Name from customer_return_bill where Branch_BillNumber=" + dr1["Bill_Number"].ToString() + " and Branch_ID=" + dr1["Branch_ID"].ToString();
                                     MySqlCommand com = new MySqlCommand(q, conn2);
                                     MySqlDataReader dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
                                         txtBillDate.Text = dr["date"].ToString();
-                                        confirmEmp = dr["User_Name"].ToString();
+                                        confirmEmp = dr["Employee_Name"].ToString();
                                     }
                                     dr.Close();
                                     conn2.Close();
@@ -292,7 +292,7 @@ namespace MainSystem
                     if (txtOperation.Text == "ايداع" && txtType.Text == "كاش")
                     {
                         PrintCopy_CategoriesBill_Report f = new PrintCopy_CategoriesBill_Report();
-                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtBranch.Text, Convert.ToInt16(txtBillNum.Text), txtClient.Text, Convert.ToDateTime(txtBillDate.Text), Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, confirmEmp, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtBranch.Text, Convert.ToInt16(txtBillNum.Text), txtClient.Text, Convert.ToDateTime(txtBillDate.Text), Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, confirmEmp, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
                         f.ShowDialog();
                     }
                     else if (txtOperation.Text == "ايداع" && txtType.Text == "آجل")
@@ -304,7 +304,7 @@ namespace MainSystem
                     else if (txtOperation.Text == "سحب" && txtType.Text == "كاش")
                     {
                         PrintCopy_ReturnedCategoriesBill_Report f = new PrintCopy_ReturnedCategoriesBill_Report();
-                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtBranch.Text, Convert.ToInt16(txtBillNum.Text), txtClient.Text, Convert.ToDateTime(txtBillDate.Text), Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, confirmEmp, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                        f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtBranch.Text, Convert.ToInt16(txtBillNum.Text), txtClient.Text, Convert.ToDateTime(txtBillDate.Text), Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, confirmEmp, username, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
                         f.ShowDialog();
                     }
                     else if (txtOperation.Text == "سحب" && txtType.Text == "آجل")
