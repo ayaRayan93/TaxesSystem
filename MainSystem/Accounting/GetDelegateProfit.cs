@@ -15,6 +15,7 @@ namespace MainSystem
     public partial class GetDelegateProfit : Form
     {
         private MySqlConnection dbconnection;
+        private MySqlConnection dbconnection2;
         public bool loaded = false;
         public GetDelegateProfit()
         {
@@ -22,6 +23,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnection2 = new MySqlConnection(connection.connectionString);
             }
             catch (Exception ex)
             {
@@ -129,7 +131,7 @@ namespace MainSystem
                 //peraper datasource
                 DataTable _Table = peraperDataTable2();
                 DataTable _Table2 = peraperDataTable();
-
+                DataTable _Table3 = peraperDataTable3();//all items of all companys
                 DateTime date = dateTimeFrom.Value;
                 string d = date.ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime date2 = dateTimeTo.Value;
@@ -137,14 +139,64 @@ namespace MainSystem
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
 
+                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "'";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                string str = "";
+                while (dr.Read())
+                {
+                    str += dr[0].ToString() + ",";
+                }
+                dr.Close();
 
-                _Table = getTotalSoldProfit(_Table, DataTableRelations, d, d2);
-                _Table = getTotalReturnedProfit(_Table, DataTableRelations, d, d2);
+                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "'";
+                com = new MySqlCommand(query, dbconnection);
+                dr = com.ExecuteReader();
 
-                gridControl2.DataSource = _Table;
+                while (dr.Read())
+                {
+                    str += dr[0].ToString() + ",";
+                }
+                dr.Close();
 
-                _Table2 = getSoldQuantity(_Table2, itemName, DataTableRelations, d, d2);
-                _Table2 = getReturnedQuantity(_Table2, itemName, DataTableRelations, d, d2);
+                str += 0;
+
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "'";
+                com = new MySqlCommand(query, dbconnection);
+                dr = com.ExecuteReader();
+                string str1 = "";
+                while (dr.Read())
+                {
+                    str1 += dr[0].ToString() + ",";
+                }
+                dr.Close();
+                str1 += 0;
+
+
+
+
+                _Table3 = getTotalSoldProfitOfCompany(_Table3, DataTableRelations, d, d2, str);
+                _Table3 = getTotalReturnedProfitOfCompany(_Table3, DataTableRelations, d, d2, str1);
+                _Table = _Table3;
+                DataTable temp = peraperDataTable2();
+                foreach (DataRow item in _Table3.Rows)
+                {
+                    foreach (DataRow itemTemp in _Table.Rows)
+                    {
+                        if (item["FactoryID"].ToString() == itemTemp["FactoryID"].ToString())
+                        {
+                            item["ValueDelegate"] = Convert.ToDouble(itemTemp["ValueDelegate"].ToString()) + Convert.ToDouble(item["ValueDelegate"].ToString());
+                            temp.Rows.Add(itemTemp.ItemArray);
+                        }
+             
+                    }
+                }
+
+                gridControl2.DataSource = _Table3;
+
+
+                _Table2 = getSoldQuantity(_Table2 ,itemName, DataTableRelations, d, d2,str);
+                _Table2 = getReturnedQuantity(_Table2, itemName, DataTableRelations, d, d2,str1);
 
                 gridControl1.DataSource = _Table2;
                 
@@ -155,6 +207,7 @@ namespace MainSystem
                 txtDelegateID.Focus();
             }
             dbconnection.Close();
+            dbconnection2.Close();
         }
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -255,72 +308,91 @@ namespace MainSystem
         }
 
         //functions
-        public DataTable getSoldQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo)
+        public DataTable getSoldQuantity(DataTable _Table,  string itemName, string DataTableRelations, string dateFrom, string dateTo,string strcustomerBill_IDs)
         {
-            string query = "select product_bill.Data_ID," + itemName + ",sum(Quantity) as 'الكمية',PriceAD,PercentageDelegate from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join sellprice on sellprice.Data_ID=product_bill.Data_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and transitions.Date between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + "  group by data.Code ";
+            string query = "select product_bill.Data_ID," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from  product_bill inner join data on product_bill.Data_ID=data.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + strcustomerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + "  group by Data.Data_ID  ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
 
             while (dr.Read())
             {
-                if (Convert.ToDouble(dr[4].ToString()) == 0)
+                dbconnection2.Open();
+                string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[0].ToString() + "  ORDER BY  Date desc LIMIT 1";
+                MySqlCommand c = new MySqlCommand(q, dbconnection2);
+                double PercentageDelegate =Convert.ToDouble(c.ExecuteScalar().ToString());
+                if (PercentageDelegate == 0)
                 {
                     DataRow row = _Table.NewRow();
-
                     row["Data_ID"] = dr[0].ToString();
                     row["CodeName"] = dr[1].ToString();
-                    row["PercentageDelegate"] = dr[4].ToString();
+                    row["PercentageDelegate"] = PercentageDelegate;
                     row["Quantity"] = dr[2].ToString();
                     row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
                     double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
 
-                    row["ValueDelegate"] = Convert.ToDouble(dr[4].ToString()) / 100 * str;
+                    row["ValueDelegate"] = PercentageDelegate / 100 * str;
                     _Table.Rows.Add(row);
+                    dbconnection2.Close();
+
                 }
+           
             }
             dr.Close();
 
             return _Table;
         }
-        public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo)
+        public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo,string customerReturnBill_IDs)
         {
-            string query = "select customer_return_bill_details.Data_ID," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD,PercentageDelegate from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join sellprice on sellprice.Data_ID=customer_return_bill_details.Data_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.Date between '" + dateFrom + "' and '" + dateTo + "' and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " group by data.Code ";
+            string query = "select customer_return_bill_details.Data_ID," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from  customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + "  group by customer_return_bill_details.Data_ID  ";
+
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
             bool flag = true;
             while (dr.Read())
             {
-                if (Convert.ToDouble(dr[4].ToString()) == 0)
+                foreach (DataRow item in _Table.Rows)
                 {
-                    foreach (DataRow item in _Table.Rows)
+                    if (item[0].ToString() == dr[0].ToString())
                     {
-                        if (item[0].ToString() == dr[0].ToString())
-                        {
-                            item["Quantity"] = (Convert.ToDouble(item[2].ToString()) - Convert.ToDouble(dr[2].ToString())).ToString();
-                            item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
-                            double str = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        double dd = Convert.ToDouble(item["Quantity"].ToString());
+                        double d = Convert.ToDouble(dr[2].ToString());
+                        d = dd - d;
+                        string x = (Convert.ToDouble(item["Quantity"].ToString()) - Convert.ToDouble(dr[2].ToString())).ToString();
+                        item["Quantity"] = x;
+                        item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        double str = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
 
-                            item["ValueDelegate"] = Convert.ToDouble(dr[4].ToString()) / 100 * str;
+                        item["ValueDelegate"] =Convert.ToDouble(item["ValueDelegate"].ToString()) - Convert.ToDouble(item["PercentageDelegate"].ToString()) / 100 * str;
 
-                            flag = false;
-                        }
-
+                        flag = false;
                     }
-                    if (flag)
+
+                }
+         
+                if (flag)
+                {
+                    dbconnection2.Close();
+                    dbconnection2.Open();
+                    string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[0].ToString() + "  ORDER BY  Date desc LIMIT 1";
+                    MySqlCommand c = new MySqlCommand(q, dbconnection2);
+                    double PercentageDelegate = Convert.ToDouble(c.ExecuteScalar().ToString());
+                    if (PercentageDelegate == 0)
                     {
                         DataRow row = temp.NewRow();
-
-                        row["PercentageDelegate"] = dr[4].ToString();
-                        row["Quantity"] = dr[2].ToString();
                         row["Data_ID"] = dr[0].ToString();
                         row["CodeName"] = dr[1].ToString();
+                        row["Quantity"] = dr[2].ToString();
+
+                        row["PercentageDelegate"] = PercentageDelegate;
                         row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
                         double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
-                        row["ValueDelegate"] = Convert.ToDouble(dr[4].ToString()) / 100 * str;
+                        row["ValueDelegate"] = - PercentageDelegate / 100 * str;
 
                         temp.Rows.Add(row);
+                        dbconnection2.Close();
                     }
+                   
                 }
 
             }
@@ -332,6 +404,101 @@ namespace MainSystem
 
             return _Table;
         }
+
+     
+
+        public DataTable getTotalSoldProfitOfCompany(DataTable _Table, string DataTableRelations, string dateFrom, string dateTo,string customerBill_IDs)
+        {
+            string query = "select data.Factory_ID,factory.Factory_Name,sum(Quantity) as 'الكمية',PriceAD,product_bill.Data_ID from  product_bill inner join data on product_bill.Data_ID=data.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + "  group by product_bill.Data_ID ";
+
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                dbconnection2.Open();
+                string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[4].ToString() + "  ORDER BY  Date desc LIMIT 1";
+                MySqlCommand c = new MySqlCommand(q, dbconnection2);
+                double PercentageDelegate = Convert.ToDouble(c.ExecuteScalar().ToString());
+                if (PercentageDelegate > 0)
+                {
+                    DataRow row = _Table.NewRow();
+
+                    row["FactoryID"] = dr[0].ToString();
+                    row["FactoryName"] = dr[1].ToString();
+                    row["PercentageDelegate"] = PercentageDelegate;
+                    row["Quantity"] = dr[2].ToString();
+                    row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+                    double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+
+                    row["ValueDelegate"] = PercentageDelegate / 100 * str;
+                    row["Data_ID"] = dr[4].ToString();
+                    _Table.Rows.Add(row);
+                    dbconnection2.Close();
+                }
+                
+            }
+            dr.Close();
+
+            return _Table;
+        }
+        public DataTable getTotalReturnedProfitOfCompany(DataTable _Table, string DataTableRelations, string dateFrom, string dateTo,string customerBill_IDs)
+        {
+            string query = "select data.Factory_ID,factory.Factory_Name,sum(TotalMeter) as 'الكمية',PriceAD,customer_return_bill_details.Data_ID from  customer_return_bill_details inner join data on customer_return_bill_details.Data_ID=data.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + "  group by customer_return_bill_details.Data_ID ";
+
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            DataTable temp = peraperDataTable3();
+            bool flag = true;
+            double result = 0.0;
+            while (dr.Read())
+            {
+                dbconnection2.Open();
+                string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[4].ToString() + "  ORDER BY  Date desc LIMIT 1";
+                MySqlCommand c = new MySqlCommand(q, dbconnection2);
+                double PercentageDelegate = Convert.ToDouble(c.ExecuteScalar().ToString());
+                if (PercentageDelegate > 0)
+                {
+                    foreach (DataRow item in _Table.Rows)
+                    {
+                        if (item[4].ToString() == dr[4].ToString())
+                        {
+                            item["Quantity"] = (Convert.ToDouble(item[2].ToString()) - Convert.ToDouble(dr[2].ToString())).ToString();
+                            item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+                            double str = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+
+                            item["ValueDelegate"] =Convert.ToDouble(item["ValueDelegate"].ToString()) - (PercentageDelegate / 100 * str);
+                            result += PercentageDelegate / 100 * str;
+                            flag = false;
+                        }
+                    }
+                    if (flag)
+                    {
+                        DataRow row = temp.NewRow();
+
+                        row["PercentageDelegate"] = PercentageDelegate;
+                        row["Quantity"] = dr[2].ToString();
+                        row["FactoryID"] = dr[0].ToString();
+                        row["FactoryName"] = dr[1].ToString();
+                        row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        row["ValueDelegate"] = - PercentageDelegate / 100 * str;
+                        row["Data_ID"] = dr[4].ToString();
+                        result += PercentageDelegate / 100 * str;
+                        temp.Rows.Add(row);
+                    }
+                }
+
+            }
+            dr.Close();
+            foreach (DataRow item in temp.Rows)
+            {
+                _Table.Rows.Add(item.ItemArray);
+            }
+            labTotalDelegateProfit.Text = result.ToString();
+            return _Table;
+        }
+
 
         public DataTable peraperDataTable()
         {
@@ -358,85 +525,19 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
         }
-        public DataTable getTotalSoldProfit(DataTable _Table, string DataTableRelations, string dateFrom, string dateTo)
+        public DataTable peraperDataTable3()
         {
-            string query = "select data.Factory_ID,factory.Factory_Name,sum(Quantity) as 'الكمية',PriceAD,PercentageDelegate from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join sellprice on sellprice.Data_ID=product_bill.Data_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and transitions.Date between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + "  group by data.Factory_ID ";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            MySqlDataReader dr = com.ExecuteReader();
+            DataTable _Table = new DataTable("Table3");
 
-            while (dr.Read())
-            {
-                if (Convert.ToDouble(dr[4].ToString()) == 0)
-                {
-                    DataRow row = _Table.NewRow();
-
-                    row["FactoryID"] = dr[0].ToString();
-                    row["FactoryName"] = dr[1].ToString();
-                    row["PercentageDelegate"] = dr[4].ToString();
-                    row["Quantity"] = dr[2].ToString();
-                    row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
-                    double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
-
-                    row["ValueDelegate"] = Convert.ToDouble(dr[4].ToString()) / 100 * str;
-                    _Table.Rows.Add(row);
-                }
-            }
-            dr.Close();
-
+            _Table.Columns.Add(new DataColumn("Data_ID", typeof(int)));
+            _Table.Columns.Add(new DataColumn("FactoryID", typeof(int)));
+            _Table.Columns.Add(new DataColumn("FactoryName", typeof(string)));
+            _Table.Columns.Add(new DataColumn("PercentageDelegate", typeof(string)));
+            _Table.Columns.Add(new DataColumn("ValueDelegate", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Cost", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
         }
-        public DataTable getTotalReturnedProfit(DataTable _Table, string DataTableRelations, string dateFrom, string dateTo)
-        {
-            string query = "select data.Factory_ID,factory.Factory_Name,sum(TotalMeter) as 'الكمية',PriceAD,PercentageDelegate from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join sellprice on sellprice.Data_ID=customer_return_bill_details.Data_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.Date between '" + dateFrom + "' and '" + dateTo + "' and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " group by data.Factory_ID ";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            MySqlDataReader dr = com.ExecuteReader();
-            DataTable temp = peraperDataTable2();
-            bool flag = true;
-            double result = 0.0;
-            while (dr.Read())
-            {
-                if (Convert.ToDouble(dr[4].ToString()) > 0)
-                {
-                    foreach (DataRow item in _Table.Rows)
-                    {
-                        if (item[0].ToString() == dr[0].ToString())
-                        {
-                            item["Quantity"] = (Convert.ToDouble(item[2].ToString()) - Convert.ToDouble(dr[2].ToString())).ToString();
-                            item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
-                            double str = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
-
-                            item["ValueDelegate"] = Convert.ToDouble(dr[4].ToString()) / 100 * str;
-                            result += Convert.ToDouble(dr[4].ToString()) / 100 * str;
-                            flag = false;
-                        }
-
-                    }
-                    if (flag)
-                    {
-                        DataRow row = temp.NewRow();
-
-                        row["PercentageDelegate"] = dr[4].ToString();
-                        row["Quantity"] = dr[2].ToString();
-                        row["FactoryID"] = dr[0].ToString();
-                        row["FactoryName"] = dr[1].ToString();
-                        row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
-                        double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
-                        row["ValueDelegate"] = Convert.ToDouble(dr[4].ToString()) / 100 * str;
-                        result += Convert.ToDouble(dr[4].ToString()) / 100 * str;
-                        temp.Rows.Add(row);
-                    }
-                }
-
-            }
-            dr.Close();
-            foreach (DataRow item in temp.Rows)
-            {
-                _Table.Rows.Add(item.ItemArray);
-            }
-            labTotalDelegateProfit.Text = result.ToString();
-            return _Table;
-        }
-
         public void reset()
         {
             dateTimeFrom.Value = DateTime.Now;
