@@ -143,7 +143,7 @@
             this.comBranch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(160, 17);
+            this.comBranch.Location = new System.Drawing.Point(149, 17);
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(150, 24);
             this.comBranch.TabIndex = 147;
@@ -154,7 +154,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label6.Location = new System.Drawing.Point(316, 21);
+            this.label6.Location = new System.Drawing.Point(305, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 151;
@@ -302,7 +302,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(272, 68);
+            this.label2.Location = new System.Drawing.Point(281, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 133;
@@ -313,7 +313,7 @@
             this.txtBillNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBillNo.Enabled = false;
             this.txtBillNo.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBillNo.Location = new System.Drawing.Point(186, 64);
+            this.txtBillNo.Location = new System.Drawing.Point(195, 64);
             this.txtBillNo.Name = "txtBillNo";
             this.txtBillNo.Size = new System.Drawing.Size(80, 24);
             this.txtBillNo.TabIndex = 132;
@@ -555,9 +555,9 @@
             // listBoxControlBranchID
             // 
             this.listBoxControlBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxControlBranchID.Location = new System.Drawing.Point(120, 8);
+            this.listBoxControlBranchID.Location = new System.Drawing.Point(122, 8);
             this.listBoxControlBranchID.Name = "listBoxControlBranchID";
-            this.listBoxControlBranchID.Size = new System.Drawing.Size(33, 52);
+            this.listBoxControlBranchID.Size = new System.Drawing.Size(20, 52);
             this.listBoxControlBranchID.TabIndex = 156;
             this.listBoxControlBranchID.Visible = false;
             // 
@@ -567,7 +567,7 @@
             this.checkBoxAdd.AutoSize = true;
             this.checkBoxAdd.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAdd.Location = new System.Drawing.Point(120, 66);
+            this.checkBoxAdd.Location = new System.Drawing.Point(129, 66);
             this.checkBoxAdd.Name = "checkBoxAdd";
             this.checkBoxAdd.Size = new System.Drawing.Size(62, 20);
             this.checkBoxAdd.TabIndex = 153;

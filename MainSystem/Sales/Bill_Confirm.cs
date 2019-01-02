@@ -831,6 +831,12 @@ namespace MainSystem
                         //printBill();
                         MessageBox.Show("فاتورة رقم : "+ Branch_BillNumber);
                         clear(tableLayoutPanel1);
+                        loaded = false;
+                        comEngCon.SelectedIndex = -1;
+                        txtCustomerID.Text = "";
+                        comClient.SelectedIndex = -1;
+                        txtClientID.Text = "";
+                        loaded = true;
                     }
                     else
                     {

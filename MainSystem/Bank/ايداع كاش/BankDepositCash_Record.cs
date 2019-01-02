@@ -559,7 +559,7 @@ namespace MainSystem
 
                     if (!flagCategoriesSuccess)
                     {
-                        if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                         {
                             return;
                         }
