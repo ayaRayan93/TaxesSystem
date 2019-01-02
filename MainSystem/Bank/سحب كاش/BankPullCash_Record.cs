@@ -61,11 +61,19 @@ namespace MainSystem
             arrRestMoney = new int[9];
             tabControlBank = MainTabControlBank;
 
-            cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
+            if (UserControl.userType == 0)
+            {
+                cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
+                cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
+            }
+            else
+            {
+                cmbBank.Enabled = false;
+                cmbBank.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
 
-            cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbBranch.Enabled = false;
+            cmbBranch.DropDownStyle = ComboBoxStyle.DropDownList;
 
             this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy/MM/dd";
             this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -135,6 +143,7 @@ namespace MainSystem
                                 TypeBuy = dr["Type_Buy"].ToString();
                                 billDate = Convert.ToDateTime(dr["Date"].ToString());
                                 returnInfo = dr["ReturnInfo"].ToString();
+                                ConfirmEmp = dr["Employee_Name"].ToString();
 
                                 //connectionReader3.Open();
                                 //string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID INNER JOIN delegate ON delegate.Delegate_ID = customer_return_bill_details.Delegate_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
@@ -159,12 +168,12 @@ namespace MainSystem
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 }
 
-                                query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
+                                /*query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
                                 com2 = new MySqlCommand(query3, myConnection);
                                 if (com2.ExecuteScalar() != null)
                                 {
                                     ConfirmEmp = com2.ExecuteScalar().ToString();
-                                }
+                                }*/
                                 myConnection.Close();
                                 
                                 txtTotalCost.Text = dr["TotalCostAD"].ToString();
@@ -276,7 +285,30 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                if (UserControl.userType == 0)
+                {
+                    cmbBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    dbconnection.Open();
+                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            cmbBank.Text = dr["Bank_Name"].ToString();
+                            cmbBank.SelectedValue = dr["Bank_ID"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        cmbBank.SelectedIndex = -1;
+                    }
+                }
                 loadedPayType = true;
             }
             catch (Exception ex)
@@ -386,7 +418,30 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                if (UserControl.userType == 0)
+                {
+                    cmbBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    dbconnection.Open();
+                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            cmbBank.Text = dr["Bank_Name"].ToString();
+                            cmbBank.SelectedValue = dr["Bank_ID"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        cmbBank.SelectedIndex = -1;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -394,41 +449,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-        private void radVisa_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RadioButton r = (RadioButton)sender;
-                PaymentMethod = r.Text;
-                layoutControlItemBank.Text = "فيزا";
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelDate.Visible = false;
-                labelDate.Text = "";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelVisaType.Visible = true;
-                labelVisaType.Text = "*";
-                layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelOperationNumber.Visible = true;
-                labelOperationNumber.Text = "*";
-                layoutControlItemCheck.Text = "رقم الكارت";
-
-                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbBank.DataSource = dt;
-                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -505,7 +526,7 @@ namespace MainSystem
                                 connectionReader4.Close();
 
 
-                                string query = "insert into Transitions (TransitionBranch_ID,Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID) values(@TransitionBranch_ID,@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID)";
+                                string query = "insert into Transitions (TransitionBranch_ID,Transition,Type,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name) values(@TransitionBranch_ID,@Transition,@Type,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name)";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
@@ -575,8 +596,8 @@ namespace MainSystem
                                 {
                                     com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
                                 }
-                                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-                                com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
+                                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
+                                com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
 
                                 com.ExecuteNonQuery();
 
@@ -1365,9 +1386,15 @@ namespace MainSystem
             cmbBranch.DataSource = dt;
             cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
             cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            cmbBranch.SelectedIndex = -1;
 
             loaded = true;
+
+            cmbBranch.Text = UserControl.EmpBranchName;
+            cmbBranch.SelectedValue = UserControl.EmpBranchID;
+            //because event not fire
+            branchID = UserControl.EmpBranchID;
+            branchName = cmbBranch.Text;
+            txtBillNumber.Enabled = true;
         }
 
         //return quantity to store
@@ -1538,11 +1565,11 @@ namespace MainSystem
             Print_ReturnedCategoriesBill_Report f = new Print_ReturnedCategoriesBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(DateTime.Now, TransitionID, branchName, billNumber, clientName + " " + clientID, billDate, Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.EmpName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, TransitionID, UserControl.EmpBranchName, branchName, billNumber, clientName + " " + clientID, billDate, Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.EmpName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(DateTime.Now, TransitionID, branchName, billNumber, engName + " " + customerID, billDate, Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.EmpName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, TransitionID, UserControl.EmpBranchName, branchName, billNumber, engName + " " + customerID, billDate, Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.EmpName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

@@ -807,19 +807,7 @@ namespace MainSystem
             connectionReader3.Close();
             connectionReader4.Close();
         }
-
-        private void txtPaidMoney_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //txtPaidRest.Text = txtPaidMoney.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+        
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
         {
             double totalPaid = 0;

@@ -244,7 +244,8 @@ namespace MainSystem
 
         void delete(GridView view)
         {
-            int[] selRows = ((GridView)gridControl1.MainView).GetSelectedRows();
+            MessageBox.Show("لا يمكنك الحذف");
+            /*int[] selRows = ((GridView)gridControl1.MainView).GetSelectedRows();
             if (selRows.Length > 0)
             {
                 if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
@@ -315,7 +316,7 @@ namespace MainSystem
             else
             {
                 MessageBox.Show("يجب ان تختار عنصر للحذف");
-            }
+            }*/
         }
     }
 }

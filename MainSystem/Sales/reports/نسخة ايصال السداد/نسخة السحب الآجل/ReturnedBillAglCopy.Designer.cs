@@ -280,9 +280,9 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(24.58331F, 10.50001F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(24.58331F, 9.999974F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 91.99999F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 92.50005F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // xrLabel1
