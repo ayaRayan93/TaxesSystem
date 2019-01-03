@@ -17,6 +17,7 @@ namespace MainSystem
         private MySqlConnection dbconnection;
         private MySqlConnection dbconnection2;
         public bool loaded = false;
+
         public GetDelegateProfit()
         {
             try
@@ -171,28 +172,29 @@ namespace MainSystem
                 }
                 dr.Close();
                 str1 += 0;
-
-
-
-
+                
                 _Table3 = getTotalSoldProfitOfCompany(_Table3, DataTableRelations, d, d2, str);
                 _Table3 = getTotalReturnedProfitOfCompany(_Table3, DataTableRelations, d, d2, str1);
                 _Table = _Table3;
-                DataTable temp = peraperDataTable2();
-                foreach (DataRow item in _Table3.Rows)
-                {
-                    foreach (DataRow itemTemp in _Table.Rows)
-                    {
-                        if (item["FactoryID"].ToString() == itemTemp["FactoryID"].ToString())
-                        {
-                            item["ValueDelegate"] = Convert.ToDouble(itemTemp["ValueDelegate"].ToString()) + Convert.ToDouble(item["ValueDelegate"].ToString());
-                            temp.Rows.Add(itemTemp.ItemArray);
-                        }
-             
-                    }
-                }
 
-                gridControl2.DataSource = _Table3;
+                DataTable temp = peraperDataTable3();
+             
+
+                for (int i = 0; i < _Table3.Rows.Count; i++)
+                {
+                    int x = i;
+                    for (int j = 1; j < _Table.Rows.Count; j++)
+                    {
+                        if (_Table3.Rows[i]["FactoryID"].ToString() == _Table.Rows[j]["FactoryID"].ToString())
+                        {
+                            _Table3.Rows[i]["ValueDelegate"] = Convert.ToDouble(_Table.Rows[j]["ValueDelegate"].ToString()) + Convert.ToDouble(_Table3.Rows[i]["ValueDelegate"].ToString());
+                            i++;
+                        }
+                    }
+                    temp.Rows.Add(_Table3.Rows[x].ItemArray);
+                }
+                
+                gridControl2.DataSource = temp;
 
 
                 _Table2 = getSoldQuantity(_Table2 ,itemName, DataTableRelations, d, d2,str);
@@ -209,6 +211,7 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection2.Close();
         }
+
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
@@ -295,6 +298,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void newChoose_Click(object sender, EventArgs e)
         {
             try
@@ -316,6 +320,7 @@ namespace MainSystem
 
             while (dr.Read())
             {
+                dbconnection2.Close();
                 dbconnection2.Open();
                 string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[0].ToString() + "  ORDER BY  Date desc LIMIT 1";
                 MySqlCommand c = new MySqlCommand(q, dbconnection2);
@@ -343,7 +348,7 @@ namespace MainSystem
         }
         public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo,string customerReturnBill_IDs)
         {
-            string query = "select customer_return_bill_details.Data_ID," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from  customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + "  group by customer_return_bill_details.Data_ID  ";
+            string query = "select customer_return_bill_details.Data_ID," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from  customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + "  group by customer_return_bill_details.Data_ID  ";
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -405,8 +410,6 @@ namespace MainSystem
             return _Table;
         }
 
-     
-
         public DataTable getTotalSoldProfitOfCompany(DataTable _Table, string DataTableRelations, string dateFrom, string dateTo,string customerBill_IDs)
         {
             string query = "select data.Factory_ID,factory.Factory_Name,sum(Quantity) as 'الكمية',PriceAD,product_bill.Data_ID from  product_bill inner join data on product_bill.Data_ID=data.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + "  group by product_bill.Data_ID ";
@@ -444,13 +447,12 @@ namespace MainSystem
         }
         public DataTable getTotalReturnedProfitOfCompany(DataTable _Table, string DataTableRelations, string dateFrom, string dateTo,string customerBill_IDs)
         {
-            string query = "select data.Factory_ID,factory.Factory_Name,sum(TotalMeter) as 'الكمية',PriceAD,customer_return_bill_details.Data_ID from  customer_return_bill_details inner join data on customer_return_bill_details.Data_ID=data.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + "  group by customer_return_bill_details.Data_ID ";
+            string query = "select data.Factory_ID,factory.Factory_Name,sum(TotalMeter) as 'الكمية',PriceAD,customer_return_bill_details.Data_ID from  customer_return_bill_details inner join data on customer_return_bill_details.Data_ID=data.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + "  group by customer_return_bill_details.Data_ID ";
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable3();
             bool flag = true;
-            double result = 0.0;
             while (dr.Read())
             {
                 dbconnection2.Open();
@@ -468,7 +470,7 @@ namespace MainSystem
                             double str = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
 
                             item["ValueDelegate"] =Convert.ToDouble(item["ValueDelegate"].ToString()) - (PercentageDelegate / 100 * str);
-                            result += PercentageDelegate / 100 * str;
+                        
                             flag = false;
                         }
                     }
@@ -484,7 +486,6 @@ namespace MainSystem
                         double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
                         row["ValueDelegate"] = - PercentageDelegate / 100 * str;
                         row["Data_ID"] = dr[4].ToString();
-                        result += PercentageDelegate / 100 * str;
                         temp.Rows.Add(row);
                     }
                 }
@@ -495,10 +496,9 @@ namespace MainSystem
             {
                 _Table.Rows.Add(item.ItemArray);
             }
-            labTotalDelegateProfit.Text = result.ToString();
+           
             return _Table;
         }
-
 
         public DataTable peraperDataTable()
         {
