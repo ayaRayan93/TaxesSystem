@@ -18,10 +18,10 @@ namespace MainSystem
         bool flag2 = false;
         int billNumber = 0;
         bool flag = false;
-        int customerID = 0;
-        int clientID = 0;
-        string engName = "";
-        string clientName = "";
+        //int customerID = 0;
+        //int clientID = 0;
+        //string engName = "";
+        //string clientName = "";
         int branchID = 0;
         int ID = -1;
         double paidAmount = 0;
@@ -51,13 +51,7 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
-
-            cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-
+            
             this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy/MM/dd";
             this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateEdit1.Properties.EditFormat.FormatString = "yyyy/MM/dd";
@@ -127,7 +121,7 @@ namespace MainSystem
                                 paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                             }
 
-                            query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
+                            query3 = "SELECT customer_return_bill.Employee_Name FROM customer_return_bill where customer_return_bill.CustomerReturnBill_ID=" + ID;
                             com2 = new MySqlCommand(query3, myConnection);
                             if (com2.ExecuteScalar() != null)
                             {
@@ -138,20 +132,20 @@ namespace MainSystem
                             txtTotalCost.Text = dr["TotalCostAD"].ToString();
                             txtPaidMoney.Text = (Convert.ToDouble(dr["TotalCostAD"].ToString()) - paidAmount).ToString();
 
-                            if (dr["Customer_ID"].ToString() != "")
+                            /*if (dr["Customer_ID"].ToString() != "")
                             {
                                 customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
                             }
                             if (dr["Client_ID"].ToString() != "")
                             {
                                 clientID = Convert.ToInt16(dr["Client_ID"].ToString());
-                            }
+                            }*/
                         }
                         dr.Close();
                         if (flag2 == true)
                         {
                             //extract customer info
-                            if (clientID > 0)
+                            /*if (clientID > 0)
                             {
                                 query = "select * from customer where Customer_ID=" + clientID;
                                 com = new MySqlCommand(query, dbconnection);
@@ -181,7 +175,7 @@ namespace MainSystem
                                 }
                                 dr.Close();
                             }
-                            flag2 = false;
+                            flag2 = false;*/
                         }
                         else
                         {
@@ -1441,11 +1435,11 @@ namespace MainSystem
             Print_ReturnedCategoriesBill_Report f = new Print_ReturnedCategoriesBill_Report();
             if (selRow["Client_ID"].ToString() != "")
             {
-                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), cmbBranch.Text, billNumber, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.EmpName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (selRow["Customer_ID"].ToString() != "")
             {
-                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), cmbBranch.Text, billNumber, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, UserControl.EmpName, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

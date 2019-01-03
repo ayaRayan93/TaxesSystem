@@ -341,6 +341,7 @@
             // 
             // comEng
             // 
+            this.comEng.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comEng.Enabled = false;
             this.comEng.FormattingEnabled = true;
             this.comEng.Location = new System.Drawing.Point(545, 60);
@@ -446,6 +447,7 @@
             // 
             // comClient
             // 
+            this.comClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comClient.Enabled = false;
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(545, 109);
@@ -924,6 +926,7 @@
             // 
             // cmbBank
             // 
+            this.cmbBank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBank.Enabled = false;
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(545, 274);

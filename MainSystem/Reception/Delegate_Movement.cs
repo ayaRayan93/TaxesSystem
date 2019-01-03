@@ -1109,9 +1109,13 @@ namespace MainSystem
                 if (int.TryParse(txtBill.Text, out billNum))
                 {
                     dbconnection.Open();
-                    
-                    string query = "insert into dash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + ")";
+
+                    string query = "select Dash_ID from dash where Bill_Number=" + billNum + " and Branch_ID=" + EmpBranchId;
                     MySqlCommand command = new MySqlCommand(query, dbconnection);
+                    string dashId = command.ExecuteScalar().ToString();
+
+                    query = "insert into dash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID,Dash_ID) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + "," + dashId + ")";
+                    command = new MySqlCommand(query, dbconnection);
                     command.ExecuteNonQuery();
                     
                     MessageBox.Show("تم");

@@ -498,7 +498,7 @@ namespace MainSystem
                         Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
                     //Type_Buy
-                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Customer_Name,Client_ID,Client_Name,Date,TotalCostAD,ReturnInfo,Store_Permission_Number,Type_Buy,Employee_ID) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Customer_Name,@Client_ID,@Client_Name,@Date,@TotalCostAD,@ReturnInfo,@Store_Permission_Number,@Type_Buy,@Employee_ID)";
+                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Customer_Name,Client_ID,Client_Name,Date,TotalCostAD,ReturnInfo,Store_Permission_Number,Type_Buy,Employee_ID,Employee_Name) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Customer_Name,@Client_ID,@Client_Name,@Date,@TotalCostAD,@ReturnInfo,@Store_Permission_Number,@Type_Buy,@Employee_ID,@Employee_Name)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
@@ -575,6 +575,8 @@ namespace MainSystem
                     com.Parameters["@Type_Buy"].Value = type;
                     com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
                     com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
+                    com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Employee_Name"].Value = UserControl.EmpName;
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnBill_ID from customer_return_bill order by CustomerReturnBill_ID desc limit 1";
