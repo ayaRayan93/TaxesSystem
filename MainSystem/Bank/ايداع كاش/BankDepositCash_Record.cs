@@ -61,7 +61,7 @@ namespace MainSystem
             arrRestMoney = new int[9];
             tabControlBank = MainTabControlBank;
 
-            if (UserControl.userType == 0)
+            if (UserControl.userType == 1)
             {
                 cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
                 cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -303,7 +303,7 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                if (UserControl.userType == 0)
+                if (UserControl.userType == 1)
                 {
                     cmbBank.SelectedIndex = -1;
                 }
@@ -436,7 +436,7 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                if (UserControl.userType == 0)
+                if (UserControl.userType == 1)
                 {
                     cmbBank.SelectedIndex = -1;
                 }
@@ -493,7 +493,7 @@ namespace MainSystem
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                if (UserControl.userType == 0)
+                if (UserControl.userType == 1)
                 {
                     cmbBank.SelectedIndex = -1;
                 }

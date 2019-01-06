@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Login : Form
+    public partial class Login_Admin : Form
     {
         MySqlConnection conn;
         MySqlConnection dbconnection/*, dbconnection2*/;
         Timer t;
         public static MainForm mainForm;
 
-        public Login()
+        public Login_Admin()
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -413,5 +413,18 @@ namespace MainSystem
             }
         }
 
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AdminRecord form = new AdminRecord();
+                form.Show();
+                this.Hide();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

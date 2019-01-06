@@ -1773,7 +1773,7 @@ namespace MainSystem
                                                 }
                                                 #endregion
 
-                                                if (UserControl.userType != 0)
+                                                if (UserControl.userType != 1)
                                                 {
                                                     dbconnection.Open();
                                                     query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + UserControl.EmpID + " and delegate_customer.Customer_ID=" + ClintID;
