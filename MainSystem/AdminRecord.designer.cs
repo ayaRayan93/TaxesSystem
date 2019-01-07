@@ -31,14 +31,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.labelBranch = new System.Windows.Forms.Label();
             this.labelDepartement = new System.Windows.Forms.Label();
             this.comDepartment = new System.Windows.Forms.ComboBox();
             this.labName = new System.Windows.Forms.Label();
             this.labNumberReqired = new System.Windows.Forms.Label();
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.comBranch = new System.Windows.Forms.ComboBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txtExperienceYears = new System.Windows.Forms.TextBox();
@@ -50,7 +48,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.txtQualification = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimePickerBirthDate = new System.Windows.Forms.DateTimePicker();
@@ -124,14 +121,12 @@
             this.panel2.AutoScrollMargin = new System.Drawing.Size(2, 2);
             this.panel2.AutoScrollMinSize = new System.Drawing.Size(2, 2);
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel2.Controls.Add(this.labelBranch);
             this.panel2.Controls.Add(this.labelDepartement);
             this.panel2.Controls.Add(this.comDepartment);
             this.panel2.Controls.Add(this.labName);
             this.panel2.Controls.Add(this.labNumberReqired);
             this.panel2.Controls.Add(this.txtSalary);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.comBranch);
             this.panel2.Controls.Add(this.txtMail);
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.txtExperienceYears);
@@ -143,7 +138,6 @@
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.txtAddress);
             this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.txtQualification);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.dateTimePickerBirthDate);
@@ -171,26 +165,13 @@
             this.panel2.Size = new System.Drawing.Size(997, 562);
             this.panel2.TabIndex = 72;
             // 
-            // labelBranch
-            // 
-            this.labelBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelBranch.AutoSize = true;
-            this.labelBranch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelBranch.Location = new System.Drawing.Point(640, 467);
-            this.labelBranch.Name = "labelBranch";
-            this.labelBranch.Size = new System.Drawing.Size(17, 24);
-            this.labelBranch.TabIndex = 126;
-            this.labelBranch.Text = "*";
-            this.labelBranch.Visible = false;
-            // 
             // labelDepartement
             // 
             this.labelDepartement.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelDepartement.AutoSize = true;
             this.labelDepartement.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDepartement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelDepartement.Location = new System.Drawing.Point(640, 510);
+            this.labelDepartement.Location = new System.Drawing.Point(640, 470);
             this.labelDepartement.Name = "labelDepartement";
             this.labelDepartement.Size = new System.Drawing.Size(17, 24);
             this.labelDepartement.TabIndex = 125;
@@ -204,7 +185,7 @@
             this.comDepartment.Enabled = false;
             this.comDepartment.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comDepartment.FormattingEnabled = true;
-            this.comDepartment.Location = new System.Drawing.Point(663, 510);
+            this.comDepartment.Location = new System.Drawing.Point(663, 470);
             this.comDepartment.Name = "comDepartment";
             this.comDepartment.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDepartment.Size = new System.Drawing.Size(200, 24);
@@ -257,19 +238,6 @@
             this.label14.Size = new System.Drawing.Size(41, 18);
             this.label14.TabIndex = 117;
             this.label14.Text = "الراتب";
-            // 
-            // comBranch
-            // 
-            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comBranch.Enabled = false;
-            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(663, 467);
-            this.comBranch.Name = "comBranch";
-            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comBranch.Size = new System.Drawing.Size(200, 24);
-            this.comBranch.TabIndex = 91;
             // 
             // txtMail
             // 
@@ -395,18 +363,6 @@
             this.label15.TabIndex = 111;
             this.label15.Text = "العنوان";
             // 
-            // label12
-            // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(874, 470);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(34, 18);
-            this.label12.TabIndex = 110;
-            this.label12.Text = "الفرع";
-            // 
             // txtQualification
             // 
             this.txtQualification.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -433,6 +389,7 @@
             // 
             this.dateTimePickerBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerBirthDate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePickerBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerBirthDate.Location = new System.Drawing.Point(111, 445);
             this.dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
             this.dateTimePickerBirthDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -474,6 +431,7 @@
             // 
             this.dateTimePickerStartDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerStartDate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerStartDate.Location = new System.Drawing.Point(633, 252);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -562,7 +520,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(874, 513);
+            this.label7.Location = new System.Drawing.Point(874, 473);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 18);
             this.label7.TabIndex = 105;
@@ -683,14 +641,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label labelBranch;
         private System.Windows.Forms.Label labelDepartement;
         private System.Windows.Forms.ComboBox comDepartment;
         private System.Windows.Forms.Label labName;
         private System.Windows.Forms.Label labNumberReqired;
         private System.Windows.Forms.TextBox txtSalary;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtExperienceYears;
@@ -702,7 +658,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtQualification;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePickerBirthDate;

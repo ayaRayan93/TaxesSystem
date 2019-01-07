@@ -439,8 +439,10 @@
             // 
             this.dateTimePickerBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerBirthDate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePickerBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerBirthDate.Location = new System.Drawing.Point(197, 501);
             this.dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
+            this.dateTimePickerBirthDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateTimePickerBirthDate.Size = new System.Drawing.Size(200, 24);
             this.dateTimePickerBirthDate.TabIndex = 97;
             this.dateTimePickerBirthDate.ValueChanged += new System.EventHandler(this.txtSalary_TextChanged);
@@ -480,8 +482,10 @@
             // 
             this.dateTimePickerStartDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerStartDate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerStartDate.Location = new System.Drawing.Point(719, 307);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
+            this.dateTimePickerStartDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateTimePickerStartDate.Size = new System.Drawing.Size(200, 24);
             this.dateTimePickerStartDate.TabIndex = 86;
             this.dateTimePickerStartDate.ValueChanged += new System.EventHandler(this.txtSalary_TextChanged);

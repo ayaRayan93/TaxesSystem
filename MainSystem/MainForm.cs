@@ -494,7 +494,7 @@ namespace MainSystem
         {
             try
             {
-                Login loginForm = new Login();
+                Login_Admin loginForm = new Login_Admin();
                 loginForm.Show();
                 this.Hide();
             }

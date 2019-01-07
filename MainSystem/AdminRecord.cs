@@ -36,7 +36,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from branch";
+                /*string query = "select * from branch";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -45,11 +45,11 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
 
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                comBranch.SelectedValue = System.IO.File.ReadAllText(path);
+                comBranch.SelectedValue = System.IO.File.ReadAllText(path);*/
 
-                query = "select * from departments";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
+                string query = "select * from departments";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
                 da.Fill(dt);
                 comDepartment.DataSource = dt;
                 comDepartment.DisplayMember = dt.Columns["Department_Name"].ToString();
@@ -90,7 +90,7 @@ namespace MainSystem
                 dbconnection.Open();
                 
                 #region Add New Employee
-                string insert = "INSERT INTO Employee (Employee_Number,Employee_Name,Employee_Phone,Employee_Address,Employee_Info,Employee_Qualification,Employee_Start_Date,Employee_Job,Department_ID,Employee_Birth_Date,Employee_Salary,Employee_Mail,Branch_ID,Employee_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears) VALUES (@Employee_Number,@Employee_Name,@Employee_Phone,@Employee_Address,@Employee_Info,@Employee_Qualification,@Employee_Start,@Employee_Job,@Department_ID,@Employee_Birth,@Employee_Salary,@Employee_Mail,@Branch_ID,@Employee_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears)";
+                string insert = "INSERT INTO Employee (Employee_Number,Employee_Name,Employee_Phone,Employee_Address,Employee_Info,Employee_Qualification,Employee_Start_Date,Employee_Job,Department_ID,Employee_Birth_Date,Employee_Salary,Employee_Mail,Employee_Photo,National_ID,Social_Status,SocialInsuranceNumber,EmploymentType,ExperienceYears) VALUES (@Employee_Number,@Employee_Name,@Employee_Phone,@Employee_Address,@Employee_Info,@Employee_Qualification,@Employee_Start,@Employee_Job,@Department_ID,@Employee_Birth,@Employee_Salary,@Employee_Mail,@Employee_Photo,@National_ID,@Social_Status,@SocialInsuranceNumber,@EmploymentType,@ExperienceYears)";
                 MySqlCommand cmd = new MySqlCommand(insert, dbconnection);
                 cmd.Parameters.Add("@Employee_Number", MySqlDbType.Int16);
                 if (txtEmployeeNumber.Text != "")
@@ -137,7 +137,7 @@ namespace MainSystem
                 cmd.Parameters["@Employee_Birth"].Value = dateTimePickerBirthDate.Value;
                 cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                 cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
-                cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
+                /*cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                 if (comBranch.Text != "")
                 {
                     cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
@@ -149,7 +149,7 @@ namespace MainSystem
                     labelBranch.Visible = true;
                     dbconnection.Close();
                     return;
-                }
+                }*/
                 cmd.Parameters.Add("@Department_ID", MySqlDbType.Int16);
                 if (comDepartment.Text != "")
                 {

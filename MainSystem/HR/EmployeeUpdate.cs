@@ -51,6 +51,7 @@ namespace MainSystem
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = row["الفرع"].ToString();
+
                 query = "select * from departments";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -60,6 +61,7 @@ namespace MainSystem
                 comDepartment.ValueMember = dt.Columns["Department_ID"].ToString();
                 comDepartment.Text = row["مكان العمل"].ToString();
                 setData();
+
                 load = true;
             }
             catch (Exception ex)

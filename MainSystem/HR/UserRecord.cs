@@ -43,7 +43,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
 
-                string query = "SELECT Employee_Name,Employee_ID FROM employee";
+                string query = "SELECT Employee_Name,Employee_ID FROM employee where Department_ID <> 1";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -52,7 +52,7 @@ namespace MainSystem
                 comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
                 comEmployee.Text = "";
 
-                query = "SELECT Department_Name,Department_ID FROM departments";
+                query = "SELECT Department_Name,Department_ID FROM departments where Department_ID <> 1";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
