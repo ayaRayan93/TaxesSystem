@@ -17,12 +17,14 @@ namespace MainSystem
     {
         private MySqlConnection dbconnection;
         bool loaded = false;
-        public DelegateTotalSales()
+        MainForm MainForm;
+        public DelegateTotalSales(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                this.MainForm = MainForm;
             }
             catch (Exception ex)
             {
@@ -256,6 +258,17 @@ namespace MainSystem
             return _Table;
         }
 
-        
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, "");
+                MainForm.displayDelegateReport(gridControl1, d);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

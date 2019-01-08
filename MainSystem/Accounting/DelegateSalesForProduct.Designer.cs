@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.newChoose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comFactory = new System.Windows.Forms.ComboBox();
@@ -42,6 +43,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Data_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -58,9 +61,9 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.newChoose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +90,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(871, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // newChoose
+            // 
+            this.newChoose.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.newChoose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.newChoose.FlatAppearance.BorderSize = 0;
+            this.newChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newChoose.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.newChoose.Location = new System.Drawing.Point(47, 12);
+            this.newChoose.Margin = new System.Windows.Forms.Padding(0);
+            this.newChoose.Name = "newChoose";
+            this.newChoose.Size = new System.Drawing.Size(93, 32);
+            this.newChoose.TabIndex = 203;
+            this.newChoose.Text = "اختيار اخر";
+            this.newChoose.UseVisualStyleBackColor = true;
+            this.newChoose.Click += new System.EventHandler(this.newChoose_Click);
             // 
             // label1
             // 
@@ -238,25 +258,78 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(871, 594);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.tableLayoutPanel2.ColumnCount = 10;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.Controls.Add(this.btnReport, 4, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 547);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(865, 44);
+            this.tableLayoutPanel2.TabIndex = 9;
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.ImagePosition = 1;
+            this.btnReport.ImageZoom = 20;
+            this.btnReport.LabelPosition = 18;
+            this.btnReport.LabelText = "طباعة تقرير";
+            this.btnReport.Location = new System.Drawing.Point(438, 4);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(80, 36);
+            this.btnReport.TabIndex = 3;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.EmbeddedNavigator.Appearance.Options.UseFont = true;
+            this.gridControl1.EmbeddedNavigator.Appearance.Options.UseTextOptions = true;
+            this.gridControl1.EmbeddedNavigator.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridControl1.Location = new System.Drawing.Point(0, 100);
+            this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Margin = new System.Windows.Forms.Padding(0);
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(871, 494);
+            this.gridControl1.Size = new System.Drawing.Size(871, 444);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -264,6 +337,7 @@
             // gridView1
             // 
             this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -271,6 +345,16 @@
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridView1.AppearancePrint.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.EvenRow.Options.UseBackColor = true;
+            this.gridView1.AppearancePrint.EvenRow.Options.UseFont = true;
+            this.gridView1.AppearancePrint.EvenRow.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.EvenRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Data_ID,
             this.CodeName,
@@ -281,6 +365,7 @@
             this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(584, 396, 260, 282);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             // 
@@ -292,49 +377,94 @@
             // 
             // CodeName
             // 
+            this.CodeName.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CodeName.AppearanceCell.Options.UseFont = true;
+            this.CodeName.AppearanceCell.Options.UseTextOptions = true;
+            this.CodeName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CodeName.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CodeName.AppearanceHeader.Options.UseFont = true;
+            this.CodeName.AppearanceHeader.Options.UseTextOptions = true;
+            this.CodeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.CodeName.Caption = "البند";
             this.CodeName.FieldName = "CodeName";
             this.CodeName.Name = "CodeName";
             this.CodeName.Visible = true;
             this.CodeName.VisibleIndex = 4;
+            this.CodeName.Width = 150;
             // 
             // QuantitySaled
             // 
+            this.QuantitySaled.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuantitySaled.AppearanceCell.ForeColor = System.Drawing.Color.Blue;
+            this.QuantitySaled.AppearanceCell.Options.UseFont = true;
             this.QuantitySaled.AppearanceCell.Options.UseForeColor = true;
+            this.QuantitySaled.AppearanceCell.Options.UseTextOptions = true;
+            this.QuantitySaled.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.QuantitySaled.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuantitySaled.AppearanceHeader.Options.UseFont = true;
+            this.QuantitySaled.AppearanceHeader.Options.UseTextOptions = true;
+            this.QuantitySaled.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.QuantitySaled.Caption = "الكمية المباعة";
             this.QuantitySaled.FieldName = "QuantitySaled";
             this.QuantitySaled.Name = "QuantitySaled";
             this.QuantitySaled.Visible = true;
             this.QuantitySaled.VisibleIndex = 3;
+            this.QuantitySaled.Width = 173;
             // 
             // QuantityReturned
             // 
+            this.QuantityReturned.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuantityReturned.AppearanceCell.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.QuantityReturned.AppearanceCell.Options.UseFont = true;
             this.QuantityReturned.AppearanceCell.Options.UseForeColor = true;
+            this.QuantityReturned.AppearanceCell.Options.UseTextOptions = true;
+            this.QuantityReturned.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.QuantityReturned.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuantityReturned.AppearanceHeader.Options.UseFont = true;
+            this.QuantityReturned.AppearanceHeader.Options.UseTextOptions = true;
+            this.QuantityReturned.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.QuantityReturned.Caption = "الكمية المرتجعة";
             this.QuantityReturned.FieldName = "QuantityReturned";
             this.QuantityReturned.Name = "QuantityReturned";
             this.QuantityReturned.Visible = true;
             this.QuantityReturned.VisibleIndex = 2;
+            this.QuantityReturned.Width = 173;
             // 
             // Quantity
             // 
+            this.Quantity.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Quantity.AppearanceCell.ForeColor = System.Drawing.Color.Green;
+            this.Quantity.AppearanceCell.Options.UseFont = true;
             this.Quantity.AppearanceCell.Options.UseForeColor = true;
+            this.Quantity.AppearanceCell.Options.UseTextOptions = true;
+            this.Quantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Quantity.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quantity.AppearanceHeader.Options.UseFont = true;
+            this.Quantity.AppearanceHeader.Options.UseTextOptions = true;
+            this.Quantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Quantity.Caption = "صافي الكمية";
             this.Quantity.FieldName = "Quantity";
             this.Quantity.Name = "Quantity";
             this.Quantity.Visible = true;
             this.Quantity.VisibleIndex = 1;
+            this.Quantity.Width = 173;
             // 
             // Cost
             // 
+            this.Cost.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cost.AppearanceCell.Options.UseFont = true;
+            this.Cost.AppearanceCell.Options.UseTextOptions = true;
+            this.Cost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Cost.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cost.AppearanceHeader.Options.UseFont = true;
+            this.Cost.AppearanceHeader.Options.UseTextOptions = true;
+            this.Cost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Cost.Caption = "قيمة المبيعات";
             this.Cost.FieldName = "Cost";
             this.Cost.Name = "Cost";
             this.Cost.Visible = true;
             this.Cost.VisibleIndex = 0;
+            this.Cost.Width = 173;
             // 
             // gridColumn1
             // 
@@ -395,23 +525,6 @@
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 0;
             // 
-            // newChoose
-            // 
-            this.newChoose.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.newChoose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.newChoose.FlatAppearance.BorderSize = 0;
-            this.newChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newChoose.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.newChoose.Location = new System.Drawing.Point(47, 12);
-            this.newChoose.Margin = new System.Windows.Forms.Padding(0);
-            this.newChoose.Name = "newChoose";
-            this.newChoose.Size = new System.Drawing.Size(93, 32);
-            this.newChoose.TabIndex = 203;
-            this.newChoose.Text = "اختيار اخر";
-            this.newChoose.UseVisualStyleBackColor = true;
-            this.newChoose.Click += new System.EventHandler(this.newChoose_Click);
-            // 
             // DelegateSalesForProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,6 +537,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -463,5 +577,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private System.Windows.Forms.Button newChoose;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Bunifu.Framework.UI.BunifuTileButton btnReport;
     }
 }

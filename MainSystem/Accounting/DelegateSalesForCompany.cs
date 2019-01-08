@@ -17,12 +17,14 @@ namespace MainSystem
     {
         private MySqlConnection dbconnection;
         bool loaded = false;
-        public DelegateSalesForCompany()
+        MainForm MainForm;
+        public DelegateSalesForCompany(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                this.MainForm = MainForm;
             }
             catch (Exception ex)
             {
@@ -354,5 +356,48 @@ namespace MainSystem
             return _Table;
         }
 
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, comFactory.Text);
+                MainForm.displayDelegateReport(GridControl1,d);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
+    public class dataX
+    {
+        public dataX(string dateFrom,string dateTo,string delegateName,string company)
+        {
+            this.dateFrom = dateFrom;
+            this.dateTo = dateTo;
+            if (delegateName == "")
+                this.delegateName = delegateName;
+            else
+                this.delegateName = "مندوب :"+delegateName  ;
+            if (company == "")
+                this.company = company;
+            else
+                this.company =" شركة : "+ company;
+
+            delegateProfit = "";
+            company_profit_list = null;
+        }
+      
+        public string dateFrom { get; set; }
+        public string dateTo { get; set; }
+        public string delegateName { get; set; }
+        public string company { get; set; }
+        public string delegateProfit { get; set; }
+        public List<company_profit> company_profit_list { get; set; }
+    }
+    public struct company_profit
+    {
+       public string companyName;
+       public string delegateProfit;
     }
 }

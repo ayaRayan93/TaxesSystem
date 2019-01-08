@@ -39,6 +39,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -193,12 +194,14 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.75F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.75F));
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.69295F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.16406F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.96875F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 357F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnReport, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 557);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -222,12 +225,33 @@
             this.btnAdd.ImageZoom = 20;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(384, 4);
+            this.btnAdd.Location = new System.Drawing.Point(453, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(102, 38);
+            this.btnAdd.Size = new System.Drawing.Size(87, 38);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.ImagePosition = 1;
+            this.btnReport.ImageZoom = 20;
+            this.btnReport.LabelPosition = 18;
+            this.btnReport.LabelText = "طباعة تقرير";
+            this.btnReport.Location = new System.Drawing.Point(361, 4);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(86, 38);
+            this.btnReport.TabIndex = 4;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panel1
             // 
@@ -292,6 +316,7 @@
             this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(584, 397, 260, 282);
             this.gridView1.GridControl = this.gridControl2;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.InvertSelection = true;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -370,6 +395,20 @@
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.Appearance.Row.Options.UseTextOptions = true;
             this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.AppearancePrint.EvenRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gridView2.AppearancePrint.EvenRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.AppearancePrint.EvenRow.Options.UseBackColor = true;
+            this.gridView2.AppearancePrint.EvenRow.Options.UseFont = true;
+            this.gridView2.AppearancePrint.EvenRow.Options.UseTextOptions = true;
+            this.gridView2.AppearancePrint.EvenRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.AppearancePrint.HeaderPanel.Options.UseFont = true;
+            this.gridView2.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView2.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.AppearancePrint.Row.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.AppearancePrint.Row.Options.UseFont = true;
+            this.gridView2.AppearancePrint.Row.Options.UseTextOptions = true;
+            this.gridView2.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Data_ID,
             this.CodeName,
@@ -381,6 +420,7 @@
             this.gridView2.CustomizationFormBounds = new System.Drawing.Rectangle(584, 396, 260, 282);
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsPrint.EnableAppearanceEvenRow = true;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowIndicator = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
@@ -471,8 +511,9 @@
             this.labTotalDelegateProfit.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTotalDelegateProfit.Location = new System.Drawing.Point(505, 23);
             this.labTotalDelegateProfit.Name = "labTotalDelegateProfit";
-            this.labTotalDelegateProfit.Size = new System.Drawing.Size(0, 19);
+            this.labTotalDelegateProfit.Size = new System.Drawing.Size(19, 19);
             this.labTotalDelegateProfit.TabIndex = 1;
+            this.labTotalDelegateProfit.Text = "0";
             // 
             // label1
             // 
@@ -547,5 +588,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private Bunifu.Framework.UI.BunifuTileButton btnReport;
     }
 }

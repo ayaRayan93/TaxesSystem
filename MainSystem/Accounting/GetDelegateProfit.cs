@@ -17,14 +17,15 @@ namespace MainSystem
         private MySqlConnection dbconnection;
         private MySqlConnection dbconnection2;
         public bool loaded = false;
-
-        public GetDelegateProfit()
+        MainForm MainForm;
+        public GetDelegateProfit(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection2 = new MySqlConnection(connection.connectionString);
+                this.MainForm = MainForm;
             }
             catch (Exception ex)
             {
@@ -179,7 +180,7 @@ namespace MainSystem
 
                 DataTable temp = peraperDataTable3();
              
-
+                double totalDelegateProfit = 0.0;
                 for (int i = 0; i < _Table3.Rows.Count; i++)
                 {
                     int x = i;
@@ -188,15 +189,19 @@ namespace MainSystem
                         if (_Table3.Rows[i]["FactoryID"].ToString() == _Table.Rows[j]["FactoryID"].ToString())
                         {
                             _Table3.Rows[i]["ValueDelegate"] = Convert.ToDouble(_Table.Rows[j]["ValueDelegate"].ToString()) + Convert.ToDouble(_Table3.Rows[i]["ValueDelegate"].ToString());
-                            i++;
+                           i++;
                         }
                     }
                     temp.Rows.Add(_Table3.Rows[x].ItemArray);
                 }
-                
+                for (int i = 0; i < temp.Rows.Count; i++)
+                {
+                    totalDelegateProfit += Convert.ToDouble(temp.Rows[i]["ValueDelegate"].ToString());
+                }
                 gridControl2.DataSource = temp;
+                gridView1.SelectRows(0, gridView1.RowCount - 1);
 
-
+                labTotalDelegateProfit.Text = totalDelegateProfit.ToString();
                 _Table2 = getSoldQuantity(_Table2 ,itemName, DataTableRelations, d, d2,str);
                 _Table2 = getReturnedQuantity(_Table2, itemName, DataTableRelations, d, d2,str1);
 
@@ -248,7 +253,7 @@ namespace MainSystem
                 double total = 0.0;
                 double result = Convert.ToDouble(labTotalDelegateProfit.Text);
                 total = Convert.ToDouble(dataRow["ValueDelegate"].ToString());
-                if (view.GetFocusedValue().ToString() == "True")
+                if (view.GetFocusedValue().ToString() == "False")
                 {
                     result = result - total;
                 }
@@ -547,6 +552,29 @@ namespace MainSystem
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
             labTotalDelegateProfit.Text = "";
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, "");
+                d.delegateProfit = labTotalDelegateProfit.Text;
+                int[] arr = gridView1.GetSelectedRows();
+                d.company_profit_list = new List<company_profit>();
+                foreach (int item in arr)
+                {
+                   company_profit x = new company_profit();
+                   x.companyName= gridView1.GetRowCellValue(item, "FactoryName").ToString();
+                   x.delegateProfit = gridView1.GetRowCellValue(item, "ValueDelegate").ToString();
+                    d.company_profit_list.Add(x);
+                }
+                MainForm.displayDelegateReport(gridControl1, d);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

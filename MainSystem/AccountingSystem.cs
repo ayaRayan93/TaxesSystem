@@ -13,6 +13,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace MainSystem
 {
@@ -41,7 +42,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
-                DelegateTotalSales objForm = new DelegateTotalSales();
+                DelegateTotalSales objForm = new DelegateTotalSales(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -75,7 +76,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
-                DelegateSalesForCompany objForm = new DelegateSalesForCompany();
+                DelegateSalesForCompany objForm = new DelegateSalesForCompany(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -114,7 +115,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
-                DelegateSalesForProduct objForm = new DelegateSalesForProduct();
+                DelegateSalesForProduct objForm = new DelegateSalesForProduct(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -153,7 +154,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
-                GetDelegateProfit objForm = new GetDelegateProfit();
+                GetDelegateProfit objForm = new GetDelegateProfit(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -166,6 +167,27 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void displayDelegateReport(GridControl gridControl, dataX d)
+        {
+            Delegate_Report objForm = new Delegate_Report(gridControl,d);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير مبيعات المناديب");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlAccounting.TabPages.Add("تقرير مبيعات المناديب");
+                xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير مبيعات المناديب");
+
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
         }
     }
 }
