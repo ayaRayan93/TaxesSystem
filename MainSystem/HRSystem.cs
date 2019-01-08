@@ -225,29 +225,32 @@ namespace MainSystem
 
         private void navBarItemUserReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-
-                if (!xtraTabControlHRContent.Visible)
-                    xtraTabControlHRContent.Visible = true;
-
-                xtraTabPageUser = getTabPage(xtraTabControlHRContent, "اضافة مستخدم");
-                if (xtraTabPageUser == null)
+                try
                 {
-                    xtraTabControlHRContent.TabPages.Add("اضافة مستخدم");
-                    xtraTabPageUser = getTabPage(xtraTabControlHRContent, "اضافة مستخدم");
-                }
-                xtraTabPageUser.Controls.Clear();
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
 
-                xtraTabControlHRContent.SelectedTabPage = xtraTabPageUser;
-                bindDisplayUserForm(xtraTabPageUser);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                    if (!xtraTabControlHRContent.Visible)
+                        xtraTabControlHRContent.Visible = true;
+
+                    xtraTabPageUser = getTabPage(xtraTabControlHRContent, "اضافة مستخدم");
+                    if (xtraTabPageUser == null)
+                    {
+                        xtraTabControlHRContent.TabPages.Add("اضافة مستخدم");
+                        xtraTabPageUser = getTabPage(xtraTabControlHRContent, "اضافة مستخدم");
+                    }
+                    xtraTabPageUser.Controls.Clear();
+
+                    xtraTabControlHRContent.SelectedTabPage = xtraTabPageUser;
+                    bindDisplayUserForm(xtraTabPageUser);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

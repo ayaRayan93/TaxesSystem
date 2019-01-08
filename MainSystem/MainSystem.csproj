@@ -187,6 +187,12 @@
     <Compile Include="Coding\Branch_Update.designer.cs">
       <DependentUpon>Branch_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AdminRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminRecord.designer.cs">
+      <DependentUpon>AdminRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="HR\UserRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,12 @@
     </Compile>
     <Compile Include="HR\Users.designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login_Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Admin.designer.cs">
+      <DependentUpon>Login_Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="PointOfSale\Customer_Print2.cs">
       <SubType>Form</SubType>
@@ -1470,6 +1482,18 @@
       <DependentUpon>TipImage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl.cs" />
+    <Compile Include="Admin\AdminUserRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminUserRecord.designer.cs">
+      <DependentUpon>AdminUserRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserUpdate.designer.cs">
+      <DependentUpon>UserUpdate.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Accounting\Delegate_Report.resx">
       <DependentUpon>Delegate_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -1497,11 +1521,17 @@
     <EmbeddedResource Include="Coding\Branch_Update.resx">
       <DependentUpon>Branch_Update.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\AdminRecord.resx">
+      <DependentUpon>AdminRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HR\UserRecord.resx">
       <DependentUpon>UserRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_Admin.resx">
+      <DependentUpon>Login_Admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Customer_Print2.resx">
       <DependentUpon>Customer_Print2.cs</DependentUpon>
@@ -2135,6 +2165,12 @@
     <EmbeddedResource Include="TipImage.resx">
       <DependentUpon>TipImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\AdminUserRecord.resx">
+      <DependentUpon>AdminUserRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserUpdate.resx">
+      <DependentUpon>UserUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Cars\DataSet2.xsc">
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
@@ -2406,6 +2442,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Sign-Up.png" />
+    <None Include="Resources\icons8_Contacts2_32.png" />
+    <None Include="Resources\icons8_Administrator_Male_32.png" />
+    <None Include="Resources\Male User_50px.png" />
     <None Include="Resources\Shutdown_48px.png" />
     <None Include="Resources\icons8_Workspace_48.png" />
     <None Include="Resources\icons8_Workspace_64.png" />

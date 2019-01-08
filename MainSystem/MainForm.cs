@@ -83,7 +83,7 @@ namespace MainSystem
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (UserControl.userType == 0)
+            if (UserControl.userType == 1)
             {
                 btnCars.Enabled = true;
                 btnCars.Checked = true;
@@ -111,11 +111,6 @@ namespace MainSystem
                 btnCoding.Checked = true;
                 btnReports.Enabled = true;
                 btnReports.Checked = true;
-            }
-            else if (UserControl.userType == 1)
-            {
-                btnCars.Enabled = true;
-                btnCars.Checked = true;
             }
             else if (UserControl.userType == 2)
             {
@@ -171,6 +166,11 @@ namespace MainSystem
             {
                 btnCoding.Enabled = true;
                 btnCoding.Checked = true;
+            }
+            else if (UserControl.userType == 14)
+            {
+                btnCars.Enabled = true;
+                btnCars.Checked = true;
             }
         }
 
@@ -494,11 +494,24 @@ namespace MainSystem
         {
             try
             {
-                Login loginForm = new Login();
+                Login_Admin loginForm = new Login_Admin();
                 loginForm.Show();
                 this.Hide();
             }
             catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void pictureBoxProfile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UserUpdate form = new UserUpdate(this);
+                form.ShowDialog();
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

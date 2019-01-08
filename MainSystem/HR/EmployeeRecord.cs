@@ -48,7 +48,14 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = "";
 
-                query = "select * from departments";
+                if (UserControl.userType == 1)
+                {
+                    query = "select * from departments";
+                }
+                else
+                {
+                    query = "select * from departments where Department_ID <> 1";
+                }
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
@@ -151,7 +158,12 @@ namespace MainSystem
                     cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    if (comBranch.Text != "")
+                    if (UserControl.userType == 1)
+                    {
+                        cmd.Parameters["@Branch_ID"].Value = null;
+                        labelBranch.Visible = false;
+                    }
+                    else if (comBranch.Text != "")
                     {
                         cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
                         labelBranch.Visible = false;
@@ -200,7 +212,7 @@ namespace MainSystem
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("تم ادخال البيانات بنجاح");
+                        //MessageBox.Show("تم ادخال البيانات بنجاح");
                         employees.displayEmployee();
                         clear();
                         string query = "select Employee_ID from employee order by Employee_ID desc limit 1";
@@ -311,7 +323,7 @@ namespace MainSystem
 
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        MessageBox.Show("تم ادخال البيانات بنجاح");
+                        //MessageBox.Show("تم ادخال البيانات بنجاح");
                         employees.displayEmployee();
                         clear();
 

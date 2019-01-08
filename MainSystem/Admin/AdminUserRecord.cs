@@ -11,56 +11,55 @@ using MySql.Data;
 using System.IO;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraTab;
+using System.Reflection;
 
 namespace MainSystem
 {
-    public partial class UserRecord : Form
+    public partial class AdminUserRecord : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection2;
         bool load = false;
-        MainForm HRMainForm;
-        XtraTabControl xtraTabControlHRContent;
+        int employeeId = 0;
 
-        public UserRecord(MainForm HrMainForm, XtraTabControl XtraTabControlHRContent)
+        public AdminUserRecord(int EmployeeId)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                HRMainForm = HrMainForm;
-                xtraTabControlHRContent = XtraTabControlHRContent;
+                dbconnection2 = new MySqlConnection(connection.connectionString);
+                employeeId = EmployeeId;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
      
-        private void UserRecord_Load(object sender, EventArgs e)
+        private void AdminUserRecord_Load(object sender, EventArgs e)
         {
             try
             {
                 dbconnection.Open();
 
-                string query = "SELECT Employee_Name,Employee_ID FROM employee where Department_ID <> 1";
+                string query = "SELECT Employee_Name,Employee_ID FROM employee";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 comEmployee.DataSource = dt;
                 comEmployee.DisplayMember = dt.Columns["Employee_Name"].ToString();
                 comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
-                comEmployee.Text = "";
+                comEmployee.SelectedValue = employeeId;
 
-                query = "SELECT Department_Name,Department_ID FROM departments where Department_ID <> 1";
+                query = "SELECT Department_Name,Department_ID FROM departments";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
                 comDepartment.DataSource = dt;
                 comDepartment.DisplayMember = dt.Columns["Department_Name"].ToString();
                 comDepartment.ValueMember = dt.Columns["Department_ID"].ToString();
-                comDepartment.Text = "";
-
+                comDepartment.SelectedValue = 1;
+                
                 load = true;
             }
             catch (Exception ee)
@@ -69,104 +68,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-        private void rEmployee_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (rEmployee.Checked)
-                {
-                    dbconnection.Open();
-                    string query = "SELECT Employee_Name,Employee_ID FROM employee";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    load = false;
-                    comEmployee.DataSource = dt;
-                    comEmployee.DisplayMember = dt.Columns["Employee_Name"].ToString();
-                    comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
-                    comEmployee.Text = "";
-                    load = true;
-                    clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
-        private void rDelegate_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (rDelegate.Checked)
-                {
-                    dbconnection.Open();
-                    string query = "SELECT Delegate_Name,Delegate_ID FROM delegate";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    load = false;
-                    comEmployee.DataSource = dt;
-                    comEmployee.DisplayMember = dt.Columns["Delegate_Name"].ToString();
-                    comEmployee.ValueMember = dt.Columns["Delegate_ID"].ToString();
-                    comEmployee.Text = "";
-                    load = true;
-                    clear();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
-        private void comEmployee_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (load)
-                {
-                    if (rEmployee.Checked == true)
-                    {
-                        dbconnection.Open();
-                        string query = "SELECT Department_ID FROM employee where Employee_ID=" + comEmployee.SelectedValue.ToString();
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
-                        {
-                            comDepartment.SelectedValue = com.ExecuteScalar().ToString();
-                        }
-                        else
-                        {
-                            comDepartment.SelectedIndex = -1;
-                        }
-                    }
-                    else if (rDelegate.Checked == true)
-                    {
-                        dbconnection.Open();
-                        string query = "SELECT Department_ID FROM delegate where Delegate_ID=" + comEmployee.SelectedValue.ToString();
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
-                        {
-                            comDepartment.SelectedValue = com.ExecuteScalar().ToString();
-                        }
-                        else
-                        {
-                            comDepartment.SelectedIndex = -1;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -191,7 +93,37 @@ namespace MainSystem
 
                         if (cmd.ExecuteNonQuery() == 1)
                         {
-                            clear();
+                            query = "select User_ID from users order by User_ID desc limit 1";
+                            com = new MySqlCommand(query, dbconnection);
+                            int userId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            
+                            UserControl.ItemRecord("users", "اضافة", userId, DateTime.Now, "", dbconnection);
+
+                            UserControl.userID = userId;
+                            UserControl.userName = txtName.Text;
+                            UserControl.userType = 1;
+                            UserControl.EmpType = "مدير";
+
+                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                            UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                            
+                            string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
+                            com = new MySqlCommand(query2, dbconnection);
+                            UserControl.EmpBranchName = com.ExecuteScalar().ToString();
+
+                            dbconnection2.Open();
+                            query2 = "SELECT users.Employee_ID,employee.Employee_Name FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + userId;
+                            com = new MySqlCommand(query2, dbconnection2);
+                            MySqlDataReader dr = com.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                UserControl.EmpName = dr["Employee_Name"].ToString();
+                            }
+                            dr.Close();
+                            MainForm mainForm = new MainForm();
+                            mainForm.Show();
+                            this.Hide();
                         }
                     }
                     else
@@ -209,6 +141,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection2.Close();
         }
 
         private void txtBox_TextChanged(object sender, EventArgs e)
@@ -238,12 +171,7 @@ namespace MainSystem
                             }
                         }
                     }
-
-                    XtraTabPage xtraTabPage = getTabPage("اضافة مستخدم");
-                    if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
-                    else
-                        xtraTabPage.ImageOptions.Image = null;
+                    
                 }
             }
             catch (Exception ex)
@@ -252,6 +180,19 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
+        private void AdminUserRecord_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Environment.Exit(0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void clear()
         {
@@ -267,15 +208,7 @@ namespace MainSystem
                 }
             }
         }
-        public XtraTabPage getTabPage(string text)
-        {
-            for (int i = 0; i < xtraTabControlHRContent.TabPages.Count; i++)
-                if (xtraTabControlHRContent.TabPages[i].Text == text)
-                {
-                    return xtraTabControlHRContent.TabPages[i];
-                }
-            return null;
-        }
+
         private bool IsClear()
         {
             foreach (Control item in this.Controls)
