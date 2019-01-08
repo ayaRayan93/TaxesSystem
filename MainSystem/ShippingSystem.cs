@@ -25,19 +25,17 @@ namespace MainSystem
 
         public static Zone_Area ZoneArea;
         public static Shipping_Record ShippingRecord;
-
-        XtraTabPage tabPageZoneArea;
+        public static Permission_Report PermissionReport;
+        Panel panelPermissionReport;
         Panel panelZoneArea;
-        XtraTabPage tabPageShippingRecord;
         Panel panelShippingRecord;
         
 
         public void ShippingForm()
         {
-            tabPageZoneArea = new XtraTabPage();
             panelZoneArea = new Panel();
-            tabPageShippingRecord = new XtraTabPage();
             panelShippingRecord = new Panel();
+            panelPermissionReport = new Panel();
 
             tabControlShipping = xtraTabControlShipping;
         }
@@ -71,9 +69,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
- 
-
+        
         private void navBarItemZoonReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -85,8 +81,9 @@ namespace MainSystem
                 XtraTabPage xtraTabPage = getTabPage("tabPageZoneArea");
                 if (xtraTabPage == null)
                 {
-                    tabPageZoneArea.Name = "tabPageZoneArea";
-                    tabPageZoneArea.Text = "اضافة منطقة & زون";
+                    xtraTabPage = new XtraTabPage();
+                    xtraTabPage.Name = "tabPageZoneArea";
+                    xtraTabPage.Text = "اضافة منطقة & زون";
                     panelZoneArea.Name = "panelZoneArea";
                     panelZoneArea.Dock = DockStyle.Fill;
 
@@ -98,10 +95,10 @@ namespace MainSystem
                 }
                 panelZoneArea.Controls.Clear();
                 panelZoneArea.Controls.Add(ZoneArea);
-                tabPageZoneArea.Controls.Add(panelZoneArea);
-                tabControlShipping.TabPages.Add(tabPageZoneArea);
+                xtraTabPage.Controls.Add(panelZoneArea);
+                tabControlShipping.TabPages.Add(xtraTabPage);
                 ZoneArea.Show();
-                tabControlShipping.SelectedTabPage = tabPageZoneArea;
+                tabControlShipping.SelectedTabPage = xtraTabPage;
             }
             catch (Exception ex)
             {
@@ -120,8 +117,9 @@ namespace MainSystem
                 XtraTabPage xtraTabPage = getTabPage("tabPageShippingRecord");
                 if (xtraTabPage == null)
                 {
-                    tabPageShippingRecord.Name = "tabPageShippingRecord";
-                    tabPageShippingRecord.Text = "تسجيل شحنة";
+                    xtraTabPage = new XtraTabPage();
+                    xtraTabPage.Name = "tabPageShippingRecord";
+                    xtraTabPage.Text = "تسجيل شحنة";
                     panelShippingRecord.Name = "panelShippingRecord";
                     panelShippingRecord.Dock = DockStyle.Fill;
 
@@ -133,10 +131,46 @@ namespace MainSystem
                 }
                 panelShippingRecord.Controls.Clear();
                 panelShippingRecord.Controls.Add(ShippingRecord);
-                tabPageShippingRecord.Controls.Add(panelShippingRecord);
-                tabControlShipping.TabPages.Add(tabPageShippingRecord);
+                xtraTabPage.Controls.Add(panelShippingRecord);
+                tabControlShipping.TabPages.Add(xtraTabPage);
                 ShippingRecord.Show();
-                tabControlShipping.SelectedTabPage = tabPageShippingRecord;
+                tabControlShipping.SelectedTabPage = xtraTabPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemPermissionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
+
+                XtraTabPage xtraTabPage = getTabPage("tabPagePermissionsReport");
+                if (xtraTabPage == null)
+                {
+                    xtraTabPage = new XtraTabPage();
+                    xtraTabPage.Name = "tabPagePermissionsReport";
+                    xtraTabPage.Text = "تقرير الاذون";
+                    panelPermissionReport.Name = "panelPermissionsReport";
+                    panelPermissionReport.Dock = DockStyle.Fill;
+
+                    PermissionReport = new Permission_Report();
+                    PermissionReport.Size = new Size(1109, 660);
+                    PermissionReport.TopLevel = false;
+                    PermissionReport.FormBorderStyle = FormBorderStyle.None;
+                    PermissionReport.Dock = DockStyle.Fill;
+                }
+                panelPermissionReport.Controls.Clear();
+                panelPermissionReport.Controls.Add(PermissionReport);
+                xtraTabPage.Controls.Add(panelPermissionReport);
+                tabControlShipping.TabPages.Add(xtraTabPage);
+                PermissionReport.Show();
+                tabControlShipping.SelectedTabPage = xtraTabPage;
             }
             catch (Exception ex)
             {

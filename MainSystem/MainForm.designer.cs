@@ -423,6 +423,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
+            this.navBarItemPermissionsReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3092,7 +3093,7 @@
             // 
             // navBarControlShippingReport
             // 
-            this.navBarControlShippingReport.ActiveGroup = this.navBarGroupShippingRecord;
+            this.navBarControlShippingReport.ActiveGroup = this.navBarGroupReportShipping;
             this.navBarControlShippingReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlShippingReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlShippingReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3125,7 +3126,8 @@
             this.navBarItem151,
             this.navBarItem152,
             this.navBarItemZoonReport,
-            this.navBarItemShipping_Record});
+            this.navBarItemShipping_Record,
+            this.navBarItemPermissionsReport});
             this.navBarControlShippingReport.Location = new System.Drawing.Point(985, 0);
             this.navBarControlShippingReport.Name = "navBarControlShippingReport";
             this.navBarControlShippingReport.OptionsNavPane.ExpandedWidth = 160;
@@ -3142,7 +3144,6 @@
             this.navBarGroupShippingRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroupShippingRecord.Appearance.Options.UseFont = true;
             this.navBarGroupShippingRecord.Caption = "تسجيل شحنة";
-            this.navBarGroupShippingRecord.Expanded = true;
             this.navBarGroupShippingRecord.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShipping_Record)});
             this.navBarGroupShippingRecord.Name = "navBarGroupShippingRecord";
@@ -3160,6 +3161,9 @@
             this.navBarGroupReportShipping.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroupReportShipping.Appearance.Options.UseFont = true;
             this.navBarGroupReportShipping.Caption = "تقارير";
+            this.navBarGroupReportShipping.Expanded = true;
+            this.navBarGroupReportShipping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionsReport)});
             this.navBarGroupReportShipping.Name = "navBarGroupReportShipping";
             // 
             // navBarGroupZoonReport
@@ -3914,6 +3918,14 @@
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
             // 
+            // navBarItemPermissionsReport
+            // 
+            this.navBarItemPermissionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPermissionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemPermissionsReport.Caption = "الاذون المتوقعة";
+            this.navBarItemPermissionsReport.Name = "navBarItemPermissionsReport";
+            this.navBarItemPermissionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionsReport_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4354,5 +4366,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem52;
         private DevExpress.XtraNavBar.NavBarItem navBarItem155;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemPermissionsReport;
     }
 }

@@ -124,7 +124,7 @@ namespace MainSystem
                         return;
                     }
                     dbconnection.Open();
-                    string query = "insert into shipping (Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Zone_ID,Zone_Name,Description) values(@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Zone_ID,@Zone_Name,@Description)";
+                    string query = "insert into shipping (Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Zone_ID,Zone_Name,Date,Description) values(@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Zone_ID,@Zone_Name,@Date,@Description)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Customer_ID"].Value = comClient.SelectedValue.ToString();
@@ -146,10 +146,12 @@ namespace MainSystem
                     com.Parameters["@Zone_Name"].Value = comZone.Text;
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
                     com.Parameters["@Description"].Value = txtDescription.Text;
+                    com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
+                    com.Parameters["@Date"].Value = dateTimePicker1.Value;
 
                     com.ExecuteNonQuery();
                     
-                    MessageBox.Show("تم");
+                    //MessageBox.Show("تم");
                     clear();
                     xtraTabPage.ImageOptions.Image = null;
                 }
@@ -268,6 +270,14 @@ namespace MainSystem
                     else if (item is TextBox)
                     {
                         item.Text = "";
+                    }
+                    else if (item is DateTimePicker)
+                    {
+                        dateTimePicker1.Value = DateTime.Now;
+                    }
+                    else if (item is CheckedListBoxControl)
+                    {
+                        checkedListBoxControlAddress.Items.Clear();
                     }
                 }
             }
