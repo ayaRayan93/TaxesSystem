@@ -1299,6 +1299,12 @@
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ShippingSystem.cs" />
+    <Compile Include="Shipping\Permission_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Permission_Report.designer.cs">
+      <DependentUpon>Permission_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shipping\Area_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1348,6 +1354,12 @@
     </Compile>
     <Compile Include="Store\initialCodeStorage.designer.cs">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\Form1.designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\ProductItems.cs">
       <SubType>Form</SubType>
@@ -1474,6 +1486,24 @@
     </Compile>
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\TransportationStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\TransportationStore.designer.cs">
+      <DependentUpon>TransportationStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\جرد كميات\Form1Quantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\جرد كميات\Form1Quantity.designer.cs">
+      <DependentUpon>Form1Quantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\جرد كميات\Form2SpeicalOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\جرد كميات\Form2SpeicalOrder.designer.cs">
+      <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="TipImage.cs">
       <SubType>Form</SubType>
@@ -2075,6 +2105,9 @@
     <EmbeddedResource Include="Sales\UpdateSellPriceForm.resx">
       <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Permission_Report.resx">
+      <DependentUpon>Permission_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Area_Report.resx">
       <DependentUpon>Area_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -2098,6 +2131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\InternalDelivery\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\ProductItems.resx">
       <DependentUpon>ProductItems.cs</DependentUpon>
@@ -2161,6 +2197,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\InternalDelivery\TransportationStore.resx">
+      <DependentUpon>TransportationStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\جرد كميات\Form1Quantity.resx">
+      <DependentUpon>Form1Quantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\جرد كميات\Form2SpeicalOrder.resx">
+      <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipImage.resx">
       <DependentUpon>TipImage.cs</DependentUpon>
@@ -2483,7 +2528,9 @@
     <None Include="Resources\Trolley_80px.png" />
     <None Include="Resources\unsave %282%29.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Store\Gate\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
