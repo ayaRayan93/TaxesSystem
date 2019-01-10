@@ -1349,6 +1349,12 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Gate\Gate_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Gate\Gate_Record.designer.cs">
+      <DependentUpon>Gate_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\initialCodeStorage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2129,6 +2135,9 @@
     <EmbeddedResource Include="Store\AtaqmStorage.resx">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Gate\Gate_Record.resx">
+      <DependentUpon>Gate_Record.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
     </EmbeddedResource>
@@ -2528,9 +2537,7 @@
     <None Include="Resources\Trolley_80px.png" />
     <None Include="Resources\unsave %282%29.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Store\Gate\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

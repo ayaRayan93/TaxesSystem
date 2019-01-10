@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
@@ -71,6 +72,9 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSignInRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSignOutRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -79,9 +83,6 @@
             this.btnProductItems = new DevExpress.XtraNavBar.NavBarItem();
             this.btnProducts = new DevExpress.XtraNavBar.NavBarItem();
             this.btnAtaqm = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
@@ -420,7 +421,7 @@
             this.pictureBoxSale = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
@@ -920,7 +921,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
+            this.navBarControl1.ActiveGroup = this.navBarGroup3;
             this.navBarControl1.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.Background.Options.UseFont = true;
             this.navBarControl1.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -987,8 +988,8 @@
             this.btnProducts,
             this.btnAtaqm,
             this.navBarItem1,
-            this.navBarItem2,
-            this.navBarItem7,
+            this.navBarItemSignInRecord,
+            this.navBarItemSignOutRecord,
             this.navBarItem8,
             this.navBarItem9,
             this.navBarItem10,
@@ -1015,10 +1016,30 @@
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
+            // navBarGroup3
+            // 
+            this.navBarGroup3.Caption = "البوابة";
+            this.navBarGroup3.Expanded = true;
+            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSignInRecord),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSignOutRecord)});
+            this.navBarGroup3.Name = "navBarGroup3";
+            this.navBarGroup3.SelectedLinkIndex = 0;
+            // 
+            // navBarItemSignInRecord
+            // 
+            this.navBarItemSignInRecord.Caption = "تسجيل الدخول";
+            this.navBarItemSignInRecord.Name = "navBarItemSignInRecord";
+            this.navBarItemSignInRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSignInRecord_LinkClicked);
+            // 
+            // navBarItemSignOutRecord
+            // 
+            this.navBarItemSignOutRecord.Caption = "تسجيل الخروج";
+            this.navBarItemSignOutRecord.Name = "navBarItemSignOutRecord";
+            // 
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
@@ -1076,24 +1097,6 @@
             this.btnAtaqm.Caption = "تسجيل الاطقم";
             this.btnAtaqm.Name = "btnAtaqm";
             this.btnAtaqm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnAtaqm_LinkClicked);
-            // 
-            // navBarGroup3
-            // 
-            this.navBarGroup3.Caption = "البوابة";
-            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7)});
-            this.navBarGroup3.Name = "navBarGroup3";
-            // 
-            // navBarItem2
-            // 
-            this.navBarItem2.Caption = "تسجيل الدخول";
-            this.navBarItem2.Name = "navBarItem2";
-            // 
-            // navBarItem7
-            // 
-            this.navBarItem7.Caption = "تسجيل الخروج";
-            this.navBarItem7.Name = "navBarItem7";
             // 
             // navBarGroup4
             // 
@@ -1234,7 +1237,7 @@
             // 
             // navBarGroup12
             // 
-            this.navBarGroup12.Caption = "التقرير";
+            this.navBarGroup12.Caption = "التقارير";
             this.navBarGroup12.Name = "navBarGroup12";
             // 
             // xtraTabPageSales
@@ -4006,8 +4009,8 @@
         private DevExpress.XtraNavBar.NavBarItem btnProducts;
         public DevExpress.XtraNavBar.NavBarItem btnAtaqm;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSignInRecord;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSignOutRecord;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup4;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
         private DevExpress.XtraNavBar.NavBarItem navBarItem9;
