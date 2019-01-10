@@ -1036,6 +1036,7 @@
             // 
             this.navBarItemSignOutRecord.Caption = "تسجيل الخروج";
             this.navBarItemSignOutRecord.Name = "navBarItemSignOutRecord";
+            this.navBarItemSignOutRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSignOutRecord_LinkClicked);
             // 
             // navBarGroup1
             // 

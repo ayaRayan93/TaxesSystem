@@ -30,8 +30,8 @@ namespace MainSystem
             comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
             comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comZone.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comZone.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comArea.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comArea.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void Shipping_Record_Load(object sender, EventArgs e)
@@ -40,14 +40,14 @@ namespace MainSystem
             {
                 radClient.Checked = true;
                 dbconnection.Open();
-                string query = "select * from zone";
+                string query = "select * from area";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                comZone.DataSource = dt;
-                comZone.DisplayMember = dt.Columns["Zone_Name"].ToString();
-                comZone.ValueMember = dt.Columns["Zone_ID"].ToString();
-                comZone.Text = "";
+                comArea.DataSource = dt;
+                comArea.DisplayMember = dt.Columns["Area_Name"].ToString();
+                comArea.ValueMember = dt.Columns["Area_ID"].ToString();
+                comArea.Text = "";
 
                 query = "select * from branch";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -112,7 +112,7 @@ namespace MainSystem
         {
             try
             {
-                if (comClient.Text != "" && txtPhone.Text != "" && comBranch.Text != "" && txtBillNumber.Text != "" && txtAddress.Text != "" && comZone.Text != "")
+                if (comClient.Text != "" && txtPhone.Text != "" && comBranch.Text != "" && txtBillNumber.Text != "" && txtAddress.Text != "" && comArea.Text != "")
                 {
                     int billNum = 0;
                     if(int.TryParse(txtBillNumber.Text, out billNum))
@@ -124,7 +124,7 @@ namespace MainSystem
                         return;
                     }
                     dbconnection.Open();
-                    string query = "insert into shipping (Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Zone_ID,Zone_Name,Date,Description) values(@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Zone_ID,@Zone_Name,@Date,@Description)";
+                    string query = "insert into shipping (Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Area_ID,Area_Name,Date,Description) values(@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Area_ID,@Area_Name,@Date,@Description)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Customer_ID"].Value = comClient.SelectedValue.ToString();
@@ -140,10 +140,10 @@ namespace MainSystem
                     com.Parameters["@Branch_Name"].Value = comBranch.Text;
                     com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
                     com.Parameters["@Address"].Value = txtAddress.Text;
-                    com.Parameters.Add("@Zone_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Zone_ID"].Value = comZone.SelectedValue.ToString();
-                    com.Parameters.Add("@Zone_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Zone_Name"].Value = comZone.Text;
+                    com.Parameters.Add("@Area_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@Area_ID"].Value = comArea.SelectedValue.ToString();
+                    com.Parameters.Add("@Area_Name", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Area_Name"].Value = comArea.Text;
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);

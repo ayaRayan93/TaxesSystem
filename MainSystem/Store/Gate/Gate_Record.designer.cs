@@ -250,7 +250,7 @@
             this.btnDeleteNum.ForeColor = System.Drawing.Color.White;
             this.btnDeleteNum.Location = new System.Drawing.Point(56, 411);
             this.btnDeleteNum.Name = "btnDeleteNum";
-            this.btnDeleteNum.Size = new System.Drawing.Size(58, 33);
+            this.btnDeleteNum.Size = new System.Drawing.Size(58, 26);
             this.btnDeleteNum.TabIndex = 59;
             this.btnDeleteNum.Text = "حذف";
             this.btnDeleteNum.UseVisualStyleBackColor = false;
@@ -268,7 +268,7 @@
             this.btnAddNum.Name = "btnAddNum";
             this.btnAddNum.Size = new System.Drawing.Size(58, 26);
             this.btnAddNum.TabIndex = 58;
-            this.btnAddNum.Text = "+";
+            this.btnAddNum.Text = "اضافة";
             this.btnAddNum.UseVisualStyleBackColor = false;
             this.btnAddNum.Visible = false;
             this.btnAddNum.Click += new System.EventHandler(this.btnAddNum_Click);
