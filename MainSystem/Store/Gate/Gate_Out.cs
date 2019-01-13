@@ -25,9 +25,6 @@ namespace MainSystem
         MySqlConnection conn;
         MainForm mainform = null;
         XtraTabControl xtraTabControlStoresContent = null;
-        bool loaded = false;
-        bool flag = false;
-        bool flag2 = false;
 
         public Gate_Out(MainForm Mainform, XtraTabControl TabControlStoresContent)
         {
@@ -51,8 +48,6 @@ namespace MainSystem
                 conn.Open();
 
                 search();
-
-                loaded = true;
             }
             catch (Exception ex)
             {

@@ -298,6 +298,54 @@ namespace MainSystem
                 loaded = true;
             }
         }
+        
+        private void comDriver_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    conn.Open();
+                    string query = "select * from cars where Car_ID in(select Car_ID from driver_car where Driver_ID=" + comDriver.SelectedValue.ToString() + ")";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comCar.DataSource = dt;
+                    comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
+                    comCar.ValueMember = dt.Columns["Car_ID"].ToString();
+                    comCar.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
+        private void comCar_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    conn.Open();
+                    string query = "select Driver_ID,Driver_Name from drivers where Driver_ID in(select Driver_ID from driver_car where Car_ID=" + comCar.SelectedValue.ToString() + ")";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDriver.DataSource = dt;
+                    comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
+                    comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
+                    comDriver.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
 
         private void btnAddNum_Click(object sender, EventArgs e)
         {
@@ -451,35 +499,7 @@ namespace MainSystem
             }
             conn.Close();
         }
-
-        private void txtBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    TextBox t = (TextBox)sender;
-                    switch (t.Name)
-                    {
-                        case "txtName":
-                            txtPermisionNum.Focus();
-                            break;
-                        case "txtAddress":
-                            //txtPhone.Focus();
-                            break;
-                        case "txtPhone":
-                            txtDriver.Focus();
-                            break;
-                       
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -563,62 +583,13 @@ namespace MainSystem
                 }
             return null;
         }
+
         public bool IsClear()
         {
-            if (txtDriver.Text == "" && txtPermisionNum.Text == "" /*&& txtPhone.Text == ""*/)
+            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "")
                 return true;
             else
                 return false;
-                    
-        }
-
-        private void comDriver_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    conn.Open();
-                    string query = "select * from cars where Car_ID in(select Car_ID from driver_car where Driver_ID=" + comDriver.SelectedValue.ToString() + ")";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comCar.DataSource = dt;
-                    comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
-                    comCar.ValueMember = dt.Columns["Car_ID"].ToString();
-                    comCar.SelectedIndex = -1;
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
-        }
-
-        private void comCar_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    conn.Open();
-                    string query = "select Driver_ID,Driver_Name from drivers where Driver_ID in(select Driver_ID from driver_car where Car_ID=" + comCar.SelectedValue.ToString() + ")";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comDriver.DataSource = dt;
-                    comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
-                    comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
-                    comDriver.SelectedIndex = -1;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
     }
-   
 }

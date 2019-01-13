@@ -71,8 +71,6 @@
             this.txtPermisionNum.Size = new System.Drawing.Size(200, 28);
             this.txtPermisionNum.TabIndex = 2;
             this.txtPermisionNum.Visible = false;
-            this.txtPermisionNum.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            this.txtPermisionNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // labelPerNum
             // 
@@ -99,7 +97,6 @@
             this.txtDriver.TabIndex = 1;
             this.txtDriver.Visible = false;
             this.txtDriver.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            this.txtDriver.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // labelEmp
             // 
@@ -174,6 +171,7 @@
             this.comCar.TabIndex = 65;
             this.comCar.Visible = false;
             this.comCar.SelectedValueChanged += new System.EventHandler(this.comCar_SelectedValueChanged);
+            this.comCar.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // txtCar
             // 
@@ -186,6 +184,7 @@
             this.txtCar.Size = new System.Drawing.Size(200, 28);
             this.txtCar.TabIndex = 64;
             this.txtCar.Visible = false;
+            this.txtCar.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // labelResponsible
             // 
@@ -213,6 +212,7 @@
             this.comResponsible.TabIndex = 62;
             this.comResponsible.Visible = false;
             this.comResponsible.SelectedValueChanged += new System.EventHandler(this.comResponsible_SelectedValueChanged);
+            this.comResponsible.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // labelType
             // 
@@ -240,6 +240,7 @@
             this.comType.TabIndex = 60;
             this.comType.Visible = false;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedValueChanged);
+            this.comType.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // btnDeleteNum
             // 
@@ -349,6 +350,7 @@
             this.comEmployee.Size = new System.Drawing.Size(200, 29);
             this.comEmployee.TabIndex = 17;
             this.comEmployee.Visible = false;
+            this.comEmployee.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // labelLicense
             // 
@@ -374,6 +376,7 @@
             this.txtLicense.Size = new System.Drawing.Size(200, 28);
             this.txtLicense.TabIndex = 15;
             this.txtLicense.Visible = false;
+            this.txtLicense.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // comDriver
             // 
@@ -388,6 +391,7 @@
             this.comDriver.TabIndex = 14;
             this.comDriver.Visible = false;
             this.comDriver.SelectedValueChanged += new System.EventHandler(this.comDriver_SelectedValueChanged);
+            this.comDriver.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // comReason
             // 
@@ -401,6 +405,7 @@
             this.comReason.Size = new System.Drawing.Size(200, 29);
             this.comReason.TabIndex = 13;
             this.comReason.SelectedValueChanged += new System.EventHandler(this.comReason_SelectedValueChanged);
+            this.comReason.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // tableLayoutPanel2
             // 
