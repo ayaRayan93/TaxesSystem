@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Form1Quantity
+    partial class FormDelivery
     {
         /// <summary>
         /// Required designer variable.

@@ -156,11 +156,7 @@ namespace MainSystem
             da.Fill(dt);
             dataGridView1.DataSource = dt;
         }
-
-       
-
-      
-
+        
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode==Keys.Enter)
@@ -273,8 +269,7 @@ namespace MainSystem
                 //string q1 = "ALTER TABLE Storage ADD FOREIGN KEY (Data_ID) REFERENCES data (Data_ID) ON DELETE CASCADE ON UPDATE CASCADE";
                 //MySqlCommand com1 = new MySqlCommand(q1, conn);
                 //com1.ExecuteNonQuery();
-               
-
+                
                 if (textBox5.Text != "" && textBox6.Text != "" && textBox7.Text != "" && textBox9.Text != "")
                 {
                     string code = textBox9.Text;
@@ -364,9 +359,7 @@ namespace MainSystem
             }
             conn.Close();
         }
-
-       
-
+        
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row  =  dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
@@ -430,11 +423,6 @@ namespace MainSystem
             }
         }
 
-        private void txtPermissionNum_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void txtPermissionNum_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -453,11 +441,6 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-
-        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

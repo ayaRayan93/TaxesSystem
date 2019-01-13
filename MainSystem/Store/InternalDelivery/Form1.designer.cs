@@ -249,7 +249,6 @@
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(106, 21);
             this.comboBox5.TabIndex = 22;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             this.comboBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox5_KeyDown);
             // 
             // label5
@@ -437,7 +436,6 @@
             this.txtPermissionNum.Size = new System.Drawing.Size(109, 24);
             this.txtPermissionNum.TabIndex = 38;
             this.txtPermissionNum.Visible = false;
-            this.txtPermissionNum.TextChanged += new System.EventHandler(this.txtPermissionNum_TextChanged);
             this.txtPermissionNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPermissionNum_KeyDown);
             // 
             // Form1

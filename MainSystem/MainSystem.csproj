@@ -1522,16 +1522,16 @@
     <Compile Include="Store\InternalDelivery\TransportationStore.designer.cs">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\جرد كميات\Form1Quantity.cs">
+    <Compile Include="Store\InternalDelivery\FormDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\جرد كميات\Form1Quantity.designer.cs">
-      <DependentUpon>Form1Quantity.cs</DependentUpon>
+    <Compile Include="Store\InternalDelivery\FormDelivery.designer.cs">
+      <DependentUpon>FormDelivery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\جرد كميات\Form2SpeicalOrder.cs">
+    <Compile Include="Store\InternalDelivery\Form2SpeicalOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\جرد كميات\Form2SpeicalOrder.designer.cs">
+    <Compile Include="Store\InternalDelivery\Form2SpeicalOrder.designer.cs">
       <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="TipImage.cs">
@@ -2242,10 +2242,10 @@
     <EmbeddedResource Include="Store\InternalDelivery\TransportationStore.resx">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\جرد كميات\Form1Quantity.resx">
-      <DependentUpon>Form1Quantity.cs</DependentUpon>
+    <EmbeddedResource Include="Store\InternalDelivery\FormDelivery.resx">
+      <DependentUpon>FormDelivery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\جرد كميات\Form2SpeicalOrder.resx">
+    <EmbeddedResource Include="Store\InternalDelivery\Form2SpeicalOrder.resx">
       <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipImage.resx">
@@ -2581,7 +2581,9 @@
     <None Include="Resources\Trolley_80px.png" />
     <None Include="Resources\unsave %282%29.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Store\جرد كميات\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

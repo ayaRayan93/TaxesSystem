@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Form1Quantity : Form
+    public partial class FormDelivery : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
@@ -25,7 +25,7 @@ namespace MainSystem
         DataGridViewRow row1;
         int storeId, branchID = 0, BranchBillNum = 0;
 
-        public Form1Quantity()
+        public FormDelivery()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
