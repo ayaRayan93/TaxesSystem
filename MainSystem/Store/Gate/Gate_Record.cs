@@ -352,7 +352,7 @@ namespace MainSystem
             {
                 conn.Open();
                 
-                string query = "insert into transport (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,Employee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@Employee_ID)";
+                string query = "insert into transport (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
                 com.Parameters["@Reason"].Value = comReason.Text;
@@ -389,7 +389,7 @@ namespace MainSystem
                     com.Parameters["@Driver_Name"].Value = txtDriver.Text;
                 }
                 com.Parameters.Add("@License_Number", MySqlDbType.VarChar, 255);
-                com.Parameters["@License_Number"].Value = txtPermisionNum.Text;
+                com.Parameters["@License_Number"].Value = txtLicense.Text;
                 com.Parameters.Add("@Date_Enter", MySqlDbType.DateTime, 0);
                 com.Parameters["@Date_Enter"].Value = DateTime.Now;
 
@@ -402,8 +402,8 @@ namespace MainSystem
                 com.Parameters["@TatiqEmp_ID"].Value = comEmployee.SelectedValue.ToString();
                 com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
                 com.Parameters["@Description"].Value = txtDescription.Text;
-                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
+                com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
+                com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
                 com.ExecuteNonQuery();
 
                 query = "select Permission_Number from transport order by Permission_Number desc limit 1";

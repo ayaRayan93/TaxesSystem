@@ -9,14 +9,43 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Collections;
+using MySql.Data.MySqlClient;
 
 namespace MainSystem
 {
     public partial class Permissions_Edit : Form
     {
-        public Permissions_Edit()
+        MySqlConnection conn;
+        int permissionNum = 0;
+        Gate_Out gateOut;
+
+        public Permissions_Edit(Gate_Out GateOut, int PermissionNum)
         {
             InitializeComponent();
+            conn = new MySqlConnection(connection.connectionString);
+            permissionNum = PermissionNum;
+            gateOut = GateOut;
+        }
+
+        private void Permissions_Edit_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                string query = "select Supplier_PermissionNumber from transport_permission where Permission_Number=" + permissionNum;
+                MySqlCommand com = new MySqlCommand(query, conn);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    checkedListBoxControlNum.Items.Add(dr[0].ToString());
+                }
+                dr.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
         }
 
         private void btnAddNum_Click(object sender, EventArgs e)
@@ -64,6 +93,36 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                string query = "delete from transport_permission where Permission_Number=" + permissionNum;
+                MySqlCommand com = new MySqlCommand(query, conn);
+                com.ExecuteNonQuery();
+
+                for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
+                {
+                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber) values(@Permission_Number,@Supplier_PermissionNumber)";
+                    com = new MySqlCommand(query, conn);
+                    com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
+                    com.Parameters["@Permission_Number"].Value = permissionNum;
+                    com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                    com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
+                    com.ExecuteNonQuery();
+                }
+                conn.Close();
+                gateOut.search();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
         }
     }
 }

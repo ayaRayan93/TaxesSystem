@@ -34,8 +34,11 @@
             this.btnAddNum = new System.Windows.Forms.Button();
             this.txtPermisionNum = new System.Windows.Forms.TextBox();
             this.labelPerNum = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -48,7 +51,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(328, 223);
+            this.panel1.Size = new System.Drawing.Size(327, 288);
             this.panel1.TabIndex = 1;
             // 
             // btnDeleteNum
@@ -58,7 +61,7 @@
             this.btnDeleteNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDeleteNum.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteNum.Location = new System.Drawing.Point(93, 184);
+            this.btnDeleteNum.Location = new System.Drawing.Point(92, 184);
             this.btnDeleteNum.Name = "btnDeleteNum";
             this.btnDeleteNum.Size = new System.Drawing.Size(58, 26);
             this.btnDeleteNum.TabIndex = 59;
@@ -72,7 +75,7 @@
             this.checkedListBoxControlNum.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBoxControlNum.Appearance.Options.UseFont = true;
             this.checkedListBoxControlNum.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlNum.Location = new System.Drawing.Point(72, 82);
+            this.checkedListBoxControlNum.Location = new System.Drawing.Point(71, 82);
             this.checkedListBoxControlNum.Name = "checkedListBoxControlNum";
             this.checkedListBoxControlNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkedListBoxControlNum.Size = new System.Drawing.Size(100, 96);
@@ -85,7 +88,7 @@
             this.btnAddNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNum.ForeColor = System.Drawing.Color.White;
-            this.btnAddNum.Location = new System.Drawing.Point(93, 50);
+            this.btnAddNum.Location = new System.Drawing.Point(92, 50);
             this.btnAddNum.Name = "btnAddNum";
             this.btnAddNum.Size = new System.Drawing.Size(58, 26);
             this.btnAddNum.TabIndex = 58;
@@ -98,7 +101,7 @@
             this.txtPermisionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermisionNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPermisionNum.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtPermisionNum.Location = new System.Drawing.Point(22, 15);
+            this.txtPermisionNum.Location = new System.Drawing.Point(21, 15);
             this.txtPermisionNum.Name = "txtPermisionNum";
             this.txtPermisionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPermisionNum.Size = new System.Drawing.Size(200, 28);
@@ -110,18 +113,57 @@
             this.labelPerNum.AutoSize = true;
             this.labelPerNum.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPerNum.ForeColor = System.Drawing.Color.Firebrick;
-            this.labelPerNum.Location = new System.Drawing.Point(227, 18);
+            this.labelPerNum.Location = new System.Drawing.Point(226, 18);
             this.labelPerNum.Name = "labelPerNum";
             this.labelPerNum.Size = new System.Drawing.Size(80, 23);
             this.labelPerNum.TabIndex = 3;
             this.labelPerNum.Text = "رقم الاذن";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 235);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(327, 53);
+            this.tableLayoutPanel2.TabIndex = 12;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_321;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 35;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "حفظ";
+            this.btnAdd.Location = new System.Drawing.Point(135, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(59, 45);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Permissions_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(328, 223);
+            this.ClientSize = new System.Drawing.Size(327, 288);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -129,9 +171,11 @@
             this.Name = "Permissions_Edit";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.Permissions_Edit_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -144,5 +188,7 @@
         private System.Windows.Forms.Button btnAddNum;
         private System.Windows.Forms.TextBox txtPermisionNum;
         private System.Windows.Forms.Label labelPerNum;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Bunifu.Framework.UI.BunifuTileButton btnAdd;
     }
 }

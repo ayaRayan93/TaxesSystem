@@ -35,8 +35,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 mainform = Mainform;
-                string constr = connection.connectionString;
-                conn = new MySqlConnection(constr);
+                conn = new MySqlConnection(connection.connectionString);
                 xtraTabControlStoresContent = TabControlStoresContent;
             }
             catch (Exception ex)
@@ -52,11 +51,6 @@ namespace MainSystem
                 conn.Open();
 
                 search();
-                /*emptyEditor = new RepositoryItemButtonEdit();
-                emptyEditor.Buttons.Clear();
-                emptyEditor.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-                gridControl1.RepositoryItems.Add(emptyEditor);
-                //new DevExpress.XtraGrid.Design.XViewsPrinting(gridControl1);*/
 
                 loaded = true;
             }
@@ -71,7 +65,7 @@ namespace MainSystem
         {
             if (e.Column == gridView1.Columns["التسلسل"])
             {
-                Permissions_Edit form = new Permissions_Edit();
+                Permissions_Edit form = new Permissions_Edit(this, Convert.ToInt16(gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.Columns["التسلسل"])));
                 form.ShowDialog();
             }
         }
@@ -83,17 +77,16 @@ namespace MainSystem
                 if (e.Action == CollectionChangeAction.Add)
                 {
                     conn.Open();
-
-                    string query = "update transport set Date_Out=" + DateTime.Now + " ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + e.ControllerRow;
+                    string query = "update transport set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.ExecuteNonQuery();
                     //search();
                 }
                 else if (e.Action == CollectionChangeAction.Remove)
                 {
-                    GridView view = sender as GridView;
+                    GridView view = gridView1 as GridView;
                     view.SelectionChanged -= gridView1_SelectionChanged;
-                    gridView1.UnselectRow(gridView1.FocusedRowHandle);
+                    gridView1.SelectRow(gridView1.FocusedRowHandle);
                     view.SelectionChanged += gridView1_SelectionChanged;
                 }
             }
@@ -103,18 +96,6 @@ namespace MainSystem
             }
             conn.Close();
         }
-
-        /*bool NeedToHideDiscontinuedCheckbox(GridView view, int row)
-        {
-            return true; // your code here....
-        }
-
-        private void gridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
-        {
-            if (e.Column.FieldName == "Discontinued" &&
-                NeedToHideDiscontinuedCheckbox(sender as GridView, e.RowHandle))
-                e.RepositoryItem = emptyEditor;
-        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -277,47 +258,5 @@ namespace MainSystem
                 }
             return null;
         }
-
-        /*private void GridView1_CustomDrawGroupRow(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
-        {
-            GridGroupRowInfo info = e.Info as GridGroupRowInfo;
-            if (info == null) return;
-            if (info.Level != 0) return;
-            info.SelectorInfo.Bounds = Rectangle.Empty;
-            info.SelectorInfo.GlyphRect = Rectangle.Empty;
-        }*/
-
-        /*void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.Column.FieldName == GridView.CheckBoxSelectorColumnName)
-            {
-                GridCellInfo cell = e.Cell as GridCellInfo;
-                ObjectPainter p = cell.RowInfo.ViewInfo.Painter.ElementsPainter.DetailButton;
-                if (!cell.CellButtonRect.IsEmpty)
-                {
-                    e.Handled = false;
-                }
-                else
-                {
-                    e.Handled = true;
-                }
-            }
-        }*/
-
-        /*private void gridView_MouseDown(object sender, MouseEventArgs e)
-        {
-            GridView view = sender as GridView;
-            var hitInfo = view.CalcHitInfo(e.Location);
-            if (hitInfo.InRowCell && hitInfo.Column.FieldName == GridView.CheckBoxSelectorColumnName)
-            {
-                GridViewInfo viewInfo = (gridView1.GetViewInfo() as GridViewInfo);
-                GridCellInfo cellInfo = viewInfo.GetGridCellInfo(hitInfo);
-                var rect = cellInfo.CellButtonRect;
-                if (!rect.Contains(hitInfo.HitPoint))
-                    DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = true;
-            }
-        }*/
     }
-
 }
