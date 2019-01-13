@@ -55,6 +55,8 @@
             this.comReason = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -114,6 +116,8 @@
             // panContent
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
+            this.panContent.Controls.Add(this.label3);
+            this.panContent.Controls.Add(this.label2);
             this.panContent.Controls.Add(this.labelCar);
             this.panContent.Controls.Add(this.comCar);
             this.panContent.Controls.Add(this.txtCar);
@@ -445,6 +449,30 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(241, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 19);
+            this.label2.TabIndex = 67;
+            this.label2.Text = "*";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(241, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 19);
+            this.label3.TabIndex = 68;
+            this.label3.Text = "*";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Gate_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -492,6 +520,8 @@
         private System.Windows.Forms.Label labelCar;
         private System.Windows.Forms.ComboBox comCar;
         private System.Windows.Forms.TextBox txtCar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

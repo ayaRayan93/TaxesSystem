@@ -398,102 +398,108 @@ namespace MainSystem
         {
             try
             {
-                conn.Open();
-                
-                string query = "insert into transport (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
-                MySqlCommand com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
-                com.Parameters["@Reason"].Value = comReason.Text;
-                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
-                com.Parameters["@Type"].Value = comType.Text;
-                com.Parameters.Add("@Responsible", MySqlDbType.VarChar, 255);
-                com.Parameters["@Responsible"].Value = comResponsible.Text;
-                if (comCar.Text != "")
+                if (comReason.Text != "" && comType.Text != "")
                 {
-                    com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Car_ID"].Value = comCar.SelectedValue.ToString();
-                    com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Car_Number"].Value = comCar.Text;
-                }
-                else
-                {
-                    com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Car_ID"].Value = null;
-                    com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Car_Number"].Value = txtCar.Text;
-                }
-                if (comDriver.Text != "")
-                {
-                    com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Driver_ID"].Value = comDriver.SelectedValue.ToString();
-                    com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Driver_Name"].Value = comDriver.Text;
-                }
-                else
-                {
-                    com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Driver_ID"].Value = null;
-                    com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Driver_Name"].Value = txtDriver.Text;
-                }
-                com.Parameters.Add("@License_Number", MySqlDbType.VarChar, 255);
-                com.Parameters["@License_Number"].Value = txtLicense.Text;
-                com.Parameters.Add("@Date_Enter", MySqlDbType.DateTime, 0);
-                com.Parameters["@Date_Enter"].Value = DateTime.Now;
-
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
-
-                com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@Store_ID"].Value = storeId;
-                com.Parameters.Add("@TatiqEmp_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@TatiqEmp_ID"].Value = comEmployee.SelectedValue.ToString();
-                com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
-                com.Parameters["@Description"].Value = txtDescription.Text;
-                com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
-                com.ExecuteNonQuery();
-
-                query = "select Permission_Number from transport order by Permission_Number desc limit 1";
-                com = new MySqlCommand(query, conn);
-                int permissionNum = Convert.ToInt16(com.ExecuteScalar().ToString());
-
-                for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
-                {
-                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
-                    com = new MySqlCommand(query, conn);
-                    com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
-                    com.Parameters["@Permission_Number"].Value = permissionNum;
-                    com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
-                    com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
+                    conn.Open();
+                    string query = "insert into transport (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
+                    MySqlCommand com = new MySqlCommand(query, conn);
+                    com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Reason"].Value = comReason.Text;
                     com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Type"].Value = "دخول";
+                    com.Parameters["@Type"].Value = comType.Text;
+                    com.Parameters.Add("@Responsible", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Responsible"].Value = comResponsible.Text;
+                    if (comCar.Text != "")
+                    {
+                        com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Car_ID"].Value = comCar.SelectedValue.ToString();
+                        com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Car_Number"].Value = comCar.Text;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Car_ID"].Value = null;
+                        com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Car_Number"].Value = txtCar.Text;
+                    }
+                    if (comDriver.Text != "")
+                    {
+                        com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Driver_ID"].Value = comDriver.SelectedValue.ToString();
+                        com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Driver_Name"].Value = comDriver.Text;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Driver_ID"].Value = null;
+                        com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Driver_Name"].Value = txtDriver.Text;
+                    }
+                    com.Parameters.Add("@License_Number", MySqlDbType.VarChar, 255);
+                    com.Parameters["@License_Number"].Value = txtLicense.Text;
+                    com.Parameters.Add("@Date_Enter", MySqlDbType.DateTime, 0);
+                    com.Parameters["@Date_Enter"].Value = DateTime.Now;
+
+                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+                    int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@Store_ID"].Value = storeId;
+                    com.Parameters.Add("@TatiqEmp_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@TatiqEmp_ID"].Value = comEmployee.SelectedValue.ToString();
+                    com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Description"].Value = txtDescription.Text;
+                    com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
                     com.ExecuteNonQuery();
+
+                    query = "select Permission_Number from transport order by Permission_Number desc limit 1";
+                    com = new MySqlCommand(query, conn);
+                    int permissionNum = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                    for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
+                    {
+                        query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
+                        com = new MySqlCommand(query, conn);
+                        com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
+                        com.Parameters["@Permission_Number"].Value = permissionNum;
+                        com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                        com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
+                        com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Type"].Value = "دخول";
+                        com.ExecuteNonQuery();
+                    }
+
+                    clearAll();
+
+                    comType.Visible = false;
+                    labelType.Visible = false;
+                    comResponsible.Visible = false;
+                    labelResponsible.Visible = false;
+                    comEmployee.Visible = false;
+                    labelEmp.Visible = false;
+                    labelPerNum.Visible = false;
+                    txtPermisionNum.Visible = false;
+                    labelDriver.Visible = false;
+                    comDriver.Visible = false;
+                    txtDriver.Visible = false;
+                    labelCar.Visible = false;
+                    comCar.Visible = false;
+                    txtCar.Visible = false;
+                    txtLicense.Visible = false;
+                    labelLicense.Visible = false;
+                    txtDescription.Visible = false;
+                    labelDescription.Visible = false;
+                    btnAddNum.Visible = false;
+                    checkedListBoxControlNum.Visible = false;
+                    btnDeleteNum.Visible = false;
                 }
-
-                clearAll();
-
-                comType.Visible = false;
-                labelType.Visible = false;
-                comResponsible.Visible = false;
-                labelResponsible.Visible = false;
-                comEmployee.Visible = false;
-                labelEmp.Visible = false;
-                labelPerNum.Visible = false;
-                txtPermisionNum.Visible = false;
-                labelDriver.Visible = false;
-                comDriver.Visible = false;
-                txtDriver.Visible = false;
-                labelCar.Visible = false;
-                comCar.Visible = false;
-                txtCar.Visible = false;
-                txtLicense.Visible = false;
-                labelLicense.Visible = false;
-                txtDescription.Visible = false;
-                labelDescription.Visible = false;
-                btnAddNum.Visible = false;
-                checkedListBoxControlNum.Visible = false;
-                btnDeleteNum.Visible = false;
+                else
+                {
+                    MessageBox.Show("يجب ادخال البيانات الاساسية");
+                }
             }
             catch (Exception ex)
             {
