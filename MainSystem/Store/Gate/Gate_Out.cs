@@ -99,7 +99,8 @@ namespace MainSystem
             int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
 
             DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT transport.Permission_Number as 'التسلسل',transport.Reason as 'سبب الدخول',transport.Type as 'النوع',transport.Responsible as 'المسئول',transport.License_Number as 'رقم الرخصة',transport.Date_Enter as 'وقت الدخول',transport.Description as 'البيان',transport.Driver_Name as 'السواق',transport.Car_Number as 'رقم العربية',employee.Employee_Name as 'مسئول التعتيق' FROM transport INNER JOIN employee ON employee.Employee_ID = transport.TatiqEmp_ID WHERE transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+            //,employee.Employee_Name as 'مسئول التعتيق'
+            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT transport.Permission_Number as 'التسلسل',transport.Reason as 'سبب الدخول',transport.Type as 'النوع',transport.Responsible as 'المسئول',transport.Date_Enter as 'وقت الدخول',transport.Driver_Name as 'السواق',transport.Car_Number as 'رقم العربية',transport.License_Number as 'رقم الرخصة',transport.Description as 'البيان' FROM transport INNER JOIN employee ON employee.Employee_ID = transport.TatiqEmp_ID WHERE transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
 
             MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT transport_permission.Permission_Number as 'التسلسل',transport_permission.Supplier_PermissionNumber as 'رقم الاذن',transport_permission.Type as 'النوع' FROM transport_permission inner join transport on transport.Permission_Number=transport_permission.Permission_Number where transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
 
