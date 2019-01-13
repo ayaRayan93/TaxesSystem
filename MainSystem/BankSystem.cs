@@ -66,6 +66,7 @@ namespace MainSystem
         Panel panelPullPayAccountReport;
         XtraTabPage tabPageBankTransferReport;
         Panel panelBankTransferReport;
+
         public void initialize()
         {
             //bankSystem
@@ -125,8 +126,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-
+        
         private void navBarItemDepositCash_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             try
@@ -550,8 +550,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
-
+        
         public void bindRecordPullCashForm(BankPullCash_Report form)
         {
             BankPullCash_Record objForm = new BankPullCash_Record(form, MainTabControlBank);

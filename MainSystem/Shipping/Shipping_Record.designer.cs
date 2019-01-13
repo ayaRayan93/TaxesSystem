@@ -39,6 +39,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.label18 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -54,7 +55,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comZone = new System.Windows.Forms.ComboBox();
+            this.comArea = new System.Windows.Forms.ComboBox();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.comClient = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -94,9 +95,8 @@
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -275,7 +275,7 @@
             this.layoutControl1.Controls.Add(this.label5);
             this.layoutControl1.Controls.Add(this.label3);
             this.layoutControl1.Controls.Add(this.label4);
-            this.layoutControl1.Controls.Add(this.comZone);
+            this.layoutControl1.Controls.Add(this.comArea);
             this.layoutControl1.Controls.Add(this.comBranch);
             this.layoutControl1.Controls.Add(this.comClient);
             this.layoutControl1.Controls.Add(this.label13);
@@ -300,6 +300,13 @@
             this.layoutControl1.Size = new System.Drawing.Size(1066, 531);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(12, 281);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(541, 26);
+            this.label18.TabIndex = 73;
             // 
             // dateTimePicker1
             // 
@@ -426,15 +433,15 @@
             this.label4.Size = new System.Drawing.Size(20, 50);
             this.label4.TabIndex = 58;
             // 
-            // comZone
+            // comArea
             // 
-            this.comZone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.comZone.FormattingEnabled = true;
-            this.comZone.Location = new System.Drawing.Point(557, 227);
-            this.comZone.Name = "comZone";
-            this.comZone.Size = new System.Drawing.Size(392, 24);
-            this.comZone.TabIndex = 5;
-            this.comZone.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.comArea.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.comArea.FormattingEnabled = true;
+            this.comArea.Location = new System.Drawing.Point(557, 227);
+            this.comArea.Name = "comArea";
+            this.comArea.Size = new System.Drawing.Size(392, 24);
+            this.comArea.TabIndex = 5;
+            this.comArea.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // comBranch
             // 
@@ -705,14 +712,14 @@
             this.layoutControlItem16.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.layoutControlItem16.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem16.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem16.Control = this.comZone;
+            this.layoutControlItem16.Control = this.comArea;
             this.layoutControlItem16.Location = new System.Drawing.Point(545, 215);
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem16.Name = "layoutControlItem16";
             this.layoutControlItem16.Size = new System.Drawing.Size(501, 30);
             this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem16.Text = "الزون";
+            this.layoutControlItem16.Text = "المنطقة";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(102, 26);
             // 
             // layoutControlItem18
@@ -884,21 +891,6 @@
             this.layoutControlItem32.Text = "التاريخ";
             this.layoutControlItem32.TextSize = new System.Drawing.Size(102, 26);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1072, 597);
-            this.panel1.TabIndex = 35;
-            // 
-            // label18
-            // 
-            this.label18.Location = new System.Drawing.Point(12, 281);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(541, 26);
-            this.label18.TabIndex = 73;
-            // 
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.label18;
@@ -907,6 +899,14 @@
             this.layoutControlItem29.Size = new System.Drawing.Size(545, 30);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1072, 597);
+            this.panel1.TabIndex = 35;
             // 
             // Shipping_Record
             // 
@@ -995,7 +995,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private System.Windows.Forms.Label label13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
-        private System.Windows.Forms.ComboBox comZone;
+        private System.Windows.Forms.ComboBox comArea;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.ComboBox comClient;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;

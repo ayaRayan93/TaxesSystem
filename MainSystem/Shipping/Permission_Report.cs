@@ -62,7 +62,7 @@ namespace MainSystem
         //System Functions
         public void displayAll()
         {
-            string query = "SELECT shipping.Bill_Number as 'رقم الفاتورة',branch.Branch_Name as 'الفرع',customer.Customer_Name as 'العميل',shipping.Phone as 'التليفون',shipping.Address as 'العنوان',zone.Zone_Name as 'الزون',shipping.Description as 'البيان',shipping.Date as 'التاريخ' FROM shipping INNER JOIN customer ON customer.Customer_ID = shipping.Customer_ID INNER JOIN branch ON branch.Branch_ID = shipping.Branch_ID INNER JOIN zone ON zone.Zone_ID = shipping.Zone_ID WHERE shipping.Delivered=0";
+            string query = "SELECT shipping.Bill_Number as 'رقم الفاتورة',branch.Branch_Name as 'الفرع',customer.Customer_Name as 'العميل',shipping.Phone as 'التليفون',shipping.Address as 'العنوان',area.Area_Name as 'الزون',shipping.Description as 'البيان',shipping.Date as 'التاريخ' FROM shipping INNER JOIN customer ON customer.Customer_ID = shipping.Customer_ID INNER JOIN branch ON branch.Branch_ID = shipping.Branch_ID INNER JOIN area ON area.Area_ID = shipping.Area_ID WHERE shipping.Delivered=0";
             MySqlDataAdapter adabter = new MySqlDataAdapter(query, dbConnection);
             DataTable dTable = new DataTable();
             adabter.Fill(dTable);
@@ -71,7 +71,7 @@ namespace MainSystem
 
         public void displayPermission()
         {
-            string query = "SELECT shipping.Bill_Number as 'رقم الفاتورة',branch.Branch_Name as 'الفرع',customer.Customer_Name as 'العميل',shipping.Phone as 'التليفون',shipping.Address as 'العنوان',zone.Zone_Name as 'الزون',shipping.Description as 'البيان',shipping.Date as 'التاريخ' FROM shipping INNER JOIN customer ON customer.Customer_ID = shipping.Customer_ID INNER JOIN branch ON branch.Branch_ID = shipping.Branch_ID INNER JOIN zone ON zone.Zone_ID = shipping.Zone_ID WHERE shipping.Delivered=0 and date(shipping.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
+            string query = "SELECT shipping.Bill_Number as 'رقم الفاتورة',branch.Branch_Name as 'الفرع',customer.Customer_Name as 'العميل',shipping.Phone as 'التليفون',shipping.Address as 'العنوان',area.Area_Name as 'الزون',shipping.Description as 'البيان',shipping.Date as 'التاريخ' FROM shipping INNER JOIN customer ON customer.Customer_ID = shipping.Customer_ID INNER JOIN branch ON branch.Branch_ID = shipping.Branch_ID INNER JOIN area ON area.Area_ID = shipping.Area_ID WHERE shipping.Delivered=0 and date(shipping.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
             MySqlDataAdapter adabter = new MySqlDataAdapter(query, dbConnection);
             DataTable dTable = new DataTable();
             adabter.Fill(dTable);

@@ -233,6 +233,74 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSignInRecord_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسجيل دخول السيارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تسجيل دخول السيارات");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسجيل دخول السيارات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                Gate_Record objForm = new Gate_Record(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSignOutRecord_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسجيل خروج السيارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تسجيل خروج السيارات");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسجيل خروج السيارات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                Gate_Out objForm = new Gate_Out(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         /// <summary>
         private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
         {
@@ -760,8 +828,6 @@ namespace MainSystem
 
         }
 
-
-      
         private void StoreMainForm_Resize(object sender, EventArgs e)
         {
             try
