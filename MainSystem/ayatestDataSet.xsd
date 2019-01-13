@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ayatestDataSet" targetNamespace="http://tempuri.org/ayatestDataSet.xsd" xmlns:mstns="http://tempuri.org/ayatestDataSet.xsd" xmlns="http://tempuri.org/ayatestDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="dbconnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbconnection (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MainSystem.Properties.Settings.GlobalReference.Default.dbconnection" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="product_billTableAdapter" GeneratorDataComponentClassName="product_billTableAdapter" Name="product_bill" UserDataComponentName="product_billTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbconnection (Settings)" DbObjectName="ayatest.product_bill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `ProductBill_ID`, `CustomerBill_ID`, `Data_ID`, `Type`, `Price`, `Discount`, `PriceAD`, `Quantity`, `Store_ID`, `Store_Name`, `Delegate_ID`, `RecivedQuantity`, `Returned`, `Cartons` FROM `product_bill`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="shippingTableAdapter" GeneratorDataComponentClassName="shippingTableAdapter" Name="shipping" UserDataComponentName="shippingTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbconnection (Settings)" DbObjectName="ayatest.shipping" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `Shipping_ID`, `Customer_ID`, `Customer_Name`, `CustomerBill_ID`, `Bill_Number`, `Branch_ID`, `Branch_Name`, `Address`, `Area_ID`, `Area_Name`, `Phone`, `Date`, `Description`, `Delivered` FROM `shipping`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources>
+              <DbSource ConnectionRef="dbconnection (Settings)" DbObjectName="ayatest.shipping" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT `Shipping_ID`, `Customer_ID`, `Customer_Name`, `CustomerBill_ID`, `Bill_Number`, `Branch_ID`, `Branch_Name`, `Address`, `Area_ID`, `Area_Name`, `Phone`, `Date`, `Description`, `Delivered` FROM `shipping`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ayatestDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ayatestDataSet" msprop:Generator_UserDSName="ayatestDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="product_bill" msprop:Generator_TableClassName="product_billDataTable" msprop:Generator_TableVarName="tableproduct_bill" msprop:Generator_RowChangedName="product_billRowChanged" msprop:Generator_TablePropName="product_bill" msprop:Generator_RowDeletingName="product_billRowDeleting" msprop:Generator_RowChangingName="product_billRowChanging" msprop:Generator_RowEvHandlerName="product_billRowChangeEventHandler" msprop:Generator_RowDeletedName="product_billRowDeleted" msprop:Generator_RowClassName="product_billRow" msprop:Generator_UserTableName="product_bill" msprop:Generator_RowEvArgName="product_billRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="shipping" msprop:Generator_TableClassName="shippingDataTable" msprop:Generator_TableVarName="tableshipping" msprop:Generator_RowChangedName="shippingRowChanged" msprop:Generator_TablePropName="shipping" msprop:Generator_RowDeletingName="shippingRowDeleting" msprop:Generator_RowChangingName="shippingRowChanging" msprop:Generator_RowEvHandlerName="shippingRowChangeEventHandler" msprop:Generator_RowDeletedName="shippingRowDeleted" msprop:Generator_RowClassName="shippingRow" msprop:Generator_UserTableName="shipping" msprop:Generator_RowEvArgName="shippingRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

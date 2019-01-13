@@ -106,7 +106,7 @@ namespace MainSystem
                 dbconnection.Open();
                 if (txtAddress.Text != "" && txtNolone.Text != "")
                 {
-                    string query = "insert into car_Income (Car_ID,Address,NoCarton,NoSets,NoDocks,NoColumns,NoCompinations,NoPanio,Nolon,Gate,Taateg,Safay,Date,Note) values (@Car_ID,@Address,@NoCarton,@NoSets,@NoDocks,@NoColumns,@NoCompinations,@NoPanio,@Nolon,@Gate,@Taateg,@Safay,@Date,@Note)";
+                    string query = "insert into car_Income (meter_reading,Car_ID,Address,NoCarton,NoSets,NoDocks,NoColumns,NoCompinations,NoPanio,Nolon,Gate,Taateg,Safay,Date,Note) values (@meter_reading,@Car_ID,@Address,@NoCarton,@NoSets,@NoDocks,@NoColumns,@NoCompinations,@NoPanio,@Nolon,@Gate,@Taateg,@Safay,@Date,@Note)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                     com.Parameters.Add("@Date", MySqlDbType.Date);
@@ -145,6 +145,8 @@ namespace MainSystem
                         com.Parameters.Add("@Note", MySqlDbType.VarChar);
                         com.Parameters["@Note"].Value = null;
                     }
+                    com.Parameters.Add("@meter_reading", MySqlDbType.Decimal);
+                    com.Parameters["@meter_reading"].Value = txtMeterNow.Text;
                     com.ExecuteNonQuery();
 
                     double totalSafay=0, totalGate=0;
@@ -234,6 +236,14 @@ namespace MainSystem
             {
                 if (load)
                 {
+                    dbconnection.Open();
+
+                    string query = "select meter_reading from cars where Car_ID=" + comCarNumber.SelectedValue.ToString();
+                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+
+                    string reader = command.ExecuteScalar().ToString();
+                    lblMeter.Text = reader;
+
                     txtPermissionNumber.Focus();
                     dataGridView1.Rows.Clear();
                     XtraTabPage xtraTabPage = getTabPage("تسجيل إيراد");
@@ -247,6 +257,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void txtPermissionNumber_KeyDown(object sender, KeyEventArgs e)
@@ -283,7 +294,7 @@ namespace MainSystem
                     switch (txtBox.Name)
                     {
                         case "txtAddress":
-                            txtNoCarton.Focus();
+                            txtMeterNow.Focus();
                             break;
                         case "txtNoCarton":
                             txtNoPanio.Focus();
@@ -382,10 +393,52 @@ namespace MainSystem
             }
         }
 
+        private void txtMeterNow_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                dbconnection.Close();
+                dbconnection.Open();
+                if (e.KeyCode == Keys.Enter)
+                {
+                    lblSub.Text = (Convert.ToInt32(txtMeterNow.Text) - Convert.ToInt32(lblMeter.Text)).ToString();
+
+                    string query = "update cars set meter_reading=" + txtMeterNow.Text + " where Car_ID=" + comCarNumber.SelectedValue.ToString();
+                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                    command.ExecuteNonQuery();
+
+                    query = "insert into Car_Meter_Reading (Car_ID,Car_Meter_Reading_Current,Car_Meter_Reading_Prev,Car_Meter_Reading_Diff,Date) values (@Car_ID,@Car_Meter_Reading_Current,@Car_Meter_Reading_Prev,@Car_Meter_Reading_Diff,@Date)";
+                    command = new MySqlCommand(query, dbconnection);
+                    
+                    command.Parameters.Add("@Date", MySqlDbType.Date);
+                    command.Parameters["@Date"].Value = dateTimePicker1.Value.Date;
+                    command.Parameters.Add("@Car_ID", MySqlDbType.Int16);
+                    command.Parameters["@Car_ID"].Value = comCarNumber.SelectedValue;
+                    command.Parameters.Add("@Car_Meter_Reading_Current", MySqlDbType.Decimal);
+                    command.Parameters["@Car_Meter_Reading_Current"].Value = txtMeterNow.Text;
+                    command.Parameters.Add("@Car_Meter_Reading_Prev", MySqlDbType.Decimal);
+                    command.Parameters["@Car_Meter_Reading_Prev"].Value = lblMeter.Text;
+                    command.Parameters.Add("@Car_Meter_Reading_Diff", MySqlDbType.Decimal);
+                    command.Parameters["@Car_Meter_Reading_Diff"].Value = lblSub.Text;
+
+                    command.ExecuteNonQuery();
+                    txtNoCarton.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+
         //function
         public void clear()
         {
             comCarNumber.Text = "";
+            lblSub.Text = "";
+            txtMeterNow.Text = "";
             txtAddress.Text = txtNolone.Text = txtNote.Text = "";
             txtNoSets.Text = txtNoPanio.Text = txtNoDocks.Text = txtNoComp.Text = txtNoColumns.Text = txtNoCarton.Text = "0";
             dataGridView1.Rows.Clear();

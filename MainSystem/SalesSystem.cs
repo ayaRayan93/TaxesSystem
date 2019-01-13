@@ -517,7 +517,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnAgalAcountStatment_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -557,7 +556,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnTaswayAgalBills_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -620,6 +618,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         //functions
         //Products sell price
         public void bindDisplayProductsSellPriceForm(XtraTabPage xtraTabPage)

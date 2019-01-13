@@ -124,8 +124,14 @@ namespace MainSystem
                         return;
                     }
                     dbconnection.Open();
-                    string query = "insert into shipping (Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Area_ID,Area_Name,Date,Description) values(@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Area_ID,@Area_Name,@Date,@Description)";
+                    string query = "select CustomerBill_ID from customer_bill where Bill_Number="+txtBillNumber.Text+"Branch_ID="+comBranch.SelectedValue;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    int id =Convert.ToInt16(com.ExecuteScalar());
+
+                    query = "insert into shipping (CustomerBill_ID,Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Zone_ID,Zone_Name,Date,Description) values(@CustomerBill_ID,@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Zone_ID,@Zone_Name,@Date,@Description)";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@CustomerBill_ID"].Value = id;
                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Customer_ID"].Value = comClient.SelectedValue.ToString();
                     com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
