@@ -1,4 +1,8 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils.Drawing;
+using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
@@ -41,55 +45,19 @@ namespace MainSystem
             }
         }
 
-        private void Gate_Record_Load(object sender, EventArgs e)
+        private void Gate_Out_Load(object sender, EventArgs e)
         {
             try
             {
                 conn.Open();
-                /*string query = "select Driver_ID,Driver_Name from drivers";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                comDriver.DataSource = dt;
-                comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
-                comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
-                comDriver.SelectedIndex = -1;
 
-                query = "select * from cars";
-                da = new MySqlDataAdapter(query, conn);
-                dt = new DataTable();
-                da.Fill(dt);
-                comCar.DataSource = dt;
-                comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
-                comCar.ValueMember = dt.Columns["Car_ID"].ToString();
-                comCar.SelectedIndex = -1;
+                search();
+                /*emptyEditor = new RepositoryItemButtonEdit();
+                emptyEditor.Buttons.Clear();
+                emptyEditor.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+                gridControl1.RepositoryItems.Add(emptyEditor);
+                //new DevExpress.XtraGrid.Design.XViewsPrinting(gridControl1);*/
 
-                query = "select * from employee where Employee_Job='مسئول تعتيق'";
-                da = new MySqlDataAdapter(query, conn);
-                dt = new DataTable();
-                da.Fill(dt);
-                comEmployee.DataSource = dt;
-                comEmployee.DisplayMember = dt.Columns["Employee_Name"].ToString();
-                comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
-                comEmployee.SelectedIndex = -1;
-
-                comReason.DisplayMember = "Text";
-                comReason.ValueMember = "Value";
-                var items = new[] {
-                                new { Text = "وارد", Value = "1" },
-                                new { Text = "صادر", Value = "2" }
-                                };
-                comReason.DataSource = items;
-                comReason.SelectedIndex = -1;
-
-                comResponsible.DisplayMember = "Text";
-                comResponsible.ValueMember = "Value";
-                var items2 = new[] {
-                                new { Text = "شحن", Value = "1" },
-                                new { Text = "عميل", Value = "2" }
-                                };
-                comResponsible.DataSource = items2;
-                comResponsible.SelectedIndex = -1;*/
                 loaded = true;
             }
             catch (Exception ex)
@@ -98,53 +66,55 @@ namespace MainSystem
             }
             conn.Close();
         }
-        
-        private void btnAddNum_Click(object sender, EventArgs e)
+
+        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            if (e.Column == gridView1.Columns["التسلسل"])
+            {
+                Permissions_Edit form = new Permissions_Edit();
+                form.ShowDialog();
+            }
+        }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             try
             {
-                if (txtPermisionNum.Text != "")
+                if (e.Action == CollectionChangeAction.Add)
                 {
-                    for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
-                    {
-                        if (txtPermisionNum.Text == checkedListBoxControlNum.Items[i].Value.ToString())
-                        {
-                            MessageBox.Show("هذا الاذن تم اضافتة");
-                            return;
-                        }
-                    }
+                    conn.Open();
 
-                    checkedListBoxControlNum.Items.Add(txtPermisionNum.Text);
-                    txtPermisionNum.Text = "";
+                    string query = "update transport set Date_Out=" + DateTime.Now + " ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + e.ControllerRow;
+                    MySqlCommand com = new MySqlCommand(query, conn);
+                    com.ExecuteNonQuery();
+                    //search();
+                }
+                else if (e.Action == CollectionChangeAction.Remove)
+                {
+                    GridView view = sender as GridView;
+                    view.SelectionChanged -= gridView1_SelectionChanged;
+                    gridView1.UnselectRow(gridView1.FocusedRowHandle);
+                    view.SelectionChanged += gridView1_SelectionChanged;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
-        private void btnDeleteNum_Click(object sender, EventArgs e)
+        /*bool NeedToHideDiscontinuedCheckbox(GridView view, int row)
         {
-            try
-            {
-                if (checkedListBoxControlNum.CheckedItemsCount > 0)
-                {
-                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        return;
-
-                    ArrayList temp = new ArrayList();
-                    foreach (int index in checkedListBoxControlNum.CheckedIndices)
-                        temp.Add(checkedListBoxControlNum.Items[index]);
-                    foreach (object item in temp)
-                        checkedListBoxControlNum.Items.Remove(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            return true; // your code here....
         }
+
+        private void gridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
+        {
+            if (e.Column.FieldName == "Discontinued" &&
+                NeedToHideDiscontinuedCheckbox(sender as GridView, e.RowHandle))
+                e.RepositoryItem = emptyEditor;
+        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -251,71 +221,36 @@ namespace MainSystem
             }
             conn.Close();
         }
-
-        private void txtBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    TextBox t = (TextBox)sender;
-                    switch (t.Name)
-                    {
-                        case "txtName":
-                            txtPermisionNum.Focus();
-                            break;
-                        case "txtAddress":
-                            //txtPhone.Focus();
-                            break;
-                        case "txtPhone":
-                            //txtDriver.Focus();
-                            break;
-                       
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void txtBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                XtraTabPage xtraTabPage = getTabPage("تسجيل دخول السيارات");
-                if(!IsClear())
-                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                else
-                    xtraTabPage.ImageOptions.Image = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+        
         //function
+        public void search()
+        {
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+            int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+            DataSet sourceDataSet = new DataSet();
+            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT transport.Permission_Number as 'التسلسل',transport.Reason as 'سبب الدخول',transport.Type as 'النوع',transport.Responsible as 'المسئول',transport.License_Number as 'رقم الرخصة',transport.Date_Enter as 'وقت الدخول',transport.Description as 'البيان',transport.Driver_Name as 'السواق',transport.Car_Number as 'رقم العربية',employee.Employee_Name as 'مسئول التعتيق' FROM transport INNER JOIN employee ON employee.Employee_ID = transport.TatiqEmp_ID WHERE transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+
+            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT transport_permission.Permission_Number as 'التسلسل',transport_permission.Supplier_PermissionNumber as 'رقم الاذن' FROM transport_permission inner join transport on transport.Permission_Number=transport_permission.Permission_Number where transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+
+            adapterZone.Fill(sourceDataSet, "transport");
+            adapterArea.Fill(sourceDataSet, "transport_permission");
+
+            //Set up a master-detail relationship between the DataTables 
+            DataColumn keyColumn = sourceDataSet.Tables["transport"].Columns["التسلسل"];
+            DataColumn foreignKeyColumn = sourceDataSet.Tables["transport_permission"].Columns["التسلسل"];
+            sourceDataSet.Relations.Add("ارقام الاذون", keyColumn, foreignKeyColumn);
+
+            gridControl1.DataSource = sourceDataSet.Tables["transport"];
+        }
+
         public void clear()
         {
             foreach (Control co in this.panContent.Controls)
             {
-                //if (co is System.Windows.Forms.ComboBox)
-                //{
-                //    co.Text = "";
-                //}
                 if (co is TextBox)
                 {
                     co.Text = "";
-                }
-                else if (co is CheckedListBoxControl)
-                {
-                    int cont = checkedListBoxControlNum.ItemCount;
-                    for (int i = 0; i < cont; i++)
-                    {
-                        checkedListBoxControlNum.Items.RemoveAt(0);
-                    }
                 }
             }
         }
@@ -326,31 +261,10 @@ namespace MainSystem
                 if (co is System.Windows.Forms.ComboBox)
                 {
                     co.Text = "";
-
-                    loaded = false;
-                    flag = false;
-                    flag2 = false;
-                    /*comDriver.SelectedIndex = -1;
-                    comCar.SelectedIndex = -1;
-                    comEmployee.SelectedIndex = -1;
-                    comType.SelectedIndex = -1;
-                    comResponsible.SelectedIndex = -1;
-                    comReason.SelectedIndex = -1;*/
-                    flag2 = true;
-                    flag = true;
-                    loaded = true;
                 }
                 else if (co is TextBox)
                 {
                     co.Text = "";
-                }
-                else if (co is CheckedListBoxControl)
-                {
-                    int cont = checkedListBoxControlNum.ItemCount;
-                    for (int i = 0; i < cont; i++)
-                    {
-                        checkedListBoxControlNum.Items.RemoveAt(0);
-                    }
                 }
             }
         }
@@ -363,13 +277,47 @@ namespace MainSystem
                 }
             return null;
         }
-        public bool IsClear()
+
+        /*private void GridView1_CustomDrawGroupRow(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
         {
-            if (/*txtDriver.Text == "" &&*/ txtPermisionNum.Text == "" /*&& txtPhone.Text == ""*/)
-                return true;
-            else
-                return false;
-        }
+            GridGroupRowInfo info = e.Info as GridGroupRowInfo;
+            if (info == null) return;
+            if (info.Level != 0) return;
+            info.SelectorInfo.Bounds = Rectangle.Empty;
+            info.SelectorInfo.GlyphRect = Rectangle.Empty;
+        }*/
+
+        /*void gridView1_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.Column.FieldName == GridView.CheckBoxSelectorColumnName)
+            {
+                GridCellInfo cell = e.Cell as GridCellInfo;
+                ObjectPainter p = cell.RowInfo.ViewInfo.Painter.ElementsPainter.DetailButton;
+                if (!cell.CellButtonRect.IsEmpty)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+            }
+        }*/
+
+        /*private void gridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            GridView view = sender as GridView;
+            var hitInfo = view.CalcHitInfo(e.Location);
+            if (hitInfo.InRowCell && hitInfo.Column.FieldName == GridView.CheckBoxSelectorColumnName)
+            {
+                GridViewInfo viewInfo = (gridView1.GetViewInfo() as GridViewInfo);
+                GridCellInfo cellInfo = viewInfo.GetGridCellInfo(hitInfo);
+                var rect = cellInfo.CellButtonRect;
+                if (!rect.Contains(hitInfo.HitPoint))
+                    DevExpress.Utils.DXMouseEventArgs.GetMouseArgs(e).Handled = true;
+            }
+        }*/
     }
-   
+
 }

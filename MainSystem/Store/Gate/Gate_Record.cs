@@ -365,7 +365,7 @@ namespace MainSystem
                     com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Car_ID"].Value = comCar.SelectedValue.ToString();
                     com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Car_Number"].Value = null;
+                    com.Parameters["@Car_Number"].Value = comCar.Text;
                 }
                 else
                 {
@@ -379,7 +379,7 @@ namespace MainSystem
                     com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Driver_ID"].Value = comDriver.SelectedValue.ToString();
                     com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Driver_Name"].Value = null;
+                    com.Parameters["@Driver_Name"].Value = comDriver.Text;
                 }
                 else
                 {

@@ -1361,6 +1361,12 @@
     <Compile Include="Store\Gate\Gate_Record.designer.cs">
       <DependentUpon>Gate_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Gate\Permissions_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Gate\Permissions_Edit.Designer.cs">
+      <DependentUpon>Permissions_Edit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\initialCodeStorage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2146,6 +2152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\Gate_Record.resx">
       <DependentUpon>Gate_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Gate\Permissions_Edit.resx">
+      <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
