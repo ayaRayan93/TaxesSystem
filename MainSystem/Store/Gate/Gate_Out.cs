@@ -71,6 +71,14 @@ namespace MainSystem
             {
                 if (e.Action == CollectionChangeAction.Add)
                 {
+                    if (MessageBox.Show("هل انت متاكد انك تريد تسجيل الخروج؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    {
+                        GridView view = gridView1 as GridView;
+                        view.SelectionChanged -= gridView1_SelectionChanged;
+                        gridView1.UnselectRow(gridView1.FocusedRowHandle);
+                        view.SelectionChanged += gridView1_SelectionChanged;
+                        return;
+                    }
                     conn.Open();
                     string query = "update transport set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
                     MySqlCommand com = new MySqlCommand(query, conn);
