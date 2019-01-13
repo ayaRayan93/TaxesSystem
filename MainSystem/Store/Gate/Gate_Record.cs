@@ -460,12 +460,14 @@ namespace MainSystem
 
                 for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
                 {
-                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber) values(@Permission_Number,@Supplier_PermissionNumber)";
+                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
                     com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
                     com.Parameters["@Permission_Number"].Value = permissionNum;
                     com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
                     com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
+                    com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Type"].Value = "دخول";
                     com.ExecuteNonQuery();
                 }
 
