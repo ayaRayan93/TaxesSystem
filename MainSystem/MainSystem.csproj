@@ -163,6 +163,11 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="ayatestDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ayatestDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Coding\Branch_Print.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1311,6 +1316,12 @@
     <Compile Include="Shipping\Area_Report.designer.cs">
       <DependentUpon>Area_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\shippingOrganize\ShippingBillsWanted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\ShippingBillsWanted.Designer.cs">
+      <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shipping\Shipping_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2111,6 +2122,9 @@
     <EmbeddedResource Include="Shipping\Area_Report.resx">
       <DependentUpon>Area_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\shippingOrganize\ShippingBillsWanted.resx">
+      <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Shipping_Record.resx">
       <DependentUpon>Shipping_Record.cs</DependentUpon>
     </EmbeddedResource>
@@ -2216,6 +2230,18 @@
     <EmbeddedResource Include="UserUpdate.resx">
       <DependentUpon>UserUpdate.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="ayatestDataSet.xsc">
+      <DependentUpon>ayatestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ayatestDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ayatestDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ayatestDataSet.xss">
+      <DependentUpon>ayatestDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Cars\DataSet2.xsc">
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>

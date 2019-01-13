@@ -31,6 +31,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panContent = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblMeter = new System.Windows.Forms.Label();
+            this.lblSub = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtMeterNow = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,12 +83,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 525);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 683);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(812, 48);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(817, 48);
             this.tableLayoutPanel2.TabIndex = 51;
             // 
             // btnAdd
@@ -99,10 +105,10 @@
             this.btnAdd.ImageZoom = 20;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(359, 4);
+            this.btnAdd.Location = new System.Drawing.Point(361, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(95, 40);
+            this.btnAdd.Size = new System.Drawing.Size(96, 40);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -113,6 +119,12 @@
             this.panContent.AutoScrollMinSize = new System.Drawing.Size(1, 1);
             this.panContent.AutoSize = true;
             this.panContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panContent.Controls.Add(this.label16);
+            this.panContent.Controls.Add(this.lblMeter);
+            this.panContent.Controls.Add(this.lblSub);
+            this.panContent.Controls.Add(this.label14);
+            this.panContent.Controls.Add(this.txtMeterNow);
+            this.panContent.Controls.Add(this.label15);
             this.panContent.Controls.Add(this.btnDelete);
             this.panContent.Controls.Add(this.dataGridView1);
             this.panContent.Controls.Add(this.groupBox1);
@@ -136,8 +148,74 @@
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContent.Location = new System.Drawing.Point(0, 0);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(812, 525);
+            this.panContent.Size = new System.Drawing.Size(817, 683);
             this.panContent.TabIndex = 52;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label16.Location = new System.Drawing.Point(663, 281);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(84, 19);
+            this.label16.TabIndex = 74;
+            this.label16.Text = "قراءة سابقة";
+            // 
+            // lblMeter
+            // 
+            this.lblMeter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMeter.AutoSize = true;
+            this.lblMeter.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblMeter.Location = new System.Drawing.Point(556, 281);
+            this.lblMeter.Name = "lblMeter";
+            this.lblMeter.Size = new System.Drawing.Size(0, 17);
+            this.lblMeter.TabIndex = 73;
+            // 
+            // lblSub
+            // 
+            this.lblSub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSub.AutoSize = true;
+            this.lblSub.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblSub.Location = new System.Drawing.Point(274, 329);
+            this.lblSub.Name = "lblSub";
+            this.lblSub.Size = new System.Drawing.Size(0, 17);
+            this.lblSub.TabIndex = 72;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label14.Location = new System.Drawing.Point(354, 326);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(76, 19);
+            this.label14.TabIndex = 71;
+            this.label14.Text = "فرق العداد";
+            // 
+            // txtMeterNow
+            // 
+            this.txtMeterNow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMeterNow.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtMeterNow.Location = new System.Drawing.Point(460, 326);
+            this.txtMeterNow.Name = "txtMeterNow";
+            this.txtMeterNow.Size = new System.Drawing.Size(189, 24);
+            this.txtMeterNow.TabIndex = 70;
+            this.txtMeterNow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMeterNow_KeyDown);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label15.Location = new System.Drawing.Point(662, 326);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(85, 19);
+            this.label15.TabIndex = 69;
+            this.label15.Text = "قراءة العداد";
             // 
             // btnDelete
             // 
@@ -147,7 +225,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Location = new System.Drawing.Point(559, 148);
+            this.btnDelete.Location = new System.Drawing.Point(561, 148);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(58, 23);
             this.btnDelete.TabIndex = 68;
@@ -162,7 +240,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-            this.dataGridView1.Location = new System.Drawing.Point(279, 86);
+            this.dataGridView1.Location = new System.Drawing.Point(281, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(193, 117);
             this.dataGridView1.TabIndex = 67;
@@ -188,7 +266,7 @@
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtNoDocks);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(102, 304);
+            this.groupBox1.Location = new System.Drawing.Point(116, 422);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(645, 100);
@@ -213,7 +291,7 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label6.Location = new System.Drawing.Point(526, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 18);
+            this.label6.Size = new System.Drawing.Size(75, 18);
             this.label6.TabIndex = 30;
             this.label6.Text = "عدد الاطقم";
             // 
@@ -224,7 +302,7 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label13.Location = new System.Drawing.Point(178, 68);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(103, 18);
+            this.label13.Size = new System.Drawing.Size(102, 18);
             this.label13.TabIndex = 44;
             this.label13.Text = "عدد الكومبنيشن";
             // 
@@ -245,7 +323,7 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label9.Location = new System.Drawing.Point(182, 33);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 18);
+            this.label9.Size = new System.Drawing.Size(82, 18);
             this.label9.TabIndex = 32;
             this.label9.Text = "عدد العواميد";
             // 
@@ -274,7 +352,7 @@
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label12.Location = new System.Drawing.Point(526, 63);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(85, 18);
+            this.label12.Size = new System.Drawing.Size(84, 18);
             this.label12.TabIndex = 38;
             this.label12.Text = "عدد الاحواض";
             // 
@@ -292,7 +370,7 @@
             // 
             this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNote.Location = new System.Drawing.Point(415, 464);
+            this.txtNote.Location = new System.Drawing.Point(429, 582);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(254, 56);
@@ -306,9 +384,9 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label10.Location = new System.Drawing.Point(691, 464);
+            this.label10.Location = new System.Drawing.Point(705, 582);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 18);
+            this.label10.Size = new System.Drawing.Size(63, 18);
             this.label10.TabIndex = 64;
             this.label10.Text = "ملاحظات";
             // 
@@ -316,7 +394,7 @@
             // 
             this.txtNolone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNolone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNolone.Location = new System.Drawing.Point(522, 424);
+            this.txtNolone.Location = new System.Drawing.Point(536, 542);
             this.txtNolone.Name = "txtNolone";
             this.txtNolone.Size = new System.Drawing.Size(147, 24);
             this.txtNolone.TabIndex = 63;
@@ -329,7 +407,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label11.Location = new System.Drawing.Point(691, 424);
+            this.label11.Location = new System.Drawing.Point(705, 542);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(49, 18);
             this.label11.TabIndex = 62;
@@ -339,7 +417,7 @@
             // 
             this.txtNoPanio.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoPanio.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNoPanio.Location = new System.Drawing.Point(122, 274);
+            this.txtNoPanio.Location = new System.Drawing.Point(136, 392);
             this.txtNoPanio.Name = "txtNoPanio";
             this.txtNoPanio.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtNoPanio.Size = new System.Drawing.Size(147, 24);
@@ -354,9 +432,9 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label7.Location = new System.Drawing.Point(291, 274);
+            this.label7.Location = new System.Drawing.Point(305, 392);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 18);
+            this.label7.Size = new System.Drawing.Size(93, 18);
             this.label7.TabIndex = 60;
             this.label7.Text = "عدد البانيوهات";
             // 
@@ -364,7 +442,7 @@
             // 
             this.txtNoCarton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoCarton.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNoCarton.Location = new System.Drawing.Point(464, 276);
+            this.txtNoCarton.Location = new System.Drawing.Point(478, 394);
             this.txtNoCarton.Name = "txtNoCarton";
             this.txtNoCarton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtNoCarton.Size = new System.Drawing.Size(147, 24);
@@ -379,9 +457,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label4.Location = new System.Drawing.Point(633, 274);
+            this.label4.Location = new System.Drawing.Point(647, 392);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 18);
+            this.label4.Size = new System.Drawing.Size(80, 18);
             this.label4.TabIndex = 58;
             this.label4.Text = "عدد الكراتين";
             // 
@@ -389,7 +467,7 @@
             // 
             this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddress.Location = new System.Drawing.Point(331, 219);
+            this.txtAddress.Location = new System.Drawing.Point(333, 219);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(366, 24);
             this.txtAddress.TabIndex = 57;
@@ -402,7 +480,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label3.Location = new System.Drawing.Point(703, 221);
+            this.label3.Location = new System.Drawing.Point(705, 221);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 18);
             this.label3.TabIndex = 56;
@@ -416,7 +494,7 @@
             this.btnAddPermission.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPermission.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPermission.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAddPermission.Location = new System.Drawing.Point(623, 148);
+            this.btnAddPermission.Location = new System.Drawing.Point(625, 148);
             this.btnAddPermission.Name = "btnAddPermission";
             this.btnAddPermission.Size = new System.Drawing.Size(58, 23);
             this.btnAddPermission.TabIndex = 55;
@@ -428,7 +506,7 @@
             // 
             this.txtPermissionNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermissionNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPermissionNumber.Location = new System.Drawing.Point(550, 108);
+            this.txtPermissionNumber.Location = new System.Drawing.Point(552, 108);
             this.txtPermissionNumber.Name = "txtPermissionNumber";
             this.txtPermissionNumber.Size = new System.Drawing.Size(147, 24);
             this.txtPermissionNumber.TabIndex = 54;
@@ -441,9 +519,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label2.Location = new System.Drawing.Point(703, 111);
+            this.label2.Location = new System.Drawing.Point(705, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 18);
+            this.label2.Size = new System.Drawing.Size(62, 18);
             this.label2.TabIndex = 53;
             this.label2.Text = "رقم الاذن";
             // 
@@ -453,7 +531,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(228, 56);
+            this.label1.Location = new System.Drawing.Point(230, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 18);
             this.label1.TabIndex = 52;
@@ -463,7 +541,7 @@
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePicker1.Location = new System.Drawing.Point(35, 52);
+            this.dateTimePicker1.Location = new System.Drawing.Point(37, 52);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(180, 24);
             this.dateTimePicker1.TabIndex = 51;
@@ -474,7 +552,7 @@
             this.comCarNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comCarNumber.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comCarNumber.FormattingEnabled = true;
-            this.comCarNumber.Location = new System.Drawing.Point(550, 56);
+            this.comCarNumber.Location = new System.Drawing.Point(552, 56);
             this.comCarNumber.Name = "comCarNumber";
             this.comCarNumber.Size = new System.Drawing.Size(147, 24);
             this.comCarNumber.TabIndex = 50;
@@ -486,9 +564,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label5.Location = new System.Drawing.Point(703, 60);
+            this.label5.Location = new System.Drawing.Point(705, 60);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 18);
+            this.label5.Size = new System.Drawing.Size(72, 18);
             this.label5.TabIndex = 49;
             this.label5.Text = "رقم السيارة";
             // 
@@ -497,7 +575,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(812, 573);
+            this.ClientSize = new System.Drawing.Size(817, 731);
             this.Controls.Add(this.panContent);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "CarIncomeRecord";
@@ -550,6 +628,12 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comCarNumber;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSub;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtMeterNow;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblMeter;
     }
 }
 

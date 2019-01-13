@@ -31,12 +31,12 @@ namespace MainSystem
         Panel panelShippingRecord;
         
 
+
         public void ShippingForm()
         {
             panelZoneArea = new Panel();
             panelShippingRecord = new Panel();
             panelPermissionReport = new Panel();
-
             tabControlShipping = xtraTabControlShipping;
         }
         
@@ -171,6 +171,41 @@ namespace MainSystem
                 tabControlShipping.TabPages.Add(xtraTabPage);
                 PermissionReport.Show();
                 tabControlShipping.SelectedTabPage = xtraTabPage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //aya code 
+        private void navBarItemDisplayWantedShippingBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!tabControlShipping.Visible)
+                    tabControlShipping.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(tabControlShipping, "الفواتير المراد شحنها");
+                if (xtraTabPage == null)
+                {
+                    tabControlShipping.TabPages.Add("الفواتير المراد شحنها");
+                    xtraTabPage = getTabPage(tabControlShipping, "الفواتير المراد شحنها");
+                }
+                xtraTabPage.Controls.Clear();
+
+                tabControlShipping.SelectedTabPage = xtraTabPage;
+
+                ShippingBillsWanted objForm = new ShippingBillsWanted();
+                objForm.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
             }
             catch (Exception ex)
             {

@@ -89,7 +89,7 @@ namespace MainSystem
 
 
             // Declare text strings.
-            string devexpress = "تقرير مصروفات السيارات";
+            string devexpress = "تقرير ايرادات السيارات";
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics2 = e.Graph;
             brickGraphics2.BackColor = Color.White;

@@ -322,11 +322,12 @@
             this.xtraTabPageShipping = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlShipping = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControlShippingReport = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroupShippingRecord = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemShipping_Record = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportShipping = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemPermissionsReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupZoonReport = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemZoonReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupShippingRecord = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemShipping_Record = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemShippingRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem99 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem132 = new DevExpress.XtraNavBar.NavBarItem();
@@ -423,7 +424,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
-            this.navBarItemPermissionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup41 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemDisplayWantedShippingBills = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3093,14 +3095,15 @@
             // 
             // navBarControlShippingReport
             // 
-            this.navBarControlShippingReport.ActiveGroup = this.navBarGroupReportShipping;
+            this.navBarControlShippingReport.ActiveGroup = this.navBarGroup41;
             this.navBarControlShippingReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlShippingReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlShippingReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarControlShippingReport.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroupReportShipping,
             this.navBarGroupZoonReport,
-            this.navBarGroupShippingRecord});
+            this.navBarGroupShippingRecord,
+            this.navBarGroup41});
             this.navBarControlShippingReport.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItemShippingRecord,
             this.navBarItem99,
@@ -3127,7 +3130,8 @@
             this.navBarItem152,
             this.navBarItemZoonReport,
             this.navBarItemShipping_Record,
-            this.navBarItemPermissionsReport});
+            this.navBarItemPermissionsReport,
+            this.navBarItemDisplayWantedShippingBills});
             this.navBarControlShippingReport.Location = new System.Drawing.Point(985, 0);
             this.navBarControlShippingReport.Name = "navBarControlShippingReport";
             this.navBarControlShippingReport.OptionsNavPane.ExpandedWidth = 160;
@@ -3139,36 +3143,26 @@
             this.navBarControlShippingReport.TabIndex = 3;
             this.navBarControlShippingReport.Text = "navBarControl1";
             // 
-            // navBarGroupShippingRecord
-            // 
-            this.navBarGroupShippingRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            this.navBarGroupShippingRecord.Appearance.Options.UseFont = true;
-            this.navBarGroupShippingRecord.Caption = "تسجيل شحنة";
-            this.navBarGroupShippingRecord.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShipping_Record)});
-            this.navBarGroupShippingRecord.Name = "navBarGroupShippingRecord";
-            // 
-            // navBarItemShipping_Record
-            // 
-            this.navBarItemShipping_Record.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemShipping_Record.Appearance.Options.UseFont = true;
-            this.navBarItemShipping_Record.Caption = "تسجيل";
-            this.navBarItemShipping_Record.Name = "navBarItemShipping_Record";
-            this.navBarItemShipping_Record.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemShipping_Record_LinkClicked);
-            // 
             // navBarGroupReportShipping
             // 
-            this.navBarGroupReportShipping.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroupReportShipping.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroupReportShipping.Appearance.Options.UseFont = true;
             this.navBarGroupReportShipping.Caption = "تقارير";
-            this.navBarGroupReportShipping.Expanded = true;
             this.navBarGroupReportShipping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionsReport)});
             this.navBarGroupReportShipping.Name = "navBarGroupReportShipping";
             // 
+            // navBarItemPermissionsReport
+            // 
+            this.navBarItemPermissionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPermissionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemPermissionsReport.Caption = "الاذون المتوقعة";
+            this.navBarItemPermissionsReport.Name = "navBarItemPermissionsReport";
+            this.navBarItemPermissionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionsReport_LinkClicked);
+            // 
             // navBarGroupZoonReport
             // 
-            this.navBarGroupZoonReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
+            this.navBarGroupZoonReport.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroupZoonReport.Appearance.Options.UseFont = true;
             this.navBarGroupZoonReport.Caption = "مناطق & زون";
             this.navBarGroupZoonReport.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3182,6 +3176,23 @@
             this.navBarItemZoonReport.Caption = "اضافة";
             this.navBarItemZoonReport.Name = "navBarItemZoonReport";
             this.navBarItemZoonReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemZoonReport_LinkClicked);
+            // 
+            // navBarGroupShippingRecord
+            // 
+            this.navBarGroupShippingRecord.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroupShippingRecord.Appearance.Options.UseFont = true;
+            this.navBarGroupShippingRecord.Caption = "تسجيل شحنة";
+            this.navBarGroupShippingRecord.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShipping_Record)});
+            this.navBarGroupShippingRecord.Name = "navBarGroupShippingRecord";
+            // 
+            // navBarItemShipping_Record
+            // 
+            this.navBarItemShipping_Record.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemShipping_Record.Appearance.Options.UseFont = true;
+            this.navBarItemShipping_Record.Caption = "تسجيل";
+            this.navBarItemShipping_Record.Name = "navBarItemShipping_Record";
+            this.navBarItemShipping_Record.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemShipping_Record_LinkClicked);
             // 
             // navBarItemShippingRecord
             // 
@@ -3918,13 +3929,23 @@
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
             // 
-            // navBarItemPermissionsReport
+            // navBarGroup41
             // 
-            this.navBarItemPermissionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemPermissionsReport.Appearance.Options.UseFont = true;
-            this.navBarItemPermissionsReport.Caption = "الاذون المتوقعة";
-            this.navBarItemPermissionsReport.Name = "navBarItemPermissionsReport";
-            this.navBarItemPermissionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionsReport_LinkClicked);
+            this.navBarGroup41.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup41.Appearance.Options.UseFont = true;
+            this.navBarGroup41.Caption = "شحن من المخزن";
+            this.navBarGroup41.Expanded = true;
+            this.navBarGroup41.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDisplayWantedShippingBills)});
+            this.navBarGroup41.Name = "navBarGroup41";
+            // 
+            // navBarItemDisplayWantedShippingBills
+            // 
+            this.navBarItemDisplayWantedShippingBills.Appearance.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemDisplayWantedShippingBills.Appearance.Options.UseFont = true;
+            this.navBarItemDisplayWantedShippingBills.Caption = "الفواتير المراد شحنها";
+            this.navBarItemDisplayWantedShippingBills.Name = "navBarItemDisplayWantedShippingBills";
+            this.navBarItemDisplayWantedShippingBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDisplayWantedShippingBills_LinkClicked);
             // 
             // MainForm
             // 
@@ -4367,5 +4388,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem155;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPermissionsReport;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup41;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemDisplayWantedShippingBills;
     }
 }
