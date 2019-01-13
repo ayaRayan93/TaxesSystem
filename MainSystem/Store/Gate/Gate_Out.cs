@@ -75,7 +75,7 @@ namespace MainSystem
                     string query = "update transport set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.ExecuteNonQuery();
-                    //search();
+                    search();
                 }
                 else if (e.Action == CollectionChangeAction.Remove)
                 {

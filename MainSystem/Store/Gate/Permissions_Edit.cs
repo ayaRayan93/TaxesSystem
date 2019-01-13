@@ -31,21 +31,21 @@ namespace MainSystem
         {
             try
             {
-                /*conn.Open();
-                string query = "select Supplier_PermissionNumber from transport_permission where Permission_Number=" + permissionNum;
+                conn.Open();
+                string query = "select transport_permission.Supplier_PermissionNumber from transport_permission where transport_permission.Permission_Number=" + permissionNum + " and transport_permission.Type='خروج'";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
                     checkedListBoxControlNum.Items.Add(dr[0].ToString());
                 }
-                dr.Close();*/
+                dr.Close();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            //conn.Close();
+            conn.Close();
         }
 
         private void btnAddNum_Click(object sender, EventArgs e)
@@ -100,14 +100,14 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                /*string query = "delete from transport_permission where Permission_Number=" + permissionNum;
+                string query = "delete from transport_permission where transport_permission.Permission_Number=" + permissionNum + " and transport_permission.Type='خروج'";
                 MySqlCommand com = new MySqlCommand(query, conn);
-                com.ExecuteNonQuery();*/
+                com.ExecuteNonQuery();
 
                 for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
                 {
-                    string query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
-                    MySqlCommand com = new MySqlCommand(query, conn);
+                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
+                    com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
                     com.Parameters["@Permission_Number"].Value = permissionNum;
                     com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
