@@ -138,6 +138,7 @@ namespace MainSystem
                     {
                         comType.Visible = true;
                         labelType.Visible = true;
+                        labelType2.Visible = true;
 
                         comType.DisplayMember = "Text";
                         comType.ValueMember = "Value";
@@ -155,6 +156,7 @@ namespace MainSystem
                     {
                         comType.Visible = true;
                         labelType.Visible = true;
+                        labelType2.Visible = true;
 
                         comType.DisplayMember = "Text";
                         comType.ValueMember = "Value";
@@ -401,7 +403,7 @@ namespace MainSystem
                 if (comReason.Text != "" && comType.Text != "")
                 {
                     conn.Open();
-                    string query = "insert into transport (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
+                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
                     com.Parameters["@Reason"].Value = comReason.Text;
@@ -455,13 +457,13 @@ namespace MainSystem
                     com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
                     com.ExecuteNonQuery();
 
-                    query = "select Permission_Number from transport order by Permission_Number desc limit 1";
+                    query = "select Permission_Number from gate order by Permission_Number desc limit 1";
                     com = new MySqlCommand(query, conn);
                     int permissionNum = Convert.ToInt16(com.ExecuteScalar().ToString());
 
                     for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
                     {
-                        query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
+                        query = "insert into gate_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
                         com = new MySqlCommand(query, conn);
                         com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
                         com.Parameters["@Permission_Number"].Value = permissionNum;
@@ -476,6 +478,7 @@ namespace MainSystem
 
                     comType.Visible = false;
                     labelType.Visible = false;
+                    labelType2.Visible = false;
                     comResponsible.Visible = false;
                     labelResponsible.Visible = false;
                     comEmployee.Visible = false;

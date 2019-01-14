@@ -80,7 +80,7 @@ namespace MainSystem
                         return;
                     }
                     conn.Open();
-                    string query = "update transport set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
+                    string query = "update gate set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where gate.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.ExecuteNonQuery();
                     search();
@@ -108,19 +108,19 @@ namespace MainSystem
 
             DataSet sourceDataSet = new DataSet();
             //,employee.Employee_Name as 'مسئول التعتيق'
-            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT transport.Permission_Number as 'التسلسل',transport.Reason as 'سبب الدخول',transport.Type as 'النوع',transport.Responsible as 'المسئول',transport.Date_Enter as 'وقت الدخول',transport.Driver_Name as 'السواق',transport.Car_Number as 'رقم العربية',transport.License_Number as 'رقم الرخصة',transport.Description as 'البيان' FROM transport INNER JOIN employee ON employee.Employee_ID = transport.TatiqEmp_ID WHERE transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT gate.Permission_Number as 'التسلسل',gate.Reason as 'سبب الدخول',gate.Type as 'النوع',gate.Responsible as 'المسئول',gate.Date_Enter as 'وقت الدخول',gate.Driver_Name as 'السواق',gate.Car_Number as 'رقم العربية',gate.License_Number as 'رقم الرخصة',gate.Description as 'البيان' FROM gate INNER JOIN employee ON employee.Employee_ID = gate.TatiqEmp_ID WHERE gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
-            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT transport_permission.Permission_Number as 'التسلسل',transport_permission.Supplier_PermissionNumber as 'رقم الاذن',transport_permission.Type as 'النوع' FROM transport_permission inner join transport on transport.Permission_Number=transport_permission.Permission_Number where transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT gate_permission.Permission_Number as 'التسلسل',gate_permission.Supplier_PermissionNumber as 'رقم الاذن',gate_permission.Type as 'النوع' FROM gate_permission inner join gate on gate.Permission_Number=gate_permission.Permission_Number where gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
-            adapterZone.Fill(sourceDataSet, "transport");
-            adapterArea.Fill(sourceDataSet, "transport_permission");
+            adapterZone.Fill(sourceDataSet, "gate");
+            adapterArea.Fill(sourceDataSet, "gate_permission");
 
             //Set up a master-detail relationship between the DataTables 
-            DataColumn keyColumn = sourceDataSet.Tables["transport"].Columns["التسلسل"];
-            DataColumn foreignKeyColumn = sourceDataSet.Tables["transport_permission"].Columns["التسلسل"];
+            DataColumn keyColumn = sourceDataSet.Tables["gate"].Columns["التسلسل"];
+            DataColumn foreignKeyColumn = sourceDataSet.Tables["gate_permission"].Columns["التسلسل"];
             sourceDataSet.Relations.Add("ارقام الاذون", keyColumn, foreignKeyColumn);
 
-            gridControl1.DataSource = sourceDataSet.Tables["transport"];
+            gridControl1.DataSource = sourceDataSet.Tables["gate"];
         }
 
         public void clear()

@@ -32,7 +32,7 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                string query = "select transport_permission.Supplier_PermissionNumber from transport_permission where transport_permission.Permission_Number=" + permissionNum + " and transport_permission.Type='خروج'";
+                string query = "select gate_permission.Supplier_PermissionNumber from gate_permission where gate_permission.Permission_Number=" + permissionNum + " and gate_permission.Type='خروج'";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
@@ -100,13 +100,13 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                string query = "delete from transport_permission where transport_permission.Permission_Number=" + permissionNum + " and transport_permission.Type='خروج'";
+                string query = "delete from gate_permission where gate_permission.Permission_Number=" + permissionNum + " and gate_permission.Type='خروج'";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 com.ExecuteNonQuery();
 
                 for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
                 {
-                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
+                    query = "insert into gate_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
                     com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
                     com.Parameters["@Permission_Number"].Value = permissionNum;
