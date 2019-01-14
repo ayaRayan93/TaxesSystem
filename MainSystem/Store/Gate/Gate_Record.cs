@@ -73,6 +73,18 @@ namespace MainSystem
                 comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
                 comEmployee.SelectedIndex = -1;
 
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+                int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                query = "select * from store where Store_ID <>" + storeId;
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comStore.DataSource = dt;
+                comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comStore.SelectedIndex = -1;
+
                 comReason.DisplayMember = "Text";
                 comReason.ValueMember = "Value";
                 var items = new[] {
@@ -124,6 +136,10 @@ namespace MainSystem
                     btnAddNum.Visible = false;
                     checkedListBoxControlNum.Visible = false;
                     btnDeleteNum.Visible = false;
+                    labelStore.Visible = false;
+                    comStore.Visible = false;
+                    labelSupplier.Visible = false;
+                    txtSupplier.Visible = false;
                     flag = false;
                     clear();
                     loaded = false;
@@ -132,6 +148,7 @@ namespace MainSystem
                     comEmployee.SelectedIndex = -1;
                     comType.SelectedIndex = -1;
                     comResponsible.SelectedIndex = -1;
+                    comStore.SelectedIndex = -1;
                     loaded = true;
 
                     if (comReason.SelectedValue.ToString() == "1")
@@ -144,7 +161,7 @@ namespace MainSystem
                         comType.ValueMember = "Value";
                         var items = new[] {
                                 new { Text = "مورد", Value = "1" },
-                                new { Text = "خاص بنا", Value = "2" },
+                                new { Text = "المركز التجارى", Value = "2" },
                                 new { Text = "مرتجع عميل", Value = "3" },
                                 new { Text = "تحويل", Value = "4" }
                                 };
@@ -189,7 +206,28 @@ namespace MainSystem
                     comDriver.SelectedIndex = -1;
                     comCar.SelectedIndex = -1;
                     comEmployee.SelectedIndex = -1;
+                    comStore.SelectedIndex = -1;
                     loaded = true;
+                    if(comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1")
+                    {
+                        labelSupplier.Visible = true;
+                        txtSupplier.Visible = true;
+                    }
+                    else
+                    {
+                        labelSupplier.Visible = false;
+                        txtSupplier.Visible = false;
+                    }
+                    if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "4")|| (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "3"))
+                    {
+                        labelStore.Visible = true;
+                        comStore.Visible = true;
+                    }
+                    else
+                    {
+                        labelStore.Visible = false;
+                        comStore.Visible = false;
+                    }
                     if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "3") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "1"))
                     {
                         comResponsible.Visible = true;
@@ -220,23 +258,46 @@ namespace MainSystem
                         comResponsible.Visible = false;
                         labelResponsible.Visible = false;
 
-                        comEmployee.Visible = true;
-                        labelEmp.Visible = true;
-                        labelPerNum.Visible = true;
-                        txtPermisionNum.Visible = true;
-                        labelDriver.Visible = true;
-                        comDriver.Visible = false;
-                        txtDriver.Visible = true;
-                        labelCar.Visible = true;
-                        comCar.Visible = false;
-                        txtCar.Visible = true;
-                        txtLicense.Visible = true;
-                        labelLicense.Visible = true;
-                        txtDescription.Visible = true;
-                        labelDescription.Visible = true;
-                        btnAddNum.Visible = true;
-                        checkedListBoxControlNum.Visible = true;
-                        btnDeleteNum.Visible = true;
+                        if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "4") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "3"))
+                        {
+                            comEmployee.Visible = true;
+                            labelEmp.Visible = true;
+                            labelPerNum.Visible = true;
+                            txtPermisionNum.Visible = true;
+                            labelDriver.Visible = true;
+                            comDriver.Visible = true;
+                            txtDriver.Visible = false;
+                            labelCar.Visible = true;
+                            comCar.Visible = true;
+                            txtCar.Visible = false;
+                            txtLicense.Visible = true;
+                            labelLicense.Visible = true;
+                            txtDescription.Visible = true;
+                            labelDescription.Visible = true;
+                            btnAddNum.Visible = true;
+                            checkedListBoxControlNum.Visible = true;
+                            btnDeleteNum.Visible = true;
+                        }
+                        else
+                        {
+                            comEmployee.Visible = true;
+                            labelEmp.Visible = true;
+                            labelPerNum.Visible = true;
+                            txtPermisionNum.Visible = true;
+                            labelDriver.Visible = true;
+                            comDriver.Visible = false;
+                            txtDriver.Visible = true;
+                            labelCar.Visible = true;
+                            comCar.Visible = false;
+                            txtCar.Visible = true;
+                            txtLicense.Visible = true;
+                            labelLicense.Visible = true;
+                            txtDescription.Visible = true;
+                            labelDescription.Visible = true;
+                            btnAddNum.Visible = true;
+                            checkedListBoxControlNum.Visible = true;
+                            btnDeleteNum.Visible = true;
+                        }
                         flag2 = false;
                         comResponsible.SelectedIndex = -1;
                     }
@@ -297,6 +358,7 @@ namespace MainSystem
                 comDriver.SelectedIndex = -1;
                 comCar.SelectedIndex = -1;
                 comEmployee.SelectedIndex = -1;
+                comStore.SelectedIndex = -1;
                 loaded = true;
             }
         }
@@ -403,7 +465,7 @@ namespace MainSystem
                 if (comReason.Text != "" && comType.Text != "")
                 {
                     conn.Open();
-                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
+                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID,Supplier_Name,FromStore_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID,@Supplier_Name,@FromStore_ID)";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
                     com.Parameters["@Reason"].Value = comReason.Text;
@@ -455,6 +517,18 @@ namespace MainSystem
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
+                    com.Parameters.Add("@Supplier_Name", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Supplier_Name"].Value = txtSupplier.Text;
+                    if (comStore.SelectedValue != null)
+                    {
+                        com.Parameters.Add("@FromStore_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@FromStore_ID"].Value = comStore.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@FromStore_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@FromStore_ID"].Value = null;
+                    }
                     com.ExecuteNonQuery();
 
                     query = "select Permission_Number from gate order by Permission_Number desc limit 1";
@@ -498,6 +572,10 @@ namespace MainSystem
                     btnAddNum.Visible = false;
                     checkedListBoxControlNum.Visible = false;
                     btnDeleteNum.Visible = false;
+                    labelStore.Visible = false;
+                    comStore.Visible = false;
+                    labelSupplier.Visible = false;
+                    txtSupplier.Visible = false;
                 }
                 else
                 {
@@ -567,6 +645,7 @@ namespace MainSystem
                     comType.SelectedIndex = -1;
                     comResponsible.SelectedIndex = -1;
                     comReason.SelectedIndex = -1;
+                    comStore.SelectedIndex = -1;
                     flag2 = true;
                     flag = true;
                     loaded = true;
@@ -597,7 +676,7 @@ namespace MainSystem
 
         public bool IsClear()
         {
-            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "")
+            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "" && txtSupplier.Text == "" && comStore.Text == "")
                 return true;
             else
                 return false;

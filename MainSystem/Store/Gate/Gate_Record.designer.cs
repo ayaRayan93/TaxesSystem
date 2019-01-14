@@ -57,6 +57,10 @@
             this.comReason = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.labelSupplier = new System.Windows.Forms.Label();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
+            this.labelStore = new System.Windows.Forms.Label();
+            this.comStore = new System.Windows.Forms.ComboBox();
             this.panContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -67,7 +71,7 @@
             this.txtPermisionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermisionNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPermisionNum.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtPermisionNum.Location = new System.Drawing.Point(120, 275);
+            this.txtPermisionNum.Location = new System.Drawing.Point(120, 271);
             this.txtPermisionNum.Name = "txtPermisionNum";
             this.txtPermisionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPermisionNum.Size = new System.Drawing.Size(200, 28);
@@ -80,7 +84,7 @@
             this.labelPerNum.AutoSize = true;
             this.labelPerNum.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPerNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelPerNum.Location = new System.Drawing.Point(325, 278);
+            this.labelPerNum.Location = new System.Drawing.Point(325, 274);
             this.labelPerNum.Name = "labelPerNum";
             this.labelPerNum.Size = new System.Drawing.Size(80, 23);
             this.labelPerNum.TabIndex = 3;
@@ -116,6 +120,10 @@
             // panContent
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
+            this.panContent.Controls.Add(this.comStore);
+            this.panContent.Controls.Add(this.labelStore);
+            this.panContent.Controls.Add(this.labelSupplier);
+            this.panContent.Controls.Add(this.txtSupplier);
             this.panContent.Controls.Add(this.labelType2);
             this.panContent.Controls.Add(this.label2);
             this.panContent.Controls.Add(this.labelCar);
@@ -280,7 +288,7 @@
             this.btnDeleteNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDeleteNum.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteNum.Location = new System.Drawing.Point(56, 411);
+            this.btnDeleteNum.Location = new System.Drawing.Point(56, 407);
             this.btnDeleteNum.Name = "btnDeleteNum";
             this.btnDeleteNum.Size = new System.Drawing.Size(58, 26);
             this.btnDeleteNum.TabIndex = 59;
@@ -296,7 +304,7 @@
             this.btnAddNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNum.ForeColor = System.Drawing.Color.White;
-            this.btnAddNum.Location = new System.Drawing.Point(56, 277);
+            this.btnAddNum.Location = new System.Drawing.Point(56, 273);
             this.btnAddNum.Name = "btnAddNum";
             this.btnAddNum.Size = new System.Drawing.Size(58, 26);
             this.btnAddNum.TabIndex = 58;
@@ -311,7 +319,7 @@
             this.checkedListBoxControlNum.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBoxControlNum.Appearance.Options.UseFont = true;
             this.checkedListBoxControlNum.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlNum.Location = new System.Drawing.Point(14, 309);
+            this.checkedListBoxControlNum.Location = new System.Drawing.Point(14, 305);
             this.checkedListBoxControlNum.Name = "checkedListBoxControlNum";
             this.checkedListBoxControlNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkedListBoxControlNum.Size = new System.Drawing.Size(100, 96);
@@ -324,7 +332,7 @@
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelDescription.Location = new System.Drawing.Point(660, 278);
+            this.labelDescription.Location = new System.Drawing.Point(660, 274);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(48, 23);
             this.labelDescription.TabIndex = 21;
@@ -336,11 +344,11 @@
             this.txtDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtDescription.Location = new System.Drawing.Point(455, 275);
+            this.txtDescription.Location = new System.Drawing.Point(455, 271);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDescription.Size = new System.Drawing.Size(200, 69);
+            this.txtDescription.Size = new System.Drawing.Size(200, 80);
             this.txtDescription.TabIndex = 20;
             this.txtDescription.Visible = false;
             // 
@@ -476,6 +484,59 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
+            // labelSupplier
+            // 
+            this.labelSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelSupplier.AutoSize = true;
+            this.labelSupplier.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelSupplier.Location = new System.Drawing.Point(660, 376);
+            this.labelSupplier.Name = "labelSupplier";
+            this.labelSupplier.Size = new System.Drawing.Size(55, 23);
+            this.labelSupplier.TabIndex = 70;
+            this.labelSupplier.Text = "المورد";
+            this.labelSupplier.Visible = false;
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSupplier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.txtSupplier.Location = new System.Drawing.Point(455, 373);
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSupplier.Size = new System.Drawing.Size(200, 28);
+            this.txtSupplier.TabIndex = 69;
+            this.txtSupplier.Visible = false;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // labelStore
+            // 
+            this.labelStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelStore.AutoSize = true;
+            this.labelStore.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelStore.Location = new System.Drawing.Point(325, 325);
+            this.labelStore.Name = "labelStore";
+            this.labelStore.Size = new System.Drawing.Size(78, 23);
+            this.labelStore.TabIndex = 72;
+            this.labelStore.Text = "من مخزن";
+            this.labelStore.Visible = false;
+            // 
+            // comStore
+            // 
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(120, 322);
+            this.comStore.Name = "comStore";
+            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStore.Size = new System.Drawing.Size(200, 29);
+            this.comStore.TabIndex = 73;
+            this.comStore.Visible = false;
+            this.comStore.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
             // Gate_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,6 +586,10 @@
         private System.Windows.Forms.TextBox txtCar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelType2;
+        private System.Windows.Forms.Label labelSupplier;
+        private System.Windows.Forms.TextBox txtSupplier;
+        private System.Windows.Forms.Label labelStore;
+        private System.Windows.Forms.ComboBox comStore;
     }
 }
 
