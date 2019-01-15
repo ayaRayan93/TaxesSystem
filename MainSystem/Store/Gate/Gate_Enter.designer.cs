@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Gate_Record
+    partial class Gate_Enter
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gate_Record));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gate_Enter));
             this.txtPermisionNum = new System.Windows.Forms.TextBox();
             this.labelPerNum = new System.Windows.Forms.Label();
             this.txtDriver = new System.Windows.Forms.TextBox();
@@ -559,7 +559,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Gate_Record";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Gate_Record_Load);
+            this.Load += new System.EventHandler(this.Gate_Enter_Load);
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).EndInit();

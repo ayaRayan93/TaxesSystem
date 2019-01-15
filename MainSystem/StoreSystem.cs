@@ -253,7 +253,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                Gate_Record objForm = new Gate_Record(this, xtraTabControlStoresContent);
+                Gate_Enter objForm = new Gate_Enter(this, xtraTabControlStoresContent);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -301,36 +301,6 @@ namespace MainSystem
             }
         }
 
-        /// <summary>
-        private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
-        {
-            try
-            {
-                ClosePageButtonEventArgs arg = e as ClosePageButtonEventArgs;
-                XtraTabPage xtraTabPage = (XtraTabPage)arg.Page;
-                if (xtraTabPage.ImageOptions.Image != null)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Close this page without save?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        xtraTabControlStoresContent.TabPages.Remove(arg.Page as XtraTabPage);
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-
-                    }
-                }
-                else
-                {
-                    xtraTabControlStoresContent.TabPages.Remove(arg.Page as XtraTabPage);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void navBarItemGateReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -358,6 +328,36 @@ namespace MainSystem
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 objForm.Dock = DockStyle.Fill;
                 objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ClosePageButtonEventArgs arg = e as ClosePageButtonEventArgs;
+                XtraTabPage xtraTabPage = (XtraTabPage)arg.Page;
+                if (xtraTabPage.ImageOptions.Image != null)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to Close this page without save?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        xtraTabControlStoresContent.TabPages.Remove(arg.Page as XtraTabPage);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+
+                    }
+                }
+                else
+                {
+                    xtraTabControlStoresContent.TabPages.Remove(arg.Page as XtraTabPage);
+                }
             }
             catch (Exception ex)
             {

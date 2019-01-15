@@ -1372,11 +1372,11 @@
     <Compile Include="Store\Gate\Gate_Out.designer.cs">
       <DependentUpon>Gate_Out.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Gate\Gate_Record.cs">
+    <Compile Include="Store\Gate\Gate_Enter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Gate\Gate_Record.designer.cs">
-      <DependentUpon>Gate_Record.cs</DependentUpon>
+    <Compile Include="Store\Gate\Gate_Enter.designer.cs">
+      <DependentUpon>Gate_Enter.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Gate\Permissions_Edit.cs">
       <SubType>Form</SubType>
@@ -2173,8 +2173,8 @@
     <EmbeddedResource Include="Store\Gate\Gate_Out.resx">
       <DependentUpon>Gate_Out.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Gate\Gate_Record.resx">
-      <DependentUpon>Gate_Record.cs</DependentUpon>
+    <EmbeddedResource Include="Store\Gate\Gate_Enter.resx">
+      <DependentUpon>Gate_Enter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\Permissions_Edit.resx">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>

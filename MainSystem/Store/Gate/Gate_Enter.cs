@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Gate_Record : Form
+    public partial class Gate_Enter : Form
     {
         MySqlConnection conn;
         MainForm mainform = null;
@@ -25,7 +25,7 @@ namespace MainSystem
         bool flag = false;
         bool flag2 = false;
 
-        public Gate_Record(MainForm Mainform, XtraTabControl TabControlStoresContent)
+        public Gate_Enter(MainForm Mainform, XtraTabControl TabControlStoresContent)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace MainSystem
             }
         }
 
-        private void Gate_Record_Load(object sender, EventArgs e)
+        private void Gate_Enter_Load(object sender, EventArgs e)
         {
             try
             {
