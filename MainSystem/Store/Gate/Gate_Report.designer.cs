@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,13 +40,12 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnNewChosen = new System.Windows.Forms.Button();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,11 +77,33 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1043, 600);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // toolTipController1
+            // gridControl1
             // 
-            this.toolTipController1.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolTipController1.Appearance.Options.UseFont = true;
-            this.toolTipController1.ShowBeak = true;
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(3, 53);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1037, 544);
+            this.gridControl1.TabIndex = 19;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
             // tableLayoutPanel3
             // 
@@ -178,32 +200,11 @@
             this.btnNewChosen.UseVisualStyleBackColor = false;
             this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
             // 
-            // gridControl1
+            // toolTipController1
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 53);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1037, 544);
-            this.gridControl1.TabIndex = 19;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseForeColor = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
+            this.toolTipController1.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolTipController1.Appearance.Options.UseFont = true;
+            this.toolTipController1.ShowBeak = true;
             // 
             // Gate_Report
             // 
@@ -218,10 +219,10 @@
             this.Load += new System.EventHandler(this.Bills_Transitions_Report_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

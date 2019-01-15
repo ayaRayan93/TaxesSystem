@@ -23,26 +23,18 @@ namespace MainSystem
     {
         MySqlConnection conn;
         MainForm bankMainForm = null;
-        XtraTabControl MainTabControlBank;
-        
-        public static XtraTabPage MainTabPagePrintingTransitions;
-        Panel panelPrintingTransitions;
-
-        public static BillsTransitions_Print bankPrint;
+        XtraTabControl MainTabControlStores;
+        DataRow row1;
+        public static PermissionImage tipImage = null;
 
         public static GridControl gridcontrol;
-        bool loaded = false;
-        bool loadedBranch = false;
 
         public Gate_Report(MainForm BankMainForm, XtraTabControl xtraTabControlStoresContent)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             bankMainForm = BankMainForm;
-            MainTabControlBank = MainForm.tabControlBank;
-            
-            MainTabPagePrintingTransitions = new XtraTabPage();
-            panelPrintingTransitions = new Panel();
+            MainTabControlStores = xtraTabControlStoresContent;
             
             gridcontrol = gridControl1;
             
@@ -52,12 +44,13 @@ namespace MainSystem
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
             try
             {
-                if (!loadedBranch)
-                {
-                    //loadBranch();
-                }
+                search();
             }
             catch (Exception ex)
             {
@@ -66,19 +59,49 @@ namespace MainSystem
             conn.Close();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnNewChosen_Click(object sender, EventArgs e)
         {
             try
             {
-                
-                    search();
-                
+                clearCom();
+                gridControl1.DataSource = null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            conn.Close();
+        }
+
+        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            try
+            {
+                row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+
+                if (e.Column.ToString() == "الصورة")
+                {
+                    if (tipImage == null)
+                    {
+                        tipImage = new PermissionImage(Convert.ToInt16(row1["التسلسل"].ToString()), Convert.ToInt16(row1["رقم الاذن"].ToString()), row1["النوع"].ToString());
+                        
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                    else
+                    {
+                        tipImage.Close();
+                        
+                        tipImage = new PermissionImage(Convert.ToInt16(row1["التسلسل"].ToString()), Convert.ToInt16(row1["رقم الاذن"].ToString()), row1["النوع"].ToString());
+                        
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //functions
@@ -103,19 +126,6 @@ namespace MainSystem
             sourceDataSet.Relations.Add("ارقام الاذون", keyColumn, foreignKeyColumn);
 
             gridControl1.DataSource = sourceDataSet.Tables["gate"];
-        }
-
-        private void btnNewChosen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                clearCom();
-                gridControl1.DataSource = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         public void clearCom()

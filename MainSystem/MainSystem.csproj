@@ -1540,6 +1540,12 @@
     <Compile Include="Store\InternalDelivery\Form2SpeicalOrder.designer.cs">
       <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="PermissionImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PermissionImage.designer.cs">
+      <DependentUpon>PermissionImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="TipImage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2256,6 +2262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\InternalDelivery\Form2SpeicalOrder.resx">
       <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PermissionImage.resx">
+      <DependentUpon>PermissionImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipImage.resx">
       <DependentUpon>TipImage.cs</DependentUpon>
