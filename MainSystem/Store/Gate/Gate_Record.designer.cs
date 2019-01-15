@@ -34,6 +34,11 @@
             this.txtDriver = new System.Windows.Forms.TextBox();
             this.labelEmp = new System.Windows.Forms.Label();
             this.panContent = new System.Windows.Forms.Panel();
+            this.imageListBoxControl1 = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.comStore = new System.Windows.Forms.ComboBox();
+            this.labelStore = new System.Windows.Forms.Label();
+            this.labelSupplier = new System.Windows.Forms.Label();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
             this.labelType2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelCar = new System.Windows.Forms.Label();
@@ -57,11 +62,8 @@
             this.comReason = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.labelSupplier = new System.Windows.Forms.Label();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.labelStore = new System.Windows.Forms.Label();
-            this.comStore = new System.Windows.Forms.ComboBox();
             this.panContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +122,7 @@
             // panContent
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
+            this.panContent.Controls.Add(this.imageListBoxControl1);
             this.panContent.Controls.Add(this.comStore);
             this.panContent.Controls.Add(this.labelStore);
             this.panContent.Controls.Add(this.labelSupplier);
@@ -156,6 +159,68 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(781, 562);
             this.panContent.TabIndex = 7;
+            // 
+            // imageListBoxControl1
+            // 
+            this.imageListBoxControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.imageListBoxControl1.Location = new System.Drawing.Point(120, 357);
+            this.imageListBoxControl1.Name = "imageListBoxControl1";
+            this.imageListBoxControl1.Size = new System.Drawing.Size(200, 95);
+            this.imageListBoxControl1.TabIndex = 74;
+            this.imageListBoxControl1.Visible = false;
+            // 
+            // comStore
+            // 
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(120, 322);
+            this.comStore.Name = "comStore";
+            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStore.Size = new System.Drawing.Size(200, 29);
+            this.comStore.TabIndex = 73;
+            this.comStore.Visible = false;
+            this.comStore.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // labelStore
+            // 
+            this.labelStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelStore.AutoSize = true;
+            this.labelStore.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelStore.Location = new System.Drawing.Point(325, 325);
+            this.labelStore.Name = "labelStore";
+            this.labelStore.Size = new System.Drawing.Size(78, 23);
+            this.labelStore.TabIndex = 72;
+            this.labelStore.Text = "من مخزن";
+            this.labelStore.Visible = false;
+            // 
+            // labelSupplier
+            // 
+            this.labelSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelSupplier.AutoSize = true;
+            this.labelSupplier.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelSupplier.Location = new System.Drawing.Point(660, 376);
+            this.labelSupplier.Name = "labelSupplier";
+            this.labelSupplier.Size = new System.Drawing.Size(55, 23);
+            this.labelSupplier.TabIndex = 70;
+            this.labelSupplier.Text = "المورد";
+            this.labelSupplier.Visible = false;
+            // 
+            // txtSupplier
+            // 
+            this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSupplier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.txtSupplier.Location = new System.Drawing.Point(455, 373);
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSupplier.Size = new System.Drawing.Size(200, 28);
+            this.txtSupplier.TabIndex = 69;
+            this.txtSupplier.Visible = false;
+            this.txtSupplier.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // labelType2
             // 
@@ -484,59 +549,6 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // labelSupplier
-            // 
-            this.labelSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelSupplier.AutoSize = true;
-            this.labelSupplier.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelSupplier.Location = new System.Drawing.Point(660, 376);
-            this.labelSupplier.Name = "labelSupplier";
-            this.labelSupplier.Size = new System.Drawing.Size(55, 23);
-            this.labelSupplier.TabIndex = 70;
-            this.labelSupplier.Text = "المورد";
-            this.labelSupplier.Visible = false;
-            // 
-            // txtSupplier
-            // 
-            this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSupplier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtSupplier.Location = new System.Drawing.Point(455, 373);
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSupplier.Size = new System.Drawing.Size(200, 28);
-            this.txtSupplier.TabIndex = 69;
-            this.txtSupplier.Visible = false;
-            this.txtSupplier.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // labelStore
-            // 
-            this.labelStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelStore.AutoSize = true;
-            this.labelStore.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelStore.Location = new System.Drawing.Point(325, 325);
-            this.labelStore.Name = "labelStore";
-            this.labelStore.Size = new System.Drawing.Size(78, 23);
-            this.labelStore.TabIndex = 72;
-            this.labelStore.Text = "من مخزن";
-            this.labelStore.Visible = false;
-            // 
-            // comStore
-            // 
-            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comStore.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(120, 322);
-            this.comStore.Name = "comStore";
-            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStore.Size = new System.Drawing.Size(200, 29);
-            this.comStore.TabIndex = 73;
-            this.comStore.Visible = false;
-            this.comStore.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
             // Gate_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,6 +562,7 @@
             this.Load += new System.EventHandler(this.Gate_Record_Load);
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -590,6 +603,7 @@
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label labelStore;
         private System.Windows.Forms.ComboBox comStore;
+        private DevExpress.XtraEditors.ImageListBoxControl imageListBoxControl1;
     }
 }
 

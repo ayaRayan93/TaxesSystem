@@ -149,6 +149,24 @@ namespace MainSystem
                     comType.SelectedIndex = -1;
                     comResponsible.SelectedIndex = -1;
                     comStore.SelectedIndex = -1;
+
+                    string query = "select Driver_ID,Driver_Name from drivers";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDriver.DataSource = dt;
+                    comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
+                    comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
+                    comDriver.SelectedIndex = -1;
+
+                    query = "select * from cars";
+                    da = new MySqlDataAdapter(query, conn);
+                    dt = new DataTable();
+                    da.Fill(dt);
+                    comCar.DataSource = dt;
+                    comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
+                    comCar.ValueMember = dt.Columns["Car_ID"].ToString();
+                    comCar.SelectedIndex = -1;
                     loaded = true;
 
                     if (comReason.SelectedValue.ToString() == "1")
@@ -207,6 +225,24 @@ namespace MainSystem
                     comCar.SelectedIndex = -1;
                     comEmployee.SelectedIndex = -1;
                     comStore.SelectedIndex = -1;
+
+                    string query = "select Driver_ID,Driver_Name from drivers";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDriver.DataSource = dt;
+                    comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
+                    comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
+                    comDriver.SelectedIndex = -1;
+
+                    query = "select * from cars";
+                    da = new MySqlDataAdapter(query, conn);
+                    dt = new DataTable();
+                    da.Fill(dt);
+                    comCar.DataSource = dt;
+                    comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
+                    comCar.ValueMember = dt.Columns["Car_ID"].ToString();
+                    comCar.SelectedIndex = -1;
                     loaded = true;
                     if(comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1")
                     {
@@ -359,6 +395,24 @@ namespace MainSystem
                 comCar.SelectedIndex = -1;
                 comEmployee.SelectedIndex = -1;
                 comStore.SelectedIndex = -1;
+
+                string query = "select Driver_ID,Driver_Name from drivers";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comDriver.DataSource = dt;
+                comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
+                comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
+                comDriver.SelectedIndex = -1;
+
+                query = "select * from cars";
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comCar.DataSource = dt;
+                comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
+                comCar.ValueMember = dt.Columns["Car_ID"].ToString();
+                comCar.SelectedIndex = -1;
                 loaded = true;
             }
         }
@@ -426,8 +480,21 @@ namespace MainSystem
                         }
                     }
 
-                    checkedListBoxControlNum.Items.Add(txtPermisionNum.Text);
-                    txtPermisionNum.Text = "";
+                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedFile = openFileDialog1.FileName;
+                        byte[] selectedRequestImage = null;
+                        selectedRequestImage = File.ReadAllBytes(selectedFile);
+                        checkedListBoxControlNum.Items.Add(txtPermisionNum.Text);
+                        /*ImageList imageList = new ImageList();
+                        FileInfo fi = new FileInfo(selectedFile);
+                        imageList.Images.Add(Image.FromFile(String.Format("{0}\\{1}", fi.DirectoryName, fi.Name)));
+                        imageListBoxControl1.ImageList = imageList;*/
+                        //imageList.Images.Add(Image.FromFile(selectedFile));
+                        imageListBoxControl1.Items.Add(selectedFile);
+                        txtPermisionNum.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -446,10 +513,20 @@ namespace MainSystem
                         return;
 
                     ArrayList temp = new ArrayList();
+                    ArrayList tempimg = new ArrayList();
                     foreach (int index in checkedListBoxControlNum.CheckedIndices)
+                    {
                         temp.Add(checkedListBoxControlNum.Items[index]);
+                        tempimg.Add(imageListBoxControl1.Items[index]);
+                    }
                     foreach (object item in temp)
+                    {
                         checkedListBoxControlNum.Items.Remove(item);
+                    }
+                    foreach (object item in tempimg)
+                    {
+                        imageListBoxControl1.Items.Remove(item);
+                    }
                 }
             }
             catch (Exception ex)
@@ -511,8 +588,16 @@ namespace MainSystem
 
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Store_ID"].Value = storeId;
-                    com.Parameters.Add("@TatiqEmp_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@TatiqEmp_ID"].Value = comEmployee.SelectedValue.ToString();
+                    if (comEmployee.SelectedValue != null)
+                    {
+                        com.Parameters.Add("@TatiqEmp_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@TatiqEmp_ID"].Value = comEmployee.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@TatiqEmp_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@TatiqEmp_ID"].Value = null;
+                    }
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
@@ -537,7 +622,7 @@ namespace MainSystem
 
                     for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
                     {
-                        query = "insert into gate_permission(Permission_Number,Supplier_PermissionNumber,Type) values(@Permission_Number,@Supplier_PermissionNumber,@Type)";
+                        query = "insert into gate_permission(Permission_Number,Supplier_PermissionNumber,Type,Permission_Image) values(@Permission_Number,@Supplier_PermissionNumber,@Type,@Permission_Image)";
                         com = new MySqlCommand(query, conn);
                         com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
                         com.Parameters["@Permission_Number"].Value = permissionNum;
@@ -545,6 +630,8 @@ namespace MainSystem
                         com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
                         com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
                         com.Parameters["@Type"].Value = "دخول";
+                        com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
+                        com.Parameters["@Permission_Image"].Value = imageToByteArray(Image.FromFile(imageListBoxControl1.Items[i].Value.ToString()));
                         com.ExecuteNonQuery();
                     }
 
@@ -606,6 +693,13 @@ namespace MainSystem
         }
 
         //function
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
         public void clear()
         {
             foreach (Control co in this.panContent.Controls)
@@ -624,6 +718,14 @@ namespace MainSystem
                     for (int i = 0; i < cont; i++)
                     {
                         checkedListBoxControlNum.Items.RemoveAt(0);
+                    }
+                }
+                else if (co is ImageListBoxControl)
+                {
+                    int cont = imageListBoxControl1.ItemCount;
+                    for (int i = 0; i < cont; i++)
+                    {
+                        imageListBoxControl1.Items.RemoveAt(0);
                     }
                 }
             }
@@ -646,6 +748,24 @@ namespace MainSystem
                     comResponsible.SelectedIndex = -1;
                     comReason.SelectedIndex = -1;
                     comStore.SelectedIndex = -1;
+
+                    string query = "select Driver_ID,Driver_Name from drivers";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDriver.DataSource = dt;
+                    comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
+                    comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
+                    comDriver.SelectedIndex = -1;
+
+                    query = "select * from cars";
+                    da = new MySqlDataAdapter(query, conn);
+                    dt = new DataTable();
+                    da.Fill(dt);
+                    comCar.DataSource = dt;
+                    comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
+                    comCar.ValueMember = dt.Columns["Car_ID"].ToString();
+                    comCar.SelectedIndex = -1;
                     flag2 = true;
                     flag = true;
                     loaded = true;
@@ -660,6 +780,14 @@ namespace MainSystem
                     for (int i = 0; i < cont; i++)
                     {
                         checkedListBoxControlNum.Items.RemoveAt(0);
+                    }
+                }
+                else if (co is ImageListBoxControl)
+                {
+                    int cont = imageListBoxControl1.ItemCount;
+                    for (int i = 0; i < cont; i++)
+                    {
+                        imageListBoxControl1.Items.RemoveAt(0);
                     }
                 }
             }

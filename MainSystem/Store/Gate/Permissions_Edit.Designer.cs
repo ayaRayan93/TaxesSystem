@@ -36,13 +36,16 @@
             this.labelPerNum = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.imageListBoxControl1 = new DevExpress.XtraEditors.ImageListBoxControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.imageListBoxControl1);
             this.panel1.Controls.Add(this.btnDeleteNum);
             this.panel1.Controls.Add(this.checkedListBoxControlNum);
             this.panel1.Controls.Add(this.btnAddNum);
@@ -157,6 +160,15 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // imageListBoxControl1
+            // 
+            this.imageListBoxControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.imageListBoxControl1.Location = new System.Drawing.Point(177, 82);
+            this.imageListBoxControl1.Name = "imageListBoxControl1";
+            this.imageListBoxControl1.Size = new System.Drawing.Size(86, 96);
+            this.imageListBoxControl1.TabIndex = 75;
+            this.imageListBoxControl1.Visible = false;
+            // 
             // Permissions_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +188,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -190,5 +203,6 @@
         private System.Windows.Forms.Label labelPerNum;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private DevExpress.XtraEditors.ImageListBoxControl imageListBoxControl1;
     }
 }

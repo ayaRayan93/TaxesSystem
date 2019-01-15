@@ -108,9 +108,9 @@ namespace MainSystem
 
             DataSet sourceDataSet = new DataSet();
             //,employee.Employee_Name as 'مسئول التعتيق'
-            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT gate.Permission_Number as 'التسلسل',gate.Reason as 'سبب الدخول',gate.Type as 'النوع',gate.Responsible as 'المسئول',gate.Date_Enter as 'وقت الدخول',gate.Driver_Name as 'السواق',gate.Car_Number as 'رقم العربية',gate.License_Number as 'رقم الرخصة',gate.Description as 'البيان' FROM gate INNER JOIN employee ON employee.Employee_ID = gate.TatiqEmp_ID WHERE gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
+            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT gate.Permission_Number as 'التسلسل',gate.Reason as 'سبب الدخول',gate.Type as 'النوع',gate.Responsible as 'المسئول',gate.Date_Enter as 'وقت الدخول',gate.Driver_Name as 'السواق',gate.Car_Number as 'رقم العربية',gate.License_Number as 'رقم الرخصة',gate.Description as 'البيان' FROM gate LEFT JOIN employee ON employee.Employee_ID = gate.TatiqEmp_ID WHERE gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
-            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT gate_permission.Permission_Number as 'التسلسل',gate_permission.Supplier_PermissionNumber as 'رقم الاذن',gate_permission.Type as 'النوع' FROM gate_permission inner join gate on gate.Permission_Number=gate_permission.Permission_Number where gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
+            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT gate_permission.Permission_Number as 'التسلسل',gate_permission.Supplier_PermissionNumber as 'رقم الاذن',gate_permission.Type as 'النوع' FROM gate_permission inner join gate on gate_permission.Permission_Number=gate.Permission_Number where gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
             adapterZone.Fill(sourceDataSet, "gate");
             adapterArea.Fill(sourceDataSet, "gate_permission");
