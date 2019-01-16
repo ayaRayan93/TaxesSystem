@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.newChoose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comZone = new System.Windows.Forms.ComboBox();
             this.txtZone = new System.Windows.Forms.TextBox();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,25 +48,83 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnShippingRecord = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.ayatestDataSet = new MainSystem.ayatestDataSet();
-            this.ayatestDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shippingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.shippingTableAdapter = new MainSystem.ayatestDataSetTableAdapters.shippingTableAdapter();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ayatestDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ayatestDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shippingBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gridView3
+            // 
+            this.gridView3.GridControl = this.gridControl1;
+            this.gridView3.Name = "gridView3";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.EmbeddedNavigator.Appearance.Options.UseFont = true;
+            this.gridControl1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.Location = new System.Drawing.Point(0, 100);
+            this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(877, 456);
+            this.gridControl1.TabIndex = 1;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1,
+            this.gridView2,
+            this.gridView3});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ShowIndicator = false;
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn4});
+            this.gridView2.GridControl = this.gridControl1;
+            this.gridView2.Name = "gridView2";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "gridColumn3";
+            this.gridColumn3.FieldName = "Store_Name";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "gridColumn4";
+            this.gridColumn4.FieldName = "Quantity";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
             // 
             // newChoose
             // 
@@ -81,6 +141,7 @@
             this.newChoose.TabIndex = 199;
             this.newChoose.Text = "اختيار اخر";
             this.newChoose.UseVisualStyleBackColor = true;
+            this.newChoose.Click += new System.EventHandler(this.newChoose_Click);
             // 
             // label1
             // 
@@ -122,6 +183,7 @@
             this.comZone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comZone.Size = new System.Drawing.Size(175, 24);
             this.comZone.TabIndex = 196;
+            this.comZone.SelectionChangeCommitted += new System.EventHandler(this.comZone_SelectionChangeCommitted);
             // 
             // txtZone
             // 
@@ -135,50 +197,7 @@
             this.txtZone.Size = new System.Drawing.Size(53, 24);
             this.txtZone.TabIndex = 195;
             this.txtZone.TabStop = false;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.DataSource = this.shippingBindingSource;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl1.EmbeddedNavigator.Appearance.Options.UseFont = true;
-            this.gridControl1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            gridLevelNode1.LevelTemplate = this.gridView2;
-            gridLevelNode1.RelationName = "Level1";
-            this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.gridControl1.Location = new System.Drawing.Point(0, 100);
-            this.gridControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(877, 456);
-            this.gridControl1.TabIndex = 1;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1,
-            this.gridView2});
+            this.txtZone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZone_KeyDown);
             // 
             // dateTimeTo
             // 
@@ -289,6 +308,7 @@
             this.btnShippingRecord.Size = new System.Drawing.Size(143, 38);
             this.btnShippingRecord.TabIndex = 4;
             this.btnShippingRecord.Text = "تسجيل عملية شحن";
+            this.btnShippingRecord.Click += new System.EventHandler(this.btnShippingRecord_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -307,65 +327,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(877, 606);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // gridView2
-            // 
-            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn3,
-            this.gridColumn4});
-            this.gridView2.GridControl = this.gridControl1;
-            this.gridView2.Name = "gridView2";
-            // 
-            // ayatestDataSet
-            // 
-            this.ayatestDataSet.DataSetName = "ayatestDataSet";
-            this.ayatestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ayatestDataSetBindingSource
-            // 
-            this.ayatestDataSetBindingSource.DataSource = this.ayatestDataSet;
-            this.ayatestDataSetBindingSource.Position = 0;
-            // 
-            // shippingBindingSource
-            // 
-            this.shippingBindingSource.DataMember = "shipping";
-            this.shippingBindingSource.DataSource = this.ayatestDataSetBindingSource;
-            // 
-            // shippingTableAdapter
-            // 
-            this.shippingTableAdapter.ClearBeforeFill = true;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "gridColumn1";
-            this.gridColumn1.FieldName = "Customer_Name";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "gridColumn2";
-            this.gridColumn2.FieldName = "Branch_Name";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "gridColumn3";
-            this.gridColumn3.FieldName = "Store_Name";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "gridColumn4";
-            this.gridColumn4.FieldName = "Quantity";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 1;
-            // 
             // ShippingBillsWanted
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,16 +336,14 @@
             this.Name = "ShippingBillsWanted";
             this.Text = "ShippingBillsWanted";
             this.Load += new System.EventHandler(this.ShippingBillsWanted_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ayatestDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ayatestDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.shippingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -408,13 +367,8 @@
         private DevExpress.XtraEditors.SimpleButton btnShippingRecord;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private System.Windows.Forms.BindingSource shippingBindingSource;
-        private System.Windows.Forms.BindingSource ayatestDataSetBindingSource;
-        private ayatestDataSet ayatestDataSet;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private ayatestDataSetTableAdapters.shippingTableAdapter shippingTableAdapter;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
     }
 }
