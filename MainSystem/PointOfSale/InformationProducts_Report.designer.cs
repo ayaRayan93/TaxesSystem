@@ -516,7 +516,6 @@
             this.tableLayoutPanel7.Controls.Add(this.btnSearchAll, 7, 0);
             this.tableLayoutPanel7.Controls.Add(this.checkEditSets, 3, 0);
             this.tableLayoutPanel7.Controls.Add(this.checkEditOffers, 6, 0);
-            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 97);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 1;

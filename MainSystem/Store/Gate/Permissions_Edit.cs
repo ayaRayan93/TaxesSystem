@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Collections;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace MainSystem
 {
@@ -32,7 +33,7 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                string query = "select Supplier_PermissionNumber from transport_permission where Permission_Number=" + permissionNum;
+                string query = "select gate_permission.Supplier_PermissionNumber from gate_permission where gate_permission.Permission_Number=" + permissionNum + " and gate_permission.Type='خروج'";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
@@ -63,8 +64,16 @@ namespace MainSystem
                         }
                     }
 
-                    checkedListBoxControlNum.Items.Add(txtPermisionNum.Text);
-                    txtPermisionNum.Text = "";
+                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedFile = openFileDialog1.FileName;
+                        byte[] selectedRequestImage = null;
+                        selectedRequestImage = File.ReadAllBytes(selectedFile);
+                        checkedListBoxControlNum.Items.Add(txtPermisionNum.Text);
+                        imageListBoxControl1.Items.Add(selectedFile);
+                        txtPermisionNum.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -83,10 +92,20 @@ namespace MainSystem
                         return;
 
                     ArrayList temp = new ArrayList();
+                    ArrayList tempimg = new ArrayList();
                     foreach (int index in checkedListBoxControlNum.CheckedIndices)
+                    {
                         temp.Add(checkedListBoxControlNum.Items[index]);
+                        tempimg.Add(imageListBoxControl1.Items[index]);
+                    }
                     foreach (object item in temp)
+                    {
                         checkedListBoxControlNum.Items.Remove(item);
+                    }
+                    foreach (object item in tempimg)
+                    {
+                        imageListBoxControl1.Items.Remove(item);
+                    }
                 }
             }
             catch (Exception ex)
@@ -100,18 +119,22 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                string query = "delete from transport_permission where Permission_Number=" + permissionNum;
+                string query = "delete from gate_permission where gate_permission.Permission_Number=" + permissionNum + " and gate_permission.Type='خروج'";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 com.ExecuteNonQuery();
 
                 for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
                 {
-                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber) values(@Permission_Number,@Supplier_PermissionNumber)";
+                    query = "insert into gate_permission(Permission_Number,Supplier_PermissionNumber,Type,Permission_Image) values(@Permission_Number,@Supplier_PermissionNumber,@Type,@Permission_Image)";
                     com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
                     com.Parameters["@Permission_Number"].Value = permissionNum;
                     com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
                     com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
+                    com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Type"].Value = "خروج";
+                    com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
+                    com.Parameters["@Permission_Image"].Value = imageToByteArray(Image.FromFile(imageListBoxControl1.Items[i].Value.ToString()));
                     com.ExecuteNonQuery();
                 }
                 conn.Close();
@@ -123,6 +146,13 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+        }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
         }
     }
 }

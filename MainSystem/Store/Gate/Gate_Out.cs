@@ -71,11 +71,19 @@ namespace MainSystem
             {
                 if (e.Action == CollectionChangeAction.Add)
                 {
+                    if (MessageBox.Show("هل انت متاكد انك تريد تسجيل الخروج؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    {
+                        GridView view = gridView1 as GridView;
+                        view.SelectionChanged -= gridView1_SelectionChanged;
+                        gridView1.UnselectRow(gridView1.FocusedRowHandle);
+                        view.SelectionChanged += gridView1_SelectionChanged;
+                        return;
+                    }
                     conn.Open();
-                    string query = "update transport set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where transport.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
+                    string query = "update gate set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where gate.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.ExecuteNonQuery();
-                    //search();
+                    search();
                 }
                 else if (e.Action == CollectionChangeAction.Remove)
                 {
@@ -91,112 +99,6 @@ namespace MainSystem
             }
             conn.Close();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                conn.Open();
-                
-                /*string query = "insert into transport (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,Employee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@Employee_ID)";
-                MySqlCommand com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
-                com.Parameters["@Reason"].Value = comReason.Text;
-                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
-                com.Parameters["@Type"].Value = comType.Text;
-                com.Parameters.Add("@Responsible", MySqlDbType.VarChar, 255);
-                com.Parameters["@Responsible"].Value = comResponsible.Text;
-                if (comCar.Text != "")
-                {
-                    com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Car_ID"].Value = comCar.SelectedValue.ToString();
-                    com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Car_Number"].Value = null;
-                }
-                else
-                {
-                    com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Car_ID"].Value = null;
-                    com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Car_Number"].Value = txtCar.Text;
-                }
-                if (comDriver.Text != "")
-                {
-                    com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Driver_ID"].Value = comDriver.SelectedValue.ToString();
-                    com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Driver_Name"].Value = null;
-                }
-                else
-                {
-                    com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Driver_ID"].Value = null;
-                    com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Driver_Name"].Value = txtDriver.Text;
-                }
-                com.Parameters.Add("@License_Number", MySqlDbType.VarChar, 255);
-                com.Parameters["@License_Number"].Value = txtPermisionNum.Text;
-                com.Parameters.Add("@Date_Enter", MySqlDbType.DateTime, 0);
-                com.Parameters["@Date_Enter"].Value = DateTime.Now;
-
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
-
-                com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@Store_ID"].Value = storeId;
-                com.Parameters.Add("@TatiqEmp_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@TatiqEmp_ID"].Value = comEmployee.SelectedValue.ToString();
-                com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
-                com.Parameters["@Description"].Value = txtDescription.Text;
-                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
-                com.ExecuteNonQuery();
-
-                query = "select Permission_Number from transport order by Permission_Number desc limit 1";
-                com = new MySqlCommand(query, conn);
-                int permissionNum = Convert.ToInt16(com.ExecuteScalar().ToString());
-
-                for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
-                {
-                    query = "insert into transport_permission(Permission_Number,Supplier_PermissionNumber) values(@Permission_Number,@Supplier_PermissionNumber)";
-                    com = new MySqlCommand(query, conn);
-                    com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
-                    com.Parameters["@Permission_Number"].Value = permissionNum;
-                    com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
-                    com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
-                    com.ExecuteNonQuery();
-                }
-
-                clearAll();
-
-                comType.Visible = false;
-                labelType.Visible = false;
-                comResponsible.Visible = false;
-                labelResponsible.Visible = false;
-                comEmployee.Visible = false;
-                labelEmp.Visible = false;
-                labelPerNum.Visible = false;
-                txtPermisionNum.Visible = false;
-                labelDriver.Visible = false;
-                comDriver.Visible = false;
-                txtDriver.Visible = false;
-                labelCar.Visible = false;
-                comCar.Visible = false;
-                txtCar.Visible = false;
-                txtLicense.Visible = false;
-                labelLicense.Visible = false;
-                txtDescription.Visible = false;
-                labelDescription.Visible = false;
-                btnAddNum.Visible = false;
-                checkedListBoxControlNum.Visible = false;
-                btnDeleteNum.Visible = false;*/
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            conn.Close();
-        }
         
         //function
         public void search()
@@ -205,19 +107,20 @@ namespace MainSystem
             int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
 
             DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT transport.Permission_Number as 'التسلسل',transport.Reason as 'سبب الدخول',transport.Type as 'النوع',transport.Responsible as 'المسئول',transport.License_Number as 'رقم الرخصة',transport.Date_Enter as 'وقت الدخول',transport.Description as 'البيان',transport.Driver_Name as 'السواق',transport.Car_Number as 'رقم العربية',employee.Employee_Name as 'مسئول التعتيق' FROM transport INNER JOIN employee ON employee.Employee_ID = transport.TatiqEmp_ID WHERE transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+            //,employee.Employee_Name as 'مسئول التعتيق'
+            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT gate.Permission_Number as 'التسلسل',gate.Reason as 'سبب الدخول',gate.Type as 'النوع',gate.Responsible as 'المسئول',gate.Date_Enter as 'وقت الدخول',gate.Driver_Name as 'السواق',gate.Car_Number as 'رقم العربية',gate.License_Number as 'رقم الرخصة',gate.Description as 'البيان' FROM gate LEFT JOIN employee ON employee.Employee_ID = gate.TatiqEmp_ID WHERE gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
-            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT transport_permission.Permission_Number as 'التسلسل',transport_permission.Supplier_PermissionNumber as 'رقم الاذن' FROM transport_permission inner join transport on transport.Permission_Number=transport_permission.Permission_Number where transport.Store_ID =" + storeId + " and transport.Date_Out is NULL", conn);
+            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT gate_permission.Permission_Number as 'التسلسل',gate_permission.Supplier_PermissionNumber as 'رقم الاذن',gate_permission.Type as 'النوع' FROM gate_permission inner join gate on gate_permission.Permission_Number=gate.Permission_Number where gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
-            adapterZone.Fill(sourceDataSet, "transport");
-            adapterArea.Fill(sourceDataSet, "transport_permission");
+            adapterZone.Fill(sourceDataSet, "gate");
+            adapterArea.Fill(sourceDataSet, "gate_permission");
 
             //Set up a master-detail relationship between the DataTables 
-            DataColumn keyColumn = sourceDataSet.Tables["transport"].Columns["التسلسل"];
-            DataColumn foreignKeyColumn = sourceDataSet.Tables["transport_permission"].Columns["التسلسل"];
+            DataColumn keyColumn = sourceDataSet.Tables["gate"].Columns["التسلسل"];
+            DataColumn foreignKeyColumn = sourceDataSet.Tables["gate_permission"].Columns["التسلسل"];
             sourceDataSet.Relations.Add("ارقام الاذون", keyColumn, foreignKeyColumn);
 
-            gridControl1.DataSource = sourceDataSet.Tables["transport"];
+            gridControl1.DataSource = sourceDataSet.Tables["gate"];
         }
 
         public void clear()

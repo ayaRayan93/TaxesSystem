@@ -191,6 +191,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnSales_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -207,6 +208,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnHR_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -223,6 +225,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnCars_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -239,6 +242,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnPOS_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -255,6 +259,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnBank_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -271,6 +276,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnReception_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -287,6 +293,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void TIElsha7n_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -303,6 +310,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void AccountingSystem_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -363,6 +371,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void xtraTabControlMainContainer_CloseButtonClick(object sender, EventArgs e)
         {
             try
@@ -395,6 +404,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void xtraTabControlContent_Click(object sender, EventArgs e)
         {
             try
@@ -516,8 +526,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-       
     }
 
     public static class connection
