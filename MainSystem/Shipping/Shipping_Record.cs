@@ -124,12 +124,12 @@ namespace MainSystem
                         return;
                     }
                     dbconnection.Open();
-                    string query = "select CustomerBill_ID from customer_bill where Bill_Number="+txtBillNumber.Text+"Branch_ID="+comBranch.SelectedValue;
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    int id =Convert.ToInt16(com.ExecuteScalar());
+                    string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtBillNumber.Text+" and Branch_ID="+comBranch.SelectedValue;
+                    MySqlCommand com1 = new MySqlCommand(query, dbconnection);
+                    int id =Convert.ToInt16(com1.ExecuteScalar());
 
-                    query = "insert into shipping (CustomerBill_ID,Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Zone_ID,Zone_Name,Date,Description) values(@CustomerBill_ID,@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Zone_ID,@Zone_Name,@Date,@Description)";
-                    com = new MySqlCommand(query, dbconnection);
+                    query = "insert into shipping (CustomerBill_ID,Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Area_ID,Area_Name,Date,Description) values(@CustomerBill_ID,@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Area_ID,@Area_Name,@Date,@Description)";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@CustomerBill_ID"].Value = id;
                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
@@ -152,7 +152,7 @@ namespace MainSystem
                     com.Parameters["@Area_Name"].Value = comArea.Text;
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
                     com.Parameters["@Description"].Value = txtDescription.Text;
-                    com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
+                    com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = dateTimePicker1.Value;
 
                     com.ExecuteNonQuery();

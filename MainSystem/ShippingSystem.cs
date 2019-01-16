@@ -199,7 +199,7 @@ namespace MainSystem
 
                 tabControlShipping.SelectedTabPage = xtraTabPage;
 
-                ShippingBillsWanted objForm = new ShippingBillsWanted();
+                ShippingBillsWanted objForm = new ShippingBillsWanted(this);
                 objForm.TopLevel = false;
 
                 xtraTabPage.Controls.Add(objForm);
@@ -212,5 +212,37 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public void displayMakeShippingForm(List<int> arrInt)
+        {
+            try
+            {
+                if (!tabControlShipping.Visible)
+                    tabControlShipping.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(tabControlShipping, "تسجيل شحنة");
+                if (xtraTabPage == null)
+                {
+                    tabControlShipping.TabPages.Add("تسجيل شحنة");
+                    xtraTabPage = getTabPage(tabControlShipping, "تسجيل شحنة");
+                }
+                xtraTabPage.Controls.Clear();
+
+                tabControlShipping.SelectedTabPage = xtraTabPage;
+
+                MakeShipping objForm = new MakeShipping(arrInt);
+                objForm.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

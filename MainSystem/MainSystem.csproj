@@ -1316,6 +1316,12 @@
     <Compile Include="Shipping\Area_Report.designer.cs">
       <DependentUpon>Area_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\shippingOrganize\MakeShipping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\MakeShipping.Designer.cs">
+      <DependentUpon>MakeShipping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shipping\shippingOrganize\ShippingBillsWanted.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2151,6 +2157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Area_Report.resx">
       <DependentUpon>Area_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\shippingOrganize\MakeShipping.resx">
+      <DependentUpon>MakeShipping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\shippingOrganize\ShippingBillsWanted.resx">
       <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
