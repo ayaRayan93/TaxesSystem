@@ -72,10 +72,10 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSignInRecord = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSignOutRecord = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemGateReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemImportedPermission = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -84,10 +84,10 @@
             this.btnProductItems = new DevExpress.XtraNavBar.NavBarItem();
             this.btnProducts = new DevExpress.XtraNavBar.NavBarItem();
             this.btnAtaqm = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSignInRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSignOutRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemGateReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem12 = new DevExpress.XtraNavBar.NavBarItem();
@@ -994,7 +994,7 @@
             this.navBarItemSignInRecord,
             this.navBarItemSignOutRecord,
             this.navBarItem8,
-            this.navBarItem9,
+            this.navBarItemImportedPermission,
             this.navBarItem10,
             this.navBarItem11,
             this.navBarItem12,
@@ -1020,33 +1020,32 @@
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup3
+            // navBarGroup4
             // 
-            this.navBarGroup3.Caption = "البوابة";
-            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSignInRecord),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSignOutRecord),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemGateReport)});
-            this.navBarGroup3.Name = "navBarGroup3";
-            this.navBarGroup3.SelectedLinkIndex = 0;
+            this.navBarGroup4.Caption = "الوارد";
+            this.navBarGroup4.Expanded = true;
+            this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemImportedPermission),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem10)});
+            this.navBarGroup4.Name = "navBarGroup4";
+            this.navBarGroup4.SelectedLinkIndex = 0;
             // 
-            // navBarItemSignInRecord
+            // navBarItem8
             // 
-            this.navBarItemSignInRecord.Caption = "تسجيل الدخول";
-            this.navBarItemSignInRecord.Name = "navBarItemSignInRecord";
-            this.navBarItemSignInRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSignInRecord_LinkClicked);
+            this.navBarItem8.Caption = "الطلبات المتوقع استلامها";
+            this.navBarItem8.Name = "navBarItem8";
             // 
-            // navBarItemSignOutRecord
+            // navBarItemImportedPermission
             // 
-            this.navBarItemSignOutRecord.Caption = "تسجيل الخروج";
-            this.navBarItemSignOutRecord.Name = "navBarItemSignOutRecord";
-            this.navBarItemSignOutRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSignOutRecord_LinkClicked);
+            this.navBarItemImportedPermission.Caption = "وارد بأذن";
+            this.navBarItemImportedPermission.Name = "navBarItemImportedPermission";
+            this.navBarItemImportedPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemImportedPermission_LinkClicked);
             // 
-            // navBarItemGateReport
+            // navBarItem10
             // 
-            this.navBarItemGateReport.Caption = "تقرير حركة البوابة";
-            this.navBarItemGateReport.Name = "navBarItemGateReport";
-            this.navBarItemGateReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemGateReport_LinkClicked);
+            this.navBarItem10.Caption = "وارد بدون أذن";
+            this.navBarItem10.Name = "navBarItem10";
             // 
             // navBarGroup1
             // 
@@ -1109,30 +1108,33 @@
             this.btnAtaqm.Name = "btnAtaqm";
             this.btnAtaqm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnAtaqm_LinkClicked);
             // 
-            // navBarGroup4
+            // navBarGroup3
             // 
-            this.navBarGroup4.Caption = "الوارد";
-            this.navBarGroup4.Expanded = true;
-            this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem10)});
-            this.navBarGroup4.Name = "navBarGroup4";
+            this.navBarGroup3.Caption = "البوابة";
+            this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSignInRecord),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSignOutRecord),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemGateReport)});
+            this.navBarGroup3.Name = "navBarGroup3";
+            this.navBarGroup3.SelectedLinkIndex = 0;
             // 
-            // navBarItem8
+            // navBarItemSignInRecord
             // 
-            this.navBarItem8.Caption = "الطلبات المتوقع استلامها";
-            this.navBarItem8.Name = "navBarItem8";
+            this.navBarItemSignInRecord.Caption = "تسجيل الدخول";
+            this.navBarItemSignInRecord.Name = "navBarItemSignInRecord";
+            this.navBarItemSignInRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSignInRecord_LinkClicked);
             // 
-            // navBarItem9
+            // navBarItemSignOutRecord
             // 
-            this.navBarItem9.Caption = "وارد بأذن";
-            this.navBarItem9.Name = "navBarItem9";
+            this.navBarItemSignOutRecord.Caption = "تسجيل الخروج";
+            this.navBarItemSignOutRecord.Name = "navBarItemSignOutRecord";
+            this.navBarItemSignOutRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSignOutRecord_LinkClicked);
             // 
-            // navBarItem10
+            // navBarItemGateReport
             // 
-            this.navBarItem10.Caption = "وارد بدون أذن";
-            this.navBarItem10.Name = "navBarItem10";
+            this.navBarItemGateReport.Caption = "تقرير حركة البوابة";
+            this.navBarItemGateReport.Name = "navBarItemGateReport";
+            this.navBarItemGateReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemGateReport_LinkClicked);
             // 
             // navBarGroup5
             // 
@@ -4044,7 +4046,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemSignOutRecord;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup4;
         private DevExpress.XtraNavBar.NavBarItem navBarItem8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemImportedPermission;
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem11;
