@@ -277,7 +277,6 @@ namespace MainSystem
                         com.Parameters["@Supplier_Permission_Number"].Value = int.Parse(txtSupPermissionNum.Text);
                         com.ExecuteNonQuery();
                         
-
                         string q1 = "select Storage_ID from storage ORDER BY Storage_ID DESC LIMIT 1";
                         MySqlCommand comm = new MySqlCommand(q1, conn);
                         int id = (int)comm.ExecuteScalar();
@@ -295,7 +294,7 @@ namespace MainSystem
                         }
                         str += courrentIDs[courrentIDs.Length - 1];
 
-                        string qq = "select storage.Code as 'كود',type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'المنتج', storage.Store_Name as 'المخزن', storage.Supplier_Name as 'المورد',storage.Balatat as 'بلتات', storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار', storage.Storage_Date as 'تاريخ التخزين' , storage.Store_Place as 'مكان التخزين'  , storage.Note as 'ملاحظة',storage.Permission_Number as 'اذن المخزن' from storage INNER JOIN data  ON storage.Code = data.Code INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where Storage_ID in (" + str + ") ";
+                        string qq = "select data.Code as 'كود',type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'المنتج', supplier.Supplier_Name as 'المورد',storage.Balatat as 'بلتات', storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار', storage.Storage_Date as 'تاريخ التخزين' , store_places.Store_Place_Code as 'مكان التخزين', storage.Note as 'ملاحظة',storage.Permission_Number as 'اذن المخزن' from storage INNER JOIN data  ON storage.Data_ID = data.Data_ID inner join supplier on storage.Supplier_ID=supplier.Supplier_ID inner join store_places on storage.Store_Place_ID=store_places.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where Storage_ID in (" + str + ") ";
                         MySqlDataAdapter da = new MySqlDataAdapter(qq, conn);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -473,6 +472,32 @@ namespace MainSystem
         private void btnCoding_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                /*label15.Visible = true;
+                txtPermissionNum.Enabled = true;*/
+                string q = "select Permission_Number from storage where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Store_ID=" + storeId + " ORDER BY Storage_ID DESC LIMIT 1 ";
+                conn.Open();
+                MySqlCommand com = new MySqlCommand(q, conn);
+                try
+                {
+                    int r = int.Parse(com.ExecuteScalar().ToString());
+                    int sum = r + 1;
+                    txtPermissionNum.Text = sum.ToString();
+                    conn.Close();
+                }
+                catch
+                {
+                    /*label15.Visible = true;
+                    txtPermissionNum.Visible = true;*/
+                    txtPermissionNum.Text = "1";
+                }
+                conn.Close();
+            }
         }
 
         private void txtPermissionNum_KeyDown(object sender, KeyEventArgs e)

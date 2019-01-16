@@ -66,12 +66,12 @@
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSupPermissionNum = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnCoding = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.comStorePlace = new System.Windows.Forms.ComboBox();
-            this.txtSupPermissionNum = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -87,6 +87,7 @@
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Location = new System.Drawing.Point(35, 80);
             this.btnAdd.Name = "btnAdd";
@@ -118,6 +119,7 @@
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
             this.comSupplier.TabIndex = 22;
+            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
             // 
             // label7
             // 
@@ -248,10 +250,10 @@
             // txtPermissionNum
             // 
             this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPermissionNum.Enabled = false;
             this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtPermissionNum.Location = new System.Drawing.Point(339, 5);
             this.txtPermissionNum.Name = "txtPermissionNum";
+            this.txtPermissionNum.ReadOnly = true;
             this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPermissionNum.Size = new System.Drawing.Size(100, 24);
             this.txtPermissionNum.TabIndex = 38;
@@ -579,6 +581,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.txtSupPermissionNum);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnCoding);
@@ -591,63 +594,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(772, 34);
             this.panel1.TabIndex = 43;
-            // 
-            // btnCoding
-            // 
-            this.btnCoding.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCoding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnCoding.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCoding.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnCoding.ForeColor = System.Drawing.Color.White;
-            this.btnCoding.Location = new System.Drawing.Point(28, 3);
-            this.btnCoding.Name = "btnCoding";
-            this.btnCoding.Size = new System.Drawing.Size(87, 28);
-            this.btnCoding.TabIndex = 40;
-            this.btnCoding.Text = "تكويد";
-            this.btnCoding.UseVisualStyleBackColor = false;
-            this.btnCoding.Click += new System.EventHandler(this.btnCoding_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.txtTotalMeter);
-            this.panel2.Controls.Add(this.comStorePlace);
-            this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.txtCode);
-            this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.txtBalat);
-            this.panel2.Controls.Add(this.txtDescription);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.txtCarton);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 308);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(772, 124);
-            this.panel2.TabIndex = 44;
-            // 
-            // txtTotalMeter
-            // 
-            this.txtTotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtTotalMeter.Enabled = false;
-            this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalMeter.Location = new System.Drawing.Point(137, 91);
-            this.txtTotalMeter.Name = "txtTotalMeter";
-            this.txtTotalMeter.Size = new System.Drawing.Size(171, 23);
-            this.txtTotalMeter.TabIndex = 38;
-            // 
-            // comStorePlace
-            // 
-            this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(453, 50);
-            this.comStorePlace.Name = "comStorePlace";
-            this.comStorePlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStorePlace.Size = new System.Drawing.Size(171, 24);
-            this.comStorePlace.TabIndex = 37;
             // 
             // txtSupPermissionNum
             // 
@@ -670,6 +616,64 @@
             this.label5.Size = new System.Drawing.Size(86, 19);
             this.label5.TabIndex = 42;
             this.label5.Text = "اذن الاستلام";
+            // 
+            // btnCoding
+            // 
+            this.btnCoding.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCoding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnCoding.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCoding.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnCoding.ForeColor = System.Drawing.Color.White;
+            this.btnCoding.Location = new System.Drawing.Point(28, 3);
+            this.btnCoding.Name = "btnCoding";
+            this.btnCoding.Size = new System.Drawing.Size(87, 28);
+            this.btnCoding.TabIndex = 40;
+            this.btnCoding.Text = "تكويد";
+            this.btnCoding.UseVisualStyleBackColor = false;
+            this.btnCoding.Click += new System.EventHandler(this.btnCoding_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.txtTotalMeter);
+            this.panel2.Controls.Add(this.comStorePlace);
+            this.panel2.Controls.Add(this.btnAdd);
+            this.panel2.Controls.Add(this.txtCode);
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.txtBalat);
+            this.panel2.Controls.Add(this.txtDescription);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.txtCarton);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 308);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(772, 124);
+            this.panel2.TabIndex = 44;
+            // 
+            // txtTotalMeter
+            // 
+            this.txtTotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalMeter.Location = new System.Drawing.Point(137, 91);
+            this.txtTotalMeter.Name = "txtTotalMeter";
+            this.txtTotalMeter.ReadOnly = true;
+            this.txtTotalMeter.Size = new System.Drawing.Size(171, 23);
+            this.txtTotalMeter.TabIndex = 38;
+            // 
+            // comStorePlace
+            // 
+            this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comStorePlace.FormattingEnabled = true;
+            this.comStorePlace.Location = new System.Drawing.Point(453, 50);
+            this.comStorePlace.Name = "comStorePlace";
+            this.comStorePlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStorePlace.Size = new System.Drawing.Size(171, 24);
+            this.comStorePlace.TabIndex = 37;
             // 
             // SupplierReceipt
             // 
