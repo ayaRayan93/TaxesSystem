@@ -536,8 +536,10 @@ namespace MainSystem
                             command.Parameters.AddWithValue("?Type", "بند");                        
                             command.ExecuteNonQuery();
                         }
-                        
-                        products.displayProducts();
+                        if (products != null)
+                        {
+                            products.displayProducts();
+                        }
                         UserControl.ItemRecord("data", "اضافة", data_ID, DateTime.Now,"", conn);
                         clear();                      
                         comType.Focus();          

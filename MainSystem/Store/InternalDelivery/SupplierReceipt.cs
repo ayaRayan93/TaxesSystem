@@ -19,21 +19,26 @@ namespace MainSystem
         MySqlConnection conn, dbconnection6, dbconnection3;
         int[] courrentIDs;
         int count = 0;
-        int sum;
+        int sum = 1;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
         DataRow row1;
         int storeId = 0;
+        bool flag = false;
+        bool flagCarton = false;
+        bool flagBalate = false;
+        DevExpress.XtraTab.XtraTabControl xtraTabControlStores = null;
 
-        public SupplierReceipt(MainForm mainForm, DevExpress.XtraTab.XtraTabControl xtraTabControlStores)
+        public SupplierReceipt(MainForm mainForm, DevExpress.XtraTab.XtraTabControl XtraTabControlStores)
         {
             InitializeComponent();
             courrentIDs = new int[100];
             conn = new MySqlConnection(connection.connectionString);
             dbconnection6 = new MySqlConnection(connection.connectionString);
             dbconnection3 = new MySqlConnection(connection.connectionString);
+            xtraTabControlStores = XtraTabControlStores;
             
             comType.AutoCompleteMode = AutoCompleteMode.Suggest;
             comType.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -61,7 +66,7 @@ namespace MainSystem
                 comType.DisplayMember = dt.Columns["Type_Name"].ToString();
                 comType.ValueMember = dt.Columns["Type_ID"].ToString();
                 comType.Text = "";
-                
+
                 query = "select * from sort";
                 da = new MySqlDataAdapter(query, conn);
                 dt = new DataTable();
@@ -89,6 +94,19 @@ namespace MainSystem
                 comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
                 comStorePlace.Text = "";
 
+                string q = "select Permission_Number from storage where Store_ID=" + storeId + " ORDER BY Storage_ID DESC LIMIT 1 ";
+                MySqlCommand com = new MySqlCommand(q, conn);
+                if (com.ExecuteScalar().ToString() != "")
+                {
+                    int r = int.Parse(com.ExecuteScalar().ToString());
+                    sum = r + 1;
+                    txtPermissionNum.Text = sum.ToString();
+                }
+                else
+                {
+                    txtPermissionNum.Text = "1";
+                }
+
                 loaded = true;
             }
             catch (Exception ex)
@@ -96,6 +114,135 @@ namespace MainSystem
                 MessageBox.Show(ex.ToString());
             }
             conn.Close();
+        }
+
+        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    //Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and
+                    string q = "select Permission_Number from storage where  Store_ID=" + storeId + " and Supplier_ID=" + comSupplier.SelectedValue.ToString() + " ORDER BY Storage_ID DESC LIMIT 1 ";
+                    conn.Open();
+                    MySqlCommand com = new MySqlCommand(q, conn);
+                    if (com.ExecuteScalar().ToString() != "")
+                    {
+                        int r = int.Parse(com.ExecuteScalar().ToString());
+                        //sum = r + 1;
+                        loaded = false;
+                        txtPermissionNum.Text = r.ToString();
+                        loaded = true;
+                    }
+                }
+                catch
+                {
+                    loaded = false;
+                    txtPermissionNum.Text = sum.ToString();
+                    loaded = true;
+                }
+                conn.Close();
+            }
+        }
+        
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string q1, q2, q3, q4, fQuery = "";
+                if (comType.Text == "")
+                {
+                    q1 = "select Type_ID from type";
+                }
+                else
+                {
+                    q1 = comType.SelectedValue.ToString();
+                }
+                if (comFactory.Text == "")
+                {
+                    q2 = "select Factory_ID from factory";
+                }
+                else
+                {
+                    q2 = comFactory.SelectedValue.ToString();
+                }
+                if (comProduct.Text == "")
+                {
+                    q3 = "select Product_ID from product";
+                }
+                else
+                {
+                    q3 = comProduct.SelectedValue.ToString();
+                }
+                if (comGroup.Text == "")
+                {
+                    q4 = "select Group_ID from groupo";
+                }
+                else
+                {
+                    q4 = comGroup.SelectedValue.ToString();
+                }
+
+                if (comSize.Text != "")
+                {
+                    fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
+                }
+
+                if (comColor.Text != "")
+                {
+                    fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
+                }
+                if (comSort.Text != "")
+                {
+                    fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
+                }
+
+                conn.Open();
+                dbconnection6.Open();
+                string query = "select data.Data_ID,data.Code as 'الكود','Type',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',data.Description as 'الوصف' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                gridControl1.DataSource = dt;
+
+                query = "SELECT data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',data.Description as 'الوصف',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID";
+                MySqlCommand comand = new MySqlCommand(query, conn);
+                MySqlDataReader dr = comand.ExecuteReader();
+                while (dr.Read())
+                {
+                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                    MySqlDataReader dr2 = comand2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        gridView1.AddNewRow();
+                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                        if (gridView1.IsNewItemRow(rowHandle))
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الوصف"], dr["الوصف"]);
+                        }
+                    }
+                    dr2.Close();
+                }
+                dr.Close();
+                if (gridView1.IsLastVisibleRow)
+                {
+                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                }
+                gridView1.Columns[0].Visible = false;
+                gridView1.Columns["Type"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+            dbconnection6.Close();
         }
 
         private void comBox_SelectedValueChanged(object sender, EventArgs e)
@@ -232,291 +379,405 @@ namespace MainSystem
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                conn.Open();
-                if (txtCarton.Text != "" && txtBalat.Text != "" && comStorePlace.Text != "" && txtCarton.Text != "" && txtSupPermissionNum.Text != "" && txtCode.Text != "" && txtTotalMeter.Text != "")
-                {
-                    string q = "select carton from data where Data_ID=" + row1[0].ToString();
-                    MySqlCommand com = new MySqlCommand(q, conn);
-                    double carton = double.Parse(com.ExecuteScalar().ToString());
-                    int NoBalatat;
-                    int.TryParse(txtBalat.Text, out NoBalatat);
-                    int NoCartons;
-                    int.TryParse(txtCarton.Text, out NoCartons);
-                    double total = carton * NoBalatat * NoCartons;
-                    /*txtTotalMeter.Text = (total).ToString();*/
-
-                    if (int.Parse(txtPermissionNum.Text) <= sum)
-                    {
-                        string query = "insert into Storage (Store_ID,Storage_Date,Balatat,Carton_Balata,Data_ID,Type,Store_Place_ID,Total_Meters,Supplier_ID,Note,Permission_Number,Supplier_Permission_Number) values (@Store_ID,@Date,@NoBalatat,@NoCartonInBalata,@Data_ID,@Type,@PlaceOfStore,@TotalOfMeters,@Supplier,@Note,@Permission_Number,@Supplier_Permission_Number)";
-                        com = new MySqlCommand(query, conn);
-                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_ID"].Value = storeId;
-                        com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                        com.Parameters["@Date"].Value = DateTime.Now;
-                        com.Parameters.Add("@NoBalatat", MySqlDbType.Int16);
-                        com.Parameters["@NoBalatat"].Value = NoBalatat;
-                        com.Parameters.Add("@NoCartonInBalata", MySqlDbType.Int16);
-                        com.Parameters["@NoCartonInBalata"].Value = NoCartons;
-                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = row1[0].ToString();
-                        com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
-                        com.Parameters["@PlaceOfStore"].Value = comStorePlace.SelectedValue.ToString();
-                        com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
-                        com.Parameters["@TotalOfMeters"].Value = total;
-                        com.Parameters.Add("@Supplier", MySqlDbType.Int16);
-                        com.Parameters["@Supplier"].Value = comSupplier.SelectedValue.ToString();
-                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                        com.Parameters["@Note"].Value = txtDescription.Text;
-                        com.Parameters.Add("@Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Permission_Number"].Value = int.Parse(txtPermissionNum.Text);
-                        com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Supplier_Permission_Number"].Value = int.Parse(txtSupPermissionNum.Text);
-                        com.ExecuteNonQuery();
-                        
-                        string q1 = "select Storage_ID from storage ORDER BY Storage_ID DESC LIMIT 1";
-                        MySqlCommand comm = new MySqlCommand(q1, conn);
-                        int id = (int)comm.ExecuteScalar();
-
-                        courrentIDs[count] = id;
-                        count++;
-
-                        string str = "";
-                        for (int i = 0; i < courrentIDs.Length - 1; i++)
-                        {
-                            if (courrentIDs[i] != 0)
-                            {
-                                str += courrentIDs[i] + ",";
-                            }
-                        }
-                        str += courrentIDs[courrentIDs.Length - 1];
-
-                        string qq = "select data.Code as 'كود',type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'المنتج', supplier.Supplier_Name as 'المورد',storage.Balatat as 'بلتات', storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار', storage.Storage_Date as 'تاريخ التخزين' , store_places.Store_Place_Code as 'مكان التخزين', storage.Note as 'ملاحظة',storage.Permission_Number as 'اذن المخزن' from storage INNER JOIN data  ON storage.Data_ID = data.Data_ID inner join supplier on storage.Supplier_ID=supplier.Supplier_ID inner join store_places on storage.Store_Place_ID=store_places.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where Storage_ID in (" + str + ") ";
-                        MySqlDataAdapter da = new MySqlDataAdapter(qq, conn);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        gridControl2.DataSource = dt;
-
-                        MessageBox.Show("Add success");
-                    }
-                    else
-                    {
-                        MessageBox.Show("please enter permission number less than or equal to " + sum);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("you must fill all fields please");
-                    conn.Close();
-                    return;
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            conn.Close();
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                conn.Open();
-                /*string code = textBox9.Text;
-                int StoreID = int.Parse(comStore.SelectedValue.ToString());*/
-                string q = "select carton from data where Data_ID=" + row1[0].ToString();
-                MySqlCommand com = new MySqlCommand(q, conn);
-                double carton = double.Parse(com.ExecuteScalar().ToString());
-                int NoBalatat;
-                int.TryParse(txtBalat.Text, out NoBalatat);
-                int NoCartons;
-                int.TryParse(txtCarton.Text, out NoCartons);
-                double total = carton * NoBalatat * NoCartons;
-                txtTotalMeter.Text = (total).ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            conn.Close();
-        }
-
         private void btnNewChosen_Click(object sender, EventArgs e)
         {
             clearCom();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
             {
-                string q1, q2, q3, q4, fQuery = "";
-                if (comType.Text == "")
-                {
-                    q1 = "select Type_ID from type";
-                }
-                else
-                {
-                    q1 = comType.SelectedValue.ToString();
-                }
-                if (comFactory.Text == "")
-                {
-                    q2 = "select Factory_ID from factory";
-                }
-                else
-                {
-                    q2 = comFactory.SelectedValue.ToString();
-                }
-                if (comProduct.Text == "")
-                {
-                    q3 = "select Product_ID from product";
-                }
-                else
-                {
-                    q3 = comProduct.SelectedValue.ToString();
-                }
-                if (comGroup.Text == "")
-                {
-                    q4 = "select Group_ID from groupo";
-                }
-                else
-                {
-                    q4 = comGroup.SelectedValue.ToString();
-                }
+                row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+                string v = row1["الكود"].ToString();
+                txtCode.Text = v;
 
-                if (comSize.Text != "")
-                {
-                    fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
-                }
+                txtSupPermissionNum.Text = "";
+                txtTotalMeter.Text = "0";
+                txtCarton.Text = "0";
+                txtBalat.Text = "0";
+                txtDescription.Text = "";
+                comStorePlace.SelectedIndex = -1;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-                if (comColor.Text != "")
+        private void txtNumCarton_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null && !flagCarton)
                 {
-                    fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
-                }
-                if (comSort.Text != "")
-                {
-                    fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
-                }
+                    int NoBalatat = 0;
+                    int NoCartons = 0;
+                    double totalMeter = 0;
+                    double carton = double.Parse(row1["الكرتنة"].ToString());
+                    if (int.TryParse(txtBalat.Text, out NoBalatat))
+                    { }
+                    if (int.TryParse(txtCarton.Text, out NoCartons))
+                    { }
+                    if (double.TryParse(txtTotalMeter.Text, out totalMeter))
+                    { }
 
-                conn.Open();
-                dbconnection6.Open();
-                //,sellprice.Price_Type,sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية'
-                string query = "select data.Data_ID,data.Code as 'الكود','Type',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',data.Description as 'الوصف' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                gridControl1.DataSource = dt;
-
-                query = "SELECT data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',data.Description as 'الوصف',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID";
-                MySqlCommand comand = new MySqlCommand(query, conn);
-                MySqlDataReader dr = comand.ExecuteReader();
-                while (dr.Read())
-                {
-                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
-                    MySqlDataReader dr2 = comand2.ExecuteReader();
-                    while (dr2.Read())
+                    if (totalMeter == 0)
                     {
-                        gridView1.AddNewRow();
-                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                        if (gridView1.IsNewItemRow(rowHandle))
+                        if (NoBalatat > 0)
                         {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الوصف"], dr["الوصف"]);
-                            /*gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
-
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);*/
+                            double total = carton * NoBalatat * NoCartons;
+                            flag = true;
+                            txtTotalMeter.Text = (total).ToString();
+                            flag = false;
                         }
                     }
-                    dr2.Close();
+                    else if (totalMeter > 0)
+                    {
+                        flagBalate = true;
+                        //txtBalat.Text = "0";
+                        if (carton > 0 && NoCartons > 0)
+                        {
+                            double total = totalMeter / (carton * NoCartons);
+                            txtBalat.Text = Convert.ToInt16(total).ToString();
+                        }
+                        else
+                        {
+                            txtBalat.Text = "0";
+                        }
+                        flagBalate = false;
+                    }
                 }
-                dr.Close();
-                if (gridView1.IsLastVisibleRow)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtNumBalate_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null && !flagBalate)
                 {
-                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    int NoBalatat = 0;
+                    int NoCartons = 0;
+                    double totalMeter = 0;
+                    double carton = double.Parse(row1["الكرتنة"].ToString());
+                    if (int.TryParse(txtBalat.Text, out NoBalatat))
+                    { }
+                    if (int.TryParse(txtCarton.Text, out NoCartons))
+                    { }
+                    if (double.TryParse(txtTotalMeter.Text, out totalMeter))
+                    { }
+
+                    if (totalMeter == 0)
+                    {
+                        if (NoBalatat > 0)
+                        {
+                            double total = carton * NoBalatat * NoCartons;
+                            flag = true;
+                            txtTotalMeter.Text = (total).ToString();
+                            flag = false;
+                        }
+                    }
+                    else if (totalMeter > 0)
+                    {
+                        flagCarton = true;
+                        //txtCarton.Text = "0";
+                        if (carton > 0 && NoBalatat > 0)
+                        {
+                            double total = totalMeter / (carton * NoBalatat);
+                            txtCarton.Text = Convert.ToInt16(total).ToString();
+                        }
+                        else
+                        {
+                            txtCarton.Text = "0";
+                        }
+                        flagCarton = false;
+                    }
                 }
-                gridView1.Columns[0].Visible = false;
-                gridView1.Columns["Type"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtTotalMeter_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null && !flag)
+                {
+                    double totalMeter = 0;
+                    if (double.TryParse(txtTotalMeter.Text, out totalMeter))
+                    {
+                        int NoBalatat = 0;
+                        int NoCartons = 0;
+                        double carton = double.Parse(row1["الكرتنة"].ToString());
+                        flagCarton = true;
+                        /*txtCarton.Text = "0";
+                        txtBalat.Text = "0";*/
+                        if (int.TryParse(txtBalat.Text, out NoBalatat))
+                        {
+                            if (carton > 0 && NoBalatat > 0)
+                            {
+                                double total = totalMeter / (carton * NoBalatat);
+                                txtCarton.Text = Convert.ToInt16(total).ToString();
+                            }
+                            //else
+                            //{
+                            //    txtCarton.Text = "0";
+                            //}
+                        }
+                        else
+                        {
+                            txtCarton.Text = "0";
+                        }
+                        if (int.TryParse(txtCarton.Text, out NoCartons))
+                        {
+                            if (carton > 0 && NoCartons > 0)
+                            {
+                                double total = totalMeter / (carton * NoCartons);
+                                txtBalat.Text = Convert.ToInt16(total).ToString();
+                            }
+                            //else
+                            //{
+                            //    txtBalat.Text = "0";
+                            //}
+                        }
+                        else
+                        {
+                            txtBalat.Text = "0";
+                        }
+                        flagCarton = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null && comSupplier.SelectedValue != null && txtPermissionNum.Text != "" && txtSupPermissionNum.Text != "" && txtCarton.Text != "" && txtBalat.Text != "" && comStorePlace.Text != "" && txtCode.Text != "" && txtTotalMeter.Text != "")
+                {
+                    int NoBalatat = 0;
+                    int NoCartons = 0;
+                    int permNum = 0;
+                    int subPermNum = 0;
+                    if (int.TryParse(txtBalat.Text, out NoBalatat) && int.TryParse(txtCarton.Text, out NoCartons) && int.TryParse(txtPermissionNum.Text, out permNum) && int.TryParse(txtSupPermissionNum.Text, out subPermNum))
+                    {
+                        conn.Open();
+                        /*string q = "select carton from data where Data_ID=" + row1[0].ToString();
+                        MySqlCommand com = new MySqlCommand(q, conn);*/
+                        double carton = Convert.ToDouble(row1["الكرتنة"].ToString());
+
+                        double total = carton * NoBalatat * NoCartons;
+
+                        if (int.Parse(txtPermissionNum.Text) <= sum)
+                        {
+                            string query = "insert into Storage (Store_ID,Storage_Date,Balatat,Carton_Balata,Data_ID,Type,Store_Place_ID,Total_Meters,Supplier_ID,Note,Permission_Number,Supplier_Permission_Number) values (@Store_ID,@Storage_Date,@Balatat,@Carton_Balata,@Data_ID,@Type,@Store_Place_ID,@Total_Meters,@Supplier_ID,@Note,@Permission_Number,@Supplier_Permission_Number)";
+                            MySqlCommand com = new MySqlCommand(query, conn);
+                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                            com.Parameters["@Store_ID"].Value = storeId;
+                            com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime, 0);
+                            com.Parameters["@Storage_Date"].Value = DateTime.Now;
+                            com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                            com.Parameters["@Balatat"].Value = NoBalatat;
+                            com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                            com.Parameters["@Carton_Balata"].Value = NoCartons;
+                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                            com.Parameters["@Data_ID"].Value = row1[0].ToString();
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                            com.Parameters["@Type"].Value = "بند";
+                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                            com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
+                            com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                            com.Parameters["@Total_Meters"].Value = total;
+                            com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
+                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                            com.Parameters["@Note"].Value = txtDescription.Text;
+                            com.Parameters.Add("@Permission_Number", MySqlDbType.Int16);
+                            com.Parameters["@Permission_Number"].Value = int.Parse(txtPermissionNum.Text);
+                            com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_Permission_Number"].Value = int.Parse(txtSupPermissionNum.Text);
+                            com.ExecuteNonQuery();
+
+                            count = 0;
+                            courrentIDs = new int[100];
+                            string q1 = "select Storage_ID from storage where Store_ID=" + storeId + " and Permission_Number=" + int.Parse(txtPermissionNum.Text) + " and storage.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Type='بند'";
+                            MySqlCommand comm = new MySqlCommand(q1, conn);
+                            MySqlDataReader dr = comm.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt16(dr[0].ToString());
+
+                                courrentIDs[count] = id;
+                                count++;
+                            }
+                            dr.Close();
+
+                            string str = "";
+                            for (int i = 0; i < courrentIDs.Length - 1; i++)
+                            {
+                                if (courrentIDs[i] != 0)
+                                {
+                                    str += courrentIDs[i] + ",";
+                                }
+                            }
+                            str += courrentIDs[courrentIDs.Length - 1];
+
+                            //,storage.Permission_Number
+                            string qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',storage.Supplier_Permission_Number as 'اذن تسليم',storage.Balatat as 'عدد البلتات',storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار',storage.Storage_Date as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',storage.Note as 'ملاحظة',storage.Supplier_ID from storage INNER JOIN data ON storage.Data_ID = data.Data_ID inner join supplier on storage.Supplier_ID=supplier.Supplier_ID inner join store_places on storage.Store_Place_ID=store_places.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where Storage_ID in (" + str + ") ";
+                            MySqlDataAdapter da = new MySqlDataAdapter(qq, conn);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            gridControl2.DataSource = dt;
+                            gridView2.Columns["Data_ID"].Visible = false;
+                            gridView2.Columns["Supplier_ID"].Visible = false;
+
+                            txtCode.Text = "";
+                            txtSupPermissionNum.Text = "";
+                            txtTotalMeter.Text = "0";
+                            txtCarton.Text = "0";
+                            txtBalat.Text = "0";
+                            txtDescription.Text = "";
+                            comStorePlace.SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            MessageBox.Show("يجب ادخال رقم اذن اقل من " + sum);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("برجاء التاكد من ادخال البيانات بطريقة صحيحة");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("يجب ادخال جميع البيانات");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            conn.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow row2 = gridView2.GetDataRow(gridView2.FocusedRowHandle);
+                if (row2 != null)
+                {
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        conn.Open();
+                        string query = "delete from storage where Store_ID=" + storeId + " and Permission_Number=" + txtPermissionNum.Text + " and Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Supplier_Permission_Number=" + row2["اذن تسليم"].ToString() + " and Data_ID=" + row2["Data_ID"].ToString();
+                        MySqlCommand com = new MySqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+
+                        string qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',storage.Supplier_Permission_Number as 'اذن تسليم',storage.Balatat as 'عدد البلتات',storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار',storage.Storage_Date as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',storage.Note as 'ملاحظة',storage.Supplier_ID from storage INNER JOIN data ON storage.Data_ID = data.Data_ID inner join supplier on storage.Supplier_ID=supplier.Supplier_ID inner join store_places on storage.Store_Place_ID=store_places.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where Permission_Number=" + txtPermissionNum.Text + " and storage.Store_ID=" + storeId;
+                        MySqlDataAdapter da = new MySqlDataAdapter(qq, conn);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        gridControl2.DataSource = dt;
+                        gridView2.Columns["Data_ID"].Visible = false;
+                        gridView2.Columns["Supplier_ID"].Visible = false;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
+        private void btnCodingProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Product_Record form = new Product_Record(null, xtraTabControlStores);
+                form.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtPermissionNum_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                /*if (loaded)
+                {*/
+                if (txtPermissionNum.Text != "")
+                {
+                    conn.Close();
+                    // and storage.Supplier_ID=" + comSupplier.SelectedValue.ToString() + "
+                    string q = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',storage.Supplier_Permission_Number as 'اذن تسليم',storage.Balatat as 'عدد البلتات',storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار',storage.Storage_Date as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',storage.Note as 'ملاحظة',storage.Supplier_ID from storage INNER JOIN data  ON storage.Data_ID = data.Data_ID inner join supplier on storage.Supplier_ID=supplier.Supplier_ID inner join store_places on storage.Store_Place_ID=store_places.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where Permission_Number=" + txtPermissionNum.Text + " and storage.Store_ID=" + storeId;
+                    MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    gridControl2.DataSource = dt;
+                    gridView2.Columns["Data_ID"].Visible = false;
+                    gridView2.Columns["Supplier_ID"].Visible = false;
+
+                    conn.Open();
+                    q = "select storage.Supplier_ID from storage where Permission_Number=" + txtPermissionNum.Text + " and storage.Store_ID=" + storeId;
+                    MySqlCommand com = new MySqlCommand(q, conn);
+                    loaded = false;
+                    if (com.ExecuteScalar() != null)
+                    {
+                        comSupplier.SelectedValue = com.ExecuteScalar().ToString();
+                    }
+                    else
+                    {
+                        comSupplier.SelectedIndex = -1;
+                    }
+                    loaded = true;
+                    //txtCode.Focus();
+                }
+                else
+                {
+                    gridControl2.DataSource = null;
+
+                    loaded = false;
+                    comSupplier.SelectedIndex = -1;
+                    loaded = true;
+                }
+                /*}*/
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-            dbconnection6.Close();
         }
 
-        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        private void btnCodingDetails_Click(object sender, EventArgs e)
         {
-            row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
-            string v = row1["الكود"].ToString();
-            txtCode.Text = v;
-
-            txtCarton.Text = "";
-            txtBalat.Text = "";
-            txtDescription.Text = "";
-            /*textBox7.Text = "";*/
-        }
-
-        private void btnCoding_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (loaded)
+            try
             {
-                /*label15.Visible = true;
-                txtPermissionNum.Enabled = true;*/
-                string q = "select Permission_Number from storage where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Store_ID=" + storeId + " ORDER BY Storage_ID DESC LIMIT 1 ";
-                conn.Open();
-                MySqlCommand com = new MySqlCommand(q, conn);
-                try
-                {
-                    int r = int.Parse(com.ExecuteScalar().ToString());
-                    int sum = r + 1;
-                    txtPermissionNum.Text = sum.ToString();
-                    conn.Close();
-                }
-                catch
-                {
-                    /*label15.Visible = true;
-                    txtPermissionNum.Visible = true;*/
-                    txtPermissionNum.Text = "1";
-                }
-                conn.Close();
+                ProductItems form = new ProductItems();
+                form.ShowDialog();
             }
-        }
-
-        private void txtPermissionNum_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+            catch (Exception ex)
             {
-                string q = "select storage.Data_ID as 'كود',type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'المنتج', store.Store_Name as 'المخزن', supplier.Supplier_Name as 'المورد',storage.Balatat as 'بلتات', storage.Carton_Balata as 'عدد الكراتين',storage.Total_Meters as 'اجمالي عدد الامتار', storage.Storage_Date as 'تاريخ التخزين' , store_places.Store_Place_Code as 'مكان التخزين'  , storage.Note as 'ملاحظة',storage.Permission_Number as 'اذن المخزن' from storage inner join store on store.Store_ID=storage.Store_ID inner join store_places on store_places.Store_Place_ID=storage.Store_Place_ID inner join supplier on storage.Supplier_ID=supplier.Supplier_ID INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where Permission_Number=" + txtPermissionNum.Text + " and storage.Supplier_ID=" + comSupplier.SelectedValue.ToString();
-                try
-                {
-                    MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    gridControl2.DataSource = dt;
-                    txtCode.Focus();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show(ex.Message);
             }
         }
 
