@@ -24,6 +24,7 @@ namespace MainSystem
         bool loaded = false;
         bool flag = false;
         bool flag2 = false;
+        List<string> arr;
 
         public Gate_Enter(MainForm Mainform, XtraTabControl TabControlStoresContent)
         {
@@ -34,6 +35,9 @@ namespace MainSystem
                 string constr = connection.connectionString;
                 conn = new MySqlConnection(constr);
                 xtraTabControlStoresContent = TabControlStoresContent;
+                arr = new List<string>();
+                txtSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
+                txtSupplier.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
             catch (Exception ex)
             {
@@ -244,7 +248,7 @@ namespace MainSystem
                     comCar.ValueMember = dt.Columns["Car_ID"].ToString();
                     comCar.SelectedIndex = -1;
                     loaded = true;
-                    if(comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1")
+                    if (comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1")
                     {
                         labelSupplier.Visible = true;
                         txtSupplier.Visible = true;
@@ -254,7 +258,7 @@ namespace MainSystem
                         labelSupplier.Visible = false;
                         txtSupplier.Visible = false;
                     }
-                    if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "4")|| (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "3"))
+                    if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "4") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "3"))
                     {
                         labelStore.Visible = true;
                         comStore.Visible = true;
@@ -416,7 +420,7 @@ namespace MainSystem
                 loaded = true;
             }
         }
-        
+
         private void comDriver_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -675,14 +679,14 @@ namespace MainSystem
             }
             conn.Close();
         }
-        
+
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 XtraTabPage xtraTabPage = getTabPage("تسجيل دخول السيارات");
-                if(!IsClear())
-                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                if (!IsClear())
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
             }
@@ -808,6 +812,53 @@ namespace MainSystem
                 return true;
             else
                 return false;
+        }
+
+        private void txtSupplier_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                TextBox t = sender as TextBox;
+                if (t != null)
+                {
+                    //say you want to do a search when user types 3 or more chars
+                    if (t.Text.Length >= 2)
+                    {
+                        //SuggestStrings will have the logic to return array of strings either from cache/db
+                        conn.Close();
+                        conn.Open();
+                        string query = "select Supplier_Name from supplier where Supplier_Name like '" + txtSupplier.Text + "%'";
+                        MySqlCommand comand = new MySqlCommand(query, conn);
+                        MySqlDataReader dr = comand.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            arr.Add(dr["Supplier_Name"].ToString());
+                        }
+                        dr.Close();
+                        string[] strarr = new string[arr.Count];
+                        arr.CopyTo(strarr);
+
+                        AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+                        collection.AddRange(strarr);
+
+                        txtSupplier.AutoCompleteCustomSource = collection;
+                    }
+                    /*XtraTabPage xtraTabPage = getTabPage("تسجيل دخول السيارات");
+                    if (!IsClear())
+                    {
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                    }
+                    else
+                    {
+                        xtraTabPage.ImageOptions.Image = null;
+                    }*/
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
         }
     }
 }
