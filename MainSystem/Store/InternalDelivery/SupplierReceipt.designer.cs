@@ -110,7 +110,6 @@
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
             this.comSupplier.TabIndex = 1;
-            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
             // 
             // label7
             // 
@@ -170,7 +169,6 @@
             this.txtBalat.Size = new System.Drawing.Size(100, 24);
             this.txtBalat.TabIndex = 4;
             this.txtBalat.Text = "0";
-            this.txtBalat.TextChanged += new System.EventHandler(this.txtNumBalate_TextChanged);
             // 
             // label11
             // 
@@ -201,12 +199,12 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(561, 68);
+            this.label14.Location = new System.Drawing.Point(546, 68);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(62, 19);
+            this.label14.Size = new System.Drawing.Size(42, 19);
             this.label14.TabIndex = 35;
-            this.label14.Text = "ملحوظة";
+            this.label14.Text = "البيان";
             // 
             // txtDescription
             // 

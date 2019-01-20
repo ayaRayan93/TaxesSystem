@@ -28,7 +28,6 @@ namespace MainSystem
         int storeId = 0;
         bool flag = false;
         bool flagCarton = false;
-        bool flagBalate = false;
         DevExpress.XtraTab.XtraTabControl xtraTabControlStores = null;
 
         public SupplierReceipt(MainForm mainForm, DevExpress.XtraTab.XtraTabControl XtraTabControlStores)
@@ -50,6 +49,8 @@ namespace MainSystem
             comProduct.AutoCompleteSource = AutoCompleteSource.ListItems;
             comSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
             comSupplier.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comStorePlace.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comStorePlace.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void SupplierReceipt_Load(object sender, EventArgs e)
@@ -116,34 +117,6 @@ namespace MainSystem
                 MessageBox.Show(ex.ToString());
             }
             conn.Close();
-        }
-
-        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
-        {
-            /*if (loaded)
-            {
-                try
-                {
-                    string q = "select Permission_Number from storage where  Store_ID=" + storeId + " and Supplier_ID=" + comSupplier.SelectedValue.ToString() + " ORDER BY Storage_ID DESC LIMIT 1 ";
-                    conn.Open();
-                    MySqlCommand com = new MySqlCommand(q, conn);
-                    if (com.ExecuteScalar().ToString() != "")
-                    {
-                        int r = int.Parse(com.ExecuteScalar().ToString());
-                        //sum = r + 1;
-                        loaded = false;
-                        txtPermissionNum.Text = r.ToString();
-                        loaded = true;
-                    }
-                }
-                catch
-                {
-                    loaded = false;
-                    txtPermissionNum.Text = sum.ToString();
-                    loaded = true;
-                }
-                conn.Close();
-            }*/
         }
         
         private void btnSearch_Click(object sender, EventArgs e)
@@ -423,78 +396,22 @@ namespace MainSystem
             {
                 if (row1 != null && !flagCarton)
                 {
-                    int NoBalatat = 0;
                     int NoCartons = 0;
                     double totalMeter = 0;
                     double carton = double.Parse(row1["الكرتنة"].ToString());
                     if (carton > 0)
                     {
-                        if (int.TryParse(txtBalat.Text, out NoBalatat))
-                        { }
                         if (int.TryParse(txtCarton.Text, out NoCartons))
                         { }
                         if (double.TryParse(txtTotalMeter.Text, out totalMeter))
                         { }
                         
-                        double total = carton /** NoBalatat*/ * NoCartons;
+                        double total = carton * NoCartons;
                         flag = true;
                         txtTotalMeter.Text = (total).ToString();
                         flag = false;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void txtNumBalate_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                /*if (row1 != null && !flagBalate)
-                {
-                    int NoBalatat = 0;
-                    int NoCartons = 0;
-                    double totalMeter = 0;
-                    double carton = double.Parse(row1["الكرتنة"].ToString());
-                    if (carton > 0)
-                    {
-                        if (int.TryParse(txtBalat.Text, out NoBalatat))
-                        { }
-                        if (int.TryParse(txtCarton.Text, out NoCartons))
-                        { }
-                        if (double.TryParse(txtTotalMeter.Text, out totalMeter))
-                        { }
-
-                        if (totalMeter == 0)
-                        {
-                            if (NoBalatat > 0)
-                            {
-                                double total = carton * NoBalatat * NoCartons;
-                                flag = true;
-                                txtTotalMeter.Text = (total).ToString();
-                                flag = false;
-                            }
-                        }
-                        else if (totalMeter > 0)
-                        {
-                            flagCarton = true;
-                            //txtCarton.Text = "0";
-                            if (carton > 0 && NoBalatat > 0)
-                            {
-                                double total = totalMeter / (carton * NoBalatat);
-                                txtCarton.Text = Convert.ToInt16(total).ToString();
-                            }
-                            else
-                            {
-                                txtCarton.Text = "0";
-                            }
-                            flagCarton = false;
-                        }
-                    }
-                }*/
             }
             catch (Exception ex)
             {
@@ -511,30 +428,13 @@ namespace MainSystem
                     double totalMeter = 0;
                     if (double.TryParse(txtTotalMeter.Text, out totalMeter))
                     {
-                        int NoBalatat = 0;
                         double carton = double.Parse(row1["الكرتنة"].ToString());
                         if (carton > 0)
                         {
                             flagCarton = true;
-                            flagBalate = true;
-                            //if (int.TryParse(txtBalat.Text, out NoBalatat))
-                            //{
-                                //if (NoBalatat > 0)
-                                //{
-                                    double total = totalMeter / (carton /** NoBalatat*/);
-                                    txtCarton.Text = Convert.ToInt16(total).ToString();
-                                //}
-                                //else
-                                //{
-                                //    txtCarton.Text = "0";
-                                //}
-                            //}
-                            //else
-                            //{
-                            //    txtCarton.Text = "0";
-                            //}
+                            double total = totalMeter / carton;
+                            txtCarton.Text = Convert.ToInt16(total).ToString();
                             flagCarton = false;
-                            flagBalate = false;
                         }
                     }
                 }
@@ -560,7 +460,7 @@ namespace MainSystem
                         conn.Open();
                         double carton = Convert.ToDouble(row1["الكرتنة"].ToString());
 
-                        double total = carton /** NoBalatat*/ * NoCartons;
+                        double total = carton * NoCartons;
 
                         if (int.Parse(txtPermissionNum.Text) <= sum)
                         {
