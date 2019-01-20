@@ -220,7 +220,7 @@
             this.txtSupplier.Size = new System.Drawing.Size(200, 28);
             this.txtSupplier.TabIndex = 69;
             this.txtSupplier.Visible = false;
-            this.txtSupplier.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtSupplier.TextChanged += new System.EventHandler(this.txtSupplier_TextChanged);
             // 
             // labelType2
             // 
@@ -549,7 +549,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Gate_Record
+            // Gate_Enter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -557,7 +557,7 @@
             this.Controls.Add(this.panContent);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(68)))), ((int)(((byte)(154)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Gate_Record";
+            this.Name = "Gate_Enter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Gate_Enter_Load);
             this.panContent.ResumeLayout(false);
