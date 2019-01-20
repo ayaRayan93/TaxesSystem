@@ -41,6 +41,7 @@
       <HintPath>..\..\..\..\..\..\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v18.1.Win, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -1322,11 +1323,30 @@
     <Compile Include="Shipping\shippingOrganize\MakeShipping.Designer.cs">
       <DependentUpon>MakeShipping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\shippingOrganize\ReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\ReportViewer.Designer.cs">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shipping\shippingOrganize\ShippingBillsWanted.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Shipping\shippingOrganize\ShippingBillsWanted.Designer.cs">
       <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\StorePermissionsNumbers.cs" />
+    <Compile Include="Shipping\shippingOrganize\StorePerNums.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\StorePerNums.Designer.cs">
+      <DependentUpon>StorePerNums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\ShippingReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Shipping\shippingOrganize\ShippingReport.Designer.cs">
+      <DependentUpon>ShippingReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipping\Shipping_Record.cs">
       <SubType>Form</SubType>
@@ -2161,8 +2181,17 @@
     <EmbeddedResource Include="Shipping\shippingOrganize\MakeShipping.resx">
       <DependentUpon>MakeShipping.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\shippingOrganize\ReportViewer.resx">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shipping\shippingOrganize\ShippingBillsWanted.resx">
       <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\shippingOrganize\StorePerNums.resx">
+      <DependentUpon>StorePerNums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\shippingOrganize\ShippingReport.resx">
+      <DependentUpon>ShippingReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Shipping_Record.resx">
       <DependentUpon>Shipping_Record.cs</DependentUpon>

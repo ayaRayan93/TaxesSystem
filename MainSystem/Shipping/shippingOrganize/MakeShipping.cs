@@ -16,6 +16,7 @@ namespace MainSystem
         MySqlConnection dbconnection, dbconnection1;
         List<int> listOfPermissinNumbers;
         bool loaded=false;
+
         public MakeShipping(List<int> arrInt)
         {
             try
@@ -33,6 +34,188 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void MakeShipping_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+
+                string query = "select * from cars ";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comCar.DataSource = dt;
+                comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
+                comCar.ValueMember = dt.Columns["Car_ID"].ToString();
+                comCar.Text = "";
+                txtCar.Text = "";
+
+                query = "select * from drivers ";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comDriver.DataSource = dt;
+                comDriver.DisplayMember = dt.Columns["Driver_Name"].ToString();
+                comDriver.ValueMember = dt.Columns["Driver_ID"].ToString();
+                comDriver.Text = "";
+                txtDriver.Text = "";
+
+                loaded = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void comDriver_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    try
+                    {
+                        txtDriver.Text = comDriver.SelectedValue.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comCar_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    try
+                    {
+                        txtCar.Text = comCar.SelectedValue.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtDriver_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dbconnection.Open();
+                    string query = "select Driver_Name from zone where Driver_ID=" + txtDriver.Text + "";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        Name = (string)com.ExecuteScalar();
+                        comDriver.Text = Name;
+                        txtDriver.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("there is no item with this id");
+                        dbconnection.Close();
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void txtCar_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    dbconnection.Open();
+                    string query = "select Car_Name from zone where Car_ID=" + txtCar.Text + "";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        Name = (string)com.ExecuteScalar();
+                        comCar.Text = Name;
+                        txtCar.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("there is no item with this id");
+                        dbconnection.Close();
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void btnShippingRecord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "insert into CustomerShippingStorage (Driver_ID,Car_ID,Date) values (@Driver_ID,@Car_ID,@Date)";
+                MySqlCommand com = new MySqlCommand(query,dbconnection);
+                com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
+                com.Parameters["@Driver_ID"].Value = txtDriver.Text;
+                com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
+                com.Parameters["@Car_ID"].Value = txtCar.Text;
+                com.Parameters.Add("@Date", MySqlDbType.Date);
+                com.Parameters["@Date"].Value = DateTime.Now.Date;
+                com.ExecuteNonQuery();
+
+                query = "select CustomerShippingStorage_ID from CustomerShippingStorage order by CustomerShippingStorage_ID desc limit 1";
+                com = new MySqlCommand(query, dbconnection);
+                int id =(int) com.ExecuteScalar();
+
+                string perIds = "";
+                for (int i = 0; i < listOfPermissinNumbers.Count; i++)
+                {
+                    perIds += listOfPermissinNumbers[i] + ",";
+                }
+                perIds += 0;
+
+                query = "update customer_permissions set CustomerShippingStorage_ID="+id + " where Permissin_ID in ("+ perIds + ")";
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
+                List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
+                //  listOfStorePermissionsNumbers = getListOfStoreID_PremNumbers(perIds);
+                // ReportViewer ReportViewer = new ReportViewer(listOfStorePermissionsNumbers);
+                ReportViewer ReportViewer = new ReportViewer(perIds);
+                ReportViewer.Show();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
 
         //functions
@@ -78,34 +261,21 @@ namespace MainSystem
             {
                 BillID_StoreID billID_StoreID = new BillID_StoreID();
                 billID_StoreID.Customer_Bill_ID = arrInt[i];
-                billID_StoreID.listOfStoreID_DataID = new List<StoreID_DataID>();
+                billID_StoreID.listOfStoreID = new List<int>();
                 dbconnection.Open();
-                string query = "SELECT DISTINCT Store_ID from product_bill where CustomerBill_ID="+ arrInt[i];
+                string query = "SELECT DISTINCT Store_ID from product_bill where CustomerBill_ID=" + arrInt[i];
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
-                while(dr.Read())
+                while (dr.Read())
                 {
-                    dbconnection1.Open();
-                    StoreID_DataID storeID_DataID = new StoreID_DataID();
-                    storeID_DataID.StoreID= (int)dr[0];
-                    storeID_DataID.listOfDataIds = new List<int>();
-                    string query1 = "SELECT  Data_ID from product_bill where Store_ID=" + dr[0].ToString() + " and CustomerBill_ID=" + arrInt[i];
-                    MySqlCommand com1 = new MySqlCommand(query1, dbconnection1);
-                    MySqlDataReader dr1 = com1.ExecuteReader();
-                    while (dr1.Read())
-                    {
-                        storeID_DataID.listOfDataIds.Add((int)dr1[0]);
-                    }
-                    dr1.Close();
-                    dbconnection1.Close();
-                    billID_StoreID.listOfStoreID_DataID.Add(storeID_DataID);
+                    billID_StoreID.listOfStoreID.Add((int)dr[0]);
                 }
                 dr.Close();
+
                 list.Add(billID_StoreID);
                 dbconnection.Close();
-            
             }
-       
+
             return list;
         }
 
@@ -134,14 +304,15 @@ namespace MainSystem
             List<int> listOfPermissionIDs = new List<int>();
             for (int i = 0; i < listOfBillID_StoreID.Count; i++)
             {
-                for (int j = 0; j < listOfBillID_StoreID[i].listOfStoreID_DataID.Count; j++)
+              
+                for (int j = 0; j < listOfBillID_StoreID[i].listOfStoreID.Count; j++)
                 {
                     string query = "insert into customer_permissions (CustomerBill_ID,Store_ID) values (@CustomerBill_ID,@Store_ID)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@CustomerBill_ID"].Value = listOfBillID_StoreID[i].Customer_Bill_ID;
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Store_ID"].Value = listOfBillID_StoreID[i].listOfStoreID_DataID[j].StoreID;
+                    com.Parameters["@Store_ID"].Value = listOfBillID_StoreID[i].listOfStoreID[j];
                     com.ExecuteNonQuery();
                     query = "select Permissin_ID from customer_permissions order by  Permissin_ID DESC limit 1";
                     com = new MySqlCommand(query, dbconnection);
@@ -152,45 +323,39 @@ namespace MainSystem
             dbconnection.Close();
             return listOfPermissionIDs;
         }
-        
+
+        public List<StorePermissionsNumbers> getListOfStoreID_PremNumbers(string perIds)
+        {
+            List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
+           
+           // string query = "SELECT customer_permissions.Store_ID,Store_Name,GROUP_CONCAT(Permissin_ID) from customer_permissions inner join store on customer_permissions.Store_ID=store.Store_ID where Permissin_ID in (" + perIds + ") GROUP BY Store_ID";
+            string query = "SELECT customer_permissions.Store_ID,Store_Name,Permissin_ID from customer_permissions inner join store on customer_permissions.Store_ID=store.Store_ID where Permissin_ID in (" + perIds + ") GROUP BY Store_ID";
+            ReportViewer ReportViewer = new ReportViewer( query);
+            ReportViewer.Show();
+            //MySqlCommand com = new MySqlCommand(query, dbconnection);
+            //MySqlDataReader dr = com.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    StorePermissionsNumbers StorePermissionsNumbers = new StorePermissionsNumbers();
+            //    StorePermissionsNumbers.PermissinNumbers = new List<int>();
+            //    StorePermissionsNumbers.StoreName = dr[1].ToString();
+            //    string [] arr = dr[2].ToString().Split(',');
+            //    for (int i = 0; i < arr.Length; i++)
+            //    {
+            //        StorePermissionsNumbers.PermissinNumbers.Add( Convert.ToInt16(arr[i]));
+            //    }
+            //    listOfStorePermissionsNumbers.Add(StorePermissionsNumbers);
+            //}
+            //dr.Close();
+            return listOfStorePermissionsNumbers;
+        }
         public struct BillID_StoreID
         {
            public int Customer_Bill_ID;
-           public List<StoreID_DataID> listOfStoreID_DataID;
+           public List<int> listOfStoreID;
         }
-
-        private void MakeShipping_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                dbconnection.Open();
-
-                string query = "select * from zone ";
-
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                //comZone.DataSource = dt;
-                //comZone.DisplayMember = dt.Columns["Zone_Name"].ToString();
-                //comZone.ValueMember = dt.Columns["Zone_ID"].ToString();
-                //comZone.Text = "";
-                //txtZone.Text = "";
-
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
-        public struct StoreID_DataID
-        {
-            public int StoreID;
-            public List<int> listOfDataIds;
-        }
-
-
+        
+     
+      
     }
 }
