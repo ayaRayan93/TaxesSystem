@@ -33,6 +33,8 @@ namespace MainSystem
             //comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
             comArea.AutoCompleteMode = AutoCompleteMode.Suggest;
             comArea.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            dateTimePicker1.Value = DateTime.Now;
         }
 
         private void Shipping_Record_Load(object sender, EventArgs e)
@@ -59,15 +61,7 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.SelectedIndex = -1;
 
-                query = "SELECT customer_bill.Branch_BillNumber as 'فاتورة رقم',customer_bill.Branch_Name as 'الفرع',customer_bill.Client_Name as 'العميل',customer_bill.Customer_Name as 'المهندس/المقاول/التاجر',customer_bill.Branch_ID,customer_bill.Customer_ID,customer_bill.Client_ID FROM customer_bill where customer_bill.RecivedType='شحن' and (customer_bill.Paid_Status='1' and customer_bill.Type_Buy='كاش') or customer_bill.Type_Buy='آجل'";
-                MySqlDataAdapter adabter = new MySqlDataAdapter(query, dbconnection);
-                DataTable dTable = new DataTable();
-                adabter.Fill(dTable);
-                gridControl1.DataSource = dTable;
-
-                gridView1.Columns["Branch_ID"].Visible = false;
-                gridView1.Columns["Customer_ID"].Visible = false;
-                gridView1.Columns["Client_ID"].Visible = false;
+                search();
 
                 loaded = true;
             }
@@ -137,8 +131,8 @@ namespace MainSystem
                 if (comClient.Text != "" && txtPhone.Text != "" && comBranch.Text != "" && txtBillNumber.Text != "" && txtAddress.Text != "" && comArea.Text != "")
                 {
                     int billNum = 0;
-                    if(int.TryParse(txtBillNumber.Text, out billNum))
-                    {}
+                    if (int.TryParse(txtBillNumber.Text, out billNum))
+                    { }
                     else
                     {
                         MessageBox.Show("رقم الفاتورة يجب ان يكون عدد");
@@ -176,11 +170,25 @@ namespace MainSystem
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = dateTimePicker1.Value;
-
                     com.ExecuteNonQuery();
-                    
+
+                    query = "update customer_bill set Shipped=1 where CustomerBill_ID=" + id;
+                    com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
+
                     //MessageBox.Show("تم");
+                    search();
                     clear();
+                    dbconnection.Close();
+                    loaded = false;
+                    radClient.Checked = false;
+                    radEng.Checked = false;
+                    radContractor.Checked = false;
+                    radDealer.Checked = false;
+                    comClient.SelectedIndex = -1;
+                    comBranch.SelectedIndex = -1;
+                    checkedListBoxControlAddress.Items.Clear();
+                    loaded = true;
                     xtraTabPage.ImageOptions.Image = null;
                 }
                 else
@@ -232,32 +240,6 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void txtPhone_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                try
-                {
-                    dbconnection.Open();
-                    string query = "select Customer_Name from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' and customer.Customer_Type='" + Customer_Type + "'";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        comClient.Text = com.ExecuteScalar().ToString();
-                    }
-                    else
-                    {
-                        comClient.Text = "";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                dbconnection.Close();
             }
         }
 
@@ -340,29 +322,37 @@ namespace MainSystem
             }
         }
 
+        public void search()
+        {
+            //customer_bill.CustomerBill_ID NOT IN (SELECT shipping.CustomerBill_ID FROM shipping)
+            string query = "SELECT customer_bill.CustomerBill_ID,customer_bill.Branch_BillNumber as 'فاتورة رقم',customer_bill.Branch_Name as 'الفرع',customer_bill.Client_Name as 'العميل',customer_bill.Customer_Name as 'المهندس/المقاول/التاجر',customer_bill.Branch_ID,customer_bill.Customer_ID,customer_bill.Client_ID FROM customer_bill where customer_bill.Shipped=0 and customer_bill.RecivedType='شحن' and ((customer_bill.Paid_Status='1' and customer_bill.Type_Buy='كاش') or customer_bill.Type_Buy='آجل')";
+            MySqlDataAdapter adabter = new MySqlDataAdapter(query, dbconnection);
+            DataTable dTable = new DataTable();
+            adabter.Fill(dTable);
+            gridControl1.DataSource = dTable;
+
+            gridView1.Columns["Branch_ID"].Visible = false;
+            gridView1.Columns["Customer_ID"].Visible = false;
+            gridView1.Columns["Client_ID"].Visible = false;
+            gridView1.Columns["CustomerBill_ID"].Visible = false;
+        }
+
         //clear function
         public void clear()
         {
-            foreach (Control co in this.tableLayoutPanel1.Controls)
+            foreach (Control co in this.layoutControl1.Controls)
             {
-                foreach (Control item in co.Controls)
+                if (co is System.Windows.Forms.ComboBox)
                 {
-                    if (item is System.Windows.Forms.ComboBox)
-                    {
-                        item.Text = "";
-                    }
-                    else if (item is TextBox)
-                    {
-                        item.Text = "";
-                    }
-                    else if (item is DateTimePicker)
-                    {
-                        dateTimePicker1.Value = DateTime.Now;
-                    }
-                    else if (item is CheckedListBoxControl)
-                    {
-                        checkedListBoxControlAddress.Items.Clear();
-                    }
+                    co.Text = "";
+                }
+                else if (co is TextBox)
+                {
+                    co.Text = "";
+                }
+                else if (co is DateTimePicker)
+                {
+                    dateTimePicker1.Value = DateTime.Now;
                 }
             }
         }

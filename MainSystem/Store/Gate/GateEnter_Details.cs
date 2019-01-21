@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Gate_Enter : Form
+    public partial class GateEnter_Details : Form
     {
         MySqlConnection conn;
         MainForm mainform = null;
@@ -26,7 +26,7 @@ namespace MainSystem
         bool flag2 = false;
         List<string> arr;
 
-        public Gate_Enter(MainForm Mainform, XtraTabControl TabControlStoresContent)
+        public GateEnter_Details(MainForm Mainform, XtraTabControl TabControlStoresContent)
         {
             try
             {

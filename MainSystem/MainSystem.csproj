@@ -1386,6 +1386,12 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Gate\GateEnter_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Gate\GateEnter_Details.designer.cs">
+      <DependentUpon>GateEnter_Details.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Gate\Gate_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2210,6 +2216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\AtaqmStorage.resx">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">
+      <DependentUpon>GateEnter_Details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\Gate_Report.resx">
       <DependentUpon>Gate_Report.cs</DependentUpon>

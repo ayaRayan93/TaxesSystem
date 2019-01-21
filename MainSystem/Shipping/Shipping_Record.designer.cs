@@ -125,7 +125,6 @@
             this.txtPhone.Size = new System.Drawing.Size(388, 26);
             this.txtPhone.TabIndex = 2;
             this.txtPhone.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            this.txtPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhone_KeyDown);
             // 
             // txtAddress
             // 
@@ -323,7 +322,7 @@
             this.dateTimePicker1.RightToLeftLayout = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(392, 23);
             this.dateTimePicker1.TabIndex = 72;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 7, 16, 17, 46, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 7, 0, 0, 0, 0);
             // 
             // label15
             // 
