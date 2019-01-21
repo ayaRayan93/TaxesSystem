@@ -41,18 +41,18 @@
             this.comCar = new System.Windows.Forms.ComboBox();
             this.txtCar = new System.Windows.Forms.TextBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -106,6 +106,7 @@
             this.btnShippingRecord.Size = new System.Drawing.Size(137, 38);
             this.btnShippingRecord.TabIndex = 4;
             this.btnShippingRecord.Text = "حفظ";
+            this.btnShippingRecord.Click += new System.EventHandler(this.btnShippingRecord_Click);
             // 
             // panel1
             // 
@@ -165,6 +166,7 @@
             this.comDriver.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDriver.Size = new System.Drawing.Size(175, 24);
             this.comDriver.TabIndex = 200;
+            this.comDriver.SelectedValueChanged += new System.EventHandler(this.comDriver_SelectedValueChanged);
             // 
             // txtDriver
             // 
@@ -178,6 +180,7 @@
             this.txtDriver.Size = new System.Drawing.Size(53, 24);
             this.txtDriver.TabIndex = 199;
             this.txtDriver.TabStop = false;
+            this.txtDriver.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDriver_KeyDown);
             // 
             // label1
             // 
@@ -219,6 +222,7 @@
             this.comCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comCar.Size = new System.Drawing.Size(175, 24);
             this.comCar.TabIndex = 196;
+            this.comCar.SelectedValueChanged += new System.EventHandler(this.comCar_SelectedValueChanged);
             // 
             // txtCar
             // 
@@ -232,6 +236,7 @@
             this.txtCar.Size = new System.Drawing.Size(53, 24);
             this.txtCar.TabIndex = 195;
             this.txtCar.TabStop = false;
+            this.txtCar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCar_KeyDown);
             // 
             // gridControl1
             // 
@@ -247,29 +252,9 @@
             this.gridControl1.Size = new System.Drawing.Size(842, 428);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1,
             this.gridView2,
-            this.gridView3});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
+            this.gridView3,
+            this.gridView1});
             // 
             // gridView2
             // 
@@ -300,6 +285,13 @@
             this.gridView3.GridControl = this.gridControl1;
             this.gridView3.Name = "gridView3";
             // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
             // MakeShipping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,9 +306,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -336,10 +328,10 @@
         private System.Windows.Forms.ComboBox comCar;
         private System.Windows.Forms.TextBox txtCar;
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

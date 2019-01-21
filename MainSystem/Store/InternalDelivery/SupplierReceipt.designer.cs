@@ -119,7 +119,7 @@
             this.label7.Location = new System.Drawing.Point(692, 7);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(78, 19);
+            this.label7.Size = new System.Drawing.Size(76, 19);
             this.label7.TabIndex = 29;
             this.label7.Text = "كود المنتج";
             // 
@@ -131,7 +131,7 @@
             this.label8.Location = new System.Drawing.Point(431, 37);
             this.label8.Name = "label8";
             this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label8.Size = new System.Drawing.Size(89, 19);
+            this.label8.Size = new System.Drawing.Size(90, 19);
             this.label8.TabIndex = 27;
             this.label8.Text = "عدد الكراتين ";
             // 
@@ -178,7 +178,7 @@
             this.label11.Location = new System.Drawing.Point(229, 7);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label11.Size = new System.Drawing.Size(90, 19);
+            this.label11.Size = new System.Drawing.Size(89, 19);
             this.label11.TabIndex = 31;
             this.label11.Text = "مكان التخزين";
             // 
@@ -401,7 +401,7 @@
             this.label1.Location = new System.Drawing.Point(714, 37);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(54, 19);
+            this.label1.Size = new System.Drawing.Size(53, 19);
             this.label1.TabIndex = 5;
             this.label1.Text = "المصنع";
             // 
@@ -412,7 +412,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label2.Location = new System.Drawing.Point(331, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 19);
+            this.label2.Size = new System.Drawing.Size(41, 19);
             this.label2.TabIndex = 16;
             this.label2.Text = "اللون";
             // 
@@ -424,7 +424,7 @@
             this.label3.Location = new System.Drawing.Point(511, 8);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(71, 19);
+            this.label3.Size = new System.Drawing.Size(69, 19);
             this.label3.TabIndex = 8;
             this.label3.Text = "المجموعة";
             // 
@@ -435,7 +435,7 @@
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label4.Location = new System.Drawing.Point(323, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 19);
+            this.label4.Size = new System.Drawing.Size(57, 19);
             this.label4.TabIndex = 15;
             this.label4.Text = "المقاس";
             // 
@@ -458,7 +458,7 @@
             this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label16.Location = new System.Drawing.Point(176, 8);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 19);
+            this.label16.Size = new System.Drawing.Size(37, 19);
             this.label16.TabIndex = 14;
             this.label16.Text = "الفرز";
             // 
