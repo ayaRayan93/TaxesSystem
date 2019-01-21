@@ -1336,17 +1336,11 @@
       <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipping\shippingOrganize\StorePermissionsNumbers.cs" />
-    <Compile Include="Shipping\shippingOrganize\StorePerNums.cs">
+    <Compile Include="Shipping\shippingOrganize\StorePermNums.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Shipping\shippingOrganize\StorePerNums.Designer.cs">
-      <DependentUpon>StorePerNums.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Shipping\shippingOrganize\ShippingReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Shipping\shippingOrganize\ShippingReport.Designer.cs">
-      <DependentUpon>ShippingReport.cs</DependentUpon>
+    <Compile Include="Shipping\shippingOrganize\StorePermNums.Designer.cs">
+      <DependentUpon>StorePermNums.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipping\Shipping_Record.cs">
       <SubType>Form</SubType>
@@ -2187,11 +2181,8 @@
     <EmbeddedResource Include="Shipping\shippingOrganize\ShippingBillsWanted.resx">
       <DependentUpon>ShippingBillsWanted.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\shippingOrganize\StorePerNums.resx">
-      <DependentUpon>StorePerNums.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\shippingOrganize\ShippingReport.resx">
-      <DependentUpon>ShippingReport.cs</DependentUpon>
+    <EmbeddedResource Include="Shipping\shippingOrganize\StorePermNums.resx">
+      <DependentUpon>StorePermNums.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Shipping_Record.resx">
       <DependentUpon>Shipping_Record.cs</DependentUpon>

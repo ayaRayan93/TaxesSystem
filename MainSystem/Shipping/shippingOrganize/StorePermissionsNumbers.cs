@@ -9,6 +9,6 @@ namespace MainSystem
     public class StorePermissionsNumbers
     {
         public string StoreName { get; set; }
-        public List<int> PermissinNumbers { get; set; }
+        public int PermissinNumbers { get; set; }
     }
 }
