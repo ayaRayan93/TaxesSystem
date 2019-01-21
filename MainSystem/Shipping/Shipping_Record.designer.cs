@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.radContractor = new System.Windows.Forms.RadioButton();
@@ -121,7 +120,7 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(36, 233);
+            this.txtPhone.Location = new System.Drawing.Point(36, 343);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(388, 26);
             this.txtPhone.TabIndex = 2;
@@ -131,7 +130,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(36, 263);
+            this.txtAddress.Location = new System.Drawing.Point(36, 373);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -144,7 +143,7 @@
             this.radContractor.Enabled = false;
             this.radContractor.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radContractor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radContractor.Location = new System.Drawing.Point(429, 204);
+            this.radContractor.Location = new System.Drawing.Point(429, 314);
             this.radContractor.Name = "radContractor";
             this.radContractor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radContractor.Size = new System.Drawing.Size(100, 25);
@@ -158,7 +157,7 @@
             this.radDealer.Enabled = false;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radDealer.Location = new System.Drawing.Point(12, 204);
+            this.radDealer.Location = new System.Drawing.Point(12, 314);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radDealer.Size = new System.Drawing.Size(413, 25);
@@ -172,7 +171,7 @@
             this.radEng.Enabled = false;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radEng.Location = new System.Drawing.Point(533, 204);
+            this.radEng.Location = new System.Drawing.Point(533, 314);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(103, 25);
@@ -184,7 +183,7 @@
             // txtBillNumber
             // 
             this.txtBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillNumber.Location = new System.Drawing.Point(557, 293);
+            this.txtBillNumber.Location = new System.Drawing.Point(557, 403);
             this.txtBillNumber.Name = "txtBillNumber";
             this.txtBillNumber.ReadOnly = true;
             this.txtBillNumber.Size = new System.Drawing.Size(392, 26);
@@ -203,7 +202,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1072, 597);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1072, 719);
             this.tableLayoutPanel1.TabIndex = 33;
             // 
             // tableLayoutPanel2
@@ -216,12 +215,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 540);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 650);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1066, 54);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1066, 66);
             this.tableLayoutPanel2.TabIndex = 35;
             // 
             // btnAdd
@@ -241,7 +240,7 @@
             this.btnAdd.Location = new System.Drawing.Point(484, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 46);
+            this.btnAdd.Size = new System.Drawing.Size(100, 58);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -276,7 +275,7 @@
             this.layoutControl1.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1066, 531);
+            this.layoutControl1.Size = new System.Drawing.Size(1066, 641);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -285,7 +284,7 @@
             this.gridControl1.Location = new System.Drawing.Point(12, 12);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1042, 188);
+            this.gridControl1.Size = new System.Drawing.Size(1042, 298);
             this.gridControl1.TabIndex = 74;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -309,7 +308,7 @@
             // 
             // label18
             // 
-            this.label18.Location = new System.Drawing.Point(12, 353);
+            this.label18.Location = new System.Drawing.Point(12, 463);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(541, 26);
             this.label18.TabIndex = 73;
@@ -319,7 +318,7 @@
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
             this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(557, 353);
+            this.dateTimePicker1.Location = new System.Drawing.Point(557, 463);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.RightToLeftLayout = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(392, 23);
@@ -328,14 +327,14 @@
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(12, 308);
+            this.label15.Location = new System.Drawing.Point(12, 418);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(20, 41);
             this.label15.TabIndex = 67;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(36, 308);
+            this.txtDescription.Location = new System.Drawing.Point(36, 418);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -348,7 +347,7 @@
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.groupBox1.Location = new System.Drawing.Point(12, 383);
+            this.groupBox1.Location = new System.Drawing.Point(12, 493);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1042, 136);
             this.groupBox1.TabIndex = 64;
@@ -378,28 +377,28 @@
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(533, 323);
+            this.label11.Location = new System.Drawing.Point(533, 433);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(20, 26);
             this.label11.TabIndex = 61;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(533, 293);
+            this.label5.Location = new System.Drawing.Point(533, 403);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(20, 26);
             this.label5.TabIndex = 60;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(533, 263);
+            this.label3.Location = new System.Drawing.Point(533, 373);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 26);
             this.label3.TabIndex = 59;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 263);
+            this.label4.Location = new System.Drawing.Point(12, 373);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 41);
             this.label4.TabIndex = 58;
@@ -408,7 +407,7 @@
             // 
             this.comArea.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.comArea.FormattingEnabled = true;
-            this.comArea.Location = new System.Drawing.Point(557, 323);
+            this.comArea.Location = new System.Drawing.Point(557, 433);
             this.comArea.Name = "comArea";
             this.comArea.Size = new System.Drawing.Size(392, 24);
             this.comArea.TabIndex = 5;
@@ -420,7 +419,7 @@
             this.comBranch.Enabled = false;
             this.comBranch.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(557, 263);
+            this.comBranch.Location = new System.Drawing.Point(557, 373);
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(392, 24);
             this.comBranch.TabIndex = 3;
@@ -432,7 +431,7 @@
             this.comClient.Enabled = false;
             this.comClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(557, 233);
+            this.comClient.Location = new System.Drawing.Point(557, 343);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(392, 24);
             this.comClient.TabIndex = 1;
@@ -443,7 +442,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(12, 233);
+            this.label13.Location = new System.Drawing.Point(12, 343);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(20, 26);
             this.label13.TabIndex = 51;
@@ -451,14 +450,14 @@
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(533, 233);
+            this.label10.Location = new System.Drawing.Point(533, 343);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(20, 26);
             this.label10.TabIndex = 47;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(745, 204);
+            this.label1.Location = new System.Drawing.Point(745, 314);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(309, 25);
             this.label1.TabIndex = 36;
@@ -468,7 +467,7 @@
             this.radClient.Enabled = false;
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radClient.Location = new System.Drawing.Point(640, 204);
+            this.radClient.Location = new System.Drawing.Point(640, 314);
             this.radClient.Name = "radClient";
             this.radClient.Size = new System.Drawing.Size(101, 25);
             this.radClient.TabIndex = 8;
@@ -505,13 +504,13 @@
             this.layoutControlItem29,
             this.layoutControlItem9});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1066, 531);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1066, 641);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.radDealer;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 192);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 302);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(417, 29);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -520,7 +519,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.radContractor;
-            this.layoutControlItem5.Location = new System.Drawing.Point(417, 192);
+            this.layoutControlItem5.Location = new System.Drawing.Point(417, 302);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(104, 29);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
@@ -529,7 +528,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.radEng;
-            this.layoutControlItem6.Location = new System.Drawing.Point(521, 192);
+            this.layoutControlItem6.Location = new System.Drawing.Point(521, 302);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(107, 29);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
@@ -538,7 +537,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.radClient;
-            this.layoutControlItem1.Location = new System.Drawing.Point(628, 192);
+            this.layoutControlItem1.Location = new System.Drawing.Point(628, 302);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(105, 29);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -551,7 +550,7 @@
             this.layoutControlItem11.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem11.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem11.Control = this.txtPhone;
-            this.layoutControlItem11.Location = new System.Drawing.Point(24, 221);
+            this.layoutControlItem11.Location = new System.Drawing.Point(24, 331);
             this.layoutControlItem11.MaxSize = new System.Drawing.Size(497, 30);
             this.layoutControlItem11.MinSize = new System.Drawing.Size(497, 30);
             this.layoutControlItem11.Name = "layoutControlItem11";
@@ -563,7 +562,7 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.label1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(733, 192);
+            this.layoutControlItem2.Location = new System.Drawing.Point(733, 302);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(313, 29);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -572,7 +571,7 @@
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.label10;
-            this.layoutControlItem19.Location = new System.Drawing.Point(521, 221);
+            this.layoutControlItem19.Location = new System.Drawing.Point(521, 331);
             this.layoutControlItem19.MinSize = new System.Drawing.Size(24, 24);
             this.layoutControlItem19.Name = "layoutControlItem19";
             this.layoutControlItem19.Size = new System.Drawing.Size(24, 30);
@@ -583,7 +582,7 @@
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.label13;
-            this.layoutControlItem23.Location = new System.Drawing.Point(0, 221);
+            this.layoutControlItem23.Location = new System.Drawing.Point(0, 331);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Size = new System.Drawing.Size(24, 30);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
@@ -596,7 +595,7 @@
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem3.Control = this.comClient;
-            this.layoutControlItem3.Location = new System.Drawing.Point(545, 221);
+            this.layoutControlItem3.Location = new System.Drawing.Point(545, 331);
             this.layoutControlItem3.MaxSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem3.Name = "layoutControlItem3";
@@ -612,7 +611,7 @@
             this.layoutControlItem13.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem13.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem13.Control = this.txtBillNumber;
-            this.layoutControlItem13.Location = new System.Drawing.Point(545, 281);
+            this.layoutControlItem13.Location = new System.Drawing.Point(545, 391);
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem13.MinSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem13.Name = "layoutControlItem13";
@@ -628,7 +627,7 @@
             this.layoutControlItem16.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem16.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem16.Control = this.comArea;
-            this.layoutControlItem16.Location = new System.Drawing.Point(545, 311);
+            this.layoutControlItem16.Location = new System.Drawing.Point(545, 421);
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem16.Name = "layoutControlItem16";
@@ -640,7 +639,7 @@
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.label5;
-            this.layoutControlItem18.Location = new System.Drawing.Point(521, 281);
+            this.layoutControlItem18.Location = new System.Drawing.Point(521, 391);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(24, 30);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
@@ -649,7 +648,7 @@
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.label11;
-            this.layoutControlItem21.Location = new System.Drawing.Point(521, 311);
+            this.layoutControlItem21.Location = new System.Drawing.Point(521, 421);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(24, 30);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
@@ -662,7 +661,7 @@
             this.layoutControlItem10.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem10.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem10.Control = this.comBranch;
-            this.layoutControlItem10.Location = new System.Drawing.Point(545, 251);
+            this.layoutControlItem10.Location = new System.Drawing.Point(545, 361);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(501, 30);
             this.layoutControlItem10.Name = "layoutControlItem10";
@@ -674,7 +673,7 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.label3;
-            this.layoutControlItem14.Location = new System.Drawing.Point(521, 251);
+            this.layoutControlItem14.Location = new System.Drawing.Point(521, 361);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(24, 30);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
@@ -687,7 +686,7 @@
             this.layoutControlItem12.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem12.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem12.Control = this.txtAddress;
-            this.layoutControlItem12.Location = new System.Drawing.Point(24, 251);
+            this.layoutControlItem12.Location = new System.Drawing.Point(24, 361);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(0, 45);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(129, 45);
             this.layoutControlItem12.Name = "layoutControlItem12";
@@ -699,7 +698,7 @@
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.label4;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 251);
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 361);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(24, 45);
             this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
@@ -708,7 +707,7 @@
             // layoutControlItem24
             // 
             this.layoutControlItem24.Control = this.groupBox1;
-            this.layoutControlItem24.Location = new System.Drawing.Point(0, 371);
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 481);
             this.layoutControlItem24.MaxSize = new System.Drawing.Size(0, 140);
             this.layoutControlItem24.MinSize = new System.Drawing.Size(104, 140);
             this.layoutControlItem24.Name = "layoutControlItem24";
@@ -724,7 +723,7 @@
             this.layoutControlItem26.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem26.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem26.Control = this.txtDescription;
-            this.layoutControlItem26.Location = new System.Drawing.Point(24, 296);
+            this.layoutControlItem26.Location = new System.Drawing.Point(24, 406);
             this.layoutControlItem26.MaxSize = new System.Drawing.Size(0, 45);
             this.layoutControlItem26.MinSize = new System.Drawing.Size(129, 45);
             this.layoutControlItem26.Name = "layoutControlItem26";
@@ -736,7 +735,7 @@
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.label15;
-            this.layoutControlItem27.Location = new System.Drawing.Point(0, 296);
+            this.layoutControlItem27.Location = new System.Drawing.Point(0, 406);
             this.layoutControlItem27.Name = "layoutControlItem27";
             this.layoutControlItem27.Size = new System.Drawing.Size(24, 45);
             this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
@@ -749,7 +748,7 @@
             this.layoutControlItem32.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem32.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem32.Control = this.dateTimePicker1;
-            this.layoutControlItem32.Location = new System.Drawing.Point(545, 341);
+            this.layoutControlItem32.Location = new System.Drawing.Point(545, 451);
             this.layoutControlItem32.Name = "layoutControlItem32";
             this.layoutControlItem32.Size = new System.Drawing.Size(501, 30);
             this.layoutControlItem32.Text = "التاريخ";
@@ -758,7 +757,7 @@
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.label18;
-            this.layoutControlItem29.Location = new System.Drawing.Point(0, 341);
+            this.layoutControlItem29.Location = new System.Drawing.Point(0, 451);
             this.layoutControlItem29.Name = "layoutControlItem29";
             this.layoutControlItem29.Size = new System.Drawing.Size(545, 30);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
@@ -769,7 +768,7 @@
             this.layoutControlItem9.Control = this.gridControl1;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(1046, 192);
+            this.layoutControlItem9.Size = new System.Drawing.Size(1046, 302);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -778,7 +777,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1072, 597);
+            this.panel1.Size = new System.Drawing.Size(1072, 719);
             this.panel1.TabIndex = 35;
             // 
             // Shipping_Record
@@ -786,7 +785,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1072, 597);
+            this.ClientSize = new System.Drawing.Size(1072, 719);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "Shipping_Record";
