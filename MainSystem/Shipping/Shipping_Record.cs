@@ -20,16 +20,17 @@ namespace MainSystem
         string Customer_Type = "";
         XtraTabPage xtraTabPage;
         bool loaded = false;
+        DataRow row1;
 
         public Shipping_Record()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             
-            comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
             comArea.AutoCompleteMode = AutoCompleteMode.Suggest;
             comArea.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
@@ -38,7 +39,7 @@ namespace MainSystem
         {
             try
             {
-                radClient.Checked = true;
+                //radClient.Checked = true;
                 dbconnection.Open();
                 string query = "select * from area";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -56,7 +57,17 @@ namespace MainSystem
                 comBranch.DataSource = dt;
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.Text = "";
+                comBranch.SelectedIndex = -1;
+
+                query = "SELECT customer_bill.Branch_BillNumber as 'فاتورة رقم',customer_bill.Branch_Name as 'الفرع',customer_bill.Client_Name as 'العميل',customer_bill.Customer_Name as 'المهندس/المقاول/التاجر',customer_bill.Branch_ID,customer_bill.Customer_ID,customer_bill.Client_ID FROM customer_bill where customer_bill.RecivedType='شحن' and (customer_bill.Paid_Status='1' and customer_bill.Type_Buy='كاش') or customer_bill.Type_Buy='آجل'";
+                MySqlDataAdapter adabter = new MySqlDataAdapter(query, dbconnection);
+                DataTable dTable = new DataTable();
+                adabter.Fill(dTable);
+                gridControl1.DataSource = dTable;
+
+                gridView1.Columns["Branch_ID"].Visible = false;
+                gridView1.Columns["Customer_ID"].Visible = false;
+                gridView1.Columns["Client_ID"].Visible = false;
 
                 loaded = true;
             }
@@ -75,16 +86,27 @@ namespace MainSystem
                 {
                     dbconnection.Close();
                     dbconnection.Open();
-                    string query = "select customer_phone.Phone from customer INNER JOIN customer_phone ON customer_phone.Customer_ID = customer.Customer_ID where customer.Customer_ID=" + comClient.SelectedValue.ToString() + " order by customer_phone.CustomerPhone_ID desc limit 1";
+                    string query = "select customer_phone.Phone,customer.Customer_Address from customer INNER JOIN customer_phone ON customer_phone.Customer_ID = customer.Customer_ID where customer.Customer_ID=" + comClient.SelectedValue.ToString() + " order by customer_phone.CustomerPhone_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
                     {
-                        txtPhone.Text = com.ExecuteScalar().ToString();
+                        while (dr.Read())
+                        {
+                            txtPhone.Text = dr["Phone"].ToString();
+                            txtAddress.Text = dr["Customer_Address"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        txtPhone.Text = "";
+                        txtAddress.Text = "";
                     }
 
                     query = "SELECT Address FROM shipping where Customer_ID=" + comClient.SelectedValue.ToString();
                     com = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr = com.ExecuteReader();
+                    dr = com.ExecuteReader();
                     if (dr.HasRows)
                     {
                         checkedListBoxControlAddress.Items.Clear();
@@ -98,7 +120,7 @@ namespace MainSystem
                     {
                         checkedListBoxControlAddress.Items.Clear();
                     }
-                    txtPhone.Focus();
+                    comArea.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -237,6 +259,62 @@ namespace MainSystem
                 }
                 dbconnection.Close();
             }
+        }
+
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+                    comBranch.SelectedValue = row1["Branch_ID"].ToString();
+                    if (row1["فاتورة رقم"].ToString() != "")
+                    {
+                        txtBillNumber.Text = row1["فاتورة رقم"].ToString();
+                    }
+                    else
+                    {
+                        txtBillNumber.Text = "";
+                    }
+                    if (row1["Client_ID"].ToString() != "")
+                    {
+                        loaded = false;
+                        radClient.Checked = true;
+                        loaded = true;
+                        comClient.SelectedValue = row1["Client_ID"].ToString();
+                    }
+                    else if(row1["Customer_ID"].ToString() != "")
+                    {
+                        dbconnection.Open();
+                        string query = "select Customer_Type from customer where Customer_ID=" + row1["Customer_ID"].ToString();
+                        MySqlCommand comm = new MySqlCommand(query, dbconnection);
+                        string customerType = comm.ExecuteScalar().ToString();
+                        dbconnection.Close();
+
+                        loaded = false;
+                        if (customerType == "مهندس")
+                        {
+                            radEng.Checked = true;
+                        }
+                        else if (customerType == "مقاول")
+                        {
+                            radContractor.Checked = true;
+                        }
+                        else if (customerType == "تاجر")
+                        {
+                            radDealer.Checked = true;
+                        }
+                        loaded = true;
+                        comClient.SelectedValue = row1["Customer_ID"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
 
         private void txtBox_TextChanged(object sender, EventArgs e)
