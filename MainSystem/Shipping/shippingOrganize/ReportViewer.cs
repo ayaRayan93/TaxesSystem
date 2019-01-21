@@ -16,13 +16,13 @@ namespace MainSystem
         MySqlConnection dbconnection;
         string query;
         List<StorePermissionsNumbers> listOfStorePermissionsNumbers;
-        public ReportViewer(string query)
+        public ReportViewer(List<StorePermissionsNumbers> listOfStorePermissionsNumbers)
         {
             try
             {
                 dbconnection = new MySqlConnection(connection.connectionString);
                 InitializeComponent();
-                this.query = query;
+                this.listOfStorePermissionsNumbers = listOfStorePermissionsNumbers;
             }
             catch (Exception ex)
             {
@@ -34,12 +34,12 @@ namespace MainSystem
         {
             try
             {
-                //StorePerNums StorePerNums = new StorePerNums();
-                //StorePerNums.InitializeData(listOfStorePermissionsNumbers,query);
-                ShippingReport ShippingReport = new ShippingReport();
-                ShippingReport.InitializeData(query);
-                documentViewer1.DocumentSource = ShippingReport;
-                ShippingReport.CreateDocument();
+                StorePermNums StorePerNums = new StorePermNums();
+                StorePerNums.InitializeData(listOfStorePermissionsNumbers);
+                //ShippingReport ShippingReport = new ShippingReport();
+                //ShippingReport.InitializeData(query);
+                documentViewer1.DocumentSource = StorePerNums;
+                StorePerNums.CreateDocument();
             }
             catch (Exception ex)
             {

@@ -205,9 +205,8 @@ namespace MainSystem
                 com = new MySqlCommand(query, dbconnection);
                 com.ExecuteNonQuery();
                 List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
-                //  listOfStorePermissionsNumbers = getListOfStoreID_PremNumbers(perIds);
-                // ReportViewer ReportViewer = new ReportViewer(listOfStorePermissionsNumbers);
-                ReportViewer ReportViewer = new ReportViewer(perIds);
+                listOfStorePermissionsNumbers = getListOfStoreID_PremNumbers(perIds);
+                ReportViewer ReportViewer = new ReportViewer(listOfStorePermissionsNumbers);
                 ReportViewer.Show();
 
             }
@@ -327,26 +326,17 @@ namespace MainSystem
         public List<StorePermissionsNumbers> getListOfStoreID_PremNumbers(string perIds)
         {
             List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
-           
-           // string query = "SELECT customer_permissions.Store_ID,Store_Name,GROUP_CONCAT(Permissin_ID) from customer_permissions inner join store on customer_permissions.Store_ID=store.Store_ID where Permissin_ID in (" + perIds + ") GROUP BY Store_ID";
             string query = "SELECT customer_permissions.Store_ID,Store_Name,Permissin_ID from customer_permissions inner join store on customer_permissions.Store_ID=store.Store_ID where Permissin_ID in (" + perIds + ") GROUP BY Store_ID";
-            ReportViewer ReportViewer = new ReportViewer( query);
-            ReportViewer.Show();
-            //MySqlCommand com = new MySqlCommand(query, dbconnection);
-            //MySqlDataReader dr = com.ExecuteReader();
-            //while (dr.Read())
-            //{
-            //    StorePermissionsNumbers StorePermissionsNumbers = new StorePermissionsNumbers();
-            //    StorePermissionsNumbers.PermissinNumbers = new List<int>();
-            //    StorePermissionsNumbers.StoreName = dr[1].ToString();
-            //    string [] arr = dr[2].ToString().Split(',');
-            //    for (int i = 0; i < arr.Length; i++)
-            //    {
-            //        StorePermissionsNumbers.PermissinNumbers.Add( Convert.ToInt16(arr[i]));
-            //    }
-            //    listOfStorePermissionsNumbers.Add(StorePermissionsNumbers);
-            //}
-            //dr.Close();
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                StorePermissionsNumbers StorePermissionsNumbers = new StorePermissionsNumbers();
+                StorePermissionsNumbers.PermissinNumbers =(int) dr[2];
+                StorePermissionsNumbers.StoreName = dr[1].ToString();          
+                listOfStorePermissionsNumbers.Add(StorePermissionsNumbers);
+            }
+            dr.Close();
             return listOfStorePermissionsNumbers;
         }
         public struct BillID_StoreID
