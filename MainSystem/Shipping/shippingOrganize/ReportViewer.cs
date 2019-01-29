@@ -14,15 +14,16 @@ namespace MainSystem
     public partial class ReportViewer : Form
     {
         MySqlConnection dbconnection;
-        string query;
+        string DriverName="";
         List<StorePermissionsNumbers> listOfStorePermissionsNumbers;
-        public ReportViewer(List<StorePermissionsNumbers> listOfStorePermissionsNumbers)
+        public ReportViewer(List<StorePermissionsNumbers> listOfStorePermissionsNumbers,string DriverName)
         {
             try
             {
                 dbconnection = new MySqlConnection(connection.connectionString);
                 InitializeComponent();
                 this.listOfStorePermissionsNumbers = listOfStorePermissionsNumbers;
+                this.DriverName = DriverName;
             }
             catch (Exception ex)
             {
@@ -35,9 +36,7 @@ namespace MainSystem
             try
             {
                 StorePermNums StorePerNums = new StorePermNums();
-                StorePerNums.InitializeData(listOfStorePermissionsNumbers);
-                //ShippingReport ShippingReport = new ShippingReport();
-                //ShippingReport.InitializeData(query);
+                StorePerNums.InitializeData(listOfStorePermissionsNumbers,DriverName);
                 documentViewer1.DocumentSource = StorePerNums;
                 StorePerNums.CreateDocument();
             }
