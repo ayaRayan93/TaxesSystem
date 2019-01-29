@@ -78,11 +78,11 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage("tabPageZoneArea");
+                XtraTabPage xtraTabPage = getTabPage("اضافة منطقة & زون");
                 if (xtraTabPage == null)
                 {
                     xtraTabPage = new XtraTabPage();
-                    xtraTabPage.Name = "tabPageZoneArea";
+                    xtraTabPage.Name = "اضافة منطقة & زون";
                     xtraTabPage.Text = "اضافة منطقة & زون";
                     panelZoneArea.Name = "panelZoneArea";
                     panelZoneArea.Dock = DockStyle.Fill;
@@ -114,11 +114,11 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage("tabPageShippingRecord");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlShipping, "تسجيل شحنة");
                 if (xtraTabPage == null)
                 {
                     xtraTabPage = new XtraTabPage();
-                    xtraTabPage.Name = "tabPageShippingRecord";
+                    xtraTabPage.Name = "تسجيل شحنة";
                     xtraTabPage.Text = "تسجيل شحنة";
                     panelShippingRecord.Name = "panelShippingRecord";
                     panelShippingRecord.Dock = DockStyle.Fill;
@@ -150,11 +150,11 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage("tabPagePermissionsReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlShipping, "تقرير الاذون");
                 if (xtraTabPage == null)
                 {
                     xtraTabPage = new XtraTabPage();
-                    xtraTabPage.Name = "tabPagePermissionsReport";
+                    xtraTabPage.Name = "تقرير الاذون";
                     xtraTabPage.Text = "تقرير الاذون";
                     panelPermissionReport.Name = "panelPermissionsReport";
                     panelPermissionReport.Dock = DockStyle.Fill;
@@ -169,7 +169,9 @@ namespace MainSystem
                 panelPermissionReport.Controls.Add(PermissionReport);
                 xtraTabPage.Controls.Add(panelPermissionReport);
                 tabControlShipping.TabPages.Add(xtraTabPage);
+
                 PermissionReport.Show();
+
                 tabControlShipping.SelectedTabPage = xtraTabPage;
             }
             catch (Exception ex)
