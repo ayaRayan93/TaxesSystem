@@ -86,9 +86,19 @@ namespace MainSystem
 
             column = new DataColumn();
             column.DataType = typeof(string);
-            column.ColumnName = "Quantity";
+            column.ColumnName = "TotalQuantity";
             column.AutoIncrement = false;
             column.Caption = "الكمية";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "DeliveryQuantity";
+            column.AutoIncrement = false;
+            column.Caption = "الكمية المستلمة";
             column.ReadOnly = false;
             column.Unique = false;
 

@@ -1387,7 +1387,19 @@
       <DependentUpon>CustomerDelivery.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\DataHelperClass.cs" />
+    <Compile Include="Store\Export\DeliveryPermissionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Export\DeliveryPermissionReport.Designer.cs">
+      <DependentUpon>DeliveryPermissionReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\DerliveryPermissionClass.cs" />
+    <Compile Include="Store\Export\DeliveryPermissionReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\DeliveryPermissionReportViewer.Designer.cs">
+      <DependentUpon>DeliveryPermissionReportViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Gate\GateEnter_Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2218,6 +2230,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\CustomerDelivery.resx">
       <DependentUpon>CustomerDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\DeliveryPermissionReport.resx">
+      <DependentUpon>DeliveryPermissionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\DeliveryPermissionReportViewer.resx">
+      <DependentUpon>DeliveryPermissionReportViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">
       <DependentUpon>GateEnter_Details.cs</DependentUpon>

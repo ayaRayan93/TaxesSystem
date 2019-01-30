@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraRichEdit.Utils;
+using MainSystem.Store.Export;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -251,6 +252,7 @@ namespace MainSystem
                 if (gridView2.RowCount > 0 && txtPermBillNumber.Text != "")
                 {
                     dbconnection.Open();
+                    List<DeliveryPermissionClass> listOfData = new List<DeliveryPermissionClass>();
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRow row1 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
@@ -261,7 +263,7 @@ namespace MainSystem
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
                         com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
-                        com.Parameters["@DeliveredQuantity"].Value = row1[3].ToString();
+                        com.Parameters["@DeliveredQuantity"].Value = row1[5].ToString();
                         com.Parameters.Add("@Carton", MySqlDbType.Double);
                         com.Parameters["@Carton"].Value = row1[4].ToString();
                         com.Parameters.Add("@Date", MySqlDbType.Date);
@@ -269,8 +271,19 @@ namespace MainSystem
 
                         com.ExecuteNonQuery();
 
+                        DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
+                        deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
+                        deliveryPermissionClass.Code = row1[1].ToString();
+                        deliveryPermissionClass.ItemName = row1[2].ToString();
+                        deliveryPermissionClass.TotalQuantity =Convert.ToDouble(row1[3]);
+                        deliveryPermissionClass.Carton = Convert.ToDouble(row1[5]);
+                        deliveryPermissionClass.DeliveryQuantity = Convert.ToDouble(row1[4]);
+                        listOfData.Add(deliveryPermissionClass);
                         clear();
                     }
+                    DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData);
+                    DeliveryPermissionReport.Show();
+
                 }
                 else
                 {
@@ -388,8 +401,9 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], txtRecivedQuantity.Text);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row["الكرتنة"]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[3]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row[5]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtRecivedQuantity.Text);
                 }
             }
         }     
