@@ -179,36 +179,42 @@ namespace MainSystem
         {
             try
             {
-                dbconnection.Open();
-                string query = "insert into CustomerShippingStorage (Driver_ID,Car_ID,Date) values (@Driver_ID,@Car_ID,@Date)";
-                MySqlCommand com = new MySqlCommand(query,dbconnection);
-                com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@Driver_ID"].Value = txtDriver.Text;
-                com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
-                com.Parameters["@Car_ID"].Value = txtCar.Text;
-                com.Parameters.Add("@Date", MySqlDbType.Date);
-                com.Parameters["@Date"].Value = DateTime.Now.Date;
-                com.ExecuteNonQuery();
-
-                query = "select CustomerShippingStorage_ID from CustomerShippingStorage order by CustomerShippingStorage_ID desc limit 1";
-                com = new MySqlCommand(query, dbconnection);
-                int id =(int) com.ExecuteScalar();
-
-                string perIds = "";
-                for (int i = 0; i < listOfPermissinNumbers.Count; i++)
+                if (txtDriver.Text != "" && txtCar.Text != "")
                 {
-                    perIds += listOfPermissinNumbers[i] + ",";
+                    dbconnection.Open();
+                    string query = "insert into CustomerShippingStorage (Driver_ID,Car_ID,Date) values (@Driver_ID,@Car_ID,@Date)";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@Driver_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@Driver_ID"].Value = txtDriver.Text;
+                    com.Parameters.Add("@Car_ID", MySqlDbType.Int16, 11);
+                    com.Parameters["@Car_ID"].Value = txtCar.Text;
+                    com.Parameters.Add("@Date", MySqlDbType.Date);
+                    com.Parameters["@Date"].Value = DateTime.Now.Date;
+                    com.ExecuteNonQuery();
+
+                    query = "select CustomerShippingStorage_ID from CustomerShippingStorage order by CustomerShippingStorage_ID desc limit 1";
+                    com = new MySqlCommand(query, dbconnection);
+                    int id = (int)com.ExecuteScalar();
+
+                    string perIds = "";
+                    for (int i = 0; i < listOfPermissinNumbers.Count; i++)
+                    {
+                        perIds += listOfPermissinNumbers[i] + ",";
+                    }
+                    perIds += 0;
+
+                    query = "update customer_permissions set CustomerShippingStorage_ID=" + id + " where Permissin_ID in (" + perIds + ")";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
+                    List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
+                    listOfStorePermissionsNumbers = getListOfStoreID_PremNumbers(perIds);
+                    ReportViewer ReportViewer = new ReportViewer(listOfStorePermissionsNumbers,comDriver.Text);
+                    ReportViewer.Show();
                 }
-                perIds += 0;
-
-                query = "update customer_permissions set CustomerShippingStorage_ID="+id + " where Permissin_ID in ("+ perIds + ")";
-                com = new MySqlCommand(query, dbconnection);
-                com.ExecuteNonQuery();
-                List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
-                listOfStorePermissionsNumbers = getListOfStoreID_PremNumbers(perIds);
-                ReportViewer ReportViewer = new ReportViewer(listOfStorePermissionsNumbers);
-                ReportViewer.Show();
-
+                else
+                {
+                    MessageBox.Show("حدد السائق ورقم العربية");
+                }
             }
             catch (Exception ex)
             {
@@ -326,7 +332,7 @@ namespace MainSystem
         public List<StorePermissionsNumbers> getListOfStoreID_PremNumbers(string perIds)
         {
             List<StorePermissionsNumbers> listOfStorePermissionsNumbers = new List<StorePermissionsNumbers>();
-            string query = "SELECT customer_permissions.Store_ID,Store_Name,Permissin_ID from customer_permissions inner join store on customer_permissions.Store_ID=store.Store_ID where Permissin_ID in (" + perIds + ") GROUP BY Store_ID";
+            string query = "SELECT customer_permissions.Store_ID,Store_Name,Permissin_ID from customer_permissions inner join store on customer_permissions.Store_ID=store.Store_ID where Permissin_ID in (" + perIds + ")";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())

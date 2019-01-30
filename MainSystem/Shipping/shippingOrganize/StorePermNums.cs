@@ -14,9 +14,10 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitializeData(List<StorePermissionsNumbers> listOfStorePermissionsNumbers)
+        public void InitializeData(List<StorePermissionsNumbers> listOfStorePermissionsNumbers, string xDriverName)
         {
-            DataSource = listOfStorePermissionsNumbers;
+            DriverName.Value = xDriverName;
+            objectDataSource1.DataSource = listOfStorePermissionsNumbers;
         }
     }
 }

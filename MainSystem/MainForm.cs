@@ -526,11 +526,12 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 
     public static class connection
     {
-        public static string connectionString = "SERVER=192.168.1.200;DATABASE=cccs;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
+        public static string connectionString = "SERVER=192.168.1.200;DATABASE=ayatest;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
         // public static string connectionString = "SERVER=localhost;DATABASE=testcoding;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
