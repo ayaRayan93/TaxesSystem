@@ -725,16 +725,23 @@ namespace MainSystem
                         if (com.ExecuteScalar() != null)
                         {
                             double totalf = Convert.ToInt16(com.ExecuteScalar());
-                            //Store_ID=" + storeId + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString() + " and  Data_ID=" + row2["Data_ID"].ToString()
-                            query = "delete from supplier_permission_details where Supplier_Permission_Details_ID=" + row2["Supplier_Permission_Details_ID"].ToString();
-                            com = new MySqlCommand(query, conn);
-                            com.ExecuteNonQuery();
-                            
-                            query = "update storage set Total_Meters=" + (totalf - Convert.ToDouble(row2["اجمالي عدد الامتار"].ToString())) + " where Store_ID=" + storeId + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString() + " and Data_ID=" + row2["Data_ID"].ToString();
-                            com = new MySqlCommand(query, conn);
-                            com.ExecuteNonQuery();
+                            if ((totalf - Convert.ToDouble(row2["اجمالي عدد الامتار"].ToString())) >= 0)
+                            {
+                                //Store_ID=" + storeId + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString() + " and  Data_ID=" + row2["Data_ID"].ToString()
+                                query = "delete from supplier_permission_details where Supplier_Permission_Details_ID=" + row2["Supplier_Permission_Details_ID"].ToString();
+                                com = new MySqlCommand(query, conn);
+                                com.ExecuteNonQuery();
 
-                            search();
+                                query = "update storage set Total_Meters=" + (totalf - Convert.ToDouble(row2["اجمالي عدد الامتار"].ToString())) + " where Store_ID=" + storeId + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString() + " and Data_ID=" + row2["Data_ID"].ToString();
+                                com = new MySqlCommand(query, conn);
+                                com.ExecuteNonQuery();
+
+                                search();
+                            }
+                            else
+                            {
+                                MessageBox.Show("لا يوجد كمية كافية");
+                            }
                         }
                         else
                         {
