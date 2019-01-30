@@ -1416,6 +1416,18 @@
     <Compile Include="Store\initialCodeStorage.designer.cs">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\InternalDelivery\StorageReturnBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\StorageReturnBill.designer.cs">
+      <DependentUpon>StorageReturnBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\SupplierReceipt2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\InternalDelivery\SupplierReceipt2.designer.cs">
+      <DependentUpon>SupplierReceipt2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\InternalDelivery\SupplierReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2225,6 +2237,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\InternalDelivery\StorageReturnBill.resx">
+      <DependentUpon>StorageReturnBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\InternalDelivery\SupplierReceipt2.resx">
+      <DependentUpon>SupplierReceipt2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\InternalDelivery\SupplierReceipt.resx">
       <DependentUpon>SupplierReceipt.cs</DependentUpon>
