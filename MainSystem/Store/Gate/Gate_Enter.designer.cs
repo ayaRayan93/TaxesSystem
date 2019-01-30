@@ -38,7 +38,6 @@
             this.comStore = new System.Windows.Forms.ComboBox();
             this.labelStore = new System.Windows.Forms.Label();
             this.labelSupplier = new System.Windows.Forms.Label();
-            this.txtSupplier = new System.Windows.Forms.TextBox();
             this.labelType2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelCar = new System.Windows.Forms.Label();
@@ -62,6 +61,7 @@
             this.comReason = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.comSupplier = new System.Windows.Forms.ComboBox();
             this.panContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
@@ -122,11 +122,11 @@
             // panContent
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
+            this.panContent.Controls.Add(this.comSupplier);
             this.panContent.Controls.Add(this.imageListBoxControl1);
             this.panContent.Controls.Add(this.comStore);
             this.panContent.Controls.Add(this.labelStore);
             this.panContent.Controls.Add(this.labelSupplier);
-            this.panContent.Controls.Add(this.txtSupplier);
             this.panContent.Controls.Add(this.labelType2);
             this.panContent.Controls.Add(this.label2);
             this.panContent.Controls.Add(this.labelCar);
@@ -202,25 +202,12 @@
             this.labelSupplier.AutoSize = true;
             this.labelSupplier.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelSupplier.Location = new System.Drawing.Point(660, 376);
+            this.labelSupplier.Location = new System.Drawing.Point(660, 375);
             this.labelSupplier.Name = "labelSupplier";
             this.labelSupplier.Size = new System.Drawing.Size(55, 23);
             this.labelSupplier.TabIndex = 70;
             this.labelSupplier.Text = "المورد";
             this.labelSupplier.Visible = false;
-            // 
-            // txtSupplier
-            // 
-            this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSupplier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtSupplier.Location = new System.Drawing.Point(455, 373);
-            this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSupplier.Size = new System.Drawing.Size(200, 28);
-            this.txtSupplier.TabIndex = 69;
-            this.txtSupplier.Visible = false;
-            this.txtSupplier.TextChanged += new System.EventHandler(this.txtSupplier_TextChanged);
             // 
             // labelType2
             // 
@@ -549,6 +536,19 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
+            // comSupplier
+            // 
+            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.comSupplier.FormattingEnabled = true;
+            this.comSupplier.Location = new System.Drawing.Point(455, 372);
+            this.comSupplier.Name = "comSupplier";
+            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupplier.Size = new System.Drawing.Size(200, 29);
+            this.comSupplier.TabIndex = 75;
+            this.comSupplier.Visible = false;
+            // 
             // Gate_Enter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,10 +600,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelType2;
         private System.Windows.Forms.Label labelSupplier;
-        private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label labelStore;
         private System.Windows.Forms.ComboBox comStore;
         private DevExpress.XtraEditors.ImageListBoxControl imageListBoxControl1;
+        private System.Windows.Forms.ComboBox comSupplier;
     }
 }
 

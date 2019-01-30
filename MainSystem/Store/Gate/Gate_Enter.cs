@@ -36,8 +36,6 @@ namespace MainSystem
                 conn = new MySqlConnection(constr);
                 xtraTabControlStoresContent = TabControlStoresContent;
                 arr = new List<string>();
-                txtSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
-                txtSupplier.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
             catch (Exception ex)
             {
@@ -76,6 +74,15 @@ namespace MainSystem
                 comEmployee.DisplayMember = dt.Columns["Employee_Name"].ToString();
                 comEmployee.ValueMember = dt.Columns["Employee_ID"].ToString();
                 comEmployee.SelectedIndex = -1;
+
+                query = "select * from supplier";
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSupplier.DataSource = dt;
+                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.SelectedIndex = -1;
 
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
                 int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
@@ -143,7 +150,7 @@ namespace MainSystem
                     labelStore.Visible = false;
                     comStore.Visible = false;
                     labelSupplier.Visible = false;
-                    txtSupplier.Visible = false;
+                    comSupplier.Visible = false;
                     flag = false;
                     clear();
                     loaded = false;
@@ -248,15 +255,15 @@ namespace MainSystem
                     comCar.ValueMember = dt.Columns["Car_ID"].ToString();
                     comCar.SelectedIndex = -1;
                     loaded = true;
-                    if (comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1")
+                    if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "2"))
                     {
                         labelSupplier.Visible = true;
-                        txtSupplier.Visible = true;
+                        comSupplier.Visible = true;
                     }
                     else
                     {
                         labelSupplier.Visible = false;
-                        txtSupplier.Visible = false;
+                        comSupplier.Visible = false;
                     }
                     if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "4") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "3"))
                     {
@@ -540,8 +547,16 @@ namespace MainSystem
             {
                 if (comReason.Text != "" && comType.Text != "")
                 {
+                    if (comSupplier.Visible == true)
+                    {
+                        if(comSupplier.SelectedValue == null)
+                        {
+                            MessageBox.Show("يجب اختيار المورد");
+                            return;
+                        }
+                    }
                     conn.Open();
-                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID,Supplier_Name,FromStore_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID,@Supplier_Name,@FromStore_ID)";
+                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID,Supplier_ID,FromStore_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID,@Supplier_ID,@FromStore_ID)";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
                     com.Parameters["@Reason"].Value = comReason.Text;
@@ -601,8 +616,16 @@ namespace MainSystem
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
-                    com.Parameters.Add("@Supplier_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Supplier_Name"].Value = txtSupplier.Text;
+                    if (comSupplier.SelectedValue != null)
+                    {
+                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Supplier_ID"].Value = null;
+                    }
                     if (comStore.SelectedValue != null)
                     {
                         com.Parameters.Add("@FromStore_ID", MySqlDbType.Int16, 11);
@@ -661,7 +684,7 @@ namespace MainSystem
                     labelStore.Visible = false;
                     comStore.Visible = false;
                     labelSupplier.Visible = false;
-                    txtSupplier.Visible = false;
+                    comSupplier.Visible = false;
                 }
                 else
                 {
@@ -743,6 +766,7 @@ namespace MainSystem
                     comResponsible.SelectedIndex = -1;
                     comReason.SelectedIndex = -1;
                     comStore.SelectedIndex = -1;
+                    comSupplier.SelectedIndex = -1;
 
                     string query = "select Driver_ID,Driver_Name from drivers";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -799,13 +823,13 @@ namespace MainSystem
 
         public bool IsClear()
         {
-            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "" && txtSupplier.Text == "" && comStore.Text == "")
+            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "" && comSupplier.SelectedValue == null && comStore.Text == "")
                 return true;
             else
                 return false;
         }
 
-        private void txtSupplier_TextChanged(object sender, EventArgs e)
+        /*private void txtSupplier_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -841,6 +865,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-        }
+        }*/
     }
 }

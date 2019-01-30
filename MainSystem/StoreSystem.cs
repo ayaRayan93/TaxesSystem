@@ -355,7 +355,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                SupplierReceipt objForm = new SupplierReceipt(this, xtraTabControlStoresContent);
+                SupplierReceipt2 objForm = new SupplierReceipt2(this, xtraTabControlStoresContent);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
