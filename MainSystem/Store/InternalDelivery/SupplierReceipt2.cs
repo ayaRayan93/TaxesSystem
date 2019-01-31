@@ -24,7 +24,7 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-        DataRow row1;
+        DataRow row1 = null;
         int storeId = 0;
         bool flag = false;
         bool flagCarton = false;
