@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainSystem.Store.Export
+namespace MainSystem
 {
-    class DerliveryPermissionClass
+    public class DeliveryPermissionClass
     {
         public int Data_ID { get; set; }
         public string ItemName { get; set; }

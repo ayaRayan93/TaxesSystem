@@ -57,6 +57,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.calcEdit1 = new DevExpress.XtraEditors.CalcEdit();
@@ -72,7 +73,7 @@
             this.ItemName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
+            this.DeliveryQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -419,7 +420,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 399F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 403F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnPrint, 2, 0);
@@ -446,12 +447,32 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(503, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(507, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(123, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(122, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrint.ImagePosition = 1;
+            this.btnPrint.ImageZoom = 25;
+            this.btnPrint.LabelPosition = 18;
+            this.btnPrint.LabelText = "طباعة تقرير";
+            this.btnPrint.Location = new System.Drawing.Point(405, 0);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(102, 45);
+            this.btnPrint.TabIndex = 2;
             // 
             // panel1
             // 
@@ -584,7 +605,8 @@
             this.Code,
             this.ItemName,
             this.Quantity,
-            this.Carton});
+            this.Carton,
+            this.DeliveryQuantity});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -617,7 +639,7 @@
             // Quantity
             // 
             this.Quantity.Caption = "الكمية";
-            this.Quantity.FieldName = "Quantity";
+            this.Quantity.FieldName = "TotalQuantity";
             this.Quantity.Name = "Quantity";
             this.Quantity.Visible = true;
             this.Quantity.VisibleIndex = 2;
@@ -630,25 +652,13 @@
             this.Carton.Visible = true;
             this.Carton.VisibleIndex = 3;
             // 
-            // btnPrint
+            // DeliveryQuantity
             // 
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnPrint.ImagePosition = 1;
-            this.btnPrint.ImageZoom = 25;
-            this.btnPrint.LabelPosition = 18;
-            this.btnPrint.LabelText = "طباعة تقرير";
-            this.btnPrint.Location = new System.Drawing.Point(400, 0);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(103, 45);
-            this.btnPrint.TabIndex = 2;
+            this.DeliveryQuantity.Caption = "الكمية المستلمة";
+            this.DeliveryQuantity.FieldName = "DeliveryQuantity";
+            this.DeliveryQuantity.Name = "DeliveryQuantity";
+            this.DeliveryQuantity.Visible = true;
+            this.DeliveryQuantity.VisibleIndex = 4;
             // 
             // CustomerDelivery
             // 
@@ -730,6 +740,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Carton;
         private DevExpress.XtraEditors.CalcEdit calcEdit1;
         private Bunifu.Framework.UI.BunifuTileButton btnPrint;
+        private DevExpress.XtraGrid.Columns.GridColumn DeliveryQuantity;
     }
 }
 
