@@ -17,19 +17,17 @@ namespace MainSystem
     {
         MySqlConnection dbconnection , connectionReader, connectionReader2;
         
-        private bool flag = false;
-        DataGridViewRow row1;
-        private int[] addedRecordIDs;
+        bool flag = false;
+        int[] addedRecordIDs;
         int recordCount = 0;
-        //List<DataGridViewRow> myRows;
         List<int> listOfRow2In;
         int EmpBranchId = 0;
-        //int customerBillId = 0;
-        //MainForm salesMainForm;
-        string type = "كاش";
         int storeId = 0;
+        bool flagCarton = false;
+        DataRow row1 = null;
+        bool loaded = false;
 
-        public StorageReturnBill(/*MainForm SalesMainForm*/)
+        public StorageReturnBill(MainForm SalesMainForm, DevExpress.XtraTab.XtraTabControl TabControlStores)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -37,21 +35,8 @@ namespace MainSystem
             connectionReader2 = new MySqlConnection(connection.connectionString);
             addedRecordIDs = new int[100];
             listOfRow2In = new List<int>();
-            //myRows = new List<DataGridViewRow>();
-            
-            //salesMainForm = SalesMainForm;
-
-            panel1.AutoScroll = false;
-            panel1.VerticalScroll.Enabled = false;
-            panel1.VerticalScroll.Visible = false;
-            panel1.VerticalScroll.Maximum = 0;
-            panel1.AutoScroll = true;
-
-            panel2.AutoScroll = false;
-            panel2.VerticalScroll.Enabled = false;
-            panel2.VerticalScroll.Visible = false;
-            panel2.VerticalScroll.Maximum = 0;
-            panel2.AutoScroll = true;
+            comSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comSupplier.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void StorageReturnBill_Load(object sender, EventArgs e)
@@ -62,6 +47,15 @@ namespace MainSystem
 
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
                 storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                string query = "select * from supplier";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comSupplier.DataSource = dt;
+                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.Text = "";
             }
             catch (Exception ex)
             {
@@ -125,7 +119,7 @@ namespace MainSystem
             dbconnection.Close();
         }*/
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        /*private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -159,16 +153,16 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-
+        }*/
+        
         private void txtTotalMeter_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 double quantity, priceAD;
-                if (txtTotalMeter.Text != "" )
+                if (txtBalat.Text != "" )
                 {
-                    if (double.TryParse(txtTotalMeter.Text, out quantity))
+                    if (double.TryParse(txtBalat.Text, out quantity))
                     {
                         //txtTotalAD.Text = (priceAD * quantity).ToString();
                     }
@@ -189,19 +183,19 @@ namespace MainSystem
             try
             {
                 // && txtCode.Text != ""
-                if (!IsAdded(row1) && row1 != null)
+                /*if (!IsAdded(row1) && row1 != null)
                 {
                     double totalMeter = 0;
-                    if (!double.TryParse(txtTotalMeter.Text, out totalMeter))
+                    if (!double.TryParse(txtBalat.Text, out totalMeter))
                     {
                         MessageBox.Show("اجمالى عدد الوحدات يجب ان يكون رقم");
                         return;
                     }
 
                     double returnedQuantity = 0;
-                    if (txtReturnedQuantity.Text != "")
+                    if (txtCarton.Text != "")
                     {
-                        returnedQuantity = Convert.ToDouble(txtReturnedQuantity.Text);
+                        returnedQuantity = Convert.ToDouble(txtCarton.Text);
                     }
 
                     if ((totalMeter + returnedQuantity) > Convert.ToDouble(row1.Cells["الكمية"].Value))
@@ -218,8 +212,6 @@ namespace MainSystem
                     dataGridView2.Rows[n].Cells["Code"].Value = txtCode.Text;
                     dataGridView2.Rows[n].Cells["Type"].Value = row1.Cells["الفئة"].Value;
                     dataGridView2.Rows[n].Cells["Quantity"].Value = txtTotalMeter.Text;
-                    //dataGridView2.Rows[n].Cells["priceAD"].Value = txtPriceAD.Text;
-                    //dataGridView2.Rows[n].Cells["totalAD"].Value = txtTotalAD.Text;
                     dataGridView2.Rows[n].Cells["priceBD"].Value = row1.Cells["السعر"].Value;
                     dataGridView2.Rows[n].Cells["Discount"].Value = row1.Cells["نسبة الخصم"].Value;
                     dataGridView2.Rows[n].Cells["Product_Name"].Value = row1.Cells["الاسم"].Value;
@@ -247,7 +239,7 @@ namespace MainSystem
                 else
                 {
                     MessageBox.Show("برجاء اختيار عنصر والتاكد انه لم يتم اضافتة من قبل");
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -260,7 +252,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                if (dataGridView2.Rows.Count > 0)
+                /*if (dataGridView2.Rows.Count > 0)
                 {
                     string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" + storeId + " order by CustomerReturnBill_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -290,7 +282,7 @@ namespace MainSystem
                         MessageBox.Show("اذن المخزن يجب ان يكون عدد");
                         dbconnection.Close();
                         return;
-                    }*/
+                    }*
                     
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = DateTime.Now;
@@ -322,7 +314,7 @@ namespace MainSystem
                     com.Parameters.Add("@SellDiscount", MySqlDbType.Decimal);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
-                    foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                    /*foreach (DataGridViewRow row2 in dataGridView2.Rows)
                     {
                         if (row2.Cells[0].Value != null)
                         {
@@ -353,7 +345,7 @@ namespace MainSystem
                         c2.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                         c2.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(listBoxControlCustomerBill.Items[i].ToString());
                         c2.ExecuteNonQuery();
-                    }*/
+                    }
 
                     //IncreaseProductQuantity(id);
 
@@ -369,7 +361,7 @@ namespace MainSystem
                 else
                 {
                     MessageBox.Show("تاكد من البيانات");
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -382,7 +374,7 @@ namespace MainSystem
         {
             try
             {
-                if (dataGridView2.Rows.Count > 0)
+                /*if (dataGridView2.Rows.Count > 0)
                 {
                     int dgv2Index = dataGridView2.SelectedCells[0].RowIndex;
                     for (int i = 0; i < listOfRow2In.Count; i++)
@@ -403,100 +395,11 @@ namespace MainSystem
                             }
                         }
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        //function
-        //display bill number for selected customer/client
-        public void DisplayBillNumber(int customerID, int clientID)
-        {
-            string strQuery = "";
-            try
-            {
-                dbconnection.Open();
-
-                if (clientID > 0)
-                {
-
-                    strQuery = " and Client_ID = " + clientID + "";
-                }
-                if (customerID > 0)
-                {
-
-                    strQuery += " and Customer_ID = " + customerID + "";
-                }
-                txtPermissionNum.Text = "";
-                flag = false;
-                string query = "";
-
-                if (strQuery != "")
-                {
-                    query = "select Branch_BillNumber,CustomerBill_ID from customer_bill where Branch_ID=" + storeId + strQuery;
-                }
-                else
-                {
-                    query = "select Branch_BillNumber,CustomerBill_ID from customer_bill where Branch_ID=" + storeId;
-                }
-                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                //DataTable dt = new DataTable();
-                //da.Fill(dt);
-                //comBillNumber.DataSource = dt;
-                //comBillNumber.DisplayMember = dt.Columns["Branch_BillNumber"].ToString();
-                //comBillNumber.ValueMember = dt.Columns["CustomerBill_ID"].ToString();
-                //comBillNumber.Text = "";
-
-                flag = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
-        //clear all fields
-        private void clrearAll()
-        {
-            try
-            {
-                txtInfo.Text = "";
-                
-                /*listBoxControlCustomerBill.Items.Clear();*/
-
-                labBillDate.Text = txtReturnedQuantity.Text = txtCode.Text = txtTotalMeter.Text = "";
-
-                dataGridView1.DataSource = null;
-                dataGridView2.Rows.Clear();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void clear(Control tlp)
-        {
-            foreach (Control co in tlp.Controls)
-            {
-                if (co is Panel || co is TableLayoutPanel)
-                {
-                    foreach (Control item in co.Controls)
-                    {
-                        if (item is System.Windows.Forms.ComboBox)
-                        {
-                            item.Text = "";
-                        }
-                        else if (item is TextBox)
-                        {
-                            item.Text = "";
-                        }
-                    }
-                }
             }
         }
 
@@ -504,14 +407,12 @@ namespace MainSystem
         {
             try
             {
-                /*listBoxControlCustomerBill.Items.Clear();*/
-                dataGridView1.DataSource = null;
-                dataGridView2.Rows.Clear();
+                /*dataGridView1.DataSource = null;
+                dataGridView2.Rows.Clear();*/
                 txtPermissionNum.Text = "";
                 txtCode.Text = "";
-                txtTotalMeter.Text = "";
-                txtReturnedQuantity.Text = "";
-                labBillDate.Text = "";
+                txtBalat.Text = "";
+                txtCarton.Text = "";
             }
             catch(Exception ex)
             {
@@ -532,15 +433,14 @@ namespace MainSystem
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
 
-                    dataGridView1.DataSource = dtProduct;
+                    /*dataGridView1.DataSource = dtProduct;
                     dataGridView1.Columns[0].Visible = false;
                     dataGridView1.Columns["Storage_ID"].Visible = false;
-                    dataGridView2.Rows.Clear();
+                    dataGridView2.Rows.Clear();*/
 
                     txtCode.Text = "";
-                    txtTotalMeter.Text = "";
-                    txtReturnedQuantity.Text = "";
-                    labBillDate.Text = "";
+                    txtBalat.Text = "";
+                    txtCarton.Text = "";
 
                     dbconnection.Open();
                     query = "select * from customer_bill where customer_bill.Branch_BillNumber=" + txtPermissionNum.Text + " and customer_bill.Branch_ID=" + storeId;
@@ -550,9 +450,9 @@ namespace MainSystem
                     {
                         while (dr.Read())
                         {
-                            labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
+                            /*labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
 
-                            /*if (!listBoxControlCustomerBill.Items.Contains(txtPermissionNum.Text))
+                            if (!listBoxControlCustomerBill.Items.Contains(txtPermissionNum.Text))
                             {
                                 listBoxControlCustomerBill.Items.Add(txtPermissionNum.Text);
                             }*/
@@ -572,13 +472,164 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void txtPermissionNum_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtPermissionNum.Text != "")
+                {
+                    dbconnection.Close();
+
+                    search();
+
+                    dbconnection.Open();
+                    string q = "select import_supplier_permission.Supplier_ID from import_supplier_permission INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    loaded = false;
+                    if (com.ExecuteScalar() != null)
+                    {
+                        comSupplier.SelectedValue = com.ExecuteScalar().ToString();
+                        comSupplier.Enabled = false;
+                        comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
+                    }
+                    else
+                    {
+                        comSupplier.SelectedIndex = -1;
+                        comSupplier.Enabled = true;
+                        comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
+                    }
+                    loaded = true;
+                }
+                else
+                {
+                    gridControl2.DataSource = null;
+
+                    loaded = false;
+                    comSupplier.SelectedIndex = -1;
+                    loaded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void txtCarton_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null && !flagCarton)
+                {
+                    int NoCartons = 0;
+                    double totalMeter = 0;
+                    double carton = double.Parse(row1["الكرتنة"].ToString());
+                    if (carton > 0)
+                    {
+                        if (int.TryParse(txtCarton.Text, out NoCartons))
+                        { }
+                        if (double.TryParse(txtTotalMeter.Text, out totalMeter))
+                        { }
+
+                        double total = carton * NoCartons;
+                        flag = true;
+                        txtTotalMeter.Text = (total).ToString();
+                        flag = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtTotalMeter_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null && !flag)
+                {
+                    double totalMeter = 0;
+                    if (double.TryParse(txtTotalMeter.Text, out totalMeter))
+                    {
+                        double carton = double.Parse(row1["الكرتنة"].ToString());
+                        if (carton > 0)
+                        {
+                            flagCarton = true;
+                            double total = totalMeter / carton;
+                            txtCarton.Text = Convert.ToInt16(total).ToString();
+                            flagCarton = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+                string v = row1["الكود"].ToString();
+                txtCode.Text = v;
+                
+                txtTotalMeter.Text = "0";
+                txtCarton.Text = "0";
+                txtBalat.Text = "0";
+                double carton = double.Parse(row1["الكرتنة"].ToString());
+                if (carton == 0)
+                {
+                    txtCarton.ReadOnly = true;
+                    txtBalat.ReadOnly = true;
+                }
+                else
+                {
+                    txtCarton.ReadOnly = false;
+                    txtBalat.ReadOnly = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void search()
+        {
+            string qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId;
+            MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+            gridView1.Columns["Data_ID"].Visible = false;
+            gridView1.Columns["Supplier_ID"].Visible = false;
+            gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
+            gridView1.Columns["Store_Place_ID"].Visible = false;
+
+            qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId;
+            da = new MySqlDataAdapter(qq, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+            gridView2.Columns["Data_ID"].Visible = false;
+            gridView2.Columns["Supplier_ID"].Visible = false;
+            gridView2.Columns["Supplier_Permission_Details_ID"].Visible = false;
+            gridView2.Columns["Store_Place_ID"].Visible = false;
+        }
+
         bool IsAdded(DataGridViewRow row1)
         {
-            foreach (DataGridViewRow item in dataGridView2.Rows)
+            /*foreach (DataGridViewRow item in dataGridView2.Rows)
             {
                 if ((row1.Cells["Data_ID"].Value.ToString() == item.Cells["Data_ID"].Value.ToString()) && (row1.Cells["الفئة"].Value.ToString() == item.Cells["Type"].Value.ToString()) && (row1.Cells["CustomerBill_ID"].Value.ToString() == item.Cells["CustomerBill_ID"].Value.ToString()))
                     return true;
-            }
+            }*/
             return false;
         }
         
@@ -679,6 +730,98 @@ namespace MainSystem
             
             connectionReader2.Close();
             connectionReader.Close();
+        }
+
+        //function
+        //display bill number for selected customer/client
+        public void DisplayBillNumber(int customerID, int clientID)
+        {
+            string strQuery = "";
+            try
+            {
+                dbconnection.Open();
+
+                if (clientID > 0)
+                {
+
+                    strQuery = " and Client_ID = " + clientID + "";
+                }
+                if (customerID > 0)
+                {
+
+                    strQuery += " and Customer_ID = " + customerID + "";
+                }
+                txtPermissionNum.Text = "";
+                flag = false;
+                string query = "";
+
+                if (strQuery != "")
+                {
+                    query = "select Branch_BillNumber,CustomerBill_ID from customer_bill where Branch_ID=" + storeId + strQuery;
+                }
+                else
+                {
+                    query = "select Branch_BillNumber,CustomerBill_ID from customer_bill where Branch_ID=" + storeId;
+                }
+                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //comBillNumber.DataSource = dt;
+                //comBillNumber.DisplayMember = dt.Columns["Branch_BillNumber"].ToString();
+                //comBillNumber.ValueMember = dt.Columns["CustomerBill_ID"].ToString();
+                //comBillNumber.Text = "";
+
+                flag = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //clear all fields
+        private void clrearAll()
+        {
+            try
+            {
+                txtReason.Text = "";
+
+                txtCarton.Text = txtCode.Text = txtBalat.Text = "";
+
+                /*dataGridView1.DataSource = null;
+                dataGridView2.Rows.Clear();*/
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void clear(Control tlp)
+        {
+            foreach (Control co in tlp.Controls)
+            {
+                if (co is Panel || co is TableLayoutPanel)
+                {
+                    foreach (Control item in co.Controls)
+                    {
+                        if (item is System.Windows.Forms.ComboBox)
+                        {
+                            item.Text = "";
+                        }
+                        else if (item is TextBox)
+                        {
+                            item.Text = "";
+                        }
+                    }
+                }
+            }
         }
     }
 }
