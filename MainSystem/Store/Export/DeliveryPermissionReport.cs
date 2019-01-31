@@ -10,12 +10,13 @@ namespace MainSystem
     public partial class DeliveryPermissionReport : DevExpress.XtraReports.UI.XtraReport
     {
 
-        public DeliveryPermissionReport(List<DeliveryPermissionClass> listOfData)
+        public DeliveryPermissionReport(List<DeliveryPermissionClass> listOfData,string PerNum)
         {
             try
             {
                 InitializeComponent();
                 DataSource = listOfData;
+                PermissionNumber.Value = PerNum;
             }
             catch (Exception ex)
             {
