@@ -137,12 +137,12 @@
             // 
             this.txtReason.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtReason.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReason.Location = new System.Drawing.Point(320, 40);
+            this.txtReason.Location = new System.Drawing.Point(311, 40);
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
             this.txtReason.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtReason.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtReason.Size = new System.Drawing.Size(170, 36);
+            this.txtReason.Size = new System.Drawing.Size(179, 36);
             this.txtReason.TabIndex = 198;
             // 
             // tableLayoutPanel1
