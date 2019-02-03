@@ -305,7 +305,7 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    xtraTabPage = getTabPage("tabPageShippingRecord");
+                    xtraTabPage = getTabPage("تسجيل شحنة");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = MainSystem.Properties.Resources.unsave;
@@ -360,7 +360,7 @@ namespace MainSystem
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < MainForm.tabControlShipping.TabPages.Count; i++)
-                if (MainForm.tabControlShipping.TabPages[i].Name == text)
+                if (MainForm.tabControlShipping.TabPages[i].Text == text)
                 {
                     return MainForm.tabControlShipping.TabPages[i];
                 }
