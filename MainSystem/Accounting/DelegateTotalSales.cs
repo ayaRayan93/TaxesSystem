@@ -270,5 +270,40 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtDelegateID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comDelegate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelDelegate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimeTo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimeFrom_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

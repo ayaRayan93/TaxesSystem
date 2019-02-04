@@ -2268,6 +2268,9 @@
     <EmbeddedResource Include="Store\Export\DeliveryPermissionReportViewer.resx">
       <DependentUpon>DeliveryPermissionReportViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\PermissionsDelivery.resx">
+      <DependentUpon>PermissionsDelivery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">
       <DependentUpon>GateEnter_Details.cs</DependentUpon>
     </EmbeddedResource>
