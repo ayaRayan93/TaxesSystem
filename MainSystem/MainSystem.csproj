@@ -1430,6 +1430,19 @@
     <Compile Include="Store\Gate\Permissions_Edit.Designer.cs">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\استرجاع\Print_StorageReturn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Import\استرجاع\Print_StorageReturn.designer.cs">
+      <DependentUpon>Print_StorageReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Import\استرجاع\Report_StorageReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\استرجاع\Report_StorageReturn.designer.cs">
+      <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Import\استرجاع\StorageReturn_Items.cs" />
     <Compile Include="Store\initialCodeStorage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2276,6 +2289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\Permissions_Edit.resx">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\استرجاع\Print_StorageReturn.resx">
+      <DependentUpon>Print_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
+      <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
