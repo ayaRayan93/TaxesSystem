@@ -72,9 +72,9 @@
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.labBillNumber.Location = new System.Drawing.Point(578, 0);
             this.labBillNumber.Name = "labBillNumber";
-            this.labBillNumber.Size = new System.Drawing.Size(54, 18);
+            this.labBillNumber.Size = new System.Drawing.Size(72, 18);
             this.labBillNumber.TabIndex = 161;
-            this.labBillNumber.Text = "اذن رقم";
+            this.labBillNumber.Text = "اذن المخزن";
             // 
             // txtCode
             // 

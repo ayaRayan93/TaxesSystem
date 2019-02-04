@@ -74,6 +74,7 @@
             this.StoreName = new DevExpress.XtraReports.Parameters.Parameter();
             this.PermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -501,7 +502,9 @@
             // 
             // ReportFooter
             // 
-            this.ReportFooter.HeightF = 0F;
+            this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel7});
+            this.ReportFooter.HeightF = 20F;
             this.ReportFooter.Name = "ReportFooter";
             // 
             // DateNow
@@ -532,6 +535,18 @@
             // 
             this.SupplierName.Description = "SupplierName";
             this.SupplierName.Name = "SupplierName";
+            // 
+            // xrLabel7
+            // 
+            this.xrLabel7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(150F, 0F);
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(102.4432F, 20F);
+            this.xrLabel7.StylePriority.UseFont = false;
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
+            this.xrLabel7.Text = ":مسئول التعتيق";
+            this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // objectDataSource1
             // 
@@ -614,5 +629,6 @@
         private DevExpress.XtraReports.Parameters.Parameter SupplierName;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel7;
     }
 }

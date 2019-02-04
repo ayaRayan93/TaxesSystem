@@ -1436,37 +1436,37 @@
     <Compile Include="Store\initialCodeStorage.designer.cs">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\Report_SupplierReceipt.cs">
+    <Compile Include="Store\Import\استلام\Report_SupplierReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\Report_SupplierReceipt.designer.cs">
+    <Compile Include="Store\Import\استلام\Report_SupplierReceipt.designer.cs">
       <DependentUpon>Report_SupplierReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\Print_SupplierReceipt.cs">
+    <Compile Include="Store\Import\استلام\Print_SupplierReceipt.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\Print_SupplierReceipt.designer.cs">
+    <Compile Include="Store\Import\استلام\Print_SupplierReceipt.designer.cs">
       <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\StorageReturnBill.cs">
+    <Compile Include="Store\Import\استرجاع\StorageReturnBill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\StorageReturnBill.designer.cs">
+    <Compile Include="Store\Import\استرجاع\StorageReturnBill.designer.cs">
       <DependentUpon>StorageReturnBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\SupplierReceipt2.cs">
+    <Compile Include="Store\Import\استلام\SupplierReceipt2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\SupplierReceipt2.designer.cs">
+    <Compile Include="Store\Import\استلام\SupplierReceipt2.designer.cs">
       <DependentUpon>SupplierReceipt2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\SupplierReceipt.cs">
+    <Compile Include="Store\Import\SupplierReceipt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\SupplierReceipt.designer.cs">
+    <Compile Include="Store\Import\SupplierReceipt.designer.cs">
       <DependentUpon>SupplierReceipt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\SupplierReceipt_Items.cs" />
+    <Compile Include="Store\Import\استلام\SupplierReceipt_Items.cs" />
     <Compile Include="Store\ProductItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1593,22 +1593,22 @@
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\TransportationStore.cs">
+    <Compile Include="Store\Import\TransportationStore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\TransportationStore.designer.cs">
+    <Compile Include="Store\Import\TransportationStore.designer.cs">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\FormDelivery.cs">
+    <Compile Include="Store\Import\FormDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\FormDelivery.designer.cs">
+    <Compile Include="Store\Import\FormDelivery.designer.cs">
       <DependentUpon>FormDelivery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\InternalDelivery\Form2SpeicalOrder.cs">
+    <Compile Include="Store\Import\Form2SpeicalOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\InternalDelivery\Form2SpeicalOrder.designer.cs">
+    <Compile Include="Store\Import\Form2SpeicalOrder.designer.cs">
       <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="PermissionImage.cs">
@@ -2280,19 +2280,19 @@
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\Report_SupplierReceipt.resx">
+    <EmbeddedResource Include="Store\Import\استلام\Report_SupplierReceipt.resx">
       <DependentUpon>Report_SupplierReceipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\Print_SupplierReceipt.resx">
+    <EmbeddedResource Include="Store\Import\استلام\Print_SupplierReceipt.resx">
       <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\StorageReturnBill.resx">
+    <EmbeddedResource Include="Store\Import\استرجاع\StorageReturnBill.resx">
       <DependentUpon>StorageReturnBill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\SupplierReceipt2.resx">
+    <EmbeddedResource Include="Store\Import\استلام\SupplierReceipt2.resx">
       <DependentUpon>SupplierReceipt2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\SupplierReceipt.resx">
+    <EmbeddedResource Include="Store\Import\SupplierReceipt.resx">
       <DependentUpon>SupplierReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\ProductItems.resx">
@@ -2358,13 +2358,13 @@
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\TransportationStore.resx">
+    <EmbeddedResource Include="Store\Import\TransportationStore.resx">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\FormDelivery.resx">
+    <EmbeddedResource Include="Store\Import\FormDelivery.resx">
       <DependentUpon>FormDelivery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\InternalDelivery\Form2SpeicalOrder.resx">
+    <EmbeddedResource Include="Store\Import\Form2SpeicalOrder.resx">
       <DependentUpon>Form2SpeicalOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PermissionImage.resx">
