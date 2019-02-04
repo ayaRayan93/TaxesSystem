@@ -23,6 +23,7 @@ namespace MainSystem
         DataRow row1 = null;
         bool loaded = false;
         int storageReturnSupplierId = 0;
+        int ReturnedPermissionNumber = 1;
 
         public StorageReturnBill(MainForm SalesMainForm, DevExpress.XtraTab.XtraTabControl TabControlStores)
         {
@@ -132,14 +133,14 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() == null)
                         {
-                            string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + storeId + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
+                            /*string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + storeId + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
                             MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
-                            int ReturnedPermissionNumber = 1;
+                            ReturnedPermissionNumber = 1;
                             if (com3.ExecuteScalar() != null)
                             {
                                 int r = int.Parse(com3.ExecuteScalar().ToString());
                                 ReturnedPermissionNumber = r + 1;
-                            }
+                            }*/
 
                             query = "insert into import_storage_return (Store_ID,Returned_Permission_Number,Retrieval_Date,Import_Permission_Number,StorageImportPermission_ID) values (@Store_ID,@Returned_Permission_Number,@Retrieval_Date,@Import_Permission_Number,@StorageImportPermission_ID)";
                             com = new MySqlCommand(query, dbconnection);
@@ -328,22 +329,6 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
                         }
-                        /*else
-                        {
-                            query = "insert into Storage (Store_ID,Store_Place_ID,Type,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Type,@Data_ID,@Total_Meters)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_ID"].Value = storeId;
-                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_Place_ID"].Value = row1["Store_Place_ID"].ToString();
-                            com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                            com.Parameters["@Type"].Value = "بند";
-                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = row1[0].ToString();
-                            com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                            com.Parameters["@Total_Meters"].Value = total;
-                            com.ExecuteNonQuery();
-                        }*/
 
                         comSupplier.Enabled = false;
                         comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -429,6 +414,24 @@ namespace MainSystem
                     search();
 
                     dbconnection.Open();
+                    string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + storeId + " and Import_Permission_Number=" + txtPermissionNum.Text;
+                    MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
+                    ReturnedPermissionNumber = 1;
+                    if (com3.ExecuteScalar() != null)
+                    {
+                        ReturnedPermissionNumber = int.Parse(com3.ExecuteScalar().ToString());
+                    }
+                    else
+                    {
+                        qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + storeId + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
+                        com3 = new MySqlCommand(qq, dbconnection);
+                        if (com3.ExecuteScalar() != null)
+                        {
+                            int r = int.Parse(com3.ExecuteScalar().ToString());
+                            ReturnedPermissionNumber = r + 1;
+                        }
+                    }
+
                     string q = "select import_supplier_permission.Supplier_ID from import_supplier_permission INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
                     MySqlCommand com = new MySqlCommand(q, dbconnection);
                     loaded = false;
@@ -676,7 +679,7 @@ namespace MainSystem
                     double balate = 0;
                     double quantity = 0;
 
-                    List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
+                    List<StorageReturn_Items> bi = new List<StorageReturn_Items>();
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]) != "")
@@ -692,12 +695,12 @@ namespace MainSystem
                             quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]));
                         }
 
-                        SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
+                        StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd hh:mm:ss"), Reason = gridView2.GetRowCellDisplayText(i, gridView2.Columns["السبب"]) };
                         bi.Add(item);
                     }
 
-                    Report_SupplierReceipt f = new Report_SupplierReceipt();
-                    f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, bi);
+                    Report_StorageReturn f = new Report_StorageReturn();
+                    f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, bi);
                     f.ShowDialog();
                 }
                 else
