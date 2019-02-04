@@ -19,7 +19,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         string Store_ID = "0";
-        
+        bool loaded = false;
         public CustomerDelivery()
         {
             try
@@ -32,7 +32,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -51,11 +50,13 @@ namespace MainSystem
         private void GridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             GridView view = sender as GridView;
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[0], "1");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[1], "2");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[2], "3");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[3], "4");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[4], "5");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[0], 0);
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[1], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[2], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[3], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[4], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[5], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[6], "0");
         }
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -161,65 +162,6 @@ namespace MainSystem
             {
             }
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //try
-            //{
-            //    dbconnection.Open();
-            //    row1 = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-            //    txtCode.Text = row1.Cells[0].Value.ToString();
-            //    string code= row1.Cells[0].Value.ToString();
-            //    double quantity = Convert.ToDouble(row1.Cells[1].Value);
-                
-            //    if (int.TryParse(txtStoreID.Text, out storeId) && int.TryParse(txtBranchID.Text, out branchID) && int.TryParse(txtBillNumber.Text, out BranchBillNum))
-            //    {
-            //        string query = "select Store_Place from storage where Store_ID=" + storeId + " and Code='" + code+"' order by Storage_Date ";
-            //        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-            //        DataTable dt = new DataTable();
-            //        da.Fill(dt);
-            //        comStorePlace.DataSource = dt;
-            //        comStorePlace.DisplayMember = dt.Columns["Store_Place"].ToString();
-            //        comStorePlace.Text = "";
-
-            //        query = "select sum(Received_Quantity) from received_bill_store where Branch_ID=" + branchID + " and Branch_BillNumber=" + BranchBillNum+" and Code="+code;
-            //        MySqlCommand com = new MySqlCommand(query,dbconnection);
-            //        if (com.ExecuteScalar().ToString() != "")
-            //        {
-            //            double recivedQuantity = Convert.ToDouble(com.ExecuteScalar());
-            //            txtRecivedQuantity.Text = (quantity - recivedQuantity).ToString();
-
-            //        }
-            //        else
-            //        {
-            //            txtRecivedQuantity.Text = quantity.ToString();
-            //        }
-
-            //        finish = false;
-
-                
-            //        for (int i = 0; i < recordFinishedCount; i++)
-            //        {
-            //            if (recordFinishedCode[i].Split('*')[0] == code && recordFinishedCode[i].Split('*')[1] == BranchBillNum.ToString() && recordFinishedCode[i].Split('*')[2] == branchID.ToString())
-            //            {
-            //                finish = true;
-                               
-            //            }   
-            //        }
-            //        groupBox3.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("insert correct value");
-            //    }
-              
-                
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //dbconnection.Close();
-        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -262,9 +204,11 @@ namespace MainSystem
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
                         com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
-                        com.Parameters["@DeliveredQuantity"].Value = row1[5].ToString();
+                        com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
                         com.Parameters.Add("@Carton", MySqlDbType.Double);
-                        com.Parameters["@Carton"].Value = row1[4].ToString();
+                        com.Parameters["@Carton"].Value = row1[5].ToString();
+                        com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
+                        com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
                         com.Parameters.Add("@Date", MySqlDbType.Date);
                         com.Parameters["@Date"].Value = dateTimePicker1.Value.Date;
 
@@ -305,6 +249,7 @@ namespace MainSystem
                 row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                 rowHandel1 = e.RowHandle;
                 txtCode.Text= row[1].ToString();
+                txtRecivedQuantity.Text = row[3].ToString();
                 if (radioBtnCustomerDelivery.Checked)
                     Store_ID = row[7].ToString();
                 string query = "select concat(Store_Place_Code ,'   ',Total_Meters) as 'x' from storage inner join store_places on store_places.Store_Place_ID=storage.Store_Place_ID where storage.Store_ID=" + Store_ID + " and  Data_ID=" + row[0].ToString();
@@ -314,6 +259,52 @@ namespace MainSystem
                 comStorePlace.DataSource = dt;
                 comStorePlace.DisplayMember = dt.Columns["x"].ToString();
                 txtRecivedQuantity.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+       {
+            try
+            {
+                if (loaded)
+                {
+                    if (e.Column.Name == "Carton")
+                    {
+                        GridView view = (GridView)sender;
+                        DataRow dataRow = view.GetFocusedDataRow();
+                        double totalQuantityDelivery = Convert.ToDouble(dataRow["DeliveryQuantity"].ToString());
+                        double cellValue = Convert.ToDouble(e.Value);
+                        double re = totalQuantityDelivery / cellValue;
+
+                        view.SetRowCellValue(view.GetSelectedRows()[0], "NumOfCarton", re + "");
+
+                    }
+                    else if (e.Column.Name == "DeliveryQuantity")
+                    {
+                        GridView view = (GridView)sender;
+                        DataRow dataRow = view.GetFocusedDataRow();
+                        double Carton = Convert.ToDouble(dataRow["Carton"].ToString());
+                        double cellValue = Convert.ToDouble(e.Value);
+                        double re = 0;
+                        if (Carton != 0)
+                            re = cellValue / Carton;
+
+                        view.SetRowCellValue(view.GetSelectedRows()[0], "NumOfCarton", re + "");
+                    }
+                    else if (e.Column.Name == "Carton")
+                    {
+                        GridView view = (GridView)sender;
+                        DataRow dataRow = view.GetFocusedDataRow();
+                        double NumOfCarton = Convert.ToDouble(dataRow["NumOfCarton"].ToString());
+                        double cellValue = Convert.ToDouble(e.Value);
+                        double re = cellValue * NumOfCarton;
+
+                        view.SetRowCellValue(view.GetSelectedRows()[0], "DeliveryQuantity", re + "");
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -390,8 +381,8 @@ namespace MainSystem
         }
         public void addNewRow(DataRow row)
         {
-            if (!IsExist(row[0].ToString()))
-            {
+            //if (!IsExist(row[0].ToString()))
+            //{
                 gridView2.AddNewRow();
 
                 int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
@@ -401,11 +392,19 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[3]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row[5]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtRecivedQuantity.Text);
+
+                    double re = 0,carton=0;
+                    if (Convert.ToDouble(row[5])!=0)
+                      re = Convert.ToDouble(txtRecivedQuantity.Text) / Convert.ToDouble(row[5]);
+                    carton = Convert.ToDouble(row[5]);
+
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين المستلمة"],re+"");
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكرتنة"], carton+"");
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtRecivedQuantity.Text);
                 }
-            }
-        }     
+            loaded = true;
+           // }
+        }           
         public bool IsExist(string Data_ID)
         {
             for (int i = 0; i < gridView2.RowCount; i++)
@@ -442,6 +441,7 @@ namespace MainSystem
             gridControl2.DataSource = dh.DataSet;
             gridControl2.DataMember = dh.DataMember;
         }
+
     }
 
    

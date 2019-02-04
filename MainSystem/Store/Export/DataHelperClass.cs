@@ -102,7 +102,7 @@ namespace MainSystem
             column.ReadOnly = false;
             column.Unique = false;
 
-            table.Columns.Add(column);
+            table.Columns.Add(column); 
 
             column = new DataColumn();
             column.DataType = typeof(string);
@@ -114,7 +114,19 @@ namespace MainSystem
 
             table.Columns.Add(column);
 
-        
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "NumOfCarton";
+            column.AutoIncrement = false;
+            column.Caption = "عدد الكراتين المستلمة";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+       
+
+    
 
             DataSet = new DataSet();
             DataSet.Tables.Add(table);

@@ -60,7 +60,6 @@
             this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.calcEdit1 = new DevExpress.XtraEditors.CalcEdit();
             this.labStoreName = new System.Windows.Forms.Label();
             this.radioBtnDriverDelivery = new System.Windows.Forms.RadioButton();
             this.radioBtnCustomerDelivery = new System.Windows.Forms.RadioButton();
@@ -74,6 +73,8 @@
             this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DeliveryQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -83,7 +84,6 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.calcEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -269,7 +269,7 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.txtCode);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox3.Location = new System.Drawing.Point(3, 350);
+            this.groupBox3.Location = new System.Drawing.Point(3, 415);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox3.Size = new System.Drawing.Size(990, 84);
@@ -410,7 +410,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 655);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 785);
             this.tableLayoutPanel1.TabIndex = 237;
             // 
             // tableLayoutPanel2
@@ -420,12 +420,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 403F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 412F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnPrint, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 607);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 737);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
@@ -447,10 +447,10 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(507, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(514, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(122, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(120, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -468,10 +468,10 @@
             this.btnPrint.ImageZoom = 25;
             this.btnPrint.LabelPosition = 18;
             this.btnPrint.LabelText = "طباعة تقرير";
-            this.btnPrint.Location = new System.Drawing.Point(405, 0);
+            this.btnPrint.Location = new System.Drawing.Point(414, 0);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(102, 45);
+            this.btnPrint.Size = new System.Drawing.Size(100, 45);
             this.btnPrint.TabIndex = 2;
             // 
             // panel1
@@ -485,7 +485,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.calcEdit1);
             this.panel2.Controls.Add(this.labStoreName);
             this.panel2.Controls.Add(this.radioBtnDriverDelivery);
             this.panel2.Controls.Add(this.radioBtnCustomerDelivery);
@@ -499,15 +498,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(990, 74);
             this.panel2.TabIndex = 230;
-            // 
-            // calcEdit1
-            // 
-            this.calcEdit1.Location = new System.Drawing.Point(684, 16);
-            this.calcEdit1.Name = "calcEdit1";
-            this.calcEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.calcEdit1.Size = new System.Drawing.Size(100, 20);
-            this.calcEdit1.TabIndex = 239;
             // 
             // labStoreName
             // 
@@ -555,7 +545,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 183);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(990, 161);
+            this.gridControl1.Size = new System.Drawing.Size(990, 226);
             this.gridControl1.TabIndex = 231;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -582,10 +572,10 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 440);
+            this.gridControl2.Location = new System.Drawing.Point(3, 505);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(990, 161);
+            this.gridControl2.Size = new System.Drawing.Size(990, 226);
             this.gridControl2.TabIndex = 232;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -605,12 +595,14 @@
             this.Code,
             this.ItemName,
             this.Quantity,
+            this.DeliveryQuantity,
             this.Carton,
-            this.DeliveryQuantity});
+            this.NumOfCarton});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
             // Data_ID
             // 
@@ -638,7 +630,7 @@
             // 
             // Quantity
             // 
-            this.Quantity.Caption = "الكمية";
+            this.Quantity.Caption = "الكمية المطلوبة";
             this.Quantity.FieldName = "TotalQuantity";
             this.Quantity.Name = "Quantity";
             this.Quantity.Visible = true;
@@ -650,22 +642,37 @@
             this.Carton.FieldName = "Carton";
             this.Carton.Name = "Carton";
             this.Carton.Visible = true;
-            this.Carton.VisibleIndex = 3;
+            this.Carton.VisibleIndex = 4;
             // 
             // DeliveryQuantity
             // 
-            this.DeliveryQuantity.Caption = "الكمية المستلمة";
+            this.DeliveryQuantity.Caption = "الكمية المستلمة ب المتر/القطعة";
             this.DeliveryQuantity.FieldName = "DeliveryQuantity";
             this.DeliveryQuantity.Name = "DeliveryQuantity";
             this.DeliveryQuantity.Visible = true;
-            this.DeliveryQuantity.VisibleIndex = 4;
+            this.DeliveryQuantity.VisibleIndex = 3;
+            // 
+            // NumOfCarton
+            // 
+            this.NumOfCarton.Caption = "عدد الكراتين المستلمة";
+            this.NumOfCarton.FieldName = "NumOfCarton";
+            this.NumOfCarton.Name = "NumOfCarton";
+            this.NumOfCarton.Visible = true;
+            this.NumOfCarton.VisibleIndex = 5;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "عدد الكراتين المستلمة";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 4;
             // 
             // CustomerDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(996, 655);
+            this.ClientSize = new System.Drawing.Size(996, 785);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "CustomerDelivery";
@@ -685,7 +692,6 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.calcEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -738,9 +744,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn ItemName;
         private DevExpress.XtraGrid.Columns.GridColumn Quantity;
         private DevExpress.XtraGrid.Columns.GridColumn Carton;
-        private DevExpress.XtraEditors.CalcEdit calcEdit1;
         private Bunifu.Framework.UI.BunifuTileButton btnPrint;
         private DevExpress.XtraGrid.Columns.GridColumn DeliveryQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn NumOfCarton;
     }
 }
 
