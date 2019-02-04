@@ -1400,6 +1400,12 @@
     <Compile Include="Store\Export\DeliveryPermissionReportViewer.Designer.cs">
       <DependentUpon>DeliveryPermissionReportViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Export\PermissionsDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\PermissionsDelivery.Designer.cs">
+      <DependentUpon>PermissionsDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Gate\GateEnter_Details.cs">
       <SubType>Form</SubType>
     </Compile>
