@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement31 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement32 = new DevExpress.XtraEditors.TileItemElement();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement33 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement34 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement35 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement36 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement37 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement38 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement39 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement40 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement41 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement42 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement43 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement44 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement45 = new DevExpress.XtraEditors.TileItemElement();
             this.xtraTabControlMainContainer = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageMain = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,7 +61,7 @@
             this.btnCustomerService = new DevExpress.XtraEditors.TileItem();
             this.btnPOS = new DevExpress.XtraEditors.TileItem();
             this.btnReception = new DevExpress.XtraEditors.TileItem();
-            this.btnBuying = new DevExpress.XtraEditors.TileItem();
+            this.btnPurchases = new DevExpress.XtraEditors.TileItem();
             this.tileGroup4 = new DevExpress.XtraEditors.TileGroup();
             this.btnReports = new DevExpress.XtraEditors.TileItem();
             this.btnCoding = new DevExpress.XtraEditors.TileItem();
@@ -72,9 +72,9 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemDelivery = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemStoreReturn = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -91,9 +91,9 @@
             this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemImportedPermission = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemStoreReturn = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemDelivery = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -411,6 +411,38 @@
             this.navBarItem196 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem52 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem155 = new DevExpress.XtraNavBar.NavBarItem();
+            this.xtraTabPagePurchases = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabControlPurchases = new DevExpress.XtraTab.XtraTabControl();
+            this.navBarControl7 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup48 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemPurchasesPricesRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem206 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem207 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem208 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem209 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem210 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem211 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem212 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem213 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem214 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem215 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem216 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem217 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem218 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem219 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem13 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem197 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem204 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem205 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem198 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem199 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem200 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem201 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem202 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem12 = new DevExpress.XtraNavBar.NavBarItem();
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
@@ -462,6 +494,9 @@
             this.xtraTabPageCoding.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlCoding)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl6)).BeginInit();
+            this.xtraTabPagePurchases.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPurchases)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl7)).BeginInit();
             this.panMain.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -510,7 +545,8 @@
             this.xtraTabPageReception,
             this.xtraTabPageShipping,
             this.xtraTabPageAccounting,
-            this.xtraTabPageCoding});
+            this.xtraTabPageCoding,
+            this.xtraTabPagePurchases});
             this.xtraTabControlMainContainer.CloseButtonClick += new System.EventHandler(this.xtraTabControlMainContainer_CloseButtonClick);
             // 
             // xtraTabPageMain
@@ -586,8 +622,8 @@
             this.tileItem2.BackgroundImage = global::MainSystem.Properties.Resources.Logo2;
             this.tileItem2.BackgroundImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             this.tileItem2.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement1.Text = "";
-            this.tileItem2.Elements.Add(tileItemElement1);
+            tileItemElement31.Text = "";
+            this.tileItem2.Elements.Add(tileItemElement31);
             this.tileItem2.Id = 33;
             this.tileItem2.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem2.Name = "tileItem2";
@@ -608,12 +644,12 @@
             this.btnSales.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnSales.AppearanceItem.Normal.Options.UseFont = true;
             this.btnSales.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            tileItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement2.Text = "المبيعات";
-            tileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnSales.Elements.Add(tileItemElement2);
+            tileItemElement32.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            tileItemElement32.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement32.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement32.Text = "المبيعات";
+            tileItemElement32.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnSales.Elements.Add(tileItemElement32);
             this.btnSales.Enabled = false;
             this.btnSales.Id = 13;
             this.btnSales.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
@@ -627,12 +663,12 @@
             this.btnStores.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnStores.AppearanceItem.Normal.Options.UseFont = true;
             this.btnStores.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement3.ImageOptions.Image = global::MainSystem.Properties.Resources.Trolley_80px;
-            tileItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement3.Text = "المخازن";
-            tileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnStores.Elements.Add(tileItemElement3);
+            tileItemElement33.ImageOptions.Image = global::MainSystem.Properties.Resources.Trolley_80px;
+            tileItemElement33.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement33.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement33.Text = "المخازن";
+            tileItemElement33.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnStores.Elements.Add(tileItemElement33);
             this.btnStores.Enabled = false;
             this.btnStores.Id = 9;
             this.btnStores.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
@@ -646,12 +682,12 @@
             this.btnCars.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCars.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCars.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            tileItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement4.Text = "أدارة السيارات";
-            tileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnCars.Elements.Add(tileItemElement4);
+            tileItemElement34.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            tileItemElement34.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement34.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement34.Text = "أدارة السيارات";
+            tileItemElement34.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnCars.Elements.Add(tileItemElement34);
             this.btnCars.Enabled = false;
             this.btnCars.Id = 4;
             this.btnCars.Name = "btnCars";
@@ -672,12 +708,12 @@
             this.TIElsha7n.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TIElsha7n.AppearanceItem.Normal.Options.UseFont = true;
             this.TIElsha7n.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement5.Text = "الشحن";
-            tileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.TIElsha7n.Elements.Add(tileItemElement5);
+            tileItemElement35.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            tileItemElement35.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement35.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement35.Text = "الشحن";
+            tileItemElement35.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.TIElsha7n.Elements.Add(tileItemElement35);
             this.TIElsha7n.Enabled = false;
             this.TIElsha7n.Id = 3;
             this.TIElsha7n.Name = "TIElsha7n";
@@ -688,7 +724,7 @@
             this.tileGroup3.Items.Add(this.btnCustomerService);
             this.tileGroup3.Items.Add(this.btnPOS);
             this.tileGroup3.Items.Add(this.btnReception);
-            this.tileGroup3.Items.Add(this.btnBuying);
+            this.tileGroup3.Items.Add(this.btnPurchases);
             this.tileGroup3.Name = "tileGroup3";
             // 
             // btnCustomerService
@@ -700,12 +736,12 @@
             this.btnCustomerService.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCustomerService.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCustomerService.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            tileItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement6.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement6.Text = "خدمة العملاء";
-            tileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnCustomerService.Elements.Add(tileItemElement6);
+            tileItemElement36.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            tileItemElement36.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement36.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement36.Text = "خدمة العملاء";
+            tileItemElement36.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnCustomerService.Elements.Add(tileItemElement36);
             this.btnCustomerService.Enabled = false;
             this.btnCustomerService.Id = 12;
             this.btnCustomerService.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
@@ -718,12 +754,12 @@
             this.btnPOS.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPOS.AppearanceItem.Normal.Options.UseFont = true;
             this.btnPOS.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
-            tileItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement7.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement7.Text = "نقطة البيع";
-            tileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnPOS.Elements.Add(tileItemElement7);
+            tileItemElement37.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            tileItemElement37.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement37.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement37.Text = "نقطة البيع";
+            tileItemElement37.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnPOS.Elements.Add(tileItemElement37);
             this.btnPOS.Enabled = false;
             this.btnPOS.Id = 11;
             this.btnPOS.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
@@ -738,31 +774,32 @@
             this.btnReception.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseFont = true;
-            tileItemElement8.Text = "الاستقبال";
-            tileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            this.btnReception.Elements.Add(tileItemElement8);
+            tileItemElement38.Text = "الاستقبال";
+            tileItemElement38.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            this.btnReception.Elements.Add(tileItemElement38);
             this.btnReception.Enabled = false;
             this.btnReception.Id = 26;
             this.btnReception.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
             this.btnReception.Name = "btnReception";
             this.btnReception.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnReception_ItemClick);
             // 
-            // btnBuying
+            // btnPurchases
             // 
-            this.btnBuying.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(184)))), ((int)(((byte)(74)))));
-            this.btnBuying.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuying.AppearanceItem.Normal.Options.UseBackColor = true;
-            this.btnBuying.AppearanceItem.Normal.Options.UseFont = true;
-            tileItemElement9.ImageOptions.Image = global::MainSystem.Properties.Resources.Shopping_Cart_80px;
-            tileItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement9.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement9.Text = "المشتريات";
-            tileItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnBuying.Elements.Add(tileItemElement9);
-            this.btnBuying.Enabled = false;
-            this.btnBuying.Id = 24;
-            this.btnBuying.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
-            this.btnBuying.Name = "btnBuying";
+            this.btnPurchases.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(184)))), ((int)(((byte)(74)))));
+            this.btnPurchases.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPurchases.AppearanceItem.Normal.Options.UseBackColor = true;
+            this.btnPurchases.AppearanceItem.Normal.Options.UseFont = true;
+            tileItemElement39.ImageOptions.Image = global::MainSystem.Properties.Resources.Shopping_Cart_80px;
+            tileItemElement39.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement39.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement39.Text = "المشتريات";
+            tileItemElement39.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnPurchases.Elements.Add(tileItemElement39);
+            this.btnPurchases.Enabled = false;
+            this.btnPurchases.Id = 24;
+            this.btnPurchases.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
+            this.btnPurchases.Name = "btnPurchases";
+            this.btnPurchases.ItemClick += new DevExpress.XtraEditors.TileItemClickEventHandler(this.btnPurchases_ItemClick);
             // 
             // tileGroup4
             // 
@@ -780,12 +817,12 @@
             this.btnReports.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReports.AppearanceItem.Normal.Options.UseFont = true;
             this.btnReports.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
-            tileItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement10.Text = "التقاير";
-            tileItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnReports.Elements.Add(tileItemElement10);
+            tileItemElement40.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            tileItemElement40.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement40.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement40.Text = "التقاير";
+            tileItemElement40.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnReports.Elements.Add(tileItemElement40);
             this.btnReports.Enabled = false;
             this.btnReports.Id = 19;
             this.btnReports.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
@@ -798,12 +835,12 @@
             this.btnCoding.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCoding.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCoding.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement11.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_48;
-            tileItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement11.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement11.Text = "التكويد";
-            tileItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnCoding.Elements.Add(tileItemElement11);
+            tileItemElement41.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_48;
+            tileItemElement41.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement41.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement41.Text = "التكويد";
+            tileItemElement41.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnCoding.Elements.Add(tileItemElement41);
             this.btnCoding.Enabled = false;
             this.btnCoding.Id = 18;
             this.btnCoding.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
@@ -817,12 +854,12 @@
             this.btnHR.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnHR.AppearanceItem.Normal.Options.UseFont = true;
             this.btnHR.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement12.ImageOptions.Image = global::MainSystem.Properties.Resources.Conference_80px;
-            tileItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement12.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement12.Text = "شئون العاملين";
-            tileItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnHR.Elements.Add(tileItemElement12);
+            tileItemElement42.ImageOptions.Image = global::MainSystem.Properties.Resources.Conference_80px;
+            tileItemElement42.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement42.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement42.Text = "شئون العاملين";
+            tileItemElement42.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnHR.Elements.Add(tileItemElement42);
             this.btnHR.Enabled = false;
             this.btnHR.Id = 23;
             this.btnHR.ItemSize = DevExpress.XtraEditors.TileItemSize.Wide;
@@ -836,12 +873,12 @@
             this.btnBank.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBank.AppearanceItem.Normal.Options.UseFont = true;
             this.btnBank.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement13.ImageOptions.Image = global::MainSystem.Properties.Resources.Money_Bag_50px;
-            tileItemElement13.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement13.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement13.Text = "النقدية والبنوك";
-            tileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.btnBank.Elements.Add(tileItemElement13);
+            tileItemElement43.ImageOptions.Image = global::MainSystem.Properties.Resources.Money_Bag_50px;
+            tileItemElement43.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement43.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement43.Text = "النقدية والبنوك";
+            tileItemElement43.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.btnBank.Elements.Add(tileItemElement43);
             this.btnBank.Enabled = false;
             this.btnBank.Id = 17;
             this.btnBank.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
@@ -855,12 +892,12 @@
             this.AccountingSystem.AppearanceItem.Normal.Options.UseBackColor = true;
             this.AccountingSystem.AppearanceItem.Normal.Options.UseFont = true;
             this.AccountingSystem.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement14.ImageOptions.Image = global::MainSystem.Properties.Resources.General_Ledger_50px;
-            tileItemElement14.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
-            tileItemElement14.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
-            tileItemElement14.Text = "الحسابات";
-            tileItemElement14.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-            this.AccountingSystem.Elements.Add(tileItemElement14);
+            tileItemElement44.ImageOptions.Image = global::MainSystem.Properties.Resources.General_Ledger_50px;
+            tileItemElement44.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+            tileItemElement44.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
+            tileItemElement44.Text = "الحسابات";
+            tileItemElement44.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
+            this.AccountingSystem.Elements.Add(tileItemElement44);
             this.AccountingSystem.Enabled = false;
             this.AccountingSystem.Id = 16;
             this.AccountingSystem.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
@@ -1020,25 +1057,26 @@
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup6
+            // navBarGroup5
             // 
-            this.navBarGroup6.Caption = "التسليم";
-            this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
-            this.navBarGroup6.Name = "navBarGroup6";
-            this.navBarGroup6.SelectedLinkIndex = 0;
+            this.navBarGroup5.Caption = "المرتجعات";
+            this.navBarGroup5.Expanded = true;
+            this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem11),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemStoreReturn)});
+            this.navBarGroup5.Name = "navBarGroup5";
+            this.navBarGroup5.SelectedLinkIndex = 0;
             // 
-            // navBarItemDelivery
+            // navBarItem11
             // 
-            this.navBarItemDelivery.Caption = "تسلم طلب";
-            this.navBarItemDelivery.Name = "navBarItemDelivery";
-            this.navBarItemDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelivery_LinkClicked);
+            this.navBarItem11.Caption = "مرتجع عميل ";
+            this.navBarItem11.Name = "navBarItem11";
             // 
-            // navBarItem14
+            // navBarItemStoreReturn
             // 
-            this.navBarItem14.Caption = "تسليم طلب خاص";
-            this.navBarItem14.Name = "navBarItem14";
+            this.navBarItemStoreReturn.Caption = "مرتجع وارد";
+            this.navBarItemStoreReturn.Name = "navBarItemStoreReturn";
+            this.navBarItemStoreReturn.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemStoreReturn_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -1155,25 +1193,25 @@
             this.navBarItem10.Caption = "وارد بدون أذن";
             this.navBarItem10.Name = "navBarItem10";
             // 
-            // navBarGroup5
+            // navBarGroup6
             // 
-            this.navBarGroup5.Caption = "المرتجعات";
-            this.navBarGroup5.Expanded = true;
-            this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem11),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemStoreReturn)});
-            this.navBarGroup5.Name = "navBarGroup5";
+            this.navBarGroup6.Caption = "التسليم";
+            this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
+            this.navBarGroup6.Name = "navBarGroup6";
+            this.navBarGroup6.SelectedLinkIndex = 0;
             // 
-            // navBarItem11
+            // navBarItemDelivery
             // 
-            this.navBarItem11.Caption = "مرتجع عميل ";
-            this.navBarItem11.Name = "navBarItem11";
+            this.navBarItemDelivery.Caption = "تسلم طلب";
+            this.navBarItemDelivery.Name = "navBarItemDelivery";
+            this.navBarItemDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelivery_LinkClicked);
             // 
-            // navBarItemStoreReturn
+            // navBarItem14
             // 
-            this.navBarItemStoreReturn.Caption = "مرتجع وارد";
-            this.navBarItemStoreReturn.Name = "navBarItemStoreReturn";
-            this.navBarItemStoreReturn.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemStoreReturn_LinkClicked);
+            this.navBarItem14.Caption = "تسليم طلب خاص";
+            this.navBarItem14.Name = "navBarItem14";
             // 
             // navBarGroup7
             // 
@@ -1305,7 +1343,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup18;
+            this.navBarControl2.ActiveGroup = this.navBarGroup13;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1390,7 +1428,6 @@
             // navBarGroup18
             // 
             this.navBarGroup18.Caption = "تقارير";
-            this.navBarGroup18.Expanded = true;
             this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
@@ -1498,6 +1535,7 @@
             // navBarGroup13
             // 
             this.navBarGroup13.Caption = "اسعار البيع";
+            this.navBarGroup13.Expanded = true;
             this.navBarGroup13.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
             this.navBarGroup13.Name = "navBarGroup13";
@@ -3759,6 +3797,267 @@
             this.navBarItem155.Caption = "تسجيل";
             this.navBarItem155.Name = "navBarItem155";
             // 
+            // xtraTabPagePurchases
+            // 
+            this.xtraTabPagePurchases.Controls.Add(this.xtraTabControlPurchases);
+            this.xtraTabPagePurchases.Controls.Add(this.navBarControl7);
+            this.xtraTabPagePurchases.Name = "xtraTabPagePurchases";
+            this.xtraTabPagePurchases.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPagePurchases.Text = "المشتريات";
+            // 
+            // xtraTabControlPurchases
+            // 
+            this.xtraTabControlPurchases.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.xtraTabControlPurchases.Appearance.Options.UseFont = true;
+            this.xtraTabControlPurchases.AppearancePage.Header.BorderColor = System.Drawing.Color.Transparent;
+            this.xtraTabControlPurchases.AppearancePage.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.xtraTabControlPurchases.AppearancePage.Header.Options.UseBackColor = true;
+            this.xtraTabControlPurchases.AppearancePage.Header.Options.UseBorderColor = true;
+            this.xtraTabControlPurchases.AppearancePage.Header.Options.UseFont = true;
+            this.xtraTabControlPurchases.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.xtraTabControlPurchases.BorderStylePage = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.xtraTabControlPurchases.CausesValidation = false;
+            this.xtraTabControlPurchases.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
+            this.xtraTabControlPurchases.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControlPurchases.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControlPurchases.LookAndFeel.SkinName = "Office 2013 Light Gray";
+            this.xtraTabControlPurchases.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.xtraTabControlPurchases.LookAndFeel.UseWindowsXPTheme = true;
+            this.xtraTabControlPurchases.Margin = new System.Windows.Forms.Padding(0);
+            this.xtraTabControlPurchases.MultiLine = DevExpress.Utils.DefaultBoolean.False;
+            this.xtraTabControlPurchases.Name = "xtraTabControlPurchases";
+            this.xtraTabControlPurchases.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.xtraTabControlPurchases.Size = new System.Drawing.Size(955, 702);
+            this.xtraTabControlPurchases.TabIndex = 6;
+            this.xtraTabControlPurchases.Visible = false;
+            // 
+            // navBarControl7
+            // 
+            this.navBarControl7.ActiveGroup = this.navBarGroup48;
+            this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.Background.Options.UseFont = true;
+            this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.Button.Options.UseFont = true;
+            this.navBarControl7.Appearance.ButtonDisabled.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.ButtonDisabled.Options.UseFont = true;
+            this.navBarControl7.Appearance.ButtonPressed.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.ButtonPressed.Options.UseFont = true;
+            this.navBarControl7.Appearance.GroupBackground.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.GroupBackground.Options.UseFont = true;
+            this.navBarControl7.Appearance.GroupHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Appearance.GroupHeader.Options.UseFont = true;
+            this.navBarControl7.Appearance.GroupHeaderActive.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.GroupHeaderActive.Options.UseFont = true;
+            this.navBarControl7.Appearance.GroupHeaderHotTracked.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.GroupHeaderHotTracked.Options.UseFont = true;
+            this.navBarControl7.Appearance.GroupHeaderPressed.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.GroupHeaderPressed.Options.UseFont = true;
+            this.navBarControl7.Appearance.Hint.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.Hint.Options.UseFont = true;
+            this.navBarControl7.Appearance.Item.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Appearance.Item.Options.UseFont = true;
+            this.navBarControl7.Appearance.ItemActive.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.ItemActive.Options.UseFont = true;
+            this.navBarControl7.Appearance.ItemDisabled.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.ItemDisabled.Options.UseFont = true;
+            this.navBarControl7.Appearance.ItemHotTracked.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.ItemHotTracked.Options.UseFont = true;
+            this.navBarControl7.Appearance.ItemPressed.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.ItemPressed.Options.UseFont = true;
+            this.navBarControl7.Appearance.LinkDropTarget.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.navBarControl7.Appearance.LinkDropTarget.Options.UseFont = true;
+            this.navBarControl7.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Appearance.NavigationPaneHeader.Options.UseFont = true;
+            this.navBarControl7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.navBarControl7.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroup48});
+            this.navBarControl7.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
+            this.navBarItem206,
+            this.navBarItem207,
+            this.navBarItem208,
+            this.navBarItem209,
+            this.navBarItem210,
+            this.navBarItem211,
+            this.navBarItem212,
+            this.navBarItem213,
+            this.navBarItem214,
+            this.navBarItem215,
+            this.navBarItem216,
+            this.navBarItem217,
+            this.navBarItem218,
+            this.navBarItem219,
+            this.navBarItem13,
+            this.navBarItem197,
+            this.navBarItemPurchasesPricesRecord,
+            this.navBarItem204,
+            this.navBarItem205,
+            this.navBarItem198,
+            this.navBarItem199,
+            this.navBarItem200,
+            this.navBarItem201,
+            this.navBarItem202,
+            this.navBarItem2,
+            this.navBarItem7,
+            this.navBarItem9,
+            this.navBarItem12});
+            this.navBarControl7.Location = new System.Drawing.Point(955, 0);
+            this.navBarControl7.Name = "navBarControl7";
+            this.navBarControl7.OptionsNavPane.ExpandedWidth = 190;
+            this.navBarControl7.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
+            this.navBarControl7.Size = new System.Drawing.Size(190, 702);
+            this.navBarControl7.TabIndex = 5;
+            this.navBarControl7.Text = "navBarControl7";
+            // 
+            // navBarGroup48
+            // 
+            this.navBarGroup48.Caption = "اسعار الشراء";
+            this.navBarGroup48.Expanded = true;
+            this.navBarGroup48.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchasesPricesRecord)});
+            this.navBarGroup48.Name = "navBarGroup48";
+            // 
+            // navBarItemPurchasesPricesRecord
+            // 
+            this.navBarItemPurchasesPricesRecord.Caption = "تسجيل اسعار الشراء";
+            this.navBarItemPurchasesPricesRecord.Name = "navBarItemPurchasesPricesRecord";
+            this.navBarItemPurchasesPricesRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPurchasesPricesRecord_LinkClicked);
+            // 
+            // navBarItem206
+            // 
+            this.navBarItem206.Caption = "تسجيل فاتورة بيع";
+            this.navBarItem206.Name = "navBarItem206";
+            // 
+            // navBarItem207
+            // 
+            this.navBarItem207.Caption = "تسجيل العملاء";
+            this.navBarItem207.Name = "navBarItem207";
+            // 
+            // navBarItem208
+            // 
+            this.navBarItem208.Caption = "تسجيل اسعار البيع";
+            this.navBarItem208.Name = "navBarItem208";
+            // 
+            // navBarItem209
+            // 
+            this.navBarItem209.Caption = "تسلم طلب";
+            this.navBarItem209.Name = "navBarItem209";
+            // 
+            // navBarItem210
+            // 
+            this.navBarItem210.Caption = "تسليم طلب خاص";
+            this.navBarItem210.Name = "navBarItem210";
+            // 
+            // navBarItem211
+            // 
+            this.navBarItem211.Caption = "تسجيل الهالك";
+            this.navBarItem211.Name = "navBarItem211";
+            // 
+            // navBarItem212
+            // 
+            this.navBarItem212.Caption = "تحويل من مخزن الي مخزن";
+            this.navBarItem212.Name = "navBarItem212";
+            // 
+            // navBarItem213
+            // 
+            this.navBarItem213.Caption = "تنقلات داخل المخزن";
+            this.navBarItem213.Name = "navBarItem213";
+            // 
+            // navBarItem214
+            // 
+            this.navBarItem214.Caption = "ادخال الكميات الحالية في المخزن";
+            this.navBarItem214.Name = "navBarItem214";
+            // 
+            // navBarItem215
+            // 
+            this.navBarItem215.Caption = "حساب الفاقد";
+            this.navBarItem215.Name = "navBarItem215";
+            // 
+            // navBarItem216
+            // 
+            this.navBarItem216.Caption = "جرد الهالك";
+            this.navBarItem216.Name = "navBarItem216";
+            // 
+            // navBarItem217
+            // 
+            this.navBarItem217.Caption = "تسجيل المعدة";
+            this.navBarItem217.Name = "navBarItem217";
+            // 
+            // navBarItem218
+            // 
+            this.navBarItem218.Caption = "المصروفات";
+            this.navBarItem218.Name = "navBarItem218";
+            // 
+            // navBarItem219
+            // 
+            this.navBarItem219.Caption = "تسجيل العروض";
+            this.navBarItem219.Name = "navBarItem219";
+            // 
+            // navBarItem13
+            // 
+            this.navBarItem13.Caption = "تسجيل العملاء";
+            this.navBarItem13.Name = "navBarItem13";
+            // 
+            // navBarItem197
+            // 
+            this.navBarItem197.Caption = "تاكيد الفاتورة";
+            this.navBarItem197.Name = "navBarItem197";
+            // 
+            // navBarItem204
+            // 
+            this.navBarItem204.Caption = "تسجيل";
+            this.navBarItem204.Name = "navBarItem204";
+            // 
+            // navBarItem205
+            // 
+            this.navBarItem205.Caption = "تجميع وفك";
+            this.navBarItem205.Name = "navBarItem205";
+            // 
+            // navBarItem198
+            // 
+            this.navBarItem198.Caption = "تسجيل مرتجع";
+            this.navBarItem198.Name = "navBarItem198";
+            // 
+            // navBarItem199
+            // 
+            this.navBarItem199.Caption = "حركة عملاء لفترة";
+            this.navBarItem199.Name = "navBarItem199";
+            // 
+            // navBarItem200
+            // 
+            this.navBarItem200.Caption = "كشف حساب عميل";
+            this.navBarItem200.Name = "navBarItem200";
+            // 
+            // navBarItem201
+            // 
+            this.navBarItem201.Caption = "تسوية فواتير الاجل(المندوبين)";
+            this.navBarItem201.Name = "navBarItem201";
+            // 
+            // navBarItem202
+            // 
+            this.navBarItem202.Caption = "تسجيل تسوية لعميل";
+            this.navBarItem202.Name = "navBarItem202";
+            // 
+            // navBarItem2
+            // 
+            this.navBarItem2.Caption = "حركة المبيعات";
+            this.navBarItem2.Name = "navBarItem2";
+            // 
+            // navBarItem7
+            // 
+            this.navBarItem7.Caption = "استعلام عن فاتورة";
+            this.navBarItem7.Name = "navBarItem7";
+            // 
+            // navBarItem9
+            // 
+            this.navBarItem9.Caption = "استعلام عن مرتجع";
+            this.navBarItem9.Name = "navBarItem9";
+            // 
+            // navBarItem12
+            // 
+            this.navBarItem12.Caption = "استعلام عن سداد";
+            this.navBarItem12.Name = "navBarItem12";
+            // 
             // panMain
             // 
             this.panMain.Controls.Add(this.panContent);
@@ -3958,8 +4257,8 @@
             // 
             // tileItem1
             // 
-            tileItemElement15.Text = "tileItem1";
-            this.tileItem1.Elements.Add(tileItemElement15);
+            tileItemElement45.Text = "tileItem1";
+            this.tileItem1.Elements.Add(tileItemElement45);
             this.tileItem1.Id = 27;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
@@ -4012,6 +4311,9 @@
             this.xtraTabPageCoding.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlCoding)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl6)).EndInit();
+            this.xtraTabPagePurchases.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlPurchases)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl7)).EndInit();
             this.panMain.ResumeLayout(false);
             this.panContent.ResumeLayout(false);
             this.panHeader.ResumeLayout(false);
@@ -4366,7 +4668,7 @@
         private DevExpress.XtraEditors.TileItem btnCustomerService;
         private DevExpress.XtraEditors.TileItem btnPOS;
         private DevExpress.XtraEditors.TileItem btnReception;
-        private DevExpress.XtraEditors.TileItem btnBuying;
+        private DevExpress.XtraEditors.TileItem btnPurchases;
         private DevExpress.XtraEditors.TileGroup tileGroup4;
         private DevExpress.XtraEditors.TileItem btnReports;
         private DevExpress.XtraEditors.TileItem btnCoding;
@@ -4408,5 +4710,37 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup41;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDisplayWantedShippingBills;
         private DevExpress.XtraNavBar.NavBarItem navBarItemGateReport;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPagePurchases;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControlPurchases;
+        private DevExpress.XtraNavBar.NavBarControl navBarControl7;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem2;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem12;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem13;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem197;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem198;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem199;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem200;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem201;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem202;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup48;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemPurchasesPricesRecord;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem204;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem205;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem206;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem207;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem208;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem209;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem210;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem211;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem212;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem213;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem214;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem215;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem216;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem217;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem218;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem219;
     }
 }

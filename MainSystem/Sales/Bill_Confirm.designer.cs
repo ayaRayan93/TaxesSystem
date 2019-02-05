@@ -389,8 +389,8 @@
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.tableLayoutPanel3.ColumnCount = 8;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -421,7 +421,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(803, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(149, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(159, 23);
             this.dateTimePicker1.TabIndex = 97;
             this.dateTimePicker1.Value = new System.DateTime(2019, 1, 7, 0, 0, 0, 0);
             this.dateTimePicker1.Visible = false;
@@ -530,13 +530,14 @@
             // 
             this.labelDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDate.AutoSize = true;
-            this.labelDate.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDate.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDate.ForeColor = System.Drawing.Color.Snow;
-            this.labelDate.Location = new System.Drawing.Point(958, 0);
+            this.labelDate.Location = new System.Drawing.Point(968, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(45, 19);
+            this.labelDate.Size = new System.Drawing.Size(56, 36);
             this.labelDate.TabIndex = 98;
-            this.labelDate.Text = "التاريخ";
+            this.labelDate.Text = "تاريخ الاستلام";
+            this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelDate.Visible = false;
             // 
             // tableLayoutPanel2

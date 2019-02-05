@@ -30,6 +30,7 @@ namespace MainSystem
         XtraTabPage ShippingTP;
         XtraTabPage AccountingTP;
         XtraTabPage CodingTP;
+        XtraTabPage PurchasesTP;
         int index = 1;
         
         public MainForm()
@@ -51,6 +52,7 @@ namespace MainSystem
                     ShippingForm();
                     POSSystem();
                     initializeBranch();
+                    PurchasesMainForm();
                 }
 
                 StoreTP = xtraTabPageStores;
@@ -63,6 +65,7 @@ namespace MainSystem
                 ShippingTP = xtraTabPageShipping;
                 AccountingTP = xtraTabPageAccounting;
                 CodingTP = xtraTabPageCoding;
+                PurchasesTP = xtraTabPagePurchases;
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageHR);
@@ -73,6 +76,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageShipping);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageAccounting);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
             }
             catch (Exception ex)
             {
@@ -101,8 +105,8 @@ namespace MainSystem
                 TIElsha7n.Checked = true;
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
-                btnBuying.Enabled = true;
-                btnBuying.Checked = true;
+                btnPurchases.Enabled = true;
+                btnPurchases.Checked = true;
                 btnHR.Enabled = true;
                 btnHR.Checked = true;
                 btnCustomerService.Enabled = true;
@@ -149,8 +153,8 @@ namespace MainSystem
             }
             else if (UserControl.userType == 10)
             {
-                btnBuying.Enabled = true;
-                btnBuying.Checked = true;
+                btnPurchases.Enabled = true;
+                btnPurchases.Checked = true;
             }
             else if (UserControl.userType == 11)
             {
@@ -345,6 +349,23 @@ namespace MainSystem
             }
         }
 
+        private void btnPurchases_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
+                {
+                    xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPagePurchases)];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -530,7 +551,7 @@ namespace MainSystem
 
     public static class connection
     {
-        public static string connectionString = "SERVER=192.168.1.200;DATABASE=cccs;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
+        public static string connectionString = "SERVER=192.168.1.200;DATABASE=saratest;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
         // public static string connectionString = "SERVER=localhost;DATABASE=testcoding;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
