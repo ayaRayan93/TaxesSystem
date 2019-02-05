@@ -293,21 +293,14 @@ namespace MainSystem
                 if (radio.Text == "العميل")
                 {
                     RecivedType = "العميل";
-                    //comStore.Visible = false;
+                    dateTimePicker1.Visible = true;
+                    labelDate.Visible = true;
                 }
                 else if (radio.Text == "شحن")
                 {
                     RecivedType = "شحن";
-                    /*string query = "select * from store ";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    //comStore.DataSource = dt;
-                    //comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
-                    //comStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                    //comStore.Visible = true;
-                    flag2 = true;
-                    //comStore.Text = "";*/
+                    dateTimePicker1.Visible = false;
+                    labelDate.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -690,7 +683,7 @@ namespace MainSystem
                             Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
                         }
 
-                        query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Client_Name,Customer_ID,Customer_Name,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID,Employee_Name) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID,@Employee_Name)";
+                        query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Client_Name,Customer_ID,Customer_Name,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID,Employee_Name,Shipped_Date) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID,@Employee_Name,@Shipped_Date)";
                         com = new MySqlCommand(query, dbconnection);
 
                         if (txtClientID.Text != "")
@@ -746,6 +739,16 @@ namespace MainSystem
                         com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar);
                         com.Parameters["@Employee_Name"].Value = UserControl.EmpName;
+                        if (RecivedType == "العميل")
+                        {
+                            com.Parameters.Add("@Shipped_Date", MySqlDbType.DateTime);
+                            com.Parameters["@Shipped_Date"].Value = dateTimePicker1.Value;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Shipped_Date", MySqlDbType.DateTime);
+                            com.Parameters["@Shipped_Date"].Value = null;
+                        }
                         com.ExecuteNonQuery();
 
                         query = "select CustomerBill_ID from customer_bill order by CustomerBill_ID desc limit 1";

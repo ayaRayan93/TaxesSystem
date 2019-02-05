@@ -51,12 +51,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnDetails = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnConfirm = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.labTotalDiscount = new System.Windows.Forms.Label();
             this.labTotalBillPriceBD = new System.Windows.Forms.Label();
             this.btnAddItem = new Bunifu.Framework.UI.BunifuTileButton();
+            this.labelDate = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -88,7 +90,7 @@
             // 
             this.labTotalBillPriceAD.AutoSize = true;
             this.labTotalBillPriceAD.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalBillPriceAD.Location = new System.Drawing.Point(229, 0);
+            this.labTotalBillPriceAD.Location = new System.Drawing.Point(230, 0);
             this.labTotalBillPriceAD.Name = "labTotalBillPriceAD";
             this.labTotalBillPriceAD.Size = new System.Drawing.Size(0, 17);
             this.labTotalBillPriceAD.TabIndex = 93;
@@ -386,17 +388,21 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel3.ColumnCount = 6;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.ColumnCount = 8;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel3.Controls.Add(this.btnDetails, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnConfirm, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnAddItem, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnDetails, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnConfirm, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnAddItem, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.labelDate, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.ForeColor = System.Drawing.Color.White;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 599);
@@ -406,6 +412,19 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1037, 59);
             this.tableLayoutPanel3.TabIndex = 154;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(803, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(149, 23);
+            this.dateTimePicker1.TabIndex = 97;
+            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 7, 0, 0, 0, 0);
+            this.dateTimePicker1.Visible = false;
             // 
             // btnDetails
             // 
@@ -421,7 +440,7 @@
             this.btnDetails.ImageZoom = 25;
             this.btnDetails.LabelPosition = 18;
             this.btnDetails.LabelText = "حذف عنصر";
-            this.btnDetails.Location = new System.Drawing.Point(524, 4);
+            this.btnDetails.Location = new System.Drawing.Point(484, 4);
             this.btnDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(97, 51);
@@ -442,7 +461,7 @@
             this.btnConfirm.ImageZoom = 25;
             this.btnConfirm.LabelPosition = 18;
             this.btnConfirm.LabelText = "تاكيد";
-            this.btnConfirm.Location = new System.Drawing.Point(730, 4);
+            this.btnConfirm.Location = new System.Drawing.Point(690, 4);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(97, 51);
@@ -463,14 +482,14 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(464, 53);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(465, 53);
             this.tableLayoutPanel4.TabIndex = 95;
             // 
             // labTotalDiscount
             // 
             this.labTotalDiscount.AutoSize = true;
             this.labTotalDiscount.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalDiscount.Location = new System.Drawing.Point(461, 26);
+            this.labTotalDiscount.Location = new System.Drawing.Point(462, 26);
             this.labTotalDiscount.Name = "labTotalDiscount";
             this.labTotalDiscount.Size = new System.Drawing.Size(0, 17);
             this.labTotalDiscount.TabIndex = 94;
@@ -480,7 +499,7 @@
             // 
             this.labTotalBillPriceBD.AutoSize = true;
             this.labTotalBillPriceBD.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labTotalBillPriceBD.Location = new System.Drawing.Point(461, 0);
+            this.labTotalBillPriceBD.Location = new System.Drawing.Point(462, 0);
             this.labTotalBillPriceBD.Name = "labTotalBillPriceBD";
             this.labTotalBillPriceBD.Size = new System.Drawing.Size(0, 16);
             this.labTotalBillPriceBD.TabIndex = 95;
@@ -500,12 +519,25 @@
             this.btnAddItem.ImageZoom = 25;
             this.btnAddItem.LabelPosition = 18;
             this.btnAddItem.LabelText = "اضافة عنصر";
-            this.btnAddItem.Location = new System.Drawing.Point(627, 4);
+            this.btnAddItem.Location = new System.Drawing.Point(587, 4);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(97, 51);
             this.btnAddItem.TabIndex = 96;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            // 
+            // labelDate
+            // 
+            this.labelDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDate.AutoSize = true;
+            this.labelDate.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDate.ForeColor = System.Drawing.Color.Snow;
+            this.labelDate.Location = new System.Drawing.Point(958, 0);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(45, 19);
+            this.labelDate.TabIndex = 98;
+            this.labelDate.Text = "التاريخ";
+            this.labelDate.Visible = false;
             // 
             // tableLayoutPanel2
             // 
@@ -669,6 +701,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -724,6 +757,8 @@
         private System.Windows.Forms.TextBox txtCustomerID;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label labelDate;
     }
 }
 
