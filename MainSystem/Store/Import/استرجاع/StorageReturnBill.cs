@@ -447,6 +447,12 @@ namespace MainSystem
                         comSupplier.Enabled = true;
                         comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
                     }
+
+                    txtCode.Text = "";
+                    txtBalat.Text = "0";
+                    txtCarton.Text = "0";
+                    txtTotalMeter.Text = "0";
+                    txtReason.Text = "";
                     loaded = true;
                 }
                 else
@@ -455,6 +461,11 @@ namespace MainSystem
 
                     loaded = false;
                     comSupplier.SelectedIndex = -1;
+                    txtCode.Text = "";
+                    txtBalat.Text = "0";
+                    txtCarton.Text = "0";
+                    txtTotalMeter.Text = "0";
+                    txtReason.Text = "";
                     loaded = true;
                 }
             }
