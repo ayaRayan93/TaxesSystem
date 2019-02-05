@@ -898,6 +898,11 @@ namespace MainSystem
             gridView2.Columns["Supplier_ID"].Visible = false;
             gridView2.Columns["Supplier_Permission_Details_ID"].Visible = false;
             gridView2.Columns["Store_Place_ID"].Visible = false;
+
+            if (gridView2.IsLastVisibleRow)
+            {
+                gridView2.FocusedRowHandle = gridView2.RowCount - 1;
+            }
         }
 
         bool IsAdded()
