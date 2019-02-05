@@ -580,9 +580,7 @@ namespace MainSystem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
-            int noBalat = 0;
-            int noCarton = 0;
-            double totalMeter = 0;
+            
             dbconnection.Open();
             
             qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton,import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId;
@@ -590,6 +588,9 @@ namespace MainSystem
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
             {
+                int noBalat = 0;
+                int noCarton = 0;
+                double totalMeter = 0;
                 gridView1.AddNewRow();
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
@@ -640,9 +641,18 @@ namespace MainSystem
                     }
                     dr2.Close();
                     dbconnection3.Close();
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["عدد البلتات"], noBalat);
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["عدد الكراتين"], noCarton);
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["متر/قطعة"], totalMeter);
+                    if (noBalat > 0)
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["عدد البلتات"], noBalat);
+                    }
+                    if (noCarton > 0)
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["عدد الكراتين"], noCarton);
+                    }
+                    if (totalMeter > 0)
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["متر/قطعة"], totalMeter);
+                    }
                 }
             }
             dr.Close();

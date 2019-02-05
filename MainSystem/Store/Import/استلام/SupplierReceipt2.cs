@@ -466,6 +466,14 @@ namespace MainSystem
 
                         if (int.Parse(txtPermissionNum.Text) <= sum)
                         {
+                            if (IsAdded())
+                            {
+                                MessageBox.Show("هذا العنصر تم اضافتة من قبل");
+                                conn.Close();
+                                dbconnection2.Close();
+                                return;
+                            }
+
                             conn.Open();
                             dbconnection2.Open();
                             int storageImportPermissionID = 0;
@@ -892,6 +900,17 @@ namespace MainSystem
             gridView2.Columns["Store_Place_ID"].Visible = false;
         }
 
+        bool IsAdded()
+        {
+            for (int i = 0; i < gridView2.RowCount; i++)
+            {
+                DataRow row3 = gridView2.GetDataRow(i);
+                if ((row1["Data_ID"].ToString() == row3["Data_ID"].ToString()) && (txtSupPermissionNum.Text == row3["اذن استلام"].ToString()))
+                    return true;
+            }
+            return false;
+        }
+        
         public void clearCom()
         {
             foreach (Control co in this.panel3.Controls)
