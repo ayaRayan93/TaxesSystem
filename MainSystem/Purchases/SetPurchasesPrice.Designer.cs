@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -233,7 +233,7 @@
             this.labPurchasesPrice.AutoSize = true;
             this.labPurchasesPrice.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labPurchasesPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labPurchasesPrice.Location = new System.Drawing.Point(71, 11);
+            this.labPurchasesPrice.Location = new System.Drawing.Point(71, 10);
             this.labPurchasesPrice.Name = "labPurchasesPrice";
             this.labPurchasesPrice.Size = new System.Drawing.Size(0, 16);
             this.labPurchasesPrice.TabIndex = 0;
@@ -878,14 +878,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -1009,7 +1009,7 @@
             // 
             this.txtUnNormal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtUnNormal.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtUnNormal.Location = new System.Drawing.Point(280, 138);
+            this.txtUnNormal.Location = new System.Drawing.Point(280, 135);
             this.txtUnNormal.Name = "txtUnNormal";
             this.txtUnNormal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtUnNormal.Size = new System.Drawing.Size(98, 24);
@@ -1022,7 +1022,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(597, 138);
+            this.label15.Location = new System.Drawing.Point(597, 139);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label15.Size = new System.Drawing.Size(69, 16);
@@ -1033,7 +1033,7 @@
             // 
             this.txtNormal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNormal.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNormal.Location = new System.Drawing.Point(493, 137);
+            this.txtNormal.Location = new System.Drawing.Point(493, 135);
             this.txtNormal.Name = "txtNormal";
             this.txtNormal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtNormal.Size = new System.Drawing.Size(98, 24);
@@ -1046,7 +1046,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(384, 109);
+            this.label14.Location = new System.Drawing.Point(384, 112);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(67, 16);
@@ -1070,7 +1070,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(597, 108);
+            this.label13.Location = new System.Drawing.Point(597, 112);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label13.Size = new System.Drawing.Size(36, 16);
@@ -1081,7 +1081,7 @@
             // 
             this.txtPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPrice.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPrice.Location = new System.Drawing.Point(493, 107);
+            this.txtPrice.Location = new System.Drawing.Point(493, 108);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPrice.Size = new System.Drawing.Size(98, 24);
@@ -1137,7 +1137,7 @@
             // 
             this.txtPercentageDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPercentageDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPercentageDelegate.Location = new System.Drawing.Point(197, 15);
+            this.txtPercentageDelegate.Location = new System.Drawing.Point(197, 12);
             this.txtPercentageDelegate.Name = "txtPercentageDelegate";
             this.txtPercentageDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPercentageDelegate.Size = new System.Drawing.Size(98, 24);
@@ -1150,7 +1150,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(670, 15);
+            this.label6.Location = new System.Drawing.Point(670, 16);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(64, 16);
@@ -1211,7 +1211,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCode.Location = new System.Drawing.Point(493, 14);
+            this.txtCode.Location = new System.Drawing.Point(493, 12);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(171, 24);
             this.txtCode.TabIndex = 43;
@@ -1222,7 +1222,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(745, 50);
+            this.label11.Location = new System.Drawing.Point(745, 51);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(64, 16);

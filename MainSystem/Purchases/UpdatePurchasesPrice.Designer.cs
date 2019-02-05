@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -38,7 +38,7 @@
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
-            this.labSellPrice = new System.Windows.Forms.Label();
+            this.labPurchasesPrice = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panContent = new System.Windows.Forms.Panel();
@@ -62,7 +62,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtNormal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtSell = new System.Windows.Forms.TextBox();
+            this.txtPurchases = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.radioList = new System.Windows.Forms.RadioButton();
@@ -196,7 +196,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.labSellPrice);
+            this.panel1.Controls.Add(this.labPurchasesPrice);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(511, 3);
             this.panel1.Name = "panel1";
@@ -211,20 +211,20 @@
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label19.Location = new System.Drawing.Point(142, 9);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(68, 19);
+            this.label19.Size = new System.Drawing.Size(76, 19);
             this.label19.TabIndex = 1;
-            this.label19.Text = "سعر البيع";
+            this.label19.Text = "سعر الشراء";
             // 
-            // labSellPrice
+            // labPurchasesPrice
             // 
-            this.labSellPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labSellPrice.AutoSize = true;
-            this.labSellPrice.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labSellPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labSellPrice.Location = new System.Drawing.Point(71, 11);
-            this.labSellPrice.Name = "labSellPrice";
-            this.labSellPrice.Size = new System.Drawing.Size(0, 16);
-            this.labSellPrice.TabIndex = 0;
+            this.labPurchasesPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labPurchasesPrice.AutoSize = true;
+            this.labPurchasesPrice.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labPurchasesPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labPurchasesPrice.Location = new System.Drawing.Point(71, 10);
+            this.labPurchasesPrice.Name = "labPurchasesPrice";
+            this.labPurchasesPrice.Size = new System.Drawing.Size(0, 16);
+            this.labPurchasesPrice.TabIndex = 0;
             // 
             // gridControl1
             // 
@@ -269,7 +269,7 @@
             this.panContent.Controls.Add(this.label15);
             this.panContent.Controls.Add(this.txtNormal);
             this.panContent.Controls.Add(this.label14);
-            this.panContent.Controls.Add(this.txtSell);
+            this.panContent.Controls.Add(this.txtPurchases);
             this.panContent.Controls.Add(this.label13);
             this.panContent.Controls.Add(this.txtPrice);
             this.panContent.Controls.Add(this.radioList);
@@ -360,14 +360,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -491,7 +491,7 @@
             // 
             this.txtUnNormal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtUnNormal.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtUnNormal.Location = new System.Drawing.Point(280, 139);
+            this.txtUnNormal.Location = new System.Drawing.Point(280, 136);
             this.txtUnNormal.Name = "txtUnNormal";
             this.txtUnNormal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtUnNormal.Size = new System.Drawing.Size(98, 24);
@@ -504,7 +504,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(597, 139);
+            this.label15.Location = new System.Drawing.Point(597, 140);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label15.Size = new System.Drawing.Size(69, 16);
@@ -515,7 +515,7 @@
             // 
             this.txtNormal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNormal.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNormal.Location = new System.Drawing.Point(493, 138);
+            this.txtNormal.Location = new System.Drawing.Point(493, 136);
             this.txtNormal.Name = "txtNormal";
             this.txtNormal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtNormal.Size = new System.Drawing.Size(98, 24);
@@ -528,31 +528,31 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(384, 110);
+            this.label14.Location = new System.Drawing.Point(384, 112);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(60, 16);
+            this.label14.Size = new System.Drawing.Size(67, 16);
             this.label14.TabIndex = 58;
-            this.label14.Text = "خصم البيع";
+            this.label14.Text = "خصم الشراء";
             // 
-            // txtSell
+            // txtPurchases
             // 
-            this.txtSell.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSell.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSell.Location = new System.Drawing.Point(301, 109);
-            this.txtSell.Name = "txtSell";
-            this.txtSell.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSell.Size = new System.Drawing.Size(77, 24);
-            this.txtSell.TabIndex = 57;
-            this.txtSell.Text = "0";
-            this.txtSell.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtPurchases.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPurchases.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPurchases.Location = new System.Drawing.Point(301, 108);
+            this.txtPurchases.Name = "txtPurchases";
+            this.txtPurchases.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtPurchases.Size = new System.Drawing.Size(77, 24);
+            this.txtPurchases.TabIndex = 57;
+            this.txtPurchases.Text = "0";
+            this.txtPurchases.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label13
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(597, 109);
+            this.label13.Location = new System.Drawing.Point(597, 112);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label13.Size = new System.Drawing.Size(36, 16);
@@ -619,7 +619,7 @@
             // 
             this.txtPercentageDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPercentageDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPercentageDelegate.Location = new System.Drawing.Point(197, 15);
+            this.txtPercentageDelegate.Location = new System.Drawing.Point(197, 12);
             this.txtPercentageDelegate.Name = "txtPercentageDelegate";
             this.txtPercentageDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPercentageDelegate.Size = new System.Drawing.Size(98, 24);
@@ -632,7 +632,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(670, 15);
+            this.label6.Location = new System.Drawing.Point(670, 16);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(64, 16);
@@ -693,7 +693,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCode.Location = new System.Drawing.Point(493, 14);
+            this.txtCode.Location = new System.Drawing.Point(493, 12);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(171, 24);
             this.txtCode.TabIndex = 43;
@@ -704,7 +704,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(745, 50);
+            this.label11.Location = new System.Drawing.Point(745, 51);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(64, 16);
@@ -719,7 +719,7 @@
             this.Controls.Add(this.panContainer);
             this.Name = "UpdatePurchasesPrice";
             this.Text = "SetSellPrice";
-            this.Load += new System.EventHandler(this.UpdateSellPrice_Load);
+            this.Load += new System.EventHandler(this.UpdatePurchasesPrice_Load);
             this.panContainer.ResumeLayout(false);
             this.tLPanCpntent.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -764,7 +764,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtNormal;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtSell;
+        private System.Windows.Forms.TextBox txtPurchases;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.CheckBox chBoxAdditionalIncrease;
@@ -776,7 +776,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label labSellPrice;
+        private System.Windows.Forms.Label labPurchasesPrice;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.CheckBox chBoxSelectAll;
         private System.Windows.Forms.Panel panel2;

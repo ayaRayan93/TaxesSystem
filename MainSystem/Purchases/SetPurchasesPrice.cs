@@ -626,7 +626,7 @@ namespace MainSystem
                 {
                     txtCode.Text = row[1].ToString();
                     id = Convert.ToInt16(row[0].ToString());
-                    String code = txtCode.Text;
+                    string code = txtCode.Text;
                     displayCode(code);
                 }
             }
@@ -781,8 +781,6 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-                    
-                           
                         }
                         #endregion
                     }
@@ -1086,7 +1084,5 @@ namespace MainSystem
             txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
             txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
-
-      
     }
 }
