@@ -245,14 +245,15 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel7,
             this.xrPageInfo1});
-            this.PageFooter.HeightF = 26.25001F;
+            this.PageFooter.HeightF = 62.70835F;
             this.PageFooter.Name = "PageFooter";
             // 
             // xrPageInfo1
             // 
             this.xrPageInfo1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(363.19F, 0F);
+            this.xrPageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(363.19F, 35.83334F);
             this.xrPageInfo1.Name = "xrPageInfo1";
             this.xrPageInfo1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrPageInfo1.SizeF = new System.Drawing.SizeF(75.85F, 20F);
@@ -502,15 +503,13 @@
             // 
             // ReportFooter
             // 
-            this.ReportFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel7});
-            this.ReportFooter.HeightF = 38.75001F;
+            this.ReportFooter.HeightF = 0F;
             this.ReportFooter.Name = "ReportFooter";
             // 
             // xrLabel7
             // 
             this.xrLabel7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(223.4054F, 10.00001F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(224.6792F, 10.00001F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.SizeF = new System.Drawing.SizeF(102.4432F, 20F);

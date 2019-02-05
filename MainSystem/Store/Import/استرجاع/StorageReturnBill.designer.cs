@@ -45,7 +45,6 @@
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPermissionNum = new System.Windows.Forms.TextBox();
             this.comSupplier = new System.Windows.Forms.ComboBox();
@@ -54,6 +53,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCarton = new System.Windows.Forms.TextBox();
             this.txtTotalMeter = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -61,16 +61,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labBillNumber
             // 
-            this.labBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBillNumber.AutoSize = true;
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.labBillNumber.Location = new System.Drawing.Point(578, 0);
+            this.labBillNumber.Location = new System.Drawing.Point(578, 8);
             this.labBillNumber.Name = "labBillNumber";
             this.labBillNumber.Size = new System.Drawing.Size(72, 18);
             this.labBillNumber.TabIndex = 161;
@@ -152,8 +152,8 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -164,6 +164,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(827, 661);
             this.tableLayoutPanel1.TabIndex = 200;
             // 
@@ -335,37 +336,12 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tableLayoutPanel2.ColumnCount = 6;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.labBillNumber, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label5, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtPermissionNum, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comSupplier, 4, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(821, 34);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(332, 0);
+            this.label5.Location = new System.Drawing.Point(347, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 18);
             this.label5.TabIndex = 197;
@@ -373,8 +349,9 @@
             // 
             // txtPermissionNum
             // 
+            this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPermissionNum.Location = new System.Drawing.Point(472, 3);
+            this.txtPermissionNum.Location = new System.Drawing.Point(472, 6);
             this.txtPermissionNum.Name = "txtPermissionNum";
             this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPermissionNum.Size = new System.Drawing.Size(100, 23);
@@ -383,9 +360,10 @@
             // 
             // comSupplier
             // 
+            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(168, 3);
+            this.comSupplier.Location = new System.Drawing.Point(183, 5);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(158, 24);
@@ -456,6 +434,19 @@
             this.txtTotalMeter.Text = "0";
             this.txtTotalMeter.TextChanged += new System.EventHandler(this.txtTotalMeter_TextChanged);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.comSupplier);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.labBillNumber);
+            this.panel2.Controls.Add(this.txtPermissionNum);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(821, 34);
+            this.panel2.TabIndex = 170;
+            // 
             // StorageReturnBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,10 +464,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -490,7 +481,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtReason;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCarton;
         private System.Windows.Forms.TextBox txtPermissionNum;
@@ -508,5 +498,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

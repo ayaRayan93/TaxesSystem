@@ -204,6 +204,7 @@ namespace MainSystem
                                     comClient.Enabled = true;
                                     txtPhone.Enabled = true;
                                     txtClientId.Enabled = true;
+                                    txtClientId.Text = "";
                                     AddedToBill = false;
                                 }
                             }
@@ -230,6 +231,7 @@ namespace MainSystem
                             comClient.Enabled = true;
                             txtPhone.Enabled = true;
                             txtClientId.Enabled = true;
+                            txtClientId.Text = "";
                             billExist = false;
                             mainBillExist = false;
                             AddedToBill = false;

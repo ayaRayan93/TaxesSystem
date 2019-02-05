@@ -229,6 +229,25 @@
     <Compile Include="PointOfSale\Customer_Report2.designer.cs">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\ProductsPurchasesPriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\ProductsPurchasesPriceForm.Designer.cs">
+      <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PurchasesSystem.cs" />
+    <Compile Include="Purchases\SetPurchasesPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\SetPurchasesPrice.Designer.cs">
+      <DependentUpon>SetPurchasesPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\UpdatePurchasesPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\UpdatePurchasesPrice.Designer.cs">
+      <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Customer_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1699,6 +1718,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\ProductsPurchasesPriceForm.resx">
+      <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\SetPurchasesPrice.resx">
+      <DependentUpon>SetPurchasesPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\UpdatePurchasesPrice.resx">
+      <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Record.resx">
       <DependentUpon>Customer_Record.cs</DependentUpon>
