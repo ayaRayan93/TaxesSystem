@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.Store.Export
+namespace MainSystem
 {
     public partial class PermissionsDelivery : Form
     {
-        private MySqlConnection dbconnection;
+        private MySqlConnection dbconnection, dbconnectionr;
         bool loaded = false;
         public PermissionsDelivery()
         {
@@ -21,6 +21,7 @@ namespace MainSystem.Store.Export
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnectionr = new MySqlConnection(connection.connectionString);
             }
             catch (Exception ex)
             {
@@ -71,19 +72,110 @@ namespace MainSystem.Store.Export
             try
             {
                 dbconnection.Open();
-                DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd HH:mm:ss");
-                DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
-                string subQuery = "";
-                if (txtStoreID.Text != "")
-                    subQuery = " and Store_ID="+txtStoreID.Text;
-                string query = "select ";
+                dbconnectionr.Open();
+
+                ShippingPermissions();
+                CustomerDeliveryBills();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
+            dbconnectionr.Close();
+        }
+
+
+        //functions
+        public void ShippingPermissions()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string subQuery = "";
+            if (txtStoreID.Text != "")
+                subQuery = " and customershippingstorage.Store_ID=" + txtStoreID.Text;
+
+            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+            string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
+
+            string query = "select customer_permissions.CustomerBill_ID as 'كود الفاتورة' from customershippingstorage inner join customer_permissions on customershippingstorage.CustomerShippingStorage_ID=customer_permissions.CustomerShippingStorage_ID  where  Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            MySqlCommand com = new MySqlCommand(query, dbconnectionr);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            string customer_IDs = "";
+            while (dr.Read())
+            {
+                customer_IDs += dr[0] + ",";
+            }
+            dr.Close();
+            customer_IDs += 0;
+
+            query = "select customer_permissions.CustomerBill_ID as 'كود الفاتورة', Permissin_ID as 'اذن رقم' ,Store_Name as 'المخزن' from customershippingstorage inner join customer_permissions on customershippingstorage.CustomerShippingStorage_ID=customer_permissions.CustomerShippingStorage_ID inner join store on Store.Store_ID=customer_permissions.Store_ID where  Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
+            query = "SELECT product_bill.CustomerBill_ID as 'كود الفاتورة',data.Code as 'الكود' ," + itemName + ",product_bill.Quantity as 'الكمية',data.Carton as 'الكرتنة',(product_bill.Quantity/data.Carton) as 'عدد الكراتين/الوحدات', data_photo.Photo as 'صورة' from data " + DataTableRelations + " INNER JOIN product_bill on data.Data_ID=product_bill.Data_ID INNER JOIN customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID left join data_photo on data_photo.Data_ID=data.Data_ID inner join shipping on shipping.CustomerBill_ID=customer_bill.CustomerBill_ID  WHERE shipping.Delivered=1 and date(shipping.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "' and product_bill.CustomerBill_ID in(" + customer_IDs + ") " + subQuery;
+            MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
+            DataSet dataSet11 = new DataSet();
+
+            //Create DataTable objects for representing database's tables 
+            adapterSets.Fill(dataSet11, "Shipping");
+            AdapterProducts.Fill(dataSet11, "Products");
+
+            //Set up a master-detail relationship between the DataTables 
+            DataColumn keyColumn = dataSet11.Tables["Shipping"].Columns["كود الفاتورة"];
+            DataColumn foreignKeyColumn = dataSet11.Tables["Products"].Columns["كود الفاتورة"];
+            dataSet11.Relations.Add("بنود الفاتورة", keyColumn, foreignKeyColumn);
+
+
+            //Bind the grid control to the data source 
+            gridControl1.DataSource = dataSet11.Tables["Shipping"];
+            gridView1.Columns[0].Visible = false;
+        }
+
+        public void CustomerDeliveryBills()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string subQuery = "";
+            if (txtStoreID.Text != "")
+                subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
+
+            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+            string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
+
+            string query = "select CustomerBill_ID as 'كود الفاتورة' from customer_bill where RecivedType='العميل' and Paid_Status=1 and Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            MySqlCommand com = new MySqlCommand(query, dbconnectionr);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            string customer_IDs = "";
+            while (dr.Read())
+            {
+                customer_IDs += dr[0] + ",";
+            }
+            dr.Close();
+            customer_IDs += 0;
+
+            query = "select customer_bill.CustomerBill_ID as 'كود الفاتورة', customer_bill.Customer_Name as 'العميل' ,store.Store_Name as 'المخزن' from customer_bill inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID inner join store on Store.Store_ID=product_bill.Store_ID where  Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
+            query = "SELECT product_bill.CustomerBill_ID as 'كود الفاتورة',data.Code as 'الكود' ," + itemName + ",product_bill.Quantity as 'الكمية',data.Carton as 'الكرتنة',(product_bill.Quantity/data.Carton) as 'عدد الكراتين/الوحدات', data_photo.Photo as 'صورة' from data " + DataTableRelations + " INNER JOIN product_bill on data.Data_ID=product_bill.Data_ID INNER JOIN customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID left join data_photo on data_photo.Data_ID=data.Data_ID  WHERE date(Customer_bill.Shipped_Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "' and product_bill.CustomerBill_ID in(" + customer_IDs + ") " + subQuery;
+            MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
+            DataSet dataSet11 = new DataSet();
+
+            //Create DataTable objects for representing database's tables 
+            adapterSets.Fill(dataSet11, "Shipping");
+            AdapterProducts.Fill(dataSet11, "Products");
+
+            //Set up a master-detail relationship between the DataTables 
+            DataColumn keyColumn = dataSet11.Tables["Shipping"].Columns["كود الفاتورة"];
+            DataColumn foreignKeyColumn = dataSet11.Tables["Products"].Columns["كود الفاتورة"];
+            dataSet11.Relations.Add("بنود الفاتورة", keyColumn, foreignKeyColumn);
+
+
+            //Bind the grid control to the data source 
+            gridControl2.DataSource = dataSet11.Tables["Shipping"];
         }
     }
 }
