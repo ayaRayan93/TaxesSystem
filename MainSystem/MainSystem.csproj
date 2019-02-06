@@ -1431,6 +1431,18 @@
     <Compile Include="Store\Export\PermissionsDelivery.Designer.cs">
       <DependentUpon>PermissionsDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Supplier\AddSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Supplier\AddSupplier.designer.cs">
+      <DependentUpon>AddSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Supplier\UpdateSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Supplier\UpdateSupplier.designer.cs">
+      <DependentUpon>UpdateSupplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Gate\GateEnter_Details.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2320,6 +2332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\PermissionsDelivery.resx">
       <DependentUpon>PermissionsDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Supplier\AddSupplier.resx">
+      <DependentUpon>AddSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Supplier\UpdateSupplier.resx">
+      <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">
       <DependentUpon>GateEnter_Details.cs</DependentUpon>

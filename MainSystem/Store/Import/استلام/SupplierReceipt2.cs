@@ -495,6 +495,8 @@ namespace MainSystem
                                 com = new MySqlCommand(query, conn);
                                 storageImportPermissionID = Convert.ToInt16(com.ExecuteScalar().ToString());
 
+                                UserControl.ItemRecord("storage_import_permission", "اضافة", storageImportPermissionID, DateTime.Now, "", conn);
+
                                 query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_permission ON gate_permission.Permission_Number = gate.Permission_Number where gate.Store_ID=" + storeId + " and gate.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول'";
                                 com = new MySqlCommand(query, dbconnection2);
                                 MySqlDataReader dr2 = com.ExecuteReader();
@@ -614,7 +616,7 @@ namespace MainSystem
 
                             if (importSupplierPermissionID > 0)
                             {
-                                query = "insert into supplier_permission_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Note,ImportSupplierPermission_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Note,@ImportSupplierPermission_ID)";
+                                query = "insert into supplier_permission_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Note,ImportSupplierPermission_ID,Employee_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Note,@ImportSupplierPermission_ID,@Employee_ID)";
                                 com = new MySqlCommand(query, conn);
                                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                 com.Parameters["@Store_ID"].Value = storeId;
@@ -644,6 +646,8 @@ namespace MainSystem
                                 com.Parameters["@Note"].Value = txtDescription.Text;
                                 com.Parameters.Add("@ImportSupplierPermission_ID", MySqlDbType.Int16);
                                 com.Parameters["@ImportSupplierPermission_ID"].Value = importSupplierPermissionID;
+                                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
+                                com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
                                 com.ExecuteNonQuery();
                             }
                             else
