@@ -125,5 +125,29 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        public void bindReportPurchasesPriceForm(GridControl gridControl)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تقرير اسعار البنود");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تقرير اسعار البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تقرير اسعار البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            ProductPurchasesPricesReport objForm = new ProductPurchasesPricesReport(gridControl);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
     }
 }
