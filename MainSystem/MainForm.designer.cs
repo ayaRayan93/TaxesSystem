@@ -1063,8 +1063,7 @@
             this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionDelivery)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
             this.navBarGroup6.Name = "navBarGroup6";
             this.navBarGroup6.SelectedLinkIndex = 2;
             // 
@@ -1202,13 +1201,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemStoreReturn)});
             this.navBarGroup5.Name = "navBarGroup5";
             this.navBarGroup5.SelectedLinkIndex = 0;
-            this.navBarGroup6.Caption = "التسليم";
-            this.navBarGroup6.Expanded = true;
-            this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
-            this.navBarGroup6.Name = "navBarGroup6";
-            this.navBarGroup6.SelectedLinkIndex = 2;
+
+
             // 
             // navBarItem11
             // 
