@@ -447,11 +447,11 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الاذونات المتوقع استلمها");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الاذونات المتوقع تسليمها");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("الاذونات المتوقع استلمها");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الاذونات المتوقع استلمها");
+                    xtraTabControlStoresContent.TabPages.Add("الاذونات المتوقع تسليمها");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الاذونات المتوقع تسليمها");
                 }
 
                 xtraTabPage.Controls.Clear();
