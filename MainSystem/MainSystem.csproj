@@ -229,6 +229,12 @@
     <Compile Include="PointOfSale\Customer_Report2.designer.cs">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\ProductPurchasesPricesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\ProductPurchasesPricesReport.designer.cs">
+      <DependentUpon>ProductPurchasesPricesReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\ProductsPurchasesPriceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1718,6 +1724,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\ProductPurchasesPricesReport.resx">
+      <DependentUpon>ProductPurchasesPricesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\ProductsPurchasesPriceForm.resx">
       <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>

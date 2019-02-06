@@ -495,7 +495,7 @@ namespace MainSystem
         {
             try
             {
-                purchasesMainForm.bindReportSellPriceForm(gridControl1);
+                purchasesMainForm.bindReportPurchasesPriceForm(gridControl1);
             }
             catch (Exception ex)
             {
