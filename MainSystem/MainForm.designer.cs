@@ -459,7 +459,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
-            this.navBarItemPermissionDelivery = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1047,8 +1046,7 @@
             this.navBarItem21,
             this.navBarItem22,
             this.navBarItem3,
-            this.navBarItemGateReport,
-            this.navBarItemPermissionDelivery});
+            this.navBarItemGateReport});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
             this.navBarControl1.Location = new System.Drawing.Point(961, 0);
             this.navBarControl1.Name = "navBarControl1";
@@ -1201,8 +1199,7 @@
             this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionDelivery)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14)});
             this.navBarGroup6.Name = "navBarGroup6";
             this.navBarGroup6.SelectedLinkIndex = 2;
             // 
@@ -4267,12 +4264,7 @@
             this.tileItem1.Id = 27;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
-            // 
-            // navBarItemPermissionDelivery
-            // 
-            this.navBarItemPermissionDelivery.Caption = "الاذونات المتوقع تسليمها";
-            this.navBarItemPermissionDelivery.Name = "navBarItemPermissionDelivery";
-            this.navBarItemPermissionDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionDelivery_LinkClicked);
+            
             // 
             // MainForm
             // 
