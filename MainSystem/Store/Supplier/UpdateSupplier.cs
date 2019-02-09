@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraTab;
 
 namespace MainSystem
 {
@@ -15,7 +16,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        public UpdateSupplier()
+        public UpdateSupplier(List<DataRowView> rows, Supplier_Report supplierReport, XtraTabControl xtraTabControlPurchases)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);

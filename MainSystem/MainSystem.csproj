@@ -164,6 +164,12 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Purchases_Bills\Supplier_Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Purchases_Bills\Supplier_Bill.designer.cs">
+      <DependentUpon>Supplier_Bill.cs</DependentUpon>
+    </Compile>
     <Compile Include="ayatestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,6 +234,12 @@
     </Compile>
     <Compile Include="PointOfSale\Customer_Report2.designer.cs">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Report.designer.cs">
+      <DependentUpon>Supplier_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\ProductPurchasesPricesReport.cs">
       <SubType>Form</SubType>
@@ -1707,6 +1719,9 @@
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Purchases_Bills\Supplier_Bill.resx">
+      <DependentUpon>Supplier_Bill.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Coding\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>
     </EmbeddedResource>
@@ -1736,6 +1751,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Report.resx">
+      <DependentUpon>Supplier_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\ProductPurchasesPricesReport.resx">
       <DependentUpon>ProductPurchasesPricesReport.cs</DependentUpon>

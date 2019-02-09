@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraTab;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,72 +15,161 @@ namespace MainSystem
 {
     public partial class AddSupplier : Form
     {
-        MySqlConnection connection;
-        public AddSupplier()
+        MySqlConnection dbconnection;
+        Supplier_Report supplierReport;
+        XtraTabControl xtraTabControlPurchases;
+        XtraTabPage xtraTabPage;
+
+        public AddSupplier(Supplier_Report SupplierReport, XtraTabControl XtraTabControlPurchases)
         {
             InitializeComponent();
-            string connectionString;
-            connectionString = "SERVER=localhost;DATABASE=ccc;user=root;PASSWORD=root;CHARSET=utf8";
 
-            connection = new MySqlConnection(connectionString);
+            dbconnection = new MySqlConnection(connection.connectionString);
+            supplierReport = SupplierReport;
+            xtraTabControlPurchases = XtraTabControlPurchases;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-
                 double output;
-                if (Double.TryParse(textBox5.Text, out output))
-                {
-                }
+                if (double.TryParse(txtDebit.Text, out output))
+                { }
                 else
                 {
                     MessageBox.Show("enter number");
-                    connection.Close();
+                    dbconnection.Close();
                     return;
                 }
-                if (Double.TryParse(textBox6.Text, out output))
-                {
-                }
+                if (double.TryParse(txtCredit.Text, out output))
+                { }
                 else
                 {
                     MessageBox.Show("enter number");
-                    connection.Close();
+                    dbconnection.Close();
                     return;
                 }
-                
-                connection.Open();
-                string query;
-                query = "insert into Suppliers (Name,Address,Phone,Fax,E_mail,Start_Date,AddationalDetails,OpenCashTo,OpenCashFrom) values (@Name,@Address,@Phone,@Fax,@E_mail,@Start_Date,@AddationalDetails,@To1,@From1)";
-                MySqlCommand com = new MySqlCommand(query, connection);
-                com.Parameters.Add("@Name", MySqlDbType.VarChar, 255);
-                com.Parameters["@Name"].Value =textBox1.Text;
-                com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
-                com.Parameters["@Address"].Value = textBox2.Text;
-                com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
-                com.Parameters["@Phone"].Value = textBox3.Text;
-                com.Parameters.Add("@Fax", MySqlDbType.VarChar, 255);
-                com.Parameters["@Fax"].Value = textBox9.Text;
-                com.Parameters.Add("@E_mail", MySqlDbType.VarChar, 255);
-                com.Parameters["@E_mail"].Value = textBox4.Text;
-                com.Parameters.Add("@Start_Date", MySqlDbType.Date, 0);
-                com.Parameters["@Start_Date"].Value = dateTimePicker1.Value;
-                com.Parameters.Add("@AddationalDetails", MySqlDbType.VarChar, 255);
-                com.Parameters["@AddationalDetails"].Value = textBox7.Text;
-                com.Parameters.Add("@To1", MySqlDbType.VarChar,255);
-                com.Parameters["@To1"].Value = textBox5.Text;
-                com.Parameters.Add("@From1", MySqlDbType.VarChar,255);
-                com.Parameters["@From1"].Value = textBox6.Text;
 
-                com.ExecuteNonQuery();
-                MessageBox.Show("add success");
-            } catch (Exception ex)
+                if (checkPhoneExist())
+                {
+                    dbconnection.Open();
+                    string query = "insert into Supplier (Supplier_Name,Supplier_Address,Supplier_Phone,Supplier_Fax,Supplier_Mail,Supplier_NationalID,Supplier_Start,Supplier_Info,Supplier_Credit,Supplier_Debit) values (@Name,@Address,@Phone,@Fax,@E_mail,@NationalID,@Start_Date,@Info,@Supplier_Credit,@Supplier_Debit)";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@Name", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Name"].Value = txtName.Text;
+                    com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Address"].Value = txtAddress.Text;
+                    com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Phone"].Value = txtPhone.Text;
+                    com.Parameters.Add("@Fax", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Fax"].Value = txtFax.Text;
+                    com.Parameters.Add("@E_mail", MySqlDbType.VarChar, 255);
+                    com.Parameters["@E_mail"].Value = txtMail.Text;
+                    com.Parameters.Add("@Start_Date", MySqlDbType.Date, 0);
+                    com.Parameters["@Start_Date"].Value = dateTimePicker1.Value.Date;
+                    com.Parameters.Add("@NationalID", MySqlDbType.VarChar, 255);
+                    com.Parameters["@NationalID"].Value = txtNationalId.Text;
+                    com.Parameters.Add("@Supplier_Credit", MySqlDbType.Decimal, 10);
+                    com.Parameters["@Supplier_Credit"].Value = txtCredit.Text;
+                    com.Parameters.Add("@Supplier_Debit", MySqlDbType.Decimal, 10);
+                    com.Parameters["@Supplier_Debit"].Value = txtDebit.Text;
+                    com.Parameters.Add("@Info", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Info"].Value = txtInfo.Text;
+
+                    com.ExecuteNonQuery();
+                    clear();
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
 
             }
-            connection.Close();
+            dbconnection.Close();
+        }
+
+        private void txtBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                xtraTabPage = getTabPage("اضافة مورد");
+                if (!IsClear())
+                {
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                }
+                else
+                {
+                    xtraTabPage.ImageOptions.Image = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public bool checkPhoneExist()
+        {
+            string query = "SELECT customer.Customer_ID FROM customer INNER JOIN customer_phone ON customer_phone.Customer_ID = customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+                return false;
+            else
+                return true;
+        }
+
+        //clear function
+        public void clear()
+        {
+            foreach (Control item in layoutControl1.Controls)
+            {
+                if (item is System.Windows.Forms.ComboBox)
+                {
+                    item.Text = "";
+                }
+                else if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+            }
+        }
+
+        public XtraTabPage getTabPage(string text)
+        {
+            for (int i = 0; i < xtraTabControlPurchases.TabPages.Count; i++)
+                if (xtraTabControlPurchases.TabPages[i].Text == text)
+                {
+                    return xtraTabControlPurchases.TabPages[i];
+                }
+            return null;
+        }
+
+        public bool IsClear()
+        {
+            bool flag5 = false;
+            foreach (Control co in layoutControl1.Controls)
+            {
+                foreach (Control item in co.Controls)
+                {
+                    if (item is System.Windows.Forms.ComboBox)
+                    {
+                        if (item.Text == "")
+                            flag5 = true;
+                        else
+                            return false;
+                    }
+                    else if (item is TextBox)
+                    {
+                        if (item.Text == "")
+                            flag5 = true;
+                        else
+                            return false;
+                    }
+                }
+            }
+
+            return flag5;
         }
     }
 }
