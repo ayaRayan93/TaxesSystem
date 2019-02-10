@@ -267,5 +267,27 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        public void bindPrintSupplierForm()
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "طباعة بيانات الموردين");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("طباعة بيانات الموردين");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "طباعة بيانات الموردين");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            Supplier_Print objForm = new Supplier_Print();
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
     }
 }

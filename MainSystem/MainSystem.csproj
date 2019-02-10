@@ -164,10 +164,10 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Accounting\Purchases_Bills\Supplier_Bill.cs">
+    <Compile Include="Purchases\Purchases_Bills\Supplier_Bill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accounting\Purchases_Bills\Supplier_Bill.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\Supplier_Bill.designer.cs">
       <DependentUpon>Supplier_Bill.cs</DependentUpon>
     </Compile>
     <Compile Include="ayatestDataSet.Designer.cs">
@@ -235,35 +235,41 @@
     <Compile Include="PointOfSale\Customer_Report2.designer.cs">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Report.cs">
+    <Compile Include="Purchases\Supplier\Supplier_Print.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Report.designer.cs">
+    <Compile Include="Purchases\Supplier\Supplier_Print.designer.cs">
+      <DependentUpon>Supplier_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier\Supplier_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier\Supplier_Report.designer.cs">
       <DependentUpon>Supplier_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\ProductPurchasesPricesReport.cs">
+    <Compile Include="Purchases\Purchases_Price\ProductPurchasesPricesReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\ProductPurchasesPricesReport.designer.cs">
+    <Compile Include="Purchases\Purchases_Price\ProductPurchasesPricesReport.designer.cs">
       <DependentUpon>ProductPurchasesPricesReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\ProductsPurchasesPriceForm.cs">
+    <Compile Include="Purchases\Purchases_Price\ProductsPurchasesPriceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\ProductsPurchasesPriceForm.Designer.cs">
+    <Compile Include="Purchases\Purchases_Price\ProductsPurchasesPriceForm.Designer.cs">
       <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PurchasesSystem.cs" />
-    <Compile Include="Purchases\SetPurchasesPrice.cs">
+    <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\SetPurchasesPrice.Designer.cs">
+    <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice.Designer.cs">
       <DependentUpon>SetPurchasesPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\UpdatePurchasesPrice.cs">
+    <Compile Include="Purchases\Purchases_Price\UpdatePurchasesPrice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\UpdatePurchasesPrice.Designer.cs">
+    <Compile Include="Purchases\Purchases_Price\UpdatePurchasesPrice.Designer.cs">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Customer_Record.cs">
@@ -1443,16 +1449,16 @@
     <Compile Include="Store\Export\PermissionsDelivery.Designer.cs">
       <DependentUpon>PermissionsDelivery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Supplier\AddSupplier.cs">
+    <Compile Include="Purchases\Supplier\AddSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Supplier\AddSupplier.designer.cs">
+    <Compile Include="Purchases\Supplier\AddSupplier.designer.cs">
       <DependentUpon>AddSupplier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Supplier\UpdateSupplier.cs">
+    <Compile Include="Purchases\Supplier\UpdateSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Supplier\UpdateSupplier.designer.cs">
+    <Compile Include="Purchases\Supplier\UpdateSupplier.designer.cs">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Gate\GateEnter_Details.cs">
@@ -1719,7 +1725,7 @@
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Accounting\Purchases_Bills\Supplier_Bill.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Supplier_Bill.resx">
       <DependentUpon>Supplier_Bill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Coding\Branch_Print.resx">
@@ -1752,19 +1758,22 @@
     <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Report.resx">
+    <EmbeddedResource Include="Purchases\Supplier\Supplier_Print.resx">
+      <DependentUpon>Supplier_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier\Supplier_Report.resx">
       <DependentUpon>Supplier_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\ProductPurchasesPricesReport.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Price\ProductPurchasesPricesReport.resx">
       <DependentUpon>ProductPurchasesPricesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\ProductsPurchasesPriceForm.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Price\ProductsPurchasesPriceForm.resx">
       <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\SetPurchasesPrice.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice.resx">
       <DependentUpon>SetPurchasesPrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\UpdatePurchasesPrice.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Price\UpdatePurchasesPrice.resx">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Record.resx">
@@ -2351,10 +2360,10 @@
     <EmbeddedResource Include="Store\Export\PermissionsDelivery.resx">
       <DependentUpon>PermissionsDelivery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Supplier\AddSupplier.resx">
+    <EmbeddedResource Include="Purchases\Supplier\AddSupplier.resx">
       <DependentUpon>AddSupplier.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Supplier\UpdateSupplier.resx">
+    <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">

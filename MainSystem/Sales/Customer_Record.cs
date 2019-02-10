@@ -163,7 +163,7 @@ namespace MainSystem
                     }
                     else
                     {
-                        MessageBox.Show("يوجد رقم موجود من قبل");
+                        MessageBox.Show("يوجد رقم تليفون موجود من قبل");
                         dbconnection.Close();
                         return;
                     }
@@ -335,18 +335,15 @@ namespace MainSystem
         {
             try
             {
-                //if (comEnginner.Text != "")
-                //{
-                    xtraTabPage = getTabPage("اضافة عميل");
-                    if (!IsClear())
-                    {
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                    }
-                    else
-                    {
-                        xtraTabPage.ImageOptions.Image = null;
-                    }
-                //}
+                xtraTabPage = getTabPage("اضافة عميل");
+                if (!IsClear())
+                {
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                }
+                else
+                {
+                    xtraTabPage.ImageOptions.Image = null;
+                }
             }
             catch (Exception ex)
             {
@@ -359,8 +356,6 @@ namespace MainSystem
         {
             foreach (Control co in this.tableLayoutPanel1.Controls)
             {
-                //if (co is GroupBox)
-                //{
                 foreach (Control item in co.Controls)
                 {
                     if (item is System.Windows.Forms.ComboBox)
@@ -385,7 +380,6 @@ namespace MainSystem
                     }
                     txtOpenAccount.Text = "";
                 }
-                //}
             }
         }
 
@@ -425,8 +419,5 @@ namespace MainSystem
 
             return flag5;
         }
-
-        
     }
-   
 }

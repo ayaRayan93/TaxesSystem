@@ -23,7 +23,7 @@ namespace MainSystem
         XtraTabControl xtraTabControlPurchases;
         MainForm mainform;
         
-        public static Customer_Print customerPrint;
+        public static Supplier_Print supplierPrint;
 
         public static GridControl gridcontrol;
 
@@ -66,7 +66,7 @@ namespace MainSystem
         {
             try
             {
-                int[] rows = (((GridView)gridControl1.MainView).GetSelectedRows());
+                /*int[] rows = (((GridView)gridControl1.MainView).GetSelectedRows());
                 List<DataRowView> recordList = new List<DataRowView>();
                 for (int i = 0; i < rows.Length; i++)
                 {
@@ -81,11 +81,11 @@ namespace MainSystem
                 else
                 {
                     MessageBox.Show("يجب تحديد البند المراد تعديله");
-                }
+                }*/
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("يجب تحديد البند المراد تعديله");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -107,20 +107,23 @@ namespace MainSystem
         {
             try
             {
-                MainForm.MainTabPagePrintCustomer.Name = "tabPagePrintCustomer";
+                gridcontrol = gridControl1;
+                mainform.bindPrintSupplierForm();
+
+                /*MainForm.MainTabPagePrintCustomer.Name = "tabPagePrintSupplier";
                 MainForm.MainTabPagePrintCustomer.Text = "طباعة الموردين";
                 
-                customerPrint = new Customer_Print();
-                customerPrint.Size = new Size(1059, 638);
-                customerPrint.TopLevel = false;
-                customerPrint.FormBorderStyle = FormBorderStyle.None;
-                customerPrint.Dock = DockStyle.Fill;
-                MainForm.MainTabPagePrintCustomer.Controls.Add(customerPrint);
+                supplierPrint = new Supplier_Print();
+                supplierPrint.Size = new Size(1059, 638);
+                supplierPrint.TopLevel = false;
+                supplierPrint.FormBorderStyle = FormBorderStyle.None;
+                supplierPrint.Dock = DockStyle.Fill;
+                MainForm.MainTabPagePrintCustomer.Controls.Add(supplierPrint);
                 xtraTabControlPurchases.TabPages.Add(MainForm.MainTabPagePrintCustomer);
-                customerPrint.Show();
+                supplierPrint.Show();
                 xtraTabControlPurchases.SelectedTabPage = MainForm.MainTabPagePrintCustomer;
 
-                MainForm.loadedPrintCustomer = true;
+                MainForm.loadedPrintCustomer = true;*/
             }
             catch (Exception ex)
             {
@@ -165,12 +168,22 @@ namespace MainSystem
         //functions
         public void search()
         {
-            MySqlDataAdapter adapterSupplier = new MySqlDataAdapter("SELECT supplier.Supplier_ID as 'الكود',supplier.Supplier_Name as 'الاسم',supplier.Supplier_Address as 'العنوان',supplier.Supplier_Phone as 'التليفون',supplier.Supplier_Fax as 'الفاكس',supplier.Supplier_Mail as 'الايميل',supplier.Supplier_NationalID as 'الرقم القومى',supplier.Supplier_Start as 'تاريخ البداية',supplier.Supplier_Credit as 'دائن',supplier.Supplier_Debit as 'مدين',supplier.Supplier_Info as 'البيان' FROM supplier ORDER BY supplier.Supplier_ID", conn);
+            DataSet sourceDataSet = new DataSet();
+            MySqlDataAdapter adapterSupplier = new MySqlDataAdapter("SELECT supplier.Supplier_ID as 'الكود',supplier.Supplier_Name as 'الاسم',supplier.Supplier_Address as 'العنوان',supplier.Supplier_Fax as 'الفاكس',supplier.Supplier_Mail as 'الايميل',supplier.Supplier_Start as 'تاريخ البداية',supplier.Supplier_Credit as 'دائن',supplier.Supplier_Debit as 'مدين',supplier.Supplier_Info as 'البيان' FROM supplier ORDER BY supplier.Supplier_ID", conn);
 
-            DataTable sourceDataSet = new DataTable();
-            adapterSupplier.Fill(sourceDataSet);
-            gridControl1.DataSource = sourceDataSet;
-            gridView1.Columns[0].Visible = false;
+            MySqlDataAdapter adapterPhone = new MySqlDataAdapter("SELECT supplier.Supplier_ID as 'الكود',Phone as 'رقم التليفون' FROM supplier_phone inner join supplier on supplier.Supplier_ID=supplier_phone.Supplier_ID", conn);
+
+            adapterSupplier.Fill(sourceDataSet, "supplier");
+            adapterPhone.Fill(sourceDataSet, "supplier_phone");
+
+            //Set up a master-detail relationship between the DataTables 
+            DataColumn keyColumn = sourceDataSet.Tables["supplier"].Columns["الكود"];
+            DataColumn foreignKeyColumn = sourceDataSet.Tables["supplier_phone"].Columns["الكود"];
+            sourceDataSet.Relations.Add("ارقام التليفون", keyColumn, foreignKeyColumn);
+            
+            gridControl1.DataSource = sourceDataSet.Tables["supplier"];
+            
+            //gridView1.Columns[0].Visible = false;
         }
 
         public XtraTabPage getTabPage(string text)
