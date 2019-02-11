@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,10 +25,14 @@ namespace MainSystem
         int SupplierBillNo;
         double BuyPrice;
         bool flag = false;
-        bool loaded2 = false;
+        //bool loaded2 = false;
+        bool loaded = false;
         bool notAdded = false;
         string str;
         int storeId = 0;
+        MainForm purchasesMainForm;
+        DataRow row1 = null;
+        int rowHandle = 0;
 
         public Supplier_Bill(MainForm mainForm)
         {
@@ -35,6 +40,7 @@ namespace MainSystem
             courrentIDs = new int[100];
             addedRecordIDs = new int[100];
             conn = new MySqlConnection(connection.connectionString);
+            purchasesMainForm = mainForm;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -238,34 +244,59 @@ namespace MainSystem
             }
             conn.Close();
         }
-      
-        private void txtBox_TextChanged(object sender, EventArgs e)
+
+        private void txtBox_TextChanged2(object sender, EventArgs e)
         {
-            if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
+            try
             {
-                double price, BuyDiscount, NormalIncrease, Categorical_Increase, VAT;
-                if (double.TryParse(txtPrice.Text, out price)
-                 &&
-                 double.TryParse(txtDiscount.Text, out BuyDiscount)
-                 &&
-                 double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
-                 &&
-                 double.TryParse(txtCategoricalIncrease.Text, out Categorical_Increase)
-                 &&
-                 double.TryParse(txtTax.Text, out VAT))
+                if (loaded)
                 {
-                    BuyPrice = price + NormalIncrease;
-                    BuyPrice -= BuyDiscount;
-                    BuyPrice += Categorical_Increase;
-                    BuyPrice += VAT;
-                    txtPurchasePrice.Text = BuyPrice.ToString();
+                    if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
+                    {
+                        txtPurchasePrice.Text = calPurchasesPrice() + "";
+                    }
+                    else
+                    {
+                        txtPurchasePrice.Text = "";
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                txtPurchasePrice.Text = "";
+                MessageBox.Show(ex.Message);
             }
         }
+
+        /*private void txtBox_TextChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
+                {
+                    double price, BuyDiscount, NormalIncrease, Categorical_Increase, VAT;
+                    if (double.TryParse(txtPrice.Text, out price)
+                     &&
+                     double.TryParse(txtDiscount.Text, out BuyDiscount)
+                     &&
+                     double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
+                     &&
+                     double.TryParse(txtCategoricalIncrease.Text, out Categorical_Increase)
+                     &&
+                     double.TryParse(txtTax.Text, out VAT))
+                    {
+                        BuyPrice = price + NormalIncrease;
+                        BuyPrice -= BuyDiscount;
+                        BuyPrice += Categorical_Increase;
+                        BuyPrice += VAT;
+                        txtPurchasePrice.Text = BuyPrice.ToString();
+                    }
+                }
+                else
+                {
+                    txtPurchasePrice.Text = "";
+                }
+            }
+        }*/
 
         /*private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -310,25 +341,26 @@ namespace MainSystem
                     conn.Close();
                     conn.Open();
                     NewBill();
-                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',product.Product_Name AS 'الصنف',type.Type_Name AS 'النوع',factory.Factory_Name AS 'المصنع',groupo.Group_Name AS 'المجموعه',purchasing_price.Price AS 'السعر',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString();
+                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     gridControl1.DataSource = dt;
                     gridView1.Columns[0].Visible = false;
+                    gridView1.Columns["PurchasingPrice_ID"].Visible = false;
+                    //gridView1.Columns["نوع السعر"].Visible = false;
 
-                    gridView1.Columns[1].Width = 150;
-                    gridView1.Columns[2].Width = 150;
-                    for (int i = 3; i < gridView1.Columns.Count; i++)
-                    {
-                        gridView1.Columns[i].Width = 100;
-                    }
+                    gridView1.Columns[1].Width = 170;
+                    gridView1.Columns[2].Width = 300;
                     if (gridView1.IsLastVisibleRow)
                     {
                         gridView1.FocusedRowHandle = gridView1.RowCount - 1;
                     }
-                    //NewBill();
-
+                    for (int i = 3; i < gridView1.Columns.Count; i++)
+                    {
+                        gridView1.Columns[i].Width = 120;
+                    }
+                    
                     q = "select Bill_No from Bill_Data ORDER BY BillData_ID DESC LIMIT 1 ";
                     MySqlCommand com = new MySqlCommand(q, conn);
                     BillNo = (int)com.ExecuteScalar();
@@ -395,7 +427,9 @@ namespace MainSystem
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+            loaded = false;
+            row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+            rowHandle = e.RowHandle;
             txtCode.Text = row1["الكود"].ToString();
             txtPrice.Text = row1["السعر"].ToString();
             txtPurchasePrice.Text = row1["سعر الشراء"].ToString();
@@ -407,6 +441,7 @@ namespace MainSystem
             {
                 txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0.00";
             }
+            loaded = true;
 
             /*for (int i = 0; i < addedRecordIDs.Length; i++)
             {
@@ -417,6 +452,65 @@ namespace MainSystem
                     break;
                 }
             }*/
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (row1 != null)
+                    {
+                        if (row1["PurchasingPrice_ID"].ToString() != "")
+                        {
+                            //purchasesMainForm.bindUpdateBillPurchasesPriceForm(row1);
+                            /*UpdateBillPurchasesPrice objForm = new UpdateBillPurchasesPrice(row1, this);
+                            objForm.ShowDialog();*/
+                        }
+                        else
+                        {
+                            MessageBox.Show("يجب تسعير البند اولا.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب تحديد البند المراد تعديله.");
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("يجب تحديد البند المراد تعديله.");
+                }
+            }
+        }
+
+        public void updateGrid(/*string PriceType, */double PurchasingPrice, double ProfitRatio, double PurchasingDiscount, double Price, double NormalIncrease, double CategoricalIncrease)
+        {
+            gridView1.SetRowCellValue(rowHandle, "سعر الشراء", PurchasingPrice);
+            gridView1.SetRowCellValue(rowHandle, "نسبة الشراء", ProfitRatio);
+            gridView1.SetRowCellValue(rowHandle, "خصم الشراء", PurchasingDiscount);
+            gridView1.SetRowCellValue(rowHandle, "السعر", Price);
+            gridView1.SetRowCellValue(rowHandle, "الزيادة العادية", NormalIncrease);
+            gridView1.SetRowCellValue(rowHandle, "الزيادة القطعية", CategoricalIncrease);
+        }
+
+        public double calPurchasesPrice()
+        {
+            double price = double.Parse(txtPrice.Text);
+            double PurchasesPercent = double.Parse(txtDiscount.Text);
+            if (row1["نوع السعر"].ToString() == "قطعى")
+            {
+                return price + (price * PurchasesPercent / 100.0);
+            }
+            else
+            {
+                double NormalPercent = double.Parse(txtNormalIncrease.Text);
+                double unNormalPercent = double.Parse(txtCategoricalIncrease.Text);
+                double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
+                PurchasesPrice = PurchasesPrice + unNormalPercent;
+                return PurchasesPrice;
+            }
         }
     }
 }

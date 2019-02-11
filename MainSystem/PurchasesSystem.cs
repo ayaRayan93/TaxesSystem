@@ -300,5 +300,30 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+
+        /*public void bindUpdateBillPurchasesPriceForm(DataRow rows)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل اسعار الشراء للفاتورة");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تعديل اسعار الشراء للفاتورة");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل اسعار الشراء للفاتورة");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+            UpdateBillPurchasesPrice objForm = new UpdateBillPurchasesPrice(rows);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }*/
     }
 }
