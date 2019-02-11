@@ -90,7 +90,7 @@ namespace MainSystem
                     xtraTabPage.Controls.Clear();
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-                    bindDisplayProductsPurchasesPriceForm(xtraTabPage);
+                    bindSupplierBillForm(xtraTabPage);
                 }
             }
             catch (Exception ex)
@@ -133,6 +133,17 @@ namespace MainSystem
         public void bindDisplayProductsPurchasesPriceForm(XtraTabPage xtraTabPage)
         {
             ProductsPurchasesPriceForm objForm = new ProductsPurchasesPriceForm(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindSupplierBillForm(XtraTabPage xtraTabPage)
+        {
+            Supplier_Bill objForm = new Supplier_Bill(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

@@ -415,10 +415,12 @@
             this.xtraTabPagePurchases = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlPurchases = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl7 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup43 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSupplierBills = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupSupplier = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSuppliersReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup48 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemPurchasesPricesRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup43 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSupplierBills = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup44 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem206 = new DevExpress.XtraNavBar.NavBarItem();
@@ -465,8 +467,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
-            this.navBarGroupSupplier = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSuppliersReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3847,7 +3847,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroupSupplier;
+            this.navBarControl7.ActiveGroup = this.navBarGroup43;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -3930,18 +3930,18 @@
             this.navBarControl7.TabIndex = 5;
             this.navBarControl7.Text = "navBarControl7";
             // 
-            // navBarGroup43
+            // navBarGroupSupplier
             // 
-            this.navBarGroup43.Caption = "فاتورة شراء";
-            this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
-            this.navBarGroup43.Name = "navBarGroup43";
+            this.navBarGroupSupplier.Caption = "تقرير الموردين";
+            this.navBarGroupSupplier.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSuppliersReport)});
+            this.navBarGroupSupplier.Name = "navBarGroupSupplier";
             // 
-            // navBarItemSupplierBills
+            // navBarItemSuppliersReport
             // 
-            this.navBarItemSupplierBills.Caption = "تسجيل فاتورة شراء";
-            this.navBarItemSupplierBills.Name = "navBarItemSupplierBills";
-            this.navBarItemSupplierBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierBills_LinkClicked);
+            this.navBarItemSuppliersReport.Caption = "الموردين";
+            this.navBarItemSuppliersReport.Name = "navBarItemSuppliersReport";
+            this.navBarItemSuppliersReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSuppliersReport_LinkClicked);
             // 
             // navBarGroup48
             // 
@@ -3955,6 +3955,20 @@
             this.navBarItemPurchasesPricesRecord.Caption = "تسجيل اسعار الشراء";
             this.navBarItemPurchasesPricesRecord.Name = "navBarItemPurchasesPricesRecord";
             this.navBarItemPurchasesPricesRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPurchasesPricesRecord_LinkClicked);
+            // 
+            // navBarGroup43
+            // 
+            this.navBarGroup43.Caption = "فاتورة شراء";
+            this.navBarGroup43.Expanded = true;
+            this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
+            this.navBarGroup43.Name = "navBarGroup43";
+            // 
+            // navBarItemSupplierBills
+            // 
+            this.navBarItemSupplierBills.Caption = "تسجيل فاتورة شراء";
+            this.navBarItemSupplierBills.Name = "navBarItemSupplierBills";
+            this.navBarItemSupplierBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierBills_LinkClicked);
             // 
             // navBarGroup44
             // 
@@ -4312,20 +4326,6 @@
             this.tileItem1.Id = 27;
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
-            // 
-            // navBarGroupSupplier
-            // 
-            this.navBarGroupSupplier.Caption = "تقرير الموردين";
-            this.navBarGroupSupplier.Expanded = true;
-            this.navBarGroupSupplier.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSuppliersReport)});
-            this.navBarGroupSupplier.Name = "navBarGroupSupplier";
-            // 
-            // navBarItemSuppliersReport
-            // 
-            this.navBarItemSuppliersReport.Caption = "الموردين";
-            this.navBarItemSuppliersReport.Name = "navBarItemSuppliersReport";
-            this.navBarItemSuppliersReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSuppliersReport_LinkClicked);
             // 
             // MainForm
             // 

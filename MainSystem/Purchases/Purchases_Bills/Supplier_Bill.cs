@@ -27,9 +27,9 @@ namespace MainSystem
         bool loaded2 = false;
         bool notAdded = false;
         string str;
-        int storeId = 1;
+        int storeId = 0;
 
-        public Supplier_Bill()
+        public Supplier_Bill(MainForm mainForm)
         {
             InitializeComponent();
             courrentIDs = new int[100];
@@ -41,9 +41,9 @@ namespace MainSystem
         {
             try
             {
-                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
-                
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+                storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
                 string query = "select StorageImportPermission_ID,Import_Permission_Number from storage_import_permission where Store_ID=" + storeId + " and Confirmed=0";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -66,7 +66,7 @@ namespace MainSystem
         {
             try
             {
-                double quantity;
+                /*double quantity;
                 if (double.TryParse(txtTotalMeter.Text, out quantity))
                 {
                     conn.Open();
@@ -83,7 +83,7 @@ namespace MainSystem
                     return;
                 }
 
-                string query = "select Store_Name,Storage_Date from storage where Permission_Number=" + comPermessionNum.Text+" and Supplier_Name='"/*+comSupplier.Text+"'"*/;
+                string query = "select Store_Name,Storage_Date from storage where Permission_Number=" + comPermessionNum.Text+" and Supplier_Name='"/*+comSupplier.Text+"'"*;
                 MySqlCommand com= new MySqlCommand(query, conn);
 
                 MySqlDataReader reader= com.ExecuteReader();
@@ -229,7 +229,7 @@ namespace MainSystem
                 else
                 {
 
-                }
+                }*/
 
             }
             catch (Exception ex)
@@ -239,11 +239,11 @@ namespace MainSystem
             conn.Close();
         }
       
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtBox_TextChanged(object sender, EventArgs e)
         {
             if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
             {
-                double price, BuyDiscount, NormalIncrease, Categorical_Increase,VAT;
+                double price, BuyDiscount, NormalIncrease, Categorical_Increase, VAT;
                 if (double.TryParse(txtPrice.Text, out price)
                  &&
                  double.TryParse(txtDiscount.Text, out BuyDiscount)
@@ -310,14 +310,26 @@ namespace MainSystem
                     conn.Close();
                     conn.Open();
                     NewBill();
-                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',product.Product_Name AS 'الصنف',type.Type_Name AS 'النوع',factory.Factory_Name AS 'المصنع',groupo.Group_Name AS 'المجموعه',purchasing_price.Price AS 'السعر',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString();
+                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',product.Product_Name AS 'الصنف',type.Type_Name AS 'النوع',factory.Factory_Name AS 'المصنع',groupo.Group_Name AS 'المجموعه',purchasing_price.Price AS 'السعر',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    dataGridView1.DataSource = dt;
-                    dataGridView1.Columns[0].Visible = false;
+                    gridControl1.DataSource = dt;
+                    gridView1.Columns[0].Visible = false;
 
-                    q = "select Bill_No from Bill_Data ORDER BY ID DESC LIMIT 1 ";
+                    gridView1.Columns[1].Width = 150;
+                    gridView1.Columns[2].Width = 150;
+                    for (int i = 3; i < gridView1.Columns.Count; i++)
+                    {
+                        gridView1.Columns[i].Width = 100;
+                    }
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+                    //NewBill();
+
+                    q = "select Bill_No from Bill_Data ORDER BY BillData_ID DESC LIMIT 1 ";
                     MySqlCommand com = new MySqlCommand(q, conn);
                     BillNo = (int)com.ExecuteScalar();
                     BillNo++;
@@ -369,8 +381,8 @@ namespace MainSystem
                 }
             }
             recordCount = 0;
-            dataGridView2.DataSource = null;
-            dataGridView1.DataSource = null;
+            gridControl2.DataSource = null;
+            gridControl1.DataSource = null;
             Clear();
         }
         //clear fields
@@ -381,30 +393,30 @@ namespace MainSystem
             label1.Text = txtPurchasePrice.Text = label15.Text = "";
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-            txtCode.Text = row.Cells["الكود"].Value.ToString();
-            txtPrice.Text = row.Cells["السعر"].Value.ToString();
-            txtPurchasePrice.Text = row.Cells["سعر الشراء"].Value.ToString();
-            txtNormalIncrease.Text = row.Cells["الزيادة العادية"].Value.ToString();
-            txtDiscount.Text = row.Cells["خصم الشراء"].Value.ToString();
-            txtCategoricalIncrease.Text = row.Cells["الزيادة القطعية"].Value.ToString();
-            txtTotalMeter.Text = row.Cells["اجمالى عدد الامتار"].Value.ToString();
+            DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+            txtCode.Text = row1["الكود"].ToString();
+            txtPrice.Text = row1["السعر"].ToString();
+            txtPurchasePrice.Text = row1["سعر الشراء"].ToString();
+            txtNormalIncrease.Text = row1["الزيادة العادية"].ToString();
+            txtDiscount.Text = row1["خصم الشراء"].ToString();
+            txtCategoricalIncrease.Text = row1["الزيادة القطعية"].ToString();
+            txtTotalMeter.Text = row1["اجمالى عدد الامتار"].ToString();
             if (txtCategoricalIncrease.Text == "" && txtNormalIncrease.Text == "")
             {
                 txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0.00";
             }
 
-            for (int i = 0; i < addedRecordIDs.Length; i++)
+            /*for (int i = 0; i < addedRecordIDs.Length; i++)
             {
-                if (addedRecordIDs[i] == dataGridView1.SelectedCells[0].RowIndex + 1)
+                if (addedRecordIDs[i] == gridView1.GetSelectedCells()[0].RowHandle)
                 {
                     notAdded = true;
 
                     break;
                 }
-            }
+            }*/
         }
     }
 }

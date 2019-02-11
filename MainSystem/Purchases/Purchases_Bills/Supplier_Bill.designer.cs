@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,7 +41,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtTax = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -63,8 +61,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRemove = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -72,22 +72,11 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 43);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataGridView1.Size = new System.Drawing.Size(846, 199);
-            this.dataGridView1.TabIndex = 6;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // txtCode
             // 
@@ -129,7 +118,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 24);
             this.txtPrice.TabIndex = 10;
-            this.txtPrice.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label6
             // 
@@ -150,7 +139,7 @@
             this.txtCategoricalIncrease.Name = "txtCategoricalIncrease";
             this.txtCategoricalIncrease.Size = new System.Drawing.Size(100, 24);
             this.txtCategoricalIncrease.TabIndex = 12;
-            this.txtCategoricalIncrease.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtCategoricalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label7
             // 
@@ -171,7 +160,7 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(100, 24);
             this.txtDiscount.TabIndex = 14;
-            this.txtDiscount.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtDiscount.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label8
             // 
@@ -192,7 +181,7 @@
             this.txtNormalIncrease.Name = "txtNormalIncrease";
             this.txtNormalIncrease.Size = new System.Drawing.Size(100, 24);
             this.txtNormalIncrease.TabIndex = 16;
-            this.txtNormalIncrease.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtNormalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label9
             // 
@@ -214,10 +203,11 @@
             this.txtTax.Size = new System.Drawing.Size(100, 24);
             this.txtTax.TabIndex = 18;
             this.txtTax.Text = "0";
-            this.txtTax.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtTax.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
@@ -228,20 +218,6 @@
             this.btnAdd.Text = "اضافة";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.dtnAdd_Click);
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 388);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataGridView2.Size = new System.Drawing.Size(846, 199);
-            this.dataGridView2.TabIndex = 21;
             // 
             // label10
             // 
@@ -340,11 +316,11 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -372,6 +348,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel4.Controls.Add(this.btnReport, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 633);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -522,7 +499,6 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnRemove.ForeColor = System.Drawing.Color.White;
@@ -533,6 +509,63 @@
             this.btnRemove.Text = "حذف";
             this.btnRemove.UseVisualStyleBackColor = true;
             // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(3, 43);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(846, 199);
+            this.gridControl1.TabIndex = 40;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl2.Location = new System.Drawing.Point(3, 388);
+            this.gridControl2.MainView = this.gridView2;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(846, 199);
+            this.gridControl2.TabIndex = 41;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.Row.Options.UseFont = true;
+            this.gridView2.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.GridControl = this.gridControl2;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsSelection.MultiSelect = true;
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
             // Supplier_Bill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,8 +575,6 @@
             this.Name = "Supplier_Bill";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -554,12 +585,15 @@
             this.tableLayoutPanel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -573,7 +607,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTax;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtTotalMeter;
         private System.Windows.Forms.Label label11;
@@ -594,6 +627,10 @@
         private System.Windows.Forms.TextBox txtPurchasePrice;
         private Bunifu.Framework.UI.BunifuTileButton btnSave;
         private System.Windows.Forms.Button btnRemove;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }
 
