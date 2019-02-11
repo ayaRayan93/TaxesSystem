@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,43 +27,33 @@ namespace MainSystem
         bool loaded2 = false;
         bool notAdded = false;
         string str;
+        int storeId = 1;
+
         public Supplier_Bill()
         {
             InitializeComponent();
             courrentIDs = new int[100];
             addedRecordIDs = new int[100];
-            comboBox3.Visible = false;
             conn = new MySqlConnection(connection.connectionString);
-            
-
-            try
-            {
-             
-                string query = "select * from supplier";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                comboBox2.DataSource = dt;
-                comboBox2.DisplayMember = dt.Columns["Supplier_Name"].ToString();
-                comboBox2.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                comboBox2.Text = "";
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            conn.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-                flag = true;
-                conn.Open();
+                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                
+                string query = "select StorageImportPermission_ID,Import_Permission_Number from storage_import_permission where Store_ID=" + storeId + " and Confirmed=0";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comPermessionNum.DataSource = dt;
+                comPermessionNum.DisplayMember = dt.Columns["Import_Permission_Number"].ToString();
+                comPermessionNum.ValueMember = dt.Columns["StorageImportPermission_ID"].ToString();
+                comPermessionNum.Text = "";
 
-                comboBox2.Text = "";
+                flag = true;
             }
             catch (Exception ex)
             {
@@ -70,46 +62,12 @@ namespace MainSystem
             conn.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-            DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-            string v = row.Cells[0].Value.ToString();
-            textBox1.Text = v;
-             v = row.Cells[6].Value.ToString();
-            textBox2.Text = v;
-             v = row.Cells[7].Value.ToString();
-            textBox5.Text = v;
-            v = row.Cells[8].Value.ToString();
-            textBox4.Text = v;
-            v = row.Cells[9].Value.ToString();
-            textBox3.Text = v;
-            v = row.Cells[5].Value.ToString();
-            textBox7.Text = v;
-            if (textBox3.Text==""&& textBox5.Text == "")
-            {
-                textBox3.Text = textBox5.Text = "0.00";
-            }
-            
-            for (int i = 0; i < addedRecordIDs.Length; i++)
-            {
-                if (addedRecordIDs[i] == dataGridView1.SelectedCells[0].RowIndex+1)
-                {
-                    notAdded = true;
-                    
-                    break;
-                }
-            }
-
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void dtnAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 double quantity;
-                if (double.TryParse(textBox7.Text, out quantity))
+                if (double.TryParse(txtTotalMeter.Text, out quantity))
                 {
                     conn.Open();
                 if (!notAdded)
@@ -125,7 +83,7 @@ namespace MainSystem
                     return;
                 }
 
-                string query = "select Store_Name,Storage_Date from storage where Permission_Number=" + comboBox3.Text+" and Supplier_Name='"+comboBox2.Text+"'";
+                string query = "select Store_Name,Storage_Date from storage where Permission_Number=" + comPermessionNum.Text+" and Supplier_Name='"/*+comSupplier.Text+"'"*/;
                 MySqlCommand com= new MySqlCommand(query, conn);
 
                 MySqlDataReader reader= com.ExecuteReader();
@@ -152,22 +110,22 @@ namespace MainSystem
                     //  com.Parameters["@Bill_Date"].Value = dateTimePicker1.Value.Date;
                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar);
                     com.Parameters["@Store_Name"].Value = reader["Store_Name"];
-                    com.Parameters.Add("@Supplier_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Supplier_Name"].Value = comboBox2.Text;
+                    //com.Parameters.Add("@Supplier_Name", MySqlDbType.VarChar);
+                    //com.Parameters["@Supplier_Name"].Value = comSupplier.Text;
                     com.Parameters.Add("@Code", MySqlDbType.VarChar);
-                    com.Parameters["@Code"].Value = textBox1.Text;
+                    com.Parameters["@Code"].Value = txtCode.Text;
                     com.Parameters.Add("@Bill_Price", MySqlDbType.Decimal);
-                    com.Parameters["@Bill_Price"].Value = textBox2.Text;
+                    com.Parameters["@Bill_Price"].Value = txtPrice.Text;
                     com.Parameters.Add("@Buy_Discount", MySqlDbType.Decimal);
-                    com.Parameters["@Buy_Discount"].Value = textBox4.Text;
+                    com.Parameters["@Buy_Discount"].Value = txtDiscount.Text;
                     com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
-                    com.Parameters["@Normal_Increase"].Value = textBox5.Text;
+                    com.Parameters["@Normal_Increase"].Value = txtNormalIncrease.Text;
                     com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
-                    com.Parameters["@Categorical_Increase"].Value = textBox3.Text;
+                    com.Parameters["@Categorical_Increase"].Value = txtCategoricalIncrease.Text;
                     com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
-                    com.Parameters["@Value_Additive_Tax"].Value = textBox6.Text;
+                    com.Parameters["@Value_Additive_Tax"].Value = txtTax.Text;
                     com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                    com.Parameters["@Total_Meters"].Value = textBox7.Text;
+                    com.Parameters["@Total_Meters"].Value = txtTotalMeter.Text;
 
                     if (BuyPrice > 0)
                     {
@@ -185,13 +143,13 @@ namespace MainSystem
                 com.ExecuteNonQuery();
 
                 
-                query = "select Total_Meters from storage_taxes where Code='" + textBox1.Text+ "' and Buy_Price="+label13.Text+ " and Date='"+storeDate+"'";
+                query = "select Total_Meters from storage_taxes where Code='" + txtCode.Text+ "' and Buy_Price="+txtPurchasePrice.Text+ " and Date='"+storeDate+"'";
                     MySqlCommand comtaxes = new MySqlCommand(query, conn);
                 if (comtaxes.ExecuteScalar() != null)
                 {
                     double StoreQuantity = Convert.ToDouble(comtaxes.ExecuteScalar());
                     StoreQuantity += quantity;
-                    query = "update storage_taxes set Total_Meters="+StoreQuantity+" where Code='" + textBox1.Text + "' and Buy_Price=" + label13.Text + " and Date='" + storeDate + "'";
+                    query = "update storage_taxes set Total_Meters="+StoreQuantity+" where Code='" + txtCode.Text + "' and Buy_Price=" + txtPurchasePrice.Text + " and Date='" + storeDate + "'";
                         comtaxes = new MySqlCommand(query,conn);
                         comtaxes.ExecuteNonQuery();
                  }
@@ -201,9 +159,9 @@ namespace MainSystem
                     query = "insert into storage_taxes (Code,Total_Meters,Buy_Price,Date) values (@Code,@Total_Meters,@Buy_Price,@Date)";
                         comtaxes = new MySqlCommand(query, conn);
                         comtaxes.Parameters.Add("@Code", MySqlDbType.VarChar);
-                        comtaxes.Parameters["@Code"].Value = textBox1.Text;
+                        comtaxes.Parameters["@Code"].Value = txtCode.Text;
                         comtaxes.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                        comtaxes.Parameters["@Total_Meters"].Value = textBox7.Text;
+                        comtaxes.Parameters["@Total_Meters"].Value = txtTotalMeter.Text;
                         comtaxes.Parameters.Add("@Buy_Price", MySqlDbType.Decimal);
                         comtaxes.Parameters["@Buy_Price"].Value = BuyPrice;
                         comtaxes.Parameters.Add("@Date", MySqlDbType.Date);
@@ -222,8 +180,8 @@ namespace MainSystem
                     com.Parameters["@Bill_ID"].Value = id;
                     com.Parameters.Add("@Bill_No", MySqlDbType.Int16);
                     com.Parameters["@Bill_No"].Value = BillNo;
-                    com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                    com.Parameters["@Supplier_ID"].Value = comboBox2.SelectedValue;
+                    //com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                    //com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue;
                     com.Parameters.Add("@Supplier_Bill_No", MySqlDbType.Int16);
                     com.Parameters["@Supplier_Bill_No"].Value = SupplierBillNo;
                     com.ExecuteNonQuery();
@@ -283,33 +241,33 @@ namespace MainSystem
       
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "" && textBox6.Text != "")
+            if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
             {
                 double price, BuyDiscount, NormalIncrease, Categorical_Increase,VAT;
-                if (double.TryParse(textBox2.Text, out price)
+                if (double.TryParse(txtPrice.Text, out price)
                  &&
-                 double.TryParse(textBox4.Text, out BuyDiscount)
+                 double.TryParse(txtDiscount.Text, out BuyDiscount)
                  &&
-                 double.TryParse(textBox5.Text, out NormalIncrease)
+                 double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
                  &&
-                 double.TryParse(textBox3.Text, out Categorical_Increase)
+                 double.TryParse(txtCategoricalIncrease.Text, out Categorical_Increase)
                  &&
-                 double.TryParse(textBox6.Text, out VAT))
+                 double.TryParse(txtTax.Text, out VAT))
                 {
                     BuyPrice = price + NormalIncrease;
                     BuyPrice -= BuyDiscount;
                     BuyPrice += Categorical_Increase;
                     BuyPrice += VAT;
-                    label13.Text = BuyPrice.ToString();
+                    txtPurchasePrice.Text = BuyPrice.ToString();
                 }
             }
             else
             {
-                label13.Text = "";
+                txtPurchasePrice.Text = "";
             }
         }
 
-        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        /*private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
         {
             if (flag)
             {
@@ -322,16 +280,15 @@ namespace MainSystem
                     MySqlCommand com = new MySqlCommand(q, conn);
                     BillNo = (int)com.ExecuteScalar();
                     BillNo++;
-
-                   
-                    comboBox3.Visible = true;
-                    string query = "select distinct Permission_Number  from storage where Supplier_Name='" + comboBox2.Text+ "' order by Permission_Number DESC ";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comboBox3.DataSource = dt;
-                    comboBox3.DisplayMember = dt.Columns["Permission_Number"].ToString();
-                    comboBox3.Text = "";
+                    
+                    comPermessionNum.Visible = true;
+                    //string query = "select Import_Permission_Number from storage_import_permission where Store_ID=" + storeId + " and Confirmed=0";
+                    //MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    //DataTable dt = new DataTable();
+                    //da.Fill(dt);
+                    //comPermessionNum.DataSource = dt;
+                    //comPermessionNum.DisplayMember = dt.Columns["Permission_Number"].ToString();
+                    //comPermessionNum.Text = "";
                     loaded2 = true;
                     NewBill();
                 }
@@ -341,33 +298,34 @@ namespace MainSystem
                 }
                 conn.Close();
             }
-        }
+        }*/
 
-        private void comboBox3_SelectedValueChanged(object sender, EventArgs e)
+        private void comPermessionNum_SelectedValueChanged(object sender, EventArgs e)
         {
            
-            if (loaded2)
+            if (flag)
             {
-
                 try
                 {
                     conn.Close();
                     conn.Open();
                     NewBill();
-                    string q = "select distinct storage.Code as 'كود', type.Type_Name as 'نوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعه',product.Product_Name as 'المنتج', storage.Total_Meters as 'اجمالي عدد الامتار',price.Price as 'السعر', price.Normal_Increase as 'الزيادة العادية',price.Buy_Discount as 'خصم الشراء',price.Categorical_Increase as 'الزيادة القطعية' from storage INNER JOIN data  ON storage.Code = data.Code INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN price ON storage.Code = price.Code where storage.Supplier_Name='" + comboBox2.Text + "' and  storage.Permission_Number=" + comboBox3.Text + "";
+                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',product.Product_Name AS 'الصنف',type.Type_Name AS 'النوع',factory.Factory_Name AS 'المصنع',groupo.Group_Name AS 'المجموعه',purchasing_price.Price AS 'السعر',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dataGridView1.DataSource = dt;
+                    dataGridView1.Columns[0].Visible = false;
 
-                   
+                    q = "select Bill_No from Bill_Data ORDER BY ID DESC LIMIT 1 ";
+                    MySqlCommand com = new MySqlCommand(q, conn);
+                    BillNo = (int)com.ExecuteScalar();
+                    BillNo++;
                 }
-
                 catch (Exception ex)
                 {
                   MessageBox.Show(ex.ToString());
                 }
-                
             }
             conn.Close();
         }
@@ -418,9 +376,35 @@ namespace MainSystem
         //clear fields
         public void Clear()
         {
-            textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text  = textBox7.Text = "";
-            textBox6.Text = "0";
-            label1.Text = label13.Text = label15.Text = "";
+            txtCode.Text = txtPrice.Text = txtCategoricalIncrease.Text = txtDiscount.Text = txtNormalIncrease.Text  = txtTotalMeter.Text = "";
+            txtTax.Text = "0";
+            label1.Text = txtPurchasePrice.Text = label15.Text = "";
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+            txtCode.Text = row.Cells["الكود"].Value.ToString();
+            txtPrice.Text = row.Cells["السعر"].Value.ToString();
+            txtPurchasePrice.Text = row.Cells["سعر الشراء"].Value.ToString();
+            txtNormalIncrease.Text = row.Cells["الزيادة العادية"].Value.ToString();
+            txtDiscount.Text = row.Cells["خصم الشراء"].Value.ToString();
+            txtCategoricalIncrease.Text = row.Cells["الزيادة القطعية"].Value.ToString();
+            txtTotalMeter.Text = row.Cells["اجمالى عدد الامتار"].Value.ToString();
+            if (txtCategoricalIncrease.Text == "" && txtNormalIncrease.Text == "")
+            {
+                txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0.00";
+            }
+
+            for (int i = 0; i < addedRecordIDs.Length; i++)
+            {
+                if (addedRecordIDs[i] == dataGridView1.SelectedCells[0].RowIndex + 1)
+                {
+                    notAdded = true;
+
+                    break;
+                }
+            }
         }
     }
 }
