@@ -31,7 +31,6 @@ namespace MainSystem
                     }
                 case DSparametr.doubleDS:
                     {
-                        MakeFirstTable();
                         MakeSecondTable();
                         break;
                     }
@@ -214,51 +213,95 @@ namespace MainSystem
 
         private void MakeSecondTable()
         {
-            DataTable table = new DataTable("SecondTable");
+            DataTable table = new DataTable("FirstTable");
             DataColumn column;
             DataRow row;
 
             column = new DataColumn();
             column.DataType = typeof(int);
-            column.ColumnName = "value4";
+            column.ColumnName = "Data_ID";
             column.AutoIncrement = false;
-            column.Caption = "value4";
+            column.Caption = "Data_ID";
             column.ReadOnly = false;
             column.Unique = false;
 
-            table.Columns.Add(column);
-
-
-            column = new DataColumn();
-            column.DataType = typeof(int);
-            column.ColumnName = "value5";
-            column.AutoIncrement = false;
-            column.Caption = "value5";
-            column.ReadOnly = false;
-            column.Unique = false;
 
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(int);
-            column.ColumnName = "value6";
+            column.DataType = typeof(string);
+            column.ColumnName = "Code";
             column.AutoIncrement = false;
-            column.Caption = "value6";
+            column.Caption = "الكود";
             column.ReadOnly = false;
             column.Unique = false;
 
             table.Columns.Add(column);
 
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "ItemName";
+            column.AutoIncrement = false;
+            column.Caption = "البند";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "TotalQuantity";
+            column.AutoIncrement = false;
+            column.Caption = "الكمية";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "DeliveryQuantity";
+            column.AutoIncrement = false;
+            column.Caption = "الكمية المستلمة";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "Carton";
+            column.AutoIncrement = false;
+            column.Caption = "الكرتنة";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "NumOfCarton";
+            column.AutoIncrement = false;
+            column.Caption = "عدد الكراتين المستلمة";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "ReturnItemReason";
+            column.AutoIncrement = false;
+            column.Caption = "سبب استرجاع البند";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+
+
+            DataSet = new DataSet();
             DataSet.Tables.Add(table);
-
-            for (int i = 0; i <= 10; i++)
-            {
-                row = table.NewRow();
-                row["value4"] = i;
-                row["value5"] = 10 * i;
-                row["value6"] = 100 * i;
-                table.Rows.Add(row);
-            }
         }
 
         private void MakeThirdTable()

@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Columns;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +17,15 @@ namespace MainSystem
     {
         private MySqlConnection dbconnection, dbconnectionr;
         bool loaded = false;
-        public PermissionsDelivery()
+        MainForm MainForm;
+        public PermissionsDelivery(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnectionr = new MySqlConnection(connection.connectionString);
+                this.MainForm = MainForm;
             }
             catch (Exception ex)
             {
@@ -85,7 +89,32 @@ namespace MainSystem
             dbconnectionr.Close();
         }
 
+        void gridView1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+               
+                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[1].ToString(), 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        void gridView2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
 
+                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), 2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         //functions
         public void ShippingPermissions()
         {
@@ -131,6 +160,8 @@ namespace MainSystem
             //Bind the grid control to the data source 
             gridControl1.DataSource = dataSet11.Tables["Shipping"];
             gridView1.Columns[0].Visible = false;
+            AddUnboundColumngridView1();
+            AddRepositorygridView1();
         }
 
         public void CustomerDeliveryBills()
@@ -176,6 +207,46 @@ namespace MainSystem
 
             //Bind the grid control to the data source 
             gridControl2.DataSource = dataSet11.Tables["Shipping"];
+            AddUnboundColumngridView2();
+            AddRepositorygridView2();
+        }
+
+        private void AddRepositorygridView1()
+        {
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            edit.ButtonClick += gridView1_ButtonClick;
+            edit.Buttons[0].Caption = "تسليم اذن";
+            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
+            gridView1.Columns["تسليم اذن"].ColumnEdit = edit;
+        }
+        private void AddUnboundColumngridView1()
+        {
+            if (gridView1.Columns["تسليم اذن"] == null)
+            {
+                GridColumn unbColumn = gridView1.Columns.AddField("تسليم اذن");
+                unbColumn.VisibleIndex = gridView1.Columns.Count;
+                unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            }
+        }
+
+        private void AddRepositorygridView2()
+        {
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            edit.ButtonClick += gridView2_ButtonClick;
+            edit.Buttons[0].Caption = "تسليم اذن";
+            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
+            gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
+        }
+        private void AddUnboundColumngridView2()
+        {
+            if (gridView2.Columns["تسليم اذن"] == null)
+            {
+                GridColumn unbColumn = gridView2.Columns.AddField("تسليم اذن");
+                unbColumn.VisibleIndex = gridView2.Columns.Count;
+                unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            }
         }
     }
 }

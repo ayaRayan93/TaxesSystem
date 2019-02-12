@@ -254,6 +254,12 @@
     <Compile Include="Purchases\UpdatePurchasesPrice.Designer.cs">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\BillCancelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\BillCancelForm.Designer.cs">
+      <DependentUpon>BillCancelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Customer_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1411,6 +1417,12 @@
     <Compile Include="Store\Export\CustomerDelivery.designer.cs">
       <DependentUpon>CustomerDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Export\CustomerReturnItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\CustomerReturnItems.designer.cs">
+      <DependentUpon>CustomerReturnItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\DataHelperClass.cs" />
     <Compile Include="Store\Export\DeliveryPermissionReport.cs">
       <SubType>Component</SubType>
@@ -1430,6 +1442,12 @@
     </Compile>
     <Compile Include="Store\Export\PermissionsDelivery.Designer.cs">
       <DependentUpon>PermissionsDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\StoreReturnBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\StoreReturnBill.Designer.cs">
+      <DependentUpon>StoreReturnBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Gate\GateEnter_Details.cs">
       <SubType>Form</SubType>
@@ -1736,6 +1754,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\UpdatePurchasesPrice.resx">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\BillCancelForm.resx">
+      <DependentUpon>BillCancelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Record.resx">
       <DependentUpon>Customer_Record.cs</DependentUpon>
@@ -2312,6 +2333,9 @@
     <EmbeddedResource Include="Store\Export\CustomerDelivery.resx">
       <DependentUpon>CustomerDelivery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\CustomerReturnItems.resx">
+      <DependentUpon>CustomerReturnItems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\DeliveryPermissionReport.resx">
       <DependentUpon>DeliveryPermissionReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -2320,6 +2344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\PermissionsDelivery.resx">
       <DependentUpon>PermissionsDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\StoreReturnBill.resx">
+      <DependentUpon>StoreReturnBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">
       <DependentUpon>GateEnter_Details.cs</DependentUpon>

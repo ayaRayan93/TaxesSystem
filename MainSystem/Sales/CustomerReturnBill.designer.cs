@@ -104,6 +104,8 @@
             this.txtTotalReturnBillAD = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtStorePermission = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPermissionNum = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -192,7 +194,7 @@
             this.labCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.labCustomer.Location = new System.Drawing.Point(247, 15);
             this.labCustomer.Name = "labCustomer";
-            this.labCustomer.Size = new System.Drawing.Size(122, 18);
+            this.labCustomer.Size = new System.Drawing.Size(121, 18);
             this.labCustomer.TabIndex = 105;
             this.labCustomer.Text = "مهندس/مقاول/تاجر";
             // 
@@ -226,10 +228,10 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radEng.Location = new System.Drawing.Point(125, 5);
+            this.radEng.Location = new System.Drawing.Point(127, 5);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(71, 22);
+            this.radEng.Size = new System.Drawing.Size(69, 22);
             this.radEng.TabIndex = 158;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = true;
@@ -240,10 +242,10 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radCon.Location = new System.Drawing.Point(202, 5);
+            this.radCon.Location = new System.Drawing.Point(203, 5);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(64, 22);
+            this.radCon.Size = new System.Drawing.Size(63, 22);
             this.radCon.TabIndex = 157;
             this.radCon.Text = "مقاول";
             this.radCon.UseVisualStyleBackColor = true;
@@ -251,21 +253,21 @@
             // 
             // labBillNumber
             // 
-            this.labBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBillNumber.AutoSize = true;
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.labBillNumber.Location = new System.Drawing.Point(360, 45);
+            this.labBillNumber.Location = new System.Drawing.Point(393, 48);
             this.labBillNumber.Name = "labBillNumber";
-            this.labBillNumber.Size = new System.Drawing.Size(70, 18);
+            this.labBillNumber.Size = new System.Drawing.Size(69, 18);
             this.labBillNumber.TabIndex = 161;
             this.labBillNumber.Text = "فاتورة رقم";
             // 
             // comBillNumber
             // 
-            this.comBillNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comBillNumber.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBillNumber.FormattingEnabled = true;
-            this.comBillNumber.Location = new System.Drawing.Point(254, 42);
+            this.comBillNumber.Location = new System.Drawing.Point(287, 45);
             this.comBillNumber.Name = "comBillNumber";
             this.comBillNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBillNumber.Size = new System.Drawing.Size(100, 24);
@@ -429,7 +431,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label6.Location = new System.Drawing.Point(501, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 18);
+            this.label6.Size = new System.Drawing.Size(126, 18);
             this.label6.TabIndex = 172;
             this.label6.Text = "الاجمالي بعد الخصم";
             // 
@@ -517,7 +519,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label5.Location = new System.Drawing.Point(744, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(166, 18);
+            this.label5.Size = new System.Drawing.Size(165, 18);
             this.label5.TabIndex = 175;
             this.label5.Text = "اجمالي الفاتورة بعد الخصم";
             // 
@@ -550,16 +552,16 @@
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label13.Location = new System.Drawing.Point(808, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(205, 18);
+            this.label13.Size = new System.Drawing.Size(206, 18);
             this.label13.TabIndex = 191;
             this.label13.Text = "اجمالي فاتورة المرتجع بعد الخصم";
             // 
             // comBranch
             // 
-            this.comBranch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(224, 7);
+            this.comBranch.Location = new System.Drawing.Point(257, 10);
             this.comBranch.Name = "comBranch";
             this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBranch.Size = new System.Drawing.Size(130, 24);
@@ -568,9 +570,9 @@
             // 
             // txtBranchID
             // 
-            this.txtBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(168, 7);
+            this.txtBranchID.Location = new System.Drawing.Point(201, 10);
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBranchID.Size = new System.Drawing.Size(50, 24);
@@ -579,12 +581,12 @@
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label10.Location = new System.Drawing.Point(360, 10);
+            this.label10.Location = new System.Drawing.Point(393, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 18);
+            this.label10.Size = new System.Drawing.Size(38, 18);
             this.label10.TabIndex = 195;
             this.label10.Text = "الفرع";
             // 
@@ -595,7 +597,7 @@
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label14.Location = new System.Drawing.Point(548, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(84, 18);
+            this.label14.Size = new System.Drawing.Size(83, 18);
             this.label14.TabIndex = 197;
             this.label14.Text = "سبب الارتجاع";
             // 
@@ -746,6 +748,8 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.txtPermissionNum);
+            this.panel7.Controls.Add(this.label9);
             this.panel7.Controls.Add(this.labBillNumber);
             this.panel7.Controls.Add(this.btnNewChooes);
             this.panel7.Controls.Add(this.label10);
@@ -754,22 +758,23 @@
             this.panel7.Controls.Add(this.listBoxControlBills);
             this.panel7.Controls.Add(this.listBoxControlCustomerBill);
             this.panel7.Controls.Add(this.comBranch);
-            this.panel7.Location = new System.Drawing.Point(31, 3);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(448, 105);
+            this.panel7.Size = new System.Drawing.Size(516, 108);
             this.panel7.TabIndex = 201;
             // 
             // btnNewChooes
             // 
-            this.btnNewChooes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewChooes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnNewChooes.FlatAppearance.BorderSize = 0;
             this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewChooes.Location = new System.Drawing.Point(26, 9);
+            this.btnNewChooes.Location = new System.Drawing.Point(17, 10);
             this.btnNewChooes.Name = "btnNewChooes";
-            this.btnNewChooes.Size = new System.Drawing.Size(50, 54);
+            this.btnNewChooes.Size = new System.Drawing.Size(73, 30);
             this.btnNewChooes.TabIndex = 200;
             this.btnNewChooes.Text = "اختيار اخر";
             this.btnNewChooes.UseVisualStyleBackColor = false;
@@ -777,9 +782,9 @@
             // 
             // listBoxControlBills
             // 
-            this.listBoxControlBills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxControlBills.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.listBoxControlBills.HorizontalScrollbar = true;
-            this.listBoxControlBills.Location = new System.Drawing.Point(82, 5);
+            this.listBoxControlBills.Location = new System.Drawing.Point(115, 8);
             this.listBoxControlBills.Name = "listBoxControlBills";
             this.listBoxControlBills.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.listBoxControlBills.Size = new System.Drawing.Size(80, 63);
@@ -787,8 +792,8 @@
             // 
             // listBoxControlCustomerBill
             // 
-            this.listBoxControlCustomerBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(168, 36);
+            this.listBoxControlCustomerBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.listBoxControlCustomerBill.Location = new System.Drawing.Point(201, 39);
             this.listBoxControlCustomerBill.Name = "listBoxControlCustomerBill";
             this.listBoxControlCustomerBill.Size = new System.Drawing.Size(62, 33);
             this.listBoxControlCustomerBill.TabIndex = 199;
@@ -821,10 +826,10 @@
             this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radioButton1.Location = new System.Drawing.Point(72, 5);
+            this.radioButton1.Location = new System.Drawing.Point(70, 5);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(47, 22);
+            this.radioButton1.Size = new System.Drawing.Size(49, 22);
             this.radioButton1.TabIndex = 161;
             this.radioButton1.Text = "تاجر";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -902,7 +907,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label8.Location = new System.Drawing.Point(189, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 18);
+            this.label8.Size = new System.Drawing.Size(115, 18);
             this.label8.TabIndex = 188;
             this.label8.Text = "الكمية المسترجعة";
             // 
@@ -992,7 +997,7 @@
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label3.Location = new System.Drawing.Point(288, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 18);
+            this.label3.Size = new System.Drawing.Size(63, 18);
             this.label3.TabIndex = 201;
             this.label3.Text = "اذن مخزن";
             // 
@@ -1004,6 +1009,28 @@
             this.txtStorePermission.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtStorePermission.Size = new System.Drawing.Size(98, 25);
             this.txtStorePermission.TabIndex = 202;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label9.Location = new System.Drawing.Point(393, 78);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(102, 18);
+            this.label9.TabIndex = 201;
+            this.label9.Text = "رقم اذن المرتجع";
+            this.label9.Visible = false;
+            // 
+            // txtPermissionNum
+            // 
+            this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPermissionNum.Location = new System.Drawing.Point(287, 77);
+            this.txtPermissionNum.Name = "txtPermissionNum";
+            this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtPermissionNum.Size = new System.Drawing.Size(100, 24);
+            this.txtPermissionNum.TabIndex = 202;
             // 
             // CustomerReturnBill
             // 
@@ -1120,5 +1147,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdbCash;
         private System.Windows.Forms.RadioButton rdbSoon;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPermissionNum;
     }
 }

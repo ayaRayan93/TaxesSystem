@@ -407,29 +407,7 @@ namespace MainSystem
         {
             try
             {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-                if (!xtraTabControlStoresContent.Visible)
-                    xtraTabControlStoresContent.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
-                if (xtraTabPage == null)
-                {
-                    xtraTabControlStoresContent.TabPages.Add("تسليم طلب");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
-                }
-
-                xtraTabPage.Controls.Clear();
-                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-
-                CustomerDelivery objForm = new CustomerDelivery();
-
-                objForm.TopLevel = false;
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
+             
             }
             catch (Exception ex)
             {
@@ -457,7 +435,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                PermissionsDelivery objForm = new PermissionsDelivery();
+                PermissionsDelivery objForm = new PermissionsDelivery(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -996,7 +974,53 @@ namespace MainSystem
             }
 
         }
+        //delivery
+        public void bindDisplayDeliveryForm()
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
 
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسليم طلب");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            CustomerDelivery objForm = new CustomerDelivery();
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDeliveryForm(string permissionNum,int flag)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسليم طلب");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            CustomerDelivery objForm = new CustomerDelivery(permissionNum, flag);
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         private void StoreMainForm_Resize(object sender, EventArgs e)
         {
             try

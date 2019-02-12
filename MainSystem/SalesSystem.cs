@@ -442,6 +442,42 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemBillCancel_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 7 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage("الغاء فاتورة");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("الغاء فاتورة");
+                        xtraTabPage = getTabPage("الغاء فاتورة");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    BillCancelForm objForm = new BillCancelForm();
+                    objForm.TopLevel = false;
+
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void pictureBoxSale_Click(object sender, EventArgs e)
         {
             try
