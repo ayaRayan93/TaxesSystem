@@ -159,6 +159,8 @@ namespace MainSystem
                             query = "select ImportStorageReturn_ID from import_storage_return order by ImportStorageReturn_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
                             storageReturnID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            
+                            UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
 
                             query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_permission ON gate_permission.Permission_Number = gate.Permission_Number where gate.Store_ID=" + storeId + " and gate.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + row1["اذن استلام"] + " and gate_permission.Type='دخول'";
                             com = new MySqlCommand(query, dbconnection2);
@@ -279,7 +281,7 @@ namespace MainSystem
 
                         if (storageReturnSupplierId > 0)
                         {
-                            query = "insert into import_storage_return_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                            query = "insert into import_storage_return_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID,Employee_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID,@Employee_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = storeId;
@@ -309,6 +311,8 @@ namespace MainSystem
                             com.Parameters["@Reason"].Value = txtReason.Text;
                             com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
                             com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
+                            com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
+                            com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
                             com.ExecuteNonQuery();
                         }
                         else

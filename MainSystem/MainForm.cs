@@ -14,6 +14,8 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
 namespace MainSystem
 {
@@ -547,13 +549,11 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-    
     }
 
     public static class connection
     {
-        public static string connectionString = "SERVER=192.168.1.200;DATABASE=cccmaindb;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
-        // public static string connectionString = "SERVER=localhost;DATABASE=testcoding;user=root;PASSWORD=root;CHARSET=utf8";
+        public static string connectionString = "SERVER=" + System.IO.File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"IP_Address.txt")) + ";DATABASE=cccs;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
+        //public static string connectionString = "SERVER=localhost;DATABASE=testcoding;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
