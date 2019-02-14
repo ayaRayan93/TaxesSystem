@@ -278,6 +278,12 @@
     <Compile Include="Purchases\Purchases_Price\UpdatePurchasesPrice.Designer.cs">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\BillCancelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\BillCancelForm.Designer.cs">
+      <DependentUpon>BillCancelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Customer_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1435,13 +1441,38 @@
     <Compile Include="Store\Export\CustomerDelivery.designer.cs">
       <DependentUpon>CustomerDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Export\CustomerReturnReportToPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\CustomerReturnReportToPeriod.Designer.cs">
+      <DependentUpon>CustomerReturnReportToPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\DataHelperClass.cs" />
+    <Compile Include="Store\Export\CustomerReturnItems_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\CustomerReturnItems_Report.designer.cs">
+      <DependentUpon>CustomerReturnItems_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\DeliveryPermissionReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Store\Export\DeliveryPermissionReport.Designer.cs">
       <DependentUpon>DeliveryPermissionReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Export\ReturnPermissionReportViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\ReturnPermissionReportViewer.Designer.cs">
+      <DependentUpon>ReturnPermissionReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\ReturnCustomerPermissionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Export\ReturnCustomerPermissionReport.Designer.cs">
+      <DependentUpon>ReturnCustomerPermissionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\ReturnPermissionClass.cs" />
     <Compile Include="Store\Export\DerliveryPermissionClass.cs" />
     <Compile Include="Store\Export\DeliveryPermissionReportViewer.cs">
       <SubType>Form</SubType>
@@ -1466,6 +1497,12 @@
     </Compile>
     <Compile Include="Purchases\Supplier\UpdateSupplier.designer.cs">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\StoreReturnBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\StoreReturnBill.Designer.cs">
+      <DependentUpon>StoreReturnBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Gate\GateEnter_Details.cs">
       <SubType>Form</SubType>
@@ -1790,6 +1827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\UpdatePurchasesPrice.resx">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\BillCancelForm.resx">
+      <DependentUpon>BillCancelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Customer_Record.resx">
       <DependentUpon>Customer_Record.cs</DependentUpon>
@@ -2366,8 +2406,17 @@
     <EmbeddedResource Include="Store\Export\CustomerDelivery.resx">
       <DependentUpon>CustomerDelivery.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\CustomerReturnItems_Report.resx">
+      <DependentUpon>CustomerReturnItems_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\CustomerReturnReportToPeriod.resx">
+      <DependentUpon>CustomerReturnReportToPeriod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\DeliveryPermissionReport.resx">
       <DependentUpon>DeliveryPermissionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\ReturnPermissionReportViewer.resx">
+      <DependentUpon>ReturnPermissionReportViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\DeliveryPermissionReportViewer.resx">
       <DependentUpon>DeliveryPermissionReportViewer.cs</DependentUpon>
@@ -2380,6 +2429,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\ReturnCustomerPermissionReport.resx">
+      <DependentUpon>ReturnCustomerPermissionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\StoreReturnBill.resx">
+      <DependentUpon>StoreReturnBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\GateEnter_Details.resx">
       <DependentUpon>GateEnter_Details.cs</DependentUpon>
@@ -2789,6 +2844,7 @@
     <None Include="Resources\نقطيه-البيع---white.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="IP_Address.txt" />
     <Content Include="MetroFramework.txt" />
     <None Include="Resources\Sign-Up.png" />
     <None Include="Resources\icons8_Contacts2_32.png" />

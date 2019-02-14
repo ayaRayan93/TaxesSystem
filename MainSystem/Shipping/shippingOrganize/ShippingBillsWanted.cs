@@ -149,9 +149,8 @@ namespace MainSystem
                 DataColumn foreignKeyColumn = dataSet11.Tables["Products"].Columns["كود الفاتورة"];
                 dataSet11.Relations.Add("بنود الفاتورة", keyColumn, foreignKeyColumn);
                 
-
-               //Bind the grid control to the data source 
-               gridControl1.DataSource = dataSet11.Tables["Shipping"];
+                //Bind the grid control to the data source 
+                gridControl1.DataSource = dataSet11.Tables["Shipping"];
                 gridView1.Columns[0].Visible = false;
              
             }

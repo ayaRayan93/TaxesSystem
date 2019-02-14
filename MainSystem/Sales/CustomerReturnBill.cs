@@ -282,60 +282,69 @@ namespace MainSystem
             {
                 if (flag && comBillNumber.Text != "")
                 {
-                    int billNum = Convert.ToInt16(comBillNumber.Text);
-                    DataTable dtAll = new DataTable();
-                    string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dtProduct = new DataTable();
-                    da.Fill(dtProduct);
-                    //type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة'
-                    query = "select sets.Set_ID as 'Data_ID',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
-                    da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dtSet = new DataTable();
-                    da.Fill(dtSet);
-                    
-                    dtAll = dtProduct.Copy();
-                    dtAll.Merge(dtSet);
-
-                    dataGridView1.DataSource = dtAll;
-                    dataGridView1.Columns[0].Visible = false;
-                    dataGridView1.Columns["CustomerBill_ID"].Visible = false;
-                    dataGridView1.Columns["الفئة"].Visible = false;
-                    dataGridView1.Columns["الوصف"].Visible = false;
-                    dataGridView1.Columns["Delegate_ID"].Visible = false;
-                    //dataGridView2.Rows.Clear();
-
-                    txtCode.Text = "";
-                    txtPriceAD.Text = "";
-                    txtTotalMeter.Text = "";
-                    txtTotalAD.Text = "";
-                    txtReturnedQuantity.Text = "";
-                    txtBillTotalCostAD.Text = "";
-                    labBillDate.Text = "";
-
-                    dbconnection.Open();
-                    query = "select * from customer_bill where customer_bill.Branch_BillNumber=" + comBillNumber.Text + " and customer_bill.Branch_ID=" + txtBranchID.Text;
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr = com.ExecuteReader();
-                    if (dr.HasRows)
+                    if (!IsBillDelivered())
                     {
-                        while (dr.Read())
-                        {
-                            //customerBillId = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
-                            txtBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
-                            labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
+                        int billNum = Convert.ToInt16(comBillNumber.Text);
+                        DataTable dtAll = new DataTable();
+                        string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dtProduct = new DataTable();
+                        da.Fill(dtProduct);
+                        //type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة'
+                        query = "select sets.Set_ID as 'Data_ID',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                        da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dtSet = new DataTable();
+                        da.Fill(dtSet);
 
-                            if (!listBoxControlCustomerBill.Items.Contains(comBillNumber.SelectedValue.ToString()))
+                        dtAll = dtProduct.Copy();
+                        dtAll.Merge(dtSet);
+
+                        dataGridView1.DataSource = dtAll;
+                        dataGridView1.Columns[0].Visible = false;
+                        dataGridView1.Columns["CustomerBill_ID"].Visible = false;
+                        dataGridView1.Columns["الفئة"].Visible = false;
+                        dataGridView1.Columns["الوصف"].Visible = false;
+                        dataGridView1.Columns["Delegate_ID"].Visible = false;
+                        //dataGridView2.Rows.Clear();
+
+                        txtCode.Text = "";
+                        txtPriceAD.Text = "";
+                        txtTotalMeter.Text = "";
+                        txtTotalAD.Text = "";
+                        txtReturnedQuantity.Text = "";
+                        txtBillTotalCostAD.Text = "";
+                        labBillDate.Text = "";
+
+                        dbconnection.Open();
+                        query = "select * from customer_bill where customer_bill.Branch_BillNumber=" + comBillNumber.Text + " and customer_bill.Branch_ID=" + txtBranchID.Text;
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr = com.ExecuteReader();
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
                             {
-                                listBoxControlBills.Items.Add(comBillNumber.Text + ":" + comBranch.Text);
-                                listBoxControlCustomerBill.Items.Add(comBillNumber.SelectedValue.ToString());
+                                //customerBillId = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                                txtBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
+                                labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
+
+                                if (!listBoxControlCustomerBill.Items.Contains(comBillNumber.SelectedValue.ToString()))
+                                {
+                                    listBoxControlBills.Items.Add(comBillNumber.Text + ":" + comBranch.Text);
+                                    listBoxControlCustomerBill.Items.Add(comBillNumber.SelectedValue.ToString());
+                                }
                             }
+                            dr.Close();
                         }
-                        dr.Close();
+                        else
+                        {
+                            //customerBillId = 0;
+                        }
                     }
                     else
                     {
-                        //customerBillId = 0;
+                        MessageBox.Show("الفاتورة تم تسليمها برجاء ادخال رقم اذن المرتجع.");
+                        txtPermissionNum.Visible = true;
+                        label9.Visible = true;
                     }
                 }
             }
@@ -961,6 +970,24 @@ namespace MainSystem
             
             connectionReader2.Close();
             connectionReader.Close();
+        }
+
+        public bool IsBillDelivered()
+        {
+            string query = "select Delivered from shipping where CustomerBill_ID=" + comBillNumber.SelectedValue;
+            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            int deliveredStatus=Convert.ToInt16(com.ExecuteScalar());
+            
+            if (deliveredStatus == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+
         }
     }
 }

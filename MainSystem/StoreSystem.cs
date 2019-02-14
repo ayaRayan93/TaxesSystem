@@ -403,6 +403,74 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemCustomerReturn_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "مرتجع عميل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("مرتجع عميل");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "مرتجع عميل");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                StoreReturnBill objForm = new StoreReturnBill();
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemCustomerReturnItemsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            { 
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير مرتجعات العملاء لفترة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تقرير مرتجعات العملاء لفترة");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير مرتجعات العملاء لفترة");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                CustomerReturnReportToPeriod objForm = new CustomerReturnReportToPeriod();
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+}
+
         private void navBarItemDelivery_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -457,7 +525,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                PermissionsDelivery objForm = new PermissionsDelivery();
+                PermissionsDelivery objForm = new PermissionsDelivery(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -1030,7 +1098,53 @@ namespace MainSystem
             }
 
         }
+        //delivery
+        public void bindDisplayDeliveryForm()
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
 
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسليم طلب");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            CustomerDelivery objForm = new CustomerDelivery();
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDeliveryForm(string permissionNum,int flag)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسليم طلب");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم طلب");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            CustomerDelivery objForm = new CustomerDelivery(permissionNum, flag);
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         private void StoreMainForm_Resize(object sender, EventArgs e)
         {
             try
@@ -1052,6 +1166,6 @@ namespace MainSystem
             }
 
         }
-
+       
     }
 }
