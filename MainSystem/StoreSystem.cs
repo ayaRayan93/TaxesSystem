@@ -402,6 +402,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void navBarItemCustomerReturn_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -435,6 +436,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void navBarItemCustomerReturnItemsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -445,11 +447,11 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير مرتجعات عميل لفترة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير مرتجعات العملاء لفترة");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("تقرير مرتجعات عميل لفترة");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير مرتجعات عميل لفترة");
+                    xtraTabControlStoresContent.TabPages.Add("تقرير مرتجعات العملاء لفترة");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير مرتجعات العملاء لفترة");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -468,6 +470,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
 }
+
         private void navBarItemDelivery_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

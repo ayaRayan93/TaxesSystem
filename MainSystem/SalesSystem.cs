@@ -760,7 +760,7 @@ namespace MainSystem
             objForm.Show();
 
         }
-
+        
         public void bindUpdateOfferForm(DataRowView prodRow, Offer offer)
         {
             Offer_Update objForm = new Offer_Update(prodRow, offer, xtraTabControlSalesContent);
