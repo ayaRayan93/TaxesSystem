@@ -426,7 +426,7 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                string q = "select Bill_No from bill ORDER BY Bill_ID DESC LIMIT 1 ";
+                string q = "select Bill_No from supplier_bill ORDER BY Bill_ID DESC LIMIT 1 ";
                 MySqlCommand comm = new MySqlCommand(q, conn);
                 int BillNo = 1;
                 if (comm.ExecuteScalar() != null)
@@ -435,7 +435,7 @@ namespace MainSystem
                     BillNo++;
                 }
 
-                string query = "insert into bill (Branch_ID,Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID) values (@Branch_ID,@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID)";
+                string query = "insert into supplier_bill (Branch_ID,Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID) values (@Branch_ID,@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID)";
                 MySqlCommand com = new MySqlCommand(query, conn);
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                 com.Parameters["@Branch_ID"].Value = UserControl.EmpBranchID;
@@ -461,7 +461,7 @@ namespace MainSystem
                 com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
                 com.ExecuteNonQuery();
 
-                string q1 = "select Bill_ID from bill ORDER BY Bill_ID DESC LIMIT 1";
+                string q1 = "select Bill_ID from supplier_bill ORDER BY Bill_ID DESC LIMIT 1";
                 comm = new MySqlCommand(q1, conn);
                 int id = Convert.ToInt16(comm.ExecuteScalar().ToString());
 
@@ -497,7 +497,7 @@ namespace MainSystem
 
                     //add to bill_data
 
-                    query = "insert into Bill_Data (Bill_ID,Data_ID,Price,Profit_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price,@Profit_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
+                    query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price,Profit_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price,@Profit_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
                     com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Bill_ID", MySqlDbType.Int16);
                     com.Parameters["@Bill_ID"].Value = id;

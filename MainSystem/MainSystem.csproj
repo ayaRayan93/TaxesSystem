@@ -2844,7 +2844,6 @@
     <None Include="Resources\نقطيه-البيع---white.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IP_Address.txt" />
     <Content Include="MetroFramework.txt" />
     <None Include="Resources\Sign-Up.png" />
     <None Include="Resources\icons8_Contacts2_32.png" />
