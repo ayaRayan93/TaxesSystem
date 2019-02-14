@@ -380,6 +380,7 @@
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(158, 24);
             this.comSupplier.TabIndex = 196;
+            this.comSupplier.Visible = false;
             // 
             // label5
             // 
@@ -391,6 +392,7 @@
             this.label5.Size = new System.Drawing.Size(44, 18);
             this.label5.TabIndex = 197;
             this.label5.Text = "المورد";
+            this.label5.Visible = false;
             // 
             // txtPermissionNum
             // 

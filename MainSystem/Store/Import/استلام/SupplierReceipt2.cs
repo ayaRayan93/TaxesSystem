@@ -818,14 +818,14 @@ namespace MainSystem
                     if (com.ExecuteScalar() != null)
                     {
                         comSupplier.SelectedValue = com.ExecuteScalar().ToString();
-                        comSupplier.Enabled = false;
-                        comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
+                        //comSupplier.Enabled = false;
+                        //comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
                     }
                     else
                     {
                         comSupplier.SelectedIndex = -1;
-                        comSupplier.Enabled = true;
-                        comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
+                        //comSupplier.Enabled = true;
+                        //comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
                     }
                     loaded = true;
 
@@ -846,6 +846,8 @@ namespace MainSystem
                     flagConfirm = 2;
                     loaded = false;
                     comSupplier.SelectedIndex = -1;
+                    //comSupplier.Enabled = true;
+                    //comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
                     loaded = true;
                 }
                 //MessageBox.Show(flagConfirm.ToString());
