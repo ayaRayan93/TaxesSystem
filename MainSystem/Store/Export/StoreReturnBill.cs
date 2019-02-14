@@ -19,6 +19,7 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
+        int Billid = 0;
         public StoreReturnBill()
         {
             try
@@ -504,9 +505,82 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        CustomerReturnItems_Report form=null;
         private void btnCreateReturnBill_Click(object sender, EventArgs e)
         {
+            try
+            {
+                dbconnection.Open();
+                List<ReturnPermissionClass> listOfData = new List<ReturnPermissionClass>();
+                if (gridView2.RowCount > 0)
+                {
+                    string query = "insert into customer_return_permission (CustomerBill_ID,ClientReturnName,ClientRetunPhone,Date) values (@CustomerBill_ID,@ClientReturnName,@ClientRetunPhone,@Date)";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (radioButtonReturnBill.Checked)
+                    {
+                        com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                        com.Parameters["@CustomerBill_ID"].Value = Billid;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                        com.Parameters["@CustomerBill_ID"].Value = 0;
+                    }
+                    com.Parameters.Add("@ClientReturnName", MySqlDbType.VarChar);
+                    com.Parameters["@ClientReturnName"].Value = txtClientName.Text;
+                    com.Parameters.Add("@ClientRetunPhone", MySqlDbType.VarChar);
+                    com.Parameters["@ClientRetunPhone"].Value = txtPhone.Text;
+                    com.Parameters.Add("@Date", MySqlDbType.DateTime);
+                    com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                    com.ExecuteNonQuery();
 
+                    query = "select CustomerReturnPermission_ID from customer_return_permission order by CustomerReturnPermission_ID desc limit 1";
+                    com = new MySqlCommand(query,dbconnection);
+                    int CustomerReturnPermission_ID =Convert.ToInt16(com.ExecuteScalar());
+
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        DataRow row1 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
+                        query = "insert into customer_return_permission_details (CustomerReturnPermission_ID,Data_ID,Carton,NumOfCarton,TotalQuantity,ReturnItemReason) values (@CustomerReturnPermission_ID,@Data_ID,@Carton,@NumOfCarton,@TotalQuantity,@ReturnItemReason)";
+                        com = new MySqlCommand(query, dbconnection);
+
+                        com.Parameters.Add("@CustomerReturnPermission_ID", MySqlDbType.Int16);
+                        com.Parameters["@CustomerReturnPermission_ID"].Value = Billid;
+                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                        com.Parameters["@Data_ID"].Value = row1[0].ToString();
+                        com.Parameters.Add("@Carton", MySqlDbType.Decimal);
+                        com.Parameters["@Carton"].Value = row1[5].ToString();
+                        com.Parameters.Add("@NumOfCarton", MySqlDbType.Decimal);
+                        com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
+                        com.Parameters.Add("@TotalQuantity", MySqlDbType.Decimal);
+                        com.Parameters["@TotalQuantity"].Value = row1[4].ToString();
+                        com.Parameters.Add("@ReturnItemReason", MySqlDbType.VarChar);
+                        com.Parameters["@ReturnItemReason"].Value = row1[7].ToString();
+
+                        com.ExecuteNonQuery();
+
+                        ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();
+                        returnPermissionClass.Data_ID = (int)row1["Data_ID"];
+                        returnPermissionClass.Code = row1[1].ToString();
+                        returnPermissionClass.ItemName = row1[2].ToString();
+                        returnPermissionClass.NumOfCarton = Convert.ToDouble(row1[6]);
+                        returnPermissionClass.Carton = Convert.ToDouble(row1[5]);
+                        returnPermissionClass.ReturnQuantity = Convert.ToDouble(row1[4]);
+                        returnPermissionClass.ReturnItemReason = row1[7].ToString();
+                        listOfData.Add(returnPermissionClass);
+
+                    }
+                    ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData,Billid.ToString(), txtClientName.Text, txtPhone.Text, txtReturnReason.Text, dateTimePicker1.Text);
+                    ReturnCustomerPermissionReport.Show();
+       
+                    clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
         //functions
         public void displayData()
@@ -561,8 +635,8 @@ namespace MainSystem
         {
             string query = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranchID.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            int id = Convert.ToInt16(com.ExecuteScalar());
-            query = "select * from customer_permissions where CustomerBill_ID=" + id;
+            Billid = Convert.ToInt16(com.ExecuteScalar());
+            query = "select * from customer_permissions where CustomerBill_ID=" + Billid;
             com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             if (dr.HasRows)
@@ -570,7 +644,7 @@ namespace MainSystem
                 dr.Close();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(DeliveredQuantity) as 'الكمية المسلمة',customer_permissions_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_permissions_details on customer_permissions_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + id + " group by product_bill.Data_ID";
+                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(DeliveredQuantity) as 'الكمية المسلمة',customer_permissions_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_permissions_details on customer_permissions_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -583,7 +657,7 @@ namespace MainSystem
                 dr.Close();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Cartons as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + id;
+                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Cartons as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -642,7 +716,36 @@ namespace MainSystem
             }
             loaded = true;
         }
+        public void clear()
+        {
+            comType.Text = "";
+            comFactory.Text = "";
+            comGroup.Text = "";
+            comProduct.Text = "";
 
+            txtType.Text = "";
+            txtFactory.Text = "";
+            txtGroup.Text = "";
+            txtProduct.Text = "";
+
+            foreach (Control item in panel2.Controls)
+            {
+                if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+            }
+            foreach (Control item in panel3.Controls)
+            {
+                if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+            }
+            dateTimePicker1.Value = DateTime.Now.Date;
+            gridControl1.DataSource = null;
+            gridControl2.DataSource = null;
+        }
       
     }
 }
