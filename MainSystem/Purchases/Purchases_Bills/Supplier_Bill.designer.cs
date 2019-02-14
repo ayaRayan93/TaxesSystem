@@ -60,6 +60,7 @@
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
             this.txtPurchasePrice = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -455,6 +456,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(78, 47);
             this.btnSave.TabIndex = 8;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -475,6 +477,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.txtPurchasePrice);
             this.panel1.Controls.Add(this.txtCategoricalIncrease);
             this.panel1.Controls.Add(this.txtTotalMeter);
@@ -496,6 +499,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(846, 94);
             this.panel1.TabIndex = 7;
+            // 
+            // label20
+            // 
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(48, 36);
+            this.label20.Name = "label20";
+            this.label20.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label20.Size = new System.Drawing.Size(25, 23);
+            this.label20.TabIndex = 147;
+            this.label20.Text = "%";
             // 
             // txtPurchasePrice
             // 
@@ -632,6 +647,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private System.Windows.Forms.Label label20;
     }
 }
 
