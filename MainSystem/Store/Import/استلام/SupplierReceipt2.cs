@@ -859,7 +859,7 @@ namespace MainSystem
             conn.Close();
         }
 
-        /*private void btnReport_Click(object sender, EventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -898,6 +898,11 @@ namespace MainSystem
                     Report_SupplierReceipt f = new Report_SupplierReceipt();
                     f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, bi);
                     f.ShowDialog();
+
+                    string q = "update storage_import_permission set Confirmed=0 where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
+                    MySqlCommand c = new MySqlCommand(q, conn);
+                    c.ExecuteNonQuery();
+                    flagConfirm = 0;
                 }
                 else
                 {
@@ -909,7 +914,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-        }*/
+        }
 
         private void btnCodingDetails_Click(object sender, EventArgs e)
         {

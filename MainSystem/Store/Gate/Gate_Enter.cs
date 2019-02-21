@@ -25,6 +25,7 @@ namespace MainSystem
         bool flag = false;
         bool flag2 = false;
         List<string> arr;
+        List<TreeNode> checkedNodes = new List<TreeNode>();
 
         public Gate_Enter(MainForm Mainform, XtraTabControl TabControlStoresContent)
         {
@@ -83,6 +84,24 @@ namespace MainSystem
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
                 comSupplier.SelectedIndex = -1;
+
+                query = "select * from customer";
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comClient.DataSource = dt;
+                comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                comClient.SelectedIndex = -1;
+
+                query = "select * from branch";
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.SelectedIndex = -1;
 
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
                 int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
@@ -145,12 +164,16 @@ namespace MainSystem
                     txtDescription.Visible = false;
                     labelDescription.Visible = false;
                     btnAddNum.Visible = false;
-                    checkedListBoxControlNum.Visible = false;
+                    treeViewSupPerm.Visible = false;
                     btnDeleteNum.Visible = false;
                     labelStore.Visible = false;
                     comStore.Visible = false;
                     labelSupplier.Visible = false;
                     comSupplier.Visible = false;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
+                    labelBranch.Visible = false;
+                    comBranch.Visible = false;
                     flag = false;
                     clear();
                     loaded = false;
@@ -160,6 +183,8 @@ namespace MainSystem
                     comType.SelectedIndex = -1;
                     comResponsible.SelectedIndex = -1;
                     comStore.SelectedIndex = -1;
+                    comClient.SelectedIndex = -1;
+                    comBranch.SelectedIndex = -1;
 
                     string query = "select Driver_ID,Driver_Name from drivers";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -209,7 +234,8 @@ namespace MainSystem
                         var items = new[] {
                                 new { Text = "مبيعات", Value = "1" },
                                 new { Text = "مرتجع مورد", Value = "2" },
-                                new { Text = "تحويل", Value = "3" }
+                                new { Text = "تحويل", Value = "3" },
+                                new { Text = "اخرى", Value = "4" }
                                 };
                         comType.DataSource = items;
                         comType.SelectedIndex = -1;
@@ -236,6 +262,9 @@ namespace MainSystem
                     comCar.SelectedIndex = -1;
                     comEmployee.SelectedIndex = -1;
                     comStore.SelectedIndex = -1;
+                    comSupplier.SelectedIndex = -1;
+                    comClient.SelectedIndex = -1; ;
+                    comBranch.SelectedIndex = -1;
 
                     string query = "select Driver_ID,Driver_Name from drivers";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -255,7 +284,7 @@ namespace MainSystem
                     comCar.ValueMember = dt.Columns["Car_ID"].ToString();
                     comCar.SelectedIndex = -1;
                     loaded = true;
-                    if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "2"))
+                    if (((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "1") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "2")) || ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "2") /*|| (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "2")*/))
                     {
                         labelSupplier.Visible = true;
                         comSupplier.Visible = true;
@@ -275,8 +304,13 @@ namespace MainSystem
                         labelStore.Visible = false;
                         comStore.Visible = false;
                     }
+                    
                     if ((comReason.SelectedValue.ToString() == "1" && comType.SelectedValue.ToString() == "3") || (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "1"))
                     {
+                        labelClient.Visible = false;
+                        comClient.Visible = false;
+                        labelBranch.Visible = false;
+                        comBranch.Visible = false;
                         comResponsible.Visible = true;
                         labelResponsible.Visible = true;
 
@@ -295,13 +329,17 @@ namespace MainSystem
                         txtDescription.Visible = false;
                         labelDescription.Visible = false;
                         btnAddNum.Visible = false;
-                        checkedListBoxControlNum.Visible = false;
+                        treeViewSupPerm.Visible = false;
                         btnDeleteNum.Visible = false;
                         comResponsible.SelectedIndex = -1;
                         flag2 = true;
                     }
                     else
                     {
+                        labelClient.Visible = false;
+                        comClient.Visible = false;
+                        labelBranch.Visible = false;
+                        comBranch.Visible = false;
                         comResponsible.Visible = false;
                         labelResponsible.Visible = false;
 
@@ -322,8 +360,28 @@ namespace MainSystem
                             txtDescription.Visible = true;
                             labelDescription.Visible = true;
                             btnAddNum.Visible = true;
-                            checkedListBoxControlNum.Visible = true;
+                            treeViewSupPerm.Visible = true;
                             btnDeleteNum.Visible = true;
+                        }
+                        else if (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "4")
+                        {
+                            comEmployee.Visible = false;
+                            labelEmp.Visible = false;
+                            labelPerNum.Visible = false;
+                            txtPermisionNum.Visible = false;
+                            labelDriver.Visible = true;
+                            comDriver.Visible = false;
+                            txtDriver.Visible = true;
+                            labelCar.Visible = true;
+                            comCar.Visible = false;
+                            txtCar.Visible = true;
+                            txtLicense.Visible = true;
+                            labelLicense.Visible = true;
+                            txtDescription.Visible = true;
+                            labelDescription.Visible = true;
+                            btnAddNum.Visible = false;
+                            treeViewSupPerm.Visible = false;
+                            btnDeleteNum.Visible = false;
                         }
                         else
                         {
@@ -342,11 +400,17 @@ namespace MainSystem
                             txtDescription.Visible = true;
                             labelDescription.Visible = true;
                             btnAddNum.Visible = true;
-                            checkedListBoxControlNum.Visible = true;
+                            treeViewSupPerm.Visible = true;
                             btnDeleteNum.Visible = true;
                         }
                         flag2 = false;
                         comResponsible.SelectedIndex = -1;
+                    }
+
+                    if((comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "2")|| (comReason.SelectedValue.ToString() == "2" && comType.SelectedValue.ToString() == "3"))
+                    {
+                        labelPerNum.Visible = false;
+                        txtPermisionNum.Visible = false;
                     }
                 }
             }
@@ -360,6 +424,10 @@ namespace MainSystem
         {
             if (loaded && flag2)
             {
+                labelClient.Visible = true;
+                comClient.Visible = true;
+                labelBranch.Visible = true;
+                comBranch.Visible = true;
                 if (comResponsible.SelectedValue.ToString() == "1")
                 {
                     comEmployee.Visible = true;
@@ -377,7 +445,7 @@ namespace MainSystem
                     txtDescription.Visible = true;
                     labelDescription.Visible = true;
                     btnAddNum.Visible = true;
-                    checkedListBoxControlNum.Visible = true;
+                    treeViewSupPerm.Visible = true;
                     btnDeleteNum.Visible = true;
                 }
                 else if (comResponsible.SelectedValue.ToString() == "2")
@@ -397,7 +465,7 @@ namespace MainSystem
                     txtDescription.Visible = true;
                     labelDescription.Visible = true;
                     btnAddNum.Visible = true;
-                    checkedListBoxControlNum.Visible = true;
+                    treeViewSupPerm.Visible = true;
                     btnDeleteNum.Visible = true;
                 }
                 clear();
@@ -406,6 +474,8 @@ namespace MainSystem
                 comCar.SelectedIndex = -1;
                 comEmployee.SelectedIndex = -1;
                 comStore.SelectedIndex = -1;
+                comClient.SelectedIndex = -1;
+                comBranch.SelectedIndex = -1;
 
                 string query = "select Driver_ID,Driver_Name from drivers";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -480,28 +550,186 @@ namespace MainSystem
         {
             try
             {
-                if (txtPermisionNum.Text != "")
+                //if (txtPermisionNum.Text != "")
+                //{
+                #region case of store or supplier
+                if (comSupplier.SelectedIndex != -1 || comStore.SelectedIndex != -1)
                 {
-                    for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
+                    if (treeViewSupIdPerm.Nodes.Count > 0)
                     {
-                        if (txtPermisionNum.Text == checkedListBoxControlNum.Items[i].Value.ToString())
+                        for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
                         {
-                            MessageBox.Show("هذا الاذن تم اضافتة");
-                            return;
+                            if (comSupplier.SelectedValue.ToString() == treeViewSupIdPerm.Nodes[i].Text)
+                            {
+                                for (int j = 0; j < treeViewSupIdPerm.Nodes[i].Nodes.Count; j++)
+                                {
+                                    if (txtPermisionNum.Text == treeViewSupIdPerm.Nodes[i].Nodes[j].Text)
+                                    {
+                                        MessageBox.Show("هذا الاذن تم اضافتة");
+                                        return;
+                                    }
+                                }
+                                if (txtPermisionNum.Text != "")
+                                {
+                                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                                    {
+                                        string selectedFile = openFileDialog1.FileName;
+                                        byte[] selectedRequestImage = null;
+                                        selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                        treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                        imageListBoxControl1.Items.Add(selectedFile);
+                                        txtPermisionNum.Text = "";
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+
+                        }
+                        treeViewSupIdPerm.Nodes.Add(comSupplier.SelectedValue.ToString());
+                        treeViewSupPerm.Nodes.Add(comSupplier.Text);
+                        if (txtPermisionNum.Text != "")
+                        {
+                            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+                            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+                            {
+                                string selectedFile = openFileDialog2.FileName;
+                                byte[] selectedRequestImage = null;
+                                selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                int n = treeViewSupIdPerm.Nodes.Count;
+                                treeViewSupIdPerm.Nodes[n - 1].Nodes.Add(txtPermisionNum.Text);
+                                treeViewSupPerm.Nodes[n - 1].Nodes.Add(txtPermisionNum.Text);
+                                imageListBoxControl1.Items.Add(selectedFile);
+                                txtPermisionNum.Text = "";
+                                return;
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
                     }
-
-                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    else
                     {
-                        string selectedFile = openFileDialog1.FileName;
-                        byte[] selectedRequestImage = null;
-                        selectedRequestImage = File.ReadAllBytes(selectedFile);
-                        checkedListBoxControlNum.Items.Add(txtPermisionNum.Text);
-                        imageListBoxControl1.Items.Add(selectedFile);
-                        txtPermisionNum.Text = "";
+                        treeViewSupIdPerm.Nodes.Add(comSupplier.SelectedValue.ToString());
+                        treeViewSupPerm.Nodes.Add(comSupplier.Text);
+                        if (txtPermisionNum.Text != "")
+                        {
+                            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                string selectedFile = openFileDialog1.FileName;
+                                byte[] selectedRequestImage = null;
+                                selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                                treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                                imageListBoxControl1.Items.Add(selectedFile);
+                                txtPermisionNum.Text = "";
+                                return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
                     }
                 }
+                #endregion
+                #region case of client
+                else if (comClient.SelectedIndex != -1 && comBranch.SelectedIndex != -1)
+                {
+                    if (treeViewSupIdPerm.Nodes.Count > 0)
+                    {
+                        for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
+                        {
+                            if (comClient.SelectedValue.ToString() == treeViewSupIdPerm.Nodes[i].Text)
+                            {
+                                for (int j = 0; j < treeViewSupIdPerm.Nodes[i].Nodes.Count; j++)
+                                {
+                                    if ((comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text) == treeViewSupIdPerm.Nodes[i].Nodes[j].Text)
+                                    {
+                                        MessageBox.Show("هذا الاذن تم اضافتة");
+                                        return;
+                                    }
+                                }
+                                if (txtPermisionNum.Text != "")
+                                {
+                                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                                    {
+                                        string selectedFile = openFileDialog1.FileName;
+                                        byte[] selectedRequestImage = null;
+                                        selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
+                                        treeViewSupPerm.Nodes[i].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
+                                        imageListBoxControl1.Items.Add(selectedFile);
+                                        txtPermisionNum.Text = "";
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+
+                        }
+                        treeViewSupIdPerm.Nodes.Add(comClient.SelectedValue.ToString());
+                        treeViewSupPerm.Nodes.Add(comClient.Text);
+                        if (txtPermisionNum.Text != "")
+                        {
+                            OpenFileDialog openFileDialog2 = new OpenFileDialog();
+                            if (openFileDialog2.ShowDialog() == DialogResult.OK)
+                            {
+                                string selectedFile = openFileDialog2.FileName;
+                                byte[] selectedRequestImage = null;
+                                selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                int n = treeViewSupIdPerm.Nodes.Count;
+                                treeViewSupIdPerm.Nodes[n - 1].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
+                                treeViewSupPerm.Nodes[n - 1].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
+                                imageListBoxControl1.Items.Add(selectedFile);
+                                txtPermisionNum.Text = "";
+                                return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        treeViewSupIdPerm.Nodes.Add(comClient.SelectedValue.ToString());
+                        treeViewSupPerm.Nodes.Add(comClient.Text);
+                        if (txtPermisionNum.Text != "")
+                        {
+                            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                string selectedFile = openFileDialog1.FileName;
+                                byte[] selectedRequestImage = null;
+                                selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                treeViewSupIdPerm.Nodes[0].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
+                                treeViewSupPerm.Nodes[0].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
+                                imageListBoxControl1.Items.Add(selectedFile);
+                                txtPermisionNum.Text = "";
+                                return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                //}
             }
             catch (Exception ex)
             {
@@ -513,25 +741,19 @@ namespace MainSystem
         {
             try
             {
-                if (checkedListBoxControlNum.CheckedItemsCount > 0)
-                {
-                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        return;
+                if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                    return;
 
-                    ArrayList temp = new ArrayList();
-                    ArrayList tempimg = new ArrayList();
-                    foreach (int index in checkedListBoxControlNum.CheckedIndices)
+                removeCheckedNodes(treeViewSupPerm.Nodes);
+                removeCheckedNodes(treeViewSupIdPerm.Nodes);
+                for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
+                {
+                    if (treeViewSupIdPerm.Nodes[i].Nodes.Count > 0)
+                    { }
+                    else
                     {
-                        temp.Add(checkedListBoxControlNum.Items[index]);
-                        tempimg.Add(imageListBoxControl1.Items[index]);
-                    }
-                    foreach (object item in temp)
-                    {
-                        checkedListBoxControlNum.Items.Remove(item);
-                    }
-                    foreach (object item in tempimg)
-                    {
-                        imageListBoxControl1.Items.Remove(item);
+                        treeViewSupIdPerm.Nodes[i].Remove();
+                        treeViewSupPerm.Nodes[i].Remove();
                     }
                 }
             }
@@ -540,7 +762,12 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
+        private void treeViewSupPerm_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            IsAnyChildChecked(e.Node);
+        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -556,7 +783,7 @@ namespace MainSystem
                         }
                     }
                     conn.Open();
-                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID,Supplier_ID,FromStore_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID,@Supplier_ID,@FromStore_ID)";
+                    string query = "insert into gate (Reason,Type,Responsible,Car_ID,Car_Number,Driver_ID,Driver_Name,License_Number,Date_Enter,Store_ID,TatiqEmp_ID,Description,EnterEmployee_ID) values (@Reason,@Type,@Responsible,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@License_Number,@Date_Enter,@Store_ID,@TatiqEmp_ID,@Description,@EnterEmployee_ID)";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Reason", MySqlDbType.VarChar, 255);
                     com.Parameters["@Reason"].Value = comReason.Text;
@@ -616,45 +843,68 @@ namespace MainSystem
                     com.Parameters["@Description"].Value = txtDescription.Text;
                     com.Parameters.Add("@EnterEmployee_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@EnterEmployee_ID"].Value = UserControl.EmpID;
-                    if (comSupplier.SelectedValue != null)
-                    {
-                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
-                        com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
-                    }
-                    else
-                    {
-                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
-                        com.Parameters["@Supplier_ID"].Value = null;
-                    }
-                    if (comStore.SelectedValue != null)
-                    {
-                        com.Parameters.Add("@FromStore_ID", MySqlDbType.Int16, 11);
-                        com.Parameters["@FromStore_ID"].Value = comStore.SelectedValue.ToString();
-                    }
-                    else
-                    {
-                        com.Parameters.Add("@FromStore_ID", MySqlDbType.Int16, 11);
-                        com.Parameters["@FromStore_ID"].Value = null;
-                    }
+                    
                     com.ExecuteNonQuery();
 
-                    query = "select Permission_Number from gate order by Permission_Number desc limit 1";
+                    query = "select Gate_ID from gate order by Gate_ID desc limit 1";
                     com = new MySqlCommand(query, conn);
                     int permissionNum = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                    for (int i = 0; i < checkedListBoxControlNum.ItemCount; i++)
+                    for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
                     {
-                        query = "insert into gate_permission(Permission_Number,Supplier_PermissionNumber,Type,Permission_Image) values(@Permission_Number,@Supplier_PermissionNumber,@Type,@Permission_Image)";
+                        query = "insert into gate_supplier(Gate_ID,Supplier_ID,Type) values(@Gate_ID,@Supplier_ID,@Type)";
                         com = new MySqlCommand(query, conn);
-                        com.Parameters.Add("@Permission_Number", MySqlDbType.Int16, 11);
-                        com.Parameters["@Permission_Number"].Value = permissionNum;
-                        com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
-                        com.Parameters["@Supplier_PermissionNumber"].Value = checkedListBoxControlNum.Items[i].Value.ToString();
-                        com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Type"].Value = "دخول";
-                        com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
-                        com.Parameters["@Permission_Image"].Value = imageToByteArray(Image.FromFile(imageListBoxControl1.Items[i].Value.ToString()));
+                        com.Parameters.Add("@Gate_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Gate_ID"].Value = permissionNum;
+                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Supplier_ID"].Value = treeViewSupIdPerm.Nodes[i].Text;
+                        if (comClient.Visible == true)
+                        {
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Type"].Value = "عميل";
+                        }
+                        else if (comSupplier.Visible == true)
+                        {
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Type"].Value = "مورد";
+                        }
+                        else if (comStore.Visible == true)
+                        {
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Type"].Value = "مخزن";
+                        }
                         com.ExecuteNonQuery();
+
+                        query = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
+                        com = new MySqlCommand(query, conn);
+                        int gateSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                        for (int j = 0; j < treeViewSupIdPerm.Nodes[i].Nodes.Count; j++)
+                        {
+                            query = "insert into gate_permission(GateSupplier_ID,Branch_ID,Supplier_PermissionNumber,Type,Permission_Image) values(@GateSupplier_ID,@Branch_ID,@Supplier_PermissionNumber,@Type,@Permission_Image)";
+                            com = new MySqlCommand(query, conn);
+                            com.Parameters.Add("@GateSupplier_ID", MySqlDbType.Int16, 11);
+                            com.Parameters["@GateSupplier_ID"].Value = gateSupplierId;
+                            if (comClient.Visible == true)
+                            {
+                                com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
+                                com.Parameters["@Branch_ID"].Value = treeViewSupIdPerm.Nodes[i].Nodes[j].Text.Split(':')[0];
+                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                                com.Parameters["@Supplier_PermissionNumber"].Value = treeViewSupIdPerm.Nodes[i].Nodes[j].Text.Split(':')[1];
+                            }
+                            else
+                            {
+                                com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
+                                com.Parameters["@Branch_ID"].Value = null;
+                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                                com.Parameters["@Supplier_PermissionNumber"].Value = treeViewSupIdPerm.Nodes[i].Nodes[j].Text;
+                            }
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Type"].Value = "دخول";
+                            com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
+                            com.Parameters["@Permission_Image"].Value = imageToByteArray(Image.FromFile(imageListBoxControl1.Items[i].Value.ToString()));
+                            com.ExecuteNonQuery();
+                        }
                     }
 
                     clearAll();
@@ -679,12 +929,16 @@ namespace MainSystem
                     txtDescription.Visible = false;
                     labelDescription.Visible = false;
                     btnAddNum.Visible = false;
-                    checkedListBoxControlNum.Visible = false;
+                    treeViewSupPerm.Visible = false;
                     btnDeleteNum.Visible = false;
                     labelStore.Visible = false;
                     comStore.Visible = false;
                     labelSupplier.Visible = false;
                     comSupplier.Visible = false;
+                    labelBranch.Visible = false;
+                    comBranch.Visible = false;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
                 }
                 else
                 {
@@ -715,6 +969,49 @@ namespace MainSystem
         }
 
         //function
+        void removeCheckedNodes(TreeNodeCollection nodes)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked)
+                {
+                    checkedNodes.Add(node);
+                }
+                else
+                {
+                    removeCheckedNodes(node.Nodes);
+                }
+            }
+            foreach (TreeNode checkedNode in checkedNodes)
+            {
+                nodes.Remove(checkedNode);
+            }
+        }
+        void IsAnyChildChecked(TreeNode node)
+        {
+            if (node.Checked)
+            {
+                try
+                {
+                    treeViewSupIdPerm.Nodes[node.Parent.Index].Nodes[node.Index].Checked = true;
+                }
+                catch
+                {
+                    treeViewSupIdPerm.Nodes[node.Index].Checked = true;
+                }
+            }
+            else
+            {
+                try
+                {
+                    treeViewSupIdPerm.Nodes[node.Parent.Index].Nodes[node.Index].Checked = false;
+                }
+                catch
+                {
+                    treeViewSupIdPerm.Nodes[node.Index].Checked = false;
+                }
+            }
+        }
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
@@ -730,16 +1027,11 @@ namespace MainSystem
                 {
                     co.Text = "";
                 }
-                else if (co is CheckedListBoxControl)
+                else if (co is Panel)
                 {
-                    int cont = checkedListBoxControlNum.ItemCount;
-                    for (int i = 0; i < cont; i++)
-                    {
-                        checkedListBoxControlNum.Items.RemoveAt(0);
-                    }
-                }
-                else if (co is ImageListBoxControl)
-                {
+                    txtPermisionNum.Text = "";
+                    treeViewSupIdPerm.Nodes.Clear();
+                    treeViewSupPerm.Nodes.Clear();
                     int cont = imageListBoxControl1.ItemCount;
                     for (int i = 0; i < cont; i++)
                     {
@@ -765,8 +1057,6 @@ namespace MainSystem
                     comType.SelectedIndex = -1;
                     comResponsible.SelectedIndex = -1;
                     comReason.SelectedIndex = -1;
-                    comStore.SelectedIndex = -1;
-                    comSupplier.SelectedIndex = -1;
 
                     string query = "select Driver_ID,Driver_Name from drivers";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -793,16 +1083,15 @@ namespace MainSystem
                 {
                     co.Text = "";
                 }
-                else if (co is CheckedListBoxControl)
+                else if (co is Panel)
                 {
-                    int cont = checkedListBoxControlNum.ItemCount;
-                    for (int i = 0; i < cont; i++)
-                    {
-                        checkedListBoxControlNum.Items.RemoveAt(0);
-                    }
-                }
-                else if (co is ImageListBoxControl)
-                {
+                    comStore.SelectedIndex = -1;
+                    comSupplier.SelectedIndex = -1;
+                    comClient.SelectedIndex = -1;
+                    comBranch.SelectedIndex = -1;
+                    txtPermisionNum.Text = "";
+                    treeViewSupIdPerm.Nodes.Clear();
+                    treeViewSupPerm.Nodes.Clear();
                     int cont = imageListBoxControl1.ItemCount;
                     for (int i = 0; i < cont; i++)
                     {
@@ -823,7 +1112,7 @@ namespace MainSystem
 
         public bool IsClear()
         {
-            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "" && comSupplier.SelectedValue == null && comStore.Text == "")
+            if (comReason.Text == "" && comType.Text == "" && comResponsible.Text == "" && comDriver.Text == "" && txtDriver.Text == "" && comCar.Text == "" && txtCar.Text == "" && txtLicense.Text == "" && comEmployee.Text == "" && comSupplier.Text == "" && comStore.Text == "" && comBranch.Text == "" && comClient.Text == "")
                 return true;
             else
                 return false;

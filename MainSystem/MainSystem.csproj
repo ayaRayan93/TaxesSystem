@@ -1552,6 +1552,12 @@
     <Compile Include="Store\Import\استرجاع\Report_StorageReturn.designer.cs">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\استرجاع\StorageReturnBill2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\استرجاع\StorageReturnBill2.designer.cs">
+      <DependentUpon>StorageReturnBill2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Import\استرجاع\StorageReturn_Items.cs" />
     <Compile Include="Store\initialCodeStorage.cs">
       <SubType>Form</SubType>
@@ -2459,6 +2465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\استرجاع\StorageReturnBill2.resx">
+      <DependentUpon>StorageReturnBill2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>

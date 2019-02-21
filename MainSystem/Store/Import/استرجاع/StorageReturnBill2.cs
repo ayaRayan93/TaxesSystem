@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class StorageReturnBill : Form
+    public partial class StorageReturnBill2 : Form
     {
         MySqlConnection dbconnection, dbconnection2, dbconnection3;
         
@@ -30,7 +30,7 @@ namespace MainSystem
         int ReturnedPermissionNumber = 1;
         int flagConfirm = 2;
 
-        public StorageReturnBill(MainForm SalesMainForm, DevExpress.XtraTab.XtraTabControl TabControlStores)
+        public StorageReturnBill2(MainForm SalesMainForm, DevExpress.XtraTab.XtraTabControl TabControlStores)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -254,7 +254,6 @@ namespace MainSystem
                                 flagProduct = true;
                             }
                             break;
-
                         case "comProduct":
                             if (flagProduct)
                             {
@@ -264,11 +263,9 @@ namespace MainSystem
                                 displayData();
                             }
                             break;
-
                         case "comStore":
                             txtStoreID.Text = comStore.SelectedValue.ToString();
                             break;
-
                     }
                 }
 
@@ -380,11 +377,8 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-
                         }
-
                     }
-
                 }
                 catch (Exception ex)
                 {
