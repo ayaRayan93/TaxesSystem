@@ -17,7 +17,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login_Admin());
+            Application.Run(new Login());
         }
     }
 }
