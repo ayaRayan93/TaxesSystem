@@ -490,7 +490,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label12.Location = new System.Drawing.Point(263, 18);
+            this.label12.Location = new System.Drawing.Point(263, 22);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 18);
             this.label12.TabIndex = 209;
@@ -500,7 +500,7 @@
             // 
             this.txtSupplierId.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSupplierId.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSupplierId.Location = new System.Drawing.Point(76, 15);
+            this.txtSupplierId.Location = new System.Drawing.Point(76, 19);
             this.txtSupplierId.Name = "txtSupplierId";
             this.txtSupplierId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSupplierId.Size = new System.Drawing.Size(55, 24);
@@ -512,7 +512,7 @@
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(137, 15);
+            this.comSupplier.Location = new System.Drawing.Point(137, 19);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(120, 24);
@@ -524,7 +524,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(522, 18);
+            this.label5.Location = new System.Drawing.Point(522, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 18);
             this.label5.TabIndex = 206;
@@ -534,7 +534,7 @@
             // 
             this.txtStoreFilterId.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStoreFilterId.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStoreFilterId.Location = new System.Drawing.Point(328, 15);
+            this.txtStoreFilterId.Location = new System.Drawing.Point(328, 19);
             this.txtStoreFilterId.Name = "txtStoreFilterId";
             this.txtStoreFilterId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtStoreFilterId.Size = new System.Drawing.Size(55, 24);
@@ -546,7 +546,7 @@
             this.comStoreFilter.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStoreFilter.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStoreFilter.FormattingEnabled = true;
-            this.comStoreFilter.Location = new System.Drawing.Point(389, 15);
+            this.comStoreFilter.Location = new System.Drawing.Point(389, 19);
             this.comStoreFilter.Name = "comStoreFilter";
             this.comStoreFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStoreFilter.Size = new System.Drawing.Size(120, 24);
