@@ -93,11 +93,8 @@ namespace MainSystem
                 comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
                 comProduct.Text = "";
                 txtProduct.Text = "";
-
-         
-
+                
                 loaded = true;
-
             }
             catch (Exception ex)
             {
@@ -109,13 +106,19 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Close();
+                dbconnection.Open();
                 if (loaded)
                 {
                     loaded = false;
-                    dbconnection.Open();
                     txtType.Text = comType.SelectedValue.ToString();
                     comFactory.Focus();
+                   
                     filterFactory();
+                    dbconnection.Close();
+                    dbconnection.Open();
+                    filterGroup();
+                  
                     if (chBoxSelectAll.Checked)
                         displayProducts();
                     else
@@ -132,6 +135,7 @@ namespace MainSystem
                         comProduct.Text = "";
                         txtProduct.Text = "";
                         label1.Text = "الصنف";
+                        filterProduct();
                     }
                     else
                     {
@@ -145,6 +149,7 @@ namespace MainSystem
                         comProduct.Text = "";
                         txtProduct.Text = "";
                         label1.Text = "المقاس";
+                        filterProduct();
                     }
                     loaded = true;
                 }
@@ -190,6 +195,7 @@ namespace MainSystem
                     txtFactory.Text = comFactory.SelectedValue.ToString();
                     comGroup.Focus();
                     filterGroup();
+                    filterProduct();
                     if (chBoxSelectAll.Checked)
                         displayProducts();
                     else
@@ -875,21 +881,17 @@ namespace MainSystem
         }
         public void filterGroup()
         {
-            if (txtType.Text == "1" || txtType.Text == "2")
+            string query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            int TypeCoding_Method = (int)com.ExecuteScalar();
+            if (TypeCoding_Method == 1)
             {
-                string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
-                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
-                DataTable dt2 = new DataTable();
-                da2.Fill(dt2);
-                comGroup.DataSource = dt2;
-                comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
-                comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
-                comGroup.Text = "";
-                txtGroup.Text = "";
-            }
-            else if (txtType.Text == "4")
-            {
-                string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
+                string query2 = "";
+                if (txtType.Text=="2"|| txtType.Text == "1")
+                    query2 = "select * from groupo where Factory_ID="+-1 ;
+                else
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();
                 da2.Fill(dt2);
@@ -901,7 +903,7 @@ namespace MainSystem
             }
             else
             {
-                string query = "select * from groupo where Factory_ID="+txtFactory.Text+" and Type_ID=" + txtType.Text;
+                query = "select * from groupo where Factory_ID="+txtFactory.Text+" and Type_ID=" + txtType.Text;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -914,34 +916,57 @@ namespace MainSystem
         }
         public void filterProduct()
         {
-            
-            if (comGroup.Text != "" && comFactory.Text!="" && comType.Text!="")
+            if (comType.Text != "")
             {
-                if (txtType.Text != "1")
+                if (comGroup.Text != "" || comFactory.Text != ""|| comType.Text != "")
                 {
-                    string query = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comProduct.DataSource = dt;
-                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
-                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
-                    comProduct.Text = "";
-                    txtProduct.Text = "";
-                }
-                else
-                {
-                    string query = "select * from size where Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text;
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comProduct.DataSource = dt;
-                    comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
-                    comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
-                    comProduct.Text = "";
-                    txtProduct.Text = "";
+                    if (txtType.Text != "1")
+                    {
+                        string supQuery = "";
+
+                        supQuery = " product.Type_ID=" + txtType.Text + "";
+                        if (comFactory.Text != "")
+                        {
+                            supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text + "";
+                        }
+                        else if (comGroup.Text != "")
+                        {
+                            supQuery += " and product_factory_group.Group_ID=" + txtGroup.Text + "";
+                        }
+                        string query = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where  "+supQuery+"   order by product.Product_ID";
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comProduct.DataSource = dt;
+                        comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                        comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                        comProduct.Text = "";
+                        txtProduct.Text = "";
+                    }
+                    else
+                    {
+                        string supQuery = "";
+                        if (comFactory.Text != "")
+                        {
+                            supQuery += " and type_factory.Factory_ID=" + txtFactory.Text + "";
+                        }
+                        else if (comGroup.Text != "")
+                        {
+                            supQuery += " and Group_ID=" + txtGroup.Text + "";
+                        }
+                        string query = "select * from size inner join type_factory on size.Factory_ID=type_factory.Factory_ID where type_factory.Type_ID=1 " + supQuery;
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comProduct.DataSource = dt;
+                        comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                        comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                        comProduct.Text = "";
+                        txtProduct.Text = "";
+                    }
                 }
             }
+        
         }
         public void filterSize()
         {

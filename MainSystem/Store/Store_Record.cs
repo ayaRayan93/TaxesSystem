@@ -32,7 +32,6 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-         
         }
 
 
@@ -41,45 +40,7 @@ namespace MainSystem
            
             try
             {
-                conn.Open();
-                string query = "select Store_Name from store where Store_Name='" + txtName.Text + "'";
-                MySqlCommand com = new MySqlCommand(query, conn);
-
-
-                if (com.ExecuteScalar() == null)
-                {
-                    if (txtName.Text != "")
-                    {
-                        string qeury = "insert into store (Store_Name,Store_Address,Store_Phone)values(@Name,@Address,@Phone)";
-                        com = new MySqlCommand(qeury, conn);
-                        com.Parameters.Add("@Name", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Name"].Value = txtName.Text;
-                        com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Address"].Value = txtAddress.Text;
-                        com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Phone"].Value = txtPhone.Text;
-
-                        com.ExecuteNonQuery();
-                        query = "select Type_ID from type order by Type_ID desc limit 1";
-                        com = new MySqlCommand(query, conn);
-
-                       // UserControl.UserRecord("store", "اضافة", com.ExecuteScalar().ToString(), DateTime.Now, conn);
-
-                        MessageBox.Show("add success");
-                        clear();
-                        txtName.Focus();
-                        stores.DisplayStores();
-                    }
-                    else
-                    {
-                        MessageBox.Show("enter Name");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("This Store already exist");
-                }
-            
+                saveStore();
             }
             catch (Exception ex)
             {
@@ -104,10 +65,17 @@ namespace MainSystem
                             txtPhone.Focus();
                             break;
                         case "txtPhone":
-                            txtName.Focus();
+                            DialogResult dialogResult = MessageBox.Show("هل تريد حفظ البيانات?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.OK)
+                            {
+                                saveStore();
+                                txtName.Focus();
+                                conn.Close();
+                            }
+                            {
+                                txtName.Focus();
+                            }
                             break;
-                       
-
                     }
                 }
             }
@@ -154,7 +122,45 @@ namespace MainSystem
                 return false;
                     
         }
-       
+        public void saveStore()
+        {
+            conn.Open();
+            string query = "select Store_Name from store where Store_Name='" + txtName.Text + "'";
+            MySqlCommand com = new MySqlCommand(query, conn);
+            if (com.ExecuteScalar() == null)
+            {
+                if (txtName.Text != "")
+                {
+                    string qeury = "insert into store (Store_Name,Store_Address,Store_Phone)values(@Name,@Address,@Phone)";
+                    com = new MySqlCommand(qeury, conn);
+                    com.Parameters.Add("@Name", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Name"].Value = txtName.Text;
+                    com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Address"].Value = txtAddress.Text;
+                    com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
+                    com.Parameters["@Phone"].Value = txtPhone.Text;
+
+                    com.ExecuteNonQuery();
+                    query = "select Type_ID from type order by Type_ID desc limit 1";
+                    com = new MySqlCommand(query, conn);
+
+                    UserControl.ItemRecord("store", "اضافة", (int)com.ExecuteScalar(), DateTime.Now, "", conn);
+
+                    MessageBox.Show("add success");
+                    clear();
+                    txtName.Focus();
+                    stores.DisplayStores();
+                }
+                else
+                {
+                    MessageBox.Show("ادخل الاسم");
+                }
+            }
+            else
+            {
+                MessageBox.Show("هذا الاسم مضاف من قبل.");
+            }
+        }
     }
    
 }

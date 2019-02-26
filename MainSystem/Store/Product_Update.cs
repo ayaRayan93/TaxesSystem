@@ -374,9 +374,9 @@ namespace MainSystem
         {
             try
             {
-                if (txtFactory.Text != "" && txtGroup.Text != "" && txtProduct.Text != "" && txtType.Text != "" )
+                if (txtFactory.Text != "" && txtGroup.Text != "" && txtProduct.Text != "" && txtType.Text != "")
                 {
-                  
+
                     double carton = 0;
                     string classification, description = "";
                     if (comColour.Text != "")
@@ -387,9 +387,9 @@ namespace MainSystem
                         }
                         catch
                         {
-                            
+
                         }
-                        
+
                     }
                     if (comSize.Text != "")
                     {
@@ -401,7 +401,7 @@ namespace MainSystem
                         {
 
                         }
-                        
+
                     }
                     if (comSort.Text != "")
                     {
@@ -413,7 +413,7 @@ namespace MainSystem
                         {
 
                         }
-                        
+
                     }
                     if (txtCarton.Text != "")
                     {
@@ -430,128 +430,129 @@ namespace MainSystem
                     classification = txtClassification.Text;
                     description = txtDescription.Text;
 
-                    string q = "SELECT Data_ID from data where Color_ID=" + color_id + " and Size_ID=" + size_id + " and Sort_ID=" + sort_id + " and Description='" + description + "' and Carton=" + carton + " and Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text + " and Classification='" + classification + "'";
-                    MySqlCommand comand = new MySqlCommand(q, dbconnection);
-                    dbconnection.Open();
-                    var resultValue = comand.ExecuteReader();
-                    if (!resultValue.HasRows)
+
+                    dbconnection.Close();
+
+                    MySqlCommand command = dbconnection.CreateCommand();
+
+                    string code = txtType.Text;
+
+                    int typecount = txtType.Text.Length;
+
+                    int factorycount = txtFactory.Text.Length;
+
+                    int groupcount = txtGroup.Text.Length;
+
+                    int productcount = txtProduct.Text.Length;
+
+                    while (typecount < 4)
                     {
-                        dbconnection.Close();
+                        code = "0" + code;
+                        typecount++;
+                    }
 
-                        MySqlCommand command = dbconnection.CreateCommand();
+                    string code2 = txtFactory.Text;
 
-                        string code = txtType.Text;
+                    while (factorycount < 4)
+                    {
+                        code2 = "0" + code2;
+                        factorycount++;
+                    }
 
-                        int typecount = txtType.Text.Length;
+                    code = code + code2;
 
-                        int factorycount = txtFactory.Text.Length;
+                    string code3 = txtGroup.Text;
 
-                        int groupcount = txtGroup.Text.Length;
+                    while (groupcount < 4)
+                    {
+                        code3 = "0" + code3;
+                        groupcount++;
+                    }
 
-                        int productcount = txtProduct.Text.Length;
+                    code = code + code3;
 
-                        while (typecount < 4)
-                        {
-                            code = "0" + code;
-                            typecount++;
-                        }
+                    string code4 = txtProduct.Text;
 
-                        string code2 = txtFactory.Text;
+                    while (productcount < 4)
+                    {
+                        code4 = "0" + code4;
+                        productcount++;
+                    }
 
-                        while (factorycount < 4)
-                        {
-                            code2 = "0" + code2;
-                            factorycount++;
-                        }
+                    code = code + code4;
+                    string code5 = "";
 
-                        code = code + code2;
-
-                        string code3 = txtGroup.Text;
-
-                        while (groupcount < 4)
-                        {
-                            code3 = "0" + code3;
-                            groupcount++;
-                        }
-
-                        code = code + code3;
-
-                        string code4 = txtProduct.Text;
-
-                        while (productcount < 4)
-                        {
-                            code4 = "0" + code4;
-                            productcount++;
-                        }
-
-                        code = code + code4;
-                        string code5 = "";
-
-                        if (!IsMainChang())
-                        {
-                            string query2 = "SELECT count(Code) FROM data where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text;
-                            dbconnection.Open();
-                            MySqlCommand adpt = new MySqlCommand(query2, dbconnection);
-                            int result = Convert.ToInt16(adpt.ExecuteScalar().ToString());
-                            result = result + 1;
-                            dbconnection.Close();
-
-                            int resultcount = result.ToString().Length;
-
-                            code5 = result.ToString();
-
-                            while (resultcount < 4)
-                            {
-                                code5 = "0" + code5;
-                                resultcount++;
-                            }
-                        }
-                        else
-                        {
-                            code5 = lastPartCode;
-                        }
-                        code = code + code5;
-
-                        command.CommandText = "update  data set Color_ID=?Color_ID,Size_ID=?Size_ID,Sort_ID=?Sort_ID,Description=?Description,Carton=?Carton,Code=?Code,Type_ID=?Type_ID,Factory_ID=?Factory_ID,Group_ID=?Group_ID,Product_ID=?Product_ID,Classification=?Classification where Data_ID="+ Data_ID;
-
-                        command.Parameters.AddWithValue("?Color_ID", color_id);
-                        command.Parameters.AddWithValue("?Size_ID", size_id);
-                        command.Parameters.AddWithValue("?Sort_ID", sort_id);
-                        command.Parameters.AddWithValue("?Description", description);
-                        command.Parameters.AddWithValue("?Carton", carton);
-                        command.Parameters.AddWithValue("?Code", code);
-                        command.Parameters.AddWithValue("?Type_ID", int.Parse(txtType.Text));
-                        command.Parameters.AddWithValue("?Factory_ID", int.Parse(txtFactory.Text));
-                        command.Parameters.AddWithValue("?Group_ID", int.Parse(txtGroup.Text));
-                        command.Parameters.AddWithValue("?Product_ID", int.Parse(txtProduct.Text));
-                        command.Parameters.AddWithValue("?Classification", classification);
+                    if (!IsMainChang())
+                    {
+                        string query2 = "SELECT count(Code) FROM data where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text;
                         dbconnection.Open();
-                        command.ExecuteNonQuery();
+                        MySqlCommand adpt = new MySqlCommand(query2, dbconnection);
+                        int result = Convert.ToInt16(adpt.ExecuteScalar().ToString());
+                        result = result + 1;
                         dbconnection.Close();
 
+                        int resultcount = result.ToString().Length;
 
-                        //save image as bytes
-                        command = dbconnection.CreateCommand();
-                        command.CommandText = "update data_photo set Photo =?Photo where Data_ID=" + Data_ID;
-                        command.Parameters.AddWithValue("?Photo", selectedImage);
-                        dbconnection.Open();
-                        command.ExecuteNonQuery();
-                        dbconnection.Close();
+                        code5 = result.ToString();
 
-                        
-                      //  UserControl.UserRecord("data", "update",code, DateTime.Now, dbconnection);
-
-                        MessageBox.Show("updated");
-                        products.displayProducts();
-
-                        XtraTabPage xtraTabPage = getTabPage("تعديل بند");
-                        xtraTabPage.ImageOptions.Image = null;
-                        comType.Focus();
+                        while (resultcount < 4)
+                        {
+                            code5 = "0" + code5;
+                            resultcount++;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("This item already exist");
+                        code5 = lastPartCode;
                     }
+                    code = code + code5;
+
+                    string query = "update  data set Color_ID=?Color_ID,Size_ID=?Size_ID,Sort_ID=?Sort_ID,Description=?Description,Carton=?Carton,Code=?Code,Type_ID=?Type_ID,Factory_ID=?Factory_ID,Group_ID=?Group_ID,Product_ID=?Product_ID,Classification=?Classification where Data_ID=" + Data_ID;
+                    command = new MySqlCommand(query, dbconnection);
+                    command.Parameters.AddWithValue("?Color_ID", color_id);
+                    command.Parameters.AddWithValue("?Size_ID", size_id);
+                    command.Parameters.AddWithValue("?Sort_ID", sort_id);
+                    command.Parameters.AddWithValue("?Description", description);
+                    command.Parameters.AddWithValue("?Carton", carton);
+                    command.Parameters.AddWithValue("?Code", code);
+                    command.Parameters.AddWithValue("?Type_ID", int.Parse(txtType.Text));
+                    command.Parameters.AddWithValue("?Factory_ID", int.Parse(txtFactory.Text));
+                    command.Parameters.AddWithValue("?Group_ID", int.Parse(txtGroup.Text));
+                    command.Parameters.AddWithValue("?Product_ID", int.Parse(txtProduct.Text));
+                    command.Parameters.AddWithValue("?Classification", classification);
+                    dbconnection.Open();
+                    command.ExecuteNonQuery();
+
+
+                    //save image as bytes
+                    query = "select DataPhoto_ID from data_photo where  Data_ID=" + Data_ID;
+                    command = new MySqlCommand(query, dbconnection);
+                    try
+                    {
+                        string DataPhoto_ID = command.ExecuteScalar().ToString();
+                        string q = "update data_photo set Photo =?Photo where DataPhoto_ID=" + DataPhoto_ID;
+                        command = new MySqlCommand(q, dbconnection);
+                        command.Parameters.AddWithValue("?Photo", selectedImage);
+                        command.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        string q = "insert into  data_photo (Photo,Data_ID) values (@Photo,@Data_ID)";
+                        command = new MySqlCommand(q, dbconnection);
+                        command.Parameters.AddWithValue("?Photo", selectedImage);
+                        command.Parameters.AddWithValue("?Data_ID", Data_ID);
+                        dbconnection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    UserControl.ItemRecord("data", "تعديل", Data_ID, DateTime.Now, "", dbconnection);
+                    dbconnection.Close();
+                    MessageBox.Show("updated");
+                    products.displayProducts();
+
+                    XtraTabPage xtraTabPage = getTabPage("تعديل بند");
+                    xtraTabPage.ImageOptions.Image = null;
+                    comType.Focus();
+
                 }
                 else
                 {
@@ -707,8 +708,8 @@ namespace MainSystem
 
 
 
-            txtDescription.Text = row1["التصنيف"].ToString();
-            txtClassification.Text = row1["الوصف"].ToString();
+            txtClassification.Text = row1["التصنيف"].ToString();
+            txtDescription.Text = row1["الوصف"].ToString();
 
             Data_ID =Convert.ToInt16(row1[0]);
         }
@@ -717,7 +718,7 @@ namespace MainSystem
             try
             {
                 dbconnection1.Open();
-                string query = "select Photo from data_photo where Code='" + code + "'";
+                string query = "select Photo from data_photo where Data_ID=" + Convert.ToInt16(prodRow[0]);
                 MySqlCommand com = new MySqlCommand(query, dbconnection1);
                 byte[] photo = (byte[])com.ExecuteScalar();
                
