@@ -1048,7 +1048,7 @@ namespace MainSystem
                         int storageReturnID = 0;
                         ReturnedPermissionNumber = 1;
 
-                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
+                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStoreFilter.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
                         MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
                         if (com3.ExecuteScalar() != null)
                         {
@@ -1142,7 +1142,7 @@ namespace MainSystem
                             double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());
 
                             dbconnection4.Open();
-                            query = "select Store_Place_ID,Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString();
+                            query = "select Store_Place_ID,Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString();
                             com = new MySqlCommand(query, dbconnection4);
                             MySqlDataReader dr = com.ExecuteReader();
                             if (dr.HasRows)
@@ -1181,7 +1181,7 @@ namespace MainSystem
                         dbconnection.Close();
                         
                         dbconnection.Open();
-                        string query2 = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
+                        string query2 = "select Store_Name from store where Store_ID=" + comStoreFilter.SelectedValue.ToString();
                         MySqlCommand com4 = new MySqlCommand(query2, dbconnection);
                         string storeName = com4.ExecuteScalar().ToString();
                         dbconnection.Close();
