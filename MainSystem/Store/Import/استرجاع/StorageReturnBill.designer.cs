@@ -94,6 +94,9 @@
             this.Supplier_Permission_Number = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Store_Place_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Supplier_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtSupplierId = new System.Windows.Forms.TextBox();
+            this.comSupplier = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -465,6 +468,9 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.txtSupplierId);
+            this.groupBox1.Controls.Add(this.comSupplier);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtStoreFilterId);
             this.groupBox1.Controls.Add(this.comStoreFilter);
@@ -497,7 +503,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(449, 90);
+            this.label5.Location = new System.Drawing.Point(572, 85);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 18);
             this.label5.TabIndex = 206;
@@ -507,10 +513,10 @@
             // 
             this.txtStoreFilterId.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStoreFilterId.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStoreFilterId.Location = new System.Drawing.Point(257, 87);
+            this.txtStoreFilterId.Location = new System.Drawing.Point(378, 82);
             this.txtStoreFilterId.Name = "txtStoreFilterId";
             this.txtStoreFilterId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtStoreFilterId.Size = new System.Drawing.Size(50, 24);
+            this.txtStoreFilterId.Size = new System.Drawing.Size(55, 24);
             this.txtStoreFilterId.TabIndex = 207;
             this.txtStoreFilterId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
@@ -519,10 +525,10 @@
             this.comStoreFilter.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStoreFilter.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStoreFilter.FormattingEnabled = true;
-            this.comStoreFilter.Location = new System.Drawing.Point(313, 87);
+            this.comStoreFilter.Location = new System.Drawing.Point(439, 82);
             this.comStoreFilter.Name = "comStoreFilter";
             this.comStoreFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStoreFilter.Size = new System.Drawing.Size(130, 24);
+            this.comStoreFilter.Size = new System.Drawing.Size(120, 24);
             this.comStoreFilter.TabIndex = 205;
             this.comStoreFilter.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
@@ -567,7 +573,7 @@
             // comType
             // 
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(439, 25);
+            this.comType.Location = new System.Drawing.Point(439, 22);
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
@@ -577,7 +583,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label4.Location = new System.Drawing.Point(324, 58);
+            this.label4.Location = new System.Drawing.Point(312, 55);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label4.Size = new System.Drawing.Size(46, 18);
@@ -586,7 +592,7 @@
             // 
             // txtType
             // 
-            this.txtType.Location = new System.Drawing.Point(378, 25);
+            this.txtType.Location = new System.Drawing.Point(378, 22);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(55, 24);
             this.txtType.TabIndex = 1;
@@ -604,7 +610,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(576, 31);
+            this.label6.Location = new System.Drawing.Point(582, 25);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(28, 18);
@@ -633,7 +639,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(576, 61);
+            this.label7.Location = new System.Drawing.Point(563, 55);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label7.Size = new System.Drawing.Size(67, 18);
@@ -644,7 +650,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(324, 28);
+            this.label9.Location = new System.Drawing.Point(311, 25);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label9.Size = new System.Drawing.Size(49, 18);
@@ -653,7 +659,7 @@
             // 
             // txtGroup
             // 
-            this.txtGroup.Location = new System.Drawing.Point(378, 55);
+            this.txtGroup.Location = new System.Drawing.Point(378, 52);
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(55, 24);
             this.txtGroup.TabIndex = 7;
@@ -662,7 +668,7 @@
             // comGroup
             // 
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(439, 55);
+            this.comGroup.Location = new System.Drawing.Point(439, 52);
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
@@ -913,6 +919,40 @@
             this.Supplier_Name.Visible = true;
             this.Supplier_Name.VisibleIndex = 7;
             // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label12.Location = new System.Drawing.Point(313, 85);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 18);
+            this.label12.TabIndex = 209;
+            this.label12.Text = "المورد";
+            // 
+            // txtSupplierId
+            // 
+            this.txtSupplierId.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSupplierId.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtSupplierId.Location = new System.Drawing.Point(126, 82);
+            this.txtSupplierId.Name = "txtSupplierId";
+            this.txtSupplierId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSupplierId.Size = new System.Drawing.Size(55, 24);
+            this.txtSupplierId.TabIndex = 210;
+            this.txtSupplierId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // comSupplier
+            // 
+            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comSupplier.FormattingEnabled = true;
+            this.comSupplier.Location = new System.Drawing.Point(187, 82);
+            this.comSupplier.Name = "comSupplier";
+            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupplier.Size = new System.Drawing.Size(120, 24);
+            this.comSupplier.TabIndex = 208;
+            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            // 
             // StorageReturnBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1013,5 +1053,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn Supplier_Permission_Number;
         private DevExpress.XtraGrid.Columns.GridColumn Store_Place_ID;
         private DevExpress.XtraGrid.Columns.GridColumn Supplier_Name;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtSupplierId;
+        private System.Windows.Forms.ComboBox comSupplier;
     }
 }

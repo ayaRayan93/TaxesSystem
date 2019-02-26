@@ -879,6 +879,7 @@ namespace MainSystem
                     List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
+                        int rowHand = gridView2.GetRowHandle(i);
                         bool flagTest = false;
                         if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]) != "")
                         {
@@ -895,19 +896,20 @@ namespace MainSystem
 
                         SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
                         bi.Add(item);
-                        
+
                         if (i == 0)
                         {
-                            suppliers_Name += gridView2.GetRowCellDisplayText(i, gridView2.Columns["المورد"]) + ",";
+                            suppliers_Name += gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]);
                         }
 
                         if (i < (gridView2.RowCount - 1))
                         {
                             for (int j = 0; j < gridView2.RowCount; j++)
                             {
+                                int rowHand2 = gridView2.GetRowHandle(j);
                                 if (i != j)
                                 {
-                                    if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(j, gridView2.Columns["المورد"]))
+                                    if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["المورد"]))
                                     {
                                         flagTest = true;
                                     }
@@ -915,7 +917,7 @@ namespace MainSystem
                             }
                             if (!flagTest)
                             {
-                                suppliers_Name += gridView2.GetRowCellDisplayText(i, gridView2.Columns["المورد"]) + ",";
+                                suppliers_Name += "," + gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]);
                             }
                         }
                     }
@@ -923,14 +925,15 @@ namespace MainSystem
                     bool flagTest2 = false;
                     for (int j = 0; j < gridView2.RowCount - 1; j++)
                     {
-                        if (gridView2.GetRowCellDisplayText(gridView2.RowCount - 1, gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(j, gridView2.Columns["المورد"]))
+                        int rowHand2 = gridView2.GetRowHandle(j);
+                        if (gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["المورد"]))
                         {
                             flagTest2 = true;
                         }
                     }
-                    if (!flagTest2)
+                    if (!flagTest2 && gridView2.RowCount > 1)
                     {
-                        suppliers_Name += gridView2.GetRowCellDisplayText(gridView2.RowCount - 1, gridView2.Columns["المورد"]);
+                        suppliers_Name += "," + gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]);
                     }
 
                     Report_SupplierReceipt f = new Report_SupplierReceipt();

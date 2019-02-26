@@ -16,7 +16,7 @@ namespace MainSystem
 {
     public partial class StorageReturnBill : Form
     {
-        MySqlConnection dbconnection, dbconnection2, dbconnection3;
+        MySqlConnection dbconnection, dbconnection2, dbconnection3, dbconnection4;
         
         bool flag = false;
         //int storeId = 0;
@@ -38,6 +38,7 @@ namespace MainSystem
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnection2 = new MySqlConnection(connection.connectionString);
             dbconnection3 = new MySqlConnection(connection.connectionString);
+            dbconnection4 = new MySqlConnection(connection.connectionString);
             //comSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
             //comSupplier.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
@@ -71,6 +72,7 @@ namespace MainSystem
                 comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStore.Text = "";
+                txtStoreID.Text = "";
 
                 query = "select * from store";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -80,6 +82,17 @@ namespace MainSystem
                 comStoreFilter.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comStoreFilter.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStoreFilter.Text = "";
+                txtStoreFilterId.Text = "";
+
+                query = "select * from supplier";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSupplier.DataSource = dt;
+                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.SelectedIndex = -1;
+                txtSupplierId.Text = "";
 
                 query = "select * from type";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -134,17 +147,17 @@ namespace MainSystem
             GridView view = sender as GridView;
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[0], 0);
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[1], "0");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[2], "0");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[3], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[2], "");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[3], "");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[4], "0");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[5], "0");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[6], "0");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[7], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[7], "");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[8], "0");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[9], "0");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[10], "0");
             view.SetRowCellValue(e.RowHandle, gridView2.Columns[11], "0");
-            view.SetRowCellValue(e.RowHandle, gridView2.Columns[12], "0");
+            view.SetRowCellValue(e.RowHandle, gridView2.Columns[12], "");
         }
 
         private void radioButtonReturnBill_CheckedChanged(object sender, EventArgs e)
@@ -161,11 +174,13 @@ namespace MainSystem
                 txtGroup.Text = "";
                 comProduct.Text = "";
                 txtProduct.Text = "";
-                comStore.Text = "";
+                comStore.SelectedIndex = -1;
                 comStoreFilter.SelectedIndex = -1;
                 txtStoreID.Text = "";
                 txtStoreFilterId.Text = "";
                 txtPermissionNum.Text = "";
+                comSupplier.SelectedIndex = -1;
+                txtSupplierId.Text = "";
             }
             catch (Exception ex)
             {
@@ -187,11 +202,13 @@ namespace MainSystem
                 txtGroup.Text = "";
                 comProduct.Text = "";
                 txtProduct.Text = "";
-                comStore.Text = "";
+                comStore.SelectedIndex = -1;
                 comStoreFilter.SelectedIndex = -1;
                 txtStoreID.Text = "";
                 txtStoreFilterId.Text = "";
                 txtPermissionNum.Text = "";
+                comSupplier.SelectedIndex = -1;
+                txtSupplierId.Text = "";
             }
             catch (Exception ex)
             {
@@ -310,6 +327,10 @@ namespace MainSystem
 
                         case "comStoreFilter":
                             txtStoreFilterId.Text = comStoreFilter.SelectedValue.ToString();
+                            break;
+
+                        case "comSupplier":
+                            txtSupplierId.Text = comSupplier.SelectedValue.ToString();
                             break;
                     }
                 }
@@ -439,6 +460,22 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
+
+                            case "txtSupplierId":
+                                query = "select Supplier_Name from supplier where Supplier_ID=" + txtSupplierId.Text;
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comSupplier.Text = Name;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
                         }
 
                     }
@@ -495,43 +532,89 @@ namespace MainSystem
                     int NoCartons = 0;
                     int permNum = 0;
                     double total = 0;
-                    if (int.TryParse(txtBalat.Text, out NoBalatat) && int.TryParse(txtCarton.Text, out NoCartons) && int.TryParse(txtPermissionNum.Text, out permNum) && double.TryParse(txtTotalMeter.Text, out total))
+                    if (int.TryParse(txtBalat.Text, out NoBalatat) && int.TryParse(txtCarton.Text, out NoCartons) && double.TryParse(txtTotalMeter.Text, out total))
                     {
                         double carton = Convert.ToDouble(row1["الكرتنة"].ToString());
                         
                         if (radioButtonReturnPermission.Checked)
                         {
-                            if (IsAdded())
+                            #region add with permission
+                            if (int.TryParse(txtPermissionNum.Text, out permNum))
+                            {
+                                if (IsAdded())
+                                {
+                                    MessageBox.Show("هذا العنصر تم اضافتة من قبل");
+                                    return;
+                                }
+
+                                if (row1["عدد البلتات"].ToString() != "")
+                                {
+                                    if (NoBalatat > Convert.ToInt16(row1["عدد البلتات"].ToString()))
+                                    {
+                                        MessageBox.Show("تاكد من عدد البلتات");
+                                        return;
+                                    }
+                                }
+                                if (row1["عدد الكراتين"].ToString() != "")
+                                {
+                                    if (NoCartons > Convert.ToInt16(row1["عدد الكراتين"].ToString()))
+                                    {
+                                        MessageBox.Show("تاكد من عدد الكراتين");
+                                        return;
+                                    }
+                                }
+                                if (row1["متر/قطعة"].ToString() != "")
+                                {
+                                    if (total > Convert.ToDouble(row1["متر/قطعة"].ToString()))
+                                    {
+                                        MessageBox.Show("تاكد من متر/قطعة");
+                                        return;
+                                    }
+                                }
+
+                                if (row1["الكمية المتاحة"].ToString() != "")
+                                {
+                                    if (total > Convert.ToDouble(row1["الكمية المتاحة"].ToString()))
+                                    {
+                                        MessageBox.Show("لا يوجد كمية كافية");
+                                        return;
+                                    }
+                                }
+
+                                gridView2.AddNewRow();
+
+                                int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+                                if (gridView2.IsNewItemRow(rowHandle) && row1 != null)
+                                {
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row1["Data_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["الكود"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["الاسم"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الكرتنة"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtTotalMeter.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtCarton.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtBalat.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtItemReason.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], row1["Supplier_Permission_Details_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["اذن استلام"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["Store_Place_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["المورد"].ToString());
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("برجاء التاكد من ادخال البيانات بطريقة صحيحة");
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            if (IsItemAdded())
                             {
                                 MessageBox.Show("هذا العنصر تم اضافتة من قبل");
                                 return;
                             }
-
-                            if (row1["عدد البلتات"].ToString() != "")
-                            {
-                                if (NoBalatat > Convert.ToInt16(row1["عدد البلتات"].ToString()))
-                                {
-                                    MessageBox.Show("تاكد من عدد البلتات");
-                                    return;
-                                }
-                            }
-                            if (row1["عدد الكراتين"].ToString() != "")
-                            {
-                                if (NoCartons > Convert.ToInt16(row1["عدد الكراتين"].ToString()))
-                                {
-                                    MessageBox.Show("تاكد من عدد الكراتين");
-                                    return;
-                                }
-                            }
-                            if (row1["متر/قطعة"].ToString() != "")
-                            {
-                                if (total > Convert.ToDouble(row1["متر/قطعة"].ToString()))
-                                {
-                                    MessageBox.Show("تاكد من متر/قطعة");
-                                    return;
-                                }
-                            }
-
+                            
                             if (row1["الكمية المتاحة"].ToString() != "")
                             {
                                 if (total > Convert.ToDouble(row1["الكمية المتاحة"].ToString()))
@@ -554,28 +637,6 @@ namespace MainSystem
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtCarton.Text);
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtBalat.Text);
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtItemReason.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], row1["Supplier_Permission_Details_ID"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_ID"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["اذن استلام"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["Store_Place_ID"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["المورد"].ToString());
-                            }
-                        }
-                        else
-                        {
-                            gridView2.AddNewRow();
-
-                            int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
-                            if (gridView2.IsNewItemRow(rowHandle) && row1 != null)
-                            {
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row1["Data_ID"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["الكود"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["الاسم"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الكرتنة"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtTotalMeter.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtCarton.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtBalat.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtItemReason.Text);
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], "0");
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], "0");
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], "0");
@@ -583,7 +644,6 @@ namespace MainSystem
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "");
                             }
                         }
-
                     }
                     else
                     {
@@ -618,7 +678,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtPermissionNum.Text != "")
+                if (txtPermissionNum.Text != "" && comStore.SelectedValue != null)
                 {
                     dbconnection.Close();
 
@@ -633,7 +693,13 @@ namespace MainSystem
                 else
                 {
                     gridControl1.DataSource = null;
-                    gridControl2.DataSource = null;
+
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        int rowHandle = gridView2.GetRowHandle(i);
+                        gridView2.DeleteRow(rowHandle);
+                    }
+                    //gridControl2.DataSource = null;
                     txtCode.Text = "";
                     txtBalat.Text = "0";
                     txtCarton.Text = "0";
@@ -715,6 +781,7 @@ namespace MainSystem
                 txtTotalMeter.Text = "0";
                 txtCarton.Text = "0";
                 txtBalat.Text = "0";
+                txtItemReason.Text = "";
                 
                 double carton = double.Parse(row1["الكرتنة"].ToString());
                 if (carton == 0)
@@ -750,7 +817,7 @@ namespace MainSystem
         {
             try
             {
-                if (gridView2.RowCount > 0 && ((comStore.SelectedValue != null && txtPermissionNum.Text != "") || comStoreFilter.SelectedValue != null))
+                if (gridView2.RowCount > 0 && ((comStore.SelectedValue != null && txtPermissionNum.Text != "") || (comStoreFilter.SelectedValue != null && comSupplier.SelectedValue != null)))
                 {
                     #region with permission
                     if (radioButtonReturnPermission.Checked)
@@ -767,6 +834,7 @@ namespace MainSystem
                         dbconnection2.Open();
                         int storageReturnID = 0;
                         int storageImportPermissionID = 0;
+                        ReturnedPermissionNumber = 1;
 
                         string q = "select StorageImportPermission_ID from storage_import_permission where Store_ID=" + comStore.SelectedValue.ToString() + " and Import_Permission_Number=" + permNum;
                         MySqlCommand com2 = new MySqlCommand(q, dbconnection);
@@ -781,23 +849,13 @@ namespace MainSystem
                             dbconnection2.Close();
                             return;
                         }
-
-                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " and Import_Permission_Number=" + txtPermissionNum.Text;
+                        
+                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
                         MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
-                        ReturnedPermissionNumber = 1;
                         if (com3.ExecuteScalar() != null)
                         {
-                            ReturnedPermissionNumber = int.Parse(com3.ExecuteScalar().ToString());
-                        }
-                        else
-                        {
-                            qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
-                            com3 = new MySqlCommand(qq, dbconnection);
-                            if (com3.ExecuteScalar() != null)
-                            {
-                                int r = int.Parse(com3.ExecuteScalar().ToString());
-                                ReturnedPermissionNumber = r + 1;
-                            }
+                            int r = int.Parse(com3.ExecuteScalar().ToString());
+                            ReturnedPermissionNumber = r + 1;
                         }
 
                         string query = "insert into import_storage_return (Store_ID,Returned_Permission_Number,Retrieval_Date,Import_Permission_Number,StorageImportPermission_ID,Reason,Employee_ID) values (@Store_ID,@Returned_Permission_Number,@Retrieval_Date,@Import_Permission_Number,@StorageImportPermission_ID,@Reason,@Employee_ID)";
@@ -828,7 +886,7 @@ namespace MainSystem
                         {
                             DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
 
-                            query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID;
+                            query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID + " and Supplier_ID =" + row2["Supplier_ID"].ToString() + " and Supplier_Permission_Number=" + row2["Supplier_Permission_Number"].ToString();
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
@@ -895,14 +953,6 @@ namespace MainSystem
                             }
                         }
                         dbconnection.Close();
-                        search();
-
-                        txtCode.Text = "";
-                        txtTotalMeter.Text = "0";
-                        txtCarton.Text = "0";
-                        txtBalat.Text = "0";
-                        txtReason.Text = "";
-                        txtItemReason.Text = "";
 
                         string suppliers_Name = "";
                         dbconnection.Open();
@@ -932,14 +982,13 @@ namespace MainSystem
                             {
                                 quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
                             }
-                            MessageBox.Show(gridView2.GetRowCellValue(rowHand, gridView2.Columns["Code"]).ToString());
 
                             StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
                             bi.Add(item);
 
                             if (i == 0)
                             {
-                                suppliers_Name += gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Name"]) + ",";
+                                suppliers_Name += gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Name"]);
                             }
 
                             if (i < (gridView2.RowCount - 1))
@@ -957,7 +1006,7 @@ namespace MainSystem
                                 }
                                 if (!flagTest)
                                 {
-                                    suppliers_Name += gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Name"]) + ", ";
+                                    suppliers_Name += "," + gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Name"]);
                                 }
                             }
                         }
@@ -966,22 +1015,216 @@ namespace MainSystem
                         for (int j = 0; j < gridView2.RowCount - 1; j++)
                         {
                             int rowHand2 = gridView2.GetRowHandle(j);
-                            if (gridView2.GetRowCellDisplayText(gridView2.RowCount - 1, gridView2.Columns["Supplier_Name"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["Supplier_Name"]))
+                            if (gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["Supplier_Name"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["Supplier_Name"]))
                             {
                                 flagTest2 = true;
                             }
                         }
-                        if (!flagTest2)
+                        if (!flagTest2 && gridView2.RowCount > 1)
                         {
-                            suppliers_Name += gridView2.GetRowCellDisplayText(gridView2.RowCount - 1, gridView2.Columns["Supplier_Name"]);
+                            suppliers_Name += "," + gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["Supplier_Name"]);
                         }
 
                         Report_StorageReturn f = new Report_StorageReturn();
                         f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, ReturnedPermissionNumber, bi);
                         f.ShowDialog();
+
+                        search();
+
+                        txtCode.Text = "";
+                        txtTotalMeter.Text = "0";
+                        txtCarton.Text = "0";
+                        txtBalat.Text = "0";
+                        txtReason.Text = "";
+                        txtItemReason.Text = "";
                     }
                     #endregion
-                    
+
+                    #region with out permission
+                    else if (radioButtonWithOutReturnPermission.Checked)
+                    {
+                        dbconnection.Open();
+                        dbconnection2.Open();
+                        int storageReturnID = 0;
+                        ReturnedPermissionNumber = 1;
+
+                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
+                        MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
+                        if (com3.ExecuteScalar() != null)
+                        {
+                            int r = int.Parse(com3.ExecuteScalar().ToString());
+                            ReturnedPermissionNumber = r + 1;
+                        }
+                        
+                        string query = "insert into import_storage_return (Store_ID,Returned_Permission_Number,Retrieval_Date,Import_Permission_Number,StorageImportPermission_ID,Reason,Employee_ID) values (@Store_ID,@Returned_Permission_Number,@Retrieval_Date,@Import_Permission_Number,@StorageImportPermission_ID,@Reason,@Employee_ID)";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
+                        com.Parameters.Add("@Returned_Permission_Number", MySqlDbType.Int16);
+                        com.Parameters["@Returned_Permission_Number"].Value = ReturnedPermissionNumber;
+                        com.Parameters.Add("@Retrieval_Date", MySqlDbType.DateTime, 0);
+                        com.Parameters["@Retrieval_Date"].Value = DateTime.Now;
+                        com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
+                        com.Parameters["@Import_Permission_Number"].Value = null;
+                        com.Parameters.Add("@StorageImportPermission_ID", MySqlDbType.Int16);
+                        com.Parameters["@StorageImportPermission_ID"].Value = null;
+                        com.Parameters.Add("@Reason", MySqlDbType.VarChar);
+                        com.Parameters["@Reason"].Value = txtReason.Text;
+                        com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
+                        com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
+                        com.ExecuteNonQuery();
+
+                        query = "select ImportStorageReturn_ID from import_storage_return order by ImportStorageReturn_ID desc limit 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        storageReturnID = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                        UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
+
+                        query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID + " and Supplier_ID =" + comSupplier.SelectedValue.ToString() + " and Supplier_Permission_Number is null";
+                        com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                            storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        }
+                        else
+                        {
+                            query = "insert into import_storage_return_supplier (Supplier_ID,Supplier_Permission_Number,ImportStorageReturn_ID) values (@Supplier_ID,@Supplier_Permission_Number,@ImportStorageReturn_ID)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
+                            com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_Permission_Number"].Value = null;
+                            com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
+                            com.Parameters["@ImportStorageReturn_ID"].Value = storageReturnID;
+                            com.ExecuteNonQuery();
+
+                            query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
+                            com = new MySqlCommand(query, dbconnection);
+                            storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        }
+
+                        for (int i = 0; i < gridView2.RowCount; i++)
+                        {
+                            DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
+
+                            query = "insert into import_storage_return_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                            com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
+                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                            com.Parameters["@Store_Place_ID"].Value = null;
+                            com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
+                            com.Parameters["@Date"].Value = DateTime.Now;
+                            if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
+                            {
+                                com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                                com.Parameters["@Balatat"].Value = row2["NumOfBalate"].ToString();
+                                com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                                com.Parameters["@Carton_Balata"].Value = row2["NumOfCarton"].ToString();
+                            }
+                            else
+                            {
+                                com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                                com.Parameters["@Balatat"].Value = null;
+                                com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                                com.Parameters["@Carton_Balata"].Value = null;
+                            }
+                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                            com.Parameters["@Data_ID"].Value = row2[0].ToString();
+                            com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                            com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
+                            com.Parameters.Add("@Reason", MySqlDbType.VarChar);
+                            com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
+                            com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
+                            com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
+                            com.ExecuteNonQuery();
+
+                            double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());
+
+                            dbconnection4.Open();
+                            query = "select Store_Place_ID,Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString();
+                            com = new MySqlCommand(query, dbconnection4);
+                            MySqlDataReader dr = com.ExecuteReader();
+                            if (dr.HasRows)
+                            {
+                                while (dr.Read())
+                                {
+                                    if (totalQuant > 0)
+                                    {
+                                        double totalMeter = Convert.ToDouble(dr["Total_Meters"]);
+
+                                        if (totalMeter > 0)
+                                        {
+                                            if ((totalMeter - totalQuant) >= 0)
+                                            {
+                                                query = "update storage set Total_Meters=" + (totalMeter - totalQuant) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and Store_Place_ID=" + dr["Store_Place_ID"].ToString();
+                                                com = new MySqlCommand(query, dbconnection);
+                                                com.ExecuteNonQuery();
+
+                                                totalQuant = 0;
+                                            }
+                                            else if ((totalMeter - totalQuant) < 0)
+                                            {
+                                                query = "update storage set Total_Meters=" + 0 + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and Store_Place_ID=" + dr["Store_Place_ID"].ToString();
+                                                com = new MySqlCommand(query, dbconnection);
+                                                com.ExecuteNonQuery();
+
+                                                totalQuant = totalQuant - totalMeter;
+                                            }
+                                        }
+                                    }
+                                }
+                                dr.Close();
+                            }
+                            dbconnection4.Close();
+                        }
+                        dbconnection.Close();
+                        
+                        dbconnection.Open();
+                        string query2 = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
+                        MySqlCommand com4 = new MySqlCommand(query2, dbconnection);
+                        string storeName = com4.ExecuteScalar().ToString();
+                        dbconnection.Close();
+
+                        double carton = 0;
+                        double balate = 0;
+                        double quantity = 0;
+
+                        List<StorageReturn_Items> bi = new List<StorageReturn_Items>();
+                        for (int i = 0; i < gridView2.RowCount; i++)
+                        {
+                            int rowHand = gridView2.GetRowHandle(i);
+                            if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["NumOfBalate"]) != "")
+                            {
+                                balate = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["NumOfBalate"]));
+                            }
+                            if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["NumOfCarton"]) != "")
+                            {
+                                carton = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["NumOfCarton"]));
+                            }
+                            if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]) != "")
+                            {
+                                quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
+                            }
+
+                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
+                            bi.Add(item);
+                        }
+
+                        Report_StorageReturn f = new Report_StorageReturn();
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, bi);
+                        f.ShowDialog();
+
+                        displayData();
+
+                        txtCode.Text = "";
+                        txtTotalMeter.Text = "0";
+                        txtCarton.Text = "0";
+                        txtBalat.Text = "0";
+                        txtReason.Text = "";
+                        txtItemReason.Text = "";
+                    }
+                    #endregion
                 }
                 else
                 {
@@ -995,6 +1238,7 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection2.Close();
             dbconnection3.Close();
+            dbconnection4.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -1244,6 +1488,17 @@ namespace MainSystem
             {
                 DataRow row3 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
                 if ((row1["Data_ID"].ToString() == row3["Data_ID"].ToString()) && (row1["Supplier_Permission_Details_ID"].ToString() == row3["Supplier_Permission_Details_ID"].ToString()))
+                    return true;
+            }
+            return false;
+        }
+
+        bool IsItemAdded()
+        {
+            for (int i = 0; i < gridView2.RowCount; i++)
+            {
+                DataRow row3 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
+                if (row1["Data_ID"].ToString() == row3["Data_ID"].ToString())
                     return true;
             }
             return false;
