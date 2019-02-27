@@ -34,10 +34,20 @@
             this.txtDriver = new System.Windows.Forms.TextBox();
             this.labelEmp = new System.Windows.Forms.Label();
             this.panContent = new System.Windows.Forms.Panel();
-            this.imageListBoxControl1 = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.labelBranch = new System.Windows.Forms.Label();
+            this.treeViewSupIdPerm = new System.Windows.Forms.TreeView();
             this.comStore = new System.Windows.Forms.ComboBox();
             this.labelStore = new System.Windows.Forms.Label();
+            this.treeViewSupPerm = new System.Windows.Forms.TreeView();
+            this.comClient = new System.Windows.Forms.ComboBox();
+            this.labelClient = new System.Windows.Forms.Label();
             this.labelSupplier = new System.Windows.Forms.Label();
+            this.imageListBoxControl1 = new DevExpress.XtraEditors.ImageListBoxControl();
+            this.btnAddNum = new System.Windows.Forms.Button();
+            this.btnDeleteNum = new System.Windows.Forms.Button();
+            this.comSupplier = new System.Windows.Forms.ComboBox();
             this.labelType2 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelCar = new System.Windows.Forms.Label();
@@ -47,9 +57,6 @@
             this.comResponsible = new System.Windows.Forms.ComboBox();
             this.labelType = new System.Windows.Forms.Label();
             this.comType = new System.Windows.Forms.ComboBox();
-            this.btnDeleteNum = new System.Windows.Forms.Button();
-            this.btnAddNum = new System.Windows.Forms.Button();
-            this.checkedListBoxControlNum = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.labelDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.labelDriver = new System.Windows.Forms.Label();
@@ -61,10 +68,9 @@
             this.comReason = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.comSupplier = new System.Windows.Forms.ComboBox();
             this.panContent.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +79,7 @@
             this.txtPermisionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermisionNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPermisionNum.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtPermisionNum.Location = new System.Drawing.Point(120, 271);
+            this.txtPermisionNum.Location = new System.Drawing.Point(83, 75);
             this.txtPermisionNum.Name = "txtPermisionNum";
             this.txtPermisionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPermisionNum.Size = new System.Drawing.Size(200, 28);
@@ -86,7 +92,7 @@
             this.labelPerNum.AutoSize = true;
             this.labelPerNum.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPerNum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelPerNum.Location = new System.Drawing.Point(325, 274);
+            this.labelPerNum.Location = new System.Drawing.Point(288, 78);
             this.labelPerNum.Name = "labelPerNum";
             this.labelPerNum.Size = new System.Drawing.Size(80, 23);
             this.labelPerNum.TabIndex = 3;
@@ -112,7 +118,7 @@
             this.labelEmp.AutoSize = true;
             this.labelEmp.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEmp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelEmp.Location = new System.Drawing.Point(325, 224);
+            this.labelEmp.Location = new System.Drawing.Point(325, 208);
             this.labelEmp.Name = "labelEmp";
             this.labelEmp.Size = new System.Drawing.Size(118, 23);
             this.labelEmp.TabIndex = 5;
@@ -122,11 +128,7 @@
             // panContent
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
-            this.panContent.Controls.Add(this.comSupplier);
-            this.panContent.Controls.Add(this.imageListBoxControl1);
-            this.panContent.Controls.Add(this.comStore);
-            this.panContent.Controls.Add(this.labelStore);
-            this.panContent.Controls.Add(this.labelSupplier);
+            this.panContent.Controls.Add(this.panel1);
             this.panContent.Controls.Add(this.labelType2);
             this.panContent.Controls.Add(this.label2);
             this.panContent.Controls.Add(this.labelCar);
@@ -136,9 +138,6 @@
             this.panContent.Controls.Add(this.comResponsible);
             this.panContent.Controls.Add(this.labelType);
             this.panContent.Controls.Add(this.comType);
-            this.panContent.Controls.Add(this.btnDeleteNum);
-            this.panContent.Controls.Add(this.btnAddNum);
-            this.panContent.Controls.Add(this.checkedListBoxControlNum);
             this.panContent.Controls.Add(this.labelDescription);
             this.panContent.Controls.Add(this.txtDescription);
             this.panContent.Controls.Add(this.labelDriver);
@@ -151,8 +150,6 @@
             this.panContent.Controls.Add(this.tableLayoutPanel2);
             this.panContent.Controls.Add(this.labelEmp);
             this.panContent.Controls.Add(this.txtDriver);
-            this.panContent.Controls.Add(this.labelPerNum);
-            this.panContent.Controls.Add(this.txtPermisionNum);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContent.Location = new System.Drawing.Point(0, 0);
             this.panContent.Margin = new System.Windows.Forms.Padding(0);
@@ -160,14 +157,64 @@
             this.panContent.Size = new System.Drawing.Size(781, 562);
             this.panContent.TabIndex = 7;
             // 
-            // imageListBoxControl1
+            // panel1
             // 
-            this.imageListBoxControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.imageListBoxControl1.Location = new System.Drawing.Point(120, 357);
-            this.imageListBoxControl1.Name = "imageListBoxControl1";
-            this.imageListBoxControl1.Size = new System.Drawing.Size(200, 95);
-            this.imageListBoxControl1.TabIndex = 74;
-            this.imageListBoxControl1.Visible = false;
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panel1.Controls.Add(this.comBranch);
+            this.panel1.Controls.Add(this.labelBranch);
+            this.panel1.Controls.Add(this.treeViewSupIdPerm);
+            this.panel1.Controls.Add(this.comStore);
+            this.panel1.Controls.Add(this.labelStore);
+            this.panel1.Controls.Add(this.treeViewSupPerm);
+            this.panel1.Controls.Add(this.comClient);
+            this.panel1.Controls.Add(this.labelClient);
+            this.panel1.Controls.Add(this.labelSupplier);
+            this.panel1.Controls.Add(this.txtPermisionNum);
+            this.panel1.Controls.Add(this.imageListBoxControl1);
+            this.panel1.Controls.Add(this.labelPerNum);
+            this.panel1.Controls.Add(this.btnAddNum);
+            this.panel1.Controls.Add(this.btnDeleteNum);
+            this.panel1.Controls.Add(this.comSupplier);
+            this.panel1.Location = new System.Drawing.Point(37, 242);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(378, 209);
+            this.panel1.TabIndex = 78;
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(83, 40);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comBranch.Size = new System.Drawing.Size(200, 29);
+            this.comBranch.TabIndex = 79;
+            this.comBranch.Visible = false;
+            // 
+            // labelBranch
+            // 
+            this.labelBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelBranch.AutoSize = true;
+            this.labelBranch.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBranch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelBranch.Location = new System.Drawing.Point(288, 43);
+            this.labelBranch.Name = "labelBranch";
+            this.labelBranch.Size = new System.Drawing.Size(48, 23);
+            this.labelBranch.TabIndex = 80;
+            this.labelBranch.Text = "الفرع";
+            this.labelBranch.Visible = false;
+            // 
+            // treeViewSupIdPerm
+            // 
+            this.treeViewSupIdPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.treeViewSupIdPerm.CheckBoxes = true;
+            this.treeViewSupIdPerm.Location = new System.Drawing.Point(289, 109);
+            this.treeViewSupIdPerm.Name = "treeViewSupIdPerm";
+            this.treeViewSupIdPerm.Size = new System.Drawing.Size(49, 95);
+            this.treeViewSupIdPerm.TabIndex = 79;
+            this.treeViewSupIdPerm.Visible = false;
             // 
             // comStore
             // 
@@ -175,7 +222,7 @@
             this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 13F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(120, 322);
+            this.comStore.Location = new System.Drawing.Point(83, 37);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(200, 29);
@@ -189,12 +236,51 @@
             this.labelStore.AutoSize = true;
             this.labelStore.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelStore.Location = new System.Drawing.Point(325, 325);
+            this.labelStore.Location = new System.Drawing.Point(288, 43);
             this.labelStore.Name = "labelStore";
-            this.labelStore.Size = new System.Drawing.Size(78, 23);
+            this.labelStore.Size = new System.Drawing.Size(60, 23);
             this.labelStore.TabIndex = 72;
-            this.labelStore.Text = "من مخزن";
+            this.labelStore.Text = "المخزن";
             this.labelStore.Visible = false;
+            // 
+            // treeViewSupPerm
+            // 
+            this.treeViewSupPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.treeViewSupPerm.CheckBoxes = true;
+            this.treeViewSupPerm.Location = new System.Drawing.Point(83, 109);
+            this.treeViewSupPerm.Name = "treeViewSupPerm";
+            this.treeViewSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.treeViewSupPerm.RightToLeftLayout = true;
+            this.treeViewSupPerm.Size = new System.Drawing.Size(143, 95);
+            this.treeViewSupPerm.TabIndex = 78;
+            this.treeViewSupPerm.Visible = false;
+            this.treeViewSupPerm.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSupPerm_AfterCheck);
+            // 
+            // comClient
+            // 
+            this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comClient.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.comClient.FormattingEnabled = true;
+            this.comClient.Location = new System.Drawing.Point(83, 5);
+            this.comClient.Name = "comClient";
+            this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comClient.Size = new System.Drawing.Size(200, 29);
+            this.comClient.TabIndex = 77;
+            this.comClient.Visible = false;
+            // 
+            // labelClient
+            // 
+            this.labelClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelClient.AutoSize = true;
+            this.labelClient.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.labelClient.Location = new System.Drawing.Point(288, 5);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(59, 23);
+            this.labelClient.TabIndex = 76;
+            this.labelClient.Text = "العميل";
+            this.labelClient.Visible = false;
             // 
             // labelSupplier
             // 
@@ -202,12 +288,66 @@
             this.labelSupplier.AutoSize = true;
             this.labelSupplier.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelSupplier.Location = new System.Drawing.Point(660, 375);
+            this.labelSupplier.Location = new System.Drawing.Point(287, 46);
             this.labelSupplier.Name = "labelSupplier";
             this.labelSupplier.Size = new System.Drawing.Size(55, 23);
             this.labelSupplier.TabIndex = 70;
             this.labelSupplier.Text = "المورد";
             this.labelSupplier.Visible = false;
+            // 
+            // imageListBoxControl1
+            // 
+            this.imageListBoxControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.imageListBoxControl1.Location = new System.Drawing.Point(232, 109);
+            this.imageListBoxControl1.Name = "imageListBoxControl1";
+            this.imageListBoxControl1.Size = new System.Drawing.Size(51, 95);
+            this.imageListBoxControl1.TabIndex = 74;
+            this.imageListBoxControl1.Visible = false;
+            // 
+            // btnAddNum
+            // 
+            this.btnAddNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAddNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAddNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNum.ForeColor = System.Drawing.Color.White;
+            this.btnAddNum.Location = new System.Drawing.Point(19, 79);
+            this.btnAddNum.Name = "btnAddNum";
+            this.btnAddNum.Size = new System.Drawing.Size(58, 26);
+            this.btnAddNum.TabIndex = 58;
+            this.btnAddNum.Text = "اضافة";
+            this.btnAddNum.UseVisualStyleBackColor = false;
+            this.btnAddNum.Visible = false;
+            this.btnAddNum.Click += new System.EventHandler(this.btnAddNum_Click);
+            // 
+            // btnDeleteNum
+            // 
+            this.btnDeleteNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnDeleteNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnDeleteNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnDeleteNum.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteNum.Location = new System.Drawing.Point(18, 178);
+            this.btnDeleteNum.Name = "btnDeleteNum";
+            this.btnDeleteNum.Size = new System.Drawing.Size(58, 26);
+            this.btnDeleteNum.TabIndex = 59;
+            this.btnDeleteNum.Text = "حذف";
+            this.btnDeleteNum.UseVisualStyleBackColor = false;
+            this.btnDeleteNum.Visible = false;
+            this.btnDeleteNum.Click += new System.EventHandler(this.btnDeleteNum_Click);
+            // 
+            // comSupplier
+            // 
+            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.comSupplier.FormattingEnabled = true;
+            this.comSupplier.Location = new System.Drawing.Point(83, 43);
+            this.comSupplier.Name = "comSupplier";
+            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupplier.Size = new System.Drawing.Size(200, 29);
+            this.comSupplier.TabIndex = 75;
+            this.comSupplier.Visible = false;
             // 
             // labelType2
             // 
@@ -333,58 +473,13 @@
             this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedValueChanged);
             this.comType.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
-            // btnDeleteNum
-            // 
-            this.btnDeleteNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnDeleteNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnDeleteNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnDeleteNum.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteNum.Location = new System.Drawing.Point(56, 407);
-            this.btnDeleteNum.Name = "btnDeleteNum";
-            this.btnDeleteNum.Size = new System.Drawing.Size(58, 26);
-            this.btnDeleteNum.TabIndex = 59;
-            this.btnDeleteNum.Text = "حذف";
-            this.btnDeleteNum.UseVisualStyleBackColor = false;
-            this.btnDeleteNum.Visible = false;
-            this.btnDeleteNum.Click += new System.EventHandler(this.btnDeleteNum_Click);
-            // 
-            // btnAddNum
-            // 
-            this.btnAddNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAddNum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAddNum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNum.ForeColor = System.Drawing.Color.White;
-            this.btnAddNum.Location = new System.Drawing.Point(56, 273);
-            this.btnAddNum.Name = "btnAddNum";
-            this.btnAddNum.Size = new System.Drawing.Size(58, 26);
-            this.btnAddNum.TabIndex = 58;
-            this.btnAddNum.Text = "اضافة";
-            this.btnAddNum.UseVisualStyleBackColor = false;
-            this.btnAddNum.Visible = false;
-            this.btnAddNum.Click += new System.EventHandler(this.btnAddNum_Click);
-            // 
-            // checkedListBoxControlNum
-            // 
-            this.checkedListBoxControlNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkedListBoxControlNum.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBoxControlNum.Appearance.Options.UseFont = true;
-            this.checkedListBoxControlNum.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlNum.Location = new System.Drawing.Point(14, 305);
-            this.checkedListBoxControlNum.Name = "checkedListBoxControlNum";
-            this.checkedListBoxControlNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkedListBoxControlNum.Size = new System.Drawing.Size(100, 96);
-            this.checkedListBoxControlNum.TabIndex = 57;
-            this.checkedListBoxControlNum.Visible = false;
-            // 
             // labelDescription
             // 
             this.labelDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelDescription.AutoSize = true;
             this.labelDescription.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelDescription.Location = new System.Drawing.Point(660, 274);
+            this.labelDescription.Location = new System.Drawing.Point(660, 242);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(48, 23);
             this.labelDescription.TabIndex = 21;
@@ -396,7 +491,7 @@
             this.txtDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtDescription.Location = new System.Drawing.Point(455, 271);
+            this.txtDescription.Location = new System.Drawing.Point(455, 239);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -435,7 +530,7 @@
             this.comEmployee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comEmployee.Font = new System.Drawing.Font("Tahoma", 13F);
             this.comEmployee.FormattingEnabled = true;
-            this.comEmployee.Location = new System.Drawing.Point(120, 221);
+            this.comEmployee.Location = new System.Drawing.Point(120, 205);
             this.comEmployee.Name = "comEmployee";
             this.comEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEmployee.Size = new System.Drawing.Size(200, 29);
@@ -449,7 +544,7 @@
             this.labelLicense.AutoSize = true;
             this.labelLicense.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLicense.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.labelLicense.Location = new System.Drawing.Point(660, 224);
+            this.labelLicense.Location = new System.Drawing.Point(660, 208);
             this.labelLicense.Name = "labelLicense";
             this.labelLicense.Size = new System.Drawing.Size(92, 23);
             this.labelLicense.TabIndex = 16;
@@ -461,7 +556,7 @@
             this.txtLicense.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtLicense.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLicense.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtLicense.Location = new System.Drawing.Point(455, 221);
+            this.txtLicense.Location = new System.Drawing.Point(455, 205);
             this.txtLicense.Name = "txtLicense";
             this.txtLicense.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtLicense.Size = new System.Drawing.Size(200, 28);
@@ -536,19 +631,6 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comSupplier
-            // 
-            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(455, 372);
-            this.comSupplier.Name = "comSupplier";
-            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comSupplier.Size = new System.Drawing.Size(200, 29);
-            this.comSupplier.TabIndex = 75;
-            this.comSupplier.Visible = false;
-            // 
             // Gate_Enter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,8 +644,9 @@
             this.Load += new System.EventHandler(this.Gate_Enter_Load);
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageListBoxControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlNum)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -591,7 +674,6 @@
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.Button btnDeleteNum;
         private System.Windows.Forms.Button btnAddNum;
-        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlNum;
         private System.Windows.Forms.Label labelResponsible;
         private System.Windows.Forms.ComboBox comResponsible;
         private System.Windows.Forms.Label labelCar;
@@ -604,6 +686,13 @@
         private System.Windows.Forms.ComboBox comStore;
         private DevExpress.XtraEditors.ImageListBoxControl imageListBoxControl1;
         private System.Windows.Forms.ComboBox comSupplier;
+        private System.Windows.Forms.ComboBox comClient;
+        private System.Windows.Forms.Label labelClient;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TreeView treeViewSupPerm;
+        private System.Windows.Forms.TreeView treeViewSupIdPerm;
+        private System.Windows.Forms.ComboBox comBranch;
+        private System.Windows.Forms.Label labelBranch;
     }
 }
 

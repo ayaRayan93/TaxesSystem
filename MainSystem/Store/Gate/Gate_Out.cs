@@ -80,7 +80,7 @@ namespace MainSystem
                         return;
                     }
                     conn.Open();
-                    string query = "update gate set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where gate.Permission_Number=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
+                    string query = "update gate set Date_Out='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ,OutEmployee_ID=" + UserControl.EmpID + " where gate.Gate_ID=" + gridView1.GetRowCellDisplayText(e.ControllerRow, gridView1.Columns["التسلسل"]);
                     MySqlCommand com = new MySqlCommand(query, conn);
                     com.ExecuteNonQuery();
                     search();
@@ -108,18 +108,22 @@ namespace MainSystem
 
             DataSet sourceDataSet = new DataSet();
             //,employee.Employee_Name as 'مسئول التعتيق'
-            MySqlDataAdapter adapterZone = new MySqlDataAdapter("SELECT gate.Permission_Number as 'التسلسل',gate.Reason as 'سبب الدخول',gate.Type as 'النوع',gate.Responsible as 'المسئول',gate.Date_Enter as 'وقت الدخول',gate.Driver_Name as 'السواق',gate.Car_Number as 'رقم العربية',gate.License_Number as 'رقم الرخصة',gate.Description as 'البيان' FROM gate LEFT JOIN employee ON employee.Employee_ID = gate.TatiqEmp_ID WHERE gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
+            MySqlDataAdapter adaptergate = new MySqlDataAdapter("SELECT gate.Gate_ID as 'التسلسل',gate.Reason as 'سبب الدخول',gate.Type as 'النوع',gate.Responsible as 'المسئول',gate.Date_Enter as 'وقت الدخول',gate.Driver_Name as 'السواق',gate.Car_Number as 'رقم العربية',gate.License_Number as 'رقم الرخصة',employee.Employee_Name as 'مسئول التعتيق',gate.Description as 'البيان' FROM gate LEFT JOIN employee ON employee.Employee_ID = gate.TatiqEmp_ID WHERE gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
+            MySqlDataAdapter adaptersupp = new MySqlDataAdapter("SELECT gate_supplier.Gate_ID as 'التسلسل',gate_supplier.GateSupplier_ID as 'تسلسل المورد',supplier.Supplier_Name as 'المورد'  FROM gate_supplier INNER JOIN supplier ON gate_supplier.Supplier_ID = supplier.Supplier_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='مورد' and gate.Store_ID =" + storeId + " and gate.Date_Out is NULL UNION ALL SELECT gate_supplier.Gate_ID as 'التسلسل',gate_supplier.GateSupplier_ID as 'تسلسل المورد',customer.Customer_Name as 'المورد'  FROM gate_supplier INNER JOIN customer ON gate_supplier.Supplier_ID = customer.Customer_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='عميل' and gate.Store_ID =" + storeId + " and gate.Date_Out is NULL UNION ALL SELECT gate_supplier.Gate_ID as 'التسلسل',gate_supplier.GateSupplier_ID as 'تسلسل المورد',store.Store_Name as 'المورد' FROM gate_supplier INNER JOIN store ON gate_supplier.Supplier_ID = store.Store_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='مخزن' and gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
+            MySqlDataAdapter adapterperm = new MySqlDataAdapter("SELECT gate_supplier.GateSupplier_ID as 'تسلسل المورد',gate_permission.Supplier_PermissionNumber as 'رقم الاذن',gate_permission.Type as 'النوع' FROM gate_permission INNER JOIN gate_supplier ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
 
-            MySqlDataAdapter adapterArea = new MySqlDataAdapter("SELECT gate_permission.Permission_Number as 'التسلسل',gate_permission.Supplier_PermissionNumber as 'رقم الاذن',gate_permission.Type as 'النوع' FROM gate_permission inner join gate on gate_permission.Permission_Number=gate.Permission_Number where gate.Store_ID =" + storeId + " and gate.Date_Out is NULL", conn);
-
-            adapterZone.Fill(sourceDataSet, "gate");
-            adapterArea.Fill(sourceDataSet, "gate_permission");
+            adaptergate.Fill(sourceDataSet, "gate");
+            adaptersupp.Fill(sourceDataSet, "gate_supplier");
+            adapterperm.Fill(sourceDataSet, "gate_permission");
 
             //Set up a master-detail relationship between the DataTables 
             DataColumn keyColumn = sourceDataSet.Tables["gate"].Columns["التسلسل"];
-            DataColumn foreignKeyColumn = sourceDataSet.Tables["gate_permission"].Columns["التسلسل"];
-            sourceDataSet.Relations.Add("ارقام الاذون", keyColumn, foreignKeyColumn);
-
+            DataColumn foreignKeyColumn = sourceDataSet.Tables["gate_supplier"].Columns["التسلسل"];
+            DataColumn foreignKeyColumn2 = sourceDataSet.Tables["gate_supplier"].Columns["تسلسل المورد"];
+            DataColumn foreignKeyColumn3 = sourceDataSet.Tables["gate_permission"].Columns["تسلسل المورد"];
+            sourceDataSet.Relations.Add("الموردين", keyColumn, foreignKeyColumn);
+            sourceDataSet.Relations.Add("ارقام الاذون", foreignKeyColumn2, foreignKeyColumn3);
+            
             gridControl1.DataSource = sourceDataSet.Tables["gate"];
         }
 

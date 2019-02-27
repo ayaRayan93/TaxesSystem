@@ -46,9 +46,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.labelTotalA = new System.Windows.Forms.Label();
             this.comPermessionNum = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTotalB = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -59,6 +59,8 @@
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.comSupplier = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
             this.txtPurchasePrice = new System.Windows.Forms.TextBox();
@@ -66,6 +68,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comSupPerm = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -237,6 +241,7 @@
             this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtTotalMeter.Location = new System.Drawing.Point(590, 35);
             this.txtTotalMeter.Name = "txtTotalMeter";
+            this.txtTotalMeter.ReadOnly = true;
             this.txtTotalMeter.Size = new System.Drawing.Size(100, 24);
             this.txtTotalMeter.TabIndex = 22;
             // 
@@ -245,7 +250,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label11.Location = new System.Drawing.Point(426, 0);
+            this.label11.Location = new System.Drawing.Point(716, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 17);
             this.label11.TabIndex = 26;
@@ -267,50 +272,50 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label14.Location = new System.Drawing.Point(596, 0);
+            this.label14.Location = new System.Drawing.Point(258, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(160, 17);
+            this.label14.Size = new System.Drawing.Size(87, 17);
             this.label14.TabIndex = 31;
-            this.label14.Text = "اجمالي الفاتورة بعد الخصم";
+            this.label14.Text = "صافى الفاتورة";
             // 
-            // label15
+            // labelTotalA
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label15.Location = new System.Drawing.Point(590, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(0, 17);
-            this.label15.TabIndex = 32;
+            this.labelTotalA.AutoSize = true;
+            this.labelTotalA.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalA.Location = new System.Drawing.Point(252, 0);
+            this.labelTotalA.Name = "labelTotalA";
+            this.labelTotalA.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalA.TabIndex = 32;
             // 
             // comPermessionNum
             // 
             this.comPermessionNum.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comPermessionNum.FormattingEnabled = true;
-            this.comPermessionNum.Location = new System.Drawing.Point(320, 3);
+            this.comPermessionNum.Location = new System.Drawing.Point(610, 3);
             this.comPermessionNum.Name = "comPermessionNum";
             this.comPermessionNum.Size = new System.Drawing.Size(100, 24);
             this.comPermessionNum.TabIndex = 33;
             this.comPermessionNum.SelectedValueChanged += new System.EventHandler(this.comPermessionNum_SelectedValueChanged);
             // 
-            // label1
+            // labelTotalB
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(252, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 17);
-            this.label1.TabIndex = 36;
+            this.labelTotalB.AutoSize = true;
+            this.labelTotalB.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalB.Location = new System.Drawing.Point(590, 0);
+            this.labelTotalB.Name = "labelTotalB";
+            this.labelTotalB.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalB.TabIndex = 36;
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label3.Location = new System.Drawing.Point(258, 0);
+            this.label3.Location = new System.Drawing.Point(596, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 17);
+            this.label3.Size = new System.Drawing.Size(95, 17);
             this.label3.TabIndex = 35;
-            this.label3.Text = "اجمالي الفاتورة قبل الخصم";
+            this.label3.Text = "اجمالي الفاتورة";
             // 
             // tableLayoutPanel1
             // 
@@ -395,7 +400,6 @@
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
-            this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
             // tableLayoutPanel4
             // 
@@ -460,13 +464,21 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 8;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comPermessionNum, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comPermessionNum, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comSupplier, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comSupPerm, 6, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -474,6 +486,28 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(846, 34);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // comSupplier
+            // 
+            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comSupplier.FormattingEnabled = true;
+            this.comSupplier.Location = new System.Drawing.Point(356, 3);
+            this.comSupplier.Name = "comSupplier";
+            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupplier.Size = new System.Drawing.Size(144, 24);
+            this.comSupplier.TabIndex = 199;
+            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label1.Location = new System.Drawing.Point(506, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 18);
+            this.label1.TabIndex = 198;
+            this.label1.Text = "المورد";
             // 
             // panel1
             // 
@@ -530,10 +564,10 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.Controls.Add(this.label14, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label15, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label1, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label14, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalA, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalB, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 593);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -581,6 +615,29 @@
             this.btnRemove.TabIndex = 21;
             this.btnRemove.Text = "حذف";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label2.Location = new System.Drawing.Point(226, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 18);
+            this.label2.TabIndex = 200;
+            this.label2.Text = "اذن استلام";
+            // 
+            // comSupPerm
+            // 
+            this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comSupPerm.FormattingEnabled = true;
+            this.comSupPerm.Location = new System.Drawing.Point(120, 3);
+            this.comSupPerm.Name = "comSupPerm";
+            this.comSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupPerm.Size = new System.Drawing.Size(100, 24);
+            this.comSupPerm.TabIndex = 201;
+            this.comSupPerm.SelectedValueChanged += new System.EventHandler(this.comSupPerm_SelectedValueChanged);
             // 
             // Supplier_Bill
             // 
@@ -628,9 +685,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label labelTotalA;
         private System.Windows.Forms.ComboBox comPermessionNum;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTotalB;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -648,6 +705,10 @@
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comSupplier;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comSupPerm;
     }
 }
 
