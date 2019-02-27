@@ -102,10 +102,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtTotalReturnBillAD = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtStorePermission = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtPermissionNum = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -194,7 +190,7 @@
             this.labCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.labCustomer.Location = new System.Drawing.Point(247, 15);
             this.labCustomer.Name = "labCustomer";
-            this.labCustomer.Size = new System.Drawing.Size(121, 18);
+            this.labCustomer.Size = new System.Drawing.Size(122, 18);
             this.labCustomer.TabIndex = 105;
             this.labCustomer.Text = "مهندس/مقاول/تاجر";
             // 
@@ -228,10 +224,10 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radEng.Location = new System.Drawing.Point(127, 5);
+            this.radEng.Location = new System.Drawing.Point(125, 5);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(69, 22);
+            this.radEng.Size = new System.Drawing.Size(71, 22);
             this.radEng.TabIndex = 158;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = true;
@@ -242,10 +238,10 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radCon.Location = new System.Drawing.Point(203, 5);
+            this.radCon.Location = new System.Drawing.Point(202, 5);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(63, 22);
+            this.radCon.Size = new System.Drawing.Size(64, 22);
             this.radCon.TabIndex = 157;
             this.radCon.Text = "مقاول";
             this.radCon.UseVisualStyleBackColor = true;
@@ -258,7 +254,7 @@
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.labBillNumber.Location = new System.Drawing.Point(393, 48);
             this.labBillNumber.Name = "labBillNumber";
-            this.labBillNumber.Size = new System.Drawing.Size(69, 18);
+            this.labBillNumber.Size = new System.Drawing.Size(70, 18);
             this.labBillNumber.TabIndex = 161;
             this.labBillNumber.Text = "فاتورة رقم";
             // 
@@ -431,7 +427,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label6.Location = new System.Drawing.Point(501, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 18);
+            this.label6.Size = new System.Drawing.Size(128, 18);
             this.label6.TabIndex = 172;
             this.label6.Text = "الاجمالي بعد الخصم";
             // 
@@ -519,7 +515,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label5.Location = new System.Drawing.Point(744, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 18);
+            this.label5.Size = new System.Drawing.Size(166, 18);
             this.label5.TabIndex = 175;
             this.label5.Text = "اجمالي الفاتورة بعد الخصم";
             // 
@@ -552,7 +548,7 @@
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label13.Location = new System.Drawing.Point(808, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(206, 18);
+            this.label13.Size = new System.Drawing.Size(205, 18);
             this.label13.TabIndex = 191;
             this.label13.Text = "اجمالي فاتورة المرتجع بعد الخصم";
             // 
@@ -586,7 +582,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label10.Location = new System.Drawing.Point(393, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 18);
+            this.label10.Size = new System.Drawing.Size(37, 18);
             this.label10.TabIndex = 195;
             this.label10.Text = "الفرع";
             // 
@@ -597,9 +593,9 @@
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label14.Location = new System.Drawing.Point(548, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(83, 18);
+            this.label14.Size = new System.Drawing.Size(95, 18);
             this.label14.TabIndex = 197;
-            this.label14.Text = "سبب الارتجاع";
+            this.label14.Text = "سبب الاسترجاع";
             // 
             // txtInfo
             // 
@@ -748,8 +744,6 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.txtPermissionNum);
-            this.panel7.Controls.Add(this.label9);
             this.panel7.Controls.Add(this.labBillNumber);
             this.panel7.Controls.Add(this.btnNewChooes);
             this.panel7.Controls.Add(this.label10);
@@ -826,10 +820,10 @@
             this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radioButton1.Location = new System.Drawing.Point(70, 5);
+            this.radioButton1.Location = new System.Drawing.Point(72, 5);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(49, 22);
+            this.radioButton1.Size = new System.Drawing.Size(47, 22);
             this.radioButton1.TabIndex = 161;
             this.radioButton1.Text = "تاجر";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -907,7 +901,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label8.Location = new System.Drawing.Point(189, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 18);
+            this.label8.Size = new System.Drawing.Size(114, 18);
             this.label8.TabIndex = 188;
             this.label8.Text = "الكمية المسترجعة";
             // 
@@ -956,8 +950,6 @@
             this.tableLayoutPanel5.Controls.Add(this.txtTotalReturnBillAD, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtInfo, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.label13, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label3, 5, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtStorePermission, 6, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -989,48 +981,6 @@
             this.txtTotalReturnBillAD.ReadOnly = true;
             this.txtTotalReturnBillAD.Size = new System.Drawing.Size(150, 26);
             this.txtTotalReturnBillAD.TabIndex = 200;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label3.Location = new System.Drawing.Point(288, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 18);
-            this.label3.TabIndex = 201;
-            this.label3.Text = "اذن مخزن";
-            // 
-            // txtStorePermission
-            // 
-            this.txtStorePermission.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtStorePermission.Location = new System.Drawing.Point(184, 3);
-            this.txtStorePermission.Name = "txtStorePermission";
-            this.txtStorePermission.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtStorePermission.Size = new System.Drawing.Size(98, 25);
-            this.txtStorePermission.TabIndex = 202;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(393, 78);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 18);
-            this.label9.TabIndex = 201;
-            this.label9.Text = "رقم اذن المرتجع";
-            this.label9.Visible = false;
-            // 
-            // txtPermissionNum
-            // 
-            this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPermissionNum.Location = new System.Drawing.Point(287, 77);
-            this.txtPermissionNum.Name = "txtPermissionNum";
-            this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPermissionNum.Size = new System.Drawing.Size(100, 24);
-            this.txtPermissionNum.TabIndex = 202;
             // 
             // CustomerReturnBill
             // 
@@ -1142,12 +1092,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Returned;
         private System.Windows.Forms.DataGridViewTextBoxColumn Delegate_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerBill_ID;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtStorePermission;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdbCash;
         private System.Windows.Forms.RadioButton rdbSoon;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtPermissionNum;
     }
 }

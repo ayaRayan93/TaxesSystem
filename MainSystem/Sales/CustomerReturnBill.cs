@@ -280,8 +280,9 @@ namespace MainSystem
         {
             try
             {
-                if (flag && comBillNumber.Text != "")
+                if (flag && comBillNumber.Text != "" && listBoxControlCustomerBill.Items.Count < 1)
                 {
+                    dbconnection.Open();
                     if (!IsBillDelivered())
                     {
                         int billNum = Convert.ToInt16(comBillNumber.Text);
@@ -315,7 +316,7 @@ namespace MainSystem
                         txtBillTotalCostAD.Text = "";
                         labBillDate.Text = "";
 
-                        dbconnection.Open();
+                        //dbconnection.Open();
                         query = "select * from customer_bill where customer_bill.Branch_BillNumber=" + comBillNumber.Text + " and customer_bill.Branch_ID=" + txtBranchID.Text;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         MySqlDataReader dr = com.ExecuteReader();
@@ -343,8 +344,8 @@ namespace MainSystem
                     else
                     {
                         MessageBox.Show("الفاتورة تم تسليمها برجاء ادخال رقم اذن المرتجع.");
-                        txtPermissionNum.Visible = true;
-                        label9.Visible = true;
+                        //txtPermissionNum.Visible = true;
+                        //label9.Visible = true;
                     }
                 }
             }
@@ -497,7 +498,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                if (dataGridView2.Rows.Count > 0 && (comClient.Text != "" || comCustomer.Text != "") && txtStorePermission.Text != "")
+                if (dataGridView2.Rows.Count > 0 && (comClient.Text != "" || comCustomer.Text != "") /*&& txtStorePermission.Text != ""*/)
                 {
                     string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" + txtBranchID.Text+ " order by CustomerReturnBill_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -507,7 +508,7 @@ namespace MainSystem
                         Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
                     //Type_Buy
-                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Customer_Name,Client_ID,Client_Name,Date,TotalCostAD,ReturnInfo,Store_Permission_Number,Type_Buy,Employee_ID,Employee_Name) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Customer_Name,@Client_ID,@Client_Name,@Date,@TotalCostAD,@ReturnInfo,@Store_Permission_Number,@Type_Buy,@Employee_ID,@Employee_Name)";
+                    query = "insert into customer_return_bill (Branch_BillNumber,Branch_ID,Customer_ID,Customer_Name,Client_ID,Client_Name,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Branch_BillNumber,@Branch_ID,@Customer_ID,@Customer_Name,@Client_ID,@Client_Name,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
@@ -516,18 +517,18 @@ namespace MainSystem
                     //com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     //com.Parameters["@CustomerBill_ID"].Value = customerBillId;
 
-                    int storeNum = 0;
-                    if (int.TryParse(txtStorePermission.Text, out storeNum))
-                    {
-                        com.Parameters.Add("@Store_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Store_Permission_Number"].Value = storeNum;
-                    }
-                    else
-                    {
-                        MessageBox.Show("اذن المخزن يجب ان يكون عدد");
-                        dbconnection.Close();
-                        return;
-                    }
+                    //int storeNum = 0;
+                    //if (int.TryParse(txtStorePermission.Text, out storeNum))
+                    //{
+                    //    com.Parameters.Add("@Store_Permission_Number", MySqlDbType.Int16);
+                    //    com.Parameters["@Store_Permission_Number"].Value = storeNum;
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("اذن المخزن يجب ان يكون عدد");
+                    //    dbconnection.Close();
+                    //    return;
+                    //}
 
                     if (comCustomer.Text != "")
                     {
@@ -802,7 +803,7 @@ namespace MainSystem
                 radEng.Checked = false;
                 comBranch.Text = "";
                 txtBranchID.Text = "";
-                txtInfo.Text = txtStorePermission.Text = "";
+                txtInfo.Text /*= txtStorePermission.Text */= "";
 
                 listBoxControlBills.Items.Clear();
                 listBoxControlCustomerBill.Items.Clear();
