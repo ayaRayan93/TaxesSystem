@@ -43,6 +43,7 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnNewChooes = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -63,7 +64,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.ImageProduct = new System.Windows.Forms.PictureBox();
-            this.btnNewChooes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -198,6 +198,16 @@
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Name = "panel3";
             // 
+            // btnNewChooes
+            // 
+            resources.ApplyResources(this.btnNewChooes, "btnNewChooes");
+            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChooes.FlatAppearance.BorderSize = 0;
+            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewChooes.Name = "btnNewChooes";
+            this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -280,6 +290,7 @@
             resources.ApplyResources(this.txtCarton, "txtCarton");
             this.txtCarton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarton.Name = "txtCarton";
+            this.txtCarton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtDescription
             // 
@@ -366,16 +377,6 @@
             this.ImageProduct.Name = "ImageProduct";
             this.ImageProduct.TabStop = false;
             this.ImageProduct.Click += new System.EventHandler(this.ImageProduct_Click);
-            // 
-            // btnNewChooes
-            // 
-            resources.ApplyResources(this.btnNewChooes, "btnNewChooes");
-            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewChooes.FlatAppearance.BorderSize = 0;
-            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewChooes.Name = "btnNewChooes";
-            this.btnNewChooes.UseVisualStyleBackColor = false;
-            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
             // Product_Record
             // 

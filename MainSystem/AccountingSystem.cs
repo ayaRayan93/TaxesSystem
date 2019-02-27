@@ -168,7 +168,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void displayDelegateReport(GridControl gridControl, dataX d)
         {
             Delegate_Report objForm = new Delegate_Report(gridControl,d);

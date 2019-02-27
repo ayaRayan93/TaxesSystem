@@ -132,9 +132,9 @@ namespace MainSystem
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
                                 }
-                                else if (txtType.Text == "4")
+                                else if (txtType.Text == "5")//بانيوهات
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
+                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=5";
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -155,7 +155,7 @@ namespace MainSystem
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
                                 if (txtType.Text != "1")
                                 {
-                                    string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
+                                    string query2f = "select * from groupo where Type_ID="+txtType.Text+" and  Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
                                     da2f.Fill(dt2f);
