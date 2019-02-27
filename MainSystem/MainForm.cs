@@ -179,7 +179,6 @@ namespace MainSystem
                 btnCars.Checked = true;
             }
         }
-
         //events
         private void btnStores_ItemClick(object sender, TileItemEventArgs e)
         {
@@ -417,7 +416,6 @@ namespace MainSystem
                 {
                     xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
                     index--;
-
                 }
 
             }
@@ -553,6 +551,6 @@ namespace MainSystem
     public static class connection
     {
         //public static string connectionString = "SERVER=" + System.IO.File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"IP_Address.txt")) + ";DATABASE=saratest;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
-        public static string connectionString = "SERVER=localhost;DATABASE=saratest;user=root;PASSWORD=root;CHARSET=utf8";
+        public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
