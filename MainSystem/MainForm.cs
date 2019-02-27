@@ -407,7 +407,6 @@ namespace MainSystem
                     if (dialogResult == DialogResult.Yes)
                     {
                         xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
-
                     }
                     else if (dialogResult == DialogResult.No)
                     {
@@ -549,8 +548,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-       
+        
     }
 
     public static class connection
