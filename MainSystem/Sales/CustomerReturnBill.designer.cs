@@ -85,8 +85,6 @@
             this.rdbSoon = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.txtPermissionNum = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.btnNewChooes = new System.Windows.Forms.Button();
             this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
             this.listBoxControlCustomerBill = new DevExpress.XtraEditors.ListBoxControl();
@@ -759,28 +757,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(516, 108);
             this.panel7.TabIndex = 201;
-            // 
-            // txtPermissionNum
-            // 
-            this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPermissionNum.Location = new System.Drawing.Point(287, 77);
-            this.txtPermissionNum.Name = "txtPermissionNum";
-            this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPermissionNum.Size = new System.Drawing.Size(100, 24);
-            this.txtPermissionNum.TabIndex = 202;
-            this.txtPermissionNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPermissionNum_KeyDown);
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(393, 78);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 18);
-            this.label9.TabIndex = 201;
-            this.label9.Text = "رقم اذن المرتجع";
             // 
             // btnNewChooes
             // 
