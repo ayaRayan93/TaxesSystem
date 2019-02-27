@@ -280,11 +280,15 @@ namespace MainSystem
         {
             try
             {
-                if (flag && comBillNumber.Text != "" && listBoxControlCustomerBill.Items.Count < 1)
+                if (flag && comBillNumber.Text != "")
                 {
                     dbconnection.Open();
                     if (!IsBillDelivered())
                     {
+                        if(listBoxControlCustomerBill.Items.Count >= 1)
+                        {
+                            newChoose();
+                        }
                         int billNum = Convert.ToInt16(comBillNumber.Text);
                         DataTable dtAll = new DataTable();
                         string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID  from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
@@ -840,25 +844,31 @@ namespace MainSystem
         {
             try
             {
-                listBoxControlBills.Items.Clear();
-                listBoxControlCustomerBill.Items.Clear();
-                dataGridView1.DataSource = null;
-                dataGridView2.Rows.Clear();
+                newChoose();
                 comBillNumber.Text = "";
-                txtCode.Text = "";
-                txtPriceAD.Text = "";
-                txtTotalMeter.Text = "";
-                txtTotalAD.Text = "";
-                txtReturnedQuantity.Text = "";
-                txtBillTotalCostAD.Text = "";
-                labBillDate.Text = "";
-                txtTotalReturnBillAD.Text = "";
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        void newChoose()
+        {
+            listBoxControlBills.Items.Clear();
+            listBoxControlCustomerBill.Items.Clear();
+            dataGridView1.DataSource = null;
+            dataGridView2.Rows.Clear();
+            txtCode.Text = "";
+            txtPriceAD.Text = "";
+            txtTotalMeter.Text = "";
+            txtTotalAD.Text = "";
+            txtReturnedQuantity.Text = "";
+            txtBillTotalCostAD.Text = "";
+            labBillDate.Text = "";
+            txtTotalReturnBillAD.Text = "";
+        }
+
         bool IsAdded(DataGridViewRow row1)
         {
             foreach (DataGridViewRow item in dataGridView2.Rows)
