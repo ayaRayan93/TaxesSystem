@@ -652,8 +652,7 @@ namespace MainSystem
                 return PurchasesPrice;
             }
         }
-
-
+        
         public void updateGrid(/*string PriceType, */double PurchasingPrice, double ProfitRatio, double PurchasingDiscount, double Price, double NormalIncrease, double CategoricalIncrease)
         {
             gridView1.SetRowCellValue(rowHandle, "سعر الشراء", PurchasingPrice);
@@ -663,100 +662,5 @@ namespace MainSystem
             gridView1.SetRowCellValue(rowHandle, "الزيادة العادية", NormalIncrease);
             gridView1.SetRowCellValue(rowHandle, "الزيادة القطعية", CategoricalIncrease);
         }
-
-        /*private void txtBox_TextChanged(object sender, EventArgs e)
-       {
-           if (loaded)
-           {
-               if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
-               {
-                   double price, BuyDiscount, NormalIncrease, Categorical_Increase, VAT;
-                   if (double.TryParse(txtPrice.Text, out price)
-                    &&
-                    double.TryParse(txtDiscount.Text, out BuyDiscount)
-                    &&
-                    double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
-                    &&
-                    double.TryParse(txtCategoricalIncrease.Text, out Categorical_Increase)
-                    &&
-                    double.TryParse(txtTax.Text, out VAT))
-                   {
-                       BuyPrice = price + NormalIncrease;
-                       BuyPrice -= BuyDiscount;
-                       BuyPrice += Categorical_Increase;
-                       BuyPrice += VAT;
-                       txtPurchasePrice.Text = BuyPrice.ToString();
-                   }
-               }
-               else
-               {
-                   txtPurchasePrice.Text = "";
-               }
-           }
-       }*/
-
-        /*private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (flag)
-            {
-                
-                try
-                {
-                    conn.Open();
-                    //get Bill Number
-                    string q = "select Bill_No from Bill_Data ORDER BY ID DESC LIMIT 1 ";
-                    MySqlCommand com = new MySqlCommand(q, conn);
-                    BillNo = (int)com.ExecuteScalar();
-                    BillNo++;
-                    
-                    comPermessionNum.Visible = true;
-                    //string query = "select Import_Permission_Number from storage_import_permission where Store_ID=" + storeId + " and Confirmed=0";
-                    //MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                    //DataTable dt = new DataTable();
-                    //da.Fill(dt);
-                    //comPermessionNum.DataSource = dt;
-                    //comPermessionNum.DisplayMember = dt.Columns["Permission_Number"].ToString();
-                    //comPermessionNum.Text = "";
-                    loaded2 = true;
-                    NewBill();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                conn.Close();
-            }
-        }*/
-
-        /*private void gridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                try
-                {
-                    if (row1 != null)
-                    {
-                        if (row1["PurchasingPrice_ID"].ToString() != "")
-                        {
-                            //purchasesMainForm.bindUpdateBillPurchasesPriceForm(row1);
-                            /*UpdateBillPurchasesPrice objForm = new UpdateBillPurchasesPrice(row1, this);
-                            objForm.ShowDialog();*
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب تسعير البند اولا.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("يجب تحديد البند المراد تعديله.");
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("يجب تحديد البند المراد تعديله.");
-                }
-            }
-        }*/
     }
 }
