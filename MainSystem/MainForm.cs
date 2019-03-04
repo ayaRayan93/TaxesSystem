@@ -550,7 +550,7 @@ namespace MainSystem
 
     public static class connection
     {
-        //public static string connectionString = "SERVER=" + System.IO.File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"IP_Address.txt")) + ";DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
-        public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
+        public static string connectionString = "SERVER=" + System.IO.File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"IP_Address.txt")) + ";DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+        //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

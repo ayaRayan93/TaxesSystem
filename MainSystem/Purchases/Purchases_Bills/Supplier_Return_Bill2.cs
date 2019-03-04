@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Supplier_Return_Bill : Form
+    public partial class Supplier_Return_Bill2 : Form
     {
         MySqlConnection dbconnection, dbconnection2;
         bool loaded = false;
@@ -19,7 +19,7 @@ namespace MainSystem
         int rowHandle = -1;
         int billId = 0;
 
-        public Supplier_Return_Bill()
+        public Supplier_Return_Bill2()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);

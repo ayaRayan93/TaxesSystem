@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Supplier_Return_Bill
+    partial class Supplier_Return_Bill2
     {
         /// <summary>
         /// Required designer variable.
