@@ -17,7 +17,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Supplier_Return_Bill2());
+            Application.Run(new Login());
         }
     }
 }

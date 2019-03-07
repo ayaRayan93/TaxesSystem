@@ -30,7 +30,7 @@
         {
             this.label11 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comSupplier = new System.Windows.Forms.ComboBox();
+            this.comStore = new System.Windows.Forms.ComboBox();
             this.labTotalPriceBD = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnNewChoose = new System.Windows.Forms.Button();
@@ -94,9 +94,9 @@
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(315, 8);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 18);
+            this.label11.Size = new System.Drawing.Size(64, 18);
             this.label11.TabIndex = 37;
-            this.label11.Text = "رقم الفاتورة";
+            this.label11.Text = "رقم الاذن";
             // 
             // label2
             // 
@@ -105,21 +105,21 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(598, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 18);
+            this.label2.Size = new System.Drawing.Size(51, 18);
             this.label2.TabIndex = 35;
-            this.label2.Text = "المورد";
+            this.label2.Text = "المخزن";
             // 
-            // comSupplier
+            // comStore
             // 
-            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(442, 5);
-            this.comSupplier.Name = "comSupplier";
-            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comSupplier.Size = new System.Drawing.Size(150, 24);
-            this.comSupplier.TabIndex = 34;
-            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(442, 5);
+            this.comStore.Name = "comStore";
+            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStore.Size = new System.Drawing.Size(150, 24);
+            this.comStore.TabIndex = 34;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
             // 
             // labTotalPriceBD
             // 
@@ -251,6 +251,7 @@
             this.txtNormalIncrease.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtNormalIncrease.Size = new System.Drawing.Size(100, 23);
             this.txtNormalIncrease.TabIndex = 47;
+            this.txtNormalIncrease.Text = "0";
             this.txtNormalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label7
@@ -295,6 +296,7 @@
             this.txtCategoricalIncrease.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCategoricalIncrease.Size = new System.Drawing.Size(100, 23);
             this.txtCategoricalIncrease.TabIndex = 43;
+            this.txtCategoricalIncrease.Text = "0";
             this.txtCategoricalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label5
@@ -585,7 +587,7 @@
             this.panel1.Controls.Add(this.txtBillNumber);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.btnNewChoose);
-            this.panel1.Controls.Add(this.comSupplier);
+            this.panel1.Controls.Add(this.comStore);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
@@ -694,13 +696,13 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
-            // Supplier_Return_Bill
+            // Supplier_Return_Bill2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 702);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Supplier_Return_Bill";
+            this.Name = "Supplier_Return_Bill2";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Supplier_Return_Bill_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -724,7 +726,7 @@
         #endregion
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comSupplier;
+        private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.Label labTotalPriceBD;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnNewChoose;
