@@ -250,7 +250,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(711, 0);
+            this.label11.Location = new System.Drawing.Point(716, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 18);
             this.label11.TabIndex = 26;
@@ -291,7 +291,7 @@
             // 
             this.comPermessionNum.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comPermessionNum.FormattingEnabled = true;
-            this.comPermessionNum.Location = new System.Drawing.Point(605, 3);
+            this.comPermessionNum.Location = new System.Drawing.Point(610, 3);
             this.comPermessionNum.Name = "comPermessionNum";
             this.comPermessionNum.Size = new System.Drawing.Size(100, 24);
             this.comPermessionNum.TabIndex = 33;
@@ -470,7 +470,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label11, 1, 0);
@@ -491,7 +491,7 @@
             // 
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(351, 3);
+            this.comSupplier.Location = new System.Drawing.Point(356, 3);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(144, 24);
@@ -502,8 +502,8 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label1.Location = new System.Drawing.Point(501, 0);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(506, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 198;
@@ -513,10 +513,10 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(221, 0);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(216, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 18);
+            this.label2.Size = new System.Drawing.Size(78, 18);
             this.label2.TabIndex = 200;
             this.label2.Text = "اذن استلام";
             // 
@@ -524,7 +524,7 @@
             // 
             this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupPerm.FormattingEnabled = true;
-            this.comSupPerm.Location = new System.Drawing.Point(115, 3);
+            this.comSupPerm.Location = new System.Drawing.Point(110, 3);
             this.comSupPerm.Name = "comSupPerm";
             this.comSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupPerm.Size = new System.Drawing.Size(100, 24);
