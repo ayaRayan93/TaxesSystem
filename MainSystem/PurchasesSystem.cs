@@ -99,6 +99,37 @@ namespace MainSystem
             }
         }
         
+        private void navBarItemSupplierReturn_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل فاتورة مرتجع");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("تسجيل فاتورة مرتجع");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل فاتورة مرتجع");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindSupplierRetunBillForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemSuppliersReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -144,6 +175,17 @@ namespace MainSystem
         public void bindSupplierBillForm(XtraTabPage xtraTabPage)
         {
             Supplier_Bill objForm = new Supplier_Bill(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindSupplierRetunBillForm(XtraTabPage xtraTabPage)
+        {
+            Supplier_Return_Bill2 objForm = new Supplier_Return_Bill2(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

@@ -425,7 +425,7 @@
             this.navBarGroup48 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemPurchasesPricesRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup44 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSupplierReturn = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupSupplier = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSuppliersReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem206 = new DevExpress.XtraNavBar.NavBarItem();
@@ -1484,8 +1484,7 @@
             this.navBarGroup16.Caption = "المرتجعات";
             this.navBarGroup16.Expanded = true;
             this.navBarGroup16.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnBillRecord),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnWithPermision)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnBillRecord)});
             this.navBarGroup16.Name = "navBarGroup16";
             // 
             // navBarItemReturnBillRecord
@@ -1493,12 +1492,6 @@
             this.navBarItemReturnBillRecord.Caption = "تسجيل مرتجع";
             this.navBarItemReturnBillRecord.Name = "navBarItemReturnBillRecord";
             this.navBarItemReturnBillRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnBillRecord_LinkClicked);
-            // 
-            // navBarItemReturnWithPermision
-            // 
-            this.navBarItemReturnWithPermision.Caption = "تسجيل مرتجع باذن مخزن";
-            this.navBarItemReturnWithPermision.Name = "navBarItemReturnWithPermision";
-            this.navBarItemReturnWithPermision.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnWithPermision_LinkClicked);
             // 
             // navBarGroup14
             // 
@@ -1544,21 +1537,24 @@
             // 
             // btnAgalAcountStatment
             // 
-            this.btnAgalAcountStatment.Caption = "كشف حساب عميل";
-            this.btnAgalAcountStatment.Name = "btnAgalAcountStatment";
-            this.btnAgalAcountStatment.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnAgalAcountStatment_LinkClicked);
+            this.navBarGroup16.Caption = "المرتجعات";
+            this.navBarGroup16.Expanded = true;
+            this.navBarGroup16.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnBillRecord),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnWithPermision)});
+            this.navBarGroup16.Name = "navBarGroup16";
             // 
-            // btnTaswayAgalBills
+            // navBarItemReturnBillRecord
             // 
-            this.btnTaswayAgalBills.Caption = "تسوية فواتير الاجل(المندوبين)";
-            this.btnTaswayAgalBills.Name = "btnTaswayAgalBills";
-            this.btnTaswayAgalBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnTaswayAgalBills_LinkClicked);
+            this.navBarItemReturnBillRecord.Caption = "تسجيل مرتجع";
+            this.navBarItemReturnBillRecord.Name = "navBarItemReturnBillRecord";
+            this.navBarItemReturnBillRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnBillRecord_LinkClicked);
             // 
-            // navBarItem153
+            // navBarItemReturnWithPermision
             // 
-            this.navBarItem153.Caption = "تسجيل تسوية لعميل";
-            this.navBarItem153.Name = "navBarItem153";
-            this.navBarItem153.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnCustomerTaswaya_LinkClicked);
+            this.navBarItemReturnWithPermision.Caption = "تسجيل مرتجع باذن مخزن";
+            this.navBarItemReturnWithPermision.Name = "navBarItemReturnWithPermision";
+            this.navBarItemReturnWithPermision.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnWithPermision_LinkClicked);
             // 
             // navBarGroup13
             // 
@@ -3895,7 +3891,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup43;
+            this.navBarControl7.ActiveGroup = this.navBarGroup44;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -3968,7 +3964,7 @@
             this.navBarItem12,
             this.navBarItemSupplierBills,
             this.navBarItem220,
-            this.navBarItem221,
+            this.navBarItemSupplierReturn,
             this.navBarItemSuppliersReport});
             this.navBarControl7.Location = new System.Drawing.Point(955, 0);
             this.navBarControl7.Name = "navBarControl7";
@@ -3981,7 +3977,6 @@
             // navBarGroup43
             // 
             this.navBarGroup43.Caption = "فاتورة شراء";
-            this.navBarGroup43.Expanded = true;
             this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
             this.navBarGroup43.Name = "navBarGroup43";
@@ -4008,14 +4003,16 @@
             // navBarGroup44
             // 
             this.navBarGroup44.Caption = "فاتورة مرتجع";
+            this.navBarGroup44.Expanded = true;
             this.navBarGroup44.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem221)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturn)});
             this.navBarGroup44.Name = "navBarGroup44";
             // 
-            // navBarItem221
+            // navBarItemSupplierReturn
             // 
-            this.navBarItem221.Caption = "تسجيل فاتورة مرتجع";
-            this.navBarItem221.Name = "navBarItem221";
+            this.navBarItemSupplierReturn.Caption = "تسجيل فاتورة مرتجع";
+            this.navBarItemSupplierReturn.Name = "navBarItemSupplierReturn";
+            this.navBarItemSupplierReturn.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierReturn_LinkClicked);
             // 
             // navBarGroupSupplier
             // 
@@ -4856,7 +4853,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem219;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPermissionDelivery;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup44;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem221;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierReturn;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup43;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierBills;
         private DevExpress.XtraNavBar.NavBarItem navBarItem220;
