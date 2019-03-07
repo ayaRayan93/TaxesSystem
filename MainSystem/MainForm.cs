@@ -546,11 +546,15 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+       
     }
 
     public static class connection
     {
-        //public static string connectionString = "SERVER=" + System.IO.File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"IP_Address.txt")) + ";DATABASE=saratest;user=Devccc;PASSWORD=rootroot;CHARSET=utf8;SslMode=none";
-        public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
+        static string supString = Properties.Resources.IP_Address;
+        //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=ayatest;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+        //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

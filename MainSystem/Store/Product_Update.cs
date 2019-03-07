@@ -70,6 +70,8 @@ namespace MainSystem
             {
                 if (loaded)
                 {
+                    dbconnection.Close();
+                    dbconnection.Open();
                     ComboBox comBox = (ComboBox)sender;
 
                     switch (comBox.Name)
@@ -87,21 +89,21 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1" || txtType.Text == "2")
+                                query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                if (TypeCoding_Method == 1)
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
-                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
-                                    DataTable dt2 = new DataTable();
-                                    da2.Fill(dt2);
-                                    comGroup.DataSource = dt2;
-                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
-                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
-                                    comGroup.Text = "";
-                                    txtGroup.Text = "";
-                                }
-                                else if (txtType.Text == "4")
-                                {
-                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
+                                    string query2 = "";
+                                    if (txtType.Text == "2" || txtType.Text == "1")
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=-1";
+                                    }
+                                    else
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                    }
+
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -129,9 +131,12 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1"&& txtType.Text != "2" && txtType.Text != "4")
+                                string query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                if (TypeCoding_Method == 2)
                                 {
-                                    string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
+                                    string query2f = "select * from groupo where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
                                     da2f.Fill(dt2f);
@@ -171,7 +176,6 @@ namespace MainSystem
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
 
-
                                 string query2 = "select * from size where Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text;
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                 DataTable dt2 = new DataTable();
@@ -190,7 +194,7 @@ namespace MainSystem
                         case "comProduct":
                             if (flagProduct)
                             {
-                                flagProduct = false;
+                               // flagProduct = false;
                                 txtProduct.Text = comProduct.SelectedValue.ToString();
                                 comColour.Focus();
                             }
@@ -217,6 +221,8 @@ namespace MainSystem
             {
                 //  MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
+            dbconnection.Open();
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -520,6 +526,7 @@ namespace MainSystem
                     command.Parameters.AddWithValue("?Group_ID", int.Parse(txtGroup.Text));
                     command.Parameters.AddWithValue("?Product_ID", int.Parse(txtProduct.Text));
                     command.Parameters.AddWithValue("?Classification", classification);
+                    dbconnection.Close();
                     dbconnection.Open();
                     command.ExecuteNonQuery();
 
@@ -541,6 +548,7 @@ namespace MainSystem
                         command = new MySqlCommand(q, dbconnection);
                         command.Parameters.AddWithValue("?Photo", selectedImage);
                         command.Parameters.AddWithValue("?Data_ID", Data_ID);
+                        dbconnection.Close();
                         dbconnection.Open();
                         command.ExecuteNonQuery();
                     }

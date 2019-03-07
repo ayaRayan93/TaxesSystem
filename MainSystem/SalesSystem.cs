@@ -442,6 +442,42 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemReturnWithPermision_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 6 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل مرتجع باذن مخزن");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("تسجيل مرتجع باذن مخزن");
+                        xtraTabPage = getTabPage(xtraTabControlSalesContent, "تسجيل مرتجع باذن مخزن");
+                      
+                    }
+                    //xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    CustomerReturnUsingPermissinNumber objForm = new CustomerReturnUsingPermissinNumber();
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void navBarItemBillCancel_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
