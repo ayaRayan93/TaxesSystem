@@ -39,7 +39,7 @@ namespace MainSystem
                 comand.Parameters.AddWithValue("@Name", txtName.Text);
                 comand.Parameters.AddWithValue("@Pass", txtPassword.Text);
                 MySqlDataReader result = comand.ExecuteReader();
-                
+
                 if (result.HasRows)
                 {
                     while (result.Read())
@@ -51,14 +51,14 @@ namespace MainSystem
                             UserControl.userType = (int)result[2];
                             UserControl.EmpType = "مدير";
 
-                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                            UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                            string supString = Properties.Resources.Branch;
+                            UserControl.EmpBranchID = Convert.ToInt16(supString);
 
                             dbconnection.Open();
                             string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
                             MySqlCommand com = new MySqlCommand(query2, dbconnection);
                             UserControl.EmpBranchName = com.ExecuteScalar().ToString();
-                            
+
                             query2 = "SELECT users.Employee_ID,employee.Employee_Name FROM users INNER JOIN employee ON users.Employee_ID = employee.Employee_ID where users.User_ID=" + (int)result[0];
                             com = new MySqlCommand(query2, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
@@ -81,9 +81,8 @@ namespace MainSystem
                             {
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
-
+                                string supString = Properties.Resources.Branch;
+                                int EmpBranchID2 = Convert.ToInt16(supString);
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
                                     UserControl.userID = (int)result[0];
@@ -129,8 +128,8 @@ namespace MainSystem
                             {
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                string supString = Properties.Resources.Branch;
+                                int EmpBranchID2 = Convert.ToInt16(supString);
 
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
@@ -237,8 +236,8 @@ namespace MainSystem
                                 UserControl.userType = (int)result[2];
                                 UserControl.EmpType = "مدير";
 
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                string supString = Properties.Resources.Branch;
+                                UserControl.EmpBranchID = Convert.ToInt16(supString);
 
                                 dbconnection.Open();
                                 string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
@@ -267,8 +266,8 @@ namespace MainSystem
                                 {
                                     int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                    int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                    string supString = Properties.Resources.Branch;
+                                    int EmpBranchID2 = Convert.ToInt16(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
                                     {
@@ -315,8 +314,8 @@ namespace MainSystem
                                 {
                                     int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                    int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                    string supString = Properties.Resources.Branch;
+                                    int EmpBranchID2 = Convert.ToInt16(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
                                     {
@@ -342,7 +341,10 @@ namespace MainSystem
 
                                         mainForm = new MainForm();
                                         mainForm.Show();
+
+
                                         this.Hide();
+
                                     }
                                     else
                                     {
@@ -367,11 +369,12 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
             dbconnection.Close();
             conn.Close();
         }
-   
+
 
         private void Login_Load(object sender, EventArgs e)
         {
