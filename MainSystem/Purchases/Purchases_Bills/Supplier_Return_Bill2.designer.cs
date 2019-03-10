@@ -67,6 +67,8 @@
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comSupplier = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtBillNumber = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
@@ -92,7 +94,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(315, 8);
+            this.label11.Location = new System.Drawing.Point(490, 8);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 18);
             this.label11.TabIndex = 37;
@@ -103,7 +105,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(598, 8);
+            this.label2.Location = new System.Drawing.Point(696, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 18);
             this.label2.TabIndex = 35;
@@ -114,12 +116,12 @@
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(442, 5);
+            this.comStore.Location = new System.Drawing.Point(560, 5);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStore.Size = new System.Drawing.Size(150, 24);
+            this.comStore.Size = new System.Drawing.Size(130, 24);
             this.comStore.TabIndex = 34;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // labTotalPriceBD
             // 
@@ -148,9 +150,9 @@
             this.btnNewChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewChoose.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnNewChoose.ForeColor = System.Drawing.Color.White;
-            this.btnNewChoose.Location = new System.Drawing.Point(9, 3);
+            this.btnNewChoose.Location = new System.Drawing.Point(26, 3);
             this.btnNewChoose.Name = "btnNewChoose";
-            this.btnNewChoose.Size = new System.Drawing.Size(88, 28);
+            this.btnNewChoose.Size = new System.Drawing.Size(80, 28);
             this.btnNewChoose.TabIndex = 58;
             this.btnNewChoose.Text = "اختيار اخر";
             this.btnNewChoose.UseVisualStyleBackColor = false;
@@ -584,6 +586,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.comSupplier);
+            this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.txtBillNumber);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.btnNewChoose);
@@ -595,11 +599,34 @@
             this.panel1.Size = new System.Drawing.Size(856, 34);
             this.panel1.TabIndex = 0;
             // 
+            // comSupplier
+            // 
+            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comSupplier.FormattingEnabled = true;
+            this.comSupplier.Location = new System.Drawing.Point(178, 5);
+            this.comSupplier.Name = "comSupplier";
+            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupplier.Size = new System.Drawing.Size(150, 24);
+            this.comSupplier.TabIndex = 59;
+            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(334, 8);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(44, 18);
+            this.label15.TabIndex = 60;
+            this.label15.Text = "المورد";
+            // 
             // txtBillNumber
             // 
             this.txtBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtBillNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillNumber.Location = new System.Drawing.Point(209, 6);
+            this.txtBillNumber.Location = new System.Drawing.Point(384, 6);
             this.txtBillNumber.Name = "txtBillNumber";
             this.txtBillNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBillNumber.Size = new System.Drawing.Size(100, 23);
@@ -770,6 +797,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label labelTotalA;
         private System.Windows.Forms.Label labelTotalB;
+        private System.Windows.Forms.ComboBox comSupplier;
+        private System.Windows.Forms.Label label15;
     }
 }
 
