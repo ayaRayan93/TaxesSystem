@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SetPurchasesPrice
+    partial class SetPurchasesPrice2
     {
         /// <summary>
         /// Required designer variable.

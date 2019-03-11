@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class SetPurchasesPrice : Form
+    public partial class SetPurchasesPrice2 : Form
     {
         MySqlConnection dbconnection;
         ProductsPurchasesPriceForm productsPurchasesPriceForm = null;
@@ -22,9 +22,9 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-        //int id = 0;
+        int id = 0;
 
-        public SetPurchasesPrice(ProductsPurchasesPriceForm productsPurchasesPriceForm, XtraTabControl xtraTabControlPurchasesContent)
+        public SetPurchasesPrice2(ProductsPurchasesPriceForm productsPurchasesPriceForm, XtraTabControl xtraTabControlPurchasesContent)
         {
             try
             {
@@ -662,14 +662,12 @@ namespace MainSystem
                     if (radioQata3y.Checked == true)
                     {
                         #region set qata3yPrice for list item
-                        //if (txtCode.Text == "" && chBoxSelectAll.Checked)
-                        //{
-                        double NormalPercent = double.Parse(txtNormal.Text);
-                        double UnNormalPercent = double.Parse(txtUnNormal.Text);
-                        DataTable dataTable = (DataTable)gridControl1.DataSource;
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        if (txtCode.Text == "" && chBoxSelectAll.Checked)
                         {
-                            if (gridView1.IsRowSelected(i))
+                            double NormalPercent = double.Parse(txtNormal.Text);
+                            double UnNormalPercent = double.Parse(txtUnNormal.Text);
+                            DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
                                 string query = "INSERT INTO purchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
@@ -685,10 +683,9 @@ namespace MainSystem
                                 command.ExecuteNonQuery();
                             }
                         }
-                        //}
                         #endregion
                         #region set qata3yPrice for one item
-                        /*else
+                        else
                         {
                             if (id != 0)
                             {
@@ -711,32 +708,31 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-                        }*/
+                        }
                         #endregion
                     }
                     else
                     {
                         #region set priceList for collection of items
-                        //if (txtCode.Text == "" && chBoxSelectAll.Checked)
-                        //{
-                        double NormalPercent = double.Parse(txtNormal.Text);
-                        double unNormalPercent = double.Parse(txtUnNormal.Text);
-
-                        double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
-
-                        PurchasesPrice = PurchasesPrice + unNormalPercent;
-                        DataTable dataTable = (DataTable)gridControl1.DataSource;
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        if (txtCode.Text == "" && chBoxSelectAll.Checked)
                         {
-                            if (gridView1.IsRowSelected(i))
+                            double NormalPercent = double.Parse(txtNormal.Text);
+                            double unNormalPercent = double.Parse(txtUnNormal.Text);
+
+                            double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
+
+                            PurchasesPrice = PurchasesPrice + unNormalPercent;
+                            DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
+
                                 string query = "INSERT INTO purchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
                                 command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
                                 command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
                                 command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
-                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Price", price); 
                                 command.Parameters.AddWithValue("@Last_Price", lastPrice());
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
@@ -745,11 +741,10 @@ namespace MainSystem
                                 command.ExecuteNonQuery();
                             }
                         }
-                        //}
 
                         #endregion
                         #region set priceList for one item
-                        /*else
+                        else
                         {
                             if (id != 0)
                             {
@@ -782,7 +777,7 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-                        }*/
+                        }
                         #endregion
                     }
 
@@ -1098,17 +1093,19 @@ namespace MainSystem
                         if (row != null)
                         {
                             txtCode.Text = row[1].ToString();
-                            /*id = Convert.ToInt16(row[0].ToString());*/
+                            id = Convert.ToInt16(row[0].ToString());
                             string code = txtCode.Text;
                             displayCode(code);
                         }
                         else
                         {
+                            id = 0;
                             txtCode.Text = txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
                         }
                     }
                     else
                     {
+                        id = 0;
                         txtCode.Text = txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
                     }
                 }

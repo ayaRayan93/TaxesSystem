@@ -572,17 +572,18 @@ namespace MainSystem
         {
             try
             {
-                gridView1.OptionsSelection.MultiSelect = true;
+                GridView gridView = gridView1 as GridView;
+                gridView.OptionsSelection.MultiSelect = true;
                 if (chBoxSelectAll.Checked)
                 {
-                    gridView1.SelectRows(0, gridView1.RowCount - 1);
+                    gridView.SelectRows(0, gridView.RowCount - 1);
                 }
                 else
                 {
-                    int selectedRowsCount = gridView1.SelectedRowsCount;
+                    int selectedRowsCount = gridView.SelectedRowsCount;
                     for (int i = 0; i < selectedRowsCount; i++)
                     {
-                        gridView1.UnselectRow(i);
+                        gridView.UnselectRow(i);
                     }
                 }
             }
@@ -663,7 +664,7 @@ namespace MainSystem
                 fQuery += "and data.Classification='" + comClassfication.Text + "'";
             }
 
-            query = "SELECT purchasing_price.PurchasingPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',purchasing_price.Price as 'السعر',purchasing_price.Last_Price as ' السعر بعد الزيادة',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم البيع',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',sum(additional_increase_purchasingprice.AdditionalValue)as 'زيادات اضافية',purchasing_price.ProfitRatio as 'نسبة البيع',purchasing_price.Purchasing_Price as 'سعر الشراء',purchasing_price.PercentageDelegate as 'نسية المندوب',purchasing_price.Date as 'التاريخ'   from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID left join additional_increase_purchasingprice on additional_increase_purchasingprice.PurchasingPrice_ID=purchasing_price.PurchasingPrice_ID where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery+ " group by purchasing_price.PurchasingPrice_ID";
+            query = "SELECT purchasing_price.PurchasingPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',purchasing_price.Price as 'السعر',purchasing_price.Last_Price as ' السعر بعد الزيادة',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم البيع',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',sum(additional_increase_purchasingprice.AdditionalValue)as 'زيادات اضافية',purchasing_price.ProfitRatio as 'نسبة البيع',purchasing_price.Purchasing_Price as 'سعر الشراء',purchasing_price.Date as 'التاريخ'   from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID left join additional_increase_purchasingprice on additional_increase_purchasingprice.PurchasingPrice_ID=purchasing_price.PurchasingPrice_ID where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery+ " group by purchasing_price.PurchasingPrice_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);

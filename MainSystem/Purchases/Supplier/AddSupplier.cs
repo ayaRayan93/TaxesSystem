@@ -139,6 +139,17 @@ namespace MainSystem
                         com.ExecuteNonQuery();
 
                         AddPhoneNumbers();
+
+                        query = "SELECT Supplier_ID FROM supplier ORDER BY Supplier_ID DESC LIMIT 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        int id = 0;
+                        if (com.ExecuteScalar() != null)
+                        {
+                            id = (int)com.ExecuteScalar();
+                        }
+
+                        UserControl.ItemRecord("supplier", "اضافة", id, DateTime.Now, "", dbconnection);
+
                         clear();
                         xtraTabPage.ImageOptions.Image = null;
                     }

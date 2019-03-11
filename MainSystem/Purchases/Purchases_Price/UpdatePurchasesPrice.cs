@@ -54,7 +54,7 @@ namespace MainSystem
                     ids += rows[i][0] + ",";
                 }
                 ids += rows[rows.Count - 1][0];
-                query = "SELECT purchasing_price.PurchasingPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',purchasing_price.Price as 'السعر',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price as 'سعر الشراء',purchasing_price.PercentageDelegate as 'نسية المندوب',purchasing_price.Date as 'التاريخ'   from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   purchasing_price.PurchasingPrice_ID in(" + ids + ")";
+                query = "SELECT purchasing_price.PurchasingPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',purchasing_price.Price as 'السعر',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price as 'سعر الشراء',purchasing_price.Date as 'التاريخ' from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   purchasing_price.PurchasingPrice_ID in(" + ids + ")";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -307,7 +307,7 @@ namespace MainSystem
                         DataTable dataTable = (DataTable)gridControl1.DataSource;
                         for (int i = 0; i < dataTable.Rows.Count; i++)
                         {
-                            String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate where PurchasingPrice_ID=" + dataTable.Rows[i][0].ToString();
+                            String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price where PurchasingPrice_ID=" + dataTable.Rows[i][0].ToString();
 
                             MySqlCommand command = new MySqlCommand(query, dbconnection);
                             command.Parameters.AddWithValue("@Price_Type", "قطعى");
@@ -317,11 +317,7 @@ namespace MainSystem
                             command.Parameters.AddWithValue("@Price", price);
                             command.Parameters.AddWithValue("@Normal_Increase", 0.00);
                             command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
-                            command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-
                             command.ExecuteNonQuery();
-
-
                         }
 
                         #endregion
@@ -340,7 +336,7 @@ namespace MainSystem
                         DataTable dataTable = (DataTable)gridControl1.DataSource;
                         for (int i = 0; i < dataTable.Rows.Count; i++)
                         {
-                            string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate where PurchasingPrice_ID =" + dataTable.Rows[i][0].ToString();
+                            string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase where PurchasingPrice_ID =" + dataTable.Rows[i][0].ToString();
 
                             MySqlCommand command = new MySqlCommand(query, dbconnection);
                             command.Parameters.AddWithValue("@Price_Type", "لستة");
@@ -350,11 +346,7 @@ namespace MainSystem
                             command.Parameters.AddWithValue("@Price", price);
                             command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                             command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                            command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-
                             command.ExecuteNonQuery();
-
-
                         }
 
                         #endregion
@@ -411,7 +403,7 @@ namespace MainSystem
                         foreach (DataGridViewRow item1 in DataGridView.Rows)
                         {
                             double addational = Convert.ToDouble(item1.Cells[0].Value);
-                            string  queryx = "insert into special_increase (PurchasingPrice_ID,Value,Description,Date) values (@PurchasingPrice_ID,@Value,@Description,@Date)";
+                            string  queryx = "insert into special_increase_purchasing (PurchasingPrice_ID,Value,Description,Date) values (@PurchasingPrice_ID,@Value,@Description,@Date)";
                             MySqlCommand com = new MySqlCommand(queryx, dbconnection);
                             com.Parameters.AddWithValue("@PurchasingPrice_ID", item[0]);
                             com.Parameters.AddWithValue("@Value", item1.Cells[0].Value);
@@ -419,10 +411,8 @@ namespace MainSystem
                             com.Parameters.Add("@Date", MySqlDbType.Date);
                             com.Parameters["@Date"].Value = DateTime.Now.Date;
                             com.ExecuteNonQuery();
-
                         }
                     }
-            
                 }
                 displayData();
                 productsPurchasesPriceForm.displayProducts();

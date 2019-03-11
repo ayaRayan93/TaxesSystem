@@ -296,7 +296,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindUpdateSupplierForm(List<DataRowView> rows, Supplier_Report supplierReport)
+        public void bindUpdateSupplierForm(DataRowView rows, Supplier_Report supplierReport)
         {
             if (!xtraTabControlPurchases.Visible)
                 xtraTabControlPurchases.Visible = true;
