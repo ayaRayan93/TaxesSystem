@@ -291,6 +291,18 @@
     <Compile Include="Purchases\Purchases_Bills\UpdateBillPurchasesPrice.Designer.cs">
       <DependentUpon>UpdateBillPurchasesPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice2.Designer.cs">
+      <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier\UpdateSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier\UpdateSupplier.designer.cs">
+      <DependentUpon>UpdateSupplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Supplier\Supplier_Print.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1548,12 +1560,6 @@
     <Compile Include="Purchases\Supplier\AddSupplier.designer.cs">
       <DependentUpon>AddSupplier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier\UpdateSupplier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchases\Supplier\UpdateSupplier.designer.cs">
-      <DependentUpon>UpdateSupplier.cs</DependentUpon>
-    </Compile>
     <Compile Include="Store\Export\StoreReturnBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1872,6 +1878,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\UpdateBillPurchasesPrice.resx">
       <DependentUpon>UpdateBillPurchasesPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">
+      <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
+      <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\Supplier_Print.resx">
       <DependentUpon>Supplier_Print.cs</DependentUpon>
@@ -2487,9 +2499,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\AddSupplier.resx">
       <DependentUpon>AddSupplier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
-      <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\ReturnCustomerPermissionReport.resx">
       <DependentUpon>ReturnCustomerPermissionReport.cs</DependentUpon>

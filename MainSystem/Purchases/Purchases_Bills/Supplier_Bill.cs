@@ -91,7 +91,7 @@ namespace MainSystem
                 try
                 {
                     loadSup = false;
-                    string query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.Purchase_Bill=0";
+                    string query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Purchase_Bill=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -121,7 +121,7 @@ namespace MainSystem
                     conn.Open();
 
                     //NewBill();
-                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
+                    string q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -142,7 +142,7 @@ namespace MainSystem
                         gridView1.Columns[i].Width = 120;
                     }
 
-                    q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء','ضريبة القيمة المضافة',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=0";
+                    q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء','ضريبة القيمة المضافة',purchasing_price.Purchasing_Price AS 'سعر الشراء',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=0";
                     da = new MySqlDataAdapter(q, conn);
                     dt = new DataTable();
                     da.Fill(dt);
@@ -182,15 +182,16 @@ namespace MainSystem
                 txtPrice.Text = row1["السعر"].ToString();
                 txtPurchasePrice.Text = row1["سعر الشراء"].ToString();
                 txtNormalIncrease.Text = row1["الزيادة العادية"].ToString();
-                txtDiscount.Text = row1["خصم الشراء"].ToString();
                 txtCategoricalIncrease.Text = row1["الزيادة القطعية"].ToString();
-                txtTotalMeter.Text = row1["اجمالى عدد الامتار"].ToString();
+                txtTotalMeter.Text = row1["متر/قطعة"].ToString();
+                
                 if (txtCategoricalIncrease.Text == "" && txtNormalIncrease.Text == "")
                 {
-                    txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0.00";
+                    txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0";
                 }
                 if (row1["نوع السعر"].ToString() == "لستة")
                 {
+                    txtDiscount.Text = row1["خصم الشراء"].ToString();
                     label7.Text = "خصم الشراء";
                     txtNormalIncrease.Visible = true;
                     txtCategoricalIncrease.Visible = true;
@@ -199,11 +200,16 @@ namespace MainSystem
                 }
                 else if (row1["نوع السعر"].ToString() == "قطعى")
                 {
+                    txtDiscount.Text = row1["نسبة الشراء"].ToString();
                     label7.Text = "نسبة الشراء";
                     txtNormalIncrease.Visible = false;
                     txtCategoricalIncrease.Visible = false;
                     label8.Visible = false;
                     label6.Visible = false;
+                }
+                if (txtDiscount.Text == "")
+                {
+                    txtDiscount.Text = "0";
                 }
                 loaded = true;
             }
@@ -261,20 +267,22 @@ namespace MainSystem
                     {
                         if (row1["سعر الشراء"].ToString() != "")
                         {
-                            if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
+                            if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
                             {
-                                double price, BuyDiscount, NormalIncrease, Categorical_Increase, VAT, quantity;
+                                double price, BuyDiscount, NormalIncrease, CategoricalIncrease, VAT, purchasePrice, quantity;
                                 if (double.TryParse(txtPrice.Text, out price)
                                  &&
                                  double.TryParse(txtDiscount.Text, out BuyDiscount)
                                  &&
                                  double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
                                  &&
-                                 double.TryParse(txtCategoricalIncrease.Text, out Categorical_Increase)
+                                 double.TryParse(txtCategoricalIncrease.Text, out CategoricalIncrease)
                                  &&
                                  double.TryParse(txtTotalMeter.Text, out quantity)
                                  &&
-                                 double.TryParse(txtTax.Text, out VAT))
+                                 double.TryParse(txtTax.Text, out VAT)
+                                 &&
+                                 double.TryParse(txtPurchasePrice.Text, out purchasePrice))
                                 {
                                     conn.Open();
                                     gridView2.AddNewRow();
@@ -287,17 +295,17 @@ namespace MainSystem
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر"], txtPrice.Text);
                                         if (row1["نوع السعر"].ToString() == "لستة")
                                         {
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], txtDiscount.Text);
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], BuyDiscount);
                                         }
                                         else if (row1["نوع السعر"].ToString() == "قطعى")
                                         {
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], txtDiscount.Text);
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], BuyDiscount);
                                         }
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], txtNormalIncrease.Text);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], txtCategoricalIncrease.Text);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], txtTax.Text);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], txtPurchasePrice.Text);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["اجمالى عدد الامتار"], txtTotalMeter.Text);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], CategoricalIncrease);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], purchasePrice);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["PurchasingPrice_ID"], row1["PurchasingPrice_ID"].ToString());
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], row1["نوع السعر"].ToString());
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["Supplier_Permission_Details_ID"], row1["Supplier_Permission_Details_ID"].ToString());
@@ -313,8 +321,8 @@ namespace MainSystem
                                         double totalA = 0;
                                         for (int i = 0; i < gridView2.RowCount; i++)
                                         {
-                                            totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "اجمالى عدد الامتار"));
-                                            totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "اجمالى عدد الامتار"));
+                                            totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                                            totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                                         }
                                         Clear();
                                         row1 = null;
@@ -375,11 +383,11 @@ namespace MainSystem
                     string q = "";
                     if (str == "")
                     {
-                        q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
+                        q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
                     }
                     else
                     {
-                        q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',supplier_permission_details.Total_Meters as 'اجمالى عدد الامتار',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString() + " and supplier_permission_details.Supplier_Permission_Details_ID not in (" + str + ")";
+                        q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'خصم الشراء',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price AS 'سعر الشراء',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString() + " and supplier_permission_details.Supplier_Permission_Details_ID not in (" + str + ")";
                     }
                     MySqlDataAdapter da = new MySqlDataAdapter(q, conn);
                     DataTable dt = new DataTable();
@@ -405,8 +413,8 @@ namespace MainSystem
                     double totalA = 0;
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
-                        totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "اجمالى عدد الامتار"));
-                        totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "اجمالى عدد الامتار"));
+                        totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                        totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                     }
                     labelTotalB.Text = totalB.ToString();
                     labelTotalA.Text = totalA.ToString();
@@ -444,7 +452,7 @@ namespace MainSystem
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = DateTime.Now;
                     com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
-                    com.Parameters["@Import_Permission_Number"].Value = comPermessionNum.SelectedValue.ToString();
+                    com.Parameters["@Import_Permission_Number"].Value = comPermessionNum.Text;
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_ID"].Value = storeId;
                     com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
@@ -497,7 +505,7 @@ namespace MainSystem
 
                         //add to bill_data
 
-                        query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price,Profit_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price,@Profit_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
+                        query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price,Purchasing_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price,@Purchasing_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
                         com = new MySqlCommand(query, conn);
                         com.Parameters.Add("@Bill_ID", MySqlDbType.Int16);
                         com.Parameters["@Bill_ID"].Value = id;
@@ -509,15 +517,15 @@ namespace MainSystem
                         {
                             com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
                             com.Parameters["@Purchasing_Discount"].Value = row3["خصم الشراء"].ToString();
-                            com.Parameters.Add("@Profit_Ratio", MySqlDbType.Decimal);
-                            com.Parameters["@Profit_Ratio"].Value = null;
+                            com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
+                            com.Parameters["@Purchasing_Ratio"].Value = null;
                         }
                         else if (row3["نوع السعر"].ToString() == "قطعى")
                         {
                             com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
                             com.Parameters["@Purchasing_Discount"].Value = null;
-                            com.Parameters.Add("@Profit_Ratio", MySqlDbType.Decimal);
-                            com.Parameters["@Profit_Ratio"].Value = row3["نسبة الشراء"].ToString();
+                            com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
+                            com.Parameters["@Purchasing_Ratio"].Value = row3["نسبة الشراء"].ToString();
                         }
                         com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
                         com.Parameters["@Normal_Increase"].Value = row3["الزيادة العادية"].ToString();
@@ -528,7 +536,7 @@ namespace MainSystem
                         com.Parameters.Add("@Purchasing_Price", MySqlDbType.Decimal);
                         com.Parameters["@Purchasing_Price"].Value = row3["سعر الشراء"].ToString();
                         com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                        com.Parameters["@Total_Meters"].Value = row3["اجمالى عدد الامتار"].ToString();
+                        com.Parameters["@Total_Meters"].Value = row3["متر/قطعة"].ToString();
                         com.Parameters.Add("@Supplier_Permission_Details_ID", MySqlDbType.Int16);
                         com.Parameters["@Supplier_Permission_Details_ID"].Value = row3["Supplier_Permission_Details_ID"].ToString();
 
@@ -635,8 +643,8 @@ namespace MainSystem
         //clear fields
         public void Clear()
         {
-            txtCode.Text = txtPrice.Text = txtCategoricalIncrease.Text = txtDiscount.Text = txtNormalIncrease.Text  = txtTotalMeter.Text = "";
-            txtTax.Text = "0";
+            txtCode.Text = txtPrice.Text = txtTotalMeter.Text = "";
+            txtTax.Text = txtCategoricalIncrease.Text = txtDiscount.Text = txtNormalIncrease.Text = "0";
             labelTotalB.Text = txtPurchasePrice.Text = labelTotalA.Text = "";
         }
 
@@ -648,13 +656,17 @@ namespace MainSystem
             {
                 return price + (price * PurchasesPercent / 100.0);
             }
-            else
+            else if (row1["نوع السعر"].ToString() == "لستة")
             {
                 double NormalPercent = double.Parse(txtNormalIncrease.Text);
                 double unNormalPercent = double.Parse(txtCategoricalIncrease.Text);
                 double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
                 PurchasesPrice = PurchasesPrice + unNormalPercent;
                 return PurchasesPrice;
+            }
+            else
+            {
+                return 0;
             }
         }
         

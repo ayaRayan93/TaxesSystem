@@ -211,7 +211,6 @@
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsPrint.ExpandAllDetails = true;
             this.gridView1.OptionsPrint.PrintDetails = true;
-            this.gridView1.OptionsSelection.MultiSelect = true;
             // 
             // toolTipController1
             // 
@@ -220,14 +219,14 @@
             this.toolTipController1.ShowBeak = true;
             this.toolTipController1.GetActiveObjectInfo += new DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventHandler(this.toolTipController1_GetActiveObjectInfo);
             // 
-            // Customer_Report
+            // Supplier_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "Customer_Report";
+            this.Name = "Supplier_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تقرير العملاء";
             this.Load += new System.EventHandler(this.Delegate_Report_Load);

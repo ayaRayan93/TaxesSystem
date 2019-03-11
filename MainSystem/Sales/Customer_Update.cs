@@ -149,52 +149,59 @@ namespace MainSystem
                 {
                     if (textBox.Text != "")
                     {
-                        dbconnection.Open();
-                        string query = "update customer set Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type , Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Customer_Address"].Value = txtAddress.Text;
-                        com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
-                        com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
-                        com.Parameters.Add("@Customer_Email", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Customer_Email"].Value = txtEmail.Text;
-                        if (txtNationalID.Text != "")
+                        if (txtName.Text != "" && checkedListBoxControlPhone.ItemCount > 0)
                         {
-                            com.Parameters.Add("@Customer_NationalID", MySqlDbType.VarChar, 255);
-                            com.Parameters["@Customer_NationalID"].Value = txtNationalID.Text;
+                            dbconnection.Open();
+                            string query = "update customer set Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type,Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Customer_Address"].Value = txtAddress.Text;
+                            com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
+                            com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
+                            com.Parameters.Add("@Customer_Email", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Customer_Email"].Value = txtEmail.Text;
+                            if (txtNationalID.Text != "")
+                            {
+                                com.Parameters.Add("@Customer_NationalID", MySqlDbType.VarChar, 255);
+                                com.Parameters["@Customer_NationalID"].Value = txtNationalID.Text;
+                            }
+                            else
+                            {
+                                com.Parameters.Add("@Customer_NationalID", MySqlDbType.VarChar, 255);
+                                com.Parameters["@Customer_NationalID"].Value = null;
+                            }
+                            com.Parameters.Add("@Customer_Info", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Customer_Info"].Value = txtINF.Text;
+                            if (Customer_Type != "")
+                            {
+                                com.Parameters.Add("@Customer_Type", MySqlDbType.VarChar, 255);
+                                com.Parameters["@Customer_Type"].Value = Customer_Type;
+                            }
+                            else
+                            {
+                                MessageBox.Show("برجاء اختيار النوع");
+                                dbconnection.Close();
+                                return;
+                            }
+                            com.ExecuteNonQuery();
+                            if (Customer_Type == "عميل" && flag)
+                            {
+                                AddClientToEng_Con();
+                            }
+
+                            UserControl.ItemRecord("customer", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, dbconnection);
+
+                            //MessageBox.Show("تم");
+                            //clear();
+                            // xtraTabPage.ImageOptions.Image = null;
+                            //MainForm.objFormCustomer.search();
+                            mainTabControl.TabPages.Remove(MainForm.MainTabPageUpdateCustomer);
+                            mainTabControl.TabPages.Remove(MainForm.MainTabPageUpdateCustomer2);
                         }
                         else
                         {
-                            com.Parameters.Add("@Customer_NationalID", MySqlDbType.VarChar, 255);
-                            com.Parameters["@Customer_NationalID"].Value = null;
+                            MessageBox.Show("برجاء ادخال البيانات كاملة");
                         }
-                        com.Parameters.Add("@Customer_Info", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Customer_Info"].Value = txtINF.Text;
-                        if (Customer_Type != "")
-                        {
-                            com.Parameters.Add("@Customer_Type", MySqlDbType.VarChar, 255);
-                            com.Parameters["@Customer_Type"].Value = Customer_Type;
-                        }
-                        else
-                        {
-                            MessageBox.Show("برجاء اختيار النوع");
-                            dbconnection.Close();
-                            return;
-                        }
-                        com.ExecuteNonQuery();
-                        if (Customer_Type == "عميل" && flag)
-                        {
-                            AddClientToEng_Con();
-                        }
-                        
-                        UserControl.ItemRecord("customer", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, dbconnection);
-                        
-                        //MessageBox.Show("تم");
-                        //clear();
-                       // xtraTabPage.ImageOptions.Image = null;
-                        //MainForm.objFormCustomer.search();
-                        mainTabControl.TabPages.Remove(MainForm.MainTabPageUpdateCustomer);
-                        mainTabControl.TabPages.Remove(MainForm.MainTabPageUpdateCustomer2);
                     }
                     else
                     {
@@ -322,27 +329,27 @@ namespace MainSystem
 
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (loadedflag)
             {
-                if (loadedflag)
+                try
                 {
                     //if (comEnginner.Text != "")
                     //{
-                        xtraTabPage = getTabPage("تعديل بيانات عميل");
-                        if (!IsClear())
-                        {
-                            xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                        }
-                        else
-                        {
-                            xtraTabPage.ImageOptions.Image = null;
-                        }
+                    xtraTabPage = getTabPage("تعديل بيانات عميل");
+                    if (!IsClear())
+                    {
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                    }
+                    else
+                    {
+                        xtraTabPage.ImageOptions.Image = null;
+                    }
                     //}
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

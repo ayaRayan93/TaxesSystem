@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,8 +67,6 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.radioList = new System.Windows.Forms.RadioButton();
             this.radioQata3y = new System.Windows.Forms.RadioButton();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtPercentageDelegate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCodePart4 = new System.Windows.Forms.TextBox();
             this.txtCodePart5 = new System.Windows.Forms.TextBox();
@@ -274,8 +272,6 @@
             this.panContent.Controls.Add(this.txtPrice);
             this.panContent.Controls.Add(this.radioList);
             this.panContent.Controls.Add(this.radioQata3y);
-            this.panContent.Controls.Add(this.label12);
-            this.panContent.Controls.Add(this.txtPercentageDelegate);
             this.panContent.Controls.Add(this.label6);
             this.panContent.Controls.Add(this.txtCodePart4);
             this.panContent.Controls.Add(this.txtCodePart5);
@@ -360,14 +356,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -603,30 +599,6 @@
             this.radioQata3y.CheckedChanged += new System.EventHandler(this.radioQata3y_CheckedChanged);
             this.radioQata3y.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
-            // label12
-            // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(301, 16);
-            this.label12.Name = "label12";
-            this.label12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label12.Size = new System.Drawing.Size(80, 16);
-            this.label12.TabIndex = 52;
-            this.label12.Text = "نسبة المندوب";
-            // 
-            // txtPercentageDelegate
-            // 
-            this.txtPercentageDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPercentageDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPercentageDelegate.Location = new System.Drawing.Point(197, 12);
-            this.txtPercentageDelegate.Name = "txtPercentageDelegate";
-            this.txtPercentageDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPercentageDelegate.Size = new System.Drawing.Size(98, 24);
-            this.txtPercentageDelegate.TabIndex = 51;
-            this.txtPercentageDelegate.Text = "0";
-            this.txtPercentageDelegate.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -755,8 +727,6 @@
         private System.Windows.Forms.TextBox txtCodePart2;
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtPercentageDelegate;
         private System.Windows.Forms.RadioButton radioList;
         private System.Windows.Forms.RadioButton radioQata3y;
         private System.Windows.Forms.Label label16;

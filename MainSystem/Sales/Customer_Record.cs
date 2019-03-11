@@ -156,10 +156,19 @@ namespace MainSystem
                         {
                             AddClientToEng_Con();
                         }
-                        //MessageBox.Show("تم");
+
+                        query = "SELECT Customer_ID FROM customer ORDER BY Customer_ID DESC LIMIT 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        int id = 0;
+                        if (com.ExecuteScalar() != null)
+                        {
+                            id = (int)com.ExecuteScalar();
+                        }
+
+                        UserControl.ItemRecord("customer", "اضافة", id, DateTime.Now, "", dbconnection);
+                        
                         clear();
                         xtraTabPage.ImageOptions.Image = null;
-                        //MainForm.objFormCustomer.search();
                     }
                     else
                     {

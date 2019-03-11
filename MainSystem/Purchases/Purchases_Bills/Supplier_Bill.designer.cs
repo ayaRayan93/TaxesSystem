@@ -144,6 +144,7 @@
             this.txtCategoricalIncrease.Name = "txtCategoricalIncrease";
             this.txtCategoricalIncrease.Size = new System.Drawing.Size(100, 24);
             this.txtCategoricalIncrease.TabIndex = 12;
+            this.txtCategoricalIncrease.Text = "0";
             this.txtCategoricalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged2);
             // 
             // label7
@@ -165,6 +166,7 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(100, 24);
             this.txtDiscount.TabIndex = 14;
+            this.txtDiscount.Text = "0";
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtBox_TextChanged2);
             // 
             // label8
@@ -186,6 +188,7 @@
             this.txtNormalIncrease.Name = "txtNormalIncrease";
             this.txtNormalIncrease.Size = new System.Drawing.Size(100, 24);
             this.txtNormalIncrease.TabIndex = 16;
+            this.txtNormalIncrease.Text = "0";
             this.txtNormalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged2);
             // 
             // label9

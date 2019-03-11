@@ -639,7 +639,7 @@
             // 
             this.txtRecomendedBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRecomendedBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecomendedBill.Location = new System.Drawing.Point(55, 40);
+            this.txtRecomendedBill.Location = new System.Drawing.Point(59, 9);
             this.txtRecomendedBill.Name = "txtRecomendedBill";
             this.txtRecomendedBill.ReadOnly = true;
             this.txtRecomendedBill.Size = new System.Drawing.Size(155, 23);
@@ -651,7 +651,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(216, 43);
+            this.label1.Location = new System.Drawing.Point(220, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 17);
             this.label1.TabIndex = 137;

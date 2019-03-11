@@ -66,22 +66,15 @@ namespace MainSystem
         {
             try
             {
-                /*int[] rows = (((GridView)gridControl1.MainView).GetSelectedRows());
-                List<DataRowView> recordList = new List<DataRowView>();
-                for (int i = 0; i < rows.Length; i++)
-                {
-                    DataRowView a = (DataRowView)(((GridView)gridControl1.MainView).GetRow(rows[i]));
-                    recordList.Add(a);
-                }
-
-                if (recordList.Count > 0)
+                DataRowView recordList = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+                if (recordList != null)
                 {
                     mainform.bindUpdateSupplierForm(recordList, this);
                 }
                 else
                 {
                     MessageBox.Show("يجب تحديد البند المراد تعديله");
-                }*/
+                }
             }
             catch (Exception ex)
             {
