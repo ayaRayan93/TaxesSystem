@@ -108,6 +108,7 @@
             this.txtCodePart2 = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.panCodeParts = new System.Windows.Forms.Panel();
             this.panContainer.SuspendLayout();
             this.tLPanCpntent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -119,6 +120,7 @@
             this.panContent.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panCodeParts.SuspendLayout();
             this.SuspendLayout();
             // 
             // panContainer
@@ -772,6 +774,7 @@
             // 
             // panContent
             // 
+            this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Controls.Add(this.panel2);
             this.panContent.Controls.Add(this.label20);
             this.panContent.Controls.Add(this.btnDelete);
@@ -795,13 +798,7 @@
             this.panContent.Controls.Add(this.label12);
             this.panContent.Controls.Add(this.txtPercentageDelegate);
             this.panContent.Controls.Add(this.label6);
-            this.panContent.Controls.Add(this.txtCodePart4);
-            this.panContent.Controls.Add(this.txtCodePart5);
-            this.panContent.Controls.Add(this.txtCodePart1);
-            this.panContent.Controls.Add(this.txtCodePart3);
-            this.panContent.Controls.Add(this.txtCodePart2);
             this.panContent.Controls.Add(this.txtCode);
-            this.panContent.Controls.Add(this.label11);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContent.Location = new System.Drawing.Point(3, 480);
             this.panContent.Name = "panContent";
@@ -1161,7 +1158,7 @@
             // 
             this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart4.Location = new System.Drawing.Point(630, 47);
+            this.txtCodePart4.Location = new System.Drawing.Point(243, 5);
             this.txtCodePart4.Name = "txtCodePart4";
             this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart4.TabIndex = 49;
@@ -1171,7 +1168,7 @@
             // 
             this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart5.Location = new System.Drawing.Point(686, 47);
+            this.txtCodePart5.Location = new System.Drawing.Point(299, 5);
             this.txtCodePart5.Name = "txtCodePart5";
             this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart5.TabIndex = 48;
@@ -1181,7 +1178,7 @@
             // 
             this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart1.Location = new System.Drawing.Point(462, 47);
+            this.txtCodePart1.Location = new System.Drawing.Point(75, 5);
             this.txtCodePart1.Name = "txtCodePart1";
             this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart1.TabIndex = 47;
@@ -1191,7 +1188,7 @@
             // 
             this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart3.Location = new System.Drawing.Point(574, 47);
+            this.txtCodePart3.Location = new System.Drawing.Point(187, 5);
             this.txtCodePart3.Name = "txtCodePart3";
             this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart3.TabIndex = 46;
@@ -1201,7 +1198,7 @@
             // 
             this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart2.Location = new System.Drawing.Point(518, 47);
+            this.txtCodePart2.Location = new System.Drawing.Point(131, 5);
             this.txtCodePart2.Name = "txtCodePart2";
             this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart2.TabIndex = 45;
@@ -1222,12 +1219,25 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(745, 50);
+            this.label11.Location = new System.Drawing.Point(358, 8);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(64, 16);
             this.label11.TabIndex = 44;
             this.label11.Text = "كود المنتج";
+            // 
+            // panCodeParts
+            // 
+            this.panCodeParts.Controls.Add(this.txtCodePart2);
+            this.panCodeParts.Controls.Add(this.label11);
+            this.panCodeParts.Controls.Add(this.txtCodePart3);
+            this.panCodeParts.Controls.Add(this.txtCodePart1);
+            this.panCodeParts.Controls.Add(this.txtCodePart5);
+            this.panCodeParts.Controls.Add(this.txtCodePart4);
+            this.panCodeParts.Location = new System.Drawing.Point(379, 44);
+            this.panCodeParts.Name = "panCodeParts";
+            this.panCodeParts.Size = new System.Drawing.Size(459, 34);
+            this.panCodeParts.TabIndex = 145;
             // 
             // SetSellPrice
             // 
@@ -1255,6 +1265,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panCodeParts.ResumeLayout(false);
+            this.panCodeParts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1340,5 +1352,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panCodeParts;
     }
 }
