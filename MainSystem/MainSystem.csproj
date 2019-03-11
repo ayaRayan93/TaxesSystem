@@ -1268,16 +1268,16 @@
     <Compile Include="Sales\ItemDetails.designer.cs">
       <DependentUpon>ItemDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\ProductSellPricesReport.cs">
+    <Compile Include="Sales\sellPrice\ProductSellPricesReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\ProductSellPricesReport.designer.cs">
+    <Compile Include="Sales\sellPrice\ProductSellPricesReport.designer.cs">
       <DependentUpon>ProductSellPricesReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\ProductsSellPriceForm.cs">
+    <Compile Include="Sales\sellPrice\ProductsSellPriceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\ProductsSellPriceForm.Designer.cs">
+    <Compile Include="Sales\sellPrice\ProductsSellPriceForm.Designer.cs">
       <DependentUpon>ProductsSellPriceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Products_Report2Sales.cs">
@@ -1409,23 +1409,17 @@
     <Compile Include="Sales\SpecialOrders_Report2.designer.cs">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\UpdateSellPrice.cs">
+    <Compile Include="Sales\sellPrice\UpdateSellPrice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\UpdateSellPrice.Designer.cs">
+    <Compile Include="Sales\sellPrice\UpdateSellPrice.Designer.cs">
       <DependentUpon>UpdateSellPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\SetSellPrice.cs">
+    <Compile Include="Sales\sellPrice\SetSellPrice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\SetSellPrice.Designer.cs">
+    <Compile Include="Sales\sellPrice\SetSellPrice.Designer.cs">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\UpdateSellPriceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\UpdateSellPriceForm.Designer.cs">
-      <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ShippingSystem.cs" />
     <Compile Include="Shipping\Permission_Report.cs">
@@ -2362,10 +2356,10 @@
     <EmbeddedResource Include="Sales\ItemDetails.resx">
       <DependentUpon>ItemDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\ProductSellPricesReport.resx">
+    <EmbeddedResource Include="Sales\sellPrice\ProductSellPricesReport.resx">
       <DependentUpon>ProductSellPricesReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\ProductsSellPriceForm.resx">
+    <EmbeddedResource Include="Sales\sellPrice\ProductsSellPriceForm.resx">
       <DependentUpon>ProductsSellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
@@ -2431,14 +2425,11 @@
     <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\UpdateSellPrice.resx">
+    <EmbeddedResource Include="Sales\sellPrice\UpdateSellPrice.resx">
       <DependentUpon>UpdateSellPrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\SetSellPrice.resx">
+    <EmbeddedResource Include="Sales\sellPrice\SetSellPrice.resx">
       <DependentUpon>SetSellPrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\UpdateSellPriceForm.resx">
-      <DependentUpon>UpdateSellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Permission_Report.resx">
       <DependentUpon>Permission_Report.cs</DependentUpon>

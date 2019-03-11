@@ -546,7 +546,7 @@ namespace MainSystem
                         com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@CustomerReturnPermission_ID", MySqlDbType.Int16);
-                        com.Parameters["@CustomerReturnPermission_ID"].Value = Billid;
+                        com.Parameters["@CustomerReturnPermission_ID"].Value = CustomerReturnPermission_ID;
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row1[0].ToString();
                         com.Parameters.Add("@Carton", MySqlDbType.Decimal);
@@ -571,7 +571,7 @@ namespace MainSystem
                         listOfData.Add(returnPermissionClass);
 
                     }
-                    ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData,Billid.ToString(), txtClientName.Text, txtPhone.Text, txtReturnReason.Text, dateTimePicker1.Text);
+                    ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData, CustomerReturnPermission_ID.ToString(), txtClientName.Text, txtPhone.Text, txtReturnReason.Text, dateTimePicker1.Text);
                     ReturnCustomerPermissionReport.Show();
        
                     clear();
