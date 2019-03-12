@@ -333,7 +333,7 @@ namespace MainSystem
             {
                 if (loaded && row1 != null)
                 {
-                    if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "0" && txtDiscount.Text != "" && txtNormalIncrease.Text != "0" && txtTax.Text != "")
+                    if (txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "")
                     {
                         double price, BuyDiscount, NormalIncrease, Categorical_Increase, VAT;
                         if (double.TryParse(txtPrice.Text, out price)
@@ -375,9 +375,9 @@ namespace MainSystem
                     {
                         if (Convert.ToDouble(row1["متر/قطعة"].ToString()) > 0)
                         {
-                            if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "0" && txtDiscount.Text != "" && txtNormalIncrease.Text != "0" && txtTax.Text != "" && txtPurchasePrice.Text != "")
+                            if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
                             {
-                                double price, PurchaseDiscount, NormalIncrease, Categorical_Increase, tax, quantity;
+                                double price, PurchaseDiscount, NormalIncrease, Categorical_Increase, tax, purchasePrice, quantity;
                                 if (double.TryParse(txtPrice.Text, out price)
                                  &&
                                  double.TryParse(txtDiscount.Text, out PurchaseDiscount)
@@ -388,7 +388,9 @@ namespace MainSystem
                                  &&
                                  double.TryParse(txtTotalMeter.Text, out quantity)
                                  &&
-                                 double.TryParse(txtTax.Text, out tax))
+                                 double.TryParse(txtTax.Text, out tax)
+                                 &&
+                                 double.TryParse(txtPurchasePrice.Text, out purchasePrice))
                                 {
                                     if (quantity <= Convert.ToDouble(row1["متر/قطعة"].ToString()))
                                     {
@@ -405,15 +407,17 @@ namespace MainSystem
                                             if (row1["خصم الشراء"].ToString() != "")
                                             {
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], PurchaseDiscount);
+                                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
+                                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], Categorical_Increase);
                                             }
                                             else if (row1["نسبة الشراء"].ToString() != "")
                                             {
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], PurchaseDiscount);
+                                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], "");
+                                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], "");
                                             }
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], Categorical_Increase);
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], tax);
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], txtPurchasePrice.Text);
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], purchasePrice);
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
                                             if (row1["BillData_ID"].ToString() != "")
                                             {
@@ -441,8 +445,8 @@ namespace MainSystem
                                             labelTotalA.Text = totalA.ToString();
                                             row1 = null;
                                             rowHandle = -1;
-                                            txtDiscount.Text = txtTotalMeter.Text = txtCode.Text = "";
-                                            txtNormalIncrease.Text = txtCategoricalIncrease.Text = "0";
+                                            txtTotalMeter.Text = txtCode.Text = "";
+                                            txtDiscount.Text = txtNormalIncrease.Text = txtCategoricalIncrease.Text = "0";
                                             txtPrice.Text = txtPurchasePrice.Text = "";
                                             txtTax.Text = "0";
                                         }
@@ -738,13 +742,17 @@ namespace MainSystem
             {
                 return price + (price * PurchasesPercent / 100.0);
             }
-            else
+            else if(row1["خصم الشراء"].ToString() != "")
             {
                 double NormalPercent = double.Parse(txtNormalIncrease.Text);
                 double unNormalPercent = double.Parse(txtCategoricalIncrease.Text);
                 double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
                 PurchasesPrice = PurchasesPrice + unNormalPercent;
                 return PurchasesPrice;
+            }
+            else
+            {
+                return 0;
             }
         }
 
