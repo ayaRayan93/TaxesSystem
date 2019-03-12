@@ -692,37 +692,40 @@ namespace MainSystem
                             DataTable dataTable = (DataTable)gridControl1.DataSource;
                             for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
-                                string query = "INSERT INTO sellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
-                                MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
-                                command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
-                                command.Parameters.AddWithValue("?Price", price);
-                                command.Parameters.AddWithValue("?Last_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Sell_Discount", 0.0);
-                                command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                if (gridView1.IsRowSelected(i))
+                                {
+                                    string query = "INSERT INTO sellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
+                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                    command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
+                                    command.Parameters.AddWithValue("?Price", price);
+                                    command.Parameters.AddWithValue("?Last_Price", calSellPrice());
+                                    command.Parameters.AddWithValue("?Sell_Discount", 0.0);
+                                    command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
 
-                                command.ExecuteNonQuery();
-                                //insert into Archif Table
-                                query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
-                                command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
-                                command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
-                                command.Parameters.AddWithValue("?Price", price);
-                                command.Parameters.AddWithValue("?Last_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Sell_Discount", 0.0);
-                                command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+                                    //insert into Archif Table
+                                    query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                    command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
+                                    command.Parameters.AddWithValue("?Price", price);
+                                    command.Parameters.AddWithValue("?Last_Price", calSellPrice());
+                                    command.Parameters.AddWithValue("?Sell_Discount", 0.0);
+                                    command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
 
-                                command.ExecuteNonQuery();
-                                //insert into additional_increas_sellPrice
-                                insertIntoAdditionalIncrease(ref sellPrice_ID, ref oldSellPrice_ID);
+                                    command.ExecuteNonQuery();
+                                    //insert into additional_increas_sellPrice
+                                    insertIntoAdditionalIncrease(ref sellPrice_ID, ref oldSellPrice_ID);
+                                }
                             }
                         }
                         #endregion
@@ -783,41 +786,44 @@ namespace MainSystem
 
                             sellPrice = sellPrice + unNormalPercent;
                             DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            int[] list = gridView1.GetSelectedRows();
                             for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
-                                //if(gridView1.IsRowSelected())
-                                string query = "INSERT INTO sellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
-                                MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
-                                command.Parameters.AddWithValue("@Price", price); 
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
-                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                                command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                command.ExecuteNonQuery();
+                                if (gridView1.IsRowSelected(i))
+                                {
+                                    string query = "INSERT INTO sellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
+                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                    command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
+                                    command.Parameters.AddWithValue("@Price", price);
+                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                    command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
 
-                                //insert into Archif table
-                                query = "INSERT INTO oldsellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
-                                command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
-                                command.Parameters.AddWithValue("@Price", price);
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
-                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                                command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                command.ExecuteNonQuery();
-                                //insert into additional_increas_sellPrice
-                                insertIntoAdditionalIncrease(ref sellPrice_ID, ref oldSellPrice_ID); 
+                                    //insert into Archif table
+                                    query = "INSERT INTO oldsellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                    command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
+                                    command.Parameters.AddWithValue("@Price", price);
+                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                    command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+                                    //insert into additional_increas_sellPrice
+                                    insertIntoAdditionalIncrease(ref sellPrice_ID, ref oldSellPrice_ID);
+                                }
                             }
                         }
 
@@ -874,8 +880,8 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-                    
-                           
+
+
                         }
                         #endregion
                     }
@@ -1063,7 +1069,7 @@ namespace MainSystem
                 fQuery += "and data.Classification='" + comClassfication.Text + "'";
             }
 
-            string query = "SELECT data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " order by SUBSTR(data.Code,1,16) ,data.Sort_ID ";
+            string query = "SELECT data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID not in (" + getDataIDsWhichHaveSellPrice() + ") " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name ,data.Sort_ID ";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1173,7 +1179,6 @@ namespace MainSystem
             txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
             txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
-
         public void insertIntoAdditionalIncrease(ref int sellPrice_ID, ref  int oldSellPrice_ID)
         {
            
@@ -1212,6 +1217,21 @@ namespace MainSystem
 
             }
         }
-        
+        public string getDataIDsWhichHaveSellPrice()
+        {
+            dbconnection.Open();
+            string query = "select Data_ID from sellprice";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            string DataIDs = "";
+            while (dr.Read())
+            {
+                DataIDs += dr[0].ToString() + ",";
+            }
+            dr.Close();
+            DataIDs += "0";
+            dbconnection.Close();
+            return DataIDs;
+        }
     }
 }
