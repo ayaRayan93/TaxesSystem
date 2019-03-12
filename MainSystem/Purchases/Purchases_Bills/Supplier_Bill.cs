@@ -296,13 +296,15 @@ namespace MainSystem
                                         if (row1["نوع السعر"].ToString() == "لستة")
                                         {
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], BuyDiscount);
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], CategoricalIncrease);
                                         }
                                         else if (row1["نوع السعر"].ToString() == "قطعى")
                                         {
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], BuyDiscount);
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], "");
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], "");
                                         }
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], CategoricalIncrease);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], purchasePrice);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
@@ -519,6 +521,10 @@ namespace MainSystem
                             com.Parameters["@Purchasing_Discount"].Value = row3["خصم الشراء"].ToString();
                             com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
                             com.Parameters["@Purchasing_Ratio"].Value = null;
+                            com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
+                            com.Parameters["@Normal_Increase"].Value = row3["الزيادة العادية"].ToString();
+                            com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
+                            com.Parameters["@Categorical_Increase"].Value = row3["الزيادة القطعية"].ToString();
                         }
                         else if (row3["نوع السعر"].ToString() == "قطعى")
                         {
@@ -526,11 +532,11 @@ namespace MainSystem
                             com.Parameters["@Purchasing_Discount"].Value = null;
                             com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
                             com.Parameters["@Purchasing_Ratio"].Value = row3["نسبة الشراء"].ToString();
+                            com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
+                            com.Parameters["@Normal_Increase"].Value = null;
+                            com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
+                            com.Parameters["@Categorical_Increase"].Value = null;
                         }
-                        com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
-                        com.Parameters["@Normal_Increase"].Value = row3["الزيادة العادية"].ToString();
-                        com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
-                        com.Parameters["@Categorical_Increase"].Value = row3["الزيادة القطعية"].ToString();
                         com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
                         com.Parameters["@Value_Additive_Tax"].Value = row3["ضريبة القيمة المضافة"].ToString();
                         com.Parameters.Add("@Purchasing_Price", MySqlDbType.Decimal);

@@ -206,6 +206,7 @@
             this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalMeter.Location = new System.Drawing.Point(556, 65);
             this.txtTotalMeter.Name = "txtTotalMeter";
+            this.txtTotalMeter.ReadOnly = true;
             this.txtTotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtTotalMeter.Size = new System.Drawing.Size(100, 23);
             this.txtTotalMeter.TabIndex = 52;

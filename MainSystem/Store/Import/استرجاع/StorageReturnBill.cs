@@ -644,6 +644,11 @@ namespace MainSystem
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "");
                             }
                         }
+                        txtCode.Text = "";
+                        txtBalat.Text = "0";
+                        txtCarton.Text = "0";
+                        txtTotalMeter.Text = "0";
+                        txtItemReason.Text = "";
                     }
                     else
                     {
