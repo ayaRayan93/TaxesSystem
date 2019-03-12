@@ -426,10 +426,6 @@
             this.navBarItemSupplierBills = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup44 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierReturn = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup48 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemPurchasesPricesRecord = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup43 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSupplierBills = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupSupplier = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSuppliersReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem206 = new DevExpress.XtraNavBar.NavBarItem();
@@ -3992,11 +3988,10 @@
             // 
             // navBarGroup43
             // 
-            this.navBarGroup44.Caption = "فاتورة مرتجع";
-            this.navBarGroup44.Expanded = true;
-            this.navBarGroup44.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturn)});
-            this.navBarGroup44.Name = "navBarGroup44";
+            this.navBarGroup43.Caption = "فاتورة شراء";
+            this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
+            this.navBarGroup43.Name = "navBarGroup43";
             // 
             // navBarItemSupplierReturn
             // 
@@ -4007,6 +4002,7 @@
             // navBarGroup44
             // 
             this.navBarGroup44.Caption = "فاتورة مرتجع";
+            this.navBarGroup44.Expanded = true;
             this.navBarGroup44.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturn)});
             this.navBarGroup44.Name = "navBarGroup44";
