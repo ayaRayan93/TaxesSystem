@@ -673,7 +673,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtCode.Text != "" || chBoxSelectAll.Checked)
+                if (gridView1.SelectedRowsCount>0)
                 {
                     dbconnection.Open();
                     int sellPrice_ID = 0, oldSellPrice_ID = 0;
@@ -684,7 +684,7 @@ namespace MainSystem
                     if (radioQata3y.Checked == true)
                     {
                         #region set qata3yPrice for list item
-                        if (txtCode.Text == "" && chBoxSelectAll.Checked)
+                        if (gridView1.SelectedRowsCount > 1)
                         {
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double UnNormalPercent = double.Parse(txtUnNormal.Text);
@@ -725,6 +725,7 @@ namespace MainSystem
                                     command.ExecuteNonQuery();
                                     //insert into additional_increas_sellPrice
                                     insertIntoAdditionalIncrease(ref sellPrice_ID, ref oldSellPrice_ID);
+
                                 }
                             }
                         }
@@ -777,7 +778,7 @@ namespace MainSystem
                     else
                     {
                         #region set priceList for collection of items
-                        if (txtCode.Text == "" && chBoxSelectAll.Checked)
+                        if (gridView1.SelectedRowsCount > 1)
                         {
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double unNormalPercent = double.Parse(txtUnNormal.Text);
@@ -909,30 +910,30 @@ namespace MainSystem
         {
             try
             {
-                gridView1.OptionsSelection.MultiSelect = true;
-                if (chBoxSelectAll.Checked)
-                {
-                    gridView1.SelectRows(0, gridView1.RowCount - 1);
-                    txtCode.Text = "";
-                    txtCode.Visible = false;
-                    panCodeParts.Visible = false;
-                    label6.Visible = false;
-                    gridView1.OptionsSelection.MultiSelect = true;
-                    gridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
-                }
-                else
-                {
-                    int selectedRowsCount = gridView1.SelectedRowsCount;
-                    for (int i = 0; i < selectedRowsCount; i++)
-                    {
-                        gridView1.UnselectRow(i);
-                    }
-                    txtCode.Visible = true;
-                    panCodeParts.Visible = true;
-                    label6.Visible = true;
-                    gridView1.OptionsSelection.MultiSelect = false;
-                    gridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.RowSelect;
-                }
+                //gridView1.OptionsSelection.MultiSelect = true;
+                //if (chBoxSelectAll.Checked)
+                //{
+                //    gridView1.SelectRows(0, gridView1.RowCount - 1);
+                //    txtCode.Text = "";
+                //    txtCode.Visible = false;
+                //    panCodeParts.Visible = false;
+                //    label6.Visible = false;
+                //    gridView1.OptionsSelection.MultiSelect = true;
+                //    gridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
+                //}
+                //else
+                //{
+                //    int selectedRowsCount = gridView1.SelectedRowsCount;
+                //    for (int i = 0; i < selectedRowsCount; i++)
+                //    {
+                //        gridView1.UnselectRow(i);
+                //    }
+                //    txtCode.Visible = true;
+                //    panCodeParts.Visible = true;
+                //    label6.Visible = true;
+                //    gridView1.OptionsSelection.MultiSelect = false;
+                //    gridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.RowSelect;
+                //}
             }
             catch (Exception ex)
             {
@@ -964,7 +965,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtCode.Text != ""||chBoxSelectAll.Checked)
+                if (gridView1.SelectedRowsCount > 0)
                 {
                     if (txtDes.Text != "" && txtPlus.Text != "")
                     {
@@ -1010,6 +1011,47 @@ namespace MainSystem
             catch (Exception ex)
             {
 
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (gridView1.SelectedRowsCount == 1)
+                {
+                    txtCode.Visible = true;
+                    panCodeParts.Visible = true;
+                    label6.Visible = true;
+                    DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+                    if (row != null)
+                    {
+                        txtCode.Text = row[1].ToString();
+                        id = Convert.ToInt16(row[0].ToString());
+                        String code = txtCode.Text;
+                        displayCode(code);
+                    }
+                }
+                else if (gridView1.SelectedRowsCount > 1)
+                {
+                    DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+
+                    txtCode.Visible = false;
+                    panCodeParts.Visible = false;
+                    label6.Visible = false;
+                }
+                else
+                {
+                    txtCode.Visible = true;
+                    panCodeParts.Visible = true;
+                    label6.Visible = true;
+                    txtCode.Text = "";
+                    txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
+                    id = 0;
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
@@ -1077,7 +1119,6 @@ namespace MainSystem
             gridView1.Columns[0].Visible = false;
             gridView1.Columns[1].Width = 140;
             fQuery = "";
-            chBoxSelectAll.Checked = false;
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -1233,5 +1274,7 @@ namespace MainSystem
             dbconnection.Close();
             return DataIDs;
         }
+
+      
     }
 }
