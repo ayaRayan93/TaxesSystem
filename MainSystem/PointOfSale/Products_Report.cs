@@ -102,6 +102,17 @@ namespace MainSystem
             panel2.VerticalScroll.Visible = false;
             panel2.VerticalScroll.Maximum = 0;
             panel2.AutoScroll = true;
+
+            layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+            layoutControlItem2.Height = 30;
+            layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+            layoutControlItem3.Height = 80;
+            layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+            layoutControlItem1.Height = 25;
+            layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+            layoutControlItem5.Height = 30;
+            layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+            layoutControlItem6.Height = 40;
         }
 
         private void SearchProduct_Load(object sender, EventArgs e)
@@ -2175,7 +2186,25 @@ namespace MainSystem
             }
         }
 
-    
+        private void labSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+                if (layoutControlItem1.Height == 94)
+                {
+                    layoutControlItem1.Height = 28;
+                }
+                else
+                {
+                    layoutControlItem1.Height = 94;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         public bool IsClear()
         {

@@ -1737,5 +1737,25 @@ namespace MainSystem
                 }
             }
         }
+
+        private void labSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+                if (layoutControlItem2.Height == 94)
+                {
+                    layoutControlItem2.Height = 28;
+                }
+                else
+                {
+                    layoutControlItem2.Height = 94;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
