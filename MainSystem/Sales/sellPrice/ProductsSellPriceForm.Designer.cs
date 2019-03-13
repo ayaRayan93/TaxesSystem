@@ -65,7 +65,6 @@
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -398,7 +397,6 @@
             this.comType.Size = new System.Drawing.Size(139, 24);
             this.comType.TabIndex = 21;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comType.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // comGroup
             // 
@@ -410,7 +408,6 @@
             this.comGroup.Size = new System.Drawing.Size(139, 24);
             this.comGroup.TabIndex = 18;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comGroup.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // txtType
             // 
@@ -420,7 +417,6 @@
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(72, 23);
             this.txtType.TabIndex = 20;
-            this.txtType.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtGroup
@@ -431,7 +427,6 @@
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(72, 23);
             this.txtGroup.TabIndex = 23;
-            this.txtGroup.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comFactory
@@ -444,7 +439,6 @@
             this.comFactory.Size = new System.Drawing.Size(143, 24);
             this.comFactory.TabIndex = 25;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comFactory.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // btnNewChoose
             // 
@@ -491,7 +485,6 @@
             this.comProduct.Size = new System.Drawing.Size(143, 24);
             this.comProduct.TabIndex = 22;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comProduct.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // txtFactory
             // 
@@ -501,7 +494,6 @@
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(78, 23);
             this.txtFactory.TabIndex = 19;
-            this.txtFactory.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtProduct
@@ -512,7 +504,6 @@
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(78, 23);
             this.txtProduct.TabIndex = 24;
-            this.txtProduct.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // tableLayoutPanel4
@@ -531,7 +522,6 @@
             this.tableLayoutPanel4.Controls.Add(this.btnReport, 5, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.chBoxSelectAll, 6, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 608);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -625,20 +615,6 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // chBoxSelectAll
-            // 
-            this.chBoxSelectAll.AutoSize = true;
-            this.chBoxSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chBoxSelectAll.Location = new System.Drawing.Point(184, 3);
-            this.chBoxSelectAll.Name = "chBoxSelectAll";
-            this.chBoxSelectAll.Size = new System.Drawing.Size(82, 47);
-            this.chBoxSelectAll.TabIndex = 5;
-            this.chBoxSelectAll.Text = "تحديد الكل";
-            this.chBoxSelectAll.UseVisualStyleBackColor = true;
-            this.chBoxSelectAll.CheckedChanged += new System.EventHandler(this.chBoxSelectAll_CheckedChanged);
-            // 
             // gridControl1
             // 
             this.gridControl1.Location = new System.Drawing.Point(2, 230);
@@ -663,6 +639,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -692,7 +669,7 @@
             // 
             this.layoutControlItem9.Control = this.gridControl1;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 228);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(104, 24);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(50, 25);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(890, 378);
             this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -740,7 +717,6 @@
             this.panSearchAddtionalTool.ResumeLayout(false);
             this.panSearchAddtionalTool.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -756,8 +732,6 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private System.Windows.Forms.TextBox txtFactory;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.ComboBox comFactory;
         private System.Windows.Forms.TextBox txtProduct;
         private System.Windows.Forms.TextBox txtGroup;
@@ -765,7 +739,6 @@
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.ComboBox comGroup;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
@@ -773,7 +746,6 @@
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private System.Windows.Forms.CheckBox chBoxSelectAll;
         private System.Windows.Forms.Button btnNewChoose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
@@ -796,5 +768,8 @@
         private System.Windows.Forms.ComboBox comSort;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label labSearch;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     }
 }

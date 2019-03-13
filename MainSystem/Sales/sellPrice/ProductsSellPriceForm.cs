@@ -448,7 +448,6 @@ namespace MainSystem
             try
             {
                 displayProducts();
-                chBoxSelectAll.Checked = false;
             }
             catch (Exception ex)
             {
@@ -534,93 +533,36 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                DataRowView row1 = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                if (chBoxSelectAll.Checked)
+              
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    DataTable dataTable = (DataTable)gridControl1.DataSource;
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
                     {
-                        DataTable dataTable = (DataTable)gridControl1.DataSource;
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        if (gridView1.IsRowSelected(i))
                         {
-                            string query = "delete from sellprice where SellPrice_ID='" + dataTable.Rows[i][0].ToString()+"'";
+                            string query = "delete from sellprice where SellPrice_ID='" + dataTable.Rows[i][0].ToString() + "'";
                             MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                          
+
                             comand.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("sellprice", "حذف", Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
-                            dbconnection.Open();
-
+                            UserControl.ItemRecord("sellprice", "حذف", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
+                
                         }
+
                     }
+                }
                    
-                }
-                else if (row1 != null)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        string query = "delete from sellprice where SellPrice_ID='" + row1[0].ToString()+"'";
-                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                     
-                        comand.ExecuteNonQuery();
-
-                        UserControl.ItemRecord("sellprice", "حذف", Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
-
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    { }
-                }
-                else
-                {
-                    MessageBox.Show("you must select an item");
-                }
-
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("you must select an item");
+                MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
-        private void chBoxSelectAll_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                gridView1.OptionsSelection.MultiSelect = true;
-                if (chBoxSelectAll.Checked)
-                {
-                    gridView1.SelectRows(0, gridView1.RowCount - 1);
-                }
-                else
-                {
-                    int selectedRowsCount = gridView1.SelectedRowsCount;
-                    for (int i = 0; i < selectedRowsCount; i++)
-                    {
-                        gridView1.UnselectRow(i);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-        private void comType_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    chBoxSelectAll.Checked = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+       
+     
         private void labSearch_Click(object sender, EventArgs e)
         {
             try
@@ -700,22 +642,21 @@ namespace MainSystem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = null;
-            GridView lView = new GridView(gridControl1);
-            gridControl1.MainView = lView;
-            lView.Appearance.Row.Font = gridView1.Appearance.Row.Font;
-            lView.Appearance.Row.TextOptions.HAlignment = gridView1.Appearance.Row.TextOptions.HAlignment;
-            lView.Appearance.HeaderPanel.Font = gridView1.Appearance.HeaderPanel.Font;
-            lView.OptionsView.ColumnAutoWidth = gridView1.OptionsView.ColumnAutoWidth;
-            lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView1.Appearance.HeaderPanel.TextOptions.HAlignment;
+            //GridView lView = new GridView(gridControl1);
+            //gridControl1.MainView = lView;
+            //lView.Appearance.Row.Font = gridView1.Appearance.Row.Font;
+            //lView.Appearance.Row.TextOptions.HAlignment = gridView1.Appearance.Row.TextOptions.HAlignment;
+            //lView.Appearance.HeaderPanel.Font = gridView1.Appearance.HeaderPanel.Font;
+            //lView.OptionsView.ColumnAutoWidth = gridView1.OptionsView.ColumnAutoWidth;
+            //lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView1.Appearance.HeaderPanel.TextOptions.HAlignment;
+
             gridControl1.DataSource = dt;
-            lView.Columns[0].Visible = false;
-            lView.Columns[1].Width = 140;
+            gridView1.Columns[0].Visible = false;
+            gridView1.Columns[1].Width = 140;
         
             fQuery = "";
-            chBoxSelectAll.Checked = false;
         }
 
-
-      
+       
     }
 }

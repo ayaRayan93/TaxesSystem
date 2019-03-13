@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.labSellPrice = new System.Windows.Forms.Label();
@@ -73,6 +72,13 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panContent = new System.Windows.Forms.Panel();
+            this.panCodeParts = new System.Windows.Forms.Panel();
+            this.txtCodePart2 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCodePart3 = new System.Windows.Forms.TextBox();
+            this.txtCodePart1 = new System.Windows.Forms.TextBox();
+            this.txtCodePart5 = new System.Windows.Forms.TextBox();
+            this.txtCodePart4 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioNormal = new System.Windows.Forms.RadioButton();
             this.radioQata3a = new System.Windows.Forms.RadioButton();
@@ -101,14 +107,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtPercentageDelegate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCodePart4 = new System.Windows.Forms.TextBox();
-            this.txtCodePart5 = new System.Windows.Forms.TextBox();
-            this.txtCodePart1 = new System.Windows.Forms.TextBox();
-            this.txtCodePart3 = new System.Windows.Forms.TextBox();
-            this.txtCodePart2 = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panCodeParts = new System.Windows.Forms.Panel();
             this.panContainer.SuspendLayout();
             this.tLPanCpntent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -118,9 +117,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panContent.SuspendLayout();
+            this.panCodeParts.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panCodeParts.SuspendLayout();
             this.SuspendLayout();
             // 
             // panContainer
@@ -161,7 +160,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.75F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.chBoxSelectAll, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 680);
@@ -192,20 +190,6 @@
             this.btnAdd.Size = new System.Drawing.Size(106, 46);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // chBoxSelectAll
-            // 
-            this.chBoxSelectAll.AutoSize = true;
-            this.chBoxSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chBoxSelectAll.Location = new System.Drawing.Point(3, 3);
-            this.chBoxSelectAll.Name = "chBoxSelectAll";
-            this.chBoxSelectAll.Size = new System.Drawing.Size(390, 48);
-            this.chBoxSelectAll.TabIndex = 6;
-            this.chBoxSelectAll.Text = "تحديد الكل";
-            this.chBoxSelectAll.UseVisualStyleBackColor = true;
-            this.chBoxSelectAll.CheckedChanged += new System.EventHandler(this.chBoxSelectAll_CheckedChanged);
             // 
             // panel1
             // 
@@ -770,7 +754,10 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             // 
             // panContent
             // 
@@ -804,6 +791,81 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(902, 194);
             this.panContent.TabIndex = 42;
+            // 
+            // panCodeParts
+            // 
+            this.panCodeParts.Controls.Add(this.txtCodePart2);
+            this.panCodeParts.Controls.Add(this.label11);
+            this.panCodeParts.Controls.Add(this.txtCodePart3);
+            this.panCodeParts.Controls.Add(this.txtCodePart1);
+            this.panCodeParts.Controls.Add(this.txtCodePart5);
+            this.panCodeParts.Controls.Add(this.txtCodePart4);
+            this.panCodeParts.Location = new System.Drawing.Point(379, 44);
+            this.panCodeParts.Name = "panCodeParts";
+            this.panCodeParts.Size = new System.Drawing.Size(459, 34);
+            this.panCodeParts.TabIndex = 145;
+            // 
+            // txtCodePart2
+            // 
+            this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart2.Location = new System.Drawing.Point(131, 5);
+            this.txtCodePart2.Name = "txtCodePart2";
+            this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart2.TabIndex = 45;
+            this.txtCodePart2.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(358, 8);
+            this.label11.Name = "label11";
+            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label11.Size = new System.Drawing.Size(64, 16);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "كود المنتج";
+            // 
+            // txtCodePart3
+            // 
+            this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart3.Location = new System.Drawing.Point(187, 5);
+            this.txtCodePart3.Name = "txtCodePart3";
+            this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart3.TabIndex = 46;
+            this.txtCodePart3.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtCodePart1
+            // 
+            this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart1.Location = new System.Drawing.Point(75, 5);
+            this.txtCodePart1.Name = "txtCodePart1";
+            this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart1.TabIndex = 47;
+            this.txtCodePart1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtCodePart5
+            // 
+            this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart5.Location = new System.Drawing.Point(299, 5);
+            this.txtCodePart5.Name = "txtCodePart5";
+            this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart5.TabIndex = 48;
+            this.txtCodePart5.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtCodePart4
+            // 
+            this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart4.Location = new System.Drawing.Point(243, 5);
+            this.txtCodePart4.Name = "txtCodePart4";
+            this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart4.TabIndex = 49;
+            this.txtCodePart4.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // panel2
             // 
@@ -875,14 +937,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -1154,56 +1216,6 @@
             this.label6.TabIndex = 50;
             this.label6.Text = "كود المنتج";
             // 
-            // txtCodePart4
-            // 
-            this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart4.Location = new System.Drawing.Point(243, 5);
-            this.txtCodePart4.Name = "txtCodePart4";
-            this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart4.TabIndex = 49;
-            this.txtCodePart4.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart5
-            // 
-            this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart5.Location = new System.Drawing.Point(299, 5);
-            this.txtCodePart5.Name = "txtCodePart5";
-            this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart5.TabIndex = 48;
-            this.txtCodePart5.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart1
-            // 
-            this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart1.Location = new System.Drawing.Point(75, 5);
-            this.txtCodePart1.Name = "txtCodePart1";
-            this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart1.TabIndex = 47;
-            this.txtCodePart1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart3
-            // 
-            this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart3.Location = new System.Drawing.Point(187, 5);
-            this.txtCodePart3.Name = "txtCodePart3";
-            this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart3.TabIndex = 46;
-            this.txtCodePart3.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart2
-            // 
-            this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart2.Location = new System.Drawing.Point(131, 5);
-            this.txtCodePart2.Name = "txtCodePart2";
-            this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart2.TabIndex = 45;
-            this.txtCodePart2.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
             // txtCode
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1213,31 +1225,6 @@
             this.txtCode.Size = new System.Drawing.Size(171, 24);
             this.txtCode.TabIndex = 43;
             this.txtCode.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(358, 8);
-            this.label11.Name = "label11";
-            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label11.Size = new System.Drawing.Size(64, 16);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "كود المنتج";
-            // 
-            // panCodeParts
-            // 
-            this.panCodeParts.Controls.Add(this.txtCodePart2);
-            this.panCodeParts.Controls.Add(this.label11);
-            this.panCodeParts.Controls.Add(this.txtCodePart3);
-            this.panCodeParts.Controls.Add(this.txtCodePart1);
-            this.panCodeParts.Controls.Add(this.txtCodePart5);
-            this.panCodeParts.Controls.Add(this.txtCodePart4);
-            this.panCodeParts.Location = new System.Drawing.Point(379, 44);
-            this.panCodeParts.Name = "panCodeParts";
-            this.panCodeParts.Size = new System.Drawing.Size(459, 34);
-            this.panCodeParts.TabIndex = 145;
             // 
             // SetSellPrice
             // 
@@ -1251,7 +1238,6 @@
             this.panContainer.ResumeLayout(false);
             this.tLPanCpntent.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panHeader.ResumeLayout(false);
@@ -1262,11 +1248,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
+            this.panCodeParts.ResumeLayout(false);
+            this.panCodeParts.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panCodeParts.ResumeLayout(false);
-            this.panCodeParts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1277,7 +1263,6 @@
         private System.Windows.Forms.TableLayoutPanel tLPanCpntent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
-        private System.Windows.Forms.CheckBox chBoxSelectAll;
         private System.Windows.Forms.Panel panHeader;
         private System.Windows.Forms.TextBox txtProduct;
         private System.Windows.Forms.ComboBox comProduct;
