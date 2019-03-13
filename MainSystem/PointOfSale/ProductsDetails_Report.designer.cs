@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
@@ -191,13 +192,13 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 7;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.txtBillNum, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 3, 1);
@@ -218,9 +219,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label2.Location = new System.Drawing.Point(751, 10);
+            this.label2.Location = new System.Drawing.Point(722, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 19);
+            this.label2.Size = new System.Drawing.Size(94, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "الفاتورة";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -228,9 +229,9 @@
             // txtBillNum
             // 
             this.txtBillNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.txtBillNum.Location = new System.Drawing.Point(648, 13);
+            this.txtBillNum.Location = new System.Drawing.Point(615, 13);
             this.txtBillNum.Name = "txtBillNum";
-            this.txtBillNum.Size = new System.Drawing.Size(97, 23);
+            this.txtBillNum.Size = new System.Drawing.Size(101, 23);
             this.txtBillNum.TabIndex = 3;
             this.txtBillNum.TextChanged += new System.EventHandler(this.txtBillNum_TextChanged);
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
@@ -241,9 +242,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label3.Location = new System.Drawing.Point(545, 10);
+            this.label3.Location = new System.Drawing.Point(502, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 19);
+            this.label3.Size = new System.Drawing.Size(94, 19);
             this.label3.TabIndex = 4;
             this.label3.Text = "العميل";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -252,9 +253,9 @@
             // 
             this.comCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.comCustomer.FormattingEnabled = true;
-            this.comCustomer.Location = new System.Drawing.Point(289, 13);
+            this.comCustomer.Location = new System.Drawing.Point(326, 13);
             this.comCustomer.Name = "comCustomer";
-            this.comCustomer.Size = new System.Drawing.Size(250, 24);
+            this.comCustomer.Size = new System.Drawing.Size(170, 24);
             this.comCustomer.TabIndex = 5;
             this.comCustomer.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
             this.comCustomer.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -262,9 +263,9 @@
             // txtClientId
             // 
             this.txtClientId.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtClientId.Location = new System.Drawing.Point(220, 13);
+            this.txtClientId.Location = new System.Drawing.Point(246, 13);
             this.txtClientId.Name = "txtClientId";
-            this.txtClientId.Size = new System.Drawing.Size(60, 23);
+            this.txtClientId.Size = new System.Drawing.Size(70, 23);
             this.txtClientId.TabIndex = 6;
             this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
             // 

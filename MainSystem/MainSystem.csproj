@@ -262,6 +262,12 @@
     <Compile Include="PointOfSale\Customer_Report2.designer.cs">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
     </Compile>
+    <Compile Include="PointOfSale\Products_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\Products_Report.designer.cs">
+      <DependentUpon>Products_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Purchases_Bills\Supplier_Return_Bill2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1098,12 +1104,6 @@
     <Compile Include="PointOfSale\InformationProducts_Report.designer.cs">
       <DependentUpon>InformationProducts_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="PointOfSale\Products_Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PointOfSale\Products_Report.designer.cs">
-      <DependentUpon>Products_Report.cs</DependentUpon>
-    </Compile>
     <Compile Include="PointOfSale\QuantityUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1861,6 +1861,9 @@
     <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\Products_Report.resx">
+      <DependentUpon>Products_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Supplier_Return_Bill2.resx">
       <DependentUpon>Supplier_Return_Bill2.cs</DependentUpon>
     </EmbeddedResource>
@@ -2265,9 +2268,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\InformationProducts_Report.resx">
       <DependentUpon>InformationProducts_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PointOfSale\Products_Report.resx">
-      <DependentUpon>Products_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\QuantityUpdate.resx">
       <DependentUpon>QuantityUpdate.cs</DependentUpon>
