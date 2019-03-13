@@ -30,36 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comStore = new System.Windows.Forms.ComboBox();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.labSearch = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comColor = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comSort = new System.Windows.Forms.ComboBox();
-            this.comOffer = new System.Windows.Forms.ComboBox();
-            this.comSize = new System.Windows.Forms.ComboBox();
-            this.comSet = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
-            this.checkEditSets = new DevExpress.XtraEditors.CheckEdit();
-            this.label6 = new System.Windows.Forms.Label();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -81,27 +52,56 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.labSearch = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comColor = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comSort = new System.Windows.Forms.ComboBox();
+            this.comOffer = new System.Windows.Forms.ComboBox();
+            this.comSize = new System.Windows.Forms.ComboBox();
+            this.comSet = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditSets = new DevExpress.XtraEditors.CheckEdit();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comStore = new System.Windows.Forms.ComboBox();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditOffers.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSets.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditOffers.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSets.Properties)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,147 +114,6 @@
             this.panel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.panel1.Size = new System.Drawing.Size(930, 697);
             this.panel1.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 645);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(926, 50);
-            this.tableLayoutPanel2.TabIndex = 5;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "اضافة";
-            this.btnAdd.Location = new System.Drawing.Point(421, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(86, 42);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl1.Location = new System.Drawing.Point(2, 123);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(926, 484);
-            this.gridControl1.TabIndex = 3;
-            this.gridControl1.ToolTipController = this.toolTipController1;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseForeColor = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsDetail.EnableMasterViewMode = false;
-            this.gridView1.OptionsFind.FindNullPrompt = "بحث";
-            this.gridView1.OptionsFind.ShowClearButton = false;
-            this.gridView1.OptionsFind.ShowFindButton = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.BackColor = System.Drawing.Color.GhostWhite;
-            this.tableLayoutPanel4.ColumnCount = 6;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.label3, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.txtQuantity, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label1, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.comStore, 4, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 611);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(926, 30);
-            this.tableLayoutPanel4.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label3.Location = new System.Drawing.Point(652, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 19);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "الكمية";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtQuantity.Location = new System.Drawing.Point(496, 3);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(150, 23);
-            this.txtQuantity.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label1.Location = new System.Drawing.Point(375, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 19);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "المخزن";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // comStore
-            // 
-            this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(190, 3);
-            this.comStore.Name = "comStore";
-            this.comStore.Size = new System.Drawing.Size(179, 21);
-            this.comStore.TabIndex = 8;
             // 
             // layoutControl1
             // 
@@ -271,223 +130,6 @@
             this.layoutControl1.Size = new System.Drawing.Size(930, 697);
             this.layoutControl1.TabIndex = 8;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem3,
-            this.layoutControlItem4,
-            this.layoutControlItem5,
-            this.layoutControlItem2,
-            this.layoutControlItem1});
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(930, 697);
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.gridControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 121);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(930, 488);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.tableLayoutPanel4;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 609);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(930, 34);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.tableLayoutPanel2;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 643);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(930, 54);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.labSearch);
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.comColor);
-            this.panel4.Controls.Add(this.label8);
-            this.panel4.Controls.Add(this.comSort);
-            this.panel4.Controls.Add(this.comOffer);
-            this.panel4.Controls.Add(this.comSize);
-            this.panel4.Controls.Add(this.comSet);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.checkEditOffers);
-            this.panel4.Controls.Add(this.checkEditSets);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Location = new System.Drawing.Point(2, 90);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(926, 29);
-            this.panel4.TabIndex = 2;
-            // 
-            // labSearch
-            // 
-            this.labSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labSearch.AutoSize = true;
-            this.labSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labSearch.Location = new System.Drawing.Point(412, 5);
-            this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
-            this.labSearch.TabIndex = 158;
-            this.labSearch.Text = "ادوات بحث اضافية";
-            this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label10.Location = new System.Drawing.Point(372, 62);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 19);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "بحث بعرض";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // comColor
-            // 
-            this.comColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comColor.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comColor.FormattingEnabled = true;
-            this.comColor.Location = new System.Drawing.Point(359, 29);
-            this.comColor.Name = "comColor";
-            this.comColor.Size = new System.Drawing.Size(150, 24);
-            this.comColor.TabIndex = 19;
-            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label8.Location = new System.Drawing.Point(824, 62);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 19);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "بحث بطقم";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // comSort
-            // 
-            this.comSort.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSort.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comSort.FormattingEnabled = true;
-            this.comSort.Location = new System.Drawing.Point(144, 29);
-            this.comSort.Name = "comSort";
-            this.comSort.Size = new System.Drawing.Size(150, 24);
-            this.comSort.TabIndex = 17;
-            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // comOffer
-            // 
-            this.comOffer.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comOffer.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comOffer.FormattingEnabled = true;
-            this.comOffer.Location = new System.Drawing.Point(76, 59);
-            this.comOffer.Name = "comOffer";
-            this.comOffer.Size = new System.Drawing.Size(290, 24);
-            this.comOffer.TabIndex = 3;
-            this.comOffer.SelectedValueChanged += new System.EventHandler(this.comOffer_SelectedValueChanged);
-            // 
-            // comSize
-            // 
-            this.comSize.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSize.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comSize.FormattingEnabled = true;
-            this.comSize.Location = new System.Drawing.Point(573, 29);
-            this.comSize.Name = "comSize";
-            this.comSize.Size = new System.Drawing.Size(150, 24);
-            this.comSize.TabIndex = 18;
-            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // comSet
-            // 
-            this.comSet.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSet.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comSet.FormattingEnabled = true;
-            this.comSet.Location = new System.Drawing.Point(528, 59);
-            this.comSet.Name = "comSet";
-            this.comSet.Size = new System.Drawing.Size(290, 24);
-            this.comSet.TabIndex = 2;
-            this.comSet.SelectedValueChanged += new System.EventHandler(this.comSet_SelectedValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label2.Location = new System.Drawing.Point(300, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 19);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "الفرز";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label5.Location = new System.Drawing.Point(515, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 19);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "اللون";
-            // 
-            // checkEditOffers
-            // 
-            this.checkEditOffers.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkEditOffers.Location = new System.Drawing.Point(48, 62);
-            this.checkEditOffers.Name = "checkEditOffers";
-            this.checkEditOffers.Properties.Caption = "";
-            this.checkEditOffers.Size = new System.Drawing.Size(25, 19);
-            this.checkEditOffers.TabIndex = 16;
-            this.checkEditOffers.CheckedChanged += new System.EventHandler(this.checkEditOffers_CheckedChanged);
-            // 
-            // checkEditSets
-            // 
-            this.checkEditSets.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkEditSets.Location = new System.Drawing.Point(500, 62);
-            this.checkEditSets.Name = "checkEditSets";
-            this.checkEditSets.Properties.Caption = "";
-            this.checkEditSets.Size = new System.Drawing.Size(25, 19);
-            this.checkEditSets.TabIndex = 15;
-            this.checkEditSets.CheckedChanged += new System.EventHandler(this.checkEditSets_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label6.Location = new System.Drawing.Point(729, 32);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 19);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "المقاس";
-            // 
-            // layoutControlItem2
-            // 
-            this.layoutControlItem2.Control = this.panel4;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 88);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(930, 33);
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
             // 
             // tableLayoutPanel3
             // 
@@ -764,6 +406,364 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "الصنف";
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.labSearch);
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Controls.Add(this.comColor);
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.comSort);
+            this.panel4.Controls.Add(this.comOffer);
+            this.panel4.Controls.Add(this.comSize);
+            this.panel4.Controls.Add(this.comSet);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.checkEditOffers);
+            this.panel4.Controls.Add(this.checkEditSets);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Location = new System.Drawing.Point(2, 90);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(926, 29);
+            this.panel4.TabIndex = 2;
+            // 
+            // labSearch
+            // 
+            this.labSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labSearch.AutoSize = true;
+            this.labSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labSearch.Location = new System.Drawing.Point(412, 5);
+            this.labSearch.Name = "labSearch";
+            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.TabIndex = 158;
+            this.labSearch.Text = "ادوات بحث اضافية";
+            this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label10.Location = new System.Drawing.Point(372, 62);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 19);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "بحث بعرض";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // comColor
+            // 
+            this.comColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comColor.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comColor.FormattingEnabled = true;
+            this.comColor.Location = new System.Drawing.Point(359, 29);
+            this.comColor.Name = "comColor";
+            this.comColor.Size = new System.Drawing.Size(150, 24);
+            this.comColor.TabIndex = 19;
+            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label8.Location = new System.Drawing.Point(824, 62);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(75, 19);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "بحث بطقم";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // comSort
+            // 
+            this.comSort.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSort.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comSort.FormattingEnabled = true;
+            this.comSort.Location = new System.Drawing.Point(144, 29);
+            this.comSort.Name = "comSort";
+            this.comSort.Size = new System.Drawing.Size(150, 24);
+            this.comSort.TabIndex = 17;
+            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            // 
+            // comOffer
+            // 
+            this.comOffer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comOffer.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comOffer.FormattingEnabled = true;
+            this.comOffer.Location = new System.Drawing.Point(76, 59);
+            this.comOffer.Name = "comOffer";
+            this.comOffer.Size = new System.Drawing.Size(290, 24);
+            this.comOffer.TabIndex = 3;
+            this.comOffer.SelectedValueChanged += new System.EventHandler(this.comOffer_SelectedValueChanged);
+            // 
+            // comSize
+            // 
+            this.comSize.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSize.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comSize.FormattingEnabled = true;
+            this.comSize.Location = new System.Drawing.Point(573, 29);
+            this.comSize.Name = "comSize";
+            this.comSize.Size = new System.Drawing.Size(150, 24);
+            this.comSize.TabIndex = 18;
+            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            // 
+            // comSet
+            // 
+            this.comSet.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSet.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comSet.FormattingEnabled = true;
+            this.comSet.Location = new System.Drawing.Point(528, 59);
+            this.comSet.Name = "comSet";
+            this.comSet.Size = new System.Drawing.Size(290, 24);
+            this.comSet.TabIndex = 2;
+            this.comSet.SelectedValueChanged += new System.EventHandler(this.comSet_SelectedValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label2.Location = new System.Drawing.Point(300, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 19);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "الفرز";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label5.Location = new System.Drawing.Point(515, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 19);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "اللون";
+            // 
+            // checkEditOffers
+            // 
+            this.checkEditOffers.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkEditOffers.Location = new System.Drawing.Point(48, 62);
+            this.checkEditOffers.Name = "checkEditOffers";
+            this.checkEditOffers.Properties.Caption = "";
+            this.checkEditOffers.Size = new System.Drawing.Size(25, 19);
+            this.checkEditOffers.TabIndex = 16;
+            this.checkEditOffers.CheckedChanged += new System.EventHandler(this.checkEditOffers_CheckedChanged);
+            // 
+            // checkEditSets
+            // 
+            this.checkEditSets.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkEditSets.Location = new System.Drawing.Point(500, 62);
+            this.checkEditSets.Name = "checkEditSets";
+            this.checkEditSets.Properties.Caption = "";
+            this.checkEditSets.Size = new System.Drawing.Size(25, 19);
+            this.checkEditSets.TabIndex = 15;
+            this.checkEditSets.CheckedChanged += new System.EventHandler(this.checkEditSets_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label6.Location = new System.Drawing.Point(729, 32);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 19);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "المقاس";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 645);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(926, 50);
+            this.tableLayoutPanel2.TabIndex = 5;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "اضافة";
+            this.btnAdd.Location = new System.Drawing.Point(421, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(86, 42);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.BackColor = System.Drawing.Color.GhostWhite;
+            this.tableLayoutPanel4.ColumnCount = 6;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtQuantity, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label1, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.comStore, 4, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 611);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(926, 30);
+            this.tableLayoutPanel4.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label3.Location = new System.Drawing.Point(652, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 19);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "الكمية";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtQuantity.Location = new System.Drawing.Point(496, 3);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(150, 23);
+            this.txtQuantity.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label1.Location = new System.Drawing.Point(375, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 19);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "المخزن";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // comStore
+            // 
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(190, 3);
+            this.comStore.Name = "comStore";
+            this.comStore.Size = new System.Drawing.Size(179, 21);
+            this.comStore.TabIndex = 8;
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.Location = new System.Drawing.Point(2, 123);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.gridControl1.Size = new System.Drawing.Size(926, 484);
+            this.gridControl1.TabIndex = 3;
+            this.gridControl1.ToolTipController = this.toolTipController1;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsDetail.EnableMasterViewMode = false;
+            this.gridView1.OptionsFind.FindNullPrompt = "بحث";
+            this.gridView1.OptionsFind.ShowClearButton = false;
+            this.gridView1.OptionsFind.ShowFindButton = false;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem3,
+            this.layoutControlItem4,
+            this.layoutControlItem5,
+            this.layoutControlItem2,
+            this.layoutControlItem1});
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(930, 697);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.gridControl1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 121);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(930, 488);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.tableLayoutPanel4;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 609);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(930, 34);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.tableLayoutPanel2;
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 643);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(930, 54);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.panel4;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 88);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(930, 33);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextVisible = false;
+            // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.tableLayoutPanel3;
@@ -788,22 +788,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.SearchProduct_Load);
             this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditOffers.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEditSets.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -812,6 +798,20 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditOffers.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditSets.Properties)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
