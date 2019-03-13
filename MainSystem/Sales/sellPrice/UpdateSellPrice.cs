@@ -54,18 +54,22 @@ namespace MainSystem
                     ids += rows[i][0] + ",";
                 }
                 ids += rows[rows.Count - 1][0];
-                query = "SELECT SellPrice.SellPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',sellprice.Price as 'السعر',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sellprice.ProfitRatio as 'نسبة البيع',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسية المندوب',sellprice.Date as 'التاريخ'   from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   SellPrice.SellPrice_ID in(" + ids + ")";
+                query = "SELECT SellPrice.SellPrice_ID,data.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',sellprice.Price as 'السعر',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sellprice.ProfitRatio as 'نسبة البيع',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسية المندوب'  from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   SellPrice.SellPrice_ID in(" + ids + ")";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 gridControl1.DataSource = dt;
+            
                 gridView1.Columns[0].Visible = false;
-                gridView1.Columns[1].Width = 140;
+                gridView1.Columns[1].Visible = false;
                 gridView1.Columns[2].Width = 200;
-
+                gridView1.Columns[3].Width = 300;
+                gridView1.BestFitColumns();
                 setData((DataRowView)gridView1.GetRow(0));
+                dbconnection.Close();
+                gridView1.SelectAll();
                 load = true;
             }
             catch (Exception ex)
@@ -131,6 +135,7 @@ namespace MainSystem
             {
                 if (chBoxSpecialIncrease.Checked)
                 {
+                    gridView1.SelectAll();
                     tLPanCpntent.RowStyles[1].Height = 200;
                    
                     foreach (Control item in panContent.Controls)
@@ -147,8 +152,6 @@ namespace MainSystem
                         tLPanCpntent.RowStyles[1].Height = 360;
                     else
                         tLPanCpntent.RowStyles[1].Height = 200;
-
-
                     
                     foreach (Control item in panContent.Controls)
                     {
@@ -328,7 +331,7 @@ namespace MainSystem
                                 command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                 command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][1].ToString());
                                 command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("?Price", price);
                                 command.Parameters.AddWithValue("?Last_Price", calSellPrice());
@@ -380,7 +383,7 @@ namespace MainSystem
                                 command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
                                 command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][1].ToString());
                                 command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("@Price", price);
                                 command.Parameters.AddWithValue("@Last_Price", lastPrice());
@@ -612,7 +615,7 @@ namespace MainSystem
                     DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                     if (row != null)
                     {
-                        txtCode.Text = row[1].ToString();
+                        txtCode.Text = row[2].ToString();
                         id = Convert.ToInt16(row[0].ToString());
                         String code = txtCode.Text;
                         displayCode(code);
@@ -652,11 +655,18 @@ namespace MainSystem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
+          
+            gridView1.Columns[0].Visible = false;
+            gridView1.Columns[1].Visible = false;
+            gridView1.Columns[2].Width = 200;
+            gridView1.Columns[3].Width = 300;
+            gridView1.BestFitColumns();
         }
         public void setData(DataRowView row1)
         {
            // txtCode.Text = row1["الكود"].ToString();
             txtPrice.Text = row1["السعر"].ToString();
+            labSellPrice.Text = row1["سعر البيع"].ToString();
             string str = row1["نوع السعر"].ToString();
             if (str == "لستة")
             {
@@ -673,8 +683,10 @@ namespace MainSystem
             string query = "select AdditionalValue,Type,Description from additional_increase_sellprice where SellPrice_ID="+ row1[0].ToString(); ;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
+            dataGridView1.Rows.Clear();
             while (dr.Read())
             {
+                chBoxAdditionalIncrease.Checked = true;
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[0].Value = dr[0].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = dr[1].ToString();
@@ -765,11 +777,10 @@ namespace MainSystem
                 code += "0";
             }
             code += txtBox.Text;
-
-
             txtCode.Text = code;
 
         }
+
         public void displayCode(string code)
         {
             char[] arrCode = code.ToCharArray();
