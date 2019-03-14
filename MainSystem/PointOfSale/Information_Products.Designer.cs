@@ -114,6 +114,7 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.btnNewChosen);
             this.panel2.Controls.Add(this.comColor);
@@ -131,7 +132,7 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.comType);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(176, 3);
+            this.panel2.Location = new System.Drawing.Point(116, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(718, 81);
             this.panel2.TabIndex = 1;
@@ -300,12 +301,12 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label7.Location = new System.Drawing.Point(671, 8);
+            this.label7.Location = new System.Drawing.Point(667, 8);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(31, 19);
+            this.label7.Size = new System.Drawing.Size(41, 19);
             this.label7.TabIndex = 2;
-            this.label7.Text = "نوع";
+            this.label7.Text = "النوع";
             // 
             // comType
             // 

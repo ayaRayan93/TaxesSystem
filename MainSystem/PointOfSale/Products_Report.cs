@@ -2200,13 +2200,13 @@ namespace MainSystem
             try
             {
                 layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
-                if (layoutControlItem1.Height == 94)
+                if (layoutControlItem1.Height == 62)
                 {
                     layoutControlItem1.Height = 28;
                 }
                 else
                 {
-                    layoutControlItem1.Height = 94;
+                    layoutControlItem1.Height = 62;
                 }
             }
             catch (Exception ex)

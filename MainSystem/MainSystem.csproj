@@ -291,12 +291,6 @@
     <Compile Include="Purchases\Purchases_Bills\Supplier_Bill.designer.cs">
       <DependentUpon>Supplier_Bill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\UpdateBillPurchasesPrice.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchases\Purchases_Bills\UpdateBillPurchasesPrice.Designer.cs">
-      <DependentUpon>UpdateBillPurchasesPrice.cs</DependentUpon>
-    </Compile>
     <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1872,9 +1866,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Supplier_Bill.resx">
       <DependentUpon>Supplier_Bill.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\UpdateBillPurchasesPrice.resx">
-      <DependentUpon>UpdateBillPurchasesPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">
       <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
