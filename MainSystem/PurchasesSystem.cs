@@ -160,10 +160,94 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        
+        //Products Purchase price
+        public void bindDisplayProductsPurchasePriceForm(XtraTabPage xtraTabPage)
+        {
+            ProductsPurchasePriceForm objForm = new ProductsPurchasePriceForm(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        //record Purchase price 
+        public void bindRecordPurchasePriceForm(ProductsPurchasePriceForm productsPurchasePriceForm)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اسعار شراء البنود");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تسجيل اسعار شراء البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اسعار شراء البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            SetPurchasePrice objForm = new SetPurchasePrice(productsPurchasePriceForm, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        //update Purchase price 
+        public void bindUpdatePurchasePriceForm(List<DataRowView> rows, ProductsPurchasePriceForm productsPurchasePriceForm, String query)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل اسعار شراء البنود");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تعديل اسعار شراء البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل اسعار شراء البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+            UpdatePurchasePrice objForm = new UpdatePurchasePrice(rows, productsPurchasePriceForm, query, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        //report Purchase price 
+        public void bindReportPurchasePriceForm(GridControl gridControl)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تقرير اسعار شراء البنود");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تقرير اسعار شراء البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تقرير اسعار شراء البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            ProductPurchasePricesReport objForm = new ProductPurchasePricesReport(gridControl);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
 
         public void bindDisplayProductsPurchasesPriceForm(XtraTabPage xtraTabPage)
         {
-            ProductsPurchasesPriceForm objForm = new ProductsPurchasesPriceForm(this);
+            ProductsPurchasePriceForm objForm = new ProductsPurchasePriceForm(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

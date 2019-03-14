@@ -297,6 +297,30 @@
     <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice2.Designer.cs">
       <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchase_Price\ProductPurchasePricesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\ProductPurchasePricesReport.designer.cs">
+      <DependentUpon>ProductPurchasePricesReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\ProductsPurchasePriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\ProductsPurchasePriceForm.Designer.cs">
+      <DependentUpon>ProductsPurchasePriceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\SetPurchasePrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\SetPurchasePrice.Designer.cs">
+      <DependentUpon>SetPurchasePrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\UpdatePurchasePrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchase_Price\UpdatePurchasePrice.Designer.cs">
+      <DependentUpon>UpdatePurchasePrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Supplier\UpdateSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1869,6 +1893,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">
       <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchase_Price\ProductPurchasePricesReport.resx">
+      <DependentUpon>ProductPurchasePricesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchase_Price\ProductsPurchasePriceForm.resx">
+      <DependentUpon>ProductsPurchasePriceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchase_Price\SetPurchasePrice.resx">
+      <DependentUpon>SetPurchasePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchase_Price\UpdatePurchasePrice.resx">
+      <DependentUpon>UpdatePurchasePrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
