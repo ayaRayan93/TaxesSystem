@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -106,6 +106,7 @@
             this.txtCodePart2 = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.panCodeParts = new System.Windows.Forms.Panel();
             this.panContainer.SuspendLayout();
             this.tLPanCpntent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -221,7 +222,7 @@
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label19.Location = new System.Drawing.Point(142, 9);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(76, 19);
+            this.label19.Size = new System.Drawing.Size(78, 19);
             this.label19.TabIndex = 1;
             this.label19.Text = "سعر الشراء";
             // 
@@ -425,7 +426,7 @@
             this.label9.Location = new System.Drawing.Point(625, 41);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 16);
+            this.label9.Size = new System.Drawing.Size(31, 16);
             this.label9.TabIndex = 144;
             this.label9.Text = "الفرز";
             // 
@@ -484,7 +485,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(701, 92);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.Size = new System.Drawing.Size(123, 19);
             this.labSearch.TabIndex = 154;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -770,6 +771,7 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             // 
             // panContent
@@ -802,6 +804,7 @@
             this.panContent.Controls.Add(this.txtCodePart2);
             this.panContent.Controls.Add(this.txtCode);
             this.panContent.Controls.Add(this.label11);
+            this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContent.Location = new System.Drawing.Point(3, 480);
             this.panContent.Name = "panContent";
@@ -841,7 +844,7 @@
             this.radioQata3a.Location = new System.Drawing.Point(36, 5);
             this.radioQata3a.Name = "radioQata3a";
             this.radioQata3a.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioQata3a.Size = new System.Drawing.Size(61, 20);
+            this.radioQata3a.Size = new System.Drawing.Size(62, 20);
             this.radioQata3a.TabIndex = 142;
             this.radioQata3a.Text = "قطعية";
             this.radioQata3a.UseVisualStyleBackColor = true;
@@ -878,14 +881,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -1001,7 +1004,7 @@
             this.label16.Location = new System.Drawing.Point(384, 139);
             this.label16.Name = "label16";
             this.label16.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label16.Size = new System.Drawing.Size(70, 16);
+            this.label16.Size = new System.Drawing.Size(71, 16);
             this.label16.TabIndex = 62;
             this.label16.Text = "زيادة قطعية";
             // 
@@ -1025,7 +1028,7 @@
             this.label15.Location = new System.Drawing.Point(597, 139);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(69, 16);
+            this.label15.Size = new System.Drawing.Size(70, 16);
             this.label15.TabIndex = 60;
             this.label15.Text = "زيادة العادية";
             // 
@@ -1049,7 +1052,7 @@
             this.label14.Location = new System.Drawing.Point(384, 112);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(67, 16);
+            this.label14.Size = new System.Drawing.Size(68, 16);
             this.label14.TabIndex = 58;
             this.label14.Text = "خصم الشراء";
             // 
@@ -1073,7 +1076,7 @@
             this.label13.Location = new System.Drawing.Point(597, 112);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label13.Size = new System.Drawing.Size(36, 16);
+            this.label13.Size = new System.Drawing.Size(38, 16);
             this.label13.TabIndex = 56;
             this.label13.Text = "السعر";
             // 
@@ -1114,7 +1117,7 @@
             this.radioQata3y.Location = new System.Drawing.Point(379, 81);
             this.radioQata3y.Name = "radioQata3y";
             this.radioQata3y.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioQata3y.Size = new System.Drawing.Size(62, 20);
+            this.radioQata3y.Size = new System.Drawing.Size(63, 20);
             this.radioQata3y.TabIndex = 53;
             this.radioQata3y.Text = "قطعي";
             this.radioQata3y.UseVisualStyleBackColor = true;
@@ -1204,6 +1207,13 @@
             this.label11.Size = new System.Drawing.Size(64, 16);
             this.label11.TabIndex = 44;
             this.label11.Text = "كود المنتج";
+            // 
+            // panCodeParts
+            // 
+            this.panCodeParts.Location = new System.Drawing.Point(451, 42);
+            this.panCodeParts.Name = "panCodeParts";
+            this.panCodeParts.Size = new System.Drawing.Size(364, 33);
+            this.panCodeParts.TabIndex = 145;
             // 
             // SetPurchasesPrice
             // 
@@ -1314,5 +1324,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn type;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panCodeParts;
     }
 }
