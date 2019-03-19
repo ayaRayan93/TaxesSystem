@@ -315,6 +315,7 @@
             this.btnNewChosen.TabIndex = 21;
             this.btnNewChosen.Text = "اختيار اخر";
             this.btnNewChosen.UseVisualStyleBackColor = false;
+            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
             // 
             // comColor
             // 
@@ -341,6 +342,7 @@
             this.btnSearch.TabIndex = 13;
             this.btnSearch.Text = "بحث";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // comSize
             // 
