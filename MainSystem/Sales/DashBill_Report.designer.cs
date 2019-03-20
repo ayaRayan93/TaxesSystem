@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class ProductsDetails_Report
+    partial class DashBill_Report
     {
         /// <summary>
         /// Required designer variable.
@@ -40,9 +40,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBillNum = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comCustomer = new System.Windows.Forms.ComboBox();
-            this.txtClientId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -201,9 +198,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.txtBillNum, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 3, 1);
-            this.tableLayoutPanel3.Controls.Add(this.comCustomer, 4, 1);
-            this.tableLayoutPanel3.Controls.Add(this.txtClientId, 5, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -236,50 +230,17 @@
             this.txtBillNum.TextChanged += new System.EventHandler(this.txtBillNum_TextChanged);
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label3.Location = new System.Drawing.Point(502, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 19);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "العميل";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // comCustomer
-            // 
-            this.comCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.comCustomer.FormattingEnabled = true;
-            this.comCustomer.Location = new System.Drawing.Point(326, 13);
-            this.comCustomer.Name = "comCustomer";
-            this.comCustomer.Size = new System.Drawing.Size(170, 24);
-            this.comCustomer.TabIndex = 5;
-            this.comCustomer.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
-            this.comCustomer.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtClientId
-            // 
-            this.txtClientId.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtClientId.Location = new System.Drawing.Point(246, 13);
-            this.txtClientId.Name = "txtClientId";
-            this.txtClientId.Size = new System.Drawing.Size(70, 23);
-            this.txtClientId.TabIndex = 6;
-            this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
-            // 
-            // ProductsDetails_Report
+            // DashBill_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "ProductsDetails_Report";
+            this.Name = "DashBill_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تقرير المندوبين";
-            this.Load += new System.EventHandler(this.Delegate_Report_Load);
+            this.Load += new System.EventHandler(this.DashBill_Report_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -304,8 +265,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBillNum;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comCustomer;
-        private System.Windows.Forms.TextBox txtClientId;
     }
 }
