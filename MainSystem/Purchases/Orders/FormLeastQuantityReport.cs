@@ -9,16 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PurchasesDepartment
+namespace MainSystem
 {
-    public partial class Form1 : Form
+    public partial class FormLeastQuantityReport : Form
     {
         MySqlConnection dconnection;
 
-        public Form1()
+        public FormLeastQuantityReport()
         {
             InitializeComponent();
-            dconnection = new MySqlConnection(connection.ConnectionString);
+            dconnection = new MySqlConnection(connection.connectionString);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -46,9 +46,5 @@ namespace PurchasesDepartment
                 MessageBox.Show(ex.Message);
             }
         }
-    }
-    public static class connection
-    {
-        public static string ConnectionString = "SERVER=192.168.1.200;DATABASE=ccc;user=Devccc;PASSWORD=rootroot;CHARSET=utf8";
     }
 }

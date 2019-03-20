@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderMore
+namespace MainSystem
 {
     public partial class Request_Least : Form
     {
@@ -17,7 +17,7 @@ namespace OrderMore
         public Request_Least()
         {
             InitializeComponent();
-            conn = new MySqlConnection(connection.ConnectionString);
+            conn = new MySqlConnection(connection.connectionString);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -103,10 +103,5 @@ namespace OrderMore
                 conn.Close();
             }
         }
-    }
-
-    public static class connection
-    {
-        public static string ConnectionString = "server=192.168.1.200;database=cccs;user=root;password=root;CHARSET=utf8";
     }
 }

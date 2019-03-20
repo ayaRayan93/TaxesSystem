@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderMore
+namespace MainSystem
 {
     public partial class Request_Least_Delivery : Form
     {
@@ -17,7 +17,7 @@ namespace OrderMore
         public Request_Least_Delivery()
         {
             InitializeComponent();
-            conn = new MySqlConnection(connection.ConnectionString);
+            conn = new MySqlConnection(connection.connectionString);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

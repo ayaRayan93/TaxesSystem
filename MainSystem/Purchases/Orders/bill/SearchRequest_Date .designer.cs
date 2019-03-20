@@ -1,4 +1,4 @@
-﻿namespace CCCRequestsSystem
+﻿namespace MainSystem
 {
     partial class SearchRequest_Date
     {

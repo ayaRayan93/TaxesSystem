@@ -1,6 +1,6 @@
-﻿namespace PurchasesDepartment
+﻿namespace MainSystem
 {
-    partial class Form1
+    partial class FormLeastQuantityReport
     {
         /// <summary>
         /// Required designer variable.

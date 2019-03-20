@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace addLeastQuantity
+namespace MainSystem
 {
     public partial class FormAddLeastQuantity : Form
     {
@@ -17,7 +17,7 @@ namespace addLeastQuantity
         public FormAddLeastQuantity()
         {
             InitializeComponent();
-            conn = new MySqlConnection(connection.ConnectionString);
+            conn = new MySqlConnection(connection.connectionString);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -294,10 +294,5 @@ namespace addLeastQuantity
                 conn.Close();
             }
         }
-    }
-
-    public static class connection
-    {
-        public static string ConnectionString = "server=192.168.1.200;database=ccc;user=Devccc;password=rootroot;CHARSET=utf8";
     }
 }

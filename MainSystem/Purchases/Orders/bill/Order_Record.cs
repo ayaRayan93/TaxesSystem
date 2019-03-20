@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CCCRequestsSystem
+namespace MainSystem
 {
     public partial class Order_Record : Form
     {
@@ -535,10 +535,5 @@ namespace CCCRequestsSystem
             }
             
         }
-    }
-    public static class connection
-    {
-        public static string connectionString = "SERVER=192.168.1.200;DATABASE=testprice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
-      //public static string connectionString = "SERVER=localhost;DATABASE=ccc;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

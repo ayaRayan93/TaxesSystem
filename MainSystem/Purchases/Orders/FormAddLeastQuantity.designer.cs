@@ -1,4 +1,4 @@
-﻿namespace addLeastQuantity
+﻿namespace MainSystem
 {
     partial class FormAddLeastQuantity
     {
