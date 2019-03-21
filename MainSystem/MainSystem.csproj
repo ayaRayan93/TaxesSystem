@@ -292,17 +292,17 @@
     <Compile Include="Purchases\Orders\bill\SearchRequest_Date .designer.cs">
       <DependentUpon>SearchRequest_Date .cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\FormAddLeastQuantity.cs">
+    <Compile Include="Purchases\Orders\LeastQuantityRecord.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\FormAddLeastQuantity.designer.cs">
-      <DependentUpon>FormAddLeastQuantity.cs</DependentUpon>
+    <Compile Include="Purchases\Orders\LeastQuantityRecord.designer.cs">
+      <DependentUpon>LeastQuantityRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\FormLeastQuantityReport.cs">
+    <Compile Include="Purchases\Orders\LeastQuantityReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\FormLeastQuantityReport.designer.cs">
-      <DependentUpon>FormLeastQuantityReport.cs</DependentUpon>
+    <Compile Include="Purchases\Orders\LeastQuantityReport.designer.cs">
+      <DependentUpon>LeastQuantityReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Orders\Request_Least.cs">
       <SubType>Form</SubType>
@@ -1668,11 +1668,11 @@
     <Compile Include="Store\Gate\Permissions_Edit.Designer.cs">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Import\Confirm_Print\StorageConfirm.cs">
+    <Compile Include="Store\Import\Confirm_Print\StorageConfirmX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Import\Confirm_Print\StorageConfirm.designer.cs">
-      <DependentUpon>StorageConfirm.cs</DependentUpon>
+    <Compile Include="Store\Import\Confirm_Print\StorageConfirmX.designer.cs">
+      <DependentUpon>StorageConfirmX.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\DataHelperClass2.cs" />
     <Compile Include="Store\Import\استرجاع\Print_StorageReturn.cs">
@@ -1954,11 +1954,11 @@
     <EmbeddedResource Include="Purchases\Orders\bill\SearchRequest_Date .resx">
       <DependentUpon>SearchRequest_Date .cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\FormAddLeastQuantity.resx">
-      <DependentUpon>FormAddLeastQuantity.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Orders\LeastQuantityRecord.resx">
+      <DependentUpon>LeastQuantityRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\FormLeastQuantityReport.resx">
-      <DependentUpon>FormLeastQuantityReport.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Orders\LeastQuantityReport.resx">
+      <DependentUpon>LeastQuantityReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\Request_Least.resx">
       <DependentUpon>Request_Least.cs</DependentUpon>
@@ -2629,8 +2629,8 @@
     <EmbeddedResource Include="Store\Gate\Permissions_Edit.resx">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Import\Confirm_Print\StorageConfirm.resx">
-      <DependentUpon>StorageConfirm.cs</DependentUpon>
+    <EmbeddedResource Include="Store\Import\Confirm_Print\StorageConfirmX.resx">
+      <DependentUpon>StorageConfirmX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Print_StorageReturn.resx">
       <DependentUpon>Print_StorageReturn.cs</DependentUpon>
@@ -3025,6 +3025,7 @@
   <ItemGroup>
     <Content Include="Car_Service.ico" />
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_Electricity_32.png" />
     <None Include="Resources\Branch.txt" />
     <None Include="Resources\IP_Address.txt" />
     <None Include="Resources\Sign-Up.png" />

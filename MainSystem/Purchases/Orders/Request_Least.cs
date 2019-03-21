@@ -50,7 +50,7 @@ namespace MainSystem
 
                     adpt.Fill(dset);
 
-                    dataGridView1.DataSource = dset.Tables[0];
+                    //dataGridView1.DataSource = dset.Tables[0];
 
                 }
                 conn.Close();
@@ -66,9 +66,9 @@ namespace MainSystem
         {
             try
             {
-                DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                /*DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                 string code = row.Cells[0].Value.ToString();
-                txtCode.Text = code;
+                txtCode.Text = code;*/
             }
             catch (Exception ex)
             {

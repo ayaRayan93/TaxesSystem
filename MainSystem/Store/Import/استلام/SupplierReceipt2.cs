@@ -883,6 +883,11 @@ namespace MainSystem
                     string query = "select Store_Name from store where Store_ID=" + storeId;
                     MySqlCommand com = new MySqlCommand(query, conn);
                     string storeName = com.ExecuteScalar().ToString();
+                    
+                    string q = "update storage_import_permission set Confirmed=0 where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
+                    MySqlCommand c = new MySqlCommand(q, conn);
+                    c.ExecuteNonQuery();
+                    flagConfirm = 0;
                     conn.Close();
 
                     double carton = 0;
@@ -952,12 +957,6 @@ namespace MainSystem
                     Report_SupplierReceipt f = new Report_SupplierReceipt();
                     f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, bi);
                     f.ShowDialog();
-
-                    conn.Open();
-                    string q = "update storage_import_permission set Confirmed=0 where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
-                    MySqlCommand c = new MySqlCommand(q, conn);
-                    c.ExecuteNonQuery();
-                    flagConfirm = 0;
                 }
                 else
                 {

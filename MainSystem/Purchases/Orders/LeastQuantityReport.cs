@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class FormLeastQuantityReport : Form
+    public partial class LeastQuantityReport : Form
     {
         MySqlConnection dconnection;
 
-        public FormLeastQuantityReport()
+        public LeastQuantityReport()
         {
             InitializeComponent();
             dconnection = new MySqlConnection(connection.connectionString);
@@ -30,21 +30,26 @@ namespace MainSystem
         {
             try
             {
-                string query = "SELECT data.Code,SUM(storage.Total_Meters),data.Least_Quantity FROM data INNER JOIN storage ON data.Code = storage.Code group by storage.Code having (SUM(storage.Total_Meters) <= data.Least_Quantity=1)";
+                string query = "SELECT data.Code,SUM(storage.Total_Meters),least_offer.Least_Quantity FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1)";
                 dconnection.Open();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    dataGridView1.DataSource = dt;
+                    gridControl1.DataSource = dt;
                 }
-                dconnection.Close();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dconnection.Close();
+        }
+
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+
         }
     }
 }
