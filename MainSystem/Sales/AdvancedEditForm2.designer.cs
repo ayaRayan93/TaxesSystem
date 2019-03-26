@@ -234,12 +234,12 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(761, 15);
+            this.label1.Location = new System.Drawing.Point(757, 15);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(26, 17);
+            this.label1.Size = new System.Drawing.Size(34, 17);
             this.label1.TabIndex = 2;
-            this.label1.Text = "نوع";
+            this.label1.Text = "النوع";
             // 
             // comProduct
             // 

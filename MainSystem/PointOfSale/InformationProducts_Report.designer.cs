@@ -182,6 +182,7 @@
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(728, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -227,7 +228,7 @@
             // 
             this.txtCodeSearch1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCodeSearch1.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCodeSearch1.Location = new System.Drawing.Point(239, 3);
+            this.txtCodeSearch1.Location = new System.Drawing.Point(3, 3);
             this.txtCodeSearch1.Name = "txtCodeSearch1";
             this.txtCodeSearch1.Size = new System.Drawing.Size(56, 23);
             this.txtCodeSearch1.TabIndex = 135;
@@ -238,7 +239,7 @@
             // 
             this.txtCodeSearch2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCodeSearch2.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCodeSearch2.Location = new System.Drawing.Point(180, 3);
+            this.txtCodeSearch2.Location = new System.Drawing.Point(65, 3);
             this.txtCodeSearch2.Name = "txtCodeSearch2";
             this.txtCodeSearch2.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch2.TabIndex = 136;
@@ -249,7 +250,7 @@
             // 
             this.txtCodeSearch3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCodeSearch3.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCodeSearch3.Location = new System.Drawing.Point(121, 3);
+            this.txtCodeSearch3.Location = new System.Drawing.Point(124, 3);
             this.txtCodeSearch3.Name = "txtCodeSearch3";
             this.txtCodeSearch3.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch3.TabIndex = 137;
@@ -260,7 +261,7 @@
             // 
             this.txtCodeSearch4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCodeSearch4.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCodeSearch4.Location = new System.Drawing.Point(62, 3);
+            this.txtCodeSearch4.Location = new System.Drawing.Point(183, 3);
             this.txtCodeSearch4.Name = "txtCodeSearch4";
             this.txtCodeSearch4.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch4.TabIndex = 138;
@@ -271,7 +272,7 @@
             // 
             this.txtCodeSearch5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCodeSearch5.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCodeSearch5.Location = new System.Drawing.Point(3, 3);
+            this.txtCodeSearch5.Location = new System.Drawing.Point(242, 3);
             this.txtCodeSearch5.Name = "txtCodeSearch5";
             this.txtCodeSearch5.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch5.TabIndex = 139;

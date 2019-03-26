@@ -311,7 +311,7 @@ namespace MainSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.
+        ///   Looks up a localized string similar to 2.
         /// </summary>
         internal static string Branch {
             get {
@@ -645,6 +645,16 @@ namespace MainSystem.Properties {
         internal static System.Drawing.Bitmap icons8_Download_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Download_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Electricity_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Electricity_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

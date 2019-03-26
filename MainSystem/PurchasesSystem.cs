@@ -24,19 +24,62 @@ namespace MainSystem
     {
   
         public static XtraTabControl tabControlPurchases;
-        
+        public static LeastQuantityReport leastQuantityReport;
+
+        Timer Purchasetimer = new Timer();
+        bool purchaseFlag = false;
+
         public void PurchasesMainForm()
         {
             try
             {
-                
+                LeastQuantityFunction();
+
+                //Calculate the time of the actual work of the delegates
+                timer.Interval = 1000 * 60;
+                timer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
+                timer.Start();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void pictureBoxPurcaseLeast_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    if (purchaseFlag == false)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, PurchasesTP);
+                        purchaseFlag = true;
+                    }
+                    xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض البنود المطلوبة");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض البنود المطلوبة");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض البنود المطلوبة");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplayLeastQuantityReport(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemPurchasesPricesRecord_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -161,9 +204,135 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemLeastQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اقل كمية للبنود");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("تسجيل اقل كمية للبنود");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اقل كمية للبنود");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplayLeastQuantityForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void bindDisplayLeastQuantityReport(XtraTabPage xtraTabPage)
+        {
+            leastQuantityReport = new LeastQuantityReport();
+            leastQuantityReport.TopLevel = false;
+
+            xtraTabPage.Controls.Add(leastQuantityReport);
+            leastQuantityReport.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            leastQuantityReport.Dock = DockStyle.Fill;
+            leastQuantityReport.Show();
+        }
+
+        //Products Purchase price
+        public void bindDisplayProductsPurchasePriceForm(XtraTabPage xtraTabPage)
+        {
+            ProductsPurchasePriceForm objForm = new ProductsPurchasePriceForm(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        //record Purchase price 
+        public void bindRecordPurchasePriceForm(ProductsPurchasePriceForm productsPurchasePriceForm)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اسعار شراء البنود");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تسجيل اسعار شراء البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اسعار شراء البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            SetPurchasePrice objForm = new SetPurchasePrice(productsPurchasePriceForm, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        //update Purchase price 
+        public void bindUpdatePurchasePriceForm(List<DataRowView> rows, ProductsPurchasePriceForm productsPurchasePriceForm, String query)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل اسعار شراء البنود");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تعديل اسعار شراء البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل اسعار شراء البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+            UpdatePurchasePrice objForm = new UpdatePurchasePrice(rows, productsPurchasePriceForm, query, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        //report Purchase price 
+        public void bindReportPurchasePriceForm(GridControl gridControl)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تقرير اسعار شراء البنود");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تقرير اسعار شراء البنود");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تقرير اسعار شراء البنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            ProductPurchasePricesReport objForm = new ProductPurchasePricesReport(gridControl);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
         public void bindDisplayProductsPurchasesPriceForm(XtraTabPage xtraTabPage)
         {
-            ProductsPurchasesPriceForm objForm = new ProductsPurchasesPriceForm(this);
+            ProductsPurchasePriceForm objForm = new ProductsPurchasePriceForm(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
@@ -341,6 +510,53 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
+        }
+
+        public void bindDisplayLeastQuantityForm(XtraTabPage xtraTabPage)
+        {
+            LeastQuantityRecord objForm = new LeastQuantityRecord(this, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void GetNonRequestedLeastQuantity(object sender, EventArgs e)
+        {
+            try
+            {
+                LeastQuantityFunction();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        public void LeastQuantityFunction()
+        {
+            dbconnection.Close();
+            string query = "SELECT Count(least_offer.ID),least_offer.Least_Quantity FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1)";
+            MySqlCommand command = new MySqlCommand(query, dbconnection);
+            dbconnection.Open();
+            MySqlDataReader dr = command.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    labelPurcaseLeast.Text = dr[0].ToString();
+                    labelPurcaseLeast.Visible = true;
+                }
+                dr.Close();
+            }
+            else
+            {
+                labelPurcaseLeast.Text = "0";
+                labelPurcaseLeast.Visible = true;
+            }
         }
 
         /*public void bindUpdateBillPurchasesPriceForm(DataRow rows)
