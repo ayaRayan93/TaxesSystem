@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chBoxSpecialIncrease = new System.Windows.Forms.CheckBox();
-            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
@@ -42,6 +41,10 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panContent = new System.Windows.Forms.Panel();
+            this.checkBoxNormalIncrease = new System.Windows.Forms.CheckBox();
+            this.checkBoxPrice = new System.Windows.Forms.CheckBox();
+            this.checkBoxUnNormalIncrease = new System.Windows.Forms.CheckBox();
+            this.checkBoxPurchasesDiscount = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioNormal = new System.Windows.Forms.RadioButton();
@@ -75,6 +78,7 @@
             this.txtCodePart2 = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.panCodeParts = new System.Windows.Forms.Panel();
             this.panContainer.SuspendLayout();
             this.tLPanCpntent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -85,6 +89,7 @@
             this.panContent.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panCodeParts.SuspendLayout();
             this.SuspendLayout();
             // 
             // panContainer
@@ -137,7 +142,6 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.chBoxSpecialIncrease);
-            this.panel3.Controls.Add(this.chBoxSelectAll);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
@@ -156,19 +160,6 @@
             this.chBoxSpecialIncrease.Text = "زيادة خاصة علي كل البنود";
             this.chBoxSpecialIncrease.UseVisualStyleBackColor = true;
             this.chBoxSpecialIncrease.CheckedChanged += new System.EventHandler(this.chBoxSpecialIncrease_CheckedChanged);
-            // 
-            // chBoxSelectAll
-            // 
-            this.chBoxSelectAll.AutoSize = true;
-            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chBoxSelectAll.Location = new System.Drawing.Point(270, 11);
-            this.chBoxSelectAll.Name = "chBoxSelectAll";
-            this.chBoxSelectAll.Size = new System.Drawing.Size(81, 20);
-            this.chBoxSelectAll.TabIndex = 6;
-            this.chBoxSelectAll.Text = "تحديد الكل";
-            this.chBoxSelectAll.UseVisualStyleBackColor = true;
-            this.chBoxSelectAll.CheckedChanged += new System.EventHandler(this.chBoxSelectAll_CheckedChanged);
             // 
             // btnAdd
             // 
@@ -209,7 +200,7 @@
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label19.Location = new System.Drawing.Point(142, 9);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(76, 19);
+            this.label19.Size = new System.Drawing.Size(78, 19);
             this.label19.TabIndex = 1;
             this.label19.Text = "سعر الشراء";
             // 
@@ -249,9 +240,18 @@
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             // 
             // panContent
             // 
+            this.panContent.Controls.Add(this.checkBoxNormalIncrease);
+            this.panContent.Controls.Add(this.checkBoxPrice);
+            this.panContent.Controls.Add(this.checkBoxUnNormalIncrease);
+            this.panContent.Controls.Add(this.checkBoxPurchasesDiscount);
             this.panContent.Controls.Add(this.label20);
             this.panContent.Controls.Add(this.panel2);
             this.panContent.Controls.Add(this.btnDelete);
@@ -273,18 +273,53 @@
             this.panContent.Controls.Add(this.radioList);
             this.panContent.Controls.Add(this.radioQata3y);
             this.panContent.Controls.Add(this.label6);
-            this.panContent.Controls.Add(this.txtCodePart4);
-            this.panContent.Controls.Add(this.txtCodePart5);
-            this.panContent.Controls.Add(this.txtCodePart1);
-            this.panContent.Controls.Add(this.txtCodePart3);
-            this.panContent.Controls.Add(this.txtCodePart2);
             this.panContent.Controls.Add(this.txtCode);
-            this.panContent.Controls.Add(this.label11);
+            this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContent.Location = new System.Drawing.Point(3, 480);
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(902, 194);
             this.panContent.TabIndex = 42;
+            // 
+            // checkBoxNormalIncrease
+            // 
+            this.checkBoxNormalIncrease.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxNormalIncrease.AutoSize = true;
+            this.checkBoxNormalIncrease.Location = new System.Drawing.Point(472, 140);
+            this.checkBoxNormalIncrease.Name = "checkBoxNormalIncrease";
+            this.checkBoxNormalIncrease.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxNormalIncrease.TabIndex = 150;
+            this.checkBoxNormalIncrease.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPrice
+            // 
+            this.checkBoxPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxPrice.AutoSize = true;
+            this.checkBoxPrice.Location = new System.Drawing.Point(472, 112);
+            this.checkBoxPrice.Name = "checkBoxPrice";
+            this.checkBoxPrice.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxPrice.TabIndex = 149;
+            this.checkBoxPrice.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxUnNormalIncrease
+            // 
+            this.checkBoxUnNormalIncrease.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxUnNormalIncrease.AutoSize = true;
+            this.checkBoxUnNormalIncrease.Location = new System.Drawing.Point(252, 142);
+            this.checkBoxUnNormalIncrease.Name = "checkBoxUnNormalIncrease";
+            this.checkBoxUnNormalIncrease.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxUnNormalIncrease.TabIndex = 148;
+            this.checkBoxUnNormalIncrease.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPurchasesDiscount
+            // 
+            this.checkBoxPurchasesDiscount.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxPurchasesDiscount.AutoSize = true;
+            this.checkBoxPurchasesDiscount.Location = new System.Drawing.Point(252, 114);
+            this.checkBoxPurchasesDiscount.Name = "checkBoxPurchasesDiscount";
+            this.checkBoxPurchasesDiscount.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxPurchasesDiscount.TabIndex = 147;
+            this.checkBoxPurchasesDiscount.UseVisualStyleBackColor = true;
             // 
             // label20
             // 
@@ -331,7 +366,7 @@
             this.radioQata3a.Location = new System.Drawing.Point(36, 5);
             this.radioQata3a.Name = "radioQata3a";
             this.radioQata3a.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioQata3a.Size = new System.Drawing.Size(61, 20);
+            this.radioQata3a.Size = new System.Drawing.Size(62, 20);
             this.radioQata3a.TabIndex = 142;
             this.radioQata3a.Text = "قطعية";
             this.radioQata3a.UseVisualStyleBackColor = true;
@@ -356,14 +391,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -479,7 +514,7 @@
             this.label16.Location = new System.Drawing.Point(384, 140);
             this.label16.Name = "label16";
             this.label16.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label16.Size = new System.Drawing.Size(70, 16);
+            this.label16.Size = new System.Drawing.Size(71, 16);
             this.label16.TabIndex = 62;
             this.label16.Text = "زيادة قطعية";
             // 
@@ -503,7 +538,7 @@
             this.label15.Location = new System.Drawing.Point(597, 140);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(69, 16);
+            this.label15.Size = new System.Drawing.Size(70, 16);
             this.label15.TabIndex = 60;
             this.label15.Text = "زيادة العادية";
             // 
@@ -527,7 +562,7 @@
             this.label14.Location = new System.Drawing.Point(384, 112);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(67, 16);
+            this.label14.Size = new System.Drawing.Size(68, 16);
             this.label14.TabIndex = 58;
             this.label14.Text = "خصم الشراء";
             // 
@@ -551,7 +586,7 @@
             this.label13.Location = new System.Drawing.Point(597, 112);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label13.Size = new System.Drawing.Size(36, 16);
+            this.label13.Size = new System.Drawing.Size(38, 16);
             this.label13.TabIndex = 56;
             this.label13.Text = "السعر";
             // 
@@ -592,7 +627,7 @@
             this.radioQata3y.Location = new System.Drawing.Point(379, 82);
             this.radioQata3y.Name = "radioQata3y";
             this.radioQata3y.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioQata3y.Size = new System.Drawing.Size(62, 20);
+            this.radioQata3y.Size = new System.Drawing.Size(63, 20);
             this.radioQata3y.TabIndex = 53;
             this.radioQata3y.Text = "قطعي";
             this.radioQata3y.UseVisualStyleBackColor = true;
@@ -615,7 +650,7 @@
             // 
             this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart4.Location = new System.Drawing.Point(630, 47);
+            this.txtCodePart4.Location = new System.Drawing.Point(204, 6);
             this.txtCodePart4.Name = "txtCodePart4";
             this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart4.TabIndex = 49;
@@ -625,7 +660,7 @@
             // 
             this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart5.Location = new System.Drawing.Point(686, 47);
+            this.txtCodePart5.Location = new System.Drawing.Point(260, 6);
             this.txtCodePart5.Name = "txtCodePart5";
             this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart5.TabIndex = 48;
@@ -635,7 +670,7 @@
             // 
             this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart1.Location = new System.Drawing.Point(462, 47);
+            this.txtCodePart1.Location = new System.Drawing.Point(36, 6);
             this.txtCodePart1.Name = "txtCodePart1";
             this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart1.TabIndex = 47;
@@ -645,7 +680,7 @@
             // 
             this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart3.Location = new System.Drawing.Point(574, 47);
+            this.txtCodePart3.Location = new System.Drawing.Point(148, 6);
             this.txtCodePart3.Name = "txtCodePart3";
             this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart3.TabIndex = 46;
@@ -655,7 +690,7 @@
             // 
             this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart2.Location = new System.Drawing.Point(518, 47);
+            this.txtCodePart2.Location = new System.Drawing.Point(92, 6);
             this.txtCodePart2.Name = "txtCodePart2";
             this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart2.TabIndex = 45;
@@ -676,12 +711,25 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(745, 51);
+            this.label11.Location = new System.Drawing.Point(319, 10);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(64, 16);
             this.label11.TabIndex = 44;
             this.label11.Text = "كود المنتج";
+            // 
+            // panCodeParts
+            // 
+            this.panCodeParts.Controls.Add(this.txtCodePart4);
+            this.panCodeParts.Controls.Add(this.label11);
+            this.panCodeParts.Controls.Add(this.txtCodePart2);
+            this.panCodeParts.Controls.Add(this.txtCodePart3);
+            this.panCodeParts.Controls.Add(this.txtCodePart1);
+            this.panCodeParts.Controls.Add(this.txtCodePart5);
+            this.panCodeParts.Location = new System.Drawing.Point(379, 42);
+            this.panCodeParts.Name = "panCodeParts";
+            this.panCodeParts.Size = new System.Drawing.Size(412, 39);
+            this.panCodeParts.TabIndex = 151;
             // 
             // UpdatePurchasesPrice
             // 
@@ -706,6 +754,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panCodeParts.ResumeLayout(false);
+            this.panCodeParts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -748,7 +798,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label labPurchasesPrice;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.CheckBox chBoxSelectAll;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton radioNormal;
         private System.Windows.Forms.RadioButton radioQata3a;
@@ -758,5 +807,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox chBoxSpecialIncrease;
+        private System.Windows.Forms.CheckBox checkBoxNormalIncrease;
+        private System.Windows.Forms.CheckBox checkBoxPrice;
+        private System.Windows.Forms.CheckBox checkBoxUnNormalIncrease;
+        private System.Windows.Forms.CheckBox checkBoxPurchasesDiscount;
+        private System.Windows.Forms.Panel panCodeParts;
     }
 }

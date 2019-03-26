@@ -1714,6 +1714,7 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
                                 displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
                             }
+
                             UserControl.ItemRecord("product", "اضافة", id , DateTime.Now,"", dbconnection);
                          
                             txtProduct.Text = "";
@@ -2140,35 +2141,68 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
 
-                            int FactoryID = 0;
-                            for (int j = 0; j < listFactory_Group.Count; j++)
+                            query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue;
+                            com = new MySqlCommand(query, dbconnection);
+                            int TypeCoding_Method = (int)com.ExecuteScalar();
+                            if (TypeCoding_Method == 1)
                             {
-                                FactoryID = listFactory_Group[j].Factory_ID;
-                                factory_Group mfactory_Group = new factory_Group();
-                                foreach (factory_Group item in listFactory_Group)
-                                {
-                                    if (item.Factory_ID == FactoryID)
-                                    {
-                                        mfactory_Group = item;
-                                        break;
-                                    }
-                                }
                                 int Group_ID = 0;
-                                for (int i = 0; i < mfactory_Group.Factory_GroupsID.Count; i++)
+                                for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                                 {
-                                    Group_ID = mfactory_Group.Factory_GroupsID[i];
-                                    query = "insert into product_factory_Group (Product_ID,Group_ID,Factory_ID) values (@Product_ID,@Group_ID,@Factory_ID)";
+                                    Group_ID = Convert.ToInt16(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
+                                    query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                     com.Parameters["@Product_ID"].Value = productUpdateId;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
-                                    com.Parameters.AddWithValue("@Factory_ID", FactoryID);
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
 
                                     com.ExecuteNonQuery();
                                 }
+                                displayProduct_Group(Group_ID);
                             }
-                             
+                            else
+                            {
+                                query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.AddWithValue("@Product_ID", productUpdateId);
+                                com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(comGroup.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+
+                                com.ExecuteNonQuery();
+                                displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
+                            }
+
+                            //int FactoryID = 0;
+                            //for (int j = 0; j < listFactory_Group.Count; j++)
+                            //{
+                            //    FactoryID = listFactory_Group[j].Factory_ID;
+                            //    factory_Group mfactory_Group = new factory_Group();
+                            //    foreach (factory_Group item in listFactory_Group)
+                            //    {
+                            //        if (item.Factory_ID == FactoryID)
+                            //        {
+                            //            mfactory_Group = item;
+                            //            break;
+                            //        }
+                            //    }
+                            //    int Group_ID = 0;
+                            //    for (int i = 0; i < mfactory_Group.Factory_GroupsID.Count; i++)
+                            //    {
+                            //        Group_ID = mfactory_Group.Factory_GroupsID[i];
+                            //        query = "insert into product_factory_Group (Product_ID,Group_ID,Factory_ID) values (@Product_ID,@Group_ID,@Factory_ID)";
+                            //        com = new MySqlCommand(query, dbconnection);
+                            //        com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
+                            //        com.Parameters["@Product_ID"].Value = productUpdateId;
+                            //        com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
+                            //        com.Parameters["@Group_ID"].Value = Group_ID;
+                            //        com.Parameters.AddWithValue("@Factory_ID", FactoryID);
+
+                            //        com.ExecuteNonQuery();
+                            //    }
+                            //}
+
                             UserControl.ItemRecord("product", "تعديل", id , DateTime.Now,"", dbconnection);
 
                             txtProduct.Text = "";

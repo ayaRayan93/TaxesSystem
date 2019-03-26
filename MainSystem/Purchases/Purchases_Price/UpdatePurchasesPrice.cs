@@ -22,7 +22,10 @@ namespace MainSystem
         customPanel customPanel;
         bool load = false;
         int id = 0;
-        String query = "";
+        String query = "", updateType= "NormalCase";
+
+        double Price = -1, ProfitRatio = -1, Purchase_Discount = -1, Normal_Increase = -1, Categorical_Increase = -1;
+
         public UpdatePurchasesPrice(List<DataRowView> rows, ProductsPurchasesPriceForm productsPurchasesPriceForm, string query, XtraTabControl xtraTabControlSalesContent)
         {
             try
@@ -54,18 +57,25 @@ namespace MainSystem
                     ids += rows[i][0] + ",";
                 }
                 ids += rows[rows.Count - 1][0];
-                query = "SELECT purchasing_price.PurchasingPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',purchasing_price.Price as 'السعر',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Price as 'سعر الشراء',purchasing_price.Date as 'التاريخ' from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   purchasing_price.PurchasingPrice_ID in(" + ids + ")";
+                query = "SELECT purchasing_price.PurchasingPrice_ID,purchasing_price.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',purchasing_price.Price as 'السعر',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الاضافة',purchasing_price.Purchasing_Price as 'سعر الشراء' from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   purchasing_price.PurchasingPrice_ID in(" + ids + ")";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 gridControl1.DataSource = dt;
+                gridView1.BestFitColumns();
                 gridView1.Columns[0].Visible = false;
-                gridView1.Columns[1].Width = 140;
-                gridView1.Columns[2].Width = 200;
+                gridView1.Columns[1].Visible = false;
+                //gridView1.Columns[1].Width = 140;
+                //gridView1.Columns[2].Width = 200;
 
                 setData((DataRowView)gridView1.GetRow(0));
+                gridView1.SelectAll();
+                checkBoxPurchasesDiscount.Checked = true;
+                checkBoxPrice.Checked = true;
+                checkBoxNormalIncrease.Checked = true;
+                checkBoxUnNormalIncrease.Checked = true;
                 load = true;
             }
             catch (Exception ex)
@@ -103,6 +113,9 @@ namespace MainSystem
                 txtUnNormal.Visible = true;
                 label15.Visible = true;
                 label16.Visible = true;
+                checkBoxNormalIncrease.Visible = true;
+                checkBoxUnNormalIncrease.Visible = true;
+             
             }
             catch (Exception ex)
             {
@@ -113,12 +126,14 @@ namespace MainSystem
         {
             try
             {
-                label14.Text = "نسبة الشراء";
+                label14.Text = "نسبة الاضافة";
                 txtNormal.Visible = false;
                 txtUnNormal.Visible = false;
                 label15.Visible = false;
                 label16.Visible = false;
-
+                checkBoxNormalIncrease.Visible = false;
+                checkBoxUnNormalIncrease.Visible = false;
+          
             }
             catch (Exception ex)
             {
@@ -165,6 +180,7 @@ namespace MainSystem
             }
         }
         //main events
+
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
             TextBox txtBox = (TextBox)sender;
@@ -294,88 +310,307 @@ namespace MainSystem
                 dbconnection.Open();
                 if (!chBoxSpecialIncrease.Checked)
                 {
-                    double price = double.Parse(txtPrice.Text);
-                    double PurchasesPercent = double.Parse(txtPurchases.Text);
-
-                    if (radioQata3y.Checked == true)
+                    chackUpdateType();
+                    if (updateType == "NormalCase")
                     {
-                        #region set qata3yPrice for list item
+                        #region 
+                        double price = double.Parse(txtPrice.Text);
+                        double PurchasesPercent = double.Parse(txtPurchases.Text);
 
-                        double NormalPercent = double.Parse(txtNormal.Text);
-                        double UnNormalPercent = double.Parse(txtUnNormal.Text);
-
-                        DataTable dataTable = (DataTable)gridControl1.DataSource;
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        if (radioQata3y.Checked == true)
                         {
-                            String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price where PurchasingPrice_ID=" + dataTable.Rows[i][0].ToString();
+                            #region set qata3yPrice for list item
 
-                            MySqlCommand command = new MySqlCommand(query, dbconnection);
-                            command.Parameters.AddWithValue("@Price_Type", "قطعى");
-                            command.Parameters.AddWithValue("@Purchasing_Price", price + (price * PurchasesPercent / 100.0));
-                            command.Parameters.AddWithValue("@ProfitRatio", PurchasesPercent);
-                            command.Parameters.AddWithValue("@Purchasing_Discount", 0.00);
-                            command.Parameters.AddWithValue("@Price", price);
-                            command.Parameters.AddWithValue("@Normal_Increase", 0.00);
-                            command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
-                            command.ExecuteNonQuery();
+                            double NormalPercent = double.Parse(txtNormal.Text);
+                            double UnNormalPercent = double.Parse(txtUnNormal.Text);
+
+                            DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            {
+                                additionalIncreasePurchasesPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
+
+                                String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price where PurchasingPrice_ID=" + dataTable.Rows[i][0].ToString();
+
+                                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("@Purchasing_Price", price + (price * PurchasesPercent / 100.0));
+                                command.Parameters.AddWithValue("@ProfitRatio", PurchasesPercent);
+                                command.Parameters.AddWithValue("@Purchasing_Discount", 0.00);
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                                command.ExecuteNonQuery();
+                             
+                                //insert into Archif table
+                                query = "INSERT INTO oldpurchasing_price (Price_Type,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date,ProfitRatio) VALUES (?Price_Type,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date,@ProfitRatio)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("@Data_ID", Convert.ToInt16(dataTable.Rows[i][1].ToString()));
+                                command.Parameters.AddWithValue("@ProfitRatio", PurchasesPercent);
+                                command.Parameters.AddWithValue("@Purchasing_Discount", 0.00);
+                                command.Parameters.AddWithValue("@Price", Price);
+                                command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                additionalIncreaseOldPurchasesPrice();
+
+
+
+                            }
+
+                            #endregion
                         }
+                        else
+                        {
+                            #region set priceList for collection of items
 
+                            double NormalPercent = double.Parse(txtNormal.Text);
+                            double unNormalPercent = double.Parse(txtUnNormal.Text);
+
+                            double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
+
+                            PurchasesPrice = PurchasesPrice + unNormalPercent;
+
+                            DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            {
+                                additionalIncreasePurchasesPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
+
+                                string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase where PurchasingPrice_ID =" + dataTable.Rows[i][0].ToString();
+
+                                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Purchasing_Price", PurchasesPrice);
+                                command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.ExecuteNonQuery();
+                                
+                                //insert into Archif table
+                                query = "INSERT INTO oldpurchasing_price (Price_Type,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date,ProfitRatio) VALUES (?Price_Type,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date,@ProfitRatio)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Purchasing_Price", PurchasesPrice);
+                                command.Parameters.AddWithValue("@Data_ID", Convert.ToInt16(dataTable.Rows[i][1].ToString()));
+                                command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("@Price", Price);
+                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                additionalIncreaseOldPurchasesPrice();
+                            }
+
+                            #endregion
+                        } 
                         #endregion
+
                     }
                     else
                     {
-                        #region set priceList for collection of items
-
-                        double NormalPercent = double.Parse(txtNormal.Text);
-                        double unNormalPercent = double.Parse(txtUnNormal.Text);
-
-                        double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
-
-                        PurchasesPrice = PurchasesPrice + unNormalPercent;
-
-                        DataTable dataTable = (DataTable)gridControl1.DataSource;
-                        for (int i = 0; i < dataTable.Rows.Count; i++)
+                        #region unIdeal case of update
+                        resetValues();
+                        setValues();
+                        if (radioQata3y.Checked == true)
                         {
-                            string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase where PurchasingPrice_ID =" + dataTable.Rows[i][0].ToString();
+                            #region set qata3yPrice for list item
 
-                            MySqlCommand command = new MySqlCommand(query, dbconnection);
-                            command.Parameters.AddWithValue("@Price_Type", "لستة");
-                            command.Parameters.AddWithValue("@Purchasing_Price", PurchasesPrice);
-                            command.Parameters.AddWithValue("@ProfitRatio", 0.00);
-                            command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
-                            command.Parameters.AddWithValue("@Price", price);
-                            command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                            command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                            command.ExecuteNonQuery();
+                            double NormalPercent = double.Parse(txtNormal.Text);
+                            double UnNormalPercent = double.Parse(txtUnNormal.Text);
+
+                            DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            {
+                                if (gridView1.IsRowSelected(i))
+                                {
+                                    additionalIncreasePurchasesPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
+
+                                    String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price,Date=@Date where PurchasingPrice_ID=" + dataTable.Rows[i][0].ToString();
+
+                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                    if (Price != -1 && ProfitRatio != -1)
+                                    {
+                                        command.Parameters.AddWithValue("@Purchasing_Price", Price + (Price * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", Price);
+                                    }
+                                    else if (Price == -1 && ProfitRatio != -1)
+                                    {
+                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
+                                        command.Parameters.AddWithValue("@Purchasing_Price", xPrice + (xPrice * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", xPrice);
+                                    }
+                                    else if (Price != -1 && ProfitRatio == -1)
+                                    {
+                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
+                                        command.Parameters.AddWithValue("@Purchasing_Price", Price + (Price * xProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", Price);
+                                    }
+                                    else if (Price == -1 && ProfitRatio == -1)
+                                    {
+                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
+                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
+                                        command.Parameters.AddWithValue("@Purchasing_Price", xPrice + (xPrice * xProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", xPrice);
+                                    }
+                                    command.Parameters.AddWithValue("@Purchasing_Discount", 0.00);
+                                    command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                    command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                               
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+                                    
+                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
+
+                                    //insert into Archif Table
+                                    query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price,Date,Normal_Increase,Categorical_Increase) VALUES(@Purchasing_Discount,@Price_Type,@Purchasing_Price,@ProfitRatio,@Data_ID,@Price,@Last_Price,@Date,@Normal_Increase,@Categorical_Increase)";
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                    command.Parameters.AddWithValue("@Data_ID", dataTable.Rows[i][1]);
+                                    if (Price != -1 && ProfitRatio != -1)
+                                    {
+                                        command.Parameters.AddWithValue("@Purchasing_Price", Price + (Price * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", Price);
+                                    }
+                                    else if (Price == -1 && ProfitRatio != -1)
+                                    {
+                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
+                                        command.Parameters.AddWithValue("@Purchasing_Price", xPrice + (xPrice * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", xPrice);
+                                    }
+                                    else if (Price != -1 && ProfitRatio == -1)
+                                    {
+                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
+                                        command.Parameters.AddWithValue("@Purchasing_Price", Price + (Price * xProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", Price);
+                                    }
+                                    else if (Price == -1 && ProfitRatio == -1)
+                                    {
+                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
+                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
+                                        command.Parameters.AddWithValue("@Purchasing_Price", xPrice + (xPrice * xProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                        command.Parameters.AddWithValue("@Price", xPrice);
+                                    }
+                                    command.Parameters.AddWithValue("@Purchasing_Discount", 0.00);
+                                    command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                    command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                                 
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+
+                                    command.ExecuteNonQuery();
+                                    additionalIncreaseOldPurchasesPrice();
+                                }
+                            }
+
+                            #endregion
                         }
+                        else
+                        {
+                            #region set priceList for collection of items
 
+                            DataTable dataTable = (DataTable)gridControl1.DataSource;
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            {
+                                if (gridView1.IsRowSelected(i))
+                                {
+                                    additionalIncreasePurchasesPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
+
+                                    string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Purchasing_Price=@Purchasing_Price*/"Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Date=@Date where PurchasingPrice_ID =" + dataTable.Rows[i][0].ToString();
+
+                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                    command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                    if (Purchase_Discount != -1)
+                                    {
+                                        command.Parameters.AddWithValue("@Purchasing_Discount", Purchase_Discount);
+                                    }
+                                    else
+                                    {
+                                        command.Parameters.AddWithValue("@Purchasing_Discount", Convert.ToDouble(dataTable.Rows[i]["خصم الشراء"]));
+                                    }
+                                    if (Price != -1)
+                                        command.Parameters.AddWithValue("@Price", Price);
+                                    else
+                                        command.Parameters.AddWithValue("@Price", Convert.ToDouble(dataTable.Rows[i]["السعر"]));
+                                    
+                                    if (Normal_Increase != -1)
+                                        command.Parameters.AddWithValue("@Normal_Increase", Normal_Increase);
+                                    else
+                                        command.Parameters.AddWithValue("@Normal_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة العادية"]));
+                                    if (Categorical_Increase != -1)
+                                        command.Parameters.AddWithValue("@Categorical_Increase", Categorical_Increase);
+                                    else
+                                        command.Parameters.AddWithValue("@Categorical_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة القطعية"]));
+
+                                 
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+
+                                  
+                                    UserControl.ItemRecord("purchasing_price", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
+
+                                    //insert into Archif table
+                                    query = "INSERT INTO oldpurchasing_price (Price_Type,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date,ProfitRatio) VALUES (?Price_Type,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date,@ProfitRatio)";
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                    command.Parameters.AddWithValue("@Data_ID",Convert.ToInt16(dataTable.Rows[i][1].ToString()));
+
+                                    command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                    if (Purchase_Discount != -1)
+                                    {
+                                        command.Parameters.AddWithValue("@Purchasing_Discount", Purchase_Discount);
+                                    }
+                                    else
+                                    {
+                                        command.Parameters.AddWithValue("@Purchasing_Discount", Convert.ToDouble(dataTable.Rows[i]["خصم الشراء"]));
+                                    }
+                                    if (Price != -1)
+                                        command.Parameters.AddWithValue("@Price", Price);
+                                    else
+                                        command.Parameters.AddWithValue("@Price", Convert.ToDouble(dataTable.Rows[i]["السعر"]));
+
+                                    if (Normal_Increase != -1)
+                                        command.Parameters.AddWithValue("@Normal_Increase", Normal_Increase);
+                                    else
+                                        command.Parameters.AddWithValue("@Normal_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة العادية"]));
+                                    if (Categorical_Increase != -1)
+                                        command.Parameters.AddWithValue("@Categorical_Increase", Categorical_Increase);
+                                    else
+                                        command.Parameters.AddWithValue("@Categorical_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة القطعية"]));
+
+                             
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+                                    additionalIncreaseOldPurchasesPrice();
+                                }
+                            }
+
+                            #endregion
+                        }
                         #endregion
                     }
-                    int PurchasesPrice_ID = 0;
-                    string queryx = "select PurchasingPrice_ID from purchasing_price order by PurchasingPrice_ID desc limit 1";
-                    MySqlCommand com = new MySqlCommand(queryx, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        PurchasesPrice_ID = Convert.ToInt16(com.ExecuteScalar());
-                    }
-
-                    queryx = "delete from additional_increase_purchasingprice where PurchasingPrice_ID=" + PurchasesPrice_ID;
-                    com = new MySqlCommand(queryx, dbconnection);
-                    com.ExecuteNonQuery();
-
-                    foreach (DataGridViewRow item in dataGridView1.Rows)
-                    {
-                        double addational = Convert.ToDouble(item.Cells[0].Value);
-                        queryx = "insert into additional_increase_purchasingprice (PurchasingPrice_ID,AdditionalValue,Type,Description) values (@PurchasingPrice_ID,@AdditionalValue,@Type,@Description)";
-                        com = new MySqlCommand(queryx, dbconnection);
-                        com.Parameters.AddWithValue("@PurchasingPrice_ID", PurchasesPrice_ID);
-                        com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
-                        com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
-                        com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
-                        com.ExecuteNonQuery();
-
-                    }
-                    UserControl.ItemRecord("purchasing_price", "تعديل", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
                 }
                 else
                 {
@@ -397,13 +632,13 @@ namespace MainSystem
                         String query = "update purchasing_price set Purchasing_Price=@Purchasing_Price where PurchasingPrice_ID=" + item[0].ToString();
 
                         MySqlCommand command = new MySqlCommand(query, dbconnection);
-                        command.Parameters.AddWithValue("@Purchasing_Price", Convert.ToDouble(item["سعر الشراء"])+addationalValue);           
+                        command.Parameters.AddWithValue("@Purchasing_Price", Convert.ToDouble(item["سعر الشراء"]) + addationalValue);
                         command.ExecuteNonQuery();
 
                         foreach (DataGridViewRow item1 in DataGridView.Rows)
                         {
                             double addational = Convert.ToDouble(item1.Cells[0].Value);
-                            string  queryx = "insert into special_increase_purchasing (PurchasingPrice_ID,Value,Description,Date) values (@PurchasingPrice_ID,@Value,@Description,@Date)";
+                            string queryx = "insert into special_increase_purchasing (PurchasingPrice_ID,Value,Description,Date) values (@PurchasingPrice_ID,@Value,@Description,@Date)";
                             MySqlCommand com = new MySqlCommand(queryx, dbconnection);
                             com.Parameters.AddWithValue("@PurchasingPrice_ID", item[0]);
                             com.Parameters.AddWithValue("@Value", item1.Cells[0].Value);
@@ -415,10 +650,11 @@ namespace MainSystem
                     }
                 }
                 displayData();
-                productsPurchasesPriceForm.displayProducts();
-
-                XtraTabPage xtraTabPage = getTabPage("تعديل اسعار البنود");
-                xtraTabPage.ImageOptions.Image = null;
+              //  productsPurchasesPriceForm.displayProducts();
+                MessageBox.Show("تم");
+                gridView1.SelectAll();
+                //XtraTabPage xtraTabPage = getTabPage("تعديل اسعار البنود");
+                //xtraTabPage.ImageOptions.Image = null;
 
             }
             catch (Exception ex)
@@ -427,29 +663,61 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        private void chBoxSelectAll_CheckedChanged(object sender, EventArgs e)
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             try
             {
-                gridView1.OptionsSelection.MultiSelect = true;
-                if (chBoxSelectAll.Checked)
+                dbconnection.Close();
+                dbconnection.Open();
+                if (gridView1.SelectedRowsCount == 1)
                 {
-                    gridView1.SelectRows(0, gridView1.RowCount - 1);
+                    txtCode.Visible = true;
+                    panCodeParts.Visible = true;
+                    label6.Visible = true;
+                    DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+                    if (row != null)
+                    {
+                        txtCode.Text = row[2].ToString();
+                        id = Convert.ToInt16(row[0].ToString());
+                        String code = txtCode.Text;
+                        displayCode(code);
+                        setData(row);
+                        label19.Visible = true;
+                        labPurchasesPrice.Visible = true;
+                    }
+                }
+                else if (gridView1.SelectedRowsCount > 1)
+                {
+                    DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+
+                    txtCode.Visible = false;
+                    panCodeParts.Visible = false;
+                    label6.Visible = false;
+                    setData(row);
+                    label19.Visible = false;
+                    labPurchasesPrice.Text = "";
+                    labPurchasesPrice.Visible = false;
                 }
                 else
                 {
-                    int selectedRowsCount = gridView1.SelectedRowsCount;
-                    for (int i = 0; i < selectedRowsCount; i++)
-                    {
-                        gridView1.UnselectRow(i);
-                    }
+                    txtCode.Visible = true;
+                    panCodeParts.Visible = true;
+                    label6.Visible = true;
+                    txtCode.Text = "";
+                    txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
+                    id = 0;
+                    label19.Visible = true;
+                    labPurchasesPrice.Text = "";
+                    labPurchasesPrice.Visible = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
+
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -475,7 +743,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtCode.Text != "" || chBoxSelectAll.Checked)
+                if (gridView1.SelectedRowsCount>0)
                 {
                     if (txtDes.Text != "" && txtPlus.Text != "")
                     {
@@ -532,6 +800,7 @@ namespace MainSystem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
+            gridView1.BestFitColumns();
         }
         public void setData(DataRowView row1)
         {
@@ -547,9 +816,10 @@ namespace MainSystem
             }
             else
             {
-                txtPurchases.Text = row1["نسبة الشراء"].ToString();
+                txtPurchases.Text = row1["نسبة الاضافة"].ToString();
                 radioQata3y.Checked = true;
             }
+            dataGridView1.Rows.Clear();
             string query = "select AdditionalValue,Type,Description from additional_increase_purchasingprice where PurchasingPrice_ID=" + row1[0].ToString(); ;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -562,7 +832,8 @@ namespace MainSystem
 
             }
             dr.Close();
-            calPurchasesPrice();
+            displayCode(txtCode.Text);
+            labPurchasesPrice.Text= calPurchasesPrice().ToString();
 
         }
         public XtraTabPage getTabPage(string text)
@@ -645,7 +916,151 @@ namespace MainSystem
             txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
             txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
-
+        //for Purshase Price
+        public void chackUpdateType()
+        {
+            if (!checkBoxPurchasesDiscount.Checked || !checkBoxPrice.Checked || !checkBoxNormalIncrease.Checked || !checkBoxUnNormalIncrease.Checked)
+            {
+                updateType = "UnNormalCase";
+            }
+        }
+        public void resetValues()
+        {
+            Price = -1;
+            ProfitRatio = -1;
+            Purchase_Discount = -1;
+            Normal_Increase = -1;
+            Categorical_Increase = -1;
+        }
+        public void setValues()
+        {
       
+            if (checkBoxPurchasesDiscount.Checked)
+            {
+                try
+                {
+                    txtPurchases.BackColor = Color.White;
+                    if (radioList.Checked)
+                        Purchase_Discount = Convert.ToDouble(txtPurchases.Text);
+                    else
+                        ProfitRatio = Convert.ToDouble(txtPurchases.Text);
+                }
+                catch
+                {
+                    txtPurchases.Focus();
+                    txtPurchases.BackColor = Color.RosyBrown;
+                }
+            }
+            else
+            {
+                Purchase_Discount = -1;
+                ProfitRatio = -1;
+            }
+            if (checkBoxPrice.Checked)
+            {
+                try
+                {
+                    txtPrice.BackColor = Color.White;
+                    Price = Convert.ToDouble(txtPrice.Text);
+                }
+                catch
+                {
+                    txtPrice.Focus();
+                    txtPrice.BackColor = Color.RosyBrown;
+                }
+            }
+            else
+            {
+                Price = -1;
+            }
+            if (checkBoxNormalIncrease.Checked)
+            {
+                try
+                {
+                    txtNormal.BackColor = Color.White;
+                    Normal_Increase = Convert.ToDouble(txtNormal.Text);
+                }
+                catch
+                {
+                    txtNormal.Focus();
+                    txtNormal.BackColor = Color.RosyBrown;
+                }
+            }
+            else
+            {
+                Normal_Increase = -1;
+            }
+            if (checkBoxUnNormalIncrease.Checked)
+            {
+                try
+                {
+                    txtUnNormal.BackColor = Color.White;
+                    Categorical_Increase = Convert.ToDouble(txtUnNormal.Text);
+
+                }
+                catch
+                {
+                    txtUnNormal.Focus();
+                    txtUnNormal.BackColor = Color.RosyBrown;
+                }
+            }
+            else
+            {
+                Categorical_Increase = -1;
+            }
+        }
+        public void additionalIncreasePurchasesPrice(int purchasePrice_ID)
+        {
+            if (chBoxAdditionalIncrease.Checked)
+            {
+                string queryx = "delete from additional_increase_purchasingprice where PurchasingPrice_ID=" + purchasePrice_ID;
+                MySqlCommand com = new MySqlCommand(queryx, dbconnection);
+                com.ExecuteNonQuery();
+
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    #region addational increase
+                    double addational = Convert.ToDouble(item.Cells[0].Value);
+                    queryx = "insert into additional_increase_purchasingprice (PurchasingPrice_ID,AdditionalValue,Type,Description) values (@PurchasingPrice_ID,@AdditionalValue,@Type,@Description)";
+                    com = new MySqlCommand(queryx, dbconnection);
+                    com.Parameters.AddWithValue("@PurchasingPrice_ID", purchasePrice_ID);
+                    com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
+                    com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
+                    com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
+                    com.ExecuteNonQuery();
+
+                    #endregion
+                }
+            }
+        }
+        public void additionalIncreaseOldPurchasesPrice()
+        {
+            if (chBoxAdditionalIncrease.Checked)
+            {
+                int oldPurchasesPrice_ID = 0;
+                string queryx = "select OldPurchasingPrice_ID from oldpurchasing_price order by OldPurchasingPrice_ID desc limit 1";
+                MySqlCommand com = new MySqlCommand(queryx, dbconnection);
+                if (com.ExecuteScalar() != null)
+                {
+                    oldPurchasesPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+                }
+
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    #region addational increase
+                    double addational = Convert.ToDouble(item.Cells[0].Value);
+
+                    //insert into archive table
+                    queryx = "insert into old_additional_increase_purchasingprice (OldPurchasingPrice_ID,AdditionalValue,Type,Description) values (@OldPurchasingPrice_ID,@AdditionalValue,@Type,@Description)";
+                    com = new MySqlCommand(queryx, dbconnection);
+                    com.Parameters.AddWithValue("@OldPurchasingPrice_ID", oldPurchasesPrice_ID);
+                    com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
+                    com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
+                    com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
+                    com.ExecuteNonQuery();
+                    #endregion
+                }
+            }
+        }
     }
 }

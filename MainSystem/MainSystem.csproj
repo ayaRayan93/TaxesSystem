@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\sara\Codes\publish\</PublishUrl>
+    <PublishUrl>D:\التكويد\v2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -62,8 +62,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>logo_gUy_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -120,16 +119,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\CCCSystem19-2-2019x\CCCSystem\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework.Design, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>F:\CCCSystem19-2-2019x\CCCSystem\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>F:\CCCSystem19-2-2019x\CCCSystem\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
@@ -334,12 +332,6 @@
       <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PurchasesSystem.cs" />
-    <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice.Designer.cs">
-      <DependentUpon>SetPurchasesPrice.cs</DependentUpon>
-    </Compile>
     <Compile Include="Purchases\Purchases_Price\UpdatePurchasesPrice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1610,10 +1602,16 @@
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\StorageReturn_Items.cs" />
-    <Compile Include="Store\initialCodeStorage.cs">
+    <Compile Include="Store\Storage\StorageTaswayaAdding.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\initialCodeStorage.designer.cs">
+    <Compile Include="Store\Storage\StorageTaswayaAdding.designer.cs">
+      <DependentUpon>StorageTaswayaAdding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Storage\initialCodeStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Storage\initialCodeStorage.designer.cs">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استلام\Report_SupplierReceipt.cs">
@@ -1719,10 +1717,10 @@
     <Compile Include="Store\SetUpdate.designer.cs">
       <DependentUpon>SetUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Storage.cs">
+    <Compile Include="Store\Storage\Storage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Storage.designer.cs">
+    <Compile Include="Store\Storage\Storage.designer.cs">
       <DependentUpon>Storage.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\StorePlaces.cs">
@@ -1761,10 +1759,10 @@
     <Compile Include="Store\Store_Update.designer.cs">
       <DependentUpon>Store_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\UpdateCodeStorage.cs">
+    <Compile Include="Store\Storage\UpdateCodeStorage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\UpdateCodeStorage.designer.cs">
+    <Compile Include="Store\Storage\UpdateCodeStorage.designer.cs">
       <DependentUpon>UpdateCodeStorage.cs</DependentUpon>
     </Compile>
     <Compile Include="RequestImage.cs">
@@ -1893,9 +1891,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\ProductsPurchasesPriceForm.resx">
       <DependentUpon>ProductsPurchasesPriceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice.resx">
-      <DependentUpon>SetPurchasesPrice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\UpdatePurchasesPrice.resx">
       <DependentUpon>UpdatePurchasesPrice.cs</DependentUpon>
@@ -2521,7 +2516,10 @@
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\initialCodeStorage.resx">
+    <EmbeddedResource Include="Store\Storage\StorageTaswayaAdding.resx">
+      <DependentUpon>StorageTaswayaAdding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Storage\initialCodeStorage.resx">
       <DependentUpon>initialCodeStorage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استلام\Report_SupplierReceipt.resx">
@@ -2575,7 +2573,7 @@
     <EmbeddedResource Include="Store\SetUpdate.resx">
       <DependentUpon>SetUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Storage.resx">
+    <EmbeddedResource Include="Store\Storage\Storage.resx">
       <DependentUpon>Storage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\StorePlaces.resx">
@@ -2596,7 +2594,7 @@
     <EmbeddedResource Include="Store\Store_Update.resx">
       <DependentUpon>Store_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\UpdateCodeStorage.resx">
+    <EmbeddedResource Include="Store\Storage\UpdateCodeStorage.resx">
       <DependentUpon>UpdateCodeStorage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RequestImage.resx">
@@ -2907,6 +2905,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Car_Service.ico" />
+    <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
     <None Include="Resources\Branch.txt" />
     <None Include="Resources\IP_Address.txt" />

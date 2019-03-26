@@ -208,7 +208,7 @@ namespace MainSystem
             xtraTabPage.Controls.Clear();
 
             xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-            SetPurchasesPrice objForm = new SetPurchasesPrice(productsSellPriceForm, xtraTabControlPurchases);
+            SetPurchasesPrice2 objForm = new SetPurchasesPrice2(productsSellPriceForm, xtraTabControlPurchases);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

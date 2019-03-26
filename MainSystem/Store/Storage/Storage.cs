@@ -126,18 +126,33 @@ namespace MainSystem
                             if (loaded)
                             {
                                 txtType.Text = comType.SelectedValue.ToString();
-                                string query1 = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + txtType.Text;
-                                MySqlDataAdapter da1 = new MySqlDataAdapter(query1, dbconnection);
-                                DataTable dt1 = new DataTable();
-                                da1.Fill(dt1);
-                                comFactory.DataSource = dt1;
-                                comFactory.DisplayMember = dt1.Columns["Factory_Name"].ToString();
-                                comFactory.ValueMember = dt1.Columns["Factory_ID"].ToString();
+                                string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + txtType.Text;
+                                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+                                comFactory.DataSource = dt;
+                                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1" || txtType.Text == "2")
+                                dbconnection.Close();
+                                dbconnection.Open();
+                                query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                dbconnection.Close();
+                                if (TypeCoding_Method == 1)
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                    string query2 = "";
+                                    if (txtType.Text == "2" || txtType.Text == "1")
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=-1";
+                                    }
+                                    else
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                    }
+
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -146,22 +161,11 @@ namespace MainSystem
                                     comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
-                                }
-                                else if (txtType.Text == "4")
-                                {
-                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
-                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
-                                    DataTable dt2 = new DataTable();
-                                    da2.Fill(dt2);
-                                    comGroup.DataSource = dt2;
-                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
-                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
-                                    comGroup.Text = "";
-                                    txtGroup.Text = "";
+                                    groupFlage = true;
                                 }
                                 factoryFlage = true;
 
-                      
+                           
                                 comFactory.Focus();
                             }
                             break;
@@ -169,9 +173,15 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "4")
+                                dbconnection.Close();
+                                dbconnection.Open();
+                                string query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                dbconnection.Close();
+                                if (TypeCoding_Method == 2)
                                 {
-                                    string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
+                                    string query2f = "select * from groupo where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
                                     da2f.Fill(dt2f);
@@ -181,17 +191,27 @@ namespace MainSystem
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
                                 }
+
                                 groupFlage = true;
-                                
-                                comGroup.Focus();
+
+
                             }
                             break;
                         case "comGroup":
                             if (groupFlage)
                             {
                                 txtGroup.Text = comGroup.SelectedValue.ToString();
-
-                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
+                                string supQuery = "", subQuery1 = "";
+                                if (txtType.Text != "")
+                                {
+                                    supQuery += " and product.Type_ID=" + txtType.Text;
+                                }
+                                if (txtFactory.Text != "")
+                                {
+                                    supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text;
+                                    subQuery1 += " and Factory_ID=" + txtFactory.Text;
+                                }
+                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + txtGroup.Text + supQuery + "  order by product.Product_ID";
                                 MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
                                 DataTable dt3 = new DataTable();
                                 da3.Fill(dt3);
@@ -200,41 +220,18 @@ namespace MainSystem
                                 comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
-                                
+
+                              
+
                                 comProduct.Focus();
                                 flagProduct = true;
                             }
                             break;
 
                         case "comProduct":
-                            if (flagProduct)
-                            {
-                                flagProduct = false;
-                                txtProduct.Text = comProduct.SelectedValue.ToString();
-                                comType.Focus();
-                            }
-                            break;
-                        case "comStore":
-                            comStorePlace.Visible = true;
-                            label8.Visible = true;
-                            flag = false;
-                            dbconnection.Open();
-                            string query = "select * from store_places where Store_ID=" + comStore.SelectedValue;
-                            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
-                            comStorePlace.DataSource = dt;
-                            comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
-                            comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
-                            comStorePlace.Text = "";
-                            dbconnection.Close();
-                            displayProducts();
-                            flag = true;
 
-                            break;
-                        case "comStorePlace":
-                            if (flag)
-                                displayProducts();
+                            txtProduct.Text = comProduct.SelectedValue.ToString();
+                     
 
                             break;
 
@@ -243,8 +240,9 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                //  MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {

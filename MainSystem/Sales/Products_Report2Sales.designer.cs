@@ -74,7 +74,7 @@
             this.comStore = new System.Windows.Forms.ComboBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -434,7 +434,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(412, 5);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.Size = new System.Drawing.Size(123, 19);
             this.labSearch.TabIndex = 158;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -446,7 +446,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label10.Location = new System.Drawing.Point(372, 62);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 19);
+            this.label10.Size = new System.Drawing.Size(76, 19);
             this.label10.TabIndex = 1;
             this.label10.Text = "بحث بعرض";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -525,7 +525,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label2.Location = new System.Drawing.Point(300, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 19);
+            this.label2.Size = new System.Drawing.Size(37, 19);
             this.label2.TabIndex = 14;
             this.label2.Text = "الفرز";
             // 
@@ -536,7 +536,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label5.Location = new System.Drawing.Point(515, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 19);
+            this.label5.Size = new System.Drawing.Size(41, 19);
             this.label5.TabIndex = 16;
             this.label5.Text = "اللون";
             // 
@@ -567,7 +567,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label6.Location = new System.Drawing.Point(729, 32);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 19);
+            this.label6.Size = new System.Drawing.Size(57, 19);
             this.label6.TabIndex = 15;
             this.label6.Text = "المقاس";
             // 

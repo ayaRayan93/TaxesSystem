@@ -158,7 +158,7 @@
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;
-            this.btnUpdate.LabelText = "تعديل";
+            this.btnUpdate.LabelText = "تسوية اضافة";
             this.btnUpdate.Location = new System.Drawing.Point(438, 4);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
@@ -179,7 +179,7 @@
             this.btnDelete.ImagePosition = 1;
             this.btnDelete.ImageZoom = 25;
             this.btnDelete.LabelPosition = 18;
-            this.btnDelete.LabelText = "حذف";
+            this.btnDelete.LabelText = "تسوية خصم";
             this.btnDelete.Location = new System.Drawing.Point(352, 4);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
@@ -245,6 +245,7 @@
             this.gridView2.OptionsCustomization.AllowSort = false;
             this.gridView2.OptionsSelection.MultiSelect = true;
             this.gridView2.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.ViewCaption = "بند";
             // 
             // panelControl1

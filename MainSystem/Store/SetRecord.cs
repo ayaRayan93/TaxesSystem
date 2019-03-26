@@ -120,9 +120,24 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1" || txtType.Text == "2")
+                                dbconnection.Close();
+                                dbconnection.Open();
+                                query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                dbconnection.Close();
+                                if (TypeCoding_Method == 1)
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                    string query2 = "";
+                                    if (txtType.Text == "2" || txtType.Text == "1")
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=-1";
+                                    }
+                                    else
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                    }
+
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -131,21 +146,11 @@ namespace MainSystem
                                     comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
-                                }
-                                else if (txtType.Text == "5")//بانيوهات
-                                {
-                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=5";
-                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
-                                    DataTable dt2 = new DataTable();
-                                    da2.Fill(dt2);
-                                    comGroup.DataSource = dt2;
-                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
-                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
-                                    comGroup.Text = "";
-                                    txtGroup.Text = "";
+                                    groupFlage = true;
                                 }
                                 factoryFlage = true;
-                                displayProducts();
+
+                             
                                 comFactory.Focus();
                             }
                             break;
@@ -153,9 +158,15 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1")
+                                dbconnection.Close();
+                                dbconnection.Open();
+                                string query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                dbconnection.Close();
+                                if (TypeCoding_Method == 2)
                                 {
-                                    string query2f = "select * from groupo where Type_ID="+txtType.Text+" and  Factory_ID=" + txtFactory.Text;
+                                    string query2f = "select * from groupo where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
                                     da2f.Fill(dt2f);
@@ -168,16 +179,24 @@ namespace MainSystem
 
                                 groupFlage = true;
 
-                                displayProducts();
-                                comGroup.Focus();
+                              
                             }
                             break;
                         case "comGroup":
                             if (groupFlage)
                             {
                                 txtGroup.Text = comGroup.SelectedValue.ToString();
-
-                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
+                                string supQuery = "", subQuery1 = "";
+                                if (txtType.Text != "")
+                                {
+                                    supQuery += " and product.Type_ID=" + txtType.Text;
+                                }
+                                if (txtFactory.Text != "")
+                                {
+                                    supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text;
+                                    subQuery1 += " and Factory_ID=" + txtFactory.Text;
+                                }
+                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + txtGroup.Text + supQuery + "  order by product.Product_ID";
                                 MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
                                 DataTable dt3 = new DataTable();
                                 da3.Fill(dt3);
@@ -186,29 +205,25 @@ namespace MainSystem
                                 comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
+
+                             
+
                                 comProduct.Focus();
-                                displayProducts();                           
                                 flagProduct = true;
                             }
                             break;
 
                         case "comProduct":
-                            if (flagProduct)
-                            {
-                                flagProduct = false;
-                                txtProduct.Text = comProduct.SelectedValue.ToString();
-                                comType.Focus();
-                                displayProducts();
-                            }
-                            break;
 
+                            txtProduct.Text = comProduct.SelectedValue.ToString();
+                            break;
+                            
                     }
                 }
-
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }

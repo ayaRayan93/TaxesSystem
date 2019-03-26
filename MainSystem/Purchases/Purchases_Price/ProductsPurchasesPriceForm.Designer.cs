@@ -65,7 +65,6 @@
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
-            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -102,6 +101,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Controls.Add(this.labSearch);
             this.panel1.Controls.Add(this.panSearchAddtionalTool);
             this.panel1.Controls.Add(this.label3);
@@ -131,7 +131,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(672, 99);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.Size = new System.Drawing.Size(123, 19);
             this.labSearch.TabIndex = 157;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -294,7 +294,7 @@
             this.label9.Location = new System.Drawing.Point(625, 41);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 16);
+            this.label9.Size = new System.Drawing.Size(31, 16);
             this.label9.TabIndex = 144;
             this.label9.Text = "الفرز";
             // 
@@ -361,7 +361,7 @@
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(456, 32);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 19);
+            this.label4.Size = new System.Drawing.Size(53, 19);
             this.label4.TabIndex = 48;
             this.label4.Text = "المصنع";
             // 
@@ -372,7 +372,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(741, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 19);
+            this.label2.Size = new System.Drawing.Size(69, 19);
             this.label2.TabIndex = 47;
             this.label2.Text = "المجموعة";
             // 
@@ -383,7 +383,7 @@
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(741, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 19);
+            this.label1.Size = new System.Drawing.Size(40, 19);
             this.label1.TabIndex = 46;
             this.label1.Text = "النوع";
             // 
@@ -397,7 +397,6 @@
             this.comType.Size = new System.Drawing.Size(139, 24);
             this.comType.TabIndex = 21;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comType.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // comGroup
             // 
@@ -409,7 +408,6 @@
             this.comGroup.Size = new System.Drawing.Size(139, 24);
             this.comGroup.TabIndex = 18;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comGroup.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // txtType
             // 
@@ -419,7 +417,6 @@
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(72, 23);
             this.txtType.TabIndex = 20;
-            this.txtType.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtGroup
@@ -430,7 +427,6 @@
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(72, 23);
             this.txtGroup.TabIndex = 23;
-            this.txtGroup.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comFactory
@@ -443,7 +439,6 @@
             this.comFactory.Size = new System.Drawing.Size(143, 24);
             this.comFactory.TabIndex = 25;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comFactory.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // btnNewChoose
             // 
@@ -490,7 +485,6 @@
             this.comProduct.Size = new System.Drawing.Size(143, 24);
             this.comProduct.TabIndex = 22;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            this.comProduct.TextChanged += new System.EventHandler(this.comType_TextChanged);
             // 
             // txtFactory
             // 
@@ -500,7 +494,6 @@
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(78, 23);
             this.txtFactory.TabIndex = 19;
-            this.txtFactory.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtProduct
@@ -511,7 +504,6 @@
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(78, 23);
             this.txtProduct.TabIndex = 24;
-            this.txtProduct.TextChanged += new System.EventHandler(this.comType_TextChanged);
             this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // tableLayoutPanel4
@@ -530,7 +522,6 @@
             this.tableLayoutPanel4.Controls.Add(this.btnReport, 5, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.chBoxSelectAll, 6, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(12, 598);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -624,20 +615,6 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // chBoxSelectAll
-            // 
-            this.chBoxSelectAll.AutoSize = true;
-            this.chBoxSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chBoxSelectAll.Location = new System.Drawing.Point(180, 3);
-            this.chBoxSelectAll.Name = "chBoxSelectAll";
-            this.chBoxSelectAll.Size = new System.Drawing.Size(80, 47);
-            this.chBoxSelectAll.TabIndex = 5;
-            this.chBoxSelectAll.Text = "تحديد الكل";
-            this.chBoxSelectAll.UseVisualStyleBackColor = true;
-            this.chBoxSelectAll.CheckedChanged += new System.EventHandler(this.chBoxSelectAll_CheckedChanged);
-            // 
             // gridControl1
             // 
             this.gridControl1.Location = new System.Drawing.Point(12, 240);
@@ -650,11 +627,11 @@
             // 
             // gridView1
             // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold);
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -662,6 +639,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -737,7 +715,6 @@
             this.panSearchAddtionalTool.ResumeLayout(false);
             this.panSearchAddtionalTool.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -770,7 +747,6 @@
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private System.Windows.Forms.CheckBox chBoxSelectAll;
         private System.Windows.Forms.Button btnNewChoose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
