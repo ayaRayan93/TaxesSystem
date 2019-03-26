@@ -228,6 +228,14 @@ namespace MainSystem
                                 comSize.Text = "";
                                 txtSize.Text = "";
                                 comGroup.Focus();
+
+                                query = "select distinct Classification from data where Factory_ID=" + txtFactory.Text;
+                                da2 = new MySqlDataAdapter(query, dbconnection);
+                                dt2 = new DataTable();
+                                da2.Fill(dt2);
+                                comClassfication.DataSource = dt2;
+                                comClassfication.DisplayMember = dt2.Columns["Classification"].ToString();
+                                comClassfication.Text = "";
                             }
                             break;
                         case "comGroup":
@@ -510,6 +518,7 @@ namespace MainSystem
         {
             try
             {
+                gridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.RowSelect;
                 salesMainForm.bindReportSellPriceForm(gridControl1);
             }
             catch (Exception ex)
@@ -637,7 +646,7 @@ namespace MainSystem
                 fQuery += "and data.Classification='" + comClassfication.Text + "'";
             }
             
-            query = "SELECT SellPrice.SellPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,color.Color_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',sellprice.Price as 'السعر',sellprice.Last_Price as ' السعر بعد الزيادة',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sum(additional_increase_sellprice.AdditionalValue)as 'زيادات اضافية',sellprice.ProfitRatio as 'نسبة البيع',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسية المندوب'   from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID left join additional_increase_sellprice on additional_increase_sellprice.SellPrice_ID=sellprice.SellPrice_ID where    data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + "  GROUP BY SellPrice.SellPrice_ID order by SUBSTR(data.Code,1,16) ,data.Sort_ID ";
+            query = "SELECT SellPrice.SellPrice_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,size.Size_Value )as 'البند',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',data.Classification as 'التصنيف',data.Description as 'الوصف',sellprice.Price as 'السعر',sellprice.Last_Price as ' السعر بعد الزيادة',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sum(additional_increase_sellprice.AdditionalValue)as 'زيادات اضافية',sellprice.ProfitRatio as 'نسبة الاضافة',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسية المندوب'   from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID left join additional_increase_sellprice on additional_increase_sellprice.SellPrice_ID=sellprice.SellPrice_ID where    data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + "  GROUP BY SellPrice.SellPrice_ID order by SUBSTR(data.Code,1,16) ,color.Color_Name,data.Sort_ID ";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -653,8 +662,8 @@ namespace MainSystem
             gridControl1.DataSource = dt;
             gridView1.BestFitColumns();
             gridView1.Columns[0].Visible = false;
-            gridView1.Columns[1].Width = 200;
-            gridView1.Columns[2].Width = 300;
+            //gridView1.Columns[1].Width = 200;
+            //gridView1.Columns[2].Width = 300;
 
             fQuery = "";
         }

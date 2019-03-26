@@ -95,12 +95,11 @@ namespace MainSystem
         {
             try
             {
-                label14.Text = "نسبة البيع";
+                label14.Text = "نسبة الاضافة";
                 txtNormal.Visible = false;
                 txtUnNormal.Visible = false;
                 label15.Visible = false;
                 label16.Visible = false;
-
             }
             catch (Exception ex)
             {
@@ -302,6 +301,14 @@ namespace MainSystem
                                 comSize.Text = "";
                                 txtSize.Text = "";
                                 comGroup.Focus();
+
+                                query = "select distinct Classification from data where Factory_ID=" + txtFactory.Text;
+                                da2 = new MySqlDataAdapter(query, dbconnection);
+                                dt2 = new DataTable();
+                                da2.Fill(dt2);
+                                comClassfication.DataSource = dt2;
+                                comClassfication.DisplayMember = dt2.Columns["Classification"].ToString();
+                                comClassfication.Text = "";
                             }
                             break;
                         case "comGroup":
@@ -799,7 +806,7 @@ namespace MainSystem
                                     command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
                                     command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                     command.Parameters.AddWithValue("@Price", price);
-                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                    command.Parameters.AddWithValue("@Last_Price", lastPrice(calSellPrice()));
                                     command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                     command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                     command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
@@ -815,7 +822,7 @@ namespace MainSystem
                                     command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
                                     command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                     command.Parameters.AddWithValue("@Price", price);
-                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                    command.Parameters.AddWithValue("@Last_Price", lastPrice(calSellPrice()));
                                     command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                     command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                     command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
@@ -848,7 +855,7 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("?Data_ID", id);
                                 command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("@Price", price);
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calSellPrice()));
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
@@ -864,7 +871,7 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("?Data_ID", id);
                                 command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                 command.Parameters.AddWithValue("@Price", price);
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calSellPrice()));
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
@@ -881,8 +888,7 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-
-
+                            
                         }
                         #endregion
                     }
@@ -1023,6 +1029,8 @@ namespace MainSystem
                     txtCode.Visible = true;
                     panCodeParts.Visible = true;
                     label6.Visible = true;
+                    label19.Visible = true;
+                    labSellPrice.Visible = true;
                     DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                     if (row != null)
                     {
@@ -1039,12 +1047,16 @@ namespace MainSystem
                     txtCode.Visible = false;
                     panCodeParts.Visible = false;
                     label6.Visible = false;
+                    label19.Visible = false;
+                    labSellPrice.Visible = false;
                 }
                 else
                 {
                     txtCode.Visible = true;
                     panCodeParts.Visible = true;
                     label6.Visible = true;
+                    label19.Visible = true;
+                    labSellPrice.Visible = true;
                     txtCode.Text = "";
                     txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
                     id = 0;
@@ -1183,19 +1195,13 @@ namespace MainSystem
                 return sellPrice + addational;
             }
         }
-        public double lastPrice()
+        public double lastPrice(double sellPrice)
         {
-            double price = double.Parse(txtPrice.Text);
-            if (dataGridView1.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow item in dataGridView1.Rows)
-                {
-                    if (item.Cells[1].Value.ToString() == "عادية")
-                        price += Convert.ToDouble(item.Cells[0].Value);
-                }
-            }
-            price += double.Parse(txtNormal.Text);
-            return price;
+         
+            double discount = double.Parse(txtSell.Text);
+            double lastPrice = sellPrice*100/(100- discount);
+
+            return lastPrice;
         }
         public void makeCode(TextBox txtBox)
         {
@@ -1261,7 +1267,7 @@ namespace MainSystem
         public string getDataIDsWhichHaveSellPrice()
         {
             dbconnection.Open();
-            string query = "select Data_ID from sellprice";
+            string query = "select Data_ID from sellprice where Data_ID is not null";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             string DataIDs = "";

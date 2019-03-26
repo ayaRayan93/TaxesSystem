@@ -504,7 +504,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(464, 5);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.Size = new System.Drawing.Size(123, 19);
             this.labSearch.TabIndex = 158;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -516,7 +516,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label10.Location = new System.Drawing.Point(424, 31);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 19);
+            this.label10.Size = new System.Drawing.Size(76, 19);
             this.label10.TabIndex = 1;
             this.label10.Text = "بحث بعرض";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

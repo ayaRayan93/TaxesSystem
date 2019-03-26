@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -41,6 +41,11 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panContent = new System.Windows.Forms.Panel();
+            this.checkBoxCategorical_Increase = new System.Windows.Forms.CheckBox();
+            this.checkBoxNormal_Increase = new System.Windows.Forms.CheckBox();
+            this.checkBoxSell_Discount = new System.Windows.Forms.CheckBox();
+            this.checkBoxPrice = new System.Windows.Forms.CheckBox();
+            this.chBoxDelegatePersentage = new System.Windows.Forms.CheckBox();
             this.panCodeParts = new System.Windows.Forms.Panel();
             this.txtCodePart4 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -219,6 +224,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 3);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gridControl1.Size = new System.Drawing.Size(902, 471);
             this.gridControl1.TabIndex = 41;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -245,6 +251,11 @@
             // 
             // panContent
             // 
+            this.panContent.Controls.Add(this.checkBoxCategorical_Increase);
+            this.panContent.Controls.Add(this.checkBoxNormal_Increase);
+            this.panContent.Controls.Add(this.checkBoxSell_Discount);
+            this.panContent.Controls.Add(this.checkBoxPrice);
+            this.panContent.Controls.Add(this.chBoxDelegatePersentage);
             this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Controls.Add(this.label20);
             this.panContent.Controls.Add(this.panel2);
@@ -275,6 +286,61 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(902, 194);
             this.panContent.TabIndex = 42;
+            // 
+            // checkBoxCategorical_Increase
+            // 
+            this.checkBoxCategorical_Increase.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxCategorical_Increase.AutoSize = true;
+            this.checkBoxCategorical_Increase.Location = new System.Drawing.Point(257, 145);
+            this.checkBoxCategorical_Increase.Name = "checkBoxCategorical_Increase";
+            this.checkBoxCategorical_Increase.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxCategorical_Increase.TabIndex = 152;
+            this.checkBoxCategorical_Increase.UseVisualStyleBackColor = true;
+            this.checkBoxCategorical_Increase.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxNormal_Increase
+            // 
+            this.checkBoxNormal_Increase.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxNormal_Increase.AutoSize = true;
+            this.checkBoxNormal_Increase.Location = new System.Drawing.Point(472, 142);
+            this.checkBoxNormal_Increase.Name = "checkBoxNormal_Increase";
+            this.checkBoxNormal_Increase.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxNormal_Increase.TabIndex = 151;
+            this.checkBoxNormal_Increase.UseVisualStyleBackColor = true;
+            this.checkBoxNormal_Increase.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxSell_Discount
+            // 
+            this.checkBoxSell_Discount.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxSell_Discount.AutoSize = true;
+            this.checkBoxSell_Discount.Location = new System.Drawing.Point(257, 113);
+            this.checkBoxSell_Discount.Name = "checkBoxSell_Discount";
+            this.checkBoxSell_Discount.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSell_Discount.TabIndex = 150;
+            this.checkBoxSell_Discount.UseVisualStyleBackColor = true;
+            this.checkBoxSell_Discount.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // checkBoxPrice
+            // 
+            this.checkBoxPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxPrice.AutoSize = true;
+            this.checkBoxPrice.Location = new System.Drawing.Point(472, 112);
+            this.checkBoxPrice.Name = "checkBoxPrice";
+            this.checkBoxPrice.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxPrice.TabIndex = 149;
+            this.checkBoxPrice.UseVisualStyleBackColor = true;
+            this.checkBoxPrice.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // chBoxDelegatePersentage
+            // 
+            this.chBoxDelegatePersentage.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chBoxDelegatePersentage.AutoSize = true;
+            this.chBoxDelegatePersentage.Location = new System.Drawing.Point(170, 21);
+            this.chBoxDelegatePersentage.Name = "chBoxDelegatePersentage";
+            this.chBoxDelegatePersentage.Size = new System.Drawing.Size(15, 14);
+            this.chBoxDelegatePersentage.TabIndex = 148;
+            this.chBoxDelegatePersentage.UseVisualStyleBackColor = true;
+            this.chBoxDelegatePersentage.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // panCodeParts
             // 
@@ -421,14 +487,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -789,5 +855,10 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox chBoxSpecialIncrease;
         private System.Windows.Forms.Panel panCodeParts;
+        private System.Windows.Forms.CheckBox checkBoxCategorical_Increase;
+        private System.Windows.Forms.CheckBox checkBoxNormal_Increase;
+        private System.Windows.Forms.CheckBox checkBoxSell_Discount;
+        private System.Windows.Forms.CheckBox checkBoxPrice;
+        private System.Windows.Forms.CheckBox chBoxDelegatePersentage;
     }
 }

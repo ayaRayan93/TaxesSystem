@@ -95,7 +95,7 @@ namespace MainSystem
         {
             try
             {
-                label14.Text = "نسبة الشراء";
+                label14.Text = "نسبة الاضافة";
                 txtNormal.Visible = false;
                 txtUnNormal.Visible = false;
                 label15.Visible = false;
@@ -173,13 +173,24 @@ namespace MainSystem
                 comColor.Text = "";
                 txtColor.Text = "";
 
-                query = "select * from data";
+                query = "select * from sort";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSort.DataSource = dt;
+                comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
+                comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
+                comSort.Text = "";
+                txtSort.Text = "";
+
+                query = "select distinct Classification from data";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
                 comClassfication.DataSource = dt;
                 comClassfication.DisplayMember = dt.Columns["Classification"].ToString();
                 comClassfication.Text = "";
+
 
 
                 load = true;
@@ -214,9 +225,24 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
-                                if (txtType.Text == "1" || txtType.Text == "2")
+                                dbconnection.Close();
+                                dbconnection.Open();
+                                query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                dbconnection.Close();
+                                if (TypeCoding_Method == 1)
                                 {
-                                    string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+                                    string query2 = "";
+                                    if (txtType.Text == "2" || txtType.Text == "1")
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=-1";
+                                    }
+                                    else
+                                    {
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                    }
+
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                     DataTable dt2 = new DataTable();
                                     da2.Fill(dt2);
@@ -225,18 +251,7 @@ namespace MainSystem
                                     comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
-                                }
-                                else if (txtType.Text == "4")
-                                {
-                                    string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
-                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
-                                    DataTable dt2 = new DataTable();
-                                    da2.Fill(dt2);
-                                    comGroup.DataSource = dt2;
-                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
-                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
-                                    comGroup.Text = "";
-                                    txtGroup.Text = "";
+                                    groupFlage = true;
                                 }
                                 factoryFlage = true;
 
@@ -256,9 +271,15 @@ namespace MainSystem
                             if (factoryFlage)
                             {
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
-                                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "4")
+                                dbconnection.Close();
+                                dbconnection.Open();
+                                string query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                int TypeCoding_Method = (int)com.ExecuteScalar();
+                                dbconnection.Close();
+                                if (TypeCoding_Method == 2)
                                 {
-                                    string query2f = "select * from groupo where Factory_ID=" + txtFactory.Text;
+                                    string query2f = "select * from groupo where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text;
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
                                     da2f.Fill(dt2f);
@@ -281,14 +302,32 @@ namespace MainSystem
                                 comSize.Text = "";
                                 txtSize.Text = "";
                                 comGroup.Focus();
+
+                                query = "select distinct Classification from data where Factory_ID=" + txtFactory.Text;
+                                da2 = new MySqlDataAdapter(query, dbconnection);
+                                dt2 = new DataTable();
+                                da2.Fill(dt2);
+                                comClassfication.DataSource = dt2;
+                                comClassfication.DisplayMember = dt2.Columns["Classification"].ToString();
+                                comClassfication.Text = "";
+
                             }
                             break;
                         case "comGroup":
                             if (groupFlage)
                             {
                                 txtGroup.Text = comGroup.SelectedValue.ToString();
-
-                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + txtType.Text + " and product_factory_group.Factory_ID=" + txtFactory.Text + " and product_factory_group.Group_ID=" + txtGroup.Text + "  order by product.Product_ID";
+                                string supQuery = "", subQuery1 = "";
+                                if (txtType.Text != "")
+                                {
+                                    supQuery += " and product.Type_ID=" + txtType.Text;
+                                }
+                                if (txtFactory.Text != "")
+                                {
+                                    supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text;
+                                    subQuery1 += " and Factory_ID=" + txtFactory.Text;
+                                }
+                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + txtGroup.Text + supQuery + "  order by product.Product_ID";
                                 MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
                                 DataTable dt3 = new DataTable();
                                 da3.Fill(dt3);
@@ -298,8 +337,7 @@ namespace MainSystem
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
 
-
-                                string query2 = "select * from size where Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text;
+                                string query2 = "select * from size where Group_ID=" + txtGroup.Text + subQuery1;
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                                 DataTable dt2 = new DataTable();
                                 da2.Fill(dt2);
@@ -315,36 +353,31 @@ namespace MainSystem
                             break;
 
                         case "comProduct":
-                            if (flagProduct)
-                            {
-                                flagProduct = false;
-                                txtProduct.Text = comProduct.SelectedValue.ToString();
-                                comColor.Focus();
-                            }
+
+                            txtProduct.Text = comProduct.SelectedValue.ToString();
+                            comColor.Focus();
+
                             break;
 
-                        case "comColour":
+                        case "comColor":
                             txtColor.Text = comColor.SelectedValue.ToString();
                             comSize.Focus();
                             break;
 
                         case "comSize":
                             txtSize.Text = comSize.SelectedValue.ToString();
-                            txtSort.Focus();
                             break;
 
                         case "comSort":
                             txtSort.Text = comSort.SelectedValue.ToString();
-                            comClassfication.Focus();
                             break;
                     }
                 }
             }
             catch (Exception ex)
             {
-                //  MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
         }
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -371,7 +404,7 @@ namespace MainSystem
                                     comType.Text = Name;
                                     txtFactory.Focus();
                                     dbconnection.Close();
-                               
+
                                 }
                                 else
                                 {
@@ -389,7 +422,6 @@ namespace MainSystem
                                     comFactory.Text = Name;
                                     txtGroup.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -407,7 +439,6 @@ namespace MainSystem
                                     comGroup.Text = Name;
                                     txtProduct.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -425,7 +456,6 @@ namespace MainSystem
                                     comProduct.Text = Name;
                                     txtType.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -462,7 +492,6 @@ namespace MainSystem
                                     comSize.Text = Name;
                                     txtSort.Focus();
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -478,9 +507,8 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comProduct.Text = Name;
-                                   
+
                                     dbconnection.Close();
-                                    displayProducts();
                                 }
                                 else
                                 {
@@ -497,7 +525,7 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comType.Text = Name;
-                                    
+
                                     makeCode(txtCodePart1);
                                     txtCodePart2.Focus();
                                     dbconnection.Close();
@@ -566,7 +594,7 @@ namespace MainSystem
                             case "txtCodePart5":
                                 makeCode(txtCodePart5);
                                 break;
-                         
+
                         }
 
                     }
@@ -610,7 +638,8 @@ namespace MainSystem
                 txtColor.Text = "";
                 txtSize.Text = "";
                 txtSort.Text = "";
-                displayProducts();
+
+                gridControl1.DataSource = null;
             }
             catch (Exception ex)
             {
@@ -635,34 +664,21 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }*/
         }
-        private void comType_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (load)
-                {
-                    displayProducts();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtCode.Text != "" || chBoxSelectAll.Checked)
+                if (gridView1.SelectedRowsCount>0)
                 {
                     dbconnection.Open();
+                    int PurchasesPrice_ID = 0, OldPurchasingPrice_ID = 0;
                     double price = double.Parse(txtPrice.Text);
                     double PurchasesPercent = double.Parse(txtPurchases.Text);
 
                     if (radioQata3y.Checked == true)
                     {
                         #region set qata3yPrice for list item
-                        if (txtCode.Text == "" && chBoxSelectAll.Checked)
+                        if (gridView1.SelectedRowsCount>1)
                         {
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double UnNormalPercent = double.Parse(txtUnNormal.Text);
@@ -681,6 +697,23 @@ namespace MainSystem
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
+
+                                query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
+                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("?Price", price);
+                                command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
+                                command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
+                                UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+
+
                             }
                         }
                         #endregion
@@ -701,6 +734,22 @@ namespace MainSystem
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
+
+                                query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type,Last_Price, Purchasing_Price, ProfitRatio, Data_ID, Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Last_Price,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
+                                command.Parameters.AddWithValue("?Data_ID", id);
+                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("?Price", price);
+                                command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
+                                command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
+                                UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+
                             }
                             else
                             {
@@ -714,7 +763,7 @@ namespace MainSystem
                     else
                     {
                         #region set priceList for collection of items
-                        if (txtCode.Text == "" && chBoxSelectAll.Checked)
+                        if (gridView1.SelectedRowsCount>1)
                         {
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double unNormalPercent = double.Parse(txtUnNormal.Text);
@@ -725,7 +774,6 @@ namespace MainSystem
                             DataTable dataTable = (DataTable)gridControl1.DataSource;
                             for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
-
                                 string query = "INSERT INTO purchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
@@ -733,12 +781,30 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
                                 command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.AddWithValue("@Price", price); 
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
+
+                                query = "INSERT INTO oldpurchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
+                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
+                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
+
+                                UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+
                             }
                         }
 
@@ -762,13 +828,32 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("?Data_ID", id);
                                 command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.AddWithValue("@Price", price);
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
                                 command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
                                 command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
 
                                 command.ExecuteNonQuery();
+
+                                query = "INSERT INTO oldpurchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
+                                command.Parameters.AddWithValue("?Data_ID", id);
+                                command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
+                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+
+                                command.ExecuteNonQuery();
+
+                                insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
+                                UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+
 
                             }
                             else
@@ -780,31 +865,10 @@ namespace MainSystem
                         }
                         #endregion
                     }
-
-                    int PurchasingPrice_ID = 0;
-                    string queryx = "select PurchasingPrice_ID from purchasing_price order by PurchasingPrice_ID desc limit 1";
-                    MySqlCommand com = new MySqlCommand(queryx, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        PurchasingPrice_ID = Convert.ToInt16(com.ExecuteScalar());
-                    }
-                    foreach (DataGridViewRow item in dataGridView1.Rows)
-                    {
-                        double addational = Convert.ToDouble(item.Cells[0].Value);
-                        queryx = "insert into additional_increase_purchasingprice (PurchasingPrice_ID,AdditionalValue,Type,Description) values (@PurchasingPrice_ID,@AdditionalValue,@Type,@Description)";
-                        com = new MySqlCommand(queryx, dbconnection);
-                        com.Parameters.AddWithValue("@PurchasingPrice_ID", PurchasingPrice_ID);
-                        com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
-                        com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
-                        com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
-                        com.ExecuteNonQuery();
-
-                    }
-                    UserControl.ItemRecord("purchasing_price", "اضافة", PurchasingPrice_ID, DateTime.Now, "", dbconnection);
-
+                   
                     MessageBox.Show("تم");
                     Clear();
-                    productsPurchasesPriceForm.displayProducts();
+                    //productsPurchasesPriceForm.displayProducts();
                 }
                 else
                 {
@@ -816,30 +880,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-        private void chBoxSelectAll_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                txtCode.Text = txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
-                gridView1.OptionsSelection.MultiSelect = true;
-                if (chBoxSelectAll.Checked)
-                {
-                    gridView1.SelectRows(0, gridView1.RowCount - 1);
-                }
-                else
-                {
-                    int selectedRowsCount = gridView1.SelectedRowsCount;
-                    for (int i = 0; i < selectedRowsCount; i++)
-                    {
-                        gridView1.UnselectRow(i);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
@@ -866,7 +906,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtCode.Text != ""||chBoxSelectAll.Checked)
+                if (gridView1.SelectedRowsCount>0)
                 {
                     if (txtDes.Text != "" && txtPlus.Text != "")
                     {
@@ -912,6 +952,54 @@ namespace MainSystem
             catch (Exception ex)
             {
 
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (gridView1.SelectedRowsCount == 1)
+                {
+                    txtCode.Visible = true;
+                    panCodeParts.Visible = true;
+                    label6.Visible = true;
+                    label19.Visible = true;
+                    labPurchasesPrice.Visible = true;
+                    DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+                    if (row != null)
+                    {
+                        txtCode.Text = row[1].ToString();
+                        id = Convert.ToInt16(row[0].ToString());
+                        String code = txtCode.Text;
+                        displayCode(code);
+                    }
+                }
+                else if (gridView1.SelectedRowsCount > 1)
+                {
+                    DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+
+                    txtCode.Visible = false;
+                    panCodeParts.Visible = false;
+                    label6.Visible = false;
+                    label19.Visible = false;
+                    labPurchasesPrice.Visible = false;
+                }
+                else
+                {
+                    txtCode.Visible = true;
+                    panCodeParts.Visible = true;
+                    label6.Visible = true;
+                    label19.Visible = true;
+                    labPurchasesPrice.Visible = true;
+                    txtCode.Text = "";
+                    txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
+                    id = 0;
+                }
+
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }
@@ -971,7 +1059,7 @@ namespace MainSystem
                 fQuery += "and data.Classification='" + comClassfication.Text + "'";
             }
 
-            string query = "SELECT data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery;
+            string query = "SELECT data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID not in (" + getDataIDsWhichHavepurchasing_price ()+ ") " + fQuery+ " order by SUBSTR(data.Code,1,16) ,color.Color_Name,data.Sort_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -979,7 +1067,7 @@ namespace MainSystem
             gridView1.Columns[0].Visible = false;
             gridView1.Columns[1].Width = 140;
             fQuery = "";
-            chBoxSelectAll.Checked = false;
+            gridView1.BestFitColumns();
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -1043,19 +1131,12 @@ namespace MainSystem
                 return PurchasesPrice + addational;
             }
         }
-        public double lastPrice()
+        public double lastPrice(double purchasePrice)
         {
-            double price = double.Parse(txtPrice.Text);
-            if (dataGridView1.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow item in dataGridView1.Rows)
-                {
-                    if (item.Cells[1].Value.ToString() == "عادية")
-                        price += Convert.ToDouble(item.Cells[0].Value);
-                }
-            }
-            price += double.Parse(txtNormal.Text);
-            return price;
+            double discount = double.Parse(txtPurchases.Text);
+            double lastPrice = purchasePrice * 100 / (100 - discount);
+
+            return lastPrice;
         }
         public void makeCode(TextBox txtBox)
         {
@@ -1080,40 +1161,59 @@ namespace MainSystem
             txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
             txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
-
-        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        public void insertIntoAdditionalIncrease(ref int PurchasingPrice_ID, ref int OldPurchasingPrice_ID)
         {
-            try
+            string queryx = "select PurchasingPrice_ID from purchasing_price order by PurchasingPrice_ID desc limit 1";
+            MySqlCommand com = new MySqlCommand(queryx, dbconnection);
+            if (com.ExecuteScalar() != null)
             {
-                if (e.Action == CollectionChangeAction.Add)
-                {
-                    if (gridView1.SelectedRowsCount == 1)
-                    {
-                        DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                        if (row != null)
-                        {
-                            txtCode.Text = row[1].ToString();
-                            id = Convert.ToInt16(row[0].ToString());
-                            string code = txtCode.Text;
-                            displayCode(code);
-                        }
-                        else
-                        {
-                            id = 0;
-                            txtCode.Text = txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
-                        }
-                    }
-                    else
-                    {
-                        id = 0;
-                        txtCode.Text = txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
-                    }
-                }
+                PurchasingPrice_ID = Convert.ToInt16(com.ExecuteScalar());
             }
-            catch (Exception ex)
+            //for archive table
+            queryx = "select OldPurchasingPrice_ID from oldpurchasing_price order by OldPurchasingPrice_ID desc limit 1";
+            com = new MySqlCommand(queryx, dbconnection);
+            if (com.ExecuteScalar() != null)
             {
-                MessageBox.Show(ex.Message);
+                OldPurchasingPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+            }
+            foreach (DataGridViewRow item in dataGridView1.Rows)
+            {
+                double addational = Convert.ToDouble(item.Cells[0].Value);
+                queryx = "insert into additional_increase_purchasingprice (PurchasingPrice_ID,AdditionalValue,Type,Description) values (@PurchasingPrice_ID,@AdditionalValue,@Type,@Description)";
+                com = new MySqlCommand(queryx, dbconnection);
+                com.Parameters.AddWithValue("@PurchasingPrice_ID", PurchasingPrice_ID);
+                com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
+                com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
+                com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
+                com.ExecuteNonQuery();
+
+                //insert into archive table
+                queryx = "insert into old_additional_increase_purchasingprice (OldPurchasingPrice_ID,AdditionalValue,Type,Description) values (@OldPurchasingPrice_ID,@AdditionalValue,@Type,@Description)";
+                com = new MySqlCommand(queryx, dbconnection);
+                com.Parameters.AddWithValue("@OldPurchasingPrice_ID", OldPurchasingPrice_ID);
+                com.Parameters.AddWithValue("@Type", item.Cells[1].Value);
+                com.Parameters.AddWithValue("@AdditionalValue", item.Cells[0].Value);
+                com.Parameters.AddWithValue("@Description", item.Cells[2].Value);
+                com.ExecuteNonQuery();
+
             }
         }
+        public string getDataIDsWhichHavepurchasing_price()
+        {
+            dbconnection.Open();
+            string query = "select Data_ID from purchasing_price where Data_ID is not null";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            string DataIDs = "";
+            while (dr.Read())
+            {
+                DataIDs += dr[0].ToString() + ",";
+            }
+            dr.Close();
+            DataIDs += "0";
+            dbconnection.Close();
+            return DataIDs;
+        }
+     
     }
 }
