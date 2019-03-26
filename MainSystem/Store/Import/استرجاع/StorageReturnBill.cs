@@ -1029,7 +1029,7 @@ namespace MainSystem
                         }
 
                         Report_StorageReturn f = new Report_StorageReturn();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, ReturnedPermissionNumber, bi);
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, ReturnedPermissionNumber, txtReason.Text, bi);
                         f.ShowDialog();
 
                         search();
@@ -1215,7 +1215,7 @@ namespace MainSystem
                         }
 
                         Report_StorageReturn f = new Report_StorageReturn();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, bi);
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, txtReason.Text, bi);
                         f.ShowDialog();
 
                         displayData();

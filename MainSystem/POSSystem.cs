@@ -243,10 +243,10 @@ namespace MainSystem
                 if (xtraTabPagePS == null)
                 {
                     xtraTabControlMainContainer.TabPages.Add(xtraTabPagePOS);
-
+                    index++;
                     xtraTabControlMainContainer.SelectedTabPage = xtraTabPagePOS;
                 }
-                XtraTabPage xtraTabPage =getTabPage(xtraTabControlPointSale,"tabPageProductsDetailsReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageProductsDetailsReport");
                 //if (xtraTabPage == null)
                 //{
                 tabPageProductsDetailsReport.Name = "tabPageProductsDetailsReport";

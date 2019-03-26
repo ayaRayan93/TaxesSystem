@@ -56,7 +56,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.comSupplier = new System.Windows.Forms.ComboBox();
@@ -412,7 +411,6 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 633);
@@ -422,27 +420,6 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(846, 55);
             this.tableLayoutPanel4.TabIndex = 37;
-            // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnReport.ImagePosition = 1;
-            this.btnReport.ImageZoom = 25;
-            this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(343, 4);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(78, 47);
-            this.btnReport.TabIndex = 7;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnSave
             // 
@@ -697,7 +674,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TextBox txtPurchasePrice;

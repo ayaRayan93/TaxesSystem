@@ -322,16 +322,29 @@
     <Compile Include="Purchases\Orders\Request_Least_Order.designer.cs">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Supplier_Return_Bill2.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
+      <DependentUpon>Print_SupplierBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Report_SupplierBill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Supplier_Return_Bill2.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Report_SupplierBill.designer.cs">
+      <DependentUpon>Report_SupplierBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\SupplierBill_Items.cs" />
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill2.designer.cs">
       <DependentUpon>Supplier_Return_Bill2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Supplier_Return_Bill.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Supplier_Return_Bill.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill.designer.cs">
       <DependentUpon>Supplier_Return_Bill.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -339,10 +352,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Supplier_Bill.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Supplier_Bill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Supplier_Bill.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Supplier_Bill.designer.cs">
       <DependentUpon>Supplier_Bill.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Price\SetPurchasesPrice2.cs">
@@ -1969,13 +1982,19 @@
     <EmbeddedResource Include="Purchases\Orders\Request_Least_Order.resx">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Supplier_Return_Bill2.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
+      <DependentUpon>Print_SupplierBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Report_SupplierBill.resx">
+      <DependentUpon>Report_SupplierBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill2.resx">
       <DependentUpon>Supplier_Return_Bill2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Supplier_Return_Bill.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill.resx">
       <DependentUpon>Supplier_Return_Bill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Supplier_Bill.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Supplier_Bill.resx">
       <DependentUpon>Supplier_Bill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">

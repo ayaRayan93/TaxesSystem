@@ -20,7 +20,6 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-        DataRow row1;
 
         public LeastQuantityRecord(MainForm mainFom, XtraTabControl tabControl)
         {
@@ -285,7 +284,7 @@ namespace MainSystem
                 }
                 gridView1.Columns["الكود"].Width = 180;
                 gridView1.Columns["الاسم"].Width = 270;
-                gridView1.Columns["الكرتنة"].Width = 60;
+                gridView1.Columns["الكرتنة"].Width = 70;
                 if (gridView1.IsLastVisibleRow)
                 {
                     gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -298,7 +297,7 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        /*private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
         {
             try
             {
@@ -324,38 +323,37 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
+        }*/
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if (row1 != null && txtLeastQuantity.Text != "")
+                if (gridView1.SelectedRowsCount > 0 && txtLeastQuantity.Text != "")
                 {
-                    string query = "select Least_Quantity from least_Offer where Data_ID=" + row1[0].ToString();
-                    MySqlCommand command = new MySqlCommand(query, dbconnection);
                     dbconnection.Open();
-                    var result = command.ExecuteReader();
-                    if (result.Read())
+                    for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
-                        dbconnection.Close();
-                        dbconnection.Open();
-                        string query2 = "update least_Offer set Least_Quantity=" + txtLeastQuantity.Text + " where Data_ID=" + row1[0].ToString();
+                        string query2 = "";
+                        string query = "select Least_Quantity from least_Offer where Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
+                        MySqlCommand command = new MySqlCommand(query, dbconnection);
+                        if (command.ExecuteScalar() != null)
+                        {
+                            string result = command.ExecuteScalar().ToString();
+                            query2 = "update least_Offer set Least_Quantity=" + txtLeastQuantity.Text + " where Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
+                        }
+                        else
+                        {
+                            query2 = "insert into least_Offer (Data_ID,Least_Quantity) values (" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]) + " , " + txtLeastQuantity.Text + ")";
+                        }
                         MySqlCommand comand = new MySqlCommand(query2, dbconnection);
                         comand.ExecuteNonQuery();
-                        MessageBox.Show("تم التعديل");
                     }
-                    else
-                    {
-                        dbconnection.Close();
-                        dbconnection.Open();
-                        string query2 = "insert into least_Offer (Data_ID,Least_Quantity) values (" + row1[0].ToString() + " , " + txtLeastQuantity.Text + ")";
-                        MySqlCommand comand = new MySqlCommand(query2, dbconnection);
-                        comand.ExecuteNonQuery();
-                        MessageBox.Show("تم الاضافة");
-                    }
+                    gridView1.ClearSelection();
                     txtCode.Text = "";
                     txtLeastQuantity.Text = "";
+                    txtCode.Visible = true;
+                    label5.Visible = true;
                 }
                 else
                 {
@@ -388,6 +386,54 @@ namespace MainSystem
                     co.Text = "";
                 }
             }
+        }
+
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (gridView1.SelectedRowsCount == 0)
+                {
+                    txtCode.Text = "";
+                    txtLeastQuantity.Text = "";
+                    txtCode.Visible = true;
+                    label5.Visible = true;
+                }
+                else if (gridView1.SelectedRowsCount == 1)
+                {
+                    txtCode.Visible = true;
+                    label5.Visible = true;
+
+                    DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(gridView1.GetSelectedRows()[0]));
+                    string code = row1["الكود"].ToString();
+                    txtCode.Text = code;
+
+                    dbconnection.Open();
+                    string query = "select Least_Quantity from least_Offer where Data_ID=" + row1[0].ToString();
+                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                    if (command.ExecuteScalar() != null)
+                    {
+                        string result = command.ExecuteScalar().ToString();
+                        txtLeastQuantity.Text = result;
+                    }
+                    else
+                    {
+                        txtLeastQuantity.Text = "";
+                    }
+                }
+                else
+                {
+                    txtCode.Text = "";
+                    txtLeastQuantity.Text = "";
+                    txtCode.Visible = false;
+                    label5.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
     }
 }

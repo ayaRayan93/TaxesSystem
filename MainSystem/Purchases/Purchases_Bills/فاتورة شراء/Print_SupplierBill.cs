@@ -7,21 +7,21 @@ using System.Collections.Generic;
 
 namespace MainSystem
 {
-    public partial class Print_StorageReturn : DevExpress.XtraReports.UI.XtraReport
+    public partial class Print_SupplierBill : DevExpress.XtraReports.UI.XtraReport
     {
-        public Print_StorageReturn()
+        public Print_SupplierBill()
         {
             InitializeComponent();
         }
 
-        public void InitData(string storeName, string permissionNum, string supplierName, int returnedPermissionNumber, string reason, List<StorageReturn_Items> ReceiptItems)
+        public void InitData(string storeName, string permissionNum, string supplierName, double TotalA, double addabtiveTax, List<SupplierBill_Items> ReceiptItems)
         {
             DateNow.Value = DateTime.Now;
             StoreName.Value = storeName;
             PermissionNumber.Value = permissionNum;
             SupplierName.Value = supplierName;
-            ReturnedPermissionNumber.Value = returnedPermissionNumber;
-            ReturnedReason.Value = reason;
+            Safy.Value = TotalA;
+            Value_Additive_Tax.Value = addabtiveTax;
             objectDataSource1.DataSource = ReceiptItems;
         }
     }

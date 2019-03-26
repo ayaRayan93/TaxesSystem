@@ -16,7 +16,7 @@ namespace MainSystem
 {
     public partial class Supplier_Bill : Form
     {
-        MySqlConnection conn;
+        MySqlConnection conn, conn2;
         
         bool flag = false;
         bool loaded = false;
@@ -31,6 +31,7 @@ namespace MainSystem
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            conn2 = new MySqlConnection(connection.connectionString);
             purchasesMainForm = mainForm;
         }
 
@@ -478,34 +479,6 @@ namespace MainSystem
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRow row3 = gridView2.GetDataRow(i);
-                        /*query = "select Total_Meters from storage_taxes where Code='" + txtCode.Text + "' and Buy_Price=" + txtPurchasePrice.Text + " and Date='" /*+ storeDate *+ "'";
-                        MySqlCommand comtaxes = new MySqlCommand(query, conn);
-                        if (comtaxes.ExecuteScalar() != null)
-                        {
-                            double StoreQuantity = Convert.ToDouble(comtaxes.ExecuteScalar());
-                            //StoreQuantity += quantity;
-                            query = "update storage_taxes set Total_Meters=" + StoreQuantity + " where Code='" + txtCode.Text + "' and Buy_Price=" + txtPurchasePrice.Text + " and Date='" /*+ storeDate* + "'";
-                            comtaxes = new MySqlCommand(query, conn);
-                            comtaxes.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            //insert into storage Taxes table
-                            query = "insert into storage_taxes (Code,Total_Meters,Buy_Price,Date) values (@Code,@Total_Meters,@Buy_Price,@Date)";
-                            comtaxes = new MySqlCommand(query, conn);
-                            comtaxes.Parameters.Add("@Code", MySqlDbType.VarChar);
-                            comtaxes.Parameters["@Code"].Value = txtCode.Text;
-                            comtaxes.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                            comtaxes.Parameters["@Total_Meters"].Value = txtTotalMeter.Text;
-                            //comtaxes.Parameters.Add("@Buy_Price", MySqlDbType.Decimal);
-                            //comtaxes.Parameters["@Buy_Price"].Value = BuyPrice;
-                            comtaxes.Parameters.Add("@Date", MySqlDbType.Date);
-                            comtaxes.Parameters["@Date"].Value = DateTime.Now;
-                            comtaxes.ExecuteNonQuery();
-                        }*/
-
-
-                        //add to bill_data
 
                         query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price,Purchasing_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price,@Purchasing_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
                         com = new MySqlCommand(query, conn);
@@ -545,36 +518,70 @@ namespace MainSystem
                         com.Parameters["@Total_Meters"].Value = row3["متر/قطعة"].ToString();
                         com.Parameters.Add("@Supplier_Permission_Details_ID", MySqlDbType.Int16);
                         com.Parameters["@Supplier_Permission_Details_ID"].Value = row3["Supplier_Permission_Details_ID"].ToString();
-
                         com.ExecuteNonQuery();
-
-                        string q2 = "update import_supplier_permission set Purchase_Bill=1 where ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
-                        com = new MySqlCommand(q2, conn);
-                        com.ExecuteNonQuery();
-
-                        /*string query1 = "select sum(bill.Buy_Price*bill.Total_Meters) from bill INNER JOIN Bill_Data ON bill.Bill_ID=Bill_Data.Bill_ID where Bill_Data.Bill_No=" + BillNo + "";
-                        com = new MySqlCommand(query1, conn);
-                        string query2 = "select sum(bill.Bill_Price*bill.Total_Meters) from bill INNER JOIN Bill_Data ON bill.Bill_ID=Bill_Data.Bill_ID where Bill_Data.Bill_No=" + BillNo + "";
-                        MySqlCommand com2 = new MySqlCommand(query2, conn);
-                        if (com.ExecuteScalar() == null && com2.ExecuteScalar() == null)
-                        {
-                            MessageBox.Show("error");
-                        }
-                        else
-                        {
-                            decimal x = (decimal)com.ExecuteScalar();
-                            decimal x2 = (decimal)com2.ExecuteScalar();
-                            labelTotalA.Text = x.ToString();
-                            labelTotalB.Text = x2.ToString();
-                            string q2 = "update bill_data set Total_Price=" + x + " , Total_Price_B_D=" + x2 + " where Bill_No=" + BillNo + "";
-                            com = new MySqlCommand(q2, conn);
-                            com.ExecuteNonQuery();
-
-                        }*/
-                        loadFunc();
-
-                        NewBill();
                     }
+
+                    string q2 = "update import_supplier_permission set Purchase_Bill=1 where ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
+                    com = new MySqlCommand(q2, conn);
+                    com.ExecuteNonQuery();
+                    
+                    bool flagConfirm = false;
+                    conn2.Open();
+                    query = "select StorageImportPermission_ID,Import_Permission_Number from storage_import_permission where Store_ID=" + storeId + " and Confirmed=0";
+                    com = new MySqlCommand(query, conn);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission where import_supplier_permission.StorageImportPermission_ID=" + dr["StorageImportPermission_ID"].ToString() + " and import_supplier_permission.Purchase_Bill=0";
+                        com = new MySqlCommand(query, conn2);
+                        MySqlDataReader dr2 = com.ExecuteReader();
+                        while (dr2.Read())
+                        {
+                            flagConfirm = true;
+                        }
+                        dr2.Close();
+                    }
+                    dr.Close();
+                    conn.Close();
+
+                    conn.Open();
+                    if (flagConfirm == false)
+                    {
+                        query = "update storage_import_permission set Confirmed=1 where storage_import_permission.Import_Permission_Number=" + comPermessionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
+                        MySqlCommand c = new MySqlCommand(query, conn);
+                        c.ExecuteNonQuery();
+                    }
+
+                    #region report
+                    query = "select Store_Name from store where Store_ID=" + storeId;
+                    com = new MySqlCommand(query, conn);
+                    string storeName = com.ExecuteScalar().ToString();
+
+                    double addabtiveTax = 0;
+                    List<SupplierBill_Items> bi = new List<SupplierBill_Items>();
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        int rowHand = gridView2.GetRowHandle(i);
+                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نوع السعر"]) == "لستة")
+                        {
+                            SupplierBill_Items item = new SupplierBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])), Last_Price = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]))), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
+                            bi.Add(item);
+                        }
+                        else if(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نوع السعر"]) == "قطعى")
+                        {
+                            SupplierBill_Items item = new SupplierBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
+                            bi.Add(item);
+                        }
+                        addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
+                    }
+                    Report_SupplierBill f = new Report_SupplierBill();
+                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
+                    f.ShowDialog();
+                    #endregion
+
+                    loadFunc();
+
+                    NewBill();
                 }
                 else
                 {
@@ -585,24 +592,8 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            conn2.Close();
             conn.Close();
-        }
-
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                /*string qq = "select Bill_Date ,Store_Name ,Supplier_Name,Code,Bill_Price ,Buy_Discount ,Normal_Increase ,Categorical_Increase ,Value_Additive_Tax ,Buy_Price ,Total_Meters  from bill where Bill_ID in (" + str + ") ";
-                MySqlDataAdapter da = new MySqlDataAdapter(qq, conn);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                Form2 f = new Form2(ds);
-                f.Show();*/
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         //function
