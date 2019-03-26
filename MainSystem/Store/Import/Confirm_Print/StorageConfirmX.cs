@@ -290,7 +290,7 @@ namespace MainSystem
                             }
 
                             Report_StorageReturn f2 = new Report_StorageReturn();
-                            f2.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, bi2);
+                            f2.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, "", bi2);
                             f2.ShowDialog();
                         }
 

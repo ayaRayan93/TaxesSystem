@@ -523,6 +523,7 @@ namespace MainSystem
                     if (flag == false)
                     {
                         xtraTabControlMainContainer.TabPages.Insert(1, SalesTP);
+                        index++;
                         flag = true;
                     }
                     xtraTabControlMainContainer.SelectedTabPage = SalesTP;

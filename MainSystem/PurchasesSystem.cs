@@ -55,6 +55,7 @@ namespace MainSystem
                     if (purchaseFlag == false)
                     {
                         xtraTabControlMainContainer.TabPages.Insert(1, PurchasesTP);
+                        index++;
                         purchaseFlag = true;
                     }
                     xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
@@ -217,11 +218,11 @@ namespace MainSystem
                     if (!xtraTabControlPurchases.Visible)
                         xtraTabControlPurchases.Visible = true;
 
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اقل كمية للبنود");
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل الحد الادنى للبنود");
                     if (xtraTabPage == null)
                     {
-                        xtraTabControlPurchases.TabPages.Add("تسجيل اقل كمية للبنود");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل اقل كمية للبنود");
+                        xtraTabControlPurchases.TabPages.Add("تسجيل الحد الادنى للبنود");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل الحد الادنى للبنود");
                     }
                     xtraTabPage.Controls.Clear();
 

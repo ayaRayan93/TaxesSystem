@@ -203,7 +203,14 @@ namespace MainSystem
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageSales))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, SalesTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, SalesTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, SalesTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageSales)];
@@ -356,7 +363,14 @@ namespace MainSystem
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, PurchasesTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPagePurchases)];
@@ -406,16 +420,32 @@ namespace MainSystem
                     if (dialogResult == DialogResult.Yes)
                     {
                         xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
+                        index--;
+                        if (xtraTabPage.Name == "xtraTabPagePurchases")
+                        {
+                            purchaseFlag = false;
+                        }
+                        else if (xtraTabPage.Name == "xtraTabPageSales")
+                        {
+                            flag = false;
+                        }
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-
                     }
                 }
                 else
                 {
                     xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
                     index--;
+                    if (xtraTabPage.Name == "xtraTabPagePurchases")
+                    {
+                        purchaseFlag = false;
+                    }
+                    else if (xtraTabPage.Name == "xtraTabPageSales")
+                    {
+                        flag = false;
+                    }
                 }
 
             }
@@ -441,7 +471,6 @@ namespace MainSystem
                     }
                     else if (dialogResult == DialogResult.No)
                     {
-
                     }
                 }
                 else

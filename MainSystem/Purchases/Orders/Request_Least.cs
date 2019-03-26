@@ -14,94 +14,68 @@ namespace MainSystem
     public partial class Request_Least : Form
     {
         MySqlConnection conn;
-        public Request_Least()
+        List<DataRow> row1 = null;
+
+        public Request_Least(List<DataRow> Row1)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            row1 = Row1;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
+                //txtCode.Text = row1["الكود"].ToString();
                 conn.Open();
                 string query = "SELECT distinct Supplier_ID,Supplier_Name FROM supplier";
-
-                using (MySqlDataAdapter command = new MySqlDataAdapter(query, conn))
-                {
-                    DataTable dt = new DataTable();
-                    command.Fill(dt);
-                    cmbSupplier.ValueMember = "Supplier_ID";
-                    cmbSupplier.DisplayMember = "Supplier_Name";
-                    cmbSupplier.DataSource = dt;
-                    cmbSupplier.Text = "";
-                    cmbSupplier.Text = "";
-                }
-                conn.Close();
-                
-                conn.Open();
-                query = "SELECT D.Code as 'الكود', T.Type_Name as 'النوع',F.Factory_Name as 'المورد', G.Group_Name as 'المجموعة', p.Product_Name as 'الصنف' ,D.Sort as 'الفرز',D.Colour as 'اللون', D.Size as 'المقاس',D.Classification as 'التصنيف', D.Description as 'الوصف',D.Carton as 'الكرتنه' FROM Data D INNER JOIN Type T ON D.Type_ID=T.Type_ID INNER JOIN Product p ON D.Product_ID=p.Product_ID INNER JOIN Factory F ON D.Factory_ID=F.Factory_ID INNER JOIN Groupo G ON D.Group_ID=G.Group_ID";
-
-
-                using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn))
-                {
-
-                    DataSet dset = new DataSet();
-
-                    adpt.Fill(dset);
-
-                    //dataGridView1.DataSource = dset.Tables[0];
-
-                }
-                conn.Close();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                conn.Close();
-            }
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                /*DataGridViewRow row = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                string code = row.Cells[0].Value.ToString();
-                txtCode.Text = code;*/
+                MySqlDataAdapter command = new MySqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                command.Fill(dt);
+                comSupplier.ValueMember = "Supplier_ID";
+                comSupplier.DisplayMember = "Supplier_Name";
+                comSupplier.DataSource = dt;
+                comSupplier.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
             try
             {
-                double test = 0;
-                if (double.TryParse(txtQuantity.Text, out test))
+                if (comSupplier.SelectedValue != null && txtEmployee.Text != "" && txtQuantity.Text != "")
                 {
-                    conn.Open();
-                    string query = "insert into request_Least (Order_Date,Delivery_Date,Supplier_ID,Code,Quantity,Employee_Name) values ('" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' , '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' , " + cmbSupplier.SelectedValue.ToString() + " , '" + txtCode.Text + "', " + txtQuantity.Text + " , '" + txtEmployee.Text + "')";
-                    MySqlCommand comand = new MySqlCommand(query, conn);
-                    comand.ExecuteNonQuery();
-                    MessageBox.Show("inserted");
-                    conn.Close();
+                    double quantity = 0;
+                    if (double.TryParse(txtQuantity.Text, out quantity))
+                    {
+                        conn.Open();
+                        string query = "insert into request_Least (Order_Date,Delivery_Date,Supplier_ID,Data_ID,Quantity,Employee_Name,Employee_ID) values ('" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' , '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' , " + comSupplier.SelectedValue.ToString() + " , " + row1[0]["Data_ID"].ToString() + ", " + quantity + " , '" + UserControl.EmpName + "'," + UserControl.EmpID + ")";
+                        MySqlCommand comand = new MySqlCommand(query, conn);
+                        comand.ExecuteNonQuery();
+                        conn.Close();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("الكمية يجب ان تكون عدد");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Enter values in correct format");
-                    conn.Close();
-                    return;
+                    MessageBox.Show("تاكد من ادخال جميع البيانات");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                conn.Close();
             }
+            conn.Close();
         }
     }
 }

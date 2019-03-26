@@ -52,15 +52,15 @@
             this.comType = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -80,6 +80,7 @@
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtCode.Location = new System.Drawing.Point(564, 6);
             this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCode.Size = new System.Drawing.Size(200, 23);
             this.txtCode.TabIndex = 37;
@@ -116,7 +117,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 28);
             this.btnAdd.TabIndex = 40;
-            this.btnAdd.Text = "اضافة";
+            this.btnAdd.Text = "حفظ";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -366,19 +367,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(888, 689);
             this.tableLayoutPanel1.TabIndex = 80;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.txtCode);
-            this.panel1.Controls.Add(this.txtLeastQuantity);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 652);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(882, 34);
-            this.panel1.TabIndex = 81;
-            // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -416,27 +404,41 @@
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             // 
-            // FormAddLeastQuantity
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.txtCode);
+            this.panel1.Controls.Add(this.txtLeastQuantity);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 652);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(882, 34);
+            this.panel1.TabIndex = 81;
+            // 
+            // LeastQuantityRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(888, 689);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "FormAddLeastQuantity";
+            this.Name = "LeastQuantityRecord";
             this.Text = "اضافة الحد الادنى";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

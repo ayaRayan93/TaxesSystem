@@ -3981,7 +3981,7 @@
             // 
             // navBarGroupLeastQuantity
             // 
-            this.navBarGroupLeastQuantity.Caption = "تحديد اقل كمية للبنود";
+            this.navBarGroupLeastQuantity.Caption = "الحد الادنى للبنود";
             this.navBarGroupLeastQuantity.Expanded = true;
             this.navBarGroupLeastQuantity.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemLeastQuantity)});
