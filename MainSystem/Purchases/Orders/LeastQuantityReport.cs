@@ -40,7 +40,7 @@ namespace MainSystem
         {
             dconnection.Open();
 
-            string q1 = "select Type_ID from type";
+            //string q1 = "select Type_ID from type";
 
             string query = "SELECT data.Code as 'الكود',SUM(storage.Total_Meters) as 'الكمية المتاحة',least_offer.Least_Quantity as 'الحد الادنى','تسوية' FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1)";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dconnection);
