@@ -40,7 +40,6 @@ namespace MainSystem
             }
 
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -453,7 +452,7 @@ namespace MainSystem
             {
                 if (comStore.Text != "" && comStorePlace.Text != "")
                 {
-                    displayData();
+                    displayProducts();
                 }
                 else
                 {
@@ -626,8 +625,6 @@ namespace MainSystem
         {
             try
             {
-
-                //loaded = false;
                 string q1, q2, q3, q4;
                 if (txtType.Text == "")
                 {
@@ -671,24 +668,24 @@ namespace MainSystem
                     query1 += " and storage.Store_Place_ID=" + comStorePlace.SelectedValue;
                 }
 
-                string Month = DateTime.Now.Month.ToString();
-                if (Month.Length < 2)
-                    Month = "0" + Month;
-                string Day = DateTime.Now.Day.ToString();
-                if (Day.Length < 2)
-                    Day = "0" + Day;
+                //string Month = DateTime.Now.Month.ToString();
+                //if (Month.Length < 2)
+                //    Month = "0" + Month;
+                //string Day = DateTime.Now.Day.ToString();
+                //if (Day.Length < 2)
+                //    Day = "0" + Day;
 
-                string date = DateTime.Now.Year + "-" + Month + "-" + Day;
+                //string date = DateTime.Now.Year + "-" + Month + "-" + Day;
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName + ", store.Store_Name as 'المخزن', Store_Place_Code as 'مكان التخزين'  ,storage.Total_Meters as 'اجمالي عدد الوحدات', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") and Storage_Date='" + date + "' " + query1+ " order by Storage_ID desc";
+                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName + ", store.Store_Name as 'المخزن', Store_Place_Code as 'مكان التخزين'  ,storage.Total_Meters as 'اجمالي عدد الوحدات', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ " order by Storage_ID desc";
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                
-                gridControl2.DataSource = dt;
-                gridView2.Columns[0].Visible = false;
-                gridView2.Columns[1].Visible = false;
-                gridView2.BestFitColumns();
+                gridControl1.DataSource = dt;
+                gridView1.Columns[0].Visible = false;
+                gridView1.Columns[1].Visible = false;
+                gridView1.BestFitColumns();
                 //load = true;
             }
             catch (Exception ex)
