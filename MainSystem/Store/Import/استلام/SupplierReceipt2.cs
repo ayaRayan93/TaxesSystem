@@ -912,7 +912,7 @@ namespace MainSystem
                             quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]));
                         }
 
-                        SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
+                        SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
                         bi.Add(item);
 
                         if (i == 0)

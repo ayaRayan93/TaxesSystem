@@ -87,6 +87,7 @@
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Data_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -849,6 +850,7 @@
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Data_ID,
             this.Code,
+            this.ItemType,
             this.ItemName,
             this.Carton,
             this.TotalQuantity,
@@ -865,6 +867,7 @@
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
             // Data_ID
@@ -881,15 +884,26 @@
             this.Code.OptionsColumn.AllowEdit = false;
             this.Code.Visible = true;
             this.Code.VisibleIndex = 0;
+            this.Code.Width = 180;
+            // 
+            // ItemType
+            // 
+            this.ItemType.Caption = "النوع";
+            this.ItemType.FieldName = "ItemType";
+            this.ItemType.Name = "ItemType";
+            this.ItemType.Visible = true;
+            this.ItemType.VisibleIndex = 1;
+            this.ItemType.Width = 100;
             // 
             // ItemName
             // 
-            this.ItemName.Caption = "البند";
+            this.ItemName.Caption = "الاسم";
             this.ItemName.FieldName = "ItemName";
             this.ItemName.Name = "ItemName";
             this.ItemName.OptionsColumn.AllowEdit = false;
             this.ItemName.Visible = true;
-            this.ItemName.VisibleIndex = 1;
+            this.ItemName.VisibleIndex = 2;
+            this.ItemName.Width = 270;
             // 
             // Carton
             // 
@@ -897,7 +911,8 @@
             this.Carton.FieldName = "Carton";
             this.Carton.Name = "Carton";
             this.Carton.Visible = true;
-            this.Carton.VisibleIndex = 2;
+            this.Carton.VisibleIndex = 3;
+            this.Carton.Width = 60;
             // 
             // TotalQuantity
             // 
@@ -905,7 +920,8 @@
             this.TotalQuantity.FieldName = "TotalQuantity";
             this.TotalQuantity.Name = "TotalQuantity";
             this.TotalQuantity.Visible = true;
-            this.TotalQuantity.VisibleIndex = 3;
+            this.TotalQuantity.VisibleIndex = 4;
+            this.TotalQuantity.Width = 100;
             // 
             // NumOfCarton
             // 
@@ -913,7 +929,8 @@
             this.NumOfCarton.FieldName = "NumOfCarton";
             this.NumOfCarton.Name = "NumOfCarton";
             this.NumOfCarton.Visible = true;
-            this.NumOfCarton.VisibleIndex = 4;
+            this.NumOfCarton.VisibleIndex = 5;
+            this.NumOfCarton.Width = 100;
             // 
             // NumOfBalate
             // 
@@ -921,7 +938,8 @@
             this.NumOfBalate.FieldName = "NumOfBalate";
             this.NumOfBalate.Name = "NumOfBalate";
             this.NumOfBalate.Visible = true;
-            this.NumOfBalate.VisibleIndex = 5;
+            this.NumOfBalate.VisibleIndex = 6;
+            this.NumOfBalate.Width = 100;
             // 
             // ReturnItemReason
             // 
@@ -929,7 +947,8 @@
             this.ReturnItemReason.FieldName = "ReturnItemReason";
             this.ReturnItemReason.Name = "ReturnItemReason";
             this.ReturnItemReason.Visible = true;
-            this.ReturnItemReason.VisibleIndex = 6;
+            this.ReturnItemReason.VisibleIndex = 7;
+            this.ReturnItemReason.Width = 100;
             // 
             // Supplier_Permission_Details_ID
             // 
@@ -1067,5 +1086,6 @@
         private System.Windows.Forms.TextBox txtSupplierId;
         private System.Windows.Forms.ComboBox comSupplier;
         private System.Windows.Forms.GroupBox groupBox2;
+        private DevExpress.XtraGrid.Columns.GridColumn ItemType;
     }
 }

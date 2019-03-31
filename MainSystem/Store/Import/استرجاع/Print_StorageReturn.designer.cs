@@ -47,6 +47,7 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
@@ -81,7 +82,9 @@
             this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedPermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedReason = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -124,6 +127,7 @@
             this.xrTableCell5,
             this.xrTableCell18,
             this.xrTableCell21,
+            this.xrTableCell8,
             this.xrTableCell9,
             this.xrTableCell3});
             this.xrTableRow1.Name = "xrTableRow1";
@@ -139,7 +143,7 @@
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.StyleName = "xrControlStyle2";
             this.xrTableCell17.Text = "xrTableCell17";
-            this.xrTableCell17.Weight = 6.0928031709360857D;
+            this.xrTableCell17.Weight = 7.7241696773330633D;
             // 
             // xrTableCell15
             // 
@@ -149,7 +153,7 @@
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.StyleName = "xrControlStyle2";
             this.xrTableCell15.Text = "xrTableCell15";
-            this.xrTableCell15.Weight = 3.9667592722890541D;
+            this.xrTableCell15.Weight = 5.0288735091656367D;
             // 
             // xrTableCell16
             // 
@@ -159,7 +163,7 @@
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StyleName = "xrControlStyle2";
             this.xrTableCell16.Text = "xrTableCell16";
-            this.xrTableCell16.Weight = 4.0513757829411006D;
+            this.xrTableCell16.Weight = 5.1361432005215759D;
             // 
             // xrTableCell5
             // 
@@ -169,7 +173,7 @@
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StyleName = "xrControlStyle2";
             this.xrTableCell5.Text = "xrTableCell5";
-            this.xrTableCell5.Weight = 3.9773870814626933D;
+            this.xrTableCell5.Weight = 5.0423436955598726D;
             // 
             // xrTableCell18
             // 
@@ -179,7 +183,7 @@
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StyleName = "xrControlStyle2";
             this.xrTableCell18.Text = "xrTableCell18";
-            this.xrTableCell18.Weight = 4.0927587788688609D;
+            this.xrTableCell18.Weight = 5.1886101020200606D;
             // 
             // xrTableCell21
             // 
@@ -188,7 +192,7 @@
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.StyleName = "xrControlStyle2";
             this.xrTableCell21.Text = "xrTableCell21";
-            this.xrTableCell21.Weight = 12.086265869415858D;
+            this.xrTableCell21.Weight = 12.646274267816091D;
             // 
             // xrTableCell9
             // 
@@ -198,7 +202,7 @@
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.StyleName = "xrControlStyle2";
             this.xrTableCell9.Text = "xrTableCell9";
-            this.xrTableCell9.Weight = 8.0696683319898312D;
+            this.xrTableCell9.Weight = 8.3865491079663528D;
             // 
             // xrTableCell3
             // 
@@ -234,7 +238,7 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(190.4783F, 30F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "اذن ارتجاع";
+            this.xrLabel1.Text = "اذن استرجاع";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel5
@@ -258,6 +262,21 @@
             this.xrLabel11});
             this.PageFooter.HeightF = 86.66668F;
             this.PageFooter.Name = "PageFooter";
+            // 
+            // xrLabel13
+            // 
+            this.xrLabel13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[ReturnedReason]")});
+            this.xrLabel13.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(649.1654F, 10.00001F);
+            this.xrLabel13.Multiline = true;
+            this.xrLabel13.Name = "xrLabel13";
+            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel13.SizeF = new System.Drawing.SizeF(251.0417F, 41.6667F);
+            this.xrLabel13.StylePriority.UseFont = false;
+            this.xrLabel13.StylePriority.UseTextAlignment = false;
+            this.xrLabel13.Text = "xrLabel13";
+            this.xrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // xrLabel7
             // 
@@ -286,7 +305,7 @@
             // xrLabel11
             // 
             this.xrLabel11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(896.0405F, 10.00001F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(900.2071F, 10.00001F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.SizeF = new System.Drawing.SizeF(102.4432F, 20F);
@@ -329,6 +348,7 @@
             this.xrTableCell2,
             this.xrTableCell14,
             this.xrTableCell1,
+            this.xrTableCell7,
             this.xrTableCell11,
             this.xrTableCell6});
             this.xrTableRow2.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Bold);
@@ -347,7 +367,7 @@
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseFont = false;
             this.xrTableCell10.Text = "السبب";
-            this.xrTableCell10.Weight = 2.8360296586288229D;
+            this.xrTableCell10.Weight = 3.5953855574509763D;
             // 
             // xrTableCell12
             // 
@@ -355,7 +375,7 @@
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.StylePriority.UseFont = false;
             this.xrTableCell12.Text = "اذن استلام";
-            this.xrTableCell12.Weight = 1.8464141258320361D;
+            this.xrTableCell12.Weight = 2.3407997220212682D;
             // 
             // xrTableCell4
             // 
@@ -365,7 +385,7 @@
             this.xrTableCell4.StylePriority.UseBorderWidth = false;
             this.xrTableCell4.StylePriority.UseFont = false;
             this.xrTableCell4.Text = "متر/قطعة";
-            this.xrTableCell4.Weight = 1.8858033067401334D;
+            this.xrTableCell4.Weight = 2.3907307831425753D;
             // 
             // xrTableCell2
             // 
@@ -376,7 +396,7 @@
             this.xrTableCell2.StylePriority.UseBorderWidth = false;
             this.xrTableCell2.StylePriority.UseFont = false;
             this.xrTableCell2.Text = "عدد الكراتين";
-            this.xrTableCell2.Weight = 1.851361855643257D;
+            this.xrTableCell2.Weight = 2.3470701358002519D;
             // 
             // xrTableCell14
             // 
@@ -387,7 +407,7 @@
             this.xrTableCell14.StylePriority.UseBorderWidth = false;
             this.xrTableCell14.StylePriority.UseFont = false;
             this.xrTableCell14.Text = "عدد البلتات";
-            this.xrTableCell14.Weight = 1.9050648717236167D;
+            this.xrTableCell14.Weight = 2.4151530494343065D;
             // 
             // xrTableCell1
             // 
@@ -398,7 +418,7 @@
             this.xrTableCell1.StylePriority.UseBorderWidth = false;
             this.xrTableCell1.StylePriority.UseFont = false;
             this.xrTableCell1.Text = "اسم المنتج";
-            this.xrTableCell1.Weight = 5.6258200516496277D;
+            this.xrTableCell1.Weight = 5.88648704567124D;
             // 
             // xrTableCell11
             // 
@@ -406,7 +426,7 @@
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseFont = false;
             this.xrTableCell11.Text = "الكود";
-            this.xrTableCell11.Weight = 3.7562039042330495D;
+            this.xrTableCell11.Weight = 3.9037059590096894D;
             // 
             // xrTableCell6
             // 
@@ -430,7 +450,8 @@
             this.xrLabel8,
             this.xrLabel9,
             this.xrLabel12,
-            this.xrLabel15});
+            this.xrLabel15,
+            this.xrLabel14});
             this.ReportHeader.HeightF = 143.75F;
             this.ReportHeader.Name = "ReportHeader";
             // 
@@ -516,7 +537,7 @@
             this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[ReturnedPermissionNumber]")});
             this.xrLabel8.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(511.0069F, 68.33334F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(479.8141F, 68.33334F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.SizeF = new System.Drawing.SizeF(86.40216F, 20F);
@@ -621,20 +642,38 @@
             this.ReturnedReason.Description = "ReturnedReason";
             this.ReturnedReason.Name = "ReturnedReason";
             // 
-            // xrLabel13
+            // xrTableCell7
             // 
-            this.xrLabel13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[ReturnedReason]")});
-            this.xrLabel13.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(649.1655F, 10.00001F);
-            this.xrLabel13.Multiline = true;
-            this.xrLabel13.Name = "xrLabel13";
-            this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(246.875F, 41.6667F);
-            this.xrLabel13.StylePriority.UseFont = false;
-            this.xrLabel13.StylePriority.UseTextAlignment = false;
-            this.xrLabel13.Text = "xrLabel13";
-            this.xrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.xrTableCell7.BorderWidth = 1F;
+            this.xrTableCell7.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.StylePriority.UseBorderWidth = false;
+            this.xrTableCell7.StylePriority.UseFont = false;
+            this.xrTableCell7.Text = "النوع";
+            this.xrTableCell7.Weight = 2.4531855735698636D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Product_Type]")});
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StyleName = "xrControlStyle2";
+            this.xrTableCell8.Text = "xrTableCell8";
+            this.xrTableCell8.Weight = 5.2703205969366866D;
+            // 
+            // xrLabel14
+            // 
+            this.xrLabel14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(566.2164F, 68.33336F);
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.SizeF = new System.Drawing.SizeF(39.52606F, 20F);
+            this.xrLabel14.StylePriority.UseFont = false;
+            this.xrLabel14.StylePriority.UseTextAlignment = false;
+            this.xrLabel14.Text = ":رقم";
+            this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // objectDataSource1
             // 
@@ -731,5 +770,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
         private DevExpress.XtraReports.Parameters.Parameter ReturnedReason;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel14;
     }
 }

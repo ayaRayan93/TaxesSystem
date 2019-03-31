@@ -236,9 +236,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemOrderReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبات");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض الطلبات");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبات");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplayOrderReportForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void bindDisplayLeastQuantityReport(XtraTabPage xtraTabPage)
         {
-            leastQuantityReport = new LeastQuantityReport();
+            leastQuantityReport = new LeastQuantityReport(this, xtraTabControlPurchases);
             leastQuantityReport.TopLevel = false;
 
             xtraTabPage.Controls.Add(leastQuantityReport);
@@ -330,9 +361,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
-    
-
+        
         public void bindSupplierBillForm(XtraTabPage xtraTabPage)
         {
             Supplier_Bill objForm = new Supplier_Bill(this);
@@ -492,6 +521,86 @@ namespace MainSystem
             objForm.Show();
         }
 
+        public void bindDisplayOrderReportForm(XtraTabPage xtraTabPage)
+        {
+            Order_Report objForm = new Order_Report(this, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindRecordOrderForm(Order_Report OrderReport, List<DataRow> row1)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("اضافة طلب");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            //List<DataRow> row1 = new List<DataRow>();
+            Order_Record objForm = new Order_Record(row1, OrderReport, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindUpdateOrderForm(DataRowView rows, Order_Report OrderReport)
+        {
+            /*if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل طلب");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تعديل طلب");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل طلب");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+            UpdateSupplier objForm = new UpdateSupplier(rows, /*OrderReport*null, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();*/
+        }
+        public void bindPrintOrderForm()
+        {
+            /*if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "طباعة الطلبات");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("طباعة الطلبات");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "طباعة الطلبات");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            Supplier_Print objForm = new Supplier_Print();
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();*/
+        }
+
         public void GetNonRequestedLeastQuantity(object sender, EventArgs e)
         {
             try
@@ -507,24 +616,31 @@ namespace MainSystem
 
         public void LeastQuantityFunction()
         {
+            string q1 = "select Data_ID from storage_least_taswya";
+            string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
+            int count = 0;
             dbconnection.Close();
-            string query = "SELECT Count(least_offer.ID),least_offer.Least_Quantity FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1)";
+            string query = "SELECT least_offer.Least_Quantity FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
             MySqlCommand command = new MySqlCommand(query, dbconnection);
             dbconnection.Open();
             MySqlDataReader dr = command.ExecuteReader();
             if (dr.HasRows)
             {
-                while (dr.Read())
+                if (dr.HasRows)
                 {
-                    labelPurcaseLeast.Text = dr[0].ToString();
-                    labelPurcaseLeast.Visible = true;
+                    while (dr.Read())
+                    {
+                        count++;
+                    }
+                    labelPurchaseLeast.Text = count.ToString();
+                    labelPurchaseLeast.Visible = true;
+                    dr.Close();
                 }
-                dr.Close();
             }
             else
             {
-                labelPurcaseLeast.Text = "0";
-                labelPurcaseLeast.Visible = true;
+                labelPurchaseLeast.Text = "0";
+                labelPurchaseLeast.Visible = true;
             }
         }
 

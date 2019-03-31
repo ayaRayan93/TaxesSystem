@@ -5,26 +5,26 @@ using System.Data;
 
 namespace MainSystem
 {
-    public class DataHelper2
+    public class DataHelperOrder
     {
         private DataSet _DataSet;
         private string _DataMember = "FirstTable";
 
-        public DataHelper2(DSparametr2 param)
+        public DataHelperOrder(DSparametrOrder param)
         {
             switch (param)
             {
-                case DSparametr2.simpleDS:
+                case DSparametrOrder.simpleDS:
                     {
                         MakeFirstTable();
                         break;
                     }
-                case DSparametr2.doubleDS:
+                case DSparametrOrder.doubleDS:
                     {
                         MakeSecondTable();
                         break;
                     }
-                case DSparametr2.relatedDS:
+                case DSparametrOrder.relatedDS:
                     {
                         MakeFirstTable();
                         MakeSecondTable();
@@ -39,7 +39,6 @@ namespace MainSystem
         {
             DataTable table = new DataTable("FirstTable");
             DataColumn column;
-            DataRow row;
 
             column = new DataColumn();
             column.DataType = typeof(int);
@@ -82,17 +81,7 @@ namespace MainSystem
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Carton";
-            column.AutoIncrement = false;
-            column.Caption = "الكرتنة";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
+            column.DataType = typeof(double);
             column.ColumnName = "TotalQuantity";
             column.AutoIncrement = false;
             column.Caption = "عدد المتر/القطعة";
@@ -100,12 +89,12 @@ namespace MainSystem
             column.Unique = false;
 
             table.Columns.Add(column);
-
+            
             column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "NumOfCarton";
+            column.DataType = typeof(double);
+            column.ColumnName = "Price";
             column.AutoIncrement = false;
-            column.Caption = "عدد الكراتين";
+            column.Caption = "السعر";
             column.ReadOnly = false;
             column.Unique = false;
 
@@ -113,69 +102,9 @@ namespace MainSystem
 
             column = new DataColumn();
             column.DataType = typeof(string);
-            column.ColumnName = "NumOfBalate";
+            column.ColumnName = "Carton";
             column.AutoIncrement = false;
-            column.Caption = "عدد البلتات";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "ReturnItemReason";
-            column.AutoIncrement = false;
-            column.Caption = "سبب الاسترجاع";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_Permission_Details_ID";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_Permission_Details_ID";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_ID";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_ID";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_Permission_Number";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_Permission_Number";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Store_Place_ID";
-            column.AutoIncrement = false;
-            column.Caption = "Store_Place_ID";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_Name";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_Name";
+            column.Caption = "الكرتنة";
             column.ReadOnly = false;
             column.Unique = false;
 
@@ -183,15 +112,12 @@ namespace MainSystem
 
             DataSet = new DataSet();
             DataSet.Tables.Add(table);
-
-        
         }
 
         private void MakeSecondTable()
         {
             DataTable table = new DataTable("FirstTable");
             DataColumn column;
-            DataRow row;
 
             column = new DataColumn();
             column.DataType = typeof(int);
@@ -234,17 +160,7 @@ namespace MainSystem
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Carton";
-            column.AutoIncrement = false;
-            column.Caption = "الكرتنة";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
+            column.DataType = typeof(double);
             column.ColumnName = "TotalQuantity";
             column.AutoIncrement = false;
             column.Caption = "عدد المتر/القطعة";
@@ -254,10 +170,10 @@ namespace MainSystem
             table.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "NumOfCarton";
+            column.DataType = typeof(double);
+            column.ColumnName = "Price";
             column.AutoIncrement = false;
-            column.Caption = "عدد الكراتين";
+            column.Caption = "السعر";
             column.ReadOnly = false;
             column.Unique = false;
 
@@ -265,69 +181,9 @@ namespace MainSystem
 
             column = new DataColumn();
             column.DataType = typeof(string);
-            column.ColumnName = "NumOfBalate";
+            column.ColumnName = "Carton";
             column.AutoIncrement = false;
-            column.Caption = "عدد البلتات";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "ReturnItemReason";
-            column.AutoIncrement = false;
-            column.Caption = "سبب الاسترجاع";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_Permission_Details_ID";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_Permission_Details_ID";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_ID";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_ID";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_Permission_Number";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_Permission_Number";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Store_Place_ID";
-            column.AutoIncrement = false;
-            column.Caption = "Store_Place_ID";
-            column.ReadOnly = false;
-            column.Unique = false;
-
-            table.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = typeof(string);
-            column.ColumnName = "Supplier_Name";
-            column.AutoIncrement = false;
-            column.Caption = "Supplier_Name";
+            column.Caption = "الكرتنة";
             column.ReadOnly = false;
             column.Unique = false;
 
@@ -374,7 +230,7 @@ namespace MainSystem
         
     }
 
-    public enum DSparametr2
+    public enum DSparametrOrder
     {
         simpleDS = 0, doubleDS = 1, relatedDS = 2
     }
