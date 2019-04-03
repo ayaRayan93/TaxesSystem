@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\v2\</PublishUrl>
+    <PublishUrl>D:\التكويد\v3\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1669,6 +1669,12 @@
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\StorageReturn_Items.cs" />
+    <Compile Include="Store\Storage\StorageTaswayaSubtract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Storage\StorageTaswayaSubtract.designer.cs">
+      <DependentUpon>StorageTaswayaSubtract.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Storage\StorageTaswayaAdding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2615,6 +2621,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Storage\StorageTaswayaSubtract.resx">
+      <DependentUpon>StorageTaswayaSubtract.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Storage\StorageTaswayaAdding.resx">
       <DependentUpon>StorageTaswayaAdding.cs</DependentUpon>

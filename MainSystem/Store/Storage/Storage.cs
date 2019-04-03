@@ -361,28 +361,29 @@ namespace MainSystem
         {
             try
             {
-                DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                if (row1 != null)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        string query = "delete from storage where Storage_ID=" + row1[0].ToString();
-                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                        dbconnection.Open();
-                        comand.ExecuteNonQuery();
-                    
-                        UserControl.ItemRecord("storage", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
-                     
-                        displayProducts();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    { }
-                }
-                else
-                {
-                    MessageBox.Show("you must select an item");
-                }
+                //DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
+                //if (row1 != null)
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        string query = "delete from storage where Storage_ID=" + row1[0].ToString();
+                //        MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                //        dbconnection.Open();
+                //        comand.ExecuteNonQuery();
+
+                //        UserControl.ItemRecord("storage", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
+
+                //        displayProducts();
+                //    }
+                //    else if (dialogResult == DialogResult.No)
+                //    { }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("you must select an item");
+                //}
+                storeMainForm.bindTaswaySubtractStorageForm();
             }
             catch (Exception ex)
             {
@@ -432,14 +433,14 @@ namespace MainSystem
         {
             try
             {
-                int[] rows = (((GridView)dataGridView1.MainView).GetSelectedRows());
-                List<DataRowView> recordList = new List<DataRowView>();
-                for (int i = 0; i < rows.Length; i++)
-                {
-                    DataRowView a = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(rows[i]));
-                    recordList.Add(a);
-                }
-               storeMainForm.bindUpdateStorageForm(recordList, this);
+                //int[] rows = (((GridView)dataGridView1.MainView).GetSelectedRows());
+                //List<DataRowView> recordList = new List<DataRowView>();
+                //for (int i = 0; i < rows.Length; i++)
+                //{
+                //    DataRowView a = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(rows[i]));
+                //    recordList.Add(a);
+                //}
+               storeMainForm.bindTaswayAddingStorageForm();
             }
             catch (Exception ex)
             {
@@ -450,7 +451,7 @@ namespace MainSystem
         {
             try
             {
-                storeMainForm.bindReportStorageForm(dataGridView1);
+                storeMainForm.bindReportStorageForm(dataGridView1,"تقرير كميات البنود");
             }
             catch (Exception ex)
             {
