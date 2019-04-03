@@ -586,17 +586,18 @@ namespace MainSystem
                                 {
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row1["Data_ID"].ToString());
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["الكود"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["الاسم"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الكرتنة"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtTotalMeter.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtCarton.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtBalat.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtItemReason.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], row1["Supplier_Permission_Details_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["اذن استلام"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["Store_Place_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["المورد"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["النوع"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الاسم"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row1["الكرتنة"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtTotalMeter.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtCarton.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtBalat.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtItemReason.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_Permission_Details_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["Supplier_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["اذن استلام"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["المورد"].ToString());
                                 }
                             }
                             else
@@ -629,17 +630,18 @@ namespace MainSystem
                             {
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row1["Data_ID"].ToString());
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["الكود"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["الاسم"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الكرتنة"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtTotalMeter.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtCarton.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtBalat.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtItemReason.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], "0");
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["النوع"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الاسم"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row1["الكرتنة"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtTotalMeter.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtCarton.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtBalat.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtItemReason.Text);
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], "0");
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], "0");
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], "0");
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "");
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "0");
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], "");
                             }
                         }
                         txtCode.Text = "";
@@ -668,8 +670,13 @@ namespace MainSystem
         {
             try
             {
-                int rowHandle = gridView2.GetRowHandle(gridView2.GetSelectedRows()[0]);
-                gridView2.DeleteRow(rowHandle);
+                if (gridView2.GetSelectedRows().Length > 0)
+                {
+                    GridView view = gridView2 as GridView;
+                    int rowHandle = gridView2.GetRowHandle(gridView2.GetSelectedRows()[0]);
+                    //gridView2.DeleteRow(rowHandle);
+                    view.DeleteSelectedRows();
+                }
             }
             catch (Exception ex)
             {
@@ -986,7 +993,7 @@ namespace MainSystem
                                 quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
                             }
 
-                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
+                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
                             bi.Add(item);
 
                             if (i == 0)
@@ -1210,7 +1217,7 @@ namespace MainSystem
                                 quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
                             }
 
-                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
+                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
                             bi.Add(item);
                         }
 
@@ -1401,7 +1408,7 @@ namespace MainSystem
                 int rowHandle = gridView2.GetRowHandle(i);
                 gridView2.DeleteRow(rowHandle);
             }
-
+            
             /*qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'التاريخ',store_places.Store_Place_Code as 'المكان',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID,import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return_details.Store_Place_ID from import_storage_return_details INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN import_storage_return_supplier ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN import_storage_return ON import_storage_return.ImportStorageReturn_ID = import_storage_return_supplier.ImportStorageReturn_ID INNER JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where import_storage_return.Import_Permission_Number=" + txtPermissionNum.Text + " and import_storage_return_details.Store_ID=" + comStore.SelectedValue.ToString();
             da = new MySqlDataAdapter(qq, dbconnection);
             dt = new DataTable();
@@ -1429,7 +1436,7 @@ namespace MainSystem
                 int rowHandle = gridView2.GetRowHandle(i);
                 gridView2.DeleteRow(rowHandle);
             }
-
+            
             //gridControl2.DataSource = null;
             //gridView2.Columns.Clear();
 

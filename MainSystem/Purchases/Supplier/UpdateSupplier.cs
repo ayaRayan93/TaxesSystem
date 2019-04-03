@@ -18,19 +18,19 @@ namespace MainSystem
     public partial class UpdateSupplier : Form
     {
         MySqlConnection dbconnection;
-        Supplier_Report supplierReport;
+        Supplier_Report SupplierReport;
         XtraTabControl xtraTabControlPurchases;
         XtraTabPage xtraTabPage;
         DataRowView selRow;
         bool loadedflag = false;
 
-        public UpdateSupplier(DataRowView rows, Supplier_Report SupplierReport, XtraTabControl XtraTabControlPurchases)
+        public UpdateSupplier(DataRowView rows, Supplier_Report supplierReport, XtraTabControl XtraTabControlPurchases)
         {
             InitializeComponent();
 
             dbconnection = new MySqlConnection(connection.connectionString);
             selRow = rows;
-            supplierReport = SupplierReport;
+            SupplierReport = supplierReport;
             xtraTabControlPurchases = XtraTabControlPurchases;
         }
 

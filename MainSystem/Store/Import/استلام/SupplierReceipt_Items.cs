@@ -9,6 +9,7 @@ namespace MainSystem
     public class SupplierReceipt_Items
     {
         public string Code { get; set; }
+        public string Product_Type { get; set; }
         public string Product_Name { get; set; }
         public double Balatat { get; set; }
         public double Carton_Balata { get; set; }

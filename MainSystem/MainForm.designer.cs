@@ -422,6 +422,8 @@
             this.xtraTabPagePurchases = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlPurchases = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl7 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup46 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemOrderReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup48 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemPurchasesPricesRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup43 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -463,7 +465,7 @@
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
-            this.labelPurcaseLeast = new System.Windows.Forms.Label();
+            this.labelPurchaseLeast = new System.Windows.Forms.Label();
             this.pictureBoxPurchaseLeast = new System.Windows.Forms.PictureBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -3914,7 +3916,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup48;
+            this.navBarControl7.ActiveGroup = this.navBarGroup46;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -3956,7 +3958,8 @@
             this.navBarGroup43,
             this.navBarGroup44,
             this.navBarGroupSupplier,
-            this.navBarGroupLeastQuantity});
+            this.navBarGroupLeastQuantity,
+            this.navBarGroup46});
             this.navBarControl7.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem206,
             this.navBarItem207,
@@ -3990,7 +3993,8 @@
             this.navBarItem220,
             this.navBarItemSupplierReturn,
             this.navBarItemSuppliersReport,
-            this.navBarItemLeastQuantity});
+            this.navBarItemLeastQuantity,
+            this.navBarItemOrderReport});
             this.navBarControl7.Location = new System.Drawing.Point(955, 0);
             this.navBarControl7.Name = "navBarControl7";
             this.navBarControl7.OptionsNavPane.ExpandedWidth = 190;
@@ -3998,6 +4002,20 @@
             this.navBarControl7.Size = new System.Drawing.Size(190, 702);
             this.navBarControl7.TabIndex = 5;
             this.navBarControl7.Text = "navBarControl7";
+            // 
+            // navBarGroup46
+            // 
+            this.navBarGroup46.Caption = "الطلبات";
+            this.navBarGroup46.Expanded = true;
+            this.navBarGroup46.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOrderReport)});
+            this.navBarGroup46.Name = "navBarGroup46";
+            // 
+            // navBarItemOrderReport
+            // 
+            this.navBarItemOrderReport.Caption = "عرض الطلبات";
+            this.navBarItemOrderReport.Name = "navBarItemOrderReport";
+            this.navBarItemOrderReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOrderReport_LinkClicked);
             // 
             // navBarGroup48
             // 
@@ -4229,7 +4247,7 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.panHeader.Controls.Add(this.labelPurcaseLeast);
+            this.panHeader.Controls.Add(this.labelPurchaseLeast);
             this.panHeader.Controls.Add(this.pictureBoxPurchaseLeast);
             this.panHeader.Controls.Add(this.pictureBoxProfile);
             this.panHeader.Controls.Add(this.linkLabel1);
@@ -4248,20 +4266,20 @@
             this.panHeader.Size = new System.Drawing.Size(1177, 42);
             this.panHeader.TabIndex = 0;
             // 
-            // labelPurcaseLeast
+            // labelPurchaseLeast
             // 
-            this.labelPurcaseLeast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPurcaseLeast.AutoSize = true;
-            this.labelPurcaseLeast.BackColor = System.Drawing.Color.Red;
-            this.labelPurcaseLeast.ForeColor = System.Drawing.Color.White;
-            this.labelPurcaseLeast.Location = new System.Drawing.Point(764, 5);
-            this.labelPurcaseLeast.Name = "labelPurcaseLeast";
-            this.labelPurcaseLeast.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelPurcaseLeast.Size = new System.Drawing.Size(13, 13);
-            this.labelPurcaseLeast.TabIndex = 18;
-            this.labelPurcaseLeast.Text = "0";
-            this.labelPurcaseLeast.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelPurcaseLeast.Visible = false;
+            this.labelPurchaseLeast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPurchaseLeast.AutoSize = true;
+            this.labelPurchaseLeast.BackColor = System.Drawing.Color.Red;
+            this.labelPurchaseLeast.ForeColor = System.Drawing.Color.White;
+            this.labelPurchaseLeast.Location = new System.Drawing.Point(764, 5);
+            this.labelPurchaseLeast.Name = "labelPurchaseLeast";
+            this.labelPurchaseLeast.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelPurchaseLeast.Size = new System.Drawing.Size(13, 13);
+            this.labelPurchaseLeast.TabIndex = 18;
+            this.labelPurchaseLeast.Text = "0";
+            this.labelPurchaseLeast.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelPurchaseLeast.Visible = false;
             // 
             // pictureBoxPurchaseLeast
             // 
@@ -4937,9 +4955,9 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemReturnWithPermision;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupLeastQuantity;
         private DevExpress.XtraNavBar.NavBarItem navBarItemLeastQuantity;
-        private System.Windows.Forms.Label labelPurcaseLeast;
+        private System.Windows.Forms.Label labelPurchaseLeast;
         private System.Windows.Forms.PictureBox pictureBoxPurchaseLeast;
-        private DevExpress.XtraNavBar.NavBarItem navBarItemAddingQuantity;
-        private DevExpress.XtraNavBar.NavBarItem navBarItemSubstractQuantity;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup46;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemOrderReport;
     }
 }
