@@ -407,7 +407,6 @@ namespace MainSystem
                                 txtTotalMeter.Focus();
                                 break;
                             case "txtAddingQuantity":
-                                //add2Store();
                                 if (mRow != null)
                                 {
                                     add2GridView(mdt, mRow);
@@ -484,8 +483,11 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                add2Store();
-              
+                if (mRow != null)
+                {
+                    add2GridView(mdt, mRow);
+                }
+
             }
             catch (Exception ex)
             {
@@ -498,7 +500,6 @@ namespace MainSystem
         {
             try
             {
-                comStore.Text = "";
 
                 comType.Text = "";
                 comFactory.Text = "";
@@ -510,8 +511,7 @@ namespace MainSystem
                 txtGroup.Text = "";
                 txtProduct.Text = "";
 
-                gridControl1.DataSource = null;
-                gridControl2.DataSource = null;
+                clear();
                 
             }
             catch (Exception ex)
@@ -545,6 +545,56 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void txtPermission_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                int id = Convert.ToInt16(txtPermission.Text);
+                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                string query = "select Data_ID,Store_Place_ID,data.Code,"+itemName+",CurrentQuantity,AddingQuantity,QuantityAfterAdding,Date,Note from addstorage inner join data on data.Data_ID=addstorage.Data_ID where TaswayaAdding_ID="+id;
+                
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                if (da != null)
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    gridControl2.DataSource = dt;
+                    mdt = dt;
+                    gridView2.Columns[0].Visible = false;
+                    gridView2.Columns[1].Visible = false;
+                    gridView2.BestFitColumns();
+                    TaswayaAdding_ID = id;
+                }
+                else
+                {
+                    if (comStore.Text != "")
+                    {
+                        query = "insert into taswayaa_adding_permision (Store_ID,Date)values (Store_ID,Date)";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
+                        com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                        com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                        com.ExecuteNonQuery();
+
+                        query = "select TaswayaAdding_ID from taswayaa_adding_permision order by TaswayaAdding_ID desc limit 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        TaswayaAdding_ID = Convert.ToInt16(com.ExecuteScalar());
+                        txtPermission.Text = TaswayaAdding_ID.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("ادخل المخزن");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void btnReport_Click(object sender, EventArgs e)
         {
             try
@@ -614,6 +664,9 @@ namespace MainSystem
             txtTotalMeter.Text = "";
             txtAddingQuantity.Text = "";
             txtNote.Text ="";
+            comStore.Text = "";
+            gridControl1.DataSource = null;
+            gridControl2.DataSource = null;
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -690,17 +743,8 @@ namespace MainSystem
                     query1 += " and storage.Store_ID=" + comStore.SelectedValue;
                 }
                
-
-                //string Month = DateTime.Now.Month.ToString();
-                //if (Month.Length < 2)
-                //    Month = "0" + Month;
-                //string Day = DateTime.Now.Day.ToString();
-                //if (Day.Length < 2)
-                //    Day = "0" + Day;
-
-                //string date = DateTime.Now.Year + "-" + Month + "-" + Day;
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName +",storage.Total_Meters as 'اجمالي عدد الوحدات', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ " order by Storage_ID desc";
+                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName +",sum(storage.Total_Meters) as 'اجمالي عدد الوحدات', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ " group by Store_ID order by Storage_ID desc";
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -709,76 +753,6 @@ namespace MainSystem
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns[1].Visible = false;
                 gridView1.BestFitColumns();
-                //load = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-        public void displayProductsAddingQuantity()
-        {
-            try
-            {
-                string q1, q2, q3, q4;
-                if (txtType.Text == "")
-                {
-                    q1 = "select Type_ID from type";
-                }
-                else
-                {
-                    q1 = txtType.Text;
-                }
-                if (txtFactory.Text == "")
-                {
-                    q2 = "select Factory_ID from factory";
-                }
-                else
-                {
-                    q2 = txtFactory.Text;
-                }
-                if (txtProduct.Text == "")
-                {
-                    q3 = "select Product_ID from product";
-                }
-                else
-                {
-                    q3 = txtProduct.Text;
-                }
-                if (txtGroup.Text == "")
-                {
-                    q4 = "select Group_ID from groupo";
-                }
-                else
-                {
-                    q4 = txtGroup.Text;
-                }
-                string query1 = "";
-                if (comStore.Text != "")
-                {
-                    query1 += " and addstorage.Store_ID=" + comStore.SelectedValue;
-                }
-             
-
-                string Month = DateTime.Now.Month.ToString();
-                if (Month.Length < 2)
-                    Month = "0" + Month;
-                string Day = DateTime.Now.Day.ToString();
-                if (Day.Length < 2)
-                    Day = "0" + Day;
-
-                string date = DateTime.Now.Year + "-" + Month + "-" + Day;
-                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string qq = "select AddStorage_ID as 'الرقم المسلسل', data.Data_ID, data.Code as 'كود'," + itemName + ", store.Store_Name as 'المخزن', Store_Place_Code as 'مكان التخزين'  ,addstorage.QuantityAfterAdding as 'اجمالي عدد الوحدات',addstorage.AddingQuantity as 'الكمية المضافة', addstorage.Note as 'ملاحظة' from addstorage INNER JOIN store on addstorage.Store_ID=store.Store_ID INNER JOIN store_places on addstorage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON addstorage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1 + " and Date='"+date+"' order by AddStorage_ID desc";
-                MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                gridControl2.DataSource = dt;
-                gridView2.Columns[1].Visible = false;
-                gridView2.BestFitColumns();
-                //load = true;
             }
             catch (Exception ex)
             {
@@ -803,51 +777,6 @@ namespace MainSystem
                 code += "0";
             }
             code += txtBox.Text;
-        }
-        public void add2Store()
-        {
-            if (code.Length==20 && txtAddingQuantity.Text!="" &&txtNote.Text!="")
-            {
-                string query = "select Data_ID from data where Code='" + code + "'";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                Data_ID = Convert.ToInt16(com.ExecuteScalar());
-               
-                query = "insert into addstorage (Store_ID,Date,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding,Note) values (@Store_ID,@Date,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding,@Note)";
-                com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-                com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                com.Parameters["@Date"].Value = dateTimePicker1.Value;
-                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                com.Parameters["@Data_ID"].Value = Data_ID;
-                com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
-                com.Parameters["@CurrentQuantity"].Value = txtTotalMeter.Text;
-                com.Parameters.Add("@AddingQuantity", MySqlDbType.Decimal);
-                com.Parameters["@AddingQuantity"].Value = txtAddingQuantity.Text;
-                com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
-                com.Parameters["@QuantityAfterAdding"].Value = Convert.ToDouble(txtTotalMeter.Text)+Convert.ToDouble(txtAddingQuantity.Text);
-                com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                com.Parameters["@Note"].Value = txtNote.Text;
-                com.ExecuteNonQuery();
-
-                double re = Convert.ToDouble(txtTotalMeter.Text) + Convert.ToDouble(txtAddingQuantity.Text);
-                query = " update storage set Total_Meters="+re + " where Data_ID= "+ Data_ID +" and Store_ID ="+ comStore.SelectedValue;
-                com = new MySqlCommand(query, dbconnection);
-                com.ExecuteNonQuery();
-
-                MessageBox.Show("Add success");
-                displayProducts();
-                displayProductsAddingQuantity();
-                clear();
-                txtCodePart1.Focus();
-            }
-            else
-            {
-                MessageBox.Show("you must fill all fields please");
-                dbconnection.Close();
-                return;
-            }
-
         }
         public void save2DB()
         {

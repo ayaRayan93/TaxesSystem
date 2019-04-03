@@ -4959,5 +4959,7 @@
         private System.Windows.Forms.PictureBox pictureBoxPurchaseLeast;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup46;
         private DevExpress.XtraNavBar.NavBarItem navBarItemOrderReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemAddingQuantity ;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSubstractQuantity ;
     }
 }

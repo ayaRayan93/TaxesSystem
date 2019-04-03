@@ -50,6 +50,8 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtPermission = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -75,8 +77,6 @@
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtPermission = new System.Windows.Forms.TextBox();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -375,6 +375,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(937, 104);
             this.panel1.TabIndex = 37;
+            // 
+            // txtPermission
+            // 
+            this.txtPermission.Location = new System.Drawing.Point(736, 74);
+            this.txtPermission.Name = "txtPermission";
+            this.txtPermission.Size = new System.Drawing.Size(71, 20);
+            this.txtPermission.TabIndex = 25;
+            this.txtPermission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPermission_KeyDown);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label9.Location = new System.Drawing.Point(816, 73);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(92, 18);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "اذن تسوية رقم";
             // 
             // dateTimePicker1
             // 
@@ -704,24 +723,6 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(816, 73);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(92, 18);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "اذن تسوية رقم";
-            // 
-            // txtPermission
-            // 
-            this.txtPermission.Location = new System.Drawing.Point(736, 74);
-            this.txtPermission.Name = "txtPermission";
-            this.txtPermission.Size = new System.Drawing.Size(71, 20);
-            this.txtPermission.TabIndex = 25;
             // 
             // StorageTaswayaAdding
             // 
