@@ -907,9 +907,13 @@ namespace MainSystem
                         }
                     }
 
+                    loaded = false;
+                    flag = false;
+                    flag2 = false;
                     clearAll();
+                    loaded = true;
 
-                    comType.Visible = false;
+                    /*comType.Visible = false;
                     labelType.Visible = false;
                     labelType2.Visible = false;
                     comResponsible.Visible = false;
@@ -938,7 +942,7 @@ namespace MainSystem
                     labelBranch.Visible = false;
                     comBranch.Visible = false;
                     labelClient.Visible = false;
-                    comClient.Visible = false;
+                    comClient.Visible = false;*/
                 }
                 else
                 {
@@ -1048,15 +1052,15 @@ namespace MainSystem
                 {
                     co.Text = "";
 
-                    loaded = false;
-                    flag = false;
-                    flag2 = false;
-                    comDriver.SelectedIndex = -1;
-                    comCar.SelectedIndex = -1;
+                    //loaded = false;
+                    //flag = false;
+                    //flag2 = false;
+                    //comDriver.SelectedIndex = -1;
+                    //comCar.SelectedIndex = -1;
                     comEmployee.SelectedIndex = -1;
-                    comType.SelectedIndex = -1;
-                    comResponsible.SelectedIndex = -1;
-                    comReason.SelectedIndex = -1;
+                    //comType.SelectedIndex = -1;
+                    //comResponsible.SelectedIndex = -1;
+                    //comReason.SelectedIndex = -1;
 
                     string query = "select Driver_ID,Driver_Name from drivers";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -1075,9 +1079,9 @@ namespace MainSystem
                     comCar.DisplayMember = dt.Columns["Car_Number"].ToString();
                     comCar.ValueMember = dt.Columns["Car_ID"].ToString();
                     comCar.SelectedIndex = -1;
-                    flag2 = true;
-                    flag = true;
-                    loaded = true;
+                    //flag2 = true;
+                    //flag = true;
+                    //loaded = true;
                 }
                 else if (co is TextBox)
                 {

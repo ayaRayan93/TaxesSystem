@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class SupplierReceipt2 : Form
+    public partial class SupplierReceipt : Form
     {
         MySqlConnection conn, dbconnection2, dbconnection6, dbconnection3;
         //int[] courrentIDs;
@@ -32,7 +32,7 @@ namespace MainSystem
         DevExpress.XtraTab.XtraTabControl xtraTabControlStores = null;
         int flagConfirm = 2;
 
-        public SupplierReceipt2(MainForm mainForm, DevExpress.XtraTab.XtraTabControl XtraTabControlStores)
+        public SupplierReceipt(MainForm mainForm, DevExpress.XtraTab.XtraTabControl XtraTabControlStores)
         {
             InitializeComponent();
             //courrentIDs = new int[100];
@@ -383,6 +383,7 @@ namespace MainSystem
                 txtCode.Text = v;
 
                 txtSupPermissionNum.Text = "";
+                txtOrderNum.Text = "";
                 txtDescription.Text = "";
                 comStorePlace.SelectedIndex = -1;
                 txtTotalMeter.Text = "0";
@@ -473,7 +474,14 @@ namespace MainSystem
                         int NoCartons = 0;
                         int permNum = 0;
                         int supPermNum = 0;
+                        int orderNum = 0;
                         double total = 0;
+                        if(txtOrderNum.Text != "")
+                        {
+                            if(int.TryParse(txtOrderNum.Text, out orderNum))
+                            {
+                            }
+                        }
                         if (int.TryParse(txtBalat.Text, out NoBalatat) && int.TryParse(txtCarton.Text, out NoCartons) && int.TryParse(txtPermissionNum.Text, out permNum) && int.TryParse(txtSupPermissionNum.Text, out supPermNum) && double.TryParse(txtTotalMeter.Text, out total))
                         {
                             double carton = Convert.ToDouble(row1["الكرتنة"].ToString());
@@ -520,12 +528,22 @@ namespace MainSystem
                                     {
                                         while (dr2.Read())
                                         {
-                                            query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
+                                            query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
                                             com = new MySqlCommand(query, conn);
                                             com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
                                             com.Parameters["@Supplier_ID"].Value = Convert.ToInt16(comSupplier.SelectedValue.ToString());
                                             com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
                                             com.Parameters["@Supplier_Permission_Number"].Value = supPermNum;
+                                            if (orderNum > 0)
+                                            {
+                                                com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
+                                                com.Parameters["@Order_Number"].Value = orderNum;
+                                            }
+                                            else
+                                            {
+                                                com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
+                                                com.Parameters["@Order_Number"].Value = null;
+                                            }
                                             if (dr2["Car_ID"].ToString() != "")
                                             {
                                                 com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
@@ -579,12 +597,22 @@ namespace MainSystem
                                         {
                                             while (dr2.Read())
                                             {
-                                                query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
+                                                query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
                                                 com = new MySqlCommand(query, conn);
                                                 com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
                                                 com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
                                                 com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
                                                 com.Parameters["@Supplier_Permission_Number"].Value = supPermNum;
+                                                if (orderNum > 0)
+                                                {
+                                                    com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
+                                                    com.Parameters["@Order_Number"].Value = orderNum;
+                                                }
+                                                else
+                                                {
+                                                    com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
+                                                    com.Parameters["@Order_Number"].Value = null;
+                                                }
                                                 if (dr2["Car_ID"].ToString() != "")
                                                 {
                                                     com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
@@ -701,6 +729,15 @@ namespace MainSystem
                                     com.ExecuteNonQuery();
                                 }
 
+                                query = "update orders set Received=1 where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Order_Number=" + orderNum;
+                                com = new MySqlCommand(query, conn);
+                                try
+                                {
+                                    com.ExecuteNonQuery();
+                                }
+                                catch
+                                { }
+
                                 //comSupplier.Enabled = false;
                                 //comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -708,6 +745,7 @@ namespace MainSystem
 
                                 txtCode.Text = "";
                                 txtSupPermissionNum.Text = "";
+                                txtOrderNum.Text = "";
                                 txtTotalMeter.Text = "0";
                                 txtCarton.Text = "0";
                                 txtBalat.Text = "0";
@@ -980,6 +1018,48 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtSupplier_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                conn.Open();
+                string query = "select Supplier_Name from supplier where Supplier_ID=" + txtSupplier.Text + "";
+                MySqlCommand com = new MySqlCommand(query, conn);
+                if (com.ExecuteScalar().ToString() != "")
+                {
+                    Name = (string)com.ExecuteScalar();
+                    comSupplier.Text = Name;
+                    comSupplier.SelectedValue = txtSupplier.Text;
+                }
+                else
+                {
+                    MessageBox.Show("there is no item with this id");
+                    conn.Close();
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
+        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    txtSupplier.Text = comSupplier.SelectedValue.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

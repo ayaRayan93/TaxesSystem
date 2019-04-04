@@ -112,7 +112,6 @@
             this.navBarItem21 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem22 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarGroup45 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemPermissionConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPermissionDelivery = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
@@ -1043,8 +1042,7 @@
             this.navBarGroup9,
             this.navBarGroup10,
             this.navBarGroup11,
-            this.navBarGroup12,
-            this.navBarGroup45});
+            this.navBarGroup12});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.btnStoreRecord,
             this.btnProductItems,
@@ -1111,6 +1109,7 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
+            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
@@ -1355,20 +1354,11 @@
             this.navBarGroup12.Caption = "التقارير";
             this.navBarGroup12.Name = "navBarGroup12";
             // 
-            // navBarGroup45
-            // 
-            this.navBarGroup45.Caption = "تاكيد اذن";
-            this.navBarGroup45.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionConfirm)});
-            this.navBarGroup45.Name = "navBarGroup45";
-            this.navBarGroup45.SelectedLinkIndex = 0;
-            this.navBarGroup45.Visible = false;
-            // 
             // navBarItemPermissionConfirm
             // 
-            this.navBarItemPermissionConfirm.Caption = "تاكيد";
-            this.navBarItemPermissionConfirm.Name = "navBarItemPermissionConfirm";
-            this.navBarItemPermissionConfirm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionConfirm_LinkClicked);
+            //this.navBarItemPermissionConfirm.Caption = "تاكيد";
+            //this.navBarItemPermissionConfirm.Name = "navBarItemPermissionConfirm";
+            //this.navBarItemPermissionConfirm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionConfirm_LinkClicked);
             // 
             // navBarItemPermissionDelivery
             // 
@@ -4948,7 +4938,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem220;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupSupplier;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSuppliersReport;
-        private DevExpress.XtraNavBar.NavBarGroup navBarGroup45;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPermissionConfirm;
         private DevExpress.XtraNavBar.NavBarItem navBarItemCustomerReturnBillOfPeriod;
         private DevExpress.XtraNavBar.NavBarItem navBarItem203;

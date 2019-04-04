@@ -146,14 +146,14 @@ namespace MainSystem
         public void search()
         {
             DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'الكود',branch.Branch_Name as 'الفرع',orders.BranchBillNumber as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',supplier.Supplier_Name as 'المورد',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join branch on branch.Branch_ID=orders.Branch_ID inner join store on store.Store_ID=orders.Store_ID where orders.Branch_ID=" + UserControl.EmpBranchID, conn);
-            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'الكود',data.Code,order_details.Quantity FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID", conn);
+            MySqlDataAdapter adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID"/* where orders.Branch_ID=" + UserControl.EmpBranchID*/, conn);
+            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID", conn);
             adapterOrder.Fill(sourceDataSet, "orders");
             adapterDetails.Fill(sourceDataSet, "order_details");
 
             //Set up a master-detail relationship between the DataTables 
-            DataColumn keyColumn = sourceDataSet.Tables["orders"].Columns["الكود"];
-            DataColumn foreignKeyColumn = sourceDataSet.Tables["order_details"].Columns["الكود"];
+            DataColumn keyColumn = sourceDataSet.Tables["orders"].Columns["التسلسل"];
+            DataColumn foreignKeyColumn = sourceDataSet.Tables["order_details"].Columns["التسلسل"];
             sourceDataSet.Relations.Add("تفاصيل الطلب", keyColumn, foreignKeyColumn);
             gridControl1.DataSource = sourceDataSet.Tables["orders"];
             

@@ -105,7 +105,7 @@
             this.btnOpenBill.Name = "btnOpenBill";
             this.btnOpenBill.Size = new System.Drawing.Size(94, 38);
             this.btnOpenBill.TabIndex = 21;
-            this.btnOpenBill.Text = "فاتورة طلب";
+            this.btnOpenBill.Text = "اذن طلب";
             this.btnOpenBill.UseVisualStyleBackColor = true;
             this.btnOpenBill.Click += new System.EventHandler(this.btnOpenBill_Click);
             // 
