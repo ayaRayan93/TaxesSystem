@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Order_Record
+    partial class Order_RecordX
     {
         /// <summary>
         /// Required designer variable.
@@ -63,7 +63,6 @@
             this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -87,6 +86,7 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.comType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -500,7 +500,7 @@
             // 
             // Type
             // 
-            this.Type.Caption = "نوع الطلب";
+            this.Type.Caption = "Type";
             this.Type.FieldName = "Type";
             this.Type.Name = "Type";
             this.Type.Visible = true;
@@ -545,26 +545,6 @@
             this.btnSave.Size = new System.Drawing.Size(76, 47);
             this.btnSave.TabIndex = 5;
             this.btnSave.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnPrint.ImagePosition = 1;
-            this.btnPrint.ImageZoom = 33;
-            this.btnPrint.LabelPosition = 18;
-            this.btnPrint.LabelText = "طباعة";
-            this.btnPrint.Location = new System.Drawing.Point(365, 4);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(76, 47);
-            this.btnPrint.TabIndex = 6;
             // 
             // gridControl1
             // 
@@ -865,6 +845,26 @@
             this.label4.Size = new System.Drawing.Size(46, 18);
             this.label4.TabIndex = 11;
             this.label4.Text = "الصنف";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrint.ImagePosition = 1;
+            this.btnPrint.ImageZoom = 33;
+            this.btnPrint.LabelPosition = 18;
+            this.btnPrint.LabelText = "طباعة";
+            this.btnPrint.Location = new System.Drawing.Point(365, 4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(76, 47);
+            this.btnPrint.TabIndex = 6;
             // 
             // Order_Record
             // 

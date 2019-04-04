@@ -421,6 +421,7 @@ namespace MainSystem
                     {
                         xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
                         index--;
+                        index--;
                         if (xtraTabPage.Name == "xtraTabPagePurchases")
                         {
                             purchaseFlag = false;
@@ -437,6 +438,7 @@ namespace MainSystem
                 else
                 {
                     xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
+                    index--;
                     index--;
                     if (xtraTabPage.Name == "xtraTabPagePurchases")
                     {

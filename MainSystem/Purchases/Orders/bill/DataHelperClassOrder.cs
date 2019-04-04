@@ -110,6 +110,16 @@ namespace MainSystem
 
             table.Columns.Add(column);
 
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "Type";
+            column.AutoIncrement = false;
+            column.Caption = "Type";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
             DataSet = new DataSet();
             DataSet.Tables.Add(table);
         }
@@ -189,6 +199,16 @@ namespace MainSystem
 
             table.Columns.Add(column);
 
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "Type";
+            column.AutoIncrement = false;
+            column.Caption = "Type";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
             DataSet = new DataSet();
             DataSet.Tables.Add(table);
         }
@@ -205,8 +225,7 @@ namespace MainSystem
 
             parentColumn = DataSet.Tables["SecondTable"].Columns["value4"];
         }
-
-
+        
         public DataSet DataSet
         {
             get { return _DataSet; }
@@ -221,13 +240,11 @@ namespace MainSystem
                 _DataMember = value;
             }
         }
-
-
+        
         public static void CommitTransactionStub()
         {
             throw new InvalidOperationException("Fake exception");
         }
-        
     }
 
     public enum DSparametrOrder

@@ -578,7 +578,7 @@ namespace MainSystem
                         addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
                     }
                     Report_SupplierBill f = new Report_SupplierBill();
-                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
+                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
                     f.ShowDialog();
                     #endregion
 

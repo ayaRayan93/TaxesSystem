@@ -522,7 +522,7 @@ namespace MainSystem
                 {
                     if (flag == false)
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(1, SalesTP);
+                        xtraTabControlMainContainer.TabPages.Insert(index, SalesTP);
                         index++;
                         flag = true;
                     }
