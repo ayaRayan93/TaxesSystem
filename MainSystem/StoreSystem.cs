@@ -208,17 +208,17 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent," كميات البنود");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسجيل كميات البنود");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add(" كميات البنود");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent," كميات البنود");
+                    xtraTabControlStoresContent.TabPages.Add("تسجيل كميات البنود");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسجيل كميات البنود");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                Storage objForm = new Storage(this);
+                initialCodeStorage objForm = new initialCodeStorage(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -538,7 +538,76 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void navBarItemPermissionConfirm_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد اذن مخزن");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تاكيد اذن مخزن");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد اذن مخزن");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                StorageConfirm objForm = new StorageConfirm(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemAddingQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                bindTaswayAddingStorageForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSubstractQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                bindTaswaySubtractStorageForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         /// <summary>
         private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
         {
@@ -986,33 +1055,33 @@ namespace MainSystem
         //storag
         public void bindRecordStorageForm(Storage storage)
         {
-            initialCodeStorage objForm = new initialCodeStorage(storage, xtraTabControlStoresContent);
+            //initialCodeStorage objForm = new initialCodeStorage(storage, xtraTabControlStoresContent);
 
-            objForm.TopLevel = false;
-            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent,"تسجيل كميات البنود");
-            if (xtraTabPage == null)
-            {
-                xtraTabControlStoresContent.TabPages.Add("تسجيل كميات البنود");
-                xtraTabPage = getTabPage(xtraTabControlStoresContent,"تسجيل كميات البنود");
+            //objForm.TopLevel = false;
+            //XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent,"تسجيل كميات البنود");
+            //if (xtraTabPage == null)
+            //{
+            //    xtraTabControlStoresContent.TabPages.Add("تسجيل كميات البنود");
+            //    xtraTabPage = getTabPage(xtraTabControlStoresContent,"تسجيل كميات البنود");
 
-            }
-            xtraTabPage.Controls.Clear();
-            xtraTabPage.Controls.Add(objForm);
-            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+            //}
+            //xtraTabPage.Controls.Clear();
+            //xtraTabPage.Controls.Add(objForm);
+            //xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            objForm.Dock = DockStyle.Fill;
-            objForm.Show();
+            //objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //objForm.Dock = DockStyle.Fill;
+            //objForm.Show();
         }
-        public void bindReportStorageForm(GridControl gridControl)
+        public void bindReportStorageForm(GridControl gridControl,string Title)
         {
-            Product_Report objForm = new Product_Report(gridControl, "تقرير كميات البنود");
+            Product_Report objForm = new Product_Report(gridControl, Title);
             objForm.TopLevel = false;
-            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent,"تقرير كميات البنود");
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent,"تقرير طباعة");
             if (xtraTabPage == null)
             {
-                xtraTabControlStoresContent.TabPages.Add("تقرير كميات البنود");
-                xtraTabPage = getTabPage(xtraTabControlStoresContent,"تقرير كميات البنود");
+                xtraTabControlStoresContent.TabPages.Add("تقرير طباعة");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير طباعة");
             }
             xtraTabPage.Controls.Clear();
             xtraTabPage.Controls.Add(objForm);
@@ -1065,6 +1134,45 @@ namespace MainSystem
             }
 
         }
+        public void bindTaswayAddingStorageForm()
+        {
+            StorageTaswayaAdding objForm = new StorageTaswayaAdding(this, xtraTabControlStoresContent);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسوية اضافة لكميات البنود");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسوية اضافة لكميات البنود");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسوية اضافة لكميات البنود");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindTaswaySubtractStorageForm()
+        {
+            StorageTaswayaSubtract objForm = new StorageTaswayaSubtract(this,xtraTabControlStoresContent);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسوية خصم لكميات البنود");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسوية خصم لكميات البنود");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسوية خصم لكميات البنود");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
         //delivery
         public void bindDisplayDeliveryForm()
         {

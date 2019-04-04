@@ -85,7 +85,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 1 || UserControl.userType == 2)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
