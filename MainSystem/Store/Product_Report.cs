@@ -59,7 +59,7 @@ namespace MainSystem
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics = e.Graph;
             brickGraphics.BackColor = Color.White;
-            brickGraphics.Font = new Font("Neo Sans Arabic", 8);
+            brickGraphics.Font = new Font("Times New Roman", 8);
 
             // Set the rectangle for a page info brick. 
             RectangleF r = RectangleF.Empty;
@@ -76,7 +76,7 @@ namespace MainSystem
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics = e.Graph;
             brickGraphics.BackColor = Color.White;
-            brickGraphics.Font = new Font("Neo Sans Arabic", 8);
+            brickGraphics.Font = new Font("Times New Roman", 8);
 
             // Declare bricks.
             PageInfoBrick pageInfoBrick;
@@ -101,7 +101,7 @@ namespace MainSystem
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics2 = e.Graph;
             brickGraphics2.BackColor = Color.White;
-            brickGraphics2.Font = new Font("Neo Sans Arabic", 14, FontStyle.Bold);
+            brickGraphics2.Font = new Font("Times New Roman", 14, FontStyle.Bold);
 
             // Display the DevExpress text string.
             SizeF size = brickGraphics2.MeasureString(devexpress);

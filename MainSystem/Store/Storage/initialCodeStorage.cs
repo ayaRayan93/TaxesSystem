@@ -553,6 +553,7 @@ namespace MainSystem
         {
             txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
             txtNote.Text ="";
+            txtTotalMeter.Text = "";
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -766,6 +767,22 @@ namespace MainSystem
                 Data_ID = Convert.ToInt16(com.ExecuteScalar());
                 if (validation((int)comStore.SelectedValue, (int)comStorePlace.SelectedValue))
                 {
+                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                    com.Parameters["@Data_ID"].Value = Data_ID;
+                    com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                    com.Parameters["@Quantity"].Value = txtTotalMeter.Text;
+                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                    com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
+                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                    com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue;
+                    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                    com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                    com.Parameters["@Note"].Value = txtNote.Text;
+                    com.ExecuteNonQuery();
+
                     query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);

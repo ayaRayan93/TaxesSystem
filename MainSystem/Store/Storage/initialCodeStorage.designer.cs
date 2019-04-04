@@ -84,18 +84,18 @@
             // 
             this.panContainer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panContainer.Controls.Add(this.comStorePlace);
             this.panContainer.Controls.Add(this.btnAdd);
             this.panContainer.Controls.Add(this.txtTotalMeter);
+            this.panContainer.Controls.Add(this.label11);
             this.panContainer.Controls.Add(this.txtCodePart4);
             this.panContainer.Controls.Add(this.txtCodePart5);
             this.panContainer.Controls.Add(this.txtCodePart1);
             this.panContainer.Controls.Add(this.txtCodePart3);
             this.panContainer.Controls.Add(this.txtCodePart2);
-            this.panContainer.Controls.Add(this.dateTimePicker1);
             this.panContainer.Controls.Add(this.label14);
             this.panContainer.Controls.Add(this.label13);
             this.panContainer.Controls.Add(this.txtNote);
-            this.panContainer.Controls.Add(this.label5);
             this.panContainer.Controls.Add(this.label7);
             this.panContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContainer.Location = new System.Drawing.Point(3, 393);
@@ -182,7 +182,7 @@
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(627, 52);
+            this.dateTimePicker1.Location = new System.Drawing.Point(655, 23);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(171, 23);
             this.dateTimePicker1.TabIndex = 5;
@@ -225,7 +225,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(808, 52);
+            this.label5.Location = new System.Drawing.Point(836, 23);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label5.Size = new System.Drawing.Size(41, 18);
@@ -275,11 +275,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.comStorePlace);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.comStore);
-            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -290,7 +290,7 @@
             // 
             this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(655, 63);
+            this.comStorePlace.Location = new System.Drawing.Point(627, 55);
             this.comStorePlace.Name = "comStorePlace";
             this.comStorePlace.Size = new System.Drawing.Size(171, 21);
             this.comStorePlace.TabIndex = 38;
@@ -468,7 +468,7 @@
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(655, 32);
+            this.comStore.Location = new System.Drawing.Point(655, 56);
             this.comStore.Name = "comStore";
             this.comStore.Size = new System.Drawing.Size(171, 21);
             this.comStore.TabIndex = 3;
@@ -479,7 +479,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label11.Location = new System.Drawing.Point(834, 62);
+            this.label11.Location = new System.Drawing.Point(806, 54);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(83, 18);
@@ -492,7 +492,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(836, 32);
+            this.label6.Location = new System.Drawing.Point(836, 56);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(48, 18);
