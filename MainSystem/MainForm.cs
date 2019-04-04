@@ -596,7 +596,7 @@ namespace MainSystem
             navBarGroup10.Visible = false;
             navBarGroup11.Visible = false;
             navBarGroup12.Visible = false;
-            navBarGroup45.Visible = false;
+            //navBarGroup45.Visible = false;
 
             navBarGroup14.Visible = false;
             navBarGroup15.Visible = false;
