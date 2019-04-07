@@ -112,8 +112,8 @@
             this.navBarItem21 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem22 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemPermissionConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPermissionDelivery = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPermissionConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlSalesContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
@@ -421,8 +421,10 @@
             this.xtraTabPagePurchases = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlPurchases = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl7 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup46 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemOrderReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupPurchasesReport = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemExpectedOrders = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemRequestedOrders = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemOneOrder = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup48 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemPurchasesPricesRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup43 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -433,6 +435,8 @@
             this.navBarItemSuppliersReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupLeastQuantity = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemLeastQuantity = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup46 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemOrderReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem206 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem207 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem208 = new DevExpress.XtraNavBar.NavBarItem();
@@ -464,6 +468,8 @@
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.labelStoreExpectedOrder = new System.Windows.Forms.Label();
+            this.pictureBoxStoreExpectedOrder = new System.Windows.Forms.PictureBox();
             this.labelPurchaseLeast = new System.Windows.Forms.Label();
             this.pictureBoxPurchaseLeast = new System.Windows.Forms.PictureBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
@@ -520,6 +526,7 @@
             this.panMain.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStoreExpectedOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPurchaseLeast)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogout)).BeginInit();
@@ -1109,7 +1116,6 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
@@ -1353,18 +1359,17 @@
             // 
             this.navBarGroup12.Caption = "التقارير";
             this.navBarGroup12.Name = "navBarGroup12";
-            // 
-            // navBarItemPermissionConfirm
-            // 
-            //this.navBarItemPermissionConfirm.Caption = "تاكيد";
-            //this.navBarItemPermissionConfirm.Name = "navBarItemPermissionConfirm";
-            //this.navBarItemPermissionConfirm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionConfirm_LinkClicked);
+            this.navBarGroup12.SelectedLinkIndex = 0;
             // 
             // navBarItemPermissionDelivery
             // 
             this.navBarItemPermissionDelivery.Caption = "الاذونات المتوقع تسليمها";
             this.navBarItemPermissionDelivery.Name = "navBarItemPermissionDelivery";
             this.navBarItemPermissionDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionDelivery_LinkClicked);
+            // 
+            // navBarItemPermissionConfirm
+            // 
+            this.navBarItemPermissionConfirm.Name = "navBarItemPermissionConfirm";
             // 
             // xtraTabPageSales
             // 
@@ -3906,7 +3911,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup46;
+            this.navBarControl7.ActiveGroup = this.navBarGroupPurchasesReport;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -3949,7 +3954,8 @@
             this.navBarGroup44,
             this.navBarGroupSupplier,
             this.navBarGroupLeastQuantity,
-            this.navBarGroup46});
+            this.navBarGroup46,
+            this.navBarGroupPurchasesReport});
             this.navBarControl7.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem206,
             this.navBarItem207,
@@ -3984,7 +3990,10 @@
             this.navBarItemSupplierReturn,
             this.navBarItemSuppliersReport,
             this.navBarItemLeastQuantity,
-            this.navBarItemOrderReport});
+            this.navBarItemOrderReport,
+            this.navBarItemExpectedOrders,
+            this.navBarItemRequestedOrders,
+            this.navBarItemOneOrder});
             this.navBarControl7.Location = new System.Drawing.Point(955, 0);
             this.navBarControl7.Name = "navBarControl7";
             this.navBarControl7.OptionsNavPane.ExpandedWidth = 190;
@@ -3993,24 +4002,37 @@
             this.navBarControl7.TabIndex = 5;
             this.navBarControl7.Text = "navBarControl7";
             // 
-            // navBarGroup46
+            // navBarGroupPurchasesReport
             // 
-            this.navBarGroup46.Caption = "الطلبات";
-            this.navBarGroup46.Expanded = true;
-            this.navBarGroup46.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOrderReport)});
-            this.navBarGroup46.Name = "navBarGroup46";
+            this.navBarGroupPurchasesReport.Caption = "تقارير";
+            this.navBarGroupPurchasesReport.Expanded = true;
+            this.navBarGroupPurchasesReport.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpectedOrders),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemRequestedOrders),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOneOrder)});
+            this.navBarGroupPurchasesReport.Name = "navBarGroupPurchasesReport";
             // 
-            // navBarItemOrderReport
+            // navBarItemExpectedOrders
             // 
-            this.navBarItemOrderReport.Caption = "عرض الطلبات";
-            this.navBarItemOrderReport.Name = "navBarItemOrderReport";
-            this.navBarItemOrderReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOrderReport_LinkClicked);
+            this.navBarItemExpectedOrders.Caption = "الطلبات بتاريخ الاستلام";
+            this.navBarItemExpectedOrders.Name = "navBarItemExpectedOrders";
+            this.navBarItemExpectedOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpectedOrders_LinkClicked);
+            // 
+            // navBarItemRequestedOrders
+            // 
+            this.navBarItemRequestedOrders.Caption = "الطلبات بتاريخ الطلب";
+            this.navBarItemRequestedOrders.Name = "navBarItemRequestedOrders";
+            this.navBarItemRequestedOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemRequestedOrders_LinkClicked);
+            // 
+            // navBarItemOneOrder
+            // 
+            this.navBarItemOneOrder.Caption = "عرض طلب";
+            this.navBarItemOneOrder.Name = "navBarItemOneOrder";
+            this.navBarItemOneOrder.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOneOrder_LinkClicked);
             // 
             // navBarGroup48
             // 
             this.navBarGroup48.Caption = "اسعار الشراء";
-            this.navBarGroup48.Expanded = true;
             this.navBarGroup48.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchasesPricesRecord)});
             this.navBarGroup48.Name = "navBarGroup48";
@@ -4072,6 +4094,19 @@
             this.navBarItemLeastQuantity.Caption = "تسجيل";
             this.navBarItemLeastQuantity.Name = "navBarItemLeastQuantity";
             this.navBarItemLeastQuantity.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemLeastQuantity_LinkClicked);
+            // 
+            // navBarGroup46
+            // 
+            this.navBarGroup46.Caption = "الطلبات";
+            this.navBarGroup46.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOrderReport)});
+            this.navBarGroup46.Name = "navBarGroup46";
+            // 
+            // navBarItemOrderReport
+            // 
+            this.navBarItemOrderReport.Caption = "عرض الطلبات";
+            this.navBarItemOrderReport.Name = "navBarItemOrderReport";
+            this.navBarItemOrderReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOrderReport_LinkClicked);
             // 
             // navBarItem206
             // 
@@ -4237,6 +4272,8 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
+            this.panHeader.Controls.Add(this.labelStoreExpectedOrder);
+            this.panHeader.Controls.Add(this.pictureBoxStoreExpectedOrder);
             this.panHeader.Controls.Add(this.labelPurchaseLeast);
             this.panHeader.Controls.Add(this.pictureBoxPurchaseLeast);
             this.panHeader.Controls.Add(this.pictureBoxProfile);
@@ -4255,6 +4292,36 @@
             this.panHeader.Name = "panHeader";
             this.panHeader.Size = new System.Drawing.Size(1177, 42);
             this.panHeader.TabIndex = 0;
+            // 
+            // labelStoreExpectedOrder
+            // 
+            this.labelStoreExpectedOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelStoreExpectedOrder.AutoSize = true;
+            this.labelStoreExpectedOrder.BackColor = System.Drawing.Color.Red;
+            this.labelStoreExpectedOrder.ForeColor = System.Drawing.Color.White;
+            this.labelStoreExpectedOrder.Location = new System.Drawing.Point(714, 5);
+            this.labelStoreExpectedOrder.Name = "labelStoreExpectedOrder";
+            this.labelStoreExpectedOrder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelStoreExpectedOrder.Size = new System.Drawing.Size(13, 13);
+            this.labelStoreExpectedOrder.TabIndex = 20;
+            this.labelStoreExpectedOrder.Text = "0";
+            this.labelStoreExpectedOrder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelStoreExpectedOrder.Visible = false;
+            // 
+            // pictureBoxStoreExpectedOrder
+            // 
+            this.pictureBoxStoreExpectedOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxStoreExpectedOrder.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxStoreExpectedOrder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxStoreExpectedOrder.Image = global::MainSystem.Properties.Resources.icons8_Deliveries_32;
+            this.pictureBoxStoreExpectedOrder.ImageLocation = "";
+            this.pictureBoxStoreExpectedOrder.Location = new System.Drawing.Point(679, 4);
+            this.pictureBoxStoreExpectedOrder.Name = "pictureBoxStoreExpectedOrder";
+            this.pictureBoxStoreExpectedOrder.Size = new System.Drawing.Size(44, 34);
+            this.pictureBoxStoreExpectedOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxStoreExpectedOrder.TabIndex = 19;
+            this.pictureBoxStoreExpectedOrder.TabStop = false;
+            this.pictureBoxStoreExpectedOrder.Click += new System.EventHandler(this.pictureBoxStoreExpectedOrder_Click);
             // 
             // labelPurchaseLeast
             // 
@@ -4505,6 +4572,7 @@
             this.panContent.ResumeLayout(false);
             this.panHeader.ResumeLayout(false);
             this.panHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStoreExpectedOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPurchaseLeast)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogout)).EndInit();
@@ -4950,5 +5018,11 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemOrderReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemAddingQuantity ;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSubstractQuantity ;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroupPurchasesReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemExpectedOrders;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemRequestedOrders;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemOneOrder;
+        private System.Windows.Forms.Label labelStoreExpectedOrder;
+        private System.Windows.Forms.PictureBox pictureBoxStoreExpectedOrder;
     }
 }

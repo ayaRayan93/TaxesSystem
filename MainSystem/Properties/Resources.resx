@@ -124,6 +124,9 @@
   <data name="POS_Terminal_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\POS Terminal_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BackgroundF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BackgroundF1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="_77" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\77.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -144,9 +147,6 @@
   </data>
   <data name="Flow_Chart_96px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Flow Chart_96px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Minus_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Minus_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="camara1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\camara1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,8 +169,8 @@
   <data name="unsave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unsave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BackgroundF1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BackgroundF1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Delete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -186,9 +186,6 @@
   </data>
   <data name="Rectangle_Stroked_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rectangle_Stroked_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Conference_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Conference_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BackgroundF" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BackgroundF.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +208,8 @@
   <data name="Delete_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Minus_Math__32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minus_Math__32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Edit_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Edit_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,6 +238,9 @@
   <data name="icons8_Do_Not_Disturb_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_Do_Not_Disturb_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8_Delivery_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_Delivery_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Flow_Chart_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Flow Chart_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -253,8 +253,8 @@
   <data name="نقطيه_البيع___white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\نقطيه-البيع---white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Delete_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IP_Address" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IP_Address.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -343,6 +343,9 @@
   <data name="Delete_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BackgroundF2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BackgroundF2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Cash_in_Hand_96px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cash in Hand_96px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -354,6 +357,9 @@
   </data>
   <data name="Collapse_Arrow_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Collapse Arrow_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_Electricity_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_Electricity_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_66" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\66.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -367,8 +373,8 @@
   <data name="_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Minus_Math__32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Minus_Math__32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Minus_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minus_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Shipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Shipped.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -421,8 +427,8 @@
   <data name="Male_User_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Male User_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BackgroundF2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BackgroundF2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Conference_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Conference_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="File_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\File_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -445,7 +451,7 @@
   <data name="icons8_Query_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_Query_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_Electricity_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_Electricity_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8_Deliveries_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_Deliveries_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

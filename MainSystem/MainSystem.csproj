@@ -285,23 +285,23 @@
     <Compile Include="Purchases\Orders\bill\Order_Record.designer.cs">
       <DependentUpon>Order_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\requestStored.cs">
+    <Compile Include="Purchases\Report\OrderStored.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\requestStored.designer.cs">
-      <DependentUpon>requestStored.cs</DependentUpon>
+    <Compile Include="Purchases\Report\OrderStored.designer.cs">
+      <DependentUpon>OrderStored.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\SearchRecive_Date.cs">
+    <Compile Include="Purchases\Report\SearchRequest_Date.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\SearchRecive_Date.designer.cs">
+    <Compile Include="Purchases\Report\SearchRequest_Date.designer.cs">
+      <DependentUpon>SearchRequest_Date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Report\SearchRecive_Date.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Report\SearchRecive_Date.designer.cs">
       <DependentUpon>SearchRecive_Date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Purchases\Orders\bill\SearchRequest_Date .cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Purchases\Orders\bill\SearchRequest_Date .designer.cs">
-      <DependentUpon>SearchRequest_Date .cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Least Quantity\LeastQuantityRecord.cs">
       <SubType>Form</SubType>
@@ -346,6 +346,19 @@
       <DependentUpon>Report_SupplierBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\SupplierBill_Items.cs" />
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Print_SupplierReturnBill.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Print_SupplierReturnBill.designer.cs">
+      <DependentUpon>Print_SupplierReturnBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Report_SupplierReturnBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Report_SupplierReturnBill.designer.cs">
+      <DependentUpon>Report_SupplierReturnBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\SupplierReturnBill_Items.cs" />
     <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1927,14 +1940,14 @@
     <EmbeddedResource Include="Purchases\Orders\bill\Order_Record.resx">
       <DependentUpon>Order_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\requestStored.resx">
-      <DependentUpon>requestStored.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Report\OrderStored.resx">
+      <DependentUpon>OrderStored.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\SearchRecive_Date.resx">
+    <EmbeddedResource Include="Purchases\Report\SearchRequest_Date.resx">
+      <DependentUpon>SearchRequest_Date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Report\SearchRecive_Date.resx">
       <DependentUpon>SearchRecive_Date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\SearchRequest_Date .resx">
-      <DependentUpon>SearchRequest_Date .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Least Quantity\LeastQuantityRecord.resx">
       <DependentUpon>LeastQuantityRecord.cs</DependentUpon>
@@ -1956,6 +1969,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Report_SupplierBill.resx">
       <DependentUpon>Report_SupplierBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Print_SupplierReturnBill.resx">
+      <DependentUpon>Print_SupplierReturnBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Report_SupplierReturnBill.resx">
+      <DependentUpon>Report_SupplierReturnBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill2.resx">
       <DependentUpon>Supplier_Return_Bill2.cs</DependentUpon>
@@ -2990,6 +3009,8 @@
     <Content Include="Car_Service.ico" />
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_Deliveries_32.png" />
+    <None Include="Resources\icons8_Delivery_32.png" />
     <None Include="Resources\icons8_Electricity_32.png" />
     <None Include="Resources\Branch.txt" />
     <None Include="Resources\IP_Address.txt" />

@@ -22,7 +22,6 @@ namespace MainSystem
     }
     public partial class MainForm
     {
-  
         public static XtraTabControl tabControlPurchases;
         public static LeastQuantityReport leastQuantityReport;
 
@@ -34,11 +33,10 @@ namespace MainSystem
             try
             {
                 LeastQuantityFunction();
-
-                //Calculate the time of the actual work of the delegates
-                timer.Interval = 1000 * 60;
-                timer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
-                timer.Start();
+                
+                Purchasetimer.Interval = 1000 * 60;
+                Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
+                Purchasetimer.Start();
             }
             catch (Exception ex)
             {
@@ -259,6 +257,117 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayOrderReportForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemExpectedOrders_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الطلبات بتاريخ الاستلام");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("الطلبات بتاريخ الاستلام");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الطلبات بتاريخ الاستلام");
+                    }
+
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                    SearchRecive_Date objForm = new SearchRecive_Date(this, xtraTabControlPurchases);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemRequestedOrders_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الطلبات بتاريخ الطلب");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("الطلبات بتاريخ الطلب");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الطلبات بتاريخ الطلب");
+                    }
+
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                    SearchRequest_Date objForm = new SearchRequest_Date(this, xtraTabControlPurchases);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemOneOrder_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض طلب");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض طلب");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض طلب");
+                    }
+
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                    OrderStored objForm = new OrderStored(this, xtraTabControlPurchases);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
                 }
             }
             catch (Exception ex)

@@ -55,6 +55,7 @@ namespace MainSystem
                     POSSystem();
                     initializeBranch();
                     PurchasesMainForm();
+                    StoreMainForm();
                 }
 
                 StoreTP = xtraTabPageStores;
@@ -611,8 +612,6 @@ namespace MainSystem
             navBarGroupLeastQuantity.Visible = false;
 
         }
-
-    
     }
 
     public static class connection
