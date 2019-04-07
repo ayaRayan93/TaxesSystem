@@ -229,7 +229,6 @@ namespace MainSystem
 
                             txtProduct.Text = comProduct.SelectedValue.ToString();
                      
-
                             break;
 
                     }
@@ -417,15 +416,23 @@ namespace MainSystem
                                     labVcode.Visible = false;
                                     labVaddingMeter.Visible = false;
                                     labVnote.Visible = false;
+                                    clearPart();
                                 }
                                 else
                                 {
                                     if (code.Length != 20)
                                         labVcode.Visible = true;
+                                    else
+                                        labVcode.Visible = false;
                                     if (txtAddingQuantity.Text == "")
                                         labVaddingMeter.Visible = true;
+                                    else
+                                        labVaddingMeter.Visible = false;
                                     if (txtNote.Text == "")
                                         labVnote.Visible = true;
+                                    else
+                                        labVnote.Visible = false;
+
 
                                     MessageBox.Show("ادخل كل البيانات المطلوبة");
                                 }
@@ -440,7 +447,32 @@ namespace MainSystem
                 }
                 dbconnection.Close();
             }
-        }  
+        }
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    dbconnection.Open();
+                    string query = "select permissionNum from taswayaa_adding_permision order by permissionNum limit 1 ";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        labPermissionNum.Text = (Convert.ToInt16(com.ExecuteScalar()) + 1).ToString();
+                    }
+                    else
+                    {
+                        labPermissionNum.Text = "1";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -510,15 +542,22 @@ namespace MainSystem
                     labVcode.Visible = false;
                     labVaddingMeter.Visible = false;
                     labVnote.Visible = false;
+                    clearPart();
                 }
                 else
                 {
                     if (code.Length != 20)
                         labVcode.Visible = true;
+                    else
+                        labVcode.Visible = false;
                     if (txtAddingQuantity.Text == "")
                         labVaddingMeter.Visible = true;
+                    else
+                        labVaddingMeter.Visible = false;
                     if (txtNote.Text == "")
                         labVnote.Visible = true;
+                    else
+                        labVnote.Visible = false;
 
                     MessageBox.Show("ادخل كل البيانات المطلوبة");
                 }
@@ -615,9 +654,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-      
-       
+        
         //functions
         public void clear()
         {
@@ -628,6 +665,13 @@ namespace MainSystem
             comStore.Text = "";
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
+        }
+        public void clearPart()
+        {
+            txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
+            txtTotalMeter.Text = "";
+            txtAddingQuantity.Text = "";
+            txtNote.Text = "";
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -741,8 +785,10 @@ namespace MainSystem
         }
         public void save2DB()
         {
-            string query = "insert into taswayaa_adding_permision (Store_ID,Date)values (Store_ID,Date)";
+            string query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date)values (@PermissionNum,@Store_ID,@Date)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
+            com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
+            com.Parameters["@PermissionNum"].Value = Convert.ToInt16(labPermissionNum.Text);
             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
             com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
             com.Parameters.Add("@Date", MySqlDbType.Date, 0);
@@ -773,7 +819,7 @@ namespace MainSystem
                 com.Parameters["@Note"].Value = mdt.Rows[i][6];
                 com.ExecuteNonQuery();
             }
-          
+            MessageBox.Show("تم الحفظ");
         }
         public DataTable createDataTable()
         {
@@ -810,7 +856,7 @@ namespace MainSystem
             gridView2.Columns[5].OptionsColumn.AllowEdit = false;
             gridView2.Columns[4].Visible = false;
             gridView2.BestFitColumns();
-        }    
+        }
         public int getStore_Place_ID(int Store_ID)
         {
             dbconnection.Close();

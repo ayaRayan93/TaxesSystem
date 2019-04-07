@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panContainer = new System.Windows.Forms.Panel();
-            this.labVtotalMeter = new System.Windows.Forms.Label();
             this.labVaddingMeter = new System.Windows.Forms.Label();
             this.labVcode = new System.Windows.Forms.Label();
             this.labVnote = new System.Windows.Forms.Label();
@@ -50,6 +49,8 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labPermissionNum = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -92,7 +93,6 @@
             // 
             this.panContainer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panContainer.Controls.Add(this.labVtotalMeter);
             this.panContainer.Controls.Add(this.labVaddingMeter);
             this.panContainer.Controls.Add(this.labVcode);
             this.panContainer.Controls.Add(this.labVnote);
@@ -116,20 +116,6 @@
             this.panContainer.Size = new System.Drawing.Size(950, 104);
             this.panContainer.TabIndex = 39;
             // 
-            // labVtotalMeter
-            // 
-            this.labVtotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labVtotalMeter.AutoSize = true;
-            this.labVtotalMeter.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labVtotalMeter.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVtotalMeter.Location = new System.Drawing.Point(196, 16);
-            this.labVtotalMeter.Name = "labVtotalMeter";
-            this.labVtotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labVtotalMeter.Size = new System.Drawing.Size(22, 26);
-            this.labVtotalMeter.TabIndex = 236;
-            this.labVtotalMeter.Text = "*";
-            this.labVtotalMeter.Visible = false;
-            // 
             // labVaddingMeter
             // 
             this.labVaddingMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -142,7 +128,6 @@
             this.labVaddingMeter.Size = new System.Drawing.Size(22, 26);
             this.labVaddingMeter.TabIndex = 235;
             this.labVaddingMeter.Text = "*";
-            this.labVaddingMeter.Visible = false;
             // 
             // labVcode
             // 
@@ -156,7 +141,6 @@
             this.labVcode.Size = new System.Drawing.Size(22, 26);
             this.labVcode.TabIndex = 234;
             this.labVcode.Text = "*";
-            this.labVcode.Visible = false;
             // 
             // labVnote
             // 
@@ -170,7 +154,6 @@
             this.labVnote.Size = new System.Drawing.Size(22, 26);
             this.labVnote.TabIndex = 233;
             this.labVnote.Text = "*";
-            this.labVnote.Visible = false;
             // 
             // btnPut
             // 
@@ -361,6 +344,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.labPermissionNum);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.groupBox1);
@@ -372,11 +357,34 @@
             this.panel1.Size = new System.Drawing.Size(950, 104);
             this.panel1.TabIndex = 37;
             // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(878, 72);
+            this.label10.Name = "label10";
+            this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label10.Size = new System.Drawing.Size(46, 19);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "أذن رقم";
+            // 
+            // labPermissionNum
+            // 
+            this.labPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labPermissionNum.AutoSize = true;
+            this.labPermissionNum.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labPermissionNum.Location = new System.Drawing.Point(771, 72);
+            this.labPermissionNum.Name = "labPermissionNum";
+            this.labPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labPermissionNum.Size = new System.Drawing.Size(0, 19);
+            this.labPermissionNum.TabIndex = 24;
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(697, 24);
+            this.dateTimePicker1.Location = new System.Drawing.Point(697, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(171, 26);
             this.dateTimePicker1.TabIndex = 22;
@@ -386,7 +394,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(878, 24);
+            this.label5.Location = new System.Drawing.Point(878, 10);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label5.Size = new System.Drawing.Size(43, 19);
@@ -565,17 +573,18 @@
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(697, 57);
+            this.comStore.Location = new System.Drawing.Point(697, 43);
             this.comStore.Name = "comStore";
             this.comStore.Size = new System.Drawing.Size(171, 21);
             this.comStore.TabIndex = 3;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(878, 57);
+            this.label6.Location = new System.Drawing.Point(878, 43);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(45, 19);
@@ -775,10 +784,11 @@
         private Bunifu.Framework.UI.BunifuTileButton btnSave;
         private Bunifu.Framework.UI.BunifuImageButton btnPut;
         private Bunifu.Framework.UI.BunifuImageButton btnRemove;
-        private System.Windows.Forms.Label labVtotalMeter;
         private System.Windows.Forms.Label labVaddingMeter;
         private System.Windows.Forms.Label labVcode;
         private System.Windows.Forms.Label labVnote;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labPermissionNum;
     }
 }
 
