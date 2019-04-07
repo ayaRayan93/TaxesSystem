@@ -50,8 +50,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtPermission = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -115,7 +113,7 @@
             this.panContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContainer.Location = new System.Drawing.Point(3, 393);
             this.panContainer.Name = "panContainer";
-            this.panContainer.Size = new System.Drawing.Size(937, 104);
+            this.panContainer.Size = new System.Drawing.Size(950, 104);
             this.panContainer.TabIndex = 39;
             // 
             // labVtotalMeter
@@ -124,7 +122,7 @@
             this.labVtotalMeter.AutoSize = true;
             this.labVtotalMeter.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labVtotalMeter.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVtotalMeter.Location = new System.Drawing.Point(189, 16);
+            this.labVtotalMeter.Location = new System.Drawing.Point(196, 16);
             this.labVtotalMeter.Name = "labVtotalMeter";
             this.labVtotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labVtotalMeter.Size = new System.Drawing.Size(22, 26);
@@ -138,7 +136,7 @@
             this.labVaddingMeter.AutoSize = true;
             this.labVaddingMeter.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labVaddingMeter.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVaddingMeter.Location = new System.Drawing.Point(190, 57);
+            this.labVaddingMeter.Location = new System.Drawing.Point(197, 57);
             this.labVaddingMeter.Name = "labVaddingMeter";
             this.labVaddingMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labVaddingMeter.Size = new System.Drawing.Size(22, 26);
@@ -152,7 +150,7 @@
             this.labVcode.AutoSize = true;
             this.labVcode.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labVcode.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVcode.Location = new System.Drawing.Point(485, 13);
+            this.labVcode.Location = new System.Drawing.Point(492, 13);
             this.labVcode.Name = "labVcode";
             this.labVcode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labVcode.Size = new System.Drawing.Size(22, 26);
@@ -166,7 +164,7 @@
             this.labVnote.AutoSize = true;
             this.labVnote.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labVnote.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVnote.Location = new System.Drawing.Point(586, 54);
+            this.labVnote.Location = new System.Drawing.Point(593, 54);
             this.labVnote.Name = "labVnote";
             this.labVnote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labVnote.Size = new System.Drawing.Size(22, 26);
@@ -180,7 +178,7 @@
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
             this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
             this.btnPut.ImageActive = null;
-            this.btnPut.Location = new System.Drawing.Point(30, 36);
+            this.btnPut.Location = new System.Drawing.Point(37, 36);
             this.btnPut.Name = "btnPut";
             this.btnPut.Size = new System.Drawing.Size(57, 34);
             this.btnPut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -195,7 +193,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
             this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
-            this.btnRemove.Location = new System.Drawing.Point(96, 37);
+            this.btnRemove.Location = new System.Drawing.Point(103, 37);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(59, 34);
             this.btnRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -208,7 +206,7 @@
             // 
             this.txtAddingQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtAddingQuantity.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddingQuantity.Location = new System.Drawing.Point(214, 55);
+            this.txtAddingQuantity.Location = new System.Drawing.Point(221, 55);
             this.txtAddingQuantity.Name = "txtAddingQuantity";
             this.txtAddingQuantity.Size = new System.Drawing.Size(113, 24);
             this.txtAddingQuantity.TabIndex = 44;
@@ -218,11 +216,11 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label8.Location = new System.Drawing.Point(333, 55);
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(340, 55);
             this.label8.Name = "label8";
             this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label8.Size = new System.Drawing.Size(135, 18);
+            this.label8.Size = new System.Drawing.Size(115, 19);
             this.label8.TabIndex = 43;
             this.label8.Text = "عدد الوحدات المضافة";
             // 
@@ -230,7 +228,7 @@
             // 
             this.txtTotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtTotalMeter.Location = new System.Drawing.Point(214, 16);
+            this.txtTotalMeter.Location = new System.Drawing.Point(221, 16);
             this.txtTotalMeter.Name = "txtTotalMeter";
             this.txtTotalMeter.ReadOnly = true;
             this.txtTotalMeter.Size = new System.Drawing.Size(113, 24);
@@ -241,7 +239,7 @@
             // 
             this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart4.Location = new System.Drawing.Point(677, 13);
+            this.txtCodePart4.Location = new System.Drawing.Point(684, 13);
             this.txtCodePart4.Name = "txtCodePart4";
             this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart4.TabIndex = 40;
@@ -251,7 +249,7 @@
             // 
             this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart5.Location = new System.Drawing.Point(733, 13);
+            this.txtCodePart5.Location = new System.Drawing.Point(740, 13);
             this.txtCodePart5.Name = "txtCodePart5";
             this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart5.TabIndex = 39;
@@ -261,7 +259,7 @@
             // 
             this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart1.Location = new System.Drawing.Point(509, 13);
+            this.txtCodePart1.Location = new System.Drawing.Point(516, 13);
             this.txtCodePart1.Name = "txtCodePart1";
             this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart1.TabIndex = 38;
@@ -271,7 +269,7 @@
             // 
             this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart3.Location = new System.Drawing.Point(621, 13);
+            this.txtCodePart3.Location = new System.Drawing.Point(628, 13);
             this.txtCodePart3.Name = "txtCodePart3";
             this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart3.TabIndex = 37;
@@ -281,7 +279,7 @@
             // 
             this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart2.Location = new System.Drawing.Point(565, 13);
+            this.txtCodePart2.Location = new System.Drawing.Point(572, 13);
             this.txtCodePart2.Name = "txtCodePart2";
             this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart2.TabIndex = 36;
@@ -291,11 +289,11 @@
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label14.Location = new System.Drawing.Point(791, 52);
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(798, 52);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(56, 18);
+            this.label14.Size = new System.Drawing.Size(48, 19);
             this.label14.TabIndex = 35;
             this.label14.Text = "ملحوظة";
             // 
@@ -303,11 +301,11 @@
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label13.Location = new System.Drawing.Point(333, 16);
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(340, 16);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label13.Size = new System.Drawing.Size(131, 18);
+            this.label13.Size = new System.Drawing.Size(108, 19);
             this.label13.TabIndex = 32;
             this.label13.Text = "اجمالي عدد الوحدات";
             // 
@@ -315,7 +313,7 @@
             // 
             this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNote.Location = new System.Drawing.Point(612, 52);
+            this.txtNote.Location = new System.Drawing.Point(619, 52);
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(171, 24);
             this.txtNote.TabIndex = 6;
@@ -324,11 +322,11 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(792, 16);
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(799, 16);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(71, 18);
+            this.label7.Size = new System.Drawing.Size(59, 19);
             this.label7.TabIndex = 29;
             this.label7.Text = "كود المنتج";
             // 
@@ -339,7 +337,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 113);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(937, 274);
+            this.gridControl1.Size = new System.Drawing.Size(950, 274);
             this.gridControl1.TabIndex = 40;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -363,8 +361,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.txtPermission);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.groupBox1);
@@ -373,46 +369,27 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(937, 104);
+            this.panel1.Size = new System.Drawing.Size(950, 104);
             this.panel1.TabIndex = 37;
-            // 
-            // txtPermission
-            // 
-            this.txtPermission.Location = new System.Drawing.Point(736, 74);
-            this.txtPermission.Name = "txtPermission";
-            this.txtPermission.Size = new System.Drawing.Size(71, 20);
-            this.txtPermission.TabIndex = 25;
-            this.txtPermission.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPermission_KeyDown);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(816, 73);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(92, 18);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "اذن تسوية رقم";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(678, 12);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(697, 24);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(171, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(171, 26);
             this.dateTimePicker1.TabIndex = 22;
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(859, 12);
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(878, 24);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label5.Size = new System.Drawing.Size(41, 18);
+            this.label5.Size = new System.Drawing.Size(43, 19);
             this.label5.TabIndex = 23;
             this.label5.Text = "التاريخ";
             // 
@@ -434,10 +411,10 @@
             this.groupBox1.Controls.Add(this.txtGroup);
             this.groupBox1.Controls.Add(this.comGroup);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(17, 0);
+            this.groupBox1.Location = new System.Drawing.Point(42, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(640, 100);
+            this.groupBox1.Size = new System.Drawing.Size(620, 100);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "الفلاتر";
@@ -492,11 +469,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(315, 59);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(46, 18);
+            this.label3.Size = new System.Drawing.Size(46, 19);
             this.label3.TabIndex = 11;
             this.label3.Text = "الصنف";
             // 
@@ -519,11 +496,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(558, 30);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(28, 18);
+            this.label1.Size = new System.Drawing.Size(29, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "نوع";
             // 
@@ -548,22 +525,22 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(558, 60);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(67, 18);
+            this.label4.Size = new System.Drawing.Size(56, 19);
             this.label4.TabIndex = 8;
             this.label4.Text = "المجموعة";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(315, 29);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(49, 18);
+            this.label2.Size = new System.Drawing.Size(46, 19);
             this.label2.TabIndex = 5;
             this.label2.Text = "المصنع";
             // 
@@ -588,21 +565,20 @@
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(678, 45);
+            this.comStore.Location = new System.Drawing.Point(697, 57);
             this.comStore.Name = "comStore";
             this.comStore.Size = new System.Drawing.Size(171, 21);
             this.comStore.TabIndex = 3;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(859, 45);
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(878, 57);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(48, 18);
+            this.label6.Size = new System.Drawing.Size(45, 19);
             this.label6.TabIndex = 20;
             this.label6.Text = "المخزن";
             // 
@@ -624,7 +600,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(943, 841);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(956, 841);
             this.tableLayoutPanel1.TabIndex = 41;
             // 
             // tableLayoutPanel4
@@ -644,7 +620,7 @@
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(943, 61);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(956, 61);
             this.tableLayoutPanel4.TabIndex = 43;
             // 
             // btnReport
@@ -661,10 +637,10 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 22;
             this.btnReport.LabelText = "طباعة";
-            this.btnReport.Location = new System.Drawing.Point(381, 4);
+            this.btnReport.Location = new System.Drawing.Point(387, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(88, 53);
+            this.btnReport.Size = new System.Drawing.Size(89, 53);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
@@ -682,10 +658,10 @@
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 21;
             this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(476, 5);
+            this.btnSave.Location = new System.Drawing.Point(483, 5);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 51);
+            this.btnSave.Size = new System.Drawing.Size(87, 51);
             this.btnSave.TabIndex = 4;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -696,7 +672,7 @@
             this.gridControl2.Location = new System.Drawing.Point(3, 503);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(937, 274);
+            this.gridControl2.Size = new System.Drawing.Size(950, 274);
             this.gridControl2.TabIndex = 41;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -730,7 +706,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(943, 841);
+            this.ClientSize = new System.Drawing.Size(956, 841);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StorageTaswayaAdding";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -803,8 +779,6 @@
         private System.Windows.Forms.Label labVaddingMeter;
         private System.Windows.Forms.Label labVcode;
         private System.Windows.Forms.Label labVnote;
-        private System.Windows.Forms.TextBox txtPermission;
-        private System.Windows.Forms.Label label9;
     }
 }
 
