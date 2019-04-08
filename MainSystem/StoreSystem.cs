@@ -636,17 +636,51 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض وارد باذن");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن وارد");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("عرض وارد باذن");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض وارد باذن");
+                    xtraTabControlStoresContent.TabPages.Add("عرض اذن وارد");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن وارد");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
                 PermissionsReport objForm = new PermissionsReport(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSupplierReturnedPermission_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن مرتجع");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("عرض اذن مرتجع");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن مرتجع");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                PermissionReturnedReport objForm = new PermissionReturnedReport(this, xtraTabControlStoresContent);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);

@@ -1657,6 +1657,12 @@
     <Compile Include="Store\Gate\Permissions_Edit.Designer.cs">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\Reports\PermissionReturnedReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\PermissionReturnedReport.designer.cs">
+      <DependentUpon>PermissionReturnedReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Import\Reports\PermissionsReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2611,6 +2617,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Gate\Permissions_Edit.resx">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\PermissionReturnedReport.resx">
+      <DependentUpon>PermissionReturnedReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Reports\PermissionsReport.resx">
       <DependentUpon>PermissionsReport.cs</DependentUpon>
