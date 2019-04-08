@@ -626,6 +626,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSupplierPermission_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض وارد باذن");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("عرض وارد باذن");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض وارد باذن");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                PermissionsReport objForm = new PermissionsReport(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         /// <summary>
         private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
         {

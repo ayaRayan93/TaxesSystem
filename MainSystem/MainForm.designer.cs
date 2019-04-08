@@ -485,6 +485,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
+            this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -989,7 +990,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup11;
+            this.navBarControl1.ActiveGroup = this.navBarGroup12;
             this.navBarControl1.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.Background.Options.UseFont = true;
             this.navBarControl1.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1080,7 +1081,8 @@
             this.navBarItemCustomerReturnBillOfPeriod,
             this.navBarItem203,
             this.navBarItemAddingQuantity,
-            this.navBarItemSubstractQuantity});
+            this.navBarItemSubstractQuantity,
+            this.navBarItemSupplierPermission});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
             this.navBarControl1.Location = new System.Drawing.Point(946, 0);
             this.navBarControl1.Name = "navBarControl1";
@@ -1094,7 +1096,6 @@
             // navBarGroup11
             // 
             this.navBarGroup11.Caption = "تسوية المخزون";
-            this.navBarGroup11.Expanded = true;
             this.navBarGroup11.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemAddingQuantity),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubstractQuantity)});
@@ -1358,6 +1359,9 @@
             // navBarGroup12
             // 
             this.navBarGroup12.Caption = "التقارير";
+            this.navBarGroup12.Expanded = true;
+            this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPermission)});
             this.navBarGroup12.Name = "navBarGroup12";
             this.navBarGroup12.SelectedLinkIndex = 0;
             // 
@@ -4517,6 +4521,12 @@
             this.tileItem1.ItemSize = DevExpress.XtraEditors.TileItemSize.Medium;
             this.tileItem1.Name = "tileItem1";
             // 
+            // navBarItemSupplierPermission
+            // 
+            this.navBarItemSupplierPermission.Caption = "عرض اذن مورد";
+            this.navBarItemSupplierPermission.Name = "navBarItemSupplierPermission";
+            this.navBarItemSupplierPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierPermission_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5024,5 +5034,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemOneOrder;
         private System.Windows.Forms.Label labelStoreExpectedOrder;
         private System.Windows.Forms.PictureBox pictureBoxStoreExpectedOrder;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierPermission;
     }
 }
