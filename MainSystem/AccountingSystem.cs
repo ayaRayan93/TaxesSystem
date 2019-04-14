@@ -169,7 +169,41 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemSupplierPayments_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void navBarItemSupplierAccount_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض حسابات الموردين");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("عرض حسابات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض حسابات الموردين");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                SupplierAccount_Report objForm = new SupplierAccount_Report(this, xtraTabControlAccounting);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /*private void navBarItemSupplierPayments_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
             {
@@ -200,7 +234,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }*/
 
         public void displayDelegateReport(GridControl gridControl, dataX d)
         {

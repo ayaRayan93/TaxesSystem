@@ -18,11 +18,13 @@ namespace MainSystem
         MySqlConnection dbconnection;
         bool loaded = false;
         DataRow row1 = null;
+        XtraTabControl tabControlContent;
 
-        public SupplierAccount_Report(MainForm mainform, XtraTabControl tabControlContent)
+        public SupplierAccount_Report(MainForm mainform, XtraTabControl TabControlContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            tabControlContent = TabControlContent;
         }
         private void requestStored_Load(object sender, EventArgs e)
         {
@@ -53,8 +55,16 @@ namespace MainSystem
             {
                 if (loaded)
                 {
+                    int supplierID = 0;
                     txtSupplierID.Text = comSupplier.SelectedValue.ToString();
-                    search(Convert.ToInt16(comSupplier.SelectedValue.ToString()));
+                    if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
+                    {
+                        search(Convert.ToInt16(comSupplier.SelectedValue.ToString()));
+                    }
+                    else
+                    {
+                        MessageBox.Show("تاكد من البيانات");
+                    }
                 }
             }
             catch (Exception ex)
@@ -97,15 +107,11 @@ namespace MainSystem
         {
             try
             {
-                int supplierID= 0;
-                if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
-                {
-                    search(0);
-                }
-                else
-                {
-                    MessageBox.Show("تاكد من البيانات");
-                }
+                loaded = false;
+                comSupplier.SelectedIndex = -1;
+                txtSupplierID.Text = "";
+                loaded = true;
+                search(0);
             }
             catch (Exception ex)
             {
@@ -126,11 +132,24 @@ namespace MainSystem
         {
             try
             {
-                if (row1 != null)
-                {
-                    //PurchaseBill_Update form = new PurchaseBill_Update(this, row1);
-                    //form.ShowDialog();
-                }
+                //if (row1 != null)
+                //{
+                    XtraTabPage xtraTabPage = getTabPage(tabControlContent, "اضافة سداد لمورد");
+                    if (xtraTabPage == null)
+                    {
+                        tabControlContent.TabPages.Add("اضافة سداد لمورد");
+                        xtraTabPage = getTabPage(tabControlContent, "اضافة سداد لمورد");
+                    }
+                    xtraTabPage.Controls.Clear();
+                    tabControlContent.SelectedTabPage = xtraTabPage;
+                    SupplierPayments_Record objForm = new SupplierPayments_Record(tabControlContent);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                //}
             }
             catch (Exception ex)
             {
@@ -158,6 +177,16 @@ namespace MainSystem
             {
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
+        }
+
+        public XtraTabPage getTabPage(XtraTabControl tabControl, string text)
+        {
+            for (int i = 0; i < tabControl.TabPages.Count; i++)
+                if (tabControl.TabPages[i].Text == text)
+                {
+                    return tabControl.TabPages[i];
+                }
+            return null;
         }
     }
 }

@@ -363,10 +363,10 @@
     <Compile Include="Purchases\Orders\Bill Least\Request_Least_Order.designer.cs">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\SupplierAccount_Report.cs">
+    <Compile Include="Accounting\Supplier_Payments\SupplierAccount_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\SupplierAccount_Report.designer.cs">
+    <Compile Include="Accounting\Supplier_Payments\SupplierAccount_Report.designer.cs">
       <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.cs">
@@ -2039,7 +2039,7 @@
     <EmbeddedResource Include="Purchases\Orders\Bill Least\Request_Least_Order.resx">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\SupplierAccount_Report.resx">
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierAccount_Report.resx">
       <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.resx">

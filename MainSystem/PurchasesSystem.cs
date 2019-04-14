@@ -413,43 +413,6 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemSupplierAccount_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
-                {
-                    restForeColorOfNavBarItem();
-                    NavBarItem navBarItem = (NavBarItem)sender;
-                    navBarItem.Appearance.ForeColor = Color.Blue;
-                    if (!xtraTabControlPurchases.Visible)
-                        xtraTabControlPurchases.Visible = true;
-
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض حسابات الموردين");
-                    if (xtraTabPage == null)
-                    {
-                        xtraTabControlPurchases.TabPages.Add("عرض حسابات الموردين");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض حسابات الموردين");
-                    }
-
-                    xtraTabPage.Controls.Clear();
-                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-
-                    SupplierAccount_Report objForm = new SupplierAccount_Report(this, xtraTabControlPurchases);
-
-                    objForm.TopLevel = false;
-                    xtraTabPage.Controls.Add(objForm);
-                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                    objForm.Dock = DockStyle.Fill;
-                    objForm.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         public void bindDisplayLeastQuantityReport(XtraTabPage xtraTabPage)
         {
             leastQuantityReport = new LeastQuantityReport(this, xtraTabControlPurchases);

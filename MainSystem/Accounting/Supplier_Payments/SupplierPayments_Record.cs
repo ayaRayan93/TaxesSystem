@@ -271,7 +271,6 @@ namespace MainSystem
                         com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                         com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
-
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
                         
                         if (txtVisaType.Text != "")
@@ -302,7 +301,6 @@ namespace MainSystem
                         }
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
-
                         com.ExecuteNonQuery();
 
                         //////////record adding/////////////
@@ -320,8 +318,7 @@ namespace MainSystem
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
                         
-                        dbconnection.Close();
-                        //IncreaseSupplierAccount();
+                        DecreaseSupplierAccount();
                         clear();
                         xtraTabPage.ImageOptions.Image = null;
                     }
@@ -424,27 +421,18 @@ namespace MainSystem
         }
 
         //functions
-        /*public void IncreaseSupplierAccount()
+        public void DecreaseSupplierAccount()
         {
             double paidMoney = Convert.ToDouble(txtPullMoney.Text);
-            dbconnection.Open();
             string query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update supplier_rest_money set Money=" + (restMoney + paidMoney) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                query = "update supplier_rest_money set Money=" + (restMoney - paidMoney) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
                 com = new MySqlCommand(query, dbconnection);
-            }
-            else
-            {
-                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
-                com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
-                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = paidMoney;
             }
             com.ExecuteNonQuery();
-            dbconnection.Close();
-        }*/
+        }
     }
 }
