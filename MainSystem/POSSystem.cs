@@ -239,38 +239,41 @@ namespace MainSystem
         {
             try
             {
-                XtraTabPage xtraTabPagePS =getTabPage(xtraTabControlPointSale, "xtraTabPagePOS");
-                if (xtraTabPagePS == null)
+                if (UserControl.userType == 5 || UserControl.userType == 1)
                 {
-                    xtraTabControlMainContainer.TabPages.Add(xtraTabPagePOS);
-                    index++;
-                    xtraTabControlMainContainer.SelectedTabPage = xtraTabPagePOS;
+                    XtraTabPage xtraTabPagePS = getTabPage(xtraTabControlPointSale, "xtraTabPagePOS");
+                    if (xtraTabPagePS == null)
+                    {
+                        xtraTabControlMainContainer.TabPages.Add(xtraTabPagePOS);
+                        index++;
+                        xtraTabControlMainContainer.SelectedTabPage = xtraTabPagePOS;
+                    }
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageProductsDetailsReport");
+                    //if (xtraTabPage == null)
+                    //{
+                    tabPageProductsDetailsReport.Name = "tabPageProductsDetailsReport";
+                    tabPageProductsDetailsReport.Text = "تفاصيل فاتورة";
+                    panelProductsDetailsReport.Name = "panelProductsDetailsReport";
+                    panelProductsDetailsReport.Dock = DockStyle.Fill;
+
+                    ProductsDetailsReport = new ProductsDetails_Report(this/*, delegateID*/, billNum);
+                    ProductsDetailsReport.Size = new Size(1109, 660);
+                    ProductsDetailsReport.TopLevel = false;
+                    ProductsDetailsReport.FormBorderStyle = FormBorderStyle.None;
+                    ProductsDetailsReport.Dock = DockStyle.Fill;
+                    //}
+                    panelProductsDetailsReport.Controls.Clear();
+                    panelProductsDetailsReport.Controls.Add(ProductsDetailsReport);
+                    tabPageProductsDetailsReport.Controls.Add(panelProductsDetailsReport);
+                    xtraTabControlPointSale.TabPages.Add(tabPageProductsDetailsReport);
+                    ProductsDetailsReport.Show();
+                    xtraTabControlPointSale.SelectedTabPage = tabPageProductsDetailsReport;
+                    //}
+                    //else
+                    //{
+                    //    xtraTabControlPointSale.SelectedTabPage = tabPageProductsDetailsReport;
+                    //}
                 }
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageProductsDetailsReport");
-                //if (xtraTabPage == null)
-                //{
-                tabPageProductsDetailsReport.Name = "tabPageProductsDetailsReport";
-                tabPageProductsDetailsReport.Text = "تفاصيل فاتورة";
-                panelProductsDetailsReport.Name = "panelProductsDetailsReport";
-                panelProductsDetailsReport.Dock = DockStyle.Fill;
-                
-                ProductsDetailsReport = new ProductsDetails_Report(this/*, delegateID*/, billNum);
-                ProductsDetailsReport.Size = new Size(1109, 660);
-                ProductsDetailsReport.TopLevel = false;
-                ProductsDetailsReport.FormBorderStyle = FormBorderStyle.None;
-                ProductsDetailsReport.Dock = DockStyle.Fill;
-                //}
-                panelProductsDetailsReport.Controls.Clear();
-                panelProductsDetailsReport.Controls.Add(ProductsDetailsReport);
-                tabPageProductsDetailsReport.Controls.Add(panelProductsDetailsReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageProductsDetailsReport);
-                ProductsDetailsReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageProductsDetailsReport;
-                //}
-                //else
-                //{
-                //    xtraTabControlPointSale.SelectedTabPage = tabPageProductsDetailsReport;
-                //}
             }
             catch (Exception ex)
             {

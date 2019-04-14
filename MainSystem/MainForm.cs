@@ -561,7 +561,7 @@ namespace MainSystem
         {
             try
             {
-                Login_Admin loginForm = new Login_Admin();
+                Login loginForm = new Login();
                 loginForm.Show();
                 this.Hide();
             }

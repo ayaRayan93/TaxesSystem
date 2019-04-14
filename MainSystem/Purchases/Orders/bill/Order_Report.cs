@@ -146,8 +146,8 @@ namespace MainSystem
         public void search()
         {
             DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0", conn);
-            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where orders.Confirmed=1 and orders.Received=0", conn);
+            MySqlDataAdapter adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0", conn);
+            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0", conn);
             adapterOrder.Fill(sourceDataSet, "orders");
             adapterDetails.Fill(sourceDataSet, "order_details");
 
@@ -176,10 +176,10 @@ namespace MainSystem
 
         void delete(GridView view)
         {
-            /*int[] selRows = ((GridView)gridControl1.MainView).GetSelectedRows();
+            int[] selRows = ((GridView)gridControl1.MainView).GetSelectedRows();
             if (selRows.Length > 0)
             {
-                if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                if (MessageBox.Show("هل انت متاكد انك تريد الالغاء؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                     return;
 
                 conn.Open();
@@ -187,15 +187,11 @@ namespace MainSystem
                 {
                     DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(selRows[i]));
 
-                    string query = "delete from customer_phone where Customer_ID=" + selRow[0].ToString();
+                    string query = "update orders set Canceled=1 where Order_ID=" + selRow[0].ToString();
                     MySqlCommand comand = new MySqlCommand(query, conn);
                     comand.ExecuteNonQuery();
-
-                    query = "delete from customer where Customer_ID=" + selRow[0].ToString();
-                    comand = new MySqlCommand(query, conn);
-                    comand.ExecuteNonQuery();
-
-                    UserControl.ItemRecord("customer", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, "", conn);
+                    
+                    UserControl.ItemRecord("orders", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, "", conn);
                 }
                 conn.Close();
                 search();
@@ -203,7 +199,7 @@ namespace MainSystem
             else
             {
                 MessageBox.Show("يجب ان تختار عنصر للحذف");
-            }*/
+            }
         }
     }
 }

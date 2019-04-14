@@ -46,27 +46,31 @@ namespace MainSystem
         {
             try
             {
-                if (StoreFlag == false)
+                if (UserControl.userType == 2 || UserControl.userType == 1)
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
-                    index++;
-                    StoreFlag = true;
+                    if (StoreFlag == false)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
+                        index++;
+                        StoreFlag = true;
+                    }
+                    xtraTabControlMainContainer.SelectedTabPage = StoreTP;
+
+                    if (!xtraTabControlStoresContent.Visible)
+                        xtraTabControlStoresContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الطلبات المتوقع استلامها");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlStoresContent.TabPages.Add("الطلبات المتوقع استلامها");
+                        xtraTabPage = getTabPage(xtraTabControlStoresContent, "الطلبات المتوقع استلامها");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+                    bindDisplayExpectedOrdersReport(xtraTabPage);
+
                 }
-                xtraTabControlMainContainer.SelectedTabPage = StoreTP;
-
-                if (!xtraTabControlStoresContent.Visible)
-                    xtraTabControlStoresContent.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الطلبات المتوقع استلامها");
-                if (xtraTabPage == null)
-                {
-                    xtraTabControlStoresContent.TabPages.Add("الطلبات المتوقع استلامها");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الطلبات المتوقع استلامها");
-                }
-                xtraTabPage.Controls.Clear();
-
-                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-                bindDisplayExpectedOrdersReport(xtraTabPage);
             }
             catch (Exception ex)
             {

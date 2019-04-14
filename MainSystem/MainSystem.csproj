@@ -195,10 +195,52 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierPayments_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierPayments_Record.designer.cs">
+      <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="ayatestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ayatestDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Print.designer.cs">
+      <DependentUpon>BankSupplierPullAgl_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record.designer.cs">
+      <DependentUpon>BankSupplierPullAgl_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Report.designer.cs">
+      <DependentUpon>BankSupplierPullAgl_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Update.designer.cs">
+      <DependentUpon>BankSupplierPullAgl_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\Print_SupplierReturnedAglCategoriesBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\Print_SupplierReturnedAglCategoriesBill_Report.designer.cs">
+      <DependentUpon>Print_SupplierReturnedAglCategoriesBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\SupplierReturnedBillAgl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\مورد\سحب آجل\SupplierReturnedBillAgl.Designer.cs">
+      <DependentUpon>SupplierReturnedBillAgl.cs</DependentUpon>
     </Compile>
     <Compile Include="Coding\Branch_Print.cs">
       <SubType>Form</SubType>
@@ -321,11 +363,23 @@
     <Compile Include="Purchases\Orders\Bill Least\Request_Least_Order.designer.cs">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBillReport.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\SupplierAccount_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBillReport.designer.cs">
-      <DependentUpon>PurchaseBillReport.cs</DependentUpon>
+    <Compile Include="Purchases\Purchases_Bills\Reports\SupplierAccount_Report.designer.cs">
+      <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.designer.cs">
+      <DependentUpon>PurchaseBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.designer.cs">
+      <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
       <SubType>Component</SubType>
@@ -1904,6 +1958,27 @@
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierPayments_Record.resx">
+      <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Print.resx">
+      <DependentUpon>BankSupplierPullAgl_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record.resx">
+      <DependentUpon>BankSupplierPullAgl_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Report.resx">
+      <DependentUpon>BankSupplierPullAgl_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Update.resx">
+      <DependentUpon>BankSupplierPullAgl_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\مورد\سحب آجل\Print_SupplierReturnedAglCategoriesBill_Report.resx">
+      <DependentUpon>Print_SupplierReturnedAglCategoriesBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\مورد\سحب آجل\SupplierReturnedBillAgl.resx">
+      <DependentUpon>SupplierReturnedBillAgl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Coding\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>
     </EmbeddedResource>
@@ -1964,8 +2039,14 @@
     <EmbeddedResource Include="Purchases\Orders\Bill Least\Request_Least_Order.resx">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBillReport.resx">
-      <DependentUpon>PurchaseBillReport.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\SupplierAccount_Report.resx">
+      <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.resx">
+      <DependentUpon>PurchaseBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.resx">
+      <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
@@ -3077,7 +3158,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Bank\مورد\" />
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>

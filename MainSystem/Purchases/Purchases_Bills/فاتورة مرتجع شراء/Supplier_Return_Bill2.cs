@@ -687,6 +687,9 @@ namespace MainSystem
                             com.ExecuteNonQuery();
                         }
 
+                        DecreaseSupplierAccount();
+
+                        #region report
                         query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
                         com = new MySqlCommand(query, dbconnection);
                         string storeName = com.ExecuteScalar().ToString();
@@ -712,7 +715,8 @@ namespace MainSystem
                         }
                         Report_SupplierReturnBill f = new Report_SupplierReturnBill();
                         f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
-                        f.ShowDialog();
+                        f.ShowDialog(); 
+                        #endregion
 
                         BillNo = 1;
                         txtBillNumber.Text = "";
@@ -1037,6 +1041,27 @@ namespace MainSystem
             txtPrice.Text = txtNormalIncrease.Text = txtTotalMeter.Text = "";
             txtPurchasePrice.Text = labTotalPrice.Text = labTotalPriceBD.Text = labelTotalB.Text = labelTotalA.Text = "";
             txtTax.Text = "0";
+        }
+
+        public void DecreaseSupplierAccount()
+        {
+            double totalSafy = Convert.ToDouble(labelTotalA.Text);
+            string query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                query = "update supplier_rest_money set Money=" + (restMoney - totalSafy) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                com = new MySqlCommand(query, dbconnection);
+            }
+            else
+            {
+                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = -1 * totalSafy;
+            }
+            com.ExecuteNonQuery();
         }
     }
 }

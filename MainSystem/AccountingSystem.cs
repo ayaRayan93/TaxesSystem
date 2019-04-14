@@ -168,6 +168,40 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void navBarItemSupplierPayments_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+                
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة سداد لمورد");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("اضافة سداد لمورد");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة سداد لمورد");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+                SupplierPayments_Record objForm = new SupplierPayments_Record(xtraTabControlAccounting);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void displayDelegateReport(GridControl gridControl, dataX d)
         {
             Delegate_Report objForm = new Delegate_Report(gridControl,d);

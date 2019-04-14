@@ -58,7 +58,16 @@ namespace MainSystem
                 comType.ValueMember = dt.Columns["Type_ID"].ToString();
                 comType.SelectedIndex = -1;
                 txtType.Text = "";
-                
+
+                query = "select * from sort";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSort.DataSource = dt;
+                comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
+                comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
+                comSort.Text = "";
+
                 query = "select * from supplier";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -117,22 +126,42 @@ namespace MainSystem
                     {
                         if (comSupplier.SelectedValue != null)
                         {
-                            for (int i = 0; i < gridView2.RowCount; i++)
+                            int cont = gridView2.RowCount;
+                            for (int i = 0; i < cont; i++)
                             {
-                                int rowHandle = gridView2.GetRowHandle(i);
+                                int rowHandle = gridView2.GetRowHandle(0);
                                 gridView2.DeleteRow(rowHandle);
                             }
                             dbconnection.Open();
                             dbconnection3.Open();
-                            string query = "SELECT orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date,orders.Confirmed,orders.Received FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID where orders.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and orders.Order_Number=" + requestNum;
+                            string query = "SELECT orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date,orders.Confirmed,orders.Received,orders.Canceled FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID where orders.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and orders.Order_Number=" + requestNum;
                             MySqlCommand comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr = comand.ExecuteReader();
                             if(dr.HasRows)
                             {
                                 while(dr.Read())
                                 {
-                                    if (dr["Confirmed"].ToString() == "1" || dr["Received"].ToString() == "1")
+                                    if (dr["Confirmed"].ToString() == "1" || dr["Received"].ToString() == "1" || dr["Canceled"].ToString() == "1")
                                     {
+                                        if(dr["Canceled"].ToString() == "1")
+                                        {
+                                            checkBoxAvailable.Checked = false;
+                                            checkBoxCanceled.Checked = true;
+                                            checkBoxConfirmed.Checked = false;
+                                            checkBoxReceived.Checked = false;
+                                        }
+                                        if (dr["Received"].ToString() == "1")
+                                        {
+                                            checkBoxAvailable.Checked = false;
+                                            checkBoxCanceled.Checked = false;
+                                            checkBoxReceived.Checked = true;
+                                        }
+                                        if (dr["Confirmed"].ToString() == "1")
+                                        {
+                                            checkBoxAvailable.Checked = false;
+                                            checkBoxCanceled.Checked = false;
+                                            checkBoxConfirmed.Checked = true;
+                                        }
                                         addFlage = false;
                                         loaded = false;
                                         txtEmployee.ReadOnly = true;
@@ -150,6 +179,11 @@ namespace MainSystem
                                     }
                                     else
                                     {
+                                        checkBoxAvailable.Checked = true;
+                                        checkBoxCanceled.Checked = false;
+                                        checkBoxConfirmed.Checked = false;
+                                        checkBoxReceived.Checked = false;
+
                                         addFlage = true;
                                         loaded = false;
                                         txtEmployee.ReadOnly = true;
@@ -170,6 +204,11 @@ namespace MainSystem
                             }
                             else
                             {
+                                checkBoxAvailable.Checked = false;
+                                checkBoxCanceled.Checked = false;
+                                checkBoxConfirmed.Checked = false;
+                                checkBoxReceived.Checked = false;
+
                                 addFlage = true;
                                 loaded = false;
                                 orderId = 0;
@@ -183,15 +222,16 @@ namespace MainSystem
                                 txtStoreID.ReadOnly = false;
                                 dateTimePicker1.Enabled = true;
                                 dateTimePicker2.Enabled = true;
-                                for (int i = 0; i < gridView2.RowCount; i++)
+                                int cont2 = gridView2.RowCount;
+                                for (int i = 0; i < cont2; i++)
                                 {
-                                    int rowHandle = gridView2.GetRowHandle(i);
+                                    int rowHandle = gridView2.GetRowHandle(0);
                                     gridView2.DeleteRow(rowHandle);
                                 }
                                 loaded = true;
                             }
 
-                            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(order_details.Quantity) as 'عدد المتر/القطعة',order_details.Type,orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID inner join data on data.Data_ID = order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where orders.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and orders.Order_Number=" + requestNum + " and orders.Confirmed=0 and orders.Received=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(order_details.Quantity) as 'عدد المتر/القطعة',order_details.Type,orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID inner join data on data.Data_ID = order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where orders.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and orders.Order_Number=" + requestNum + " and orders.Confirmed=0 and orders.Received=0 and orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                             comand = new MySqlCommand(query, dbconnection);
                             dr = comand.ExecuteReader();
                             if (dr.HasRows)
@@ -263,6 +303,11 @@ namespace MainSystem
                         else
                         {
                             MessageBox.Show("يجب تحديد المورد");
+                            checkBoxAvailable.Checked = false;
+                            checkBoxCanceled.Checked = false;
+                            checkBoxConfirmed.Checked = false;
+                            checkBoxReceived.Checked = false;
+
                             loaded = false;
                             orderId = 0;
                             txtEmployee.Text = "";
@@ -275,9 +320,10 @@ namespace MainSystem
                             txtStoreID.ReadOnly = false;
                             dateTimePicker1.Enabled = true;
                             dateTimePicker2.Enabled = true;
-                            for (int i = 0; i < gridView2.RowCount; i++)
+                            int cont = gridView2.RowCount;
+                            for (int i = 0; i < cont; i++)
                             {
-                                int rowHandle = gridView2.GetRowHandle(i);
+                                int rowHandle = gridView2.GetRowHandle(0);
                                 gridView2.DeleteRow(rowHandle);
                             }
                             loaded = true;
@@ -286,6 +332,11 @@ namespace MainSystem
                     else
                     {
                         MessageBox.Show("رقم الطلب يجب ان يكون عدد");
+                        checkBoxAvailable.Checked = false;
+                        checkBoxCanceled.Checked = false;
+                        checkBoxConfirmed.Checked = false;
+                        checkBoxReceived.Checked = false;
+
                         loaded = false;
                         orderId = 0;
                         txtEmployee.Text = "";
@@ -298,9 +349,10 @@ namespace MainSystem
                         txtStoreID.ReadOnly = false;
                         dateTimePicker1.Enabled = true;
                         dateTimePicker2.Enabled = true;
-                        for (int i = 0; i < gridView2.RowCount; i++)
+                        int cont = gridView2.RowCount;
+                        for (int i = 0; i < cont; i++)
                         {
-                            int rowHandle = gridView2.GetRowHandle(i);
+                            int rowHandle = gridView2.GetRowHandle(0);
                             gridView2.DeleteRow(rowHandle);
                         }
                         loaded = true;
@@ -316,6 +368,11 @@ namespace MainSystem
             }
             else
             {
+                checkBoxAvailable.Checked = false;
+                checkBoxCanceled.Checked = false;
+                checkBoxConfirmed.Checked = false;
+                checkBoxReceived.Checked = false;
+
                 loaded = false;
                 orderId = 0;
                 txtEmployee.Text = "";
@@ -328,9 +385,10 @@ namespace MainSystem
                 txtStoreID.ReadOnly = false;
                 dateTimePicker1.Enabled = true;
                 dateTimePicker2.Enabled = true;
-                for (int i = 0; i < gridView2.RowCount; i++)
+                int cont = gridView2.RowCount;
+                for (int i = 0; i < cont; i++)
                 {
-                    int rowHandle = gridView2.GetRowHandle(i);
+                    int rowHandle = gridView2.GetRowHandle(0);
                     gridView2.DeleteRow(rowHandle);
                 }
                 loaded = true;
@@ -490,14 +548,19 @@ namespace MainSystem
                                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                                     if (com.ExecuteScalar() != null)
                                     {
-                                        orderNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
+                                        orderNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) /*+ 1*/;
                                     }
                                     else
                                     {
                                         orderNumber = 1;
                                     }
+                                    dbconnection.Close();
+                                    ////////
+                                    loaded = true;
+                                    flagRequestNum = true;
+                                    ////////////
                                     txtRequestNum.Text = orderNumber.ToString();
-                                    loaded = false;
+                                    /*loaded = false;
                                     orderId = 0;
                                     txtEmployee.Text = "";
                                     comStore.SelectedIndex = -1;
@@ -515,7 +578,7 @@ namespace MainSystem
                                         gridView2.DeleteRow(rowHandle);
                                     }
                                     loaded = true;
-                                    flagRequestNum = true;
+                                    /*flagRequestNum = true;*/
                                 }
                             }
                             break;
@@ -770,12 +833,20 @@ namespace MainSystem
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحد الادنى"], dr2["الحد الادنى"]);
                         }
                         dr2.Close();
-                        q = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0 and order_details.Data_ID=" + dr["Data_ID"].ToString();
+                        q = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0 and orders.Canceled=0 and order_details.Data_ID=" + dr["Data_ID"].ToString();
                         comand2 = new MySqlCommand(q, dbconnection2);
                         dr2 = comand2.ExecuteReader();
-                        while (dr2.Read())
+                        if (dr2.HasRows)
                         {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحالة"], true);
+                            while (dr2.Read())
+                            {
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحالة"], true);
+                            }
+                            dr2.Close();
+                        }
+                        else
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحالة"], false);
                         }
                         dr2.Close();
                     }
@@ -1025,6 +1096,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المتاحة"], dr["الكمية المتاحة"]);
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "الحد الادنى");
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحالة"], false);
                     string q = "select sellprice.Sell_Price as 'السعر' from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
                     MySqlCommand comand2 = new MySqlCommand(q, dbconnection2);
                     MySqlDataReader dr2 = comand2.ExecuteReader();
@@ -1091,9 +1163,10 @@ namespace MainSystem
         {
             loaded = false;
             gridControl1.DataSource = null;
-            for (int i = 0; i < gridView2.RowCount; i++)
+            int cont = gridView2.RowCount;
+            for (int i = 0; i < cont; i++)
             {
-                int rowHandle = gridView2.GetRowHandle(i);
+                int rowHandle = gridView2.GetRowHandle(0);
                 gridView2.DeleteRow(rowHandle);
             }
             comSupplier.SelectedIndex = -1;

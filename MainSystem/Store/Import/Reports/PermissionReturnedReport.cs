@@ -69,7 +69,7 @@ namespace MainSystem
                 try
                 {
                     dbconnection.Open();
-                    string query = "select Store_Name from supplier where Store_ID=" + txtStoreID.Text + "";
+                    string query = "select Store_Name from store where Store_ID=" + txtStoreID.Text + "";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
