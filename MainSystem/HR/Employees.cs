@@ -82,7 +82,7 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                       
+
                         if (setRow[0].ToString() == "موظف")
                         {
                             string Query = "delete from employee where Employee_ID=" + setRow[1].ToString();
@@ -92,7 +92,7 @@ namespace MainSystem
                             string query = "ALTER TABLE employee AUTO_INCREMENT = 1;";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
-                        //    UserControl.UserRecord("employee", "حذف", setRow[1].ToString(), DateTime.Now, dbconnection);
+                            UserControl.ItemRecord("employee", "حذف", Convert.ToInt16(setRow[1].ToString()), DateTime.Now, "", dbconnection);                            
                         }
                         else
                         {
@@ -103,9 +103,9 @@ namespace MainSystem
                             string query = "ALTER TABLE delegate AUTO_INCREMENT = 1;";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
-                         //   UserControl.UserRecord("delegate", "حذف", setRow[1].ToString(), DateTime.Now, dbconnection);
+                            UserControl.ItemRecord("employee", "حذف", Convert.ToInt16(setRow[1].ToString()), DateTime.Now, "", dbconnection);
                         }
-                      displayEmployee();
+                        displayEmployee();
 
                     }
                     else if (dialogResult == DialogResult.No)
@@ -171,6 +171,7 @@ namespace MainSystem
             gridControl1.DataSource = dataSet3.Tables[0];
             gridView1.Columns[0].Visible = false;
             gridView1.Columns[1].Visible = false;
+            gridView1.BestFitColumns();
         }
 
     }

@@ -1664,6 +1664,18 @@
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\StorageReturn_Items.cs" />
+    <Compile Include="Store\Storage\StorageTaswayaAddingUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Storage\StorageTaswayaAddingUpdate.designer.cs">
+      <DependentUpon>StorageTaswayaAddingUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Storage\TaswayaAdding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Storage\TaswayaAdding.designer.cs">
+      <DependentUpon>TaswayaAdding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Storage\StorageTaswayaSubtract.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2601,6 +2613,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Storage\StorageTaswayaAddingUpdate.resx">
+      <DependentUpon>StorageTaswayaAddingUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Storage\TaswayaAdding.resx">
+      <DependentUpon>TaswayaAdding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Storage\StorageTaswayaSubtract.resx">
       <DependentUpon>StorageTaswayaSubtract.cs</DependentUpon>

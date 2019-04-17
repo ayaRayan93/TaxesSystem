@@ -585,7 +585,6 @@ namespace MainSystem
 
         public void userAccess()
         {
-            navBarGroup1.Visible = false;
             navBarGroup3.Visible = false;
             navBarGroup4.Visible = false;
             navBarGroup5.Visible = false;
@@ -612,7 +611,7 @@ namespace MainSystem
 
         }
 
-    
+       
     }
 
     public static class connection

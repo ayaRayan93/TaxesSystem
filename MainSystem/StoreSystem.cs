@@ -556,7 +556,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+     
         private void navBarItemSubstractQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -568,6 +568,40 @@ namespace MainSystem
                     xtraTabControlStoresContent.Visible = true;
 
                 bindTaswaySubtractStorageForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemTaswayatAdding_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسويات الاضافة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تسويات الاضافة");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسويات الاضافة");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                TaswayaAdding objForm = new TaswayaAdding(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
             }
             catch (Exception ex)
             {
@@ -1056,48 +1090,23 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindUpdateStorageForm(List<DataRowView> rows, Storage storage)
+        public void bindUpdateTaswayaAddingForm(int perNum)
         {
-            UpdateCodeStorage objForm = new UpdateCodeStorage(rows, storage, xtraTabControlStoresContent);
+            StorageTaswayaAddingUpdate objForm = new StorageTaswayaAddingUpdate(perNum, this, xtraTabControlStoresContent);
             objForm.TopLevel = false;
-            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent,"تعديل  كمية بند");
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent,"تعديل  تسوية اضافة");
             if (xtraTabPage == null)
             {
-                xtraTabControlStoresContent.TabPages.Add("تعديل  كمية بند");
-                xtraTabPage = getTabPage(xtraTabControlStoresContent,"تعديل  كمية بند");
-                xtraTabPage.Controls.Clear();
-                xtraTabPage.Controls.Add(objForm);
-                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
+                xtraTabControlStoresContent.TabPages.Add("تعديل  تسوية اضافة");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل  تسوية اضافة");
             }
-            else if (xtraTabPage.ImageOptions.Image != null)
-            {
-                DialogResult dialogResult = MessageBox.Show("There is unsave data To you wound override it?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    xtraTabPage.Controls.Clear();
-                    xtraTabPage.Controls.Add(objForm);
-                    xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                    objForm.Dock = DockStyle.Fill;
-                    objForm.Show();
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-                }
-            }
-            else
-            {
-                xtraTabPage.Controls.Clear();
-                xtraTabPage.Controls.Add(objForm);
-                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
-            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
 
         }
         public void bindTaswayAddingStorageForm()

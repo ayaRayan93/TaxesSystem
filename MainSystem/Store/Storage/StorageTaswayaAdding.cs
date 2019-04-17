@@ -20,6 +20,7 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
+        bool flag = false;
         double noMeter = 0;
         int TaswayaAdding_ID = 0;
         XtraTabControl xtraTabControlStoresContent;
@@ -28,7 +29,7 @@ namespace MainSystem
         MainForm mainForm;
         DataTable mdt=null;
         DataRowView mRow = null;
-
+        List<int> ListOfDataIDs;
         public StorageTaswayaAdding(MainForm mainForm,XtraTabControl xtraTabControlStoresContent)
         {
             try
@@ -44,7 +45,7 @@ namespace MainSystem
             }
 
         }
-
+    
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -217,9 +218,6 @@ namespace MainSystem
                                 comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
-
-                              
-
                                 comProduct.Focus();
                                 flagProduct = true;
                             }
@@ -252,202 +250,207 @@ namespace MainSystem
             {
                 try
                 {
-                    if (txtBox.Text != "")
+                    dbconnection.Open();
+                    switch (txtBox.Name)
                     {
-                        dbconnection.Open();
-                        switch (txtBox.Name)
-                        {
-                            case "txtType":
-                                query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comType.Text = Name;
-                                    txtFactory.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtFactory":
-                                query = "select Factory_Name from factory where Factory_ID='" + txtFactory.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comFactory.Text = Name;
-                                    txtGroup.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtGroup":
-                                query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comGroup.Text = Name;
-                                    txtProduct.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtProduct":
-                                query = "select Product_Name from product where Product_ID='" + txtProduct.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comProduct.Text = Name;
-                                    txtType.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtCodePart1":
-                                query = "select Type_Name from type where Type_ID='" + txtCodePart1.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comType.Text = Name;
-                                    txtType.Text = txtCodePart1.Text;
-                                    makeCode(txtBox);
-                                    txtCodePart2.Focus();
-                                    dbconnection.Close();                                
-                                }
-                                else
-                                {
-                                    MessageBox.Show("هذا الكود غير مسجل");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtCodePart2":
-                                query = "select Factory_Name from factory where Factory_ID='" + txtCodePart2.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comFactory.Text = Name;
-                                    txtFactory.Text = txtCodePart2.Text;
-                                    makeCode(txtBox);
-                                    txtCodePart3.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("هذا الكود غير مسجل");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtCodePart3":
-                                query = "select Group_Name from Groupo where Group_ID='" + txtCodePart3.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comGroup.Text = Name;
-                                    txtGroup.Text = txtCodePart3.Text;
-                                    makeCode(txtBox);
-                                    txtCodePart4.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("هذا الكود غير مسجل");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtCodePart4":
-                                query = "select Product_Name from Product where Product_ID='" + txtCodePart4.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comProduct.Text = Name;
-                                    txtProduct.Text = txtCodePart4.Text;
-                                    makeCode(txtBox);
-                                    txtCodePart5.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("هذا الكود غير مسجل");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtCodePart5":
+                        case "txtType":
+                            query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comType.Text = Name;
+                                txtFactory.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtFactory":
+                            query = "select Factory_Name from factory where Factory_ID='" + txtFactory.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comFactory.Text = Name;
+                                txtGroup.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtGroup":
+                            query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comGroup.Text = Name;
+                                txtProduct.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtProduct":
+                            query = "select Product_Name from product where Product_ID='" + txtProduct.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comProduct.Text = Name;
+                                txtType.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtCodePart1":
+                            query = "select Type_Name from type where Type_ID='" + txtCodePart1.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comType.Text = Name;
+                                txtType.Text = txtCodePart1.Text;
                                 makeCode(txtBox);
-                                txtTotalMeter.Focus();
-                                break;
-                            case "txtAddingQuantity":
-                                if (code.Length == 20 && txtAddingQuantity.Text != "" && txtNote.Text != "")
+                                txtCodePart2.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("هذا الكود غير مسجل");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtCodePart2":
+                            query = "select Factory_Name from factory where Factory_ID='" + txtCodePart2.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comFactory.Text = Name;
+                                txtFactory.Text = txtCodePart2.Text;
+                                makeCode(txtBox);
+                                txtCodePart3.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("هذا الكود غير مسجل");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtCodePart3":
+                            query = "select Group_Name from Groupo where Group_ID='" + txtCodePart3.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comGroup.Text = Name;
+                                txtGroup.Text = txtCodePart3.Text;
+                                makeCode(txtBox);
+                                txtCodePart4.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("هذا الكود غير مسجل");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtCodePart4":
+                            query = "select Product_Name from Product where Product_ID='" + txtCodePart4.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comProduct.Text = Name;
+                                txtProduct.Text = txtCodePart4.Text;
+                                makeCode(txtBox);
+                                txtCodePart5.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("هذا الكود غير مسجل");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtCodePart5":
+                            makeCode(txtBox);
+                            displayProducts(code);
+                            DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
+                            mRow = row;
+                            txtTotalMeter.Text = row[4].ToString();
+                            txtAddingQuantity.Focus();
+                            break;
+                        case "txtAddingQuantity":
+                            if (btnReport.Enabled)
+                            {
+                                if (validation())
                                 {
-
                                     if (mRow != null)
                                     {
-                                        add2GridView(mdt, mRow);
+                                        if (!IsExistInGridView(code))
+                                            add2GridView(mdt, mRow);
+                                        else
+                                            MessageBox.Show("البند المضاف");
+
+                                        clearPart();
                                     }
-                                    labVcode.Visible = false;
-                                    labVaddingMeter.Visible = false;
-                                    labVnote.Visible = false;
-                                    clearPart();
                                 }
                                 else
                                 {
-                                    if (code.Length != 20)
-                                        labVcode.Visible = true;
-                                    else
-                                        labVcode.Visible = false;
-                                    if (txtAddingQuantity.Text == "")
-                                        labVaddingMeter.Visible = true;
-                                    else
-                                        labVaddingMeter.Visible = false;
-                                    if (txtNote.Text == "")
-                                        labVnote.Visible = true;
-                                    else
-                                        labVnote.Visible = false;
-
-
                                     MessageBox.Show("ادخل كل البيانات المطلوبة");
                                 }
-                                break;
-                        }
-                    }
+                                code = "";
+                                txtCodePart1.Focus();
 
+                            }
+                            else
+                            {
+                                MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
+                            }
+                            break;
+                        case "txtNote":
+                            txtCodePart1.Focus();
+                            break;
+
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("خطأ في الادخال");
+                    txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
+                    code = "";
+                    txtCodePart1.Focus();
                 }
                 dbconnection.Close();
             }
         }
+
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -455,16 +458,18 @@ namespace MainSystem
                 if (loaded)
                 {
                     dbconnection.Open();
-                    string query = "select permissionNum from taswayaa_adding_permision order by permissionNum limit 1 ";
+                    string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
-                        labPermissionNum.Text = (Convert.ToInt16(com.ExecuteScalar()) + 1).ToString();
+                        int x = Convert.ToInt16(com.ExecuteScalar());
+                        labPermissionNum.Text = (x + 1).ToString();
                     }
                     else
                     {
                         labPermissionNum.Text = "1";
                     }
+                    txtNote.Focus();
                 }
             }
             catch (Exception ex)
@@ -480,7 +485,7 @@ namespace MainSystem
             {
                 if (comStore.Text != "")
                 {
-                    displayProducts();
+                    displayProducts("");
                 }
                 else
                 {
@@ -532,34 +537,27 @@ namespace MainSystem
         {
             try
             {
-                dbconnection.Open();
-                if (code.Length == 20 && txtAddingQuantity.Text != "" && txtNote.Text != "")
+                if (!btnReport.Enabled)
                 {
-                    if (mRow != null)
+                    dbconnection.Open();
+                    if (validation())
                     {
-                        add2GridView(mdt, mRow);
+                        if (mRow != null)
+                        {
+                            add2GridView(mdt, mRow);
+                        }
                     }
-                    labVcode.Visible = false;
-                    labVaddingMeter.Visible = false;
-                    labVnote.Visible = false;
+                    else
+                    {
+                        MessageBox.Show("ادخل كل البيانات المطلوبة");
+                    }
+                    code = "";
                     clearPart();
+                    txtCodePart1.Focus();
                 }
                 else
                 {
-                    if (code.Length != 20)
-                        labVcode.Visible = true;
-                    else
-                        labVcode.Visible = false;
-                    if (txtAddingQuantity.Text == "")
-                        labVaddingMeter.Visible = true;
-                    else
-                        labVaddingMeter.Visible = false;
-                    if (txtNote.Text == "")
-                        labVnote.Visible = true;
-                    else
-                        labVnote.Visible = false;
-
-                    MessageBox.Show("ادخل كل البيانات المطلوبة");
+                    MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
                 }
             }
             catch (Exception ex)
@@ -583,8 +581,7 @@ namespace MainSystem
                 txtFactory.Text = "";
                 txtGroup.Text = "";
                 txtProduct.Text = "";
-
-                clear();
+                
                 
             }
             catch (Exception ex)
@@ -597,8 +594,23 @@ namespace MainSystem
         {
             try
             {
-                if(TaswayaAdding_ID!=0)
-                mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n"+ TaswayaAdding_ID+"\n"+comStore.Text);
+                if (gridView2.RowCount > 0)
+                {
+                    if (flag)
+                    {
+                        if (TaswayaAdding_ID != 0)
+                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n" + TaswayaAdding_ID + "\n" + comStore.Text+"\n\n"+txtNote.Text);
+                        flag = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب حفظ البيانات اولا");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("لا يوجد بيانات للطباعة");
+                }
             }
             catch (Exception ex)
             {
@@ -618,6 +630,7 @@ namespace MainSystem
                     double totalBeforAdding = Convert.ToDouble(dataRow["اجمالي عدد الوحدات قبل الاضافة"].ToString());
 
                     view.SetRowCellValue(view.GetSelectedRows()[0], "رصيد البند", totalBeforAdding + addingQuantity);
+
                 }
 
             }
@@ -632,7 +645,14 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                save2DB();
+                if (gridView2.RowCount > 0)
+                {
+                    save2DB();
+                }
+                else
+                {
+                    MessageBox.Show("ادخل البنود المراد حفظها");
+                }
            
             }
             catch (Exception ex)
@@ -654,7 +674,38 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void btnNewPermission_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                clear();
+                labStore.Visible = true;
+                labVcode.Visible = true;
+                labVaddingMeter.Visible = true;
+                labVnote.Visible = true;
+                dbconnection.Open();
+                string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() != null)
+                {
+                    int x = Convert.ToInt16(com.ExecuteScalar());
+                    labPermissionNum.Text = (x + 1).ToString();
+                }
+                else
+                {
+                    labPermissionNum.Text = "1";
+                }
+                mdt.Rows.Clear();
+                btnReport.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }                     
+
         //functions
         public void clear()
         {
@@ -671,7 +722,8 @@ namespace MainSystem
             txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
             txtTotalMeter.Text = "";
             txtAddingQuantity.Text = "";
-            txtNote.Text = "";
+            labVcode.Visible = true;
+            labVaddingMeter.Visible = true;
         }
         public XtraTabPage getTabPage(string text)
         {
@@ -705,7 +757,7 @@ namespace MainSystem
             }
             return true;
         }
-        public void displayProducts()
+        public void displayProducts(string code)
         {
             try
             {
@@ -747,9 +799,19 @@ namespace MainSystem
                 {
                     query1 += " and storage.Store_ID=" + comStore.SelectedValue;
                 }
-               
+
+                string q = "";
+                if (code != "")
+                {
+                    q = " and data.Code='" + code + "'";
+                }
+                else
+                {
+                    q = "";
+                }
+
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName +",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName +",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ q+" group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -776,16 +838,19 @@ namespace MainSystem
         }
         public void makeCode(TextBox txtBox)
         {
-            int j = 4 - txtBox.TextLength;
-            for (int i = 0; i < j; i++)
+            if (code.Length < 20)
             {
-                code += "0";
+                int j = 4 - txtBox.TextLength;
+                for (int i = 0; i < j; i++)
+                {
+                    code += "0";
+                }
+                code += txtBox.Text;
             }
-            code += txtBox.Text;
         }
         public void save2DB()
         {
-            string query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date)values (@PermissionNum,@Store_ID,@Date)";
+            string query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
             com.Parameters["@PermissionNum"].Value = Convert.ToInt16(labPermissionNum.Text);
@@ -793,6 +858,8 @@ namespace MainSystem
             com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
             com.Parameters.Add("@Date", MySqlDbType.Date, 0);
             com.Parameters["@Date"].Value = dateTimePicker1.Value;
+            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+            com.Parameters["@Note"].Value = txtNote.Text;
             com.ExecuteNonQuery();
 
             query = "select TaswayaAdding_ID from taswayaa_adding_permision order by TaswayaAdding_ID desc limit 1";
@@ -801,7 +868,7 @@ namespace MainSystem
             gridView2.SelectAll();
             for (int i = 0; i < mdt.Rows.Count; i++)
             {
-                query = "insert into addstorage (TaswayaAdding_ID,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding,Note) values (@TaswayaAdding_ID,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding,@Note)";
+                query = "insert into addstorage (TaswayaAdding_ID,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding) values (@TaswayaAdding_ID,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@TaswayaAdding_ID", MySqlDbType.Int16);
                 com.Parameters["@TaswayaAdding_ID"].Value = TaswayaAdding_ID;
@@ -815,11 +882,16 @@ namespace MainSystem
                 com.Parameters["@AddingQuantity"].Value = mdt.Rows[i][5];
                 com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
                 com.Parameters["@QuantityAfterAdding"].Value = mdt.Rows[i][6];
-                com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                com.Parameters["@Note"].Value = mdt.Rows[i][6];
+              
                 com.ExecuteNonQuery();
             }
+            UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
             MessageBox.Show("تم الحفظ");
+
+            btnReport.Enabled = true;
+            flag = true;
+        
+          
         }
         public DataTable createDataTable()
         {
@@ -867,7 +939,53 @@ namespace MainSystem
            
             return Store_Place_ID;
         }
-      
+        public bool validation()
+        {
+            if (code.Length != 20)
+                labVcode.Visible = true;
+            else
+                labVcode.Visible = false;
+            if (txtAddingQuantity.Text == "")
+                labVaddingMeter.Visible = true;
+            else
+                labVaddingMeter.Visible = false;
+            if (comStore.Text == "")
+                labStore.Visible = true;
+            else
+                labStore.Visible = false;
+            if (txtNote.Text == "")
+                labVnote.Visible = true;
+            else
+                labVnote.Visible = false;
+            if (code.Length == 20 && txtAddingQuantity.Text != "" && comStore.Text != "" && txtNote.Text != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }    
+        public bool IsExistInGridView(string c)
+        {
+            for (int i = 0; i < gridView2.DataRowCount; i++)
+            {
+                DataRowView r = (DataRowView)gridView2.GetRow(i);
+                if (r[2].ToString() == c)
+                {
+                    // gridView2.MoveBy(i);
+                    int x = gridView2.GetSelectedRows()[0];
+                    if (x != 0)
+                        gridView2.FocusedRowHandle = 0;
+                    else
+                        gridView2.FocusedRowHandle = gridView2.DataRowCount - 1;
+                    gridView2.FocusedRowHandle = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 
 }
