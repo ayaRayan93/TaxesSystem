@@ -553,6 +553,8 @@ namespace MainSystem
                         c.ExecuteNonQuery();
                     }
 
+                    IncreaseSupplierAccount();
+
                     #region report
                     query = "select Store_Name from store where Store_ID=" + storeId;
                     com = new MySqlCommand(query, conn);
@@ -669,7 +671,28 @@ namespace MainSystem
                 return 0;
             }
         }
-        
+
+        public void IncreaseSupplierAccount()
+        {
+            double totalSafy = Convert.ToDouble(labelTotalA.Text);
+            string query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+            MySqlCommand com = new MySqlCommand(query, conn);
+            if (com.ExecuteScalar() != null)
+            {
+                double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                query = "update supplier_rest_money set Money=" + (restMoney + totalSafy) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                com = new MySqlCommand(query, conn);
+            }
+            else
+            {
+                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
+                com = new MySqlCommand(query, conn);
+                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = totalSafy;
+            }
+            com.ExecuteNonQuery();
+        }
+
         public void updateGrid(/*string PriceType, */double PurchasingPrice, double ProfitRatio, double PurchasingDiscount, double Price, double NormalIncrease, double CategoricalIncrease)
         {
             gridView1.SetRowCellValue(rowHandle, "سعر الشراء", PurchasingPrice);

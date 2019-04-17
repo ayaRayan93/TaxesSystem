@@ -21,8 +21,63 @@ namespace MainSystem
     }
     public partial class MainForm 
     {
-       
+        Timer Storetimer = new Timer();
+        bool StoreFlag = false;
+        public static SearchRecive_Date searchReciveDate;
+
+        public void StoreMainForm()
+        {
+            try
+            {
+                ExpectedOrdersFunction();
+                
+                Storetimer.Interval = 1000 * 60;
+                Storetimer.Tick += new EventHandler(GetExpectedOrders);
+                Storetimer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //stores
+        private void pictureBoxStoreExpectedOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 2 || UserControl.userType == 1)
+                {
+                    if (StoreFlag == false)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
+                        index++;
+                        StoreFlag = true;
+                    }
+                    xtraTabControlMainContainer.SelectedTabPage = StoreTP;
+
+                    if (!xtraTabControlStoresContent.Visible)
+                        xtraTabControlStoresContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الطلبات المتوقع استلامها");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlStoresContent.TabPages.Add("الطلبات المتوقع استلامها");
+                        xtraTabPage = getTabPage(xtraTabControlStoresContent, "الطلبات المتوقع استلامها");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+                    bindDisplayExpectedOrdersReport(xtraTabPage);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btnStoreRecord_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             try
@@ -574,6 +629,75 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void navBarItemSupplierPermission_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن وارد");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("عرض اذن وارد");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن وارد");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                PermissionsReport objForm = new PermissionsReport(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSupplierReturnedPermission_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن مرتجع");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("عرض اذن مرتجع");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "عرض اذن مرتجع");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                PermissionReturnedReport objForm = new PermissionReturnedReport(this, xtraTabControlStoresContent);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
         private void navBarItemTaswayatAdding_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
@@ -1195,6 +1319,57 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        public void bindDisplayExpectedOrdersReport(XtraTabPage xtraTabPage)
+        {
+            searchReciveDate = new SearchRecive_Date(this, xtraTabControlStoresContent);
+            searchReciveDate.TopLevel = false;
+
+            xtraTabPage.Controls.Add(searchReciveDate);
+            searchReciveDate.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            searchReciveDate.Dock = DockStyle.Fill;
+            searchReciveDate.Show();
+        }
+
+        public void GetExpectedOrders(object sender, EventArgs e)
+        {
+            try
+            {
+                ExpectedOrdersFunction();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        public void ExpectedOrdersFunction()
+        {
+            int count = 0;
+            dbconnection.Close();
+            string query = "select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and Receive_Date ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'";
+            MySqlCommand command = new MySqlCommand(query, dbconnection);
+            dbconnection.Open();
+            MySqlDataReader dr = command.ExecuteReader();
+            if (dr.HasRows)
+            {
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        count++;
+                    }
+                    labelStoreExpectedOrder.Text = count.ToString();
+                    labelStoreExpectedOrder.Visible = true;
+                    dr.Close();
+                }
+            }
+            else
+            {
+                labelStoreExpectedOrder.Text = "0";
+                labelStoreExpectedOrder.Visible = true;
+            }
+        }
         private void StoreMainForm_Resize(object sender, EventArgs e)
         {
             try
@@ -1216,6 +1391,5 @@ namespace MainSystem
             }
 
         }
-       
     }
 }

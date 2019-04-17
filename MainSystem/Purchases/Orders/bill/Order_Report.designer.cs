@@ -150,7 +150,7 @@
             this.btnDelete.ImagePosition = 1;
             this.btnDelete.ImageZoom = 25;
             this.btnDelete.LabelPosition = 18;
-            this.btnDelete.LabelText = "حذف";
+            this.btnDelete.LabelText = "الغاء";
             this.btnDelete.Location = new System.Drawing.Point(420, 4);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";

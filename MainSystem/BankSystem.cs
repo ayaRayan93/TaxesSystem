@@ -45,6 +45,7 @@ namespace MainSystem
         public static BankPullExpense_Report PullExpensesShow;
         public static BankPullPayAccount_Report PullPayAccountShow;
         public static BankTransfers_Report BankTransferShow;
+        public static BankSupplierPullAgl_Report SupplierPullAglShow;
 
         XtraTabPage tabPageBankReport;
         Panel panelBankReport;
@@ -66,6 +67,8 @@ namespace MainSystem
         Panel panelPullPayAccountReport;
         XtraTabPage tabPageBankTransferReport;
         Panel panelBankTransferReport;
+        XtraTabPage tabPageSupplierPullAglReport;
+        Panel panelSupplierPullAglReport;
 
         public void initialize()
         {
@@ -91,6 +94,8 @@ namespace MainSystem
             panelPullPayAccountReport = new Panel();
             tabPageBankTransferReport = new XtraTabPage();
             panelBankTransferReport = new Panel();
+            tabPageSupplierPullAglReport = new XtraTabPage();
+            panelSupplierPullAglReport = new Panel();
         }
 
         private void navBarItemShow_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -442,6 +447,41 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSupplierPullAgl_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
+
+                XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "tabPageSupplierPullAglReport");
+                if (xtraTabPage == null)
+                {
+                    tabPageSupplierPullAglReport.Name = "tabPageSupplierPullAglReport";
+                    tabPageSupplierPullAglReport.Text = "عرض سحوبات الموردين-آجل";
+                    panelSupplierPullAglReport.Name = "panelSupplierPullAglReport";
+                    panelSupplierPullAglReport.Dock = DockStyle.Fill;
+
+                    SupplierPullAglShow = new BankSupplierPullAgl_Report(this);
+                    SupplierPullAglShow.Size = new Size(1109, 660);
+                    SupplierPullAglShow.TopLevel = false;
+                    SupplierPullAglShow.FormBorderStyle = FormBorderStyle.None;
+                    SupplierPullAglShow.Dock = DockStyle.Fill;
+                }
+                panelSupplierPullAglReport.Controls.Clear();
+                panelSupplierPullAglReport.Controls.Add(SupplierPullAglShow);
+                tabPageSupplierPullAglReport.Controls.Add(panelSupplierPullAglReport);
+                MainTabControlBank.TabPages.Add(tabPageSupplierPullAglReport);
+                SupplierPullAglShow.Show();
+                MainTabControlBank.SelectedTabPage = tabPageSupplierPullAglReport;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindRecordDepositAglForm(BankDepositAgl_Report form)
         {
@@ -550,7 +590,43 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        
+
+        public void bindRecordSupplierPullAglForm(BankSupplierPullAgl_Report form)
+        {
+            BankSupplierPullAgl_Record objForm = new BankSupplierPullAgl_Record(form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد مورد-آجل");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("اضافة مرتد مورد-آجل");
+                xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد مورد-آجل");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdateSupplierPullAglForm(DataRowView sellRow, BankSupplierPullAgl_Report form)
+        {
+            BankSupplierPullAgl_Update objForm = new BankSupplierPullAgl_Update(sellRow, form, MainTabControlBank);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد مورد-آجل");
+            if (xtraTabPage == null)
+            {
+                MainTabControlBank.TabPages.Add("تعديل مرتد مورد-آجل");
+                xtraTabPage = getTabPage(MainTabControlBank, "تعديل مرتد مورد-آجل");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            MainTabControlBank.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
         public void bindRecordPullCashForm(BankPullCash_Report form)
         {
             BankPullCash_Record objForm = new BankPullCash_Record(form, MainTabControlBank);
@@ -586,7 +662,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
+        
         public void bindRecordDepositIncomeForm(BankDepositIncome_Report form)
         {
             BankDepositIncome_Record objForm = new BankDepositIncome_Record(form, MainTabControlBank);

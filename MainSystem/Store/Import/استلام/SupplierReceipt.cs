@@ -498,11 +498,29 @@ namespace MainSystem
                                     return;
                                 }
 
+                                string query = "update orders set Received=1 where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Order_Number=" + orderNum;
+                                MySqlCommand com = new MySqlCommand(query, conn);
+                                try
+                                {
+                                    if (com.ExecuteNonQuery() == 1)
+                                    { }
+                                    else
+                                    {
+                                        if (MessageBox.Show("يوجد خطا فى الطلب هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                                            return;
+                                    }
+                                }
+                                catch
+                                {
+                                    if (MessageBox.Show("يوجد خطا فى الطلب هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                                        return;
+                                }
+
                                 conn.Open();
                                 dbconnection2.Open();
                                 int storageImportPermissionID = 0;
-                                string query = "select StorageImportPermission_ID from storage_import_permission where Import_Permission_Number=" + permNum + " and Store_ID=" + storeId;
-                                MySqlCommand com = new MySqlCommand(query, conn);
+                                query = "select StorageImportPermission_ID from storage_import_permission where Import_Permission_Number=" + permNum + " and Store_ID=" + storeId;
+                                com = new MySqlCommand(query, conn);
                                 if (com.ExecuteScalar() == null)
                                 {
                                     query = "insert into storage_import_permission (Store_ID,Storage_Date,Import_Permission_Number) values (@Store_ID,@Storage_Date,@Import_Permission_Number)";
@@ -729,14 +747,14 @@ namespace MainSystem
                                     com.ExecuteNonQuery();
                                 }
 
-                                query = "update orders set Received=1 where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Order_Number=" + orderNum;
+                                /*query = "update orders set Received=1 where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Order_Number=" + orderNum;
                                 com = new MySqlCommand(query, conn);
                                 try
                                 {
                                     com.ExecuteNonQuery();
                                 }
                                 catch
-                                { }
+                                { }*/
 
                                 //comSupplier.Enabled = false;
                                 //comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
