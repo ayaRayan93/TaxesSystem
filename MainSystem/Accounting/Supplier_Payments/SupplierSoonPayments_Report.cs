@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class SupplierAccount_Report : Form
+    public partial class SupplierSoonPayments_Report : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        DataRow row1 = null;
+        //DataRow row1 = null;
         XtraTabControl tabControlContent;
 
-        public SupplierAccount_Report(MainForm mainform, XtraTabControl TabControlContent)
+        public SupplierSoonPayments_Report(MainForm mainform, XtraTabControl TabControlContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -121,59 +121,59 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
-        {
-            if (loaded)
-            {
-                row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
-            }
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (row1 != null)
-                //{
-                    XtraTabPage xtraTabPage = getTabPage(tabControlContent, "اضافة سداد لمورد");
-                    if (xtraTabPage == null)
+                if (gridView1.SelectedRowsCount > 0)
+                {
+                    dbconnection.Open();
+                    for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
-                        tabControlContent.TabPages.Add("اضافة سداد لمورد");
-                        xtraTabPage = getTabPage(tabControlContent, "اضافة سداد لمورد");
+                        string query = "update supplier_transitions set Paid='تحت التحصيل' where SupplierTransition_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.ExecuteNonQuery();
+                        if (comSupplier.SelectedValue != null)
+                        {
+                            search(Convert.ToInt16(comSupplier.SelectedValue.ToString()));
+                        }
+                        else
+                        {
+                            search(0);
+                        }
                     }
-                    xtraTabPage.Controls.Clear();
-                    tabControlContent.SelectedTabPage = xtraTabPage;
-                    BankSupplierPullAgl_Record objForm = new BankSupplierPullAgl_Record(tabControlContent);
-
-                    objForm.TopLevel = false;
-                    xtraTabPage.Controls.Add(objForm);
-                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                    objForm.Dock = DockStyle.Fill;
-                    objForm.Show();
-                //}
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         public void search(int supplierId)
         {
             DataSet sourceDataSet = new DataSet();
             MySqlDataAdapter adapterPerm = null;
+            DateTime today = DateTime.Today;
+            DateTime start = new DateTime(today.Year, today.Month, today.Day);
+            DateTime end = start.AddMonths(1);
             if (supplierId == 0)
             {
-                adapterPerm = new MySqlDataAdapter("SELECT supplier_rest_money.ID,supplier.Supplier_Name as 'المورد',supplier_rest_money.Money as 'المتبقى' FROM supplier_rest_money INNER JOIN supplier ON supplier.Supplier_ID = supplier_rest_money.Supplier_ID", dbconnection);
+                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Supplier_ID,supplier.Supplier_Name as 'المورد',supplier_transitions.Bank_ID,supplier_transitions.Bank_Name as 'الخزينة',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Date as 'التاريخ',supplier_transitions.Payment_Method as 'طريقة الدفع',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك/الكارت',supplier_transitions.Visa_Type as 'نوع الكارت',supplier_transitions.Operation_Number as 'رقم العملية',supplier_transitions.Data as 'البيان',Paid as 'الحالة' FROM supplier_transitions inner join supplier on supplier.Supplier_ID=supplier_transitions.Supplier_ID where supplier_transitions.Transition='سداد' and (supplier_transitions.Paid='لا' or supplier_transitions.Paid='تحت التحصيل') and supplier_transitions.Error=0 and Date(supplier_transitions.Payday) >= '" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Date(supplier_transitions.Payday) <= '" + end.Date.ToString("yyyy-MM-dd") + "' order by supplier_transitions.Date";
+                adapterPerm = new MySqlDataAdapter(query, dbconnection);
             }
             else
             {
-                adapterPerm = new MySqlDataAdapter("SELECT supplier_rest_money.ID,supplier.Supplier_Name as 'المورد',supplier_rest_money.Money as 'المتبقى' FROM supplier_rest_money INNER JOIN supplier ON supplier.Supplier_ID = supplier_rest_money.Supplier_ID where supplier_rest_money.Supplier_ID=" + comSupplier.SelectedValue.ToString(), dbconnection);
+                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Supplier_ID,supplier.Supplier_Name as 'المورد',supplier_transitions.Bank_ID,supplier_transitions.Bank_Name as 'الخزينة',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Date as 'التاريخ',supplier_transitions.Payment_Method as 'طريقة الدفع',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك/الكارت',supplier_transitions.Visa_Type as 'نوع الكارت',supplier_transitions.Operation_Number as 'رقم العملية',supplier_transitions.Data as 'البيان',Paid as 'الحالة' FROM supplier_transitions inner join supplier on supplier.Supplier_ID=supplier_transitions.Supplier_ID where supplier_transitions.Transition='سداد' and (supplier_transitions.Paid='لا' or supplier_transitions.Paid='تحت التحصيل') and supplier_transitions.Error=0 and Date(supplier_transitions.Payday) >= '" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Date(supplier_transitions.Payday) <= '" + end.Date.ToString("yyyy-MM-dd") + "' and supplier_transitions.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " order by supplier_transitions.Date";
+                adapterPerm = new MySqlDataAdapter(query, dbconnection);
             }
             adapterPerm.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
             gridView1.Columns[0].Visible = false;
-            
+            gridView1.Columns["Bank_ID"].Visible = false;
+            gridView1.Columns["Supplier_ID"].Visible = false;
+
             if (gridView1.IsLastVisibleRow)
             {
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;

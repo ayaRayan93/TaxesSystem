@@ -195,6 +195,30 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.designer.cs">
+      <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierTransitions_Report.designer.cs">
+      <DependentUpon>SupplierTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBills_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBills_Report.designer.cs">
+      <DependentUpon>SupplierBills_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.designer.cs">
+      <DependentUpon>SupplierSoonPayments_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierPayments_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1957,6 +1981,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.resx">
+      <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierTransitions_Report.resx">
+      <DependentUpon>SupplierTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBills_Report.resx">
+      <DependentUpon>SupplierBills_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.resx">
+      <DependentUpon>SupplierSoonPayments_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierPayments_Record.resx">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
