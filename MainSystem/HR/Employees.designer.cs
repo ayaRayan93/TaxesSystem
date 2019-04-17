@@ -76,7 +76,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
             this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 30;
+            this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "اضافة";
             this.btnAdd.Location = new System.Drawing.Point(447, 4);
@@ -97,7 +97,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
-            this.btnUpdate.ImageZoom = 30;
+            this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;
             this.btnUpdate.LabelText = "تعديل";
             this.btnUpdate.Location = new System.Drawing.Point(374, 4);
@@ -118,7 +118,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
             this.btnDelete.ImagePosition = 1;
-            this.btnDelete.ImageZoom = 30;
+            this.btnDelete.ImageZoom = 25;
             this.btnDelete.LabelPosition = 18;
             this.btnDelete.LabelText = "حذف";
             this.btnDelete.Location = new System.Drawing.Point(301, 4);
@@ -139,7 +139,7 @@
             this.btnReport.ForeColor = System.Drawing.Color.White;
             this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
-            this.btnReport.ImageZoom = 30;
+            this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "تقرير";
             this.btnReport.Location = new System.Drawing.Point(228, 4);
@@ -167,11 +167,15 @@
             this.gridView1.Appearance.CustomizationFormHint.Options.UseFont = true;
             this.gridView1.Appearance.CustomizationFormHint.Options.UseTextOptions = true;
             this.gridView1.Appearance.CustomizationFormHint.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.Appearance.HeaderPanel.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -179,6 +183,8 @@
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowCloseButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowHeight = 2;
             // 
             // Employees

@@ -76,6 +76,7 @@ namespace MainSystem
 
             gridControl1.DataSource = dataSet3.Tables[0];
             gridView1.Columns[0].Visible = false;
+            gridView1.BestFitColumns();
         }
 
     

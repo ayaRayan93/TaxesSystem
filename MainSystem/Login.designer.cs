@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.panClose = new System.Windows.Forms.Panel();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl();
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panContent = new System.Windows.Forms.Panel();
             this.txtName = new MainSystem.Custom1TextBox();
             this.btnLogin = new System.Windows.Forms.Panel();

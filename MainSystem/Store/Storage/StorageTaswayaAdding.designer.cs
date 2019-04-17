@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.panContainer = new System.Windows.Forms.Panel();
-            this.labVtotalMeter = new System.Windows.Forms.Label();
             this.labVaddingMeter = new System.Windows.Forms.Label();
             this.labVcode = new System.Windows.Forms.Label();
-            this.labVnote = new System.Windows.Forms.Label();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnRemove = new Bunifu.Framework.UI.BunifuImageButton();
             this.txtAddingQuantity = new System.Windows.Forms.TextBox();
@@ -43,13 +41,17 @@
             this.txtCodePart1 = new System.Windows.Forms.TextBox();
             this.txtCodePart3 = new System.Windows.Forms.TextBox();
             this.txtCodePart2 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtNote = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.labVnote = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labStore = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labPermissionNum = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -75,6 +77,7 @@
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnNewPermission = new Bunifu.Framework.UI.BunifuTileButton();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -92,10 +95,8 @@
             // 
             this.panContainer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panContainer.Controls.Add(this.labVtotalMeter);
             this.panContainer.Controls.Add(this.labVaddingMeter);
             this.panContainer.Controls.Add(this.labVcode);
-            this.panContainer.Controls.Add(this.labVnote);
             this.panContainer.Controls.Add(this.btnPut);
             this.panContainer.Controls.Add(this.btnRemove);
             this.panContainer.Controls.Add(this.txtAddingQuantity);
@@ -106,29 +107,13 @@
             this.panContainer.Controls.Add(this.txtCodePart1);
             this.panContainer.Controls.Add(this.txtCodePart3);
             this.panContainer.Controls.Add(this.txtCodePart2);
-            this.panContainer.Controls.Add(this.label14);
             this.panContainer.Controls.Add(this.label13);
-            this.panContainer.Controls.Add(this.txtNote);
             this.panContainer.Controls.Add(this.label7);
             this.panContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panContainer.Location = new System.Drawing.Point(3, 393);
+            this.panContainer.Location = new System.Drawing.Point(3, 403);
             this.panContainer.Name = "panContainer";
             this.panContainer.Size = new System.Drawing.Size(950, 104);
             this.panContainer.TabIndex = 39;
-            // 
-            // labVtotalMeter
-            // 
-            this.labVtotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labVtotalMeter.AutoSize = true;
-            this.labVtotalMeter.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labVtotalMeter.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVtotalMeter.Location = new System.Drawing.Point(196, 16);
-            this.labVtotalMeter.Name = "labVtotalMeter";
-            this.labVtotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labVtotalMeter.Size = new System.Drawing.Size(22, 26);
-            this.labVtotalMeter.TabIndex = 236;
-            this.labVtotalMeter.Text = "*";
-            this.labVtotalMeter.Visible = false;
             // 
             // labVaddingMeter
             // 
@@ -142,7 +127,6 @@
             this.labVaddingMeter.Size = new System.Drawing.Size(22, 26);
             this.labVaddingMeter.TabIndex = 235;
             this.labVaddingMeter.Text = "*";
-            this.labVaddingMeter.Visible = false;
             // 
             // labVcode
             // 
@@ -156,21 +140,6 @@
             this.labVcode.Size = new System.Drawing.Size(22, 26);
             this.labVcode.TabIndex = 234;
             this.labVcode.Text = "*";
-            this.labVcode.Visible = false;
-            // 
-            // labVnote
-            // 
-            this.labVnote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labVnote.AutoSize = true;
-            this.labVnote.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labVnote.ForeColor = System.Drawing.Color.IndianRed;
-            this.labVnote.Location = new System.Drawing.Point(593, 54);
-            this.labVnote.Name = "labVnote";
-            this.labVnote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labVnote.Size = new System.Drawing.Size(22, 26);
-            this.labVnote.TabIndex = 233;
-            this.labVnote.Text = "*";
-            this.labVnote.Visible = false;
             // 
             // btnPut
             // 
@@ -285,18 +254,6 @@
             this.txtCodePart2.TabIndex = 36;
             this.txtCodePart2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(798, 52);
-            this.label14.Name = "label14";
-            this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(48, 19);
-            this.label14.TabIndex = 35;
-            this.label14.Text = "ملحوظة";
-            // 
             // label13
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -308,15 +265,6 @@
             this.label13.Size = new System.Drawing.Size(108, 19);
             this.label13.TabIndex = 32;
             this.label13.Text = "اجمالي عدد الوحدات";
-            // 
-            // txtNote
-            // 
-            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNote.Location = new System.Drawing.Point(619, 52);
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(171, 24);
-            this.txtNote.TabIndex = 6;
             // 
             // label7
             // 
@@ -330,14 +278,49 @@
             this.label7.TabIndex = 29;
             this.label7.Text = "كود المنتج";
             // 
+            // labVnote
+            // 
+            this.labVnote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labVnote.AutoSize = true;
+            this.labVnote.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labVnote.ForeColor = System.Drawing.Color.IndianRed;
+            this.labVnote.Location = new System.Drawing.Point(669, 71);
+            this.labVnote.Name = "labVnote";
+            this.labVnote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labVnote.Size = new System.Drawing.Size(22, 26);
+            this.labVnote.TabIndex = 233;
+            this.labVnote.Text = "*";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(876, 69);
+            this.label14.Name = "label14";
+            this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label14.Size = new System.Drawing.Size(48, 19);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "ملحوظة";
+            // 
+            // txtNote
+            // 
+            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtNote.Location = new System.Drawing.Point(697, 69);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(171, 24);
+            this.txtNote.TabIndex = 6;
+            this.txtNote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl1.Location = new System.Drawing.Point(3, 113);
+            this.gridControl1.Location = new System.Drawing.Point(3, 133);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(950, 274);
+            this.gridControl1.Size = new System.Drawing.Size(950, 264);
             this.gridControl1.TabIndex = 40;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -361,22 +344,64 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.labStore);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.labVnote);
+            this.panel1.Controls.Add(this.labPermissionNum);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.comStore);
             this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.txtNote);
+            this.panel1.Controls.Add(this.label14);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(950, 104);
+            this.panel1.Size = new System.Drawing.Size(950, 124);
             this.panel1.TabIndex = 37;
+            // 
+            // labStore
+            // 
+            this.labStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labStore.AutoSize = true;
+            this.labStore.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labStore.ForeColor = System.Drawing.Color.IndianRed;
+            this.labStore.Location = new System.Drawing.Point(669, 43);
+            this.labStore.Name = "labStore";
+            this.labStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labStore.Size = new System.Drawing.Size(22, 26);
+            this.labStore.TabIndex = 236;
+            this.labStore.Text = "*";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(878, 97);
+            this.label10.Name = "label10";
+            this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label10.Size = new System.Drawing.Size(46, 19);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "أذن رقم";
+            // 
+            // labPermissionNum
+            // 
+            this.labPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labPermissionNum.AutoSize = true;
+            this.labPermissionNum.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labPermissionNum.Location = new System.Drawing.Point(771, 97);
+            this.labPermissionNum.Name = "labPermissionNum";
+            this.labPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labPermissionNum.Size = new System.Drawing.Size(0, 19);
+            this.labPermissionNum.TabIndex = 24;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(697, 24);
+            this.dateTimePicker1.Location = new System.Drawing.Point(697, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(171, 26);
             this.dateTimePicker1.TabIndex = 22;
@@ -386,7 +411,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(878, 24);
+            this.label5.Location = new System.Drawing.Point(878, 10);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label5.Size = new System.Drawing.Size(43, 19);
@@ -565,17 +590,18 @@
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(697, 57);
+            this.comStore.Location = new System.Drawing.Point(697, 43);
             this.comStore.Name = "comStore";
             this.comStore.Size = new System.Drawing.Size(171, 21);
             this.comStore.TabIndex = 3;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(878, 57);
+            this.label6.Location = new System.Drawing.Point(878, 43);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(45, 19);
@@ -595,7 +621,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -606,13 +632,15 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel4.Controls.Add(this.btnReport, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnNewPermission, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 780);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -630,6 +658,7 @@
             this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReport.Enabled = false;
             this.btnReport.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.Color.White;
             this.btnReport.Image = global::MainSystem.Properties.Resources.Print_321;
@@ -637,7 +666,7 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 22;
             this.btnReport.LabelText = "طباعة";
-            this.btnReport.Location = new System.Drawing.Point(387, 4);
+            this.btnReport.Location = new System.Drawing.Point(340, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(89, 53);
@@ -658,7 +687,7 @@
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 21;
             this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(483, 5);
+            this.btnSave.Location = new System.Drawing.Point(436, 5);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 51);
@@ -669,24 +698,42 @@
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl2.Location = new System.Drawing.Point(3, 503);
+            this.gridControl2.Location = new System.Drawing.Point(3, 513);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(950, 274);
+            this.gridControl2.Size = new System.Drawing.Size(950, 264);
             this.gridControl2.TabIndex = 41;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
             // gridView2
             // 
+            this.gridView2.Appearance.FocusedRow.BackColor = System.Drawing.Color.DodgerBlue;
+            this.gridView2.Appearance.FocusedRow.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.gridView2.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.gridView2.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.gridView2.Appearance.FocusedRow.Options.UseFont = true;
+            this.gridView2.Appearance.FocusedRow.Options.UseForeColor = true;
             this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DodgerBlue;
+            this.gridView2.Appearance.HideSelectionRow.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.gridView2.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
+            this.gridView2.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.gridView2.Appearance.HideSelectionRow.Options.UseFont = true;
+            this.gridView2.Appearance.HideSelectionRow.Options.UseForeColor = true;
             this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.Appearance.Row.Options.UseTextOptions = true;
             this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.Appearance.SelectedRow.BackColor = System.Drawing.Color.DodgerBlue;
+            this.gridView2.Appearance.SelectedRow.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.gridView2.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            this.gridView2.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.gridView2.Appearance.SelectedRow.Options.UseFont = true;
+            this.gridView2.Appearance.SelectedRow.Options.UseForeColor = true;
             this.gridView2.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.AppearancePrint.HeaderPanel.Options.UseFont = true;
             this.gridView2.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
@@ -699,6 +746,27 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
+            // 
+            // btnNewPermission
+            // 
+            this.btnNewPermission.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewPermission.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewPermission.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewPermission.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNewPermission.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewPermission.ForeColor = System.Drawing.Color.White;
+            this.btnNewPermission.Image = global::MainSystem.Properties.Resources.File_321;
+            this.btnNewPermission.ImagePosition = 1;
+            this.btnNewPermission.ImageZoom = 25;
+            this.btnNewPermission.LabelPosition = 21;
+            this.btnNewPermission.LabelText = "أذن جديد";
+            this.btnNewPermission.Location = new System.Drawing.Point(531, 5);
+            this.btnNewPermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNewPermission.Name = "btnNewPermission";
+            this.btnNewPermission.Size = new System.Drawing.Size(87, 51);
+            this.btnNewPermission.TabIndex = 5;
+            this.btnNewPermission.Click += new System.EventHandler(this.btnNewPermission_Click);
             // 
             // StorageTaswayaAdding
             // 
@@ -775,10 +843,13 @@
         private Bunifu.Framework.UI.BunifuTileButton btnSave;
         private Bunifu.Framework.UI.BunifuImageButton btnPut;
         private Bunifu.Framework.UI.BunifuImageButton btnRemove;
-        private System.Windows.Forms.Label labVtotalMeter;
         private System.Windows.Forms.Label labVaddingMeter;
         private System.Windows.Forms.Label labVcode;
         private System.Windows.Forms.Label labVnote;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labPermissionNum;
+        private System.Windows.Forms.Label labStore;
+        private Bunifu.Framework.UI.BunifuTileButton btnNewPermission;
     }
 }
 

@@ -231,6 +231,7 @@
             // 
             this.rEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rEmployee.AutoSize = true;
+            this.rEmployee.Checked = true;
             this.rEmployee.Font = new System.Drawing.Font("Tahoma", 10F);
             this.rEmployee.ForeColor = System.Drawing.Color.Black;
             this.rEmployee.Location = new System.Drawing.Point(710, 48);
@@ -238,6 +239,7 @@
             this.rEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rEmployee.Size = new System.Drawing.Size(61, 21);
             this.rEmployee.TabIndex = 120;
+            this.rEmployee.TabStop = true;
             this.rEmployee.Text = "موظف";
             this.rEmployee.UseVisualStyleBackColor = true;
             this.rEmployee.CheckedChanged += new System.EventHandler(this.rEmployee_CheckedChanged);

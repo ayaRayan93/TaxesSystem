@@ -55,7 +55,6 @@ namespace MainSystem
                     POSSystem();
                     initializeBranch();
                     PurchasesMainForm();
-                    StoreMainForm();
                 }
 
                 StoreTP = xtraTabPageStores;
@@ -561,7 +560,7 @@ namespace MainSystem
         {
             try
             {
-                Login loginForm = new Login();
+                Login_Admin loginForm = new Login_Admin();
                 loginForm.Show();
                 this.Hide();
             }
@@ -586,7 +585,6 @@ namespace MainSystem
 
         public void userAccess()
         {
-            navBarGroup1.Visible = false;
             navBarGroup3.Visible = false;
             navBarGroup4.Visible = false;
             navBarGroup5.Visible = false;
@@ -612,6 +610,9 @@ namespace MainSystem
             navBarGroupLeastQuantity.Visible = false;
 
         }
+
+       
+
     }
 
     public static class connection

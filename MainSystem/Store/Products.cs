@@ -905,7 +905,12 @@ namespace MainSystem
             }
             else
             {
-                query = "select * from groupo where Factory_ID="+txtFactory.Text+" and Type_ID=" + txtType.Text;
+                string q = "";
+                if (txtFactory.Text != "")
+                {
+                    q = " and Factory_ID = "+txtFactory.Text;
+                }
+                query = "select * from groupo where Type_ID=" + txtType.Text+q;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

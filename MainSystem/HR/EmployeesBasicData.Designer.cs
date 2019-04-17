@@ -72,7 +72,7 @@
             this.btnReport.ImageZoom = 30;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(321, 4);
+            this.btnReport.Location = new System.Drawing.Point(320, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(71, 49);
@@ -93,12 +93,22 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.Row.Options.UseFont = true;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowCloseButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // EmployeesBasicData
             // 

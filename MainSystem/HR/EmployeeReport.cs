@@ -93,7 +93,7 @@ namespace MainSystem
             // Display the PageInfoBrick containing date-time information. Date-time information is displayed
             // in the left part of the MarginalHeader section using the FullDateTimePattern.
             //{0:F}
-            pageInfoBrick = brickGraphics.DrawPageInfo(PageInfo.DateTime, "{0:MM/dd/yyyy hh:mm tt}", Color.Black, new Rectangle(840, 160, 120, 50), BorderSide.None);
+            pageInfoBrick = brickGraphics.DrawPageInfo(PageInfo.DateTime, "{0:MM/dd/yyyy}", Color.Black, new Rectangle(805, 160, 120, 50), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Far;
 
 
@@ -102,11 +102,11 @@ namespace MainSystem
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics2 = e.Graph;
             brickGraphics2.BackColor = Color.White;
-            brickGraphics2.Font = new Font("Neo Sans Arabic", 14, FontStyle.Bold);
+            brickGraphics2.Font = new Font("Times New Roman", 14, FontStyle.Bold);
 
             // Display the DevExpress text string.
             SizeF size = brickGraphics2.MeasureString(devexpress);
-            pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, devexpress, Color.Black, new RectangleF(new PointF(440, 50), size), BorderSide.None);
+            pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, devexpress, Color.Black, new RectangleF(new PointF(380, 50), size), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Center;
         }
 
