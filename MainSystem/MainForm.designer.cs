@@ -45,6 +45,7 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement28 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement29 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement30 = new DevExpress.XtraEditors.TileItemElement();
+
             this.xtraTabControlMainContainer = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageMain = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -72,11 +73,7 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup11 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemAddingQuantity = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSubstractQuantity = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTaswayatAdding = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSupplierReturnedPermission = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -1095,7 +1092,7 @@
             this.navBarItemAddingQuantity,
             this.navBarItemSubstractQuantity,
             this.navBarItemSupplierPermission,
-            this.navBarItemSupplierReturnedPermission},
+            this.navBarItemSupplierReturnedPermission,
             this.navBarItemSubstractQuantity,
             this.navBarItemTaswayatAdding});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
