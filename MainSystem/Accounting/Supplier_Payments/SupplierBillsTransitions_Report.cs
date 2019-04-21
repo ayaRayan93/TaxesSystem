@@ -17,14 +17,14 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, dbconnection6;
         bool loaded = false;
-        //XtraTabControl tabControlContent;
+        XtraTabControl tabControlContent;
 
-        public SupplierBillsTransitions_Report(/*MainForm mainform, XtraTabControl TabControlContent*/)
+        public SupplierBillsTransitions_Report(MainForm mainform, XtraTabControl TabControlContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnection6 = new MySqlConnection(connection.connectionString);
-            //tabControlContent = TabControlContent;
+            tabControlContent = TabControlContent;
         }
 
         private void requestStored_Load(object sender, EventArgs e)
@@ -42,6 +42,22 @@ namespace MainSystem
                 comSupplier.Text = "";
                 txtSupplierID.Text = "";
 
+                this.dataGridView1.RightToLeft = RightToLeft.No;
+
+                this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+
+                this.dataGridView1.ColumnHeadersHeight = this.dataGridView1.ColumnHeadersHeight * 2;
+
+                this.dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
+
+                this.dataGridView1.CellPainting += new DataGridViewCellPaintingEventHandler(dataGridView1_CellPainting);
+
+                this.dataGridView1.Paint += new PaintEventHandler(dataGridView1_Paint);
+
+                this.dataGridView1.Scroll += new ScrollEventHandler(dataGridView1_Scroll);
+
+                this.dataGridView1.ColumnWidthChanged += new DataGridViewColumnEventHandler(dataGridView1_ColumnWidthChanged);
+
                 loaded = true;
             }
             catch (Exception ex)
@@ -49,6 +65,135 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        void dataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            try
+            {
+                Rectangle rtHeader = this.dataGridView1.DisplayRectangle;
+
+                rtHeader.Height = this.dataGridView1.ColumnHeadersHeight / 2;
+
+                this.dataGridView1.Invalidate(rtHeader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void dataGridView1_Scroll(object sender, ScrollEventArgs e)
+        {
+            Rectangle rtHeader = this.dataGridView1.DisplayRectangle;
+
+            rtHeader.Height = this.dataGridView1.ColumnHeadersHeight / 2;
+
+            this.dataGridView1.Invalidate(rtHeader);
+        }
+
+        void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex == -1 && e.ColumnIndex > -1)
+                {
+                    Rectangle r2 = e.CellBounds;
+
+                    r2.Y += e.CellBounds.Height / 2;
+
+                    r2.Height = e.CellBounds.Height / 2;
+
+                    e.PaintBackground(r2, true);
+
+                    e.PaintContent(r2);
+
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        void dataGridView1_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                string[] monthes = { "السدادات والمرتجعات", "المسحوبات", "الرصيد" };
+                Rectangle r2 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
+                Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
+
+                for (int j = 0; j < 7;)
+                {
+                    if (j == 0)
+                    {
+                        r2 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
+
+                        int w2 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true).Width;
+
+                        r2.X += 1;
+
+                        r2.Y += 1;
+
+                        r2.Width = r2.Width + w2 + w2 - 2;
+
+                        r2.Height = r2.Height / 2 - 2;
+
+                        e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(115, 129, 201)), r2);
+
+                        StringFormat format = new StringFormat();
+
+                        format.Alignment = StringAlignment.Center;
+
+                        format.LineAlignment = StringAlignment.Center;
+
+                        e.Graphics.DrawString(monthes[j / 2],
+                            this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
+                            new SolidBrush(Color.White),
+                            r2,
+                            format);
+
+                        r1 = r2;
+                        j += 3;
+                    }
+                    else
+                    {
+                        r1 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
+
+                        int w2 = this.dataGridView1.GetCellDisplayRectangle(j + 1, -1, true).Width;
+
+                        r1.X += 1;
+
+                        r1.Y += 1;
+
+                        r1.Width = r1.Width + w2 - 2;
+
+                        r1.Height = r1.Height / 2 - 2;
+
+                        e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(115, 129, 201)), r1);
+
+                        StringFormat format = new StringFormat();
+
+                        format.Alignment = StringAlignment.Center;
+
+                        format.LineAlignment = StringAlignment.Center;
+
+                        e.Graphics.DrawString(monthes[j / 2],
+                            this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
+                            new SolidBrush(Color.White),
+                            r1,
+                            format);
+
+                        r2 = r1;
+                        j += 2;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         
         private void comBranch_SelectedValueChanged(object sender, EventArgs e)
@@ -132,12 +277,7 @@ namespace MainSystem
         {
             double totalTransition = 0;
             double TotalReturns = 0;
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter("''", dbconnection);
-            DataTable dtf = new DataTable();
-            adapter.Fill(dtf);
-            gridControl1.DataSource = dtf;
-
+            
             dbconnection.Open();
             dbconnection6.Open();
             if (supplierId == 0)
@@ -147,23 +287,20 @@ namespace MainSystem
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
                 {
-                    gridView1.AddNewRow();
-                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                    if (gridView1.IsNewItemRow(rowHandle))
-                    {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["طريقة الدفع"], dr["طريقة الدفع"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخزينة/البنك"], dr["الخزينة/البنك"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المبلغ"], dr["المبلغ"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع الكارت"], dr["نوع الكارت"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم العملية"], dr["رقم العملية"]);
-                    }
+                    int n = dataGridView1.Rows.Add();
+                    //dataGridView1.Rows[n].Cells["Data_ID"].Value = row1.Cells["Data_ID"].Value;
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["طريقة الدفع"], dr["طريقة الدفع"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخزينة/البنك"], dr["الخزينة/البنك"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المبلغ"], dr["المبلغ"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع الكارت"], dr["نوع الكارت"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم العملية"], dr["رقم العملية"]);
+                    //}
                 }
                 dr.Close();
             }
@@ -174,47 +311,26 @@ namespace MainSystem
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
                 {
-                    gridView1.AddNewRow();
-                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                    if (gridView1.IsNewItemRow(rowHandle))
-                    {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["طريقة الدفع"], dr["طريقة الدفع"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخزينة/البنك"], dr["الخزينة/البنك"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المبلغ"], dr["المبلغ"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع الكارت"], dr["نوع الكارت"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم العملية"], dr["رقم العملية"]);
-                    }
+                    //gridView1.AddNewRow();
+                    //int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    //if (gridView1.IsNewItemRow(rowHandle))
+                    //{
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["طريقة الدفع"], dr["طريقة الدفع"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخزينة/البنك"], dr["الخزينة/البنك"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المبلغ"], dr["المبلغ"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع الكارت"], dr["نوع الكارت"]);
+                    //    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم العملية"], dr["رقم العملية"]);
+                    //}
                 }
                 dr.Close();
             }
-            //gridView1.Columns[0].Visible = false;
-
-            if (gridView1.IsLastVisibleRow)
-            {
-                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
-            }
-
-            for (int i = 0; i < gridView1.RowCount; i++)
-            {
-                if (gridView1.GetRowCellDisplayText(i, "النوع") == "سداد")
-                {
-                    totalTransition += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "المبلغ"));
-                }
-                else if (gridView1.GetRowCellDisplayText(i, "النوع") == "مرتد")
-                {
-                    TotalReturns += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "المبلغ"));
-                }
-            }
-            //labelTotalBills.Text = totalTransition.ToString();
-            //labelTotalReturns.Text = TotalReturns.ToString();
-            //labelSafy.Text = (totalTransition - TotalReturns).ToString();
         }
 
         public XtraTabPage getTabPage(XtraTabControl tabControl, string text)

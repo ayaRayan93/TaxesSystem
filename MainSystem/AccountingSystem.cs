@@ -212,12 +212,12 @@ namespace MainSystem
                 navBarItem.Appearance.ForeColor = Color.Blue;
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض سدادات الموردين");
+                //عرض سدادات الموردين
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض تحصيلات الموردين");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("عرض سدادات الموردين");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض سدادات الموردين");
+                    xtraTabControlAccounting.TabPages.Add("عرض تحصيلات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض تحصيلات الموردين");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -281,17 +281,85 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير سدادات الموردين");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "حركة سدادات الموردين");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("تقرير سدادات الموردين");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير سدادات الموردين");
+                    xtraTabControlAccounting.TabPages.Add("حركة سدادات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "حركة سدادات الموردين");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
                 SupplierTransitions_Report objForm = new SupplierTransitions_Report(this, xtraTabControlAccounting);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
+        private void navBarItemSupplierBillsTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "حركة المسحوبات والمرتجعات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("حركة المسحوبات والمرتجعات");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "حركة المسحوبات والمرتجعات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                SupplierBillsTransitions_Report objForm = new SupplierBillsTransitions_Report(this, xtraTabControlAccounting);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSupplierTaswyaReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض التسويات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("عرض التسويات");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "عرض التسويات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                SupplierTaswayaReport objForm = new SupplierTaswayaReport(this, xtraTabControlAccounting);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -321,6 +389,49 @@ namespace MainSystem
             xtraTabPage.Controls.Add(objForm);
             xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        
+        public void bindTaswayaSupplierForm()
+        {
+            if (!xtraTabControlAccounting.Visible)
+                xtraTabControlAccounting.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة تسوية لمورد");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlAccounting.TabPages.Add("اضافة تسوية لمورد");
+                xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة تسوية لمورد");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+            SupplierTaswaya objForm = new SupplierTaswaya();
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindUpdateTaswayaSupplierForm(DataRowView row, SupplierTaswayaReport SupplierTaswayaReport)
+        {
+            if (!xtraTabControlAccounting.Visible)
+                xtraTabControlAccounting.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تعديل تسوية مورد");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlAccounting.TabPages.Add("تعديل تسوية مورد");
+                xtraTabPage = getTabPage(xtraTabControlAccounting, "تعديل تسوية مورد");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+            UpdateSupplierTaswaya objForm = new UpdateSupplierTaswaya(row, this, SupplierTaswayaReport);
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
