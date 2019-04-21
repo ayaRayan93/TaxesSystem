@@ -22,7 +22,18 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
 
+        private void SupplierTaswaya_Load(object sender, EventArgs e)
+        {
+            try
+            {
                 string query = "select * from supplier";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -37,7 +48,6 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
         }
 
         private void comClient_SelectedValueChanged(object sender, EventArgs e)
@@ -79,9 +89,11 @@ namespace MainSystem
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
+                                    loaded = false;
                                     comSupplier.Text = Name;
                                     comSupplier.SelectedValue = txtSupplierID.Text;
                                     search();
+                                    loaded = true;
                                 }
                                 else
                                 {
@@ -107,46 +119,67 @@ namespace MainSystem
         {
             try
             {
-                double paidMoney = Convert.ToDouble(txtMoney.Text);
-                dbconnection.Open();
-                string query = "insert into supplier_taswaya (Supplier_ID,Taswaya_Type,Money_Paid,Info,Date) values(@Supplier_ID,@Taswaya_Type,@Money_Paid,@Info,@Date)";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                com.Parameters["@Supplier_ID"].Value =Convert.ToInt16(txtSupplierID.Text);
-                if (radioButtonDiscount.Checked)
+                if (comSupplier.SelectedValue != null && txtMoney.Text != "" && (radioButtonAdd.Checked || radioButtonDiscount.Checked) && txtSupplierAccount.Text != "")
                 {
-                    com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Taswaya_Type"].Value = radioButtonDiscount.Text;
-                }
-                else
-                {
-                    com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Taswaya_Type"].Value = radioButtonAdd.Text;
-                }
-                com.Parameters.Add("@Money_Paid", MySqlDbType.Decimal);
-                com.Parameters["@Money_Paid"].Value =Convert.ToDouble(txtMoney.Text);
-                com.Parameters.Add("@Info", MySqlDbType.VarChar);
-                com.Parameters["@Info"].Value = txtInfo.Text;
-                com.Parameters.Add("@Date", MySqlDbType.Date);
-                com.Parameters["@Date"].Value = dateTimeFrom.Value.Date;
-                com.ExecuteNonQuery();
-
-                query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
-                com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                    if (radioButtonDiscount.Checked)
+                    double paidMoney = 0;
+                    if (double.TryParse(txtMoney.Text, out paidMoney))
                     {
-                        query = "update supplier_rest_money set Money=" + (restMoney - paidMoney) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                        dbconnection.Open();
+                        string query = "insert into supplier_taswaya (Supplier_ID,Taswaya_Type,Money_Paid,Info,Date) values(@Supplier_ID,@Taswaya_Type,@Money_Paid,@Info,@Date)";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                        com.Parameters["@Supplier_ID"].Value = Convert.ToInt16(txtSupplierID.Text);
+                        if (radioButtonDiscount.Checked)
+                        {
+                            com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
+                            com.Parameters["@Taswaya_Type"].Value = radioButtonDiscount.Text;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
+                            com.Parameters["@Taswaya_Type"].Value = radioButtonAdd.Text;
+                        }
+                        com.Parameters.Add("@Money_Paid", MySqlDbType.Decimal);
+                        com.Parameters["@Money_Paid"].Value = Convert.ToDouble(txtMoney.Text);
+                        com.Parameters.Add("@Info", MySqlDbType.VarChar);
+                        com.Parameters["@Info"].Value = txtInfo.Text;
+                        com.Parameters.Add("@Date", MySqlDbType.Date);
+                        com.Parameters["@Date"].Value = dateTime1.Value.Date;
+                        com.ExecuteNonQuery();
+
+                        query = "select SupplierTaswaya_ID from supplier_taswaya order by SupplierTaswaya_ID desc limit 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        int SupplierTaswaya_ID = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                        UserControl.ItemRecord("supplier_taswaya", "اضافة", SupplierTaswaya_ID, DateTime.Now, "", dbconnection);
+
+                        query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                        com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                            double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                            if (radioButtonDiscount.Checked)
+                            {
+                                query = "update supplier_rest_money set Money=" + (restMoney - paidMoney) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                            }
+                            else
+                            {
+                                query = "update supplier_rest_money set Money=" + (restMoney + paidMoney) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                            }
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                        }
+                        clear();
                     }
                     else
                     {
-                        query = "update supplier_rest_money set Money=" + (restMoney + paidMoney) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                        MessageBox.Show("المبلغ يجب ان يكون عدد");
                     }
-                    com = new MySqlCommand(query, dbconnection);
                 }
-                com.ExecuteNonQuery();
+                else
+                {
+                    MessageBox.Show("تاكد من ادخال البيانات المطلوبة");
+                }
             }
             catch (Exception ex)
             {
@@ -166,6 +199,33 @@ namespace MainSystem
             else
             {
                 txtSupplierAccount.Text = "";
+            }
+        }
+
+        public void clear()
+        {
+            foreach (Control item in panContent.Controls)
+            {
+                if (item is System.Windows.Forms.ComboBox)
+                {
+                    item.Text = "";
+                    loaded = false;
+                    comSupplier.SelectedIndex = -1;
+                    loaded = true;
+                }
+                else if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+                else if (item is DateTimePicker)
+                {
+                    dateTime1.Value = DateTime.Now;
+                }
+                else if (item is Panel)
+                {
+                    radioButtonAdd.Checked = false;
+                    radioButtonDiscount.Checked = false;
+                }
             }
         }
     }

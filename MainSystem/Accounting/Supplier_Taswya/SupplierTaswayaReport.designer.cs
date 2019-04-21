@@ -61,7 +61,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 467);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(874, 707);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gridControl1
@@ -71,7 +71,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(784, 351);
+            this.gridControl1.Size = new System.Drawing.Size(868, 591);
             this.gridControl1.TabIndex = 46;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -108,13 +108,13 @@
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 417);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 657);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(790, 50);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(874, 50);
             this.tableLayoutPanel4.TabIndex = 45;
             // 
             // btnDelete
@@ -131,10 +131,10 @@
             this.btnDelete.ImageZoom = 22;
             this.btnDelete.LabelPosition = 18;
             this.btnDelete.LabelText = "حذف";
-            this.btnDelete.Location = new System.Drawing.Point(319, 4);
+            this.btnDelete.Location = new System.Drawing.Point(355, 4);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(73, 42);
+            this.btnDelete.Size = new System.Drawing.Size(81, 42);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -152,10 +152,10 @@
             this.btnUpdate.ImageZoom = 22;
             this.btnUpdate.LabelPosition = 18;
             this.btnUpdate.LabelText = "تعديل";
-            this.btnUpdate.Location = new System.Drawing.Point(398, 4);
+            this.btnUpdate.Location = new System.Drawing.Point(442, 4);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(73, 42);
+            this.btnUpdate.Size = new System.Drawing.Size(81, 42);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -173,10 +173,10 @@
             this.btnAdd.ImageZoom = 22;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "اضافة";
-            this.btnAdd.Location = new System.Drawing.Point(477, 4);
+            this.btnAdd.Location = new System.Drawing.Point(529, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(73, 42);
+            this.btnAdd.Size = new System.Drawing.Size(81, 42);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -189,7 +189,7 @@
             this.panHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panHeader.Location = new System.Drawing.Point(3, 3);
             this.panHeader.Name = "panHeader";
-            this.panHeader.Size = new System.Drawing.Size(784, 54);
+            this.panHeader.Size = new System.Drawing.Size(868, 54);
             this.panHeader.TabIndex = 0;
             // 
             // label1
@@ -197,9 +197,9 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(670, 20);
+            this.label1.Location = new System.Drawing.Point(712, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 19);
+            this.label1.Size = new System.Drawing.Size(84, 19);
             this.label1.TabIndex = 43;
             this.label1.Text = "رقم التسوية";
             // 
@@ -207,7 +207,7 @@
             // 
             this.txtTaswayaCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTaswayaCode.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaswayaCode.Location = new System.Drawing.Point(493, 16);
+            this.txtTaswayaCode.Location = new System.Drawing.Point(535, 16);
             this.txtTaswayaCode.Name = "txtTaswayaCode";
             this.txtTaswayaCode.Size = new System.Drawing.Size(167, 27);
             this.txtTaswayaCode.TabIndex = 42;
@@ -222,7 +222,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSearch.Location = new System.Drawing.Point(59, 13);
+            this.btnSearch.Location = new System.Drawing.Point(101, 13);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 33);
             this.btnSearch.TabIndex = 41;
@@ -230,16 +230,16 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // CustomerTaswayaReport
+            // SupplierTaswayaReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(790, 467);
+            this.ClientSize = new System.Drawing.Size(874, 707);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "CustomerTaswayaReport";
-            this.Text = "CustomerTaswayaReport";
+            this.Name = "SupplierTaswayaReport";
+            this.Text = "SupplierTaswayaReport";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

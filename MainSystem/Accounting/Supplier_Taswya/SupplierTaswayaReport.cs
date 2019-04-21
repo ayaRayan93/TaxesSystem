@@ -92,14 +92,10 @@ namespace MainSystem
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    DataTable dataTable = (DataTable)gridControl1.DataSource;
-                    for (int i = 0; i < dataTable.Rows.Count; i++)
-                    {
-                        string query = "delete from supplier_taswaya where SupplierTaswaya_ID='" + dataTable.Rows[i][0].ToString() + "'";
-                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                        comand.ExecuteNonQuery();
-                        UserControl.ItemRecord("supplier_taswaya", "حذف", Convert.ToInt16(row1[0].ToString()), DateTime.Now, "", dbconnection);
-                    }
+                    string query = "delete from supplier_taswaya where SupplierTaswaya_ID=" + row1[0].ToString() + "";
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    comand.ExecuteNonQuery();
+                    UserControl.ItemRecord("supplier_taswaya", "حذف", Convert.ToInt16(row1[0].ToString()), DateTime.Now, "", dbconnection);
                 }
             }
             catch (Exception ex)
