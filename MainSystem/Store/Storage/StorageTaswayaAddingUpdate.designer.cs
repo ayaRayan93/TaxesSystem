@@ -77,6 +77,8 @@
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtItemNote = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -94,6 +96,8 @@
             // 
             this.panContainer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panContainer.Controls.Add(this.txtItemNote);
+            this.panContainer.Controls.Add(this.label9);
             this.panContainer.Controls.Add(this.labVaddingMeter);
             this.panContainer.Controls.Add(this.labVcode);
             this.panContainer.Controls.Add(this.btnPut);
@@ -745,6 +749,27 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
+            // txtItemNote
+            // 
+            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtItemNote.Location = new System.Drawing.Point(619, 51);
+            this.txtItemNote.Name = "txtItemNote";
+            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
+            this.txtItemNote.TabIndex = 240;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(798, 51);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(48, 19);
+            this.label9.TabIndex = 241;
+            this.label9.Text = "ملحوظة";
+            // 
             // StorageTaswayaAddingUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,6 +851,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labPermissionNum;
         private System.Windows.Forms.Label labStore;
+        private System.Windows.Forms.TextBox txtItemNote;
+        private System.Windows.Forms.Label label9;
     }
 }
 

@@ -13,24 +13,23 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class StorageTaswayaAdding : Form
+    public partial class StorageTaswayaSubtractUpdate : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
-        bool flagProduct = false;
         bool flag = false;
         double noMeter = 0;
         int TaswayaAdding_ID = 0;
         XtraTabControl xtraTabControlStoresContent;
-        int Data_ID=-1, Storage_ID=-1;
+        int Data_ID=-1;
         string code = "";
         MainForm mainForm;
         DataTable mdt=null;
         DataRowView mRow = null;
-        List<int> ListOfDataIDs;
-        public StorageTaswayaAdding(MainForm mainForm,XtraTabControl xtraTabControlStoresContent)
+        int perNum;
+        public StorageTaswayaSubtractUpdate(int perNum, MainForm mainForm,XtraTabControl xtraTabControlStoresContent)
         {
             try
             {
@@ -38,6 +37,9 @@ namespace MainSystem
                 dbconnection = new MySqlConnection(connection.connectionString);
                 this.mainForm = mainForm;
                 this.xtraTabControlStoresContent = xtraTabControlStoresContent;
+                this.perNum = perNum;
+                labPermissionNum.Text = perNum.ToString();
+           
             }
             catch (Exception ex)
             {
@@ -98,14 +100,15 @@ namespace MainSystem
                 comStore.DataSource = dt;
                 comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                comStore.Text = "";
                 mdt = new DataTable();
                 mdt = createDataTable();
+                dbconnection.Open();
+                permissionData();
                 loaded = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
@@ -219,7 +222,6 @@ namespace MainSystem
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
                                 comProduct.Focus();
-                                flagProduct = true;
                             }
                             break;
 
@@ -403,10 +405,10 @@ namespace MainSystem
                             DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                             mRow = row;
                             txtTotalMeter.Text = row[4].ToString();
-                            txtAddingQuantity.Focus();
+                            txtSubtractQuantity.Focus();
                             break;
-                        case "txtAddingQuantity":
-                            if (!btnReport.Enabled)
+                        case "txtSubtractQuantity":
+                            if (btnReport.Enabled)
                             {
                                 if (validation())
                                 {
@@ -438,7 +440,7 @@ namespace MainSystem
                             break;
 
                     }
-
+                    
                 }
                 catch (Exception ex)
                 {
@@ -458,7 +460,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     dbconnection.Open();
-                    string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
+                    string query = "select permissionNum from taswayaa_subtract_permision order by permissionNum desc limit 1 ";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
@@ -505,14 +507,13 @@ namespace MainSystem
                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                 if (row != null)
                 {
-                    noMeter = Convert.ToDouble(row[4].ToString());
+                    noMeter = Convert.ToDouble(row[3].ToString());
                     txtTotalMeter.Text = noMeter.ToString();
-                    Data_ID = Convert.ToInt16(row[1].ToString());
-                    Storage_ID = Convert.ToInt16(row[0].ToString());
-                    code = row[2].ToString();
+                    Data_ID = Convert.ToInt16(row[0].ToString());
+                    code = row[1].ToString();
                     displayCode(code);
                     mRow = row;
-                    txtAddingQuantity.Focus();
+                    txtSubtractQuantity.Focus();
                 }
             }
             catch (Exception ex)
@@ -599,7 +600,7 @@ namespace MainSystem
                     if (flag)
                     {
                         if (TaswayaAdding_ID != 0)
-                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n" + TaswayaAdding_ID + "\n" + comStore.Text+"\n\n"+txtNote.Text);
+                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية خصم \n" + TaswayaAdding_ID + "\n" + comStore.Text+"\n\n"+txtNote.Text);
                         flag = false;
                     }
                     else
@@ -622,14 +623,14 @@ namespace MainSystem
         {
             try
             {
-                if (e.Column.Name == "colالكميةالمضافة")
+                if (e.Column.Name == "colالكميةالمخصومة")
                 {
                     GridView view = (GridView)sender;
                     DataRow dataRow = view.GetFocusedDataRow();
-                    double addingQuantity = Convert.ToDouble(dataRow["الكمية المضافة"].ToString());
-                    double totalBeforAdding = Convert.ToDouble(dataRow["اجمالي عدد الوحدات قبل الاضافة"].ToString());
+                    double SubtractQuantity = Convert.ToDouble(dataRow["الكمية المخصومة"].ToString());
+                    double totalBeforSubtract = Convert.ToDouble(dataRow["اجمالي عدد الوحدات قبل الخصم"].ToString());
 
-                    view.SetRowCellValue(view.GetSelectedRows()[0], "رصيد البند", totalBeforAdding + addingQuantity);
+                    view.SetRowCellValue(view.GetSelectedRows()[0], "رصيد البند", totalBeforSubtract + SubtractQuantity);
 
                 }
 
@@ -647,7 +648,7 @@ namespace MainSystem
                 dbconnection.Open();
                 if (gridView2.RowCount > 0)
                 {
-                    save2DB();
+                    update2DB();
                 }
                 else
                 {
@@ -675,48 +676,13 @@ namespace MainSystem
             }
         }
 
-        private void btnNewPermission_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                clear();
-                labStore.Visible = true;
-                labVcode.Visible = true;
-                labVaddingMeter.Visible = true;
-                labVnote.Visible = true;
-
-                dbconnection.Open();
-                string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    int x = Convert.ToInt16(com.ExecuteScalar());
-                    labPermissionNum.Text = (x + 1).ToString();
-                }
-                else
-                {
-                    labPermissionNum.Text = "1";
-                }
-                mdt.Rows.Clear();
-                btnReport.Enabled = false;
-                comStore.Enabled = true;
-                txtNote.ReadOnly = false;
-                gridControl2.Enabled = true;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }                     
 
         //functions
         public void clear()
         {
             txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
             txtTotalMeter.Text = "";
-            txtAddingQuantity.Text = "";
+            txtSubtractQuantity.Text = "";
             txtNote.Text ="";
             comStore.Text = "";
             gridControl1.DataSource = null;
@@ -726,7 +692,7 @@ namespace MainSystem
         {
             txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
             txtTotalMeter.Text = "";
-            txtAddingQuantity.Text = "";
+            txtSubtractQuantity.Text = "";
             labVcode.Visible = true;
             labVaddingMeter.Visible = true;
         }
@@ -816,14 +782,13 @@ namespace MainSystem
                 }
 
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName +",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ q+" group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                string qq = "select data.Data_ID, data.Code as 'كود',"+ itemName +",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ q+" group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
-                gridView1.Columns[1].Visible = false;
                 gridView1.BestFitColumns();
             }
             catch (Exception ex)
@@ -853,77 +818,64 @@ namespace MainSystem
                 code += txtBox.Text;
             }
         }
-        public void save2DB()
+        public void update2DB()
         {
-            if (gridView2.RowCount > 0)
+            mdt =(DataTable) gridControl2.DataSource;
+            string query = "update  taswayaa_subtract_permision set Store_ID=@Store_ID,Date=@Date,Note=@Note where PermissionNum="+labPermissionNum.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+            com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
+            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+            com.Parameters["@Date"].Value = dateTimePicker1.Value;
+            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+            com.Parameters["@Note"].Value = txtNote.Text;
+            com.ExecuteNonQuery();
+
+            query = "delete from substorage where PermissionNum=" + labPermissionNum.Text;
+            com = new MySqlCommand(query, dbconnection);
+            com.ExecuteNonQuery();
+            
+            for (int i = 0; i < gridView2.RowCount; i++)
             {
-                string query = "select TaswayaAdding_ID from taswayaa_adding_permision where PermissionNum="+labPermissionNum.Text;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    MessageBox.Show("هذا الاذن تم حفظه من قبل");
-                }
-                else
-                {
-                    query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
-                    com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                    com.Parameters["@PermissionNum"].Value = Convert.ToInt16(labPermissionNum.Text);
-                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                    com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-                    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                    com.Parameters["@Date"].Value = dateTimePicker1.Value;
-                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                    com.Parameters["@Note"].Value = txtNote.Text;
-                    com.ExecuteNonQuery();
+                DataRow d = gridView2.GetDataRow(i);
+              
+                query = "insert into substorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,SubtractQuantity,QuantityAfterSubtract,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@SubtractQuantity,@QuantityAfterSubtract,@Note)";
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
+                com.Parameters["@PermissionNum"].Value = labPermissionNum.Text;
+                com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
+                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                com.Parameters["@Data_ID"].Value = d[0];
+                com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
+                com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(d[4]) - Convert.ToDouble(d[3]);
+                com.Parameters.Add("@SubtractQuantity", MySqlDbType.Decimal);
+                com.Parameters["@SubtractQuantity"].Value = Convert.ToDouble(d[3]);
+                com.Parameters.Add("@QuantityAfterSubtract", MySqlDbType.Decimal);
+                com.Parameters["@QuantityAfterSubtract"].Value = Convert.ToDouble(d[4]);
+                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                com.Parameters["@Note"].Value = d[5];
 
-                    query = "select PermissionNum from taswayaa_adding_permision order by PermissionNum desc limit 1";
-                    com = new MySqlCommand(query, dbconnection);
-                    TaswayaAdding_ID = Convert.ToInt16(com.ExecuteScalar());
-                    gridView2.SelectAll();
-                    for (int i = 0; i < mdt.Rows.Count; i++)
-                    {
-                        query = "insert into addstorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding,@Note)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                        com.Parameters["@PermissionNum"].Value = TaswayaAdding_ID;
-                        com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
-                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
-                        com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
-                        com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
-                        com.Parameters.Add("@AddingQuantity", MySqlDbType.Decimal);
-                        com.Parameters["@AddingQuantity"].Value = mdt.Rows[i][5];
-                        com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
-                        com.Parameters["@QuantityAfterAdding"].Value = mdt.Rows[i][6];
-                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                        com.Parameters["@Note"].Value = txtItemNote.Text;
-                        com.ExecuteNonQuery();
-                    }
-                    UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
-                    MessageBox.Show("تم الحفظ");
-
-                    btnReport.Enabled = true;
-                    comStore.Enabled = false;
-                    txtNote.ReadOnly = true;
-                    gridControl2.Enabled = false;
-                    flag = true;
-                }
+                com.ExecuteNonQuery();
+                
             }
+            UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
+            MessageBox.Show("تم الحفظ");
+
+            btnReport.Enabled = true;
+            flag = true;
         
+          
         }
         public DataTable createDataTable()
         {
             DataTable dt = new DataTable();
-
+            
             dt.Columns.Add("Data_ID", typeof(int));
-            dt.Columns.Add("Store_Place_ID", typeof(int));
             dt.Columns.Add("كود", typeof(string));
             dt.Columns.Add("البند", typeof(string));
-            dt.Columns.Add("اجمالي عدد الوحدات قبل الاضافة", typeof(double));
+            dt.Columns.Add("الكمية المخصومة", typeof(double));
             dt.Columns.Add("رصيد البند", typeof(double));
-            dt.Columns.Add("الكمية المضافة", typeof(double));
             dt.Columns.Add("ملاحظة", typeof(string));
 
             return dt;
@@ -931,22 +883,17 @@ namespace MainSystem
         public void add2GridView(DataTable dt, DataRowView row)
         {
             dt.Rows.Add(new object[] {
-                Convert.ToInt16(row[1].ToString()),
-                 getStore_Place_ID((int)comStore.SelectedValue),
+                Convert.ToInt16(row[0].ToString()),
+                row[1].ToString(),
                 row[2].ToString(),
-                row[3].ToString(),
-                Convert.ToDouble(row[4].ToString()),
-                Convert.ToDouble(row[4].ToString())+Convert.ToDouble(txtAddingQuantity.Text),
-                Convert.ToDouble(txtAddingQuantity.Text),
+                Convert.ToDouble(Convert.ToDouble(txtSubtractQuantity.Text)),
+                Convert.ToDouble(row[3].ToString())-Convert.ToDouble(txtSubtractQuantity.Text),
                 txtItemNote.Text
             });
             gridControl2.DataSource = dt;
             gridView2.Columns[0].Visible = false;
-            gridView2.Columns[1].Visible = false;
+            gridView2.Columns[1].OptionsColumn.AllowEdit = false;
             gridView2.Columns[2].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[3].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[5].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[4].Visible = false;
             gridView2.BestFitColumns();
         }
         public int getStore_Place_ID(int Store_ID)
@@ -965,7 +912,7 @@ namespace MainSystem
                 labVcode.Visible = true;
             else
                 labVcode.Visible = false;
-            if (txtAddingQuantity.Text == "")
+            if (txtSubtractQuantity.Text == "")
                 labVaddingMeter.Visible = true;
             else
                 labVaddingMeter.Visible = false;
@@ -977,7 +924,7 @@ namespace MainSystem
                 labVnote.Visible = true;
             else
                 labVnote.Visible = false;
-            if (code.Length == 20 && txtAddingQuantity.Text != "" && comStore.Text != "" && txtNote.Text != "")
+            if (code.Length == 20 && txtSubtractQuantity.Text != "" && comStore.Text != "" && txtNote.Text != "")
             {
                 return true;
             }
@@ -991,9 +938,8 @@ namespace MainSystem
             for (int i = 0; i < gridView2.DataRowCount; i++)
             {
                 DataRowView r = (DataRowView)gridView2.GetRow(i);
-                if (r[2].ToString() == c)
+                if (r[1].ToString() == c)
                 {
-                    // gridView2.MoveBy(i);
                     int x = gridView2.GetSelectedRows()[0];
                     if (x != 0)
                         gridView2.FocusedRowHandle = 0;
@@ -1004,6 +950,33 @@ namespace MainSystem
                 }
             }
             return false;
+        }
+        public void permissionData()
+        {
+            string query = "select * from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
+            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                comStore.SelectedValue = dr[2].ToString();
+                dateTimePicker1.Text = dr[3].ToString();
+                txtNote.Text= dr[4].ToString();
+            }
+            dr.Close();
+            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+            query = "SELECT data.Data_ID, data.Code as 'الكود' ," + itemName + ",SubtractQuantity as 'الكمية المضافة',QuantityAfterSubtract as 'الكمية بعد الاضافة',substorage.Note as 'ملاحظة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  inner join substorage on substorage.Data_ID=data.Data_ID inner join taswayaa_subtract_permision on taswayaa_subtract_permision.PermissionNum=substorage.PermissionNum  WHERE taswayaa_subtract_permision.PermissionNum=" + labPermissionNum.Text;
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            mdt = dt;
+            gridControl2.DataSource = dt;
+            gridView2.Columns[0].Visible = false;
+            gridView2.Columns[1].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[2].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[4].OptionsColumn.AllowEdit = false;
+            gridView2.BestFitColumns();
+            if (dt != null)
+                btnReport.Enabled = true;
         }
 
     }

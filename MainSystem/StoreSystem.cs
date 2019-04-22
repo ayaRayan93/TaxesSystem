@@ -698,7 +698,6 @@ namespace MainSystem
             }
         }
 
-
         private void navBarItemTaswayatAdding_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -720,6 +719,39 @@ namespace MainSystem
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
                 TaswayaAdding objForm = new TaswayaAdding(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemTaswayatSubtract_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسويات الخصم");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تسويات الخصم");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسويات الخصم");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                TaswayaSubtract objForm = new TaswayaSubtract(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -1251,6 +1283,25 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
+        }
+        public void bindUpdateTaswayaSubtractgForm(int perNum)
+        {
+            StorageTaswayaSubtractUpdate objForm = new StorageTaswayaSubtractUpdate(perNum, this, xtraTabControlStoresContent);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل  تسوية خصم");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تعديل  تسوية خصم");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل  تسوية خصم");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+
         }
         public void bindTaswaySubtractStorageForm()
         {
