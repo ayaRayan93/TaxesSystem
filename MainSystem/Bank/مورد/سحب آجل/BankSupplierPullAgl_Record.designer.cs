@@ -1544,8 +1544,11 @@
             // 
             this.layoutControlItem7.Control = this.tableLayoutPanel2;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 528);
+            this.layoutControlItem7.MaxSize = new System.Drawing.Size(0, 62);
+            this.layoutControlItem7.MinSize = new System.Drawing.Size(104, 62);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(1033, 62);
+            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = " ";
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Left;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
@@ -1555,8 +1558,11 @@
             // 
             this.layoutControlItem5.Control = this.groupBox1;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 73);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 374);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(104, 374);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(387, 374);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
@@ -1603,8 +1609,11 @@
             this.layoutControlItemComment.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemComment.Control = this.txtDescrip;
             this.layoutControlItemComment.Location = new System.Drawing.Point(538, 245);
+            this.layoutControlItemComment.MaxSize = new System.Drawing.Size(0, 65);
+            this.layoutControlItemComment.MinSize = new System.Drawing.Size(124, 65);
             this.layoutControlItemComment.Name = "layoutControlItemComment";
             this.layoutControlItemComment.Size = new System.Drawing.Size(495, 65);
+            this.layoutControlItemComment.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemComment.Text = "البيان";
             this.layoutControlItemComment.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1672,8 +1681,11 @@
             // 
             this.layoutControlItem2.Control = this.layoutControl2;
             this.layoutControlItem2.Location = new System.Drawing.Point(514, 73);
+            this.layoutControlItem2.MaxSize = new System.Drawing.Size(0, 116);
+            this.layoutControlItem2.MinSize = new System.Drawing.Size(216, 116);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(519, 116);
+            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -1800,8 +1812,11 @@
             // 
             this.layoutControlItem3.Control = this.label3;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 49);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(24, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(1033, 24);
+            this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
