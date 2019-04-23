@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SupplierBillsTransitions_Report
+    partial class SupplierBillsTransitions_ReportX
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.Descripe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Transitions = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaswyaDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +48,7 @@
             this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Supplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -135,14 +135,14 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Descripe,
             this.Transitions,
             this.TaswyaDiscount,
             this.ReturnBill,
             this.TaswyaaAdding,
             this.Bill,
             this.Credit,
-            this.Debit});
+            this.Debit,
+            this.Supplier});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -158,7 +158,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 80;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(951, 566);
             this.dataGridView1.TabIndex = 217;
             // 
@@ -225,13 +224,6 @@
             this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 24);
             this.dateTimePickerFrom.TabIndex = 215;
             // 
-            // Descripe
-            // 
-            this.Descripe.FillWeight = 111.3851F;
-            this.Descripe.HeaderText = "البيان";
-            this.Descripe.Name = "Descripe";
-            this.Descripe.ReadOnly = true;
-            // 
             // Transitions
             // 
             this.Transitions.FillWeight = 111.3851F;
@@ -278,6 +270,13 @@
             this.Debit.Name = "Debit";
             this.Debit.ReadOnly = true;
             // 
+            // Supplier
+            // 
+            this.Supplier.FillWeight = 111.3851F;
+            this.Supplier.HeaderText = "البيان";
+            this.Supplier.Name = "Supplier";
+            this.Supplier.ReadOnly = true;
+            // 
             // SupplierBillsTransitions_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,7 +308,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Transitions;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaswyaDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
@@ -317,6 +315,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
         private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Debit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Supplier;
     }
 }
 

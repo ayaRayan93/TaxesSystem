@@ -339,6 +339,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSupplierBillsTransitionsDetailsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تفاصيل حركة المسحوبات والمرتجعات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("تفاصيل حركة المسحوبات والمرتجعات");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "تفاصيل حركة المسحوبات والمرتجعات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                SupplierBillsTransitionsDetails_Report objForm = new SupplierBillsTransitionsDetails_Report(this, xtraTabControlAccounting);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemSupplierTaswyaReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

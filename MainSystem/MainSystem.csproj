@@ -195,6 +195,18 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitionsDetails_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitionsDetails_Report.designer.cs">
+      <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_ReportX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_ReportX.designer.cs">
+      <DependentUpon>SupplierBillsTransitions_ReportX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2023,6 +2035,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitionsDetails_Report.resx">
+      <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_ReportX.resx">
+      <DependentUpon>SupplierBillsTransitions_ReportX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.resx">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>

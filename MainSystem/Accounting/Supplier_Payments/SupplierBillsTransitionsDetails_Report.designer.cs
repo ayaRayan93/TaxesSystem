@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SupplierBillsTransitions_Report
+    partial class SupplierBillsTransitionsDetails_Report
     {
         /// <summary>
         /// Required designer variable.
@@ -41,14 +41,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.Descripe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Transitions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaswyaDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaswyaaAdding = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaswyaaAdding = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaswyaDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Transitions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -136,6 +138,8 @@
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Descripe,
+            this.Date,
+            this.ID,
             this.Transitions,
             this.TaswyaDiscount,
             this.ReturnBill,
@@ -225,39 +229,17 @@
             this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 24);
             this.dateTimePickerFrom.TabIndex = 215;
             // 
-            // Descripe
+            // Debit
             // 
-            this.Descripe.FillWeight = 111.3851F;
-            this.Descripe.HeaderText = "البيان";
-            this.Descripe.Name = "Descripe";
-            this.Descripe.ReadOnly = true;
+            this.Debit.HeaderText = "مدين";
+            this.Debit.Name = "Debit";
+            this.Debit.ReadOnly = true;
             // 
-            // Transitions
+            // Credit
             // 
-            this.Transitions.FillWeight = 111.3851F;
-            this.Transitions.HeaderText = "سدادات";
-            this.Transitions.Name = "Transitions";
-            this.Transitions.ReadOnly = true;
-            // 
-            // TaswyaDiscount
-            // 
-            this.TaswyaDiscount.FillWeight = 111.3851F;
-            this.TaswyaDiscount.HeaderText = "تسويات خصم";
-            this.TaswyaDiscount.Name = "TaswyaDiscount";
-            this.TaswyaDiscount.ReadOnly = true;
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.FillWeight = 111.3851F;
-            this.ReturnBill.HeaderText = "مرتجعات شراء";
-            this.ReturnBill.Name = "ReturnBill";
-            this.ReturnBill.ReadOnly = true;
-            // 
-            // TaswyaaAdding
-            // 
-            this.TaswyaaAdding.HeaderText = "تسوية اضافة";
-            this.TaswyaaAdding.Name = "TaswyaaAdding";
-            this.TaswyaaAdding.ReadOnly = true;
+            this.Credit.HeaderText = "دائن";
+            this.Credit.Name = "Credit";
+            this.Credit.ReadOnly = true;
             // 
             // Bill
             // 
@@ -266,26 +248,60 @@
             this.Bill.Name = "Bill";
             this.Bill.ReadOnly = true;
             // 
-            // Credit
+            // TaswyaaAdding
             // 
-            this.Credit.HeaderText = "دائن";
-            this.Credit.Name = "Credit";
-            this.Credit.ReadOnly = true;
+            this.TaswyaaAdding.HeaderText = "تسوية اضافة";
+            this.TaswyaaAdding.Name = "TaswyaaAdding";
+            this.TaswyaaAdding.ReadOnly = true;
             // 
-            // Debit
+            // ReturnBill
             // 
-            this.Debit.HeaderText = "مدين";
-            this.Debit.Name = "Debit";
-            this.Debit.ReadOnly = true;
+            this.ReturnBill.FillWeight = 111.3851F;
+            this.ReturnBill.HeaderText = "مرتجعات شراء";
+            this.ReturnBill.Name = "ReturnBill";
+            this.ReturnBill.ReadOnly = true;
             // 
-            // SupplierBillsTransitions_Report
+            // TaswyaDiscount
+            // 
+            this.TaswyaDiscount.FillWeight = 111.3851F;
+            this.TaswyaDiscount.HeaderText = "تسويات خصم";
+            this.TaswyaDiscount.Name = "TaswyaDiscount";
+            this.TaswyaDiscount.ReadOnly = true;
+            // 
+            // Transitions
+            // 
+            this.Transitions.FillWeight = 111.3851F;
+            this.Transitions.HeaderText = "سدادات";
+            this.Transitions.Name = "Transitions";
+            this.Transitions.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "م";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "التاريخ";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // Descripe
+            // 
+            this.Descripe.FillWeight = 111.3851F;
+            this.Descripe.HeaderText = "البيان";
+            this.Descripe.Name = "Descripe";
+            this.Descripe.ReadOnly = true;
+            // 
+            // SupplierBillsTransitionsDetails_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(971, 666);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "SupplierBillsTransitions_Report";
+            this.Name = "SupplierBillsTransitionsDetails_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.requestStored_Load);
@@ -310,6 +326,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Transitions;
         private System.Windows.Forms.DataGridViewTextBoxColumn TaswyaDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;

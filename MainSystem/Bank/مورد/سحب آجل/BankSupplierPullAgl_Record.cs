@@ -84,7 +84,7 @@ namespace MainSystem
                 //radVisa.Enabled = false;
                 radBankAccount.Checked = false;
                 //radVisa.Checked = false;
-                layoutControlItemBank.Text = "خزينة";
+                //layoutControlItemBank.Text = "خزينة";
                 layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelBank.Visible = true;
                 labelBank.Text = "*";
@@ -101,14 +101,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
 
                 radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbBank.DataSource = dt;
-                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                
                 loadedPayType = true;
             }
             catch (Exception ex)
@@ -131,6 +124,16 @@ namespace MainSystem
                 labelCheckNumber.Visible = false;
                 labelCheckNumber.Text = "";
                 groupBox1.Enabled = true;
+                layoutControlItemBank.Text = "خزينة";
+
+                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbBank.DataSource = dt;
+                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                cmbBank.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -153,6 +156,16 @@ namespace MainSystem
                 layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
                 layoutControlItemCheck.Text = "رقم الشيك";
                 groupBox1.Enabled = false;
+                layoutControlItemBank.Text = "بنك";
+
+                string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbBank.DataSource = dt;
+                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                cmbBank.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
