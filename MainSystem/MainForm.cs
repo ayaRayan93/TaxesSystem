@@ -610,6 +610,8 @@ namespace MainSystem
             navBarGroupLeastQuantity.Visible = false;
 
         }
+
+      
     }
 
     public static class connection

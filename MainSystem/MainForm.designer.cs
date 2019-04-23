@@ -45,19 +45,6 @@
             DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement18 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement20 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement21 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement22 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement23 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement24 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement25 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement26 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement27 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement28 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement29 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement30 = new DevExpress.XtraEditors.TileItemElement();
             this.xtraTabControlMainContainer = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageMain = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -85,14 +72,11 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSupplierReturnedPermission = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup11 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemTaswayatAdding = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem222 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem223 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTaswayatSuptract = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem224 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem225 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -129,10 +113,6 @@
             this.navBarGroup10 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem21 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem22 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup11 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemAddingQuantity = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSubstractQuantity = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTaswayatAdding = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSupplierReturnedPermission = new DevExpress.XtraNavBar.NavBarItem();
@@ -523,7 +503,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemAddingQuantity = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1121,9 +1100,9 @@
             this.navBarItemSupplierPermission,
             this.navBarItemSupplierReturnedPermission,
             this.navBarItemTaswayatAdding,
-            this.navBarItem222,
             this.navBarItem223,
-            this.navBarItemTaswayatSuptract});
+            this.navBarItem224,
+            this.navBarItem225});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
             this.navBarControl1.Location = new System.Drawing.Point(946, 0);
             this.navBarControl1.Name = "navBarControl1";
@@ -1139,19 +1118,12 @@
             this.navBarGroup11.Caption = "تسوية المخزون";
             this.navBarGroup11.Expanded = true;
             this.navBarGroup11.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem223),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem224),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTaswayatAdding),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem222),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTaswayatSuptract)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem223),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem225)});
             this.navBarGroup11.Name = "navBarGroup11";
             this.navBarGroup11.SelectedLinkIndex = 0;
-            this.navBarGroup12.Caption = "التقارير";
-            this.navBarGroup12.Expanded = true;
-            this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPermission),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturnedPermission)});
-            this.navBarGroup12.Name = "navBarGroup12";
-            this.navBarGroup12.SelectedLinkIndex = 0;
             // 
             // navBarItemTaswayatAdding
             // 
@@ -1159,23 +1131,23 @@
             this.navBarItemTaswayatAdding.Name = "navBarItemTaswayatAdding";
             this.navBarItemTaswayatAdding.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTaswayatAdding_LinkClicked);
             // 
-            // navBarItem222
-            // 
-            this.navBarItem222.Caption = "تسوية الخصم";
-            this.navBarItem222.Name = "navBarItem222";
-            this.navBarItem222.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSubstractQuantity_LinkClicked);
-            // 
             // navBarItem223
             // 
-            this.navBarItem223.Caption = "تسوية الاضافة";
+            this.navBarItem223.Caption = "تسوية خصم";
             this.navBarItem223.Name = "navBarItem223";
-            this.navBarItem223.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAddingQuantity_LinkClicked);
+            this.navBarItem223.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSubstractQuantity_LinkClicked);
             // 
-            // navBarItemTaswayatSuptract
+            // navBarItem224
             // 
-            this.navBarItemTaswayatSuptract.Caption = "تقرير تسويات الخصم";
-            this.navBarItemTaswayatSuptract.Name = "navBarItemTaswayatSuptract";
-            this.navBarItemTaswayatSuptract.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTaswayatSubtract_LinkClicked);
+            this.navBarItem224.Caption = "تسوية أضافة";
+            this.navBarItem224.Name = "navBarItem224";
+            this.navBarItem224.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAddingQuantity_LinkClicked);
+            // 
+            // navBarItem225
+            // 
+            this.navBarItem225.Caption = "تقرير تسويات الخصم";
+            this.navBarItem225.Name = "navBarItem225";
+            this.navBarItem225.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTaswayatSubtract_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -1421,12 +1393,12 @@
             // 
             // navBarGroup12
             // 
-            this.navBarGroup11.Caption = "تسوية المخزون";
-            this.navBarGroup11.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemAddingQuantity),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubstractQuantity)});
-            this.navBarGroup11.Name = "navBarGroup11";
-            this.navBarGroup11.SelectedLinkIndex = 0;
+            this.navBarGroup12.Caption = "التقارير";
+            this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPermission),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturnedPermission)});
+            this.navBarGroup12.Name = "navBarGroup12";
+            this.navBarGroup12.SelectedLinkIndex = 0;
             // 
             // navBarItemSupplierPermission
             // 
@@ -1439,12 +1411,6 @@
             this.navBarItemSupplierReturnedPermission.Caption = "عرض اذن مرتجع";
             this.navBarItemSupplierReturnedPermission.Name = "navBarItemSupplierReturnedPermission";
             this.navBarItemSupplierReturnedPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierReturnedPermission_LinkClicked);
-            // 
-            // navBarItemTaswayatAdding
-            // 
-            this.navBarItemTaswayatAdding.Caption = "تسويات الاضافة";
-            this.navBarItemTaswayatAdding.Name = "navBarItemTaswayatAdding";
-            this.navBarItemTaswayatAdding.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTaswayatAdding_LinkClicked);
             // 
             // navBarItemPermissionDelivery
             // 
@@ -4714,12 +4680,6 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
-            // navBarItemAddingQuantity
-            // 
-            this.navBarItemAddingQuantity.Caption = "تسوية اضافة";
-            this.navBarItemAddingQuantity.Name = "navBarItemAddingQuantity";
-            this.navBarItemAddingQuantity.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAddingQuantity_LinkClicked);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5239,12 +5199,14 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem222;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierTransitionsReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTaswayatAdding;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem222;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem223;
-        private DevExpress.XtraNavBar.NavBarItem navBarItemAddingQuantity;
-        private DevExpress.XtraNavBar.NavBarItem navBarItemTaswayatSuptract;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierBillsTransitionsReport;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup49;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierTaswyaReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem223;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem224;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem225;
     }
 }
+
+
+
