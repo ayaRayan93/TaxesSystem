@@ -195,11 +195,53 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.designer.cs">
+      <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierTransitions_Report.designer.cs">
+      <DependentUpon>SupplierTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBills_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierBills_Report.designer.cs">
+      <DependentUpon>SupplierBills_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.designer.cs">
+      <DependentUpon>SupplierSoonPayments_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierPayments_Record.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierPayments_Record.designer.cs">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Taswya\SupplierTaswaya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Taswya\SupplierTaswaya.designer.cs">
+      <DependentUpon>SupplierTaswaya.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Taswya\SupplierTaswayaReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Taswya\SupplierTaswayaReport.designer.cs">
+      <DependentUpon>SupplierTaswayaReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Taswya\UpdateSupplierTaswaya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\Supplier_Taswya\UpdateSupplierTaswaya.designer.cs">
+      <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
     </Compile>
     <Compile Include="ayatestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1982,8 +2024,29 @@
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report.resx">
+      <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierTransitions_Report.resx">
+      <DependentUpon>SupplierTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBills_Report.resx">
+      <DependentUpon>SupplierBills_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.resx">
+      <DependentUpon>SupplierSoonPayments_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierPayments_Record.resx">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Taswya\SupplierTaswaya.resx">
+      <DependentUpon>SupplierTaswaya.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Taswya\SupplierTaswayaReport.resx">
+      <DependentUpon>SupplierTaswayaReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\Supplier_Taswya\UpdateSupplierTaswaya.resx">
+      <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Print.resx">
       <DependentUpon>BankSupplierPullAgl_Print.cs</DependentUpon>

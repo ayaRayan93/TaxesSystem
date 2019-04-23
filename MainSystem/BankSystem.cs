@@ -593,7 +593,7 @@ namespace MainSystem
 
         public void bindRecordSupplierPullAglForm(BankSupplierPullAgl_Report form)
         {
-            BankSupplierPullAgl_Record objForm = new BankSupplierPullAgl_Record(form, MainTabControlBank);
+            BankSupplierPullAgl_Record objForm = new BankSupplierPullAgl_Record(/*form,*/ MainTabControlBank);
             objForm.TopLevel = false;
             XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "اضافة مرتد مورد-آجل");
             if (xtraTabPage == null)

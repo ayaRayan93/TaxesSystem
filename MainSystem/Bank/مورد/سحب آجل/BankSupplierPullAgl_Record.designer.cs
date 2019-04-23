@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.label3 = new System.Windows.Forms.Label();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.labelOperationNumber = new System.Windows.Forms.Label();
             this.labelVisaType = new System.Windows.Forms.Label();
@@ -160,7 +161,6 @@
             this.layoutControlItem61 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem62 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label3 = new System.Windows.Forms.Label();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
@@ -292,9 +292,16 @@
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(7, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(1029, 20);
+            this.label3.TabIndex = 84;
+            // 
             // comSupplier
             // 
-            this.comSupplier.Enabled = false;
             this.comSupplier.FormattingEnabled = true;
             this.comSupplier.Location = new System.Drawing.Point(545, 31);
             this.comSupplier.Name = "comSupplier";
@@ -1788,14 +1795,6 @@
             this.layoutControlItem18.Size = new System.Drawing.Size(495, 25);
             this.layoutControlItem18.Text = "المورد";
             this.layoutControlItem18.TextSize = new System.Drawing.Size(97, 20);
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(7, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1029, 20);
-            this.label3.TabIndex = 84;
             // 
             // layoutControlItem3
             // 
