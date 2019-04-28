@@ -75,9 +75,11 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnNewPermission = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnNewPermission = new Bunifu.Framework.UI.BunifuTileButton();
+            this.txtItemNote = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -95,6 +97,8 @@
             // 
             this.panContainer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panContainer.Controls.Add(this.txtItemNote);
+            this.panContainer.Controls.Add(this.label9);
             this.panContainer.Controls.Add(this.labVaddingMeter);
             this.panContainer.Controls.Add(this.labVcode);
             this.panContainer.Controls.Add(this.btnPut);
@@ -436,7 +440,7 @@
             this.groupBox1.Controls.Add(this.txtGroup);
             this.groupBox1.Controls.Add(this.comGroup);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(42, 0);
+            this.groupBox1.Location = new System.Drawing.Point(42, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(620, 100);
@@ -694,6 +698,27 @@
             this.btnSave.TabIndex = 4;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnNewPermission
+            // 
+            this.btnNewPermission.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewPermission.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewPermission.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewPermission.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNewPermission.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewPermission.ForeColor = System.Drawing.Color.White;
+            this.btnNewPermission.Image = global::MainSystem.Properties.Resources.File_321;
+            this.btnNewPermission.ImagePosition = 1;
+            this.btnNewPermission.ImageZoom = 25;
+            this.btnNewPermission.LabelPosition = 21;
+            this.btnNewPermission.LabelText = "أذن جديد";
+            this.btnNewPermission.Location = new System.Drawing.Point(531, 5);
+            this.btnNewPermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNewPermission.Name = "btnNewPermission";
+            this.btnNewPermission.Size = new System.Drawing.Size(87, 51);
+            this.btnNewPermission.TabIndex = 5;
+            this.btnNewPermission.Click += new System.EventHandler(this.btnNewPermission_Click);
+            // 
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -747,26 +772,26 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
-            // btnNewPermission
+            // txtItemNote
             // 
-            this.btnNewPermission.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewPermission.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewPermission.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewPermission.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNewPermission.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewPermission.ForeColor = System.Drawing.Color.White;
-            this.btnNewPermission.Image = global::MainSystem.Properties.Resources.File_321;
-            this.btnNewPermission.ImagePosition = 1;
-            this.btnNewPermission.ImageZoom = 25;
-            this.btnNewPermission.LabelPosition = 21;
-            this.btnNewPermission.LabelText = "أذن جديد";
-            this.btnNewPermission.Location = new System.Drawing.Point(531, 5);
-            this.btnNewPermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnNewPermission.Name = "btnNewPermission";
-            this.btnNewPermission.Size = new System.Drawing.Size(87, 51);
-            this.btnNewPermission.TabIndex = 5;
-            this.btnNewPermission.Click += new System.EventHandler(this.btnNewPermission_Click);
+            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtItemNote.Location = new System.Drawing.Point(619, 53);
+            this.txtItemNote.Name = "txtItemNote";
+            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
+            this.txtItemNote.TabIndex = 236;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(798, 53);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(48, 19);
+            this.label9.TabIndex = 237;
+            this.label9.Text = "ملحوظة";
             // 
             // StorageTaswayaAdding
             // 
@@ -850,6 +875,8 @@
         private System.Windows.Forms.Label labPermissionNum;
         private System.Windows.Forms.Label labStore;
         private Bunifu.Framework.UI.BunifuTileButton btnNewPermission;
+        private System.Windows.Forms.TextBox txtItemNote;
+        private System.Windows.Forms.Label label9;
     }
 }
 

@@ -682,6 +682,9 @@ namespace MainSystem
                 labVcode.Visible = true;
                 labVaddingMeter.Visible = true;
                 labVnote.Visible = true;
+                comStore.Enabled = true;
+                txtNote.ReadOnly = false;
+                gridControl2.Enabled = true;
                 dbconnection.Open();
                 string query = "select permissionNum from taswayaa_subtract_permision order by permissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -847,46 +850,62 @@ namespace MainSystem
         }
         public void save2DB()
         {
-            string query = "insert into taswayaa_subtract_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-            com.Parameters["@PermissionNum"].Value = Convert.ToInt16(labPermissionNum.Text);
-            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-            com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-            com.Parameters["@Date"].Value = dateTimePicker1.Value;
-            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-            com.Parameters["@Note"].Value = txtNote.Text;
-            com.ExecuteNonQuery();
-
-            query = "select TaswayaSubtract_ID from taswayaa_subtract_permision order by TaswayaSubtract_ID desc limit 1";
-            com = new MySqlCommand(query, dbconnection);
-            TaswayaSubtract_ID = Convert.ToInt16(com.ExecuteScalar());
-            gridView2.SelectAll();
-            for (int i = 0; i < mdt.Rows.Count; i++)
+            if (gridView2.RowCount > 0)
             {
-                query = "insert into substorage (TaswayaSubtract_ID,Data_ID,Store_Place_ID,CurrentQuantity,SubtractQuantity,QuantityAfterSubtract) values (@TaswayaSubtract_ID,@Data_ID,@Store_Place_ID,@CurrentQuantity,@SubtractQuantity,@QuantityAfterSubtract)";
-                com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@TaswayaSubtract_ID", MySqlDbType.Int16);
-                com.Parameters["@TaswayaSubtract_ID"].Value = TaswayaSubtract_ID;
-                com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
-                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                com.Parameters["@Data_ID"].Value = mdt.Rows[i][1];
-                com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
-                com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
-                com.Parameters.Add("@SubtractQuantity", MySqlDbType.Decimal);
-                com.Parameters["@SubtractQuantity"].Value = mdt.Rows[i][5];
-                com.Parameters.Add("@QuantityAfterSubtract", MySqlDbType.Decimal);
-                com.Parameters["@QuantityAfterSubtract"].Value = mdt.Rows[i][6];
-                com.ExecuteNonQuery();
-            }
-            UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", TaswayaSubtract_ID, DateTime.Now, "", dbconnection);
+                string query = "select TaswayaSubtract_ID from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() != null)
+                {
+                    MessageBox.Show("هذا الاذن تم حفظه من قبل");
+                }
+                else
+                {
+                    query = "insert into taswayaa_subtract_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
+                    com.Parameters["@PermissionNum"].Value = Convert.ToInt16(labPermissionNum.Text);
+                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                    com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
+                    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                    com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                    com.Parameters["@Note"].Value = txtNote.Text;
+                    com.ExecuteNonQuery();
 
-            MessageBox.Show("تم الحفظ");
-            btnReport.Enabled = true;
-            flag = true;
-           
+                    query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1";
+                    com = new MySqlCommand(query, dbconnection);
+                    TaswayaSubtract_ID = Convert.ToInt16(com.ExecuteScalar());
+                    gridView2.SelectAll();
+                    for (int i = 0; i < mdt.Rows.Count; i++)
+                    {
+                        query = "insert into substorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,SubtractQuantity,QuantityAfterSubtract,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@SubtractQuantity,@QuantityAfterSubtract,@Note)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
+                        com.Parameters["@PermissionNum"].Value = TaswayaSubtract_ID;
+                        com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
+                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                        com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
+                        com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
+                        com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
+                        com.Parameters.Add("@SubtractQuantity", MySqlDbType.Decimal);
+                        com.Parameters["@SubtractQuantity"].Value = mdt.Rows[i][5];
+                        com.Parameters.Add("@QuantityAfterSubtract", MySqlDbType.Decimal);
+                        com.Parameters["@QuantityAfterSubtract"].Value = mdt.Rows[i][6];
+                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                        com.Parameters["@Note"].Value = txtItemNote.Text;
+                        com.ExecuteNonQuery();
+                    }
+                    UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", TaswayaSubtract_ID, DateTime.Now, "", dbconnection);
+
+                    MessageBox.Show("تم الحفظ");
+                    btnReport.Enabled = true;
+                    comStore.Enabled = false;
+                    txtNote.ReadOnly = true;
+                    gridControl2.Enabled = false;
+                    flag = true;
+                }
+            }
         }
         public DataTable createDataTable()
         {
@@ -915,7 +934,7 @@ namespace MainSystem
                 Convert.ToDouble(row[4].ToString()),
                 Convert.ToDouble(row[4].ToString())-Convert.ToDouble(txtSubtractQuantity.Text),
                 Convert.ToDouble(txtSubtractQuantity.Text),
-                txtNote.Text
+                txtItemNote.Text
             });
                 gridControl2.DataSource = dt;
                 gridView2.Columns[0].Visible = false;

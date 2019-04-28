@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class TaswayaAdding
+    partial class TaswayaSubtract
     {
         /// <summary>
         /// Required designer variable.
@@ -379,13 +379,13 @@
             this.btnSearch.TextFont = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // TaswayaAdding
+            // TaswayaSubtract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 552);
             this.Controls.Add(this.tLPanProductsContainer);
-            this.Name = "TaswayaAdding";
+            this.Name = "TaswayaSubtract";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.Text = "Products";

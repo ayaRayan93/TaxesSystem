@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class StorageTaswayaSubtract
+    partial class StorageTaswayaSubtractUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panContainer = new System.Windows.Forms.Panel();
+            this.txtItemNote = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.labVaddingMeter = new System.Windows.Forms.Label();
             this.labVcode = new System.Windows.Forms.Label();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
@@ -75,11 +77,8 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnNewPermission = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtItemNote = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -118,6 +117,27 @@
             this.panContainer.Name = "panContainer";
             this.panContainer.Size = new System.Drawing.Size(950, 104);
             this.panContainer.TabIndex = 39;
+            // 
+            // txtItemNote
+            // 
+            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtItemNote.Location = new System.Drawing.Point(619, 51);
+            this.txtItemNote.Name = "txtItemNote";
+            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
+            this.txtItemNote.TabIndex = 240;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(798, 51);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(48, 19);
+            this.label9.TabIndex = 241;
+            this.label9.Text = "ملحوظة";
             // 
             // labVaddingMeter
             // 
@@ -350,8 +370,8 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Controls.Add(this.labStore);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.labPermissionNum);
             this.panel1.Controls.Add(this.labVnote);
+            this.panel1.Controls.Add(this.labPermissionNum);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.groupBox1);
@@ -371,11 +391,11 @@
             this.labStore.AutoSize = true;
             this.labStore.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labStore.ForeColor = System.Drawing.Color.IndianRed;
-            this.labStore.Location = new System.Drawing.Point(669, 45);
+            this.labStore.Location = new System.Drawing.Point(669, 43);
             this.labStore.Name = "labStore";
             this.labStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labStore.Size = new System.Drawing.Size(22, 26);
-            this.labStore.TabIndex = 234;
+            this.labStore.TabIndex = 236;
             this.labStore.Text = "*";
             // 
             // label10
@@ -383,7 +403,7 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(878, 96);
+            this.label10.Location = new System.Drawing.Point(878, 97);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label10.Size = new System.Drawing.Size(46, 19);
@@ -395,7 +415,7 @@
             this.labPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labPermissionNum.AutoSize = true;
             this.labPermissionNum.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labPermissionNum.Location = new System.Drawing.Point(771, 96);
+            this.labPermissionNum.Location = new System.Drawing.Point(771, 97);
             this.labPermissionNum.Name = "labPermissionNum";
             this.labPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labPermissionNum.Size = new System.Drawing.Size(0, 19);
@@ -636,15 +656,14 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel4.ColumnCount = 5;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnNewPermission, 1, 0);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.btnReport, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 780);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -670,7 +689,7 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 22;
             this.btnReport.LabelText = "طباعة";
-            this.btnReport.Location = new System.Drawing.Point(340, 4);
+            this.btnReport.Location = new System.Drawing.Point(387, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(89, 53);
@@ -691,33 +710,12 @@
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 21;
             this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(436, 5);
+            this.btnSave.Location = new System.Drawing.Point(483, 5);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 51);
             this.btnSave.TabIndex = 4;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnNewPermission
-            // 
-            this.btnNewPermission.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewPermission.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewPermission.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewPermission.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNewPermission.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewPermission.ForeColor = System.Drawing.Color.White;
-            this.btnNewPermission.Image = global::MainSystem.Properties.Resources.File_32;
-            this.btnNewPermission.ImagePosition = 1;
-            this.btnNewPermission.ImageZoom = 25;
-            this.btnNewPermission.LabelPosition = 21;
-            this.btnNewPermission.LabelText = "أذن جديد";
-            this.btnNewPermission.Location = new System.Drawing.Point(531, 5);
-            this.btnNewPermission.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnNewPermission.Name = "btnNewPermission";
-            this.btnNewPermission.Size = new System.Drawing.Size(87, 51);
-            this.btnNewPermission.TabIndex = 5;
-            this.btnNewPermission.Click += new System.EventHandler(this.btnNewPermission_Click);
             // 
             // gridControl2
             // 
@@ -772,28 +770,7 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
-            // txtItemNote
-            // 
-            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtItemNote.Location = new System.Drawing.Point(619, 50);
-            this.txtItemNote.Name = "txtItemNote";
-            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
-            this.txtItemNote.TabIndex = 238;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(798, 50);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(48, 19);
-            this.label9.TabIndex = 239;
-            this.label9.Text = "ملحوظة";
-            // 
-            // StorageTaswayaSubtract
+            // StorageTaswayaSubtractUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -801,7 +778,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(956, 841);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "StorageTaswayaSubtract";
+            this.Name = "StorageTaswayaSubtractUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -874,7 +851,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labPermissionNum;
         private System.Windows.Forms.Label labStore;
-        private Bunifu.Framework.UI.BunifuTileButton btnNewPermission;
         private System.Windows.Forms.TextBox txtItemNote;
         private System.Windows.Forms.Label label9;
     }
