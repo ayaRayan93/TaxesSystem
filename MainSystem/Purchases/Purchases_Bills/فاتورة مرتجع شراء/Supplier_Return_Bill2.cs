@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,8 @@ namespace MainSystem
         int ImportStorageReturnId = 0;
         int storageImportPermissionId = 0;
         int BillNo = 1;
+        bool loadSup = false;
+        bool loadSupPerm = false;
 
         public Supplier_Return_Bill2(MainForm mainForm)
         {
@@ -66,6 +69,9 @@ namespace MainSystem
                 if (loaded)
                 {
                     txtBillNumber.Text = "";
+                    loadSup = false;
+                    loadSupPerm = false;
+                    comSupPerm.DataSource = null;
                     comSupplier.DataSource = null;
                 }
             }
@@ -117,18 +123,27 @@ namespace MainSystem
                             storageImportPermissionId = 0;
                         }
                         displayPermissionSupplier();
-                        displayPermissionDetails();
+                        if (storageImportPermissionId == 0)
+                        {
+                            displayPermissionDetails();
+                        }
                         displayReturnPermissionDetails(0);
                     }
                     else
                     {
                         newReturnBill();
+                        loadSup = false;
+                        loadSupPerm = false;
+                        comSupPerm.DataSource = null;
                         comSupplier.DataSource = null;
                     }
                 }
                 else
                 {
                     newReturnBill();
+                    loadSup = false;
+                    loadSupPerm = false;
+                    comSupPerm.DataSource = null;
                     comSupplier.DataSource = null;
                 }
             }
@@ -142,24 +157,23 @@ namespace MainSystem
 
         private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
         {
-            /*if (loadSup)
+            if (loadSup)
             {
                 try
                 {
-                    loadSupPerm = false;
-                    string query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.Purchase_Bill=0";
+                    string query = "SELECT import_storage_return_supplier.Supplier_Permission_Number,import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where import_storage_return_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_storage_return_supplier.ImportStorageReturn_ID=" + ImportStorageReturnId;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     if (dt != null && dt.Rows.Count > 0)
                     {
+                        loadSupPerm = false;
                         comSupPerm.DataSource = dt;
                         comSupPerm.DisplayMember = dt.Columns["Supplier_Permission_Number"].ToString();
-                        comSupPerm.ValueMember = dt.Columns["ImportSupplierPermission_ID"].ToString();
-                        comSupPerm.Text = "";
-
-                        newReturnBill();
+                        comSupPerm.ValueMember = dt.Columns["ImportStorageReturnSupplier_ID"].ToString();
+                        comSupPerm.SelectedIndex = -1;
                         loadSupPerm = true;
+                        newReturnBill();
                     }
                 }
                 catch (Exception ex)
@@ -167,94 +181,97 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
                 dbconnection.Close();
-            }*/
+            }
         }
 
-        /*private void comSupPerm_SelectedValueChanged(object sender, EventArgs e)
+        private void comSupPerm_SelectedValueChanged(object sender, EventArgs e)
         {
             if (loadSupPerm)
             {
                 try
                 {
                     dbconnection.Open();
-                    string q = "SELECT import_storage_return_details.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price as 'السعر',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية', 'ضريبة القيمة المضافة',purchasing_price.Purchasing_Price as 'سعر الشراء',import_storage_return_details.Total_Meters 'متر/قطعة','BillData_ID','ImportStorageReturnDetails_ID' FROM import_storage_return inner join import_storage_return_supplier on import_storage_return.ImportStorageReturn_ID=import_storage_return_supplier.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN data ON data.Data_ID = import_storage_return_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID inner join purchasing_price on purchasing_price.Data_ID=import_storage_return_details.Data_ID where import_storage_return.ImportStorageReturn_ID=" + 0;
-                    MySqlDataAdapter da = new MySqlDataAdapter(q, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    gridControl1.DataSource = dt;
+                    displayPermissionDetails();
+                    #region error
+                    //string q = "SELECT import_storage_return_details.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price as 'السعر',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية', 'ضريبة القيمة المضافة',purchasing_price.Purchasing_Price as 'سعر الشراء',import_storage_return_details.Total_Meters 'متر/قطعة','BillData_ID','ImportStorageReturnDetails_ID' FROM import_storage_return inner join import_storage_return_supplier on import_storage_return.ImportStorageReturn_ID=import_storage_return_supplier.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN data ON data.Data_ID = import_storage_return_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID inner join purchasing_price on purchasing_price.Data_ID=import_storage_return_details.Data_ID where import_storage_return.ImportStorageReturn_ID=" + 0;
+                    //MySqlDataAdapter da = new MySqlDataAdapter(q, dbconnection);
+                    //DataTable dt = new DataTable();
+                    //da.Fill(dt);
+                    //gridControl1.DataSource = dt;
 
-                    q = "SELECT import_storage_return_details.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price as 'السعر',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية', 'ضريبة القيمة المضافة',purchasing_price.Purchasing_Price as 'سعر الشراء',import_storage_return_details.Total_Meters 'متر/قطعة',import_storage_return_details.ImportStorageReturnDetails_ID FROM import_storage_return inner join import_storage_return_supplier on import_storage_return.ImportStorageReturn_ID=import_storage_return_supplier.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN data ON data.Data_ID = import_storage_return_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID inner join purchasing_price on purchasing_price.Data_ID=import_storage_return_details.Data_ID where import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
-                    MySqlCommand comand = new MySqlCommand(q, dbconnection);
-                    MySqlDataReader dr = comand.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        double totalMeter = 0;
-                        gridView1.AddNewRow();
-                        int rowHandl = gridView1.GetRowHandle(gridView1.DataRowCount);
-                        if (gridView1.IsNewItemRow(rowHandl))
-                        {
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["Data_ID"], dr["Data_ID"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الكود"], dr["الكود"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الاسم"], dr["الاسم"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["السعر"], dr["السعر"].ToString());
-                            if (dr["خصم الشراء"].ToString() != "")
-                            {
-                                gridView1.SetRowCellValue(rowHandl, gridView1.Columns["خصم الشراء"], dr["خصم الشراء"].ToString());
-                            }
-                            else if (dr["نسبة الشراء"].ToString() != "")
-                            {
-                                gridView1.SetRowCellValue(rowHandl, gridView1.Columns["نسبة الشراء"], dr["نسبة الشراء"].ToString());
-                            }
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة العادية"], dr["الزيادة العادية"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة القطعية"], dr["الزيادة القطعية"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["ضريبة القيمة المضافة"], dr["ضريبة القيمة المضافة"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["سعر الشراء"], dr["سعر الشراء"].ToString());
-                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["ImportStorageReturnDetails_ID"], dr["ImportStorageReturnDetails_ID"].ToString());
+                    //q = "SELECT import_storage_return_details.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',purchasing_price.Price as 'السعر',purchasing_price.ProfitRatio as 'نسبة الشراء',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية', 'ضريبة القيمة المضافة',purchasing_price.Purchasing_Price as 'سعر الشراء',import_storage_return_details.Total_Meters 'متر/قطعة',import_storage_return_details.ImportStorageReturnDetails_ID FROM import_storage_return inner join import_storage_return_supplier on import_storage_return.ImportStorageReturn_ID=import_storage_return_supplier.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN data ON data.Data_ID = import_storage_return_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID inner join purchasing_price on purchasing_price.Data_ID=import_storage_return_details.Data_ID where import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
+                    //MySqlCommand comand = new MySqlCommand(q, dbconnection);
+                    //MySqlDataReader dr = comand.ExecuteReader();
+                    //while (dr.Read())
+                    //{
+                    //    double totalMeter = 0;
+                    //    gridView1.AddNewRow();
+                    //    int rowHandl = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    //    if (gridView1.IsNewItemRow(rowHandl))
+                    //    {
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["Data_ID"], dr["Data_ID"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الكود"], dr["الكود"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الاسم"], dr["الاسم"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["السعر"], dr["السعر"].ToString());
+                    //        if (dr["خصم الشراء"].ToString() != "")
+                    //        {
+                    //            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["خصم الشراء"], dr["خصم الشراء"].ToString());
+                    //        }
+                    //        else if (dr["نسبة الشراء"].ToString() != "")
+                    //        {
+                    //            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["نسبة الشراء"], dr["نسبة الشراء"].ToString());
+                    //        }
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة العادية"], dr["الزيادة العادية"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة القطعية"], dr["الزيادة القطعية"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["ضريبة القيمة المضافة"], dr["ضريبة القيمة المضافة"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["سعر الشراء"], dr["سعر الشراء"].ToString());
+                    //        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["ImportStorageReturnDetails_ID"], dr["ImportStorageReturnDetails_ID"].ToString());
 
-                            if (dr["متر/قطعة"].ToString() != "")
-                            {
-                                totalMeter = Convert.ToDouble(dr["متر/قطعة"].ToString());
-                            }
+                    //        if (dr["متر/قطعة"].ToString() != "")
+                    //        {
+                    //            totalMeter = Convert.ToDouble(dr["متر/قطعة"].ToString());
+                    //        }
 
-                            dbconnection2.Open();
-                            q = "SELECT supplier_return_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_return_bill INNER JOIN supplier_return_bill_details ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID  where supplier_return_bill.ImportStorageReturn_ID=" + ImportStorageReturnId + " and supplier_return_bill_details.Data_ID=" + dr["Data_ID"].ToString();
-                            MySqlCommand comand2 = new MySqlCommand(q, dbconnection2);
-                            MySqlDataReader dr2 = comand2.ExecuteReader();
-                            while (dr2.Read())
-                            {
-                                if (dr2["متر/قطعة"].ToString() != "")
-                                {
-                                    totalMeter -= Convert.ToDouble(dr2["متر/قطعة"].ToString());
-                                }
-                            }
-                            dr2.Close();
-                            dbconnection2.Close();
-                            if (totalMeter >= 0)
-                            {
-                                gridView1.SetRowCellValue(rowHandl, gridView1.Columns["متر/قطعة"], totalMeter);
-                            }
-                        }
-                    }
-                    dr.Close();
+                    //        dbconnection2.Open();
+                    //        q = "SELECT supplier_return_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_return_bill INNER JOIN supplier_return_bill_details ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID  where supplier_return_bill.ImportStorageReturn_ID=" + ImportStorageReturnId + " and supplier_return_bill_details.Data_ID=" + dr["Data_ID"].ToString();
+                    //        MySqlCommand comand2 = new MySqlCommand(q, dbconnection2);
+                    //        MySqlDataReader dr2 = comand2.ExecuteReader();
+                    //        while (dr2.Read())
+                    //        {
+                    //            if (dr2["متر/قطعة"].ToString() != "")
+                    //            {
+                    //                totalMeter -= Convert.ToDouble(dr2["متر/قطعة"].ToString());
+                    //            }
+                    //        }
+                    //        dr2.Close();
+                    //        dbconnection2.Close();
+                    //        if (totalMeter >= 0)
+                    //        {
+                    //            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["متر/قطعة"], totalMeter);
+                    //        }
+                    //    }
+                    //}
+                    //dr.Close();
 
-                    gridView1.Columns[0].Visible = false;
-                    gridView1.Columns["BillData_ID"].Visible = false;
-                    gridView1.Columns["ImportStorageReturnDetails_ID"].Visible = false;
+                    //gridView1.Columns[0].Visible = false;
+                    //gridView1.Columns["BillData_ID"].Visible = false;
+                    //gridView1.Columns["ImportStorageReturnDetails_ID"].Visible = false;
 
-                    if (gridView1.IsLastVisibleRow)
-                    {
-                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
-                    }
+                    //if (gridView1.IsLastVisibleRow)
+                    //{
+                    //    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    //}
 
-                    double totalB = 0;
-                    double totalA = 0;
-                    for (int i = 0; i < gridView1.RowCount; i++)
-                    {
-                        totalB += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
-                        totalA += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
-                    }
-                    labTotalPriceBD.Text = totalB.ToString();
-                    labTotalPrice.Text = totalA.ToString();
+                    //double totalB = 0;
+                    //double totalA = 0;
+                    //for (int i = 0; i < gridView1.RowCount; i++)
+                    //{
+                    //    totalB += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
+                    //    totalA += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
+                    //}
+                    //labTotalPriceBD.Text = totalB.ToString();
+                    //labTotalPrice.Text = totalA.ToString(); 
+                    #endregion
                 }
                 catch (Exception ex)
                 {
@@ -263,7 +280,7 @@ namespace MainSystem
                 dbconnection.Close();
                 dbconnection2.Close();
             }
-        }*/
+        }
 
         private void newReturnBill_Click(object sender, EventArgs e)
         {
@@ -271,6 +288,9 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 txtBillNumber.Text = "";
+                loadSup = false;
+                loadSupPerm = false;
+                comSupPerm.DataSource = null;
                 comSupplier.DataSource = null;
                 newReturnBill();
             }
@@ -396,7 +416,10 @@ namespace MainSystem
                                     if (quantity <= Convert.ToDouble(row1["متر/قطعة"].ToString()))
                                     {
                                         dbconnection.Open();
-                                        //displayReturnPermissionDetails("0", 0);
+                                        if (gridView2.RowCount == 0)
+                                        {
+                                            displayReturnPermissionDetails(0);
+                                        }
                                         gridView2.AddNewRow();
                                         int rowHandl = gridView2.GetRowHandle(gridView2.DataRowCount);
                                         if (gridView2.IsNewItemRow(rowHandl))
@@ -495,11 +518,11 @@ namespace MainSystem
             try
             {
                 displayReturnPermissionDetails(0);
+                dbconnection.Open();
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
                     if (Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة")) > 0)
                     {
-                        dbconnection.Open();
                         gridView2.AddNewRow();
                         int rowHandl = gridView2.GetRowHandle(gridView2.DataRowCount);
                         if (gridView2.IsNewItemRow(rowHandl))
@@ -595,7 +618,7 @@ namespace MainSystem
                     {
                         dbconnection.Open();
                         BillNo = 1;
-                        string query = "select Return_Bill_No from supplier_return_bill where Store_ID=" + comStore.SelectedValue.ToString() + " ORDER BY ReturnBill_ID DESC LIMIT 1";
+                        string query = "select Return_Bill_No from supplier_return_bill where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " ORDER BY ReturnBill_ID DESC LIMIT 1";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
@@ -603,7 +626,7 @@ namespace MainSystem
                             BillNo++;
                         }
 
-                        query = "insert into supplier_return_bill (Store_ID,Return_Bill_No,Supplier_ID,Returned_Permission_Number,Total_Price_BD,Total_Price_AD,Date,ImportStorageReturn_ID,Employee_ID) values (@Store_ID,@Return_Bill_No,@Supplier_ID,@Returned_Permission_Number,@Total_Price_BD,@Total_Price_AD,@Date,@ImportStorageReturn_ID,@Employee_ID)";
+                        query = "insert into supplier_return_bill (Store_ID,Return_Bill_No,Supplier_ID,Returned_Permission_Number,Total_Price_BD,Total_Price_AD,Date,Supplier_Permission_Number,ImportStorageReturn_ID,Employee_ID) values (@Store_ID,@Return_Bill_No,@Supplier_ID,@Returned_Permission_Number,@Total_Price_BD,@Total_Price_AD,@Date,@Supplier_Permission_Number,@ImportStorageReturn_ID,@Employee_ID)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                         com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
@@ -619,6 +642,8 @@ namespace MainSystem
                         com.Parameters["@Total_Price_AD"].Value = Convert.ToDouble(labelTotalA.Text);
                         com.Parameters.Add("@Date", MySqlDbType.DateTime);
                         com.Parameters["@Date"].Value = DateTime.Now;
+                        com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                        com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
                         com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
                         com.Parameters["@ImportStorageReturn_ID"].Value = ImportStorageReturnId;
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
@@ -714,12 +739,15 @@ namespace MainSystem
                             addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
                         }
                         Report_SupplierReturnBill f = new Report_SupplierReturnBill();
-                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
+                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
                         f.ShowDialog(); 
                         #endregion
 
                         BillNo = 1;
                         txtBillNumber.Text = "";
+                        loadSup = false;
+                        loadSupPerm = false;
+                        comSupPerm.DataSource = null;
                         comSupplier.DataSource = null;
                         newReturnBill();
                     }
@@ -742,47 +770,56 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            int billNum = 0;
-            if (int.TryParse(txtBillNumber.Text, out billNum))
+            try
             {
-                if (BillNo > 0 && gridView2.RowCount > 0 && comStore.SelectedValue != null && comSupplier.SelectedValue != null)
+                int billNum = 0;
+                if (int.TryParse(txtBillNumber.Text, out billNum))
                 {
-                    string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    string storeName = com.ExecuteScalar().ToString();
-
-                    double addabtiveTax = 0;
-                    List<SupplierReturnBill_Items> bi = new List<SupplierReturnBill_Items>();
-                    for (int i = 0; i < gridView2.RowCount; i++)
+                    if (BillNo > 0 && gridView2.RowCount > 0 && comStore.SelectedValue != null && comSupplier.SelectedValue != null)
                     {
-                        int rowHand = gridView2.GetRowHandle(i);
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "")
+                        dbconnection.Open();
+                        string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        string storeName = com.ExecuteScalar().ToString();
+
+                        double addabtiveTax = 0;
+                        List<SupplierReturnBill_Items> bi = new List<SupplierReturnBill_Items>();
+                        for (int i = 0; i < gridView2.RowCount; i++)
                         {
-                            double lastPrice = 0;
-                            lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])));
-                            SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])), Last_Price = lastPrice, Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
-                            bi.Add(item);
+                            int rowHand = gridView2.GetRowHandle(i);
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "")
+                            {
+                                double lastPrice = 0;
+                                lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])));
+                                SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])), Last_Price = lastPrice, Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
+                                bi.Add(item);
+                            }
+                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "")
+                            {
+                                SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
+                                bi.Add(item);
+                            }
+                            addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
                         }
-                        else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "")
-                        {
-                            SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
-                            bi.Add(item);
-                        }
-                        addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
+                        Report_SupplierReturnBill f = new Report_SupplierReturnBill();
+                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
+                        f.ShowDialog();
                     }
-                    Report_SupplierReturnBill f = new Report_SupplierReturnBill();
-                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
-                    f.ShowDialog();
+                    else
+                    {
+                        MessageBox.Show("تاكد من البيانات");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("تاكد من البيانات");
+                    MessageBox.Show("تاكد من رقم الاذن");
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("تاكد من رقم الاذن");
+                MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         //functions
@@ -824,13 +861,13 @@ namespace MainSystem
             #region with permission
             if (storageImportPermissionId > 0)
             {
-                string q = "SELECT supplier_bill_details.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters 'متر/قطعة','BillData_ID','ImportStorageReturnDetails_ID' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.StorageImportPermission_ID=" + 0;
+                string q = "SELECT supplier_bill_details.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters 'متر/قطعة','BillData_ID','ImportStorageReturnDetails_ID' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN import_storage_return_details ON supplier_bill_details.Data_ID = import_storage_return_details.Data_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.StorageImportPermission_ID=" + 0;
                 MySqlDataAdapter da = new MySqlDataAdapter(q, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 gridControl1.DataSource = dt;
 
-                q = "SELECT supplier_bill_details.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',import_storage_return_details.Total_Meters 'متر/قطعة',supplier_bill_details.BillData_ID FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN storage_import_permission ON supplier_bill.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN import_storage_return ON import_storage_return.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.StorageImportPermission_ID=" + storageImportPermissionId;
+                q = "SELECT supplier_bill_details.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',import_storage_return_details.Total_Meters 'متر/قطعة',supplier_bill_details.BillData_ID FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN storage_import_permission ON supplier_bill.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN import_storage_return ON import_storage_return.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.StorageImportPermission_ID=" + storageImportPermissionId + " and import_storage_return_supplier.ImportStorageReturnSupplier_ID=" + comSupPerm.SelectedValue.ToString();
                 MySqlCommand comand = new MySqlCommand(q, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
@@ -1002,16 +1039,31 @@ namespace MainSystem
 
         public void displayPermissionSupplier()
         {
+            loadSupPerm = false;
+            loadSup = false;
+
             #region with permission
             if (storageImportPermissionId > 0)
             {
-                string query = "select supplier.Supplier_ID,supplier.Supplier_Name from supplier inner join supplier_bill on supplier.Supplier_ID=supplier_bill.Supplier_ID where supplier_bill.StorageImportPermission_ID=" + storageImportPermissionId;
+                //    string query = "select supplier.Supplier_ID,supplier.Supplier_Name from supplier inner join supplier_bill on supplier.Supplier_ID=supplier_bill.Supplier_ID where supplier_bill.StorageImportPermission_ID=" + storageImportPermissionId;
+                //    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                //    DataTable dt = new DataTable();
+                //    da.Fill(dt);
+                //    comSupplier.DataSource = dt;
+                //    comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                //    comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                string query = "select supplier.Supplier_ID,supplier.Supplier_Name from import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN supplier ON import_storage_return_supplier.Supplier_ID = supplier.Supplier_ID where import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 comSupplier.DataSource = dt;
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.SelectedIndex = -1;
+
+                comSupPerm.DataSource = null;
+                labelSupPerm.Visible = true;
+                comSupPerm.Visible = true;
             }
             #endregion
 
@@ -1025,9 +1077,15 @@ namespace MainSystem
                 comSupplier.DataSource = dt;
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                //comSupplier.SelectedIndex = -1;
+
+                comSupPerm.DataSource = null;
+                labelSupPerm.Visible = false;
+                comSupPerm.Visible = false;
             }
             #endregion
+
+            loadSupPerm = true;
+            loadSup = true;
         }
 
         //new bill clear all controls 

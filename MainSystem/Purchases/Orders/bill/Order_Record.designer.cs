@@ -46,6 +46,10 @@
             this.txtStoreID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxReceived = new System.Windows.Forms.CheckBox();
+            this.checkBoxConfirmed = new System.Windows.Forms.CheckBox();
+            this.checkBoxAvailable = new System.Windows.Forms.CheckBox();
+            this.checkBoxCanceled = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtRequestNum = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -63,7 +67,6 @@
             this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -81,16 +84,12 @@
             this.comFactory = new System.Windows.Forms.ComboBox();
             this.comProduct = new System.Windows.Forms.ComboBox();
             this.btnNewChooes = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtProduct = new System.Windows.Forms.TextBox();
-            this.txtType = new System.Windows.Forms.TextBox();
-            this.comType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBoxCanceled = new System.Windows.Forms.CheckBox();
-            this.checkBoxAvailable = new System.Windows.Forms.CheckBox();
-            this.checkBoxConfirmed = new System.Windows.Forms.CheckBox();
-            this.checkBoxReceived = new System.Windows.Forms.CheckBox();
+            this.comType = new System.Windows.Forms.ComboBox();
+            this.txtType = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -322,6 +321,62 @@
             this.panel1.Size = new System.Drawing.Size(899, 84);
             this.panel1.TabIndex = 206;
             // 
+            // checkBoxReceived
+            // 
+            this.checkBoxReceived.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxReceived.AutoSize = true;
+            this.checkBoxReceived.Enabled = false;
+            this.checkBoxReceived.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxReceived.Location = new System.Drawing.Point(15, 62);
+            this.checkBoxReceived.Name = "checkBoxReceived";
+            this.checkBoxReceived.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxReceived.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxReceived.TabIndex = 211;
+            this.checkBoxReceived.Text = "تم الاستلام";
+            this.checkBoxReceived.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxConfirmed
+            // 
+            this.checkBoxConfirmed.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxConfirmed.AutoSize = true;
+            this.checkBoxConfirmed.Enabled = false;
+            this.checkBoxConfirmed.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxConfirmed.Location = new System.Drawing.Point(23, 43);
+            this.checkBoxConfirmed.Name = "checkBoxConfirmed";
+            this.checkBoxConfirmed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxConfirmed.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxConfirmed.TabIndex = 210;
+            this.checkBoxConfirmed.Text = "تم التاكيد";
+            this.checkBoxConfirmed.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAvailable
+            // 
+            this.checkBoxAvailable.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxAvailable.AutoSize = true;
+            this.checkBoxAvailable.Enabled = false;
+            this.checkBoxAvailable.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAvailable.Location = new System.Drawing.Point(44, 24);
+            this.checkBoxAvailable.Name = "checkBoxAvailable";
+            this.checkBoxAvailable.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxAvailable.Size = new System.Drawing.Size(45, 17);
+            this.checkBoxAvailable.TabIndex = 209;
+            this.checkBoxAvailable.Text = "متاح";
+            this.checkBoxAvailable.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxCanceled
+            // 
+            this.checkBoxCanceled.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxCanceled.AutoSize = true;
+            this.checkBoxCanceled.Enabled = false;
+            this.checkBoxCanceled.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCanceled.Location = new System.Drawing.Point(38, 5);
+            this.checkBoxCanceled.Name = "checkBoxCanceled";
+            this.checkBoxCanceled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxCanceled.Size = new System.Drawing.Size(51, 17);
+            this.checkBoxCanceled.TabIndex = 208;
+            this.checkBoxCanceled.Text = "ملغى";
+            this.checkBoxCanceled.UseVisualStyleBackColor = true;
+            // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -522,7 +577,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.Controls.Add(this.btnSave, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.btnPrint, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 653);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -552,26 +606,6 @@
             this.btnSave.Size = new System.Drawing.Size(76, 46);
             this.btnSave.TabIndex = 5;
             this.btnSave.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnPrint.ImagePosition = 1;
-            this.btnPrint.ImageZoom = 33;
-            this.btnPrint.LabelPosition = 18;
-            this.btnPrint.LabelText = "طباعة";
-            this.btnPrint.Location = new System.Drawing.Point(365, 4);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(76, 46);
-            this.btnPrint.TabIndex = 6;
             // 
             // gridControl1
             // 
@@ -802,18 +836,6 @@
             this.btnNewChooes.UseVisualStyleBackColor = false;
             this.btnNewChooes.Click += new System.EventHandler(this.btnNewChosen_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(809, 19);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(36, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "النوع";
-            // 
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -840,27 +862,6 @@
             this.txtProduct.TabIndex = 10;
             this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // txtType
-            // 
-            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtType.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtType.Location = new System.Drawing.Point(618, 17);
-            this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(55, 23);
-            this.txtType.TabIndex = 1;
-            this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comType
-            // 
-            this.comType.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(679, 16);
-            this.comType.Name = "comType";
-            this.comType.Size = new System.Drawing.Size(120, 24);
-            this.comType.TabIndex = 0;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -873,61 +874,38 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "الصنف";
             // 
-            // checkBoxCanceled
+            // comType
             // 
-            this.checkBoxCanceled.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkBoxCanceled.AutoSize = true;
-            this.checkBoxCanceled.Enabled = false;
-            this.checkBoxCanceled.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxCanceled.Location = new System.Drawing.Point(38, 5);
-            this.checkBoxCanceled.Name = "checkBoxCanceled";
-            this.checkBoxCanceled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxCanceled.Size = new System.Drawing.Size(51, 17);
-            this.checkBoxCanceled.TabIndex = 208;
-            this.checkBoxCanceled.Text = "ملغى";
-            this.checkBoxCanceled.UseVisualStyleBackColor = true;
+            this.comType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comType.FormattingEnabled = true;
+            this.comType.Location = new System.Drawing.Point(679, 16);
+            this.comType.Name = "comType";
+            this.comType.Size = new System.Drawing.Size(120, 24);
+            this.comType.TabIndex = 0;
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
-            // checkBoxAvailable
+            // txtType
             // 
-            this.checkBoxAvailable.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkBoxAvailable.AutoSize = true;
-            this.checkBoxAvailable.Enabled = false;
-            this.checkBoxAvailable.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAvailable.Location = new System.Drawing.Point(44, 24);
-            this.checkBoxAvailable.Name = "checkBoxAvailable";
-            this.checkBoxAvailable.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxAvailable.Size = new System.Drawing.Size(45, 17);
-            this.checkBoxAvailable.TabIndex = 209;
-            this.checkBoxAvailable.Text = "متاح";
-            this.checkBoxAvailable.UseVisualStyleBackColor = true;
+            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtType.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtType.Location = new System.Drawing.Point(618, 17);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(55, 23);
+            this.txtType.TabIndex = 1;
+            this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // checkBoxConfirmed
+            // label2
             // 
-            this.checkBoxConfirmed.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkBoxConfirmed.AutoSize = true;
-            this.checkBoxConfirmed.Enabled = false;
-            this.checkBoxConfirmed.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxConfirmed.Location = new System.Drawing.Point(23, 43);
-            this.checkBoxConfirmed.Name = "checkBoxConfirmed";
-            this.checkBoxConfirmed.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxConfirmed.Size = new System.Drawing.Size(66, 17);
-            this.checkBoxConfirmed.TabIndex = 210;
-            this.checkBoxConfirmed.Text = "تم التاكيد";
-            this.checkBoxConfirmed.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxReceived
-            // 
-            this.checkBoxReceived.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkBoxReceived.AutoSize = true;
-            this.checkBoxReceived.Enabled = false;
-            this.checkBoxReceived.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxReceived.Location = new System.Drawing.Point(15, 62);
-            this.checkBoxReceived.Name = "checkBoxReceived";
-            this.checkBoxReceived.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBoxReceived.Size = new System.Drawing.Size(74, 17);
-            this.checkBoxReceived.TabIndex = 211;
-            this.checkBoxReceived.Text = "تم الاستلام";
-            this.checkBoxReceived.UseVisualStyleBackColor = true;
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label2.Location = new System.Drawing.Point(809, 19);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(36, 18);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "النوع";
             // 
             // Order_Record
             // 
@@ -989,11 +967,8 @@
         private System.Windows.Forms.ComboBox comFactory;
         private System.Windows.Forms.ComboBox comProduct;
         private System.Windows.Forms.Button btnNewChooes;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtProduct;
-        private System.Windows.Forms.TextBox txtType;
-        private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -1018,11 +993,13 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtRequestNum;
         private DevExpress.XtraGrid.Columns.GridColumn Type;
-        private Bunifu.Framework.UI.BunifuTileButton btnPrint;
         private System.Windows.Forms.CheckBox checkBoxReceived;
         private System.Windows.Forms.CheckBox checkBoxConfirmed;
         private System.Windows.Forms.CheckBox checkBoxAvailable;
         private System.Windows.Forms.CheckBox checkBoxCanceled;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtType;
+        private System.Windows.Forms.ComboBox comType;
     }
 }
 

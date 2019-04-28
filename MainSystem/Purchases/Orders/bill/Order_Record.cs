@@ -1040,6 +1040,9 @@ namespace MainSystem
                     string query = "update orders set Confirmed=1 where Order_ID=" + orderId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
+
+
+
                     clear();
                 }
                 else
