@@ -48,17 +48,48 @@ namespace MainSystem
                 gridControl2.DataMember = dh.DataMember;
                 gridView2.InitNewRow += GridView2_InitNewRow;
 
-                dbconnection.Open();
-                string query = "select * from type";
+                #region MyRegion
+                string query = "select * from factory";//inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                comType.DataSource = dt;
-                comType.DisplayMember = dt.Columns["Type_Name"].ToString();
-                comType.ValueMember = dt.Columns["Type_ID"].ToString();
-                comType.SelectedIndex = -1;
-                txtType.Text = "";
+                comFactory.DataSource = dt;
+                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                comFactory.Text = "";
+                //dbconnection.Close();
+                dbconnection.Open();
+                query = "select TypeCoding_Method from type";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                int TypeCoding_Method = (int)com.ExecuteScalar();
+                dbconnection.Close();
+                if (TypeCoding_Method == 1)
+                {
+                    string query2 = "select * from groupo where Factory_ID=-1";
+                    
+                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
+                    comGroup.DataSource = dt2;
+                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+                    comGroup.Text = "";
+                    groupFlage = true;
+                }
+                factoryFlage = true;
 
+                query = "select * from color";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comColor.DataSource = dt;
+                comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
+                comColor.ValueMember = dt.Columns["Color_ID"].ToString();
+                comColor.Text = "";
+                comFactory.Focus();
+                #endregion
+
+                //dbconnection.Open();
                 query = "select * from sort";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -117,14 +148,13 @@ namespace MainSystem
 
         private void txtRequestNum_TextChanged(object sender, EventArgs e)
         {
-            if (loaded && flagRequestNum && txtRequestNum.Text != "")
+            if (loaded && flagRequestNum && txtOrderNum.Text != "")
             {
                 try
                 {
-                    int requestNum = 0;
-                    if (int.TryParse(txtRequestNum.Text, out requestNum))
+                    if (int.TryParse(txtOrderNum.Text, out orderNumber))
                     {
-                        if (comSupplier.SelectedValue != null)
+                        if (comFactory.SelectedValue != null)
                         {
                             int cont = gridView2.RowCount;
                             for (int i = 0; i < cont; i++)
@@ -134,14 +164,14 @@ namespace MainSystem
                             }
                             dbconnection.Open();
                             dbconnection3.Open();
-                            string query = "SELECT orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date,orders.Confirmed,orders.Received,orders.Canceled FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID where orders.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and orders.Order_Number=" + requestNum;
+                            string query = "SELECT orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Supplier_ID,orders.Request_Date,orders.Receive_Date,orders.Confirmed,orders.Received,orders.Canceled FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID where orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNumber;
                             MySqlCommand comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr = comand.ExecuteReader();
                             if(dr.HasRows)
                             {
                                 while(dr.Read())
                                 {
-                                    if (dr["Confirmed"].ToString() == "1" || dr["Received"].ToString() == "1" || dr["Canceled"].ToString() == "1")
+                                    if (dr["Confirmed"].ToString() == "1" || dr["Received"].ToString() == "1" || dr["Received"].ToString() == "2" || dr["Canceled"].ToString() == "1")
                                     {
                                         if(dr["Canceled"].ToString() == "1")
                                         {
@@ -149,30 +179,56 @@ namespace MainSystem
                                             checkBoxCanceled.Checked = true;
                                             checkBoxConfirmed.Checked = false;
                                             checkBoxReceived.Checked = false;
+                                            checkBoxReceivedPart.Checked = false;
                                         }
-                                        if (dr["Received"].ToString() == "1")
+                                        else if (dr["Received"].ToString() == "1")
                                         {
                                             checkBoxAvailable.Checked = false;
                                             checkBoxCanceled.Checked = false;
+                                            checkBoxConfirmed.Checked = false;
                                             checkBoxReceived.Checked = true;
+                                            checkBoxReceivedPart.Checked = false;
                                         }
-                                        if (dr["Confirmed"].ToString() == "1")
+                                        else if (dr["Received"].ToString() == "2")
+                                        {
+                                            checkBoxAvailable.Checked = false;
+                                            checkBoxCanceled.Checked = false;
+                                            checkBoxConfirmed.Checked = false;
+                                            checkBoxReceived.Checked = false;
+                                            checkBoxReceivedPart.Checked = true;
+                                        }
+                                        else if (dr["Confirmed"].ToString() == "1")
                                         {
                                             checkBoxAvailable.Checked = false;
                                             checkBoxCanceled.Checked = false;
                                             checkBoxConfirmed.Checked = true;
+                                            checkBoxReceived.Checked = false;
+                                            checkBoxReceivedPart.Checked = false;
                                         }
+                                        
                                         addFlage = false;
                                         loaded = false;
                                         txtEmployee.ReadOnly = true;
                                         comStore.Enabled = false;
                                         txtStoreID.ReadOnly = true;
+                                        comSupplier.Enabled = false;
+                                        txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;
                                         dateTimePicker2.Enabled = false;
                                         orderId = Convert.ToInt16(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
+                                        if (dr["Supplier_ID"].ToString() != "")
+                                        {
+                                            comSupplier.SelectedValue = dr["Supplier_ID"].ToString();
+                                            txtSupplier.Text = dr["Supplier_ID"].ToString();
+                                        }
+                                        else
+                                        {
+                                            comSupplier.SelectedIndex = -1;
+                                            txtSupplier.Text = "";
+                                        }
                                         dateTimePicker1.Value = Convert.ToDateTime(dr["Request_Date"].ToString());
                                         dateTimePicker2.Value = Convert.ToDateTime(dr["Receive_Date"].ToString());
                                         loaded = true;
@@ -183,18 +239,31 @@ namespace MainSystem
                                         checkBoxCanceled.Checked = false;
                                         checkBoxConfirmed.Checked = false;
                                         checkBoxReceived.Checked = false;
+                                        checkBoxReceivedPart.Checked = false;
 
                                         addFlage = true;
                                         loaded = false;
                                         txtEmployee.ReadOnly = true;
                                         comStore.Enabled = false;
                                         txtStoreID.ReadOnly = true;
+                                        comSupplier.Enabled = false;
+                                        txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;
                                         dateTimePicker2.Enabled = false;
                                         orderId = Convert.ToInt16(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
+                                        if (dr["Supplier_ID"].ToString() != "")
+                                        {
+                                            comSupplier.SelectedValue = dr["Supplier_ID"].ToString();
+                                            txtSupplier.Text = dr["Supplier_ID"].ToString();
+                                        }
+                                        else
+                                        {
+                                            comSupplier.SelectedIndex = -1;
+                                            txtSupplier.Text = "";
+                                        }
                                         dateTimePicker1.Value = Convert.ToDateTime(dr["Request_Date"].ToString());
                                         dateTimePicker2.Value = Convert.ToDateTime(dr["Receive_Date"].ToString());
                                         loaded = true;
@@ -208,6 +277,7 @@ namespace MainSystem
                                 checkBoxCanceled.Checked = false;
                                 checkBoxConfirmed.Checked = false;
                                 checkBoxReceived.Checked = false;
+                                checkBoxReceivedPart.Checked = false;
 
                                 addFlage = true;
                                 loaded = false;
@@ -215,11 +285,15 @@ namespace MainSystem
                                 txtEmployee.Text = "";
                                 comStore.SelectedIndex = -1;
                                 txtStoreID.Text = "";
+                                comSupplier.SelectedIndex = -1;
+                                txtSupplier.Text = "";
                                 dateTimePicker1.Value = DateTime.Now.Date;
                                 dateTimePicker2.Value = DateTime.Now.Date;
                                 txtEmployee.ReadOnly = false;
                                 comStore.Enabled = true;
                                 txtStoreID.ReadOnly = false;
+                                comSupplier.Enabled = true;
+                                txtSupplier.ReadOnly = false;
                                 dateTimePicker1.Enabled = true;
                                 dateTimePicker2.Enabled = true;
                                 int cont2 = gridView2.RowCount;
@@ -231,26 +305,14 @@ namespace MainSystem
                                 loaded = true;
                             }
 
-                            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(order_details.Quantity) as 'عدد المتر/القطعة',order_details.Type,orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID inner join data on data.Data_ID = order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where orders.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and orders.Order_Number=" + requestNum + " and orders.Confirmed=0 and orders.Received=0 and orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(order_details.Quantity) as 'عدد المتر/القطعة',order_details.Type,orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID inner join data on data.Data_ID = order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNumber + " and orders.Confirmed=0 and orders.Received=0 and orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                             comand = new MySqlCommand(query, dbconnection);
                             dr = comand.ExecuteReader();
                             if (dr.HasRows)
                             {
                                 dbconnection2.Open();
-                                //loaded = false;
-                                //txtEmployee.ReadOnly = true;
-                                //comStore.Enabled = false;
-                                //txtStoreID.ReadOnly = true;
-                                //dateTimePicker1.Enabled = false;
-                                //dateTimePicker2.Enabled = false;
                                 while (dr.Read())
                                 {
-                                    //orderId = Convert.ToInt16(dr["Order_ID"].ToString());
-                                    //txtEmployee.Text = dr["Employee_Name"].ToString();
-                                    //comStore.SelectedValue = dr["Store_ID"].ToString();
-                                    //txtStoreID.Text = dr["Store_ID"].ToString();
-                                    //dateTimePicker1.Value = Convert.ToDateTime(dr["Request_Date"].ToString());
-                                    //dateTimePicker2.Value = Convert.ToDateTime(dr["Receive_Date"].ToString());
                                     if (dr["Data_ID"].ToString() != "")
                                     {
                                         gridView2.AddNewRow();
@@ -276,29 +338,7 @@ namespace MainSystem
                                     }
                                 }
                                 dr.Close();
-                                //loaded = true;
                             }
-                            //else
-                            //{
-                            //    loaded = false;
-                            //    orderId = 0;
-                            //    txtEmployee.Text = "";
-                            //    comStore.SelectedIndex = -1;
-                            //    txtStoreID.Text = "";
-                            //    dateTimePicker1.Value = DateTime.Now.Date;
-                            //    dateTimePicker2.Value = DateTime.Now.Date;
-                            //    txtEmployee.ReadOnly = false;
-                            //    comStore.Enabled = true;
-                            //    txtStoreID.ReadOnly = false;
-                            //    dateTimePicker1.Enabled = true;
-                            //    dateTimePicker2.Enabled = true;
-                            //    for (int i = 0; i < gridView2.RowCount; i++)
-                            //    {
-                            //        int rowHandle = gridView2.GetRowHandle(i);
-                            //        gridView2.DeleteRow(rowHandle);
-                            //    }
-                            //    loaded = true;
-                            //}
                         }
                         else
                         {
@@ -307,17 +347,22 @@ namespace MainSystem
                             checkBoxCanceled.Checked = false;
                             checkBoxConfirmed.Checked = false;
                             checkBoxReceived.Checked = false;
+                            checkBoxReceivedPart.Checked = false;
 
                             loaded = false;
                             orderId = 0;
                             txtEmployee.Text = "";
                             comStore.SelectedIndex = -1;
                             txtStoreID.Text = "";
+                            comSupplier.SelectedIndex = -1;
+                            txtSupplier.Text = "";
                             dateTimePicker1.Value = DateTime.Now.Date;
                             dateTimePicker2.Value = DateTime.Now.Date;
                             txtEmployee.ReadOnly = false;
                             comStore.Enabled = true;
                             txtStoreID.ReadOnly = false;
+                            comSupplier.Enabled = true;
+                            txtSupplier.ReadOnly = false;
                             dateTimePicker1.Enabled = true;
                             dateTimePicker2.Enabled = true;
                             int cont = gridView2.RowCount;
@@ -336,17 +381,22 @@ namespace MainSystem
                         checkBoxCanceled.Checked = false;
                         checkBoxConfirmed.Checked = false;
                         checkBoxReceived.Checked = false;
+                        checkBoxReceivedPart.Checked = false;
 
                         loaded = false;
                         orderId = 0;
                         txtEmployee.Text = "";
                         comStore.SelectedIndex = -1;
                         txtStoreID.Text = "";
+                        comSupplier.SelectedIndex = -1;
+                        txtSupplier.Text = "";
                         dateTimePicker1.Value = DateTime.Now.Date;
                         dateTimePicker2.Value = DateTime.Now.Date;
                         txtEmployee.ReadOnly = false;
                         comStore.Enabled = true;
                         txtStoreID.ReadOnly = false;
+                        comSupplier.Enabled = true;
+                        txtSupplier.ReadOnly = false;
                         dateTimePicker1.Enabled = true;
                         dateTimePicker2.Enabled = true;
                         int cont = gridView2.RowCount;
@@ -372,17 +422,22 @@ namespace MainSystem
                 checkBoxCanceled.Checked = false;
                 checkBoxConfirmed.Checked = false;
                 checkBoxReceived.Checked = false;
+                checkBoxReceivedPart.Checked = false;
 
                 loaded = false;
                 orderId = 0;
                 txtEmployee.Text = "";
                 comStore.SelectedIndex = -1;
                 txtStoreID.Text = "";
+                comSupplier.SelectedIndex = -1;
+                txtSupplier.Text = "";
                 dateTimePicker1.Value = DateTime.Now.Date;
                 dateTimePicker2.Value = DateTime.Now.Date;
                 txtEmployee.ReadOnly = false;
                 comStore.Enabled = true;
                 txtStoreID.ReadOnly = false;
+                comSupplier.Enabled = true;
+                txtSupplier.ReadOnly = false;
                 dateTimePicker1.Enabled = true;
                 dateTimePicker2.Enabled = true;
                 int cont = gridView2.RowCount;
@@ -405,69 +460,19 @@ namespace MainSystem
 
                     switch (comBox.Name)
                     {
-                        case "comType":
-                            if (loaded)
-                            {
-                                string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
-                                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                                DataTable dt = new DataTable();
-                                da.Fill(dt);
-                                comFactory.DataSource = dt;
-                                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
-                                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
-                                comFactory.Text = "";
-                                dbconnection.Close();
-                                dbconnection.Open();
-                                query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
-                                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                                int TypeCoding_Method = (int)com.ExecuteScalar();
-                                dbconnection.Close();
-                                if (TypeCoding_Method == 1)
-                                {
-                                    string query2 = "";
-                                    if (comType.SelectedValue.ToString() == "2" || comType.SelectedValue.ToString() == "1")
-                                    {
-                                        query2 = "select * from groupo where Factory_ID=-1";
-                                    }
-                                    else
-                                    {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
-                                    }
-
-                                    MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
-                                    DataTable dt2 = new DataTable();
-                                    da2.Fill(dt2);
-                                    comGroup.DataSource = dt2;
-                                    comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
-                                    comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
-                                    comGroup.Text = "";
-                                    groupFlage = true;
-                                }
-                                factoryFlage = true;
-
-                                query = "select * from color where Type_ID=" + comType.SelectedValue.ToString();
-                                da = new MySqlDataAdapter(query, dbconnection);
-                                dt = new DataTable();
-                                da.Fill(dt);
-                                comColor.DataSource = dt;
-                                comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
-                                comColor.ValueMember = dt.Columns["Color_ID"].ToString();
-                                comColor.Text = "";
-                                comFactory.Focus();
-                            }
-                            break;
                         case "comFactory":
                             if (factoryFlage)
                             {
+                                txtFactory.Text = comFactory.SelectedValue.ToString();
                                 dbconnection.Close();
                                 dbconnection.Open();
-                                string query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
+                                string query = "select TypeCoding_Method from type";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                                 int TypeCoding_Method = (int)com.ExecuteScalar();
                                 dbconnection.Close();
                                 if (TypeCoding_Method == 2)
                                 {
-                                    string query2f = "select * from groupo where Type_ID=" + comType.SelectedValue.ToString() + " and Factory_ID=" + comFactory.SelectedValue.ToString();
+                                    string query2f = "select * from groupo where Factory_ID=" + comFactory.SelectedValue.ToString();
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
                                     da2f.Fill(dt2f);
@@ -487,23 +492,45 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
-                                comGroup.Focus();
+                                ////////////////////////////////////////////
+                                if (comFactory.SelectedValue != null)
+                                {
+                                    flagRequestNum = false;
+                                    dbconnection.Close();
+                                    dbconnection.Open();
+                                    query = "select Order_Number from orders where Factory_ID=" + comFactory.SelectedValue.ToString() + " order by Order_ID desc limit 1";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    if (com.ExecuteScalar() != null)
+                                    {
+                                        orderNumber = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                    }
+                                    else
+                                    {
+                                        orderNumber = 1;
+                                    }
+                                    dbconnection.Close();
+
+                                    txtOrderNum.Text = "";
+                                    loaded = true;
+                                    flagRequestNum = true;
+                                    txtOrderNum.Text = orderNumber.ToString();
+                                }
+                                ////////////////////////////////////////////
+                                txtOrderNum.Focus();
                             }
                             break;
                         case "comGroup":
                             if (groupFlage)
                             {
+                                txtGroup.Text = comGroup.SelectedValue.ToString();
                                 string supQuery = "", subQuery1 = "";
-                                if (comType.SelectedValue.ToString() != "")
-                                {
-                                    supQuery += " and product.Type_ID=" + comType.SelectedValue.ToString();
-                                }
+                                
                                 if (comFactory.SelectedValue.ToString() != "")
                                 {
                                     supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue.ToString();
                                     subQuery1 += " and Factory_ID=" + comFactory.SelectedValue.ToString();
                                 }
-                                string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + supQuery + "  order by product.Product_ID";
+                                string query3 = "select distinct product.Product_ID,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + supQuery + "  order by product.Product_ID";
                                 MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
                                 DataTable dt3 = new DataTable();
                                 da3.Fill(dt3);
@@ -526,10 +553,14 @@ namespace MainSystem
                             }
                             break;
                         case "comProduct":
-                            comColor.Focus();
+                            if (flagProduct)
+                            {
+                                txtProduct.Text = comProduct.SelectedValue.ToString();
+                                comSize.Focus();
+                            }
                             break;
                         case "comColor":
-                            comSize.Focus();
+                            comColor.Focus();
                             break;
                         case "comSize":
                             comSort.Focus();
@@ -537,50 +568,7 @@ namespace MainSystem
                         case "comSort":
                             break;
                         case "comSupplier":
-                            {
-                                if (comSupplier.SelectedValue != null)
-                                {
-                                    txtSupplier.Text = comSupplier.SelectedValue.ToString();
-                                    flagRequestNum = false;
-                                    dbconnection.Close();
-                                    dbconnection.Open();
-                                    string query = "select Order_Number from orders where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " order by Order_ID desc limit 1";
-                                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                                    if (com.ExecuteScalar() != null)
-                                    {
-                                        orderNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) /*+ 1*/;
-                                    }
-                                    else
-                                    {
-                                        orderNumber = 1;
-                                    }
-                                    dbconnection.Close();
-                                    ////////
-                                    loaded = true;
-                                    flagRequestNum = true;
-                                    ////////////
-                                    txtRequestNum.Text = orderNumber.ToString();
-                                    /*loaded = false;
-                                    orderId = 0;
-                                    txtEmployee.Text = "";
-                                    comStore.SelectedIndex = -1;
-                                    txtStoreID.Text = "";
-                                    dateTimePicker1.Value = DateTime.Now.Date;
-                                    dateTimePicker2.Value = DateTime.Now.Date;
-                                    txtEmployee.ReadOnly = false;
-                                    comStore.Enabled = true;
-                                    txtStoreID.ReadOnly = false;
-                                    dateTimePicker1.Enabled = true;
-                                    dateTimePicker2.Enabled = true;
-                                    for (int i = 0; i < gridView2.RowCount; i++)
-                                    {
-                                        int rowHandle = gridView2.GetRowHandle(i);
-                                        gridView2.DeleteRow(rowHandle);
-                                    }
-                                    loaded = true;
-                                    /*flagRequestNum = true;*/
-                                }
-                            }
+                            txtSupplier.Text = comSupplier.SelectedValue.ToString();
                             break;
                         case "comStore":
                             txtStoreID.Text = comStore.SelectedValue.ToString();
@@ -610,24 +598,6 @@ namespace MainSystem
                         dbconnection.Open();
                         switch (txtBox.Name)
                         {
-                            case "txtType":
-                                query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comType.Text = Name;
-                                    txtFactory.Focus();
-                                    dbconnection.Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    comType.SelectedIndex = -1;
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
                             case "txtFactory":
                                 query = "select Factory_Name from factory where Factory_ID='" + txtFactory.Text + "'";
                                 com = new MySqlCommand(query, dbconnection);
@@ -635,7 +605,7 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comFactory.Text = Name;
-                                    txtGroup.Focus();
+                                    //txtRequestNum.Focus();
                                     dbconnection.Close();
                                 }
                                 else
@@ -671,7 +641,6 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comProduct.Text = Name;
-                                    txtType.Focus();
                                     dbconnection.Close();
                                 }
                                 else
@@ -731,17 +700,8 @@ namespace MainSystem
         {
             try
             {
-                //if (lstrow.Count == 0)
-                //{
-                string q1, q2, q3, q4, fQuery = "";
-                if (comType.Text == "")
-                {
-                    q1 = "select Type_ID from type";
-                }
-                else
-                {
-                    q1 = comType.SelectedValue.ToString();
-                }
+                string q2, q3, q4, fQuery = "";
+                
                 if (comFactory.Text == "")
                 {
                     q2 = "select Factory_ID from factory";
@@ -788,7 +748,7 @@ namespace MainSystem
                 dbconnection.Open();
                 dbconnection2.Open();
 
-                string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى',sellprice.Sell_Price as 'السعر',data.Carton as 'الكرتنة','Type','الحالة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى',sellprice.Sell_Price as 'السعر',data.Carton as 'الكرتنة','Type','الحالة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -800,7 +760,7 @@ namespace MainSystem
                 gridView1.Columns["الحالة"].ColumnEdit = repositoryCheckEdit1;
                 //repositoryCheckEdit1.CheckedChanged += new EventHandler(CheckedChanged);
                 
-                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
@@ -866,7 +826,6 @@ namespace MainSystem
                 {
                     gridView1.FocusedRowHandle = gridView1.RowCount - 1;
                 }
-                //}
             }
             catch (Exception ex)
             {
@@ -906,7 +865,7 @@ namespace MainSystem
         {
             try
             {
-                if (addFlage && row1 != null && txtTotalMeters.Text != "" && txtEmployee.Text != "" && comStore.SelectedValue != null && comSupplier.SelectedValue != null)
+                if (addFlage && row1 != null && txtTotalMeters.Text != "" && txtEmployee.Text != "" && comStore.SelectedValue != null && comFactory.SelectedValue != null)
                 {
                     double total = 0;
                     if (double.TryParse(txtTotalMeters.Text, out total))
@@ -921,21 +880,31 @@ namespace MainSystem
                         dbconnection.Open();
                         if (orderId == 0)
                         {
-                            string query2 = "insert into orders (Supplier_ID,Order_Number,Store_ID,Employee_Name,Request_Date,Receive_Date,Employee_ID)values(@Supplier_ID,@Order_Number,@Store_ID,@Employee_Name,@Request_Date,@Recive_Date,@Employee_ID)";
+                            string query2 = "insert into orders (Factory_ID,Supplier_ID,Order_Number,Store_ID,Employee_Name,Request_Date,Receive_Date,Employee_ID)values(@Factory_ID,@Supplier_ID,@Order_Number,@Store_ID,@Employee_Name,@Request_Date,@Recive_Date,@Employee_ID)";
                             MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
 
+                            com2.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
+                            com2.Parameters["@Factory_ID"].Value = comFactory.SelectedValue.ToString();
+                            com2.Parameters.Add("@Order_Number", MySqlDbType.Int16);
+                            com2.Parameters["@Order_Number"].Value = orderNumber;
                             com2.Parameters.Add("@Employee_Name", MySqlDbType.VarChar);
                             com2.Parameters["@Employee_Name"].Value = txtEmployee.Text;
                             com2.Parameters.Add("@Request_Date", MySqlDbType.Date);
                             com2.Parameters["@Request_Date"].Value = dateTimePicker1.Value.Date;
                             com2.Parameters.Add("@Recive_Date", MySqlDbType.Date);
                             com2.Parameters["@Recive_Date"].Value = dateTimePicker2.Value.Date;
-                            com2.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                            com2.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
+                            if (comSupplier.SelectedValue != null)
+                            {
+                                com2.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                                com2.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
+                            }
+                            else
+                            {
+                                com2.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                                com2.Parameters["@Supplier_ID"].Value = null;
+                            }
                             com2.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com2.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
-                            com2.Parameters.Add("@Order_Number", MySqlDbType.Int16);
-                            com2.Parameters["@Order_Number"].Value = orderNumber;
                             com2.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
                             com2.Parameters["@Employee_ID"].Value = UserControl.EmpID;
                             com2.ExecuteNonQuery();
@@ -1034,14 +1003,26 @@ namespace MainSystem
         {
             try
             {
-                if (gridView2.RowCount > 0 && txtRequestNum.Text != "" && txtEmployee.Text != "" && comStore.SelectedValue != null && comSupplier.SelectedValue != null)
+                if (gridView2.RowCount > 0 && txtOrderNum.Text != "" && txtEmployee.Text != "" && comStore.SelectedValue != null && comFactory.SelectedValue != null)
                 {
                     dbconnection.Open();
                     string query = "update orders set Confirmed=1 where Order_ID=" + orderId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
 
-
+                    #region report
+                    List<Order_Items> bi = new List<Order_Items>();
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        int rowHand = gridView2.GetRowHandle(i);
+                        
+                        Order_Items item = new Order_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"])) };
+                        bi.Add(item);
+                    }
+                    Report_Order f = new Report_Order();
+                    f.PrintInvoice(comFactory.Text, Convert.ToInt16(txtOrderNum.Text), txtEmployee.Text, bi);
+                    f.ShowDialog();
+                    #endregion
 
                     clear();
                 }
@@ -1172,9 +1153,11 @@ namespace MainSystem
                 int rowHandle = gridView2.GetRowHandle(0);
                 gridView2.DeleteRow(rowHandle);
             }
+            comFactory.SelectedIndex = -1;
+            txtFactory.Text = "";
             comSupplier.SelectedIndex = -1;
             txtSupplier.Text = "";
-            txtRequestNum.Text = "";
+            txtOrderNum.Text = "";
             comStore.SelectedIndex = -1;
             txtStoreID.Text = "";
             txtEmployee.Text = "";
@@ -1182,6 +1165,19 @@ namespace MainSystem
             lstrow = new List<DataRow>();
             txtCode.Text = "";
             txtTotalMeters.Text = "";
+            txtEmployee.ReadOnly = false;
+            comStore.Enabled = true;
+            txtStoreID.ReadOnly = false;
+            comSupplier.Enabled = true;
+            txtSupplier.ReadOnly = false;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker2.Enabled = true;
+
+            checkBoxAvailable.Checked = false;
+            checkBoxCanceled.Checked = false;
+            checkBoxConfirmed.Checked = false;
+            checkBoxReceived.Checked = false;
+            checkBoxReceivedPart.Checked = false;
             clearCom();
             loaded = true;
         }

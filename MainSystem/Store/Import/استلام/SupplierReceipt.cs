@@ -46,6 +46,8 @@ namespace MainSystem
             comType.AutoCompleteSource = AutoCompleteSource.ListItems;
             comFactory.AutoCompleteMode = AutoCompleteMode.Suggest;
             comFactory.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comOrderFactory.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comOrderFactory.AutoCompleteSource = AutoCompleteSource.ListItems;
             comGroup.AutoCompleteMode = AutoCompleteMode.Suggest;
             comGroup.AutoCompleteSource = AutoCompleteSource.ListItems;
             comProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -90,7 +92,7 @@ namespace MainSystem
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
                 comSupplier.Text = "";
-
+                
                 query = "select * from store_places where Store_ID=" + storeId;
                 da = new MySqlDataAdapter(query, conn);
                 dt = new DataTable();
@@ -99,6 +101,15 @@ namespace MainSystem
                 comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
                 comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
                 comStorePlace.Text = "";
+
+                query = "select * from factory";
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comOrderFactory.DataSource = dt;
+                comOrderFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                comOrderFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                comOrderFactory.Text = "";
 
                 string q = "select storage_import_permission.Import_Permission_Number from storage_import_permission where storage_import_permission.Store_ID=" + storeId + " ORDER BY storage_import_permission.StorageImportPermission_ID DESC LIMIT 1";
                 MySqlCommand com = new MySqlCommand(q, conn);
@@ -241,6 +252,17 @@ namespace MainSystem
                             comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
                             comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                             comFactory.Text = "";
+
+                            query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
+                            da = new MySqlDataAdapter(query, conn);
+                            dt = new DataTable();
+                            da.Fill(dt);
+                            comOrderFactory.DataSource = dt;
+                            comOrderFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                            comOrderFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                            comOrderFactory.Text = "";
+                            txtOrderFactory.Text = "";
+
                             conn.Close();
                             conn.Open();
                             query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -284,6 +306,9 @@ namespace MainSystem
                     case "comFactory":
                         if (factoryFlage)
                         {
+                            comOrderFactory.Text = comFactory.Text;
+                            comOrderFactory.SelectedValue = comFactory.SelectedValue.ToString();
+                            txtOrderFactory.Text = comOrderFactory.SelectedValue.ToString();
                             conn.Close();
                             conn.Open();
                             string query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -381,9 +406,11 @@ namespace MainSystem
                 row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                 string v = row1["الكود"].ToString();
                 txtCode.Text = v;
-
+                loaded = false;
                 txtSupPermissionNum.Text = "";
                 txtOrderNum.Text = "";
+                //comOrderFactory.SelectedIndex = -1;
+                //txtOrderFactory.Text = "";
                 txtDescription.Text = "";
                 comStorePlace.SelectedIndex = -1;
                 txtTotalMeter.Text = "0";
@@ -400,6 +427,7 @@ namespace MainSystem
                     txtCarton.ReadOnly = false;
                     txtBalat.ReadOnly = false;
                 }
+                loaded = true;
             }
             catch(Exception ex)
             {
@@ -476,7 +504,7 @@ namespace MainSystem
                         int supPermNum = 0;
                         int orderNum = 0;
                         double total = 0;
-                        if(txtOrderNum.Text != "")
+                        if(txtOrderNum.Text != "" && comOrderFactory.SelectedValue != null)
                         {
                             if(int.TryParse(txtOrderNum.Text, out orderNum))
                             {
@@ -498,8 +526,70 @@ namespace MainSystem
                                     return;
                                 }
 
-                                string query = "update orders set Received=1 where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Order_Number=" + orderNum;
-                                MySqlCommand com = new MySqlCommand(query, conn);
+                                conn.Open();
+                                dbconnection2.Open();
+                                if (txtOrderNum.Text != "" && comOrderFactory.SelectedValue != null)
+                                {
+                                    string query2 = "select order_details.OrderDetails_ID,order_details.Quantity from orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where order_details.Data_ID=" + row1["Data_ID"].ToString() + " and orders.Factory_ID=" + comOrderFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNum;
+                                    MySqlCommand com2 = new MySqlCommand(query2, conn);
+                                    MySqlDataReader dr = com2.ExecuteReader();
+                                    if (dr.HasRows)
+                                    {
+                                        while (dr.Read())
+                                        {
+                                            double orderQuantity = Convert.ToDouble(dr["Quantity"].ToString());
+                                            if (orderQuantity == total)
+                                            {
+                                                query2 = "update order_details set Received=1 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                            }
+                                            else if ((orderQuantity - total) > 0)
+                                            {
+                                                double orderTotal = 0;
+                                                string qq = "select sum(supplier_permission_details.Total_Meters) as 'Total_Meters' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=" + row1["Data_ID"].ToString() + " and orders.Order_Number=" + orderNum + " and orders.Factory_ID=" + comOrderFactory.SelectedValue.ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                                                MySqlCommand com3 = new MySqlCommand(qq, dbconnection2);
+                                                MySqlDataReader dr2 = com3.ExecuteReader();
+                                                if (dr2.HasRows)
+                                                {
+                                                    while (dr2.Read())
+                                                    {
+                                                        double permissionTotal = 0;
+                                                        if (dr2["Total_Meters"].ToString() != "")
+                                                        {
+                                                            if (Convert.ToDouble(dr2["Total_Meters"].ToString()) > 0)
+                                                            {
+                                                                permissionTotal = Convert.ToDouble(dr2["Total_Meters"].ToString());
+                                                            }
+                                                        }
+
+                                                        orderTotal = total + permissionTotal;
+                                                        if (orderTotal == orderQuantity)
+                                                        {
+                                                            query2 = "update order_details set Received=1 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                        }
+                                                        else if(orderTotal < orderQuantity)
+                                                        {
+                                                            query2 = "update order_details set Received=2 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                        }
+                                                    }
+                                                }
+                                                dr2.Close();
+
+                                                //query2 = "update order_details set Received=2 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                            }
+
+                                            com2 = new MySqlCommand(query2, dbconnection2);
+                                            com2.ExecuteNonQuery();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (MessageBox.Show("يوجد خطا فى الطلب هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                                            return;
+                                    }
+                                    dr.Close();
+                                }
+                                /*query = "update orders set Received=1 where Factory_ID=" + comOrderFactory.SelectedValue.ToString() + " and Order_Number=" + orderNum;
+                                com = new MySqlCommand(query, conn);
                                 try
                                 {
                                     if (com.ExecuteNonQuery() == 1)
@@ -514,13 +604,11 @@ namespace MainSystem
                                 {
                                     if (MessageBox.Show("يوجد خطا فى الطلب هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                                         return;
-                                }
+                                }*/
 
-                                conn.Open();
-                                dbconnection2.Open();
                                 int storageImportPermissionID = 0;
-                                query = "select StorageImportPermission_ID from storage_import_permission where Import_Permission_Number=" + permNum + " and Store_ID=" + storeId;
-                                com = new MySqlCommand(query, conn);
+                                string query = "select StorageImportPermission_ID from storage_import_permission where Import_Permission_Number=" + permNum + " and Store_ID=" + storeId;
+                                MySqlCommand com = new MySqlCommand(query, conn);
                                 if (com.ExecuteScalar() == null)
                                 {
                                     query = "insert into storage_import_permission (Store_ID,Storage_Date,Import_Permission_Number) values (@Store_ID,@Storage_Date,@Import_Permission_Number)";
@@ -546,21 +634,25 @@ namespace MainSystem
                                     {
                                         while (dr2.Read())
                                         {
-                                            query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
+                                            query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Factory_ID,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Factory_ID,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
                                             com = new MySqlCommand(query, conn);
                                             com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
                                             com.Parameters["@Supplier_ID"].Value = Convert.ToInt16(comSupplier.SelectedValue.ToString());
                                             com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
                                             com.Parameters["@Supplier_Permission_Number"].Value = supPermNum;
-                                            if (orderNum > 0)
+                                            if (orderNum > 0 && comOrderFactory.SelectedValue != null)
                                             {
                                                 com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
                                                 com.Parameters["@Order_Number"].Value = orderNum;
+                                                com.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
+                                                com.Parameters["@Factory_ID"].Value = comOrderFactory.SelectedValue.ToString();
                                             }
                                             else
                                             {
                                                 com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
                                                 com.Parameters["@Order_Number"].Value = null;
+                                                com.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
+                                                com.Parameters["@Factory_ID"].Value = null;
                                             }
                                             if (dr2["Car_ID"].ToString() != "")
                                             {
@@ -615,21 +707,25 @@ namespace MainSystem
                                         {
                                             while (dr2.Read())
                                             {
-                                                query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
+                                                query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Factory_ID,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Factory_ID,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
                                                 com = new MySqlCommand(query, conn);
                                                 com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
                                                 com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
                                                 com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
                                                 com.Parameters["@Supplier_Permission_Number"].Value = supPermNum;
-                                                if (orderNum > 0)
+                                                if (orderNum > 0 && comOrderFactory.SelectedValue != null)
                                                 {
                                                     com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
                                                     com.Parameters["@Order_Number"].Value = orderNum;
+                                                    com.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
+                                                    com.Parameters["@Factory_ID"].Value = comOrderFactory.SelectedValue.ToString();
                                                 }
                                                 else
                                                 {
                                                     com.Parameters.Add("@Order_Number", MySqlDbType.Int16);
                                                     com.Parameters["@Order_Number"].Value = null;
+                                                    com.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
+                                                    com.Parameters["@Factory_ID"].Value = null;
                                                 }
                                                 if (dr2["Car_ID"].ToString() != "")
                                                 {
@@ -746,29 +842,21 @@ namespace MainSystem
                                     com.Parameters["@Total_Meters"].Value = total;
                                     com.ExecuteNonQuery();
                                 }
-
-                                /*query = "update orders set Received=1 where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Order_Number=" + orderNum;
-                                com = new MySqlCommand(query, conn);
-                                try
-                                {
-                                    com.ExecuteNonQuery();
-                                }
-                                catch
-                                { }*/
-
-                                //comSupplier.Enabled = false;
-                                //comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
-
+                                
                                 search();
 
+                                loaded = false;
                                 txtCode.Text = "";
                                 txtSupPermissionNum.Text = "";
                                 txtOrderNum.Text = "";
+                                comOrderFactory.SelectedIndex = -1;
+                                txtOrderFactory.Text = "";
                                 txtTotalMeter.Text = "0";
                                 txtCarton.Text = "0";
                                 txtBalat.Text = "0";
                                 txtDescription.Text = "";
                                 comStorePlace.SelectedIndex = -1;
+                                loaded = true;
                             }
                             else
                             {
@@ -827,6 +915,64 @@ namespace MainSystem
                                     com = new MySqlCommand(query, conn);
                                     com.ExecuteNonQuery();
 
+                                    #region MyRegion
+                                    if (row2["Factory_ID"].ToString() != "" && row2["اذن الطلب"].ToString() != "")
+                                    {
+                                        dbconnection2.Open();
+                                        query = "select order_details.OrderDetails_ID,order_details.Quantity from orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where order_details.Data_ID=" + row2["Data_ID"].ToString() + " and orders.Factory_ID=" + row2["Factory_ID"].ToString() + " and orders.Order_Number=" + row2["اذن الطلب"].ToString();
+                                        com = new MySqlCommand(query, conn);
+                                        MySqlDataReader dr = com.ExecuteReader();
+                                        if (dr.HasRows)
+                                        {
+                                            while (dr.Read())
+                                            {
+                                                double orderQuantity = Convert.ToDouble(dr["Quantity"].ToString());
+                                                if (orderQuantity == Convert.ToDouble(row2["متر/قطعة"].ToString()))
+                                                {
+                                                    query = "update order_details set Received=0 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                }
+                                                else
+                                                {
+                                                    query = "select sum(supplier_permission_details.Total_Meters) as 'Total_Meters' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=" + row1["Data_ID"].ToString() + " and orders.Order_Number=" + row2["اذن الطلب"].ToString() + " and orders.Factory_ID=" + row2["Factory_ID"].ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                                                    //query = "select sum(order_details.Quantity) as 'Quantity' from orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where order_details.Data_ID=" + row2["Data_ID"].ToString() + " and orders.Received<>1 and (orders.Factory_ID<>" + row2["Factory_ID"].ToString() + " and orders.Order_Number<>" + row2["Order_Number"].ToString() + ")";
+                                                    com = new MySqlCommand(query, dbconnection2);
+                                                    MySqlDataReader dr2 = com.ExecuteReader();
+                                                    if (dr2.HasRows)
+                                                    {
+                                                        while (dr2.Read())
+                                                        {
+                                                            if (dr2["Total_Meters"].ToString() != "")
+                                                            {
+                                                                if (Convert.ToDouble(dr2["Total_Meters"].ToString()) > 0)
+                                                                {
+                                                                    query = "update order_details set Received=2 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                                }
+                                                                else
+                                                                {
+                                                                    query = "update order_details set Received=0 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                query = "update order_details set Received=0 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                            }
+                                                        }
+                                                    }
+                                                    //else
+                                                    //{
+                                                    //    query = "update order_details set Received=0 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
+                                                    //}
+                                                    dr2.Close();
+                                                }
+
+                                                com = new MySqlCommand(query, dbconnection2);
+                                                com.ExecuteNonQuery();
+                                            }
+                                        }
+                                        dr.Close();
+                                    }
+                                    #endregion
+
                                     search();
                                 }
                                 else
@@ -855,6 +1001,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+            dbconnection2.Close();
         }
 
         private void btnCodingProduct_Click(object sender, EventArgs e)
@@ -877,22 +1024,26 @@ namespace MainSystem
                 if (txtPermissionNum.Text != "")
                 {
                     conn.Close();
-
-                    search();
+                    dbconnection2.Close();
 
                     conn.Open();
+                    dbconnection2.Open();
+                    search();
+
                     string q = "select import_supplier_permission.Supplier_ID from import_supplier_permission INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
                     MySqlCommand com = new MySqlCommand(q, conn);
                     loaded = false;
                     if (com.ExecuteScalar() != null)
                     {
                         comSupplier.SelectedValue = com.ExecuteScalar().ToString();
+                        txtSupplier.Text = com.ExecuteScalar().ToString();
                         //comSupplier.Enabled = false;
                         //comSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
                     }
                     else
                     {
                         comSupplier.SelectedIndex = -1;
+                        txtSupplier.Text = "";
                         //comSupplier.Enabled = true;
                         //comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
                     }
@@ -915,6 +1066,7 @@ namespace MainSystem
                     flagConfirm = 2;
                     loaded = false;
                     comSupplier.SelectedIndex = -1;
+                    txtSupplier.Text = "";
                     //comSupplier.Enabled = true;
                     //comSupplier.DropDownStyle = ComboBoxStyle.DropDown;
                     loaded = true;
@@ -926,6 +1078,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+            dbconnection2.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -1081,9 +1234,40 @@ namespace MainSystem
             }
         }
 
+        private void comOrderFactory_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    txtOrderFactory.Text = comOrderFactory.SelectedValue.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void txtOrderFactory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    comOrderFactory.SelectedValue = txtOrderFactory.Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         public void search()
         {
-            string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+            //storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId + "
+            string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID,'Factory_ID','المصنع','اذن الطلب' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=0 order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(qq, conn);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1092,6 +1276,60 @@ namespace MainSystem
             gridView2.Columns["Supplier_ID"].Visible = false;
             gridView2.Columns["Supplier_Permission_Details_ID"].Visible = false;
             gridView2.Columns["Store_Place_ID"].Visible = false;
+            //gridView2.Columns["Order_Number"].Visible = false;
+            gridView2.Columns["Factory_ID"].Visible = false;
+
+            for (int i = 0; i < gridView2.Columns.Count; i++)
+            {
+                gridView2.Columns[i].Width = 100;
+            }
+            gridView2.Columns["الكود"].Width = 180;
+            gridView2.Columns["الاسم"].Width = 200;
+
+            qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+            MySqlCommand com = new MySqlCommand(qq, conn);
+            MySqlDataReader dr = com.ExecuteReader();
+            if(dr.HasRows)
+            {
+                while(dr.Read())
+                {
+                    gridView2.AddNewRow();
+                    int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+                    if (gridView2.IsNewItemRow(rowHandle))
+                    {
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["Data_ID"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["الكود"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["النوع"], dr["النوع"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الاسم"], dr["الاسم"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المورد"], "المورد");
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["اذن استلام"], dr["اذن استلام"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد البلتات"], dr["عدد البلتات"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين"], dr["عدد الكراتين"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["متر/قطعة"], dr["متر/قطعة"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["تاريخ التخزين"], dr["تاريخ التخزين"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["مكان التخزين"], dr["مكان التخزين"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["ملاحظة"], dr["ملاحظة"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Supplier_ID"], dr["Supplier_ID"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Supplier_Permission_Details_ID"], dr["Supplier_Permission_Details_ID"]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Store_Place_ID"], dr["Store_Place_ID"]);
+                        
+                        qq = "select orders.Order_Number,orders.Factory_ID,factory2.Factory_Name from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN factory as factory2 ON orders.Factory_ID = factory2.Factory_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId + " and data.Data_ID="+dr["Data_ID"]+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                        com = new MySqlCommand(qq, dbconnection2);
+                        MySqlDataReader dr2 = com.ExecuteReader();
+                        if (dr2.HasRows)
+                        {
+                            while (dr2.Read())
+                            {
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns["اذن الطلب"], dr2["Order_Number"]);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Factory_ID"], dr2["Factory_ID"]);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المصنع"], dr2["Factory_Name"]);
+                            }
+                        }
+                        dr2.Close();
+                    }
+                }
+            }
+            dr.Close();
 
             if (gridView2.IsLastVisibleRow)
             {
@@ -1104,7 +1342,7 @@ namespace MainSystem
             for (int i = 0; i < gridView2.RowCount; i++)
             {
                 DataRow row3 = gridView2.GetDataRow(i);
-                if ((row1["Data_ID"].ToString() == row3["Data_ID"].ToString()) && (txtSupPermissionNum.Text == row3["اذن استلام"].ToString()))
+                if ((row1["Data_ID"].ToString() == row3["Data_ID"].ToString()) && (txtSupPermissionNum.Text == row3["اذن استلام"].ToString()) && (comSupplier.SelectedValue.ToString() == row3["Supplier_ID"].ToString()))
                     return true;
             }
             return false;
