@@ -363,6 +363,12 @@
       <DependentUpon>Products_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Orders\bill\DataHelperClassOrder.cs" />
+    <Compile Include="Purchases\Orders\bill\DashOrder_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\bill\DashOrder_Record.designer.cs">
+      <DependentUpon>DashOrder_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Orders\bill\Order_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2129,6 +2135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Products_Report.resx">
       <DependentUpon>Products_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\bill\DashOrder_Record.resx">
+      <DependentUpon>DashOrder_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\bill\Order_Report.resx">
       <DependentUpon>Order_Report.cs</DependentUpon>

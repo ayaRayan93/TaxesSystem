@@ -90,15 +90,15 @@ namespace MainSystem
 
             table.Columns.Add(column);
             
-            column = new DataColumn();
-            column.DataType = typeof(double);
-            column.ColumnName = "Price";
-            column.AutoIncrement = false;
-            column.Caption = "السعر";
-            column.ReadOnly = false;
-            column.Unique = false;
+            //column = new DataColumn();
+            //column.DataType = typeof(double);
+            //column.ColumnName = "Price";
+            //column.AutoIncrement = false;
+            //column.Caption = "السعر";
+            //column.ReadOnly = false;
+            //column.Unique = false;
 
-            table.Columns.Add(column);
+            //table.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = typeof(string);
@@ -179,15 +179,15 @@ namespace MainSystem
 
             table.Columns.Add(column);
 
-            column = new DataColumn();
-            column.DataType = typeof(double);
-            column.ColumnName = "Price";
-            column.AutoIncrement = false;
-            column.Caption = "السعر";
-            column.ReadOnly = false;
-            column.Unique = false;
+            //column = new DataColumn();
+            //column.DataType = typeof(double);
+            //column.ColumnName = "Price";
+            //column.AutoIncrement = false;
+            //column.Caption = "السعر";
+            //column.ReadOnly = false;
+            //column.Unique = false;
 
-            table.Columns.Add(column);
+            //table.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = typeof(string);
