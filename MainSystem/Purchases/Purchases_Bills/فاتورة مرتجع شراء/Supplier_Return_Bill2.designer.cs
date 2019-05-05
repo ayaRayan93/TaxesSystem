@@ -64,9 +64,9 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAddAll = new System.Windows.Forms.Button();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelSupPerm = new System.Windows.Forms.Label();
+            this.comSupPerm = new System.Windows.Forms.ComboBox();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtBillNumber = new System.Windows.Forms.TextBox();
@@ -76,17 +76,19 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             this.SuspendLayout();
             // 
             // label11
@@ -94,7 +96,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(490, 8);
+            this.label11.Location = new System.Drawing.Point(593, 8);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 18);
             this.label11.TabIndex = 37;
@@ -105,7 +107,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(696, 8);
+            this.label2.Location = new System.Drawing.Point(799, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 18);
             this.label2.TabIndex = 35;
@@ -116,7 +118,7 @@
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(560, 5);
+            this.comStore.Location = new System.Drawing.Point(663, 5);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(130, 24);
@@ -150,7 +152,7 @@
             this.btnNewChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewChoose.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnNewChoose.ForeColor = System.Drawing.Color.White;
-            this.btnNewChoose.Location = new System.Drawing.Point(26, 3);
+            this.btnNewChoose.Location = new System.Drawing.Point(5, 3);
             this.btnNewChoose.Name = "btnNewChoose";
             this.btnNewChoose.Size = new System.Drawing.Size(80, 28);
             this.btnNewChoose.TabIndex = 58;
@@ -557,37 +559,11 @@
             this.btnAddAll.UseVisualStyleBackColor = true;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
             // 
-            // gridControl2
-            // 
-            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 409);
-            this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Name = "gridControl2";
-            this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(856, 190);
-            this.gridControl2.TabIndex = 64;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            // 
-            // gridView2
-            // 
-            this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView2.Appearance.Row.Options.UseFont = true;
-            this.gridView2.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsSelection.MultiSelect = true;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.labelSupPerm);
+            this.panel1.Controls.Add(this.comSupPerm);
             this.panel1.Controls.Add(this.comSupplier);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.txtBillNumber);
@@ -601,12 +577,37 @@
             this.panel1.Size = new System.Drawing.Size(856, 34);
             this.panel1.TabIndex = 0;
             // 
+            // labelSupPerm
+            // 
+            this.labelSupPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelSupPerm.AutoSize = true;
+            this.labelSupPerm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupPerm.Location = new System.Drawing.Point(197, 8);
+            this.labelSupPerm.Name = "labelSupPerm";
+            this.labelSupPerm.Size = new System.Drawing.Size(78, 18);
+            this.labelSupPerm.TabIndex = 202;
+            this.labelSupPerm.Text = "اذن استلام";
+            this.labelSupPerm.Visible = false;
+            // 
+            // comSupPerm
+            // 
+            this.comSupPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comSupPerm.FormattingEnabled = true;
+            this.comSupPerm.Location = new System.Drawing.Point(91, 5);
+            this.comSupPerm.Name = "comSupPerm";
+            this.comSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupPerm.Size = new System.Drawing.Size(100, 24);
+            this.comSupPerm.TabIndex = 203;
+            this.comSupPerm.Visible = false;
+            this.comSupPerm.SelectedValueChanged += new System.EventHandler(this.comSupPerm_SelectedValueChanged);
+            // 
             // comSupplier
             // 
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(178, 5);
+            this.comSupplier.Location = new System.Drawing.Point(281, 5);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
@@ -618,7 +619,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(334, 8);
+            this.label15.Location = new System.Drawing.Point(437, 8);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(44, 18);
             this.label15.TabIndex = 60;
@@ -628,7 +629,7 @@
             // 
             this.txtBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtBillNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillNumber.Location = new System.Drawing.Point(384, 6);
+            this.txtBillNumber.Location = new System.Drawing.Point(487, 6);
             this.txtBillNumber.Name = "txtBillNumber";
             this.txtBillNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBillNumber.Size = new System.Drawing.Size(100, 23);
@@ -725,6 +726,35 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
+            // gridView2
+            // 
+            this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView2.Appearance.Row.Options.UseFont = true;
+            this.gridView2.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.GridControl = this.gridControl2;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsSelection.MultiSelect = true;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl2.Location = new System.Drawing.Point(3, 409);
+            this.gridControl2.MainView = this.gridView2;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.gridControl2.Size = new System.Drawing.Size(856, 190);
+            this.gridControl2.TabIndex = 64;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
             // Supplier_Return_Bill2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,8 +769,6 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -748,6 +776,8 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -782,8 +812,6 @@
         private System.Windows.Forms.Panel panel3;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.GridControl gridControl2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
@@ -801,6 +829,10 @@
         private System.Windows.Forms.Label labelTotalB;
         private System.Windows.Forms.ComboBox comSupplier;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label labelSupPerm;
+        private System.Windows.Forms.ComboBox comSupPerm;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }
 

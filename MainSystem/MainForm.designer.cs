@@ -268,7 +268,6 @@
             this.navBarItem96 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem97 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem98 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSupplierPullAgl = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupDeposit = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem90 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem91 = new DevExpress.XtraNavBar.NavBarItem();
@@ -2702,8 +2701,7 @@
             this.navBarItem96,
             this.navBarItem97,
             this.navBarItem98,
-            this.navBarItem89,
-            this.navBarItemSupplierPullAgl});
+            this.navBarItem89});
             this.navBarControlBankReport.Location = new System.Drawing.Point(985, 0);
             this.navBarControlBankReport.Name = "navBarControlBankReport";
             this.navBarControlBankReport.OptionsNavPane.ExpandedWidth = 160;
@@ -2725,8 +2723,7 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem96),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem97),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem98),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPullAgl)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem98)});
             this.navBarGroupPullOut.Name = "navBarGroupPullOut";
             // 
             // navBarItem95
@@ -2762,14 +2759,6 @@
             this.navBarItem98.Enabled = false;
             this.navBarItem98.Name = "navBarItem98";
             this.navBarItem98.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullPayAccount_LinkClicked);
-            // 
-            // navBarItemSupplierPullAgl
-            // 
-            this.navBarItemSupplierPullAgl.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemSupplierPullAgl.Appearance.Options.UseFont = true;
-            this.navBarItemSupplierPullAgl.Caption = "لحساب مورد (آجل)";
-            this.navBarItemSupplierPullAgl.Name = "navBarItemSupplierPullAgl";
-            this.navBarItemSupplierPullAgl.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierPullAgl_LinkClicked);
             // 
             // navBarGroupDeposit
             // 
@@ -4065,7 +4054,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup48;
+            this.navBarControl7.ActiveGroup = this.navBarGroup46;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -4161,7 +4150,6 @@
             // navBarGroup48
             // 
             this.navBarGroup48.Caption = "اسعار الشراء";
-            this.navBarGroup48.Expanded = true;
             this.navBarGroup48.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchasesPricesRecord)});
             this.navBarGroup48.Name = "navBarGroup48";
@@ -4226,20 +4214,21 @@
             // 
             // navBarGroup46
             // 
-            this.navBarGroup46.Caption = "الطلبات";
+            this.navBarGroup46.Caption = "الطلبيات";
+            this.navBarGroup46.Expanded = true;
             this.navBarGroup46.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOrderReport)});
             this.navBarGroup46.Name = "navBarGroup46";
             // 
             // navBarItemOrderReport
             // 
-            this.navBarItemOrderReport.Caption = "عرض الطلبات";
+            this.navBarItemOrderReport.Caption = "عرض الطلبيات";
             this.navBarItemOrderReport.Name = "navBarItemOrderReport";
             this.navBarItemOrderReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOrderReport_LinkClicked);
             // 
             // navBarGroupPurchasesReport
             // 
-            this.navBarGroupPurchasesReport.Caption = "تقارير الطلبات";
+            this.navBarGroupPurchasesReport.Caption = "تقارير الطلبيات";
             this.navBarGroupPurchasesReport.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpectedOrders),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemRequestedOrders),
@@ -4248,13 +4237,13 @@
             // 
             // navBarItemExpectedOrders
             // 
-            this.navBarItemExpectedOrders.Caption = "الطلبات بتاريخ الاستلام";
+            this.navBarItemExpectedOrders.Caption = "الطلبيات بتاريخ الاستلام";
             this.navBarItemExpectedOrders.Name = "navBarItemExpectedOrders";
             this.navBarItemExpectedOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpectedOrders_LinkClicked);
             // 
             // navBarItemRequestedOrders
             // 
-            this.navBarItemRequestedOrders.Caption = "الطلبات بتاريخ الطلب";
+            this.navBarItemRequestedOrders.Caption = "الطلبيات بتاريخ الطلب";
             this.navBarItemRequestedOrders.Name = "navBarItemRequestedOrders";
             this.navBarItemRequestedOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemRequestedOrders_LinkClicked);
             // 
@@ -5216,7 +5205,6 @@
         private System.Windows.Forms.PictureBox pictureBoxStoreExpectedOrder;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierPermission;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierReturnedPermission;
-        private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierPullAgl;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupSupplierPayments;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierPayments;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup45;

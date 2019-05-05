@@ -71,6 +71,11 @@
             this.btnCodingDetails = new System.Windows.Forms.Button();
             this.btnCodingProduct = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtOrderFactory = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comOrderFactory = new System.Windows.Forms.ComboBox();
+            this.txtOrderNum = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtTotalMeter = new System.Windows.Forms.TextBox();
             this.txtSupPermissionNum = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -79,8 +84,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.txtOrderNum = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -123,7 +126,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label7.Location = new System.Drawing.Point(692, 7);
+            this.label7.Location = new System.Drawing.Point(693, 7);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label7.Size = new System.Drawing.Size(78, 19);
@@ -135,12 +138,12 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label8.Location = new System.Drawing.Point(431, 37);
+            this.label8.Location = new System.Drawing.Point(432, 37);
             this.label8.Name = "label8";
             this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label8.Size = new System.Drawing.Size(89, 19);
+            this.label8.Size = new System.Drawing.Size(85, 19);
             this.label8.TabIndex = 27;
-            this.label8.Text = "عدد الكراتين ";
+            this.label8.Text = "عدد الكراتين";
             // 
             // txtCarton
             // 
@@ -159,7 +162,7 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label10.Location = new System.Drawing.Point(692, 37);
+            this.label10.Location = new System.Drawing.Point(693, 37);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label10.Size = new System.Drawing.Size(79, 19);
@@ -194,7 +197,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label13.Location = new System.Drawing.Point(238, 37);
+            this.label13.Location = new System.Drawing.Point(229, 37);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label13.Size = new System.Drawing.Size(73, 19);
@@ -206,7 +209,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(692, 68);
+            this.label14.Location = new System.Drawing.Point(229, 68);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(42, 19);
@@ -217,12 +220,12 @@
             // 
             this.txtDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDescription.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDescription.Location = new System.Drawing.Point(376, 64);
+            this.txtDescription.Location = new System.Drawing.Point(64, 64);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDescription.Size = new System.Drawing.Size(311, 26);
+            this.txtDescription.Size = new System.Drawing.Size(160, 26);
             this.txtDescription.TabIndex = 8;
             // 
             // txtCode
@@ -556,6 +559,7 @@
             this.gridView2.OptionsFind.ShowClearButton = false;
             this.gridView2.OptionsFind.ShowFindButton = false;
             this.gridView2.OptionsSelection.MultiSelect = true;
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
             // tableLayoutPanel1
@@ -682,6 +686,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.txtOrderFactory);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.comOrderFactory);
             this.panel2.Controls.Add(this.txtOrderNum);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.txtTotalMeter);
@@ -703,6 +710,62 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(821, 94);
             this.panel2.TabIndex = 44;
+            // 
+            // txtOrderFactory
+            // 
+            this.txtOrderFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtOrderFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtOrderFactory.Location = new System.Drawing.Point(527, 65);
+            this.txtOrderFactory.Name = "txtOrderFactory";
+            this.txtOrderFactory.Size = new System.Drawing.Size(50, 23);
+            this.txtOrderFactory.TabIndex = 46;
+            this.txtOrderFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOrderFactory_KeyDown);
+            // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label12.Location = new System.Drawing.Point(739, 67);
+            this.label12.Name = "label12";
+            this.label12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label12.Size = new System.Drawing.Size(49, 18);
+            this.label12.TabIndex = 47;
+            this.label12.Text = "المصنع";
+            // 
+            // comOrderFactory
+            // 
+            this.comOrderFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comOrderFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comOrderFactory.FormattingEnabled = true;
+            this.comOrderFactory.Location = new System.Drawing.Point(583, 64);
+            this.comOrderFactory.Name = "comOrderFactory";
+            this.comOrderFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comOrderFactory.Size = new System.Drawing.Size(150, 24);
+            this.comOrderFactory.TabIndex = 45;
+            this.comOrderFactory.SelectedValueChanged += new System.EventHandler(this.comOrderFactory_SelectedValueChanged);
+            // 
+            // txtOrderNum
+            // 
+            this.txtOrderNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtOrderNum.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtOrderNum.Location = new System.Drawing.Point(326, 64);
+            this.txtOrderNum.Name = "txtOrderNum";
+            this.txtOrderNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtOrderNum.Size = new System.Drawing.Size(100, 24);
+            this.txtOrderNum.TabIndex = 43;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label6.Location = new System.Drawing.Point(432, 67);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label6.Size = new System.Drawing.Size(75, 19);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "اذن الطلب";
             // 
             // txtTotalMeter
             // 
@@ -808,28 +871,6 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // txtOrderNum
-            // 
-            this.txtOrderNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtOrderNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOrderNum.Location = new System.Drawing.Point(124, 64);
-            this.txtOrderNum.Name = "txtOrderNum";
-            this.txtOrderNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtOrderNum.Size = new System.Drawing.Size(100, 24);
-            this.txtOrderNum.TabIndex = 43;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label6.Location = new System.Drawing.Point(230, 67);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(75, 19);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "اذن الطلب";
-            // 
             // SupplierReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -912,6 +953,9 @@
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.TextBox txtOrderNum;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtOrderFactory;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox comOrderFactory;
     }
 }
 

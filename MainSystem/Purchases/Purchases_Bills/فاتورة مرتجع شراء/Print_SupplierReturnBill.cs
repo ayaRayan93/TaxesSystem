@@ -14,13 +14,14 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string storeName, string permissionNum, string supplierName, string storePermessionNum, double TotalA, double addabtiveTax, List<SupplierReturnBill_Items> ReceiptItems)
+        public void InitData(string storeName, string permissionNum, string supplierName, string storePermessionNum, string SupPerm, double TotalA, double addabtiveTax, List<SupplierReturnBill_Items> ReceiptItems)
         {
             DateNow.Value = DateTime.Now;
             StoreName.Value = storeName;
             PermissionNumber.Value = permissionNum;
             SupplierName.Value = supplierName;
             StorePermessionNum.Value = storePermessionNum;
+            SupplierPermession.Value = SupPerm;
             Safy.Value = TotalA;
             Value_Additive_Tax.Value = addabtiveTax;
             objectDataSource2.DataSource = ReceiptItems;
