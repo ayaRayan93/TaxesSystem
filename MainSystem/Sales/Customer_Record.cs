@@ -118,7 +118,15 @@ namespace MainSystem
                         com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Name"].Value = txtName.Text;
                         com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
-                        com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
+                        double re=0;
+                        if (Double.TryParse(txtOpenAccount.Text, out re))
+                        {
+                            com.Parameters["@Customer_OpenAccount"].Value = re;
+                        }
+                        else
+                        {
+                            com.Parameters["@Customer_OpenAccount"].Value =0;
+                        }
                         com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Address"].Value = txtAddress.Text;
                         com.Parameters.Add("@Customer_Email", MySqlDbType.VarChar, 255);
@@ -336,7 +344,15 @@ namespace MainSystem
             com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11);
             com.Parameters["@Client_ID"].Value = id;
             com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
-            com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount2.Text;
+            double re = 0;
+            if (Double.TryParse(txtOpenAccount2.Text, out re))
+            {
+                com.Parameters["@Customer_OpenAccount"].Value = re;
+            }
+            else
+            {
+                com.Parameters["@Customer_OpenAccount"].Value = 0;
+            }
             com.ExecuteNonQuery();
         }
 

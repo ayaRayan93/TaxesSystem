@@ -37,7 +37,6 @@ namespace MainSystem
             }
         
         }
-
         private void ProductsSellPriceForm_Load(object sender, EventArgs e)
         {
             try
@@ -569,9 +568,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-       
-     
+        }    
         private void labSearch_Click(object sender, EventArgs e)
         {
             try
@@ -591,6 +588,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        
         //function
         public void displayProducts()
         {

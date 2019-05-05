@@ -56,7 +56,14 @@ namespace MainSystem
                     initializeBranch();
                     PurchasesMainForm();
                 }
-
+                if (UserControl.userType == 1)
+                {
+                    pictureBoxSetting.Visible = true;
+                }
+                else
+                {
+                    pictureBoxSetting.Visible = false;
+                }
                 StoreTP = xtraTabPageStores;
                 SalesTP =xtraTabPageSales;
                 HRTP = xtraTabPageHR;
@@ -126,6 +133,14 @@ namespace MainSystem
                 btnSales.Checked = true;
                 btnPurchases.Enabled = true;
                 btnPurchases.Checked = true;
+                btnHR.Enabled = true;
+                btnHR.Checked = true;
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
                 userAccess();
             }
             else if (UserControl.userType == 3)
@@ -608,17 +623,29 @@ namespace MainSystem
             navBarGroup44.Visible = false;
             navBarGroupSupplier.Visible = false;
             navBarGroupLeastQuantity.Visible = false;
-
+            
         }
 
-      
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ChangeIP form = new ChangeIP();
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 
     public static class connection
     {
         static string supString = Properties.Resources.IP_Address;
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=testprice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+      
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

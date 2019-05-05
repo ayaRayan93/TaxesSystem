@@ -212,7 +212,7 @@ namespace MainSystem
             try
             {
                 load = false;
-                string subQuery = " date(taswayaa_adding_permision.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "'";
+                string subQuery = " date(taswayaa_subtract_permision.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "'";
                 if (comStore.Text != "")
                 {
                     subQuery += " and taswayaa_subtract_permision.Store_ID=" + comStore.SelectedValue;

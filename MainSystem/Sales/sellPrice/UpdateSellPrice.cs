@@ -86,6 +86,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+       
         //deign event
         private void chBoxAdditionalIncrease_CheckedChanged(object sender, EventArgs e)
         {
@@ -179,6 +180,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+       
         //main events
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -703,7 +705,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void chBoxSelectAll_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -738,7 +739,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -865,7 +865,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             try

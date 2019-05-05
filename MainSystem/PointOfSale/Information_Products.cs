@@ -239,7 +239,7 @@ namespace MainSystem
                     MainForm.panelProductsReport.Name = "panelProductsReport";
                     MainForm.panelProductsReport.Dock = DockStyle.Fill;
 
-                    MainForm.ProductsReport = new Products_Report(main, row1, "بند");
+                    MainForm.ProductsReport = new Products_ReportCopy(main, row1, "بند");
                     MainForm.ProductsReport.Size = new Size(1109, 660);
                     MainForm.ProductsReport.TopLevel = false;
                     MainForm.ProductsReport.FormBorderStyle = FormBorderStyle.None;
@@ -254,7 +254,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MainForm.ProductsReport = new Products_Report(main, row1, "بند");
+                    MainForm.ProductsReport = new Products_ReportCopy(main, row1, "بند");
                     MainForm.ProductsReport.Size = new Size(1109, 660);
                     MainForm.ProductsReport.TopLevel = false;
                     MainForm.ProductsReport.FormBorderStyle = FormBorderStyle.None;

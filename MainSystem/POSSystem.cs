@@ -30,7 +30,7 @@ namespace MainSystem
 
 
         public static Customer_Report2 CustomerReport;
-        public static Products_Report ProductsReport;
+        public static Products_ReportCopy ProductsReport;
         public static ProductsDetails_Report ProductsDetailsReport;
         public static Bill_Confirm BillConfirm;
         public static Information_Products InformationProducts;
@@ -175,7 +175,7 @@ namespace MainSystem
                     panelProductsReport.Name = "panelProductsReport";
                     panelProductsReport.Dock = DockStyle.Fill;
 
-                    ProductsReport = new Products_Report(this, null, "");
+                    ProductsReport = new Products_ReportCopy(this, null, "");
                     ProductsReport.Size = new Size(1109, 660);
                     ProductsReport.TopLevel = false;
                     ProductsReport.FormBorderStyle = FormBorderStyle.None;

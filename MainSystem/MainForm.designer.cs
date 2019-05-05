@@ -485,6 +485,7 @@
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.pictureBoxSetting = new System.Windows.Forms.PictureBox();
             this.labelStoreExpectedOrder = new System.Windows.Forms.Label();
             this.pictureBoxStoreExpectedOrder = new System.Windows.Forms.PictureBox();
             this.labelPurchaseLeast = new System.Windows.Forms.Label();
@@ -544,6 +545,7 @@
             this.panMain.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStoreExpectedOrder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPurchaseLeast)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -4428,6 +4430,7 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
+            this.panHeader.Controls.Add(this.pictureBoxSetting);
             this.panHeader.Controls.Add(this.labelStoreExpectedOrder);
             this.panHeader.Controls.Add(this.pictureBoxStoreExpectedOrder);
             this.panHeader.Controls.Add(this.labelPurchaseLeast);
@@ -4448,6 +4451,22 @@
             this.panHeader.Name = "panHeader";
             this.panHeader.Size = new System.Drawing.Size(1177, 42);
             this.panHeader.TabIndex = 0;
+            this.panHeader.Tag = "اعدادات";
+            // 
+            // pictureBoxSetting
+            // 
+            this.pictureBoxSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxSetting.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxSetting.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSetting.Image")));
+            this.pictureBoxSetting.ImageLocation = "";
+            this.pictureBoxSetting.Location = new System.Drawing.Point(1122, 2);
+            this.pictureBoxSetting.Name = "pictureBoxSetting";
+            this.pictureBoxSetting.Size = new System.Drawing.Size(44, 34);
+            this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSetting.TabIndex = 21;
+            this.pictureBoxSetting.TabStop = false;
+            this.pictureBoxSetting.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // labelStoreExpectedOrder
             // 
@@ -4733,6 +4752,7 @@
             this.panContent.ResumeLayout(false);
             this.panHeader.ResumeLayout(false);
             this.panHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxStoreExpectedOrder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPurchaseLeast)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
@@ -5203,6 +5223,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem224;
         private DevExpress.XtraNavBar.NavBarItem navBarItem225;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierBillsTransitionsDetailsReport;
+        private System.Windows.Forms.PictureBox pictureBoxSetting;
     }
 }
 

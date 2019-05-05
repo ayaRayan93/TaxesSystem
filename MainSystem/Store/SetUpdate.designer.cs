@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tLPanProductsContainer = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
@@ -77,9 +78,11 @@
             this.txtCode = new System.Windows.Forms.TextBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnNewChooes = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtFactory = new System.Windows.Forms.TextBox();
             this.comGroup = new System.Windows.Forms.ComboBox();
             this.comFactory = new System.Windows.Forms.ComboBox();
@@ -89,9 +92,7 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl();
-            this.btnNewChooes = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel3.SuspendLayout();
             this.tLPanProductsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -150,19 +151,19 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 13.25F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 13.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
@@ -188,12 +189,12 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Neo Sans Arabic", 8F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Neo Sans Arabic", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(992, 126);
@@ -306,19 +307,19 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 13.25F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 13.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView2.ColumnHeadersHeight = 30;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID2,
@@ -345,12 +346,12 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Neo Sans Arabic", 8F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.Padding = new System.Windows.Forms.Padding(2);
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Neo Sans Arabic", 8F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(2);
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.dataGridView2.RowTemplate.Height = 25;
             this.dataGridView2.Size = new System.Drawing.Size(992, 131);
@@ -455,13 +456,13 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(586, 80);
             this.label8.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label8.Name = "label8";
             this.label8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label8.Size = new System.Drawing.Size(64, 16);
+            this.label8.Size = new System.Drawing.Size(54, 19);
             this.label8.TabIndex = 9;
             this.label8.Text = "اسم الطقم";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -509,13 +510,13 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(366, 19);
             this.label7.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label7.Size = new System.Drawing.Size(43, 16);
+            this.label7.Size = new System.Drawing.Size(37, 19);
             this.label7.TabIndex = 10;
             this.label7.Text = "الكمية";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -537,13 +538,13 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(741, 18);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label6.Size = new System.Drawing.Size(37, 16);
+            this.label6.Size = new System.Drawing.Size(33, 19);
             this.label6.TabIndex = 9;
             this.label6.Text = "الكود";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -578,7 +579,7 @@
             this.panel4.Controls.Add(this.btnSearch);
             this.panel4.Controls.Add(this.txtProduct);
             this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.txtFactory);
             this.panel4.Controls.Add(this.comGroup);
             this.panel4.Controls.Add(this.comFactory);
@@ -593,166 +594,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(886, 94);
             this.panel4.TabIndex = 21;
-            // 
-            // txtProduct
-            // 
-            this.txtProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtProduct.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProduct.Location = new System.Drawing.Point(227, 45);
-            this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
-            this.txtProduct.Name = "txtProduct";
-            this.txtProduct.Size = new System.Drawing.Size(69, 23);
-            this.txtProduct.TabIndex = 12;
-            this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(812, 45);
-            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 16);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "المجموعة";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(486, 47);
-            this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 16);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "الصنف";
-            // 
-            // txtFactory
-            // 
-            this.txtFactory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFactory.Location = new System.Drawing.Point(227, 18);
-            this.txtFactory.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
-            this.txtFactory.Name = "txtFactory";
-            this.txtFactory.Size = new System.Drawing.Size(69, 23);
-            this.txtFactory.TabIndex = 13;
-            this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comGroup
-            // 
-            this.comGroup.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comGroup.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comGroup.FormattingEnabled = true;
-            this.comGroup.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comGroup.Location = new System.Drawing.Point(630, 45);
-            this.comGroup.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comGroup.Name = "comGroup";
-            this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comGroup.Size = new System.Drawing.Size(179, 24);
-            this.comGroup.TabIndex = 9;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // comFactory
-            // 
-            this.comFactory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comFactory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comFactory.FormattingEnabled = true;
-            this.comFactory.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comFactory.Location = new System.Drawing.Point(302, 18);
-            this.comFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comFactory.Name = "comFactory";
-            this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comFactory.Size = new System.Drawing.Size(179, 24);
-            this.comFactory.TabIndex = 11;
-            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // txtGroup
-            // 
-            this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGroup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGroup.Location = new System.Drawing.Point(555, 47);
-            this.txtGroup.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
-            this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(69, 23);
-            this.txtGroup.TabIndex = 11;
-            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comType
-            // 
-            this.comType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comType.FormattingEnabled = true;
-            this.comType.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comType.Location = new System.Drawing.Point(630, 16);
-            this.comType.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comType.Name = "comType";
-            this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comType.Size = new System.Drawing.Size(179, 24);
-            this.comType.TabIndex = 2;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // comProduct
-            // 
-            this.comProduct.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comProduct.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comProduct.BackColor = System.Drawing.Color.White;
-            this.comProduct.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comProduct.FormattingEnabled = true;
-            this.comProduct.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
-            this.comProduct.Location = new System.Drawing.Point(302, 47);
-            this.comProduct.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comProduct.Name = "comProduct";
-            this.comProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comProduct.Size = new System.Drawing.Size(179, 24);
-            this.comProduct.TabIndex = 10;
-            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // txtType
-            // 
-            this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtType.Location = new System.Drawing.Point(555, 18);
-            this.txtType.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
-            this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(69, 23);
-            this.txtType.TabIndex = 12;
-            this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(486, 18);
-            this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 16);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "المصنع";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(812, 19);
-            this.label3.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "النوع ";
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = null;
-            this.bunifuDragControl1.Vertical = true;
             // 
             // btnNewChooes
             // 
@@ -784,6 +625,179 @@
             this.btnSearch.TabIndex = 139;
             this.btnSearch.Text = "بحث";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtProduct
+            // 
+            this.txtProduct.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProduct.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProduct.Location = new System.Drawing.Point(190, 45);
+            this.txtProduct.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            this.txtProduct.Name = "txtProduct";
+            this.txtProduct.Size = new System.Drawing.Size(69, 23);
+            this.txtProduct.TabIndex = 12;
+            this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(775, 45);
+            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 19);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "المجموعة";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(449, 45);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 19);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "الصنف";
+            // 
+            // txtFactory
+            // 
+            this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtFactory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFactory.Location = new System.Drawing.Point(190, 18);
+            this.txtFactory.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            this.txtFactory.Name = "txtFactory";
+            this.txtFactory.Size = new System.Drawing.Size(69, 23);
+            this.txtFactory.TabIndex = 13;
+            this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // comGroup
+            // 
+            this.comGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comGroup.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comGroup.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comGroup.FormattingEnabled = true;
+            this.comGroup.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
+            this.comGroup.Location = new System.Drawing.Point(593, 45);
+            this.comGroup.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comGroup.Name = "comGroup";
+            this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comGroup.Size = new System.Drawing.Size(179, 24);
+            this.comGroup.TabIndex = 9;
+            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comGroup_SelectedValueChanged);
+            // 
+            // comFactory
+            // 
+            this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comFactory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comFactory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comFactory.FormattingEnabled = true;
+            this.comFactory.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
+            this.comFactory.Location = new System.Drawing.Point(265, 18);
+            this.comFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comFactory.Name = "comFactory";
+            this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comFactory.Size = new System.Drawing.Size(179, 24);
+            this.comFactory.TabIndex = 11;
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
+            // 
+            // txtGroup
+            // 
+            this.txtGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGroup.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGroup.Location = new System.Drawing.Point(518, 45);
+            this.txtGroup.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            this.txtGroup.Name = "txtGroup";
+            this.txtGroup.Size = new System.Drawing.Size(69, 23);
+            this.txtGroup.TabIndex = 11;
+            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // comType
+            // 
+            this.comType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comType.FormattingEnabled = true;
+            this.comType.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
+            this.comType.Location = new System.Drawing.Point(593, 18);
+            this.comType.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comType.Name = "comType";
+            this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comType.Size = new System.Drawing.Size(179, 24);
+            this.comType.TabIndex = 2;
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedIndexChanged);
+            // 
+            // comProduct
+            // 
+            this.comProduct.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comProduct.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comProduct.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comProduct.BackColor = System.Drawing.Color.White;
+            this.comProduct.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comProduct.FormattingEnabled = true;
+            this.comProduct.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
+            this.comProduct.Location = new System.Drawing.Point(265, 45);
+            this.comProduct.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comProduct.Name = "comProduct";
+            this.comProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comProduct.Size = new System.Drawing.Size(179, 24);
+            this.comProduct.TabIndex = 10;
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comProduct_SelectedValueChanged);
+            // 
+            // txtType
+            // 
+            this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtType.Location = new System.Drawing.Point(518, 18);
+            this.txtType.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(69, 23);
+            this.txtType.TabIndex = 12;
+            this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(449, 18);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 19);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "المصنع";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(775, 18);
+            this.label3.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 19);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "النوع ";
+            // 
+            // bunifuDragControl1
+            // 
+            this.bunifuDragControl1.Fixed = true;
+            this.bunifuDragControl1.Horizontal = true;
+            this.bunifuDragControl1.TargetControl = null;
+            this.bunifuDragControl1.Vertical = true;
             // 
             // SetUpdate
             // 
@@ -819,7 +833,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tLPanProductsContainer;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
