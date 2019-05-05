@@ -144,7 +144,7 @@
             this.tLPanCpntent.Location = new System.Drawing.Point(0, 0);
             this.tLPanCpntent.Name = "tLPanCpntent";
             this.tLPanCpntent.RowCount = 4;
-            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
@@ -248,7 +248,7 @@
             this.panHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panHeader.Location = new System.Drawing.Point(3, 3);
             this.panHeader.Name = "panHeader";
-            this.panHeader.Size = new System.Drawing.Size(902, 114);
+            this.panHeader.Size = new System.Drawing.Size(902, 194);
             this.panHeader.TabIndex = 40;
             // 
             // panSearchAddtionalTool
@@ -733,10 +733,10 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 123);
+            this.gridControl1.Location = new System.Drawing.Point(3, 203);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(902, 351);
+            this.gridControl1.Size = new System.Drawing.Size(902, 271);
             this.gridControl1.TabIndex = 41;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});

@@ -361,7 +361,7 @@
             this.comGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(324, 5);
+            this.comGroup.Location = new System.Drawing.Point(516, 37);
             this.comGroup.Name = "comGroup";
             this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comGroup.Size = new System.Drawing.Size(120, 24);
@@ -385,10 +385,10 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label15.Location = new System.Drawing.Point(649, 37);
+            this.label15.Location = new System.Drawing.Point(448, 8);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(54, 19);
+            this.label15.Size = new System.Drawing.Size(53, 19);
             this.label15.TabIndex = 5;
             this.label15.Text = "المصنع";
             // 
@@ -399,7 +399,7 @@
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label4.Location = new System.Drawing.Point(261, 37);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 19);
+            this.label4.Size = new System.Drawing.Size(41, 19);
             this.label4.TabIndex = 16;
             this.label4.Text = "اللون";
             // 
@@ -408,10 +408,10 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(448, 8);
+            this.label14.Location = new System.Drawing.Point(640, 40);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(71, 19);
+            this.label14.Size = new System.Drawing.Size(69, 19);
             this.label14.TabIndex = 8;
             this.label14.Text = "المجموعة";
             // 
@@ -422,7 +422,7 @@
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label7.Location = new System.Drawing.Point(260, 8);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 19);
+            this.label7.Size = new System.Drawing.Size(57, 19);
             this.label7.TabIndex = 15;
             this.label7.Text = "المقاس";
             // 
@@ -431,7 +431,7 @@
             this.comFactory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(525, 34);
+            this.comFactory.Location = new System.Drawing.Point(324, 5);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(120, 24);
@@ -445,7 +445,7 @@
             this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label16.Location = new System.Drawing.Point(114, 8);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 19);
+            this.label16.Size = new System.Drawing.Size(37, 19);
             this.label16.TabIndex = 14;
             this.label16.Text = "الفرز";
             // 
@@ -466,10 +466,10 @@
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label17.Location = new System.Drawing.Point(656, 8);
+            this.label17.Location = new System.Drawing.Point(646, 8);
             this.label17.Name = "label17";
             this.label17.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label17.Size = new System.Drawing.Size(41, 19);
+            this.label17.Size = new System.Drawing.Size(40, 19);
             this.label17.TabIndex = 2;
             this.label17.Text = "النوع";
             // 
@@ -478,7 +478,7 @@
             this.comType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(525, 5);
+            this.comType.Location = new System.Drawing.Point(515, 5);
             this.comType.Name = "comType";
             this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comType.Size = new System.Drawing.Size(120, 24);
@@ -710,7 +710,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(464, 5);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.Size = new System.Drawing.Size(123, 19);
             this.labSearch.TabIndex = 158;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -722,7 +722,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label10.Location = new System.Drawing.Point(424, 32);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(75, 19);
+            this.label10.Size = new System.Drawing.Size(76, 19);
             this.label10.TabIndex = 1;
             this.label10.Text = "بحث بعرض";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1038,8 +1038,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBillNum;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPhone;
@@ -1050,8 +1048,6 @@
         private System.Windows.Forms.ComboBox comOffer;
         private DevExpress.XtraEditors.CheckEdit checkEditSets;
         private DevExpress.XtraEditors.CheckEdit checkEditOffers;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comStore;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButtonAddSpecialOrder;
         private System.Windows.Forms.TextBox txtSetID;
         private System.Windows.Forms.TextBox txtOfferID;
@@ -1094,5 +1090,9 @@
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.Label label18;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comStore;
     }
 }

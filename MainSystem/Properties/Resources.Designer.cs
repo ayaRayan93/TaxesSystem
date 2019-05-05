@@ -602,6 +602,16 @@ namespace MainSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Checkmark_48px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Checkmark_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_Collapse_Arrow_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Collapse_Arrow_32", resourceCulture);
@@ -615,6 +625,16 @@ namespace MainSystem.Properties {
         internal static System.Drawing.Bitmap icons8_Contacts2_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Contacts2_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Delete_48px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Delete_48px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

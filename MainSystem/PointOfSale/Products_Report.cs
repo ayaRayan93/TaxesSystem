@@ -184,39 +184,51 @@ namespace MainSystem
                             while (dr4.Read())
                             {
                                 DashBillNum = Convert.ToInt16(dr4["Dash_ID"].ToString());
-                                mainBillExist = true;
-                                if (dr4["Customer_ID"].ToString() != "")
+                                if (CheckDelegateBill(DashBillNum))
                                 {
-                                    dbconnection4.Open();
-                                    string query = "select * from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + dr4["Customer_ID"].ToString();
-                                    MySqlCommand cd = new MySqlCommand(query, dbconnection4);
-                                    MySqlDataReader dr3 = cd.ExecuteReader();
-                                    if (dr3.HasRows)
+                                    mainBillExist = true;
+                                    if (dr4["Customer_ID"].ToString() != "")
                                     {
-                                        while (dr3.Read())
+                                        dbconnection4.Open();
+                                        string query = "select * from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + dr4["Customer_ID"].ToString();
+                                        MySqlCommand cd = new MySqlCommand(query, dbconnection4);
+                                        MySqlDataReader dr3 = cd.ExecuteReader();
+                                        if (dr3.HasRows)
                                         {
-                                            txtPhone.Enabled = false;
-                                            comClient.Enabled = false;
-                                            txtClientId.Enabled = false;
-                                            txtPhone.Text = dr3["Phone"].ToString();
-                                            comClient.Text = dr3["Customer_Name"].ToString();
-                                            comClient.SelectedValue = dr4["Customer_ID"].ToString();
-                                            ClintID = Convert.ToInt16(dr4["Customer_ID"].ToString());
-                                            txtClientId.Text = ClintID.ToString();
-                                            AddedToBill = true;
+                                            while (dr3.Read())
+                                            {
+                                                txtPhone.Enabled = false;
+                                                comClient.Enabled = false;
+                                                txtClientId.Enabled = false;
+                                                txtPhone.Text = dr3["Phone"].ToString();
+                                                comClient.Text = dr3["Customer_Name"].ToString();
+                                                comClient.SelectedValue = dr4["Customer_ID"].ToString();
+                                                ClintID = Convert.ToInt16(dr4["Customer_ID"].ToString());
+                                                txtClientId.Text = ClintID.ToString();
+                                                AddedToBill = true;
+                                            }
+                                            dr3.Close();
                                         }
-                                        dr3.Close();
+                                    }
+                                    else
+                                    {
+                                        comClient.Text = "";
+                                        txtPhone.Text = "";
+                                        comClient.Enabled = true;
+                                        txtPhone.Enabled = true;
+                                        txtClientId.Enabled = true;
+                                        txtClientId.Text = "";
+                                        AddedToBill = false;
                                     }
                                 }
                                 else
                                 {
-                                    comClient.Text = "";
-                                    txtPhone.Text = "";
-                                    comClient.Enabled = true;
-                                    txtPhone.Enabled = true;
-                                    txtClientId.Enabled = true;
-                                    txtClientId.Text = "";
-                                    AddedToBill = false;
+                                    MessageBox.Show("المندوب غير مسجل علي هذه الفاتورة");
+                                    txtBillNum.Text = "";
+                                    dbconnection4.Close();
+                                    dbconnection2.Close();
+                                    dbconnection5.Close();
+                                    return;
                                 }
                             }
 
@@ -2340,6 +2352,34 @@ namespace MainSystem
                 }
                 dbconnection7.Close();
             }
+        }
+
+        public bool CheckDelegateBill(int dashID)
+        {
+            dbconnection.Open();
+            string query = "select Delegate_ID from dash_delegate_bill where Dash_ID="+ dashID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    int Delegate_ID = Convert.ToInt16(dr[0]);
+                    if (Delegate_ID == UserControl.EmpID)
+                    {
+                        dbconnection.Close();
+                        return true;
+                    }
+                }
+                dr.Close();
+            }
+            else
+            {
+                dbconnection.Close();
+                return false;
+            }
+            dbconnection.Close();
+            return false;
         }
     }
 }

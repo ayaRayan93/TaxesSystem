@@ -296,6 +296,12 @@
     <Compile Include="Bank\مورد\سحب آجل\SupplierReturnedBillAgl.Designer.cs">
       <DependentUpon>SupplierReturnedBillAgl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeIP.Designer.cs">
+      <DependentUpon>ChangeIP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Coding\Branch_Print.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +361,12 @@
     </Compile>
     <Compile Include="PointOfSale\Customer_Report2.designer.cs">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PointOfSale\Products_ReportCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\Products_ReportCopy.designer.cs">
+      <DependentUpon>Products_ReportCopy.cs</DependentUpon>
     </Compile>
     <Compile Include="PointOfSale\Products_Report.cs">
       <SubType>Form</SubType>
@@ -2084,6 +2096,9 @@
     <EmbeddedResource Include="Bank\مورد\سحب آجل\SupplierReturnedBillAgl.resx">
       <DependentUpon>SupplierReturnedBillAgl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChangeIP.resx">
+      <DependentUpon>ChangeIP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Coding\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>
     </EmbeddedResource>
@@ -2113,6 +2128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Customer_Report2.resx">
       <DependentUpon>Customer_Report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\Products_ReportCopy.resx">
+      <DependentUpon>Products_ReportCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Products_Report.resx">
       <DependentUpon>Products_Report.cs</DependentUpon>
@@ -3216,6 +3234,8 @@
     <Content Include="Car_Service.ico" />
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_Delete_48px.png" />
+    <None Include="Resources\icons8_Checkmark_48px.png" />
     <None Include="Resources\icons8_Deliveries_32.png" />
     <None Include="Resources\icons8_Delivery_32.png" />
     <None Include="Resources\icons8_Electricity_32.png" />
