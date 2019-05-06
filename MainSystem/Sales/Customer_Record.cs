@@ -30,6 +30,8 @@ namespace MainSystem
 
             comEnginner.AutoCompleteMode = AutoCompleteMode.Suggest;
             comEnginner.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            radioButton4.Checked = true;
         }
 
         private void btnAddPhone_Click(object sender, EventArgs e)
@@ -403,7 +405,7 @@ namespace MainSystem
                     {
                         item.Controls.Clear();
                     }
-                    txtOpenAccount.Text = "";
+                    txtOpenAccount.Text = "0.00";
                 }
             }
         }

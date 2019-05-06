@@ -59,7 +59,7 @@ namespace MainSystem
 
                 search();
 
-                string q1, q2, q3, q4 = "";
+                /*string q1, q2, q3, q4 = "";
                 
                 q1 = "select Type_ID from type";
                 
@@ -69,7 +69,7 @@ namespace MainSystem
                  
                 q4 = "select Group_ID from groupo";
                 
-                displayPrduct(q1, q2, q3, q4, "");
+                displayPrduct(q1, q2, q3, q4, "");*/
             }
             catch(Exception ex)
             {

@@ -60,11 +60,11 @@ namespace MainSystem
                 string query = "";
                 if (comDelegate.Text != "")
                 {
-                    query = "SELECT dash.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Bill_Time as 'الوقت المستغرق' FROM dash where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Delegate_ID=" + comDelegate.SelectedValue.ToString();
+                    query = "SELECT delegate.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Bill_Time as 'الوقت المستغرق' FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON dash_details.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and delegate.Delegate_ID=" + comDelegate.SelectedValue.ToString();
                 }
                 else
                 {
-                    query = "SELECT dash.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Bill_Time as 'الوقت المستغرق' FROM dash where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID;
+                    query = "SELECT delegate.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Bill_Time as 'الوقت المستغرق' FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON dash_details.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID;
                 }
 
                 conn.Open();
@@ -112,10 +112,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlPointSale.TabPages.Count; i++)
-                if (MainForm.tabControlPointSale.TabPages[i].Name == text)
+            for (int i = 0; i < MainForm.tabControlReception.TabPages.Count; i++)
+                if (MainForm.tabControlReception.TabPages[i].Name == text)
                 {
-                    return MainForm.tabControlPointSale.TabPages[i];
+                    return MainForm.tabControlReception.TabPages[i];
                 }
             return null;
         }

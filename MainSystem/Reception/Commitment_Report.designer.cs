@@ -48,8 +48,10 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(257, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeftLayout = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(230, 23);
             this.dateTimePicker1.TabIndex = 1;
             // 

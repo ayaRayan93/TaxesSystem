@@ -468,7 +468,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPageDelegateBusyBillReport.Name = "tabPageDelegateBusyBillReport";
-                    tabPageDelegateBusyBillReport.Text = "تقرير فواتير المناديب الحالية";
+                    tabPageDelegateBusyBillReport.Text = "تقرير الفواتير الحالية للمناديب";
                     panelDelegateBusyBillReport.Name = "panelDelegateBusyBillReport";
                     panelDelegateBusyBillReport.Dock = DockStyle.Fill;
 

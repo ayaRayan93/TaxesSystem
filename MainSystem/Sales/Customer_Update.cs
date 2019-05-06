@@ -157,7 +157,15 @@ namespace MainSystem
                             com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
                             com.Parameters["@Customer_Address"].Value = txtAddress.Text;
                             com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
-                            com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
+                            double re = 0;
+                            if (Double.TryParse(txtOpenAccount.Text, out re))
+                            {
+                                com.Parameters["@Customer_OpenAccount"].Value = re;
+                            }
+                            else
+                            {
+                                com.Parameters["@Customer_OpenAccount"].Value = 0;
+                            }
                             com.Parameters.Add("@Customer_Email", MySqlDbType.VarChar, 255);
                             com.Parameters["@Customer_Email"].Value = txtEmail.Text;
                             if (txtNationalID.Text != "")
@@ -312,7 +320,15 @@ namespace MainSystem
                 com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 255);
                 com.Parameters["@Client_ID"].Value = selRow[0].ToString();
                 com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
-                com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount2.Text;
+                double re = 0;
+                if (Double.TryParse(txtOpenAccount2.Text, out re))
+                {
+                    com.Parameters["@Customer_OpenAccount"].Value = re;
+                }
+                else
+                {
+                    com.Parameters["@Customer_OpenAccount"].Value = 0;
+                }
                 com.ExecuteNonQuery();
             }
             else
@@ -322,7 +338,15 @@ namespace MainSystem
                 com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 255);
                 com.Parameters["@Customer_ID"].Value = comEnginner.SelectedValue;
                 com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);
-                com.Parameters["@Customer_OpenAccount"].Value = txtOpenAccount.Text;
+                double re = 0;
+                if (Double.TryParse(txtOpenAccount2.Text, out re))
+                {
+                    com.Parameters["@Customer_OpenAccount"].Value = re;
+                }
+                else
+                {
+                    com.Parameters["@Customer_OpenAccount"].Value = 0;
+                }
                 com.ExecuteNonQuery();
             }
         }

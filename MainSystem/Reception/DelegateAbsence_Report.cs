@@ -17,6 +17,7 @@ namespace MainSystem
     {
         MySqlConnection conn;
         bool loaded = false;
+
         public DelegateAbsence_Report()
         {
             InitializeComponent();
@@ -187,10 +188,10 @@ namespace MainSystem
 
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < MainForm.tabControlPointSale.TabPages.Count; i++)
-                if (MainForm.tabControlPointSale.TabPages[i].Name == text)
+            for (int i = 0; i < MainForm.tabControlReception.TabPages.Count; i++)
+                if (MainForm.tabControlReception.TabPages[i].Name == text)
                 {
-                    return MainForm.tabControlPointSale.TabPages[i];
+                    return MainForm.tabControlReception.TabPages[i];
                 }
             return null;
         }
