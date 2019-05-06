@@ -2064,17 +2064,17 @@
             // 
             // navBarGroup24
             // 
-            this.navBarGroup24.Caption = "الادوات";
-            this.navBarGroup24.Expanded = true;
-            this.navBarGroup24.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemUserReport)});
-            this.navBarGroup24.Name = "navBarGroup24";
-            // 
-            // navBarItemUserReport
-            // 
-            this.navBarItemUserReport.Caption = "تسجيل المستخدمين";
-            this.navBarItemUserReport.Name = "navBarItemUserReport";
-            this.navBarItemUserReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemUserReport_LinkClicked);
+            //this.navBarGroup24.Caption = "الادوات";
+            //this.navBarGroup24.Expanded = true;
+            //this.navBarGroup24.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            //new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemUserReport)});
+            //this.navBarGroup24.Name = "navBarGroup24";
+            //// 
+            //// navBarItemUserReport
+            //// 
+            //this.navBarItemUserReport.Caption = "تسجيل المستخدمين";
+            //this.navBarItemUserReport.Name = "navBarItemUserReport";
+            //this.navBarItemUserReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemUserReport_LinkClicked);
             // 
             // navBarItem53
             // 
