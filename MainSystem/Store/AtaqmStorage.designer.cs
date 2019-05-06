@@ -53,10 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comSets = new System.Windows.Forms.ComboBox();
             this.comFactory = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtGroup = new System.Windows.Forms.TextBox();
-            this.comGroup = new System.Windows.Forms.ComboBox();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -272,10 +269,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comSets);
             this.groupBox1.Controls.Add(this.comFactory);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtGroup);
-            this.groupBox1.Controls.Add(this.comGroup);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
             this.groupBox1.Location = new System.Drawing.Point(91, 23);
             this.groupBox1.Name = "groupBox1";
@@ -349,7 +343,7 @@
             // 
             // txtFactory
             // 
-            this.txtFactory.Location = new System.Drawing.Point(431, 95);
+            this.txtFactory.Location = new System.Drawing.Point(140, 64);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(55, 24);
             this.txtFactory.TabIndex = 4;
@@ -358,7 +352,7 @@
             // comType
             // 
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(492, 68);
+            this.comType.Location = new System.Drawing.Point(492, 64);
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
@@ -368,7 +362,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label3.Location = new System.Drawing.Point(342, 97);
+            this.label3.Location = new System.Drawing.Point(452, 105);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label3.Size = new System.Drawing.Size(44, 18);
@@ -377,7 +371,7 @@
             // 
             // txtType
             // 
-            this.txtType.Location = new System.Drawing.Point(431, 68);
+            this.txtType.Location = new System.Drawing.Point(431, 64);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(55, 24);
             this.txtType.TabIndex = 1;
@@ -385,7 +379,7 @@
             // 
             // txtSetsID
             // 
-            this.txtSetsID.Location = new System.Drawing.Point(152, 95);
+            this.txtSetsID.Location = new System.Drawing.Point(262, 103);
             this.txtSetsID.Name = "txtSetsID";
             this.txtSetsID.Size = new System.Drawing.Size(55, 24);
             this.txtSetsID.TabIndex = 10;
@@ -395,7 +389,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label1.Location = new System.Drawing.Point(619, 70);
+            this.label1.Location = new System.Drawing.Point(619, 64);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(28, 18);
@@ -405,7 +399,7 @@
             // comSets
             // 
             this.comSets.FormattingEnabled = true;
-            this.comSets.Location = new System.Drawing.Point(213, 95);
+            this.comSets.Location = new System.Drawing.Point(323, 103);
             this.comSets.Name = "comSets";
             this.comSets.Size = new System.Drawing.Size(120, 24);
             this.comSets.TabIndex = 9;
@@ -414,50 +408,22 @@
             // comFactory
             // 
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(492, 95);
+            this.comFactory.Location = new System.Drawing.Point(201, 64);
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label4.Location = new System.Drawing.Point(342, 70);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(67, 18);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "المجموعة";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(619, 97);
+            this.label2.Location = new System.Drawing.Point(328, 64);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(90, 18);
             this.label2.TabIndex = 5;
             this.label2.Text = "المصنع/المورد";
-            // 
-            // txtGroup
-            // 
-            this.txtGroup.Location = new System.Drawing.Point(152, 68);
-            this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(55, 24);
-            this.txtGroup.TabIndex = 7;
-            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comGroup
-            // 
-            this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(213, 68);
-            this.comGroup.Name = "comGroup";
-            this.comGroup.Size = new System.Drawing.Size(120, 24);
-            this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // AtaqmStorage
             // 
@@ -506,10 +472,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comSets;
         private System.Windows.Forms.ComboBox comFactory;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtGroup;
-        private System.Windows.Forms.ComboBox comGroup;
         private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtStoreID;

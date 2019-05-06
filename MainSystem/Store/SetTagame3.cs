@@ -68,15 +68,15 @@ namespace MainSystem
                 comType.Text = "";
                 txtType.Text = "";
 
-                query = "select distinct Group_Name,sets.Group_ID from sets inner join groupo on sets.Group_ID=groupo.Group_ID";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comGroup.DataSource = dt;
-                comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
-                comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
-                comGroup.Text = "";
-                txtGroup.Text = "";
+                //query = "select distinct Group_Name,sets.Group_ID from sets inner join groupo on sets.Group_ID=groupo.Group_ID";
+                //da = new MySqlDataAdapter(query, dbconnection);
+                //dt = new DataTable();
+                //da.Fill(dt);
+                //comGroup.DataSource = dt;
+                //comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
+                //comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
+                //comGroup.Text = "";
+                //txtGroup.Text = "";
 
                 loaded = true;
             }
@@ -103,30 +103,37 @@ namespace MainSystem
                             txtType.Text = comType.SelectedValue.ToString();
                             Search();
                             break;
-                        case "comGroup":
-                            txtGroup.Text = comGroup.SelectedValue.ToString();
-                            Search();
-                            break;
+                        //case "comGroup":
+                        //    txtGroup.Text = comGroup.SelectedValue.ToString();
+                        //    Search();
+                        //    break;
                         case "comStore":
                             txtStoreID.Text = comStore.SelectedValue.ToString();
                             break;
                         case "comSets":
                             if (flag)
                             {
-                                dbconnection.Close();
-                                dbconnection.Open();
-                                dataGridView1.Rows.Clear();
-                                txtSetsID.Text = comSets.SelectedValue.ToString();
-                                int id;
-                                if (int.TryParse(txtSetsID.Text, out id))
+                                if (txtStoreID.Text != "")
                                 {
-                                    double q= Tagme3Set(id);
-                                    txtSetQuantity.Text = q.ToString();
-                                    decreaseItemsQuantity(q, id);
+                                    dbconnection.Close();
+                                    dbconnection.Open();
+                                    dataGridView1.Rows.Clear();
+                                    txtSetsID.Text = comSets.SelectedValue.ToString();
+                                    int id;
+                                    if (int.TryParse(txtSetsID.Text, out id))
+                                    {
+                                        double q = Tagme3Set(id);
+                                        txtSetQuantity.Text = q.ToString();
+                                        decreaseItemsQuantity(q, id);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("ادخل قيمة صحيحة");
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("ادخل قيمة صحيحة");
+                                    MessageBox.Show("حدد المخزن");
                                 }
                             }
                             dbconnection.Close();
@@ -162,7 +169,7 @@ namespace MainSystem
                                     Name = (string)com.ExecuteScalar();
                                     comFactory.Text = Name;
                                     Search();
-                                    txtGroup.Focus();
+                                    //txtGroup.Focus();
                                 }
                                 else
                                 {
@@ -188,23 +195,23 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-                            case "txtGroup":
-                                query = "select DISTINCT Group_Name from sets inner join groupo on sets.Group_ID=groupo.Group_ID  where sets.Group_ID=" + txtGroup.Text + "";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comGroup.Text = Name;
-                                    Search();
-                                    txtSetsID.Focus();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
+                            //case "txtGroup":
+                            //    query = "select DISTINCT Group_Name from sets inner join groupo on sets.Group_ID=groupo.Group_ID  where sets.Group_ID=" + txtGroup.Text + "";
+                            //    com = new MySqlCommand(query, dbconnection);
+                            //    if (com.ExecuteScalar() != null)
+                            //    {
+                            //        Name = (string)com.ExecuteScalar();
+                            //        comGroup.Text = Name;
+                            //        Search();
+                            //        txtSetsID.Focus();
+                            //    }
+                            //    else
+                            //    {
+                            //        MessageBox.Show("there is no item with this id");
+                            //        dbconnection.Close();
+                            //        return;
+                            //    }
+                            //    break;
                             case "txtStoreID":
                                 query = "select Store_Name from store where Store_ID=" + txtStoreID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
@@ -224,30 +231,37 @@ namespace MainSystem
                             case "txtSetsID":
                                 if (flag)
                                 {
-                                    query = "select Set_Name from sets where Set_ID=" + txtSetsID.Text + "";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    if (com.ExecuteScalar() != null)
+                                    if (txtStoreID.Text != "")
                                     {
-                                        Name = (string)com.ExecuteScalar();
-                                        comSets.Text = Name;
-                                        int id;
-                                        if (int.TryParse(txtSetsID.Text, out id))
+                                        query = "select Set_Name from sets where Set_ID=" + txtSetsID.Text + "";
+                                        com = new MySqlCommand(query, dbconnection);
+                                        if (com.ExecuteScalar() != null)
                                         {
-                                            double q=  Tagme3Set(id);
-                                            txtSetQuantity.Text = q.ToString();
-                                            decreaseItemsQuantity(q, id);
+                                            Name = (string)com.ExecuteScalar();
+                                            comSets.Text = Name;
+                                            int id;
+                                            if (int.TryParse(txtSetsID.Text, out id))
+                                            {
+                                                double q = Tagme3Set(id);
+                                                txtSetQuantity.Text = q.ToString();
+                                                decreaseItemsQuantity(q, id);
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("enter correct value");
+                                            }
+                                            txtStoreID.Focus();
                                         }
                                         else
                                         {
-                                            MessageBox.Show("enter correct value");
+                                            MessageBox.Show("there is no item with this id");
+                                            dbconnection.Close();
+                                            return;
                                         }
-                                        txtStoreID.Focus();
                                     }
                                     else
                                     {
-                                        MessageBox.Show("there is no item with this id");
-                                        dbconnection.Close();
-                                        return;
+                                        MessageBox.Show("حدد المخزن");
                                     }
                                 }
                                 break;
@@ -258,6 +272,7 @@ namespace MainSystem
                 }
                 catch (Exception ex)
                 {
+
                     MessageBox.Show(ex.ToString());
                 }
                 dbconnection.Close();
@@ -295,19 +310,20 @@ namespace MainSystem
         //تجميع الطقم 
         public double Tagme3Set(int SetID)
         {
-            string query = "select count(SetDetails_ID) from set_details where Set_ID="+SetID;
-            MySqlCommand com = new MySqlCommand(query,dbconnection);
+
+            string query = "select count(SetDetails_ID) from set_details where Set_ID=" + SetID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
             int setItemsNumber = Convert.ToInt16(com.ExecuteScalar());
             int count = 0;
-            query = "select sum(storage.Total_Meters)/set_details.Quantity as q from sets inner join set_details on sets.Set_ID=set_details.Set_ID inner join storage on set_details.Data_ID = storage.Data_ID where sets.Set_ID="+SetID+ " group by storage.Data_ID,Store_ID having Store_ID=" + txtStoreID.Text;
-            com = new MySqlCommand(query,dbconnection);
+            query = "select sum(storage.Total_Meters)/set_details.Quantity as q from sets inner join set_details on sets.Set_ID=set_details.Set_ID inner join storage on set_details.Data_ID = storage.Data_ID where sets.Set_ID=" + SetID + " group by storage.Data_ID,Store_ID having Store_ID=" + txtStoreID.Text;
+            com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
-          
+
             double minQuantity = 0;
-            
+
             while (dr.Read())
             {
-              minQuantity = Convert.ToDouble(dr["q"].ToString());
+                minQuantity = Convert.ToDouble(dr["q"].ToString());
                 count++;
                 break;
             }
@@ -318,16 +334,16 @@ namespace MainSystem
                 if (quantity < minQuantity)
                     minQuantity = quantity;
 
-                count++;                                                                   
+                count++;
             }
             dr.Close();
             if (count < setItemsNumber)
             {
                 minQuantity = 0;
             }
-           
-      
             return minQuantity;
+
+
         }
        
         //record to database
@@ -447,13 +463,13 @@ namespace MainSystem
                 comStore.Text = "";
                 comType.Text = "";
                 comFactory.Text = "";
-                comGroup.Text = "";
+                //comGroup.Text = "";
                 comSets.Text = "";
 
                 txtStoreID.Text = "";
                 txtType.Text = "";
                 txtFactory.Text = "";
-                txtGroup.Text = "";
+               // txtGroup.Text = "";
                 txtSetsID.Text = "";
                 txtSetQuantity.Text = "";
 
@@ -527,9 +543,9 @@ namespace MainSystem
             try
             {
                 string q1;
-                if (txtType.Text != "" && txtFactory.Text != "" && txtGroup.Text != "")
+                if (txtType.Text != "" && txtFactory.Text != "" /*&& txtGroup.Text != ""*/)
                 {
-                    q1 = "Type_ID =" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text;
+                    q1 = "Type_ID =" + txtType.Text + " and Factory_ID=" + txtFactory.Text /*+ " and Group_ID=" + txtGroup.Text*/;
 
                     string query = "select Set_ID,Set_Name from sets where " + q1;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);

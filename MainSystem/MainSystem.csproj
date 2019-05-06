@@ -3253,12 +3253,12 @@
     <Content Include="Car_Service.ico" />
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
+    <Content Include="Resources\Branch.txt" />
     <None Include="Resources\icons8_Delete_48px.png" />
     <None Include="Resources\icons8_Checkmark_48px.png" />
     <None Include="Resources\icons8_Deliveries_32.png" />
     <None Include="Resources\icons8_Delivery_32.png" />
     <None Include="Resources\icons8_Electricity_32.png" />
-    <None Include="Resources\Branch.txt" />
     <None Include="Resources\IP_Address.txt" />
     <None Include="Resources\Sign-Up.png" />
     <None Include="Resources\icons8_Contacts2_32.png" />

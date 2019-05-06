@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comStore = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtStoreID = new System.Windows.Forms.TextBox();
@@ -45,9 +45,6 @@
             this.comType = new System.Windows.Forms.ComboBox();
             this.txtType = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtGroup = new System.Windows.Forms.TextBox();
-            this.comGroup = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ProductCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,10 +59,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotalQuantitySet = new System.Windows.Forms.TextBox();
             this.panTopPart = new System.Windows.Forms.Panel();
+            this.btnNewChooes = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnNewChooes = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -173,7 +170,7 @@
             this.groupBox1.Controls.Add(this.txtSetsID);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox1.Location = new System.Drawing.Point(305, 215);
+            this.groupBox1.Location = new System.Drawing.Point(301, 181);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(275, 48);
             this.groupBox1.TabIndex = 136;
@@ -208,15 +205,12 @@
             this.groupBox2.Controls.Add(this.comFactory);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.txtFactory);
-            this.groupBox2.Controls.Add(this.txtGroup);
-            this.groupBox2.Controls.Add(this.comGroup);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.groupBox2.Location = new System.Drawing.Point(48, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox2.Size = new System.Drawing.Size(784, 126);
+            this.groupBox2.Size = new System.Drawing.Size(784, 88);
             this.groupBox2.TabIndex = 140;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "فلتر";
@@ -251,47 +245,17 @@
             this.label4.TabIndex = 143;
             this.label4.Text = "نوع";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(452, 88);
-            this.label14.Name = "label14";
-            this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(59, 16);
-            this.label14.TabIndex = 146;
-            this.label14.Text = "المجموعة";
-            // 
-            // txtGroup
-            // 
-            this.txtGroup.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtGroup.Location = new System.Drawing.Point(254, 82);
-            this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(55, 24);
-            this.txtGroup.TabIndex = 145;
-            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comGroup
-            // 
-            this.comGroup.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(315, 82);
-            this.comGroup.Name = "comGroup";
-            this.comGroup.Size = new System.Drawing.Size(131, 24);
-            this.comGroup.TabIndex = 144;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductCode,
@@ -415,6 +379,21 @@
             this.panTopPart.Size = new System.Drawing.Size(854, 374);
             this.panTopPart.TabIndex = 151;
             // 
+            // btnNewChooes
+            // 
+            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChooes.FlatAppearance.BorderSize = 0;
+            this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewChooes.Location = new System.Drawing.Point(22, 16);
+            this.btnNewChooes.Name = "btnNewChooes";
+            this.btnNewChooes.Size = new System.Drawing.Size(103, 36);
+            this.btnNewChooes.TabIndex = 151;
+            this.btnNewChooes.Text = "اختيار اخر";
+            this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -471,21 +450,6 @@
             this.bunifuTileButton1.TabIndex = 0;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnDone_Click);
             // 
-            // btnNewChooes
-            // 
-            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewChooes.FlatAppearance.BorderSize = 0;
-            this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewChooes.Location = new System.Drawing.Point(22, 16);
-            this.btnNewChooes.Name = "btnNewChooes";
-            this.btnNewChooes.Size = new System.Drawing.Size(103, 36);
-            this.btnNewChooes.TabIndex = 151;
-            this.btnNewChooes.Text = "اختيار اخر";
-            this.btnNewChooes.UseVisualStyleBackColor = false;
-            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
-            // 
             // SetFak
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -527,9 +491,6 @@
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtGroup;
-        private System.Windows.Forms.ComboBox comGroup;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;

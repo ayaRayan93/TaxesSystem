@@ -217,6 +217,7 @@ namespace MainSystem
             try
             {
                 if (e.KeyCode == Keys.Enter)
+
                 {
                     string query = "select User_ID,User_Name,User_Type from users where User_Name=@Name and Password=@Pass";
                     conn.Open();

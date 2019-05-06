@@ -34,8 +34,10 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tLPanProductsContainer = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnNewChooes = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtFactory = new System.Windows.Forms.TextBox();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.comType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtType = new System.Windows.Forms.TextBox();
@@ -43,18 +45,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comSets = new System.Windows.Forms.ComboBox();
             this.comFactory = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtGroup = new System.Windows.Forms.TextBox();
-            this.comGroup = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.btnNewChooes = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -162,10 +159,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comSets);
             this.groupBox1.Controls.Add(this.comFactory);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtGroup);
-            this.groupBox1.Controls.Add(this.comGroup);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
             this.groupBox1.Location = new System.Drawing.Point(91, 23);
             this.groupBox1.Name = "groupBox1";
@@ -174,6 +168,21 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "الفلاتر";
+            // 
+            // btnNewChooes
+            // 
+            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnNewChooes.FlatAppearance.BorderSize = 0;
+            this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNewChooes.Location = new System.Drawing.Point(6, 17);
+            this.btnNewChooes.Name = "btnNewChooes";
+            this.btnNewChooes.Size = new System.Drawing.Size(103, 36);
+            this.btnNewChooes.TabIndex = 134;
+            this.btnNewChooes.Text = "اختيار اخر";
+            this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
             // btnSearch
             // 
@@ -192,11 +201,32 @@
             // 
             // txtFactory
             // 
-            this.txtFactory.Location = new System.Drawing.Point(431, 61);
+            this.txtFactory.Location = new System.Drawing.Point(134, 31);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(55, 24);
             this.txtFactory.TabIndex = 4;
             this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_321;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 15;
+            this.btnAdd.LabelText = "اضافة";
+            this.btnAdd.Location = new System.Drawing.Point(600, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(85, 52);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // comType
             // 
@@ -211,7 +241,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label3.Location = new System.Drawing.Point(342, 63);
+            this.label3.Location = new System.Drawing.Point(469, 70);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label3.Size = new System.Drawing.Size(44, 18);
@@ -228,7 +258,7 @@
             // 
             // txtSetsID
             // 
-            this.txtSetsID.Location = new System.Drawing.Point(152, 61);
+            this.txtSetsID.Location = new System.Drawing.Point(279, 68);
             this.txtSetsID.Name = "txtSetsID";
             this.txtSetsID.Size = new System.Drawing.Size(55, 24);
             this.txtSetsID.TabIndex = 10;
@@ -248,7 +278,7 @@
             // comSets
             // 
             this.comSets.FormattingEnabled = true;
-            this.comSets.Location = new System.Drawing.Point(213, 61);
+            this.comSets.Location = new System.Drawing.Point(340, 68);
             this.comSets.Name = "comSets";
             this.comSets.Size = new System.Drawing.Size(120, 24);
             this.comSets.TabIndex = 9;
@@ -257,50 +287,22 @@
             // comFactory
             // 
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(492, 61);
+            this.comFactory.Location = new System.Drawing.Point(195, 31);
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label4.Location = new System.Drawing.Point(342, 36);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(67, 18);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "المجموعة";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(619, 63);
+            this.label2.Location = new System.Drawing.Point(322, 33);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(90, 18);
             this.label2.TabIndex = 5;
             this.label2.Text = "المصنع/المورد";
-            // 
-            // txtGroup
-            // 
-            this.txtGroup.Location = new System.Drawing.Point(152, 34);
-            this.txtGroup.Name = "txtGroup";
-            this.txtGroup.Size = new System.Drawing.Size(55, 24);
-            this.txtGroup.TabIndex = 7;
-            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comGroup
-            // 
-            this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(213, 34);
-            this.comGroup.Name = "comGroup";
-            this.comGroup.Size = new System.Drawing.Size(120, 24);
-            this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -316,8 +318,8 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnDelete, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnReport, 4, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 663);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -391,27 +393,6 @@
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_321;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 15;
-            this.btnAdd.LabelText = "اضافة";
-            this.btnAdd.Location = new System.Drawing.Point(600, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(85, 43);
-            this.btnAdd.TabIndex = 4;
-            this.btnAdd.Click += new System.EventHandler(this.btnAddNew_Click);
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -427,21 +408,6 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(911, 517);
             this.tableLayoutPanel7.TabIndex = 2;
-            // 
-            // btnNewChooes
-            // 
-            this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewChooes.FlatAppearance.BorderSize = 0;
-            this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewChooes.Location = new System.Drawing.Point(6, 17);
-            this.btnNewChooes.Name = "btnNewChooes";
-            this.btnNewChooes.Size = new System.Drawing.Size(103, 36);
-            this.btnNewChooes.TabIndex = 134;
-            this.btnNewChooes.Text = "اختيار اخر";
-            this.btnNewChooes.UseVisualStyleBackColor = false;
-            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
             // Ataqm
             // 
@@ -490,10 +456,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comSets;
         private System.Windows.Forms.ComboBox comFactory;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtGroup;
-        private System.Windows.Forms.ComboBox comGroup;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
         private System.Windows.Forms.Button btnNewChooes;
     }
