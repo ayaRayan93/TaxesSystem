@@ -60,15 +60,15 @@ namespace MainSystem
                 comType.Text = "";
                 txtType.Text = "";
 
-                query = "select distinct Group_Name,sets.Group_ID from sets inner join groupo on sets.Group_ID=groupo.Group_ID";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comGroup.DataSource = dt;
-                comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
-                comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
-                comGroup.Text = "";
-                txtGroup.Text = "";
+                //query = "select distinct Group_Name,sets.Group_ID from sets inner join groupo on sets.Group_ID=groupo.Group_ID";
+                //da = new MySqlDataAdapter(query, dbconnection);
+                //dt = new DataTable();
+                //da.Fill(dt);
+                //comGroup.DataSource = dt;
+                //comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
+                //comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
+                //comGroup.Text = "";
+                //txtGroup.Text = "";
 
                 loaded = true;
             }
@@ -96,18 +96,25 @@ namespace MainSystem
                             txtType.Text = comType.SelectedValue.ToString();
                             Search();
                             break;
-                        case "comGroup":
-                            txtGroup.Text = comGroup.SelectedValue.ToString();
-                            Search();
-                            break;
+                        //case "comGroup":
+                        //    txtGroup.Text = comGroup.SelectedValue.ToString();
+                        //    Search();
+                        //    break;
                         case "comStore":
                             txtStoreID.Text = comStore.SelectedValue.ToString();
                             break;
                         case "comSets":
                             if (flag)
                             {
-                                txtSetsID.Text = comSets.SelectedValue.ToString();
-                                displayQuantitySet();
+                                if (txtStoreID.Text != "")
+                                {
+                                    txtSetsID.Text = comSets.SelectedValue.ToString();
+                                    displayQuantitySet();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("حدد المخزن");
+                                }
                             }
                             break;
                     }
@@ -142,7 +149,7 @@ namespace MainSystem
                                     Name = (string)com.ExecuteScalar();
                                     comFactory.Text = Name;
                                     Search();
-                                    txtGroup.Focus();
+                                    //txtGroup.Focus();
                                 }
                                 else
                                 {
@@ -168,23 +175,23 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-                            case "txtGroup":
-                                query = "select DISTINCT Group_Name from sets inner join groupo on sets.Group_ID=groupo.Group_ID  where sets.Group_ID=" + txtGroup.Text + "";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comGroup.Text = Name;
-                                    Search();
-                                    txtSetsID.Focus();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
+                            //case "txtGroup":
+                            //    query = "select DISTINCT Group_Name from sets inner join groupo on sets.Group_ID=groupo.Group_ID  where sets.Group_ID=" + txtGroup.Text + "";
+                            //    com = new MySqlCommand(query, dbconnection);
+                            //    if (com.ExecuteScalar() != null)
+                            //    {
+                            //        Name = (string)com.ExecuteScalar();
+                            //        comGroup.Text = Name;
+                            //        Search();
+                            //        txtSetsID.Focus();
+                            //    }
+                            //    else
+                            //    {
+                            //        MessageBox.Show("there is no item with this id");
+                            //        dbconnection.Close();
+                            //        return;
+                            //    }
+                            //    break;
                             case "txtStoreID":
                                 query = "select Store_Name from store where Store_ID=" + txtStoreID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
@@ -204,20 +211,27 @@ namespace MainSystem
                             case "txtSetsID":
                                 if (flag)
                                 {
-                                    query = "select Set_Name from sets where Set_ID=" + txtSetsID.Text + "";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    if (com.ExecuteScalar() != null)
+                                    if (txtStoreID.Text != "")
                                     {
-                                        Name = (string)com.ExecuteScalar();
-                                        comSets.Text = Name;
-                                        displayQuantitySet();
-                                        txtStoreID.Focus();
+                                        query = "select Set_Name from sets where Set_ID=" + txtSetsID.Text + "";
+                                        com = new MySqlCommand(query, dbconnection);
+                                        if (com.ExecuteScalar() != null)
+                                        {
+                                            Name = (string)com.ExecuteScalar();
+                                            comSets.Text = Name;
+                                            displayQuantitySet();
+                                            txtStoreID.Focus();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("there is no item with this id");
+                                            dbconnection.Close();
+                                            return;
+                                        }
                                     }
                                     else
                                     {
-                                        MessageBox.Show("there is no item with this id");
-                                        dbconnection.Close();
-                                        return;
+                                        MessageBox.Show("حدد المخزن");
                                     }
                                 }
                                 break;
@@ -292,13 +306,13 @@ namespace MainSystem
                 comStore.Text = "";
                 comType.Text = "";
                 comFactory.Text = "";
-                comGroup.Text = "";
+               // comGroup.Text = "";
                 comSets.Text = "";
 
                 txtStoreID.Text = "";
                 txtType.Text = "";
                 txtFactory.Text = "";
-                txtGroup.Text = "";
+               // txtGroup.Text = "";
 
                 txtSetsID.Text = "";
                 txtSetQuantity.Text = "";
@@ -481,9 +495,9 @@ namespace MainSystem
             try
             {
                 string q1;
-                if (txtType.Text != "" && txtFactory.Text != "" && txtGroup.Text != "")
+                if (txtType.Text != "" && txtFactory.Text != "" /*&& txtGroup.Text != ""*/)
                 {
-                    q1 = "Type_ID =" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text;
+                    q1 = "Type_ID =" + txtType.Text + " and Factory_ID=" + txtFactory.Text /*+ " and Group_ID=" + txtGroup.Text*/;
 
                     string query = "select Set_ID,Set_Name from sets where " + q1;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);

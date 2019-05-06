@@ -341,7 +341,7 @@ namespace MainSystem
                     DataGridViewRow temp = dataGridView2.Rows[0];
                     if (row1 != null)
                     {
-                        if (row1.Cells[2].Value.ToString() == temp.Cells[3].Value.ToString() && row1.Cells[3].Value.ToString() == temp.Cells[4].Value.ToString() && row1.Cells[4].Value.ToString() == temp.Cells[5].Value.ToString())
+                        if (row1.Cells[2].Value.ToString() == temp.Cells[3].Value.ToString() && row1.Cells[3].Value.ToString() == temp.Cells[4].Value.ToString() /*&& row1.Cells[4].Value.ToString() == temp.Cells[5].Value.ToString()*/)
                         {
                             int n = dataGridView2.Rows.Add();
                             dataGridView2.Rows[n].Cells[0].Value = row1.Cells[0].Value;
@@ -482,7 +482,7 @@ namespace MainSystem
                         
                         if (ImageProduct.Image == null)
                         {
-                            String query = "update sets set Set_Name=@Set_Name,Type_ID=@Type_ID,Factory_ID=@Factory_ID,Group_ID=@Group_ID where Set_ID=" + updateRow[0].ToString();
+                            String query = "update sets set Set_Name=@Set_Name,Type_ID=@Type_ID,Factory_ID=@Factory_ID where Set_ID=" + updateRow[0].ToString();
                             MySqlCommand comand = new MySqlCommand(query, dbconnection);
                             comand.Parameters.AddWithValue("@Set_Name", txtSetName.Text);
                             string q = "select Type_ID from type where Type_Name='" + dataGridView2.Rows[0].Cells[3].Value.ToString() + "'";
@@ -495,10 +495,10 @@ namespace MainSystem
                             comand.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
                             comand.Parameters["@Factory_ID"].Value = com.ExecuteScalar();
 
-                            q = "select Group_ID from groupo where Group_Name='" + dataGridView2.Rows[0].Cells[5].Value.ToString() + "'";
-                            com = new MySqlCommand(q, dbconnection);
-                            comand.Parameters.Add("@Group_ID", MySqlDbType.Int16);
-                            comand.Parameters["@Group_ID"].Value = com.ExecuteScalar();
+                            //q = "select Group_ID from groupo where Group_Name='" + dataGridView2.Rows[0].Cells[5].Value.ToString() + "'";
+                            //com = new MySqlCommand(q, dbconnection);
+                            //comand.Parameters.Add("@Group_ID", MySqlDbType.Int16);
+                            //comand.Parameters["@Group_ID"].Value = com.ExecuteScalar();
 
                             comand.ExecuteNonQuery();
                         }
@@ -695,7 +695,7 @@ namespace MainSystem
                         DataGridViewRow temp = dataGridView2.Rows[0];
                         if (row1 != null)
                         {
-                            if (row1.Cells[2].Value.ToString() == temp.Cells[3].Value.ToString() && row1.Cells[3].Value.ToString() == temp.Cells[4].Value.ToString() && row1.Cells[4].Value.ToString() == temp.Cells[5].Value.ToString())
+                            if (row1.Cells[2].Value.ToString() == temp.Cells[3].Value.ToString() && row1.Cells[3].Value.ToString() == temp.Cells[4].Value.ToString() /*&& row1.Cells[4].Value.ToString() == temp.Cells[5].Value.ToString()*/)
                             {
                                 int n = dataGridView2.Rows.Add();
                                 dataGridView2.Rows[n].Cells[0].Value = row1.Cells[0].Value;

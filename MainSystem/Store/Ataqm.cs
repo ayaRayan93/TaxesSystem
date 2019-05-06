@@ -19,7 +19,6 @@ namespace MainSystem
         MySqlConnection dbconnection;
         MainForm storeMainForm=null;
         bool loaded = false;
-        bool flag = false;
         DataGridViewRow row1;
         public static SetRecord setRecord = null;
         public static SetUpdate setUpdate = null;
@@ -43,7 +42,6 @@ namespace MainSystem
             try
             {
                 loadDataToBox();
-                DisplayAtaqm();
                 loaded = true;
             }
             catch (Exception ex)
@@ -63,21 +61,18 @@ namespace MainSystem
                     {
                         case "comFactory":
                             txtFactory.Text = comFactory.SelectedValue.ToString();
-                            DisplayAtaqm();
+                      
+                            FilterSet();
                             break;
                         case "comType":
                             txtType.Text = comType.SelectedValue.ToString();
-                            DisplayAtaqm();
+                            FilterFactoryAndSet();
                             break;
-                        case "comGroup":
-                            txtGroup.Text = comGroup.SelectedValue.ToString();
-                            DisplayAtaqm();
-                            break;
+                       
                         case "comSets":
-                            if (flag)
-                            {
-                              txtSetsID.Text = comSets.SelectedValue.ToString();
-                            }
+                           
+                            txtSetsID.Text = comSets.SelectedValue.ToString();
+                            
                             break;
                     }
                 }
@@ -109,8 +104,7 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comFactory.Text = Name;
-                                    DisplayAtaqm();
-                                    txtGroup.Focus();
+                                    FilterSet();
                                 }
                                 else
                                 {
@@ -126,8 +120,8 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comType.Text = Name;
-                                    DisplayAtaqm();
                                     txtFactory.Focus();
+                                    FilterFactoryAndSet();
                                 }
                                 else
                                 {
@@ -136,15 +130,16 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-                            case "txtGroup":
-                                query = "select Group_Name from sets where Group_ID='" + txtGroup.Text + "'";
+
+                            case "txtSetsID":
+
+                                query = "select Set_Name from sets where Set_ID='" + txtSetsID.Text + "'";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
-                                    comGroup.Text = Name;
-                                    DisplayAtaqm();
-                                    txtSetsID.Focus();
+                                    comSets.Text = Name;
+
                                 }
                                 else
                                 {
@@ -152,25 +147,7 @@ namespace MainSystem
                                     dbconnection.Close();
                                     return;
                                 }
-                                break;
-                            case "txtSetsID":
-                                if (flag)
-                                {
-                                    query = "select Set_Name from sets where Set_ID='" + txtSetsID.Text + "'";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    if (com.ExecuteScalar() != null)
-                                    {
-                                        Name = (string)com.ExecuteScalar();
-                                        comSets.Text = Name;
-                                       
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("there is no item with this id");
-                                        dbconnection.Close();
-                                        return;
-                                    }
-                                }
+
                                 break;
                         }
 
@@ -241,7 +218,7 @@ namespace MainSystem
 
                         UserControl.ItemRecord("sets", "delete",Convert.ToInt16(setRow[0].ToString()), DateTime.Now,"", dbconnection);
                         dbconnection.Close();
-                        DisplayAtaqm();
+                
                         }
                         else if (dialogResult == DialogResult.No)
                         { }
@@ -334,19 +311,12 @@ namespace MainSystem
                 {
                     q3 = txtSetsID.Text;
                 }
-                if (txtGroup.Text == "")
-                {
-                    q4 = "select Group_ID from sets";
-                }
-                else
-                {
-                    q4 = txtGroup.Text;
-                }
+       
 
-                string query = "SELECT sets.Set_ID as 'كود الطقم',Set_Name as 'اسم الطقم',Type_Name as 'النوع',Factory_Name as 'المصنع',Group_Name as 'المجموعة',Set_Photo as 'صورة' from sets left join set_photo on set_photo.Set_ID=sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID  INNER JOIN factory ON sets.Factory_ID = factory.Factory_ID INNER JOIN groupo ON sets.Group_ID = groupo.Group_ID  where  sets.Type_ID IN(" + q1 + ") and  sets.Factory_ID  IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")  and sets.Group_ID IN (" + q4 + ") order by sets.Set_ID";
+                string query = "SELECT sets.Set_ID as 'كود الطقم',Set_Name as 'اسم الطقم',Type_Name as 'النوع',Factory_Name as 'المصنع',Set_Photo as 'صورة' from sets left join set_photo on set_photo.Set_ID=sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID  INNER JOIN factory ON sets.Factory_ID = factory.Factory_ID  where  sets.Type_ID IN(" + q1 + ") and  sets.Factory_ID  IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")  order by sets.Set_ID";
               
                 MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);             
-                query = "SELECT sets.Set_ID as 'كود الطقم',data.Code as 'الكود',set_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN set_details on data.Data_ID=set_details.Data_ID INNER JOIN sets on sets.Set_ID=set_details.Set_ID left join data_photo on data_photo.Data_ID=data.Data_ID order by data.Code";
+                query = "SELECT sets.Set_ID as 'كود الطقم',data.Code as 'الكود',set_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN set_details on data.Data_ID=set_details.Data_ID INNER JOIN sets on sets.Set_ID=set_details.Set_ID left join data_photo on data_photo.Data_ID=data.Data_ID where sets.Type_ID IN(" + q1 + ") and  sets.Factory_ID  IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ") order by data.Code";
                 MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
                 DataSet dataSet11 = new DataSet();
 
@@ -413,15 +383,7 @@ namespace MainSystem
             comType.Text = "";
             txtType.Text = "";
 
-            query = "select distinct Group_Name,sets.Group_ID from sets inner join groupo on sets.Group_ID=groupo.Group_ID";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comGroup.DataSource = dt;
-            comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
-            comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
-            comGroup.Text = "";
-            txtGroup.Text = "";
+        
         }
 
         private void btnNewChooes_Click(object sender, EventArgs e)
@@ -430,19 +392,83 @@ namespace MainSystem
             {
                 comType.Text = "";
                 comFactory.Text = "";
-                comGroup.Text = "";
                 comSets.Text = "";
                 
                 txtType.Text = "";
                 txtFactory.Text = "";
-                txtGroup.Text = "";
                 txtSetsID.Text = "";
 
-                DisplayAtaqm();
+          
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        public void FilterFactoryAndSet()
+        {
+            if (txtType.Text != "")
+            {
+                string query = "select distinct Factory_Name,sets.Factory_ID from sets inner join Factory on sets.Factory_ID=Factory.Factory_ID where sets.Type_ID=" + txtType.Text;
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comFactory.DataSource = dt;
+                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                comFactory.Text = "";
+                txtFactory.Text = "";
+
+                query = "select Set_Name,Set_ID from sets where Type_ID=" + txtType.Text;
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSets.DataSource = dt;
+                comSets.DisplayMember = dt.Columns["Set_Name"].ToString();
+                comSets.ValueMember = dt.Columns["Set_ID"].ToString();
+                comSets.Text = "";
+                txtSetsID.Text = "";
+            }
+        }
+
+        public void FilterSet()
+        {
+            if (txtType.Text != "" && txtFactory.Text != "")
+            {
+                string query = "select Set_Name,Set_ID from sets where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text;
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comSets.DataSource = dt;
+                comSets.DisplayMember = dt.Columns["Set_Name"].ToString();
+                comSets.ValueMember = dt.Columns["Set_ID"].ToString();
+                comSets.Text = "";
+                txtSetsID.Text = "";
+
+            }
+            else if (txtType.Text != "")
+            {
+                string query = "select Set_Name,Set_ID from sets where Type_ID=" + txtType.Text;
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comSets.DataSource = dt;
+                comSets.DisplayMember = dt.Columns["Set_Name"].ToString();
+                comSets.ValueMember = dt.Columns["Set_ID"].ToString();
+                comSets.Text = "";
+                txtSetsID.Text = "";
+            }
+            else if (txtFactory.Text != "")
+            {
+                string query = "select Set_Name,Set_ID from sets where Factory_ID=" + txtFactory.Text;
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comSets.DataSource = dt;
+                comSets.DisplayMember = dt.Columns["Set_Name"].ToString();
+                comSets.ValueMember = dt.Columns["Set_ID"].ToString();
+                comSets.Text = "";
+                txtSetsID.Text = "";
             }
         }
     }
