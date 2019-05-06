@@ -525,8 +525,6 @@ namespace MainSystem
                                             }
                                         }
                                         dr2.Close();
-                                        gridView1.Columns[0].Visible = false;
-                                        gridView1.Columns["Price_Type"].Visible = false;
                                     }
                                     dr.Close();
                                     if (gridView1.IsLastVisibleRow)
@@ -650,8 +648,6 @@ namespace MainSystem
                             }
                         }
                         dr2.Close();
-                        gridView1.Columns[0].Visible = false;
-                        gridView1.Columns["Price_Type"].Visible = false;
                     }
                     dr.Close();
                     if (gridView1.IsLastVisibleRow)
@@ -1097,8 +1093,6 @@ namespace MainSystem
                             }
                         }
                         dr2.Close();
-                        gridView1.Columns[0].Visible = false;
-                      //  gridView1.Columns["Price_Type"].Visible = false;
                     }
                     dr.Close();
                 }
@@ -1120,7 +1114,7 @@ namespace MainSystem
                     gridView1.Columns["Type"].Visible = false;
                     gridView1.Columns[0].Visible = false;
 
-                    query = "SELECT sets.Set_ID as 'الكود','Type',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ") and sets.Group_ID IN (" + q4 + ")";
+                    query = "SELECT sets.Set_ID as 'الكود','Type',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
@@ -1915,7 +1909,7 @@ namespace MainSystem
                 q4 = comGroup.SelectedValue.ToString();
             }
 
-            string query3 = "select distinct  sets.Set_ID  ,Set_Name  from sets  INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ") and sets.Group_ID IN (" + q4 + ")";
+            string query3 = "select distinct  sets.Set_ID  ,Set_Name  from sets  INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")";
             MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
@@ -2091,7 +2085,7 @@ namespace MainSystem
             else if (productType == "طقم")
             {
                 #region طقم
-                string query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Set_ID=" + loadedRow["الكود"].ToString();
+                string query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Set_ID=" + loadedRow["الكود"].ToString();
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())

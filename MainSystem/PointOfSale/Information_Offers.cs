@@ -37,7 +37,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                MySqlDataAdapter adapter = new MySqlDataAdapter("select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=0 group by offer.Offer_ID", dbconnection);
+                /*MySqlDataAdapter adapter = new MySqlDataAdapter("select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية',offer.Description as 'الوصف',offer_photo.Photo as 'الصورة' from offer LEFT JOIN offer_photo ON offer_photo.Offer_ID = offer.Offer_ID LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=0 group by offer.Offer_ID", dbconnection);
                 DataTable dtf = new DataTable();
                 adapter.Fill(dtf);
                 gridControl1.DataSource = dtf;
@@ -65,7 +65,7 @@ namespace MainSystem
                 if (layoutView1.IsLastVisibleRow)
                 {
                     layoutView1.FocusedRowHandle = layoutView1.RowCount - 1;
-                }
+                }*/
 
                 search();
             }
