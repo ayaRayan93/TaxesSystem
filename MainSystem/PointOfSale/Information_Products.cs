@@ -69,7 +69,7 @@ namespace MainSystem
                  
                 q4 = "select Group_ID from groupo";
                 
-                displayPrduct(q1, q2, q3, q4, "");
+               // displayPrduct(q1, q2, q3, q4, "");
             }
             catch(Exception ex)
             {

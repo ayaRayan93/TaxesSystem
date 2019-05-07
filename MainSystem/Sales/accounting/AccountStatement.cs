@@ -290,7 +290,7 @@ namespace MainSystem
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells[6].Value = dr1["Total_CostAD"].ToString();
                     dataGridView1.Rows[n].Cells[5].Value = "0.00";
-                    dataGridView1.Rows[n].Cells[4].Value = dr1["CustomerBill_ID"].ToString();
+                    dataGridView1.Rows[n].Cells[4].Value = dr1["Branch_BillNumber"].ToString();
                     dataGridView1.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
                     dataGridView1.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
                     dataGridView1.Rows[n].Cells[1].Value = dr1["Type_Buy"].ToString();
@@ -318,7 +318,7 @@ namespace MainSystem
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells[6].Value = dr["Total_CostAD"].ToString();
                 dataGridView1.Rows[n].Cells[5].Value = "0.00";
-                dataGridView1.Rows[n].Cells[4].Value = dr["CustomerBill_ID"].ToString();
+                dataGridView1.Rows[n].Cells[4].Value = dr["Branch_BillNumber"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = dr["Type_Buy"].ToString();
                 dataGridView1.Rows[n].Cells[0].Value = dr["Bill_Date"].ToString();
             }
@@ -350,7 +350,7 @@ namespace MainSystem
                     int n = datagridview.Rows.Add();
                     datagridview.Rows[n].Cells[6].Value = "0.00";
                     datagridview.Rows[n].Cells[5].Value = dr1["TotalCostAD"].ToString();
-                    datagridview.Rows[n].Cells[4].Value = dr1["CustomerReturnBill_ID"].ToString();
+                    datagridview.Rows[n].Cells[4].Value = dr1["Branch_BillNumber"].ToString();
                     datagridview.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
                     datagridview.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
                     datagridview.Rows[n].Cells[1].Value = dr1["Type_Buy"].ToString();
@@ -371,7 +371,7 @@ namespace MainSystem
                 int n = datagridview.Rows.Add();
                 datagridview.Rows[n].Cells[6].Value = "0.00";
                 datagridview.Rows[n].Cells[5].Value = dr["TotalCostAD"].ToString();
-                datagridview.Rows[n].Cells[4].Value = dr["CustomerReturnBill_ID"].ToString();
+                datagridview.Rows[n].Cells[4].Value = dr["Branch_BillNumber"].ToString();
                 datagridview.Rows[n].Cells[1].Value = dr["Type_Buy"].ToString();
                 datagridview.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
