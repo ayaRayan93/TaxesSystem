@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -145,7 +144,7 @@
             // 
             this.txtName.Enabled = false;
             this.txtName.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(555, 92);
+            this.txtName.Location = new System.Drawing.Point(572, 92);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(220, 27);
             this.txtName.TabIndex = 0;
@@ -154,7 +153,7 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(196, 92);
+            this.txtPhone.Location = new System.Drawing.Point(213, 92);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(189, 27);
             this.txtPhone.TabIndex = 1;
@@ -163,7 +162,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(555, 148);
+            this.txtAddress.Location = new System.Drawing.Point(572, 148);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(220, 27);
             this.txtAddress.TabIndex = 2;
@@ -172,7 +171,7 @@
             // txtINF
             // 
             this.txtINF.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtINF.Location = new System.Drawing.Point(196, 148);
+            this.txtINF.Location = new System.Drawing.Point(213, 148);
             this.txtINF.Multiline = true;
             this.txtINF.Name = "txtINF";
             this.txtINF.Size = new System.Drawing.Size(189, 138);
@@ -183,7 +182,7 @@
             // 
             this.radMCon.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMCon.Location = new System.Drawing.Point(359, 37);
+            this.radMCon.Location = new System.Drawing.Point(376, 37);
             this.radMCon.Name = "radMCon";
             this.radMCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMCon.Size = new System.Drawing.Size(84, 26);
@@ -197,7 +196,7 @@
             // 
             this.radMDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMDealer.Location = new System.Drawing.Point(12, 37);
+            this.radMDealer.Location = new System.Drawing.Point(29, 37);
             this.radMDealer.Name = "radMDealer";
             this.radMDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMDealer.Size = new System.Drawing.Size(343, 26);
@@ -211,7 +210,7 @@
             // 
             this.radMEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMEng.Location = new System.Drawing.Point(447, 37);
+            this.radMEng.Location = new System.Drawing.Point(464, 37);
             this.radMEng.Name = "radMEng";
             this.radMEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMEng.Size = new System.Drawing.Size(86, 26);
@@ -224,7 +223,7 @@
             // txtNationalID
             // 
             this.txtNationalID.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationalID.Location = new System.Drawing.Point(555, 259);
+            this.txtNationalID.Location = new System.Drawing.Point(572, 259);
             this.txtNationalID.Name = "txtNationalID";
             this.txtNationalID.Size = new System.Drawing.Size(220, 27);
             this.txtNationalID.TabIndex = 4;
@@ -233,7 +232,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(555, 204);
+            this.txtEmail.Location = new System.Drawing.Point(572, 204);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(220, 27);
             this.txtEmail.TabIndex = 3;
@@ -336,7 +335,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(-12, 12);
+            this.label6.Location = new System.Drawing.Point(5, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 550);
             this.label6.TabIndex = 58;
@@ -347,7 +346,7 @@
             this.btnDeletePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletePhone.ForeColor = System.Drawing.Color.White;
-            this.btnDeletePhone.Location = new System.Drawing.Point(12, 254);
+            this.btnDeletePhone.Location = new System.Drawing.Point(29, 254);
             this.btnDeletePhone.Name = "btnDeletePhone";
             this.btnDeletePhone.Size = new System.Drawing.Size(151, 32);
             this.btnDeletePhone.TabIndex = 56;
@@ -360,7 +359,7 @@
             this.checkedListBoxControlPhone.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.checkedListBoxControlPhone.Appearance.Options.UseFont = true;
             this.checkedListBoxControlPhone.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(12, 148);
+            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(29, 148);
             this.checkedListBoxControlPhone.Name = "checkedListBoxControlPhone";
             this.checkedListBoxControlPhone.Size = new System.Drawing.Size(151, 102);
             this.checkedListBoxControlPhone.StyleController = this.layoutControl1;
@@ -372,7 +371,7 @@
             this.btnAddPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPhone.ForeColor = System.Drawing.Color.White;
-            this.btnAddPhone.Location = new System.Drawing.Point(12, 92);
+            this.btnAddPhone.Location = new System.Drawing.Point(29, 92);
             this.btnAddPhone.Name = "btnAddPhone";
             this.btnAddPhone.Size = new System.Drawing.Size(151, 27);
             this.btnAddPhone.TabIndex = 54;
@@ -382,14 +381,14 @@
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(167, 148);
+            this.label15.Location = new System.Drawing.Point(184, 148);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 138);
             this.label15.TabIndex = 53;
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(524, 148);
+            this.label14.Location = new System.Drawing.Point(541, 148);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 138);
             this.label14.TabIndex = 52;
@@ -398,7 +397,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(167, 92);
+            this.label13.Location = new System.Drawing.Point(184, 92);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 27);
             this.label13.TabIndex = 51;
@@ -409,7 +408,7 @@
             // 
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(524, 92);
+            this.label12.Location = new System.Drawing.Point(541, 92);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(27, 27);
             this.label12.TabIndex = 50;
@@ -418,28 +417,28 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(12, 67);
+            this.label8.Location = new System.Drawing.Point(29, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(868, 21);
             this.label8.TabIndex = 49;
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(494, 148);
+            this.label11.Location = new System.Drawing.Point(511, 148);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 138);
             this.label11.TabIndex = 48;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(494, 92);
+            this.label10.Location = new System.Drawing.Point(511, 92);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(26, 27);
             this.label10.TabIndex = 47;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(12, 12);
+            this.label9.Location = new System.Drawing.Point(29, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(868, 21);
             this.label9.TabIndex = 46;
@@ -457,7 +456,7 @@
             this.groupBox1.Controls.Add(this.radCon);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.groupBox1.Location = new System.Drawing.Point(12, 345);
+            this.groupBox1.Location = new System.Drawing.Point(29, 345);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(868, 217);
             this.groupBox1.TabIndex = 43;
@@ -486,6 +485,7 @@
             this.txtOpenAccount2.Name = "txtOpenAccount2";
             this.txtOpenAccount2.Size = new System.Drawing.Size(143, 23);
             this.txtOpenAccount2.TabIndex = 17;
+            this.txtOpenAccount2.Text = "0.00";
             this.txtOpenAccount2.Visible = false;
             // 
             // labelName
@@ -565,35 +565,35 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(555, 179);
+            this.label7.Location = new System.Drawing.Point(572, 179);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(325, 21);
             this.label7.TabIndex = 42;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 290);
+            this.label4.Location = new System.Drawing.Point(29, 290);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(868, 20);
             this.label4.TabIndex = 39;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(555, 235);
+            this.label3.Location = new System.Drawing.Point(572, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(325, 20);
             this.label3.TabIndex = 38;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 123);
+            this.label2.Location = new System.Drawing.Point(29, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(868, 21);
             this.label2.TabIndex = 37;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(625, 37);
+            this.label1.Location = new System.Drawing.Point(642, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(255, 26);
             this.label1.TabIndex = 36;
@@ -602,7 +602,7 @@
             // 
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radClient.Location = new System.Drawing.Point(537, 37);
+            this.radClient.Location = new System.Drawing.Point(554, 37);
             this.radClient.Name = "radClient";
             this.radClient.Size = new System.Drawing.Size(84, 26);
             this.radClient.TabIndex = 8;
@@ -613,7 +613,8 @@
             // 
             // txtOpenAccount
             // 
-            this.txtOpenAccount.Location = new System.Drawing.Point(555, 314);
+            this.txtOpenAccount.EditValue = "0.00";
+            this.txtOpenAccount.Location = new System.Drawing.Point(572, 314);
             this.txtOpenAccount.Name = "txtOpenAccount";
             this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOpenAccount.Properties.Appearance.Options.UseFont = true;

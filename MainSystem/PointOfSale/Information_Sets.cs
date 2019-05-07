@@ -44,7 +44,7 @@ namespace MainSystem
             {
                 search();
 
-                displaySets(-1);
+                //displaySets(-1);
             }
             catch(Exception ex)
             {
@@ -283,7 +283,7 @@ namespace MainSystem
         public void displaySets(int setId)
         {
             dbconnection.Open();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة', 'السعر', 'الخصم', 'بعد الخصم', 'الكمية',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Set_ID=0", dbconnection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع', 'السعر', 'الخصم', 'بعد الخصم', 'الكمية',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Set_ID=0", dbconnection);
             DataTable dtf = new DataTable();
             adapter.Fill(dtf);
             gridControl1.DataSource = dtf;
@@ -292,11 +292,11 @@ namespace MainSystem
             string query = "";
             if (setId > 0)
             {
-                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Set_ID=" + setId;
+                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Set_ID=" + setId;
             }
             else
             {
-                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID";
+                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID";
             }
             MySqlCommand comand = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = comand.ExecuteReader();
@@ -314,7 +314,6 @@ namespace MainSystem
                     layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الاسم"], dr["الاسم"]);
                     layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["النوع"], dr["النوع"]);
                     layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["المصنع"], dr["المصنع"]);
-                    layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["المجموعة"], dr["المجموعة"]);
                     layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الوصف"], dr["الوصف"]);
                     layoutView1.SetRowCellValue(rowHandle, layoutView1.Columns["الصورة"], dr["الصورة"]);
 

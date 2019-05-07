@@ -46,7 +46,7 @@ namespace MainSystem
                 comBranch.DataSource = dt;
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.Text = "";
+                comBranch.SelectedValue = 6;
 
                 if (UserControl.userType == 1)
                 {

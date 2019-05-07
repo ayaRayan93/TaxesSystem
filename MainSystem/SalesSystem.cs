@@ -77,11 +77,11 @@ namespace MainSystem
                     {
                         xtraTabControlSalesContent.TabPages.Add("العملاء");
                         xtraTabPage = getTabPage(xtraTabControlSalesContent, "العملاء");
-                        bindDisplayCustomersForm(xtraTabPage);
                     }
-                    //xtraTabPage.Controls.Clear();
+                    xtraTabPage.Controls.Clear();
 
                     xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    bindDisplayCustomersForm(xtraTabPage);
                 }
             }
             catch (Exception ex)

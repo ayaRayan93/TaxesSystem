@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -186,7 +185,6 @@
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton1.Size = new System.Drawing.Size(83, 25);
             this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "مقاول";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
@@ -200,7 +198,6 @@
             this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton2.Size = new System.Drawing.Size(343, 25);
             this.radioButton2.TabIndex = 11;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "تاجر";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
@@ -214,7 +211,6 @@
             this.radioButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButton3.Size = new System.Drawing.Size(85, 25);
             this.radioButton3.TabIndex = 9;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = "مهندس";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
@@ -510,9 +506,9 @@
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radEng.Location = new System.Drawing.Point(494, 30);
+            this.radEng.Location = new System.Drawing.Point(496, 30);
             this.radEng.Name = "radEng";
-            this.radEng.Size = new System.Drawing.Size(95, 30);
+            this.radEng.Size = new System.Drawing.Size(93, 30);
             this.radEng.TabIndex = 12;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -526,9 +522,9 @@
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radDealer.Location = new System.Drawing.Point(338, 30);
+            this.radDealer.Location = new System.Drawing.Point(340, 30);
             this.radDealer.Name = "radDealer";
-            this.radDealer.Size = new System.Drawing.Size(62, 30);
+            this.radDealer.Size = new System.Drawing.Size(60, 30);
             this.radDealer.TabIndex = 14;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -542,9 +538,9 @@
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radCon.Location = new System.Drawing.Point(405, 30);
+            this.radCon.Location = new System.Drawing.Point(406, 30);
             this.radCon.Name = "radCon";
-            this.radCon.Size = new System.Drawing.Size(85, 30);
+            this.radCon.Size = new System.Drawing.Size(84, 30);
             this.radCon.TabIndex = 13;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -595,7 +591,6 @@
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(70, 25);
             this.radioButton4.TabIndex = 8;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = "عميل";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);

@@ -173,39 +173,6 @@ namespace MainSystem
                                 {
                                     if (dr["Confirmed"].ToString() == "1" || dr["Received"].ToString() == "1" || dr["Received"].ToString() == "2" || dr["Canceled"].ToString() == "1")
                                     {
-                                        if(dr["Canceled"].ToString() == "1")
-                                        {
-                                            checkBoxAvailable.Checked = false;
-                                            checkBoxCanceled.Checked = true;
-                                            checkBoxConfirmed.Checked = false;
-                                            checkBoxReceived.Checked = false;
-                                            checkBoxReceivedPart.Checked = false;
-                                        }
-                                        else if (dr["Received"].ToString() == "1")
-                                        {
-                                            checkBoxAvailable.Checked = false;
-                                            checkBoxCanceled.Checked = false;
-                                            checkBoxConfirmed.Checked = false;
-                                            checkBoxReceived.Checked = true;
-                                            checkBoxReceivedPart.Checked = false;
-                                        }
-                                        else if (dr["Received"].ToString() == "2")
-                                        {
-                                            checkBoxAvailable.Checked = false;
-                                            checkBoxCanceled.Checked = false;
-                                            checkBoxConfirmed.Checked = false;
-                                            checkBoxReceived.Checked = false;
-                                            checkBoxReceivedPart.Checked = true;
-                                        }
-                                        else if (dr["Confirmed"].ToString() == "1")
-                                        {
-                                            checkBoxAvailable.Checked = false;
-                                            checkBoxCanceled.Checked = false;
-                                            checkBoxConfirmed.Checked = true;
-                                            checkBoxReceived.Checked = false;
-                                            checkBoxReceivedPart.Checked = false;
-                                        }
-                                        
                                         addFlage = false;
                                         loaded = false;
                                         txtEmployee.ReadOnly = true;
@@ -214,7 +181,6 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;
-                                        dateTimePicker2.Enabled = false;
                                         orderId = Convert.ToInt16(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
@@ -230,17 +196,10 @@ namespace MainSystem
                                             txtSupplier.Text = "";
                                         }
                                         dateTimePicker1.Value = Convert.ToDateTime(dr["Request_Date"].ToString());
-                                        dateTimePicker2.Value = Convert.ToDateTime(dr["Receive_Date"].ToString());
                                         loaded = true;
                                     }
                                     else
                                     {
-                                        checkBoxAvailable.Checked = true;
-                                        checkBoxCanceled.Checked = false;
-                                        checkBoxConfirmed.Checked = false;
-                                        checkBoxReceived.Checked = false;
-                                        checkBoxReceivedPart.Checked = false;
-
                                         addFlage = true;
                                         loaded = false;
                                         txtEmployee.ReadOnly = true;
@@ -249,7 +208,6 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;
-                                        dateTimePicker2.Enabled = false;
                                         orderId = Convert.ToInt16(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
@@ -265,7 +223,6 @@ namespace MainSystem
                                             txtSupplier.Text = "";
                                         }
                                         dateTimePicker1.Value = Convert.ToDateTime(dr["Request_Date"].ToString());
-                                        dateTimePicker2.Value = Convert.ToDateTime(dr["Receive_Date"].ToString());
                                         loaded = true;
                                     }
                                 }
@@ -273,12 +230,6 @@ namespace MainSystem
                             }
                             else
                             {
-                                checkBoxAvailable.Checked = false;
-                                checkBoxCanceled.Checked = false;
-                                checkBoxConfirmed.Checked = false;
-                                checkBoxReceived.Checked = false;
-                                checkBoxReceivedPart.Checked = false;
-
                                 addFlage = true;
                                 loaded = false;
                                 orderId = 0;
@@ -288,14 +239,12 @@ namespace MainSystem
                                 comSupplier.SelectedIndex = -1;
                                 txtSupplier.Text = "";
                                 dateTimePicker1.Value = DateTime.Now.Date;
-                                dateTimePicker2.Value = DateTime.Now.Date;
                                 txtEmployee.ReadOnly = false;
                                 comStore.Enabled = true;
                                 txtStoreID.ReadOnly = false;
                                 comSupplier.Enabled = true;
                                 txtSupplier.ReadOnly = false;
                                 dateTimePicker1.Enabled = true;
-                                dateTimePicker2.Enabled = true;
                                 int cont2 = gridView2.RowCount;
                                 for (int i = 0; i < cont2; i++)
                                 {
@@ -335,11 +284,6 @@ namespace MainSystem
                         else
                         {
                             MessageBox.Show("يجب تحديد المورد");
-                            checkBoxAvailable.Checked = false;
-                            checkBoxCanceled.Checked = false;
-                            checkBoxConfirmed.Checked = false;
-                            checkBoxReceived.Checked = false;
-                            checkBoxReceivedPart.Checked = false;
 
                             loaded = false;
                             orderId = 0;
@@ -349,14 +293,12 @@ namespace MainSystem
                             comSupplier.SelectedIndex = -1;
                             txtSupplier.Text = "";
                             dateTimePicker1.Value = DateTime.Now.Date;
-                            dateTimePicker2.Value = DateTime.Now.Date;
                             txtEmployee.ReadOnly = false;
                             comStore.Enabled = true;
                             txtStoreID.ReadOnly = false;
                             comSupplier.Enabled = true;
                             txtSupplier.ReadOnly = false;
                             dateTimePicker1.Enabled = true;
-                            dateTimePicker2.Enabled = true;
                             int cont = gridView2.RowCount;
                             for (int i = 0; i < cont; i++)
                             {
@@ -369,11 +311,6 @@ namespace MainSystem
                     else
                     {
                         MessageBox.Show("رقم الطلب يجب ان يكون عدد");
-                        checkBoxAvailable.Checked = false;
-                        checkBoxCanceled.Checked = false;
-                        checkBoxConfirmed.Checked = false;
-                        checkBoxReceived.Checked = false;
-                        checkBoxReceivedPart.Checked = false;
 
                         loaded = false;
                         orderId = 0;
@@ -383,14 +320,12 @@ namespace MainSystem
                         comSupplier.SelectedIndex = -1;
                         txtSupplier.Text = "";
                         dateTimePicker1.Value = DateTime.Now.Date;
-                        dateTimePicker2.Value = DateTime.Now.Date;
                         txtEmployee.ReadOnly = false;
                         comStore.Enabled = true;
                         txtStoreID.ReadOnly = false;
                         comSupplier.Enabled = true;
                         txtSupplier.ReadOnly = false;
                         dateTimePicker1.Enabled = true;
-                        dateTimePicker2.Enabled = true;
                         int cont = gridView2.RowCount;
                         for (int i = 0; i < cont; i++)
                         {
@@ -410,12 +345,6 @@ namespace MainSystem
             }
             else
             {
-                checkBoxAvailable.Checked = false;
-                checkBoxCanceled.Checked = false;
-                checkBoxConfirmed.Checked = false;
-                checkBoxReceived.Checked = false;
-                checkBoxReceivedPart.Checked = false;
-
                 loaded = false;
                 orderId = 0;
                 txtEmployee.Text = "";
@@ -424,14 +353,12 @@ namespace MainSystem
                 comSupplier.SelectedIndex = -1;
                 txtSupplier.Text = "";
                 dateTimePicker1.Value = DateTime.Now.Date;
-                dateTimePicker2.Value = DateTime.Now.Date;
                 txtEmployee.ReadOnly = false;
                 comStore.Enabled = true;
                 txtStoreID.ReadOnly = false;
                 comSupplier.Enabled = true;
                 txtSupplier.ReadOnly = false;
                 dateTimePicker1.Enabled = true;
-                dateTimePicker2.Enabled = true;
                 int cont = gridView2.RowCount;
                 for (int i = 0; i < cont; i++)
                 {
@@ -750,7 +677,6 @@ namespace MainSystem
                 repositoryCheckEdit1.ValueChecked = "True";
                 repositoryCheckEdit1.ValueUnchecked = "False";
                 gridView1.Columns["الحالة"].ColumnEdit = repositoryCheckEdit1;
-                //repositoryCheckEdit1.CheckedChanged += new EventHandler(CheckedChanged);
                 
                 query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
@@ -876,8 +802,6 @@ namespace MainSystem
                             com2.Parameters["@Employee_Name"].Value = txtEmployee.Text;
                             com2.Parameters.Add("@Request_Date", MySqlDbType.Date);
                             com2.Parameters["@Request_Date"].Value = dateTimePicker1.Value.Date;
-                            com2.Parameters.Add("@Recive_Date", MySqlDbType.Date);
-                            com2.Parameters["@Recive_Date"].Value = dateTimePicker2.Value.Date;
                             if (comSupplier.SelectedValue != null)
                             {
                                 com2.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
@@ -1148,13 +1072,7 @@ namespace MainSystem
             comSupplier.Enabled = true;
             txtSupplier.ReadOnly = false;
             dateTimePicker1.Enabled = true;
-            dateTimePicker2.Enabled = true;
-
-            checkBoxAvailable.Checked = false;
-            checkBoxCanceled.Checked = false;
-            checkBoxConfirmed.Checked = false;
-            checkBoxReceived.Checked = false;
-            checkBoxReceivedPart.Checked = false;
+            
             clearCom();
             loaded = true;
         }

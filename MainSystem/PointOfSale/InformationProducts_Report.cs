@@ -269,7 +269,7 @@ namespace MainSystem
                 #endregion
 
                 #region طقم
-                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID";
+                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID";
                 comand = new MySqlCommand(query, dbconnection);
                 dr = comand.ExecuteReader();
                 while (dr.Read())
@@ -743,7 +743,7 @@ namespace MainSystem
                     gridView1.Columns["Type"].Visible = false;
                     gridView1.Columns[0].Visible = false;
 
-                    string query = "SELECT sets.Set_ID as 'الكود','Type',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Set_ID=" + comSet.SelectedValue.ToString();
+                    string query = "SELECT sets.Set_ID as 'الكود','Type',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Set_ID=" + comSet.SelectedValue.ToString();
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
@@ -1186,7 +1186,7 @@ namespace MainSystem
                     gridView1.Columns["Type"].Visible = false;
                     gridView1.Columns[0].Visible = false;
 
-                    string query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID";
+                    string query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
