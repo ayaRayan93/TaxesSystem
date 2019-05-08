@@ -167,6 +167,10 @@ namespace MainSystem
                                 {
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 }
+                                else
+                                {
+                                    paidAmount = 0;
+                                }
 
                                 /*query3 = "SELECT users.User_Name FROM customer_return_bill INNER JOIN users ON users.User_ID = customer_return_bill.Employee_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
                                 com2 = new MySqlCommand(query3, myConnection);

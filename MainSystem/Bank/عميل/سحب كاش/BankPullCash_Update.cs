@@ -120,6 +120,10 @@ namespace MainSystem
                             {
                                 paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                             }
+                            else
+                            {
+                                paidAmount = 0;
+                            }
 
                             query3 = "SELECT customer_return_bill.Employee_Name FROM customer_return_bill where customer_return_bill.CustomerReturnBill_ID=" + ID;
                             com2 = new MySqlCommand(query3, myConnection);

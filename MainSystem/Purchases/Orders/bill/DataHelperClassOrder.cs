@@ -89,7 +89,27 @@ namespace MainSystem
             column.Unique = false;
 
             table.Columns.Add(column);
-            
+
+            column = new DataColumn();
+            column.DataType = typeof(double);
+            column.ColumnName = "Balatat";
+            column.AutoIncrement = false;
+            column.Caption = "عدد البلتات";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(double);
+            column.ColumnName = "Cartons_Balate";
+            column.AutoIncrement = false;
+            column.Caption = "عدد الكراتين";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
             //column = new DataColumn();
             //column.DataType = typeof(double);
             //column.ColumnName = "Price";
@@ -174,6 +194,26 @@ namespace MainSystem
             column.ColumnName = "TotalQuantity";
             column.AutoIncrement = false;
             column.Caption = "عدد المتر/القطعة";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(double);
+            column.ColumnName = "Balatat";
+            column.AutoIncrement = false;
+            column.Caption = "عدد البلتات";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(double);
+            column.ColumnName = "Cartons_Balate";
+            column.AutoIncrement = false;
+            column.Caption = "عدد الكراتين";
             column.ReadOnly = false;
             column.Unique = false;
 
