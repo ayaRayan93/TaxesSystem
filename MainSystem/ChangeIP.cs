@@ -95,8 +95,7 @@ namespace MainSystem
                         // File.WriteAllText();
                         file.Write(comBranchName.SelectedValue.ToString());
                 }
-
-
+                
             }
             catch (Exception ex)
             {

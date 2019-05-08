@@ -255,7 +255,7 @@
     <Compile Include="Accounting\Supplier_Taswya\UpdateSupplierTaswaya.designer.cs">
       <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
     </Compile>
-    <Compile Include="ayatestDataSet.Designer.cs">
+    <Compile Include="Store\ayatestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ayatestDataSet.xsd</DependentUpon>
@@ -2986,15 +2986,15 @@
       <DependentUpon>UserUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ayatestDataSet.xsc">
+    <None Include="Store\ayatestDataSet.xsc">
       <DependentUpon>ayatestDataSet.xsd</DependentUpon>
     </None>
-    <None Include="ayatestDataSet.xsd">
+    <None Include="Store\ayatestDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ayatestDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ayatestDataSet.xss">
+    <None Include="Store\ayatestDataSet.xss">
       <DependentUpon>ayatestDataSet.xsd</DependentUpon>
     </None>
     <None Include="Cars\DataSet2.xsc">

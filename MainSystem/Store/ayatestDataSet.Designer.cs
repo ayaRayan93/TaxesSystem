@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace MainSystem {
+namespace MainSystem.Store {
     
     
     /// <summary>
@@ -872,7 +872,7 @@ namespace MainSystem {
         }
     }
 }
-namespace MainSystem.ayatestDataSetTableAdapters {
+namespace MainSystem.Store.ayatestDataSetTableAdapters {
     
     
     /// <summary>
