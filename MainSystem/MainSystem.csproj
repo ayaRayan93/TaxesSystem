@@ -3280,7 +3280,9 @@
     <Content Include="Car_Service.ico" />
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
-    <None Include="Resources\Branch.txt" />
+    <None Include="Resources\Branch.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\icons8_Delete_48px.png" />
     <None Include="Resources\icons8_Checkmark_48px.png" />
     <None Include="Resources\icons8_Deliveries_32.png" />
