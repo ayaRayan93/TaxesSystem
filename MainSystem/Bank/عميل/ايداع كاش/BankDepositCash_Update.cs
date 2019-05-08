@@ -1094,6 +1094,10 @@ namespace MainSystem
                 {
                     paidAmount = Convert.ToDouble(com.ExecuteScalar().ToString());
                 }
+                else
+                {
+                    paidAmount = 0;
+                }
 
                 query = "SELECT customer_bill.Employee_Name FROM customer_bill where customer_bill.Branch_BillNumber=" + ID + " and customer_bill.Branch_ID=" + branchID;
                 com = new MySqlCommand(query, myConnection);

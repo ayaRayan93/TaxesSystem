@@ -169,6 +169,10 @@ namespace MainSystem
                                 {
                                     paidAmount = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 }
+                                else
+                                {
+                                    paidAmount = 0;
+                                }
 
                                 //query3 = "SELECT sum(Amount) FROM transitions where Bill_Number=" + billNumber + " and Branch_ID=" + branchID + " and Transition='سحب' group by Bill_Number";
                                 //com2 = new MySqlCommand(query3, myConnection);

@@ -247,11 +247,11 @@ namespace MainSystem
                     if (!xtraTabControlPurchases.Visible)
                         xtraTabControlPurchases.Visible = true;
 
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبات");
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبيات");
                     if (xtraTabPage == null)
                     {
-                        xtraTabControlPurchases.TabPages.Add("عرض الطلبات");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبات");
+                        xtraTabControlPurchases.TabPages.Add("عرض الطلبيات");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبيات");
                     }
                     xtraTabPage.Controls.Clear();
 
@@ -405,6 +405,37 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemDashOrderReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبيات المؤقتة");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض الطلبيات المؤقتة");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبيات المؤقتة");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplayDashOrderReportForm(xtraTabPage);
                 }
             }
             catch (Exception ex)
@@ -693,6 +724,39 @@ namespace MainSystem
             xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
             //List<DataRow> row1 = new List<DataRow>();
             Order_Record objForm = new Order_Record(row1, OrderReport, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDashOrderReportForm(XtraTabPage xtraTabPage)
+        {
+            DashOrder_Report objForm = new DashOrder_Report(this, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindRecordDashOrderForm(DashOrder_Report DashOrderReport, List<DataRow> row1)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب مؤقت");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("اضافة طلب مؤقت");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب مؤقت");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            //List<DataRow> row1 = new List<DataRow>();
+            DashOrder_Record objForm = new DashOrder_Record(row1, DashOrderReport, xtraTabControlPurchases);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

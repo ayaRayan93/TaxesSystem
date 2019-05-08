@@ -50,6 +50,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.comFactory = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtBalat = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtCarton = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
@@ -58,6 +62,8 @@
             this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Balatat = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cartons_Balate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -80,12 +86,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtProduct = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.Cartons_Balate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Balatat = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.txtBalat = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtCarton = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -118,6 +118,7 @@
             this.txtTotalMeters.Size = new System.Drawing.Size(100, 24);
             this.txtTotalMeters.TabIndex = 112;
             this.txtTotalMeters.Text = "0";
+            this.txtTotalMeters.TextChanged += new System.EventHandler(this.txtTotalMeter_TextChanged);
             // 
             // label5
             // 
@@ -367,6 +368,53 @@
             this.panel2.Size = new System.Drawing.Size(899, 44);
             this.panel2.TabIndex = 207;
             // 
+            // txtBalat
+            // 
+            this.txtBalat.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBalat.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtBalat.Location = new System.Drawing.Point(485, 10);
+            this.txtBalat.Name = "txtBalat";
+            this.txtBalat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtBalat.Size = new System.Drawing.Size(100, 24);
+            this.txtBalat.TabIndex = 116;
+            this.txtBalat.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label2.Location = new System.Drawing.Point(591, 13);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(79, 19);
+            this.label2.TabIndex = 118;
+            this.label2.Text = "عدد البلتات";
+            // 
+            // txtCarton
+            // 
+            this.txtCarton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCarton.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCarton.Location = new System.Drawing.Point(288, 10);
+            this.txtCarton.Name = "txtCarton";
+            this.txtCarton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCarton.Size = new System.Drawing.Size(100, 24);
+            this.txtCarton.TabIndex = 117;
+            this.txtCarton.Text = "0";
+            this.txtCarton.TextChanged += new System.EventHandler(this.txtNumCarton_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label7.Location = new System.Drawing.Point(394, 13);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label7.Size = new System.Drawing.Size(85, 19);
+            this.label7.TabIndex = 119;
+            this.label7.Text = "عدد الكراتين";
+            // 
             // btnDelete
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -486,6 +534,24 @@
             this.ItemName.Visible = true;
             this.ItemName.VisibleIndex = 2;
             this.ItemName.Width = 120;
+            // 
+            // Balatat
+            // 
+            this.Balatat.Caption = "عدد البلتات";
+            this.Balatat.FieldName = "Balatat";
+            this.Balatat.Name = "Balatat";
+            this.Balatat.Visible = true;
+            this.Balatat.VisibleIndex = 3;
+            this.Balatat.Width = 78;
+            // 
+            // Cartons_Balate
+            // 
+            this.Cartons_Balate.Caption = "عدد الكراتين";
+            this.Cartons_Balate.FieldName = "Cartons_Balate";
+            this.Cartons_Balate.Name = "Cartons_Balate";
+            this.Cartons_Balate.Visible = true;
+            this.Cartons_Balate.VisibleIndex = 4;
+            this.Cartons_Balate.Width = 90;
             // 
             // TotalQuantity
             // 
@@ -780,68 +846,6 @@
             this.label4.Size = new System.Drawing.Size(46, 18);
             this.label4.TabIndex = 11;
             this.label4.Text = "الصنف";
-            // 
-            // Cartons_Balate
-            // 
-            this.Cartons_Balate.Caption = "عدد الكراتين";
-            this.Cartons_Balate.Name = "Cartons_Balate";
-            this.Cartons_Balate.Visible = true;
-            this.Cartons_Balate.VisibleIndex = 4;
-            this.Cartons_Balate.Width = 90;
-            // 
-            // Balatat
-            // 
-            this.Balatat.Caption = "عدد البلتات";
-            this.Balatat.Name = "Balatat";
-            this.Balatat.Visible = true;
-            this.Balatat.VisibleIndex = 3;
-            this.Balatat.Width = 78;
-            // 
-            // txtBalat
-            // 
-            this.txtBalat.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBalat.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBalat.Location = new System.Drawing.Point(485, 10);
-            this.txtBalat.Name = "txtBalat";
-            this.txtBalat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBalat.Size = new System.Drawing.Size(100, 24);
-            this.txtBalat.TabIndex = 116;
-            this.txtBalat.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label2.Location = new System.Drawing.Point(591, 13);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(79, 19);
-            this.label2.TabIndex = 118;
-            this.label2.Text = "عدد البلتات";
-            // 
-            // txtCarton
-            // 
-            this.txtCarton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCarton.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCarton.Location = new System.Drawing.Point(288, 10);
-            this.txtCarton.Name = "txtCarton";
-            this.txtCarton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCarton.Size = new System.Drawing.Size(100, 24);
-            this.txtCarton.TabIndex = 117;
-            this.txtCarton.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label7.Location = new System.Drawing.Point(394, 13);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(85, 19);
-            this.label7.TabIndex = 119;
-            this.label7.Text = "عدد الكراتين";
             // 
             // DashOrder_Record
             // 
