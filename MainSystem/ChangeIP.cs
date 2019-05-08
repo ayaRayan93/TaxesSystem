@@ -76,26 +76,26 @@ namespace MainSystem
         {
             try
             {
-                ////wright on ipAddtress file
-                string filename = "IP_Address.txt";
-                if (System.IO.File.Exists(filename))
+                //////wright on ipAddtress file
+                //string filename = "IP_Address.txt";
+                //if (System.IO.File.Exists(filename))
 
-                    System.IO.File.WriteAllText(filename, txtNewIP.Text);
+                //    System.IO.File.WriteAllText(filename, txtNewIP.Text);
 
-                filename = "Branch.txt";
-                if (System.IO.File.Exists(filename))
-                    System.IO.File.WriteAllText(filename, comBranchName.SelectedValue.ToString());
+                string filename = "\\Resources\\Branch.txt";
+                //if (System.IO.File.Exists(filename))
+                //    System.IO.File.WriteAllText(filename, comBranchName.SelectedValue.ToString());
 
-                string x = Properties.Resources.Branch.Insert(0, comBranchName.SelectedValue.ToString());
+                //string x = Properties.Resources.Branch.Insert(0, comBranchName.SelectedValue.ToString());
 
-                using (StreamWriter file = new StreamWriter(filename))
+                using (StreamWriter file = new StreamWriter(Directory.GetCurrentDirectory()+filename))
                 {
                     //if the file doesn't exist, create it
-                    if (File.Exists(filename))
+                    if (File.Exists(Directory.GetCurrentDirectory() + filename))
                         // File.WriteAllText();
                         file.Write(comBranchName.SelectedValue.ToString());
                 }
-                
+
             }
             catch (Exception ex)
             {
