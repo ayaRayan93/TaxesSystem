@@ -612,12 +612,12 @@ namespace MainSystem
             navBarGroup12.Visible = false;
             //navBarGroup45.Visible = false;
 
-            navBarGroup14.Visible = false;
-            navBarGroup15.Visible = false;
-            navBarGroup16.Visible = false;
-            navBarGroup17.Visible = false;
-            navBarGroup18.Visible = false;
-            navBarGroup39.Visible = false;
+            //navBarGroup14.Visible = false;
+            //navBarGroup15.Visible = false;
+            //navBarGroup16.Visible = false;
+            //navBarGroup17.Visible = false;
+            //navBarGroup18.Visible = false;
+            //navBarGroup39.Visible = false;
 
             navBarGroup43.Visible = false;
             navBarGroup44.Visible = false;
