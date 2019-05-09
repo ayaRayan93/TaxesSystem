@@ -133,6 +133,10 @@ namespace MainSystem
                     subQuery = "and zone.Zone_ID="+txtZone.Text;
                 }
 
+                //string query = " SELECT GROUP_CONCAT( DISTINCT product_bill.CustomerBill_ID) from product_bill  INNER JOIN customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID  inner join shipping on shipping.CustomerBill_ID=customer_bill.CustomerBill_ID  WHERE shipping.Delivered=0 and Returned='لا' and date(shipping.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "' " + subQuery;
+                //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                //string ids = com.ExecuteScalar().ToString();
+
                 string query = "SELECT Shipping_ID, shipping.CustomerBill_ID as 'كود الفاتورة', shipping.Bill_Number as 'رقم الفاتورة',branch.Branch_Name as 'الفرع',customer.Customer_Name as 'العميل',shipping.Phone as 'التليفون',shipping.Address as 'العنوان',area.Area_Name as 'المنطقة',shipping.Description as 'البيان',shipping.Date as 'التاريخ' FROM shipping INNER JOIN customer ON customer.Customer_ID = shipping.Customer_ID INNER JOIN branch ON branch.Branch_ID = shipping.Branch_ID INNER JOIN area ON area.Area_ID = shipping.Area_ID inner join zone on area.Zone_ID=zone.Zone_ID WHERE shipping.Delivered=0 and date(shipping.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "' "+subQuery;
                 MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";

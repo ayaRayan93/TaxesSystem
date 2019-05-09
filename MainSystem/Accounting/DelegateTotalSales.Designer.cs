@@ -71,7 +71,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(850, 536);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // tableLayoutPanel2
             // 
@@ -96,7 +95,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(844, 44);
             this.tableLayoutPanel2.TabIndex = 9;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // btnReport
             // 
@@ -131,7 +129,6 @@
             this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 
@@ -255,7 +252,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(850, 100);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // newChoose
             // 
@@ -282,7 +278,6 @@
             this.txtDelegateID.Name = "txtDelegateID";
             this.txtDelegateID.Size = new System.Drawing.Size(48, 24);
             this.txtDelegateID.TabIndex = 194;
-            this.txtDelegateID.TextChanged += new System.EventHandler(this.txtDelegateID_TextChanged);
             this.txtDelegateID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDelegateID_KeyDown);
             // 
             // comDelegate
@@ -294,7 +289,6 @@
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.Size = new System.Drawing.Size(173, 24);
             this.comDelegate.TabIndex = 192;
-            this.comDelegate.SelectedIndexChanged += new System.EventHandler(this.comDelegate_SelectedIndexChanged);
             this.comDelegate.SelectedValueChanged += new System.EventHandler(this.comDelegate_SelectedValueChanged);
             // 
             // labelDelegate
@@ -307,7 +301,6 @@
             this.labelDelegate.Size = new System.Drawing.Size(45, 16);
             this.labelDelegate.TabIndex = 193;
             this.labelDelegate.Text = "مندوب";
-            this.labelDelegate.Click += new System.EventHandler(this.labelDelegate_Click);
             // 
             // dateTimeTo
             // 
@@ -316,7 +309,6 @@
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
             this.dateTimeTo.TabIndex = 188;
-            this.dateTimeTo.ValueChanged += new System.EventHandler(this.dateTimeTo_ValueChanged);
             // 
             // dateTimeFrom
             // 
@@ -325,7 +317,6 @@
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFrom.TabIndex = 189;
-            this.dateTimeFrom.ValueChanged += new System.EventHandler(this.dateTimeFrom_ValueChanged);
             // 
             // label2
             // 
@@ -337,7 +328,6 @@
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 190;
             this.label2.Text = "من";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -349,7 +339,6 @@
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 191;
             this.label3.Text = "الي";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // btnSearch
             // 

@@ -490,10 +490,14 @@ namespace MainSystem
 
                     if (!IsMainChang())
                     {
-                        string query2 = "SELECT count(Code) FROM data where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text;
+                        string query2 = "SELECT max(Code) FROM data where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text;
                         dbconnection.Open();
                         MySqlCommand adpt = new MySqlCommand(query2, dbconnection);
-                        int result = Convert.ToInt16(adpt.ExecuteScalar().ToString());
+                        string maxCode = adpt.ExecuteScalar().ToString();
+                        char[] arrCode = maxCode.ToCharArray();
+                        string part5 = arrCode[16] + arrCode[17] + arrCode[18] + arrCode[19] + "";
+
+                        int result = Convert.ToInt16(part5);
                         result = result + 1;
                         dbconnection.Close();
 

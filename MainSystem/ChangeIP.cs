@@ -41,10 +41,9 @@ namespace MainSystem
                 comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
          
-                string supString = Properties.Resources.IP_Address;
-                labOldIP.Text = supString;
-                int branchID =Convert.ToInt16(Properties.Resources.Branch);
-                query = "select Branch_Name from branch where Branch_ID=" + branchID;
+                labOldIP.Text = baseData.IPAddress;
+             
+                query = "select Branch_Name from branch where Branch_ID=" + baseData.BranchID;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 comBranchName.Text = com.ExecuteScalar().ToString();
             }
@@ -76,26 +75,18 @@ namespace MainSystem
         {
             try
             {
-                //////wright on ipAddtress file
-                //string filename = "IP_Address.txt";
-                //if (System.IO.File.Exists(filename))
-
-                //    System.IO.File.WriteAllText(filename, txtNewIP.Text);
-
-                string filename = "\\Resources\\Branch.txt";
-                //if (System.IO.File.Exists(filename))
-                //    System.IO.File.WriteAllText(filename, comBranchName.SelectedValue.ToString());
-
-                //string x = Properties.Resources.Branch.Insert(0, comBranchName.SelectedValue.ToString());
-
-                using (StreamWriter file = new StreamWriter(Directory.GetCurrentDirectory()+filename))
+                string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Branch.txt");
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
                 {
                     //if the file doesn't exist, create it
-                    if (File.Exists(Directory.GetCurrentDirectory() + filename))
-                        // File.WriteAllText();
-                        file.Write(comBranchName.SelectedValue.ToString());
-                }
+                    if (!File.Exists(fileName))
+                        File.Create(fileName);
 
+                    file.Write(comBranchName.SelectedValue.ToString());
+                }
+                baseData.BranchID = (int)comBranchName.SelectedValue;
+                if (txtNewIP.Text != "")
+                    baseData.IPAddress = txtNewIP.Text;
             }
             catch (Exception ex)
             {

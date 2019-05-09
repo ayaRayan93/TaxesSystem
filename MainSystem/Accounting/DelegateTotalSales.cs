@@ -271,59 +271,5 @@ namespace MainSystem
             }
         }
 
-        private void txtDelegateID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comDelegate_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelDelegate_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimeTo_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimeFrom_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

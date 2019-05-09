@@ -608,10 +608,15 @@ namespace MainSystem
 
                     code = code + code4;
 
-                    string query2 = "SELECT count(Code) FROM data where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text;
+                    string query2 = "SELECT max(Code) FROM data where Type_ID=" + txtType.Text + " and Factory_ID=" + txtFactory.Text + " and Group_ID=" + txtGroup.Text + " and Product_ID=" + txtProduct.Text;
                     conn.Open();
                     MySqlCommand adpt = new MySqlCommand(query2, conn);
-                    int result = Convert.ToInt16(adpt.ExecuteScalar().ToString());
+                    string maxCode = adpt.ExecuteScalar().ToString();
+                    char [] arrCode = maxCode.ToCharArray();
+                    
+                    string part5 = arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString() + "";
+
+                    int result = Convert.ToInt16(part5);
                     result = result + 1;
                     conn.Close();
 
