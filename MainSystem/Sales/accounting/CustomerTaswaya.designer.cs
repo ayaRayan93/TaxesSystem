@@ -51,6 +51,8 @@
             this.radEng = new System.Windows.Forms.RadioButton();
             this.radClient = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labTaswayaID = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -80,6 +82,8 @@
             // 
             // panContent
             // 
+            this.panContent.Controls.Add(this.labTaswayaID);
+            this.panContent.Controls.Add(this.label5);
             this.panContent.Controls.Add(this.dateTimeFrom);
             this.panContent.Controls.Add(this.label4);
             this.panContent.Controls.Add(this.btnTaswaya);
@@ -360,6 +364,29 @@
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(258, 253);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 19);
+            this.label5.TabIndex = 194;
+            this.label5.Text = "رقم التسوية";
+            this.label5.Visible = false;
+            // 
+            // labTaswayaID
+            // 
+            this.labTaswayaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labTaswayaID.AutoSize = true;
+            this.labTaswayaID.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTaswayaID.Location = new System.Drawing.Point(177, 253);
+            this.labTaswayaID.Name = "labTaswayaID";
+            this.labTaswayaID.Size = new System.Drawing.Size(0, 19);
+            this.labTaswayaID.TabIndex = 195;
+            this.labTaswayaID.Visible = false;
+            // 
             // CustomerTaswaya
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,5 +431,7 @@
         private System.Windows.Forms.Button btnTaswaya;
         private System.Windows.Forms.DateTimePicker dateTimeFrom;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labTaswayaID;
+        private System.Windows.Forms.Label label5;
     }
 }
