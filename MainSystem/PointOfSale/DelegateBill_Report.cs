@@ -39,7 +39,7 @@ namespace MainSystem
                 comDelegate.DataSource = dt;
                 comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
-                comDelegate.Text = "";
+                comDelegate.SelectedIndex = -1;
                 loaded = true;
             }
             catch (Exception ex)

@@ -106,8 +106,8 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
-                btnPOS.Enabled = true;
-                btnPOS.Checked = true;
+                btnPOS.Enabled = false;
+                btnPOS.Checked = false;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 TIElsha7n.Enabled = true;

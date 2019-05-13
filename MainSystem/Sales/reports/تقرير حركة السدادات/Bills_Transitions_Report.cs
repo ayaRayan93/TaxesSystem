@@ -254,7 +254,14 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["البيان"], dr["البيان"].ToString());
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الخزينة"], dr["الخزينة"].ToString());
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["طريقة الدفع"], dr["طريقة الدفع"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"].ToString());
+                    if (dr["تاريخ الاستحقاق"].ToString() == "")
+                    {
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["تاريخ الاستحقاق"], null);
+                    }
+                    else
+                    {
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"].ToString());
+                    }
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"].ToString());
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["نوع الكارت"], dr["نوع الكارت"].ToString());
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["رقم العملية"], dr["رقم العملية"].ToString());

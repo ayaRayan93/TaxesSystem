@@ -29,15 +29,15 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from supplier";
+                string query = "select * from factory";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                comSupplier.DataSource = dt;
-                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
-                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                comSupplier.Text = "";
-                txtSupplierID.Text = "";
+                comFactory.DataSource = dt;
+                comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                comFactory.Text = "";
+                txtFactoryID.Text = "";
 
                 if(tabControlContent.Name == "xtraTabControlStoresContent")
                 {
@@ -58,7 +58,7 @@ namespace MainSystem
             try
             {
                 if (loaded)
-                    txtSupplierID.Text = comSupplier.SelectedValue.ToString();
+                    txtFactoryID.Text = comFactory.SelectedValue.ToString();
             }
             catch (Exception ex)
             {
@@ -73,13 +73,13 @@ namespace MainSystem
                 try
                 {
                     dbconnection.Open();
-                    string query = "select Supplier_Name from supplier where Supplier_ID=" + txtSupplierID.Text + "";
+                    string query = "select Factory_Name from factory where Factory_ID=" + txtFactoryID.Text + "";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
                         Name = (string)com.ExecuteScalar();
-                        comSupplier.Text = Name;
-                        comSupplier.SelectedValue = txtSupplierID.Text;
+                        comFactory.Text = Name;
+                        comFactory.SelectedValue = txtFactoryID.Text;
                     }
                     else
                     {
@@ -115,17 +115,17 @@ namespace MainSystem
             string d = date.ToString("yyyy-MM-dd");
             DateTime date2 = dateTimePicker2.Value.Date;
             string d2 = date2.ToString("yyyy-MM-dd");
-            int supplierID = 0;
+            int factoryID = 0;
             MySqlDataAdapter adapterOrder = null;
             MySqlDataAdapter adapterDetails = null;
-            if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
+            if (int.TryParse(txtFactoryID.Text, out factoryID) && comFactory.SelectedValue != null)
             {
-                adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and orders.Supplier_ID=" + supplierID + " and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
-                adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and orders.Supplier_ID=" + supplierID + " and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
+                adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',factory.Factory_Name as 'المصنع',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join factory on factory.Factory_ID=orders.Factory_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and orders.Factory_ID=" + factoryID + " and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
+                adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and orders.Factory_ID=" + factoryID + " and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
             }
             else
             {
-                adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
+                adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',factory.Factory_Name as 'المصنع',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join factory on factory.Factory_ID=orders.Factory_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
                 adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and Receive_Date >='" + d + "' and Receive_Date <='" + d2 + "'", dbconnection);
             }
             adapterOrder.Fill(sourceDataSet, "orders");
@@ -143,7 +143,7 @@ namespace MainSystem
             DataSet sourceDataSet = new DataSet();
             MySqlDataAdapter adapterOrder = null;
             MySqlDataAdapter adapterDetails = null;
-            adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join supplier on supplier.Supplier_ID=orders.Supplier_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and Receive_Date ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
+            adapterOrder = new MySqlDataAdapter("select orders.Order_ID as 'التسلسل',factory.Factory_Name as 'المصنع',orders.Order_Number as 'رقم الفاتورة',orders.Employee_Name as 'الموظف المسئول',store.Store_Name as 'المخزن',orders.Request_Date as 'تاريخ الطلب',orders.Receive_Date as 'تاريخ الاستلام' from orders inner join factory on factory.factory_ID=orders.factory_ID inner join store on store.Store_ID=orders.Store_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and Receive_Date ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
             adapterDetails = new MySqlDataAdapter("SELECT orders.Order_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',order_details.Quantity as 'عدد متر/قطعة' FROM orders INNER JOIN order_details ON orders.Order_ID = order_details.Order_ID INNER JOIN data ON order_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where orders.Confirmed=1 and orders.Received=0 and orders.Canceled=0 and Receive_Date ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
             adapterOrder.Fill(sourceDataSet, "orders");
             adapterDetails.Fill(sourceDataSet, "order_details");

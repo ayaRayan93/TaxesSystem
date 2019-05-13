@@ -31,21 +31,21 @@
             this.labBillNumber = new System.Windows.Forms.Label();
             this.txtBillNumber = new System.Windows.Forms.TextBox();
             this.btnDisplay = new System.Windows.Forms.Button();
-            this.comSupplier = new System.Windows.Forms.ComboBox();
-            this.txtSupplierID = new System.Windows.Forms.TextBox();
+            this.comFactory = new System.Windows.Forms.ComboBox();
+            this.txtFactoryID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labBillNumber
@@ -87,28 +87,28 @@
             this.btnDisplay.UseVisualStyleBackColor = false;
             this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
-            // comSupplier
+            // comFactory
             // 
-            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(624, 9);
-            this.comSupplier.Name = "comSupplier";
-            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comSupplier.Size = new System.Drawing.Size(150, 27);
-            this.comSupplier.TabIndex = 203;
-            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comFactory.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.comFactory.FormattingEnabled = true;
+            this.comFactory.Location = new System.Drawing.Point(624, 9);
+            this.comFactory.Name = "comFactory";
+            this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comFactory.Size = new System.Drawing.Size(150, 27);
+            this.comFactory.TabIndex = 203;
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
-            // txtSupplierID
+            // txtFactoryID
             // 
-            this.txtSupplierID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSupplierID.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtSupplierID.Location = new System.Drawing.Point(568, 9);
-            this.txtSupplierID.Name = "txtSupplierID";
-            this.txtSupplierID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSupplierID.Size = new System.Drawing.Size(50, 27);
-            this.txtSupplierID.TabIndex = 205;
-            this.txtSupplierID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            this.txtFactoryID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtFactoryID.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtFactoryID.Location = new System.Drawing.Point(568, 9);
+            this.txtFactoryID.Name = "txtFactoryID";
+            this.txtFactoryID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtFactoryID.Size = new System.Drawing.Size(50, 27);
+            this.txtFactoryID.TabIndex = 205;
+            this.txtFactoryID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
             // label16
             // 
@@ -117,9 +117,9 @@
             this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.label16.Location = new System.Drawing.Point(800, 13);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 19);
+            this.label16.Size = new System.Drawing.Size(62, 19);
             this.label16.TabIndex = 204;
-            this.label16.Text = "المورد";
+            this.label16.Text = "المصنع";
             // 
             // label2
             // 
@@ -182,25 +182,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(971, 567);
             this.tableLayoutPanel1.TabIndex = 215;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.txtBillNumber);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.labBillNumber);
-            this.panel1.Controls.Add(this.btnDisplay);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.txtSupplierID);
-            this.panel1.Controls.Add(this.comSupplier);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(965, 74);
-            this.panel1.TabIndex = 216;
-            // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -237,7 +218,26 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // requestStored
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.txtBillNumber);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.labBillNumber);
+            this.panel1.Controls.Add(this.btnDisplay);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.txtFactoryID);
+            this.panel1.Controls.Add(this.comFactory);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(965, 74);
+            this.panel1.TabIndex = 216;
+            // 
+            // OrderStored
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -245,15 +245,15 @@
             this.ClientSize = new System.Drawing.Size(971, 567);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
-            this.Name = "requestStored";
+            this.Name = "OrderStored";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.requestStored_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -263,8 +263,8 @@
         private System.Windows.Forms.Label labBillNumber;
         private System.Windows.Forms.TextBox txtBillNumber;
         private System.Windows.Forms.Button btnDisplay;
-        private System.Windows.Forms.ComboBox comSupplier;
-        private System.Windows.Forms.TextBox txtSupplierID;
+        private System.Windows.Forms.ComboBox comFactory;
+        private System.Windows.Forms.TextBox txtFactoryID;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;

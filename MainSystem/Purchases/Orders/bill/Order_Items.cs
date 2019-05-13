@@ -11,6 +11,7 @@ namespace MainSystem
         public string Code { get; set; }
         public string Product_Type { get; set; }
         public string Product_Name { get; set; }
+        public int Balatat { get; set; }
         public double Total_Meters { get; set; }
     }
 }

@@ -33,8 +33,8 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comSupplier = new System.Windows.Forms.ComboBox();
-            this.txtSupplierID = new System.Windows.Forms.TextBox();
+            this.comFactory = new System.Windows.Forms.ComboBox();
+            this.txtFactoryID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -107,27 +107,27 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 24);
             this.dateTimePicker1.TabIndex = 53;
             // 
-            // comSupplier
+            // comFactory
             // 
-            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(631, 23);
-            this.comSupplier.Name = "comSupplier";
-            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comSupplier.Size = new System.Drawing.Size(150, 24);
-            this.comSupplier.TabIndex = 200;
-            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comFactory.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comFactory.FormattingEnabled = true;
+            this.comFactory.Location = new System.Drawing.Point(631, 23);
+            this.comFactory.Name = "comFactory";
+            this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comFactory.Size = new System.Drawing.Size(150, 24);
+            this.comFactory.TabIndex = 200;
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
-            // txtSupplierID
+            // txtFactoryID
             // 
-            this.txtSupplierID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSupplierID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSupplierID.Location = new System.Drawing.Point(575, 23);
-            this.txtSupplierID.Name = "txtSupplierID";
-            this.txtSupplierID.Size = new System.Drawing.Size(50, 24);
-            this.txtSupplierID.TabIndex = 202;
-            this.txtSupplierID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            this.txtFactoryID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtFactoryID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtFactoryID.Location = new System.Drawing.Point(575, 23);
+            this.txtFactoryID.Name = "txtFactoryID";
+            this.txtFactoryID.Size = new System.Drawing.Size(50, 24);
+            this.txtFactoryID.TabIndex = 202;
+            this.txtFactoryID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
             // label16
             // 
@@ -136,9 +136,9 @@
             this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.label16.Location = new System.Drawing.Point(787, 27);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 19);
+            this.label16.Size = new System.Drawing.Size(62, 19);
             this.label16.TabIndex = 201;
-            this.label16.Text = "المورد";
+            this.label16.Text = "المصنع";
             // 
             // gridControl1
             // 
@@ -195,9 +195,9 @@
             // 
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.comSupplier);
+            this.panel1.Controls.Add(this.comFactory);
             this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.txtSupplierID);
+            this.panel1.Controls.Add(this.txtFactoryID);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.btnSearch);
@@ -234,8 +234,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comSupplier;
-        private System.Windows.Forms.TextBox txtSupplierID;
+        private System.Windows.Forms.ComboBox comFactory;
+        private System.Windows.Forms.TextBox txtFactoryID;
         private System.Windows.Forms.Label label16;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
