@@ -306,23 +306,34 @@ namespace MainSystem
         public List<int> getPermissionNumbers(List<BillID_StoreID> listOfBillID_StoreID)
         {
             dbconnection.Open();
+            DeleteUnSavedShiped();
             List<int> listOfPermissionIDs = new List<int>();
             for (int i = 0; i < listOfBillID_StoreID.Count; i++)
             {
               
                 for (int j = 0; j < listOfBillID_StoreID[i].listOfStoreID.Count; j++)
                 {
-                    string query = "insert into customer_permissions (CustomerBill_ID,Store_ID) values (@CustomerBill_ID,@Store_ID)";
+                    string query = "select Permissin_ID from customer_permissions  where CustomerBill_ID="+ listOfBillID_StoreID[i].Customer_Bill_ID + " and Store_ID="+ listOfBillID_StoreID[i].listOfStoreID[j];
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@CustomerBill_ID"].Value = listOfBillID_StoreID[i].Customer_Bill_ID;
-                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Store_ID"].Value = listOfBillID_StoreID[i].listOfStoreID[j];
-                    com.ExecuteNonQuery();
-                    query = "select Permissin_ID from customer_permissions order by  Permissin_ID DESC limit 1";
-                    com = new MySqlCommand(query, dbconnection);
-                    int permissionId = (int)com.ExecuteScalar();
-                    listOfPermissionIDs.Add(permissionId);
+                    if (com.ExecuteScalar() == null)
+                    {
+                        query = "insert into customer_permissions (CustomerBill_ID,Store_ID) values (@CustomerBill_ID,@Store_ID)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@CustomerBill_ID"].Value = listOfBillID_StoreID[i].Customer_Bill_ID;
+                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Store_ID"].Value = listOfBillID_StoreID[i].listOfStoreID[j];
+                        com.ExecuteNonQuery();
+                        query = "select Permissin_ID from customer_permissions order by  Permissin_ID DESC limit 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        int permissionId = (int)com.ExecuteScalar();
+
+                        listOfPermissionIDs.Add(permissionId);
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذه الفاتورة تم شحنها من قبل");
+                    }
                 }
             }
             dbconnection.Close();
@@ -350,7 +361,15 @@ namespace MainSystem
            public int Customer_Bill_ID;
            public List<int> listOfStoreID;
         }
-        
+        public void DeleteUnSavedShiped()
+        {
+            string query = "delete from customer_permissions where CustomerShippingStorage_ID is null";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            com.ExecuteNonQuery();
+            query = "ALTER TABLE customer_permissions AUTO_INCREMENT = 1;";
+            com = new MySqlCommand(query, dbconnection);
+            com.ExecuteNonQuery();
+        }
      
       
     }

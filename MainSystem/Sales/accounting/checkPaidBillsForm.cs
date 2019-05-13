@@ -224,7 +224,7 @@ namespace MainSystem
                         {
                             recivedMoney -= Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
                             labRecivedMoney.Text = recivedMoney.ToString();
-                            string query = "update customer_bill set Paid_Status=1 ,AgelBill_PaidDate=@AgelBill_PaidDate where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
+                            string query = "update customer_bill set Paid_Status=1 ,AgelBill_PaidDate=@AgelBill_PaidDate where Branch_BillNumber=" + row.Cells["رقم الفاتورة"].Value.ToString();
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@AgelBill_PaidDate", MySqlDbType.Date, 0);
                             com.Parameters["@AgelBill_PaidDate"].Value = DateTime.Now.Date;
@@ -241,7 +241,7 @@ namespace MainSystem
                     {
                         recivedMoney += Convert.ToDouble(row.Cells["اجمالي الفاتورة"].Value);
                         labRecivedMoney.Text = recivedMoney.ToString();
-                        string query = "update customer_bill set Paid_Status=0 ,AgelBill_PaidDate=Null where CustomerBill_ID=" + row.Cells["رقم الفاتورة"].Value.ToString();
+                        string query = "update customer_bill set Paid_Status=0 ,AgelBill_PaidDate=Null where Branch_BillNumber=" + row.Cells["رقم الفاتورة"].Value.ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                     }

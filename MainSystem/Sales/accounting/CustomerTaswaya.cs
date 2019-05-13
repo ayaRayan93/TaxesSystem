@@ -61,7 +61,6 @@ namespace MainSystem.Sales.accounting
                 this.Customer_Type = customerType;
                 dbconnection.Open();
                 setCustomerType();
-                dbconnection.Open();
                 setIDs();
             }
             catch (Exception ex)
@@ -265,31 +264,53 @@ namespace MainSystem.Sales.accounting
         {
             try
             {
-                dbconnection.Open();
-                string query = "insert into customer_taswaya (Customer_ID,Client_ID,Taswaya_Type,Money_Paid,Info,Date) values(@Customer_ID,@Client_ID,@Taswaya_Type,@Money_Paid,@Info,@Date)";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                com.Parameters["@Customer_ID"].Value =Convert.ToInt16(txtCustomerID.Text);
-                com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                com.Parameters["@Client_ID"].Value =Convert.ToInt16(txtClientID.Text);
-                if (radioButton1.Checked)
+                if (!labTaswayaID.Visible)
                 {
-                    com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Taswaya_Type"].Value = radioButton1.Text;
+                    labTaswayaID.Visible = true;
+                    label5.Visible = true;
+                    dbconnection.Open();
+                    string query = "insert into customer_taswaya (Customer_ID,Client_ID,Taswaya_Type,Money_Paid,Info,Date) values(@Customer_ID,@Client_ID,@Taswaya_Type,@Money_Paid,@Info,@Date)";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                    if (txtCustomerID.Text != "")
+                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                    else
+                        com.Parameters["@Customer_ID"].Value = null;
+
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+
+                    if (txtClientID.Text != "")
+                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                    else
+                        com.Parameters["@Client_ID"].Value = null;
+
+                    if (radioButton1.Checked)
+                    {
+                        com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
+                        com.Parameters["@Taswaya_Type"].Value = radioButton1.Text;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
+                        com.Parameters["@Taswaya_Type"].Value = radioButton2.Text;
+                    }
+                    com.Parameters.Add("@Money_Paid", MySqlDbType.Decimal);
+                    com.Parameters["@Money_Paid"].Value = Convert.ToDouble(txtMoney.Text);
+                    com.Parameters.Add("@Info", MySqlDbType.VarChar);
+                    com.Parameters["@Info"].Value = txtInfo.Text;
+                    com.Parameters.Add("@Date", MySqlDbType.Date);
+                    com.Parameters["@Date"].Value = dateTimeFrom.Value.Date;
+
+                    com.ExecuteNonQuery();
+
+                    query = "select CustomerTaswaya_ID from customer_taswaya order by CustomerTaswaya_ID desc limit 1";
+                    com = new MySqlCommand(query, dbconnection);
+                    labTaswayaID.Text = com.ExecuteScalar().ToString();
                 }
                 else
                 {
-                    com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Taswaya_Type"].Value = radioButton2.Text;
+                    MessageBox.Show("تم تسجيل التسوية من قبل");
                 }
-                com.Parameters.Add("@Money_Paid", MySqlDbType.Decimal);
-                com.Parameters["@Money_Paid"].Value =Convert.ToDouble(txtMoney.Text);
-                com.Parameters.Add("@Info", MySqlDbType.VarChar);
-                com.Parameters["@Info"].Value = txtInfo.Text;
-                com.Parameters.Add("@Date", MySqlDbType.Date);
-                com.Parameters["@Date"].Value = dateTimeFrom.Value.Date;
-
-                com.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -297,6 +318,8 @@ namespace MainSystem.Sales.accounting
             }
             dbconnection.Close();
         }
+
+      
 
         public void setIDs()
         {
@@ -324,5 +347,6 @@ namespace MainSystem.Sales.accounting
                 }
             }
         }
+        
     }
 }

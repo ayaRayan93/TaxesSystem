@@ -27,6 +27,7 @@ namespace MainSystem
             dbconnection = new MySqlConnection(connection.connectionString);
             //dbconnection2 = new MySqlConnection(connection.connectionString);
             txtName.Focus();
+            editFile();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -375,8 +376,6 @@ namespace MainSystem
             dbconnection.Close();
             conn.Close();
         }
-
-
         private void Login_Load(object sender, EventArgs e)
         {
             try
@@ -404,7 +403,6 @@ namespace MainSystem
             }
        
         }
-
         private void panClose_Click(object sender, EventArgs e)
         {
             try
@@ -417,6 +415,19 @@ namespace MainSystem
             }
         }
 
-      
+        public void editFile()
+        {
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Branch.txt");
+            using (System.IO.StreamReader file = new System.IO.StreamReader(fileName))
+            {
+                //if the file doesn't exist, create it
+                if (File.Exists(fileName))
+                {
+                    string BranchID = file.ReadLine();
+                    baseData.BranchID = Convert.ToInt16(BranchID);
+                }
+            }
+        }
+
     }
 }

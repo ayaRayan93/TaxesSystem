@@ -488,7 +488,6 @@ namespace MainSystem
             }
             dr.Close();
         }
-
         public void customersPaid_Bills()
         {
             DateTime date = dateTimeFrom.Value;
