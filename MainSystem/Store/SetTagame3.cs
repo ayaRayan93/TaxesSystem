@@ -310,7 +310,8 @@ namespace MainSystem
         //تجميع الطقم 
         public double Tagme3Set(int SetID)
         {
-
+            dbconnection.Close();
+            dbconnection.Open();
             string query = "select count(SetDetails_ID) from set_details where Set_ID=" + SetID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             int setItemsNumber = Convert.ToInt16(com.ExecuteScalar());
@@ -341,9 +342,8 @@ namespace MainSystem
             {
                 minQuantity = 0;
             }
+            dbconnection.Close();
             return minQuantity;
-
-
         }
        
         //record to database

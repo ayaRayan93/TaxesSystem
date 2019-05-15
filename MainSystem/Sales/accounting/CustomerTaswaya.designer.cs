@@ -30,6 +30,8 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panContent = new System.Windows.Forms.Panel();
+            this.labTaswayaID = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.dateTimeFrom = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.btnTaswaya = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.radEng = new System.Windows.Forms.RadioButton();
             this.radClient = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.labTaswayaID = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -109,23 +109,46 @@
             this.panContent.Size = new System.Drawing.Size(811, 506);
             this.panContent.TabIndex = 0;
             // 
+            // labTaswayaID
+            // 
+            this.labTaswayaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labTaswayaID.AutoSize = true;
+            this.labTaswayaID.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTaswayaID.Location = new System.Drawing.Point(310, 42);
+            this.labTaswayaID.Name = "labTaswayaID";
+            this.labTaswayaID.Size = new System.Drawing.Size(0, 21);
+            this.labTaswayaID.TabIndex = 195;
+            this.labTaswayaID.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(391, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 21);
+            this.label5.TabIndex = 194;
+            this.label5.Text = "رقم التسوية";
+            this.label5.Visible = false;
+            // 
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeFrom.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeFrom.Location = new System.Drawing.Point(434, 294);
+            this.dateTimeFrom.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeFrom.Location = new System.Drawing.Point(435, 335);
             this.dateTimeFrom.Name = "dateTimeFrom";
-            this.dateTimeFrom.Size = new System.Drawing.Size(182, 27);
+            this.dateTimeFrom.Size = new System.Drawing.Size(182, 29);
             this.dateTimeFrom.TabIndex = 192;
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(629, 298);
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(630, 339);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 19);
+            this.label4.Size = new System.Drawing.Size(51, 21);
             this.label4.TabIndex = 193;
             this.label4.Text = "التاريخ";
             // 
@@ -150,8 +173,8 @@
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(434, 191);
+            this.panel1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(435, 232);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(182, 45);
             this.panel1.TabIndex = 190;
@@ -188,10 +211,10 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(629, 201);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(630, 242);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 19);
+            this.label3.Size = new System.Drawing.Size(81, 21);
             this.label3.TabIndex = 189;
             this.label3.Text = "نوع التسوية";
             // 
@@ -199,38 +222,38 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(629, 249);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(630, 290);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 19);
+            this.label2.Size = new System.Drawing.Size(43, 21);
             this.label2.TabIndex = 186;
             this.label2.Text = "المبلغ";
             // 
             // txtMoney
             // 
             this.txtMoney.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtMoney.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMoney.Location = new System.Drawing.Point(434, 246);
+            this.txtMoney.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMoney.Location = new System.Drawing.Point(435, 287);
             this.txtMoney.Name = "txtMoney";
-            this.txtMoney.Size = new System.Drawing.Size(182, 27);
+            this.txtMoney.Size = new System.Drawing.Size(182, 29);
             this.txtMoney.TabIndex = 185;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(629, 341);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(630, 382);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 19);
+            this.label1.Size = new System.Drawing.Size(34, 21);
             this.label1.TabIndex = 184;
             this.label1.Text = "بيان";
             // 
             // txtInfo
             // 
             this.txtInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtInfo.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInfo.Location = new System.Drawing.Point(434, 338);
+            this.txtInfo.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInfo.Location = new System.Drawing.Point(435, 379);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.Size = new System.Drawing.Size(182, 47);
@@ -239,20 +262,20 @@
             // txtClientID
             // 
             this.txtClientID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtClientID.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientID.Location = new System.Drawing.Point(361, 136);
+            this.txtClientID.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClientID.Location = new System.Drawing.Point(362, 177);
             this.txtClientID.Name = "txtClientID";
-            this.txtClientID.Size = new System.Drawing.Size(63, 27);
+            this.txtClientID.Size = new System.Drawing.Size(63, 29);
             this.txtClientID.TabIndex = 182;
             this.txtClientID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCustomerID
             // 
             this.txtCustomerID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCustomerID.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomerID.Location = new System.Drawing.Point(361, 105);
+            this.txtCustomerID.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomerID.Location = new System.Drawing.Point(362, 146);
             this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(63, 27);
+            this.txtCustomerID.Size = new System.Drawing.Size(63, 29);
             this.txtCustomerID.TabIndex = 181;
             this.txtCustomerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
@@ -260,11 +283,11 @@
             // 
             this.radDealer.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radDealer.AutoSize = true;
-            this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDealer.Location = new System.Drawing.Point(407, 67);
+            this.radDealer.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDealer.Location = new System.Drawing.Point(408, 108);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(51, 23);
+            this.radDealer.Size = new System.Drawing.Size(56, 25);
             this.radDealer.TabIndex = 180;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -274,11 +297,11 @@
             // comEngCon
             // 
             this.comEngCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comEngCon.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comEngCon.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(434, 105);
+            this.comEngCon.Location = new System.Drawing.Point(435, 146);
             this.comEngCon.Name = "comEngCon";
-            this.comEngCon.Size = new System.Drawing.Size(182, 27);
+            this.comEngCon.Size = new System.Drawing.Size(182, 29);
             this.comEngCon.TabIndex = 178;
             this.comEngCon.Visible = false;
             this.comEngCon.SelectedValueChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
@@ -286,11 +309,11 @@
             // comClient
             // 
             this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comClient.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(434, 136);
+            this.comClient.Location = new System.Drawing.Point(435, 177);
             this.comClient.Name = "comClient";
-            this.comClient.Size = new System.Drawing.Size(182, 27);
+            this.comClient.Size = new System.Drawing.Size(182, 29);
             this.comClient.TabIndex = 173;
             this.comClient.Visible = false;
             this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
@@ -299,10 +322,10 @@
             // 
             this.labelClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelClient.AutoSize = true;
-            this.labelClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClient.Location = new System.Drawing.Point(629, 140);
+            this.labelClient.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClient.Location = new System.Drawing.Point(630, 181);
             this.labelClient.Name = "labelClient";
-            this.labelClient.Size = new System.Drawing.Size(40, 19);
+            this.labelClient.Size = new System.Drawing.Size(42, 21);
             this.labelClient.TabIndex = 174;
             this.labelClient.Text = "عميل";
             this.labelClient.Visible = false;
@@ -311,11 +334,11 @@
             // 
             this.radCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radCon.AutoSize = true;
-            this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCon.Location = new System.Drawing.Point(459, 67);
+            this.radCon.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCon.Location = new System.Drawing.Point(460, 108);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(67, 23);
+            this.radCon.Size = new System.Drawing.Size(62, 25);
             this.radCon.TabIndex = 175;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -326,11 +349,11 @@
             // 
             this.radEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radEng.AutoSize = true;
-            this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radEng.Location = new System.Drawing.Point(522, 67);
+            this.radEng.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radEng.Location = new System.Drawing.Point(523, 108);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(75, 23);
+            this.radEng.Size = new System.Drawing.Size(69, 25);
             this.radEng.TabIndex = 176;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -341,11 +364,11 @@
             // 
             this.radClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radClient.AutoSize = true;
-            this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radClient.Location = new System.Drawing.Point(604, 67);
+            this.radClient.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radClient.Location = new System.Drawing.Point(605, 108);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radClient.Size = new System.Drawing.Size(58, 23);
+            this.radClient.Size = new System.Drawing.Size(60, 25);
             this.radClient.TabIndex = 177;
             this.radClient.TabStop = true;
             this.radClient.Text = "عميل";
@@ -356,36 +379,13 @@
             // 
             this.labelEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelEng.AutoSize = true;
-            this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEng.Location = new System.Drawing.Point(629, 109);
+            this.labelEng.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEng.Location = new System.Drawing.Point(630, 150);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(133, 19);
+            this.labelEng.Size = new System.Drawing.Size(123, 21);
             this.labelEng.TabIndex = 179;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(258, 253);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 19);
-            this.label5.TabIndex = 194;
-            this.label5.Text = "رقم التسوية";
-            this.label5.Visible = false;
-            // 
-            // labTaswayaID
-            // 
-            this.labTaswayaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labTaswayaID.AutoSize = true;
-            this.labTaswayaID.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labTaswayaID.Location = new System.Drawing.Point(177, 253);
-            this.labTaswayaID.Name = "labTaswayaID";
-            this.labTaswayaID.Size = new System.Drawing.Size(0, 19);
-            this.labTaswayaID.TabIndex = 195;
-            this.labTaswayaID.Visible = false;
             // 
             // CustomerTaswaya
             // 

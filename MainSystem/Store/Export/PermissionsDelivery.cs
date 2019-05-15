@@ -89,12 +89,23 @@ namespace MainSystem
             dbconnectionr.Close();
         }
 
+        private void btnPermissionDelivery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.bindDisplayDeliveryForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         void gridView1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
             {
-                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-               
+                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);             
                 MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[1].ToString(), 1);
             }
             catch (Exception ex)
@@ -102,12 +113,12 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         void gridView2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
             {
                 DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-
                 MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), 2);
             }
             catch (Exception ex)
@@ -115,6 +126,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+       
         //functions
         public void ShippingPermissions()
         {
@@ -163,7 +175,6 @@ namespace MainSystem
             AddUnboundColumngridView1();
             AddRepositorygridView1();
         }
-
         public void CustomerDeliveryBills()
         {
             DateTime date = dateTimeFrom.Value;
@@ -210,7 +221,6 @@ namespace MainSystem
             AddUnboundColumngridView2();
             AddRepositorygridView2();
         }
-
         private void AddRepositorygridView1()
         {
             RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
@@ -229,7 +239,6 @@ namespace MainSystem
                 unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             }
         }
-
         private void AddRepositorygridView2()
         {
             RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
@@ -238,7 +247,7 @@ namespace MainSystem
             edit.Buttons[0].Caption = "تسليم اذن";
             edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
-        }
+        }       
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)
@@ -248,5 +257,6 @@ namespace MainSystem
                 unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             }
         }
+
     }
 }
