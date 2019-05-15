@@ -26,8 +26,8 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-        bool flag = false;
-        DataGridViewRow row1;
+        //bool flag = false;
+        //DataGridViewRow row1;
         public  Product_Record product_Record = null;
         public Product_Update product_Update = null;
         TipImage tipImage=null;
@@ -413,7 +413,7 @@ namespace MainSystem
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
              //   MessageBox.Show(ex.Message);
             }

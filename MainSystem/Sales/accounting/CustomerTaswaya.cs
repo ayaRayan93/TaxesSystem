@@ -15,12 +15,12 @@ namespace MainSystem.Sales.accounting
     {
         MySqlConnection dbconnection;
         MySqlConnection dbconnection1;
-        MainForm saleMainForm;
+        //MainForm saleMainForm;
         private string Customer_Type;
         private bool loaded = false;
-        double safay = -1;
-        int ClientID = -1;
-        string ClientName = "";
+        //double safay = -1;
+        //int ClientID = -1;
+        //string ClientName = "";
         string customerID="", clientID="";
         public CustomerTaswaya()
         {
@@ -100,7 +100,7 @@ namespace MainSystem.Sales.accounting
                 {
                     txtClientID.Text = comClient.SelectedValue.ToString();
                 }
-                catch (Exception ex)
+                catch
                 {
                   //  MessageBox.Show(ex.Message);
                 }

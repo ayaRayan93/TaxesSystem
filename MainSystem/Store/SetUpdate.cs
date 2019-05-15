@@ -22,9 +22,9 @@ namespace MainSystem
         DataRowView updateRow=null;
         DataGridViewRow row1 = null, row2 = null;
         bool loaded=false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
+        //bool factoryFlage = false;
+        //bool groupFlage = false;
+        //bool flagProduct = false;
         public static TipImage tipImage = null;
         Ataqm ataqm = null;
         byte[] selectedImage = null;
@@ -314,7 +314,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     //MessageBox.Show(ex.ToString());
                 }
@@ -592,7 +592,7 @@ namespace MainSystem
 
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 // MessageBox.Show(ex.Message);
             }
@@ -651,7 +651,7 @@ namespace MainSystem
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 // MessageBox.Show(ex.Message);
             }

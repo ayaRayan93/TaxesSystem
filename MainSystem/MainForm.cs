@@ -644,7 +644,7 @@ namespace MainSystem
     {
         static string supString = Properties.Resources.IP_Address;
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=testprice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
       
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }

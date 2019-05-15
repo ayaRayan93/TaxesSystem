@@ -18,8 +18,8 @@ namespace MainSystem
         int clientID = -1;
         private bool loaded=false;
         private string Customer_Type;
-        double safay = -1;
-        string ClientName = "";
+        //double safay = -1;
+        //string ClientName = "";
         public checkPaidBillsForm()//, StoreForm2CrystalReport crystalReport)
         {
             try
@@ -320,7 +320,7 @@ namespace MainSystem
         public void Display()
         {
             string query = "";
-            double m=0;
+            //double m=0;
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
                 query = "select distinct Branch_BillNumber as 'رقم الفاتورة' , Total_CostAD as 'اجمالي الفاتورة',branch.Branch_Name as 'الفرع',Bill_Date as'التاريخ'  from customer_bill inner join branch on branch.Branch_ID=customer_bill.Branch_ID " +/*inner join delegate on delegate.Delegate_ID=customer_bill.Delegate_ID */"" + "where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text + " and Paid_Status=0 and Type_Buy='آجل'";

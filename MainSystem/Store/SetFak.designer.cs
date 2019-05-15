@@ -502,7 +502,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Factory_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductColor;
         private System.Windows.Forms.DataGridViewTextBoxColumn productSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductSort;

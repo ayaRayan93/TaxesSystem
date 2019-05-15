@@ -524,7 +524,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-}
+        }
 
         private void navBarItemDelivery_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
@@ -731,6 +731,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void navBarItemTaswayatSubtract_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -764,6 +765,41 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void navBarItemTransportationStore_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تحويلات المخازن");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تحويلات المخازن");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تحويلات المخازن");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                TransportationStore objForm = new TransportationStore(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         /// <summary>
         private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
         {

@@ -15,7 +15,7 @@ namespace MainSystem
     public partial class SupplierPayments_Record : Form
     {
         MySqlConnection dbconnection;
-        bool flag = false;
+        //bool flag = false;
         string PaymentMethod = "";
         int[] arrOFPhaat; //count of each catagory value of money in store
         int[] arrRestMoney;

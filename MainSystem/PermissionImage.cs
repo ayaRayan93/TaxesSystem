@@ -76,7 +76,7 @@ namespace MainSystem
                 }
             
             }
-            catch (Exception ex)
+            catch
             {
                 // MessageBox.Show(ex.Message);
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;

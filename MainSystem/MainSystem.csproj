@@ -122,9 +122,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\CCCSystem19-2-2019x\CCCSystem\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework.Design">
-      <HintPath>F:\CCCSystem19-2-2019x\CCCSystem\packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
-    </Reference>
     <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>F:\CCCSystem19-2-2019x\CCCSystem\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
@@ -256,6 +253,26 @@
       <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
     </Compile>
     <Compile Include="baseData.cs" />
+    <Compile Include="Purchases\Orders\Reports\Print_OrderReportX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Reports\Print_OrderReportX.designer.cs">
+      <DependentUpon>Print_OrderReportX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Reports\ReportOrderDetails_Items.cs" />
+    <Compile Include="Purchases\Orders\Reports\ReportOrder_Items.cs" />
+    <Compile Include="Purchases\Orders\Reports\Print_OrderReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Reports\Print_OrderReport.designer.cs">
+      <DependentUpon>Print_OrderReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
+      <DependentUpon>Report_OrderSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\ayatestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2028,10 +2045,10 @@
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Import\TransportationStore.cs">
+    <Compile Include="Store\Transportation\TransportationStore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Import\TransportationStore.designer.cs">
+    <Compile Include="Store\Transportation\TransportationStore.designer.cs">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\Form2SpeicalOrder.cs">
@@ -2187,6 +2204,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\Reports\OrderStored.resx">
       <DependentUpon>OrderStored.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Reports\Print_OrderReportX.resx">
+      <DependentUpon>Print_OrderReportX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Reports\Print_OrderReport.resx">
+      <DependentUpon>Print_OrderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Reports\Report_OrderSearch.resx">
+      <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\Reports\SearchRequest_Date.resx">
       <DependentUpon>SearchRequest_Date.cs</DependentUpon>
@@ -2977,7 +3003,7 @@
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Import\TransportationStore.resx">
+    <EmbeddedResource Include="Store\Transportation\TransportationStore.resx">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Form2SpeicalOrder.resx">

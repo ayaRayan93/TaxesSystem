@@ -59,7 +59,7 @@ namespace MainSystem
                 {
                     txtSupplierID.Text = comSupplier.SelectedValue.ToString();
                 }
-                catch (Exception ex)
+                catch
                 {
                   //  MessageBox.Show(ex.Message);
                 }

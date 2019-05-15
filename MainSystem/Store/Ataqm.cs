@@ -19,7 +19,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         MainForm storeMainForm=null;
         bool loaded = false;
-        DataGridViewRow row1;
+        //DataGridViewRow row1;
         public static SetRecord setRecord = null;
         public static SetUpdate setUpdate = null;
         public Ataqm(MainForm StoreMainForm)
@@ -154,7 +154,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                   //  MessageBox.Show(ex.ToString());
                 }
@@ -272,7 +272,7 @@ namespace MainSystem
                 adapter.Fill(dataSet);
                 dataGridView1.DataSource = dataSet.Tables[0];
             }
-            catch (Exception ex)
+            catch
             {
                // MessageBox.Show(ex.Message);
             }
@@ -286,7 +286,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 loaded = false;
-                string q1, q2, q3, q4;
+                string q1, q2, q3;
                 if (txtType.Text == "")
                 {
                     q1 = "select Type_ID from sets";

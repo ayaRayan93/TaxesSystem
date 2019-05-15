@@ -413,7 +413,7 @@
         private System.Windows.Forms.Button btnNewChooes;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Factory_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name;

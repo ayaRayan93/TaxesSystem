@@ -139,7 +139,7 @@ namespace MainSystem
         //display all employee
         public void displayEmployee()
         {
-            decimal xa = 00;
+            //decimal xa = 00;
             DataSet dataSet3 = new DataSet();
             string query = "";
             MySqlDataAdapter adapter;

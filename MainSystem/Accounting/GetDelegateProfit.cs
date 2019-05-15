@@ -208,7 +208,7 @@ namespace MainSystem
                 gridControl1.DataSource = _Table2;
                 
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("حددالمندوب");
                 txtDelegateID.Focus();

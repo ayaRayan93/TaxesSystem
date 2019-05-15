@@ -475,7 +475,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     //  MessageBox.Show(ex.ToString());
                 }
@@ -711,7 +711,7 @@ namespace MainSystem
                         break;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                // MessageBox.Show(ex.Message);
             }
@@ -848,7 +848,7 @@ namespace MainSystem
                     txtType.Text = Type_Name;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("اختار النوع المراد تعديله.");
             }
@@ -1187,7 +1187,7 @@ namespace MainSystem
                     MessageBox.Show("select row");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("select row");
             }
@@ -1595,7 +1595,7 @@ namespace MainSystem
                     MessageBox.Show("اختار المجموعة المراد تعديلها.");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                // MessageBox.Show(ex.Message);
             }
@@ -2541,7 +2541,7 @@ namespace MainSystem
                     MessageBox.Show("select row");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("select row");
             }
@@ -2783,7 +2783,7 @@ namespace MainSystem
                     txtSize.Focus();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                // MessageBox.Show(ex.Message);
             }

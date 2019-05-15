@@ -64,7 +64,7 @@ namespace MainSystem
                 dbconnection.Open();
                 pictureBoxCheckConnection.Image = Properties.Resources.icons8_Checkmark_48px;
             }
-            catch (Exception ex)
+            catch
             {
                 pictureBoxCheckConnection.Image = Properties.Resources.icons8_Delete_48px;
             }

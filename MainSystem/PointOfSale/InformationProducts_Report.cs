@@ -46,7 +46,7 @@ namespace MainSystem
         DataRow row1;
         public static TipImage tipImage = null;
         int EmpBranchId = 0;
-        int DashBillNum = 0;
+        //int DashBillNum = 0;
 
         string code1 = "0000";
         string code2 = "0000";

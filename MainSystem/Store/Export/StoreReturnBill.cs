@@ -259,7 +259,7 @@ namespace MainSystem
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 // MessageBox.Show(ex.Message);
             }
@@ -372,7 +372,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     // MessageBox.Show(ex.ToString());
                 }
@@ -506,7 +506,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        CustomerReturnItems_Report form=null;
+        //CustomerReturnItems_Report form=null;
         private void btnCreateReturnBill_Click(object sender, EventArgs e)
         {
             try

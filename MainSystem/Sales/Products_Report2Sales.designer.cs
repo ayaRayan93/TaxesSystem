@@ -821,7 +821,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private DevExpress.Utils.ToolTipController toolTipController1;
+        //private DevExpress.Utils.ToolTipController toolTipController1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
         private DevExpress.XtraGrid.GridControl gridControl1;
