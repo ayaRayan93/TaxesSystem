@@ -18,7 +18,7 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-        //DataGridViewRow row1;
+        DataRow row1;
 
         public TransportationStore(MainForm mainForm)
         {
@@ -34,10 +34,10 @@ namespace MainSystem
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                cmbFromStore.DataSource = dt;
-                cmbFromStore.DisplayMember = dt.Columns["Store_Name"].ToString();
-                cmbFromStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                cmbFromStore.Text = "";
+                comFromStore.DataSource = dt;
+                comFromStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comFromStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comFromStore.Text = "";
 
                 query = "select * from type";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -70,14 +70,14 @@ namespace MainSystem
         {
             if (loaded)
             {
-                string query = "select * from Store where Store_ID<>" + cmbFromStore.SelectedValue.ToString();
+                string query = "select * from Store where Store_ID<>" + comFromStore.SelectedValue.ToString();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                cmbToStore.DataSource = dt;
-                cmbToStore.DisplayMember = dt.Columns["Store_Name"].ToString();
-                cmbToStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                cmbToStore.Text = "";
+                comToStore.DataSource = dt;
+                comToStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comToStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comToStore.Text = "";
 
                 txtCode.Text = "";
                 txtQuantity.Text = "";
@@ -347,7 +347,100 @@ namespace MainSystem
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (comFromStore.Text != "")
+                {
+                    string q1, q2, q3, q4, fQuery = "";
+                    if (comType.Text == "")
+                    {
+                        q1 = "select Type_ID from type";
+                    }
+                    else
+                    {
+                        q1 = comType.SelectedValue.ToString();
+                    }
+                    if (comFactory.Text == "")
+                    {
+                        q2 = "select Factory_ID from factory";
+                    }
+                    else
+                    {
+                        q2 = comFactory.SelectedValue.ToString();
+                    }
+                    if (comProduct.Text == "")
+                    {
+                        q3 = "select Product_ID from product";
+                    }
+                    else
+                    {
+                        q3 = comProduct.SelectedValue.ToString();
+                    }
+                    if (comGroup.Text == "")
+                    {
+                        q4 = "select Group_ID from groupo";
+                    }
+                    else
+                    {
+                        q4 = comGroup.SelectedValue.ToString();
+                    }
 
+                    if (comSize.Text != "")
+                    {
+                        fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
+                    }
+
+                    if (comColor.Text != "")
+                    {
+                        fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
+                    }
+                    if (comSort.Text != "")
+                    {
+                        fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
+                    }
+
+                    dbconnection.Open();
+                    string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    gridControl1.DataSource = dt;
+
+                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " and storage.Store_ID=" + comFromStore.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = comand.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        gridView1.AddNewRow();
+                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                        if (gridView1.IsNewItemRow(rowHandle))
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dr["الكود"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+                        }
+                    }
+                    dr.Close();
+                    gridView1.Columns[0].Visible = false;
+                    gridView1.Columns["الاسم"].Width = 300;
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("يجب اختيار المخزن");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
 
         private void btnNewChosen_Click(object sender, EventArgs e)
@@ -356,24 +449,23 @@ namespace MainSystem
             gridControl1.DataSource = null;
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
             {
-                /*row1 = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                txtCode.Text = row1.Cells[0].Value.ToString();*/
+                row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+                txtCode.Text = row1["الكود"].ToString();
+                txtQuantity.Text = row1["الكمية"].ToString();
 
-                string store = "";
-
-                if (cmbFromStore.Text != "")
+                /*string store = "";
+                if (comFromStore.Text != "")
                 {
-                    store = cmbFromStore.SelectedValue.ToString();
+                    store = comFromStore.SelectedValue.ToString();
                 }
                 else
                 {
                     store = "select Store_ID from Store";
                 }
-
                 string query = "select Store_Place,Storage_ID from Storage where Code='" + txtCode.Text + "' and Store_ID in (" + store + ") order by Storage_Date asc";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -381,10 +473,8 @@ namespace MainSystem
                 cmbPlace.DataSource = dt;
                 cmbPlace.DisplayMember = dt.Columns["Store_Place"].ToString();
                 cmbPlace.ValueMember = dt.Columns["Storage_ID"].ToString();
-                /*cmbPlace.Text = row1.Cells[12].Value.ToString();*/
-
-                txtQuantity.Text = "";
-                txtQuantity.BackColor = System.Drawing.Color.White;
+                cmbPlace.Text = row1[12].Value.ToString();
+                txtQuantity.BackColor = System.Drawing.Color.White;*/
             }
             catch (Exception ex)
             {
@@ -400,96 +490,89 @@ namespace MainSystem
 
                 string store = "";
 
-                if (cmbFromStore.Text != "")
+                if (comFromStore.Text != "")
                 {
-                    store = cmbFromStore.SelectedValue.ToString();
+                    store = comFromStore.SelectedValue.ToString();
                 }
                 else
                 {
                     store = "select Store_ID from Store";
                 }
 
-                if (cmbFromStore.Text != "" && cmbToStore.Text != "")
+                if (comFromStore.Text != "" && comToStore.Text != "")
                 {
-                    if (cmbFromStore.Text != cmbToStore.Text)
+                    if (txtQuantity.Text != "")
                     {
-                        if (txtQuantity.Text != "")
+                        string query = "select Total_Meters from storage where Code='" + txtCode.Text + "' and Store_Place='" + cmbPlace.Text + "' and Store_ID in (" + store + ")";
+                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                        double quantity = Convert.ToDouble(comand.ExecuteScalar().ToString());
+
+                        double neededQuantity = Convert.ToDouble(txtQuantity.Text);
+                        if (neededQuantity < quantity)
                         {
-                            string query = "select Total_Meters from storage where Code='" + txtCode.Text + "' and Store_Place='" + cmbPlace.Text + "' and Store_ID in (" + store + ")";
-                            MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                            double quantity = Convert.ToDouble(comand.ExecuteScalar().ToString());
+                            double meters = quantity - neededQuantity;
+                            query = "update storage set Total_Meters=" + meters + " where Code='" + txtCode.Text + "' and Store_Place='" + cmbPlace.Text + "' and Store_ID in (" + store + ")";
+                            comand = new MySqlCommand(query, dbconnection);
+                            comand.ExecuteNonQuery();
 
-                            double neededQuantity = Convert.ToDouble(txtQuantity.Text);
-                            if (neededQuantity < quantity)
-                            {
-                                double meters = quantity - neededQuantity;
-                                query = "update storage set Total_Meters=" + meters + " where Code='" + txtCode.Text + "' and Store_Place='" + cmbPlace.Text + "' and Store_ID in (" + store + ")";
-                                comand = new MySqlCommand(query, dbconnection);
-                                comand.ExecuteNonQuery();
+                            /*int n = dataGridView2.Rows.Add();
+                            dataGridView2.Rows[n].Cells[0].Value = row1.Cells[0].Value.ToString();
+                            dataGridView2.Rows[n].Cells[1].Value = txtQuantity.Text;
+                            dataGridView2.Rows[n].Cells[2].Value = cmbPlace.Text;
+                            dataGridView2.Rows[n].Cells[3].Value = row1.Cells[1].Value.ToString();
+                            dataGridView2.Rows[n].Cells[4].Value = row1.Cells[2].Value.ToString();
+                            dataGridView2.Rows[n].Cells[5].Value = row1.Cells[3].Value.ToString();
+                            dataGridView2.Rows[n].Cells[6].Value = row1.Cells[4].Value.ToString();
+                            dataGridView2.Rows[n].Cells[7].Value = row1.Cells[5].Value.ToString();
+                            dataGridView2.Rows[n].Cells[8].Value = row1.Cells[6].Value.ToString();
+                            dataGridView2.Rows[n].Cells[9].Value = row1.Cells[7].Value.ToString();
+                            dataGridView2.Rows[n].Cells[10].Value = row1.Cells[8].Value.ToString();
+                            dataGridView2.Rows[n].Cells[11].Value = row1.Cells[9].Value.ToString();
+                            dataGridView2.Rows[n].Cells[12].Value = row1.Cells[10].Value.ToString();
+                            */
+                            dbconnection.Close();
+                            search();
 
-                                /*int n = dataGridView2.Rows.Add();
-                                dataGridView2.Rows[n].Cells[0].Value = row1.Cells[0].Value.ToString();
-                                dataGridView2.Rows[n].Cells[1].Value = txtQuantity.Text;
-                                dataGridView2.Rows[n].Cells[2].Value = cmbPlace.Text;
-                                dataGridView2.Rows[n].Cells[3].Value = row1.Cells[1].Value.ToString();
-                                dataGridView2.Rows[n].Cells[4].Value = row1.Cells[2].Value.ToString();
-                                dataGridView2.Rows[n].Cells[5].Value = row1.Cells[3].Value.ToString();
-                                dataGridView2.Rows[n].Cells[6].Value = row1.Cells[4].Value.ToString();
-                                dataGridView2.Rows[n].Cells[7].Value = row1.Cells[5].Value.ToString();
-                                dataGridView2.Rows[n].Cells[8].Value = row1.Cells[6].Value.ToString();
-                                dataGridView2.Rows[n].Cells[9].Value = row1.Cells[7].Value.ToString();
-                                dataGridView2.Rows[n].Cells[10].Value = row1.Cells[8].Value.ToString();
-                                dataGridView2.Rows[n].Cells[11].Value = row1.Cells[9].Value.ToString();
-                                dataGridView2.Rows[n].Cells[12].Value = row1.Cells[10].Value.ToString();
-                                */
-                                dbconnection.Close();
-                                search();
-
-                                txtQuantity.Text = "";
-                                txtQuantity.BackColor = System.Drawing.Color.White;
-                            }
-                            else if (neededQuantity == quantity)
-                            {
-                                query = "delete from storage where Code='" + txtCode.Text + "' and Store_Place='" + cmbPlace.Text + "' and Store_ID in (" + store + ")";
-                                comand = new MySqlCommand(query, dbconnection);
-                                comand.ExecuteNonQuery();
-
-                                /*int n = dataGridView2.Rows.Add();
-                                dataGridView2.Rows[n].Cells[0].Value = row1.Cells[0].Value.ToString();
-                                dataGridView2.Rows[n].Cells[1].Value = txtQuantity.Text;
-                                dataGridView2.Rows[n].Cells[2].Value = cmbPlace.Text;
-                                dataGridView2.Rows[n].Cells[3].Value = row1.Cells[1].Value.ToString();
-                                dataGridView2.Rows[n].Cells[4].Value = row1.Cells[2].Value.ToString();
-                                dataGridView2.Rows[n].Cells[5].Value = row1.Cells[3].Value.ToString();
-                                dataGridView2.Rows[n].Cells[6].Value = row1.Cells[4].Value.ToString();
-                                dataGridView2.Rows[n].Cells[7].Value = row1.Cells[5].Value.ToString();
-                                dataGridView2.Rows[n].Cells[8].Value = row1.Cells[6].Value.ToString();
-                                dataGridView2.Rows[n].Cells[9].Value = row1.Cells[7].Value.ToString();
-                                dataGridView2.Rows[n].Cells[10].Value = row1.Cells[8].Value.ToString();
-                                dataGridView2.Rows[n].Cells[11].Value = row1.Cells[9].Value.ToString();
-                                dataGridView2.Rows[n].Cells[12].Value = row1.Cells[10].Value.ToString();
-                                */
-                                dbconnection.Close();
-                                search();
-
-                                txtQuantity.Text = "";
-                                txtQuantity.BackColor = System.Drawing.Color.White;
-                            }
-                            else if (neededQuantity > quantity)
-                            {
-                                MessageBox.Show("You only have " + quantity + " in this place");
-
-                                txtQuantity.BackColor = System.Drawing.Color.Red;
-                            }
+                            txtQuantity.Text = "";
+                            txtQuantity.BackColor = System.Drawing.Color.White;
                         }
-                        else
+                        else if (neededQuantity == quantity)
                         {
-                            MessageBox.Show("please enter the quantity you need");
+                            query = "delete from storage where Code='" + txtCode.Text + "' and Store_Place='" + cmbPlace.Text + "' and Store_ID in (" + store + ")";
+                            comand = new MySqlCommand(query, dbconnection);
+                            comand.ExecuteNonQuery();
+
+                            /*int n = dataGridView2.Rows.Add();
+                            dataGridView2.Rows[n].Cells[0].Value = row1.Cells[0].Value.ToString();
+                            dataGridView2.Rows[n].Cells[1].Value = txtQuantity.Text;
+                            dataGridView2.Rows[n].Cells[2].Value = cmbPlace.Text;
+                            dataGridView2.Rows[n].Cells[3].Value = row1.Cells[1].Value.ToString();
+                            dataGridView2.Rows[n].Cells[4].Value = row1.Cells[2].Value.ToString();
+                            dataGridView2.Rows[n].Cells[5].Value = row1.Cells[3].Value.ToString();
+                            dataGridView2.Rows[n].Cells[6].Value = row1.Cells[4].Value.ToString();
+                            dataGridView2.Rows[n].Cells[7].Value = row1.Cells[5].Value.ToString();
+                            dataGridView2.Rows[n].Cells[8].Value = row1.Cells[6].Value.ToString();
+                            dataGridView2.Rows[n].Cells[9].Value = row1.Cells[7].Value.ToString();
+                            dataGridView2.Rows[n].Cells[10].Value = row1.Cells[8].Value.ToString();
+                            dataGridView2.Rows[n].Cells[11].Value = row1.Cells[9].Value.ToString();
+                            dataGridView2.Rows[n].Cells[12].Value = row1.Cells[10].Value.ToString();
+                            */
+                            dbconnection.Close();
+                            search();
+
+                            txtQuantity.Text = "";
+                            txtQuantity.BackColor = System.Drawing.Color.White;
+                        }
+                        else if (neededQuantity > quantity)
+                        {
+                            MessageBox.Show("You only have " + quantity + " in this place");
+
+                            txtQuantity.BackColor = System.Drawing.Color.Red;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("insert correct values");
+                        MessageBox.Show("please enter the quantity you need");
                     }
                 }
                 else
@@ -516,9 +599,9 @@ namespace MainSystem
                 string query;
                 string store = "";
 
-                if (cmbFromStore.Text != "")
+                if (comFromStore.Text != "")
                 {
-                    store = cmbFromStore.SelectedValue.ToString();
+                    store = comFromStore.SelectedValue.ToString();
                 }
                 else
                 {
@@ -617,5 +700,6 @@ namespace MainSystem
             f.Show();
             this.Hide();*/
         }
+
     }
 }

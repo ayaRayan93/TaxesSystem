@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbFromStore = new System.Windows.Forms.ComboBox();
-            this.cmbToStore = new System.Windows.Forms.ComboBox();
+            this.comFromStore = new System.Windows.Forms.ComboBox();
+            this.comToStore = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
@@ -92,28 +92,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "من مخزن";
             // 
-            // cmbFromStore
+            // comFromStore
             // 
-            this.cmbFromStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbFromStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.cmbFromStore.FormattingEnabled = true;
-            this.cmbFromStore.Location = new System.Drawing.Point(487, 5);
-            this.cmbFromStore.Name = "cmbFromStore";
-            this.cmbFromStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbFromStore.Size = new System.Drawing.Size(121, 24);
-            this.cmbFromStore.TabIndex = 1;
-            this.cmbFromStore.SelectedValueChanged += new System.EventHandler(this.cmbFromStore_SelectedValueChanged);
+            this.comFromStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comFromStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comFromStore.FormattingEnabled = true;
+            this.comFromStore.Location = new System.Drawing.Point(487, 5);
+            this.comFromStore.Name = "comFromStore";
+            this.comFromStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comFromStore.Size = new System.Drawing.Size(121, 24);
+            this.comFromStore.TabIndex = 1;
+            this.comFromStore.SelectedValueChanged += new System.EventHandler(this.cmbFromStore_SelectedValueChanged);
             // 
-            // cmbToStore
+            // comToStore
             // 
-            this.cmbToStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbToStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.cmbToStore.FormattingEnabled = true;
-            this.cmbToStore.Location = new System.Drawing.Point(217, 5);
-            this.cmbToStore.Name = "cmbToStore";
-            this.cmbToStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbToStore.Size = new System.Drawing.Size(121, 24);
-            this.cmbToStore.TabIndex = 3;
+            this.comToStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comToStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comToStore.FormattingEnabled = true;
+            this.comToStore.Location = new System.Drawing.Point(217, 5);
+            this.comToStore.Name = "comToStore";
+            this.comToStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comToStore.Size = new System.Drawing.Size(121, 24);
+            this.comToStore.TabIndex = 3;
             // 
             // label2
             // 
@@ -131,7 +131,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(518, 8);
+            this.label7.Location = new System.Drawing.Point(390, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 18);
             this.label7.TabIndex = 30;
@@ -141,7 +141,7 @@
             // 
             this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtQuantity.Location = new System.Drawing.Point(389, 6);
+            this.txtQuantity.Location = new System.Drawing.Point(261, 6);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtQuantity.Size = new System.Drawing.Size(123, 23);
@@ -151,7 +151,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCode.Location = new System.Drawing.Point(590, 6);
+            this.txtCode.Location = new System.Drawing.Point(462, 6);
             this.txtCode.Name = "txtCode";
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCode.Size = new System.Drawing.Size(173, 23);
@@ -162,7 +162,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(769, 8);
+            this.label5.Location = new System.Drawing.Point(641, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 18);
             this.label5.TabIndex = 78;
@@ -173,7 +173,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(272, 8);
+            this.label6.Location = new System.Drawing.Point(137, 8);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 18);
             this.label6.TabIndex = 80;
@@ -185,10 +185,10 @@
             this.cmbPlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbPlace.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.cmbPlace.FormattingEnabled = true;
-            this.cmbPlace.Location = new System.Drawing.Point(145, 5);
+            this.cmbPlace.Location = new System.Drawing.Point(115, 5);
             this.cmbPlace.Name = "cmbPlace";
             this.cmbPlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbPlace.Size = new System.Drawing.Size(121, 24);
+            this.cmbPlace.Size = new System.Drawing.Size(16, 24);
             this.cmbPlace.TabIndex = 81;
             this.cmbPlace.Visible = false;
             // 
@@ -603,13 +603,14 @@
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsFind.FindNullPrompt = "بحث";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cmbFromStore);
+            this.panel1.Controls.Add(this.comFromStore);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.cmbToStore);
+            this.panel1.Controls.Add(this.comToStore);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -693,8 +694,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbFromStore;
-        private System.Windows.Forms.ComboBox cmbToStore;
+        private System.Windows.Forms.ComboBox comFromStore;
+        private System.Windows.Forms.ComboBox comToStore;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtQuantity;

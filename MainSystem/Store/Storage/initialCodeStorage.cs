@@ -643,46 +643,54 @@ namespace MainSystem
                     {
                         if (!IsEdited((int)mdt.Rows[i][0]) && !IsSaved((int)mdt.Rows[i][0]))
                         {
-
-                            string query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
+                            string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + mdt.Rows[i][0];
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
-                            com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-                            com.Parameters["@Quantity"].Value = mdt.Rows[i][5];
-                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_ID"].Value = mdt.Rows[i][1];
-                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_Place_ID"].Value = mdt.Rows[i][2];
-                            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                            DateTime date = Convert.ToDateTime(mdt.Rows[i][7]);
-                            string d = date.ToString("yyyy-MM-dd");
-                            com.Parameters["@Date"].Value = d;
-                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                            com.Parameters["@Note"].Value = mdt.Rows[i][6];
-                            com.ExecuteNonQuery();
+                            if (com.ExecuteScalar() == null)
+                            {
+                                query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
+                                com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                                com.Parameters["@Quantity"].Value = mdt.Rows[i][5];
+                                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                com.Parameters["@Store_ID"].Value = mdt.Rows[i][1];
+                                com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                com.Parameters["@Store_Place_ID"].Value = mdt.Rows[i][2];
+                                com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                                DateTime date = Convert.ToDateTime(mdt.Rows[i][7]);
+                                string d = date.ToString("yyyy-MM-dd");
+                                com.Parameters["@Date"].Value = d;
+                                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                com.Parameters["@Note"].Value = mdt.Rows[i][6];
+                                com.ExecuteNonQuery();
 
-                            query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_ID"].Value = mdt.Rows[i][1];
-                            com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                            com.Parameters["@Type"].Value = "بند";
-                            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                            date = Convert.ToDateTime(mdt.Rows[i][7]);
-                            d = date.ToString("yyyy-MM-dd");
-                            com.Parameters["@Date"].Value = d;
-                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
-                            com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
-                            com.Parameters["@PlaceOfStore"].Value = mdt.Rows[i][2];
-                            com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
-                            com.Parameters["@TotalOfMeters"].Value = mdt.Rows[i][5];
-                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                            com.Parameters["@Note"].Value = mdt.Rows[i][6];
-                            com.ExecuteNonQuery();
+                                query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                com.Parameters["@Store_ID"].Value = mdt.Rows[i][1];
+                                com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                                com.Parameters["@Type"].Value = "بند";
+                                com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                                date = Convert.ToDateTime(mdt.Rows[i][7]);
+                                d = date.ToString("yyyy-MM-dd");
+                                com.Parameters["@Date"].Value = d;
+                                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
+                                com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
+                                com.Parameters["@PlaceOfStore"].Value = mdt.Rows[i][2];
+                                com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
+                                com.Parameters["@TotalOfMeters"].Value = mdt.Rows[i][5];
+                                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                com.Parameters["@Note"].Value = mdt.Rows[i][6];
+                                com.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("open_storage_account", "اضافة", (int)mdt.Rows[i][0], DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("open_storage_account", "اضافة", (int)mdt.Rows[i][0], DateTime.Now, "", dbconnection);
+                            }
+                            else
+                            {
+                                MessageBox.Show("تم حفظ هذاالبند من قبل");
+                            }
                         }
                         if (IsEdited((int)mdt.Rows[i][0]))
                         {
