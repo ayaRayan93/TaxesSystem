@@ -26,6 +26,8 @@ namespace MainSystem
         bool flag2 = false;
         List<string> arr;
         List<TreeNode> checkedNodes = new List<TreeNode>();
+        int storeId = 0;
+        string storeName = "";
 
         public Gate_Enter(MainForm Mainform, XtraTabControl TabControlStoresContent)
         {
@@ -48,7 +50,6 @@ namespace MainSystem
         {
             try
             {
-                conn.Open();
                 string query = "select Driver_ID,Driver_Name from drivers";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -104,7 +105,12 @@ namespace MainSystem
                 comBranch.SelectedIndex = -1;
 
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                conn.Open();
+                query = "select Store_Name from store where Store_ID=" + storeId;
+                MySqlCommand com = new MySqlCommand(query, conn);
+                storeName = com.ExecuteScalar().ToString();
 
                 query = "select * from store where Store_ID <>" + storeId;
                 da = new MySqlDataAdapter(query, conn);
@@ -424,12 +430,16 @@ namespace MainSystem
         {
             if (loaded && flag2)
             {
-                labelClient.Visible = true;
+                /*labelClient.Visible = true;
                 comClient.Visible = true;
                 labelBranch.Visible = true;
-                comBranch.Visible = true;
+                comBranch.Visible = true;*/
                 if (comResponsible.SelectedValue.ToString() == "1")
                 {
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
+                    labelBranch.Visible = false;
+                    comBranch.Visible = false;
                     comEmployee.Visible = true;
                     labelEmp.Visible = true;
                     labelPerNum.Visible = true;
@@ -450,6 +460,10 @@ namespace MainSystem
                 }
                 else if (comResponsible.SelectedValue.ToString() == "2")
                 {
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+                    labelBranch.Visible = true;
+                    comBranch.Visible = true;
                     comEmployee.Visible = true;
                     labelEmp.Visible = true;
                     labelPerNum.Visible = true;
@@ -728,7 +742,69 @@ namespace MainSystem
                     }
                 }
                 #endregion
-
+                else if (comResponsible.SelectedValue.ToString() == "1")
+                {
+                    if (treeViewSupIdPerm.Nodes.Count > 0)
+                    {
+                        for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
+                        {
+                            if (storeId.ToString() == treeViewSupIdPerm.Nodes[i].Text)
+                            {
+                                for (int j = 0; j < treeViewSupIdPerm.Nodes[i].Nodes.Count; j++)
+                                {
+                                    if (txtPermisionNum.Text == treeViewSupIdPerm.Nodes[i].Nodes[j].Text)
+                                    {
+                                        MessageBox.Show("هذا الاذن تم اضافتة");
+                                        return;
+                                    }
+                                }
+                                if (txtPermisionNum.Text != "")
+                                {
+                                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                                    {
+                                        string selectedFile = openFileDialog1.FileName;
+                                        byte[] selectedRequestImage = null;
+                                        selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                        treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                        imageListBoxControl1.Items.Add(selectedFile);
+                                        txtPermisionNum.Text = "";
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        treeViewSupIdPerm.Nodes.Add(storeId.ToString());
+                        treeViewSupPerm.Nodes.Add(storeName);
+                        if (txtPermisionNum.Text != "")
+                        {
+                            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                string selectedFile = openFileDialog1.FileName;
+                                byte[] selectedRequestImage = null;
+                                selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                                treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                                imageListBoxControl1.Items.Add(selectedFile);
+                                txtPermisionNum.Text = "";
+                                return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
                 //}
             }
             catch (Exception ex)
@@ -823,10 +899,7 @@ namespace MainSystem
                     com.Parameters["@License_Number"].Value = txtLicense.Text;
                     com.Parameters.Add("@Date_Enter", MySqlDbType.DateTime, 0);
                     com.Parameters["@Date_Enter"].Value = DateTime.Now;
-
-                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                    int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
-
+                    
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@Store_ID"].Value = storeId;
                     if (comEmployee.SelectedValue != null)
@@ -869,6 +942,11 @@ namespace MainSystem
                             com.Parameters["@Type"].Value = "مورد";
                         }
                         else if (comStore.Visible == true)
+                        {
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Type"].Value = "مخزن";
+                        }
+                        else if(comResponsible.SelectedValue.ToString() == "1" && comStore.Visible == false)
                         {
                             com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
                             com.Parameters["@Type"].Value = "مخزن";

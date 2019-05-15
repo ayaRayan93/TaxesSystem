@@ -39,7 +39,7 @@ namespace MainSystem
         {
             DataTable table = new DataTable("FirstTable");
             DataColumn column;
-            DataRow row;
+            //DataRow row;
 
             column = new DataColumn();
             column.DataType = typeof(int);
@@ -191,7 +191,7 @@ namespace MainSystem
         {
             DataTable table = new DataTable("FirstTable");
             DataColumn column;
-            DataRow row;
+            //DataRow row;
 
             column = new DataColumn();
             column.DataType = typeof(int);

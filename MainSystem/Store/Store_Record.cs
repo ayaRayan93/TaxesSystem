@@ -16,7 +16,7 @@ namespace MainSystem
     {
         MySqlConnection conn;
         Stores stores = null;
-        bool changesSavedFlag = true;
+        //bool changesSavedFlag = true;
         XtraTabControl xtraTabControlStoresContent = null;
         public Store_Record(Stores stores, XtraTabControl xtraTabControlStoresContent)
         {

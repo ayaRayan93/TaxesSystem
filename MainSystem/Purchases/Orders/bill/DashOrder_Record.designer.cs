@@ -35,8 +35,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtEmployee = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.comSupplier = new System.Windows.Forms.ComboBox();
@@ -162,7 +160,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(216, 44);
+            this.label6.Location = new System.Drawing.Point(492, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 18);
             this.label6.TabIndex = 132;
@@ -172,40 +170,17 @@
             // 
             this.txtEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtEmployee.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtEmployee.Location = new System.Drawing.Point(53, 41);
+            this.txtEmployee.Location = new System.Drawing.Point(329, 41);
             this.txtEmployee.Name = "txtEmployee";
             this.txtEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtEmployee.Size = new System.Drawing.Size(150, 24);
             this.txtEmployee.TabIndex = 133;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(640, 11);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(150, 24);
-            this.dateTimePicker1.TabIndex = 134;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label8.Location = new System.Drawing.Point(796, 14);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 18);
-            this.label8.TabIndex = 137;
-            this.label8.Text = "تاريخ الطلب";
-            // 
             // txtSupplier
             // 
             this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSupplier.Location = new System.Drawing.Point(579, 41);
+            this.txtSupplier.Location = new System.Drawing.Point(29, 28);
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSupplier.Size = new System.Drawing.Size(55, 24);
@@ -217,7 +192,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label13.Location = new System.Drawing.Point(811, 44);
+            this.label13.Location = new System.Drawing.Point(261, 31);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 18);
             this.label13.TabIndex = 144;
@@ -228,7 +203,7 @@
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(640, 41);
+            this.comSupplier.Location = new System.Drawing.Point(90, 28);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
@@ -240,7 +215,7 @@
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(358, 41);
+            this.comStore.Location = new System.Drawing.Point(634, 41);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(150, 24);
@@ -251,7 +226,7 @@
             // 
             this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStoreID.Location = new System.Drawing.Point(297, 41);
+            this.txtStoreID.Location = new System.Drawing.Point(573, 41);
             this.txtStoreID.Name = "txtStoreID";
             this.txtStoreID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtStoreID.Size = new System.Drawing.Size(55, 24);
@@ -263,7 +238,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label17.Location = new System.Drawing.Point(514, 44);
+            this.label17.Location = new System.Drawing.Point(790, 44);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(48, 18);
             this.label17.TabIndex = 204;
@@ -282,9 +257,7 @@
             this.panel1.Controls.Add(this.txtEmployee);
             this.panel1.Controls.Add(this.comFactory);
             this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.txtSupplier);
-            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.comSupplier);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -298,7 +271,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label12.Location = new System.Drawing.Point(209, 14);
+            this.label12.Location = new System.Drawing.Point(485, 14);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 18);
             this.label12.TabIndex = 207;
@@ -308,7 +281,7 @@
             // 
             this.txtOrderNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtOrderNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOrderNum.Location = new System.Drawing.Point(103, 11);
+            this.txtOrderNum.Location = new System.Drawing.Point(379, 11);
             this.txtOrderNum.Name = "txtOrderNum";
             this.txtOrderNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtOrderNum.Size = new System.Drawing.Size(100, 24);
@@ -319,7 +292,7 @@
             // 
             this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtFactory.Location = new System.Drawing.Point(297, 12);
+            this.txtFactory.Location = new System.Drawing.Point(573, 12);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(55, 23);
             this.txtFactory.TabIndex = 4;
@@ -330,7 +303,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(514, 14);
+            this.label9.Location = new System.Drawing.Point(790, 14);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label9.Size = new System.Drawing.Size(49, 18);
@@ -342,7 +315,7 @@
             this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(358, 11);
+            this.comFactory.Location = new System.Drawing.Point(634, 11);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(150, 24);
@@ -611,7 +584,7 @@
             this.btnSave.ImagePosition = 1;
             this.btnSave.ImageZoom = 33;
             this.btnSave.LabelPosition = 18;
-            this.btnSave.LabelText = "تاكيد الطلب";
+            this.btnSave.LabelText = "حفظ الطلب";
             this.btnSave.Location = new System.Drawing.Point(454, 4);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
@@ -885,8 +858,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtEmployee;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox comSupplier;

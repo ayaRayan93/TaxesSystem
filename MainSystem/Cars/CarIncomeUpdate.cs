@@ -20,13 +20,13 @@ namespace MainSystem
         double SafayCar_Number;
         double totalSafay,totalGate;
         int ID;
-        MySqlDataAdapter da1;
-        DataTable dt1;
-        MySqlCommandBuilder combuilder;
+        //MySqlDataAdapter da1;
+        //DataTable dt1;
+        //MySqlCommandBuilder combuilder;
         CarIncomes carIncomes;
         XtraTabControl xtraTabControlCarsContent;
         List<string> data;
-        object datasorce;
+        //object datasorce;
         bool load = false;
         public CarIncomeUpdate(int id, CarIncomes carIncomes, XtraTabControl xtraTabControlCarsContent)
         {

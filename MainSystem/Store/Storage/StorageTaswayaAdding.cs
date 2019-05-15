@@ -29,7 +29,7 @@ namespace MainSystem
         MainForm mainForm;
         DataTable mdt=null;
         DataRowView mRow = null;
-        List<int> ListOfDataIDs;
+        //List<int> ListOfDataIDs;
         public StorageTaswayaAdding(MainForm mainForm,XtraTabControl xtraTabControlStoresContent)
         {
             try
@@ -440,7 +440,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     MessageBox.Show("خطأ في الادخال");
                     txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";

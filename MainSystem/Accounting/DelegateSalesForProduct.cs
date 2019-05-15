@@ -245,7 +245,7 @@ namespace MainSystem
 
                 gridControl1.DataSource = _Table;
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("حدد الشركة والمندوب");
                 txtFactory.Focus();

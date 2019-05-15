@@ -19,7 +19,7 @@ namespace MainSystem
         MySqlConnection dbconnection1;
         private string Customer_Type;
         private bool loaded = false;
-        CultureInfo c;
+        //CultureInfo c;
         public customerBills()
         {
             InitializeComponent();

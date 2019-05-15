@@ -244,7 +244,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 5 || UserControl.userType == 1)
+                // || UserControl.userType == 1
+                if (UserControl.userType == 5)
                 {
                     XtraTabPage xtraTabPagePS = getTabPage(xtraTabControlPointSale, "xtraTabPagePOS");
                     if (xtraTabPagePS == null)

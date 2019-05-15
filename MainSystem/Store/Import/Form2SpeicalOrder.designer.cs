@@ -709,7 +709,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Group_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn Size;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sort;
         private System.Windows.Forms.DataGridViewTextBoxColumn Classification;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;

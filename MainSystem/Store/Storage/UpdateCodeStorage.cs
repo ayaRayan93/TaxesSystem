@@ -17,9 +17,9 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         int[] courrentIDs;//store ids of products which added to gridview2
-        int count = 0;//store count of products in grid view
+        //int count = 0;//store count of products in grid view
         bool loaded = false;
-        int startNewRecord;
+        //int startNewRecord;
         Storage storage;
         List<DataRowView> rows;
         DataRowView row;

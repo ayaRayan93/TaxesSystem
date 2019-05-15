@@ -106,8 +106,8 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
-                btnPOS.Enabled = true;
-                btnPOS.Checked = true;
+                btnPOS.Enabled = false;
+                btnPOS.Checked = false;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 TIElsha7n.Enabled = true;
@@ -645,7 +645,7 @@ namespace MainSystem
     {
         static string supString = Properties.Resources.IP_Address;
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=testprice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
       
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }

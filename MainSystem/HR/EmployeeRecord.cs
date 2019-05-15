@@ -338,7 +338,7 @@ namespace MainSystem
               
                 
             }
-            catch (Exception ee)
+            catch
             {
                 MessageBox.Show("يوجد خطأ في البيانات");
             }

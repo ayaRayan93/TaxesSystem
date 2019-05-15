@@ -24,7 +24,7 @@ namespace MainSystem
         MainForm storeMainForm = null;
         bool loaded = false;
         bool load = false;
-        DataGridViewRow row1;
+        //DataGridViewRow row1;
         public  Product_Record product_Record = null;
         public Product_Update product_Update = null;
         TipImage tipImage=null;
@@ -337,7 +337,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     //MessageBox.Show(ex.ToString());
                 }
@@ -374,7 +374,7 @@ namespace MainSystem
                 }
                 dataGridView1.DataSource = null;
             }
-            catch (Exception ex)
+            catch
             {
                 // MessageBox.Show(ex.Message);
             }
@@ -441,7 +441,7 @@ namespace MainSystem
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
              //   MessageBox.Show(ex.Message);
             }

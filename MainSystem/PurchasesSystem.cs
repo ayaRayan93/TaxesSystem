@@ -731,16 +731,6 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindDisplayDashOrderReportForm(XtraTabPage xtraTabPage)
-        {
-            DashOrder_Report objForm = new DashOrder_Report(this, xtraTabControlPurchases);
-            objForm.TopLevel = false;
-
-            xtraTabPage.Controls.Add(objForm);
-            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            objForm.Dock = DockStyle.Fill;
-            objForm.Show();
-        }
         public void bindRecordDashOrderForm(DashOrder_Report DashOrderReport, List<DataRow> row1)
         {
             if (!xtraTabControlPurchases.Visible)
@@ -757,6 +747,16 @@ namespace MainSystem
             xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
             //List<DataRow> row1 = new List<DataRow>();
             DashOrder_Record objForm = new DashOrder_Record(row1, DashOrderReport, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDashOrderReportForm(XtraTabPage xtraTabPage)
+        {
+            DashOrder_Report objForm = new DashOrder_Report(this, xtraTabControlPurchases);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

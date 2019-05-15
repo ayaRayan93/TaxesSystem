@@ -109,7 +109,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                   //  MessageBox.Show(ex.ToString());
                 }

@@ -21,6 +21,8 @@ namespace MainSystem
         int permissionNum = 0;
         Gate_Out gateOut;
         List<TreeNode> checkedNodes = new List<TreeNode>();
+        int storeId = 0;
+        string storeName = "";
 
         public Permissions_Edit(Gate_Out GateOut, int PermissionNum)
         {
@@ -35,7 +37,6 @@ namespace MainSystem
         {
             try
             {
-                conn.Open();
                 conn2.Open();
 
                 string query = "select * from supplier";
@@ -64,9 +65,14 @@ namespace MainSystem
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.SelectedIndex = -1;
-
+                
                 string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                conn.Open();
+                query = "select Store_Name from store where Store_ID=" + storeId;
+                MySqlCommand com = new MySqlCommand(query, conn);
+                storeName = com.ExecuteScalar().ToString();
 
                 query = "select * from store where Store_ID <>" + storeId;
                 da = new MySqlDataAdapter(query, conn);
@@ -77,8 +83,8 @@ namespace MainSystem
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStore.SelectedIndex = -1;
 
-                query = "SELECT gate_supplier.GateSupplier_ID,gate_supplier.Supplier_ID,supplier.Supplier_Name,gate_supplier.Type FROM gate_supplier INNER JOIN supplier ON gate_supplier.Supplier_ID = supplier.Supplier_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='مورد' and gate_supplier.Gate_ID=" + permissionNum + "  UNION ALL SELECT gate_supplier.GateSupplier_ID,gate_supplier.Supplier_ID,customer.Customer_Name,gate_supplier.Type FROM gate_supplier INNER JOIN customer ON gate_supplier.Supplier_ID = customer.Customer_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='عميل' and gate_supplier.Gate_ID=" + permissionNum + "  UNION ALL SELECT gate_supplier.GateSupplier_ID,gate_supplier.Supplier_ID,store.Store_Name,gate_supplier.Type FROM gate_supplier INNER JOIN store ON gate_supplier.Supplier_ID = store.Store_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='مخزن' and gate_supplier.Gate_ID=" + permissionNum + " ";
-                MySqlCommand com = new MySqlCommand(query, conn);
+                query = "SELECT gate_supplier.GateSupplier_ID,gate_supplier.Supplier_ID,supplier.Supplier_Name,gate_supplier.Type,gate.Type as 'Type2' FROM gate_supplier INNER JOIN supplier ON gate_supplier.Supplier_ID = supplier.Supplier_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='مورد' and gate_supplier.Gate_ID=" + permissionNum + "  UNION ALL SELECT gate_supplier.GateSupplier_ID,gate_supplier.Supplier_ID,customer.Customer_Name,gate_supplier.Type,gate.Type as 'Type2' FROM gate_supplier INNER JOIN customer ON gate_supplier.Supplier_ID = customer.Customer_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='عميل' and gate_supplier.Gate_ID=" + permissionNum + "  UNION ALL SELECT gate_supplier.GateSupplier_ID,gate_supplier.Supplier_ID,store.Store_Name,gate_supplier.Type,gate.Type as 'Type2' FROM gate_supplier INNER JOIN store ON gate_supplier.Supplier_ID = store.Store_ID INNER JOIN gate ON gate.Gate_ID = gate_supplier.Gate_ID where gate_supplier.Type='مخزن' and gate_supplier.Gate_ID=" + permissionNum + " ";
+                com = new MySqlCommand(query, conn);
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
@@ -91,6 +97,11 @@ namespace MainSystem
                         comBranch.Visible = true;
                         labelClient.Visible = true;
                         comClient.Visible = true;
+                    }
+                    else if (dr["Type"].ToString() == "مخزن" && dr["Type2"].ToString() == "مبيعات")
+                    {
+                        labelStore.Visible = false;
+                        comStore.Visible = false;
                     }
                     else if (dr["Type"].ToString() == "مخزن")
                     {
@@ -495,6 +506,115 @@ namespace MainSystem
                     }
                 }
                 #endregion
+                else
+                {
+                    if (treeViewSupIdPerm.Nodes.Count > 0)
+                    {
+                        for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
+                        {
+                            if (storeId.ToString() == treeViewSupIdPerm.Nodes[i].Text)
+                            {
+                                for (int j = 0; j < treeViewSupIdPerm.Nodes[i].Nodes.Count; j++)
+                                {
+                                    if (txtPermisionNum.Text == treeViewSupIdPerm.Nodes[i].Nodes[j].Text)
+                                    {
+                                        MessageBox.Show("هذا الاذن تم اضافتة");
+                                        return;
+                                    }
+                                }
+                                if (txtPermisionNum.Text != "")
+                                {
+                                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                                    {
+                                        string selectedFile = openFileDialog1.FileName;
+                                        byte[] selectedRequestImage = null;
+                                        selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                        treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                        imageListBoxControl1.Items.Add(selectedFile);
+
+                                        string query = "insert into gate_permission(GateSupplier_ID,Branch_ID,Supplier_PermissionNumber,Type,Permission_Image) values(@GateSupplier_ID,@Branch_ID,@Supplier_PermissionNumber,@Type,@Permission_Image)";
+                                        MySqlCommand com = new MySqlCommand(query, conn);
+                                        com.Parameters.Add("@GateSupplier_ID", MySqlDbType.Int16, 11);
+                                        com.Parameters["@GateSupplier_ID"].Value = treeViewGatSupplierId.Nodes[i].Text;
+                                        com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
+                                        com.Parameters["@Branch_ID"].Value = null;
+                                        com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                                        com.Parameters["@Supplier_PermissionNumber"].Value = txtPermisionNum.Text;
+                                        com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                                        com.Parameters["@Type"].Value = "خروج";
+                                        com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
+                                        com.Parameters["@Permission_Image"].Value = selectedRequestImage;
+                                        com.ExecuteNonQuery();
+                                        txtPermisionNum.Text = "";
+                                        conn.Close();
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        treeViewSupIdPerm.Nodes.Add(storeId.ToString());
+                        treeViewSupPerm.Nodes.Add(storeName);
+
+                        string query2 = "insert into gate_supplier(Gate_ID,Supplier_ID,Type) values(@Gate_ID,@Supplier_ID,@Type)";
+                        MySqlCommand com2 = new MySqlCommand(query2, conn);
+                        com2.Parameters.Add("@Gate_ID", MySqlDbType.Int16, 11);
+                        com2.Parameters["@Gate_ID"].Value = permissionNum;
+                        com2.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
+                        com2.Parameters["@Supplier_ID"].Value = storeId;
+                        com2.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                        com2.Parameters["@Type"].Value = "مخزن";
+                        com2.ExecuteNonQuery();
+
+                        query2 = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
+                        com2 = new MySqlCommand(query2, conn);
+                        int gateSupplierId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        treeViewGatSupplierId.Nodes.Add(gateSupplierId.ToString());
+
+                        if (txtPermisionNum.Text != "")
+                        {
+                            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                string selectedFile = openFileDialog1.FileName;
+                                byte[] selectedRequestImage = null;
+                                selectedRequestImage = File.ReadAllBytes(selectedFile);
+                                treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                                treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                                imageListBoxControl1.Items.Add(selectedFile);
+
+                                string query = "insert into gate_permission(GateSupplier_ID,Branch_ID,Supplier_PermissionNumber,Type,Permission_Image) values(@GateSupplier_ID,@Branch_ID,@Supplier_PermissionNumber,@Type,@Permission_Image)";
+                                MySqlCommand com = new MySqlCommand(query, conn);
+                                com.Parameters.Add("@GateSupplier_ID", MySqlDbType.Int16, 11);
+                                com.Parameters["@GateSupplier_ID"].Value = treeViewGatSupplierId.Nodes[0].Text;
+                                com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
+                                com.Parameters["@Branch_ID"].Value = null;
+                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                                com.Parameters["@Supplier_PermissionNumber"].Value = txtPermisionNum.Text;
+                                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                                com.Parameters["@Type"].Value = "خروج";
+                                com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
+                                com.Parameters["@Permission_Image"].Value = selectedRequestImage;
+                                com.ExecuteNonQuery();
+                                txtPermisionNum.Text = "";
+                                conn.Close();
+                                return;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

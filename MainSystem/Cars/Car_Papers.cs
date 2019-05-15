@@ -19,7 +19,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         byte[] mFile;
-        DataRowView CarRow = null, carSparePart = null;
+        DataRowView CarRow = null/*, carSparePart = null*/;
         int CarId;
         Cars cars;
         XtraTabControl xtraTabControlCarsContent;

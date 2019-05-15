@@ -20,10 +20,10 @@ namespace MainSystem.Sales.accounting
         DataRowView row;
         private string Customer_Type;
         private bool loaded = false;
-        double safay = -1;
-        int ClientID = -1;
+        //double safay = -1;
+        //int ClientID = -1;
         int id = -1;
-        string ClientName = "";
+        //string ClientName = "";
         string customerID="", clientID="";
         bool flag = false;
         public UpdateCustomerTaswaya(DataRowView row, MainForm saleMainForm, CustomerTaswayaReport CustomerTaswayaReport)
@@ -78,7 +78,7 @@ namespace MainSystem.Sales.accounting
                 {
                     txtClientID.Text = comClient.SelectedValue.ToString();
                 }
-                catch (Exception ex)
+                catch
                 {
                   //  MessageBox.Show(ex.Message);
                 }

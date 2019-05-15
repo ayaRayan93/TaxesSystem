@@ -337,7 +337,7 @@ namespace MainSystem
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 // MessageBox.Show(ex.Message);
             }
@@ -479,7 +479,7 @@ namespace MainSystem
                     }
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     // MessageBox.Show(ex.ToString());
                 }
@@ -817,7 +817,7 @@ namespace MainSystem
                     txtTotalMeter.Text = row1["متر/قطعة"].ToString();
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 //MessageBox.Show(ex.Message);
             }

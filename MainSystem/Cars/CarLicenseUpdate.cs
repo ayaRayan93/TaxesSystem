@@ -17,7 +17,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         DataRowView CarRow = null;
         int CarId;
-        Cars cars=null;
+        //Cars cars=null;
         XtraTabControl xtraTabControlCarsContent;
         bool load = false, flag = false;
         string date;

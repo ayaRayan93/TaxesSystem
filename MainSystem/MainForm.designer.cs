@@ -99,7 +99,7 @@
             this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransportationStore = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem17 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup9 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem18 = new DevExpress.XtraNavBar.NavBarItem();
@@ -1110,7 +1110,7 @@
             this.navBarItemDelivery,
             this.navBarItem14,
             this.navBarItem15,
-            this.navBarItem16,
+            this.navBarItemTransportationStore,
             this.navBarItem17,
             this.navBarItem18,
             this.navBarItem19,
@@ -1325,15 +1325,17 @@
             // navBarGroup8
             // 
             this.navBarGroup8.Caption = "التحويلات";
+            this.navBarGroup8.Expanded = true;
             this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem16),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationStore),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem17)});
             this.navBarGroup8.Name = "navBarGroup8";
             // 
-            // navBarItem16
+            // navBarItemTransportationStore
             // 
-            this.navBarItem16.Caption = "تحويل من مخزن الي مخزن";
-            this.navBarItem16.Name = "navBarItem16";
+            this.navBarItemTransportationStore.Caption = "تحويل من مخزن الي مخزن";
+            this.navBarItemTransportationStore.Name = "navBarItemTransportationStore";
+            this.navBarItemTransportationStore.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationStore_LinkClicked);
             // 
             // navBarItem17
             // 
@@ -4856,7 +4858,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup7;
         private DevExpress.XtraNavBar.NavBarItem navBarItem15;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup8;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem16;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationStore;
         private DevExpress.XtraNavBar.NavBarItem navBarItem17;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup9;
         private DevExpress.XtraNavBar.NavBarItem navBarItem18;

@@ -417,7 +417,7 @@ namespace MainSystem
 
         public void editFile()
         {
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Branch.txt");
+            /*string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Branch.txt");
             using (System.IO.StreamReader file = new System.IO.StreamReader(fileName))
             {
                 //if the file doesn't exist, create it
@@ -426,7 +426,7 @@ namespace MainSystem
                     string BranchID = file.ReadLine();
                     baseData.BranchID = Convert.ToInt16(BranchID);
                 }
-            }
+            }*/
         }
 
     }
