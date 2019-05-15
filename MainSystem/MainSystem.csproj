@@ -253,12 +253,6 @@
       <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
     </Compile>
     <Compile Include="baseData.cs" />
-    <Compile Include="Purchases\Orders\Reports\Print_OrderReportX.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Purchases\Orders\Reports\Print_OrderReportX.designer.cs">
-      <DependentUpon>Print_OrderReportX.cs</DependentUpon>
-    </Compile>
     <Compile Include="Purchases\Orders\Reports\ReportOrderDetails_Items.cs" />
     <Compile Include="Purchases\Orders\Reports\ReportOrder_Items.cs" />
     <Compile Include="Purchases\Orders\Reports\Print_OrderReport.cs">
@@ -2204,9 +2198,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\Reports\OrderStored.resx">
       <DependentUpon>OrderStored.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Reports\Print_OrderReportX.resx">
-      <DependentUpon>Print_OrderReportX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\Reports\Print_OrderReport.resx">
       <DependentUpon>Print_OrderReport.cs</DependentUpon>
