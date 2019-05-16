@@ -16,9 +16,6 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
         DataRow row1;
 
         public ConfirmationFromStore(MainForm mainForm)
@@ -29,13 +26,7 @@ namespace MainSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void txtTransferNumber_KeyDown(object sender, KeyEventArgs e)
