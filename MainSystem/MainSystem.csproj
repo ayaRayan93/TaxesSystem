@@ -2039,6 +2039,25 @@
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Transportation\ConfirmationFromStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\ConfirmationFromStore.designer.cs">
+      <DependentUpon>ConfirmationFromStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\Transportation_Items.cs" />
+    <Compile Include="Store\Transportation\Print_Transportation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\Print_Transportation.designer.cs">
+      <DependentUpon>Print_Transportation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\Report_Transportation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\Report_Transportation.designer.cs">
+      <DependentUpon>Report_Transportation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Transportation\TransportationStore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2993,6 +3012,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\Print_Transportation.resx">
+      <DependentUpon>Print_Transportation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\Report_Transportation.resx">
+      <DependentUpon>Report_Transportation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\ConfirmationFromStore.resx">
+      <DependentUpon>ConfirmationFromStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\TransportationStore.resx">
       <DependentUpon>TransportationStore.cs</DependentUpon>
