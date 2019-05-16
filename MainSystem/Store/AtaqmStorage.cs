@@ -339,7 +339,7 @@ namespace MainSystem
                     dbconnection.Close();
                     dbconnection.Open();
                     MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
-                    query = "SELECT storage.Set_ID as 'كود الطقم',data.Code as 'الكود',set_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN set_details on data.Data_ID=set_details.Data_ID INNER JOIN sets on sets.Set_ID=set_details.Set_ID left join data_photo on data_photo.Data_ID=data.Data_ID inner join storage on storage.Set_ID=sets.Set_ID  where sets.Type_ID IN(" + q1 + ") and  sets.Factory_ID  IN(" + q2 + ") and storage.Set_ID IN(" + q3 + ")   order by data.Code";
+                    query = "SELECT storage.Set_ID as 'كود الطقم',data.Code as 'الكود',set_details.Quantity as 'الكمية',groupo.Group_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN set_details on data.Data_ID=set_details.Data_ID INNER JOIN sets on sets.Set_ID=set_details.Set_ID left join data_photo on data_photo.Data_ID=data.Data_ID inner join storage on storage.Set_ID=sets.Set_ID  where sets.Type_ID IN(" + q1 + ") and  sets.Factory_ID  IN(" + q2 + ") and storage.Set_ID IN(" + q3 + ")   order by data.Code";
                     MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet11 = new DataSet();
 
@@ -369,7 +369,6 @@ namespace MainSystem
             dbconnection.Close();
         
     }
-
         public void deleteSet(int id)
         {
             String query = "delete from sets where Set_ID="+id;
@@ -422,7 +421,6 @@ namespace MainSystem
             comStore.Text = "";
             txtStoreID.Text = "";
         }
-
         public void FilterFactoryAndSet()
         {
             if (txtType.Text != "")
@@ -448,7 +446,6 @@ namespace MainSystem
                 txtSetsID.Text = "";
             }
         }
-
         public void FilterSet()
         {
             if (txtType.Text != "" && txtFactory.Text != "")
@@ -489,5 +486,6 @@ namespace MainSystem
                 txtSetsID.Text = "";
             }
         }
+
     }
 }
