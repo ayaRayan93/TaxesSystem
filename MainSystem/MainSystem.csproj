@@ -252,6 +252,12 @@
     <Compile Include="Accounting\Supplier_Taswya\UpdateSupplierTaswaya.designer.cs">
       <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminControl.designer.cs">
+      <DependentUpon>AdminControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="baseData.cs" />
     <Compile Include="Purchases\Orders\Reports\ReportOrderDetails_Items.cs" />
     <Compile Include="Purchases\Orders\Reports\ReportOrder_Items.cs" />
@@ -2120,6 +2126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Taswya\UpdateSupplierTaswaya.resx">
       <DependentUpon>UpdateSupplierTaswaya.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminControl.resx">
+      <DependentUpon>AdminControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Print.resx">
       <DependentUpon>BankSupplierPullAgl_Print.cs</DependentUpon>
