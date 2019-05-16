@@ -1358,7 +1358,6 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
         //delivery
         public void bindDisplayDeliveryForm()
         {
@@ -1416,7 +1415,6 @@ namespace MainSystem
             searchReciveDate.Dock = DockStyle.Fill;
             searchReciveDate.Show();
         }
-
         public void GetExpectedOrders(object sender, EventArgs e)
         {
             try
@@ -1429,7 +1427,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         public void ExpectedOrdersFunction()
         {
             int count = 0;
@@ -1478,5 +1475,6 @@ namespace MainSystem
             }
 
         }
+        //
     }
 }

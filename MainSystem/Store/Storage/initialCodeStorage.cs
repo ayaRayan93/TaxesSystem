@@ -225,9 +225,7 @@ namespace MainSystem
                                 comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
                                 comProduct.Text = "";
                                 txtProduct.Text = "";
-
-                              
-
+                                
                                 comProduct.Focus();
                                 flagProduct = true;
                             }
@@ -236,8 +234,6 @@ namespace MainSystem
                         case "comProduct":
 
                             txtProduct.Text = comProduct.SelectedValue.ToString();
-                     
-
                             break;
 
                     }
@@ -1119,7 +1115,6 @@ namespace MainSystem
             }
             else
             {
-                
                 date =Convert.ToDateTime(re[1]);
             }
             dt.Rows.Add(new object[] {

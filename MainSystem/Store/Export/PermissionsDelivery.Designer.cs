@@ -34,7 +34,6 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPermissionDelivery = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.newChoose = new System.Windows.Forms.Button();
             this.txtStoreID = new System.Windows.Forms.TextBox();
@@ -53,7 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -138,7 +136,6 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.99869F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.btnPermissionDelivery, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 541);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -147,21 +144,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(854, 52);
             this.tableLayoutPanel2.TabIndex = 212;
-            // 
-            // btnPermissionDelivery
-            // 
-            this.btnPermissionDelivery.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPermissionDelivery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnPermissionDelivery.FlatAppearance.BorderSize = 0;
-            this.btnPermissionDelivery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPermissionDelivery.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPermissionDelivery.Location = new System.Drawing.Point(372, 10);
-            this.btnPermissionDelivery.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.btnPermissionDelivery.Name = "btnPermissionDelivery";
-            this.btnPermissionDelivery.Size = new System.Drawing.Size(110, 32);
-            this.btnPermissionDelivery.TabIndex = 0;
-            this.btnPermissionDelivery.Text = "تسليم الاذن";
-            this.btnPermissionDelivery.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -342,7 +324,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -356,7 +337,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnPermissionDelivery;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Panel panel1;

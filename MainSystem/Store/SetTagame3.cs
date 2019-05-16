@@ -231,6 +231,8 @@ namespace MainSystem
                             case "txtSetsID":
                                 if (flag)
                                 {
+                                    dbconnection.Close();
+                                    dbconnection.Open();
                                     if (txtStoreID.Text != "")
                                     {
                                         query = "select Set_Name from sets where Set_ID=" + txtSetsID.Text + "";
@@ -310,7 +312,8 @@ namespace MainSystem
         //تجميع الطقم 
         public double Tagme3Set(int SetID)
         {
-
+            dbconnection.Close();
+            dbconnection.Open();
             string query = "select count(SetDetails_ID) from set_details where Set_ID=" + SetID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             int setItemsNumber = Convert.ToInt16(com.ExecuteScalar());
@@ -341,15 +344,15 @@ namespace MainSystem
             {
                 minQuantity = 0;
             }
+            dbconnection.Close();
             return minQuantity;
-
-
         }
        
         //record to database
         public void RecordSetQuantityInStorage(double minQuantity,int SetID)
         {
-
+            dbconnection.Close();
+            dbconnection.Open();
            string query = "select Total_Meters from storage where Set_ID=" + SetID + " and Store_ID=" + txtStoreID.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
@@ -377,14 +380,17 @@ namespace MainSystem
                 com.Parameters["@Type"].Value = "طقم";
                 com.ExecuteNonQuery();
             }
+            dbconnection.Close();
         }
         //decrease the quantity of taqm items
         public void decreaseItemsQuantity(double TaqmQuantity,int setID)
         {
             if (TaqmQuantity>0)
             {
+                dbconnection1.Close();
+                dbconnection.Close();
                 dbconnection1.Open();
-                dbconnection2.Open();
+                dbconnection.Open();
                 string query = "select Data_ID,Quantity from set_details  where Set_ID=" + setID;
                 MySqlCommand com = new MySqlCommand(query,dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
@@ -418,7 +424,7 @@ namespace MainSystem
                
             }
             dbconnection1.Close();
-            dbconnection2.Close();
+            dbconnection.Close();
         }
 
         private void txtSetQuantity_KeyDown(object sender, KeyEventArgs e)
@@ -474,7 +480,7 @@ namespace MainSystem
                 txtSetQuantity.Text = "";
 
                 dataGridView1.Rows.Clear();
-                Search();
+               // Search();
             }
             catch (Exception ex)
             {
@@ -486,6 +492,10 @@ namespace MainSystem
         {
             if (TaqmQuantity > 0)
             {
+                dbconnection.Close();
+                dbconnection1.Close();
+                dbconnection2.Close();
+                dbconnection.Open();
                 dbconnection1.Open();
                 dbconnection2.Open();
                 string query = "select Data_ID,Quantity from set_details  where Set_ID=" + setID;
