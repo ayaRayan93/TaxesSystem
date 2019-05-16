@@ -1283,7 +1283,6 @@ namespace MainSystem
 
                             query2 = "select Order_ID from orders order by Order_ID desc limit 1";
                             com2 = new MySqlCommand(query2, dbconnection);
-
                             orderId = Convert.ToInt16(com2.ExecuteScalar().ToString());
                         }
                         
@@ -1297,7 +1296,7 @@ namespace MainSystem
                         com.Parameters["@Balatat"].Value = balate;
                         com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
                         com.Parameters["@Carton_Balata"].Value = cartons_balate;
-                        com.Parameters.Add("@Quantity", MySqlDbType.Double);
+                        com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
                         com.Parameters["@Quantity"].Value = total;
                         com.Parameters.Add("@Type", MySqlDbType.VarChar);
                         com.Parameters["@Type"].Value = row1["Type"].ToString();
