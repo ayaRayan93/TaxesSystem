@@ -145,7 +145,7 @@
             this.tcMainContent.Name = "tcMainContent";
             this.tcMainContent.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tcMainContent.Padding = new System.Windows.Forms.Padding(3);
-            this.tcMainContent.Size = new System.Drawing.Size(486, 639);
+            this.tcMainContent.Size = new System.Drawing.Size(497, 639);
             this.tcMainContent.TabIndex = 1;
             this.tcMainContent.Text = "tileControl1";
             // 
