@@ -571,7 +571,7 @@ namespace MainSystem
                         listOfData.Add(returnPermissionClass);
 
                     }
-                    ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData, CustomerReturnPermission_ID.ToString(), txtClientName.Text, txtPhone.Text, txtReturnReason.Text, dateTimePicker1.Text);
+                    ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData, CustomerReturnPermission_ID.ToString(), txtClientName.Text, txtPhone.Text, dateTimePicker1.Text, txtReturnReason.Text);
                     ReturnCustomerPermissionReport.Show();
        
                     clear();
@@ -639,7 +639,7 @@ namespace MainSystem
             string query = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranchID.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             Billid = Convert.ToInt16(com.ExecuteScalar());
-            query = "select * from customer_permissions where CustomerBill_ID=" + Billid;
+            query = "select * from customer_return_permission where CustomerBill_ID=" + Billid;
             com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             if (dr.HasRows)
@@ -647,7 +647,7 @@ namespace MainSystem
                 dr.Close();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(DeliveredQuantity) as 'الكمية المسلمة',customer_permissions_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_permissions_details on customer_permissions_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
+                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(TotalQuantity) as 'الكمية المسلمة',customer_return_permission_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_return_permission_details on customer_return_permission_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -662,7 +662,7 @@ namespace MainSystem
                 dr.Close();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Cartons as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
+                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
