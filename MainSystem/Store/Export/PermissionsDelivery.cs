@@ -227,7 +227,7 @@ namespace MainSystem
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             edit.ButtonClick += gridView1_ButtonClick;
             edit.Buttons[0].Caption = "تسليم اذن";
-            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
+            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Left;
             gridView1.Columns["تسليم اذن"].ColumnEdit = edit;
         }
         private void AddUnboundColumngridView1()
@@ -245,9 +245,9 @@ namespace MainSystem
             edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             edit.ButtonClick += gridView2_ButtonClick;
             edit.Buttons[0].Caption = "تسليم اذن";
-            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Close;
+            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
-                 
+       
         }       
         private void AddUnboundColumngridView2()
         {

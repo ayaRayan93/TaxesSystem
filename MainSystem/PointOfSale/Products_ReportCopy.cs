@@ -95,6 +95,14 @@ namespace MainSystem
                 main = Min;
                 loadedRow = Row1;
                 productType = Type;
+                if (Type=="بند")
+                {
+                    radProducts.Checked = true;
+                }
+                else if (Type == "طقم")
+                {
+                    radSets.Checked = true;
+                }
 
                 panel2.AutoScroll = false;
                 panel2.VerticalScroll.Enabled = false;
@@ -999,6 +1007,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -1111,10 +1120,10 @@ namespace MainSystem
                     DataTable dtf = new DataTable();
                     adapter.Fill(dtf);
                     gridControl1.DataSource = dtf;
-                    gridView1.Columns["Type"].Visible = false;
-                    gridView1.Columns[0].Visible = false;
+                    //gridView1.Columns["Type"].Visible = false;
+                    //gridView1.Columns[0].Visible = false;
 
-                    query = "SELECT sets.Set_ID as 'الكود','Type',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")";
+                    query = "SELECT sets.Set_ID as 'الكود','Type',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
@@ -1208,6 +1217,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -1475,7 +1485,6 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
         {
             try
@@ -1870,8 +1879,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-
+        
         //function
         public void getSetsComBox()
         {
@@ -2085,7 +2093,7 @@ namespace MainSystem
             else if (productType == "طقم")
             {
                 #region طقم
-                string query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Set_ID=" + loadedRow["الكود"].ToString();
+                string query = "SELECT sets.Set_ID as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Set_ID=" + loadedRow["الكود"].ToString();
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())

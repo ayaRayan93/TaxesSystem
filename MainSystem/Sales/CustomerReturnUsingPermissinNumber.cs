@@ -16,6 +16,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         string type = "كاش";
         int Branch_ID = 0;
+
         public CustomerReturnUsingPermissinNumber()
         {
             try
@@ -51,12 +52,11 @@ namespace MainSystem
                     MySqlCommand com ;
                     MySqlDataReader dr ;
                     DataTable dtAll = new DataTable();
-                    //string query = "select customer_return_permission_details.Data_ID,customer_return_permission_details.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',customer_return_permission_details.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Delegate_ID,product_bill.CustomerBill_ID  from product_bill inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtPermissionNum.Text + " and product_bill.Type='بند' ";
+
                     string relation = " LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID";
                     string supQuery = "concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم'";
-                    if (labBillNumber.Text != "")
-                    {
-                        query = "select Branch_BillNumber,customer_bill.Branch_ID,branch.Branch_Name,ClientReturnName,ClientRetunPhone,Date from customer_return_permission inner join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID inner join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
+                  
+                        query = "select IFNULL(Branch_BillNumber,''),IFNULL(customer_bill.Branch_ID,''),IFNULL(branch.Branch_Name,''),ClientReturnName,ClientRetunPhone,Date from customer_return_permission inner join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID inner join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
                         com = new MySqlCommand(query, dbconnection);
 
                         dr = com.ExecuteReader();
@@ -70,22 +70,14 @@ namespace MainSystem
                             labBillDate.Text = dr[5].ToString();
                         }
                         dr.Close();
-                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and product_bill.Type='بند' ";
+
+                    if (labBillNumber.Text != "")
+                    {
+                        query = "select DISTINCT product_bill.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and product_bill.Type='بند' ";
                     }
                     else
                     {
-                        query = "select ClientReturnName,ClientRetunPhone,Date from customer_return_permission where CustomerReturnPermission_ID=" + billNum;
-                        com = new MySqlCommand(query, dbconnection);
-
-                        dr = com.ExecuteReader();
-                        while (dr.Read())
-                        {
-                            labClientName.Text = dr[0].ToString();
-                            labClientPhone.Text = dr[1].ToString();
-                            labBillDate.Text = dr[2].ToString();
-                        }
-                        dr.Close();
-                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'' from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text ;
+                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'' from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
                     }
 
                     com = new MySqlCommand(query, dbconnection);
@@ -109,58 +101,7 @@ namespace MainSystem
                     }
                     dr.Close();
                     txtBillTotalCostAD.Text = totalBill.ToString();
-                    //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    //DataTable dtProduct = new DataTable();
-                    //da.Fill(dtProduct);
-                    ////type.Type_Name as 'النوع', factory.Factory_Name as 'المصنع', groupo.Group_Name as 'المجموعة'
-                    //query = "select sets.Set_ID as 'Data_ID',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='طقم' ";
-                    //da = new MySqlDataAdapter(query, dbconnection);
-                    //DataTable dtSet = new DataTable();
-                    //da.Fill(dtSet);
-
-                    //dtAll = dtProduct.Copy();
-                    //dtAll.Merge(dtSet);
-
-                    //dataGridView2.DataSource = dtProduct;
-                    //dataGridView2.Columns[0].Visible = false;
-                    //dataGridView2.Columns["CustomerBill_ID"].Visible = false;
-                    //dataGridView2.Columns["الفئة"].Visible = false;
-                    //dataGridView2.Columns["الوصف"].Visible = false;
-                    //dataGridView2.Columns["Delegate_ID"].Visible = false;
-                    //dataGridView2.Rows.Clear();
-
-                    //txtCode.Text = "";
-                    //txtPriceAD.Text = "";
-                    //txtTotalMeter.Text = "";
-                    //txtTotalAD.Text = "";
-                    //txtReturnedQuantity.Text = "";
-                    //txtBillTotalCostAD.Text = "";
-                    //labBillDate.Text = "";
-
-
-                    //query = "select * from customer_bill where customer_bill.Branch_BillNumber=" + comBillNumber.Text + " and customer_bill.Branch_ID=" + txtBranchID.Text;
-                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    //MySqlDataReader dr = com.ExecuteReader();
-                    //if (dr.HasRows)
-                    //{
-                    //    while (dr.Read())
-                    //    {
-                    //        //customerBillId = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
-                    //        txtBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
-                    //        labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
-
-                    //        if (!listBoxControlCustomerBill.Items.Contains(comBillNumber.SelectedValue.ToString()))
-                    //        {
-                    //            listBoxControlBills.Items.Add(comBillNumber.Text + ":" + comBranch.Text);
-                    //            listBoxControlCustomerBill.Items.Add(comBillNumber.SelectedValue.ToString());
-                    //        }
-                    //    }
-                    //    dr.Close();
-                    //}
-                    //else
-                    //{
-
-                    //}
+           
                 }
             }
             catch (Exception ex)
@@ -177,14 +118,20 @@ namespace MainSystem
                 dbconnection.Open();
                 if (dataGridView2.RowCount > 0 && txtReturnPermission.Text != "")
                 {
-                   
-                    string query = "insert into customer_return_bill (Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
+                    string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +Properties.Resources.Branch + " order by CustomerReturnBill_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    int Branch_BillNumber = 1;
+                    if (com.ExecuteScalar() != null)
+                    {
+                        Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
+                    }
+                    query = "insert into customer_return_bill (Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
+                    com = new MySqlCommand(query, dbconnection);
                     
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
-                    com.Parameters["@Branch_BillNumber"].Value = labBillNumber.Text;
+                    com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    com.Parameters["@Branch_ID"].Value = Branch_ID;
+                    com.Parameters["@Branch_ID"].Value = Properties.Resources.Branch;
 
                     int storeNum = 0;
                     if (int.TryParse(txtReturnPermission.Text, out storeNum))
@@ -247,7 +194,8 @@ namespace MainSystem
 
                         }
                     }
-                    
+
+                    MessageBox.Show("فاتورة مرتجع رقم "+Branch_BillNumber);
                     UserControl.ItemRecord("customer_return_bill", "اضافة", id, DateTime.Now, "", dbconnection);
                     clear();
                 }
@@ -272,7 +220,8 @@ namespace MainSystem
             labBillNumber.Text = "";
             labClientName.Text = "";
             labClientPhone.Text = "";
-            dataGridView2.DataSource = null;
+            dataGridView2.Rows.Clear();
         }
+   
     }
 }

@@ -91,7 +91,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(781, 558);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(868, 641);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridView2
@@ -130,7 +130,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView2.Size = new System.Drawing.Size(775, 292);
+            this.dataGridView2.Size = new System.Drawing.Size(862, 375);
             this.dataGridView2.TabIndex = 165;
             // 
             // Data_ID
@@ -220,12 +220,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 501);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 584);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(775, 54);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(862, 54);
             this.tableLayoutPanel3.TabIndex = 167;
             // 
             // btnCreateReturnBill
@@ -242,10 +242,10 @@
             this.btnCreateReturnBill.ImageZoom = 25;
             this.btnCreateReturnBill.LabelPosition = 20;
             this.btnCreateReturnBill.LabelText = "حفظ";
-            this.btnCreateReturnBill.Location = new System.Drawing.Point(348, 4);
+            this.btnCreateReturnBill.Location = new System.Drawing.Point(387, 4);
             this.btnCreateReturnBill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateReturnBill.Name = "btnCreateReturnBill";
-            this.btnCreateReturnBill.Size = new System.Drawing.Size(80, 46);
+            this.btnCreateReturnBill.Size = new System.Drawing.Size(89, 46);
             this.btnCreateReturnBill.TabIndex = 6;
             this.btnCreateReturnBill.Click += new System.EventHandler(this.btnCreateReturnBill_Click);
             // 
@@ -269,7 +269,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(781, 120);
+            this.panel1.Size = new System.Drawing.Size(868, 120);
             this.panel1.TabIndex = 0;
             // 
             // labBranchName
@@ -277,7 +277,7 @@
             this.labBranchName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBranchName.AutoSize = true;
             this.labBranchName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labBranchName.Location = new System.Drawing.Point(355, 49);
+            this.labBranchName.Location = new System.Drawing.Point(474, 49);
             this.labBranchName.Name = "labBranchName";
             this.labBranchName.Size = new System.Drawing.Size(0, 19);
             this.labBranchName.TabIndex = 184;
@@ -286,10 +286,10 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(432, 49);
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(551, 49);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 19);
+            this.label8.Size = new System.Drawing.Size(43, 19);
             this.label8.TabIndex = 183;
             this.label8.Text = ":الفرع";
             // 
@@ -297,19 +297,19 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(302, 76);
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(346, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 19);
+            this.label4.Size = new System.Drawing.Size(50, 19);
             this.label4.TabIndex = 181;
-            this.label4.Text = "التاريخ";
+            this.label4.Text = ":التاريخ";
             // 
             // labBillDate
             // 
             this.labBillDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBillDate.AutoSize = true;
             this.labBillDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labBillDate.Location = new System.Drawing.Point(149, 76);
+            this.labBillDate.Location = new System.Drawing.Point(193, 76);
             this.labBillDate.Name = "labBillDate";
             this.labBillDate.Size = new System.Drawing.Size(0, 19);
             this.labBillDate.TabIndex = 182;
@@ -319,7 +319,7 @@
             this.labBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBillNumber.AutoSize = true;
             this.labBillNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labBillNumber.Location = new System.Drawing.Point(216, 49);
+            this.labBillNumber.Location = new System.Drawing.Point(249, 49);
             this.labBillNumber.Name = "labBillNumber";
             this.labBillNumber.Size = new System.Drawing.Size(0, 19);
             this.labBillNumber.TabIndex = 8;
@@ -329,7 +329,7 @@
             this.labClientPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labClientPhone.AutoSize = true;
             this.labClientPhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labClientPhone.Location = new System.Drawing.Point(632, 76);
+            this.labClientPhone.Location = new System.Drawing.Point(656, 76);
             this.labClientPhone.Name = "labClientPhone";
             this.labClientPhone.Size = new System.Drawing.Size(0, 19);
             this.labClientPhone.TabIndex = 7;
@@ -341,7 +341,7 @@
             this.groupBox1.Controls.Add(this.rdbCash);
             this.groupBox1.Controls.Add(this.rdbSoon);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(31, 12);
+            this.groupBox1.Location = new System.Drawing.Point(49, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(103, 91);
@@ -381,7 +381,7 @@
             this.labClientName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labClientName.AutoSize = true;
             this.labClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labClientName.Location = new System.Drawing.Point(632, 49);
+            this.labClientName.Location = new System.Drawing.Point(656, 49);
             this.labClientName.Name = "labClientName";
             this.labClientName.Size = new System.Drawing.Size(0, 19);
             this.labClientName.TabIndex = 6;
@@ -390,10 +390,10 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(230, 49);
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(318, 49);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 19);
+            this.label5.Size = new System.Drawing.Size(76, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = ":رقم الفاتورة";
             // 
@@ -401,10 +401,10 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(655, 76);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(776, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 19);
+            this.label3.Size = new System.Drawing.Size(73, 19);
             this.label3.TabIndex = 3;
             this.label3.Text = ":رقم التلفون";
             // 
@@ -412,10 +412,10 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(655, 49);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(776, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 19);
+            this.label2.Size = new System.Drawing.Size(74, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = ":اسم العميل ";
             // 
@@ -424,7 +424,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(468, 18);
+            this.label1.Location = new System.Drawing.Point(512, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 19);
             this.label1.TabIndex = 1;
@@ -434,7 +434,7 @@
             // 
             this.txtReturnPermission.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtReturnPermission.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReturnPermission.Location = new System.Drawing.Point(328, 12);
+            this.txtReturnPermission.Location = new System.Drawing.Point(372, 10);
             this.txtReturnPermission.Name = "txtReturnPermission";
             this.txtReturnPermission.Size = new System.Drawing.Size(131, 26);
             this.txtReturnPermission.TabIndex = 0;
@@ -448,17 +448,17 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.txtInfo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 418);
+            this.panel2.Location = new System.Drawing.Point(0, 501);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(781, 80);
+            this.panel2.Size = new System.Drawing.Size(868, 80);
             this.panel2.TabIndex = 168;
             // 
             // txtBillTotalCostAD
             // 
             this.txtBillTotalCostAD.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtBillTotalCostAD.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillTotalCostAD.Location = new System.Drawing.Point(415, 18);
+            this.txtBillTotalCostAD.Location = new System.Drawing.Point(459, 18);
             this.txtBillTotalCostAD.Name = "txtBillTotalCostAD";
             this.txtBillTotalCostAD.ReadOnly = true;
             this.txtBillTotalCostAD.Size = new System.Drawing.Size(150, 26);
@@ -469,7 +469,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label14.Location = new System.Drawing.Point(273, 21);
+            this.label14.Location = new System.Drawing.Point(317, 21);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 18);
             this.label14.TabIndex = 200;
@@ -480,7 +480,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(571, 21);
+            this.label6.Location = new System.Drawing.Point(615, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(140, 19);
             this.label6.TabIndex = 180;
@@ -490,7 +490,7 @@
             // 
             this.txtInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtInfo.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtInfo.Location = new System.Drawing.Point(86, 18);
+            this.txtInfo.Location = new System.Drawing.Point(130, 18);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -501,7 +501,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 558);
+            this.ClientSize = new System.Drawing.Size(868, 641);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "CustomerReturnUsingPermissinNumber";
             this.Text = "CustomerReturnUsingPermissinNumber";
