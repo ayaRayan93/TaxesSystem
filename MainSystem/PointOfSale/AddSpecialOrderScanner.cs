@@ -35,12 +35,28 @@ namespace MainSystem
         {
             try
             {
-                if (pictureBoxRequest.Image != null)
+                if (txtDescription.Text != "")
                 {
+                    int SpecialOrderID = 0;
+                    string cutomerType = "";
                     dbconnection.Open();
-                    string query = "insert into special_order (Picture,Product_Picture,Dash_ID,Description) values(@Picture,@Product_Picture,@Dash_ID,@Description)";
+                    string query = "select Customer_Type from customer where Customer_ID=" + ClientId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Picture", MySqlDbType.LongBlob, 0).Value = selectedRequestImage;
+                    if (com.ExecuteScalar() != null)
+                    {
+                        cutomerType = com.ExecuteScalar().ToString();
+                    }
+
+                    query = "insert into special_order (Picture,Product_Picture,Dash_ID,Description,Delegate_ID,Client_ID,Customer_ID) values(@Picture,@Product_Picture,@Dash_ID,@Description,@Delegate_ID,@Client_ID,@Customer_ID)";
+                    com = new MySqlCommand(query, dbconnection);
+                    if (pictureBoxRequest.Image != null)
+                    {
+                        com.Parameters.Add("@Picture", MySqlDbType.LongBlob, 0).Value = selectedRequestImage;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Picture", MySqlDbType.LongBlob, 0).Value = null;
+                    }
                     if (selectedProductImage != null)
                     {
                         com.Parameters.Add("@Product_Picture", MySqlDbType.LongBlob, 0).Value = selectedProductImage;
@@ -51,10 +67,34 @@ namespace MainSystem
                     }
                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16, 11).Value = DashBillNum;
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
+                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
+                    com.Parameters["@Delegate_ID"].Value = UserControl.EmpID;
+                    if (cutomerType == "عميل")
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = ClientId;
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = null;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = null;
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = ClientId;
+                    }
                     com.ExecuteNonQuery();
-                    insertRequest();
+
+                    query = "select SpecialOrder_ID from special_order order by SpecialOrder_ID desc limit 1";
+                    com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        SpecialOrderID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                    }
+
+                    /*insertRequest();*/
                     dbconnection.Close();
-                    MessageBox.Show("طلب رقم : " + branchBillNumber.ToString());
+                    MessageBox.Show("طلب رقم : " + SpecialOrderID.ToString());
                     this.Close();
                 }
                 else
@@ -99,7 +139,7 @@ namespace MainSystem
             {
                 cutomerType = com.ExecuteScalar().ToString();
             }
-            
+
             if (cutomerType == "عميل")
             {
                 query = "insert into requests (Branch_ID,BranchBillNumber,SpecialOrder_ID,Delegate_ID,Client_ID,Emp_Type) values (@Branch_ID,@BranchBillNumber,@SpecialOrder_ID,@Delegate_ID,@Client_ID,@Emp_Type)";

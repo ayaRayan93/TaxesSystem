@@ -444,6 +444,37 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemDashRequestReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبيات الخاصة المؤقتة");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض الطلبيات الخاصة المؤقتة");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبيات الخاصة المؤقتة");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplayDashRequestReportForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void bindDisplayLeastQuantityReport(XtraTabPage xtraTabPage)
         {
             leastQuantityReport = new LeastQuantityReport(this, xtraTabControlPurchases);
@@ -764,6 +795,61 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        public void bindRecordDashRequestForm(DashRequest_Report DashOrderReport, List<DataRow> row1)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب خاص مؤقت");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("اضافة طلب خاص مؤقت");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب خاص مؤقت");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            DashRequest_Record objForm = new DashRequest_Record(DashOrderReport, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindRecordRequestForm(Request_Report OrderReport, List<DataRow> row1)
+        {
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب خاص");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("اضافة طلب خاص");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة طلب خاص");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+            //List<DataRow> row1 = new List<DataRow>();
+            Request_Record objForm = new Request_Record(row1, OrderReport, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDashRequestReportForm(XtraTabPage xtraTabPage)
+        {
+            DashRequest_Report objForm = new DashRequest_Report(this, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         public void bindUpdateOrderForm(DataRowView rows, Order_Report OrderReport)
         {
             /*if (!xtraTabControlPurchases.Visible)
@@ -775,6 +861,30 @@ namespace MainSystem
             {
                 xtraTabControlPurchases.TabPages.Add("تعديل طلب");
                 xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل طلب");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+            UpdateSupplier objForm = new UpdateSupplier(rows, /*OrderReport*null, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();*/
+        }
+        public void bindUpdateRequestForm(DataRowView rows, Request_Report OrderReport)
+        {
+            /*if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل طلب خاص");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlPurchases.TabPages.Add("تعديل طلب خاص");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل طلب خاص");
             }
             xtraTabPage.Controls.Clear();
 
@@ -830,7 +940,7 @@ namespace MainSystem
             string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
             int count = 0;
             dbconnection.Close();
-            string query = "SELECT least_offer.Least_Quantity FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
+            string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
             MySqlCommand command = new MySqlCommand(query, dbconnection);
             dbconnection.Open();
             MySqlDataReader dr = command.ExecuteReader();

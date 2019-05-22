@@ -15,18 +15,20 @@ namespace MainSystem
     public partial class AddSpecialOrder : DevExpress.XtraEditors.XtraForm
     {
         MySqlConnection dbconnection;
+        //int branchBillNumber = 0;
         int DashBillNum = 0;
-        int EmpBranchId = 0;
-        int branchBillNumber = 0;
-        int DelegateId = 0;
+        //int EmpBranchId = 0;
+        //int DelegateId = 0;
+        int ClientId = 0;
 
-        public AddSpecialOrder(int dashBillNum, int empBranchId, int delegateId)
+        public AddSpecialOrder(int dashBillNum, int clientId/*, int empBranchId, int delegateId*/)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             DashBillNum = dashBillNum;
-            EmpBranchId = empBranchId;
-            DelegateId = delegateId;
+            ClientId = clientId;
+            //EmpBranchId = empBranchId;
+            //DelegateId = delegateId;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -35,16 +37,49 @@ namespace MainSystem
             {
                 if (txtDescription.Text != "")
                 {
+                    int SpecialOrderID = 0;
+                    string cutomerType = "";
+
                     dbconnection.Open();
-                    string query = "insert into special_order (Description,Dash_ID) values(@Description,@Dash_ID)";
+                    string query = "select Customer_Type from customer where Customer_ID=" + ClientId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        cutomerType = com.ExecuteScalar().ToString();
+                    }
+
+                    query = "insert into special_order (Description,Dash_ID,Delegate_ID,Client_ID,Customer_ID) values(@Description,@Dash_ID,@Delegate_ID,@Client_ID,@Customer_ID)";
+                    com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16, 11).Value = DashBillNum;
+                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
+                    com.Parameters["@Delegate_ID"].Value = UserControl.EmpID;
+                    if (cutomerType == "عميل")
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = ClientId;
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = null;
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = null;
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = ClientId;
+                    }
                     com.ExecuteNonQuery();
-                    txtDescription.Text = "";
-                    insertRequest();
+
+                    query = "select SpecialOrder_ID from special_order order by SpecialOrder_ID desc limit 1";
+                    com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        SpecialOrderID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                    }
+
+                    /*insertRequest();*/
                     dbconnection.Close();
-                    MessageBox.Show("طلب رقم : " + branchBillNumber.ToString());
+                    MessageBox.Show("طلب رقم : " + SpecialOrderID.ToString());
                     this.Close();
                 }
                 else
@@ -60,9 +95,10 @@ namespace MainSystem
         }
 
         //to get request number and give it to the client
+        //error function
         public void insertRequest()
         {
-            int SpecialOrderID = 0;
+            /*int SpecialOrderID = 0;
 
             string query = "select BranchBillNumber from requests where Branch_ID=" + EmpBranchId + " order by Request_ID desc limit 1";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -99,7 +135,7 @@ namespace MainSystem
             com.Parameters["@SpecialOrder_ID"].Value = SpecialOrderID;
             com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
             com.Parameters["@Delegate_ID"].Value = DelegateId;
-            com.ExecuteNonQuery();
+            com.ExecuteNonQuery();*/
         }
     }
 }

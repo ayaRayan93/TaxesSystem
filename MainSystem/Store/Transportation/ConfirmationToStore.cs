@@ -14,14 +14,14 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class ConfirmationFromStore : Form
+    public partial class ConfirmationToStore : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
         DataRow row1;
         int storeId = 0;
 
-        public ConfirmationFromStore(MainForm mainForm)
+        public ConfirmationToStore(MainForm mainForm)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
