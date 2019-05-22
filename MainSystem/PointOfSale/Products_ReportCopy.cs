@@ -1137,6 +1137,7 @@ namespace MainSystem
                         if (gridView1.IsNewItemRow(rowHandle))
                         {
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
 
@@ -2107,6 +2108,7 @@ namespace MainSystem
                     if (gridView1.IsNewItemRow(rowHandle))
                     {
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
 

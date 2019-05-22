@@ -545,11 +545,11 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[0].Value = "0.00";
-                dataGridView2.Rows[n].Cells[1].Value = dr["Money_Paid"].ToString();
-                dataGridView2.Rows[n].Cells[2].Value = dr["CustomerTaswaya_ID"].ToString(); ;
-                dataGridView2.Rows[n].Cells[5].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[6].Value = dr["Date"].ToString();
+                dataGridView2.Rows[n].Cells[6].Value = "0.00";
+                dataGridView2.Rows[n].Cells[5].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[4].Value = dr["CustomerTaswaya_ID"].ToString(); ;
+                dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
             dataGridView2.Columns[3].Visible = false;

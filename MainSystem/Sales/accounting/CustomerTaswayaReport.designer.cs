@@ -39,6 +39,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTaswayaCode = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeFrom = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -58,20 +62,20 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 467);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(790, 561);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 63);
+            this.gridControl1.Location = new System.Drawing.Point(3, 95);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(784, 351);
+            this.gridControl1.Size = new System.Drawing.Size(784, 413);
             this.gridControl1.TabIndex = 46;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -108,7 +112,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnUpdate, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 417);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 511);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -183,13 +187,17 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panHeader.Controls.Add(this.dateTimeTo);
+            this.panHeader.Controls.Add(this.dateTimeFrom);
+            this.panHeader.Controls.Add(this.label2);
+            this.panHeader.Controls.Add(this.label3);
             this.panHeader.Controls.Add(this.label1);
             this.panHeader.Controls.Add(this.txtTaswayaCode);
             this.panHeader.Controls.Add(this.btnSearch);
             this.panHeader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panHeader.Location = new System.Drawing.Point(3, 3);
             this.panHeader.Name = "panHeader";
-            this.panHeader.Size = new System.Drawing.Size(784, 54);
+            this.panHeader.Size = new System.Drawing.Size(784, 86);
             this.panHeader.TabIndex = 0;
             // 
             // label1
@@ -197,7 +205,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(670, 20);
+            this.label1.Location = new System.Drawing.Point(663, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 19);
             this.label1.TabIndex = 43;
@@ -207,7 +215,7 @@
             // 
             this.txtTaswayaCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTaswayaCode.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaswayaCode.Location = new System.Drawing.Point(493, 16);
+            this.txtTaswayaCode.Location = new System.Drawing.Point(486, 25);
             this.txtTaswayaCode.Name = "txtTaswayaCode";
             this.txtTaswayaCode.Size = new System.Drawing.Size(167, 27);
             this.txtTaswayaCode.TabIndex = 42;
@@ -222,7 +230,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSearch.Location = new System.Drawing.Point(59, 13);
+            this.btnSearch.Location = new System.Drawing.Point(18, 25);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 33);
             this.btnSearch.TabIndex = 41;
@@ -230,13 +238,51 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // dateTimeTo
+            // 
+            this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.Location = new System.Drawing.Point(147, 51);
+            this.dateTimeTo.Name = "dateTimeTo";
+            this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeTo.TabIndex = 161;
+            // 
+            // dateTimeFrom
+            // 
+            this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.Location = new System.Drawing.Point(147, 15);
+            this.dateTimeFrom.Name = "dateTimeFrom";
+            this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFrom.TabIndex = 162;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(362, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.TabIndex = 163;
+            this.label2.Text = "من";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(361, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 16);
+            this.label3.TabIndex = 164;
+            this.label3.Text = "الي";
+            // 
             // CustomerTaswayaReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(790, 467);
+            this.ClientSize = new System.Drawing.Size(790, 561);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "CustomerTaswayaReport";
             this.Text = "CustomerTaswayaReport";
@@ -263,5 +309,9 @@
         private System.Windows.Forms.Button btnSearch;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.DateTimePicker dateTimeTo;
+        private System.Windows.Forms.DateTimePicker dateTimeFrom;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -323,7 +323,8 @@ namespace MainSystem.Sales.accounting
 
         public void setIDs()
         {
-             
+            dbconnection.Close();
+            dbconnection.Open();
             if (customerID != "")
             {
                 string query = "select Customer_Name from customer where Customer_ID=" + customerID + "";
