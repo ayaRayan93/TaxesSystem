@@ -111,7 +111,11 @@ namespace MainSystem.Sales.accounting
         //functions
         public void DisplayCustomerTaswaya()
         {
-            string qeury = "select CustomerTaswaya_ID as 'الكود',c2.Customer_Name as 'المهندس/مقاول/تاجر',c1.Customer_Name as 'العميل',Taswaya_Type as 'نوع التسوية',Money_Paid as 'قيمة التسوية',Info as 'بيان',Date as 'التاريخ' from customer_taswaya inner join customer as c1 on c1.Customer_ID=customer_taswaya.Client_ID inner join customer as c2 on c2.Customer_ID=customer_taswaya.Customer_ID ";
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string qeury = "select CustomerTaswaya_ID as 'الكود',c2.Customer_Name as 'المهندس/مقاول/تاجر',c1.Customer_Name as 'العميل',Taswaya_Type as 'نوع التسوية',Money_Paid as 'قيمة التسوية',Info as 'بيان',Date as 'التاريخ' from customer_taswaya inner join customer as c1 on c1.Customer_ID=customer_taswaya.Client_ID inner join customer as c2 on c2.Customer_ID=customer_taswaya.Customer_ID  where Date between '" + d + "' and '" + d2 + "'";
             MySqlDataAdapter adapter = new MySqlDataAdapter(qeury, dbconnection);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);

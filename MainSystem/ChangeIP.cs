@@ -40,7 +40,14 @@ namespace MainSystem
                 comBranchName.DataSource = dt;
                 comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
-         
+
+                string BranchID = File.ReadAllText("C:\\Branch.txt");
+
+                //Write to a file
+                //using (StreamWriter writer = new StreamWriter("Branch.txt"))
+                //{
+                //    writer.WriteLine(something);
+                //}
                 labOldIP.Text = baseData.IPAddress;
              
                 query = "select Branch_Name from branch where Branch_ID=" + baseData.BranchID;
