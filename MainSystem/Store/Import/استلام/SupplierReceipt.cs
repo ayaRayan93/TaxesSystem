@@ -54,8 +54,8 @@ namespace MainSystem
             comProduct.AutoCompleteSource = AutoCompleteSource.ListItems;
             comSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
             comSupplier.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comStorePlace.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comStorePlace.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //comStorePlace.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //comStorePlace.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void SupplierReceipt_Load(object sender, EventArgs e)
@@ -93,14 +93,14 @@ namespace MainSystem
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
                 comSupplier.Text = "";
                 
-                query = "select * from store_places where Store_ID=" + storeId;
-                da = new MySqlDataAdapter(query, conn);
-                dt = new DataTable();
-                da.Fill(dt);
-                comStorePlace.DataSource = dt;
-                comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
-                comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
-                comStorePlace.Text = "";
+                //query = "select * from store_places where Store_ID=" + storeId;
+                //da = new MySqlDataAdapter(query, conn);
+                //dt = new DataTable();
+                //da.Fill(dt);
+                //comStorePlace.DataSource = dt;
+                //comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
+                //comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
+                //comStorePlace.Text = "";
 
                 query = "select * from factory";
                 da = new MySqlDataAdapter(query, conn);
@@ -412,7 +412,7 @@ namespace MainSystem
                 //comOrderFactory.SelectedIndex = -1;
                 //txtOrderFactory.Text = "";
                 txtDescription.Text = "";
-                comStorePlace.SelectedIndex = -1;
+                //comStorePlace.SelectedIndex = -1;
                 txtTotalMeter.Text = "0";
                 txtCarton.Text = "0";
                 txtBalat.Text = "0";
@@ -496,7 +496,7 @@ namespace MainSystem
             {
                 if (flagConfirm == 2)
                 {
-                    if (row1 != null && comSupplier.SelectedValue != null && txtPermissionNum.Text != "" && txtSupPermissionNum.Text != "" && txtCarton.Text != "" && txtBalat.Text != "" && comStorePlace.Text != "" && txtCode.Text != "" && txtTotalMeter.Text != "")
+                    if (row1 != null && comSupplier.SelectedValue != null && txtPermissionNum.Text != "" && txtSupPermissionNum.Text != "" && txtCarton.Text != "" && txtBalat.Text != "" /*&& comStorePlace.Text != ""*/ && txtCode.Text != "" && txtTotalMeter.Text != "")
                     {
                         int NoBalatat = 0;
                         int NoCartons = 0;
@@ -774,12 +774,12 @@ namespace MainSystem
 
                                 if (importSupplierPermissionID > 0)
                                 {
-                                    query = "insert into supplier_permission_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Note,ImportSupplierPermission_ID,Employee_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Note,@ImportSupplierPermission_ID,@Employee_ID)";
+                                    query = "insert into supplier_permission_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Note,ImportSupplierPermission_ID,Employee_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Note,@ImportSupplierPermission_ID,@Employee_ID)";
                                     com = new MySqlCommand(query, conn);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = storeId;
-                                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                                    com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
+                                    //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                    //com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                                     com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
                                     com.Parameters["@Date"].Value = DateTime.Now;
                                     if (carton > 0)
@@ -816,13 +816,13 @@ namespace MainSystem
                                     return;
                                 }
 
-                                query = "select Total_Meters from storage where Data_ID=" + row1["Data_ID"].ToString() + " and Store_ID=" + storeId + " and Store_Place_ID=" + comStorePlace.SelectedValue.ToString();
+                                query = "select Total_Meters from storage where Data_ID=" + row1["Data_ID"].ToString() + " and Store_ID=" + storeId; //+ " and Store_Place_ID=" + comStorePlace.SelectedValue.ToString();
                                 com = new MySqlCommand(query, conn);
                                 if (com.ExecuteScalar() != null)
                                 {
                                     double totalMeter = Convert.ToDouble(com.ExecuteScalar().ToString());
 
-                                    query = "update storage set Total_Meters=" + (totalMeter + total) + " where Data_ID=" + row1["Data_ID"].ToString() + " and Store_ID=" + storeId + " and Store_Place_ID=" + comStorePlace.SelectedValue.ToString();
+                                    query = "update storage set Total_Meters=" + (totalMeter + total) + " where Data_ID=" + row1["Data_ID"].ToString() + " and Store_ID=" + storeId; //+ " and Store_Place_ID=" + comStorePlace.SelectedValue.ToString();
                                     com = new MySqlCommand(query, conn);
                                     com.ExecuteNonQuery();
                                 }
@@ -832,8 +832,8 @@ namespace MainSystem
                                     com = new MySqlCommand(query, conn);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = storeId;
-                                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                                    com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
+                                    //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                    //com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                                     com.Parameters.Add("@Type", MySqlDbType.VarChar);
                                     com.Parameters["@Type"].Value = "بند";
                                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
@@ -855,7 +855,7 @@ namespace MainSystem
                                 txtCarton.Text = "0";
                                 txtBalat.Text = "0";
                                 txtDescription.Text = "";
-                                comStorePlace.SelectedIndex = -1;
+                                //comStorePlace.SelectedIndex = -1;
                                 loaded = true;
                             }
                             else

@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class ConfirmationFromStore
+    partial class ConfirmationToStore
     {
         /// <summary>
         /// Required designer variable.

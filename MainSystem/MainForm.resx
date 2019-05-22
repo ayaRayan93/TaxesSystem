@@ -1347,17 +1347,17 @@
   </data>
   <data name="resource.Image5" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAImSURBVGhD7Zq/TxNhGMdrq6aDCVITY6MwOFRCHBAXoosaZYCNgX+Aif/BjZBIgfgrGBm6OLip
-        MTpoHBwgcWFzUiEhMCCLLgqDwvF53ntKSFq8Fk7uueb9JJ/hnnvf575PCu1d08z/IAiCdpzAb/hD/YjD
-        usQ+hO3BVdyP53hSl9uEgEVck7QRzOoWm0jAMGck29ir22xBsBz+lJQNUtattiDYhTBfw7zRrbYgmPx/
-        NMNr3WoLgmVx3UVsjDHdag/CTYYZI/mLJd1mD8KdwWVJGsGUbrELIUv4xcWtzwzmdLltCJrHUXyPX/Ez
-        VvCaLkkHBC7gxTp2Yl6X2YSAffgSf2EUSziOp3V78hDmON5Hue1olu94U1slC0EeukgHZwOvaLtkIMAN
-        F+XwyJtBVtsePVz8hYsRD/3a9mjhwnJL8ttFiIcH2roGzp3CS1jUUnzQ9CzGySttXQPnBnERH2kpPmgq
-        nwlx8k5b70LtHD7D6iu/hfN4XZccHprJRRZi9LG2dnDcgdVnfxlgBTfdURD8wSFdahuCvnWRg2AOz2vt
-        BJalCPI0WnCLBQ7a8KoxB1A+YOVP6o7W9voJhXt4GbMyyL++ukkLd2WQVmDWD2IMN8hB7lqt8VQGmcYP
-        KfeWvgm3CEx0DG+n0G4dIYSCPOWlkYqOEELBD5IwfhBr+EGs4Qexhh/EGn4Qa/hBrNG6g8jvSORrybRR
-        +ysjiiNyIkU+wa4wfSazA5x39EPf0X8yAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAiZJREFUaEPt
+        mr9PE2EYx2urpoMJUhNjozA4VEIcEBeiixplgI2Bf4CJ/8GNkEiB+CsYGbo4uKkxOmgcHCBxYXNSISEw
+        IIsuCoPC8Xnee0pIWrwWTu655v0kn+Gee9/nvk8K7V3TzP8gCIJ2nMBv+EP9iMO6xD6E7cFV3I/neFKX
+        24SARVyTtBHM6habSMAwZyTb2KvbbEGwHP6UlA1S1q22INiFMF/DvNGttiCY/H80w2vdaguCZXHdRWyM
+        Md1qD8JNhhkj+Ysl3WYPwp3BZUkawZRusQshS/jFxa3PDOZ0uW0ImsdRfI9f8TNW8JouSQcELuDFOnZi
+        XpfZhIB9+BJ/YRRLOI6ndXvyEOY43ke57WiW73hTWyULQR66SAdnA69ou2QgwA0X5fDIm0FW2x49XPyF
+        ixEP/dr2aOHCckvy20WIhwfaugbOncJLWNRSfND0LMbJK21dA+cGcREfaSk+aCqfCXHyTlvvQu0cPsPq
+        K7+F83hdlxwemslFFmL0sbZ2cNyB1Wd/GWAFN91REPzBIV1qG4K+dZGDYA7Pa+0ElqUI8jRacIsFDtrw
+        qjEHUD5g5U/qjtb2+gmFe3gZszLIv766SQt3ZZBWYNYPYgw3yEHuWq3xVAaZxg8p95a+CbcITHQMb6fQ
+        bh0hhII85aWRio4QQsEPkjB+EGv4QazhB7GGH8QafhBr+EGs0bqDyO9I5GvJtFH7KyOKI3IiRT7BrjB9
+        JrMDnHf0Q9/RfzIAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="resource.Image6" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

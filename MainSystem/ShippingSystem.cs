@@ -114,12 +114,12 @@ namespace MainSystem
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlShipping, "تسجيل شحنة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlShipping, "تسجيل شحنة عميل");
                 if (xtraTabPage == null)
                 {
                     xtraTabPage = new XtraTabPage();
-                    xtraTabPage.Name = "تسجيل شحنة";
-                    xtraTabPage.Text = "تسجيل شحنة";
+                    xtraTabPage.Name = "تسجيل شحنة عميل";
+                    xtraTabPage.Text = "تسجيل شحنة عميل";
                     panelShippingRecord.Name = "panelShippingRecord";
                     panelShippingRecord.Dock = DockStyle.Fill;
 

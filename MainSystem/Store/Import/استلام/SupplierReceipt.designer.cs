@@ -185,19 +185,20 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label11.Location = new System.Drawing.Point(229, 7);
+            this.label11.Location = new System.Drawing.Point(26, 10);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label11.Size = new System.Drawing.Size(90, 19);
             this.label11.TabIndex = 31;
             this.label11.Text = "مكان التخزين";
+            this.label11.Visible = false;
             // 
             // label13
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label13.Location = new System.Drawing.Point(229, 37);
+            this.label13.Location = new System.Drawing.Point(247, 7);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label13.Size = new System.Drawing.Size(73, 19);
@@ -209,7 +210,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(229, 68);
+            this.label14.Location = new System.Drawing.Point(247, 38);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(42, 19);
@@ -220,12 +221,12 @@
             // 
             this.txtDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDescription.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDescription.Location = new System.Drawing.Point(64, 64);
+            this.txtDescription.Location = new System.Drawing.Point(82, 34);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDescription.Size = new System.Drawing.Size(160, 26);
+            this.txtDescription.Size = new System.Drawing.Size(160, 54);
             this.txtDescription.TabIndex = 8;
             // 
             // txtCode
@@ -771,7 +772,7 @@
             // 
             this.txtTotalMeter.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalMeter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalMeter.Location = new System.Drawing.Point(124, 35);
+            this.txtTotalMeter.Location = new System.Drawing.Point(142, 5);
             this.txtTotalMeter.Name = "txtTotalMeter";
             this.txtTotalMeter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtTotalMeter.Size = new System.Drawing.Size(100, 23);
@@ -806,11 +807,12 @@
             this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(74, 4);
+            this.comStorePlace.Location = new System.Drawing.Point(4, 7);
             this.comStorePlace.Name = "comStorePlace";
             this.comStorePlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStorePlace.Size = new System.Drawing.Size(150, 24);
+            this.comStorePlace.Size = new System.Drawing.Size(17, 24);
             this.comStorePlace.TabIndex = 6;
+            this.comStorePlace.Visible = false;
             // 
             // panel4
             // 

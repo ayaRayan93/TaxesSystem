@@ -259,6 +259,44 @@
       <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
     <Compile Include="baseData.cs" />
+    <Compile Include="Purchases\Orders\Request\DashRequest_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\DashRequest_Record.designer.cs">
+      <DependentUpon>DashRequest_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\DashRequest_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\DashRequest_Report.designer.cs">
+      <DependentUpon>DashRequest_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\DataHelperClassRequest.cs" />
+    <Compile Include="Purchases\Orders\Request\Request_Items.cs" />
+    <Compile Include="Purchases\Orders\Request\Request_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Request_Record.designer.cs">
+      <DependentUpon>Request_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Request_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Request_Report.designer.cs">
+      <DependentUpon>Request_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Print_Request.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Print_Request.designer.cs">
+      <DependentUpon>Print_Request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Report_Request.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Orders\Request\Report_Request.designer.cs">
+      <DependentUpon>Report_Request.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Orders\Reports\ReportOrderDetails_Items.cs" />
     <Compile Include="Purchases\Orders\Reports\ReportOrder_Items.cs" />
     <Compile Include="Purchases\Orders\Reports\Print_OrderReport.cs">
@@ -2045,6 +2083,12 @@
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Transportation\ConfirmationToStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\ConfirmationToStore.designer.cs">
+      <DependentUpon>ConfirmationToStore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Transportation\ConfirmationFromStore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2205,6 +2249,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Products_Report.resx">
       <DependentUpon>Products_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Request\DashRequest_Record.resx">
+      <DependentUpon>DashRequest_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Request\DashRequest_Report.resx">
+      <DependentUpon>DashRequest_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Request\Request_Record.resx">
+      <DependentUpon>Request_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Request\Request_Report.resx">
+      <DependentUpon>Request_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Request\Print_Request.resx">
+      <DependentUpon>Print_Request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Orders\Request\Report_Request.resx">
+      <DependentUpon>Report_Request.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\bill\DashOrder_Record.resx">
       <DependentUpon>DashOrder_Record.cs</DependentUpon>
@@ -3021,6 +3083,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\ConfirmationToStore.resx">
+      <DependentUpon>ConfirmationToStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\Print_Transportation.resx">
       <DependentUpon>Print_Transportation.cs</DependentUpon>
