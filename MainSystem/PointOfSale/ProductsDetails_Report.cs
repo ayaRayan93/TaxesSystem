@@ -179,21 +179,28 @@ namespace MainSystem
             //comDelegate.SelectedValue = delegateID;
 
             conn.Open();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='بند' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='بند' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
 
-            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum+ " and dash.Confirmed=0 and (dash_details.Type='طقم' or dash_details.Type='عرض')", conn);
+            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join sets on dash_details.Data_ID=sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum+ " and dash.Confirmed=0 and dash_details.Type='طقم'", conn);
             DataSet sourceDataSet2 = new DataSet();
             adapter.Fill(sourceDataSet2);
 
             sourceDataSet.Merge(sourceDataSet2);
+
+            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',offer.Offer_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join offer on dash_details.Data_ID=offer.Offer_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='عرض'", conn);
+            DataSet sourceDataSet3 = new DataSet();
+            adapter.Fill(sourceDataSet3);
+
+            sourceDataSet.Merge(sourceDataSet3);
 
             gridControl1.DataSource = sourceDataSet.Tables[0];
             //gridView1.Columns["Error"].Visible = false;
             gridView1.Columns["DashDetails_ID"].Visible = false;
             gridView1.Columns["Store_ID"].Visible = false;
 
+            PSloaded = false;
             string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0";
             MySqlCommand com = new MySqlCommand(query, conn);
             if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
@@ -207,6 +214,7 @@ namespace MainSystem
                 comCustomer.SelectedIndex = -1;
                 txtClientId.Text = "";
             }
+            PSloaded = true;
             conn.Close();
 
             for (int i = 1; i < gridView1.Columns.Count; i++)
@@ -287,17 +295,24 @@ namespace MainSystem
                     DataSet sourceDataSet = new DataSet();
                     adapter.Fill(sourceDataSet);
 
-                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and (dash_details.Type='طقم' or dash_details.Type='عرض')", conn);
+                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join sets on dash_details.Data_ID=sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='طقم'", conn);
                     DataSet sourceDataSet2 = new DataSet();
                     adapter.Fill(sourceDataSet2);
 
                     sourceDataSet.Merge(sourceDataSet2);
+
+                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',offer.Offer_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join offer on dash_details.Data_ID=offer.Offer_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='عرض'", conn);
+                    DataSet sourceDataSet3 = new DataSet();
+                    adapter.Fill(sourceDataSet3);
+
+                    sourceDataSet.Merge(sourceDataSet3);
 
                     gridControl1.DataSource = sourceDataSet.Tables[0];
                     //gridView1.Columns["Error"].Visible = false;
                     gridView1.Columns["DashDetails_ID"].Visible = false;
                     gridView1.Columns["Store_ID"].Visible = false;
 
+                    PSloaded = false;
                     string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
@@ -311,6 +326,7 @@ namespace MainSystem
                         comCustomer.SelectedIndex = -1;
                         txtClientId.Text = "";
                     }
+                    PSloaded = true;
                     conn.Close();
 
                     for (int i = 1; i < gridView1.Columns.Count; i++)
