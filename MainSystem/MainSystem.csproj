@@ -3415,9 +3415,6 @@
     <None Include="Resources\icons8_Paste_Special_16.png" />
     <None Include="Resources\icons8_Paste_Special_32.png" />
     <None Include="Resources\icons8_Order_History_32.png" />
-    <None Include="Resources\Branch.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\icons8_Delete_48px.png" />
     <None Include="Resources\icons8_Checkmark_48px.png" />
     <None Include="Resources\icons8_Deliveries_32.png" />
