@@ -78,7 +78,7 @@ namespace MainSystem
                     XtraTabPage xtraTabPage = getTabPage("tabPageDelegateBillReport");
                     if (!IsClear())
                     {
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     }
                     else
                     {

@@ -117,7 +117,7 @@ namespace MainSystem
                 calLicenseAvaliblePeriod();
                 XtraTabPage xtraTabPage = getTabPage("تسجيل رخصة العربية");
                 if (dateTimePicker1.Text != date.Split('*')[0]||!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
             }
@@ -134,7 +134,7 @@ namespace MainSystem
                 calLicenseAvaliblePeriod();
                 XtraTabPage xtraTabPage = getTabPage("تسجيل رخصة العربية");
                 if (dateTimePicker2.Text!=date.Split('*')[1] || !IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
             }
@@ -150,7 +150,7 @@ namespace MainSystem
             {
                 XtraTabPage xtraTabPage = getTabPage("تسجيل رخصة العربية");
                 if (dateTimePicker1.Text != date.Split('*')[0]|| dateTimePicker2.Text != date.Split('*')[1]||!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
             }

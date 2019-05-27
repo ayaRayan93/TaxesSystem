@@ -39,7 +39,6 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.label6 = new System.Windows.Forms.Label();
             this.btnDeletePhone = new System.Windows.Forms.Button();
@@ -99,6 +98,7 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -265,27 +265,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(892, 54);
             this.tableLayoutPanel2.TabIndex = 35;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(405, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(83, 46);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // layoutControl1
             // 
@@ -506,9 +485,9 @@
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radEng.Location = new System.Drawing.Point(496, 30);
+            this.radEng.Location = new System.Drawing.Point(494, 30);
             this.radEng.Name = "radEng";
-            this.radEng.Size = new System.Drawing.Size(93, 30);
+            this.radEng.Size = new System.Drawing.Size(95, 30);
             this.radEng.TabIndex = 12;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -522,9 +501,9 @@
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radDealer.Location = new System.Drawing.Point(340, 30);
+            this.radDealer.Location = new System.Drawing.Point(338, 30);
             this.radDealer.Name = "radDealer";
-            this.radDealer.Size = new System.Drawing.Size(60, 30);
+            this.radDealer.Size = new System.Drawing.Size(62, 30);
             this.radDealer.TabIndex = 14;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -538,9 +517,9 @@
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radCon.Location = new System.Drawing.Point(406, 30);
+            this.radCon.Location = new System.Drawing.Point(405, 30);
             this.radCon.Name = "radCon";
-            this.radCon.Size = new System.Drawing.Size(84, 30);
+            this.radCon.Size = new System.Drawing.Size(85, 30);
             this.radCon.TabIndex = 13;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -1048,6 +1027,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(898, 640);
             this.panel1.TabIndex = 35;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "حفظ";
+            this.btnAdd.Location = new System.Drawing.Point(405, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(83, 46);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Customer_Record
             // 

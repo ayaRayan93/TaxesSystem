@@ -211,7 +211,7 @@ namespace MainSystem
                     comEmployee.Text = "";
                     load = true;
                     XtraTabPage xtraTabPage = getTabPage("أضافة راتب موظف");
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 
                 }
             }
@@ -240,7 +240,7 @@ namespace MainSystem
                     comEmployee.Text = "";
                     load = true;
                     XtraTabPage xtraTabPage = getTabPage("أضافة راتب موظف");
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 }
             }
             catch (Exception ex)
@@ -271,7 +271,7 @@ namespace MainSystem
                 {
                     XtraTabPage xtraTabPage = getTabPage("أضافة راتب موظف");
                     if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     else
                         xtraTabPage.ImageOptions.Image = null;
                 }

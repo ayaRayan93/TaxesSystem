@@ -726,7 +726,7 @@ namespace MainSystem
                 {
                     XtraTabPage xtraTabPage = getTabPage("تعديل اسعار البنود");
                     if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     else
                         xtraTabPage.ImageOptions.Image = null;
 

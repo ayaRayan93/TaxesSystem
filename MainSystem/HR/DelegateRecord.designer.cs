@@ -339,7 +339,7 @@
             // 
             this.ImageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageBox.BackColor = System.Drawing.Color.DarkGray;
-            this.ImageBox.BackgroundImage = global::MainSystem.Properties.Resources.camara1;
+            this.ImageBox.BackgroundImage = global::MainSystem.Properties.Resources.camara;
             this.ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImageBox.Location = new System.Drawing.Point(138, 41);
             this.ImageBox.Name = "ImageBox";

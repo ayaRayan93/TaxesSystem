@@ -677,7 +677,7 @@
             // 
             this.ImageProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara1;
+            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara;
             this.ImageProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImageProduct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ImageProduct.Location = new System.Drawing.Point(79, 6);

@@ -263,7 +263,7 @@ namespace MainSystem
                 {
                     XtraTabPage xtraTabPage = getTabPage("تعديل راتب موظف");
                     if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     else
                         xtraTabPage.ImageOptions.Image = null;
                 }

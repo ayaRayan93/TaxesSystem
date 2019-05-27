@@ -30,12 +30,12 @@
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,34 +75,13 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(460, 52);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.File_32;
-            this.btnSave.ImagePosition = 2;
-            this.btnSave.ImageZoom = 25;
-            this.btnSave.LabelPosition = 20;
-            this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(187, 4);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 44);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // txtDescription
             // 
             this.txtDescription.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.txtDescription.Location = new System.Drawing.Point(12, 12);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(403, 115);
+            this.txtDescription.Size = new System.Drawing.Size(404, 115);
             this.txtDescription.TabIndex = 5;
             // 
             // layoutControlGroup1
@@ -134,7 +113,7 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(464, 119);
             this.layoutControlItem2.Text = "التفاصيل";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(54, 19);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(53, 19);
             // 
             // layoutControlItem3
             // 
@@ -144,6 +123,27 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(464, 56);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnSave.ImagePosition = 2;
+            this.btnSave.ImageZoom = 25;
+            this.btnSave.LabelPosition = 20;
+            this.btnSave.LabelText = "حفظ";
+            this.btnSave.Location = new System.Drawing.Point(187, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(86, 44);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // AddSpecialOrder
             // 
