@@ -14,7 +14,7 @@ namespace MainSystem
         static public void generateBaseProjectFile()
         {
             string path = "C:\\Users\\User\\Documents\\MainSystem";   
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(path + "\\Branch.txt"))
             {
                 Directory.CreateDirectory(path);
                 using (StreamWriter writer = new StreamWriter(path + "\\Branch.txt"))

@@ -208,9 +208,9 @@ namespace MainSystem
                 gridControl1.DataSource = _Table2;
                 
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("حددالمندوب");
+                MessageBox.Show(ex.Message);
                 txtDelegateID.Focus();
             }
             dbconnection.Close();
@@ -424,6 +424,7 @@ namespace MainSystem
 
             while (dr.Read())
             {
+                dbconnection2.Close();
                 dbconnection2.Open();
                 string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[4].ToString() + "  ORDER BY  Date desc LIMIT 1";
                 MySqlCommand c = new MySqlCommand(q, dbconnection2);
@@ -460,6 +461,7 @@ namespace MainSystem
             bool flag = true;
             while (dr.Read())
             {
+                dbconnection2.Close();
                 dbconnection2.Open();
                 string q = "SELECT  sellprice.PercentageDelegate from sellprice where Data_ID=" + dr[4].ToString() + "  ORDER BY  Date desc LIMIT 1";
                 MySqlCommand c = new MySqlCommand(q, dbconnection2);
