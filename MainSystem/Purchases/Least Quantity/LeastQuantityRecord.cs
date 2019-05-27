@@ -252,16 +252,16 @@ namespace MainSystem
                     for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
                         string query2 = "";
-                        string query = "select Least_Quantity from least_Offer where Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
+                        string query = "select Least_Quantity from least_order where Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
                         MySqlCommand command = new MySqlCommand(query, dbconnection);
                         if (command.ExecuteScalar() != null)
                         {
                             string result = command.ExecuteScalar().ToString();
-                            query2 = "update least_Offer set Least_Quantity=" + txtLeastQuantity.Text + " where Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
+                            query2 = "update least_order set Least_Quantity=" + txtLeastQuantity.Text + " where Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]);
                         }
                         else
                         {
-                            query2 = "insert into least_Offer (Data_ID,Least_Quantity) values (" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]) + " , " + txtLeastQuantity.Text + ")";
+                            query2 = "insert into least_order (Data_ID,Least_Quantity) values (" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[i], gridView1.Columns[0]) + " , " + txtLeastQuantity.Text + ")";
                         }
                         MySqlCommand comand = new MySqlCommand(query2, dbconnection);
                         comand.ExecuteNonQuery();
@@ -342,13 +342,13 @@ namespace MainSystem
             }
 
             dbconnection.Open();
-            string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',least_offer.Least_Quantity as 'الحد الادنى' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN least_offer ON data.Data_ID = least_offer.Data_ID AND data.Data_ID = least_offer.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+            string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',least_order.Least_Quantity as 'الحد الادنى' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN least_order ON data.Data_ID = least_order.Data_ID AND data.Data_ID = least_order.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
 
-            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',least_offer.Least_Quantity as 'الحد الادنى' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN least_offer ON data.Data_ID = least_offer.Data_ID AND data.Data_ID = least_offer.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',least_order.Least_Quantity as 'الحد الادنى' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN least_order ON data.Data_ID = least_order.Data_ID AND data.Data_ID = least_order.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
             MySqlCommand comand = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
@@ -417,7 +417,7 @@ namespace MainSystem
                     txtCode.Text = code;
 
                     dbconnection.Open();
-                    string query = "select Least_Quantity from least_Offer where Data_ID=" + row1[0].ToString();
+                    string query = "select Least_Quantity from least_order where Data_ID=" + row1[0].ToString();
                     MySqlCommand command = new MySqlCommand(query, dbconnection);
                     if (command.ExecuteScalar() != null)
                     {

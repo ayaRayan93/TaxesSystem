@@ -140,6 +140,16 @@ namespace MainSystem
 
             table.Columns.Add(column);
 
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "SpecialOrderID";
+            column.AutoIncrement = false;
+            column.Caption = "SpecialOrderID";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
             DataSet = new DataSet();
             DataSet.Tables.Add(table);
         }
@@ -244,6 +254,16 @@ namespace MainSystem
             column.ColumnName = "Type";
             column.AutoIncrement = false;
             column.Caption = "Type";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "SpecialOrderID";
+            column.AutoIncrement = false;
+            column.Caption = "SpecialOrderID";
             column.ReadOnly = false;
             column.Unique = false;
 

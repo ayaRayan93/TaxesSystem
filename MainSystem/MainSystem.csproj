@@ -311,6 +311,12 @@
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\specialOrder_confirm\SpecialOrderConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\specialOrder_confirm\SpecialOrderConfirm.designer.cs">
+      <DependentUpon>SpecialOrderConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\ayatestDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -498,16 +504,16 @@
     <Compile Include="Purchases\Least Quantity\LeastQuantityReport.designer.cs">
       <DependentUpon>LeastQuantityReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Bill Least\Request_Least_Delivery.cs">
+    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Delivery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Bill Least\Request_Least_Delivery.designer.cs">
+    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Delivery.designer.cs">
       <DependentUpon>Request_Least_Delivery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Bill Least\Request_Least_Order.cs">
+    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Order.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Bill Least\Request_Least_Order.designer.cs">
+    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Order.designer.cs">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierAccount_Report.cs">
@@ -1342,10 +1348,10 @@
     <Compile Include="Login.designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="PointOfSale\AddSpecialOrderScanner.cs">
+    <Compile Include="Sales\specialOrder_confirm\AddSpecialOrderScanner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PointOfSale\AddSpecialOrderScanner.designer.cs">
+    <Compile Include="Sales\specialOrder_confirm\AddSpecialOrderScanner.designer.cs">
       <DependentUpon>AddSpecialOrderScanner.cs</DependentUpon>
     </Compile>
     <Compile Include="PointOfSale\AddSpecialOrder.cs">
@@ -1683,10 +1689,10 @@
       <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة المرتجع\CopyReturnedBill_Items.cs" />
-    <Compile Include="Sales\SpecialOrders_Report2.cs">
+    <Compile Include="Purchases\Orders\SpecialOrders_Report2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\SpecialOrders_Report2.designer.cs">
+    <Compile Include="Purchases\Orders\SpecialOrders_Report2.designer.cs">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\sellPrice\UpdateSellPrice.cs">
@@ -2307,10 +2313,10 @@
     <EmbeddedResource Include="Purchases\Least Quantity\LeastQuantityReport.resx">
       <DependentUpon>LeastQuantityReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Bill Least\Request_Least_Delivery.resx">
+    <EmbeddedResource Include="Purchases\Least Quantity\Bill Least\Request_Least_Delivery.resx">
       <DependentUpon>Request_Least_Delivery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Bill Least\Request_Least_Order.resx">
+    <EmbeddedResource Include="Purchases\Least Quantity\Bill Least\Request_Least_Order.resx">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierAccount_Report.resx">
@@ -2375,6 +2381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\DashBill_Report.resx">
       <DependentUpon>DashBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\specialOrder_confirm\SpecialOrderConfirm.resx">
+      <DependentUpon>SpecialOrderConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\تقرير حركة السدادات\BillsTransitions_Print.resx">
       <DependentUpon>BillsTransitions_Print.cs</DependentUpon>
@@ -2715,7 +2724,7 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PointOfSale\AddSpecialOrderScanner.resx">
+    <EmbeddedResource Include="Sales\specialOrder_confirm\AddSpecialOrderScanner.resx">
       <DependentUpon>AddSpecialOrderScanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\AddSpecialOrder.resx">
@@ -2889,7 +2898,7 @@
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.resx">
       <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\SpecialOrders_Report2.resx">
+    <EmbeddedResource Include="Purchases\Orders\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\sellPrice\UpdateSellPrice.resx">
@@ -3400,6 +3409,12 @@
     <Content Include="Car_Service.ico" />
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\icons8_Checked_32.png" />
+    <None Include="Resources\icons8_Available_Updates_16.png" />
+    <None Include="Resources\icons8_Available_Updates_32.png" />
+    <None Include="Resources\icons8_Paste_Special_16.png" />
+    <None Include="Resources\icons8_Paste_Special_32.png" />
+    <None Include="Resources\icons8_Order_History_32.png" />
     <None Include="Resources\Branch.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

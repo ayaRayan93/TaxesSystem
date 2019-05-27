@@ -311,7 +311,7 @@ namespace MainSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.
+        ///   Looks up a localized string similar to 1.
         /// </summary>
         internal static string Branch {
             get {
@@ -602,6 +602,36 @@ namespace MainSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_Available_Updates_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Available_Updates_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Available_Updates_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Available_Updates_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Checked_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Checked_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_Checkmark_48px {
             get {
                 object obj = ResourceManager.GetObject("icons8_Checkmark_48px", resourceCulture);
@@ -705,6 +735,26 @@ namespace MainSystem.Properties {
         internal static System.Drawing.Bitmap icons8_Expand_Arrow_32 {
             get {
                 object obj = ResourceManager.GetObject("icons8_Expand_Arrow_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Order_History_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Order_History_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_Paste_Special_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_Paste_Special_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

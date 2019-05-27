@@ -41,6 +41,8 @@
             this.txtStoreID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDashOrderNum = new System.Windows.Forms.TextBox();
             this.checkBoxReceivedPart = new System.Windows.Forms.CheckBox();
@@ -76,6 +78,7 @@
             this.TotalQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SpecialOrderID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -111,7 +114,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(537, 44);
+            this.label6.Location = new System.Drawing.Point(537, 40);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 18);
             this.label6.TabIndex = 132;
@@ -121,7 +124,7 @@
             // 
             this.txtEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtEmployee.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtEmployee.Location = new System.Drawing.Point(374, 41);
+            this.txtEmployee.Location = new System.Drawing.Point(374, 37);
             this.txtEmployee.Name = "txtEmployee";
             this.txtEmployee.ReadOnly = true;
             this.txtEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -134,7 +137,7 @@
             this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(653, 71);
+            this.dateTimePicker1.Location = new System.Drawing.Point(653, 67);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateTimePicker1.RightToLeftLayout = true;
@@ -146,7 +149,7 @@
             this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(374, 71);
+            this.dateTimePicker2.Location = new System.Drawing.Point(374, 67);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateTimePicker2.RightToLeftLayout = true;
@@ -158,7 +161,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(530, 74);
+            this.label7.Location = new System.Drawing.Point(530, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 18);
             this.label7.TabIndex = 136;
@@ -169,7 +172,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label8.Location = new System.Drawing.Point(809, 74);
+            this.label8.Location = new System.Drawing.Point(809, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(75, 18);
             this.label8.TabIndex = 137;
@@ -179,7 +182,7 @@
             // 
             this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSupplier.Location = new System.Drawing.Point(102, 41);
+            this.txtSupplier.Location = new System.Drawing.Point(102, 37);
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.ReadOnly = true;
             this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -192,7 +195,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label13.Location = new System.Drawing.Point(321, 44);
+            this.label13.Location = new System.Drawing.Point(321, 40);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 18);
             this.label13.TabIndex = 144;
@@ -204,7 +207,7 @@
             this.comSupplier.Enabled = false;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(163, 41);
+            this.comSupplier.Location = new System.Drawing.Point(163, 37);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
@@ -217,7 +220,7 @@
             this.comStore.Enabled = false;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(681, 41);
+            this.comStore.Location = new System.Drawing.Point(681, 37);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(150, 24);
@@ -228,7 +231,7 @@
             // 
             this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStoreID.Location = new System.Drawing.Point(620, 41);
+            this.txtStoreID.Location = new System.Drawing.Point(620, 37);
             this.txtStoreID.Name = "txtStoreID";
             this.txtStoreID.ReadOnly = true;
             this.txtStoreID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -241,7 +244,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label17.Location = new System.Drawing.Point(837, 44);
+            this.label17.Location = new System.Drawing.Point(837, 40);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(48, 18);
             this.label17.TabIndex = 204;
@@ -250,6 +253,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtDashOrderNum);
             this.panel1.Controls.Add(this.checkBoxReceivedPart);
@@ -280,12 +285,35 @@
             this.panel1.Size = new System.Drawing.Size(899, 109);
             this.panel1.TabIndex = 206;
             // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label18.Location = new System.Drawing.Point(326, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(38, 18);
+            this.label18.TabIndex = 215;
+            this.label18.Text = "البيان";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDescription.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDescription.Location = new System.Drawing.Point(102, 67);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDescription.Size = new System.Drawing.Size(211, 36);
+            this.txtDescription.TabIndex = 216;
+            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label2.Location = new System.Drawing.Point(242, 14);
+            this.label2.Location = new System.Drawing.Point(242, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 18);
             this.label2.TabIndex = 214;
@@ -295,7 +323,7 @@
             // 
             this.txtDashOrderNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDashOrderNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDashOrderNum.Location = new System.Drawing.Point(102, 11);
+            this.txtDashOrderNum.Location = new System.Drawing.Point(102, 7);
             this.txtDashOrderNum.Name = "txtDashOrderNum";
             this.txtDashOrderNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDashOrderNum.Size = new System.Drawing.Size(134, 24);
@@ -377,7 +405,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label12.Location = new System.Drawing.Point(530, 14);
+            this.label12.Location = new System.Drawing.Point(530, 10);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 18);
             this.label12.TabIndex = 207;
@@ -387,7 +415,7 @@
             // 
             this.txtOrderNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtOrderNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOrderNum.Location = new System.Drawing.Point(374, 11);
+            this.txtOrderNum.Location = new System.Drawing.Point(374, 7);
             this.txtOrderNum.Name = "txtOrderNum";
             this.txtOrderNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtOrderNum.Size = new System.Drawing.Size(150, 24);
@@ -398,7 +426,7 @@
             // 
             this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtFactory.Location = new System.Drawing.Point(620, 12);
+            this.txtFactory.Location = new System.Drawing.Point(620, 8);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(55, 23);
             this.txtFactory.TabIndex = 4;
@@ -409,7 +437,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(837, 14);
+            this.label9.Location = new System.Drawing.Point(837, 10);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label9.Size = new System.Drawing.Size(49, 18);
@@ -421,7 +449,7 @@
             this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(681, 11);
+            this.comFactory.Location = new System.Drawing.Point(681, 7);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(150, 24);
@@ -632,7 +660,8 @@
             this.Cartons_Balate,
             this.TotalQuantity,
             this.Carton,
-            this.Type});
+            this.Type,
+            this.SpecialOrderID});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -719,6 +748,12 @@
             this.Type.Visible = true;
             this.Type.VisibleIndex = 7;
             this.Type.Width = 74;
+            // 
+            // SpecialOrderID
+            // 
+            this.SpecialOrderID.Caption = "SpecialOrderID";
+            this.SpecialOrderID.FieldName = "SpecialOrderID";
+            this.SpecialOrderID.Name = "SpecialOrderID";
             // 
             // tableLayoutPanel3
             // 
@@ -1085,6 +1120,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtTotalMeters;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtDescription;
+        private DevExpress.XtraGrid.Columns.GridColumn SpecialOrderID;
     }
 }
 

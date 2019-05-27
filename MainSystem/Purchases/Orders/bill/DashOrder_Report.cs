@@ -53,7 +53,7 @@ namespace MainSystem
             try
             {
                 List<DataRow> row1 = new List<DataRow>();
-                mainForm.bindRecordDashOrderForm(this, row1);
+                mainForm.bindRecordDashOrderForm(this, row1/*, 0*/);
             }
             catch (Exception ex)
             {

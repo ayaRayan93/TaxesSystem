@@ -25,39 +25,22 @@ namespace MainSystem
     {
         MySqlConnection conn;
         XtraTabControl MainTabControlPS;
-
-        //Panel panelAddCustomer;
-        //Panel panelUpdateCustomer;
-        //Panel panelPrintCustomer;
-
+        MainForm mainForm = null;
+        
         public static Customer_Print customerPrint;
 
         public static GridControl gridcontrol;
-        int EmpBranchId = 0;
         
         public static RequestImage tipImage = null;
 
-        public SpecialOrders_Report2()
+        public SpecialOrders_Report2(MainForm mainform)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             MainTabControlPS = MainForm.tabControlSales;
-
-            //panelAddCustomer = new Panel();
-            //panelUpdateCustomer = new Panel();
-            //panelPrintCustomer = new Panel();
-
+            
             gridcontrol = gridControl1;
-
-            EmpBranchId = UserControl.EmpBranchID;
-            
-            //gridView1.PostEditor();
-            //gridView1.UpdateCurrentRow();
-            /*gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
-            gridView1.OptionsEditForm.CustomEditFormLayout = new AdvancedEditForm(EmpBranchId);*/
-            
-            //gridView1.ShowInplaceEditForm();
-            //gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Default;
+            mainForm = mainform;
         }
 
         private void Delegate_Report_Load(object sender, EventArgs e)
@@ -106,31 +89,18 @@ namespace MainSystem
         {
             try
             {
-                //string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                byte[] bytes = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns[2]);
-                Image image= byteArrayToImage(bytes);
-                SaveFileDialog f = new SaveFileDialog();
-                f.Filter = "PNG(*.PNG)|*.png";
-                if (f.ShowDialog() == DialogResult.OK)
+                if (gridView1.GetFocusedRowCellValue(gridView1.Columns["Picture"]) != null)
                 {
-                    image.Save(f.FileName);
-                }
-                //System.IO.File.WriteAllBytes(filePath, bytes);
-                //File.WriteAllBytes(Server.MapPath(filePath), bytes);
-                //MemoryStream imageData = new MemoryStream(bytes);
-
-
-                /*using (WebClient webClient = new WebClient())
-                {
-                    var watch = System.Diagnostics.Stopwatch.StartNew();
-
-                    byte[] data = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns[2]);
-                    using (MemoryStream imageData = new MemoryStream(data))
+                    //string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    byte[] bytes = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns["Picture"]);
+                    Image image = byteArrayToImage(bytes);
+                    SaveFileDialog f = new SaveFileDialog();
+                    f.Filter = "PNG(*.PNG)|*.png";
+                    if (f.ShowDialog() == DialogResult.OK)
                     {
+                        image.Save(f.FileName);
                     }
-
-                    watch.Stop();
-                }*/
+                }
             }
             catch(Exception ex)
             {
@@ -142,13 +112,16 @@ namespace MainSystem
         {
             try
             {
-                byte[] bytes = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns[4]);
-                Image image = byteArrayToImage(bytes);
-                SaveFileDialog f = new SaveFileDialog();
-                f.Filter = "PNG(*.PNG)|*.png";
-                if (f.ShowDialog() == DialogResult.OK)
+                if (gridView1.GetFocusedRowCellValue(gridView1.Columns["ProductPicture"]) != null)
                 {
-                    image.Save(f.FileName);
+                    byte[] bytes = (byte[])gridView1.GetFocusedRowCellValue(gridView1.Columns["ProductPicture"]);
+                    Image image = byteArrayToImage(bytes);
+                    SaveFileDialog f = new SaveFileDialog();
+                    f.Filter = "PNG(*.PNG)|*.png";
+                    if (f.ShowDialog() == DialogResult.OK)
+                    {
+                        image.Save(f.FileName);
+                    }
                 }
             }
             catch (Exception ex)
@@ -157,9 +130,27 @@ namespace MainSystem
             }
         }
 
+        private void repositoryItemButtonEditAddOrder_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            try
+            {
+                List<DataRow> row1 = new List<DataRow>();
+                //for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                //{
+                //    row1.Add(gridView1.GetDataRow(gridView1.GetSelectedRows()[i]));
+                //}
+                mainForm.bindRecordDashOrderForm(null, row1/*, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[0]))*/);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
+
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            /*if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
@@ -170,18 +161,14 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            }*/
         }
         
         //functions
         public void search()
         {
-            /*DataTable sourceData = new DataTable();
-            MySqlDataAdapter adapterCustomer = new MySqlDataAdapter("SELECT requests.BranchBillNumber as 'رقم الطلب',special_order.Picture as 'صورة الطلب' FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN requests ON special_order.SpecialOrder_ID = requests.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId, conn);
-            adapterCustomer.Fill(sourceData);
-            gridControl1.DataSource = sourceData;*/
             conn.Open();
-            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,requests.BranchBillNumber,special_order.Picture,special_order.Product_Picture,special_order.Description FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN requests ON special_order.SpecialOrder_ID = requests.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId, conn);
+            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,special_order.Picture,special_order.Product_Picture,special_order.Description FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=1" /*AND dash.Branch_ID=" + EmpBranchId*/, conn);
             MySqlDataReader dr = adapter.ExecuteReader();
 
             BindingList<GridPicture> lista = new BindingList<GridPicture>();
@@ -189,13 +176,17 @@ namespace MainSystem
             {
                 while (dr.Read())
                 {
-                    byte[] img = (byte[])dr["Picture"];
+                    byte[] img = null;
+                    if (dr["Picture"].ToString() != "")
+                    {
+                        img = (byte[])dr["Picture"];
+                    }
                     byte[] imgProduct = null;
                     if (dr["Product_Picture"].ToString() != "")
                     {
                         imgProduct = (byte[])dr["Product_Picture"];
                     }
-                    lista.Add(new GridPicture() { SpecialOrderID = Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), RequestNumber = Convert.ToInt16(dr["BranchBillNumber"].ToString()), Picture = img, ProductPicture = imgProduct, RequestDescription = dr["Description"].ToString() });
+                    lista.Add(new GridPicture() { SpecialOrderID = Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), Picture = img, ProductPicture = imgProduct, RequestDescription = dr["Description"].ToString() });
                 }
                 dr.Close();
             }
@@ -218,12 +209,39 @@ namespace MainSystem
                 }
             return null;
         }
+
+        private void btnRecordSpecialOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridView1.SelectedRowsCount > 0)
+                {
+                    conn.Open();
+                    for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                    {
+                        string query = "update special_order set Record=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(i, gridView1.Columns[0]);
+                        MySqlCommand com = new MySqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+                    }
+                    conn.Close();
+
+                    search();
+                }
+                else
+                {
+                    MessageBox.Show("يجب اختيار طلب واحد على الاقل");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 
     public class GridPicture
     {
         public int SpecialOrderID { get; set; }
-        public int RequestNumber { get; set; }
         public byte[] Picture { get; set; }
         public byte[] ProductPicture { get; set; }
         public string RequestDescription { get; set; }

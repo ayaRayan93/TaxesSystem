@@ -32,7 +32,7 @@ namespace MainSystem
         bool addFlage = true;
         bool flagCarton = false;
         bool flag = false;
-        string request = "";
+        //string request = "";
         int dashOrderID = 0;
 
         public Order_Record(List<DataRow> Row1, Order_Report OrderReport, XtraTabControl xtraTabControlPurchases)
@@ -171,7 +171,7 @@ namespace MainSystem
                             }
                             dbconnection.Open();
                             dbconnection3.Open();
-                            string query = "SELECT orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Supplier_ID,orders.Request_Date,orders.Receive_Date,orders.Confirmed,orders.Received,orders.Canceled,Dash_Order_Number,DashOrder_ID FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID where orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNumber;
+                            string query = "SELECT orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Supplier_ID,orders.Request_Date,orders.Receive_Date,orders.Confirmed,orders.Received,orders.Canceled,Dash_Order_Number,DashOrder_ID,orders.Description FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID where orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNumber;
                             MySqlCommand comand = new MySqlCommand(query, dbconnection3);
                             MySqlDataReader dr = comand.ExecuteReader();
                             if(dr.HasRows)
@@ -221,10 +221,12 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;*/
+                                        txtDescription.ReadOnly = true;
                                         dateTimePicker2.Enabled = false;
                                         txtDashOrderNum.ReadOnly = true;
                                         orderId = Convert.ToInt16(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
+                                        txtDescription.Text = dr["Description"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
                                         if (dr["Supplier_ID"].ToString() != "")
@@ -275,10 +277,12 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;*/
+                                        txtDescription.ReadOnly = true;
                                         dateTimePicker2.Enabled = false;
                                         txtDashOrderNum.ReadOnly = true;
                                         orderId = Convert.ToInt16(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
+                                        txtDescription.Text = dr["Description"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
                                         if (dr["Supplier_ID"].ToString() != "")
@@ -327,6 +331,7 @@ namespace MainSystem
                                 loaded = false;
                                 orderId = 0;
                                 txtEmployee.Text = "";
+                                txtDescription.Text = "";
                                 comStore.SelectedIndex = -1;
                                 txtStoreID.Text = "";
                                 comSupplier.SelectedIndex = -1;
@@ -340,6 +345,7 @@ namespace MainSystem
                                 comSupplier.Enabled = true;
                                 txtSupplier.ReadOnly = false;
                                 dateTimePicker1.Enabled = true;*/
+                                txtDescription.ReadOnly = false;
                                 dateTimePicker2.Enabled = true;
                                 txtDashOrderNum.ReadOnly = false;
                                 int cont2 = gridView2.RowCount;
@@ -351,7 +357,7 @@ namespace MainSystem
                                 loaded = true;
                             }
 
-                            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(order_details.Balatat) as 'عدد البلتات',sum(order_details.Carton_Balata) as 'عدد الكراتين',sum(order_details.Quantity) as 'عدد المتر/القطعة',order_details.Type,orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID inner join data on data.Data_ID = order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNumber + " and orders.Confirmed=0 and orders.Received=0 and orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                            query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(order_details.Balatat) as 'عدد البلتات',sum(order_details.Carton_Balata) as 'عدد الكراتين',sum(order_details.Quantity) as 'عدد المتر/القطعة',order_details.Type,orders.Order_ID,orders.Store_ID,orders.Employee_Name,orders.Request_Date,orders.Receive_Date,order_details.SpecialOrder_ID FROM orders left join order_details ON order_details.Order_ID = orders.Order_ID inner join data on data.Data_ID = order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNumber + " and orders.Confirmed=0 and orders.Received=0 and orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                             comand = new MySqlCommand(query, dbconnection);
                             dr = comand.ExecuteReader();
                             if (dr.HasRows)
@@ -374,6 +380,7 @@ namespace MainSystem
                                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Cartons_Balate"], dr["عدد الكراتين"]);
                                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns["TotalQuantity"], dr["عدد المتر/القطعة"]);
                                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Type"], dr["Type"].ToString());
+                                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns["SpecialOrderID"], dr["SpecialOrder_ID"].ToString());
                                         }
                                     }
                                 }
@@ -392,6 +399,7 @@ namespace MainSystem
                             loaded = false;
                             orderId = 0;
                             txtEmployee.Text = "";
+                            txtDescription.Text = "";
                             comStore.SelectedIndex = -1;
                             txtStoreID.Text = "";
                             comSupplier.SelectedIndex = -1;
@@ -405,6 +413,7 @@ namespace MainSystem
                             comSupplier.Enabled = true;
                             txtSupplier.ReadOnly = false;
                             dateTimePicker1.Enabled = true;*/
+                            txtDescription.ReadOnly = false;
                             dateTimePicker2.Enabled = true;
                             txtDashOrderNum.ReadOnly = false;
                             int cont = gridView2.RowCount;
@@ -428,6 +437,7 @@ namespace MainSystem
                         loaded = false;
                         orderId = 0;
                         txtEmployee.Text = "";
+                        txtDescription.Text = "";
                         comStore.SelectedIndex = -1;
                         txtStoreID.Text = "";
                         comSupplier.SelectedIndex = -1;
@@ -441,6 +451,7 @@ namespace MainSystem
                         comSupplier.Enabled = true;
                         txtSupplier.ReadOnly = false;
                         dateTimePicker1.Enabled = true;*/
+                        txtDescription.ReadOnly = false;
                         dateTimePicker2.Enabled = true;
                         txtDashOrderNum.ReadOnly = false;
                         int cont = gridView2.RowCount;
@@ -471,6 +482,7 @@ namespace MainSystem
                 loaded = false;
                 orderId = 0;
                 txtEmployee.Text = "";
+                txtDescription.Text = "";
                 comStore.SelectedIndex = -1;
                 txtStoreID.Text = "";
                 comSupplier.SelectedIndex = -1;
@@ -484,6 +496,7 @@ namespace MainSystem
                 comSupplier.Enabled = true;
                 txtSupplier.ReadOnly = false;
                 dateTimePicker1.Enabled = true;*/
+                txtDescription.ReadOnly = false;
                 dateTimePicker2.Enabled = true;
                 txtDashOrderNum.ReadOnly = false;
                 int cont = gridView2.RowCount;
@@ -502,7 +515,7 @@ namespace MainSystem
             {
                 if (txtDashOrderNum.Text != "")
                 {
-                    request = "request";
+                    //request = "request";
                     try
                     {
                         if (int.TryParse(txtDashOrderNum.Text, out dashOrderNumber))
@@ -524,7 +537,7 @@ namespace MainSystem
                                 gridView1.Columns.Clear();
 
                                 dbconnection.Open();
-                                string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(dash_order_details.Balatat) as 'عدد البلتات',sum(dash_order_details.Carton_Balata) as 'عدد الكراتين',sum(dash_order_details.Quantity) as 'عدد المتر/القطعة','الحالة',dash_order_details.Type FROM dash_orders left join dash_order_details ON dash_order_details.DashOrder_ID = dash_orders.DashOrder_ID inner join data on data.Data_ID = dash_order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where dash_orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and dash_orders.Dash_Order_Number=" + dashOrderNumber + " and dash_orders.Saved=1 and dash_orders.Confirmed=0 and dash_orders.Canceled=0 and data.Data_ID=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                                string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(dash_order_details.Balatat) as 'عدد البلتات',sum(dash_order_details.Carton_Balata) as 'عدد الكراتين',sum(dash_order_details.Quantity) as 'عدد المتر/القطعة','الحالة',dash_order_details.Type,dash_order_details.SpecialOrder_ID FROM dash_orders left join dash_order_details ON dash_order_details.DashOrder_ID = dash_orders.DashOrder_ID inner join data on data.Data_ID = dash_order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where dash_orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and dash_orders.Dash_Order_Number=" + dashOrderNumber + " and dash_orders.Saved=1 and dash_orders.Confirmed=0 and dash_orders.Canceled=0 and data.Data_ID=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                                 DataTable dt = new DataTable();
                                 da.Fill(dt);
@@ -537,6 +550,7 @@ namespace MainSystem
 
                                 gridView1.Columns[0].Visible = false;
                                 gridView1.Columns["Type"].Visible = false;
+                                gridView1.Columns["SpecialOrder_ID"].Visible = false;
 
                                 for (int i = 2; i < gridView1.Columns.Count; i++)
                                 {
@@ -551,7 +565,7 @@ namespace MainSystem
                                 }
 
                                 /*string*/
-                                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(dash_order_details.Balatat) as 'عدد البلتات',sum(dash_order_details.Carton_Balata) as 'عدد الكراتين',sum(dash_order_details.Quantity) as 'عدد المتر/القطعة',dash_order_details.Type,dash_orders.DashOrder_ID,dash_orders.Store_ID,dash_orders.Employee_Name,dash_orders.Request_Date,dash_orders.Supplier_ID FROM dash_orders left join dash_order_details ON dash_order_details.DashOrder_ID = dash_orders.DashOrder_ID inner join data on data.Data_ID = dash_order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where dash_orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and dash_orders.Dash_Order_Number=" + dashOrderNumber + " and dash_orders.Saved=1 and dash_orders.Confirmed=0 and dash_orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+                                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(dash_order_details.Balatat) as 'عدد البلتات',sum(dash_order_details.Carton_Balata) as 'عدد الكراتين',sum(dash_order_details.Quantity) as 'عدد المتر/القطعة',dash_order_details.Type,dash_orders.DashOrder_ID,dash_orders.Store_ID,dash_orders.Employee_Name,dash_orders.Request_Date,dash_orders.Supplier_ID,dash_order_details.SpecialOrder_ID FROM dash_orders left join dash_order_details ON dash_order_details.DashOrder_ID = dash_orders.DashOrder_ID inner join data on data.Data_ID = dash_order_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where dash_orders.Factory_ID=" + comFactory.SelectedValue.ToString() + " and dash_orders.Dash_Order_Number=" + dashOrderNumber + " and dash_orders.Saved=1 and dash_orders.Confirmed=0 and dash_orders.Canceled=0 group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
                                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                                 MySqlDataReader dr = comand.ExecuteReader();
                                 if (dr.HasRows)
@@ -574,7 +588,9 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         dateTimePicker1.Enabled = false;*/
+                                        txtDescription.ReadOnly = false;
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
+                                        txtDescription.Text = "";
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
                                         if (dr["Supplier_ID"].ToString() != "")
@@ -604,6 +620,7 @@ namespace MainSystem
                                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["عدد الكراتين"], dr["عدد الكراتين"]);
                                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["عدد المتر/القطعة"], dr["عدد المتر/القطعة"]);
                                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], dr["Type"].ToString());
+                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["SpecialOrder_ID"], dr["SpecialOrder_ID"].ToString());
 
                                                 string q = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0 and orders.Canceled=0 and order_details.Data_ID=" + dr["Data_ID"].ToString();
                                                 MySqlCommand comand2 = new MySqlCommand(q, dbconnection2);
@@ -640,6 +657,7 @@ namespace MainSystem
                                 txtBalat.Text = "0";
 
                                 txtEmployee.Text = "";
+                                txtDescription.Text = "";
                                 comStore.SelectedIndex = -1;
                                 txtStoreID.Text = "";
                                 comSupplier.SelectedIndex = -1;
@@ -652,6 +670,7 @@ namespace MainSystem
                                 comSupplier.Enabled = true;
                                 txtSupplier.ReadOnly = false;
                                 dateTimePicker1.Enabled = true;*/
+                                txtDescription.ReadOnly = false;
                                 dateTimePicker2.Enabled = true;
                                 int cont2 = gridView1.RowCount;
                                 for (int i = 0; i < cont2; i++)
@@ -674,6 +693,7 @@ namespace MainSystem
                             txtBalat.Text = "0";
 
                             txtEmployee.Text = "";
+                            txtDescription.Text = "";
                             comStore.SelectedIndex = -1;
                             txtStoreID.Text = "";
                             comSupplier.SelectedIndex = -1;
@@ -686,6 +706,7 @@ namespace MainSystem
                             comSupplier.Enabled = true;
                             txtSupplier.ReadOnly = false;
                             dateTimePicker1.Enabled = true;*/
+                            txtDescription.ReadOnly = false;
                             dateTimePicker2.Enabled = true;
                             int cont2 = gridView1.RowCount;
                             for (int i = 0; i < cont2; i++)
@@ -715,6 +736,7 @@ namespace MainSystem
                     txtBalat.Text = "0";
 
                     txtEmployee.Text = "";
+                    txtDescription.Text = "";
                     comStore.SelectedIndex = -1;
                     txtStoreID.Text = "";
                     comSupplier.SelectedIndex = -1;
@@ -727,6 +749,7 @@ namespace MainSystem
                     comSupplier.Enabled = true;
                     txtSupplier.ReadOnly = false;
                     dateTimePicker1.Enabled = true;*/
+                    txtDescription.ReadOnly = false;
                     dateTimePicker2.Enabled = true;
                     int cont2 = gridView1.RowCount;
                     for (int i = 0; i < cont2; i++)
@@ -990,7 +1013,7 @@ namespace MainSystem
         {
             try
             {
-                request = "search";
+                //request = "search";
                 string q2, q3, q4, fQuery = "";
                 
                 if (comFactory.Text == "")
@@ -1044,7 +1067,7 @@ namespace MainSystem
                 dbconnection.Open();
                 dbconnection2.Open();
 
-                string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى',data.Carton as 'الكرتنة','Type','الحالة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى',data.Carton as 'الكرتنة','Type','الحالة','SpecialOrder_ID' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -1074,7 +1097,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "عادى");
                         
                         string q5 = "select Data_ID from storage_least_taswya";
-                        string q = "SELECT data.Data_ID,SUM(storage.Total_Meters) as 'الكمية المتاحة',least_offer.Least_Quantity as 'الحد الادنى' FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1) and data.Data_ID not in (" + q5 + ") and data.Data_ID=" + dr["Data_ID"].ToString();
+                        string q = "SELECT data.Data_ID,SUM(storage.Total_Meters) as 'الكمية المتاحة',least_order.Least_Quantity as 'الحد الادنى' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in (" + q5 + ") and data.Data_ID=" + dr["Data_ID"].ToString();
                         MySqlCommand comand2 = new MySqlCommand(q, dbconnection2);
                         MySqlDataReader dr2 = comand2.ExecuteReader();
                         while (dr2.Read())
@@ -1103,6 +1126,7 @@ namespace MainSystem
                 dr.Close();
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns["Type"].Visible = false;
+                gridView1.Columns["SpecialOrder_ID"].Visible = false;
 
                 for (int i = 2; i < gridView1.Columns.Count; i++)
                 {
@@ -1142,12 +1166,12 @@ namespace MainSystem
                 txtTotalMeters.Text = "0";
                 txtCarton.Text = "0";
                 txtBalat.Text = "0";
-                if (request == "request")
+                /*if (request == "request")
                 {
                     txtTotalMeters.Text = row1["عدد المتر/القطعة"].ToString();
                     txtCarton.Text = row1["عدد الكراتين"].ToString();
                     txtBalat.Text = row1["عدد البلتات"].ToString();
-                }
+                }*/
                 double carton = double.Parse(row1["الكرتنة"].ToString());
                 if (carton == 0)
                 {
@@ -1248,7 +1272,7 @@ namespace MainSystem
                         dbconnection.Open();
                         if (orderId == 0)
                         {
-                            string query2 = "insert into orders (Factory_ID,Supplier_ID,Order_Number,Store_ID,Employee_Name,Request_Date,Receive_Date,Employee_ID,Dash_Order_Number,DashOrder_ID)values(@Factory_ID,@Supplier_ID,@Order_Number,@Store_ID,@Employee_Name,@Request_Date,@Recive_Date,@Employee_ID,@Dash_Order_Number,@DashOrder_ID)";
+                            string query2 = "insert into orders (Factory_ID,Supplier_ID,Order_Number,Store_ID,Employee_Name,Request_Date,Receive_Date,Employee_ID,Dash_Order_Number,DashOrder_ID,Description)values(@Factory_ID,@Supplier_ID,@Order_Number,@Store_ID,@Employee_Name,@Request_Date,@Recive_Date,@Employee_ID,@Dash_Order_Number,@DashOrder_ID,@Description)";
                             MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
 
                             com2.Parameters.Add("@Factory_ID", MySqlDbType.Int16);
@@ -1279,6 +1303,8 @@ namespace MainSystem
                             com2.Parameters["@Dash_Order_Number"].Value = dashOrderNumber;
                             com2.Parameters.Add("@DashOrder_ID", MySqlDbType.Int16);
                             com2.Parameters["@DashOrder_ID"].Value = dashOrderID;
+                            com2.Parameters.Add("@Description", MySqlDbType.VarChar);
+                            com2.Parameters["@Description"].Value = txtDescription.Text;
                             com2.ExecuteNonQuery();
 
                             query2 = "select Order_ID from orders order by Order_ID desc limit 1";
@@ -1286,7 +1312,7 @@ namespace MainSystem
                             orderId = Convert.ToInt16(com2.ExecuteScalar().ToString());
                         }
                         
-                        string query = "insert into order_details (Order_ID,Data_ID,Balatat,Carton_Balata,Quantity,Type) values (@Order_ID,@Data_ID,@Balatat,@Carton_Balata,@Quantity,@Type)";
+                        string query = "insert into order_details (Order_ID,Data_ID,Balatat,Carton_Balata,Quantity,Type,SpecialOrder_ID) values (@Order_ID,@Data_ID,@Balatat,@Carton_Balata,@Quantity,@Type,@SpecialOrder_ID)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Order_ID", MySqlDbType.Int16);
                         com.Parameters["@Order_ID"].Value = orderId;
@@ -1300,6 +1326,16 @@ namespace MainSystem
                         com.Parameters["@Quantity"].Value = total;
                         com.Parameters.Add("@Type", MySqlDbType.VarChar);
                         com.Parameters["@Type"].Value = row1["Type"].ToString();
+                        if (row1["Type"].ToString() == "خاص")
+                        {
+                            com.Parameters.Add("@SpecialOrder_ID", MySqlDbType.Int16);
+                            com.Parameters["@SpecialOrder_ID"].Value = row1["SpecialOrder_ID"].ToString();
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@SpecialOrder_ID", MySqlDbType.Int16);
+                            com.Parameters["@SpecialOrder_ID"].Value = null;
+                        }
                         com.ExecuteNonQuery();
 
                         gridView2.AddNewRow();
@@ -1315,6 +1351,7 @@ namespace MainSystem
                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns["TotalQuantity"], total);
                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Carton"], row1["الكرتنة"].ToString());
                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Type"], row1["Type"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns["SpecialOrderID"], row1["SpecialOrder_ID"].ToString());
                         }
 
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الحالة"], true);
@@ -1430,7 +1467,7 @@ namespace MainSystem
             dbconnection.Open();
             dbconnection2.Open();
 
-            string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى',data.Carton as 'الكرتنة','Type','الحالة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID";
+            string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى',data.Carton as 'الكرتنة','Type','الحالة','SpecialOrder_ID' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1468,7 +1505,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحالة"], false);
                     
                     string q5 = "select Data_ID from storage_least_taswya";
-                    string q = "SELECT data.Data_ID,SUM(storage.Total_Meters) as 'الكمية المتاحة',least_offer.Least_Quantity as 'الحد الادنى' FROM least_offer INNER JOIN data ON least_offer.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_offer.Least_Quantity=1) and data.Data_ID not in (" + q5 + ") and data.Data_ID=" + dr["Data_ID"].ToString();
+                    string q = "SELECT data.Data_ID,SUM(storage.Total_Meters) as 'الكمية المتاحة',least_order.Least_Quantity as 'الحد الادنى' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in (" + q5 + ") and data.Data_ID=" + dr["Data_ID"].ToString();
                     MySqlCommand comand2 = new MySqlCommand(q, dbconnection2);
                     MySqlDataReader dr2 = comand2.ExecuteReader();
                     while (dr2.Read())
@@ -1481,6 +1518,7 @@ namespace MainSystem
             dr.Close();
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["Type"].Visible = false;
+            gridView1.Columns["SpecialOrder_ID"].Visible = false;
 
             for (int i = 2; i < gridView1.Columns.Count; i++)
             {
@@ -1540,6 +1578,7 @@ namespace MainSystem
             comStore.SelectedIndex = -1;
             txtStoreID.Text = "";
             txtEmployee.Text = "";
+            txtDescription.Text = "";
             orderId = 0;
             orderNumber = 0;
             dashOrderNumber = 0;
@@ -1556,6 +1595,7 @@ namespace MainSystem
             comSupplier.Enabled = true;
             txtSupplier.ReadOnly = false;
             dateTimePicker1.Enabled = true;*/
+            txtDescription.ReadOnly = false;
             dateTimePicker2.Enabled = true;
 
             checkBoxAvailable.Checked = false;

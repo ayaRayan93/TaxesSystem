@@ -221,16 +221,16 @@ namespace MainSystem
             {
                 count++;
             }
-            labelNotify.Text = (count).ToString();
-            if (Convert.ToInt16(labelNotify.Text) > 0)
+            labelBaskt.Text = (count).ToString();
+            if (Convert.ToInt16(labelBaskt.Text) > 0)
             {
-                labelNotify.Visible = true;
+                labelBaskt.Visible = true;
                 //delegateID = DelegateId;
                 //billNum = BillNum;
             }
             else
             {
-                labelNotify.Visible = false;
+                labelBaskt.Visible = false;
                 //delegateID = 0;
                 //billNum = 0;
             }

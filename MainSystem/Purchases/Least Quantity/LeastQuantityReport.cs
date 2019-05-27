@@ -295,7 +295,7 @@ namespace MainSystem
                     {
                         row1.Add(gridView1.GetDataRow(gridView1.GetSelectedRows()[i]));
                     }
-                    mainForm.bindRecordDashOrderForm(null, row1);
+                    mainForm.bindRecordDashOrderForm(null, row1/*, 0*/);
                     //Order_Record form = new Order_Record(row1, null, xtraTabControlPurchases);
                     //form.ShowDialog();
                 }

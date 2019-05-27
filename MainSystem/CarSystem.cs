@@ -874,7 +874,7 @@ namespace MainSystem
 
         private void labNotify_Click(object sender, EventArgs e)
         {
-            contextMenuStrip1.Show(labNotify, new Point(0, labNotify.Height));
+            contextMenuStrip1.Show(labelNotifySpecialOrderPurchase, new Point(0, labelNotifySpecialOrderPurchase.Height));
         }
       
         public void displayNotification(MySqlConnection dbconnection)
@@ -918,9 +918,9 @@ namespace MainSystem
             dr.Close();
 
             if (x == 0)
-                labNotify.Text = "";
+                labelNotifySpecialOrderPurchase.Text = "";
             else
-                labNotify.Text = x.ToString();
+                labelNotifySpecialOrderPurchase.Text = x.ToString();
 
             for (int i = 0; i < contextMenuStrip1.Items.Count; i++)
             {

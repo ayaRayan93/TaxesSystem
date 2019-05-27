@@ -42,12 +42,16 @@
             this.txtStoreID = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtOrderNum = new System.Windows.Forms.TextBox();
             this.txtFactory = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.comFactory = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtSpecialOrderId = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtBalat = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCarton = new System.Windows.Forms.TextBox();
@@ -65,6 +69,7 @@
             this.TotalQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SpecialOrderID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -100,7 +105,7 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label10.Location = new System.Drawing.Point(215, 13);
+            this.label10.Location = new System.Drawing.Point(181, 13);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 18);
             this.label10.TabIndex = 113;
@@ -110,7 +115,7 @@
             // 
             this.txtTotalMeters.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalMeters.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtTotalMeters.Location = new System.Drawing.Point(109, 10);
+            this.txtTotalMeters.Location = new System.Drawing.Point(75, 10);
             this.txtTotalMeters.Name = "txtTotalMeters";
             this.txtTotalMeters.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtTotalMeters.Size = new System.Drawing.Size(100, 24);
@@ -123,7 +128,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(852, 13);
+            this.label5.Location = new System.Drawing.Point(818, 13);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 18);
             this.label5.TabIndex = 111;
@@ -133,7 +138,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCode.Location = new System.Drawing.Point(676, 10);
+            this.txtCode.Location = new System.Drawing.Point(642, 10);
             this.txtCode.Name = "txtCode";
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCode.Size = new System.Drawing.Size(170, 24);
@@ -147,9 +152,9 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(53, 8);
+            this.btnAdd.Location = new System.Drawing.Point(350, 40);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(53, 28);
+            this.btnAdd.Size = new System.Drawing.Size(70, 28);
             this.btnAdd.TabIndex = 114;
             this.btnAdd.Text = "اضافة";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -160,7 +165,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(492, 44);
+            this.label6.Location = new System.Drawing.Point(492, 38);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 18);
             this.label6.TabIndex = 132;
@@ -170,7 +175,7 @@
             // 
             this.txtEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtEmployee.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtEmployee.Location = new System.Drawing.Point(329, 41);
+            this.txtEmployee.Location = new System.Drawing.Point(329, 35);
             this.txtEmployee.Name = "txtEmployee";
             this.txtEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtEmployee.Size = new System.Drawing.Size(150, 24);
@@ -180,7 +185,7 @@
             // 
             this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSupplier.Location = new System.Drawing.Point(29, 28);
+            this.txtSupplier.Location = new System.Drawing.Point(37, 5);
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSupplier.Size = new System.Drawing.Size(55, 24);
@@ -192,7 +197,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label13.Location = new System.Drawing.Point(261, 31);
+            this.label13.Location = new System.Drawing.Point(269, 8);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 18);
             this.label13.TabIndex = 144;
@@ -203,7 +208,7 @@
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(90, 28);
+            this.comSupplier.Location = new System.Drawing.Point(98, 5);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
@@ -215,7 +220,7 @@
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(634, 41);
+            this.comStore.Location = new System.Drawing.Point(634, 35);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(150, 24);
@@ -226,7 +231,7 @@
             // 
             this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStoreID.Location = new System.Drawing.Point(573, 41);
+            this.txtStoreID.Location = new System.Drawing.Point(573, 35);
             this.txtStoreID.Name = "txtStoreID";
             this.txtStoreID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtStoreID.Size = new System.Drawing.Size(55, 24);
@@ -238,7 +243,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label17.Location = new System.Drawing.Point(790, 44);
+            this.label17.Location = new System.Drawing.Point(790, 38);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(48, 18);
             this.label17.TabIndex = 204;
@@ -247,6 +252,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.txtOrderNum);
             this.panel1.Controls.Add(this.txtFactory);
@@ -266,12 +273,35 @@
             this.panel1.Size = new System.Drawing.Size(899, 74);
             this.panel1.TabIndex = 206;
             // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label14.Location = new System.Drawing.Point(261, 38);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(38, 18);
+            this.label14.TabIndex = 208;
+            this.label14.Text = "البيان";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDescription.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDescription.Location = new System.Drawing.Point(37, 35);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDescription.Size = new System.Drawing.Size(211, 36);
+            this.txtDescription.TabIndex = 209;
+            // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label12.Location = new System.Drawing.Point(485, 14);
+            this.label12.Location = new System.Drawing.Point(485, 8);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 18);
             this.label12.TabIndex = 207;
@@ -281,7 +311,7 @@
             // 
             this.txtOrderNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtOrderNum.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOrderNum.Location = new System.Drawing.Point(379, 11);
+            this.txtOrderNum.Location = new System.Drawing.Point(379, 5);
             this.txtOrderNum.Name = "txtOrderNum";
             this.txtOrderNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtOrderNum.Size = new System.Drawing.Size(100, 24);
@@ -292,7 +322,7 @@
             // 
             this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtFactory.Location = new System.Drawing.Point(573, 12);
+            this.txtFactory.Location = new System.Drawing.Point(573, 6);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(55, 23);
             this.txtFactory.TabIndex = 4;
@@ -303,7 +333,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label9.Location = new System.Drawing.Point(790, 14);
+            this.label9.Location = new System.Drawing.Point(790, 8);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label9.Size = new System.Drawing.Size(49, 18);
@@ -315,7 +345,7 @@
             this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(634, 11);
+            this.comFactory.Location = new System.Drawing.Point(634, 5);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(150, 24);
@@ -325,6 +355,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.txtSpecialOrderId);
+            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.txtBalat);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtCarton);
@@ -336,16 +368,37 @@
             this.panel2.Controls.Add(this.txtTotalMeters);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 388);
+            this.panel2.Location = new System.Drawing.Point(3, 373);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(899, 44);
+            this.panel2.Size = new System.Drawing.Size(899, 74);
             this.panel2.TabIndex = 207;
+            // 
+            // txtSpecialOrderId
+            // 
+            this.txtSpecialOrderId.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSpecialOrderId.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtSpecialOrderId.Location = new System.Drawing.Point(642, 40);
+            this.txtSpecialOrderId.Name = "txtSpecialOrderId";
+            this.txtSpecialOrderId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSpecialOrderId.Size = new System.Drawing.Size(100, 24);
+            this.txtSpecialOrderId.TabIndex = 120;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label8.Location = new System.Drawing.Point(748, 43);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(113, 18);
+            this.label8.TabIndex = 121;
+            this.label8.Text = "رقم الطلب الخاص";
             // 
             // txtBalat
             // 
             this.txtBalat.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtBalat.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBalat.Location = new System.Drawing.Point(485, 10);
+            this.txtBalat.Location = new System.Drawing.Point(451, 10);
             this.txtBalat.Name = "txtBalat";
             this.txtBalat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBalat.Size = new System.Drawing.Size(100, 24);
@@ -357,7 +410,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label2.Location = new System.Drawing.Point(591, 13);
+            this.label2.Location = new System.Drawing.Point(557, 13);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(79, 19);
@@ -368,7 +421,7 @@
             // 
             this.txtCarton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCarton.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCarton.Location = new System.Drawing.Point(288, 10);
+            this.txtCarton.Location = new System.Drawing.Point(254, 10);
             this.txtCarton.Name = "txtCarton";
             this.txtCarton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCarton.Size = new System.Drawing.Size(100, 24);
@@ -381,7 +434,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label7.Location = new System.Drawing.Point(394, 13);
+            this.label7.Location = new System.Drawing.Point(360, 13);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label7.Size = new System.Drawing.Size(85, 19);
@@ -395,9 +448,9 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(3, 8);
+            this.btnDelete.Location = new System.Drawing.Point(274, 40);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(50, 28);
+            this.btnDelete.Size = new System.Drawing.Size(70, 28);
             this.btnDelete.TabIndex = 115;
             this.btnDelete.Text = "حذف";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -420,7 +473,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(905, 710);
@@ -429,11 +482,11 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 438);
+            this.gridControl2.Location = new System.Drawing.Point(3, 453);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(899, 209);
+            this.gridControl2.Size = new System.Drawing.Size(899, 194);
             this.gridControl2.TabIndex = 239;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -465,7 +518,8 @@
             this.Cartons_Balate,
             this.TotalQuantity,
             this.Carton,
-            this.Type});
+            this.Type,
+            this.SpecialOrderID});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -553,6 +607,12 @@
             this.Type.VisibleIndex = 7;
             this.Type.Width = 74;
             // 
+            // SpecialOrderID
+            // 
+            this.SpecialOrderID.Caption = "SpecialOrderID";
+            this.SpecialOrderID.FieldName = "SpecialOrderID";
+            this.SpecialOrderID.Name = "SpecialOrderID";
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -600,7 +660,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(899, 209);
+            this.gridControl1.Size = new System.Drawing.Size(899, 194);
             this.gridControl1.TabIndex = 213;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -907,6 +967,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCarton;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtSpecialOrderId;
+        private System.Windows.Forms.Label label8;
+        private DevExpress.XtraGrid.Columns.GridColumn SpecialOrderID;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtDescription;
     }
 }
 

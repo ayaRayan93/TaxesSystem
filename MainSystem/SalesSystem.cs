@@ -23,7 +23,7 @@ namespace MainSystem
     public partial class MainForm
     {
         public static XtraTabControl tabControlSales;
-        public static SpecialOrders_Report2 SpecialOrdersReport;
+        public static SpecialOrderConfirm specialOrderConfirm;
         public static Bill_Confirm objFormBillConfirm;
         public static Customer_Report objFormCustomer;
         public static XtraTabPage MainTabPageAddCustomer;
@@ -512,7 +512,8 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void pictureBoxSale_Click(object sender, EventArgs e)
+
+        private void pictureBoxSales_Click(object sender, EventArgs e)
         {
             try
             {
@@ -529,16 +530,16 @@ namespace MainSystem
                     if (!xtraTabControlSalesContent.Visible)
                         xtraTabControlSalesContent.Visible = true;
 
-                    XtraTabPage xtraTabPage = getTabPage("عرض الطلبات الخاصة");
+                    XtraTabPage xtraTabPage = getTabPage("عرض الطلبات الخاصة المؤقتة");
                     if (xtraTabPage == null)
                     {
-                        xtraTabControlSalesContent.TabPages.Add("عرض الطلبات الخاصة");
-                        xtraTabPage = getTabPage("عرض الطلبات الخاصة");
+                        xtraTabControlSalesContent.TabPages.Add("عرض الطلبات الخاصة المؤقتة");
+                        xtraTabPage = getTabPage("عرض الطلبات الخاصة المؤقتة");
                     }
                     xtraTabPage.Controls.Clear();
 
                     xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-                    bindDisplaySpecialOrdersReport(xtraTabPage);
+                    bindDisplaySpecialOrderConfirm(xtraTabPage);
                 }
             }
             catch (Exception ex)
@@ -691,6 +692,16 @@ namespace MainSystem
         }
 
         //functions
+        public void bindDisplaySpecialOrderConfirm(XtraTabPage xtraTabPage)
+        {
+            specialOrderConfirm = new SpecialOrderConfirm(this, xtraTabControlSalesContent);
+            specialOrderConfirm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(specialOrderConfirm);
+            specialOrderConfirm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            specialOrderConfirm.Dock = DockStyle.Fill;
+            specialOrderConfirm.Show();
+        }
         //Products sell price
         public void bindDisplayProductsSellPriceForm(XtraTabPage xtraTabPage)
         {
@@ -1055,17 +1066,6 @@ namespace MainSystem
             objFormBillConfirm.Dock = DockStyle.Fill;
             objFormBillConfirm.Show();
         }
-        //Special Orders Report
-        public void bindDisplaySpecialOrdersReport(XtraTabPage xtraTabPage)
-        {
-            SpecialOrdersReport = new SpecialOrders_Report2();
-            SpecialOrdersReport.TopLevel = false;
-
-            xtraTabPage.Controls.Add(SpecialOrdersReport);
-            SpecialOrdersReport.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            SpecialOrdersReport.Dock = DockStyle.Fill;
-            SpecialOrdersReport.Show();
-        }
 
         public XtraTabPage getTabPage(string text)
         {
@@ -1094,13 +1094,20 @@ namespace MainSystem
         public void SpecialOrdersFunction()
         {
             dbconnection.Close();
-            string query = "SELECT Count(special_order.SpecialOrder_ID) FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID where special_order.Record=0 AND dash.Branch_ID=" + EmpBranchId;
+            //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 
+            string query = "SELECT Count(special_order.SpecialOrder_ID) FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=1" /* AND dash.Branch_ID=" + EmpBranchId*/;
             MySqlCommand command = new MySqlCommand(query, dbconnection);
             dbconnection.Open();
             string reader = command.ExecuteScalar().ToString();
-            labNotify.Text = reader;
-            labNotify.Visible = true;
+            labelNotifySpecialOrderPurchase.Text = reader;
+            if (Convert.ToInt16(reader) > 0)
+            {
+                labelNotifySpecialOrderPurchase.Visible = true;
+            }
+            else
+            {
+                labelNotifySpecialOrderPurchase.Visible = false;
+            }
         }
-
     }
 }

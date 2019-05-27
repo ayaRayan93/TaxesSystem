@@ -24,6 +24,7 @@ namespace MainSystem
     {
         public static XtraTabControl tabControlPurchases;
         public static LeastQuantityReport leastQuantityReport;
+        public static SpecialOrders_Report2 SpecialOrdersReport;
 
         Timer Purchasetimer = new Timer();
         bool purchaseFlag = false;
@@ -37,6 +38,41 @@ namespace MainSystem
                 Purchasetimer.Interval = 1000 * 60;
                 Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
                 Purchasetimer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void pictureBoxPurchase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1 /*|| UserControl.userType == 2*/)
+                {
+                    if (purchaseFlag == false)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
+                        index++;
+                        purchaseFlag = true;
+                    }
+                    xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبات الخاصة");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض الطلبات الخاصة");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض الطلبات الخاصة");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplaySpecialOrdersReport(xtraTabPage);
+                }
             }
             catch (Exception ex)
             {
@@ -475,6 +511,17 @@ namespace MainSystem
             }
         }
 
+        //Special Orders Report
+        public void bindDisplaySpecialOrdersReport(XtraTabPage xtraTabPage)
+        {
+            SpecialOrdersReport = new SpecialOrders_Report2(this);
+            SpecialOrdersReport.TopLevel = false;
+
+            xtraTabPage.Controls.Add(SpecialOrdersReport);
+            SpecialOrdersReport.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            SpecialOrdersReport.Dock = DockStyle.Fill;
+            SpecialOrdersReport.Show();
+        }
         public void bindDisplayLeastQuantityReport(XtraTabPage xtraTabPage)
         {
             leastQuantityReport = new LeastQuantityReport(this, xtraTabControlPurchases);
@@ -762,7 +809,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindRecordDashOrderForm(DashOrder_Report DashOrderReport, List<DataRow> row1)
+        public void bindRecordDashOrderForm(DashOrder_Report DashOrderReport, List<DataRow> row1/*, int SpecialOrderId*/)
         {
             if (!xtraTabControlPurchases.Visible)
                 xtraTabControlPurchases.Visible = true;
@@ -777,7 +824,7 @@ namespace MainSystem
 
             xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
             //List<DataRow> row1 = new List<DataRow>();
-            DashOrder_Record objForm = new DashOrder_Record(row1, DashOrderReport, xtraTabControlPurchases);
+            DashOrder_Record objForm = new DashOrder_Record(row1, DashOrderReport, xtraTabControlPurchases/*, SpecialOrderId*/);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
