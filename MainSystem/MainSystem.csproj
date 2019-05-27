@@ -3259,7 +3259,6 @@
     <None Include="Resources\Virtual_Machine6_32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Car_Service.ico" />
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
     <None Include="Resources\Logo2.png" />
