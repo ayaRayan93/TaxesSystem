@@ -311,15 +311,6 @@ namespace MainSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.
-        /// </summary>
-        internal static string Branch {
-            get {
-                return ResourceManager.GetString("Branch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap camara {
@@ -746,15 +737,6 @@ namespace MainSystem.Properties {
             get {
                 object obj = ResourceManager.GetObject("icons8_Workspace_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 192.168.1.200.
-        /// </summary>
-        internal static string IP_Address {
-            get {
-                return ResourceManager.GetString("IP_Address", resourceCulture);
             }
         }
         

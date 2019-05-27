@@ -93,7 +93,6 @@ namespace MainSystem
             }
 
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (UserControl.userType == 1)
@@ -129,19 +128,24 @@ namespace MainSystem
             {
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
-                btnSales.Enabled = true;
-                btnSales.Checked = true;
-                btnPurchases.Enabled = true;
-                btnPurchases.Checked = true;
-                btnHR.Enabled = true;
-                btnHR.Checked = true;
-                btnBank.Enabled = true;
-                btnBank.Checked = true;
-                btnReception.Enabled = true;
-                btnReception.Checked = true;
-                btnPOS.Enabled = true;
-                btnPOS.Checked = true;
-                userAccess();
+                //btnSales.Enabled = true;
+                //btnSales.Checked = true;
+                //btnPurchases.Enabled = true;
+                //btnPurchases.Checked = true;
+                //btnHR.Enabled = true;
+                //btnHR.Checked = true;
+                //btnBank.Enabled = true;
+                //btnBank.Checked = true;
+                //btnReception.Enabled = true;
+                //btnReception.Checked = true;
+                //btnPOS.Enabled = true;
+                //btnPOS.Checked = true;
+
+                pictureBoxBell.Visible = false;
+                pictureBoxPurchaseLeast.Visible = false;
+                pictureBoxSale.Visible = false;
+                pictureBoxCar.Visible = false;
+                //userAccess();
             }
             else if (UserControl.userType == 3)
             {
@@ -152,16 +156,30 @@ namespace MainSystem
             {
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
+                pictureBoxBell.Visible = false;
+                pictureBoxPurchaseLeast.Visible = false;
+                pictureBoxSale.Visible = false;
+                pictureBoxStoreExpectedOrder.Visible = false;
+                pictureBoxCar.Visible = false;
             }
             else if (UserControl.userType == 5)
             {
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
+                pictureBoxBell.Visible = false;
+                pictureBoxPurchaseLeast.Visible = false;
+                pictureBoxSale.Visible = false;
+                pictureBoxStoreExpectedOrder.Visible = false;
+                pictureBoxCar.Visible = false;
             }
             else if (UserControl.userType == 6 || UserControl.userType == 7)
             {
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
+                pictureBoxPurchaseLeast.Visible = false;
+                pictureBoxStoreExpectedOrder.Visible = false;
+                pictureBoxCar.Visible = false;
+                labelPurchaseLeast.Visible = false;
             }
             else if (UserControl.userType == 8)
             {
@@ -177,6 +195,8 @@ namespace MainSystem
             {
                 btnPurchases.Enabled = true;
                 btnPurchases.Checked = true;
+                pictureBoxBell.Visible = false;
+                pictureBoxPurchaseLeast.Visible = false;
             }
             else if (UserControl.userType == 11)
             {
@@ -197,8 +217,14 @@ namespace MainSystem
             {
                 btnCars.Enabled = true;
                 btnCars.Checked = true;
+                pictureBoxBell.Visible = false;
+                pictureBoxPurchaseLeast.Visible = false;
+                pictureBoxSale.Visible = false;
+                pictureBoxStoreExpectedOrder.Visible = false;
             }
+           labUserName.Text=UserControl.EmpName;
         }
+
         //events
         private void btnStores_ItemClick(object sender, TileItemEventArgs e)
         {
@@ -206,7 +232,14 @@ namespace MainSystem
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageStores))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, StoreTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, StoreTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageStores)];
@@ -216,7 +249,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnSales_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -240,14 +272,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnHR_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageHR))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, HRTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, HRTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, HRTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageHR)];
@@ -257,14 +295,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnCars_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCars))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, CarsTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, CarsTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, CarsTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCars)];
@@ -274,14 +318,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnPOS_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePOS))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, POSTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, POSTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, POSTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPagePOS)];
@@ -291,14 +341,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnBank_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageBank))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, BankTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, BankTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, BankTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageBank)];
@@ -308,14 +364,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnReception_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageReception))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, ReceptionTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, ReceptionTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, ReceptionTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageReception)];
@@ -325,14 +387,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void TIElsha7n_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageShipping))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, ShippingTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, ShippingTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, ShippingTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageShipping)];
@@ -342,14 +410,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void AccountingSystem_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageAccounting))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, AccountingTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, AccountingTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, AccountingTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageAccounting)];
@@ -359,14 +433,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnCoding_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
                 if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCoding))
                 {
-                    xtraTabControlMainContainer.TabPages.Insert(index, CodingTP);
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, CodingTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, CodingTP);
+                    }
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCoding)];
@@ -376,7 +456,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnPurchases_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -400,7 +479,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -427,7 +505,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void xtraTabControlMainContainer_CloseButtonClick(object sender, EventArgs e)
         {
             try
@@ -476,7 +553,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void xtraTabControlContent_Click(object sender, EventArgs e)
         {
             try
@@ -517,7 +593,6 @@ namespace MainSystem
                 }
             return null;
         }
-
         public bool IsTabPageSave()
         {
             for (int i = 0; i < xtraTabControlMainContainer.TabPages.Count; i++)
@@ -537,7 +612,6 @@ namespace MainSystem
             }
             return true;
         }
-
         public void restForeColorOfNavBarItem()
         {
             foreach (XtraTabPage tabPage in xtraTabControlMainContainer.TabPages)
@@ -555,7 +629,6 @@ namespace MainSystem
                 }
             }
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -570,7 +643,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void pictureBoxLogout_Click(object sender, EventArgs e)
         {
             try
@@ -584,7 +656,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void pictureBoxProfile_Click(object sender, EventArgs e)
         {
             try
@@ -597,7 +668,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void userAccess()
         {
             navBarGroup3.Visible = false;
@@ -625,7 +695,6 @@ namespace MainSystem
             navBarGroupLeastQuantity.Visible = false;
             
         }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
@@ -643,10 +712,8 @@ namespace MainSystem
 
     public static class connection
     {
-        static string supString = Properties.Resources.IP_Address;
-        //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=testprice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
-      
+        static string supString = File.ReadAllText("C:\\Users\\User\\Documents\\MainSystem\\IP_Address.txt");        
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";    
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

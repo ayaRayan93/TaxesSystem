@@ -216,6 +216,7 @@
             // 
             this.rDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rDelegate.AutoSize = true;
+            this.rDelegate.Checked = true;
             this.rDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.rDelegate.ForeColor = System.Drawing.Color.Black;
             this.rDelegate.Location = new System.Drawing.Point(808, 48);
@@ -223,6 +224,7 @@
             this.rDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rDelegate.Size = new System.Drawing.Size(63, 21);
             this.rDelegate.TabIndex = 121;
+            this.rDelegate.TabStop = true;
             this.rDelegate.Text = "مندوب";
             this.rDelegate.UseVisualStyleBackColor = true;
             this.rDelegate.CheckedChanged += new System.EventHandler(this.rDelegate_CheckedChanged);
@@ -231,7 +233,6 @@
             // 
             this.rEmployee.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rEmployee.AutoSize = true;
-            this.rEmployee.Checked = true;
             this.rEmployee.Font = new System.Drawing.Font("Tahoma", 10F);
             this.rEmployee.ForeColor = System.Drawing.Color.Black;
             this.rEmployee.Location = new System.Drawing.Point(710, 48);
@@ -239,7 +240,6 @@
             this.rEmployee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.rEmployee.Size = new System.Drawing.Size(61, 21);
             this.rEmployee.TabIndex = 120;
-            this.rEmployee.TabStop = true;
             this.rEmployee.Text = "موظف";
             this.rEmployee.UseVisualStyleBackColor = true;
             this.rEmployee.CheckedChanged += new System.EventHandler(this.rEmployee_CheckedChanged);

@@ -16,18 +16,22 @@ namespace MainSystem
     public partial class Login : Form
     {
         MySqlConnection conn;
-        MySqlConnection dbconnection/*, dbconnection2*/;
+        MySqlConnection dbconnection;
         Timer t;
         public static MainForm mainForm;
 
         public Login()
         {
-            InitializeComponent();
-            conn = new MySqlConnection(connection.connectionString);
-            dbconnection = new MySqlConnection(connection.connectionString);
-            //dbconnection2 = new MySqlConnection(connection.connectionString);
-            txtName.Focus();
-            editFile();
+            try
+            {
+                InitializeComponent();
+                BaseData.generateBaseProjectFile();
+                txtName.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -52,7 +56,7 @@ namespace MainSystem
                             UserControl.userType = (int)result[2];
                             UserControl.EmpType = "مدير";
 
-                            string supString = Properties.Resources.Branch;
+                            string supString = BaseData.BranchID;
                             UserControl.EmpBranchID = Convert.ToInt16(supString);
 
                             dbconnection.Open();
@@ -82,7 +86,7 @@ namespace MainSystem
                             {
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                string supString = Properties.Resources.Branch;
+                                string supString = BaseData.BranchID;
                                 int EmpBranchID2 = Convert.ToInt16(supString);
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
@@ -129,7 +133,7 @@ namespace MainSystem
                             {
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                string supString = Properties.Resources.Branch;
+                                string supString = BaseData.BranchID;
                                 int EmpBranchID2 = Convert.ToInt16(supString);
 
                                 if (EmpBranchID1 == EmpBranchID2)
@@ -238,7 +242,7 @@ namespace MainSystem
                                 UserControl.userType = (int)result[2];
                                 UserControl.EmpType = "مدير";
 
-                                string supString = Properties.Resources.Branch;
+                                string supString = BaseData.BranchID;
                                 UserControl.EmpBranchID = Convert.ToInt16(supString);
 
                                 dbconnection.Open();
@@ -268,7 +272,7 @@ namespace MainSystem
                                 {
                                     int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                    string supString = Properties.Resources.Branch;
+                                    string supString = BaseData.BranchID;
                                     int EmpBranchID2 = Convert.ToInt16(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
@@ -316,7 +320,7 @@ namespace MainSystem
                                 {
                                     int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                    string supString = Properties.Resources.Branch;
+                                    string supString = BaseData.BranchID;
                                     int EmpBranchID2 = Convert.ToInt16(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
@@ -380,6 +384,8 @@ namespace MainSystem
         {
             try
             {
+                conn = new MySqlConnection(connection.connectionString);
+                dbconnection = new MySqlConnection(connection.connectionString);
                 t = new Timer();
                 
                 t.Interval = 2000; // specify interval time as you want
@@ -415,19 +421,7 @@ namespace MainSystem
             }
         }
 
-        public void editFile()
-        {
-            /*string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Branch.txt");
-            using (System.IO.StreamReader file = new System.IO.StreamReader(fileName))
-            {
-                //if the file doesn't exist, create it
-                if (File.Exists(fileName))
-                {
-                    string BranchID = file.ReadLine();
-                    baseData.BranchID = Convert.ToInt16(BranchID);
-                }
-            }*/
-        }
+    
 
     }
 }

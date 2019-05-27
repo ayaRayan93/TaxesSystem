@@ -118,7 +118,7 @@ namespace MainSystem
                 dbconnection.Open();
                 if (dataGridView2.RowCount > 0 && txtReturnPermission.Text != "")
                 {
-                    string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +Properties.Resources.Branch + " order by CustomerReturnBill_ID desc limit 1";
+                    string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +BaseData.BranchID + " order by CustomerReturnBill_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     int Branch_BillNumber = 1;
                     if (com.ExecuteScalar() != null)
@@ -131,7 +131,7 @@ namespace MainSystem
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    com.Parameters["@Branch_ID"].Value = Properties.Resources.Branch;
+                    com.Parameters["@Branch_ID"].Value = BaseData.BranchID;
 
                     int storeNum = 0;
                     if (int.TryParse(txtReturnPermission.Text, out storeNum))

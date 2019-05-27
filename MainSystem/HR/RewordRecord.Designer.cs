@@ -31,6 +31,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
@@ -56,10 +56,10 @@
             this.radioButton2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.radioButton2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radioButton2.Location = new System.Drawing.Point(406, 28);
+            this.radioButton2.Location = new System.Drawing.Point(407, 28);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton2.Size = new System.Drawing.Size(67, 22);
+            this.radioButton2.Size = new System.Drawing.Size(66, 22);
             this.radioButton2.TabIndex = 103;
             this.radioButton2.Text = "مندوب";
             this.radioButton2.UseVisualStyleBackColor = false;
@@ -71,10 +71,10 @@
             this.radioButton1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radioButton1.Location = new System.Drawing.Point(308, 28);
+            this.radioButton1.Location = new System.Drawing.Point(309, 28);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(69, 22);
+            this.radioButton1.Size = new System.Drawing.Size(68, 22);
             this.radioButton1.TabIndex = 102;
             this.radioButton1.Text = "موظف";
             this.radioButton1.UseVisualStyleBackColor = false;
@@ -97,6 +97,27 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(716, 53);
             this.tableLayoutPanel2.TabIndex = 101;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "حفظ";
+            this.btnAdd.Location = new System.Drawing.Point(318, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(82, 45);
+            this.btnAdd.TabIndex = 71;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -112,7 +133,7 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label6.Location = new System.Drawing.Point(540, 305);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 16);
+            this.label6.Size = new System.Drawing.Size(57, 16);
             this.label6.TabIndex = 99;
             this.label6.Text = "ملاحظات";
             // 
@@ -167,7 +188,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label1.Location = new System.Drawing.Point(559, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 16);
+            this.label1.Size = new System.Drawing.Size(85, 16);
             this.label1.TabIndex = 94;
             this.label1.Text = "الرقم الوظيفي";
             // 
@@ -211,26 +232,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 24);
             this.textBox1.TabIndex = 89;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(318, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(82, 45);
-            this.btnAdd.TabIndex = 71;
             // 
             // label7
             // 

@@ -103,8 +103,8 @@ namespace MainSystem
         {
             try
             {
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                EmpBranchId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                BaseData.generateBaseProjectFile();
+                EmpBranchId = Convert.ToInt16(BaseData.BranchID);
                 search();
                 search2();
                 foreach (GridColumn column in gridView1.Columns)
