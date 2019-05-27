@@ -311,7 +311,7 @@
             this.btnCodingD13.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCodingD13.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCodingD13.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement10.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_48;
+            tileItemElement10.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_64;
             tileItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement10.Text = "التكويد";

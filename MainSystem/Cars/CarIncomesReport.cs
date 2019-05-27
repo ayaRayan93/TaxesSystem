@@ -75,7 +75,7 @@ namespace MainSystem
             PageImageBrick pageImageBrick;
 
             // Define the image to display.
-            Image pageImage = MainSystem.Properties.Resources.Logo3;
+            Image pageImage = MainSystem.Properties.Resources.logo_option2;
 
             // Display the PageImageBrick containing the DevExpress logo.
             pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(810, 0, 150, 150), BorderSide.None, Color.Transparent);

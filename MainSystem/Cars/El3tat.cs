@@ -114,7 +114,7 @@ namespace MainSystem
             {
                 XtraTabPage xtraTabPage = getTabPage("تسجيل قراءة العداد");
                 if (!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                 {
                     lblMeter.Text = "";

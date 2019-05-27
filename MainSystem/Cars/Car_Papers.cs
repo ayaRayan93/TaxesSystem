@@ -46,9 +46,9 @@ namespace MainSystem
         {
             try
             {
-                imageSlider1.Images.Add(Properties.Resources.BackgroundF);
-                imageSlider1.Images.Add(Properties.Resources.BackgroundF1);
-                imageSlider1.Images.Add(Properties.Resources.BackgroundF2);
+                imageSlider1.Images.Add(Properties.Resources.BackgroundBlue);
+                imageSlider1.Images.Add(Properties.Resources.BackgroundBlue);
+                imageSlider1.Images.Add(Properties.Resources.BackgroundBlue);
             }
             catch (Exception ex)
             {
@@ -158,7 +158,7 @@ namespace MainSystem
 
                 XtraTabPage xtraTabPage = getTabPage("تعديل سيارة");
                 if (!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
                 

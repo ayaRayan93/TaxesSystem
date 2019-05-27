@@ -139,7 +139,7 @@ namespace MainSystem
             {
                 XtraTabPage xtraTabPage = getTabPage("تسجيل سائق");
                 if (!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
             }
@@ -155,7 +155,7 @@ namespace MainSystem
             {
                 XtraTabPage xtraTabPage = getTabPage("تسجيل سائق");
                 if (!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                 else
                     xtraTabPage.ImageOptions.Image = null;
             }

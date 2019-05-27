@@ -141,7 +141,7 @@ namespace MainSystem
         {
             XtraTabPage xtraTabPage = getTabPage("قطع الغيار");
             if (comSpareParts.Text != "" && txtInfo.Text != "")
-                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
             else
                 xtraTabPage.ImageOptions.Image = null;
         }

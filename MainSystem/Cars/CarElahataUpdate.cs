@@ -176,7 +176,7 @@ namespace MainSystem
                 {
                     XtraTabPage xtraTabPage = getTabPage("تعديل العهدة");
                     if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     else
                         xtraTabPage.ImageOptions.Image = null;
                 }

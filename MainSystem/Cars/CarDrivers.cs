@@ -142,7 +142,7 @@ namespace MainSystem
         {
             XtraTabPage xtraTabPage = getTabPage("سائقي السيارة");
             if (comDrivers.Text!="")
-                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
             else
                 xtraTabPage.ImageOptions.Image = null;
         }

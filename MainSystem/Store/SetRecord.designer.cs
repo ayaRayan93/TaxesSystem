@@ -417,7 +417,7 @@
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_321;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 15;
             this.btnAdd.LabelPosition = 18;
@@ -698,7 +698,7 @@
             // 
             this.ImageProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara1;
+            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara;
             this.ImageProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImageProduct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ImageProduct.Location = new System.Drawing.Point(167, 8);

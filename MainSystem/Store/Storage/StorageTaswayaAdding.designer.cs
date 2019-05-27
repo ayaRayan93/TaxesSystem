@@ -665,7 +665,7 @@
             this.btnReport.Enabled = false;
             this.btnReport.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_321;
+            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 22;
@@ -686,7 +686,7 @@
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_321;
+            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
             this.btnSave.ImagePosition = 1;
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 21;
@@ -707,7 +707,7 @@
             this.btnNewPermission.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnNewPermission.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewPermission.ForeColor = System.Drawing.Color.White;
-            this.btnNewPermission.Image = global::MainSystem.Properties.Resources.File_321;
+            this.btnNewPermission.Image = global::MainSystem.Properties.Resources.File_32;
             this.btnNewPermission.ImagePosition = 1;
             this.btnNewPermission.ImageZoom = 25;
             this.btnNewPermission.LabelPosition = 21;

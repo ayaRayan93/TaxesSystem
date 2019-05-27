@@ -143,7 +143,7 @@ namespace MainSystem
 
                 pictureBoxBell.Visible = false;
                 pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSale.Visible = false;
+                pictureBoxSales.Visible = false;
                 pictureBoxCar.Visible = false;
                 //userAccess();
             }
@@ -158,7 +158,7 @@ namespace MainSystem
                 btnReception.Checked = true;
                 pictureBoxBell.Visible = false;
                 pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSale.Visible = false;
+                pictureBoxSales.Visible = false;
                 pictureBoxStoreExpectedOrder.Visible = false;
                 pictureBoxCar.Visible = false;
             }
@@ -168,7 +168,7 @@ namespace MainSystem
                 btnPOS.Checked = true;
                 pictureBoxBell.Visible = false;
                 pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSale.Visible = false;
+                pictureBoxSales.Visible = false;
                 pictureBoxStoreExpectedOrder.Visible = false;
                 pictureBoxCar.Visible = false;
             }
@@ -219,7 +219,7 @@ namespace MainSystem
                 btnCars.Checked = true;
                 pictureBoxBell.Visible = false;
                 pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSale.Visible = false;
+                pictureBoxSales.Visible = false;
                 pictureBoxStoreExpectedOrder.Visible = false;
             }
            labUserName.Text=UserControl.EmpName;
@@ -712,7 +712,7 @@ namespace MainSystem
 
     public static class connection
     {
-        static string supString = Properties.Resources.IP_Address;
+        static string supString = File.ReadAllText("C:\\Users\\User\\Documents\\MainSystem\\IP_Address.txt");
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
         public static string connectionString = "SERVER=" + supString + ";DATABASE=testprice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
       

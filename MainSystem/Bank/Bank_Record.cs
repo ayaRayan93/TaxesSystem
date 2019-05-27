@@ -322,7 +322,7 @@ namespace MainSystem
                     xtraTabPage = getTabPage("tabPageAddBank");
                     if (!IsClear())
                     {
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     }
                     else
                     {

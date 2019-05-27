@@ -82,7 +82,7 @@ namespace MainSystem
                     ImageBox.Image = Image.FromFile(opf.FileName);
                     imgFlag = true;
                     XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
             
                 }
             }
@@ -345,7 +345,7 @@ namespace MainSystem
                 {
                     XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
                     if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave__2_;
+                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
                     else
                         xtraTabPage.ImageOptions.Image = null;
                 }

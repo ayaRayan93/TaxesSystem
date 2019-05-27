@@ -78,7 +78,7 @@
             this.comStore.FormattingEnabled = true;
             this.comStore.Location = new System.Drawing.Point(12, 60);
             this.comStore.Name = "comStore";
-            this.comStore.Size = new System.Drawing.Size(214, 24);
+            this.comStore.Size = new System.Drawing.Size(215, 24);
             this.comStore.TabIndex = 6;
             // 
             // txtQuantity
@@ -86,7 +86,7 @@
             this.txtQuantity.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.txtQuantity.Location = new System.Drawing.Point(12, 12);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(214, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(215, 20);
             this.txtQuantity.TabIndex = 4;
             // 
             // layoutControlGroup1
@@ -112,7 +112,7 @@
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(264, 24);
             this.layoutControlItem1.Text = "الكمية";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(43, 19);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(42, 19);
             // 
             // emptySpaceItem1
             // 
@@ -131,7 +131,7 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(264, 25);
             this.layoutControlItem3.Text = "المخزن";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(43, 19);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(42, 19);
             // 
             // layoutControlItem4
             // 
