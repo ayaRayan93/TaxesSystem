@@ -168,7 +168,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemSupplierAccount_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -201,8 +200,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        
+        }  
         private void navBarItemSupplierSoonPayments_Report_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -236,7 +234,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemSupplierBillReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -270,7 +267,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemSupplierTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -303,8 +299,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        
+        }       
         private void navBarItemSupplierBillsTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -338,7 +333,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemSupplierBillsTransitionsDetailsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -372,7 +366,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemSupplierTaswyaReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -426,8 +419,7 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
-        }
-        
+        }      
         public void bindTaswayaSupplierForm()
         {
             if (!xtraTabControlAccounting.Visible)

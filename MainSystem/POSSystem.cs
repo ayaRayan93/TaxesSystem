@@ -210,8 +210,8 @@ namespace MainSystem
          public void test(/*int DelegateId,*/ int BillNum)
         {
             int count = 0;
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-            int DelegateBranchId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            BaseData.generateBaseProjectFile();
+            int DelegateBranchId = Convert.ToInt16(BaseData.BranchID);
 
             string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + DelegateBranchId + " and dash.Confirmed=0";
             MySqlCommand com = new MySqlCommand(query, conn);

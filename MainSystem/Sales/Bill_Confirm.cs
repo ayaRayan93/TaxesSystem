@@ -101,7 +101,7 @@ namespace MainSystem
                 string qb = "select Branch_Name from branch where Branch_ID=" + EmpBranchId;
                 MySqlCommand cqb = new MySqlCommand(qb, dbconnection);
                 EmpBranchName = cqb.ExecuteScalar().ToString();
-                
+         
                 loaded = true;
             }
             catch (Exception ex)
@@ -378,7 +378,9 @@ namespace MainSystem
                     gridView1.Columns["Delegate_ID"].Visible = false;
 
                     //,delegate.Delegate_ID,delegate.Delegate_Name .. INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID
+                
                     string query = "SELECT dash.Customer_ID,dash.Customer_Name,customer.Customer_Type,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
+                    
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     dataReader = com.ExecuteReader();
                     if (dataReader.HasRows)

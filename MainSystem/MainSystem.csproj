@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\v5\</PublishUrl>
+    <PublishUrl>D:\التكويد\v7\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -259,6 +259,11 @@
       <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
     <Compile Include="baseData.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Orders\Request\DashRequest_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -565,11 +570,6 @@
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة مرتجع شراء\Supplier_Return_Bill2.designer.cs">
       <DependentUpon>Supplier_Return_Bill2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Supplier_Bill.cs">
       <SubType>Form</SubType>
@@ -3423,7 +3423,6 @@
     <None Include="Resources\icons8_Deliveries_32.png" />
     <None Include="Resources\icons8_Delivery_32.png" />
     <None Include="Resources\icons8_Electricity_32.png" />
-    <None Include="Resources\IP_Address.txt" />
     <None Include="Resources\Sign-Up.png" />
     <None Include="Resources\icons8_Contacts2_32.png" />
     <None Include="Resources\icons8_Administrator_Male_32.png" />

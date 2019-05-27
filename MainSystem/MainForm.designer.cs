@@ -494,6 +494,7 @@
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.labUserName = new System.Windows.Forms.Label();
             this.labelNotifySpecialOrderSales = new System.Windows.Forms.Label();
             this.pictureBoxSales = new System.Windows.Forms.PictureBox();
             this.pictureBoxSetting = new System.Windows.Forms.PictureBox();
@@ -759,7 +760,7 @@
             this.btnCars.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCars.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCars.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            tileItemElement4.ImageOptions.Image = global::MainSystem.Properties.Resources.Shipped_50px;
             tileItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement4.Text = "أدارة السيارات";
@@ -785,7 +786,7 @@
             this.TIElsha7n.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TIElsha7n.AppearanceItem.Normal.Options.UseFont = true;
             this.TIElsha7n.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            tileItemElement5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement5.Text = "الشحن";
@@ -4536,6 +4537,7 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
+            this.panHeader.Controls.Add(this.labUserName);
             this.panHeader.Controls.Add(this.labelNotifySpecialOrderSales);
             this.panHeader.Controls.Add(this.pictureBoxSales);
             this.panHeader.Controls.Add(this.pictureBoxSetting);
@@ -4590,6 +4592,16 @@
             this.pictureBoxSales.TabStop = false;
             this.pictureBoxSales.Click += new System.EventHandler(this.pictureBoxSales_Click);
             // 
+            // labUserName
+            // 
+            this.labUserName.AutoSize = true;
+            this.labUserName.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labUserName.ForeColor = System.Drawing.Color.White;
+            this.labUserName.Location = new System.Drawing.Point(186, 11);
+            this.labUserName.Name = "labUserName";
+            this.labUserName.Size = new System.Drawing.Size(0, 21);
+            this.labUserName.TabIndex = 22;
+            // 
             // pictureBoxSetting
             // 
             this.pictureBoxSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -4597,10 +4609,10 @@
             this.pictureBoxSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxSetting.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSetting.Image")));
             this.pictureBoxSetting.ImageLocation = "";
-            this.pictureBoxSetting.Location = new System.Drawing.Point(1122, 2);
+            this.pictureBoxSetting.Location = new System.Drawing.Point(1124, 5);
             this.pictureBoxSetting.Name = "pictureBoxSetting";
-            this.pictureBoxSetting.Size = new System.Drawing.Size(44, 34);
-            this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSetting.Size = new System.Drawing.Size(30, 30);
+            this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxSetting.TabIndex = 21;
             this.pictureBoxSetting.TabStop = false;
             this.pictureBoxSetting.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -5371,6 +5383,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemRequestReport;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup52;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDashRequestReport;
+        private System.Windows.Forms.Label labUserName;
         private System.Windows.Forms.Label labelNotifySpecialOrderSales;
         private System.Windows.Forms.PictureBox pictureBoxSales;
     }

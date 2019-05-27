@@ -158,12 +158,13 @@ namespace MainSystem
                     cmd.Parameters.Add("@Employee_Mail", MySqlDbType.VarChar, 255);
                     cmd.Parameters["@Employee_Mail"].Value = txtMail.Text;
                     cmd.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    if (UserControl.userType == 1)
-                    {
-                        cmd.Parameters["@Branch_ID"].Value = null;
-                        labelBranch.Visible = false;
-                    }
-                    else if (comBranch.Text != "")
+                    //if (UserControl.userType == 1)
+                    //{
+                    //    cmd.Parameters["@Branch_ID"].Value = null;
+                    //    labelBranch.Visible = false;
+                    //}
+                    //else
+                    if (comBranch.Text != "")
                     {
                         cmd.Parameters["@Branch_ID"].Value = comBranch.SelectedValue;
                         labelBranch.Visible = false;
