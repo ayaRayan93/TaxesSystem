@@ -213,7 +213,7 @@ namespace MainSystem
             BaseData.generateBaseProjectFile();
             int DelegateBranchId = Convert.ToInt16(BaseData.BranchID);
 
-            string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + DelegateBranchId;
+            string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + DelegateBranchId + " and dash.Confirmed=0";
             MySqlCommand com = new MySqlCommand(query, conn);
             conn.Open();
             MySqlDataReader dr = com.ExecuteReader();
