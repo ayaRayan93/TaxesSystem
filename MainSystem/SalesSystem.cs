@@ -521,9 +521,19 @@ namespace MainSystem
                 {
                     if (flag == false)
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(index, SalesTP);
-                        index++;
-                        flag = true;
+                        if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageSales))
+                        {
+                            if (index == 0)
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(1, SalesTP);
+                            }
+                            else
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(index, SalesTP);
+                            }
+                            index++;
+                            flag = true;
+                        }
                     }
                     xtraTabControlMainContainer.SelectedTabPage = SalesTP;
 

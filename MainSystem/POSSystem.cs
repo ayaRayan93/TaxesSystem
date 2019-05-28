@@ -247,13 +247,19 @@ namespace MainSystem
                 // || UserControl.userType == 1
                 if (UserControl.userType == 5)
                 {
-                    XtraTabPage xtraTabPagePS = getTabPage(xtraTabControlPointSale, "xtraTabPagePOS");
-                    if (xtraTabPagePS == null)
+                    if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePOS))
                     {
-                        xtraTabControlMainContainer.TabPages.Add(xtraTabPagePOS);
+                        if (index == 0)
+                        {
+                            xtraTabControlMainContainer.TabPages.Insert(1, POSTP);
+                        }
+                        else
+                        {
+                            xtraTabControlMainContainer.TabPages.Insert(index, POSTP);
+                        }
                         index++;
-                        xtraTabControlMainContainer.SelectedTabPage = xtraTabPagePOS;
                     }
+                    
                     XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageProductsDetailsReport");
                     //if (xtraTabPage == null)
                     //{

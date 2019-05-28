@@ -53,9 +53,19 @@ namespace MainSystem
                 {
                     if (purchaseFlag == false)
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
-                        index++;
-                        purchaseFlag = true;
+                        if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
+                        {
+                            if (index == 0)
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(1, PurchasesTP);
+                            }
+                            else
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
+                            }
+                            index++;
+                            purchaseFlag = true;
+                        }
                     }
                     xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
 
@@ -88,9 +98,19 @@ namespace MainSystem
                 {
                     if (purchaseFlag == false)
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(1, PurchasesTP);
-                        index++;
-                        purchaseFlag = true;
+                        if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
+                        {
+                            if (index == 0)
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(1, PurchasesTP);
+                            }
+                            else
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
+                            }
+                            index++;
+                            purchaseFlag = true;
+                        }
                     }
                     xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
 
