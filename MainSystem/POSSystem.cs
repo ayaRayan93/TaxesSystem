@@ -65,7 +65,7 @@ namespace MainSystem
 
         //public static int delegateID = -1;
         public static int billNum = 0;
-        bool flag = false;
+        //bool flag = false;
 
         public void  POSSystem()
         {

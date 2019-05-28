@@ -22,7 +22,7 @@ namespace MainSystem
     public partial class MainForm 
     {
         Timer Storetimer = new Timer();
-        bool StoreFlag = false;
+        //bool StoreFlag = false;
         public static SearchRecive_Date searchReciveDate;
 
         public void StoreMainForm()
@@ -51,8 +51,8 @@ namespace MainSystem
             {
                 if (UserControl.userType == 2 || UserControl.userType == 1)
                 {
-                    if (StoreFlag == false)
-                    {
+                    //if (StoreFlag == false)
+                    //{
                         if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageStores))
                         {
                             if (index == 0)
@@ -64,9 +64,9 @@ namespace MainSystem
                                 xtraTabControlMainContainer.TabPages.Insert(index, StoreTP);
                             }
                             index++;
-                            StoreFlag = true;
+                            //StoreFlag = true;
                         }
-                    }
+                    //}
                     xtraTabControlMainContainer.SelectedTabPage = StoreTP;
 
                     if (!xtraTabControlStoresContent.Visible)

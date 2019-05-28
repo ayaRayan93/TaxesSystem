@@ -27,7 +27,7 @@ namespace MainSystem
         public static SpecialOrders_Report2 SpecialOrdersReport;
 
         Timer Purchasetimer = new Timer();
-        bool purchaseFlag = false;
+        //bool purchaseFlag = false;
 
         public void PurchasesMainForm()
         {
@@ -54,8 +54,8 @@ namespace MainSystem
             {
                 if (UserControl.userType == 10 || UserControl.userType == 1 /*|| UserControl.userType == 2*/)
                 {
-                    if (purchaseFlag == false)
-                    {
+                    //if (purchaseFlag == false)
+                    //{
                         if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
                         {
                             if (index == 0)
@@ -67,9 +67,9 @@ namespace MainSystem
                                 xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
                             }
                             index++;
-                            purchaseFlag = true;
+                            //purchaseFlag = true;
                         }
-                    }
+                    //}
                     xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
 
                     if (!xtraTabControlPurchases.Visible)
@@ -99,8 +99,8 @@ namespace MainSystem
             {
                 if (UserControl.userType == 10 || UserControl.userType == 1)
                 {
-                    if (purchaseFlag == false)
-                    {
+                    //if (purchaseFlag == false)
+                    //{
                         if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
                         {
                             if (index == 0)
@@ -112,9 +112,9 @@ namespace MainSystem
                                 xtraTabControlMainContainer.TabPages.Insert(index, PurchasesTP);
                             }
                             index++;
-                            purchaseFlag = true;
+                            //purchaseFlag = true;
                         }
-                    }
+                    //}
                     xtraTabControlMainContainer.SelectedTabPage = PurchasesTP;
 
                     if (!xtraTabControlPurchases.Visible)

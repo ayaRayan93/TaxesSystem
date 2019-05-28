@@ -522,8 +522,8 @@ namespace MainSystem
             {
                 if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
                 {
-                    if (flag == false)
-                    {
+                    //if (flag == false)
+                    //{
                         if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageSales))
                         {
                             if (index == 0)
@@ -535,9 +535,9 @@ namespace MainSystem
                                 xtraTabControlMainContainer.TabPages.Insert(index, SalesTP);
                             }
                             index++;
-                            flag = true;
+                            //flag = true;
                         }
-                    }
+                    //}
                     xtraTabControlMainContainer.SelectedTabPage = SalesTP;
 
                     if (!xtraTabControlSalesContent.Visible)

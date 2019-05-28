@@ -124,7 +124,7 @@ namespace MainSystem
                 btnReports.Enabled = true;
                 btnReports.Checked = true;
 
-                pictureBoxBell.Visible = true;
+                pictureBoxBell.Visible = false;
                 pictureBoxSales.Visible = true;
                 pictureBoxPurchase.Visible = true;
                 pictureBoxPurchaseLeast.Visible = true;
@@ -512,14 +512,14 @@ namespace MainSystem
                         xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
                         index--;
                        // index--;
-                        if (xtraTabPage.Name == "xtraTabPagePurchases")
-                        {
-                            purchaseFlag = false;
-                        }
-                        else if (xtraTabPage.Name == "xtraTabPageSales")
-                        {
-                            flag = false;
-                        }
+                        //if (xtraTabPage.Name == "xtraTabPagePurchases")
+                        //{
+                        //    purchaseFlag = false;
+                        //}
+                        //else if (xtraTabPage.Name == "xtraTabPageSales")
+                        //{
+                        //    flag = false;
+                        //}
                     }
                     else if (dialogResult == DialogResult.No)
                     {
@@ -530,14 +530,14 @@ namespace MainSystem
                     xtraTabControlMainContainer.TabPages.Remove(arg.Page as XtraTabPage);
                     index--;
                    // index--;
-                    if (xtraTabPage.Name == "xtraTabPagePurchases")
-                    {
-                        purchaseFlag = false;
-                    }
-                    else if (xtraTabPage.Name == "xtraTabPageSales")
-                    {
-                        flag = false;
-                    }
+                    //if (xtraTabPage.Name == "xtraTabPagePurchases")
+                    //{
+                    //    purchaseFlag = false;
+                    //}
+                    //else if (xtraTabPage.Name == "xtraTabPageSales")
+                    //{
+                    //    flag = false;
+                    //}
                 }
 
             }
