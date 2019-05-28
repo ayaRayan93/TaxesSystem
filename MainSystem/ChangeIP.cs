@@ -15,6 +15,8 @@ namespace MainSystem
     public partial class ChangeIP : Form
     {
         MySqlConnection dbconnection;
+        string oldBranch = "";
+        bool testFlag = false;
         public ChangeIP()
         {
             try
@@ -40,31 +42,31 @@ namespace MainSystem
                 comBranchName.DataSource = dt;
                 comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
-                string path = "C:\\Users\\User\\Documents\\MainSystem";
+              
                 string BranchID = "1";
                 string IPAddress = "192.168.1.200";
-                if (!Directory.Exists(path))
+                if (!File.Exists("Branch.txt"))
                 {
-                    Directory.CreateDirectory(path);
-                    using (StreamWriter writer = new StreamWriter(path + "\\Branch.txt"))
+                    using (StreamWriter writer = new StreamWriter("Branch.txt"))
                     {
                         writer.WriteLine(BranchID);
                     }
-                    using (StreamWriter writer = new StreamWriter(path + "\\IP_Address.txt"))
+                    using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
                     {
                         writer.WriteLine(IPAddress);
                     }
                 }
                 else
                 {
-                    BranchID = File.ReadAllText(path+"\\Branch.txt");
-                    IPAddress = File.ReadAllText(path+"\\IP_Address.txt");
+                    BranchID = File.ReadAllText("Branch.txt");
+                    IPAddress = File.ReadAllText("IP_Address.txt");
                 }
 
                 labOldIP.Text =IPAddress;            
                 query = "select Branch_Name from branch where Branch_ID=" + BranchID;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 comBranchName.Text = com.ExecuteScalar().ToString();
+                oldBranch = comBranchName.Text;
             }
             catch (Exception ex)
             {
@@ -75,17 +77,19 @@ namespace MainSystem
 
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
-            string connectionString = "SERVER=" + txtNewIP.Text + ";DATABASE=testPrice;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+            string connectionString = "SERVER=" + txtNewIP.Text + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
            
             MySqlConnection dbconnection = new MySqlConnection(connectionString);
             try
             {
                 dbconnection.Open();
                 pictureBoxCheckConnection.Image = Properties.Resources.icons8_Checkmark_48px;
+                testFlag = true;
             }
             catch
             {
                 pictureBoxCheckConnection.Image = Properties.Resources.icons8_Delete_48px;
+                testFlag = false;
             }
             dbconnection.Close();
         }
@@ -94,16 +98,34 @@ namespace MainSystem
         {
             try
             {
-                //Write to a file
-                using (StreamWriter writer = new StreamWriter("C:\\Users\\User\\Documents\\MainSystem\\Branch.txt"))
-                {
-                    writer.WriteLine(comBranchName.SelectedValue);
-                }
                 if (txtNewIP.Text != "")
                 {
-                    using (StreamWriter writer = new StreamWriter("C:\\Users\\User\\Documents\\MainSystem\\IP_Address.txt"))
+                    if (testFlag)
                     {
-                        writer.WriteLine(txtNewIP.Text);
+                        //Write to a file
+                        using (StreamWriter writer = new StreamWriter("Branch.txt"))
+                        {
+                            writer.WriteLine(comBranchName.SelectedValue);
+                        }
+
+                        using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
+                        {
+                            writer.WriteLine(txtNewIP.Text);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Test Connection First");
+                    }
+                }
+                else
+                {
+                    if (comBranchName.Text != oldBranch)
+                    {
+                        using (StreamWriter writer = new StreamWriter("Branch.txt"))
+                        {
+                            writer.WriteLine(comBranchName.SelectedValue);
+                        }
                     }
                 }
             }

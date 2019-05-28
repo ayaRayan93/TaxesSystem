@@ -12,24 +12,23 @@ namespace MainSystem
         static public string BranchID = "1";
         static public string IPAddress = "192.168.1.200";
         static public void generateBaseProjectFile()
-        {
-            string path = "C:\\Users\\User\\Documents\\MainSystem";   
-            if (!Directory.Exists(path))
+        {   
+            if (!File.Exists("Branch.txt"))
             {
-                Directory.CreateDirectory(path);
-                using (StreamWriter writer = new StreamWriter(path + "\\Branch.txt"))
+               // Directory.CreateDirectory(path);
+                using (StreamWriter writer = new StreamWriter("Branch.txt"))
                 {
                     writer.WriteLine(BranchID);
                 }
-                using (StreamWriter writer = new StreamWriter(path + "\\IP_Address.txt"))
+                using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
                 {
                     writer.WriteLine(IPAddress);
                 }
             }
             else
             {
-                BranchID= File.ReadAllText("C:\\Users\\User\\Documents\\MainSystem\\Branch.txt");
-                IPAddress= File.ReadAllText("C:\\Users\\User\\Documents\\MainSystem\\IP_Address.txt");
+                BranchID= File.ReadAllText("Branch.txt");
+                IPAddress= File.ReadAllText("IP_Address.txt");
             }
         }
 

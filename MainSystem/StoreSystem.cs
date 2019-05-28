@@ -53,9 +53,19 @@ namespace MainSystem
                 {
                     if (StoreFlag == false)
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
-                        index++;
-                        StoreFlag = true;
+                        if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageStores))
+                        {
+                            if (index == 0)
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(1, StoreTP);
+                            }
+                            else
+                            {
+                                xtraTabControlMainContainer.TabPages.Insert(index, StoreTP);
+                            }
+                            index++;
+                            StoreFlag = true;
+                        }
                     }
                     xtraTabControlMainContainer.SelectedTabPage = StoreTP;
 
