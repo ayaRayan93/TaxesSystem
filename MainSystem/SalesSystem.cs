@@ -1106,20 +1106,23 @@ namespace MainSystem
 
         public void SpecialOrdersFunction()
         {
-            dbconnection.Close();
-            //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 
-            string query = "SELECT Count(special_order.SpecialOrder_ID) FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=1" /* AND dash.Branch_ID=" + EmpBranchId*/;
-            MySqlCommand command = new MySqlCommand(query, dbconnection);
-            dbconnection.Open();
-            string reader = command.ExecuteScalar().ToString();
-            labelNotifySpecialOrderPurchase.Text = reader;
-            if (Convert.ToInt16(reader) > 0)
+            if (UserControl.userType == 7 || UserControl.userType == 6 || UserControl.userType == 1)
             {
-                labelNotifySpecialOrderPurchase.Visible = true;
-            }
-            else
-            {
-                labelNotifySpecialOrderPurchase.Visible = false;
+                dbconnection.Close();
+                //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 
+                string query = "SELECT Count(special_order.SpecialOrder_ID) FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=0 and special_order.Canceled=0" /* AND dash.Branch_ID=" + EmpBranchId*/;
+                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                dbconnection.Open();
+                string reader = command.ExecuteScalar().ToString();
+                labelNotifySpecialOrderSales.Text = reader;
+                if (Convert.ToInt16(reader) > 0)
+                {
+                    labelNotifySpecialOrderSales.Visible = true;
+                }
+                else
+                {
+                    labelNotifySpecialOrderSales.Visible = false;
+                }
             }
         }
     }

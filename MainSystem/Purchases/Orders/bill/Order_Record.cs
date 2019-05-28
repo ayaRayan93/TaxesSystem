@@ -1357,6 +1357,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الحالة"], true);
                         txtDashOrderNum.ReadOnly = true;
                         dateTimePicker2.Enabled = false;
+                        txtDescription.ReadOnly = true;
                         row1 = null;
                         txtCode.Text = "";
                         txtTotalMeters.Text = "0";

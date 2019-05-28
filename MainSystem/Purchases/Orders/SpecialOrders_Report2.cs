@@ -168,7 +168,7 @@ namespace MainSystem
         public void search()
         {
             conn.Open();
-            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,special_order.Picture,special_order.Product_Picture,special_order.Description FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=1" /*AND dash.Branch_ID=" + EmpBranchId*/, conn);
+            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,special_order.Picture,special_order.Product_Picture,special_order.Description FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=1 and special_order.Canceled=0" /*AND dash.Branch_ID=" + EmpBranchId*/, conn);
             MySqlDataReader dr = adapter.ExecuteReader();
 
             BindingList<GridPicture> lista = new BindingList<GridPicture>();
@@ -226,6 +226,40 @@ namespace MainSystem
                     conn.Close();
 
                     search();
+                    mainForm.ConfirmedSpecialOrdersFunction();
+                }
+                else
+                {
+                    MessageBox.Show("يجب اختيار طلب واحد على الاقل");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCanceled_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridView1.SelectedRowsCount > 0)
+                {
+                    if (MessageBox.Show("هل انت متاكد انك تريد الالغاء؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    {
+                        return;
+                    }
+                    conn.Open();
+                    for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                    {
+                        string query = "update special_order set Canceled=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(i, gridView1.Columns[0]);
+                        MySqlCommand com = new MySqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+                    }
+                    conn.Close();
+
+                    search();
+                    mainForm.ConfirmedSpecialOrdersFunction();
                 }
                 else
                 {

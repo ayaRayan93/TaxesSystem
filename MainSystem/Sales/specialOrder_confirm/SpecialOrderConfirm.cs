@@ -71,6 +71,8 @@ namespace MainSystem
                     dbconnection.Close();
 
                     search();
+                    mainForm.SpecialOrdersFunction();
+                    mainForm.ConfirmedSpecialOrdersFunction();
                 }
                 else
                 {
@@ -104,7 +106,7 @@ namespace MainSystem
         {
             dbconnection.Open();
             
-            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,special_order.Description,special_order.Picture,special_order.Product_Picture,delegate.Delegate_Name FROM special_order INNER JOIN delegate ON special_order.Delegate_ID = delegate.Delegate_ID where special_order.Record=0 and special_order.Confirmed=0", dbconnection);
+            MySqlCommand adapter = new MySqlCommand("SELECT special_order.SpecialOrder_ID,special_order.Description,special_order.Picture,special_order.Product_Picture,delegate.Delegate_Name FROM special_order INNER JOIN delegate ON special_order.Delegate_ID = delegate.Delegate_ID where special_order.Record=0 and special_order.Confirmed=0 and special_order.Canceled=0", dbconnection);
             MySqlDataReader dr = adapter.ExecuteReader();
 
             BindingList<SpecialOrderPicture> lista = new BindingList<SpecialOrderPicture>();

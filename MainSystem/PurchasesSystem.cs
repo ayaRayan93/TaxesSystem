@@ -36,9 +36,11 @@ namespace MainSystem
                 if (UserControl.userType == 10 || UserControl.userType == 1)
                 {
                     LeastQuantityFunction();
+                    ConfirmedSpecialOrdersFunction();
 
                     Purchasetimer.Interval = 1000 * 60;
                     Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
+                    Purchasetimer.Tick += new EventHandler(GetConfirmedSpecialOrder);
                     Purchasetimer.Start();
                 }
             }
@@ -1004,33 +1006,71 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        public void GetConfirmedSpecialOrder(object sender, EventArgs e)
+        {
+            try
+            {
+                ConfirmedSpecialOrdersFunction();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
         public void LeastQuantityFunction()
         {
-            string q1 = "select Data_ID from storage_least_taswya";
-            string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
-            int count = 0;
-            dbconnection.Close();
-            string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
-            MySqlCommand command = new MySqlCommand(query, dbconnection);
-            dbconnection.Open();
-            MySqlDataReader dr = command.ExecuteReader();
-            if (dr.HasRows)
+            if (UserControl.userType == 10 || UserControl.userType == 1)
             {
+                string q1 = "select Data_ID from storage_least_taswya";
+                string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
+                int count = 0;
+                dbconnection.Close();
+                string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
+                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                dbconnection.Open();
+                MySqlDataReader dr = command.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    while (dr.Read())
+                    if (dr.HasRows)
                     {
-                        count++;
+                        while (dr.Read())
+                        {
+                            count++;
+                        }
+                        labelPurchaseLeast.Text = count.ToString();
+                        labelPurchaseLeast.Visible = true;
+                        dr.Close();
                     }
-                    labelPurchaseLeast.Text = count.ToString();
+                }
+                else
+                {
+                    labelPurchaseLeast.Text = "0";
                     labelPurchaseLeast.Visible = true;
-                    dr.Close();
                 }
             }
-            else
+        }
+
+        public void ConfirmedSpecialOrdersFunction()
+        {
+            if (UserControl.userType == 10 || UserControl.userType == 1)
             {
-                labelPurchaseLeast.Text = "0";
-                labelPurchaseLeast.Visible = true;
+                dbconnection.Close();
+                //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 
+                string query = "SELECT Count(special_order.SpecialOrder_ID) FROM special_order INNER JOIN dash ON special_order.Dash_ID = dash.Dash_ID where special_order.Record=0 and special_order.Confirmed=1 and special_order.Canceled=0" /* AND dash.Branch_ID=" + EmpBranchId*/;
+                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                dbconnection.Open();
+                string reader = command.ExecuteScalar().ToString();
+                labelNotifySpecialOrderPurchase.Text = reader;
+                if (Convert.ToInt16(reader) > 0)
+                {
+                    labelNotifySpecialOrderPurchase.Visible = true;
+                }
+                else
+                {
+                    labelNotifySpecialOrderPurchase.Visible = false;
+                }
             }
         }
 
