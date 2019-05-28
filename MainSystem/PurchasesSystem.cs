@@ -33,11 +33,14 @@ namespace MainSystem
         {
             try
             {
-                LeastQuantityFunction();
-                
-                Purchasetimer.Interval = 1000 * 60;
-                Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
-                Purchasetimer.Start();
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    LeastQuantityFunction();
+
+                    Purchasetimer.Interval = 1000 * 60;
+                    Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
+                    Purchasetimer.Start();
+                }
             }
             catch (Exception ex)
             {

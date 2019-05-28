@@ -29,11 +29,14 @@ namespace MainSystem
         {
             try
             {
-                ExpectedOrdersFunction();
-                
-                Storetimer.Interval = 1000 * 60;
-                Storetimer.Tick += new EventHandler(GetExpectedOrders);
-                Storetimer.Start();
+                if (UserControl.userType == 2 || UserControl.userType == 1)
+                {
+                    ExpectedOrdersFunction();
+
+                    Storetimer.Interval = 1000 * 60;
+                    Storetimer.Tick += new EventHandler(GetExpectedOrders);
+                    Storetimer.Start();
+                }
             }
             catch (Exception ex)
             {

@@ -123,6 +123,13 @@ namespace MainSystem
                 btnCoding.Checked = true;
                 btnReports.Enabled = true;
                 btnReports.Checked = true;
+
+                pictureBoxBell.Visible = true;
+                pictureBoxSales.Visible = true;
+                pictureBoxPurchase.Visible = true;
+                pictureBoxPurchaseLeast.Visible = true;
+                pictureBoxStoreExpectedOrder.Visible = true;
+                pictureBoxCar.Visible = true;
             }
             else if (UserControl.userType == 2)
             {
@@ -141,10 +148,7 @@ namespace MainSystem
                 //btnPOS.Enabled = true;
                 //btnPOS.Checked = true;
 
-                pictureBoxBell.Visible = false;
-                pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSales.Visible = false;
-                pictureBoxCar.Visible = false;
+                pictureBoxStoreExpectedOrder.Visible = true;
                 //userAccess();
             }
             else if (UserControl.userType == 3)
@@ -156,30 +160,20 @@ namespace MainSystem
             {
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
-                pictureBoxBell.Visible = false;
-                pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSales.Visible = false;
-                pictureBoxStoreExpectedOrder.Visible = false;
-                pictureBoxCar.Visible = false;
             }
             else if (UserControl.userType == 5)
             {
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
-                pictureBoxBell.Visible = false;
-                pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSales.Visible = false;
-                pictureBoxStoreExpectedOrder.Visible = false;
-                pictureBoxCar.Visible = false;
+
+                pictureBoxBell.Visible = true;
             }
             else if (UserControl.userType == 6 || UserControl.userType == 7)
             {
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
-                pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxStoreExpectedOrder.Visible = false;
-                pictureBoxCar.Visible = false;
-                labelPurchaseLeast.Visible = false;
+
+                pictureBoxSales.Visible = true;
             }
             else if (UserControl.userType == 8)
             {
@@ -195,8 +189,9 @@ namespace MainSystem
             {
                 btnPurchases.Enabled = true;
                 btnPurchases.Checked = true;
-                pictureBoxBell.Visible = false;
-                pictureBoxPurchaseLeast.Visible = false;
+
+                pictureBoxPurchase.Visible = true;
+                pictureBoxPurchaseLeast.Visible = true;
             }
             else if (UserControl.userType == 11)
             {
@@ -217,12 +212,10 @@ namespace MainSystem
             {
                 btnCars.Enabled = true;
                 btnCars.Checked = true;
-                pictureBoxBell.Visible = false;
-                pictureBoxPurchaseLeast.Visible = false;
-                pictureBoxSales.Visible = false;
-                pictureBoxStoreExpectedOrder.Visible = false;
+
+                pictureBoxCar.Visible = true;
             }
-           labUserName.Text=UserControl.EmpName;
+            labUserName.Text = UserControl.EmpName;
         }
 
         //events

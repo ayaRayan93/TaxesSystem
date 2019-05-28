@@ -45,12 +45,15 @@ namespace MainSystem
 
                 EmpBranchId = UserControl.EmpBranchID;
 
-                SpecialOrdersFunction();
+                if (UserControl.userType == 7 || UserControl.userType == 6 || UserControl.userType == 1)
+                {
+                    SpecialOrdersFunction();
 
-                //Calculate the time of the actual work of the delegates
-                timer.Interval = 1000 * 60;
-                timer.Tick += new EventHandler(GetNonRequestedSpecialOrders);
-                timer.Start();
+                    //Calculate the time of the actual work of the delegates
+                    timer.Interval = 1000 * 60;
+                    timer.Tick += new EventHandler(GetNonRequestedSpecialOrders);
+                    timer.Start();
+                }
             }
             catch (Exception ex)
             {
@@ -517,7 +520,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
                 {
                     if (flag == false)
                     {
