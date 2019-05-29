@@ -1457,33 +1457,36 @@ namespace MainSystem
         {
             if (e.KeyCode == Keys.Enter)
             {
-                try
+                if (txtClientId.Text != "")
                 {
-                    dbconnection.Open();
-                    string query = "select customer_phone.Phone,customer.Customer_Name from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + txtClientId.Text + " order by customer_phone.CustomerPhone_ID desc limit 1";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr = com.ExecuteReader();
-                    if (dr.HasRows)
+                    try
                     {
-                        while (dr.Read())
+                        dbconnection.Open();
+                        string query = "select customer_phone.Phone,customer.Customer_Name from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + txtClientId.Text + " order by customer_phone.CustomerPhone_ID desc limit 1";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr = com.ExecuteReader();
+                        if (dr.HasRows)
                         {
-                            txtPhone.Text = dr["Phone"].ToString();
-                            comClient.Text = dr["Customer_Name"].ToString();
-                            comClient.SelectedValue = txtClientId.Text;
+                            while (dr.Read())
+                            {
+                                txtPhone.Text = dr["Phone"].ToString();
+                                comClient.Text = dr["Customer_Name"].ToString();
+                                comClient.SelectedValue = txtClientId.Text;
+                            }
+                            dr.Close();
                         }
-                        dr.Close();
+                        else
+                        {
+                            txtPhone.Text = "";
+                            comClient.Text = "";
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        txtPhone.Text = "";
-                        comClient.Text = "";
+                        MessageBox.Show(ex.Message);
                     }
+                    dbconnection.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                dbconnection.Close();
             }
         }
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)

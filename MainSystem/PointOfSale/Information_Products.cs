@@ -235,7 +235,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     MainForm.tabPageProductsReport.Name = "tabPageProductsReport";
-                    MainForm.tabPageProductsReport.Text = "عرض البنود";
+                    MainForm.tabPageProductsReport.Text = "تسجيل فاتورة";
                     MainForm.panelProductsReport.Name = "panelProductsReport";
                     MainForm.panelProductsReport.Dock = DockStyle.Fill;
 

@@ -72,8 +72,8 @@ namespace MainSystem
                 cmbBank.DropDownStyle = ComboBoxStyle.DropDownList;
             }
 
-            cmbBranch.Enabled = false;
-            cmbBranch.DropDownStyle = ComboBoxStyle.DropDownList;
+            //cmbBranch.Enabled = false;
+            //cmbBranch.DropDownStyle = ComboBoxStyle.DropDownList;
 
             this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy/MM/dd";
             this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -1391,6 +1391,7 @@ namespace MainSystem
             cmbBranch.DataSource = dt;
             cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
             cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+            cmbBranch.SelectedIndex = -1;
 
             loaded = true;
 

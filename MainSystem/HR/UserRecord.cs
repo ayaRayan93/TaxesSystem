@@ -133,11 +133,12 @@ namespace MainSystem
                     if (rEmployee.Checked == true)
                     {
                         dbconnection.Open();
-                        string query = "SELECT Department_ID FROM employee where Employee_ID=" + comEmployee.SelectedValue.ToString();
+                        string query = "SELECT Department_Name FROM employee inner join departments on employee.Department_ID=departments.Department_ID where Employee_ID=" + comEmployee.SelectedValue.ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
                         {
-                            comDepartment.SelectedValue = com.ExecuteScalar().ToString();
+                            comDepartment.Text = com.ExecuteScalar().ToString();
+                            //comDepartment.SelectedValue = com.ExecuteScalar().ToString();
                         }
                         else
                         {
@@ -147,11 +148,12 @@ namespace MainSystem
                     else if (rDelegate.Checked == true)
                     {
                         dbconnection.Open();
-                        string query = "SELECT Department_ID FROM delegate where Delegate_ID=" + comEmployee.SelectedValue.ToString();
+                        string query = "SELECT Department_Name FROM delegate inner join departments on delegate.Department_ID=departments.Department_ID where Delegate_ID=" + comEmployee.SelectedValue.ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
                         {
-                            comDepartment.SelectedValue = com.ExecuteScalar().ToString();
+                            comDepartment.Text = com.ExecuteScalar().ToString();
+                            //comDepartment.SelectedValue = com.ExecuteScalar().ToString();
                         }
                         else
                         {

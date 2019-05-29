@@ -205,7 +205,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label6.Location = new System.Drawing.Point(303, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 19);
+            this.label6.Size = new System.Drawing.Size(51, 19);
             this.label6.TabIndex = 8;
             this.label6.Text = "العميل";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -217,7 +217,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label5.Location = new System.Drawing.Point(573, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 19);
+            this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 6;
             this.label5.Text = "التليفون";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -229,6 +229,7 @@
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtPhone.Location = new System.Drawing.Point(417, 8);
             this.txtPhone.Name = "txtPhone";
+            this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPhone.Size = new System.Drawing.Size(150, 23);
             this.txtPhone.TabIndex = 9;
             this.txtPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhone_KeyDown);
@@ -251,6 +252,7 @@
             this.txtBillNum.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtBillNum.Location = new System.Drawing.Point(717, 8);
             this.txtBillNum.Name = "txtBillNum";
+            this.txtBillNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBillNum.Size = new System.Drawing.Size(100, 23);
             this.txtBillNum.TabIndex = 7;
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
@@ -262,6 +264,7 @@
             this.txtClientId.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtClientId.Location = new System.Drawing.Point(78, 8);
             this.txtClientId.Name = "txtClientId";
+            this.txtClientId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientId.Size = new System.Drawing.Size(59, 23);
             this.txtClientId.TabIndex = 11;
             this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
@@ -274,6 +277,7 @@
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(147, 8);
             this.comClient.Name = "comClient";
+            this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClient.Size = new System.Drawing.Size(150, 24);
             this.comClient.TabIndex = 12;
             this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
@@ -361,6 +365,7 @@
             this.txtCodeSearch5.Location = new System.Drawing.Point(919, 46);
             this.txtCodeSearch5.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtCodeSearch5.Name = "txtCodeSearch5";
+            this.txtCodeSearch5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCodeSearch5.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch5.TabIndex = 176;
             this.txtCodeSearch5.TabStop = false;
@@ -375,7 +380,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(773, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(126, 19);
+            this.label13.Size = new System.Drawing.Size(128, 19);
             this.label13.TabIndex = 175;
             this.label13.Text = "البحث بكود الصنف";
             // 
@@ -523,7 +528,7 @@
             this.label9.Location = new System.Drawing.Point(625, 45);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(31, 16);
+            this.label9.Size = new System.Drawing.Size(30, 16);
             this.label9.TabIndex = 144;
             this.label9.Text = "الفرز";
             // 
@@ -580,7 +585,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(696, 85);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(123, 19);
+            this.labSearch.Size = new System.Drawing.Size(126, 19);
             this.labSearch.TabIndex = 173;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -626,6 +631,7 @@
             this.txtCodeSearch4.Location = new System.Drawing.Point(861, 46);
             this.txtCodeSearch4.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtCodeSearch4.Name = "txtCodeSearch4";
+            this.txtCodeSearch4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCodeSearch4.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch4.TabIndex = 168;
             this.txtCodeSearch4.TabStop = false;
@@ -712,6 +718,7 @@
             this.txtCodeSearch2.Location = new System.Drawing.Point(741, 46);
             this.txtCodeSearch2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtCodeSearch2.Name = "txtCodeSearch2";
+            this.txtCodeSearch2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCodeSearch2.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch2.TabIndex = 162;
             this.txtCodeSearch2.TabStop = false;
@@ -771,6 +778,7 @@
             this.txtCodeSearch3.Location = new System.Drawing.Point(801, 46);
             this.txtCodeSearch3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtCodeSearch3.Name = "txtCodeSearch3";
+            this.txtCodeSearch3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCodeSearch3.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch3.TabIndex = 160;
             this.txtCodeSearch3.TabStop = false;
@@ -802,6 +810,7 @@
             this.txtCodeSearch1.Location = new System.Drawing.Point(681, 46);
             this.txtCodeSearch1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtCodeSearch1.Name = "txtCodeSearch1";
+            this.txtCodeSearch1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCodeSearch1.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch1.TabIndex = 158;
             this.txtCodeSearch1.TabStop = false;
@@ -925,7 +934,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label8.Location = new System.Drawing.Point(717, 8);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 19);
+            this.label8.Size = new System.Drawing.Size(52, 19);
             this.label8.TabIndex = 9;
             this.label8.Text = "الكمية";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -957,6 +966,7 @@
             this.comStore.FormattingEnabled = true;
             this.comStore.Location = new System.Drawing.Point(227, 8);
             this.comStore.Name = "comStore";
+            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(175, 21);
             this.comStore.TabIndex = 12;
             // 

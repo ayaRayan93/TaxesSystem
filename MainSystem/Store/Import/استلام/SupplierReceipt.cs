@@ -566,7 +566,7 @@ namespace MainSystem
                                                         {
                                                             query2 = "update order_details set Received=1 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
                                                         }
-                                                        else if(orderTotal < orderQuantity)
+                                                        else if (orderTotal < orderQuantity)
                                                         {
                                                             query2 = "update order_details set Received=2 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
                                                         }
@@ -584,7 +584,11 @@ namespace MainSystem
                                     else
                                     {
                                         if (MessageBox.Show("يوجد خطا فى الطلب هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                                        {
+                                            conn.Close();
+                                            dbconnection2.Close();
                                             return;
+                                        }
                                     }
                                     dr.Close();
                                 }
@@ -828,7 +832,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query = "insert into Storage (Store_ID,Store_Place_ID,Type,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Type,@Data_ID,@Total_Meters)";
+                                    query = "insert into Storage (Store_ID,Type,Data_ID,Total_Meters) values (@Store_ID,@Type,@Data_ID,@Total_Meters)";
                                     com = new MySqlCommand(query, conn);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = storeId;
