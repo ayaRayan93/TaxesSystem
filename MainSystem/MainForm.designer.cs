@@ -1525,7 +1525,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup17;
+            this.navBarControl2.ActiveGroup = this.navBarGroup13;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1611,7 +1611,6 @@
             // navBarGroup17
             // 
             this.navBarGroup17.Caption = "حسابات العملاء";
-            this.navBarGroup17.Expanded = true;
             this.navBarGroup17.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnCustomerAccountStatment),
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnAgalAcountStatment),
@@ -1692,6 +1691,7 @@
             // navBarGroup13
             // 
             this.navBarGroup13.Caption = "اسعار البيع";
+            this.navBarGroup13.Expanded = true;
             this.navBarGroup13.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
             this.navBarGroup13.Name = "navBarGroup13";

@@ -149,7 +149,7 @@ namespace MainSystem
                 //btnPOS.Checked = true;
 
                 pictureBoxStoreExpectedOrder.Visible = true;
-                //userAccess();
+            
             }
             else if (UserControl.userType == 3)
             {
@@ -205,8 +205,13 @@ namespace MainSystem
             }
             else if (UserControl.userType == 13)
             {
-                btnCoding.Enabled = true;
-                btnCoding.Checked = true;
+                //btnCoding.Enabled = true;
+                //btnCoding.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                userAccess();
             }
             else if (UserControl.userType == 14)
             {
@@ -673,14 +678,14 @@ namespace MainSystem
             navBarGroup10.Visible = false;
             navBarGroup11.Visible = false;
             navBarGroup12.Visible = false;
-            //navBarGroup45.Visible = false;
+            navBarGroup45.Visible = false;
 
-            //navBarGroup14.Visible = false;
-            //navBarGroup15.Visible = false;
-            //navBarGroup16.Visible = false;
-            //navBarGroup17.Visible = false;
-            //navBarGroup18.Visible = false;
-            //navBarGroup39.Visible = false;
+            navBarGroup14.Visible = false;
+            navBarGroup15.Visible = false;
+            navBarGroup16.Visible = false;
+            navBarGroup17.Visible = false;
+            navBarGroup18.Visible = false;
+            navBarGroup39.Visible = false;
 
             navBarGroup43.Visible = false;
             navBarGroup44.Visible = false;
