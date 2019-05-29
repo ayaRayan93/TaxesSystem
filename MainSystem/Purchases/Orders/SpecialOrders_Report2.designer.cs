@@ -48,6 +48,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRecordSpecialOrder = new System.Windows.Forms.Button();
+            this.btnCanceled = new System.Windows.Forms.Button();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSpecialOrderID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,7 +64,6 @@
             this.ColAddOrder = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEditAddOrder = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
-            this.btnCanceled = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -135,6 +135,20 @@
             this.btnRecordSpecialOrder.UseVisualStyleBackColor = true;
             this.btnRecordSpecialOrder.Click += new System.EventHandler(this.btnRecordSpecialOrder_Click);
             // 
+            // btnCanceled
+            // 
+            this.btnCanceled.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCanceled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCanceled.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnCanceled.ForeColor = System.Drawing.Color.White;
+            this.btnCanceled.Location = new System.Drawing.Point(359, 3);
+            this.btnCanceled.Name = "btnCanceled";
+            this.btnCanceled.Size = new System.Drawing.Size(54, 38);
+            this.btnCanceled.TabIndex = 22;
+            this.btnCanceled.Text = "الغاء";
+            this.btnCanceled.UseVisualStyleBackColor = true;
+            this.btnCanceled.Click += new System.EventHandler(this.btnCanceled_Click);
+            // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -176,7 +190,6 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-            this.gridView1.OptionsView.RowAutoHeight = true;
             this.gridView1.RowHeight = 150;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
@@ -291,20 +304,6 @@
             this.toolTipController1.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolTipController1.Appearance.Options.UseFont = true;
             this.toolTipController1.ShowBeak = true;
-            // 
-            // btnCanceled
-            // 
-            this.btnCanceled.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCanceled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCanceled.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnCanceled.ForeColor = System.Drawing.Color.White;
-            this.btnCanceled.Location = new System.Drawing.Point(359, 3);
-            this.btnCanceled.Name = "btnCanceled";
-            this.btnCanceled.Size = new System.Drawing.Size(54, 38);
-            this.btnCanceled.TabIndex = 22;
-            this.btnCanceled.Text = "الغاء";
-            this.btnCanceled.UseVisualStyleBackColor = true;
-            this.btnCanceled.Click += new System.EventHandler(this.btnCanceled_Click);
             // 
             // SpecialOrders_Report2
             // 
