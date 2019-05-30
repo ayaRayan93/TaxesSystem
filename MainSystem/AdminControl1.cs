@@ -14,20 +14,18 @@ using DevExpress.XtraTreeList;
 
 namespace MainSystem
 {
-    public partial class AdminControl : DevExpress.XtraEditors.XtraForm
+    public partial class AdminControl1 : DevExpress.XtraEditors.XtraForm
     {
         MySqlConnection dbconnection;
         List<treelist> listOfTreeList;
         bool load = false;
-        List<string> listOfIDs;
-        public AdminControl()
+        public AdminControl1()
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
                 listOfTreeList = new List<treelist>();
-                listOfIDs = new List<string>();
             }
             catch (Exception ex)
             {
@@ -35,6 +33,7 @@ namespace MainSystem
             }
      
         }
+
         private void AdminControl_Load(object sender, EventArgs e)
         {
             try
@@ -56,6 +55,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void tileItem3_ItemClick(object sender, TileItemEventArgs e)
         {
             TileItem t = (TileItem)sender;
@@ -64,35 +64,28 @@ namespace MainSystem
             {
                 t.Checked = true;
                 displayDepartmentGroups(dID);
-                listOfIDs.Add(dID);
+                treelist treelist1 = new treelist();
+                treelist1.id = dID;
+                treelist1.TreeList = new TreeList();
+                treelist1.TreeList=treeList1;
+                listOfTreeList.Add(treelist1);
             }
             else
             {
-                for (int i = 0; i < listOfIDs.Count; i++)
+                for (int i = 0; i < listOfTreeList.Count; i++)
                 {
-                    if (listOfIDs[i] == dID)
+                    if (listOfTreeList[i].id == dID)
                     {
-                        getmTreeList(dID);
+                        treeList1.DataSource = null;
+                        treeList1.DataSource = listOfTreeList[i].TreeList.DataSource;
+                        
+                       this.Controls.Add(listOfTreeList[i].TreeList);
+                     
                     }
                 }
             }
         }
-        private void tileItem_RightItemClick(object sender, TileItemEventArgs e)
-        {
-            try
-            {
-                TileItem t = (TileItem)sender;
-                string dID = t.Name.Split('D')[1];
-                if (t.Checked)
-                {
-                    t.Checked = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+
         private void rEmployee_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -119,6 +112,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void rDelegate_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -145,7 +139,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-      
         //function
         public void displayDepartmentGroups(string id)
         {
@@ -153,23 +146,16 @@ namespace MainSystem
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
-
-            getmTreeList(id).DataSource = GetSource(dt);
+            treeList1.DataSource = GetSource(dt);
         }
+
         internal void InitTree()
         {
-            foreach (Control item in this.Controls)
-            {
-                if (item is TreeList)
-                {
-                    TreeList tl = (TreeList)item;
-                    tl.ParentFieldName = "ParentId";
-                    tl.KeyFieldName = "UniqueId";
-                    tl.RootValue = string.Empty;
-                }
-            }
-       
+            treeList1.ParentFieldName = "ParentId";
+            treeList1.KeyFieldName = "UniqueId";
+            treeList1.RootValue = string.Empty;
         }
+
         internal DataTable GetSource(DataTable dt1)
         {
             var dt = new DataTable();
@@ -195,6 +181,7 @@ namespace MainSystem
             }
             return dt;
         }
+
         private void treeList1_BeforeCheckNode(object sender, DevExpress.XtraTreeList.CheckNodeEventArgs e)
         {
             TreeListNode node = e.Node;
@@ -220,6 +207,7 @@ namespace MainSystem
                 }
             }
         }
+
         private bool OneOfChildsIsChecked(TreeListNode node)
         {
             bool result = false;
@@ -232,37 +220,21 @@ namespace MainSystem
             }
             return result;
         }
+
         public void clear()
         {
             comEmployee.Text = "";
         }
+
         public struct treelist
         {
            public string id;
            public TreeList TreeList;
-        }       
-        public TreeList getmTreeList(string t)
-        {
-            TreeList temp= new TreeList();
-            foreach (Control item in this.Controls)
-            {
-                if (item is TreeList)
-                {
-                    TreeList tl = (TreeList)item;
-                    string name = tl.Name.Split('L')[1];
-                    if (name == t)
-                    {
-                        tl.Visible = true;
-                        temp = tl;
-                    }
-                    else
-                    {
-                        tl.Visible = false;
-                    }
-                }
-            }
-            return temp;
         }
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

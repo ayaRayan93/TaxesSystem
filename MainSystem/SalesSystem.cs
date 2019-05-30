@@ -128,7 +128,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 13)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -137,11 +137,11 @@ namespace MainSystem
                     if (!xtraTabControlSalesContent.Visible)
                         xtraTabControlSalesContent.Visible = true;
 
-                    XtraTabPage xtraTabPage = getTabPage("البنود");
+                    XtraTabPage xtraTabPage = getTabPage("اسعار بيع البنود");
                     if (xtraTabPage == null)
                     {
-                        xtraTabControlSalesContent.TabPages.Add("البنود");
-                        xtraTabPage = getTabPage("البنود");
+                        xtraTabControlSalesContent.TabPages.Add("اسعار بيع البنود");
+                        xtraTabPage = getTabPage("اسعار بيع البنود");
                     }
                     xtraTabPage.Controls.Clear();
 
