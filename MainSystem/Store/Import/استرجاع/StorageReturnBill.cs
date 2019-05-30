@@ -596,7 +596,7 @@ namespace MainSystem
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_Permission_Details_ID"].ToString());
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["Supplier_ID"].ToString());
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["اذن استلام"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
+                                    //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["المورد"].ToString());
                                 }
                             }
@@ -919,12 +919,12 @@ namespace MainSystem
                                 storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
                             }
 
-                            query = "insert into import_storage_return_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
-                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_Place_ID"].Value = row2["Store_Place_ID"].ToString();
+                            //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                            //com.Parameters["@Store_Place_ID"].Value = row2["Store_Place_ID"].ToString();
                             com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
                             com.Parameters["@Date"].Value = DateTime.Now;
                             if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
@@ -951,13 +951,13 @@ namespace MainSystem
                             com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
                             com.ExecuteNonQuery();
 
-                            query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString();
+                            query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
                                 double totalMeter = Convert.ToDouble(com.ExecuteScalar().ToString());
 
-                                query = "update storage set Total_Meters=" + (totalMeter - Convert.ToDouble(row2["TotalQuantity"].ToString())) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString();
+                                query = "update storage set Total_Meters=" + (totalMeter - Convert.ToDouble(row2["TotalQuantity"].ToString())) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
                             }
@@ -1117,12 +1117,12 @@ namespace MainSystem
                         {
                             DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
 
-                            query = "insert into import_storage_return_details (Store_ID,Store_Place_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Store_Place_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
-                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_Place_ID"].Value = null;
+                            //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                            //com.Parameters["@Store_Place_ID"].Value = null;
                             com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
                             com.Parameters["@Date"].Value = DateTime.Now;
                             if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
@@ -1152,7 +1152,8 @@ namespace MainSystem
                             double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());
 
                             dbconnection4.Open();
-                            query = "select Store_Place_ID,Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString();
+                            //Store_Place_ID,
+                            query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString();
                             com = new MySqlCommand(query, dbconnection4);
                             MySqlDataReader dr = com.ExecuteReader();
                             if (dr.HasRows)
@@ -1167,7 +1168,7 @@ namespace MainSystem
                                         {
                                             if ((totalMeter - totalQuant) >= 0)
                                             {
-                                                query = "update storage set Total_Meters=" + (totalMeter - totalQuant) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and Store_Place_ID=" + dr["Store_Place_ID"].ToString();
+                                                query = "update storage set Total_Meters=" + (totalMeter - totalQuant) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
                                                 com = new MySqlCommand(query, dbconnection);
                                                 com.ExecuteNonQuery();
 
@@ -1175,7 +1176,7 @@ namespace MainSystem
                                             }
                                             else if ((totalMeter - totalQuant) < 0)
                                             {
-                                                query = "update storage set Total_Meters=" + 0 + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and Store_Place_ID=" + dr["Store_Place_ID"].ToString();
+                                                query = "update storage set Total_Meters=" + 0 + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
                                                 com = new MySqlCommand(query, dbconnection);
                                                 com.ExecuteNonQuery();
 
@@ -1307,16 +1308,21 @@ namespace MainSystem
         {
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
-
-            string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',(supplier_permission_details.Balatat-ifnull(import_storage_return_details.Balatat,0)) as 'عدد البلتات',(supplier_permission_details.Carton_Balata-ifnull(import_storage_return_details.Carton_Balata,0)) as 'عدد الكراتين',(supplier_permission_details.Total_Meters-ifnull(import_storage_return_details.Total_Meters,0)) as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID LEFT JOIN import_storage_return ON import_storage_return.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID LEFT JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID LEFT JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID and supplier_permission_details.Data_ID = import_storage_return_details.Data_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=0 and supplier_permission_details.Store_ID=0 group by data.Data_ID";
+            //,supplier_permission_details.Store_Place_ID
+            // INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
+            //,store_places.Store_Place_Code as 'مكان التخزين'
+            string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',(supplier_permission_details.Balatat-ifnull(import_storage_return_details.Balatat,0)) as 'عدد البلتات',(supplier_permission_details.Carton_Balata-ifnull(import_storage_return_details.Carton_Balata,0)) as 'عدد الكراتين',(supplier_permission_details.Total_Meters-ifnull(import_storage_return_details.Total_Meters,0)) as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID LEFT JOIN import_storage_return ON import_storage_return.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID LEFT JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID LEFT JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID and supplier_permission_details.Data_ID = import_storage_return_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=0 and supplier_permission_details.Store_ID=0 group by data.Data_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
             
             dbconnection.Open();
-
-            qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',store_places.Store_Place_Code as 'مكان التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,supplier_permission_details.Store_Place_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID and supplier_permission_details.Store_Place_ID=storage.Store_Place_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+            //,supplier_permission_details.Store_Place_ID
+            //and supplier_permission_details.Store_Place_ID=storage.Store_Place_ID
+            //INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
+            //,store_places.Store_Place_Code as 'مكان التخزين'
+            qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID  INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
             MySqlCommand comand = new MySqlCommand(qq, dbconnection);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
@@ -1335,13 +1341,13 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اذن استلام"], dr["اذن استلام"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ التخزين"], dr["تاريخ التخزين"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["مكان التخزين"], dr["مكان التخزين"].ToString());
+                    //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["مكان التخزين"], dr["مكان التخزين"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ملاحظة"], dr["ملاحظة"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المتاحة"], dr["الكمية المتاحة"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Supplier_ID"], dr["Supplier_ID"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Supplier_Permission_Details_ID"], dr["Supplier_Permission_Details_ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Store_Place_ID"], dr["Store_Place_ID"].ToString());
+                    //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Store_Place_ID"], dr["Store_Place_ID"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["StorageImportPermission_ID"], dr["StorageImportPermission_ID"].ToString());
                     if (dr["عدد البلتات"].ToString() != "")
                     {
@@ -1396,7 +1402,7 @@ namespace MainSystem
             gridView1.Columns["Supplier_ID"].Visible = false;
             //gridView1.Columns["Carton"].Visible = false;
             gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
-            gridView1.Columns["Store_Place_ID"].Visible = false;
+            //gridView1.Columns["Store_Place_ID"].Visible = false;
             gridView1.Columns["StorageImportPermission_ID"].Visible = false;
             if (gridView1.IsLastVisibleRow)
             {
