@@ -25,8 +25,6 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
-                BaseData.generateBaseProjectFile();
-                txtName.Focus();
             }
             catch (Exception ex)
             {
@@ -187,7 +185,6 @@ namespace MainSystem
             dbconnection.Close();
             conn.Close();
         }
-
         private void txtName_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -384,13 +381,22 @@ namespace MainSystem
         {
             try
             {
-                conn = new MySqlConnection(connection.connectionString);
-                dbconnection = new MySqlConnection(connection.connectionString);
-                t = new Timer();
-                
-                t.Interval = 2000; // specify interval time as you want
-                t.Tick += new EventHandler(timer_Tick);
-                t.Start();
+                BaseData.generateBaseProjectFile();
+                if (BaseData.connStatus)
+                {
+                    txtName.Focus();
+                    conn = new MySqlConnection(connection.connectionString);
+                    dbconnection = new MySqlConnection(connection.connectionString);
+                    t = new Timer();
+
+                    t.Interval = 2000; // specify interval time as you want
+                    t.Tick += new EventHandler(timer_Tick);
+                    t.Start();
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
             }
             catch (Exception ex)
             {
@@ -420,8 +426,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-    
-
+        
     }
 }
