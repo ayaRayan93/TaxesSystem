@@ -219,7 +219,8 @@ namespace MainSystem
                     conn.Open();
                     for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
-                        string query = "update special_order set Record=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(i, gridView1.Columns[0]);
+                        int rowNum = gridView1.GetRowHandle(gridView1.GetSelectedRows()[i]);
+                        string query = "update special_order set Record=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(rowNum, gridView1.Columns[0]);
                         MySqlCommand com = new MySqlCommand(query, conn);
                         com.ExecuteNonQuery();
                     }
@@ -237,6 +238,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
         private void btnCanceled_Click(object sender, EventArgs e)
@@ -252,7 +254,8 @@ namespace MainSystem
                     conn.Open();
                     for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
-                        string query = "update special_order set Canceled=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(i, gridView1.Columns[0]);
+                        int rowNum = gridView1.GetRowHandle(gridView1.GetSelectedRows()[i]);
+                        string query = "update special_order set Canceled=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(rowNum, gridView1.Columns[0]);
                         MySqlCommand com = new MySqlCommand(query, conn);
                         com.ExecuteNonQuery();
                     }
@@ -270,6 +273,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
     }
 
