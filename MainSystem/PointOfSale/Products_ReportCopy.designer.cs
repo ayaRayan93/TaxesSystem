@@ -84,10 +84,11 @@
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButtonAddSpecialOrder = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtQuantity = new DevExpress.XtraEditors.CalcEdit();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.tLPanCpntent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -96,6 +97,8 @@
             this.panSearchAddtionalTool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSetID
@@ -232,7 +235,9 @@
             this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPhone.Size = new System.Drawing.Size(150, 23);
             this.txtPhone.TabIndex = 9;
+            this.txtPhone.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhone_KeyDown);
+            this.txtPhone.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // label2
             // 
@@ -255,7 +260,9 @@
             this.txtBillNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBillNum.Size = new System.Drawing.Size(100, 23);
             this.txtBillNum.TabIndex = 7;
+            this.txtBillNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
+            this.txtBillNum.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtClientId
             // 
@@ -267,7 +274,9 @@
             this.txtClientId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientId.Size = new System.Drawing.Size(59, 23);
             this.txtClientId.TabIndex = 11;
+            this.txtClientId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
+            this.txtClientId.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // comClient
             // 
@@ -281,6 +290,8 @@
             this.comClient.Size = new System.Drawing.Size(150, 24);
             this.comClient.TabIndex = 12;
             this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
+            this.comClient.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comClient.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // radOffers
             // 
@@ -369,8 +380,10 @@
             this.txtCodeSearch5.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch5.TabIndex = 176;
             this.txtCodeSearch5.TabStop = false;
+            this.txtCodeSearch5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch5.TextChanged += new System.EventHandler(this.txtCodeSearch5_TextChanged);
             this.txtCodeSearch5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodeSearch_KeyDown);
+            this.txtCodeSearch5.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // label13
             // 
@@ -432,6 +445,8 @@
             this.comClassfication.Size = new System.Drawing.Size(175, 24);
             this.comClassfication.TabIndex = 151;
             this.comClassfication.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comClassfication.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comClassfication.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // txtSort
             // 
@@ -445,7 +460,9 @@
             this.txtSort.Size = new System.Drawing.Size(54, 23);
             this.txtSort.TabIndex = 143;
             this.txtSort.TabStop = false;
+            this.txtSort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtSort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtSort.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // label10
             // 
@@ -485,7 +502,9 @@
             this.txtColor.Size = new System.Drawing.Size(54, 23);
             this.txtColor.TabIndex = 141;
             this.txtColor.TabStop = false;
+            this.txtColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtColor.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // comColor
             // 
@@ -502,6 +521,8 @@
             this.comColor.Size = new System.Drawing.Size(175, 24);
             this.comColor.TabIndex = 140;
             this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comColor.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // comSize
             // 
@@ -518,6 +539,8 @@
             this.comSize.Size = new System.Drawing.Size(175, 24);
             this.comSize.TabIndex = 148;
             this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comSize.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // label9
             // 
@@ -544,7 +567,9 @@
             this.txtSize.Size = new System.Drawing.Size(54, 23);
             this.txtSize.TabIndex = 145;
             this.txtSize.TabStop = false;
+            this.txtSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtSize.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // comSort
             // 
@@ -561,6 +586,8 @@
             this.comSort.Size = new System.Drawing.Size(175, 24);
             this.comSort.TabIndex = 142;
             this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comSort.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comSort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // comboBox3
             // 
@@ -635,8 +662,10 @@
             this.txtCodeSearch4.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch4.TabIndex = 168;
             this.txtCodeSearch4.TabStop = false;
+            this.txtCodeSearch4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch4.TextChanged += new System.EventHandler(this.txtCodeSearch4_TextChanged);
             this.txtCodeSearch4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch4.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // comProduct
             // 
@@ -653,6 +682,8 @@
             this.comProduct.Size = new System.Drawing.Size(175, 24);
             this.comProduct.TabIndex = 169;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comProduct.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comProduct.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // label1
             // 
@@ -708,6 +739,8 @@
             this.comFactory.Size = new System.Drawing.Size(175, 24);
             this.comFactory.TabIndex = 165;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comFactory.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comFactory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // txtCodeSearch2
             // 
@@ -722,8 +755,10 @@
             this.txtCodeSearch2.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch2.TabIndex = 162;
             this.txtCodeSearch2.TabStop = false;
+            this.txtCodeSearch2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch2.TextChanged += new System.EventHandler(this.txtCodeSearch2_TextChanged);
             this.txtCodeSearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch2.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // com
             // 
@@ -755,6 +790,8 @@
             this.comGroup.Size = new System.Drawing.Size(175, 24);
             this.comGroup.TabIndex = 159;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comGroup.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comGroup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // label11
             // 
@@ -782,8 +819,10 @@
             this.txtCodeSearch3.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch3.TabIndex = 160;
             this.txtCodeSearch3.TabStop = false;
+            this.txtCodeSearch3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch3.TextChanged += new System.EventHandler(this.txtCodeSearch3_TextChanged);
             this.txtCodeSearch3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch3.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // comType
             // 
@@ -800,6 +839,8 @@
             this.comType.Size = new System.Drawing.Size(175, 24);
             this.comType.TabIndex = 157;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comType.Leave += new System.EventHandler(this.textBox_Leave);
+            this.comType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             // 
             // txtCodeSearch1
             // 
@@ -814,8 +855,10 @@
             this.txtCodeSearch1.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch1.TabIndex = 158;
             this.txtCodeSearch1.TabStop = false;
+            this.txtCodeSearch1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch1.TextChanged += new System.EventHandler(this.txtCodeSearch1_TextChanged);
             this.txtCodeSearch1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch1.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // label12
             // 
@@ -916,8 +959,8 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.txtQuantity);
+            this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.comStore);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -927,33 +970,34 @@
             this.panel3.Size = new System.Drawing.Size(995, 40);
             this.panel3.TabIndex = 13;
             // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Location = new System.Drawing.Point(591, 10);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtQuantity.Size = new System.Drawing.Size(120, 20);
+            this.txtQuantity.TabIndex = 13;
+            // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label8.Location = new System.Drawing.Point(717, 8);
+            this.label8.Location = new System.Drawing.Point(717, 11);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 19);
             this.label8.TabIndex = 9;
             this.label8.Text = "الكمية";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtQuantity.Location = new System.Drawing.Point(561, 8);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(150, 23);
-            this.txtQuantity.TabIndex = 10;
-            // 
             // label14
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(408, 8);
+            this.label14.Location = new System.Drawing.Point(408, 11);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(51, 19);
             this.label14.TabIndex = 11;
@@ -964,7 +1008,7 @@
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(227, 8);
+            this.comStore.Location = new System.Drawing.Point(227, 10);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(175, 21);
@@ -994,6 +1038,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1053,10 +1099,11 @@
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButtonAddSpecialOrder;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox comStore;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.XtraEditors.CalcEdit txtQuantity;
     }
 }

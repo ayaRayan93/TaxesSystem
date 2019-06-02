@@ -116,6 +116,32 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void textBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            openOnScreenKeyboard();
+        }
+
+        private void textBox_Leave(object sender, EventArgs e)
+        {
+            killOnScreenKeyboard();
+        }
+
+        private static void openOnScreenKeyboard()
+        {
+            System.Diagnostics.Process.Start("C:\\Program Files\\Common Files\\Microsoft shared\\ink\\TabTip.exe");
+
+        }
+        private static void killOnScreenKeyboard()
+        {
+            if (System.Diagnostics.Process.GetProcessesByName("TabTip").Count() > 0)
+            {
+                System.Diagnostics.Process asd = System.Diagnostics.Process.GetProcessesByName("TabTip").First();
+                asd.Kill();
+            }
+
+        }
+        
         private void SearchProduct_Load(object sender, EventArgs e)
         {
             try

@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -231,8 +232,10 @@
             this.txtCodeSearch1.Name = "txtCodeSearch1";
             this.txtCodeSearch1.Size = new System.Drawing.Size(56, 23);
             this.txtCodeSearch1.TabIndex = 135;
+            this.txtCodeSearch1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch1.TextChanged += new System.EventHandler(this.txtCodeSearch1_TextChanged);
             this.txtCodeSearch1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch1.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch2
             // 
@@ -242,8 +245,10 @@
             this.txtCodeSearch2.Name = "txtCodeSearch2";
             this.txtCodeSearch2.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch2.TabIndex = 136;
+            this.txtCodeSearch2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch2.TextChanged += new System.EventHandler(this.txtCodeSearch2_TextChanged);
             this.txtCodeSearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch2.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch3
             // 
@@ -253,8 +258,10 @@
             this.txtCodeSearch3.Name = "txtCodeSearch3";
             this.txtCodeSearch3.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch3.TabIndex = 137;
+            this.txtCodeSearch3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch3.TextChanged += new System.EventHandler(this.txtCodeSearch3_TextChanged);
             this.txtCodeSearch3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch3.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch4
             // 
@@ -264,8 +271,10 @@
             this.txtCodeSearch4.Name = "txtCodeSearch4";
             this.txtCodeSearch4.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch4.TabIndex = 138;
+            this.txtCodeSearch4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch4.TextChanged += new System.EventHandler(this.txtCodeSearch4_TextChanged);
             this.txtCodeSearch4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            this.txtCodeSearch4.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch5
             // 
@@ -275,8 +284,10 @@
             this.txtCodeSearch5.Name = "txtCodeSearch5";
             this.txtCodeSearch5.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch5.TabIndex = 139;
+            this.txtCodeSearch5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
             this.txtCodeSearch5.TextChanged += new System.EventHandler(this.txtCodeSearch5_TextChanged);
             this.txtCodeSearch5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodeSearch_KeyDown);
+            this.txtCodeSearch5.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // panel2
             // 
@@ -396,7 +407,7 @@
             this.label15.Location = new System.Drawing.Point(653, 37);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(53, 19);
+            this.label15.Size = new System.Drawing.Size(54, 19);
             this.label15.TabIndex = 5;
             this.label15.Text = "المصنع";
             // 
@@ -407,7 +418,7 @@
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label13.Location = new System.Drawing.Point(265, 37);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 19);
+            this.label13.Size = new System.Drawing.Size(42, 19);
             this.label13.TabIndex = 16;
             this.label13.Text = "اللون";
             // 
@@ -419,7 +430,7 @@
             this.label14.Location = new System.Drawing.Point(452, 8);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(69, 19);
+            this.label14.Size = new System.Drawing.Size(71, 19);
             this.label14.TabIndex = 8;
             this.label14.Text = "المجموعة";
             // 
@@ -430,7 +441,7 @@
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label12.Location = new System.Drawing.Point(264, 8);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 19);
+            this.label12.Size = new System.Drawing.Size(58, 19);
             this.label12.TabIndex = 15;
             this.label12.Text = "المقاس";
             // 
@@ -453,7 +464,7 @@
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label11.Location = new System.Drawing.Point(118, 8);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 19);
+            this.label11.Size = new System.Drawing.Size(36, 19);
             this.label11.TabIndex = 14;
             this.label11.Text = "الفرز";
             // 
@@ -477,7 +488,7 @@
             this.label7.Location = new System.Drawing.Point(660, 8);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(40, 19);
+            this.label7.Size = new System.Drawing.Size(41, 19);
             this.label7.TabIndex = 2;
             this.label7.Text = "النوع";
             // 

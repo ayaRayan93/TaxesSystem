@@ -775,6 +775,7 @@ namespace MainSystem
                         case "comFactory":
                             if (factoryFlage)
                             {
+                                clearCom();
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
                                 dbconnection.Close();
                                 dbconnection.Open();
@@ -851,6 +852,7 @@ namespace MainSystem
                                 comProduct.DisplayMember = dt3.Columns["Product_Name"].ToString();
                                 comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
                                 comProduct.Text = "";
+                                txtProduct.Text = "";
 
                                 string query2 = "select * from size where Group_ID=" + comGroup.SelectedValue.ToString() + subQuery1;
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);

@@ -64,7 +64,8 @@ namespace MainSystem
                     for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
                         //MessageBox.Show(gridView1.GetRowCellDisplayText(i, gridView1.Columns[0]));
-                        string query = "update special_order set Confirmed=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(i, gridView1.Columns[0]);
+                        int rowNum = gridView1.GetRowHandle(gridView1.GetSelectedRows()[i]);
+                        string query = "update special_order set Confirmed=1 where SpecialOrder_ID=" + gridView1.GetRowCellDisplayText(rowNum, gridView1.Columns[0]);
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                     }

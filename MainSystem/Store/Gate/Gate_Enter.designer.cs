@@ -302,6 +302,7 @@
             this.imageListBoxControl1.Name = "imageListBoxControl1";
             this.imageListBoxControl1.Size = new System.Drawing.Size(51, 95);
             this.imageListBoxControl1.TabIndex = 74;
+            this.imageListBoxControl1.Visible = false;
             // 
             // btnAddNum
             // 
