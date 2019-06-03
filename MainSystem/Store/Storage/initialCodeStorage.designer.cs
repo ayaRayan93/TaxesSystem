@@ -57,10 +57,10 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtFactory = new System.Windows.Forms.TextBox();
             this.comType = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtType = new System.Windows.Forms.TextBox();
             this.txtProduct = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lab = new System.Windows.Forms.Label();
             this.comProduct = new System.Windows.Forms.ComboBox();
             this.comFactory = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -398,10 +398,10 @@
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.txtFactory);
             this.groupBox1.Controls.Add(this.comType);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtType);
             this.groupBox1.Controls.Add(this.txtProduct);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lab);
             this.groupBox1.Controls.Add(this.comProduct);
             this.groupBox1.Controls.Add(this.comFactory);
             this.groupBox1.Controls.Add(this.label4);
@@ -462,18 +462,18 @@
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedIndexChanged);
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label3.Location = new System.Drawing.Point(315, 59);
-            this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(46, 18);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "الصنف";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label1.Location = new System.Drawing.Point(315, 59);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(46, 18);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "الصنف";
             // 
             // txtType
             // 
@@ -491,16 +491,16 @@
             this.txtProduct.TabIndex = 10;
             this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // label1
+            // lab
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label1.Location = new System.Drawing.Point(558, 30);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(28, 18);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "نوع";
+            this.lab.AutoSize = true;
+            this.lab.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.lab.Location = new System.Drawing.Point(558, 30);
+            this.lab.Name = "lab";
+            this.lab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lab.Size = new System.Drawing.Size(28, 18);
+            this.lab.TabIndex = 2;
+            this.lab.Text = "نوع";
             // 
             // comProduct
             // 
@@ -509,7 +509,7 @@
             this.comProduct.Name = "comProduct";
             this.comProduct.Size = new System.Drawing.Size(120, 24);
             this.comProduct.TabIndex = 9;
-            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comProduct_SelectedValueChanged);
             // 
             // comFactory
             // 
@@ -518,7 +518,7 @@
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
-            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
             // 
             // label4
             // 
@@ -557,7 +557,7 @@
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comGroup_SelectedValueChanged);
             // 
             // comStore
             // 
@@ -777,10 +777,10 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtFactory;
         private System.Windows.Forms.ComboBox comType;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.TextBox txtProduct;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lab;
         private System.Windows.Forms.ComboBox comProduct;
         private System.Windows.Forms.ComboBox comFactory;
         private System.Windows.Forms.Label label4;

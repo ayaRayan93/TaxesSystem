@@ -22,7 +22,6 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
-                dbconnection = new MySqlConnection(connection.connectionString);
             }
             catch (Exception ex)
             {
@@ -34,45 +33,33 @@ namespace MainSystem
         {
             try
             {
-                dbconnection.Open();
-                string query = "select * from branch";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                comBranchName.DataSource = dt;
-                comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
-                comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
-              
-                string BranchID = "1";
-                string IPAddress = "192.168.1.200";
-                if (!File.Exists("Branch.txt"))
+                if (File.Exists("IP_Address.txt"))
                 {
-                    using (StreamWriter writer = new StreamWriter("Branch.txt"))
-                    {
-                        writer.WriteLine(BranchID);
-                    }
-                    using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
-                    {
-                        writer.WriteLine(IPAddress);
-                    }
+                    dbconnection = new MySqlConnection(connection.connectionString);
+                    dbconnection.Open();
+                    string query = "select * from branch";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comBranchName.DataSource = dt;
+                    comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                    comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
+                    string BranchID = File.ReadAllText("Branch.txt");
+                    string IPAddress = File.ReadAllText("IP_Address.txt");
+                    labOldIP.Text = IPAddress;
+                    query = "select Branch_Name from branch where Branch_ID=" + BranchID;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    comBranchName.Text = com.ExecuteScalar().ToString();
+                    oldBranch = comBranchName.Text;
+                    dbconnection.Close();
                 }
-                else
-                {
-                    BranchID = File.ReadAllText("Branch.txt");
-                    IPAddress = File.ReadAllText("IP_Address.txt");
-                }
-
-                labOldIP.Text =IPAddress;            
-                query = "select Branch_Name from branch where Branch_ID=" + BranchID;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                comBranchName.Text = com.ExecuteScalar().ToString();
-                oldBranch = comBranchName.Text;
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
+           
         }
 
         private void textBox_MouseClick(object sender, MouseEventArgs e)
@@ -102,21 +89,36 @@ namespace MainSystem
 
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
-            string connectionString = "SERVER=" + txtNewIP.Text + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
-           
-            MySqlConnection dbconnection = new MySqlConnection(connectionString);
             try
             {
-                dbconnection.Open();
-                pictureBoxCheckConnection.Image = Properties.Resources.icons8_Checkmark_48px;
-                testFlag = true;
+                string connectionString = "SERVER=" + txtNewIP.Text + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+           
+                MySqlConnection dbconnection = new MySqlConnection(connectionString);
+                try
+                {
+                    dbconnection.Open();
+                    pictureBoxCheckConnection.Image = Properties.Resources.icons8_Checkmark_48px;
+                    testFlag = true;
+                    string query = "select * from branch";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comBranchName.DataSource = dt;
+                    comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                    comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
+                }
+                catch
+                {
+                    pictureBoxCheckConnection.Image = Properties.Resources.icons8_Delete_48px;
+                    testFlag = false;
+                }
+                BaseData.connStatus = testFlag;
+                dbconnection.Close();
             }
-            catch
+            catch (Exception ex)
             {
-                pictureBoxCheckConnection.Image = Properties.Resources.icons8_Delete_48px;
-                testFlag = false;
+                MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -137,6 +139,7 @@ namespace MainSystem
                         {
                             writer.WriteLine(txtNewIP.Text);
                         }
+
                     }
                     else
                     {
@@ -153,6 +156,21 @@ namespace MainSystem
                         }
                     }
                 }
+                BaseData.connStatus = testFlag;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ChangeIP_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                BaseData.connStatus = testFlag;
+                Environment.Exit(0);
             }
             catch (Exception ex)
             {

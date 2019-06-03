@@ -158,6 +158,7 @@
             this.Name = "ChangeIP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Change IP Address";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChangeIP_FormClosed);
             this.Load += new System.EventHandler(this.ChangeIP_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCheckConnection)).EndInit();
             this.ResumeLayout(false);

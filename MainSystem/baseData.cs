@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,19 +11,31 @@ namespace MainSystem
     class BaseData
     {
         static public string BranchID = "1";
-        static public string IPAddress = "192.168.1.200";
+        static public string IPAddress = "197.50.31.80";
+        static public bool connStatus = true;
         static public void generateBaseProjectFile()
         {   
-            if (!File.Exists("Branch.txt"))
+            if (!File.Exists("IP_Address.txt"))
             {
-               // Directory.CreateDirectory(path);
                 using (StreamWriter writer = new StreamWriter("Branch.txt"))
                 {
                     writer.WriteLine(BranchID);
                 }
-                using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
+
+                if (TestConnection(IPAddress))
                 {
-                    writer.WriteLine(IPAddress);
+                    using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
+                    {
+                        writer.WriteLine(IPAddress);
+                    }
+                    Login form = new Login();
+                    form.ShowDialog();
+                }
+                else
+                {
+                    connStatus = false;
+                    ChangeIP form = new ChangeIP();
+                    form.ShowDialog();
                 }
             }
             else
@@ -31,6 +44,22 @@ namespace MainSystem
                 IPAddress= File.ReadAllText("IP_Address.txt");
             }
         }
+        static public bool TestConnection(string ip)
+        {
+            string connectionString = "SERVER=" + ip + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
 
+            MySqlConnection dbconnection = new MySqlConnection(connectionString);
+            try
+            {
+                dbconnection.Open();
+                dbconnection.Close();
+                return true;
+            }
+            catch
+            {
+               return false;
+            }
+          
+        }
     }
 }
