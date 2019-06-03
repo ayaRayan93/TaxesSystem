@@ -322,7 +322,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(638, 6);
+            this.label10.Location = new System.Drawing.Point(623, 6);
             this.label10.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(34, 16);
@@ -410,7 +410,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(625, 41);
+            this.label9.Location = new System.Drawing.Point(626, 41);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(31, 16);
@@ -814,6 +814,7 @@
             this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart2.TabIndex = 45;
             this.txtCodePart2.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // label11
             // 
@@ -836,6 +837,7 @@
             this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart3.TabIndex = 46;
             this.txtCodePart3.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCodePart1
             // 
@@ -846,6 +848,7 @@
             this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart1.TabIndex = 47;
             this.txtCodePart1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCodePart5
             // 
@@ -856,6 +859,7 @@
             this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart5.TabIndex = 48;
             this.txtCodePart5.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCodePart4
             // 
@@ -866,6 +870,7 @@
             this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart4.TabIndex = 49;
             this.txtCodePart4.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // panel2
             // 
