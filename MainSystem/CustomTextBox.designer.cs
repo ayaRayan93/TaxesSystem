@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Custom1TextBox
+            // 
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.Leave += new System.EventHandler(this.textBox_Leave);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

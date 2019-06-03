@@ -569,6 +569,11 @@ namespace MainSystem
                                         return;
                                     }
                                 }
+                                else
+                                {
+                                    MessageBox.Show("تاكد من متر/قطعة");
+                                    return;
+                                }
 
                                 if (row1["الكمية المتاحة"].ToString() != "")
                                 {
@@ -577,6 +582,12 @@ namespace MainSystem
                                         MessageBox.Show("لا يوجد كمية كافية");
                                         return;
                                     }
+                                }
+                                else
+                                {
+
+                                    MessageBox.Show("لا يوجد كمية كافية");
+                                    return;
                                 }
 
                                 gridView2.AddNewRow();
@@ -621,6 +632,12 @@ namespace MainSystem
                                     MessageBox.Show("لا يوجد كمية كافية");
                                     return;
                                 }
+                            }
+                            else
+                            {
+
+                                MessageBox.Show("لا يوجد كمية كافية");
+                                return;
                             }
 
                             gridView2.AddNewRow();
@@ -1038,9 +1055,8 @@ namespace MainSystem
                         Report_StorageReturn f = new Report_StorageReturn();
                         f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, ReturnedPermissionNumber, txtReason.Text, bi);
                         f.ShowDialog();
-
+                        
                         search();
-
                         txtCode.Text = "";
                         txtTotalMeter.Text = "0";
                         txtCarton.Text = "0";

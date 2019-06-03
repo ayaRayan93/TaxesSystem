@@ -92,6 +92,8 @@
             this.txtNewIP.Name = "txtNewIP";
             this.txtNewIP.Size = new System.Drawing.Size(163, 26);
             this.txtNewIP.TabIndex = 18;
+            this.txtNewIP.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtNewIP.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // btnTestConnection
             // 

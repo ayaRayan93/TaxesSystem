@@ -222,7 +222,7 @@ namespace MainSystem
                 {
                     gridView1.FocusedRowHandle = gridView1.RowCount - 1;
                 }
-                //gridView1.Columns[0].Visible = false;
+                gridView1.Columns[0].Visible = false;
                 gridView1.Columns["Type"].Visible = false;
             }
             catch (Exception ex)
