@@ -2244,6 +2244,9 @@
     <EmbeddedResource Include="Admin\AdminRecord.resx">
       <DependentUpon>AdminRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomTextBox.resx">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HR\UserRecord.resx">
       <DependentUpon>UserRecord.cs</DependentUpon>
     </EmbeddedResource>

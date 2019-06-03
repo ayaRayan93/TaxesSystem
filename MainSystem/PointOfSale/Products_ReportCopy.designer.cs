@@ -972,6 +972,7 @@
             // 
             // txtQuantity
             // 
+            this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtQuantity.Location = new System.Drawing.Point(591, 10);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
