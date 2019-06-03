@@ -1369,6 +1369,18 @@ namespace MainSystem
                                 }
                                 else
                                 {
+                                    ////////////////////////
+                                    comClient.Text = "";
+                                    txtPhone.Text = "";
+                                    comClient.Enabled = true;
+                                    txtPhone.Enabled = true;
+                                    txtClientId.Enabled = true;
+                                    txtClientId.Text = "";
+                                    AddedToBill = false;
+                                    billExist = false;
+                                    mainBillExist = false;
+                                    main.test(0);
+                                    ///////////////////////
                                     MessageBox.Show("المندوب غير مسجل علي هذه الفاتورة");
                                     txtBillNum.Text = "";
                                     dbconnection4.Close();
