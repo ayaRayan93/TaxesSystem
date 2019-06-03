@@ -235,7 +235,7 @@
             this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPhone.Size = new System.Drawing.Size(150, 23);
             this.txtPhone.TabIndex = 9;
-            this.txtPhone.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtPhone.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPhone_KeyDown);
             this.txtPhone.Leave += new System.EventHandler(this.textBox_Leave);
             // 
@@ -260,7 +260,7 @@
             this.txtBillNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBillNum.Size = new System.Drawing.Size(100, 23);
             this.txtBillNum.TabIndex = 7;
-            this.txtBillNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtBillNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
             this.txtBillNum.Leave += new System.EventHandler(this.textBox_Leave);
             // 
@@ -274,7 +274,7 @@
             this.txtClientId.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientId.Size = new System.Drawing.Size(59, 23);
             this.txtClientId.TabIndex = 11;
-            this.txtClientId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtClientId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
             this.txtClientId.Leave += new System.EventHandler(this.textBox_Leave);
             // 
@@ -291,7 +291,7 @@
             this.comClient.TabIndex = 12;
             this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
             this.comClient.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comClient.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comClient.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // radOffers
             // 
@@ -380,7 +380,7 @@
             this.txtCodeSearch5.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch5.TabIndex = 176;
             this.txtCodeSearch5.TabStop = false;
-            this.txtCodeSearch5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtCodeSearch5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch5.TextChanged += new System.EventHandler(this.txtCodeSearch5_TextChanged);
             this.txtCodeSearch5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodeSearch_KeyDown);
             this.txtCodeSearch5.Leave += new System.EventHandler(this.textBox_Leave);
@@ -446,7 +446,7 @@
             this.comClassfication.TabIndex = 151;
             this.comClassfication.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comClassfication.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comClassfication.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comClassfication.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // txtSort
             // 
@@ -460,7 +460,7 @@
             this.txtSort.Size = new System.Drawing.Size(54, 23);
             this.txtSort.TabIndex = 143;
             this.txtSort.TabStop = false;
-            this.txtSort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtSort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtSort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtSort.Leave += new System.EventHandler(this.textBox_Leave);
             // 
@@ -502,7 +502,7 @@
             this.txtColor.Size = new System.Drawing.Size(54, 23);
             this.txtColor.TabIndex = 141;
             this.txtColor.TabStop = false;
-            this.txtColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtColor.Leave += new System.EventHandler(this.textBox_Leave);
             // 
@@ -522,7 +522,7 @@
             this.comColor.TabIndex = 140;
             this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comColor.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comColor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // comSize
             // 
@@ -540,7 +540,7 @@
             this.comSize.TabIndex = 148;
             this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comSize.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // label9
             // 
@@ -567,7 +567,7 @@
             this.txtSize.Size = new System.Drawing.Size(54, 23);
             this.txtSize.TabIndex = 145;
             this.txtSize.TabStop = false;
-            this.txtSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtSize.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtSize.Leave += new System.EventHandler(this.textBox_Leave);
             // 
@@ -587,7 +587,7 @@
             this.comSort.TabIndex = 142;
             this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comSort.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comSort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comSort.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // comboBox3
             // 
@@ -662,7 +662,7 @@
             this.txtCodeSearch4.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch4.TabIndex = 168;
             this.txtCodeSearch4.TabStop = false;
-            this.txtCodeSearch4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtCodeSearch4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch4.TextChanged += new System.EventHandler(this.txtCodeSearch4_TextChanged);
             this.txtCodeSearch4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtCodeSearch4.Leave += new System.EventHandler(this.textBox_Leave);
@@ -683,7 +683,7 @@
             this.comProduct.TabIndex = 169;
             this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comProduct.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comProduct.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comProduct.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // label1
             // 
@@ -740,7 +740,7 @@
             this.comFactory.TabIndex = 165;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comFactory.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comFactory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comFactory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // txtCodeSearch2
             // 
@@ -755,7 +755,7 @@
             this.txtCodeSearch2.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch2.TabIndex = 162;
             this.txtCodeSearch2.TabStop = false;
-            this.txtCodeSearch2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtCodeSearch2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch2.TextChanged += new System.EventHandler(this.txtCodeSearch2_TextChanged);
             this.txtCodeSearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtCodeSearch2.Leave += new System.EventHandler(this.textBox_Leave);
@@ -791,7 +791,7 @@
             this.comGroup.TabIndex = 159;
             this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comGroup.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comGroup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comGroup.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // label11
             // 
@@ -819,7 +819,7 @@
             this.txtCodeSearch3.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch3.TabIndex = 160;
             this.txtCodeSearch3.TabStop = false;
-            this.txtCodeSearch3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtCodeSearch3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch3.TextChanged += new System.EventHandler(this.txtCodeSearch3_TextChanged);
             this.txtCodeSearch3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtCodeSearch3.Leave += new System.EventHandler(this.textBox_Leave);
@@ -840,7 +840,7 @@
             this.comType.TabIndex = 157;
             this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             this.comType.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.comType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // txtCodeSearch1
             // 
@@ -855,7 +855,7 @@
             this.txtCodeSearch1.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch1.TabIndex = 158;
             this.txtCodeSearch1.TabStop = false;
-            this.txtCodeSearch1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_MouseClick);
+            this.txtCodeSearch1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch1.TextChanged += new System.EventHandler(this.txtCodeSearch1_TextChanged);
             this.txtCodeSearch1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             this.txtCodeSearch1.Leave += new System.EventHandler(this.textBox_Leave);

@@ -117,7 +117,7 @@ namespace MainSystem
             }
         }
 
-        private void textBox_MouseClick(object sender, MouseEventArgs e)
+        private void textBox_Click(object sender, EventArgs e)
         {
             openOnScreenKeyboard();
         }
@@ -1921,7 +1921,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
+
         //function
         public void getSetsComBox()
         {
