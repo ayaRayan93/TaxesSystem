@@ -31,7 +31,7 @@ namespace MainSystem
             //DelegateId = delegateId;
         }
 
-        private void textBox_MouseClick(object sender, MouseEventArgs e)
+        private void textBox_Click(object sender, EventArgs e)
         {
             openOnScreenKeyboard();
         }
