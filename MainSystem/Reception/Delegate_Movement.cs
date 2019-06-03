@@ -1120,6 +1120,24 @@ namespace MainSystem
                         command = new MySqlCommand(query, dbconnection);
                         command.ExecuteNonQuery();
 
+                        if (radNewBill.Checked)
+                        {
+                            query = "insert into notdash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID,Dash_ID,Date) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + "," + dashId + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                            command = new MySqlCommand(query, dbconnection);
+                            command.ExecuteNonQuery();
+                        }
+                        else if (radOldBill.Checked)
+                        {
+                            query = "select NotDash_Delegate_Bill_ID from notdash_delegate_bill where Bill_Number=" + billNum + " and Branch_ID=" + EmpBranchId + " and Delegate_ID=" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString();
+                            command = new MySqlCommand(query, dbconnection);
+                            if (command.ExecuteScalar() == null)
+                            {
+                                query = "insert into notdash_delegate_bill(Delegate_ID,Delegate_Name,Bill_Number,Branch_ID,Dash_ID,Date) values(" + gridView1.GetFocusedRowCellValue(colDelegateID).ToString() + ",'" + gridView1.GetFocusedRowCellValue(colDelegate).ToString() + "'," + billNum + "," + EmpBranchId + "," + dashId + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+
                         MessageBox.Show("تم");
                     }
                     else
