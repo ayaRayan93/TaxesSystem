@@ -20,7 +20,7 @@ namespace MainSystem
 {
     public partial class Products : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1;
         MainForm storeMainForm = null;
         bool loaded = false;
         bool load = false;
@@ -36,6 +36,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnection1 = new MySqlConnection(connection.connectionString);
                 this.storeMainForm = storeMainForm;
                
                
@@ -119,10 +120,6 @@ namespace MainSystem
                     dbconnection.Open();
                     filterGroup();
                   
-                    //if (chBoxSelectAll.Checked)
-                    //    displayProducts();
-                    //else
-                    //    displayAllProducts();
                     if (txtType.Text != "1")
                     {
                         string query = "select * from product";
@@ -167,14 +164,11 @@ namespace MainSystem
                 if (loaded)
                 {
                     loaded = false;
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtGroup.Text = comGroup.SelectedValue.ToString();
                     comProduct.Focus();
                     filterProduct();
-                    //if (chBoxSelectAll.Checked)
-                    //    displayProducts();
-                    //else
-                    //    displayAllProducts();
                     loaded = true;
                 }
             }
@@ -191,15 +185,12 @@ namespace MainSystem
                 if (loaded)
                 {
                     loaded = false;
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtFactory.Text = comFactory.SelectedValue.ToString();
                     comGroup.Focus();
                     filterGroup();
                     filterProduct();
-                    //if (chBoxSelectAll.Checked)
-                    //    displayProducts();
-                    //else
-                    //    displayAllProducts();
                     loaded = true;
                 }
             }
@@ -216,13 +207,10 @@ namespace MainSystem
                 if (loaded)
                 {
                     loaded = false;
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtProduct.Text = comProduct.SelectedValue.ToString();
                     comType.Focus();
-                    //if (chBoxSelectAll.Checked)
-                    //    displayProducts();
-                    //else
-                    //    displayAllProducts();
                     loaded = true;
                 }
             }
@@ -243,87 +231,102 @@ namespace MainSystem
             {
                 try
                 {
-                    if (txtBox.Text != "")
+                    dbconnection.Close();
+                    dbconnection.Open();
+                    switch (txtBox.Name)
                     {
-                        dbconnection.Open();
-                        switch (txtBox.Name)
-                        {
-                            case "txtType":
-                                query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comType.Text = Name;
-                                    txtFactory.Focus();
-                                    dbconnection.Close();
-                                    filterFactory();
+                        case "txtType":
+                            query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comType.Text = Name;
+                               
 
-                                    dbconnection.Close();
-
+                                if (txtType.Text != "1")
+                                {
+                                    query = "select * from product";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection1);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "الصنف";
+                                    filterProduct();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
+                                    query = "select * from size";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection1);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "المقاس";
+                                    filterProduct();
                                 }
-                                break;
-                            case "txtFactory":
-                                query = "select Factory_Name from factory where Factory_ID='" + txtFactory.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comFactory.Text = Name;
-                                    txtGroup.Focus();
-                                    dbconnection.Close();
-                                    //if (chBoxSelectAll.Checked)
-                                    //    displayProducts();
-                                    //else
-                                    //    displayAllProducts();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtGroup":
-                                query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comGroup.Text = Name;
-                                    txtProduct.Focus();
-                                    dbconnection.Close();
-                                    //if (chBoxSelectAll.Checked)
-                                    //    displayProducts();
-                                    //else
-                                    //    displayAllProducts();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
-                            case "txtProduct":
+                                dbconnection.Close();
+                                txtFactory.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtFactory":
+                            query = "select Factory_Name from factory where Factory_ID='" + txtFactory.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comFactory.Text = Name;
+                                txtGroup.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtGroup":
+                            query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
+                            com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                Name = (string)com.ExecuteScalar();
+                                comGroup.Text = Name;
+                                txtProduct.Focus();
+                                dbconnection.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("there is no item with this id");
+                                dbconnection.Close();
+                                return;
+                            }
+                            break;
+                        case "txtProduct":
+                            if (label1.Text == "الصنف")
+                            {
                                 query = "select Product_Name from product where Product_ID='" + txtFactory.Text + "'";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
-                                    this.com.Text = Name;
+                                    comProduct.Text = Name;
                                     txtType.Focus();
                                     dbconnection.Close();
-                                    //if (chBoxSelectAll.Checked)
-                                    //    displayProducts();
-                                    //else
-                                    //    displayAllProducts();
                                 }
                                 else
                                 {
@@ -331,15 +334,31 @@ namespace MainSystem
                                     dbconnection.Close();
                                     return;
                                 }
-                                break;
-                        }
-
+                            }
+                            else
+                            {
+                                query = "select Size_Value from size where Size_ID='" + txtFactory.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comProduct.Text = Name;
+                                    txtType.Focus();
+                                    dbconnection.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                            }
+                            break;
                     }
-
                 }
-                catch
+                catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.ToString());
                 }
                 dbconnection.Close();
             }

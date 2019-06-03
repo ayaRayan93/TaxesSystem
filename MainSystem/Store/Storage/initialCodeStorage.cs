@@ -121,7 +121,6 @@ namespace MainSystem
         {
 
         }
-
         private void comType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -183,6 +182,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     loaded = false;
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtGroup.Text = comGroup.SelectedValue.ToString();
                     comProduct.Focus();
@@ -203,6 +203,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     loaded = false;
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtFactory.Text = comFactory.SelectedValue.ToString();
                     comGroup.Focus();
@@ -224,6 +225,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     loaded = false;
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtProduct.Text = comProduct.SelectedValue.ToString();
                     comType.Focus();
@@ -235,8 +237,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-       
+        }      
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
             TextBox txtBox = (TextBox)sender;
@@ -248,6 +249,7 @@ namespace MainSystem
             {
                 try
                 {
+                    dbconnection.Close();
                     dbconnection.Open();
                     switch (txtBox.Name)
                     {
@@ -258,8 +260,38 @@ namespace MainSystem
                             {
                                 Name = (string)com.ExecuteScalar();
                                 comType.Text = Name;
+
+                                if (txtType.Text != "1")
+                                {
+                                    query = "select * from product";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "الصنف";
+                                    filterProduct();
+                                }
+                                else
+                                {
+                                    query = "select * from size";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "المقاس";
+                                    filterProduct();
+                                }
                                 txtFactory.Focus();
                                 dbconnection.Close();
+
                             }
                             else
                             {
@@ -277,7 +309,6 @@ namespace MainSystem
                                 comFactory.Text = Name;
                                 txtGroup.Focus();
                                 dbconnection.Close();
-                               
                             }
                             else
                             {
@@ -295,7 +326,6 @@ namespace MainSystem
                                 comGroup.Text = Name;
                                 txtProduct.Focus();
                                 dbconnection.Close();
-                               
                             }
                             else
                             {
@@ -305,21 +335,41 @@ namespace MainSystem
                             }
                             break;
                         case "txtProduct":
-                            query = "select Product_Name from product where Product_ID='" + txtProduct.Text + "'";
-                            com = new MySqlCommand(query, dbconnection);
-                            if (com.ExecuteScalar() != null)
+                            if (label1.Text == "الصنف")
                             {
-                                Name = (string)com.ExecuteScalar();
-                                comProduct.Text = Name;
-                                txtType.Focus();
-                                dbconnection.Close();
-                               
+                                query = "select Product_Name from product where Product_ID='" + txtFactory.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comProduct.Text = Name;
+                                    txtType.Focus();
+                                    dbconnection.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("there is no item with this id");
-                                dbconnection.Close();
-                                return;
+                                query = "select Size_Value from size where Size_ID='" + txtFactory.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comProduct.Text = Name;
+                                    txtType.Focus();
+                                    dbconnection.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
                             }
                             break;
                         case "txtCodePart1":

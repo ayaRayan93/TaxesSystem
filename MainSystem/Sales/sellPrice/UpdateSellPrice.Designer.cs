@@ -364,6 +364,7 @@
             this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart4.TabIndex = 49;
             this.txtCodePart4.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // label11
             // 
@@ -386,6 +387,7 @@
             this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart2.TabIndex = 45;
             this.txtCodePart2.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCodePart3
             // 
@@ -396,6 +398,7 @@
             this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart3.TabIndex = 46;
             this.txtCodePart3.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCodePart1
             // 
@@ -406,6 +409,7 @@
             this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart1.TabIndex = 47;
             this.txtCodePart1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // txtCodePart5
             // 
@@ -416,6 +420,7 @@
             this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
             this.txtCodePart5.TabIndex = 48;
             this.txtCodePart5.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            this.txtCodePart5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // label20
             // 
