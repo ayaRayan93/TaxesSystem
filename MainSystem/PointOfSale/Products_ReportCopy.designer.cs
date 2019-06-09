@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
@@ -84,11 +83,15 @@
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButtonAddSpecialOrder = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtNumCartons = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtRequiredQuantity = new DevExpress.XtraEditors.CalcEdit();
+            this.label15 = new System.Windows.Forms.Label();
             this.txtQuantity = new DevExpress.XtraEditors.CalcEdit();
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
             this.tLPanCpntent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -97,6 +100,7 @@
             this.panSearchAddtionalTool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRequiredQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
@@ -959,6 +963,10 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txtNumCartons);
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.txtRequiredQuantity);
+            this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.txtQuantity);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label14);
@@ -970,10 +978,56 @@
             this.panel3.Size = new System.Drawing.Size(995, 40);
             this.panel3.TabIndex = 13;
             // 
+            // txtNumCartons
+            // 
+            this.txtNumCartons.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNumCartons.Location = new System.Drawing.Point(512, 10);
+            this.txtNumCartons.Name = "txtNumCartons";
+            this.txtNumCartons.ReadOnly = true;
+            this.txtNumCartons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtNumCartons.Size = new System.Drawing.Size(100, 20);
+            this.txtNumCartons.TabIndex = 17;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label16.Location = new System.Drawing.Point(618, 11);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 19);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "عدد الكراتين";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtRequiredQuantity
+            // 
+            this.txtRequiredQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtRequiredQuantity.Location = new System.Drawing.Point(709, 10);
+            this.txtRequiredQuantity.Name = "txtRequiredQuantity";
+            this.txtRequiredQuantity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtRequiredQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtRequiredQuantity.Size = new System.Drawing.Size(120, 20);
+            this.txtRequiredQuantity.TabIndex = 15;
+            this.txtRequiredQuantity.TextChanged += new System.EventHandler(this.txtRequiredQuantity_TextChanged);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label15.Location = new System.Drawing.Point(835, 11);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(134, 19);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "عدد الامتار المطلوبة";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtQuantity
             // 
             this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtQuantity.Location = new System.Drawing.Point(591, 10);
+            this.txtQuantity.Location = new System.Drawing.Point(279, 10);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -986,11 +1040,11 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label8.Location = new System.Drawing.Point(717, 11);
+            this.label8.Location = new System.Drawing.Point(405, 11);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 19);
+            this.label8.Size = new System.Drawing.Size(101, 19);
             this.label8.TabIndex = 9;
-            this.label8.Text = "الكمية";
+            this.label8.Text = "عدد متر/قطعة";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label14
@@ -998,7 +1052,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(408, 11);
+            this.label14.Location = new System.Drawing.Point(222, 11);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(51, 19);
             this.label14.TabIndex = 11;
@@ -1009,7 +1063,7 @@
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(227, 10);
+            this.comStore.Location = new System.Drawing.Point(41, 10);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(175, 21);
@@ -1039,6 +1093,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRequiredQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
@@ -1106,5 +1161,9 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.CalcEdit txtQuantity;
+        private DevExpress.XtraEditors.CalcEdit txtRequiredQuantity;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtNumCartons;
+        private System.Windows.Forms.Label label16;
     }
 }
