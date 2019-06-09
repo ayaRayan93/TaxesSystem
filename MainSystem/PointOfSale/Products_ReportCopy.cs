@@ -1929,7 +1929,7 @@ namespace MainSystem
                 if (txtRequiredQuantity.Text != "")
                 {
                     decimal numCartn = Convert.ToDecimal(txtRequiredQuantity.Text) / Convert.ToDecimal(row1["الكرتنة"].ToString());
-                    txtNumCartons.Text = numCartn.ToString("0.##");
+                    txtNumCartons.Text = decimal.Ceiling(numCartn).ToString();//"0.##"
                     txtQuantity.Text = (Convert.ToDecimal(row1["الكرتنة"].ToString()) * decimal.Ceiling(numCartn)).ToString();
                 }
                 else
