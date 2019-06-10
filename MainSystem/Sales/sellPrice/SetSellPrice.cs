@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using DevExpress.DataAccess.Excel;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -695,17 +698,19 @@ namespace MainSystem
                         {
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double UnNormalPercent = double.Parse(txtUnNormal.Text);
-                            // DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int [] listOfSelectedRows= gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                if (gridView1.IsRowSelected(i))
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+
+                                if (!checkExist(row[0].ToString()))
                                 {
+                                    MessageBox.Show(i+""+ listOfSelectedRows[i]);
                                     string query = "INSERT INTO sellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
                                     MySqlCommand command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                     command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
                                     command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
                                     command.Parameters.AddWithValue("?Price", price);
                                     command.Parameters.AddWithValue("?Last_Price", calSellPrice());
@@ -720,7 +725,7 @@ namespace MainSystem
                                     command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                     command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
                                     command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
                                     command.Parameters.AddWithValue("?Price", price);
                                     command.Parameters.AddWithValue("?Last_Price", calSellPrice());
@@ -740,7 +745,7 @@ namespace MainSystem
                         #region set qata3yPrice for one item
                         else
                         {
-                            if (id != 0)
+                            if (id != 0 && !checkExist(id.ToString()))
                             {
                                 string query = "INSERT INTO sellprice (Sell_Discount,Price_Type,Last_Price, Sell_Price, ProfitRatio, Data_ID, Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Last_Price,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?PercentageDelegate,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
@@ -793,17 +798,17 @@ namespace MainSystem
                             double sellPrice = (price + NormalPercent) - ((price + NormalPercent) * SellPercent / 100.0);
 
                             sellPrice = sellPrice + unNormalPercent;
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            int[] list = gridView1.GetSelectedRows();
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                if (gridView1.IsRowSelected(i))
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+                                if ( !checkExist(row[0].ToString()))
                                 {
                                     string query = "INSERT INTO sellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
                                     MySqlCommand command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("@Price_Type", "لستة");
                                     command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
                                     command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                     command.Parameters.AddWithValue("@Price", price);
                                     command.Parameters.AddWithValue("@Last_Price", lastPrice(calSellPrice()));
@@ -819,7 +824,7 @@ namespace MainSystem
                                     command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("@Price_Type", "لستة");
                                     command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
                                     command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
                                     command.Parameters.AddWithValue("@Price", price);
                                     command.Parameters.AddWithValue("@Last_Price", lastPrice(calSellPrice()));
@@ -839,7 +844,7 @@ namespace MainSystem
                         #region set priceList for one item
                         else
                         {
-                            if (id != 0)
+                            if (id != 0 && !checkExist(id.ToString()))
                             {
                                 double NormalPercent = double.Parse(txtNormal.Text);
                                 double unNormalPercent = double.Parse(txtUnNormal.Text);
@@ -888,12 +893,10 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
-                            
                         }
                         #endregion
                     }
-
-
+                    
                     UserControl.ItemRecord("sellprice", "اضافة", sellPrice_ID, DateTime.Now, "", dbconnection);
                     UserControl.ItemRecord("oldsellprice", "اضافة", oldSellPrice_ID, DateTime.Now, "", dbconnection);
 
@@ -1031,6 +1034,7 @@ namespace MainSystem
                     label6.Visible = true;
                     label19.Visible = true;
                     labSellPrice.Visible = true;
+
                     DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                     if (row != null)
                     {
@@ -1279,6 +1283,19 @@ namespace MainSystem
             DataIDs += "0";
             dbconnection.Close();
             return DataIDs;
+        }
+        public bool checkExist(string Data_ID)
+        {
+            string query = "select sellPrice_ID from sellprice where Data_ID="+ Data_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     
     }
