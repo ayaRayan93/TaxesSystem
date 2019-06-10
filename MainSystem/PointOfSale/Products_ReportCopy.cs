@@ -1928,9 +1928,17 @@ namespace MainSystem
             {
                 if (txtRequiredQuantity.Text != "")
                 {
-                    decimal numCartn = Convert.ToDecimal(txtRequiredQuantity.Text) / Convert.ToDecimal(row1["الكرتنة"].ToString());
-                    txtNumCartons.Text = decimal.Ceiling(numCartn).ToString();//"0.##"
-                    txtQuantity.Text = (Convert.ToDecimal(row1["الكرتنة"].ToString()) * decimal.Ceiling(numCartn)).ToString();
+                    if (Convert.ToDecimal(row1["الكرتنة"].ToString()) != 0)
+                    {
+                        decimal numCartn = Convert.ToDecimal(txtRequiredQuantity.Text) / Convert.ToDecimal(row1["الكرتنة"].ToString());
+                        txtNumCartons.Text = decimal.Ceiling(numCartn).ToString();//"0.##"
+                        txtQuantity.Text = (Convert.ToDecimal(row1["الكرتنة"].ToString()) * decimal.Ceiling(numCartn)).ToString();
+                    }
+                    else //if (Convert.ToDecimal(row1["الكرتنة"].ToString()) == 0)
+                    {
+                        txtNumCartons.Text = "0";
+                        txtQuantity.Text = txtRequiredQuantity.Text;
+                    }
                 }
                 else
                 {
