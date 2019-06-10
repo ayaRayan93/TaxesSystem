@@ -38,6 +38,7 @@ namespace MainSystem
         public static Information_Offers InformationOffers;
         public static InformationProducts_Report InformationProductsReport;
         public static DelegateBill_Report DelegateBillReport;
+        public static Bills_Delegate_Report BillsDelegateReport;
 
 
         public static XtraTabPage MainTabPageAddCustomer2;
@@ -62,6 +63,8 @@ namespace MainSystem
         Panel panelInformationProductsReport;
         XtraTabPage tabPageDelegateBillReport;
         Panel panelDelegateBillReport;
+        XtraTabPage tabPageBillsDelegateReport;
+        Panel panelBillsDelegateReport;
 
         //public static int delegateID = -1;
         public static int billNum = 0;
@@ -89,6 +92,8 @@ namespace MainSystem
             panelInformationProductsReport = new Panel();
             tabPageDelegateBillReport = new XtraTabPage();
             panelDelegateBillReport = new Panel();
+            tabPageBillsDelegateReport = new XtraTabPage();
+            panelBillsDelegateReport = new Panel();
 
             MainTabPageAddCustomer2 = new XtraTabPage();
             MainTabPageUpdateCustomer2 = new XtraTabPage();
@@ -435,32 +440,70 @@ namespace MainSystem
 
         private void navBarItemDelegateBill_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
+            if (UserControl.userType == 1)
+            {
+                try
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageDelegateBillReport");
+                    if (xtraTabPage == null)
+                    {
+                        tabPageDelegateBillReport.Name = "tabPageDelegateBillReport";
+                        tabPageDelegateBillReport.Text = "تقرير فواتير المناديب";
+                        panelDelegateBillReport.Name = "panelDelegateBillReport";
+                        panelDelegateBillReport.Dock = DockStyle.Fill;
+
+                        DelegateBillReport = new DelegateBill_Report();
+                        DelegateBillReport.Size = new Size(1109, 660);
+                        DelegateBillReport.TopLevel = false;
+                        DelegateBillReport.FormBorderStyle = FormBorderStyle.None;
+                        DelegateBillReport.Dock = DockStyle.Fill;
+                    }
+                    panelDelegateBillReport.Controls.Clear();
+                    panelDelegateBillReport.Controls.Add(DelegateBillReport);
+                    tabPageDelegateBillReport.Controls.Add(panelDelegateBillReport);
+                    xtraTabControlPointSale.TabPages.Add(tabPageDelegateBillReport);
+                    DelegateBillReport.Show();
+                    xtraTabControlPointSale.SelectedTabPage = tabPageDelegateBillReport;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void navBarItemDelegateBill_Return_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
             try
             {
                 restForeColorOfNavBarItem();
                 NavBarItem navBarItem = (NavBarItem)sender;
                 navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageDelegateBillReport");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageBillsDelegateReport");
                 if (xtraTabPage == null)
                 {
-                    tabPageDelegateBillReport.Name = "tabPageDelegateBillReport";
-                    tabPageDelegateBillReport.Text = "تقرير فواتير المناديب";
-                    panelDelegateBillReport.Name = "panelDelegateBillReport";
-                    panelDelegateBillReport.Dock = DockStyle.Fill;
+                    tabPageBillsDelegateReport.Name = "tabPageBillsDelegateReport";
+                    tabPageBillsDelegateReport.Text = "تقرير فواتير ومرتجعات المناديب";
+                    panelBillsDelegateReport.Name = "panelBillsDelegateReport";
+                    panelBillsDelegateReport.Dock = DockStyle.Fill;
 
-                    DelegateBillReport = new DelegateBill_Report();
-                    DelegateBillReport.Size = new Size(1109, 660);
-                    DelegateBillReport.TopLevel = false;
-                    DelegateBillReport.FormBorderStyle = FormBorderStyle.None;
-                    DelegateBillReport.Dock = DockStyle.Fill;
+                    BillsDelegateReport = new Bills_Delegate_Report();
+                    BillsDelegateReport.Size = new Size(1109, 660);
+                    BillsDelegateReport.TopLevel = false;
+                    BillsDelegateReport.FormBorderStyle = FormBorderStyle.None;
+                    BillsDelegateReport.Dock = DockStyle.Fill;
                 }
-                panelDelegateBillReport.Controls.Clear();
-                panelDelegateBillReport.Controls.Add(DelegateBillReport);
-                tabPageDelegateBillReport.Controls.Add(panelDelegateBillReport);
-                xtraTabControlPointSale.TabPages.Add(tabPageDelegateBillReport);
-                DelegateBillReport.Show();
-                xtraTabControlPointSale.SelectedTabPage = tabPageDelegateBillReport;
+                panelBillsDelegateReport.Controls.Clear();
+                panelBillsDelegateReport.Controls.Add(BillsDelegateReport);
+                tabPageBillsDelegateReport.Controls.Add(panelBillsDelegateReport);
+                xtraTabControlPointSale.TabPages.Add(tabPageBillsDelegateReport);
+                BillsDelegateReport.Show();
+                xtraTabControlPointSale.SelectedTabPage = tabPageBillsDelegateReport;
             }
             catch (Exception ex)
             {

@@ -265,6 +265,12 @@
       <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
     <Compile Include="baseData.cs" />
+    <Compile Include="PointOfSale\Bills_Delegate_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\Bills_Delegate_Report.designer.cs">
+      <DependentUpon>Bills_Delegate_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2255,6 +2261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Admin.resx">
       <DependentUpon>Login_Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\Bills_Delegate_Report.resx">
+      <DependentUpon>Bills_Delegate_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Customer_Print2.resx">
       <DependentUpon>Customer_Print2.cs</DependentUpon>

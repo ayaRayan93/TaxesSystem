@@ -823,6 +823,7 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
+                dbconnection.Close();
             }
         }
 
@@ -1209,6 +1210,7 @@ namespace MainSystem
                 {
                     txtRecomendedBill.Text = "";
                 }
+                dbconnection6.Close();
             }
             else
             {

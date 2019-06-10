@@ -1922,6 +1922,35 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void txtRequiredQuantity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtRequiredQuantity.Text != "")
+                {
+                    if (Convert.ToDecimal(row1["الكرتنة"].ToString()) != 0)
+                    {
+                        decimal numCartn = Convert.ToDecimal(txtRequiredQuantity.Text) / Convert.ToDecimal(row1["الكرتنة"].ToString());
+                        txtNumCartons.Text = decimal.Ceiling(numCartn).ToString();//"0.##"
+                        txtQuantity.Text = (Convert.ToDecimal(row1["الكرتنة"].ToString()) * decimal.Ceiling(numCartn)).ToString();
+                    }
+                    else //if (Convert.ToDecimal(row1["الكرتنة"].ToString()) == 0)
+                    {
+                        txtNumCartons.Text = "0";
+                        txtQuantity.Text = txtRequiredQuantity.Text;
+                    }
+                }
+                else
+                {
+                    txtQuantity.Text = "";
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //function
         public void getSetsComBox()
         {
@@ -2061,13 +2090,14 @@ namespace MainSystem
                     decimal totalMeters = decimal.Parse(txtQuantity.Text);
                     if (totalMeters % Carton == 0)
                     {
-                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
+                        //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
                         cartons = (int)(totalMeters / Carton);
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
+                        //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
+                        MessageBox.Show("عدد الكراتين يجب ان يكون رقم صحيح");
                         cartons = 0;
                         return false;
                     }

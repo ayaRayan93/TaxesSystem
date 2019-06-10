@@ -17,66 +17,39 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Bills_Transitions_Report : Form
+    public partial class Bills_Delegate_Report : Form
     {
         MySqlConnection conn;
-        MainForm bankMainForm = null;
-        
+
         public static XtraTabPage MainTabPagePrintingTransitions;
         Panel panelPrintingTransitions;
-
-        public static BillsTransitions_Print bankPrint;
-
+        
         public static GridControl gridcontrol;
         bool loaded = false;
-        bool loadedBranch = false;
 
-        public Bills_Transitions_Report(MainForm BankMainForm)
+        public Bills_Delegate_Report()
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
-            bankMainForm = BankMainForm;
-            
+
             MainTabPagePrintingTransitions = new XtraTabPage();
             panelPrintingTransitions = new Panel();
             
             gridcontrol = gridControl1;
-
-            comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-
+            
             this.dateTimePicker1.Format = DateTimePickerFormat.Short;
             this.dateTimePicker2.Format = DateTimePickerFormat.Short;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (!loadedBranch)
-                {
-                    loadBranch();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                if (comBranch.Text != "" && txtBranchID.Text != "")
-                {
-                    search();
-                }
-                else
-                {
-                    MessageBox.Show("يجب اختيار فرع");
-                }
+                search();
             }
             catch (Exception ex)
             {
@@ -84,89 +57,17 @@ namespace MainSystem
             }
             conn.Close();
         }
-
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comBranch.Text != "" && txtBranchID.Text != "")
-                {
-                    //int bilNum = 0;
-                    double costSale = 0;
-                    double costReturn = 0;
-                    List<Transition_Items> bi = new List<Transition_Items>();
-                    //DataTable dt = (DataTable)gridControl2.DataSource;
-                    for (int i = 0; i < gridView2.RowCount; i++)
-                    {
-                        /*if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]) != "")
-                        {
-                            bilNum = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]));
-                        }
-                        else
-                        {
-                            bilNum = 0;
-                        }*/
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["دائن"]) != "")
-                        {
-                            costSale = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["دائن"]));
-                        }
-                        else
-                        {
-                            costSale = 0;
-                        }
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["مدين"]) != "")
-                        {
-                            costReturn = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["مدين"]));
-                        }
-                        else
-                        {
-                            costReturn = 0;
-                        }
-                        Transition_Items item = new Transition_Items() { ID = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"])/*, Branch_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفرع"])*/, Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
-                        bi.Add(item);
-                    }
-
-                    Print_Transition_Report f = new Print_Transition_Report();
-                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
-                    f.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("يجب اختيار فرع");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        //functions
-        private void loadBranch()
-        {
-            conn.Open();
-            string query = "select * from branch";
-            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            comBranch.DataSource = dt;
-            comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-            comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            comBranch.SelectedIndex = -1;
-
-            loadedBranch = true;
-        }
-
+        
         public void search()
         {
             conn.Open();
             double totalBill = 0;
             double totalReturned = 0;
-            MySqlDataAdapter adapterSale = new MySqlDataAdapter("SELECT customer_bill.CustomerBill_ID as 'ID','النوع',customer_bill.Branch_BillNumber as 'الفاتورة',customer_bill.Type_Buy as 'نوع الفاتورة',customer_bill.Bill_Date as 'التاريخ',customer_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',customer_bill.Total_CostBD as 'الاجمالى',customer_bill.Total_Discount as 'الخصم',customer_bill.Total_CostAD as 'الصافى' FROM customer_bill left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'", conn);
+            MySqlDataAdapter adapterSale = new MySqlDataAdapter("SELECT customer_bill.CustomerBill_ID as 'ID','النوع',customer_bill.Branch_BillNumber as 'الفاتورة',customer_bill.Type_Buy as 'نوع الفاتورة',customer_bill.Bill_Date as 'التاريخ',customer_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',customer_bill.Total_CostBD as 'الاجمالى',customer_bill.Total_Discount as 'الخصم',customer_bill.Total_CostAD as 'الصافى' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID where product_bill.Delegate_ID=" + UserControl.EmpID + " and customer_bill.Bill_Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'", conn);
             DataTable saledt = new DataTable();
             adapterSale.Fill(saledt);
 
-            MySqlDataAdapter adapterReturn = new MySqlDataAdapter("SELECT customer_return_bill.CustomerReturnBill_ID as 'ID','النوع',customer_return_bill.Branch_BillNumber as 'الفاتورة',customer_return_bill.Type_Buy as 'نوع الفاتورة',customer_return_bill.Date as 'التاريخ',customer_return_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_return_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_return_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_return_bill.Client_ID) as 'العميل',customer_return_bill.TotalCostAD as 'الصافى' FROM customer_return_bill left join customer as customer1 on customer1.Customer_ID=customer_return_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_return_bill.Client_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and customer_return_bill.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'", conn);
+            MySqlDataAdapter adapterReturn = new MySqlDataAdapter("SELECT customer_return_bill.CustomerReturnBill_ID as 'ID','النوع',customer_return_bill.Branch_BillNumber as 'الفاتورة',customer_return_bill.Type_Buy as 'نوع الفاتورة',customer_return_bill.Date as 'التاريخ',customer_return_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_return_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_return_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_return_bill.Client_ID) as 'العميل',customer_return_bill.TotalCostAD as 'الصافى' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID left join customer as customer1 on customer1.Customer_ID=customer_return_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_return_bill.Client_ID where customer_return_bill_details.Delegate_ID=" + UserControl.EmpID + " and customer_return_bill.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "'", conn);
             DataTable returndt = new DataTable();
             adapterReturn.Fill(returndt);
 
@@ -216,7 +117,7 @@ namespace MainSystem
             adapter.Fill(sourceDataSet);
             gridControl2.DataSource = sourceDataSet.Tables[0];
 
-            string query = "SELECT transitions.Transition_ID as 'التسلسل',transitions.Transition as 'عملية',transitions.Type as 'النوع',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',transitions.Date as 'التاريخ',concat(customer1.Customer_Name,' ',transitions.Customer_ID) as 'المهندس/المقاول/التاجر',concat(customer2.Customer_Name,' ',transitions.Client_ID) as 'العميل',transitions.Amount as 'المبلغ',transitions.Data as 'البيان',bank.Bank_Name as 'الخزينة',transitions.Payment_Method as 'طريقة الدفع',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك/الكارت',transitions.Visa_Type as 'نوع الكارت',transitions.Operation_Number as 'رقم العملية',transitions.Bank_ID,transitions.Customer_ID,transitions.Client_ID FROM transitions INNER JOIN bank ON bank.Bank_ID = transitions.Bank_ID left join customer as customer1 on customer1.Customer_ID=transitions.Customer_ID left join customer as customer2 on customer2.Customer_ID=transitions.Client_ID where transitions.TransitionBranch_ID=" + comBranch.SelectedValue.ToString() + " and transitions.Error=0 and transitions.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by transitions.Date";
+            /*string query = "SELECT transitions.Transition_ID as 'التسلسل',transitions.Transition as 'عملية',transitions.Type as 'النوع',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',transitions.Date as 'التاريخ',concat(customer1.Customer_Name,' ',transitions.Customer_ID) as 'المهندس/المقاول/التاجر',concat(customer2.Customer_Name,' ',transitions.Client_ID) as 'العميل',transitions.Amount as 'المبلغ',transitions.Data as 'البيان',bank.Bank_Name as 'الخزينة',transitions.Payment_Method as 'طريقة الدفع',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك/الكارت',transitions.Visa_Type as 'نوع الكارت',transitions.Operation_Number as 'رقم العملية',transitions.Bank_ID,transitions.Customer_ID,transitions.Client_ID FROM transitions INNER JOIN bank ON bank.Bank_ID = transitions.Bank_ID left join customer as customer1 on customer1.Customer_ID=transitions.Customer_ID left join customer as customer2 on customer2.Customer_ID=transitions.Client_ID where transitions.TransitionBranch_ID=" + comBranch.SelectedValue.ToString() + " and transitions.Error=0 and transitions.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by transitions.Date";
             MySqlCommand comand = new MySqlCommand(query, conn);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
@@ -269,7 +170,7 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Client_ID"], dr["Client_ID"].ToString());
                 }
             }
-            dr.Close();
+            dr.Close();*/
 
             /*query = "SELECT bank_transfer.BankTransfer_ID as 'التسلسل',concat(frombranch.Branch_Name,'/',tobranch.Branch_Name) as 'الفرع',bank_transfer.Date as 'التاريخ',bank_transfer.Money as 'المبلغ',bank_transfer.Description as 'البيان',concat(frombank.Bank_Name,'/',tobank.Bank_Name) as 'الخزينة',bank_transfer.FromBranch_ID,bank_transfer.ToBranch_ID FROM bank_transfer INNER JOIN bank as frombank ON bank_transfer.FromBank_ID = frombank.Bank_ID INNER JOIN bank as tobank ON bank_transfer.ToBank_ID = tobank.Bank_ID  INNER JOIN branch as frombranch ON bank_transfer.FromBranch_ID = frombranch.Branch_ID INNER JOIN branch as tobranch ON bank_transfer.ToBranch_ID = tobranch.Branch_ID where (bank_transfer.FromBranch_ID=" + comBranch.SelectedValue.ToString() + " or bank_transfer.ToBranch_ID=" + comBranch.SelectedValue.ToString() + ") and bank_transfer.Error=0 and bank_transfer.Date between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss") + "' order by bank_transfer.Date";
             comand = new MySqlCommand(query, conn);
@@ -360,56 +261,6 @@ namespace MainSystem
                     dateTimePicker1.Value = DateTime.Now;
                     dateTimePicker2.Value = DateTime.Now;
                 }
-            }
-        }
-
-        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loadedBranch)
-                {
-                    int branchID = 0;
-                    if (int.TryParse(comBranch.SelectedValue.ToString(), out branchID))
-                    {
-                        txtBranchID.Text = comBranch.SelectedValue.ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnBillReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comBranch.Text != "" && txtBranchID.Text != "")
-                {
-                    /*List<Transition_Items> bi = new List<Transition_Items>();
-                    //DataTable dt = (DataTable)gridControl2.DataSource;
-                    for (int i = 0; i < gridView2.RowCount; i++)
-                    {
-                        Transition_Items item = new Transition_Items() { ID = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]), Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
-                        bi.Add(item);
-                    }*/
-
-                    gridcontrol = gridControl1;
-                    BillsTransitions_Print f = new BillsTransitions_Print();
-                    //Print_Transition_Report f = new Print_Transition_Report();
-                    //f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
-                    f.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("يجب اختيار فرع");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
     }
