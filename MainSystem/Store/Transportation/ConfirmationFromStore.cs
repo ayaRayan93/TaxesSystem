@@ -17,7 +17,7 @@ namespace MainSystem
     public partial class ConfirmationFromStore : Form
     {
         MySqlConnection dbconnection;
-        DataRow row1;
+        //DataRow row1;
         int storeId = 0;
 
         public ConfirmationFromStore(MainForm mainForm)

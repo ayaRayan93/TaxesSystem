@@ -18,9 +18,9 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
+        //bool factoryFlage = false;
+        //bool groupFlage = false;
+        //bool flagProduct = false;
         bool flag = false;
         //double noMeter = 0;
         MainForm MainForm;
