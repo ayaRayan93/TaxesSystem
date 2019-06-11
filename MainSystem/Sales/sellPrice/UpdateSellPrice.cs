@@ -325,47 +325,45 @@ namespace MainSystem
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double UnNormalPercent = double.Parse(txtUnNormal.Text);
 
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                if (gridView1.IsRowSelected(i))
-                                {
-                                    additionalIncreaseSellPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
 
-                                    String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + dataTable.Rows[i][0].ToString();
+                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+                                String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();
+                                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("@Sell_Price", price + (price * SellPercent / 100.0));
+                                command.Parameters.AddWithValue("@ProfitRatio", SellPercent);
+                                command.Parameters.AddWithValue("@Sell_Discount", 0.00);
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                                command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
 
-                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "قطعى");
-                                    command.Parameters.AddWithValue("@Sell_Price", price + (price * SellPercent / 100.0));
-                                    command.Parameters.AddWithValue("@ProfitRatio", SellPercent);
-                                    command.Parameters.AddWithValue("@Sell_Discount", 0.00);
-                                    command.Parameters.AddWithValue("@Price", price);
-                                    command.Parameters.AddWithValue("@Normal_Increase", 0.00);
-                                    command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
-                                    command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                    command.ExecuteNonQuery();
-                                   
-                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
 
-                                    //insert into Archif Table
-                                    query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
-                                    command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("?Price_Type", "قطعى");
-                                    command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][1].ToString());
-                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
-                                    command.Parameters.AddWithValue("?Price", price);
-                                    command.Parameters.AddWithValue("?Last_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Sell_Discount", 0.0);
-                                    command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                //insert into Archif Table
+                                query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("?Sell_Price", calSellPrice());
+                                command.Parameters.AddWithValue("?Data_ID", row[1].ToString());
+                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtSell.Text));
+                                command.Parameters.AddWithValue("?Price", price);
+                                command.Parameters.AddWithValue("?Last_Price", calSellPrice());
+                                command.Parameters.AddWithValue("?Sell_Discount", 0.0);
+                                command.Parameters.AddWithValue("?PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
 
-                                    command.ExecuteNonQuery();
-                                    additionalIncreaseOldSellPrice();
-                                }
+                                command.ExecuteNonQuery();
+                                additionalIncreaseOldSellPrice();
+
                             }
 
                             #endregion
@@ -381,49 +379,49 @@ namespace MainSystem
 
                             sellPrice = sellPrice + unNormalPercent;
 
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                if (gridView1.IsRowSelected(i))
-                                {
-                                    additionalIncreaseSellPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
 
-                                    string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + dataTable.Rows[i][0].ToString();
+                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
 
-                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                    command.Parameters.AddWithValue("@Sell_Price", sellPrice);
-                                    command.Parameters.AddWithValue("@ProfitRatio", 0.00);
-                                    command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
-                                    command.Parameters.AddWithValue("@Price", price);
-                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
-                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                                    command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + row[0].ToString();
 
-                                    command.ExecuteNonQuery();
-                                 
-                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
+                                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Sell_Price", sellPrice);
+                                command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
 
-                                    //insert into Archif table
-                                    query = "INSERT INTO oldsellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
-                                    command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                    command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
-                                    command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][1].ToString());
-                                    command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
-                                    command.Parameters.AddWithValue("@Price", price);
-                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
-                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                                    command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                    command.ExecuteNonQuery();
-                                    additionalIncreaseOldSellPrice();
-                                }
+                                command.ExecuteNonQuery();
+
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+
+                                //insert into Archif table
+                                query = "INSERT INTO oldsellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Sell_Price", calSellPrice());
+                                command.Parameters.AddWithValue("?Data_ID", row[1].ToString());
+                                command.Parameters.AddWithValue("@Sell_Discount", double.Parse(txtSell.Text));
+                                command.Parameters.AddWithValue("@Price", price);
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                additionalIncreaseOldSellPrice();
+
                             }
 
                             #endregion
@@ -443,111 +441,111 @@ namespace MainSystem
                             //double NormalPercent = double.Parse(txtNormal.Text);
                             //double UnNormalPercent = double.Parse(txtUnNormal.Text);
 
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                if (gridView1.IsRowSelected(i))
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+
+                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+
+                                String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Last_Price=@Last_Price,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();
+
+                                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                if (Price != -1 && ProfitRatio != -1)
                                 {
-                                    additionalIncreaseSellPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
-
-                                    String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Last_Price=@Last_Price,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + dataTable.Rows[i][0].ToString();
-
-                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "قطعى");
-                                    if (Price != -1 && ProfitRatio != -1)
-                                    {
-                                        command.Parameters.AddWithValue("@Sell_Price", Price + (Price * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", Price);
-                                    }
-                                    else if (Price == -1 && ProfitRatio != -1)
-                                    {
-                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
-                                        command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", xPrice);
-                                    }
-                                    else if (Price != -1 && ProfitRatio == -1)
-                                    {
-                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
-                                        command.Parameters.AddWithValue("@Sell_Price", Price + (Price * xProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", Price);
-                                    }
-                                    else if (Price == -1 && ProfitRatio == -1)
-                                    {
-                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
-                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
-                                        command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * xProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", xPrice);
-                                    }
-                                    command.Parameters.AddWithValue("@Sell_Discount", 0.00);
-                                    command.Parameters.AddWithValue("@Normal_Increase", 0.00);
-                                    command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
-                                    if (PercentageDelegate != -1)
-                                        command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
-                                    else
-                                        command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(dataTable.Rows[i]["نسبة المندوب"]));
-
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                    command.ExecuteNonQuery();
-                                  
-                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
-
-
-                                    //insert into Archif Table
-                                    query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?PercentageDelegate,?Date)";
-                                    command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "قطعى");
-                                    command.Parameters.AddWithValue("@Data_ID", dataTable.Rows[i][1]);
-                                    if (Price != -1 && ProfitRatio != -1)
-                                    {
-                                        command.Parameters.AddWithValue("@Sell_Price", Price + (Price * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", Price);
-                                    }
-                                    else if (Price == -1 && ProfitRatio != -1)
-                                    {
-                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
-                                        command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * ProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", xPrice);
-                                    }
-                                    else if (Price != -1 && ProfitRatio == -1)
-                                    {
-                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
-                                        command.Parameters.AddWithValue("@Sell_Price", Price + (Price * xProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", Price);
-                                    }
-                                    else if (Price == -1 && ProfitRatio == -1)
-                                    {
-                                        double xPrice = Convert.ToDouble(dataTable.Rows[i][7]);
-                                        double xProfitRatio = Convert.ToDouble(dataTable.Rows[i][12]);
-                                        command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * xProfitRatio / 100.0));
-                                        command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
-                                        command.Parameters.AddWithValue("@Price", xPrice);
-                                    }
-                                    command.Parameters.AddWithValue("@Sell_Discount", 0.00);
-                                    command.Parameters.AddWithValue("@Normal_Increase", 0.00);
-                                    command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
-                                    if (PercentageDelegate != -1)
-                                        command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
-                                    else
-                                        command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(dataTable.Rows[i]["نسبة المندوب"]));
-
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
-
-                                    command.ExecuteNonQuery();
-                                    additionalIncreaseOldSellPrice();
+                                    command.Parameters.AddWithValue("@Sell_Price", Price + (Price * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", Price);
                                 }
+                                else if (Price == -1 && ProfitRatio != -1)
+                                {
+                                    double xPrice = Convert.ToDouble(row[7]);
+                                    command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", xPrice);
+                                }
+                                else if (Price != -1 && ProfitRatio == -1)
+                                {
+                                    double xProfitRatio = Convert.ToDouble(row[12]);
+                                    command.Parameters.AddWithValue("@Sell_Price", Price + (Price * xProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", Price);
+                                }
+                                else if (Price == -1 && ProfitRatio == -1)
+                                {
+                                    double xPrice = Convert.ToDouble(row[7]);
+                                    double xProfitRatio = Convert.ToDouble(row[12]);
+                                    command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * xProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@Last_Price", Price + (Price * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", xPrice);
+                                }
+                                command.Parameters.AddWithValue("@Sell_Discount", 0.00);
+                                command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                                if (PercentageDelegate != -1)
+                                    command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
+                                else
+                                    command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(row["نسبة المندوب"]));
+
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+
+
+                                //insert into Archif Table
+                                query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?PercentageDelegate,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "قطعى");
+                                command.Parameters.AddWithValue("@Data_ID", row[1]);
+                                if (Price != -1 && ProfitRatio != -1)
+                                {
+                                    command.Parameters.AddWithValue("@Sell_Price", Price + (Price * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", Price);
+                                }
+                                else if (Price == -1 && ProfitRatio != -1)
+                                {
+                                    double xPrice = Convert.ToDouble(row[7]);
+                                    command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * ProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", ProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", xPrice);
+                                }
+                                else if (Price != -1 && ProfitRatio == -1)
+                                {
+                                    double xProfitRatio = Convert.ToDouble(row[12]);
+                                    command.Parameters.AddWithValue("@Sell_Price", Price + (Price * xProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", Price);
+                                }
+                                else if (Price == -1 && ProfitRatio == -1)
+                                {
+                                    double xPrice = Convert.ToDouble(row[7]);
+                                    double xProfitRatio = Convert.ToDouble(row[12]);
+                                    command.Parameters.AddWithValue("@Sell_Price", xPrice + (xPrice * xProfitRatio / 100.0));
+                                    command.Parameters.AddWithValue("@ProfitRatio", xProfitRatio);
+                                    command.Parameters.AddWithValue("@Price", xPrice);
+                                }
+                                command.Parameters.AddWithValue("@Sell_Discount", 0.00);
+                                command.Parameters.AddWithValue("@Normal_Increase", 0.00);
+                                command.Parameters.AddWithValue("@Categorical_Increase", 0.00);
+                                if (PercentageDelegate != -1)
+                                    command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
+                                else
+                                    command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(row["نسبة المندوب"]));
+
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+
+                                command.ExecuteNonQuery();
+                                additionalIncreaseOldSellPrice();
+
                             }
 
                             #endregion
@@ -555,94 +553,93 @@ namespace MainSystem
                         else
                         {
                             #region set priceList for collection of items
-                            
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                if (gridView1.IsRowSelected(i))
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+
+                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+
+                                string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Sell_Price=@Sell_Price*/"Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + row[0].ToString();
+
+                                MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                if (Sell_Discount != -1)
                                 {
-                                    additionalIncreaseSellPrice(Convert.ToInt16(dataTable.Rows[i][0].ToString()));
-
-                                    string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Sell_Price=@Sell_Price*/"Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + dataTable.Rows[i][0].ToString();
-
-                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                    command.Parameters.AddWithValue("@ProfitRatio", 0.00);
-                                    if (Sell_Discount != -1)
-                                    {
-                                        command.Parameters.AddWithValue("@Sell_Discount", Sell_Discount);
-                                    }
-                                    else
-                                    {
-                                        command.Parameters.AddWithValue("@Sell_Discount", Convert.ToDouble(dataTable.Rows[i]["خصم البيع"]));
-                                    }
-                                    if (Price != -1)
-                                        command.Parameters.AddWithValue("@Price", Price);
-                                    else
-                                        command.Parameters.AddWithValue("@Price", Convert.ToDouble(dataTable.Rows[i]["السعر"]));
-
-                                    command.Parameters.AddWithValue("@Last_Price", lastPrice());
-
-                                    if (Normal_Increase != -1)
-                                        command.Parameters.AddWithValue("@Normal_Increase", Normal_Increase);
-                                    else
-                                        command.Parameters.AddWithValue("@Normal_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة العادية"]));
-                                    if (Categorical_Increase != -1)
-                                        command.Parameters.AddWithValue("@Categorical_Increase", Categorical_Increase);
-                                    else
-                                        command.Parameters.AddWithValue("@Categorical_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة القطعية"]));
-
-                                    if (PercentageDelegate != -1)
-                                        command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
-                                    else
-                                        command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(dataTable.Rows[i]["نسبة المندوب"]));
-
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                    command.ExecuteNonQuery();
-
-                                    
-                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
-
-                                    //insert into Archif table
-                                    query = "INSERT INTO oldsellprice (Price_Type,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Price_Type,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
-                                    command = new MySqlCommand(query, dbconnection);
-                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                    command.Parameters.AddWithValue("@Data_ID", dataTable.Rows[i][1].ToString());
-                                    
-                                    command.Parameters.AddWithValue("@ProfitRatio", 0.00);
-                                    if (Sell_Discount != -1)
-                                    {
-                                        command.Parameters.AddWithValue("@Sell_Discount", Sell_Discount);
-                                    }
-                                    else
-                                    {
-                                        command.Parameters.AddWithValue("@Sell_Discount", Convert.ToDouble(dataTable.Rows[i]["خصم البيع"]));
-                                    }
-                                    if (Price != -1)
-                                        command.Parameters.AddWithValue("@Price", Price);
-                                    else
-                                        command.Parameters.AddWithValue("@Price", Convert.ToDouble(dataTable.Rows[i]["السعر"]));
-                                    
-                                    if (Normal_Increase != -1)
-                                        command.Parameters.AddWithValue("@Normal_Increase", Normal_Increase);
-                                    else
-                                        command.Parameters.AddWithValue("@Normal_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة العادية"]));
-                                    if (Categorical_Increase != -1)
-                                        command.Parameters.AddWithValue("@Categorical_Increase", Categorical_Increase);
-                                    else
-                                        command.Parameters.AddWithValue("@Categorical_Increase", Convert.ToDouble(dataTable.Rows[i]["الزيادة القطعية"]));
-
-                                    if (PercentageDelegate != -1)
-                                        command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
-                                    else
-                                        command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(dataTable.Rows[i]["نسبة المندوب"]));
-
-                                    command.Parameters.Add("?Date", MySqlDbType.Date);
-                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                    command.ExecuteNonQuery();
-                                    additionalIncreaseOldSellPrice();
+                                    command.Parameters.AddWithValue("@Sell_Discount", Sell_Discount);
                                 }
+                                else
+                                {
+                                    command.Parameters.AddWithValue("@Sell_Discount", Convert.ToDouble(row["خصم البيع"]));
+                                }
+                                if (Price != -1)
+                                    command.Parameters.AddWithValue("@Price", Price);
+                                else
+                                    command.Parameters.AddWithValue("@Price", Convert.ToDouble(row["السعر"]));
+
+                                command.Parameters.AddWithValue("@Last_Price", lastPrice());
+
+                                if (Normal_Increase != -1)
+                                    command.Parameters.AddWithValue("@Normal_Increase", Normal_Increase);
+                                else
+                                    command.Parameters.AddWithValue("@Normal_Increase", Convert.ToDouble(row["الزيادة العادية"]));
+                                if (Categorical_Increase != -1)
+                                    command.Parameters.AddWithValue("@Categorical_Increase", Categorical_Increase);
+                                else
+                                    command.Parameters.AddWithValue("@Categorical_Increase", Convert.ToDouble(row["الزيادة القطعية"]));
+
+                                if (PercentageDelegate != -1)
+                                    command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
+                                else
+                                    command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(row["نسبة المندوب"]));
+
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+
+
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+
+                                //insert into Archif table
+                                query = "INSERT INTO oldsellprice (Price_Type,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Price_Type,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
+                                command = new MySqlCommand(query, dbconnection);
+                                command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                command.Parameters.AddWithValue("@Data_ID", row[1].ToString());
+
+                                command.Parameters.AddWithValue("@ProfitRatio", 0.00);
+                                if (Sell_Discount != -1)
+                                {
+                                    command.Parameters.AddWithValue("@Sell_Discount", Sell_Discount);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue("@Sell_Discount", Convert.ToDouble(row["خصم البيع"]));
+                                }
+                                if (Price != -1)
+                                    command.Parameters.AddWithValue("@Price", Price);
+                                else
+                                    command.Parameters.AddWithValue("@Price", Convert.ToDouble(row["السعر"]));
+
+                                if (Normal_Increase != -1)
+                                    command.Parameters.AddWithValue("@Normal_Increase", Normal_Increase);
+                                else
+                                    command.Parameters.AddWithValue("@Normal_Increase", Convert.ToDouble(row["الزيادة العادية"]));
+                                if (Categorical_Increase != -1)
+                                    command.Parameters.AddWithValue("@Categorical_Increase", Categorical_Increase);
+                                else
+                                    command.Parameters.AddWithValue("@Categorical_Increase", Convert.ToDouble(row["الزيادة القطعية"]));
+
+                                if (PercentageDelegate != -1)
+                                    command.Parameters.AddWithValue("@PercentageDelegate", PercentageDelegate);
+                                else
+                                    command.Parameters.AddWithValue("@PercentageDelegate", Convert.ToDouble(row["نسبة المندوب"]));
+
+                                command.Parameters.Add("?Date", MySqlDbType.Date);
+                                command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.ExecuteNonQuery();
+                                additionalIncreaseOldSellPrice();
                             }
 
                             #endregion
