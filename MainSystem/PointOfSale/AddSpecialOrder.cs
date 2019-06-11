@@ -18,17 +18,17 @@ namespace MainSystem
         //int branchBillNumber = 0;
         int DashBillNum = 0;
         //int EmpBranchId = 0;
-        //int DelegateId = 0;
+        int DelegateId = 0;
         int ClientId = 0;
 
-        public AddSpecialOrder(int dashBillNum, int clientId/*, int empBranchId, int delegateId*/)
+        public AddSpecialOrder(int dashBillNum, int clientId/*, int empBranchId*/, int delegateId)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             DashBillNum = dashBillNum;
             ClientId = clientId;
             //EmpBranchId = empBranchId;
-            //DelegateId = delegateId;
+            DelegateId = delegateId;
         }
 
         private void textBox_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace MainSystem
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
                     com.Parameters.Add("@Dash_ID", MySqlDbType.Int16, 11).Value = DashBillNum;
                     com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
-                    com.Parameters["@Delegate_ID"].Value = UserControl.EmpID;
+                    com.Parameters["@Delegate_ID"].Value = DelegateId;
                     if (cutomerType == "عميل")
                     {
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);

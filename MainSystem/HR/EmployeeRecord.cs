@@ -63,6 +63,8 @@ namespace MainSystem
                 comDepartment.DisplayMember = dt.Columns["Department_Name"].ToString();
                 comDepartment.ValueMember = dt.Columns["Department_ID"].ToString();
                 comDepartment.Text = "";
+                comDepartment.Text = "نقطة البيع";
+                comDepartment.Enabled = false;
 
                 VScrollBar myScrollBar = new VScrollBar();
 
