@@ -58,13 +58,19 @@ namespace MainSystem
         bool flag3 = false;
         bool flag4 = false;
         bool flag5 = false;
+        
+        int empBranchID = 0;
+        int empID = 0;
 
         public Products_ReportCopy(MainForm Min, DataRow Row1, string Type)
         {
             try
             {
-
                 InitializeComponent();
+                
+                string supString = BaseData.BranchID;
+                empBranchID = Convert.ToInt16(supString);
+
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection2 = new MySqlConnection(connection.connectionString);
                 dbconnection3 = new MySqlConnection(connection.connectionString);
@@ -1321,8 +1327,29 @@ namespace MainSystem
                     int billnum = 0;
                     if (int.TryParse(txtBillNum.Text, out billnum))
                     {
-                        string q = "select * from dash where dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                         dbconnection5.Open();
+                        string qt = "select dash_delegate_bill.Delegate_ID from dash_delegate_bill inner join dash on dash_delegate_bill.Dash_ID=dash.Dash_ID where dash_delegate_bill.Bill_Number=" + billnum + " and dash_delegate_bill.Branch_ID=" + empBranchID + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                        MySqlCommand comt = new MySqlCommand(qt, dbconnection5);
+                        if (comt.ExecuteScalar() == null)
+                        {
+                            empID = 0;
+                            comClient.Text = "";
+                            txtPhone.Text = "";
+                            comClient.Enabled = true;
+                            txtPhone.Enabled = true;
+                            txtClientId.Enabled = true;
+                            txtClientId.Text = "";
+                            AddedToBill = false;
+                            billExist = false;
+                            mainBillExist = false;
+                            main.test(0);
+                            dbconnection5.Close();
+                            MessageBox.Show("يوجد خطا فى هذه الفاتورة");
+                            return;
+                        }
+                        empID = Convert.ToInt16(comt.ExecuteScalar().ToString());
+
+                        string q = "select * from dash where dash.Branch_ID=" + empBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                         MySqlCommand cc = new MySqlCommand(q, dbconnection5);
                         MySqlDataReader dr4 = cc.ExecuteReader();
                         if (dr4.HasRows)
@@ -1390,7 +1417,7 @@ namespace MainSystem
                                 }
                             }
 
-                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + empBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
                             dbconnection2.Open();
                             MySqlCommand com = new MySqlCommand(qu, dbconnection2);
                             dr2 = com.ExecuteReader();
@@ -1717,7 +1744,7 @@ namespace MainSystem
                                                             com.ExecuteNonQuery();
                                                         }
 
-                                                        query = "update dash set Customer_ID=@Customer_ID,Customer_Name=@Customer_Name where Bill_Number=" + billNo + " and Branch_ID=" + UserControl.EmpBranchID + " order by Dash_ID desc limit 1";
+                                                        query = "update dash set Customer_ID=@Customer_ID,Customer_Name=@Customer_Name where Bill_Number=" + billNo + " and Branch_ID=" + empBranchID + " order by Dash_ID desc limit 1";
                                                         com = new MySqlCommand(query, dbconnection);
                                                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16).Value = ClintID;
                                                         com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar).Value = comClient.Text;
@@ -1737,7 +1764,7 @@ namespace MainSystem
                                                 {
                                                     billExist = true;
 
-                                                    string q = "select Dash_ID from dash where Branch_ID=" + UserControl.EmpBranchID + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
+                                                    string q = "select Dash_ID from dash where Branch_ID=" + empBranchID + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
                                                     int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
 
@@ -1759,13 +1786,15 @@ namespace MainSystem
                                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
                                                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
                                                     com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = UserControl.EmpID;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = empID;
                                                     com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
                                                     com.ExecuteNonQuery();
 
                                                     dbconnection.Close();
                                                     txtQuantity.Text = "";
                                                     comStore.Text = "";
+                                                    txtRequiredQuantity.Text = "";
+                                                    txtNumCartons.Text = "";
                                                     main.test(billNo);
                                                 }
                                                 #endregion
@@ -1775,7 +1804,7 @@ namespace MainSystem
                                                 {
                                                     if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "بند")
                                                     {
-                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + empBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
                                                         MySqlCommand comm = new MySqlCommand(qq, dbconnection);
                                                         if (comm.ExecuteScalar() != null)
                                                         {
@@ -1786,7 +1815,7 @@ namespace MainSystem
                                                     }
                                                     else if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "طقم" || (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "عرض")
                                                     {
-                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + UserControl.EmpBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + empBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
                                                         MySqlCommand comm = new MySqlCommand(qq, dbconnection);
                                                         if (comm.ExecuteScalar() != null)
                                                         {
@@ -1796,7 +1825,7 @@ namespace MainSystem
                                                         }
                                                     }
 
-                                                    string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + UserControl.EmpBranchID + "  order by Dash_ID desc limit 1";
+                                                    string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + empBranchID + "  order by Dash_ID desc limit 1";
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
                                                     int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
 
@@ -1817,13 +1846,15 @@ namespace MainSystem
                                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
                                                     com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
                                                     com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = UserControl.EmpID;
+                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = empID;
                                                     com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
                                                     com.ExecuteNonQuery();
 
                                                     dbconnection.Close();
                                                     txtQuantity.Text = "";
                                                     comStore.Text = "";
+                                                    txtRequiredQuantity.Text = "";
+                                                    txtNumCartons.Text = "";
                                                     main.test(billNo);
                                                 }
                                                 #endregion
@@ -1831,14 +1862,14 @@ namespace MainSystem
                                                 if (UserControl.userType != 1)
                                                 {
                                                     dbconnection.Open();
-                                                    query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + UserControl.EmpID + " and delegate_customer.Customer_ID=" + ClintID;
+                                                    query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + empID + " and delegate_customer.Customer_ID=" + ClintID;
                                                     com = new MySqlCommand(query, dbconnection);
                                                     if (com.ExecuteScalar() == null)
                                                     {
                                                         query = "insert into delegate_customer (Customer_ID,Delegate_ID) values(@Customer_ID,@Delegate_ID)";
                                                         com = new MySqlCommand(query, dbconnection);
                                                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
-                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
+                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = empID;
                                                         com.ExecuteNonQuery();
                                                     }
                                                     dbconnection.Close();
@@ -1907,7 +1938,7 @@ namespace MainSystem
                     }
                     dbconnection.Close();
 
-                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, clientIdSO);
+                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, clientIdSO, empID);
                     soForm.ShowDialog();
                 }
                 else
@@ -2012,7 +2043,7 @@ namespace MainSystem
                 while (dr.Read())
                 {
                     int Delegate_ID = Convert.ToInt16(dr[0]);
-                    if (Delegate_ID == UserControl.EmpID)
+                    if (Delegate_ID == empID)
                     {
                         dbconnection.Close();
                         return true;

@@ -2256,7 +2256,7 @@ namespace MainSystem
                     }
                     dbconnection.Close();
 
-                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, clientIdSO);
+                    AddSpecialOrder soForm = new AddSpecialOrder(DashBillNum, clientIdSO, 0);
                     soForm.ShowDialog();
                 }
                 else

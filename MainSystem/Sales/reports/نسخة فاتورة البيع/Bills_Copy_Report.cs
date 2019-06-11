@@ -468,11 +468,11 @@ namespace MainSystem
             Print_CopyBill_Report f = new Print_CopyBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, delegateName + " " + "(" + TypeBuy + ")", billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, delegateName + " " + "(" + TypeBuy + ")", billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
             }
             f.ShowDialog();
         }
