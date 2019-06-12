@@ -305,7 +305,7 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    xtraTabPage = getTabPage("تسجيل شحنة");
+                    xtraTabPage = getTabPage("تسجيل شحنة عميل");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = MainSystem.Properties.Resources.unsave;
