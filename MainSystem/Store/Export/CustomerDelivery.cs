@@ -149,7 +149,21 @@ namespace MainSystem
         {
             try
             {
-                addNewRow(row);
+                if (row != null)
+                {
+                    if (Convert.ToDouble(txtRecivedQuantity.Text) < Convert.ToDouble(row["الكمية"]))
+                    {
+                        addNewRow(row);
+                        txtCode.Text = "";
+                        txtRecivedQuantity.Text = "";
+                        comStorePlace.DataSource = null;
+                    }
+                    else
+                    {
+                        txtRecivedQuantity.Text = "0";
+                        txtRecivedQuantity.Focus();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -325,6 +339,58 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
                 MessageBox.Show("ادخل بيانات صحيحة");
+            }
+        }
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridView1.RowCount > 0 && txtPermBillNumber.Text != "")
+                {
+                    dbconnection.Open();
+                    List<DeliveryPermissionClass> listOfData = new List<DeliveryPermissionClass>();
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(i));
+                        string query = "insert into customer_permissions_details (customer_permissions_ID,Data_ID,Date,Carton,DeliveredQuantity) values (@customer_permissions_ID,@Data_ID,@Date,@Carton,@DeliveredQuantity)";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@customer_permissions_ID", MySqlDbType.Int16);
+                        com.Parameters["@customer_permissions_ID"].Value = txtPermBillNumber.Text;
+                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                        com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
+                        com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
+                        com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
+                        com.Parameters.Add("@Carton", MySqlDbType.Double);
+                        com.Parameters["@Carton"].Value = row1[5].ToString();
+                        com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
+                        com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
+                        com.Parameters.Add("@Date", MySqlDbType.Date);
+                        com.Parameters["@Date"].Value = dateTimePicker1.Value.Date;
+
+                        com.ExecuteNonQuery();
+
+                        DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
+                        deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
+                        deliveryPermissionClass.Code = row1[1].ToString();
+                        deliveryPermissionClass.ItemName = row1[2].ToString();
+                        deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[3]);
+                        deliveryPermissionClass.Carton = Convert.ToDouble(row1[5]);
+                        deliveryPermissionClass.DeliveryQuantity = Convert.ToDouble(row1[4]);
+                        listOfData.Add(deliveryPermissionClass);
+
+                    }
+                    DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
+                    DeliveryPermissionReport.Show();
+                    clear();
+                }
+                else
+                {
+                    MessageBox.Show("insert correct value");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
