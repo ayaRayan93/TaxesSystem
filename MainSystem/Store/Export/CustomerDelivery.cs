@@ -261,9 +261,7 @@ namespace MainSystem
                         double totalQuantityDelivery = Convert.ToDouble(dataRow["DeliveryQuantity"].ToString());
                         double cellValue = Convert.ToDouble(e.Value);
                         double re = totalQuantityDelivery / cellValue;
-
                         view.SetRowCellValue(view.GetSelectedRows()[0], "NumOfCarton", re + "");
-
                     }
                     else if (e.Column.Name == "DeliveryQuantity")
                     {
@@ -274,8 +272,14 @@ namespace MainSystem
                         double re = 0;
                         if (Carton != 0)
                             re = cellValue / Carton;
-
-                        view.SetRowCellValue(view.GetSelectedRows()[0], "NumOfCarton", re + "");
+                        if ((double)dataRow["DeliveryQuantity"] < (double)dataRow["Quantity"])
+                        {
+                            view.SetRowCellValue(view.GetSelectedRows()[0], "NumOfCarton", re + "");
+                        }
+                        else
+                        {
+                            view.SetRowCellValue(view.GetSelectedRows()[0], "DeliveryQuantity",  "0");
+                        }
                     }
                     else if (e.Column.Name == "Carton")
                     {
@@ -302,16 +306,25 @@ namespace MainSystem
                 {
                     if (row != null)
                     {
-                        addNewRow(row);
-                        txtCode.Text = "";
-                        txtRecivedQuantity.Text = "";
-                        comStorePlace.DataSource = null;
+                        if (Convert.ToDouble(txtRecivedQuantity.Text) < Convert.ToDouble(row["الكمية"]))
+                        {
+                            addNewRow(row);
+                            txtCode.Text = "";
+                            txtRecivedQuantity.Text = "";
+                            comStorePlace.DataSource = null;
+                        }
+                        else
+                        {
+                            txtRecivedQuantity.Text = "0";
+                            txtRecivedQuantity.Focus();
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                MessageBox.Show("ادخل بيانات صحيحة");
             }
         }
 
@@ -364,8 +377,8 @@ namespace MainSystem
         }
         public void addNewRow(DataRow row)
         {
-            //if (!IsExist(row[0].ToString()))
-            //{
+            if (!IsExist(row[0].ToString(), row[5].ToString()))
+            {
                 gridView2.AddNewRow();
 
                 int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
@@ -386,7 +399,7 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtRecivedQuantity.Text);
                 }
             loaded = true;
-           // }
+            }
         }
         public void displayPermission()
         {
@@ -488,17 +501,15 @@ namespace MainSystem
                 displayBillDataFromCustomerBill(permissionNum);
             }
         }
-
-        public bool IsExist(string Data_ID)
+        public bool IsExist(string Data_ID,string carton)
         {
             for (int i = 0; i < gridView2.RowCount; i++)
             {
                 int rowHandle = gridView2.GetRowHandle(i);
                 DataRow ss = gridView2.GetDataRow(rowHandle);
-                if (ss[0].ToString() == Data_ID)
+                if (ss[0].ToString() == Data_ID&& ss[5].ToString()==carton)
                     return true;
             }
-            
             return false;
         }
         public void clear()
