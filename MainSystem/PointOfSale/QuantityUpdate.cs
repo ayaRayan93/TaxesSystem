@@ -86,7 +86,7 @@ namespace MainSystem
                             }
                         }
 
-                        Form prompt = new Form()
+                        /*Form prompt = new Form()
                         {
                             Width = 500,
                             Height = 220,
@@ -117,18 +117,18 @@ namespace MainSystem
                                 MySqlCommand comand = new MySqlCommand(query, conn);
                                 comand.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("dash_details", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, conn);
+                                UserControl.ItemRecord("dash_details", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, "", conn);
 
                                 conn.Close();
                                 MainForm.ProductsDetailsReport.loadFunc();
                                 this.Close();
                                 
-                            }
-                            else
-                            {
-                                MessageBox.Show("يجب كتابة السبب");
-                            }
-                        }
+                        //    }
+                        //    else
+                        //    {
+                        //        MessageBox.Show("يجب كتابة السبب");
+                        //    }
+                        //}
                     }
                     else
                     {
