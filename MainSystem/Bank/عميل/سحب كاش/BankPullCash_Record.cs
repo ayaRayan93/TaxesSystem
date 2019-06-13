@@ -1492,7 +1492,7 @@ namespace MainSystem
 
                 if (!flag)
                 {
-                    MessageBox.Show(dr["Data_ID"].ToString() + "not valid in store");
+                    MessageBox.Show(dr["Data_ID"].ToString() + " not valid in store");
                 }
                 flag = false;
             }
