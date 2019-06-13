@@ -653,6 +653,7 @@ namespace MainSystem
                                 {
                                     //print bill
                                     printBill();
+                                    printBillAccounting();
                                     flagBillNotFirstTime = false;
                                 }
 
@@ -1492,7 +1493,7 @@ namespace MainSystem
 
                 if (!flag)
                 {
-                    MessageBox.Show(dr["Data_ID"].ToString() + "not valid in store");
+                    MessageBox.Show(dr["Data_ID"].ToString() + " not valid in store");
                 }
                 flag = false;
             }
@@ -1562,6 +1563,70 @@ namespace MainSystem
             else if (customerID > 0)
             {
                 f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
+            }
+            f.ShowDialog();
+        }
+
+        void printBillAccounting()
+        {
+            List<ReturnedBill_ItemsAccounting> bi = new List<ReturnedBill_ItemsAccounting>();
+
+            dbconnection.Open();
+            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                ReturnedBill_ItemsAccounting item;
+                connectionReader3.Open();
+                if (dr["Type"].ToString() == "بند")
+                {
+                    string q = "SELECT data.Code,type.Type_Name,concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'Product_Name' FROM data INNER JOIN type ON data.Type_ID = type.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN groupo ON groupo.Group_ID = data.Group_ID LEFT JOIN color ON data.Color_ID = color.Color_ID LEFT JOIN size ON data.Size_ID = size.Size_ID LEFT JOIN sort ON data.Sort_ID = sort.Sort_ID where Data_ID=" + dr["Data_ID"].ToString();
+                    MySqlCommand c = new MySqlCommand(q, connectionReader3);
+                    MySqlDataReader dr1 = c.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        item = new ReturnedBill_ItemsAccounting() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = Convert.ToDouble(dr["SellDiscount"].ToString()) };
+                        bi.Add(item);
+                    }
+                    dr1.Close();
+                }
+                else if (dr["Type"].ToString() == "طقم")
+                {
+                    string q = "SELECT sets.Set_ID,sets.Set_Name FROM sets where Set_ID=" + dr["Data_ID"].ToString();
+                    MySqlCommand c = new MySqlCommand(q, connectionReader3);
+                    MySqlDataReader dr1 = c.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        item = new ReturnedBill_ItemsAccounting() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = Convert.ToDouble(dr["SellDiscount"].ToString()) };
+                        bi.Add(item);
+                    }
+                    dr1.Close();
+                }
+                else if (dr["Type"].ToString() == "عرض")
+                {
+                    string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
+                    MySqlCommand c = new MySqlCommand(q, connectionReader3);
+                    MySqlDataReader dr1 = c.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        item = new ReturnedBill_ItemsAccounting() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = 0 };
+                        bi.Add(item);
+                    }
+                    dr1.Close();
+                }
+                connectionReader3.Close();
+            }
+            dbconnection.Close();
+
+            Print_ReturnedBill_ReportAccounting f = new Print_ReturnedBill_ReportAccounting();
+            if (clientID > 0)
+            {
+                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
+            }
+            else if (customerID > 0)
+            {
+                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
             }
             f.ShowDialog();
         }

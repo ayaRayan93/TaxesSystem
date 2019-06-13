@@ -264,6 +264,32 @@
     <Compile Include="AdminControl.designer.cs">
       <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\عميل\فاتورة البيع للحسابات\Bill_ItemsAccounting.cs" />
+    <Compile Include="Bank\عميل\فاتورة البيع للحسابات\Print_Bill_ReportAccounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة البيع للحسابات\Print_Bill_ReportAccounting.designer.cs">
+      <DependentUpon>Print_Bill_ReportAccounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة البيع للحسابات\Print_InvoiceAccounting.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة البيع للحسابات\Print_InvoiceAccounting.designer.cs">
+      <DependentUpon>Print_InvoiceAccounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة المرتجع للحسابات\Print_ReturnedBill_ReportAccounting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة المرتجع للحسابات\Print_ReturnedBill_ReportAccounting.designer.cs">
+      <DependentUpon>Print_ReturnedBill_ReportAccounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة المرتجع للحسابات\Print_ReturnedInvoiceAccounting.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة المرتجع للحسابات\Print_ReturnedInvoiceAccounting.designer.cs">
+      <DependentUpon>Print_ReturnedInvoiceAccounting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\فاتورة المرتجع للحسابات\ReturnedBill_ItemsAccounting.cs" />
     <Compile Include="baseData.cs" />
     <Compile Include="PointOfSale\Bills_Delegate_Report.cs">
       <SubType>Form</SubType>
@@ -2213,6 +2239,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminControl.resx">
       <DependentUpon>AdminControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\فاتورة البيع للحسابات\Print_Bill_ReportAccounting.resx">
+      <DependentUpon>Print_Bill_ReportAccounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\فاتورة البيع للحسابات\Print_InvoiceAccounting.resx">
+      <DependentUpon>Print_InvoiceAccounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\فاتورة المرتجع للحسابات\Print_ReturnedBill_ReportAccounting.resx">
+      <DependentUpon>Print_ReturnedBill_ReportAccounting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\فاتورة المرتجع للحسابات\Print_ReturnedInvoiceAccounting.resx">
+      <DependentUpon>Print_ReturnedInvoiceAccounting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Print.resx">
       <DependentUpon>BankSupplierPullAgl_Print.cs</DependentUpon>
