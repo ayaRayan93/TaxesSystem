@@ -129,44 +129,92 @@ namespace MainSystem
                 dbconnection.Open();
                 if (loaded)
                 {
-                    loaded = false;
-                    txtType.Text = comType.SelectedValue.ToString();
-                    comFactory.Focus();
-
-                    filterFactory();
-                    dbconnection.Close();
-                    dbconnection.Open();
-                    filterGroup();
-                    
-                    if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
+                    if (AllDataIsSaved())
                     {
-                        string query = "select * from product";
-                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        comProduct.DataSource = dt;
-                        comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
-                        comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
-                        comProduct.Text = "";
-                        txtProduct.Text = "";
-                        label1.Text = "الصنف";
-                        filterProduct();
+                        loaded = false;
+                        txtType.Text = comType.SelectedValue.ToString();
+                        comFactory.Focus();
+
+                        filterFactory();
+                        dbconnection.Close();
+                        dbconnection.Open();
+                        filterGroup();
+
+                        if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
+                        {
+                            string query = "select * from product";
+                            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            comProduct.DataSource = dt;
+                            comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                            comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                            comProduct.Text = "";
+                            txtProduct.Text = "";
+                            label1.Text = "الصنف";
+                            filterProduct();
+                        }
+                        else
+                        {
+                            string query = "select * from size";
+                            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            comProduct.DataSource = dt;
+                            comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                            comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                            comProduct.Text = "";
+                            txtProduct.Text = "";
+                            label1.Text = "المقاس";
+                            filterProduct();
+                        }
+                        loaded = true;
                     }
                     else
                     {
-                        string query = "select * from size";
-                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        comProduct.DataSource = dt;
-                        comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
-                        comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
-                        comProduct.Text = "";
-                        txtProduct.Text = "";
-                        label1.Text = "المقاس";
-                        filterProduct();
+                        DialogResult dialogResult = MessageBox.Show("هناك بيانات لم يتم حفظها هل تريد التجاهل ؟. ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            loaded = false;
+                            txtType.Text = comType.SelectedValue.ToString();
+                            comFactory.Focus();
+
+                            filterFactory();
+                            dbconnection.Close();
+                            dbconnection.Open();
+                            filterGroup();
+
+                            if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
+                            {
+                                string query = "select * from product";
+                                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+                                comProduct.DataSource = dt;
+                                comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                                comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                                comProduct.Text = "";
+                                txtProduct.Text = "";
+                                label1.Text = "الصنف";
+                                filterProduct();
+                            }
+                            else
+                            {
+                                string query = "select * from size";
+                                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                DataTable dt = new DataTable();
+                                da.Fill(dt);
+                                comProduct.DataSource = dt;
+                                comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                                comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                                comProduct.Text = "";
+                                txtProduct.Text = "";
+                                label1.Text = "المقاس";
+                                filterProduct();
+                            }
+                            loaded = true;
+                        }
                     }
-                    loaded = true;
                 }
             }
             catch (Exception ex)
@@ -181,13 +229,30 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    loaded = false;
-                    dbconnection.Close();
-                    dbconnection.Open();
-                    txtGroup.Text = comGroup.SelectedValue.ToString();
-                    comProduct.Focus();
-                    filterProduct();
-                    loaded = true;
+                    if (AllDataIsSaved())
+                    {
+                        loaded = false;
+                        dbconnection.Close();
+                        dbconnection.Open();
+                        txtGroup.Text = comGroup.SelectedValue.ToString();
+                        comProduct.Focus();
+                        filterProduct();
+                        loaded = true;
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("هناك بيانات لم يتم حفظها هل تريد التجاهل ؟. ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            loaded = false;
+                            dbconnection.Close();
+                            dbconnection.Open();
+                            txtGroup.Text = comGroup.SelectedValue.ToString();
+                            comProduct.Focus();
+                            filterProduct();
+                            loaded = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -202,14 +267,32 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    loaded = false;
-                    dbconnection.Close();
-                    dbconnection.Open();
-                    txtFactory.Text = comFactory.SelectedValue.ToString();
-                    comGroup.Focus();
-                    filterGroup();
-                    filterProduct();
-                    loaded = true;
+                    if (AllDataIsSaved())
+                    {
+                        loaded = false;
+                        dbconnection.Close();
+                        dbconnection.Open();
+                        txtFactory.Text = comFactory.SelectedValue.ToString();
+                        comGroup.Focus();
+                        filterGroup();
+                        filterProduct();
+                        loaded = true;
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("هناك بيانات لم يتم حفظها هل تريد التجاهل ؟. ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            loaded = false;
+                            dbconnection.Close();
+                            dbconnection.Open();
+                            txtFactory.Text = comFactory.SelectedValue.ToString();
+                            comGroup.Focus();
+                            filterGroup();
+                            filterProduct();
+                            loaded = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -224,12 +307,28 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    loaded = false;
-                    dbconnection.Close();
-                    dbconnection.Open();
-                    txtProduct.Text = comProduct.SelectedValue.ToString();
-                    comType.Focus();
-                    loaded = true;
+                    if (AllDataIsSaved())
+                    {
+                        loaded = false;
+                        dbconnection.Close();
+                        dbconnection.Open();
+                        txtProduct.Text = comProduct.SelectedValue.ToString();
+                        comType.Focus();
+                        loaded = true;
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("هناك بيانات لم يتم حفظها هل تريد التجاهل ؟. ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            loaded = false;
+                            dbconnection.Close();
+                            dbconnection.Open();
+                            txtProduct.Text = comProduct.SelectedValue.ToString();
+                            comType.Focus();
+                            loaded = true;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1459,6 +1558,24 @@ namespace MainSystem
                 comProduct.Text = "";
                 txtProduct.Text = "";
             }
+        }
+
+
+        public bool AllDataIsSaved()
+        {
+            if ((ListOfSavedDataIDs.Count - ListOfEditDataIDs.Count) != mdt.Rows.Count)
+            {
+                for (int i = 0; i < mdt.Rows.Count; i++)
+                {
+                    if (IsEdited((int)mdt.Rows[i][0]) || !IsSaved((int)mdt.Rows[i][0]))
+                    {
+                        return false;
+                    }
+
+                }
+
+            }
+            return true;
         }
     }
 
