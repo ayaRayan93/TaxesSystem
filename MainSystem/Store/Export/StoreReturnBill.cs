@@ -427,7 +427,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        DataRow row ;
+        DataRow row;
         int rowHandel1;
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
@@ -583,6 +583,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         //functions
         public void displayData()
         {

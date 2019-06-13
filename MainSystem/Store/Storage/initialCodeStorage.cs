@@ -138,7 +138,7 @@ namespace MainSystem
                     dbconnection.Open();
                     filterGroup();
                     
-                    if (txtType.Text != "1")
+                    if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                     {
                         string query = "select * from product";
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -1397,7 +1397,7 @@ namespace MainSystem
             {
                 if (comGroup.Text != "" || comFactory.Text != "" || comType.Text != "")
                 {
-                    if (txtType.Text != "1")
+                    if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                     {
                         string supQuery = "";
 
@@ -1431,7 +1431,7 @@ namespace MainSystem
                         {
                             supQuery += " and Group_ID=" + txtGroup.Text + "";
                         }
-                        string query = "select * from size inner join type_factory on size.Factory_ID=type_factory.Factory_ID where type_factory.Type_ID=1 " + supQuery;
+                        string query = "select * from size inner join type_factory on size.Factory_ID=type_factory.Factory_ID where type_factory.Type_ID="+txtType.Text + supQuery;
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -1449,7 +1449,7 @@ namespace MainSystem
         {
             if (comFactory.Text != "")
             {
-                string query = "select * from size where Factory_ID=" + comFactory.SelectedValue;
+                string query = "select * from size size inner join type_factory on size.Factory_ID=type_factory.Factory_ID where Type_ID=" + txtType.Text+" Factory_ID=" + comFactory.SelectedValue;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

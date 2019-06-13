@@ -71,8 +71,8 @@
             this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DeliveryQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
@@ -261,6 +261,7 @@
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox3.Controls.Add(this.btnPut);
+            this.groupBox3.Controls.Add(this.btnPrint);
             this.groupBox3.Controls.Add(this.btnRemove);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtRecivedQuantity);
@@ -283,7 +284,7 @@
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
             this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
             this.btnPut.ImageActive = null;
-            this.btnPut.Location = new System.Drawing.Point(28, 34);
+            this.btnPut.Location = new System.Drawing.Point(146, 39);
             this.btnPut.Name = "btnPut";
             this.btnPut.Size = new System.Drawing.Size(57, 34);
             this.btnPut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -298,7 +299,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
             this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
-            this.btnRemove.Location = new System.Drawing.Point(94, 35);
+            this.btnRemove.Location = new System.Drawing.Point(212, 40);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(59, 34);
             this.btnRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -333,7 +334,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label8.Location = new System.Drawing.Point(375, 40);
+            this.label8.Location = new System.Drawing.Point(438, 47);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 19);
             this.label8.TabIndex = 220;
@@ -344,7 +345,7 @@
             this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 12F);
             this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(226, 35);
+            this.comStorePlace.Location = new System.Drawing.Point(289, 42);
             this.comStorePlace.Name = "comStorePlace";
             this.comStorePlace.Size = new System.Drawing.Size(146, 27);
             this.comStorePlace.TabIndex = 219;
@@ -420,10 +421,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 412F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 414F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnPrint, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 737);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -439,7 +439,6 @@
             this.bunifuTileButton1.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.bunifuTileButton1.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
             this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.Save_32;
@@ -447,10 +446,10 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(514, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(415, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(120, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(100, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -460,7 +459,6 @@
             this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
@@ -468,11 +466,12 @@
             this.btnPrint.ImageZoom = 25;
             this.btnPrint.LabelPosition = 18;
             this.btnPrint.LabelText = "طباعة تقرير";
-            this.btnPrint.Location = new System.Drawing.Point(414, 0);
+            this.btnPrint.Location = new System.Drawing.Point(27, 26);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 45);
+            this.btnPrint.Size = new System.Drawing.Size(83, 45);
             this.btnPrint.TabIndex = 2;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // panel1
             // 
@@ -636,14 +635,6 @@
             this.Quantity.Visible = true;
             this.Quantity.VisibleIndex = 2;
             // 
-            // Carton
-            // 
-            this.Carton.Caption = "الكرتنة";
-            this.Carton.FieldName = "Carton";
-            this.Carton.Name = "Carton";
-            this.Carton.Visible = true;
-            this.Carton.VisibleIndex = 4;
-            // 
             // DeliveryQuantity
             // 
             this.DeliveryQuantity.Caption = "الكمية المستلمة ب المتر/القطعة";
@@ -651,6 +642,14 @@
             this.DeliveryQuantity.Name = "DeliveryQuantity";
             this.DeliveryQuantity.Visible = true;
             this.DeliveryQuantity.VisibleIndex = 3;
+            // 
+            // Carton
+            // 
+            this.Carton.Caption = "الكرتنة";
+            this.Carton.FieldName = "Carton";
+            this.Carton.Name = "Carton";
+            this.Carton.Visible = true;
+            this.Carton.VisibleIndex = 4;
             // 
             // NumOfCarton
             // 
