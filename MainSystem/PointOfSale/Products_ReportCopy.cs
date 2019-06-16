@@ -1030,6 +1030,7 @@ namespace MainSystem
                 txtCodeSearch2.Text = "";
                 txtCodeSearch3.Text = "";
                 txtCodeSearch4.Text = "";
+                txtCodeSearch5.Text = "";
                 txtColor.Text = "";
                 txtSize.Text = "";
                 txtSort.Text = "";
