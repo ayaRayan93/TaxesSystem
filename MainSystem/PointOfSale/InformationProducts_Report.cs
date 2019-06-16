@@ -577,7 +577,7 @@ namespace MainSystem
                                 supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue.ToString();
                                 subQuery1 += " and Factory_ID=" + comFactory.SelectedValue.ToString();
                             }
-                            flagProduct = false;
+                            //flagProduct = false;
                             string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + supQuery + "  order by product.Product_ID";
                             MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
                             DataTable dt3 = new DataTable();
