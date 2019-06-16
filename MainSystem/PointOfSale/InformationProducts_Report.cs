@@ -209,29 +209,29 @@ namespace MainSystem
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
                 {
-                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
-                    MySqlDataReader dr2 = comand2.ExecuteReader();
-                    while (dr2.Read())
+                    gridView1.AddNewRow();
+                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    if (gridView1.IsNewItemRow(rowHandle))
                     {
-                        gridView1.AddNewRow();
-                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                        if (gridView1.IsNewItemRow(rowHandle))
-                        {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
 
+                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                        MySqlDataReader dr2 = comand2.ExecuteReader();
+                        while (dr2.Read())
+                        {
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
                         }
+                        dr2.Close();
                     }
-                    dr2.Close();
                 }
                 dr.Close();
                 if (gridView1.IsLastVisibleRow)
@@ -266,29 +266,29 @@ namespace MainSystem
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
                 {
-                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
-                    MySqlDataReader dr2 = comand2.ExecuteReader();
-                    while (dr2.Read())
+                    gridView1.AddNewRow();
+                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    if (gridView1.IsNewItemRow(rowHandle))
                     {
-                        gridView1.AddNewRow();
-                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                        if (gridView1.IsNewItemRow(rowHandle))
-                        {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
 
+                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                        MySqlDataReader dr2 = comand2.ExecuteReader();
+                        while (dr2.Read())
+                        {
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
                         }
+                        dr2.Close();
                     }
-                    dr2.Close();
                 }
                 dr.Close();
                 #endregion
@@ -426,29 +426,29 @@ namespace MainSystem
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
                     {
-                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
-                        MySqlDataReader dr2 = comand2.ExecuteReader();
-                        while (dr2.Read())
+                        gridView1.AddNewRow();
+                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                        if (gridView1.IsNewItemRow(rowHandle))
                         {
-                            gridView1.AddNewRow();
-                            int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                            if (gridView1.IsNewItemRow(rowHandle))
-                            {
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
 
+                            string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+                            MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                            MySqlDataReader dr2 = comand2.ExecuteReader();
+                            while (dr2.Read())
+                            {
                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
                             }
+                            dr2.Close();
                         }
-                        dr2.Close();
                     }
                     dr.Close();
                     if (gridView1.IsLastVisibleRow)
@@ -476,6 +476,7 @@ namespace MainSystem
                     case "comType":
                         if (loaded)
                         {
+                            txtCodeSearch1.Text = comType.SelectedValue.ToString();
                             string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
                             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                             DataTable dt = new DataTable();
@@ -484,6 +485,7 @@ namespace MainSystem
                             comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
                             comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                             comFactory.Text = "";
+                            txtCodeSearch2.Text = "";
                             dbconnection.Close();
                             dbconnection.Open();
                             query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -509,6 +511,7 @@ namespace MainSystem
                                 comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
                                 comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
                                 comGroup.Text = "";
+                                txtCodeSearch3.Text = "";
                                 groupFlage = true;
                             }
                             factoryFlage = true;
@@ -527,6 +530,7 @@ namespace MainSystem
                     case "comFactory":
                         if (factoryFlage)
                         {
+                            txtCodeSearch2.Text = comFactory.SelectedValue.ToString();
                             dbconnection.Close();
                             dbconnection.Open();
                             string query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -543,6 +547,7 @@ namespace MainSystem
                                 comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
                                 comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
                                 comGroup.Text = "";
+                                txtCodeSearch3.Text = "";
                             }
 
                             groupFlage = true;
@@ -561,6 +566,7 @@ namespace MainSystem
                     case "comGroup":
                         if (groupFlage)
                         {
+                            txtCodeSearch3.Text = comGroup.SelectedValue.ToString();
                             string supQuery = "", subQuery1 = "";
                             if (comType.SelectedValue.ToString() != "")
                             {
@@ -571,6 +577,7 @@ namespace MainSystem
                                 supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue.ToString();
                                 subQuery1 += " and Factory_ID=" + comFactory.SelectedValue.ToString();
                             }
+                            flagProduct = false;
                             string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + supQuery + "  order by product.Product_ID";
                             MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
                             DataTable dt3 = new DataTable();
@@ -590,13 +597,17 @@ namespace MainSystem
                             comSize.Text = "";
 
                             comProduct.Focus();
+                            txtCodeSearch4.Text = "";
                             flagProduct = true;
                         }
                         break;
 
                     case "comProduct":
-                        comColor.Focus();
-
+                        if(flagProduct)
+                        {
+                            txtCodeSearch4.Text = comProduct.SelectedValue.ToString();
+                            comColor.Focus();
+                        }
                         break;
 
                     case "comColor":
@@ -698,29 +709,29 @@ namespace MainSystem
                                     MySqlDataReader dr = comand.ExecuteReader();
                                     while (dr.Read())
                                     {
-                                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
-                                        MySqlDataReader dr2 = comand2.ExecuteReader();
-                                        while (dr2.Read())
+                                        gridView1.AddNewRow();
+                                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                                        if (gridView1.IsNewItemRow(rowHandle))
                                         {
-                                            gridView1.AddNewRow();
-                                            int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                                            if (gridView1.IsNewItemRow(rowHandle))
-                                            {
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
 
+                                            string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+                                            MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                                            MySqlDataReader dr2 = comand2.ExecuteReader();
+                                            while (dr2.Read())
+                                            {
                                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
                                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
                                                 gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
                                             }
+                                            dr2.Close();
                                         }
-                                        dr2.Close();
                                     }
                                     dr.Close();
                                     if (gridView1.IsLastVisibleRow)
@@ -1532,6 +1543,11 @@ namespace MainSystem
         private void btnNewChosen_Click(object sender, EventArgs e)
         {
             clearCom();
+            txtCodeSearch1.Text = "";
+            txtCodeSearch2.Text = "";
+            txtCodeSearch3.Text = "";
+            txtCodeSearch4.Text = "";
+            txtCodeSearch5.Text = "";
             gridControl1.DataSource = null;
         }
 
