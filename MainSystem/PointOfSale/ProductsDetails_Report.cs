@@ -249,6 +249,13 @@ namespace MainSystem
             }
             gridView1.Columns["الكود"].Width = 180;
             gridView1.Columns["الاسم"].Width = 270;
+
+            double sum = 0;
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString());
+            }
+            labTotalQuantity.Text = "اجمالى الكميات = " + sum.ToString();
         }
 
         void delete(GridView view)
@@ -361,6 +368,13 @@ namespace MainSystem
                     }
                     gridView1.Columns["الكود"].Width = 180;
                     gridView1.Columns["الاسم"].Width = 270;
+
+                    double sum = 0;
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString());
+                    }
+                    labTotalQuantity.Text = "اجمالى الكميات = " + sum.ToString();
 
                     main.test(/*delegateID,*/ billNum);
                 }
