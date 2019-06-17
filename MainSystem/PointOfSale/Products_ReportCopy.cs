@@ -352,7 +352,10 @@ namespace MainSystem
                                     comGroup.Text = "";
                                     txtCodeSearch3.Text = "";
                                 }
-
+                                else
+                                {
+                                    filterProduct();
+                                }
                                 groupFlage = true;
 
                                 string query2 = "select * from size where Factory_ID=" + txtCodeSearch2.Text;
@@ -1232,7 +1235,6 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection6.Close();
         }
-
         private void labSearch_Click(object sender, EventArgs e)
         {
             try
@@ -1251,7 +1253,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -1317,7 +1318,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void txtBillNum_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -1953,7 +1953,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void txtRequiredQuantity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -2291,16 +2290,36 @@ namespace MainSystem
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
         }
+        public void filterProduct()
+        {
+            if (comType.Text != "")
+            {
+                if (comGroup.Text != "" || comFactory.Text != "" || comType.Text != "")
+                {
+                    string supQuery = "";
 
+                    supQuery = " product.Type_ID=" + comType.SelectedValue + "";
+                    if (comFactory.Text != "")
+                    {
+                        supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue + "";
+                    }
+                    else if (comGroup.Text != "")
+                    {
+                        supQuery += " and product_factory_group.Group_ID=" + comGroup.SelectedValue + "";
+                    }
+                    string query = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where  " + supQuery + "   order by product.Product_ID";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comProduct.DataSource = dt;
+                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                    comProduct.Text = "";
 
+                }
+            }
 
-
-
-
-
-
-
-
-
+        }
+        
     }
 }

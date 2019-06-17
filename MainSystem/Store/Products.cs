@@ -38,8 +38,6 @@ namespace MainSystem
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection1 = new MySqlConnection(connection.connectionString);
                 this.storeMainForm = storeMainForm;
-               
-               
             }
             catch (Exception ex)
             {
@@ -120,7 +118,7 @@ namespace MainSystem
                     dbconnection.Open();
                     filterGroup();
                   
-                    if (txtType.Text != "1")
+                    if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                     {
                         string query = "select * from product";
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);

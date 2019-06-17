@@ -28,8 +28,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 this.salesMainForm = salesMainForm;
-                dbconnection = new MySqlConnection(connection.connectionString);
-             
+                dbconnection = new MySqlConnection(connection.connectionString);         
             }
             catch (Exception ex)
             {
@@ -214,7 +213,10 @@ namespace MainSystem
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
                                 }
-
+                                else
+                                {
+                                    filterProduct();
+                                }
                                 groupFlage = true;
 
                                 string query2 = "select * from size where Factory_ID=" + txtFactory.Text;
@@ -666,6 +668,36 @@ namespace MainSystem
             fQuery = "";
         }
 
-       
+        public void filterProduct()
+        {
+            if (comType.Text != "")
+            {
+                if (comGroup.Text != "" || comFactory.Text != "" || comType.Text != "")
+                {
+                    string supQuery = "";
+
+                    supQuery = " product.Type_ID=" + comType.SelectedValue + "";
+                    if (comFactory.Text != "")
+                    {
+                        supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue + "";
+                    }
+                    else if (comGroup.Text != "")
+                    {
+                        supQuery += " and product_factory_group.Group_ID=" + comGroup.SelectedValue + "";
+                    }
+                    string query = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where  " + supQuery + "   order by product.Product_ID";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comProduct.DataSource = dt;
+                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                    comProduct.Text = "";
+
+                }
+            }
+
+        }
+
     }
 }

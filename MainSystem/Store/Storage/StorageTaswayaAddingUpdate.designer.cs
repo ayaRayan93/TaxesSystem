@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panContainer = new System.Windows.Forms.Panel();
+            this.txtItemNote = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.labVaddingMeter = new System.Windows.Forms.Label();
             this.labVcode = new System.Windows.Forms.Label();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
@@ -77,8 +79,6 @@
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtItemNote = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -117,6 +117,27 @@
             this.panContainer.Name = "panContainer";
             this.panContainer.Size = new System.Drawing.Size(950, 104);
             this.panContainer.TabIndex = 39;
+            // 
+            // txtItemNote
+            // 
+            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtItemNote.Location = new System.Drawing.Point(619, 51);
+            this.txtItemNote.Name = "txtItemNote";
+            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
+            this.txtItemNote.TabIndex = 240;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(798, 51);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(48, 19);
+            this.label9.TabIndex = 241;
+            this.label9.Text = "ملحوظة";
             // 
             // labVaddingMeter
             // 
@@ -492,7 +513,7 @@
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -539,7 +560,7 @@
             this.comProduct.Name = "comProduct";
             this.comProduct.Size = new System.Drawing.Size(120, 24);
             this.comProduct.TabIndex = 9;
-            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comProduct_SelectedValueChanged);
             // 
             // comFactory
             // 
@@ -548,7 +569,7 @@
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
-            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
             // 
             // label4
             // 
@@ -587,7 +608,7 @@
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comGroup_SelectedValueChanged);
             // 
             // comStore
             // 
@@ -748,27 +769,6 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
-            // 
-            // txtItemNote
-            // 
-            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtItemNote.Location = new System.Drawing.Point(619, 51);
-            this.txtItemNote.Name = "txtItemNote";
-            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
-            this.txtItemNote.TabIndex = 240;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(798, 51);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(48, 19);
-            this.label9.TabIndex = 241;
-            this.label9.Text = "ملحوظة";
             // 
             // StorageTaswayaAddingUpdate
             // 
