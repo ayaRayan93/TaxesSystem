@@ -249,8 +249,8 @@ namespace MainSystem
         {
             try
             {
-                // || UserControl.userType == 1
-                if (UserControl.userType == 5)
+                
+                if (UserControl.userType == 5 || UserControl.userType == 1)
                 {
                     if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePOS))
                     {

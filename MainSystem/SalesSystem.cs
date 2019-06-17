@@ -45,7 +45,7 @@ namespace MainSystem
 
                 EmpBranchId = UserControl.EmpBranchID;
 
-                if (UserControl.userType == 7 || UserControl.userType == 6 || UserControl.userType == 1)
+                if (/*UserControl.userType == 7 || */UserControl.userType == 6 || UserControl.userType == 1)
                 {
                     SpecialOrdersFunction();
 
@@ -66,7 +66,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -97,7 +97,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -128,7 +128,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 13)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 13*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -187,7 +187,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -224,7 +224,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -262,7 +262,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -299,7 +299,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -336,7 +336,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -373,7 +373,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -410,7 +410,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -447,7 +447,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -483,7 +483,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -520,7 +520,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     //if (flag == false)
                     //{
@@ -566,36 +566,38 @@ namespace MainSystem
         {
             try
             {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-
-                if (!xtraTabControlSalesContent.Visible)
-                    xtraTabControlSalesContent.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage("حركة عملاء لفترة");
-              
-                if (xtraTabPage == null)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("حركة عملاء لفترة");
-                    xtraTabPage = getTabPage("حركة عملاء لفترة");
-                    xtraTabPage.RightToLeft = RightToLeft.No;
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage("حركة عملاء لفترة");
+
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("حركة عملاء لفترة");
+                        xtraTabPage = getTabPage("حركة عملاء لفترة");
+                        xtraTabPage.RightToLeft = RightToLeft.No;
+                    }
+                    {
+                        xtraTabPage.RightToLeft = RightToLeft.No;
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                    customerBills objForm = new customerBills();
+                    objForm.TopLevel = false;
+
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
                 }
-                {
-                    xtraTabPage.RightToLeft = RightToLeft.No;
-                }
-                xtraTabPage.Controls.Clear();
-
-                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-
-                customerBills objForm = new customerBills();
-                objForm.TopLevel = false;
-
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
-               
             }
             catch (Exception ex)
             {
@@ -606,35 +608,38 @@ namespace MainSystem
         {
             try
             {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-                navBarItem.Appearance.BackColor = Color.White;
-
-                if (!xtraTabControlSalesContent.Visible)
-                    xtraTabControlSalesContent.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage("كشف حساب عميل");
-                if (xtraTabPage == null)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("كشف حساب عميل");
-                    xtraTabPage = getTabPage("كشف حساب عميل");
-                    xtraTabPage.RightToLeft = RightToLeft.No;
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+                    navBarItem.Appearance.BackColor = Color.White;
+
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage("كشف حساب عميل");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("كشف حساب عميل");
+                        xtraTabPage = getTabPage("كشف حساب عميل");
+                        xtraTabPage.RightToLeft = RightToLeft.No;
+                    }
+                    {
+                        xtraTabPage.RightToLeft = RightToLeft.No;
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                    AccountStatement objForm = new AccountStatement(this);
+                    objForm.TopLevel = false;
+
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
                 }
-                {
-                    xtraTabPage.RightToLeft = RightToLeft.No;
-                }
-                xtraTabPage.Controls.Clear();
-
-                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-
-                AccountStatement objForm = new AccountStatement(this);
-                objForm.TopLevel = false;
-
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
             }
             catch (Exception ex)
             {
@@ -645,30 +650,33 @@ namespace MainSystem
         {
             try
             {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-
-                if (!xtraTabControlSalesContent.Visible)
-                    xtraTabControlSalesContent.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage("تسوية فواتير الاجل");
-                if (xtraTabPage == null)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("تسوية فواتير الاجل");
-                    xtraTabPage = getTabPage("تسوية فواتير الاجل");
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage("تسوية فواتير الاجل");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("تسوية فواتير الاجل");
+                        xtraTabPage = getTabPage("تسوية فواتير الاجل");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                    checkPaidBillsForm objForm = new checkPaidBillsForm();
+                    objForm.TopLevel = false;
+
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
                 }
-                xtraTabPage.Controls.Clear();
-
-                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-
-                checkPaidBillsForm objForm = new checkPaidBillsForm();
-                objForm.TopLevel = false;
-
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
             }
             catch (Exception ex)
             {
@@ -679,24 +687,27 @@ namespace MainSystem
         {
             try
             {
-                if (!xtraTabControlSalesContent.Visible)
-                    xtraTabControlSalesContent.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage("تسويات العملاء");
-                if (xtraTabPage == null)
+                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("تسويات العملاء");
-                    xtraTabPage = getTabPage("تسويات العملاء");
-                }
-                xtraTabPage.Controls.Clear();
-                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
 
-                CustomerTaswayaReport objForm = new CustomerTaswayaReport(this);
-                objForm.TopLevel = false;
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
+                    XtraTabPage xtraTabPage = getTabPage("تسويات العملاء");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("تسويات العملاء");
+                        xtraTabPage = getTabPage("تسويات العملاء");
+                    }
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                    CustomerTaswayaReport objForm = new CustomerTaswayaReport(this);
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
             }
             catch (Exception ex)
             {
@@ -1106,7 +1117,7 @@ namespace MainSystem
 
         public void SpecialOrdersFunction()
         {
-            if (UserControl.userType == 7 || UserControl.userType == 6 || UserControl.userType == 1)
+            if (/*UserControl.userType == 7 || */UserControl.userType == 6 || UserControl.userType == 1)
             {
                 dbconnection.Close();
                 //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 
