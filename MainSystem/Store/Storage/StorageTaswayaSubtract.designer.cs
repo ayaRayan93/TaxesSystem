@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panContainer = new System.Windows.Forms.Panel();
+            this.txtItemNote = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.labVaddingMeter = new System.Windows.Forms.Label();
             this.labVcode = new System.Windows.Forms.Label();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
@@ -59,10 +61,10 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtFactory = new System.Windows.Forms.TextBox();
             this.comType = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtType = new System.Windows.Forms.TextBox();
             this.txtProduct = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labe1 = new System.Windows.Forms.Label();
             this.comProduct = new System.Windows.Forms.ComboBox();
             this.comFactory = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@
             this.btnNewPermission = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtItemNote = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.panContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -118,6 +118,27 @@
             this.panContainer.Name = "panContainer";
             this.panContainer.Size = new System.Drawing.Size(950, 104);
             this.panContainer.TabIndex = 39;
+            // 
+            // txtItemNote
+            // 
+            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtItemNote.Location = new System.Drawing.Point(619, 50);
+            this.txtItemNote.Name = "txtItemNote";
+            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
+            this.txtItemNote.TabIndex = 238;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(798, 50);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(48, 19);
+            this.label9.TabIndex = 239;
+            this.label9.Text = "ملحوظة";
             // 
             // labVaddingMeter
             // 
@@ -429,10 +450,10 @@
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.txtFactory);
             this.groupBox1.Controls.Add(this.comType);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtType);
             this.groupBox1.Controls.Add(this.txtProduct);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.labe1);
             this.groupBox1.Controls.Add(this.comProduct);
             this.groupBox1.Controls.Add(this.comFactory);
             this.groupBox1.Controls.Add(this.label4);
@@ -493,18 +514,18 @@
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedIndexChanged);
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(315, 59);
-            this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(46, 19);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "الصنف";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(315, 59);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(46, 19);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "الصنف";
             // 
             // txtType
             // 
@@ -522,16 +543,16 @@
             this.txtProduct.TabIndex = 10;
             this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // label1
+            // labe1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(558, 30);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(29, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "نوع";
+            this.labe1.AutoSize = true;
+            this.labe1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labe1.Location = new System.Drawing.Point(558, 30);
+            this.labe1.Name = "labe1";
+            this.labe1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labe1.Size = new System.Drawing.Size(29, 19);
+            this.labe1.TabIndex = 2;
+            this.labe1.Text = "نوع";
             // 
             // comProduct
             // 
@@ -540,7 +561,7 @@
             this.comProduct.Name = "comProduct";
             this.comProduct.Size = new System.Drawing.Size(120, 24);
             this.comProduct.TabIndex = 9;
-            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comProduct_SelectedValueChanged);
             // 
             // comFactory
             // 
@@ -549,7 +570,7 @@
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
-            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
             // 
             // label4
             // 
@@ -588,7 +609,7 @@
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comGroup_SelectedValueChanged);
             // 
             // comStore
             // 
@@ -772,27 +793,6 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
-            // txtItemNote
-            // 
-            this.txtItemNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtItemNote.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtItemNote.Location = new System.Drawing.Point(619, 50);
-            this.txtItemNote.Name = "txtItemNote";
-            this.txtItemNote.Size = new System.Drawing.Size(171, 24);
-            this.txtItemNote.TabIndex = 238;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(798, 50);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(48, 19);
-            this.label9.TabIndex = 239;
-            this.label9.Text = "ملحوظة";
-            // 
             // StorageTaswayaSubtract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -844,10 +844,10 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtFactory;
         private System.Windows.Forms.ComboBox comType;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.TextBox txtProduct;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labe1;
         private System.Windows.Forms.ComboBox comProduct;
         private System.Windows.Forms.ComboBox comFactory;
         private System.Windows.Forms.Label label4;
