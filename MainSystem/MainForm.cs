@@ -105,8 +105,8 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
-                btnPOS.Enabled = false;
-                btnPOS.Checked = false;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 TIElsha7n.Enabled = true;
@@ -124,7 +124,7 @@ namespace MainSystem
                 btnReports.Enabled = true;
                 btnReports.Checked = true;
 
-                pictureBoxBell.Visible = false;
+                pictureBoxBell.Visible = true;
                 pictureBoxSales.Visible = true;
                 pictureBoxPurchase.Visible = true;
                 pictureBoxPurchaseLeast.Visible = true;
@@ -149,7 +149,6 @@ namespace MainSystem
                 //btnPOS.Checked = true;
 
                 pictureBoxStoreExpectedOrder.Visible = true;
-            
             }
             else if (UserControl.userType == 3)
             {
