@@ -780,7 +780,7 @@ namespace MainSystem
                     {
                         if (!IsEdited((int)mdt.Rows[i][0]) && !IsSaved((int)mdt.Rows[i][0]))
                         {
-                            string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + mdt.Rows[i][0];
+                            string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + mdt.Rows[i][0]+ " and Store_ID="+ mdt.Rows[i][1];
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() == null)
                             {
@@ -1571,9 +1571,7 @@ namespace MainSystem
                     {
                         return false;
                     }
-
                 }
-
             }
             return true;
         }
