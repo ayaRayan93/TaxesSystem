@@ -1737,6 +1737,7 @@ namespace MainSystem
                                                             query = "select Customer_ID from customer order by Customer_ID desc limit 1";
                                                             com = new MySqlCommand(query, dbconnection);
                                                             ClintID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                                            txtClientId.Text = ClintID.ToString();
 
                                                             query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
                                                             com = new MySqlCommand(query, dbconnection);
@@ -1960,7 +1961,7 @@ namespace MainSystem
             {
                 if (txtRequiredQuantity.Text != "")
                 {
-                    if (Convert.ToDecimal(row1["الكرتنة"].ToString()) != 0)
+                    if (row1["الكود"].ToString().Length >= 20 && Convert.ToDecimal(row1["الكرتنة"].ToString()) != 0)
                     {
                         decimal numCartn = Convert.ToDecimal(txtRequiredQuantity.Text) / Convert.ToDecimal(row1["الكرتنة"].ToString());
                         txtNumCartons.Text = decimal.Ceiling(numCartn).ToString();//"0.##"
