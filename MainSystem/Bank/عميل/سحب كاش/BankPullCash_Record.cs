@@ -1413,7 +1413,7 @@ namespace MainSystem
             int id;
             bool flag = false;
             double storageQ, productQ;
-            string query = "select Data_ID,Type,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber;
+            string query = "select Data_ID,Type,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber + " and customer_return_bill_details.CustomerBill_ID<>0";
             MySqlCommand com = new MySqlCommand(query, connectionReader);
             MySqlDataReader dr = com.ExecuteReader();
 
