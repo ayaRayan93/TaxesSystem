@@ -539,6 +539,7 @@
             this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comBranch.Size = new System.Drawing.Size(130, 24);
             this.comBranch.TabIndex = 202;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
             // txtBranchBillNum
             // 

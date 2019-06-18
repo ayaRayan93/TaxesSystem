@@ -411,6 +411,21 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    txtBranchID.Text = comBranch.SelectedValue.ToString();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void txtBranchBillNum_KeyDown(object sender, KeyEventArgs e)
         {
             try

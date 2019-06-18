@@ -45,6 +45,7 @@
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnRemove = new Bunifu.Framework.UI.BunifuImageButton();
             this.label11 = new System.Windows.Forms.Label();
             this.txtRecivedQuantity = new System.Windows.Forms.TextBox();
@@ -57,9 +58,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panBranch = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
+            this.comBranch = new System.Windows.Forms.ComboBox();
             this.labStoreName = new System.Windows.Forms.Label();
             this.radioBtnDriverDelivery = new System.Windows.Forms.RadioButton();
             this.radioBtnCustomerDelivery = new System.Windows.Forms.RadioButton();
@@ -84,6 +88,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panBranch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -293,6 +298,26 @@
             this.btnPut.Zoom = 10;
             this.btnPut.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrint.ImagePosition = 1;
+            this.btnPrint.ImageZoom = 25;
+            this.btnPrint.LabelPosition = 18;
+            this.btnPrint.LabelText = "طباعة تقرير";
+            this.btnPrint.Location = new System.Drawing.Point(27, 26);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(83, 45);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // btnRemove
             // 
             this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -374,7 +399,7 @@
             // 
             this.txtPermBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermBillNumber.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtPermBillNumber.Location = new System.Drawing.Point(417, 28);
+            this.txtPermBillNumber.Location = new System.Drawing.Point(452, 42);
             this.txtPermBillNumber.Name = "txtPermBillNumber";
             this.txtPermBillNumber.Size = new System.Drawing.Size(146, 27);
             this.txtPermBillNumber.TabIndex = 227;
@@ -385,7 +410,7 @@
             this.labDescription.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labDescription.AutoSize = true;
             this.labDescription.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labDescription.Location = new System.Drawing.Point(569, 34);
+            this.labDescription.Location = new System.Drawing.Point(604, 48);
             this.labDescription.Name = "labDescription";
             this.labDescription.Size = new System.Drawing.Size(56, 17);
             this.labDescription.TabIndex = 236;
@@ -421,7 +446,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 414F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 418F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -446,32 +471,12 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(415, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(420, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(100, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(99, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnPrint.ImagePosition = 1;
-            this.btnPrint.ImageZoom = 25;
-            this.btnPrint.LabelPosition = 18;
-            this.btnPrint.LabelText = "طباعة تقرير";
-            this.btnPrint.Location = new System.Drawing.Point(27, 26);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(83, 45);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // panel1
             // 
@@ -484,6 +489,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panBranch);
             this.panel2.Controls.Add(this.labStoreName);
             this.panel2.Controls.Add(this.radioBtnDriverDelivery);
             this.panel2.Controls.Add(this.radioBtnCustomerDelivery);
@@ -497,6 +503,51 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(990, 74);
             this.panel2.TabIndex = 230;
+            // 
+            // panBranch
+            // 
+            this.panBranch.Controls.Add(this.label10);
+            this.panBranch.Controls.Add(this.txtBranchID);
+            this.panBranch.Controls.Add(this.comBranch);
+            this.panBranch.Location = new System.Drawing.Point(423, 6);
+            this.panBranch.Name = "panBranch";
+            this.panBranch.Size = new System.Drawing.Size(256, 33);
+            this.panBranch.TabIndex = 239;
+            this.panBranch.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label10.Location = new System.Drawing.Point(205, 8);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 18);
+            this.label10.TabIndex = 198;
+            this.label10.Text = "الفرع";
+            // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtBranchID.Location = new System.Drawing.Point(13, 5);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtBranchID.Size = new System.Drawing.Size(50, 24);
+            this.txtBranchID.TabIndex = 199;
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(69, 5);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comBranch.Size = new System.Drawing.Size(130, 24);
+            this.comBranch.TabIndex = 197;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
             // labStoreName
             // 
@@ -691,6 +742,8 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panBranch.ResumeLayout(false);
+            this.panBranch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -747,6 +800,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn DeliveryQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn NumOfCarton;
+        private System.Windows.Forms.Panel panBranch;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtBranchID;
+        private System.Windows.Forms.ComboBox comBranch;
     }
 }
 
