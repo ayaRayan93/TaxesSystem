@@ -48,28 +48,31 @@ namespace MainSystem
                     dbconnection.Open();
                     int billNum = Convert.ToInt16(txtReturnPermission.Text);
 
-                    string query ="";
-                    MySqlCommand com ;
-                    MySqlDataReader dr ;
+                    string query = "";
+                    MySqlCommand com;
+                    MySqlDataReader dr;
                     DataTable dtAll = new DataTable();
 
                     string relation = " LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID";
                     string supQuery = "concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم'";
-                  
-                        query = "select IFNULL(Branch_BillNumber,''),IFNULL(customer_bill.Branch_ID,''),IFNULL(branch.Branch_Name,''),ClientReturnName,ClientRetunPhone,Date from customer_return_permission inner join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID inner join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
-                        com = new MySqlCommand(query, dbconnection);
 
-                        dr = com.ExecuteReader();
-                        while (dr.Read())
+                    query = "select IFNULL(Branch_BillNumber,''),IFNULL(customer_bill.Branch_ID,''),IFNULL(branch.Branch_Name,''),ClientReturnName,ClientRetunPhone,Date from customer_return_permission left join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID left join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
+                    com = new MySqlCommand(query, dbconnection);
+
+                    dr = com.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        if (dr[1].ToString() != "")
                         {
                             Branch_ID = Convert.ToInt16(dr[1].ToString());
-                            labBillNumber.Text = dr[0].ToString();
-                            labBranchName.Text = dr[2].ToString();
-                            labClientName.Text = dr[3].ToString();
-                            labClientPhone.Text = dr[4].ToString();
-                            labBillDate.Text = dr[5].ToString();
                         }
-                        dr.Close();
+                        labBillNumber.Text = dr[0].ToString();
+                        labBranchName.Text = dr[2].ToString();
+                        labClientName.Text = dr[3].ToString();
+                        labClientPhone.Text = dr[4].ToString();
+                        labBillDate.Text = dr[5].ToString();
+                    }
+                    dr.Close();
 
                     if (labBillNumber.Text != "")
                     {
@@ -101,7 +104,7 @@ namespace MainSystem
                     }
                     dr.Close();
                     txtBillTotalCostAD.Text = totalBill.ToString();
-           
+
                 }
             }
             catch (Exception ex)
@@ -188,8 +191,17 @@ namespace MainSystem
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
                             com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
-                            com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(row2.Cells["CustomerBill_ID"].Value);
-                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(row2.Cells["Delegate_ID"].Value);
+                            if (row2.Cells["CustomerBill_ID"].Value!= null && row2.Cells["Delegate_ID"].Value != null)
+                            {
+                                com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(row2.Cells["CustomerBill_ID"].Value);
+                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(row2.Cells["Delegate_ID"].Value);
+
+                            }
+                            else
+                            {
+                                com.Parameters["@CustomerBill_ID"].Value = 0;
+                                com.Parameters["@Delegate_ID"].Value =0;
+                            }
                             com.ExecuteNonQuery();
 
                         }
@@ -222,6 +234,7 @@ namespace MainSystem
             labClientPhone.Text = "";
             dataGridView2.Rows.Clear();
         }
-   
+
+    
     }
 }

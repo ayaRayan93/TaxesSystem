@@ -10,7 +10,7 @@ namespace MainSystem
 {
     class BaseData
     {
-        static public string BranchID = "1";
+        static public string BranchID = "2";
         static public string IPAddress = "197.50.31.80";
         static public bool connStatus = true;
         static public void generateBaseProjectFile()

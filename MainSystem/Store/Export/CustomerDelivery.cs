@@ -22,6 +22,7 @@ namespace MainSystem
         bool loaded = false;
         string permissionNum;
         int flag;
+        bool comBranchLoaded=false;
         public CustomerDelivery()
         {
             try
@@ -69,12 +70,58 @@ namespace MainSystem
                 gridControl2.DataSource = dh.DataSet;
                 gridControl2.DataMember = dh.DataMember;
                 gridView2.InitNewRow += GridView1_InitNewRow;
+
+                string query = "select * from branch";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
+                txtBranchID.Text = "";
+                comBranchLoaded = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comBranchLoaded)
+                {
+                    txtBranchID.Text = comBranch.SelectedValue.ToString();
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
         private void GridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
@@ -94,10 +141,14 @@ namespace MainSystem
                 if (radioBtnCustomerDelivery.Checked)
                 {
                     labDescription.Text = "فاتورة رقم";
+                    panBranch.Visible = true;
+                    comBranch.Text = "";
+                    txtBranchID.Text = "";
                 }
                 else if(radioBtnDriverDelivery.Checked)
                 {
                     labDescription.Text = "اذن رقم";
+                    panBranch.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -320,7 +371,7 @@ namespace MainSystem
                 {
                     if (row != null)
                     {
-                        if (Convert.ToDouble(txtRecivedQuantity.Text) < Convert.ToDouble(row["الكمية"]))
+                        if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row[3].ToString()))
                         {
                             addNewRow(row);
                             txtCode.Text = "";
@@ -337,8 +388,8 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                MessageBox.Show("ادخل بيانات صحيحة");
+                //MessageBox.Show(ex.Message);
+                //MessageBox.Show("ادخل بيانات صحيحة");
             }
         }
         private void btnPrint_Click(object sender, EventArgs e)
@@ -427,9 +478,9 @@ namespace MainSystem
 
             return CustomerBill_ID_Store_ID;
         }
-        public void displayBillDataFromCustomerBill(string CustomerBill_ID)
+        public void displayBillDataFromCustomerBill(string BranchID,string BranchBillNumber)
         {
-            string query = "select * from customer_bill  where CustomerBill_ID=" + CustomerBill_ID;
+            string query = "select * from customer_bill  where Branch_ID=" + BranchID + " and Branch_BillNumber="+ BranchBillNumber;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
@@ -456,10 +507,12 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[3]);
 
                     double re = 0,carton=0;
-                    if (Convert.ToDouble(row[5])!=0)
-                      re = Convert.ToDouble(txtRecivedQuantity.Text) / Convert.ToDouble(row[5]);
-                    carton = Convert.ToDouble(row[5]);
-
+                    if (row[5].ToString() != "")
+                    {
+                        if (Convert.ToDouble(row[5]) != 0)
+                            re = Convert.ToDouble(txtRecivedQuantity.Text) / Convert.ToDouble(row[5]);
+                        carton = Convert.ToDouble(row[5]);
+                    }
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين المستلمة"],re+"");
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكرتنة"], carton+"");
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtRecivedQuantity.Text);
@@ -506,7 +559,7 @@ namespace MainSystem
             {
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                string query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(DeliveredQuantity) as 'الكمية المسلمة',customer_permissions_details.Carton as 'الكرتنة',store.Store_Name as 'المخزن',product_bill.Store_ID,product_bill.Returned as 'تم الاسترجاع' from product_bill inner join store on product_bill.Store_ID=store.Store_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_permissions_details on customer_permissions_details.Data_ID=product_bill.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where RecivedType='العميل' and product_bill.CustomerBill_ID=" + txtPermBillNumber.Text + " group by product_bill.Data_ID";
+                string query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(DeliveredQuantity) as 'الكمية المسلمة',customer_permissions_details.Carton as 'الكرتنة',store.Store_Name as 'المخزن',product_bill.Store_ID,product_bill.Returned as 'تم الاسترجاع' from product_bill inner join store on product_bill.Store_ID=store.Store_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_permissions_details on customer_permissions_details.Data_ID=product_bill.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where RecivedType='العميل' and Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID="+txtBranchID.Text+" group by product_bill.Data_ID";
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -514,7 +567,7 @@ namespace MainSystem
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns[7].Visible = false;
-                displayBillDataFromCustomerBill(txtPermBillNumber.Text);
+                displayBillDataFromCustomerBill(txtBranchID.Text,txtPermBillNumber.Text);
             }
         }
         public void displayPermission(string permissionNum)
@@ -564,7 +617,7 @@ namespace MainSystem
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns[7].Visible = false;
-                displayBillDataFromCustomerBill(permissionNum);
+                displayBillDataFromCustomerBill(txtBranchID.Text,permissionNum);
             }
         }
         public bool IsExist(string Data_ID,string carton)
