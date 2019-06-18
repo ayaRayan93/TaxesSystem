@@ -14,7 +14,7 @@ namespace MainSystem
 {
     public partial class StoreReturnBill : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, connectionReader, connectionReader2;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
@@ -26,6 +26,8 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                connectionReader = new MySqlConnection(connection.connectionString);
+                connectionReader2 = new MySqlConnection(connection.connectionString);
                 panBillNumber.Visible = false;
                 groupBox1.Visible = false;
             }
@@ -558,6 +560,8 @@ namespace MainSystem
 
                         com.ExecuteNonQuery();
 
+
+                      
                         ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();
                         returnPermissionClass.Data_ID = (int)row1["Data_ID"];
                         returnPermissionClass.Code = row1[1].ToString();
@@ -569,9 +573,12 @@ namespace MainSystem
                         listOfData.Add(returnPermissionClass);
 
                     }
+                    if (radioButtonWithOutReturnBill.Checked)
+                    {
+                        IncreaseProductQuantity(CustomerReturnPermission_ID);
+                    }
                     ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData, CustomerReturnPermission_ID.ToString(), txtClientName.Text, txtPhone.Text, dateTimePicker1.Text, txtReturnReason.Text);
                     ReturnCustomerPermissionReport.Show();
-       
                     clear();
                 }
             }
@@ -890,5 +897,57 @@ namespace MainSystem
                 txtProduct.Text = "";
             }
         }
+
+        public void IncreaseProductQuantity(int billNumber)
+        {
+            connectionReader.Open();
+            connectionReader2.Open();
+            string q;
+            int id;
+            bool flag = false;
+            double storageQ, productQ;
+            string query = "select Data_ID,Type,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber;
+            MySqlCommand com = new MySqlCommand(query, connectionReader);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                #region بند
+                if (dr["Type"].ToString() == "بند")
+                {
+                    string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                    MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                    MySqlDataReader dr2 = com2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+
+                        storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                        productQ = Convert.ToDouble(dr["TotalMeter"]);
+
+                        storageQ += productQ;
+                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                        comm.ExecuteNonQuery();
+                        flag = true;
+                        break;
+
+                    }
+                    dr2.Close();
+                }
+                #endregion
+
+                if (!flag)
+                {
+                    MessageBox.Show(dr["Data_ID"].ToString() + " not valid in store");
+                }
+                flag = false;
+            }
+            dr.Close();
+
+            connectionReader2.Close();
+            connectionReader.Close();
+        }
+
     }
 }
