@@ -99,7 +99,7 @@ namespace MainSystem
             }
 
             //waits certan time and run the code
-            Task.Delay(ts).ContinueWith((x) => RecordAbsenceMethod());
+            //Task.Delay(ts).ContinueWith((x) => RecordAbsenceMethod());
         }
 
         private void DelegateAttend_Load(object sender, EventArgs e)
@@ -1067,7 +1067,7 @@ namespace MainSystem
             dbconnection3.Close();
         }
 
-        void RecordAbsenceMethod()
+        /*void RecordAbsenceMethod()
         {
             try
             {
@@ -1089,7 +1089,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
                 dbconnection4.Close();
             }
-        }
+        }*/
         
         public void ResetStatusTime()
         {

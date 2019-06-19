@@ -37,7 +37,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
-            this.labTotalQuantity = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBillNum = new System.Windows.Forms.TextBox();
@@ -139,7 +138,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnDelete, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.labTotalQuantity, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -190,17 +188,6 @@
             this.btnDelete.Size = new System.Drawing.Size(109, 46);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // labTotalQuantity
-            // 
-            this.labTotalQuantity.AutoSize = true;
-            this.labTotalQuantity.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalQuantity.ForeColor = System.Drawing.Color.White;
-            this.labTotalQuantity.Location = new System.Drawing.Point(401, 0);
-            this.labTotalQuantity.Name = "labTotalQuantity";
-            this.labTotalQuantity.Size = new System.Drawing.Size(0, 17);
-            this.labTotalQuantity.TabIndex = 94;
-            this.labTotalQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel3
             // 
@@ -304,7 +291,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
@@ -327,6 +313,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comCustomer;
         private System.Windows.Forms.TextBox txtClientId;
-        private System.Windows.Forms.Label labTotalQuantity;
     }
 }
