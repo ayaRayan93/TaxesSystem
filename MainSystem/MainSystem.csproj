@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\v24\</PublishUrl>
+    <PublishUrl>D:\التكويد\v26\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>36</ApplicationRevision>
+    <ApplicationRevision>38</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -353,6 +353,12 @@
     </Compile>
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Products_Report2Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Products_Report2Sales.designer.cs">
+      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\specialOrder_confirm\SpecialOrderConfirm.cs">
       <SubType>Form</SubType>
@@ -1604,11 +1610,9 @@
     <Compile Include="Sales\sellPrice\ProductsSellPriceForm.Designer.cs">
       <DependentUpon>ProductsSellPriceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\Products_Report2Sales.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\Products_Report2Sales.designer.cs">
-      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    <Compile Include="Sales\Products_Report2SalesTest.cs" />
+    <Compile Include="Sales\Products_Report2SalesTest.designer.cs">
+      <DependentUpon>Products_Report2SalesTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\PriceUpdateSales.cs">
       <SubType>Form</SubType>
@@ -2441,6 +2445,9 @@
     <EmbeddedResource Include="Sales\DashBill_Report.resx">
       <DependentUpon>DashBill_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
+      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\specialOrder_confirm\SpecialOrderConfirm.resx">
       <DependentUpon>SpecialOrderConfirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2897,8 +2904,8 @@
     <EmbeddedResource Include="Sales\sellPrice\ProductsSellPriceForm.resx">
       <DependentUpon>ProductsSellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
-      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    <EmbeddedResource Include="Sales\Products_Report2SalesTest.resx">
+      <DependentUpon>Products_Report2SalesTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PriceUpdateSales.resx">
       <DependentUpon>PriceUpdateSales.cs</DependentUpon>

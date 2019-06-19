@@ -2304,7 +2304,7 @@ namespace MainSystem
                     {
                         supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue + "";
                     }
-                    else if (comGroup.Text != "")
+                    if (comGroup.Text != "")
                     {
                         supQuery += " and product_factory_group.Group_ID=" + comGroup.SelectedValue + "";
                     }

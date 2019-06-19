@@ -1065,7 +1065,7 @@ namespace MainSystem
                         {
                             supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text + "";
                         }
-                        else if (comGroup.Text != "")
+                         if (comGroup.Text != "")
                         {
                             supQuery += " and product_factory_group.Group_ID=" + txtGroup.Text + "";
                         }
