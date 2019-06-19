@@ -1074,7 +1074,7 @@ namespace MainSystem
                 flag = true;
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
-                    if (gridView1.IsRowSelected(i))
+                    if (!gridView1.IsRowSelected(i))
                     {
                         dbconnection4.Open();
                         string query = "insert into attendance(Delegate_ID,Name,Absence_Date) values(" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + ",'" + gridView1.GetRowCellValue(i, colDelegate).ToString() + "','" + DateTime.Now.ToString("yyyy-MM-dd") + "')";
