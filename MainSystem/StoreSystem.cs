@@ -823,17 +823,17 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد التحويل من مخزن");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد التحويل");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("تاكيد التحويل من مخزن");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد التحويل من مخزن");
+                    xtraTabControlStoresContent.TabPages.Add("تاكيد التحويل");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد التحويل");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                ConfirmationFromStore objForm = new ConfirmationFromStore(this);
+                ConfirmationStore objForm = new ConfirmationStore(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);

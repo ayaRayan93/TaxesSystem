@@ -18,7 +18,7 @@ using WMPLib;
 
 namespace MainSystem
 {
-    public partial class Delegate_Movement : Form
+    public partial class Delegate_Movement_Copy : Form
     {
         MySqlConnection dbconnection;
         MySqlConnection dbconnection2;
@@ -47,7 +47,7 @@ namespace MainSystem
 
         Timer timer = new Timer();
         
-        public Delegate_Movement()
+        public Delegate_Movement_Copy()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -99,7 +99,7 @@ namespace MainSystem
             }
 
             //waits certan time and run the code
-            //Task.Delay(ts).ContinueWith((x) => RecordAbsenceMethod());
+            Task.Delay(ts).ContinueWith((x) => RecordAbsenceMethod());
         }
 
         private void DelegateAttend_Load(object sender, EventArgs e)
@@ -842,7 +842,7 @@ namespace MainSystem
 
         private void LoadGridData()
         {
-            EmpBranchId = UserControl.EmpBranchID;
+            EmpBranchId =  1;//UserControl.EmpBranchID;
             //and delegate.Error=0
             dbconnection.Open();
             MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate where delegate.Branch_ID=" + EmpBranchId + "", dbconnection);
@@ -1067,7 +1067,7 @@ namespace MainSystem
             dbconnection3.Close();
         }
 
-        /*void RecordAbsenceMethod()
+        void RecordAbsenceMethod()
         {
             try
             {
@@ -1089,7 +1089,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
                 dbconnection4.Close();
             }
-        }*/
+        }
         
         public void ResetStatusTime()
         {
@@ -1237,7 +1237,7 @@ namespace MainSystem
         }
     }
 
-    public class ComboData
+    /*public class ComboData
     {
         public int StatusId { get; set; }
         public string Status { get; set; }
@@ -1252,5 +1252,5 @@ namespace MainSystem
         public TimeSpan WorkTimer { get; set; }
         public TimeSpan AttendId { get; set; }
         public TimeSpan DepartureId { get; set; }
-    }
+    }*/
 }

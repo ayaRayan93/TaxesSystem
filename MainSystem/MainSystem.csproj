@@ -354,6 +354,12 @@
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reception\Delegate_Movement_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\Delegate_Movement_Copy.designer.cs">
+      <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Products_Report2Sales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2137,11 +2143,11 @@
     <Compile Include="Store\Transportation\ConfirmationToStore.designer.cs">
       <DependentUpon>ConfirmationToStore.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\ConfirmationFromStore.cs">
+    <Compile Include="Store\Transportation\ConfirmationStore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\ConfirmationFromStore.designer.cs">
-      <DependentUpon>ConfirmationFromStore.cs</DependentUpon>
+    <Compile Include="Store\Transportation\ConfirmationStore.designer.cs">
+      <DependentUpon>ConfirmationStore.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Transportation\Transportation_Items.cs" />
     <Compile Include="Store\Transportation\Print_Transportation.cs">
@@ -2432,6 +2438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\DelegateBill_Report.resx">
       <DependentUpon>DelegateBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reception\Delegate_Movement_Copy.resx">
+      <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\BillCancelForm.resx">
       <DependentUpon>BillCancelForm.cs</DependentUpon>
@@ -3168,8 +3177,8 @@
     <EmbeddedResource Include="Store\Transportation\Report_Transportation.resx">
       <DependentUpon>Report_Transportation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\ConfirmationFromStore.resx">
-      <DependentUpon>ConfirmationFromStore.cs</DependentUpon>
+    <EmbeddedResource Include="Store\Transportation\ConfirmationStore.resx">
+      <DependentUpon>ConfirmationStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\TransportationStore.resx">
       <DependentUpon>TransportationStore.cs</DependentUpon>
