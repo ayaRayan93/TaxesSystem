@@ -91,7 +91,7 @@ namespace MainSystem
         {
             try
             {
-                string connectionString = "SERVER=" + txtNewIP.Text + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+                string connectionString = "SERVER=" + txtNewIP.Text + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8;SslMode=none";
            
                 MySqlConnection dbconnection = new MySqlConnection(connectionString);
                 try

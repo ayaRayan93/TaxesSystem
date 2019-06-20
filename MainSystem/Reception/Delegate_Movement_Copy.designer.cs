@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Delegate_Movement));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Delegate_Movement_Copy));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDelegateID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -139,14 +139,11 @@
             this.gridView1.OptionsFind.FindNullPrompt = "بحث";
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
-            this.gridView1.OptionsSelection.MultiSelect = true;
-            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.GridView1_CustomRowCellEdit);
-            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridView1_SelectionChanged);
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             // 
@@ -166,7 +163,7 @@
             this.colDelegate.OptionsColumn.AllowEdit = false;
             this.colDelegate.OptionsColumn.ReadOnly = true;
             this.colDelegate.Visible = true;
-            this.colDelegate.VisibleIndex = 1;
+            this.colDelegate.VisibleIndex = 0;
             this.colDelegate.Width = 200;
             // 
             // repositoryItemTextEdit1
@@ -182,7 +179,7 @@
             this.colStatus.Name = "colStatus";
             this.colStatus.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colStatus.Visible = true;
-            this.colStatus.VisibleIndex = 2;
+            this.colStatus.VisibleIndex = 1;
             this.colStatus.Width = 200;
             // 
             // repositoryItemLookUpEdit1
@@ -200,7 +197,7 @@
             this.colButton.Name = "colButton";
             this.colButton.OptionsColumn.AllowEdit = false;
             this.colButton.Visible = true;
-            this.colButton.VisibleIndex = 3;
+            this.colButton.VisibleIndex = 2;
             this.colButton.Width = 25;
             // 
             // repositoryItemButtonEdit1
@@ -218,7 +215,7 @@
             this.colTimer.Name = "colTimer";
             this.colTimer.OptionsColumn.AllowEdit = false;
             this.colTimer.Visible = true;
-            this.colTimer.VisibleIndex = 4;
+            this.colTimer.VisibleIndex = 3;
             this.colTimer.Width = 120;
             // 
             // colWorkTimer
@@ -228,7 +225,7 @@
             this.colWorkTimer.Name = "colWorkTimer";
             this.colWorkTimer.OptionsColumn.AllowEdit = false;
             this.colWorkTimer.Visible = true;
-            this.colWorkTimer.VisibleIndex = 5;
+            this.colWorkTimer.VisibleIndex = 4;
             this.colWorkTimer.Width = 120;
             // 
             // colAttend
@@ -239,7 +236,7 @@
             this.colAttend.OptionsColumn.AllowEdit = false;
             this.colAttend.OptionsColumn.ReadOnly = true;
             this.colAttend.Visible = true;
-            this.colAttend.VisibleIndex = 6;
+            this.colAttend.VisibleIndex = 5;
             this.colAttend.Width = 148;
             // 
             // colDeparture
@@ -250,7 +247,7 @@
             this.colDeparture.OptionsColumn.AllowEdit = false;
             this.colDeparture.OptionsColumn.ReadOnly = true;
             this.colDeparture.Visible = true;
-            this.colDeparture.VisibleIndex = 7;
+            this.colDeparture.VisibleIndex = 6;
             this.colDeparture.Width = 147;
             // 
             // repositoryItemColorEdit1
@@ -670,14 +667,14 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // Delegate_Movement
+            // Delegate_Movement_Copy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
-            this.Name = "Delegate_Movement";
+            this.Name = "Delegate_Movement_Copy";
             this.Text = "DelegateAttend";
             this.Load += new System.EventHandler(this.DelegateAttend_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

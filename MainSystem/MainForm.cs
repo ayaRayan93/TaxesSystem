@@ -34,7 +34,8 @@ namespace MainSystem
         XtraTabPage CodingTP;
         XtraTabPage PurchasesTP;
         int index = 1;
-        
+        static int countBackup = 0;
+
         public MainForm()
         {
             try
@@ -86,6 +87,24 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageAccounting);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
+
+                var DailyTimeBackup = "17:00:00";
+                var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
+
+                var dateNowBackup = DateTime.Now;
+                var dateBackup = new DateTime(dateNowBackup.Year, dateNowBackup.Month, dateNowBackup.Day,
+                           int.Parse(timePartsBackup[0]), int.Parse(timePartsBackup[1]), int.Parse(timePartsBackup[2]));
+                TimeSpan tsBackup;
+                if (dateBackup > dateNowBackup)
+                    tsBackup = dateBackup - dateNowBackup;
+                else
+                {
+                    dateBackup = dateBackup.AddDays(1);
+                    tsBackup = dateBackup - dateNowBackup;
+                }
+
+                //waits certan time and run the code
+                Task.Delay(tsBackup).ContinueWith((x) => BackupMethod());
             }
             catch (Exception ex)
             {
@@ -220,6 +239,56 @@ namespace MainSystem
                 pictureBoxCar.Visible = true;
             }
             labUserName.Text = UserControl.EmpName;
+        }
+
+        static void BackupMethod()
+        {
+            string text = File.ReadAllText(@"backups\backupText.txt");
+
+            countBackup = int.Parse(text);
+
+            if (countBackup <= 3)
+            {
+                //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
+                string file = @"backups\backup" + (countBackup.ToString()) + ".sql";
+
+                File.WriteAllText(@"backups\backupText.txt", (++countBackup).ToString());
+
+                using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(file);
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
+                string file = @"backups\backup1.sql";
+
+                File.WriteAllText(@"backups\backupText.txt", "1");
+
+                using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand())
+                    {
+                        using (MySqlBackup mb = new MySqlBackup(cmd))
+                        {
+                            cmd.Connection = conn;
+                            conn.Open();
+                            mb.ExportToFile(file);
+                            conn.Close();
+                        }
+                    }
+                }
+            }
         }
 
         //events
