@@ -21,7 +21,10 @@ namespace MainSystem
                 {
                     writer.WriteLine(BranchID);
                 }
-
+                using (StreamWriter writer = new StreamWriter("backup.txt"))
+                {
+                    writer.WriteLine("1");
+                }
                 if (TestConnection(IPAddress))
                 {
                     using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
@@ -37,16 +40,19 @@ namespace MainSystem
                     ChangeIP form = new ChangeIP();
                     form.ShowDialog();
                 }
+
             }
             else
             {
                 BranchID= File.ReadAllText("Branch.txt");
                 IPAddress= File.ReadAllText("IP_Address.txt");
             }
+
+            
         }
         static public bool TestConnection(string ip)
         {
-            string connectionString = "SERVER=" + ip + ";DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8;SslMode=none";
+            string connectionString = "SERVER=" + ip + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8;SslMode=none";
 
             MySqlConnection dbconnection = new MySqlConnection(connectionString);
             try

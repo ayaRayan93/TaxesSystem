@@ -46,7 +46,6 @@ namespace MainSystem
                 MessageBox.Show(e.Message);
             }
         }
-
         //header tabs
         private void btnSwitchTab_Click(object sender, EventArgs e)
         {
