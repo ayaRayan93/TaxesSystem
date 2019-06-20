@@ -79,11 +79,11 @@ namespace MainSystem
 
             //Calculate the time of the actual work of the delegates
             timer.Interval = 1000 * 60;
-            timer.Tick += new EventHandler(CalculateWorkingTime);
+            timer.Tick += new EventHandler(loadStatusEvent);
             timer.Start();
             
             //Registration of delegates latecomers absence
-            var DailyTime = "11:00:00";
+            /*var DailyTime = "11:00:00";
             var timeParts = DailyTime.Split(new char[1] { ':' });
 
             var dateNow = DateTime.Now;
@@ -99,7 +99,7 @@ namespace MainSystem
             }
 
             //waits certan time and run the code
-            Task.Delay(ts).ContinueWith((x) => RecordAbsenceMethod());
+            Task.Delay(ts).ContinueWith((x) => RecordAbsenceMethod());*/
         }
 
         private void DelegateAttend_Load(object sender, EventArgs e)
@@ -198,7 +198,7 @@ namespace MainSystem
             }
         }
 
-        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        /*private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             try
             {
@@ -328,7 +328,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
                 dbconnection.Close();
             }
-        }
+        }*/
 
         private void repositoryItemLookUpEdit1_Closed(object sender, DevExpress.XtraEditors.Controls.ClosedEventArgs e)
         {
@@ -343,7 +343,7 @@ namespace MainSystem
                 {
                     LookUpEdit edit = sender as LookUpEdit;
 
-                    ResetStatusTime();
+                    //ResetStatusTime();
                     
                     if (Convert.ToInt32(edit.EditValue) == 2)
                     {
@@ -402,7 +402,7 @@ namespace MainSystem
                         txtBill.Enabled = false;
                         btnStart.Visible = false;
                     }
-                    else if (Convert.ToInt32(edit.EditValue) == 4)
+                    /*else if (Convert.ToInt32(edit.EditValue) == 4)
                     {
                         dbconnection.Open();
                         string qq = "update attendance set Departure_Date = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' , Status='انصراف' where Delegate_ID=" + gridView1.GetRowCellValue(gridView1.FocusedRowHandle, colDelegateID).ToString() + " order by Attendance_ID desc limit 1";
@@ -461,7 +461,7 @@ namespace MainSystem
                         txtBill.Text = "";
                         txtBill.Enabled = false;
                         btnStart.Visible = false;
-                    }
+                    }*/
                     if (gridView1.FocusedRowHandle != (gridView1.RowCount - 1))
                     {
                         gridView1.FocusedRowHandle += 1;
@@ -529,7 +529,7 @@ namespace MainSystem
 
         private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
         {
-            if (loaded)
+            /*if (loaded)
             {
                 try
                 {
@@ -542,7 +542,7 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            }*/
         }
 
         private void radNewBill_Click(object sender, EventArgs e)
@@ -845,7 +845,7 @@ namespace MainSystem
             EmpBranchId =  1;//UserControl.EmpBranchID;
             //and delegate.Error=0
             dbconnection.Open();
-            MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate where delegate.Branch_ID=" + EmpBranchId + "", dbconnection);
+            MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate inner join attendance on attendance.Delegate_ID=delegate.Delegate_ID where delegate.Branch_ID=" + EmpBranchId + "and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
             dr = adapter.ExecuteReader();
 
             BindingList<GridData> lista = new BindingList<GridData>();
@@ -869,7 +869,7 @@ namespace MainSystem
             lista_combo.Add(new ComboData() { StatusId = 1, Status = "متاح" });
             lista_combo.Add(new ComboData() { StatusId = 2, Status = "مشغول" });
             lista_combo.Add(new ComboData() { StatusId = 3, Status = "استراحة" });
-            lista_combo.Add(new ComboData() { StatusId = 4, Status = "انصراف" });
+            //lista_combo.Add(new ComboData() { StatusId = 4, Status = "انصراف" });
 
             repositoryItemLookUpEdit1.DataSource = lista_combo;
             repositoryItemLookUpEdit1.DisplayMember = "Status";
@@ -916,12 +916,12 @@ namespace MainSystem
                         gridView1.SetRowCellValue(i, colStatus, 3);
                         gridView1.Columns[3].ColumnEdit = repositoryItemButtonEdit1;
                     }
-                    else if (status == "انصراف")
+                    /*else if (status == "انصراف")
                     {
                         gridView1.UnselectRow(i);
                         gridView1.SetRowCellValue(i, colStatus, 4);
                         gridView1.Columns[3].ColumnEdit = repositoryItemButtonEdit1;
-                    }
+                    }*/
 
                     dbconnection5.Open();
                     MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time',cast(Status_Duration as time) as 'Status_Duration',cast(Work_Duration as time) as 'Work_Duration' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection5);
@@ -962,7 +962,12 @@ namespace MainSystem
             loaded = true;
         }
 
-        public void CalculateWorkingTime(object sender, EventArgs e)
+        public void loadStatusEvent(object sender, EventArgs e)
+        {
+            loadStatus();
+        }
+
+        /*public void CalculateWorkingTime(object sender, EventArgs e)
         {
             try
             {
@@ -1065,9 +1070,9 @@ namespace MainSystem
             }
             dbconnection2.Close();
             dbconnection3.Close();
-        }
+        }*/
 
-        void RecordAbsenceMethod()
+        /*void RecordAbsenceMethod()
         {
             try
             {
@@ -1089,9 +1094,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
                 dbconnection4.Close();
             }
-        }
-        
-        public void ResetStatusTime()
+        }*/
+
+        /*public void ResetStatusTime()
         {
             dbconnection.Open();
             TimeSpan time1 = new TimeSpan();
@@ -1100,7 +1105,7 @@ namespace MainSystem
             com.ExecuteNonQuery();
             gridView1.SetFocusedRowCellValue(colTimer, time1);
             dbconnection.Close();
-        }
+        }*/
 
         public void startFunc()
         {
