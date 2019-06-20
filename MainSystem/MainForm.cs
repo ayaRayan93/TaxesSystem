@@ -88,7 +88,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
 
-                var DailyTimeBackup = "17:00:00";
+                var DailyTimeBackup = "19:00:00";
                 var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
 
                 var dateNowBackup = DateTime.Now;
@@ -243,16 +243,16 @@ namespace MainSystem
 
         static void BackupMethod()
         {
-            string text = File.ReadAllText(@"backups\backupText.txt");
+            string text = File.ReadAllText(@"backupText.txt");
 
             countBackup = int.Parse(text);
 
             if (countBackup <= 3)
             {
                 //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
-                string file = @"backups\backup" + (countBackup.ToString()) + ".sql";
+                string file = @"C:\Users\backups\backup" + (countBackup.ToString()) + ".sql";
 
-                File.WriteAllText(@"backups\backupText.txt", (++countBackup).ToString());
+                File.WriteAllText(@"backupText.txt", (++countBackup).ToString());
 
                 using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
                 {
@@ -271,9 +271,9 @@ namespace MainSystem
             else
             {
                 //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
-                string file = @"backups\backup1.sql";
+                string file = @"C:\Users\backups\backup1.sql";
 
-                File.WriteAllText(@"backups\backupText.txt", "1");
+                File.WriteAllText(@"backupText.txt", "1");
 
                 using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
                 {
