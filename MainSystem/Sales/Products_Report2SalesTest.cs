@@ -1,0 +1,1699 @@
+﻿//using DevExpress.Utils;
+//using DevExpress.XtraGrid;
+//using DevExpress.XtraGrid.Columns;
+//using DevExpress.XtraGrid.Views.Grid;
+//using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+//using DevExpress.XtraPrinting;
+//using DevExpress.XtraPrinting.Preview;
+//using DevExpress.XtraTab;
+//using MySql.Data.MySqlClient;
+//using System;
+//using System.Collections.Generic;
+//using System.ComponentModel;
+//using System.Data;
+//using System.Drawing;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using System.Windows.Forms;
+
+//namespace MainSystem
+//{
+//    public partial class Products_Report2Sales : Form
+//    {
+//        MySqlConnection dbconnection;
+//        MySqlConnection dbconnection2;
+//        MySqlConnection dbconnection3;
+//        MySqlConnection dbconnection4;
+//        MySqlConnection dbconnection5;
+//        MySqlConnection dbconnection6;
+//        XtraTabControl MainTabControlSales;
+//        bool loaded = false;
+//        bool factoryFlage = false;
+//        bool groupFlage = false;
+//        bool flagProduct = false;
+//        XtraTabPage xtraTabPage;
+//        public static GridControl gridcontrol;
+        
+//        List<string> arr;
+//        DataRow row1;
+//        public static TipImage tipImage = null;
+//        int EmpBranchId = 0;
+//        int cartons = 0;
+
+//        string code1 = "0000";
+//        string code2 = "0000";
+//        string code3 = "0000";
+//        string code4 = "0000";
+//        string code5 = "0000";
+//        bool flag1 = false;
+//        bool flag2 = false;
+//        bool flag3 = false;
+//        bool flag4 = false;
+//        bool flag5 = false;
+
+//        public Products_Report2Sales()
+//        {
+//            InitializeComponent();
+//            dbconnection = new MySqlConnection(connection.connectionString);
+//            dbconnection2 = new MySqlConnection(connection.connectionString);
+//            dbconnection3 = new MySqlConnection(connection.connectionString);
+//            dbconnection4 = new MySqlConnection(connection.connectionString);
+//            dbconnection5 = new MySqlConnection(connection.connectionString);
+//            dbconnection6 = new MySqlConnection(connection.connectionString);
+//            MainTabControlSales = MainForm.tabControlSales;
+
+//            xtraTabPage = new XtraTabPage();
+
+//            gridcontrol = gridControl1;
+//            arr = new List<string>();
+
+//            comType.AutoCompleteMode = AutoCompleteMode.Suggest;
+//            comType.AutoCompleteSource = AutoCompleteSource.ListItems;
+//            comFactory.AutoCompleteMode = AutoCompleteMode.Suggest;
+//            comFactory.AutoCompleteSource = AutoCompleteSource.ListItems;
+//            comGroup.AutoCompleteMode = AutoCompleteMode.Suggest;
+//            comGroup.AutoCompleteSource = AutoCompleteSource.ListItems;
+//            comProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
+//            comProduct.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+//            comSet.AutoCompleteMode = AutoCompleteMode.Suggest;
+//            comSet.AutoCompleteSource = AutoCompleteSource.ListItems;
+//            comOffer.AutoCompleteMode = AutoCompleteMode.Suggest;
+//            comOffer.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+//            /*ScrollBar hScrollBar1 = new HScrollBar();
+//            hScrollBar1.Dock = DockStyle.Bottom;
+//            hScrollBar1.Scroll += (sender, e) => { panel2.HorizontalScroll.Value = hScrollBar1.Value; };
+//            panel2.Controls.Add(hScrollBar1);*/
+
+//            panel2.AutoScroll = false;
+//            panel2.VerticalScroll.Enabled = false;
+//            panel2.VerticalScroll.Visible = false;
+//            panel2.VerticalScroll.Maximum = 0;
+//            panel2.AutoScroll = true;
+//        }
+
+//        private void SearchProduct_Load(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                EmpBranchId = UserControl.EmpBranchID;
+//                search();
+//                search2();
+//                foreach (GridColumn column in gridView1.Columns)
+//                    column.OptionsColumn.AllowSort = DefaultBoolean.False;
+//                loaded = true;
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection.Close();
+//        }
+        
+//        private void btnSearch_Click(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                string q1, q2, q3, q4, fQuery = "";
+//                if (comType.Text == "")
+//                {
+//                    q1 = "select Type_ID from type";
+//                }
+//                else
+//                {
+//                    q1 = comType.SelectedValue.ToString();
+//                }
+//                if (comFactory.Text == "")
+//                {
+//                    q2 = "select Factory_ID from factory";
+//                }
+//                else
+//                {
+//                    q2 = comFactory.SelectedValue.ToString();
+//                }
+//                if (comProduct.Text == "")
+//                {
+//                    q3 = "select Product_ID from product";
+//                }
+//                else
+//                {
+//                    q3 = comProduct.SelectedValue.ToString();
+//                }
+//                if (comGroup.Text == "")
+//                {
+//                    q4 = "select Group_ID from groupo";
+//                }
+//                else
+//                {
+//                    q4 = comGroup.SelectedValue.ToString();
+//                }
+
+//                if (comSize.Text != "")
+//                {
+//                    fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
+//                }
+
+//                if (comColor.Text != "")
+//                {
+//                    fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
+//                }
+//                if (comSort.Text != "")
+//                {
+//                    fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
+//                }
+
+//                dbconnection.Open();
+//                dbconnection6.Open();
+//                string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية',sellprice.Price_Type FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+//                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//                DataTable dt = new DataTable();
+//                da.Fill(dt);
+//                gridControl1.DataSource = dt;
+
+//                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+//                MySqlCommand comand = new MySqlCommand(query, dbconnection);
+//                MySqlDataReader dr = comand.ExecuteReader();
+//                while (dr.Read())
+//                {
+//                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+//                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+//                    MySqlDataReader dr2 = comand2.ExecuteReader();
+//                    while (dr2.Read())
+//                    {
+//                        gridView1.AddNewRow();
+//                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                        if (gridView1.IsNewItemRow(rowHandle))
+//                        {
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
+//                        }
+//                    }
+//                    dr2.Close();
+//                }
+//                dr.Close();
+
+//                if (gridView1.IsLastVisibleRow)
+//                {
+//                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection.Close();
+//            dbconnection6.Close();
+//        }
+
+//        private void btnSearchAll_Click(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',product.Product_Name as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+//                DataTable dtf = new DataTable();
+//                adapter.Fill(dtf);
+//                gridControl1.DataSource = dtf;
+
+//                dbconnection.Open();
+//                dbconnection6.Open();
+//                #region بند
+//                string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+//                MySqlCommand comand = new MySqlCommand(query, dbconnection);
+//                MySqlDataReader dr = comand.ExecuteReader();
+//                while (dr.Read())
+//                {
+//                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+//                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+//                    MySqlDataReader dr2 = comand2.ExecuteReader();
+//                    while (dr2.Read())
+//                    {
+//                        gridView1.AddNewRow();
+//                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                        if (gridView1.IsNewItemRow(rowHandle))
+//                        {
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
+//                        }
+//                    }
+//                    dr2.Close();
+//                }
+//                dr.Close();
+//                #endregion
+
+//                #region طقم
+//                query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID";
+//                comand = new MySqlCommand(query, dbconnection);
+//                dr = comand.ExecuteReader();
+//                while (dr.Read())
+//                {
+//                    dbconnection3.Open();
+//                    double price = 0;
+//                    double priceF = 0;
+//                    double totalQuanity = 0;
+//                    gridView1.AddNewRow();
+//                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                    if (gridView1.IsNewItemRow(rowHandle))
+//                    {
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
+
+//                        query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID order by sellprice.Date desc";
+//                        comand = new MySqlCommand(query, dbconnection3);
+//                        MySqlDataReader dr1 = comand.ExecuteReader();
+//                        while (dr1.Read())
+//                        {
+//                            price += Convert.ToDouble(dr1["السعر"].ToString());
+//                            priceF += Convert.ToDouble(dr1["بعد الخصم"].ToString());
+
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
+//                        }
+//                        dr1.Close();
+
+//                        query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
+//                        comand = new MySqlCommand(query, dbconnection3);
+//                        dr1 = comand.ExecuteReader();
+//                        while (dr1.Read())
+//                        {
+//                            if (dr1["الكمية"].ToString() != "")
+//                            {
+//                                totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
+//                            }
+//                            else
+//                            {
+//                                totalQuanity += 0;
+//                            }
+//                        }
+//                        dr1.Close();
+
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], price);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], priceF);
+//                        if (totalQuanity != 0)
+//                        {
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuanity);
+//                        }
+//                        else
+//                        {
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], "");
+//                        }
+//                    }
+//                    dbconnection3.Close();
+//                }
+//                dr.Close();
+//                #endregion
+
+//                #region عرض
+//                query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID group by storage.Offer_ID";
+//                comand = new MySqlCommand(query, dbconnection);
+//                dr = comand.ExecuteReader();
+//                while (dr.Read())
+//                {
+//                    gridView1.AddNewRow();
+//                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                    if (gridView1.IsNewItemRow(rowHandle))
+//                    {
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "عرض");
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"]);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["السعر"]);
+//                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+//                    }
+//                }
+//                dr.Close();
+//                #endregion
+
+//                dbconnection.Close();
+
+//                if (gridView1.IsLastVisibleRow)
+//                {
+//                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection3.Close();
+//            dbconnection.Close();
+//            dbconnection6.Close();
+//        }
+
+//        private void txtCodeSearch_KeyDown(object sender, KeyEventArgs e)
+//        {
+//            try
+//            {
+//                if (e.KeyCode == Keys.Enter)
+//                {
+//                    dbconnection.Open();
+//                    dbconnection6.Open();
+//                    string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code='" + code1 + code2 + code3 + code4 + code5 + "' and data.Data_ID=0 group by data.Data_ID";
+//                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//                    DataTable dt = new DataTable();
+//                    da.Fill(dt);
+//                    gridControl1.DataSource = dt;
+//                    gridView1.Columns["Type"].Visible = false;
+//                    gridView1.Columns[0].Visible = false;
+
+//                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code='" + code1 + code2 + code3 + code4 + code5 + "' group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+//                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+//                    MySqlDataReader dr = comand.ExecuteReader();
+//                    while (dr.Read())
+//                    {
+//                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+//                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+//                        MySqlDataReader dr2 = comand2.ExecuteReader();
+//                        while (dr2.Read())
+//                        {
+//                            gridView1.AddNewRow();
+//                            int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                            if (gridView1.IsNewItemRow(rowHandle))
+//                            {
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
+//                            }
+//                        }
+//                        dr2.Close();
+//                    }
+//                    dr.Close();
+//                    if (gridView1.IsLastVisibleRow)
+//                    {
+//                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection.Close();
+//            dbconnection6.Close();
+//        }
+
+//        private void comBox_SelectedValueChanged(object sender, EventArgs e)
+//        {
+//            if (loaded)
+//            {
+//                ComboBox comBox = (ComboBox)sender;
+
+//                switch (comBox.Name)
+//                {
+//                    case "comType":
+//                        if (loaded)
+//                        {
+//                            txtCodeSearch1.Text = comType.SelectedValue.ToString();
+//                            string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
+//                            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//                            DataTable dt = new DataTable();
+//                            da.Fill(dt);
+//                            comFactory.DataSource = dt;
+//                            comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+//                            comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+//                            comFactory.Text = "";
+//                            if (comType.SelectedValue.ToString() == "1" || comType.SelectedValue.ToString() == "2")
+//                            {
+//                                string query2 = "select * from groupo where Factory_ID=0 and Type_ID=1";
+//                                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+//                                DataTable dt2 = new DataTable();
+//                                da2.Fill(dt2);
+//                                comGroup.DataSource = dt2;
+//                                comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+//                                comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+//                                comGroup.Text = "";
+//                            }
+//                            else if (comType.SelectedValue.ToString() == "4")
+//                            {
+//                                string query2 = "select * from groupo where Factory_ID=-1 and Type_ID=4";
+//                                MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+//                                DataTable dt2 = new DataTable();
+//                                da2.Fill(dt2);
+//                                comGroup.DataSource = dt2;
+//                                comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
+//                                comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
+//                                comGroup.Text = "";
+//                            }
+//                            factoryFlage = true;
+
+//                            query = "select * from color where Type_ID=" + comType.SelectedValue.ToString();
+//                            da = new MySqlDataAdapter(query, dbconnection);
+//                            dt = new DataTable();
+//                            da.Fill(dt);
+//                            comColor.DataSource = dt;
+//                            comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
+//                            comColor.ValueMember = dt.Columns["Color_ID"].ToString();
+//                            comColor.Text = "";
+//                            comFactory.Focus();
+//                        }
+//                        break;
+
+//                    case "comFactory":
+//                        if (factoryFlage)
+//                        {
+//                            txtCodeSearch2.Text = comFactory.SelectedValue.ToString();
+//                            if (comType.SelectedValue.ToString() != "1" && comType.SelectedValue.ToString() != "2" && comType.SelectedValue.ToString() != "4")
+//                            {
+//                                string query2f = "select * from groupo where Factory_ID=" + comFactory.SelectedValue.ToString();
+//                                MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
+//                                DataTable dt2f = new DataTable();
+//                                da2f.Fill(dt2f);
+//                                comGroup.DataSource = dt2f;
+//                                comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
+//                                comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
+//                                comGroup.Text = "";
+//                            }
+
+//                            groupFlage = true;
+
+//                            string query2 = "select * from size where Factory_ID=" + comFactory.SelectedValue.ToString();
+//                            MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+//                            DataTable dt2 = new DataTable();
+//                            da2.Fill(dt2);
+//                            comSize.DataSource = dt2;
+//                            comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
+//                            comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
+//                            comSize.Text = "";
+//                            comGroup.Focus();
+//                        }
+//                        break;
+
+//                    case "comGroup":
+//                        if (groupFlage)
+//                        {
+//                            txtCodeSearch3.Text = comGroup.SelectedValue.ToString();
+//                            string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product.Type_ID=" + comType.SelectedValue.ToString() + " and product_factory_group.Factory_ID=" + comFactory.SelectedValue.ToString() + " and product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + "  order by product.Product_ID";
+//                            MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
+//                            DataTable dt3 = new DataTable();
+//                            da3.Fill(dt3);
+//                            comProduct.DataSource = dt3;
+//                            comProduct.DisplayMember = dt3.Columns["Product_Name"].ToString();
+//                            comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
+//                            comProduct.Text = "";
+
+
+//                            string query2 = "select * from size where Factory_ID=" + comFactory.SelectedValue.ToString() + " and Group_ID=" + comGroup.SelectedValue.ToString();
+//                            MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
+//                            DataTable dt2 = new DataTable();
+//                            da2.Fill(dt2);
+//                            comSize.DataSource = dt2;
+//                            comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
+//                            comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
+//                            comSize.Text = "";
+
+//                            comProduct.Focus();
+//                            flagProduct = true;
+//                        }
+//                        break;
+
+//                    case "comProduct":
+//                        if (flagProduct)
+//                        {
+//                            txtCodeSearch4.Text = comProduct.SelectedValue.ToString();
+//                            //flagProduct = false;
+//                            comColor.Focus();
+//                        }
+//                        break;
+
+//                    case "comColour":
+//                        comSize.Focus();
+//                        break;
+
+//                    case "comSize":
+//                        comSort.Focus();
+//                        break;
+
+//                    case "comSort":
+//                        { }
+//                        break;
+//                }
+//            }
+//        }
+
+//        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+//        {
+//            TextBox txtBox = (TextBox)sender;
+//            string query;
+//            MySqlCommand com;
+//            string Name;
+//            if (e.KeyCode == Keys.Enter)
+//            {
+//                try
+//                {
+//                    if (txtBox.Text != "")
+//                    {
+//                        dbconnection.Open();
+//                        switch (txtBox.Name)
+//                        {
+//                            case "txtCodeSearch1":
+//                                query = "select Type_Name from type where Type_ID='" + txtCodeSearch1.Text + "'";
+//                                com = new MySqlCommand(query, dbconnection);
+//                                if (com.ExecuteScalar() != null)
+//                                {
+//                                    Name = (string)com.ExecuteScalar();
+//                                    comType.Text = Name;
+//                                    txtCodeSearch2.Focus();
+//                                }
+//                                else
+//                                {
+//                                    MessageBox.Show("there is no item with this id");
+//                                    dbconnection.Close();
+//                                    return;
+//                                }
+//                                break;
+//                            case "txtCodeSearch2":
+//                                query = "select Factory_Name from factory where Factory_ID='" + txtCodeSearch2.Text + "'";
+//                                com = new MySqlCommand(query, dbconnection);
+//                                if (com.ExecuteScalar() != null)
+//                                {
+//                                    Name = (string)com.ExecuteScalar();
+//                                    comFactory.Text = Name;
+//                                    txtCodeSearch3.Focus();
+//                                }
+//                                else
+//                                {
+//                                    MessageBox.Show("there is no item with this id");
+//                                    dbconnection.Close();
+//                                    return;
+//                                }
+//                                break;
+//                            case "txtCodeSearch3":
+//                                query = "select Group_Name from groupo where Group_ID='" + txtCodeSearch3.Text + "'";
+//                                com = new MySqlCommand(query, dbconnection);
+//                                if (com.ExecuteScalar() != null)
+//                                {
+//                                    Name = (string)com.ExecuteScalar();
+//                                    comGroup.Text = Name;
+//                                    txtCodeSearch4.Focus();
+//                                }
+//                                else
+//                                {
+//                                    MessageBox.Show("there is no item with this id");
+//                                    dbconnection.Close();
+//                                    return;
+//                                }
+//                                break;
+//                            case "txtCodeSearch4":
+//                                query = "select Product_Name from product where Product_ID='" + txtCodeSearch4.Text + "'";
+//                                com = new MySqlCommand(query, dbconnection);
+//                                if (com.ExecuteScalar() != null)
+//                                {
+//                                    Name = (string)com.ExecuteScalar();
+//                                    comProduct.Text = Name;
+//                                    txtCodeSearch5.Focus();
+
+//                                    query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code like '" + code1 + code2 + code3 + code4 + "%' and data.Data_ID=0 group by data.Data_ID";
+//                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//                                    DataTable dt = new DataTable();
+//                                    da.Fill(dt);
+//                                    gridControl1.DataSource = dt;
+//                                    gridView1.Columns["Type"].Visible = false;
+//                                    gridView1.Columns[0].Visible = false;
+
+//                                    dbconnection6.Open();
+//                                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code like '" + code1 + code2 + code3 + code4 + "%' group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+//                                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+//                                    MySqlDataReader dr = comand.ExecuteReader();
+//                                    while (dr.Read())
+//                                    {
+//                                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+//                                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+//                                        MySqlDataReader dr2 = comand2.ExecuteReader();
+//                                        while (dr2.Read())
+//                                        {
+//                                            gridView1.AddNewRow();
+//                                            int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                                            if (gridView1.IsNewItemRow(rowHandle))
+//                                            {
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
+//                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
+//                                            }
+//                                        }
+//                                        dr2.Close();
+//                                    }
+//                                    dr.Close();
+
+//                                    if (gridView1.IsLastVisibleRow)
+//                                    {
+//                                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                                    }
+//                                }
+//                                else
+//                                {
+//                                    MessageBox.Show("there is no item with this id");
+//                                    dbconnection.Close();
+//                                    return;
+//                                }
+//                                break;
+//                        }
+
+//                    }
+
+//                }
+//                catch (Exception ex)
+//                {
+//                    MessageBox.Show(ex.ToString());
+//                }
+//                dbconnection.Close();
+//                dbconnection6.Close();
+//            }
+//        }
+
+//        private void comSet_SelectedValueChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                if (loaded)
+//                {
+//                    comOffer.Text = "";
+//                    checkEditOffers.Checked = false;
+
+//                    checkEditSets.Checked = false;
+//                    dbconnection.Open();
+
+//                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+//                    DataTable dtf = new DataTable();
+//                    adapter.Fill(dtf);
+//                    gridControl1.DataSource = dtf;
+//                    gridView1.Columns["Type"].Visible = false;
+//                    gridView1.Columns[0].Visible = false;
+
+//                    string query = "SELECT sets.Set_ID as 'الكود','Type',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID where sets.Set_ID=" + comSet.SelectedValue.ToString();
+//                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+//                    MySqlDataReader dr = comand.ExecuteReader();
+//                    while (dr.Read())
+//                    {
+//                        dbconnection3.Open();
+//                        double price = 0;
+//                        double priceF = 0;
+//                        double totalQuanity = 0;
+//                        gridView1.AddNewRow();
+//                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                        if (gridView1.IsNewItemRow(rowHandle))
+//                        {
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
+
+//                            query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID order by sellprice.Date desc";
+//                            comand = new MySqlCommand(query, dbconnection3);
+//                            MySqlDataReader dr1 = comand.ExecuteReader();
+//                            while (dr1.Read())
+//                            {
+//                                price += Convert.ToDouble(dr1["السعر"].ToString());
+//                                priceF += Convert.ToDouble(dr1["بعد الخصم"].ToString());
+
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
+//                            }
+//                            dr1.Close();
+
+//                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
+//                            comand = new MySqlCommand(query, dbconnection3);
+//                            dr1 = comand.ExecuteReader();
+//                            while (dr1.Read())
+//                            {
+//                                if (dr1["الكمية"].ToString() != "")
+//                                {
+//                                    totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
+//                                }
+//                                else
+//                                {
+//                                    totalQuanity += 0;
+//                                }
+//                            }
+//                            dr1.Close();
+
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], price);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], priceF);
+//                            if (totalQuanity != 0)
+//                            {
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuanity);
+//                            }
+//                            else
+//                            {
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], "");
+//                            }
+//                        }
+//                        dbconnection3.Close();
+//                    }
+//                    dr.Close();
+
+//                    if (gridView1.IsLastVisibleRow)
+//                    {
+//                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection3.Close();
+//            dbconnection.Close();
+//        }
+
+//        private void comOffer_SelectedValueChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                if (loaded)
+//                {
+//                    comSet.Text = "";
+//                    checkEditSets.Checked = false;
+//                    checkEditOffers.Checked = false;
+
+//                    string query = "select offer.Offer_ID as 'الكود','Type',Offer_Name as 'الاسم',Price as 'السعر',Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + comOffer.SelectedValue.ToString() + "  group by storage.Offer_ID";
+//                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//                    DataTable dt = new DataTable();
+//                    da.Fill(dt);
+//                    gridControl1.DataSource = dt;
+//                    gridView1.Columns["Type"].Visible = false;
+//                    gridView1.Columns[0].Visible = false;
+
+//                    for (int i = 0; i < gridView1.RowCount; i++)
+//                    {
+//                        gridView1.SetRowCellValue(i, gridView1.Columns["Type"], "عرض");
+//                    }
+
+//                    if (gridView1.IsLastVisibleRow)
+//                    {
+//                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection.Close();
+//        }
+
+//        private void txtCodeSearch1_TextChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                int result = 0;
+//                if (txtCodeSearch1.Text != "")
+//                {
+//                    if (int.TryParse(txtCodeSearch1.Text, out result))
+//                    {
+//                        if (!flag1)
+//                        {
+//                            if (txtCodeSearch1.TextLength == 1)
+//                            {
+//                                code1 = "000" + txtCodeSearch1.Text;
+//                            }
+//                            else if (txtCodeSearch1.TextLength == 2)
+//                            {
+//                                code1 = "00" + txtCodeSearch1.Text;
+//                            }
+//                            else if (txtCodeSearch1.TextLength == 3)
+//                            {
+//                                code1 = "0" + txtCodeSearch1.Text;
+//                            }
+//                            else if (txtCodeSearch1.TextLength == 4)
+//                            {
+//                                code1 = txtCodeSearch1.Text;
+//                            }
+//                            else if (txtCodeSearch1.TextLength > 4)
+//                            {
+//                                txtCodeSearch1.Text = code1;
+//                            }
+//                            else if (txtCodeSearch1.TextLength == 0)
+//                            {
+//                                code1 = "0000";
+//                            }
+//                        }
+//                    }
+//                    else
+//                    {
+//                        flag1 = true;
+//                        if (txtCodeSearch1.TextLength == 1)
+//                        {
+//                            txtCodeSearch1.Text = "";
+//                        }
+//                        else if (txtCodeSearch1.TextLength > 1)
+//                        {
+//                            for (int i = 0; i < txtCodeSearch1.TextLength - 1; i++)
+//                            {
+//                                txtCodeSearch1.Text = txtCodeSearch1.Text[i].ToString();
+//                            }
+//                        }
+//                        MessageBox.Show("يمكنك ادخال ارقام فقط");
+//                        flag1 = false;
+//                        return;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void txtCodeSearch2_TextChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                int result = 0;
+//                if (txtCodeSearch2.Text != "")
+//                {
+//                    if (int.TryParse(txtCodeSearch2.Text, out result))
+//                    {
+//                        if (!flag2)
+//                        {
+//                            if (txtCodeSearch2.TextLength == 1)
+//                            {
+//                                code2 = "000" + txtCodeSearch2.Text;
+//                            }
+//                            else if (txtCodeSearch2.TextLength == 2)
+//                            {
+//                                code2 = "00" + txtCodeSearch2.Text;
+//                            }
+//                            else if (txtCodeSearch2.TextLength == 3)
+//                            {
+//                                code2 = "0" + txtCodeSearch2.Text;
+//                            }
+//                            else if (txtCodeSearch2.TextLength == 4)
+//                            {
+//                                code2 = txtCodeSearch2.Text;
+//                            }
+//                            else if (txtCodeSearch2.TextLength > 4)
+//                            {
+//                                txtCodeSearch2.Text = code2;
+//                            }
+//                            else if (txtCodeSearch2.TextLength == 0)
+//                            {
+//                                code2 = "0000";
+//                            }
+//                        }
+//                    }
+//                    else
+//                    {
+//                        flag2 = true;
+//                        if (txtCodeSearch2.TextLength == 1)
+//                        {
+//                            txtCodeSearch2.Text = "";
+//                        }
+//                        else if (txtCodeSearch2.TextLength > 1)
+//                        {
+//                            for (int i = 0; i < txtCodeSearch2.TextLength - 1; i++)
+//                            {
+//                                txtCodeSearch2.Text = txtCodeSearch2.Text[i].ToString();
+//                            }
+//                        }
+//                        MessageBox.Show("يمكنك ادخال ارقام فقط");
+//                        flag2 = false;
+//                        return;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void txtCodeSearch3_TextChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                int result = 0;
+//                if (txtCodeSearch3.Text != "")
+//                {
+//                    if (int.TryParse(txtCodeSearch3.Text, out result))
+//                    {
+//                        if (!flag3)
+//                        {
+//                            if (txtCodeSearch3.TextLength == 1)
+//                            {
+//                                code3 = "000" + txtCodeSearch3.Text;
+//                            }
+//                            else if (txtCodeSearch3.TextLength == 2)
+//                            {
+//                                code3 = "00" + txtCodeSearch3.Text;
+//                            }
+//                            else if (txtCodeSearch3.TextLength == 3)
+//                            {
+//                                code3 = "0" + txtCodeSearch3.Text;
+//                            }
+//                            else if (txtCodeSearch3.TextLength == 4)
+//                            {
+//                                code3 = txtCodeSearch3.Text;
+//                            }
+//                            else if (txtCodeSearch3.TextLength > 4)
+//                            {
+//                                txtCodeSearch3.Text = code3;
+//                            }
+//                            else if (txtCodeSearch3.TextLength == 0)
+//                            {
+//                                code3 = "0000";
+//                            }
+//                        }
+//                    }
+//                    else
+//                    {
+//                        flag3 = true;
+//                        if (txtCodeSearch3.TextLength == 1)
+//                        {
+//                            txtCodeSearch3.Text = "";
+//                        }
+//                        else if (txtCodeSearch3.TextLength > 1)
+//                        {
+//                            for (int i = 0; i < txtCodeSearch3.TextLength - 1; i++)
+//                            {
+//                                txtCodeSearch3.Text = txtCodeSearch3.Text[i].ToString();
+//                            }
+//                        }
+//                        MessageBox.Show("يمكنك ادخال ارقام فقط");
+//                        flag3 = false;
+//                        return;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void txtCodeSearch4_TextChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                int result = 0;
+//                if (txtCodeSearch4.Text != "")
+//                {
+//                    if (int.TryParse(txtCodeSearch4.Text, out result))
+//                    {
+//                        if (!flag4)
+//                        {
+//                            if (txtCodeSearch4.TextLength == 1)
+//                            {
+//                                code4 = "000" + txtCodeSearch4.Text;
+//                            }
+//                            else if (txtCodeSearch4.TextLength == 2)
+//                            {
+//                                code4 = "00" + txtCodeSearch4.Text;
+//                            }
+//                            else if (txtCodeSearch4.TextLength == 3)
+//                            {
+//                                code4 = "0" + txtCodeSearch4.Text;
+//                            }
+//                            else if (txtCodeSearch4.TextLength == 4)
+//                            {
+//                                code4 = txtCodeSearch4.Text;
+//                            }
+//                            else if (txtCodeSearch4.TextLength > 4)
+//                            {
+//                                txtCodeSearch4.Text = code4;
+//                            }
+//                            else if (txtCodeSearch4.TextLength == 0)
+//                            {
+//                                code4 = "0000";
+//                            }
+//                        }
+//                    }
+//                    else
+//                    {
+//                        flag4 = true;
+//                        if (txtCodeSearch4.TextLength == 1)
+//                        {
+//                            txtCodeSearch4.Text = "";
+//                        }
+//                        else if (txtCodeSearch4.TextLength > 1)
+//                        {
+//                            for (int i = 0; i < txtCodeSearch4.TextLength - 1; i++)
+//                            {
+//                                txtCodeSearch4.Text = txtCodeSearch4.Text[i].ToString();
+//                            }
+//                        }
+//                        MessageBox.Show("يمكنك ادخال ارقام فقط");
+//                        flag4 = false;
+//                        return;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void txtCodeSearch5_TextChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                int result = 0;
+//                if (txtCodeSearch5.Text != "")
+//                {
+//                    if (int.TryParse(txtCodeSearch5.Text, out result))
+//                    {
+//                        if (!flag5)
+//                        {
+//                            if (txtCodeSearch5.TextLength == 1)
+//                            {
+//                                code5 = "000" + txtCodeSearch5.Text;
+//                            }
+//                            else if (txtCodeSearch5.TextLength == 2)
+//                            {
+//                                code5 = "00" + txtCodeSearch5.Text;
+//                            }
+//                            else if (txtCodeSearch5.TextLength == 3)
+//                            {
+//                                code5 = "0" + txtCodeSearch5.Text;
+//                            }
+//                            else if (txtCodeSearch5.TextLength == 4)
+//                            {
+//                                code5 = txtCodeSearch5.Text;
+//                            }
+//                            else if (txtCodeSearch5.TextLength > 4)
+//                            {
+//                                txtCodeSearch5.Text = code5;
+//                            }
+//                            else if (txtCodeSearch5.TextLength == 0)
+//                            {
+//                                code5 = "0000";
+//                            }
+//                        }
+//                    }
+//                    else
+//                    {
+//                        flag5 = true;
+//                        if (txtCodeSearch5.TextLength == 1)
+//                        {
+//                            txtCodeSearch5.Text = "";
+//                        }
+//                        else if (txtCodeSearch5.TextLength > 1)
+//                        {
+//                            for (int i = 0; i < txtCodeSearch5.TextLength - 1; i++)
+//                            {
+//                                txtCodeSearch5.Text = txtCodeSearch5.Text[i].ToString();
+//                            }
+//                        }
+//                        MessageBox.Show("يمكنك ادخال ارقام فقط");
+//                        flag5 = false;
+//                        return;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+
+//        private void checkEditSets_CheckedChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                if (checkEditSets.Checked)
+//                {
+//                    comOffer.Text = "";
+//                    checkEditOffers.Checked = false;
+
+//                    comSet.Text = "";
+//                    dbconnection.Open();
+
+//                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+//                    DataTable dtf = new DataTable();
+//                    adapter.Fill(dtf);
+//                    gridControl1.DataSource = dtf;
+//                    gridView1.Columns["Type"].Visible = false;
+//                    gridView1.Columns[0].Visible = false;
+
+//                    string query = "SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID INNER JOIN groupo ON groupo.Group_ID = sets.Group_ID";
+//                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+//                    MySqlDataReader dr = comand.ExecuteReader();
+//                    while (dr.Read())
+//                    {
+//                        dbconnection3.Open();
+//                        double price = 0;
+//                        double priceF = 0;
+//                        double totalQuanity = 0;
+//                        gridView1.AddNewRow();
+//                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+//                        if (gridView1.IsNewItemRow(rowHandle))
+//                        {
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
+
+//                            query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID order by sellprice.Date desc";
+//                            comand = new MySqlCommand(query, dbconnection3);
+//                            MySqlDataReader dr1 = comand.ExecuteReader();
+//                            while (dr1.Read())
+//                            {
+//                                price += Convert.ToDouble(dr1["السعر"].ToString());
+//                                priceF += Convert.ToDouble(dr1["بعد الخصم"].ToString());
+
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
+//                            }
+//                            dr1.Close();
+
+//                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
+//                            comand = new MySqlCommand(query, dbconnection3);
+//                            dr1 = comand.ExecuteReader();
+//                            while (dr1.Read())
+//                            {
+//                                if (dr1["الكمية"].ToString() != "")
+//                                {
+//                                    totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
+//                                }
+//                                else
+//                                {
+//                                    totalQuanity += 0;
+//                                }
+//                            }
+//                            dr1.Close();
+
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], price);
+//                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], priceF);
+//                            if (totalQuanity != 0)
+//                            {
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuanity);
+//                            }
+//                            else
+//                            {
+//                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], "");
+//                            }
+//                        }
+//                        dbconnection3.Close();
+//                    }
+//                    dr.Close();
+//                    if (gridView1.IsLastVisibleRow)
+//                    {
+//                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection3.Close();
+//            dbconnection.Close();
+//        }
+
+//        private void checkEditOffers_CheckedChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                if (checkEditOffers.Checked)
+//                {
+//                    comSet.Text = "";
+//                    checkEditSets.Checked = false;
+//                    comOffer.Text = "";
+
+//                    string query = "select offer.Offer_ID as 'الكود','Type',Offer_Name as 'الاسم',Price as 'السعر',Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID group by storage.Offer_ID";
+//                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//                    DataTable dt = new DataTable();
+//                    da.Fill(dt);
+//                    gridControl1.DataSource = dt;
+//                    gridView1.Columns["Type"].Visible = false;
+//                    gridView1.Columns[0].Visible = false;
+
+//                    for (int i = 0; i < gridView1.RowCount; i++)
+//                    {
+//                        gridView1.SetRowCellValue(i, gridView1.Columns["Type"], "عرض");
+//                    }
+
+//                    if (gridView1.IsLastVisibleRow)
+//                    {
+//                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection.Close();
+//        }
+
+//        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+//        {
+//            try
+//            {
+//                row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+//                //row1.Selected = true;
+//                if (loaded)
+//                {
+//                    if (e.Column.ToString() == "الكود")
+//                    {
+//                        if (tipImage == null)
+//                        {
+//                            if (row1["الكود"].ToString().Length >= 20)
+//                            {
+//                                tipImage = new TipImage(row1["Data_ID"].ToString(), "بند");
+//                            }
+//                            else if (row1["Type"].ToString() == "طقم")
+//                            {
+//                                tipImage = new TipImage(row1["الكود"].ToString(), "طقم");
+//                            }
+//                            else if (row1["Type"].ToString() == "عرض")
+//                            {
+//                                tipImage = new TipImage(row1["الكود"].ToString(), "عرض");
+//                            }
+//                            tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+//                            tipImage.Show();
+//                        }
+//                        else
+//                        {
+//                            tipImage.Close();
+//                            if (row1["الكود"].ToString().Length >= 20)
+//                            {
+//                                tipImage = new TipImage(row1["Data_ID"].ToString(), "بند");
+//                            }
+//                            else if (row1["Type"].ToString() == "طقم")
+//                            {
+//                                tipImage = new TipImage(row1["الكود"].ToString(), "طقم");
+//                            }
+//                            else if (row1["Type"].ToString() == "عرض")
+//                            {
+//                                tipImage = new TipImage(row1["الكود"].ToString(), "عرض");
+//                            }
+//                            tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+//                            tipImage.Show();
+//                        }
+//                    }
+
+//                    else if (e.Column.ToString() == "الكمية")
+//                    {
+//                        if (row1["الكود"].ToString().Length >= 20)
+//                        {
+//                            StoresDetails sd = new StoresDetails(row1["Data_ID"].ToString());
+//                            sd.ShowDialog();
+//                        }
+//                    }
+
+//                    else if (e.Column.ToString() == "الاسم")
+//                    {
+//                        if (row1["الكود"].ToString().Length >= 20)
+//                        {
+
+//                        }
+//                        else if (row1["Type"].ToString() == "طقم")
+//                        {
+//                            ItemDetails itemD = new ItemDetails(row1["الكود"].ToString(), "طقم");
+//                            itemD.ShowDialog();
+//                        }
+//                        else if (row1["Type"].ToString() == "عرض")
+//                        {
+//                            ItemDetails itemD = new ItemDetails(row1["الكود"].ToString(), "عرض");
+//                            itemD.ShowDialog();
+//                        }
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+        
+//        private void btnAdd_Click(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                dbconnection.Open();
+
+//                if (gridView1.SelectedRowsCount > 0)
+//                {
+//                    if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكمية").ToString() != "" && gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكمية").ToString() != "0")
+//                    {
+//                        if (txtQuantity.Text != "" && comStore.Text != "")
+//                        {
+//                            double TotalMeters = 0;
+//                            if (double.TryParse(txtQuantity.Text, out TotalMeters))
+//                            {
+//                                if (checkQuantityInStore(TotalMeters))
+//                                {
+//                                    cartons = 0;
+//                                    if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20 && Convert.ToDouble(gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكرتنة")) > 0)
+//                                    {
+//                                        if (cartonNumCheck())
+//                                        { }
+//                                        else
+//                                        {
+//                                            dbconnection.Close();
+//                                            return;
+//                                        }
+//                                    }
+
+//                                    /******************************************************************************/
+//                                    DataRowView row1 = (DataRowView)gridView1.GetRow(gridView1.GetSelectedRows()[0]);
+//                                    MainForm.objFormBillConfirm.addItemToView(row1, TotalMeters, Convert.ToInt16(comStore.SelectedValue.ToString()), comStore.Text, cartons);
+//                                    this.Close();
+//                                }
+//                                else
+//                                {
+//                                    MessageBox.Show("لا يوجد كمية كافية");
+//                                }
+//                            }
+//                            else
+//                            {
+//                                MessageBox.Show("الكمية يجب ان تكون عدد");
+//                            }
+//                        }
+//                        else
+//                        {
+//                            MessageBox.Show("برجاء ادخال الوصفات كاملة");
+//                        }
+//                    }
+//                    else
+//                    {
+//                        MessageBox.Show("لا يوجد اى كمية من هذا العنصر");
+//                    }
+//                }
+//                else
+//                {
+//                    MessageBox.Show("برجاء اختيار عنصر للاضافة");
+//                }
+
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            dbconnection.Close();
+//        }
+    
+//        /*private void txtBox_TextChanged(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                xtraTabPage = getTabPage("tabPageProductsReport");
+//                if (!IsClear())
+//                {
+//                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+//                }
+//                else
+//                {
+//                    xtraTabPage.ImageOptions.Image = null;
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }*/
+
+//        //functions
+//        public void search()
+//        {
+//            dbconnection.Open();
+
+//            string query = "select * from type";
+//            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+//            DataTable dt = new DataTable();
+//            da.Fill(dt);
+//            comType.DataSource = dt;
+//            comType.DisplayMember = dt.Columns["Type_Name"].ToString();
+//            comType.ValueMember = dt.Columns["Type_ID"].ToString();
+//            comType.Text = "";
+            
+//            query = "select * from sets";
+//            da = new MySqlDataAdapter(query, dbconnection);
+//            dt = new DataTable();
+//            da.Fill(dt);
+//            comSet.DataSource = dt;
+//            comSet.DisplayMember = dt.Columns["Set_Name"].ToString();
+//            comSet.ValueMember = dt.Columns["Set_ID"].ToString();
+//            comSet.Text = "";
+
+//            query = "select * from offer";
+//            da = new MySqlDataAdapter(query, dbconnection);
+//            dt = new DataTable();
+//            da.Fill(dt);
+//            comOffer.DataSource = dt;
+//            comOffer.DisplayMember = dt.Columns["Offer_Name"].ToString();
+//            comOffer.ValueMember = dt.Columns["Offer_ID"].ToString();
+//            comOffer.Text = "";
+
+//            query = "select * from store";
+//            da = new MySqlDataAdapter(query, dbconnection);
+//            dt = new DataTable();
+//            da.Fill(dt);
+//            comStore.DataSource = dt;
+//            comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+//            comStore.ValueMember = dt.Columns["Store_ID"].ToString();
+//            comStore.Text = "";
+            
+//            query = "select * from sort";
+//            da = new MySqlDataAdapter(query, dbconnection);
+//            dt = new DataTable();
+//            da.Fill(dt);
+//            comSort.DataSource = dt;
+//            comSort.DisplayMember = dt.Columns["Sort_Value"].ToString();
+//            comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
+//            comSort.Text = "";
+
+//            //search2();
+//            dbconnection.Close();
+//        }
+
+//        public void search2()
+//        {
+//            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+//            DataTable dtf = new DataTable();
+//            adapter.Fill(dtf);
+//            gridControl1.DataSource = dtf;
+            
+//            gridView1.Columns[1].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+//            gridView1.Columns["الكود"].Width = 150;
+//            gridView1.Columns["الاسم"].Width = 200;
+//            gridView1.Columns[0].Visible = false;
+//            gridView1.Columns["Type"].Visible = false;
+
+//            for (int i = 2; i < gridView1.Columns.Count; i++)
+//            {
+//                gridView1.Columns[i].Width = 100;
+//            }
+//            gridView1.Columns["الكرتنة"].Width = 60;
+
+//            if (gridView1.IsLastVisibleRow)
+//            {
+//                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+//            }
+//        }
+
+//        public bool checkQuantityInStore(double totalMeter)
+//        {
+//            if (row1["Type"].ToString() == "بند")
+//            {
+//                string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " group by storage.Data_ID";
+//                MySqlCommand com = new MySqlCommand(query, dbconnection);
+//                if (com.ExecuteScalar() != null)
+//                {
+//                    double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
+//                    if (totalMeter <= totalquant)
+//                    {
+//                        return true;
+//                    }
+//                    else
+//                    {
+//                        return false;
+//                    }
+//                }
+//            }
+//            else if (row1["Type"].ToString() == "طقم")
+//            {
+//                string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Set_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " group by storage.Set_ID";
+//                MySqlCommand com = new MySqlCommand(query, dbconnection);
+//                if (com.ExecuteScalar() != null)
+//                {
+//                    double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
+//                    if (totalMeter <= totalquant)
+//                    {
+//                        return true;
+//                    }
+//                    else
+//                    {
+//                        return false;
+//                    }
+//                }
+//            }
+//            else if (row1["Type"].ToString() == "عرض")
+//            {
+//                double totalquant = Convert.ToDouble(gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكمية"));
+//                if (totalMeter <= totalquant)
+//                {
+//                    return true;
+//                }
+//                else
+//                {
+//                    return false;
+//                }
+//            }
+//            return false;
+//        }
+
+//        public bool cartonNumCheck()
+//        {
+//            try
+//            {
+//                string query = "select Carton from data where Code='" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + "'";
+//                MySqlCommand com = new MySqlCommand(query, dbconnection);
+//                if (com.ExecuteScalar() != null)
+//                {
+//                    decimal Carton = Convert.ToDecimal(com.ExecuteScalar());
+//                    decimal totalMeters = decimal.Parse(txtQuantity.Text);
+//                    if (totalMeters % Carton == 0)
+//                    {
+//                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
+//                        cartons = (int)(totalMeters / Carton);
+//                        return true;
+//                    }
+//                    else
+//                    {
+//                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
+//                        cartons = 0;
+//                        return false;
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//            return false;
+//        }
+
+//        public XtraTabPage getTabPage(string text)
+//        {
+//            for (int i = 0; i < MainForm.tabControlSales.TabPages.Count; i++)
+//                if (MainForm.tabControlSales.TabPages[i].Name == text)
+//                {
+//                    return MainForm.tabControlSales.TabPages[i];
+//                }
+//            return null;
+//        }
+
+//        //clear function
+//        public void clear()
+//        {
+//            foreach (Control co in this.panel1.Controls)
+//            {
+//                //if (co is GroupBox)
+//                //{
+//                foreach (Control item in co.Controls)
+//                {
+//                    if (item is ComboBox)
+//                    {
+//                        item.Text = "";
+//                    }
+//                    else if (item is TextBox)
+//                    {
+//                        item.Text = "";
+//                    }
+//                }
+//                //}
+//            }
+//        }
+
+//        public bool IsClear()
+//        {
+//            bool flag5 = false;
+//            foreach (Control co in this.panel1.Controls)
+//            {
+//                foreach (Control item in co.Controls)
+//                {
+//                    if (item is ComboBox)
+//                    {
+//                        if (item.Text == "")
+//                            flag5 = true;
+//                        else
+//                            return false;
+//                    }
+//                    else if (item is TextBox)
+//                    {
+//                        if (item.Text == "")
+//                            flag5 = true;
+//                        else
+//                            return false;
+//                    }
+//                }
+//            }
+
+//            return flag5;
+//        }
+
+//        private void btnNewChosen_Click(object sender, EventArgs e)
+//        {
+//            clearCom();
+//        }
+        
+//        //clear function
+//        public void clearCom()
+//        {
+//            foreach (Control co in this.panel3.Controls)
+//            {
+//                if (co is System.Windows.Forms.ComboBox)
+//                {
+//                    co.Text = "";
+//                }
+//                else if (co is TextBox)
+//                {
+//                    co.Text = "";
+//                }
+//            }
+//        }
+
+//        private void labSearch_Click(object sender, EventArgs e)
+//        {
+//            try
+//            {
+//                layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Default;
+//                if (layoutControlItem2.Height == 94)
+//                {
+//                    layoutControlItem2.Height = 28;
+//                }
+//                else
+//                {
+//                    layoutControlItem2.Height = 94;
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message);
+//            }
+//        }
+//    }
+//}

@@ -759,7 +759,7 @@ namespace MainSystem
                 {
                     q5 = txtProduct.Text;
                 }
-                if (txtType.Text != "1")
+                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                 {
                     string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
@@ -953,7 +953,7 @@ namespace MainSystem
                         {
                             supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text + "";
                         }
-                        else if (comGroup.Text != "")
+                        if (comGroup.Text != "")
                         {
                             supQuery += " and product_factory_group.Group_ID=" + txtGroup.Text + "";
                         }

@@ -363,6 +363,12 @@
     <Compile Include="Reception\Delegate_Movement_Copy.designer.cs">
       <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Products_Report2Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\Products_Report2Sales.designer.cs">
+      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\specialOrder_confirm\SpecialOrderConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1613,11 +1619,9 @@
     <Compile Include="Sales\sellPrice\ProductsSellPriceForm.Designer.cs">
       <DependentUpon>ProductsSellPriceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\Products_Report2Sales.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\Products_Report2Sales.designer.cs">
-      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    <Compile Include="Sales\Products_Report2SalesTest.cs" />
+    <Compile Include="Sales\Products_Report2SalesTest.designer.cs">
+      <DependentUpon>Products_Report2SalesTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\PriceUpdateSales.cs">
       <SubType>Form</SubType>
@@ -2453,6 +2457,9 @@
     <EmbeddedResource Include="Sales\DashBill_Report.resx">
       <DependentUpon>DashBill_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
+      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\specialOrder_confirm\SpecialOrderConfirm.resx">
       <DependentUpon>SpecialOrderConfirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2909,8 +2916,8 @@
     <EmbeddedResource Include="Sales\sellPrice\ProductsSellPriceForm.resx">
       <DependentUpon>ProductsSellPriceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
-      <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    <EmbeddedResource Include="Sales\Products_Report2SalesTest.resx">
+      <DependentUpon>Products_Report2SalesTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\PriceUpdateSales.resx">
       <DependentUpon>PriceUpdateSales.cs</DependentUpon>

@@ -677,9 +677,9 @@ namespace MainSystem
                                     collection.Add(dr["الصنف"].ToString());
                                 }
                                 dr.Close();
-                                txtProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
-                                txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                                txtProduct.AutoCompleteCustomSource = collection;
+                                //txtProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
+                                //txtProduct.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                                //txtProduct.AutoCompleteCustomSource = collection;
                              }
                         break;
                     case "txtSort":

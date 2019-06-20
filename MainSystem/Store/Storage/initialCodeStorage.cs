@@ -1027,7 +1027,7 @@ namespace MainSystem
             }
             string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
             string query = "";
-            if (txtType.Text == "1")
+            if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
             {
                query = "SELECT data.Data_ID, data.Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ") " + q+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
             }
@@ -1101,7 +1101,7 @@ namespace MainSystem
           
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string qq = "";
-                if (txtType.Text == "1")
+                if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
                 {
                   qq = "select data.Data_ID,Store_ID,Store_Place_ID, data.Code as 'كود'," + itemName + ",Quantity as 'رصيد البند', Note as 'ملاحظة',Date as 'التاريخ' from open_storage_account  INNER JOIN data  ON open_storage_account.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ")"/* and Date='" + date + "' */ + query1 + " order by OpenStorageAccount_ID desc";
                 }
@@ -1504,7 +1504,7 @@ namespace MainSystem
                         {
                             supQuery += " and product_factory_group.Factory_ID=" + txtFactory.Text + "";
                         }
-                        else if (comGroup.Text != "")
+                        if (comGroup.Text != "")
                         {
                             supQuery += " and product_factory_group.Group_ID=" + txtGroup.Text + "";
                         }
