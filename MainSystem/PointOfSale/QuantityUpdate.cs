@@ -77,11 +77,11 @@ namespace MainSystem
                                 {
                                     if (cartonNumCheck())
                                     { }
-                                    else
+                                    /*else
                                     {
                                         conn.Close();
                                         return;
-                                    }
+                                    }*/
                                 }
                             }
                         }
@@ -160,13 +160,13 @@ namespace MainSystem
                     decimal totalMeters = decimal.Parse(txtQuantity.Text);
                     if (totalMeters % Carton == 0)
                     {
-                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
+                        //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
                         cartons = (int)(totalMeters / Carton);
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
+                        //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
                         cartons = 0;
                         return false;
                     }
@@ -181,7 +181,7 @@ namespace MainSystem
 
         public bool checkQuantityInStore(double totalMeter)
         {
-            if (selRow["النوع"].ToString() == "بند")
+            if (selRow["الفئة"].ToString() == "بند")
             {
                 string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage inner join data on storage.Data_ID=data.Data_ID where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and data.Code='" + selRow["الكود"].ToString() + "' group by storage.Data_ID,storage.Store_ID";
                 MySqlCommand com = new MySqlCommand(query, conn);
@@ -198,7 +198,7 @@ namespace MainSystem
                     }
                 }
             }
-            else if (selRow["النوع"].ToString() == "طقم")
+            else if (selRow["الفئة"].ToString() == "طقم")
             {
                 string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Set_ID=" + selRow["الكود"].ToString() + " group by storage.Set_ID,storage.Store_ID";
                 MySqlCommand com = new MySqlCommand(query, conn);
@@ -215,7 +215,7 @@ namespace MainSystem
                     }
                 }
             }
-            else if (selRow["النوع"].ToString() == "عرض")
+            else if (selRow["الفئة"].ToString() == "عرض")
             {
                 string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Offer_ID=" + selRow["الكود"].ToString() + " group by storage.Offer_ID,storage.Store_ID";
                 MySqlCommand com = new MySqlCommand(query, conn);

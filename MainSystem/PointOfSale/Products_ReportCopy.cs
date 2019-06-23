@@ -1706,11 +1706,11 @@ namespace MainSystem
                                                 {
                                                     if (cartonNumCheck())
                                                     { }
-                                                    else
+                                                    /*else
                                                     {
                                                         dbconnection.Close();
                                                         return;
-                                                    }
+                                                    }*/
                                                 }
                                                 string query = "";
                                                 MySqlCommand com;
@@ -2129,7 +2129,7 @@ namespace MainSystem
                     else
                     {
                         //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
-                        MessageBox.Show("عدد الكراتين يجب ان يكون رقم صحيح");
+                        //MessageBox.Show("عدد الكراتين يجب ان يكون رقم صحيح");
                         cartons = 0;
                         return false;
                     }

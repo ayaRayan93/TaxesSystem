@@ -845,7 +845,7 @@ namespace MainSystem
             EmpBranchId =  1;//UserControl.EmpBranchID;
             //and delegate.Error=0
             dbconnection.Open();
-            MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate inner join attendance on attendance.Delegate_ID=delegate.Delegate_ID where delegate.Branch_ID=" + EmpBranchId + "and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
+            MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate inner join attendance on attendance.Delegate_ID=delegate.Delegate_ID where delegate.Branch_ID=" + EmpBranchId + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
             dr = adapter.ExecuteReader();
 
             BindingList<GridData> lista = new BindingList<GridData>();

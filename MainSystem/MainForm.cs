@@ -243,16 +243,16 @@ namespace MainSystem
 
         static void BackupMethod()
         {
-            string text = File.ReadAllText(@"backupText.txt");
+            string text = File.ReadAllText(@"backups\backupText.txt");
 
             countBackup = int.Parse(text);
 
             if (countBackup <= 3)
             {
                 //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
-                string file = @"C:\Users\backups\backup" + (countBackup.ToString()) + ".sql";
+                string file = @"backups\backup" + (countBackup.ToString()) + ".sql";
 
-                File.WriteAllText(@"backupText.txt", (++countBackup).ToString());
+                File.WriteAllText(@"backups\backupText.txt", (++countBackup).ToString());
 
                 using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
                 {
@@ -271,9 +271,9 @@ namespace MainSystem
             else
             {
                 //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
-                string file = @"C:\Users\backups\backup1.sql";
+                string file = @"backups\backup1.sql";
 
-                File.WriteAllText(@"backupText.txt", "1");
+                File.WriteAllText(@"backups\backupText.txt", "1");
 
                 using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
                 {
