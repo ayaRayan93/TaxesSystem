@@ -311,8 +311,8 @@ namespace MainSystem
                         double restMoney = 0;
                         if (double.TryParse(txtRestMoney.Text, out restMoney))
                         {
-                            if (outParse <= restMoney)
-                            {
+                            /*if (outParse <= restMoney)
+                            {*/
                                 string opNumString = null;
                                 if (txtOperationNumber.Text != "")
                                 {
@@ -461,13 +461,13 @@ namespace MainSystem
                                 }
                                 else
                                 { }
-                            }
+                            /*}
                             else
                             {
                                 MessageBox.Show("برجاء التاكد من المبلغ المدفوع");
                                 dbconnection.Close();
                                 return;
-                            }
+                            }*/
                         }
                     }
                     else
