@@ -709,7 +709,6 @@ namespace MainSystem
 
                                 if (!checkExist(row[0].ToString()))
                                 {
-                                    MessageBox.Show(i+""+ listOfSelectedRows[i]);
                                     string query = "INSERT INTO sellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
                                     MySqlCommand command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("?Price_Type", "قطعى");

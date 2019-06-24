@@ -20,6 +20,8 @@ namespace MainSystem
         bool groupFlage = false;
         bool flagProduct = false;
         int Billid = 0;
+        string Customer_Type = "";
+
         public StoreReturnBill()
         {
             try
@@ -124,6 +126,7 @@ namespace MainSystem
                 groupBox1.Visible = false;
                 comBranch.Text = "";
                 txtBranchID.Text = "";
+                panCustomer.Visible = false;
             }
             catch (Exception ex)
             {
@@ -136,6 +139,7 @@ namespace MainSystem
             {
                 panBillNumber.Visible = false;
                 groupBox1.Visible = true;
+                panCustomer.Visible = true;
                 comType.Text = "";
                 comFactory.Text = "";
                 comGroup.Text = "";
@@ -366,6 +370,39 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
+                            case "txtCustomerID":
+                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comEngCon.Text = Name;
+                                    comEngCon.SelectedValue = txtCustomerID.Text;
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtClientID":
+                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comClient.Text = Name;
+                                    comClient.SelectedValue = txtClientID.Text;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
 
                         }
 
@@ -530,7 +567,7 @@ namespace MainSystem
                 List<ReturnPermissionClass> listOfData = new List<ReturnPermissionClass>();
                 if (gridView2.RowCount > 0)
                 {
-                    string query = "insert into customer_return_permission (CustomerBill_ID,ClientReturnName,ClientRetunPhone,Date) values (@CustomerBill_ID,@ClientReturnName,@ClientRetunPhone,@Date)";
+                    string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (radioButtonReturnBill.Checked)
                     {
@@ -541,6 +578,26 @@ namespace MainSystem
                     {
                         com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                         com.Parameters["@CustomerBill_ID"].Value = 0;
+                    }
+                    if (txtCustomerID.Text != ""&&txtCustomerID.Visible==true)
+                    {
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_ID"].Value = null;
+                    }
+                    if (txtClientID.Text != ""&& txtClientID.Visible==true)
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                    }
+                    else
+                    {
+                        com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                        com.Parameters["@Client_ID"].Value = null;
                     }
                     com.Parameters.Add("@ClientReturnName", MySqlDbType.VarChar);
                     com.Parameters["@ClientReturnName"].Value = txtClientName.Text;
@@ -574,9 +631,7 @@ namespace MainSystem
                         com.Parameters["@ReturnItemReason"].Value = row1[7].ToString();
 
                         com.ExecuteNonQuery();
-
-
-                      
+                        
                         ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();
                         returnPermissionClass.Data_ID = (int)row1["Data_ID"];
                         returnPermissionClass.Code = row1[1].ToString();
@@ -602,6 +657,110 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        //check type of customer if engineer,client or contract 
+        private void radiotype_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            Customer_Type = radio.Text;
+            comClient.Text = "";
+            txtClientID.Text = "";
+            comEngCon.Text = "";
+            txtCustomerID.Text = "";
+
+            loaded = false; //this is flag to prevent action of SelectedValueChanged event until datasource fill combobox
+            try
+            {
+                if (Customer_Type == "عميل")
+                {
+                    labelEng.Visible = false;
+                    comEngCon.Visible = false;
+                    txtCustomerID.Visible = false;
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+                    txtClientID.Visible = true;
+
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    txtClientID.Text = "";
+                }
+                else
+                {
+                    labelEng.Visible = true;
+                    comEngCon.Visible = true;
+                    txtCustomerID.Visible = true;
+                    labelClient.Visible = false;
+                    comClient.Visible = false;
+                    txtClientID.Visible = false;
+
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comEngCon.DataSource = dt;
+                    comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comEngCon.Text = "";
+                    txtCustomerID.Text = "";
+                }
+
+                loaded = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void comClient_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    txtClientID.Text = comClient.SelectedValue.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
+        private void comEngCon_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    loaded = false;
+                    txtCustomerID.Text = comEngCon.SelectedValue.ToString();
+                    labelClient.Visible = true;
+                    comClient.Visible = true;
+                    txtClientID.Visible = true;
+
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comClient.DataSource = dt;
+                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                    comClient.Text = "";
+                    loaded = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         //functions
@@ -897,6 +1056,9 @@ namespace MainSystem
             }
 
         }
+
+     
+
         public void filterSize()
         {
             if (comFactory.Text != "")
@@ -921,40 +1083,34 @@ namespace MainSystem
             int id;
             bool flag = false;
             double storageQ, productQ;
-            string query = "select Data_ID,Type,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber;
+           
+            string query = "select Data_ID,TotalQuantity from customer_return_permission_details where CustomerReturnPermission_ID=" + billNumber;
             MySqlCommand com = new MySqlCommand(query, connectionReader);
             MySqlDataReader dr = com.ExecuteReader();
 
             while (dr.Read())
             {
-                #region بند
-                if (dr["Type"].ToString() == "بند")
+                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='بند'";
+                MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                MySqlDataReader dr2 = com2.ExecuteReader();
+                while (dr2.Read())
                 {
-                    string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
-                    MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
-                    MySqlDataReader dr2 = com2.ExecuteReader();
-                    while (dr2.Read())
-                    {
+                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                    productQ = Convert.ToDouble(dr["TotalQuantity"]);
 
-                        storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-                        productQ = Convert.ToDouble(dr["TotalMeter"]);
-
-                        storageQ += productQ;
-                        id = Convert.ToInt16(dr2["Storage_ID"]);
-                        q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
-                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                        comm.ExecuteNonQuery();
-                        flag = true;
-                        break;
-
-                    }
-                    dr2.Close();
+                    storageQ += productQ;
+                    id = Convert.ToInt16(dr2["Storage_ID"]);
+                    q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                    MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                    comm.ExecuteNonQuery();
+                    flag = true;
+                    break;
                 }
-                #endregion
-
+                dr2.Close();
+          
                 if (!flag)
                 {
-                    MessageBox.Show(dr["Data_ID"].ToString() + " not valid in store");
+                    recordDataInOpenAccountStorage(dr["Data_ID"].ToString() , dr["TotalQuantity"].ToString());
                 }
                 flag = false;
             }
@@ -962,6 +1118,55 @@ namespace MainSystem
 
             connectionReader2.Close();
             connectionReader.Close();
+        }
+        public void recordDataInOpenAccountStorage(string Data_ID,string TotalQuantity)
+        {
+            string query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+            com.Parameters["@Data_ID"].Value = Data_ID;
+            com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+            com.Parameters["@Quantity"].Value = Convert.ToDecimal(TotalQuantity);
+            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+            com.Parameters["@Store_ID"].Value = 1;
+            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+            com.Parameters["@Store_Place_ID"].Value =8;
+            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+            DateTime date = Convert.ToDateTime(dateTimePicker1.Text);
+            string d = date.ToString("yyyy-MM-dd");
+            com.Parameters["@Date"].Value = d;
+            com.ExecuteNonQuery();
+
+            query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters)";
+            com = new MySqlCommand(query, dbconnection);
+            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+            com.Parameters["@Store_ID"].Value =1;
+            com.Parameters.Add("@Type", MySqlDbType.VarChar);
+            com.Parameters["@Type"].Value = "بند";
+            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+            date = Convert.ToDateTime(dateTimePicker1.Text);
+            d = date.ToString("yyyy-MM-dd");
+            com.Parameters["@Date"].Value = d;
+            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+            com.Parameters["@Data_ID"].Value = Data_ID;
+            com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
+            com.Parameters["@PlaceOfStore"].Value = 8;
+            com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
+            com.Parameters["@TotalOfMeters"].Value = Convert.ToDecimal(TotalQuantity);
+            com.ExecuteNonQuery();
+
+            query = "select OpenStorageAccount_ID from open_storage_account order by OpenStorageAccount_ID desc limit 1";
+            com = new MySqlCommand(query, dbconnection);
+            int id = Convert.ToInt16(com.ExecuteScalar());
+
+            UserControl.ItemRecord("open_storage_account", "اضافة", id, DateTime.Now, "", dbconnection);
+
+            query = "select Storage_ID from Storage order by Storage_ID desc limit 1";
+            com = new MySqlCommand(query, dbconnection);
+            id = Convert.ToInt16(com.ExecuteScalar());
+
+            UserControl.ItemRecord("Storage", "اضافة", id, DateTime.Now, "", dbconnection);
+
         }
 
     }
