@@ -225,6 +225,7 @@ namespace MainSystem
             //gridView1.Columns["Error"].Visible = false;
             gridView1.Columns["DashDetails_ID"].Visible = false;
             gridView1.Columns["Store_ID"].Visible = false;
+            gridView1.Columns["الفئة"].Visible = false;
 
             PSloaded = false;
             string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0";
@@ -344,6 +345,7 @@ namespace MainSystem
                     //gridView1.Columns["Error"].Visible = false;
                     gridView1.Columns["DashDetails_ID"].Visible = false;
                     gridView1.Columns["Store_ID"].Visible = false;
+                    gridView1.Columns["الفئة"].Visible = false;
 
                     PSloaded = false;
                     string query = "SELECT dash.Customer_ID FROM dash where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0";

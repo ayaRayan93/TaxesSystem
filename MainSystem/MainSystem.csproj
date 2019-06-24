@@ -357,6 +357,12 @@
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reception\Delegates_Attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\Delegates_Attendance.designer.cs">
+      <DependentUpon>Delegates_Attendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reception\Delegate_Movement_Copy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2441,6 +2447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\DelegateBill_Report.resx">
       <DependentUpon>DelegateBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reception\Delegates_Attendance.resx">
+      <DependentUpon>Delegates_Attendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\Delegate_Movement_Copy.resx">
       <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>

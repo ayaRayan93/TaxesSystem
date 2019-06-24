@@ -246,8 +246,6 @@
             this.colDeparture.Name = "colDeparture";
             this.colDeparture.OptionsColumn.AllowEdit = false;
             this.colDeparture.OptionsColumn.ReadOnly = true;
-            this.colDeparture.Visible = true;
-            this.colDeparture.VisibleIndex = 6;
             this.colDeparture.Width = 147;
             // 
             // repositoryItemColorEdit1

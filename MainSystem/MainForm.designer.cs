@@ -518,6 +518,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemAttendance = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3066,7 +3067,8 @@
             this.navBarItemDelegateExistence,
             this.navBarItemDelegateAbsence,
             this.navBarItemDelegateBusyBill,
-            this.navBarItemDelegateBillTime});
+            this.navBarItemDelegateBillTime,
+            this.navBarItemAttendance});
             this.navBarControl5.Location = new System.Drawing.Point(985, 0);
             this.navBarControl5.Name = "navBarControl5";
             this.navBarControl5.OptionsNavPane.ExpandedWidth = 160;
@@ -3085,6 +3087,7 @@
             this.navBarGroupDelegateMovement.Caption = "حركة المندوبين";
             this.navBarGroupDelegateMovement.Expanded = true;
             this.navBarGroupDelegateMovement.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemAttendance),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem107)});
             this.navBarGroupDelegateMovement.Name = "navBarGroupDelegateMovement";
             // 
@@ -4875,6 +4878,14 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItemAttendance
+            // 
+            this.navBarItemAttendance.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemAttendance.Appearance.Options.UseFont = true;
+            this.navBarItemAttendance.Caption = "حضور وانصراف";
+            this.navBarItemAttendance.Name = "navBarItemAttendance";
+            this.navBarItemAttendance.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAttendance_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5417,6 +5428,7 @@
         private System.Windows.Forms.PictureBox pictureBoxSales;
         private DevExpress.XtraNavBar.NavBarItem navBarItemConfirmTransferToStore;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateBill_Return;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemAttendance;
     }
 }
 
