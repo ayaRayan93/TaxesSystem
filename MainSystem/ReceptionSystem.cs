@@ -25,7 +25,8 @@ namespace MainSystem
         MySqlConnection conn;
         public static XtraTabControl tabControlReception;
 
-        public static Delegate_Movement DelegateMovementShow;
+        public static Delegate_Movement_Copy DelegateMovementShow;
+        public static Delegates_Attendance DelegateAttendanceShow;
         public static GraphicActiveMonth_Report GraphicActiveMonthReport;
         public static DelegateAbsence_Report DelegateAbsenceReport;
         public static Commitment_Report CommitmentReport;
@@ -39,6 +40,8 @@ namespace MainSystem
 
         XtraTabPage tabPageDelegateMovement;
         Panel panelDelegateMovement;
+        XtraTabPage tabPageDelegateAttendance;
+        Panel panelDelegateAttendance;
         XtraTabPage tabPageGraphicActiveMonthReport;
         Panel panelGraphicActiveMonthReport;
         XtraTabPage tabPageDelegateAbsenceReport;
@@ -68,6 +71,8 @@ namespace MainSystem
 
             tabPageDelegateMovement = new XtraTabPage();
             panelDelegateMovement = new Panel();
+            tabPageDelegateAttendance = new XtraTabPage();
+            panelDelegateAttendance = new Panel();
             tabPageGraphicActiveMonthReport = new XtraTabPage();
             panelGraphicActiveMonthReport = new Panel();
             tabPageDelegateAbsenceReport = new XtraTabPage();
@@ -156,7 +161,7 @@ namespace MainSystem
                     panelDelegateMovement.Name = "panelDelegateMovement";
                     panelDelegateMovement.Dock = DockStyle.Fill;
 
-                    DelegateMovementShow = new Delegate_Movement();
+                    DelegateMovementShow = new Delegate_Movement_Copy();
                     DelegateMovementShow.Size = new Size(1109, 660);
                     DelegateMovementShow.TopLevel = false;
                     DelegateMovementShow.FormBorderStyle = FormBorderStyle.None;
@@ -175,7 +180,41 @@ namespace MainSystem
             }
         }
 
-       
+        private void navBarItemAttendance_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlReception, "xtraTabPageDelegateAttendance");
+                if (xtraTabPage == null)
+                {
+                    tabPageDelegateAttendance.Name = "xtraTabPageDelegateAttendance";
+                    tabPageDelegateAttendance.Text = "حضور وانصراف المناديب";
+                    panelDelegateAttendance.Name = "panelDelegateAttendance";
+                    panelDelegateAttendance.Dock = DockStyle.Fill;
+
+                    DelegateAttendanceShow = new Delegates_Attendance();
+                    DelegateAttendanceShow.Size = new Size(1109, 660);
+                    DelegateAttendanceShow.TopLevel = false;
+                    DelegateAttendanceShow.FormBorderStyle = FormBorderStyle.None;
+                    DelegateAttendanceShow.Dock = DockStyle.Fill;
+                }
+                panelDelegateAttendance.Controls.Clear();
+                panelDelegateAttendance.Controls.Add(DelegateAttendanceShow);
+                tabPageDelegateAttendance.Controls.Add(panelDelegateAttendance);
+                xtraTabControlReception.TabPages.Add(tabPageDelegateAttendance);
+                DelegateAttendanceShow.Show();
+                xtraTabControlReception.SelectedTabPage = tabPageDelegateAttendance;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
         private void navBarItemGraphic_Report_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

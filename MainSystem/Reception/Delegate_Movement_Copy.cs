@@ -343,8 +343,8 @@ namespace MainSystem
                 {
                     LookUpEdit edit = sender as LookUpEdit;
 
-                    //ResetStatusTime();
-                    
+                    ResetStatusTime();
+
                     if (Convert.ToInt32(edit.EditValue) == 2)
                     {
                         dbconnection.Open();
@@ -842,10 +842,10 @@ namespace MainSystem
 
         private void LoadGridData()
         {
-            EmpBranchId =  1;//UserControl.EmpBranchID;
+            EmpBranchId = UserControl.EmpBranchID;
             //and delegate.Error=0
             dbconnection.Open();
-            MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate inner join attendance on attendance.Delegate_ID=delegate.Delegate_ID where delegate.Branch_ID=" + EmpBranchId + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection);
+            MySqlCommand adapter = new MySqlCommand("SELECT delegate.Delegate_ID,delegate.Delegate_Name FROM delegate inner join attendance on attendance.Delegate_ID=delegate.Delegate_ID where delegate.Branch_ID=" + EmpBranchId + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Status <> 'انصراف'", dbconnection);
             dr = adapter.ExecuteReader();
 
             BindingList<GridData> lista = new BindingList<GridData>();
@@ -893,7 +893,7 @@ namespace MainSystem
                 TimeSpan stattime = new TimeSpan();
                 TimeSpan worktime = new TimeSpan();
 
-                string query = "SELECT attendance.Status FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'";
+                string query = "SELECT attendance.Status FROM attendance where Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and date(attendance.Attendance_Date)='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Status <> 'انصراف'";
                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                 if (command.ExecuteScalar() != null)
                 {
@@ -924,7 +924,7 @@ namespace MainSystem
                     }*/
 
                     dbconnection5.Open();
-                    MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time',cast(Status_Duration as time) as 'Status_Duration',cast(Work_Duration as time) as 'Work_Duration' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "'", dbconnection5);
+                    MySqlCommand adapter2 = new MySqlCommand("SELECT cast(Attendance_Date as time) as 'Attendance_Time',cast(Departure_Date as time) as 'Departure_Time',cast(Status_Duration as time) as 'Status_Duration',cast(Work_Duration as time) as 'Work_Duration' FROM attendance where attendance.Delegate_ID=" + gridView1.GetRowCellValue(i, colDelegateID).ToString() + " and DATE_FORMAT(attendance.Attendance_Date,'%Y-%m-%d') ='" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Status <> 'انصراف'", dbconnection5);
                     MySqlDataReader dr2 = adapter2.ExecuteReader();
                     if (dr2.HasRows)
                     {
@@ -1096,7 +1096,7 @@ namespace MainSystem
             }
         }*/
 
-        /*public void ResetStatusTime()
+        public void ResetStatusTime()
         {
             dbconnection.Open();
             TimeSpan time1 = new TimeSpan();
@@ -1105,7 +1105,7 @@ namespace MainSystem
             com.ExecuteNonQuery();
             gridView1.SetFocusedRowCellValue(colTimer, time1);
             dbconnection.Close();
-        }*/
+        }
 
         public void startFunc()
         {
