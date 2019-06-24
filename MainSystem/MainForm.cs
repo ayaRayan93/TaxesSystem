@@ -103,8 +103,11 @@ namespace MainSystem
                     tsBackup = dateBackup - dateNowBackup;
                 }
 
-                //waits certan time and run the code
-                Task.Delay(tsBackup).ContinueWith((x) => BackupMethod());
+                if (UserControl.userType == 1)
+                {
+                    //waits certan time and run the code
+                    Task.Delay(tsBackup).ContinueWith((x) => BackupMethod());
+                }
             }
             catch (Exception ex)
             {
@@ -243,51 +246,45 @@ namespace MainSystem
 
         static void BackupMethod()
         {
-            string text = File.ReadAllText(@"backups\backupText.txt");
+            string fbd = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            string text = File.ReadAllText(@"backup.txt");
 
             countBackup = int.Parse(text);
 
             if (countBackup <= 3)
             {
-                //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
-                string file = @"backups\backup" + (countBackup.ToString()) + ".sql";
+                string file = fbd + @"\backup" + (countBackup.ToString()) + ".sql";
 
-                File.WriteAllText(@"backups\backupText.txt", (++countBackup).ToString());
+                File.WriteAllText(@"backup.txt", (++countBackup).ToString());
 
-                using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand())
-                    {
-                        using (MySqlBackup mb = new MySqlBackup(cmd))
-                        {
-                            cmd.Connection = conn;
-                            conn.Open();
-                            mb.ExportToFile(file);
-                            conn.Close();
-                        }
-                    }
-                }
+                MySqlConnection conn = new MySqlConnection(connection.connectionString);
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                MySqlBackup mb = new MySqlBackup(cmd);
+
+                cmd.Connection = conn;
+                conn.Open();
+                mb.ExportToFile(file);
+                conn.Close();
             }
             else
             {
-                //string constring = "server=192.168.1.200;user=root;pwd=A!S#D37;database=cccmaindb;";
-                string file = @"backups\backup1.sql";
+                string file = fbd + @"\backup1.sql";
 
-                File.WriteAllText(@"backups\backupText.txt", "1");
+                File.WriteAllText(@"backup.txt", "1");
 
-                using (MySqlConnection conn = new MySqlConnection(connection.connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand())
-                    {
-                        using (MySqlBackup mb = new MySqlBackup(cmd))
-                        {
-                            cmd.Connection = conn;
-                            conn.Open();
-                            mb.ExportToFile(file);
-                            conn.Close();
-                        }
-                    }
-                }
+                MySqlConnection conn = new MySqlConnection(connection.connectionString);
+
+                MySqlCommand cmd = new MySqlCommand();
+
+                MySqlBackup mb = new MySqlBackup(cmd);
+
+                cmd.Connection = conn;
+                conn.Open();
+                mb.ExportToFile(file);
+                conn.Close();
             }
         }
 
