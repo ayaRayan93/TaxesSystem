@@ -81,6 +81,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panCustomer = new System.Windows.Forms.Panel();
+            this.comEngCon = new System.Windows.Forms.ComboBox();
+            this.txtClientID = new System.Windows.Forms.TextBox();
+            this.labelEng = new System.Windows.Forms.Label();
+            this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.radClient = new System.Windows.Forms.RadioButton();
+            this.radDealer = new System.Windows.Forms.RadioButton();
+            this.radEng = new System.Windows.Forms.RadioButton();
+            this.radCon = new System.Windows.Forms.RadioButton();
+            this.comClient = new System.Windows.Forms.ComboBox();
+            this.labelClient = new System.Windows.Forms.Label();
             this.txtReturnReason = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -106,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panCustomer.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -127,9 +139,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.54639F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.45361F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(900, 655);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(934, 716);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gridControl1
@@ -139,7 +151,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(894, 164);
+            this.gridControl1.Size = new System.Drawing.Size(928, 190);
             this.gridControl1.TabIndex = 236;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -166,11 +178,11 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 373);
+            this.gridControl2.Location = new System.Drawing.Point(3, 399);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(894, 153);
+            this.gridControl2.Size = new System.Drawing.Size(928, 178);
             this.gridControl2.TabIndex = 235;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -281,12 +293,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 612);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 673);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(894, 40);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(928, 40);
             this.tableLayoutPanel3.TabIndex = 167;
             // 
             // btnCreateReturnBill
@@ -303,10 +315,10 @@
             this.btnCreateReturnBill.ImageZoom = 0;
             this.btnCreateReturnBill.LabelPosition = 25;
             this.btnCreateReturnBill.LabelText = "حفظ";
-            this.btnCreateReturnBill.Location = new System.Drawing.Point(451, 4);
+            this.btnCreateReturnBill.Location = new System.Drawing.Point(468, 4);
             this.btnCreateReturnBill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateReturnBill.Name = "btnCreateReturnBill";
-            this.btnCreateReturnBill.Size = new System.Drawing.Size(83, 32);
+            this.btnCreateReturnBill.Size = new System.Drawing.Size(86, 32);
             this.btnCreateReturnBill.TabIndex = 6;
             this.btnCreateReturnBill.Click += new System.EventHandler(this.btnCreateReturnBill_Click);
             // 
@@ -321,7 +333,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(900, 120);
+            this.panel1.Size = new System.Drawing.Size(934, 120);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
@@ -342,7 +354,7 @@
             this.groupBox1.Controls.Add(this.txtGroup);
             this.groupBox1.Controls.Add(this.comGroup);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(22, 0);
+            this.groupBox1.Location = new System.Drawing.Point(39, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(721, 117);
@@ -501,7 +513,7 @@
             this.panBillNumber.Controls.Add(this.comBranch);
             this.panBillNumber.Controls.Add(this.txtBranchBillNum);
             this.panBillNumber.Controls.Add(this.labelDelegate);
-            this.panBillNumber.Location = new System.Drawing.Point(338, 6);
+            this.panBillNumber.Location = new System.Drawing.Point(355, 6);
             this.panBillNumber.Name = "panBillNumber";
             this.panBillNumber.Size = new System.Drawing.Size(286, 112);
             this.panBillNumber.TabIndex = 2;
@@ -567,7 +579,7 @@
             this.radioButtonWithOutReturnBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButtonWithOutReturnBill.AutoSize = true;
             this.radioButtonWithOutReturnBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonWithOutReturnBill.Location = new System.Drawing.Point(756, 64);
+            this.radioButtonWithOutReturnBill.Location = new System.Drawing.Point(773, 64);
             this.radioButtonWithOutReturnBill.Name = "radioButtonWithOutReturnBill";
             this.radioButtonWithOutReturnBill.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButtonWithOutReturnBill.Size = new System.Drawing.Size(122, 20);
@@ -582,7 +594,7 @@
             this.radioButtonReturnBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButtonReturnBill.AutoSize = true;
             this.radioButtonReturnBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonReturnBill.Location = new System.Drawing.Point(776, 41);
+            this.radioButtonReturnBill.Location = new System.Drawing.Point(793, 41);
             this.radioButtonReturnBill.Name = "radioButtonReturnBill";
             this.radioButtonReturnBill.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioButtonReturnBill.Size = new System.Drawing.Size(99, 20);
@@ -608,10 +620,10 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtCode);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 290);
+            this.panel2.Location = new System.Drawing.Point(0, 316);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(900, 80);
+            this.panel2.Size = new System.Drawing.Size(934, 80);
             this.panel2.TabIndex = 3;
             // 
             // label8
@@ -619,7 +631,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label8.Location = new System.Drawing.Point(365, 45);
+            this.label8.Location = new System.Drawing.Point(382, 45);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(174, 19);
             this.label8.TabIndex = 236;
@@ -629,7 +641,7 @@
             // 
             this.txtReturnItemReason.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtReturnItemReason.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtReturnItemReason.Location = new System.Drawing.Point(181, 45);
+            this.txtReturnItemReason.Location = new System.Drawing.Point(198, 45);
             this.txtReturnItemReason.Name = "txtReturnItemReason";
             this.txtReturnItemReason.Size = new System.Drawing.Size(181, 27);
             this.txtReturnItemReason.TabIndex = 235;
@@ -639,7 +651,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label6.Location = new System.Drawing.Point(542, 12);
+            this.label6.Location = new System.Drawing.Point(559, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 19);
             this.label6.TabIndex = 234;
@@ -649,7 +661,7 @@
             // 
             this.txtCarton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCarton.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtCarton.Location = new System.Drawing.Point(435, 12);
+            this.txtCarton.Location = new System.Drawing.Point(452, 12);
             this.txtCarton.Name = "txtCarton";
             this.txtCarton.Size = new System.Drawing.Size(104, 27);
             this.txtCarton.TabIndex = 233;
@@ -659,7 +671,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label5.Location = new System.Drawing.Point(318, 12);
+            this.label5.Location = new System.Drawing.Point(335, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 19);
             this.label5.TabIndex = 232;
@@ -669,7 +681,7 @@
             // 
             this.txtNumOfCarton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNumOfCarton.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtNumOfCarton.Location = new System.Drawing.Point(211, 12);
+            this.txtNumOfCarton.Location = new System.Drawing.Point(228, 12);
             this.txtNumOfCarton.Name = "txtNumOfCarton";
             this.txtNumOfCarton.Size = new System.Drawing.Size(104, 27);
             this.txtNumOfCarton.TabIndex = 231;
@@ -680,7 +692,7 @@
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
             this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
             this.btnPut.ImageActive = null;
-            this.btnPut.Location = new System.Drawing.Point(10, 14);
+            this.btnPut.Location = new System.Drawing.Point(27, 14);
             this.btnPut.Name = "btnPut";
             this.btnPut.Size = new System.Drawing.Size(57, 34);
             this.btnPut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -695,7 +707,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
             this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
-            this.btnRemove.Location = new System.Drawing.Point(76, 15);
+            this.btnRemove.Location = new System.Drawing.Point(93, 15);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(59, 34);
             this.btnRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -709,7 +721,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label11.Location = new System.Drawing.Point(700, 45);
+            this.label11.Location = new System.Drawing.Point(717, 45);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(163, 19);
             this.label11.TabIndex = 228;
@@ -719,7 +731,7 @@
             // 
             this.txtReturnedQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtReturnedQuantity.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtReturnedQuantity.Location = new System.Drawing.Point(593, 45);
+            this.txtReturnedQuantity.Location = new System.Drawing.Point(610, 45);
             this.txtReturnedQuantity.Name = "txtReturnedQuantity";
             this.txtReturnedQuantity.Size = new System.Drawing.Size(104, 27);
             this.txtReturnedQuantity.TabIndex = 227;
@@ -729,7 +741,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label7.Location = new System.Drawing.Point(822, 12);
+            this.label7.Location = new System.Drawing.Point(839, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 19);
             this.label7.TabIndex = 226;
@@ -739,7 +751,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtCode.Location = new System.Drawing.Point(611, 12);
+            this.txtCode.Location = new System.Drawing.Point(628, 12);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(205, 27);
             this.txtCode.TabIndex = 225;
@@ -747,6 +759,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel3.Controls.Add(this.panCustomer);
             this.panel3.Controls.Add(this.txtReturnReason);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.label13);
@@ -756,16 +769,164 @@
             this.panel3.Controls.Add(this.txtClientName);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 529);
+            this.panel3.Location = new System.Drawing.Point(0, 580);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(900, 80);
+            this.panel3.Size = new System.Drawing.Size(934, 90);
             this.panel3.TabIndex = 237;
+            // 
+            // panCustomer
+            // 
+            this.panCustomer.Controls.Add(this.comEngCon);
+            this.panCustomer.Controls.Add(this.txtClientID);
+            this.panCustomer.Controls.Add(this.labelEng);
+            this.panCustomer.Controls.Add(this.txtCustomerID);
+            this.panCustomer.Controls.Add(this.radClient);
+            this.panCustomer.Controls.Add(this.radDealer);
+            this.panCustomer.Controls.Add(this.radEng);
+            this.panCustomer.Controls.Add(this.radCon);
+            this.panCustomer.Controls.Add(this.comClient);
+            this.panCustomer.Controls.Add(this.labelClient);
+            this.panCustomer.Location = new System.Drawing.Point(309, 3);
+            this.panCustomer.Name = "panCustomer";
+            this.panCustomer.Size = new System.Drawing.Size(342, 87);
+            this.panCustomer.TabIndex = 183;
+            this.panCustomer.Visible = false;
+            // 
+            // comEngCon
+            // 
+            this.comEngCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comEngCon.FormattingEnabled = true;
+            this.comEngCon.Location = new System.Drawing.Point(58, 30);
+            this.comEngCon.Name = "comEngCon";
+            this.comEngCon.Size = new System.Drawing.Size(173, 24);
+            this.comEngCon.TabIndex = 178;
+            this.comEngCon.Visible = false;
+            this.comEngCon.SelectedValueChanged += new System.EventHandler(this.comEngCon_SelectedValueChanged);
+            // 
+            // txtClientID
+            // 
+            this.txtClientID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtClientID.Location = new System.Drawing.Point(3, 61);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.Size = new System.Drawing.Size(48, 24);
+            this.txtClientID.TabIndex = 182;
+            this.txtClientID.Visible = false;
+            this.txtClientID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // labelEng
+            // 
+            this.labelEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelEng.AutoSize = true;
+            this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEng.Location = new System.Drawing.Point(235, 34);
+            this.labelEng.Name = "labelEng";
+            this.labelEng.Size = new System.Drawing.Size(110, 16);
+            this.labelEng.TabIndex = 179;
+            this.labelEng.Text = "مهندس/مقاول/تاجر";
+            this.labelEng.Visible = false;
+            // 
+            // txtCustomerID
+            // 
+            this.txtCustomerID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCustomerID.Location = new System.Drawing.Point(3, 30);
+            this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.Size = new System.Drawing.Size(48, 24);
+            this.txtCustomerID.TabIndex = 181;
+            this.txtCustomerID.Visible = false;
+            this.txtCustomerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // radClient
+            // 
+            this.radClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radClient.AutoSize = true;
+            this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radClient.Location = new System.Drawing.Point(234, 4);
+            this.radClient.Name = "radClient";
+            this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radClient.Size = new System.Drawing.Size(53, 20);
+            this.radClient.TabIndex = 177;
+            this.radClient.TabStop = true;
+            this.radClient.Text = "عميل";
+            this.radClient.UseVisualStyleBackColor = true;
+            this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // radDealer
+            // 
+            this.radDealer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radDealer.AutoSize = true;
+            this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDealer.Location = new System.Drawing.Point(37, 4);
+            this.radDealer.Name = "radDealer";
+            this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radDealer.Size = new System.Drawing.Size(46, 20);
+            this.radDealer.TabIndex = 180;
+            this.radDealer.TabStop = true;
+            this.radDealer.Text = "تاجر";
+            this.radDealer.UseVisualStyleBackColor = true;
+            this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // radEng
+            // 
+            this.radEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radEng.AutoSize = true;
+            this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radEng.Location = new System.Drawing.Point(157, 4);
+            this.radEng.Name = "radEng";
+            this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radEng.Size = new System.Drawing.Size(65, 20);
+            this.radEng.TabIndex = 176;
+            this.radEng.TabStop = true;
+            this.radEng.Text = "مهندس";
+            this.radEng.UseVisualStyleBackColor = true;
+            this.radEng.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // radCon
+            // 
+            this.radCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radCon.AutoSize = true;
+            this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCon.Location = new System.Drawing.Point(92, 4);
+            this.radCon.Name = "radCon";
+            this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radCon.Size = new System.Drawing.Size(59, 20);
+            this.radCon.TabIndex = 175;
+            this.radCon.TabStop = true;
+            this.radCon.Text = "مقاول";
+            this.radCon.UseVisualStyleBackColor = true;
+            this.radCon.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // comClient
+            // 
+            this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comClient.FormattingEnabled = true;
+            this.comClient.Location = new System.Drawing.Point(58, 61);
+            this.comClient.Name = "comClient";
+            this.comClient.Size = new System.Drawing.Size(173, 24);
+            this.comClient.TabIndex = 173;
+            this.comClient.Visible = false;
+            this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
+            // 
+            // labelClient
+            // 
+            this.labelClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelClient.AutoSize = true;
+            this.labelClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClient.Location = new System.Drawing.Point(237, 65);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(35, 16);
+            this.labelClient.TabIndex = 174;
+            this.labelClient.Text = "عميل";
+            this.labelClient.Visible = false;
             // 
             // txtReturnReason
             // 
             this.txtReturnReason.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReturnReason.Location = new System.Drawing.Point(143, 42);
+            this.txtReturnReason.Location = new System.Drawing.Point(12, 48);
             this.txtReturnReason.Multiline = true;
             this.txtReturnReason.Name = "txtReturnReason";
             this.txtReturnReason.Size = new System.Drawing.Size(190, 32);
@@ -775,7 +936,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(343, 47);
+            this.label14.Location = new System.Drawing.Point(212, 53);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(91, 19);
             this.label14.TabIndex = 11;
@@ -785,7 +946,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(343, 10);
+            this.label13.Location = new System.Drawing.Point(212, 16);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(95, 19);
             this.label13.TabIndex = 10;
@@ -794,7 +955,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(142, 10);
+            this.dateTimePicker1.Location = new System.Drawing.Point(11, 16);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(190, 26);
             this.dateTimePicker1.TabIndex = 9;
@@ -802,7 +963,7 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(582, 45);
+            this.txtPhone.Location = new System.Drawing.Point(656, 50);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(190, 26);
             this.txtPhone.TabIndex = 8;
@@ -811,7 +972,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(785, 49);
+            this.label9.Location = new System.Drawing.Point(859, 54);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(62, 19);
             this.label9.TabIndex = 7;
@@ -820,7 +981,7 @@
             // txtClientName
             // 
             this.txtClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientName.Location = new System.Drawing.Point(582, 10);
+            this.txtClientName.Location = new System.Drawing.Point(656, 15);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.Size = new System.Drawing.Size(190, 26);
             this.txtClientName.TabIndex = 6;
@@ -829,7 +990,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(785, 14);
+            this.label12.Location = new System.Drawing.Point(859, 19);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 19);
             this.label12.TabIndex = 5;
@@ -867,7 +1028,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 655);
+            this.ClientSize = new System.Drawing.Size(934, 716);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StoreReturnBill";
             this.Text = "StoreReturnBill";
@@ -890,6 +1051,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panCustomer.ResumeLayout(false);
+            this.panCustomer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -961,5 +1124,16 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtReturnReason;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtClientID;
+        private System.Windows.Forms.TextBox txtCustomerID;
+        private System.Windows.Forms.RadioButton radDealer;
+        private System.Windows.Forms.ComboBox comEngCon;
+        private System.Windows.Forms.ComboBox comClient;
+        private System.Windows.Forms.Label labelClient;
+        private System.Windows.Forms.RadioButton radCon;
+        private System.Windows.Forms.RadioButton radEng;
+        private System.Windows.Forms.RadioButton radClient;
+        private System.Windows.Forms.Label labelEng;
+        private System.Windows.Forms.Panel panCustomer;
     }
 }

@@ -30,7 +30,27 @@ namespace MainSystem
             }
 
         }
-
+        private void CustomerReturnUsingPermissinNumber_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string query = "select * from delegate";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comDelegate.DataSource = dt;
+                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                comDelegate.Text = "";
+                txtDelegate.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
         private void txtReturnPermission_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -80,7 +100,7 @@ namespace MainSystem
                     }
                     else
                     {
-                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'' from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
+                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'"+ "بند" + "' from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
                     }
 
                     com = new MySqlCommand(query, dbconnection);
@@ -135,7 +155,6 @@ namespace MainSystem
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     com.Parameters["@Branch_ID"].Value = BaseData.BranchID;
-
                     int storeNum = 0;
                     if (int.TryParse(txtReturnPermission.Text, out storeNum))
                     {
@@ -148,7 +167,35 @@ namespace MainSystem
                         dbconnection.Close();
                         return;
                     }
-                    
+
+                    string q = "select Customer_ID,Client_ID from customer_return_permission where CustomerReturnPermission_ID=" + storeNum;
+                    MySqlCommand c = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = c.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        if (dr[0].ToString() != "")
+                        {
+                            com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                            com.Parameters["@Customer_ID"].Value = Convert.ToInt16(dr[0].ToString());
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                            com.Parameters["@Customer_ID"].Value = null;
+                        }
+                        if (dr[1].ToString() != "")
+                        {
+                            com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(dr[1].ToString());
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                            com.Parameters["@Client_ID"].Value = null;
+                        }
+                    }
+                    dr.Close();
+
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = DateTime.Now;
                     com.Parameters.Add("@ReturnInfo", MySqlDbType.VarChar);
@@ -200,7 +247,7 @@ namespace MainSystem
                             else
                             {
                                 com.Parameters["@CustomerBill_ID"].Value = 0;
-                                com.Parameters["@Delegate_ID"].Value =0;
+                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(txtDelegate.Text);
                             }
                             com.ExecuteNonQuery();
 
@@ -223,6 +270,25 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void rdbCash_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rdbCash.Checked)
+                {
+                    type = "كاش";
+                }
+                else
+                {
+                    type = "آجل";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //function
         public void clear()
         {
@@ -232,9 +298,47 @@ namespace MainSystem
             labBillNumber.Text = "";
             labClientName.Text = "";
             labClientPhone.Text = "";
+            txtDelegate.Text = "";
+            comDelegate.Text = "";
             dataGridView2.Rows.Clear();
         }
 
-    
+        private void comDelegate_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtDelegate.Text = comDelegate.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+
+        private void txtDelegate_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                string query = "select Delegate_Name from delegate where Delegate_ID='" + txtDelegate.Text + "'";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() != null)
+                {
+                    Name = (string)com.ExecuteScalar();
+                    comDelegate.Text = Name;
+                }
+                else
+                {
+                    MessageBox.Show("there is no item with this id");
+                    dbconnection.Close();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
     }
 }

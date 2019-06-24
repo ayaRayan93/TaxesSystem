@@ -34,7 +34,6 @@ namespace MainSystem
             comEngCon.Visible = false;
             txtCustomerID.Visible = false;
             txtClientID.Visible = false;
-
         }
         //check type of customer if engineer,client or contract 
         private void radiotype_CheckedChanged(object sender, EventArgs e)
