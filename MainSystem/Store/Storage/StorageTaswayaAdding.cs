@@ -15,14 +15,14 @@ namespace MainSystem
 {
     public partial class StorageTaswayaAdding : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnectionReader, dbconnectionReader2;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
         bool flag = false;
         double noMeter = 0;
-        int TaswayaAdding_ID = 0;
+        int PermissionNum = 0;
         XtraTabControl xtraTabControlStoresContent;
         int Data_ID=-1, Storage_ID=-1;
         string code = "";
@@ -36,6 +36,8 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnectionReader = new MySqlConnection(connection.connectionString);
+                dbconnectionReader2 = new MySqlConnection(connection.connectionString);
                 this.mainForm = mainForm;
                 this.xtraTabControlStoresContent = xtraTabControlStoresContent;
             }
@@ -50,6 +52,7 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Close();
                 dbconnection.Open();
                 string query = "select * from type";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -587,8 +590,8 @@ namespace MainSystem
                 {
                     if (flag)
                     {
-                        if (TaswayaAdding_ID != 0)
-                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n" + TaswayaAdding_ID + "\n" + comStore.Text+"\n\n"+txtNote.Text);
+                        if (PermissionNum != 0)
+                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n" + PermissionNum + "\n" + comStore.Text+"\n\n"+txtNote.Text);
                         flag = false;
                     }
                     else
@@ -633,6 +636,7 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Close();
                 dbconnection.Open();
                 if (gridView2.RowCount > 0)
                 {
@@ -673,7 +677,7 @@ namespace MainSystem
                 labVcode.Visible = true;
                 labVaddingMeter.Visible = true;
                 labVnote.Visible = true;
-
+                dbconnection.Close();
                 dbconnection.Open();
                 string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -868,14 +872,14 @@ namespace MainSystem
 
                     query = "select PermissionNum from taswayaa_adding_permision order by PermissionNum desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    TaswayaAdding_ID = Convert.ToInt16(com.ExecuteScalar());
+                    PermissionNum = Convert.ToInt16(com.ExecuteScalar());
                     gridView2.SelectAll();
                     for (int i = 0; i < mdt.Rows.Count; i++)
                     {
                         query = "insert into addstorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding,@Note)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                        com.Parameters["@PermissionNum"].Value = TaswayaAdding_ID;
+                        com.Parameters["@PermissionNum"].Value = PermissionNum;
                         com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
                         com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
@@ -883,14 +887,16 @@ namespace MainSystem
                         com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
                         com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
                         com.Parameters.Add("@AddingQuantity", MySqlDbType.Decimal);
-                        com.Parameters["@AddingQuantity"].Value = mdt.Rows[i][5];
+                        com.Parameters["@AddingQuantity"].Value = mdt.Rows[i][6];
                         com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
-                        com.Parameters["@QuantityAfterAdding"].Value = mdt.Rows[i][6];
+                        com.Parameters["@QuantityAfterAdding"].Value = mdt.Rows[i][5];
                         com.Parameters.Add("@Note", MySqlDbType.VarChar);
                         com.Parameters["@Note"].Value = txtItemNote.Text;
                         com.ExecuteNonQuery();
                     }
-                    UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
+                    IncreaseProductQuantity(PermissionNum);
+
+                    UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
                     MessageBox.Show("تم الحفظ");
 
                     btnReport.Enabled = true;
@@ -1120,6 +1126,51 @@ namespace MainSystem
             }
         }
 
+        public void IncreaseProductQuantity(int billNumber)
+        {
+            dbconnection.Close();
+            dbconnectionReader.Close();
+            dbconnectionReader2.Close();
+            dbconnection.Open();
+            dbconnectionReader.Open();
+            dbconnectionReader2.Open();
+            string q;
+            int id;
+            bool flag = false;
+            double storageQ, productQ;
+
+            string query = "select Data_ID,AddingQuantity from addstorage where PermissionNum=" + billNumber;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+
+            while (dr.Read())
+            {
+                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='بند'";
+                MySqlCommand com2 = new MySqlCommand(query2, dbconnectionReader);
+                MySqlDataReader dr2 = com2.ExecuteReader();
+                while (dr2.Read())
+                {
+                    storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                    productQ = Convert.ToDouble(dr["AddingQuantity"]);
+
+                    storageQ += productQ;
+                    id = Convert.ToInt16(dr2["Storage_ID"]);
+                    q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                    MySqlCommand comm = new MySqlCommand(q, dbconnectionReader2);
+                    comm.ExecuteNonQuery();
+                    flag = true;
+                    break;
+                }
+                dr2.Close();
+
+            
+            }
+            dr.Close();
+
+            dbconnectionReader2.Close();
+            dbconnectionReader.Close();
+            dbconnection.Close();
+        }
     }
 
 }
