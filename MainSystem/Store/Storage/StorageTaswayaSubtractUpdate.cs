@@ -15,7 +15,7 @@ namespace MainSystem
 {
     public partial class StorageTaswayaSubtractUpdate : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, connectionReader;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
@@ -35,17 +35,16 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                connectionReader = new MySqlConnection(connection.connectionString);
                 this.mainForm = mainForm;
                 this.xtraTabControlStoresContent = xtraTabControlStoresContent;
                 this.perNum = perNum;
                 labPermissionNum.Text = perNum.ToString();
-           
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
     
         private void Form1_Load(object sender, EventArgs e)
@@ -854,8 +853,6 @@ namespace MainSystem
 
             btnReport.Enabled = true;
             flag = true;
-        
-          
         }
         public DataTable createDataTable()
         {
@@ -1076,7 +1073,6 @@ namespace MainSystem
                     }
                 }
             }
-
         }
         public void filterSize()
         {
@@ -1093,7 +1089,57 @@ namespace MainSystem
                 txtProduct.Text = "";
             }
         }
+        
+        public void DecreaseProductQuantity(string dataId, double productQ, string storeId)
+        {
+            connectionReader.Open();
+            string q = "";
+            int id = 0;
+            double storageQ = 0;
 
+            double quantityInStore = 0;
+            string query = "select sum(Total_Meters) from storage where Data_ID=" + dataId + " and Store_ID=" + storeId + " GROUP BY Store_ID,Data_ID";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                quantityInStore = Convert.ToDouble(com.ExecuteScalar());
+            }
+            query = "select Storage_ID,Total_Meters from storage where Data_ID=" + dataId + " and Store_ID=" + storeId + "";
+            com = new MySqlCommand(query, connectionReader);
+            MySqlDataReader dr2 = com.ExecuteReader();
+            while (dr2.Read())
+            {
+                if (productQ > 0)
+                {
+                    storageQ = Convert.ToDouble(dr2["Total_Meters"].ToString());
+
+                    if (storageQ >= productQ)
+                    {
+                        id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                        q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                        comm.ExecuteNonQuery();
+                        productQ = 0;
+                        //flag = true;
+                        break;
+                    }
+                    else
+                    {
+                        id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                        q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                        comm.ExecuteNonQuery();
+                        productQ -= storageQ;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            dr2.Close();
+
+            connectionReader.Close();
+        }
     }
-
 }

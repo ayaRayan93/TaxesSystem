@@ -437,7 +437,7 @@ namespace MainSystem
                                         {
                                             query = "update customer_bill set Paid_Status=1 where customer_bill.Branch_BillNumber=" + ID + " and customer_bill.Branch_ID=" + branchID;
                                         }
-                                        else if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) > 0)
+                                        else //if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) > 0)
                                         {
                                             query = "update customer_bill set Paid_Status=2 where customer_bill.Branch_BillNumber=" + ID + " and customer_bill.Branch_ID=" + branchID;
                                         }
