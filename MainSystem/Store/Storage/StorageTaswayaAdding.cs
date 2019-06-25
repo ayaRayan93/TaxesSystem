@@ -1169,7 +1169,7 @@ namespace MainSystem
 
             dbconnectionReader2.Close();
             dbconnectionReader.Close();
-            dbconnection.Close();
+            //dbconnection.Close();
         }
     }
 
