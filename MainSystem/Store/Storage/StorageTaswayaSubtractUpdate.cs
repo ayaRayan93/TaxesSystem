@@ -820,6 +820,12 @@ namespace MainSystem
             com.Parameters["@Note"].Value = txtNote.Text;
             com.ExecuteNonQuery();
 
+            for (int i = 0; i < gridView2.RowCount; i++)
+            {
+                DataRow d = gridView2.GetDataRow(i);
+                IncreaseProductQuantity(d[0].ToString(), Convert.ToDouble(d[3]), comStore.SelectedValue.ToString());
+            }
+
             query = "delete from substorage where PermissionNum=" + labPermissionNum.Text;
             com = new MySqlCommand(query, dbconnection);
             com.ExecuteNonQuery();
@@ -846,7 +852,8 @@ namespace MainSystem
                 com.Parameters["@Note"].Value = d[5];
 
                 com.ExecuteNonQuery();
-                
+
+                DecreaseProductQuantity(d[0].ToString(), Convert.ToDouble(d[3]), comStore.SelectedValue.ToString());
             }
             UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
             MessageBox.Show("تم الحفظ");
@@ -1090,6 +1097,33 @@ namespace MainSystem
             }
         }
         
+        public void IncreaseProductQuantity(string dataId, double productQ, string storeId)
+        {
+            connectionReader.Open();
+            string q;
+            int id;
+            double storageQ = 0;
+
+            string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dataId + " and Store_ID=" + storeId + "";
+            MySqlCommand com2 = new MySqlCommand(query2, connectionReader);
+            MySqlDataReader dr2 = com2.ExecuteReader();
+            while (dr2.Read())
+            {
+                storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+
+                storageQ += productQ;
+                id = Convert.ToInt16(dr2["Storage_ID"]);
+                q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                comm.ExecuteNonQuery();
+                flag = true;
+                break;
+            }
+            dr2.Close();
+            
+            connectionReader.Close();
+        }
+
         public void DecreaseProductQuantity(string dataId, double productQ, string storeId)
         {
             connectionReader.Open();
@@ -1120,7 +1154,6 @@ namespace MainSystem
                         MySqlCommand comm = new MySqlCommand(q, dbconnection);
                         comm.ExecuteNonQuery();
                         productQ = 0;
-                        //flag = true;
                         break;
                     }
                     else

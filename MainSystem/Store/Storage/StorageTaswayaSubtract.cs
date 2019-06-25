@@ -22,7 +22,7 @@ namespace MainSystem
         bool flagProduct = false;
         bool flag = false;
         double noMeter = 0;
-        int TaswayaSubtract_ID = 0;
+        int PermissionNum = 0;
         XtraTabControl xtraTabControlStoresContent;
         int Data_ID=-1, Storage_ID=-1;
         string code = "";
@@ -444,7 +444,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     dbconnection.Open();
-                    string query = "select permissionNum from taswayaa_subtract_permision order by permissionNum desc limit 1 ";
+                    string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
@@ -585,8 +585,8 @@ namespace MainSystem
                 {
                     if (flag)
                     {
-                        if (TaswayaSubtract_ID != 0)
-                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n" + TaswayaSubtract_ID + "\n" + comStore.Text+"\n\n"+txtNote.Text);
+                        if (PermissionNum != 0)
+                            mainForm.bindReportStorageForm(gridControl2, "أذن تسوية اضافة \n" + PermissionNum + "\n" + comStore.Text+"\n\n"+txtNote.Text);
                         flag = false;
                     }
                     else
@@ -674,7 +674,7 @@ namespace MainSystem
                 txtNote.ReadOnly = false;
                 gridControl2.Enabled = true;
                 dbconnection.Open();
-                string query = "select permissionNum from taswayaa_subtract_permision order by permissionNum desc limit 1 ";
+                string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
@@ -840,7 +840,7 @@ namespace MainSystem
         {
             if (gridView2.RowCount > 0)
             {
-                string query = "select TaswayaSubtract_ID from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
+                string query = "select PermissionNum from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
@@ -862,14 +862,14 @@ namespace MainSystem
 
                     query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    TaswayaSubtract_ID = Convert.ToInt16(com.ExecuteScalar());
+                    PermissionNum = Convert.ToInt16(com.ExecuteScalar());
                     gridView2.SelectAll();
                     for (int i = 0; i < mdt.Rows.Count; i++)
                     {
                         query = "insert into substorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,SubtractQuantity,QuantityAfterSubtract,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@SubtractQuantity,@QuantityAfterSubtract,@Note)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                        com.Parameters["@PermissionNum"].Value = TaswayaSubtract_ID;
+                        com.Parameters["@PermissionNum"].Value = PermissionNum;
                         com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
                         com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
@@ -886,7 +886,7 @@ namespace MainSystem
 
                         DecreaseProductQuantity(mdt.Rows[i][0].ToString(), Convert.ToDouble(mdt.Rows[i][5].ToString()), comStore.SelectedValue.ToString());
                     }
-                    UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", TaswayaSubtract_ID, DateTime.Now, "", dbconnection);
+                    UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
 
                     MessageBox.Show("تم الحفظ");
                     btnReport.Enabled = true;
