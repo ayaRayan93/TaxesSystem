@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,8 @@ namespace MainSystem
         MySqlConnection dbconnection;
         string type = "كاش";
         int Branch_ID = 0;
-
+        bool load = false;
+        bool load1 = false;//test case datagridview row 
         public CustomerReturnUsingPermissinNumber()
         {
             try
@@ -44,6 +46,8 @@ namespace MainSystem
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
                 comDelegate.Text = "";
                 txtDelegate.Text = "";
+
+                load = true;
             }
             catch (Exception ex)
             {
@@ -70,6 +74,15 @@ namespace MainSystem
 
                     string query = "";
                     MySqlCommand com;
+                    query = "select Store_Permission_Number from customer_return_bill where Store_Permission_Number="+billNum;
+                    com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        MessageBox.Show("اذن المرتجع تم تسجيله من قبل");
+                        dbconnection.Close();
+                        return;
+                    }
+                
                     MySqlDataReader dr;
                     DataTable dtAll = new DataTable();
 
@@ -124,6 +137,7 @@ namespace MainSystem
                     }
                     dr.Close();
                     txtBillTotalCostAD.Text = totalBill.ToString();
+                    load1 = true;
 
                 }
             }
@@ -133,7 +147,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void btnCreateReturnBill_Click(object sender, EventArgs e)
         {
             try
@@ -269,7 +282,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void rdbCash_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -302,11 +314,11 @@ namespace MainSystem
             comDelegate.Text = "";
             dataGridView2.Rows.Clear();
         }
-
         private void comDelegate_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
+                if(load)
                 txtDelegate.Text = comDelegate.SelectedValue.ToString();
             }
             catch (Exception ex)
@@ -315,7 +327,6 @@ namespace MainSystem
 
             }
         }
-
         private void txtDelegate_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -340,5 +351,27 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void dataGridView2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (load1)
+                {
+                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                    {
+                        DataGridViewRow dataRow = dataGridView2.Rows[e.RowIndex];
+                        double sellprice = Convert.ToDouble(dataRow.Cells[4].Value.ToString());
+                        double discount = Convert.ToDouble(dataRow.Cells[5].Value.ToString());
+                        double priceAD = sellprice * (sellprice * discount / 100);
+                        dataRow.Cells[6].Value = priceAD;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }
