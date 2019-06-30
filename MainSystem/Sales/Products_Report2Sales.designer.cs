@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -298,7 +297,7 @@
             this.btnNewChosen.TabIndex = 21;
             this.btnNewChosen.Text = "اختيار اخر";
             this.btnNewChosen.UseVisualStyleBackColor = false;
-            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
+            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
             // comColor
             // 
