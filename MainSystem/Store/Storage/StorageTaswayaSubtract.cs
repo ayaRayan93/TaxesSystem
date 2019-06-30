@@ -749,7 +749,7 @@ namespace MainSystem
         {
             try
             {
-                string q1, q2, q3, q4;
+                string q1, q2, q3, q4,q5;
                 if (txtType.Text == "")
                 {
                     q1 = "select Type_ID from type";
@@ -782,6 +782,14 @@ namespace MainSystem
                 {
                     q4 = txtGroup.Text;
                 }
+                if (txtProduct.Text == "")
+                {
+                    q5 = "select Size_ID from size";
+                }
+                else
+                {
+                    q5 = txtProduct.Text;
+                }
                 string query1 = "";
                 if (comStore.Text != "")
                 {
@@ -799,7 +807,16 @@ namespace MainSystem
                 }
 
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string qq = "select Storage_ID,data.Data_ID, data.Code as 'كود',"+ itemName +",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1+ q+" group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+               
+                string qq = "";
+                if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
+                {
+                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                }
+                else
+                {
+                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                }
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -877,14 +894,14 @@ namespace MainSystem
                         com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
                         com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
                         com.Parameters.Add("@SubtractQuantity", MySqlDbType.Decimal);
-                        com.Parameters["@SubtractQuantity"].Value = mdt.Rows[i][5];
+                        com.Parameters["@SubtractQuantity"].Value = mdt.Rows[i][6];
                         com.Parameters.Add("@QuantityAfterSubtract", MySqlDbType.Decimal);
-                        com.Parameters["@QuantityAfterSubtract"].Value = mdt.Rows[i][6];
+                        com.Parameters["@QuantityAfterSubtract"].Value = mdt.Rows[i][5];
                         com.Parameters.Add("@Note", MySqlDbType.VarChar);
                         com.Parameters["@Note"].Value = txtItemNote.Text;
                         com.ExecuteNonQuery();
 
-                        DecreaseProductQuantity(mdt.Rows[i][0].ToString(), Convert.ToDouble(mdt.Rows[i][5].ToString()), comStore.SelectedValue.ToString());
+                        DecreaseProductQuantity(mdt.Rows[i][0].ToString(), Convert.ToDouble(mdt.Rows[i][6].ToString()), comStore.SelectedValue.ToString());
                     }
                     UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
 

@@ -929,6 +929,10 @@ namespace MainSystem
             txtGroup.Text = "";
             txtProduct.Text = "";
 
+            comClient.Text = "";
+            comEngCon.Text = "";
+            txtClientID.Text = "";
+            txtCustomerID.Text = "";
             foreach (Control item in panel2.Controls)
             {
                 if (item is TextBox)
@@ -946,6 +950,10 @@ namespace MainSystem
             dateTimePicker1.Value = DateTime.Now.Date;
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
+            DataHelper dh = new DataHelper(DSparametr.doubleDS);
+            gridControl2.DataSource = dh.DataSet;
+            gridControl2.DataMember = dh.DataMember;
+            gridView2.InitNewRow += GridView1_InitNewRow;
         }
         public void filterFactory()
         {

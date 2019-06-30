@@ -28,22 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreateReturnBill = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -63,15 +51,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtReturnPermission = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtBillTotalCostAD = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtInfo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.comDelegate = new System.Windows.Forms.ComboBox();
             this.txtDelegate = new System.Windows.Forms.TextBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.txtBillTotalCostAD = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtInfo = new System.Windows.Forms.TextBox();
+            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -105,14 +105,14 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data_ID,
@@ -130,89 +130,13 @@
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 123);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.Size = new System.Drawing.Size(862, 375);
             this.dataGridView2.TabIndex = 165;
-            // 
-            // Data_ID
-            // 
-            this.Data_ID.HeaderText = "Data_ID";
-            this.Data_ID.Name = "Data_ID";
-            this.Data_ID.ReadOnly = true;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "الكود";
-            this.Code.Name = "Code";
-            this.Code.ReadOnly = true;
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.HeaderText = "الاسم";
-            this.Product_Name.Name = "Product_Name";
-            this.Product_Name.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "الكمية";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // priceBD
-            // 
-            this.priceBD.HeaderText = "السعر";
-            this.priceBD.Name = "priceBD";
-            this.priceBD.ReadOnly = true;
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "نسبة الخصم";
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "بعد الخصم";
-            this.priceAD.Name = "priceAD";
-            this.priceAD.ReadOnly = true;
-            // 
-            // totalAD
-            // 
-            this.totalAD.HeaderText = "الاجمالي";
-            this.totalAD.Name = "totalAD";
-            this.totalAD.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "الوصف";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            this.Description.Visible = false;
-            // 
-            // Delegate_ID
-            // 
-            this.Delegate_ID.HeaderText = "Delegate_ID";
-            this.Delegate_ID.Name = "Delegate_ID";
-            this.Delegate_ID.ReadOnly = true;
-            this.Delegate_ID.Visible = false;
-            // 
-            // CustomerBill_ID
-            // 
-            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
-            this.CustomerBill_ID.Name = "CustomerBill_ID";
-            this.CustomerBill_ID.ReadOnly = true;
-            this.CustomerBill_ID.Visible = false;
-            // 
-            // type1
-            // 
-            this.type1.HeaderText = "الفئة";
-            this.type1.Name = "type1";
-            this.type1.ReadOnly = true;
-            this.type1.Visible = false;
+            this.dataGridView2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -465,49 +389,6 @@
             this.panel2.Size = new System.Drawing.Size(868, 80);
             this.panel2.TabIndex = 168;
             // 
-            // txtBillTotalCostAD
-            // 
-            this.txtBillTotalCostAD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBillTotalCostAD.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillTotalCostAD.Location = new System.Drawing.Point(479, 40);
-            this.txtBillTotalCostAD.Name = "txtBillTotalCostAD";
-            this.txtBillTotalCostAD.ReadOnly = true;
-            this.txtBillTotalCostAD.Size = new System.Drawing.Size(150, 26);
-            this.txtBillTotalCostAD.TabIndex = 183;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label14.Location = new System.Drawing.Point(310, 19);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 18);
-            this.label14.TabIndex = 200;
-            this.label14.Text = "سبب الاسترجاع";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(635, 43);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 19);
-            this.label6.TabIndex = 180;
-            this.label6.Text = "اجمالي الفاتورة بعد الخصم";
-            // 
-            // txtInfo
-            // 
-            this.txtInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtInfo.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtInfo.Location = new System.Drawing.Point(123, 16);
-            this.txtInfo.Multiline = true;
-            this.txtInfo.Name = "txtInfo";
-            this.txtInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtInfo.Size = new System.Drawing.Size(181, 50);
-            this.txtInfo.TabIndex = 199;
-            // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -579,6 +460,118 @@
             this.comboBox3.Size = new System.Drawing.Size(175, 24);
             this.comboBox3.TabIndex = 202;
             // 
+            // txtBillTotalCostAD
+            // 
+            this.txtBillTotalCostAD.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBillTotalCostAD.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBillTotalCostAD.Location = new System.Drawing.Point(479, 40);
+            this.txtBillTotalCostAD.Name = "txtBillTotalCostAD";
+            this.txtBillTotalCostAD.ReadOnly = true;
+            this.txtBillTotalCostAD.Size = new System.Drawing.Size(150, 26);
+            this.txtBillTotalCostAD.TabIndex = 183;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label14.Location = new System.Drawing.Point(310, 19);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 18);
+            this.label14.TabIndex = 200;
+            this.label14.Text = "سبب الاسترجاع";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(635, 43);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(140, 19);
+            this.label6.TabIndex = 180;
+            this.label6.Text = "اجمالي الفاتورة بعد الخصم";
+            // 
+            // txtInfo
+            // 
+            this.txtInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtInfo.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtInfo.Location = new System.Drawing.Point(123, 16);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtInfo.Size = new System.Drawing.Size(181, 50);
+            this.txtInfo.TabIndex = 199;
+            // 
+            // Data_ID
+            // 
+            this.Data_ID.HeaderText = "Data_ID";
+            this.Data_ID.Name = "Data_ID";
+            // 
+            // Code
+            // 
+            this.Code.HeaderText = "الكود";
+            this.Code.Name = "Code";
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الاسم";
+            this.Product_Name.Name = "Product_Name";
+            this.Product_Name.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "الكمية";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // priceBD
+            // 
+            this.priceBD.HeaderText = "السعر";
+            this.priceBD.Name = "priceBD";
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "بعد الخصم";
+            this.priceAD.Name = "priceAD";
+            this.priceAD.ReadOnly = true;
+            // 
+            // totalAD
+            // 
+            this.totalAD.HeaderText = "الاجمالي";
+            this.totalAD.Name = "totalAD";
+            this.totalAD.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "الوصف";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            this.Description.Visible = false;
+            // 
+            // Delegate_ID
+            // 
+            this.Delegate_ID.HeaderText = "Delegate_ID";
+            this.Delegate_ID.Name = "Delegate_ID";
+            this.Delegate_ID.Visible = false;
+            // 
+            // CustomerBill_ID
+            // 
+            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
+            this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.Visible = false;
+            // 
+            // type1
+            // 
+            this.type1.HeaderText = "الفئة";
+            this.type1.Name = "type1";
+            this.type1.Visible = false;
+            // 
             // CustomerReturnUsingPermissinNumber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,6 +621,11 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label labBranchName;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comDelegate;
+        private System.Windows.Forms.TextBox txtDelegate;
+        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn Product_Name;
@@ -640,10 +638,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Delegate_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerBill_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn type1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comDelegate;
-        private System.Windows.Forms.TextBox txtDelegate;
-        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
