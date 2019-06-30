@@ -507,6 +507,7 @@
             // 
             this.Data_ID.HeaderText = "Data_ID";
             this.Data_ID.Name = "Data_ID";
+            this.Data_ID.Visible = false;
             // 
             // Code
             // 

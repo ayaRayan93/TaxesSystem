@@ -382,7 +382,7 @@ namespace MainSystem
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
                                 additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
 
@@ -444,7 +444,7 @@ namespace MainSystem
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
                                 additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
 
