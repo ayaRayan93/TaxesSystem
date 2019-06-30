@@ -23,6 +23,8 @@ namespace MainSystem
         int clientID = 0;
         string engName = "";
         string clientName = "";
+        string customerPhoneNumber = "";
+        string clientPhoneNumber = "";
         //string delegateName = "";
         int branchID = 0;
         int ID = -1;
@@ -199,12 +201,13 @@ namespace MainSystem
                                 //extract customer info
                                 if (clientID > 0)
                                 {
-                                    query = "select * from customer where Customer_ID=" + clientID;
+                                    query = "select * from customer inner join customer_phone on customer.Customer_ID=customer_phone.Customer_ID where customer.Customer_ID=" + clientID + " order by customer_phone.CustomerPhone_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
                                     dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
                                         //txtPhoneNumber.Text = dr["Customer_Phone"].ToString();
+                                        clientPhoneNumber = dr["Phone"].ToString();
                                         clientName = dr["Customer_Name"].ToString();
                                     }
                                     dr.Close();
@@ -217,12 +220,13 @@ namespace MainSystem
                                 //}
                                 if (customerID > 0)
                                 {
-                                    query = "select * from customer where Customer_ID=" + customerID;
+                                    query = "select * from customer inner join customer_phone on customer.Customer_ID=customer_phone.Customer_ID where customer.Customer_ID=" + customerID + " order by customer_phone.CustomerPhone_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
                                     dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
                                         //txtPhoneNumber.Text = dr["Customer_Phone"].ToString();
+                                        customerPhoneNumber = dr["Phone"].ToString();
                                         engName = dr["Customer_Name"].ToString();
                                     }
                                     dr.Close();
@@ -1558,11 +1562,11 @@ namespace MainSystem
             Print_ReturnedBill_Report f = new Print_ReturnedBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
             }
             f.ShowDialog();
         }
@@ -1622,11 +1626,11 @@ namespace MainSystem
             Print_ReturnedBill_ReportAccounting f = new Print_ReturnedBill_ReportAccounting();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
             }
             f.ShowDialog();
         }

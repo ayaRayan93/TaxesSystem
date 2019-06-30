@@ -11,21 +11,21 @@ using DevExpress.XtraEditors;
 
 namespace MainSystem
 {
-    public partial class Print_ReturnedBill_Report : DevExpress.XtraEditors.XtraForm
+    public partial class Print_Ticket_Report : DevExpress.XtraEditors.XtraForm
     {
-        public Print_ReturnedBill_Report()
+        public Print_Ticket_Report()
         {
             InitializeComponent();
         }
 
-        public void PrintInvoice(string ClientName, string phoneNumber, DateTime billDate, string PayType, int BillNumber, string branchId, string BranchName, double TotalBillPriceAD, string returnInfo, List<ReturnedBill_Items> BillItems)
+        public void PrintInvoice(List<Ticket_Items> BillItems)
         {
-            Print_ReturnedInvoice report = new Print_ReturnedInvoice();
+            Print_Product_Ticket report = new Print_Product_Ticket();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(ClientName, phoneNumber, billDate, PayType, BillNumber, branchId, BranchName, TotalBillPriceAD, returnInfo, BillItems);
+            report.InitData(BillItems);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

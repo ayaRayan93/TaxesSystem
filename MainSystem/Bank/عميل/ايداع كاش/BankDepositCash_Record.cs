@@ -23,6 +23,8 @@ namespace MainSystem
         int clientID = 0;
         string engName = "";
         string clientName = "";
+        string customerPhoneNumber = "";
+        string clientPhoneNumber = "";
         double totalCostBD = 0;
         double totalDiscount = 0;
         string TypeBuy = "";
@@ -214,13 +216,13 @@ namespace MainSystem
                                 //extract customer info
                                 if (clientID > 0)
                                 {
-                                    query = "select * from customer where Customer_ID=" + clientID;
+                                    query = "select * from customer inner join customer_phone on customer.Customer_ID=customer_phone.Customer_ID where customer.Customer_ID=" + clientID + " order by customer_phone.CustomerPhone_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
                                     dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
                                         //txtClientName.Text = dr["Customer_Name"].ToString();
-                                        //txtPhoneNumber.Text = dr["Customer_Phone"].ToString();
+                                        clientPhoneNumber = dr["Phone"].ToString();
                                         clientName = dr["Customer_Name"].ToString();
                                     }
                                     dr.Close();
@@ -233,13 +235,13 @@ namespace MainSystem
                                 //}
                                 if (customerID > 0)
                                 {
-                                    query = "select * from customer where Customer_ID=" + customerID;
+                                    query = "select * from customer inner join customer_phone on customer.Customer_ID=customer_phone.Customer_ID where customer.Customer_ID=" + customerID + " order by customer_phone.CustomerPhone_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
                                     dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
                                         //txtEngName.Text = dr["Customer_Name"].ToString();
-                                        //txtPhoneNumber.Text = dr["Customer_Phone"].ToString();
+                                        customerPhoneNumber = dr["Phone"].ToString();
                                         engName = dr["Customer_Name"].ToString();
                                     }
                                     dr.Close();
@@ -1740,11 +1742,11 @@ namespace MainSystem
             Print_Bill_Report f = new Print_Bill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             f.ShowDialog();
         }
@@ -1804,11 +1806,11 @@ namespace MainSystem
             Print_Bill_ReportAccounting f = new Print_Bill_ReportAccounting();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, totalCostBD, Convert.ToDouble(txtTotalCost.Text), totalDiscount, bi);
             }
             f.ShowDialog();
         }
