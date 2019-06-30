@@ -1370,11 +1370,11 @@ namespace MainSystem
                                     {
                                         if (cartonNumCheck())
                                         { }
-                                        else
+                                        /*else
                                         {
                                             dbconnection.Close();
                                             return;
-                                        }
+                                        }*/
                                     }
 
                                     /******************************************************************************/
@@ -1577,13 +1577,13 @@ namespace MainSystem
                     decimal totalMeters = decimal.Parse(txtQuantity.Text);
                     if (totalMeters % Carton == 0)
                     {
-                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
+                        //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة");
                         cartons = (int)(totalMeters / Carton);
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
+                        //MessageBox.Show("تحتاج " + totalMeters / Carton + " كرتونة و " + totalMeters % Carton + " متر");
                         cartons = 0;
                         return false;
                     }

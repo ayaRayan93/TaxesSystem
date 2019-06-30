@@ -14,9 +14,10 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string client_Name, string delegate_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Bill_ItemsAccounting> Bill_Items)
+        public void InitData(string client_Name, string phoneNumber, string delegate_Name, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceBD, double TotalBillPriceAD, double TotalDiscount, List<Bill_ItemsAccounting> Bill_Items)
         {
             Client_Name.Value = client_Name;
+            PhoneNum.Value = phoneNumber;
             Delegate_Name.Value = delegate_Name;
             PayType.Value = pay_Type;
             Bill_Number.Value = bill_Number;

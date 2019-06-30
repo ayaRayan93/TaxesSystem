@@ -375,6 +375,18 @@
     <Compile Include="Sales\Products_Report2Sales.designer.cs">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.designer.cs">
+      <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.designer.cs">
+      <DependentUpon>Print_CopyReturnedInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\specialOrder_confirm\SpecialOrderConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1721,23 +1733,11 @@
     <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_CopyBill_Report.designer.cs">
       <DependentUpon>Print_CopyBill_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.designer.cs">
-      <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedBill_Report.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedBill_Report.designer.cs">
       <DependentUpon>Print_CopyReturnedBill_Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.designer.cs">
-      <DependentUpon>Print_CopyReturnedInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.cs">
       <SubType>Form</SubType>
@@ -1840,6 +1840,13 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Ticket\Print_Ticket_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Ticket_Report.designer.cs">
+      <DependentUpon>Print_Ticket_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Ticket\Ticket_Items.cs" />
     <Compile Include="Store\Export\CustomerDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1953,6 +1960,18 @@
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\StorageReturn_Items.cs" />
+    <Compile Include="Store\Ticket\ProductsTickets_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\ProductsTickets_Report.designer.cs">
+      <DependentUpon>ProductsTickets_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket.designer.cs">
+      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Storage\StorageTaswayaSubtractUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2469,6 +2488,12 @@
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.resx">
+      <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.resx">
+      <DependentUpon>Print_CopyReturnedInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\specialOrder_confirm\SpecialOrderConfirm.resx">
       <DependentUpon>SpecialOrderConfirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -2973,14 +2998,8 @@
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_CopyBill_Report.resx">
       <DependentUpon>Print_CopyBill_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.resx">
-      <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedBill_Report.resx">
       <DependentUpon>Print_CopyReturnedBill_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\Print_CopyReturnedInvoice.resx">
-      <DependentUpon>Print_CopyReturnedInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.resx">
       <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
@@ -3083,6 +3102,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Ticket_Report.resx">
+      <DependentUpon>Print_Ticket_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\ProductsTickets_Report.resx">
+      <DependentUpon>ProductsTickets_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket.resx">
+      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Storage\StorageTaswayaSubtractUpdate.resx">
       <DependentUpon>StorageTaswayaSubtractUpdate.cs</DependentUpon>
