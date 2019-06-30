@@ -119,6 +119,7 @@ namespace MainSystem
                     com = new MySqlCommand(query, dbconnection);
                     dr = com.ExecuteReader();
                     double totalBill = 0;
+                    load1 = false;
                     while (dr.Read())
                     {
                         int n = dataGridView2.Rows.Add();
@@ -151,6 +152,7 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Close();
                 dbconnection.Open();
                 if (dataGridView2.RowCount > 0 && txtReturnPermission.Text != "")
                 {
@@ -161,7 +163,7 @@ namespace MainSystem
                     {
                         Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
-                    query = "insert into customer_return_bill (Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
+                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Customer_ID,@Client_ID,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
                     com = new MySqlCommand(query, dbconnection);
                     
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
@@ -300,26 +302,12 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-        //function
-        public void clear()
-        {
-            txtReturnPermission.Text = "";
-            txtInfo.Text = "";
-            txtBillTotalCostAD.Text = "";
-            labBillNumber.Text = "";
-            labClientName.Text = "";
-            labClientPhone.Text = "";
-            txtDelegate.Text = "";
-            comDelegate.Text = "";
-            dataGridView2.Rows.Clear();
-        }
         private void comDelegate_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
-                if(load)
-                txtDelegate.Text = comDelegate.SelectedValue.ToString();
+                if (load)
+                    txtDelegate.Text = comDelegate.SelectedValue.ToString();
             }
             catch (Exception ex)
             {
@@ -362,8 +350,13 @@ namespace MainSystem
                         DataGridViewRow dataRow = dataGridView2.Rows[e.RowIndex];
                         double sellprice = Convert.ToDouble(dataRow.Cells[4].Value.ToString());
                         double discount = Convert.ToDouble(dataRow.Cells[5].Value.ToString());
-                        double priceAD = sellprice * (sellprice * discount / 100);
+                        double priceAD = sellprice;
+                        if (discount != 0)
+                        {
+                           priceAD = sellprice * (sellprice * discount / 100);
+                        }
                         dataRow.Cells[6].Value = priceAD;
+                        dataRow.Cells[7].Value = priceAD* Convert.ToDouble(dataRow.Cells[4].Value.ToString());
                     }
                 }
             }
@@ -373,5 +366,19 @@ namespace MainSystem
             }
         }
 
+        //function
+        public void clear()
+        {
+            txtReturnPermission.Text = "";
+            txtInfo.Text = "";
+            txtBillTotalCostAD.Text = "";
+            labBillNumber.Text = "";
+            labClientName.Text = "";
+            labClientPhone.Text = "";
+            txtDelegate.Text = "";
+            comDelegate.Text = "";
+            dataGridView2.Rows.Clear();
+        }
+ 
     }
 }

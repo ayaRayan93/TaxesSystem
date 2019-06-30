@@ -705,7 +705,7 @@ namespace MainSystem
                             int [] listOfSelectedRows= gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
                                 if (!checkExist(row[0].ToString()))
                                 {
@@ -804,7 +804,7 @@ namespace MainSystem
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
                                 if ( !checkExist(row[0].ToString()))
                                 {
                                     string query = "INSERT INTO sellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
