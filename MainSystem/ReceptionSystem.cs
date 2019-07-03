@@ -25,7 +25,7 @@ namespace MainSystem
         MySqlConnection conn;
         public static XtraTabControl tabControlReception;
 
-        public static Delegate_Movement_Copy DelegateMovementShow;
+        public static Delegate_Movement_Copy2 DelegateMovementShow;
         public static Delegates_Attendance DelegateAttendanceShow;
         public static GraphicActiveMonth_Report GraphicActiveMonthReport;
         public static DelegateAbsence_Report DelegateAbsenceReport;
@@ -161,7 +161,7 @@ namespace MainSystem
                     panelDelegateMovement.Name = "panelDelegateMovement";
                     panelDelegateMovement.Dock = DockStyle.Fill;
 
-                    DelegateMovementShow = new Delegate_Movement_Copy();
+                    DelegateMovementShow = new Delegate_Movement_Copy2();
                     DelegateMovementShow.Size = new Size(1109, 660);
                     DelegateMovementShow.TopLevel = false;
                     DelegateMovementShow.FormBorderStyle = FormBorderStyle.None;

@@ -363,6 +363,12 @@
     <Compile Include="Reception\Delegates_Attendance.designer.cs">
       <DependentUpon>Delegates_Attendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reception\Delegate_Movement_Copy2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\Delegate_Movement_Copy2.designer.cs">
+      <DependentUpon>Delegate_Movement_Copy2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reception\Delegate_Movement_Copy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2469,6 +2475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\Delegates_Attendance.resx">
       <DependentUpon>Delegates_Attendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reception\Delegate_Movement_Copy2.resx">
+      <DependentUpon>Delegate_Movement_Copy2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reception\Delegate_Movement_Copy.resx">
       <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>
