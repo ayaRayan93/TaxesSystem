@@ -297,7 +297,7 @@
             this.btnNewChosen.TabIndex = 21;
             this.btnNewChosen.Text = "اختيار اخر";
             this.btnNewChosen.UseVisualStyleBackColor = false;
-            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChooes_Click);
+            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
             // 
             // comColor
             // 
