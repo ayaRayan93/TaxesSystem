@@ -17,6 +17,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         string type = "كاش";
         int Branch_ID = 0;
+        double totalBill = 0;
         bool load = false;
         bool load1 = false;//test case datagridview row 
         public CustomerReturnUsingPermissinNumber()
@@ -118,7 +119,7 @@ namespace MainSystem
 
                     com = new MySqlCommand(query, dbconnection);
                     dr = com.ExecuteReader();
-                    double totalBill = 0;
+                  
                     load1 = false;
                     while (dr.Read())
                     {
@@ -348,6 +349,7 @@ namespace MainSystem
                     if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
                     {
                         DataGridViewRow dataRow = dataGridView2.Rows[e.RowIndex];
+                        totalBill -= Convert.ToDouble(dataRow.Cells[7].Value.ToString());
                         double sellprice = Convert.ToDouble(dataRow.Cells[4].Value.ToString());
                         double discount = Convert.ToDouble(dataRow.Cells[5].Value.ToString());
                         double priceAD = sellprice;
@@ -357,6 +359,8 @@ namespace MainSystem
                         }
                         dataRow.Cells[6].Value = priceAD;
                         dataRow.Cells[7].Value = priceAD* Convert.ToDouble(dataRow.Cells[4].Value.ToString());
+                        totalBill += Convert.ToDouble(dataRow.Cells[7].Value.ToString());
+                        txtBillTotalCostAD.Text = totalBill.ToString();
                     }
                 }
             }

@@ -318,9 +318,9 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
-                                Name = (string)com.ExecuteScalar();
-                                comType.Text = Name;
-                                txtType.Text = txtCodePart1.Text;
+                                //Name = (string)com.ExecuteScalar();
+                                //comType.Text = Name;
+                                //txtType.Text = txtCodePart1.Text;
                                 makeCode(txtBox);
                                 txtCodePart2.Focus();
                                 dbconnection.Close();
@@ -337,9 +337,9 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
-                                Name = (string)com.ExecuteScalar();
-                                comFactory.Text = Name;
-                                txtFactory.Text = txtCodePart2.Text;
+                                //Name = (string)com.ExecuteScalar();
+                                //comFactory.Text = Name;
+                                //txtFactory.Text = txtCodePart2.Text;
                                 makeCode(txtBox);
                                 txtCodePart3.Focus();
                                 dbconnection.Close();
@@ -356,9 +356,9 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
-                                Name = (string)com.ExecuteScalar();
-                                comGroup.Text = Name;
-                                txtGroup.Text = txtCodePart3.Text;
+                                //Name = (string)com.ExecuteScalar();
+                                //comGroup.Text = Name;
+                                //txtGroup.Text = txtCodePart3.Text;
                                 makeCode(txtBox);
                                 txtCodePart4.Focus();
                                 dbconnection.Close();
@@ -375,9 +375,9 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
-                                Name = (string)com.ExecuteScalar();
-                                comProduct.Text = Name;
-                                txtProduct.Text = txtCodePart4.Text;
+                                //Name = (string)com.ExecuteScalar();
+                                //comProduct.Text = Name;
+                                //txtProduct.Text = txtCodePart4.Text;
                                 makeCode(txtBox);
                                 txtCodePart5.Focus();
                                 dbconnection.Close();
