@@ -381,6 +381,12 @@
     <Compile Include="Sales\Products_Report2Sales.designer.cs">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\Item_Transitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\Item_Transitions_Report.designer.cs">
+      <DependentUpon>Item_Transitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1846,6 +1852,12 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy.designer.cs">
+      <DependentUpon>Print_Product_Ticket_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Ticket_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2497,6 +2509,9 @@
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\Item_Transitions_Report.resx">
+      <DependentUpon>Item_Transitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.resx">
       <DependentUpon>Print_Copy_Invoice.cs</DependentUpon>
     </EmbeddedResource>
@@ -3111,6 +3126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy.resx">
+      <DependentUpon>Print_Product_Ticket_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Ticket_Report.resx">
       <DependentUpon>Print_Ticket_Report.cs</DependentUpon>

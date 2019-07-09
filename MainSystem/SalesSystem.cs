@@ -715,6 +715,38 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemItemTransitionReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 6 || UserControl.userType == 1)
+                {
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage("حركة صنف");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("حركة صنف");
+                        xtraTabPage = getTabPage("حركة صنف");
+                    }
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                    Item_Transitions_Report objForm = new Item_Transitions_Report();
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindDisplaySpecialOrderConfirm(XtraTabPage xtraTabPage)
         {
