@@ -381,10 +381,10 @@
     <Compile Include="Sales\Products_Report2Sales.designer.cs">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sales\reports\Item_Transitions_Report.cs">
+    <Compile Include="Sales\reports\تقرير حركة صنف\Item_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sales\reports\Item_Transitions_Report.designer.cs">
+    <Compile Include="Sales\reports\تقرير حركة صنف\Item_Transitions_Report.designer.cs">
       <DependentUpon>Item_Transitions_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.cs">
@@ -2509,7 +2509,7 @@
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\reports\Item_Transitions_Report.resx">
+    <EmbeddedResource Include="Sales\reports\تقرير حركة صنف\Item_Transitions_Report.resx">
       <DependentUpon>Item_Transitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة البيع\Print_Copy_Invoice.resx">

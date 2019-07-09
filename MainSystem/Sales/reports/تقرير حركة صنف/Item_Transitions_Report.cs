@@ -1236,6 +1236,18 @@ namespace MainSystem
                 }
             }
 
+            for (int i = 0; i < gridView1.RowCount; i++)
+            {
+                if (gridView1.GetRowCellDisplayText(i, "اضافة") != "")
+                {
+                    totalBill += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "اضافة").ToString());
+                }
+                else
+                {
+                    totalReturned += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "خصم").ToString());
+                }
+            }
+
             txtTotalBills.Text = totalBill.ToString();
             txtTotalReturn.Text = totalReturned.ToString();
             txtSafy.Text = (totalBill - totalReturned).ToString();

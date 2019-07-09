@@ -703,7 +703,7 @@
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "طباعة السدادات";
+            this.btnReport.LabelText = "طباعة";
             this.btnReport.Location = new System.Drawing.Point(721, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
@@ -739,6 +739,7 @@
             this.txtTotalBills.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalBills.Location = new System.Drawing.Point(408, 3);
             this.txtTotalBills.Name = "txtTotalBills";
+            this.txtTotalBills.ReadOnly = true;
             this.txtTotalBills.Size = new System.Drawing.Size(94, 23);
             this.txtTotalBills.TabIndex = 2;
             // 
@@ -747,6 +748,7 @@
             this.txtTotalReturn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalReturn.Location = new System.Drawing.Point(198, 3);
             this.txtTotalReturn.Name = "txtTotalReturn";
+            this.txtTotalReturn.ReadOnly = true;
             this.txtTotalReturn.Size = new System.Drawing.Size(94, 23);
             this.txtTotalReturn.TabIndex = 3;
             // 
@@ -758,9 +760,9 @@
             this.label7.ForeColor = System.Drawing.Color.Salmon;
             this.label7.Location = new System.Drawing.Point(508, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 16);
+            this.label7.Size = new System.Drawing.Size(87, 16);
             this.label7.TabIndex = 4;
-            this.label7.Text = "اجمالى الفواتير";
+            this.label7.Text = "اجمالى الاضافة";
             // 
             // label8
             // 
@@ -770,9 +772,9 @@
             this.label8.ForeColor = System.Drawing.Color.Salmon;
             this.label8.Location = new System.Drawing.Point(298, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(101, 16);
+            this.label8.Size = new System.Drawing.Size(81, 16);
             this.label8.TabIndex = 5;
-            this.label8.Text = "اجمالى المرتجعات";
+            this.label8.Text = "اجمالى الخصم";
             // 
             // label9
             // 
@@ -791,6 +793,7 @@
             this.txtSafy.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSafy.Location = new System.Drawing.Point(38, 3);
             this.txtSafy.Name = "txtSafy";
+            this.txtSafy.ReadOnly = true;
             this.txtSafy.Size = new System.Drawing.Size(94, 23);
             this.txtSafy.TabIndex = 7;
             // 
