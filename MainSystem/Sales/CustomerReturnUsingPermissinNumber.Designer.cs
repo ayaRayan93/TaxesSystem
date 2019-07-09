@@ -72,6 +72,7 @@
             this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Store_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -126,7 +127,8 @@
             this.Description,
             this.Delegate_ID,
             this.CustomerBill_ID,
-            this.type1});
+            this.type1,
+            this.Store_ID});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 123);
             this.dataGridView2.Name = "dataGridView2";
@@ -540,7 +542,6 @@
             // 
             this.priceAD.HeaderText = "بعد الخصم";
             this.priceAD.Name = "priceAD";
-            this.priceAD.ReadOnly = true;
             // 
             // totalAD
             // 
@@ -572,6 +573,12 @@
             this.type1.HeaderText = "الفئة";
             this.type1.Name = "type1";
             this.type1.Visible = false;
+            // 
+            // Store_ID
+            // 
+            this.Store_ID.HeaderText = "Store_ID";
+            this.Store_ID.Name = "Store_ID";
+            this.Store_ID.Visible = false;
             // 
             // CustomerReturnUsingPermissinNumber
             // 
@@ -639,5 +646,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Delegate_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerBill_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn type1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Store_ID;
     }
 }

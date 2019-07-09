@@ -1652,5 +1652,6 @@ namespace MainSystem
             for (int i = 0; i < arrRestMoney.Length; i++)
                 arrRestMoney[i] = arrPaidMoney[i] = 0;
         }
+
     }
 }

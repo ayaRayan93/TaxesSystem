@@ -682,38 +682,42 @@ namespace MainSystem
                         {
                             double NormalPercent = double.Parse(txtNormal.Text);
                             double UnNormalPercent = double.Parse(txtUnNormal.Text);
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                string query = "INSERT INTO purchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
-                                MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
-                                command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
-                                command.Parameters.AddWithValue("?Price", price);
-                                command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                command.ExecuteNonQuery();
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
-                                command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("?Price_Type", "قطعى");
-                                command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
-                                command.Parameters.AddWithValue("?Price", price);
-                                command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                command.ExecuteNonQuery();
-                                insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
-                                UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+                                if (!checkExist(row[0].ToString()))
+                                {
+                                    string query = "INSERT INTO purchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
+                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                    command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
+                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                    command.Parameters.AddWithValue("?Price", price);
+                                    command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
+                                    command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
 
+                                    query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("?Price_Type", "قطعى");
+                                    command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
+                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                    command.Parameters.AddWithValue("?Price", price);
+                                    command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
+                                    command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+                                    insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
+                                    UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
 
+                                }
                             }
                         }
                         #endregion
@@ -771,40 +775,44 @@ namespace MainSystem
                             double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
 
                             PurchasesPrice = PurchasesPrice + unNormalPercent;
-                            DataTable dataTable = (DataTable)gridControl1.DataSource;
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
+                            int[] listOfSelectedRows = gridView1.GetSelectedRows();
+                            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                string query = "INSERT INTO purchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
-                                MySqlCommand command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
-                                command.Parameters.AddWithValue("@Price", price); 
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
-                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                command.ExecuteNonQuery();
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                query = "INSERT INTO oldpurchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
-                                command = new MySqlCommand(query, dbconnection);
-                                command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Data_ID", dataTable.Rows[i][0].ToString());
-                                command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
-                                command.Parameters.AddWithValue("@Price", price);
-                                command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
-                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
-                                command.Parameters.Add("?Date", MySqlDbType.Date);
-                                command.Parameters["?Date"].Value = DateTime.Now.Date;
-                                command.ExecuteNonQuery();
-                                insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
+                                if (!checkExist(row[0].ToString()))
+                                {
+                                    string query = "INSERT INTO purchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
+                                    MySqlCommand command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                    command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
+                                    command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
+                                    command.Parameters.AddWithValue("@Price", price);
+                                    command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
+                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+                                    query = "INSERT INTO oldpurchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.AddWithValue("@Price_Type", "لستة");
+                                    command.Parameters.AddWithValue("@Purchasing_Price", calPurchasesPrice());
+                                    command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
+                                    command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
+                                    command.Parameters.AddWithValue("@Price", price);
+                                    command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
+                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
+                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                    command.Parameters.Add("?Date", MySqlDbType.Date);
+                                    command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                    command.ExecuteNonQuery();
+                                    insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
 
+                                    UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
+                                }
                             }
                         }
 
@@ -1214,6 +1222,20 @@ namespace MainSystem
             dbconnection.Close();
             return DataIDs;
         }
-     
+        public bool checkExist(string Data_ID)
+        {
+            string query = "select PurchasingPrice_ID from purchasing_price where Data_ID=" + Data_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
     }
 }
