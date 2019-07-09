@@ -1417,7 +1417,8 @@ namespace MainSystem
             int id;
             bool flag = false;
             double storageQ, productQ;
-            string query = "select Data_ID,Type,TotalMeter from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber + " and customer_return_bill_details.CustomerBill_ID<>0";
+            // and customer_return_bill_details.CustomerBill_ID<>0
+            string query = "select Data_ID,Type,TotalMeter,Store_ID from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber + "";
             MySqlCommand com = new MySqlCommand(query, connectionReader);
             MySqlDataReader dr = com.ExecuteReader();
 
@@ -1426,12 +1427,11 @@ namespace MainSystem
                 #region بند
                 if (dr["Type"].ToString() == "بند")
                 {
-                    string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                    string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "' and Store_ID=" + dr["Store_ID"].ToString();
                     MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
                     MySqlDataReader dr2 = com2.ExecuteReader();
                     while (dr2.Read())
                     {
-
                         storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         productQ = Convert.ToDouble(dr["TotalMeter"]);
 
@@ -1442,7 +1442,6 @@ namespace MainSystem
                         comm.ExecuteNonQuery();
                         flag = true;
                         break;
-
                     }
                     dr2.Close();
                 }
@@ -1451,12 +1450,11 @@ namespace MainSystem
                 #region طقم
                 if (dr["Type"].ToString() == "طقم")
                 {
-                    string query2 = "select Storage_ID,Total_Meters from storage where Set_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
+                    string query2 = "select Storage_ID,Total_Meters from storage where Set_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "' and Store_ID=" + dr["Store_ID"].ToString();
                     MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
                     MySqlDataReader dr2 = com2.ExecuteReader();
                     while (dr2.Read())
                     {
-
                         storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         productQ = Convert.ToDouble(dr["TotalMeter"]);
 
