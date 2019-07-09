@@ -69,7 +69,7 @@ namespace MainSystem
                     labClientPhone.Text = "";
                     labBillDate.Text = "";
                     dataGridView2.Rows.Clear();
-
+                    totalBill = 0;
                     dbconnection.Open();
                     int billNum = Convert.ToInt16(txtReturnPermission.Text);
 
@@ -281,7 +281,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("تاكد من ادخال اسم المندوب");
             }
             dbconnection.Close();
         }
@@ -358,7 +358,7 @@ namespace MainSystem
                            priceAD = sellprice * (sellprice * discount / 100);
                         }
                         dataRow.Cells[6].Value = priceAD;
-                        dataRow.Cells[7].Value = priceAD* Convert.ToDouble(dataRow.Cells[4].Value.ToString());
+                        dataRow.Cells[7].Value = priceAD* Convert.ToDouble(dataRow.Cells[3].Value.ToString());
                         totalBill += Convert.ToDouble(dataRow.Cells[7].Value.ToString());
                         txtBillTotalCostAD.Text = totalBill.ToString();
                     }
