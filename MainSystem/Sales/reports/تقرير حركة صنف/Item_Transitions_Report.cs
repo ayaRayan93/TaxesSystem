@@ -1219,6 +1219,64 @@ namespace MainSystem
             }
             dr.Close();
 
+            query = "SELECT taswayaa_adding_permision.PermissionNum 'رقم الفاتورة',DATE_FORMAT(taswayaa_adding_permision.Date,'%d-%m-%Y %h:%i:%s') as 'التاريخ',addstorage.AddingQuantity as 'الكمية' FROM taswayaa_adding_permision INNER JOIN addstorage ON addstorage.PermissionNum = taswayaa_adding_permision.PermissionNum inner join data on data.Data_ID=addstorage.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " and taswayaa_adding_permision.Store_ID=" + comStore.SelectedValue.ToString() + " and date(taswayaa_adding_permision.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+            comand = new MySqlCommand(query, dbconnection);
+            dr = comand.ExecuteReader();
+            while (dr.Read())
+            {
+                gridView1.AddNewRow();
+                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                if (gridView1.IsNewItemRow(rowHandle))
+                {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تسوية");
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
+                }
+            }
+            dr.Close();
+
+            query = "SELECT taswayaa_subtract_permision.PermissionNum 'رقم الفاتورة',DATE_FORMAT(taswayaa_subtract_permision.Date,'%d-%m-%Y %h:%i:%s') as 'التاريخ',substorage.SubtractQuantity as 'الكمية' FROM taswayaa_subtract_permision INNER JOIN substorage ON substorage.PermissionNum = taswayaa_subtract_permision.PermissionNum inner join data on data.Data_ID=substorage.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " and taswayaa_subtract_permision.Store_ID=" + comStore.SelectedValue.ToString() + " and date(taswayaa_subtract_permision.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+            comand = new MySqlCommand(query, dbconnection);
+            dr = comand.ExecuteReader();
+            while (dr.Read())
+            {
+                gridView1.AddNewRow();
+                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                if (gridView1.IsNewItemRow(rowHandle))
+                {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تسوية");
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], dr["الكمية"].ToString());
+                }
+            }
+            dr.Close();
+
+            query = "SELECT transfer_product.TransferProduct_ID 'رقم الفاتورة',DATE_FORMAT(transfer_product.Date,'%d-%m-%Y %h:%i:%s') as 'التاريخ',transfer_product_details.Quantity as 'الكمية',transfer_product.From_Store,transfer_product.To_Store FROM transfer_product INNER JOIN transfer_product_details ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID inner join data on data.Data_ID=transfer_product_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " and (transfer_product.From_Store=" + comStore.SelectedValue.ToString() + " or transfer_product.To_Store=" + comStore.SelectedValue.ToString() + ") and date(transfer_product.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+            comand = new MySqlCommand(query, dbconnection);
+            dr = comand.ExecuteReader();
+            while (dr.Read())
+            {
+                gridView1.AddNewRow();
+                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                if (gridView1.IsNewItemRow(rowHandle))
+                {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تحويل");
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
+                    if (dr["From_Store"].ToString() == comStore.SelectedValue.ToString())
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], dr["الكمية"].ToString());
+                    }
+                    else if (dr["To_Store"].ToString() == comStore.SelectedValue.ToString())
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
+                    }
+                }
+            }
+            dr.Close();
+
             double totalBill = 0;
             double totalReturned = 0;
             
