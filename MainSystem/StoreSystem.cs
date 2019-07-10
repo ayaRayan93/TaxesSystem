@@ -560,8 +560,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                // CustomerDelivery objForm = new CustomerDelivery();
-                BillCustomerDelivery objForm = new BillCustomerDelivery();
+                CustomerDelivery objForm = new CustomerDelivery();
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
