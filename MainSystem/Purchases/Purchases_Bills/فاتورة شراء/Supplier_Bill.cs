@@ -133,7 +133,7 @@ namespace MainSystem
                     gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
 
                     gridView1.Columns[1].Width = 170;
-                    gridView1.Columns[2].Width = 300;
+                    gridView1.Columns[3].Width = 300;
                     if (gridView1.IsLastVisibleRow)
                     {
                         gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -154,7 +154,7 @@ namespace MainSystem
                     gridView2.Columns["Supplier_Permission_Details_ID"].Visible = false;
 
                     gridView2.Columns[1].Width = 170;
-                    gridView2.Columns[2].Width = 300;
+                    gridView2.Columns[3].Width = 300;
                     if (gridView2.IsLastVisibleRow)
                     {
                         gridView2.FocusedRowHandle = gridView2.RowCount - 1;
@@ -192,21 +192,23 @@ namespace MainSystem
                 }
                 if (row1["نوع السعر"].ToString() == "لستة")
                 {
-                    txtDiscount.Text = row1["خصم الشراء"].ToString();
+                    radioList.Checked= true;
+                    /*txtDiscount.Text = row1["خصم الشراء"].ToString();
                     label7.Text = "خصم الشراء";
                     txtNormalIncrease.Visible = true;
                     txtCategoricalIncrease.Visible = true;
                     label8.Visible = true;
-                    label6.Visible = true;
+                    label6.Visible = true;*/
                 }
                 else if (row1["نوع السعر"].ToString() == "قطعى")
                 {
-                    txtDiscount.Text = row1["نسبة الشراء"].ToString();
+                    radioQata3y.Checked = true;
+                    /*txtDiscount.Text = row1["نسبة الشراء"].ToString();
                     label7.Text = "نسبة الشراء";
                     txtNormalIncrease.Visible = false;
                     txtCategoricalIncrease.Visible = false;
                     label8.Visible = false;
-                    label6.Visible = false;
+                    label6.Visible = false;*/
                 }
                 if (txtDiscount.Text == "")
                 {
@@ -295,14 +297,16 @@ namespace MainSystem
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["النوع"], row1["النوع"].ToString());
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاسم"], row1["الاسم"].ToString());
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر"], txtPrice.Text);
-                                        if (row1["نوع السعر"].ToString() == "لستة")
+                                        if (radioList.Checked == true)
                                         {
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "لستة");
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], BuyDiscount);
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], CategoricalIncrease);
                                         }
-                                        else if (row1["نوع السعر"].ToString() == "قطعى")
+                                        else if (radioQata3y.Checked == true)
                                         {
+                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "قطعى");
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], BuyDiscount);
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], "");
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], "");
@@ -311,7 +315,6 @@ namespace MainSystem
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], purchasePrice);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["PurchasingPrice_ID"], row1["PurchasingPrice_ID"].ToString());
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], row1["نوع السعر"].ToString());
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["Supplier_Permission_Details_ID"], row1["Supplier_Permission_Details_ID"].ToString());
 
                                         gridView1.DeleteRow(gridView1.FocusedRowHandle);
@@ -382,7 +385,7 @@ namespace MainSystem
                         {
                             str += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "Supplier_Permission_Details_ID")) + ",";
                         }
-                        str += Convert.ToDouble(gridView2.GetRowCellDisplayText(gridView2.RowCount, "Supplier_Permission_Details_ID"));
+                        str += Convert.ToDouble(gridView2.GetRowCellDisplayText(gridView2.RowCount - 1, "Supplier_Permission_Details_ID"));
                     }
                     string q = "";
                     if (str == "")
@@ -403,7 +406,7 @@ namespace MainSystem
                     gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
 
                     gridView1.Columns[1].Width = 170;
-                    gridView1.Columns[2].Width = 300;
+                    gridView1.Columns[3].Width = 300;
                     if (gridView1.IsLastVisibleRow)
                     {
                         gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -481,12 +484,14 @@ namespace MainSystem
                     {
                         DataRow row3 = gridView2.GetDataRow(i);
 
-                        query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price,Purchasing_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price,@Purchasing_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
+                        query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price_Type,Price,Purchasing_Ratio,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price_Type,@Price,@Purchasing_Ratio,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
                         com = new MySqlCommand(query, conn);
                         com.Parameters.Add("@Bill_ID", MySqlDbType.Int16);
                         com.Parameters["@Bill_ID"].Value = id;
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row3["Data_ID"].ToString();
+                        com.Parameters.Add("@Price_Type", MySqlDbType.VarChar);
+                        com.Parameters["@Price_Type"].Value = row3["نوع السعر"].ToString();
                         com.Parameters.Add("@Price", MySqlDbType.Decimal);
                         com.Parameters["@Price"].Value = row3["السعر"].ToString();
                         if (row3["نوع السعر"].ToString() == "لستة")
@@ -655,11 +660,11 @@ namespace MainSystem
         {
             double price = double.Parse(txtPrice.Text);
             double PurchasesPercent = double.Parse(txtDiscount.Text);
-            if (row1["نوع السعر"].ToString() == "قطعى")
+            if (radioQata3y.Checked == true)
             {
                 return price + (price * PurchasesPercent / 100.0);
             }
-            else if (row1["نوع السعر"].ToString() == "لستة")
+            else if (radioList.Checked == true)
             {
                 double NormalPercent = double.Parse(txtNormalIncrease.Text);
                 double unNormalPercent = double.Parse(txtCategoricalIncrease.Text);
@@ -692,6 +697,46 @@ namespace MainSystem
                 com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = totalSafy;
             }
             com.ExecuteNonQuery();
+        }
+
+        private void radioList_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null)
+                {
+                    txtDiscount.Text = row1["خصم الشراء"].ToString();
+                    label7.Text = "خصم الشراء";
+                    txtNormalIncrease.Visible = true;
+                    txtCategoricalIncrease.Visible = true;
+                    label8.Visible = true;
+                    label6.Visible = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radioQata3y_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null)
+                {
+                    txtDiscount.Text = row1["نسبة الشراء"].ToString();
+                    label7.Text = "نسبة الشراء";
+                    txtNormalIncrease.Visible = false;
+                    txtCategoricalIncrease.Visible = false;
+                    label8.Visible = false;
+                    label6.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void updateGrid(/*string PriceType, */double PurchasingPrice, double ProfitRatio, double PurchasingDiscount, double Price, double NormalIncrease, double CategoricalIncrease)
