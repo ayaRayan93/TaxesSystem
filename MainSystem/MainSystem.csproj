@@ -1852,6 +1852,18 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket.designer.cs">
+      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy2.designer.cs">
+      <DependentUpon>Print_Product_Ticket_Copy2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1983,12 +1995,6 @@
     </Compile>
     <Compile Include="Store\Ticket\ProductsTickets_Report.designer.cs">
       <DependentUpon>ProductsTickets_Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Store\Ticket\Print_Product_Ticket.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Store\Ticket\Print_Product_Ticket.designer.cs">
-      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Storage\StorageTaswayaSubtractUpdate.cs">
       <SubType>Form</SubType>
@@ -3127,6 +3133,12 @@
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket.resx">
+      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy2.resx">
+      <DependentUpon>Print_Product_Ticket_Copy2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy.resx">
       <DependentUpon>Print_Product_Ticket_Copy.cs</DependentUpon>
     </EmbeddedResource>
@@ -3135,9 +3147,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\ProductsTickets_Report.resx">
       <DependentUpon>ProductsTickets_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket.resx">
-      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Storage\StorageTaswayaSubtractUpdate.resx">
       <DependentUpon>StorageTaswayaSubtractUpdate.cs</DependentUpon>

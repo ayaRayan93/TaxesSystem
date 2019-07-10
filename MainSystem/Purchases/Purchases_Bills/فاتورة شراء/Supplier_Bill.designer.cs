@@ -63,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comSupPerm = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioList = new System.Windows.Forms.RadioButton();
+            this.radioQata3y = new System.Windows.Forms.RadioButton();
             this.label20 = new System.Windows.Forms.Label();
             this.txtPurchasePrice = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,7 +88,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCode.Location = new System.Drawing.Point(456, 5);
+            this.txtCode.Location = new System.Drawing.Point(590, 5);
             this.txtCode.Name = "txtCode";
             this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(170, 24);
@@ -97,7 +99,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label4.Location = new System.Drawing.Point(632, 9);
+            this.label4.Location = new System.Drawing.Point(766, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 17);
             this.label4.TabIndex = 9;
@@ -263,7 +265,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label12.Location = new System.Drawing.Point(343, 9);
+            this.label12.Location = new System.Drawing.Point(190, 9);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 17);
             this.label12.TabIndex = 28;
@@ -513,6 +515,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.radioList);
+            this.panel1.Controls.Add(this.radioQata3y);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.txtPurchasePrice);
             this.panel1.Controls.Add(this.txtCategoricalIncrease);
@@ -536,6 +540,38 @@
             this.panel1.Size = new System.Drawing.Size(846, 94);
             this.panel1.TabIndex = 7;
             // 
+            // radioList
+            // 
+            this.radioList.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radioList.AutoSize = true;
+            this.radioList.Checked = true;
+            this.radioList.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioList.ForeColor = System.Drawing.Color.Firebrick;
+            this.radioList.Location = new System.Drawing.Point(427, 9);
+            this.radioList.Name = "radioList";
+            this.radioList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radioList.Size = new System.Drawing.Size(51, 20);
+            this.radioList.TabIndex = 149;
+            this.radioList.TabStop = true;
+            this.radioList.Text = "لسته";
+            this.radioList.UseVisualStyleBackColor = true;
+            this.radioList.CheckedChanged += new System.EventHandler(this.radioList_CheckedChanged);
+            // 
+            // radioQata3y
+            // 
+            this.radioQata3y.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radioQata3y.AutoSize = true;
+            this.radioQata3y.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioQata3y.ForeColor = System.Drawing.Color.Firebrick;
+            this.radioQata3y.Location = new System.Drawing.Point(346, 9);
+            this.radioQata3y.Name = "radioQata3y";
+            this.radioQata3y.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radioQata3y.Size = new System.Drawing.Size(62, 20);
+            this.radioQata3y.TabIndex = 148;
+            this.radioQata3y.Text = "قطعي";
+            this.radioQata3y.UseVisualStyleBackColor = true;
+            this.radioQata3y.CheckedChanged += new System.EventHandler(this.radioQata3y_CheckedChanged);
+            // 
             // label20
             // 
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -552,7 +588,7 @@
             // 
             this.txtPurchasePrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPurchasePrice.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPurchasePrice.Location = new System.Drawing.Point(230, 5);
+            this.txtPurchasePrice.Location = new System.Drawing.Point(77, 5);
             this.txtPurchasePrice.Name = "txtPurchasePrice";
             this.txtPurchasePrice.ReadOnly = true;
             this.txtPurchasePrice.Size = new System.Drawing.Size(100, 24);
@@ -688,6 +724,8 @@
         private System.Windows.Forms.ComboBox comSupplier;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comSupPerm;
+        private System.Windows.Forms.RadioButton radioList;
+        private System.Windows.Forms.RadioButton radioQata3y;
     }
 }
 

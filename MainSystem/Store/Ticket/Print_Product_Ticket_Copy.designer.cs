@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Print_Product_Ticket_Copy
+    partial class Print_Product_Ticket_Copy3
     {
         /// <summary>
         /// Required designer variable.

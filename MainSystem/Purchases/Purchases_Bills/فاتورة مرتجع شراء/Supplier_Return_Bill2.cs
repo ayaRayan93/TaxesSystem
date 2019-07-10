@@ -318,23 +318,25 @@ namespace MainSystem
                 {
                     txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0";
                 }
-                if (row1["خصم الشراء"].ToString() != "")
+                if (row1["خصم الشراء"].ToString() != "0")
                 {
-                    txtDiscount.Text = row1["خصم الشراء"].ToString();
+                    radioList.Checked = true;
+                    /*txtDiscount.Text = row1["خصم الشراء"].ToString();
                     label7.Text = "خصم الشراء";
                     txtNormalIncrease.Visible = true;
                     txtCategoricalIncrease.Visible = true;
                     label8.Visible = true;
-                    label6.Visible = true;
+                    label6.Visible = true;*/
                 }
-                else if (row1["نسبة الشراء"].ToString() != "")
+                else if (row1["نسبة الشراء"].ToString() != "0")
                 {
-                    txtDiscount.Text = row1["نسبة الشراء"].ToString();
+                    radioQata3y.Checked = true;
+                    /*txtDiscount.Text = row1["نسبة الشراء"].ToString();
                     label7.Text = "نسبة الشراء";
                     txtNormalIncrease.Visible = false;
                     txtCategoricalIncrease.Visible = false;
                     label8.Visible = false;
-                    label6.Visible = false;
+                    label6.Visible = false;*/
                 }
                 if (txtDiscount.Text == "")
                 {
@@ -429,14 +431,16 @@ namespace MainSystem
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["النوع"], row1["النوع"].ToString());
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاسم"], row1["الاسم"].ToString());
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر"], price);
-                                            if (row1["خصم الشراء"].ToString() != "")
+                                            if (row1["خصم الشراء"].ToString() != "0")
                                             {
+                                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "لستة");
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], PurchaseDiscount);
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease);
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], Categorical_Increase);
                                             }
-                                            else if (row1["نسبة الشراء"].ToString() != "")
+                                            else if (row1["نسبة الشراء"].ToString() != "0")
                                             {
+                                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "قطعى");
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], PurchaseDiscount);
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], "");
                                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], "");
@@ -532,12 +536,14 @@ namespace MainSystem
                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["النوع"], gridView1.GetRowCellDisplayText(i, "النوع"));
                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاسم"], gridView1.GetRowCellDisplayText(i, "الاسم"));
                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر"], gridView1.GetRowCellDisplayText(i, "السعر"));
-                            if (gridView1.GetRowCellDisplayText(i, "خصم الشراء") != "")
+                            if (gridView1.GetRowCellDisplayText(i, "خصم الشراء") != "0")
                             {
+                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "لستة");
                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["خصم الشراء"], gridView1.GetRowCellDisplayText(i, "خصم الشراء"));
                             }
-                            else if (gridView1.GetRowCellDisplayText(i, "نسبة الشراء") != "")
+                            else if (gridView1.GetRowCellDisplayText(i, "نسبة الشراء") != "0")
                             {
+                                gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "قطعى");
                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الشراء"], gridView1.GetRowCellDisplayText(i, "نسبة الشراء"));
                             }
                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], gridView1.GetRowCellDisplayText(i, "الزيادة العادية"));
@@ -665,9 +671,11 @@ namespace MainSystem
                             com.Parameters["@ReturnBill_ID"].Value = returnBillId;
                             com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                             com.Parameters["@Data_ID"].Value = gridView2.GetRowCellDisplayText(i, gridView2.Columns["Data_ID"]);
+                            com.Parameters.Add("@Price_Type", MySqlDbType.VarChar);
+                            com.Parameters["@Price_Type"].Value = gridView2.GetRowCellDisplayText(i, gridView2.Columns["نوع السعر"]);
                             com.Parameters.Add("@Price", MySqlDbType.Decimal);
                             com.Parameters["@Price"].Value = gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"]);
-                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "")
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "0")
                             {
                                 com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
                                 com.Parameters["@Purchasing_Discount"].Value = gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]);
@@ -678,7 +686,7 @@ namespace MainSystem
                                 com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
                                 com.Parameters["@Categorical_Increase"].Value = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"]);
                             }
-                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "")
+                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "0")
                             {
                                 com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
                                 com.Parameters["@Purchasing_Discount"].Value = null;
@@ -724,14 +732,14 @@ namespace MainSystem
                         for (int i = 0; i < gridView2.RowCount; i++)
                         {
                             int rowHand = gridView2.GetRowHandle(i);
-                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "")
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "0")
                             {
                                 double lastPrice = 0;
                                 lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])));
                                 SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])), Last_Price = lastPrice, Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
                                 bi.Add(item);
                             }
-                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "")
+                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "0")
                             {
                                 //, Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"]))
                                 SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
@@ -788,14 +796,14 @@ namespace MainSystem
                         for (int i = 0; i < gridView2.RowCount; i++)
                         {
                             int rowHand = gridView2.GetRowHandle(i);
-                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "")
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"]) != "0")
                             {
                                 double lastPrice = 0;
                                 lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])));
                                 SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])), Last_Price = lastPrice, Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
                                 bi.Add(item);
                             }
-                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "")
+                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"]) != "0")
                             {
                                 SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الشراء"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
                                 bi.Add(item);
@@ -839,11 +847,12 @@ namespace MainSystem
         {
             double price = double.Parse(txtPrice.Text);
             double PurchasesPercent = double.Parse(txtDiscount.Text);
-            if (row1["نسبة الشراء"].ToString() != "")
+            //if (row1["نسبة الشراء"].ToString() != "")
+            if (radioQata3y.Checked == true)
             {
                 return price + (price * PurchasesPercent / 100.0);
             }
-            else if(row1["خصم الشراء"].ToString() != "")
+            else if(radioList.Checked == true)
             {
                 double NormalPercent = double.Parse(txtNormalIncrease.Text);
                 double unNormalPercent = double.Parse(txtCategoricalIncrease.Text);
@@ -883,11 +892,11 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["النوع"], dr["النوع"].ToString());
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الاسم"], dr["الاسم"].ToString());
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["السعر"], dr["السعر"].ToString());
-                        if (dr["خصم الشراء"].ToString() != "")
+                        if (dr["خصم الشراء"].ToString() != "0")
                         {
                             gridView1.SetRowCellValue(rowHandl, gridView1.Columns["خصم الشراء"], dr["خصم الشراء"].ToString());
                         }
-                        else if (dr["نسبة الشراء"].ToString() != "")
+                        else if (dr["نسبة الشراء"].ToString() != "0")
                         {
                             gridView1.SetRowCellValue(rowHandl, gridView1.Columns["نسبة الشراء"], dr["نسبة الشراء"].ToString());
                         }
@@ -949,13 +958,15 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["النوع"], dr["النوع"].ToString());
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الاسم"], dr["الاسم"].ToString());
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["السعر"], dr["السعر"].ToString());
-                        if (dr["خصم الشراء"].ToString() != "")
+                        if (dr["خصم الشراء"].ToString() != "0")
                         {
                             gridView1.SetRowCellValue(rowHandl, gridView1.Columns["خصم الشراء"], dr["خصم الشراء"].ToString());
+                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["نسبة الشراء"], 0);
                         }
-                        else if (dr["نسبة الشراء"].ToString() != "")
+                        else if (dr["نسبة الشراء"].ToString() != "0")
                         {
                             gridView1.SetRowCellValue(rowHandl, gridView1.Columns["نسبة الشراء"], dr["نسبة الشراء"].ToString());
+                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["خصم الشراء"], 0);
                         }
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة العادية"], dr["الزيادة العادية"].ToString());
                         gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة القطعية"], dr["الزيادة القطعية"].ToString());
@@ -1013,7 +1024,7 @@ namespace MainSystem
 
         public void displayReturnPermissionDetails(int storageImportPermissionIdF)
         {
-            string q = "SELECT supplier_bill_details.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters 'متر/قطعة','BillData_ID','ImportStorageReturnDetails_ID' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.StorageImportPermission_ID=" + storageImportPermissionIdF;
+            string q = "SELECT supplier_bill_details.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price_Type as 'نوع السعر',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters 'متر/قطعة','BillData_ID','ImportStorageReturnDetails_ID' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.StorageImportPermission_ID=" + storageImportPermissionIdF;
             MySqlDataAdapter da = new MySqlDataAdapter(q, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1100,6 +1111,46 @@ namespace MainSystem
             txtPrice.Text = txtNormalIncrease.Text = txtTotalMeter.Text = "";
             txtPurchasePrice.Text = labTotalPrice.Text = labTotalPriceBD.Text = labelTotalB.Text = labelTotalA.Text = "";
             txtTax.Text = "0";
+        }
+
+        private void radioList_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null)
+                {
+                    txtDiscount.Text = row1["خصم الشراء"].ToString();
+                    label7.Text = "خصم الشراء";
+                    txtNormalIncrease.Visible = true;
+                    txtCategoricalIncrease.Visible = true;
+                    label8.Visible = true;
+                    label6.Visible = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radioQata3y_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null)
+                {
+                    txtDiscount.Text = row1["نسبة الشراء"].ToString();
+                    label7.Text = "نسبة الشراء";
+                    txtNormalIncrease.Visible = false;
+                    txtCategoricalIncrease.Visible = false;
+                    label8.Visible = false;
+                    label6.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void DecreaseSupplierAccount()

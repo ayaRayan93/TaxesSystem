@@ -1046,7 +1046,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("يجب ادخال جميع البيانات");
+                    MessageBox.Show("يجب التاكد من جميع البيانات");
                 }
             }
             catch (Exception ex)
