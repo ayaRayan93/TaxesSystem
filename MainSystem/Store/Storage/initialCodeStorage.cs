@@ -1010,11 +1010,11 @@ namespace MainSystem
             }
             if (txtProduct.Text == "")
             {
-                q5 = "select Size_ID from size";
+                q5 = "";
             }
             else
             {
-                q5 = txtProduct.Text;
+                q5 = "and  data.Size_ID=" + txtProduct.Text;
             }
             string q = "";
             if (code != "")
@@ -1029,7 +1029,7 @@ namespace MainSystem
             string query = "";
             if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
             {
-               query = "SELECT data.Data_ID, data.Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ") " + q+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+               query = "SELECT data.Data_ID, data.Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") " + q+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
             }
             else
             {
@@ -1082,11 +1082,11 @@ namespace MainSystem
                 }
                 if (txtProduct.Text == "")
                 {
-                    q5 = "select Size_ID from size";
+                    q5 = "";
                 }
                 else
                 {
-                    q5 = txtProduct.Text;
+                    q5 = "and  data.Size_ID="+ txtProduct.Text;
                 }
                 string query1 = "";
                 if (comStore.Text != "")
@@ -1103,7 +1103,7 @@ namespace MainSystem
                 string qq = "";
                 if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
                 {
-                  qq = "select data.Data_ID,Store_ID,Store_Place_ID, data.Code as 'كود'," + itemName + ",Quantity as 'رصيد البند', Note as 'ملاحظة',Date as 'التاريخ' from open_storage_account  INNER JOIN data  ON open_storage_account.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ")"/* and Date='" + date + "' */ + query1 + " order by OpenStorageAccount_ID desc";
+                  qq = "select data.Data_ID,Store_ID,Store_Place_ID, data.Code as 'كود'," + itemName + ",Quantity as 'رصيد البند', Note as 'ملاحظة',Date as 'التاريخ' from open_storage_account  INNER JOIN data  ON open_storage_account.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ")"/* and Date='" + date + "' */ + query1 + " order by OpenStorageAccount_ID desc";
                 }
                 else
                 {
@@ -1433,7 +1433,6 @@ namespace MainSystem
             value = textBox.Text;
             return dialogResult;
         }
-
         public void filterFactory()
         {
             if (comType.Text != "")
@@ -1558,8 +1557,6 @@ namespace MainSystem
                 txtProduct.Text = "";
             }
         }
-
-
         public bool AllDataIsSaved()
         {
             if ((ListOfSavedDataIDs.Count - ListOfEditDataIDs.Count) != mdt.Rows.Count)

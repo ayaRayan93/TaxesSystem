@@ -90,7 +90,7 @@ namespace MainSystem
                     string relation = " LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID";
                     string supQuery = "concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم'";
 
-                    query = "select IFNULL(Branch_BillNumber,''),IFNULL(customer_bill.Branch_ID,''),IFNULL(branch.Branch_Name,''),ClientReturnName,ClientRetunPhone,Date from customer_return_permission left join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID left join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
+                    query = "select  IFNULL(Branch_BillNumber,''),IFNULL(customer_bill.Branch_ID,''),IFNULL(branch.Branch_Name,''),ClientReturnName,ClientRetunPhone,Date from customer_return_permission left join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID left join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
                     com = new MySqlCommand(query, dbconnection);
 
                     dr = com.ExecuteReader();
@@ -110,11 +110,11 @@ namespace MainSystem
 
                     if (labBillNumber.Text != "")
                     {
-                        query = "select DISTINCT product_bill.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and product_bill.Type='بند' ";
+                        query = "select DISTINCT product_bill.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and product_bill.Type='بند' ";
                     }
                     else
                     {
-                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'"+ "بند" + "' from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
+                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'"+ "بند" + "',Store_ID from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
                     }
 
                     com = new MySqlCommand(query, dbconnection);
@@ -134,11 +134,12 @@ namespace MainSystem
                         dataGridView2.Rows[n].Cells[7].Value = dr[7].ToString();
                         dataGridView2.Rows[n].Cells[8].Value = dr[8].ToString();
                         dataGridView2.Rows[n].Cells[9].Value = dr[9].ToString();
-                        dataGridView2.Rows[n].Cells["type1"].Value = dr[10].ToString();
-                        totalBill += Convert.ToDouble(dr[7].ToString());
+                        dataGridView2.Rows[n].Cells[11].Value = dr[10].ToString();
+                        dataGridView2.Rows[n].Cells[12].Value = dr[11].ToString();
+
                     }
                     dr.Close();
-                    txtBillTotalCostAD.Text = totalBill.ToString();
+                    calculateTotalBill();
                     load1 = true;
 
                 }
@@ -164,7 +165,7 @@ namespace MainSystem
                     {
                         Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
                     }
-                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Customer_ID,@Client_ID,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
+                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Customer_Name,Client_Name, Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Customer_ID,@Client_ID,@Customer_Name,@Client_Name,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
                     com = new MySqlCommand(query, dbconnection);
                     
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
@@ -184,7 +185,7 @@ namespace MainSystem
                         return;
                     }
 
-                    string q = "select Customer_ID,Client_ID from customer_return_permission where CustomerReturnPermission_ID=" + storeNum;
+                    string q = "select customer_return_permission.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_return_permission left join customer as c1 on c1.Customer_ID=customer_return_permission.Customer_ID left join customer as c2 on c2.Customer_ID=customer_return_permission.Client_ID where CustomerReturnPermission_ID=" + storeNum;
                     MySqlCommand c = new MySqlCommand(q, dbconnection);
                     MySqlDataReader dr = c.ExecuteReader();
                     while (dr.Read())
@@ -193,21 +194,29 @@ namespace MainSystem
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                             com.Parameters["@Customer_ID"].Value = Convert.ToInt16(dr[0].ToString());
+                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Customer_Name"].Value = dr[1].ToString();
                         }
                         else
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                             com.Parameters["@Customer_ID"].Value = null;
+                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Customer_Name"].Value = "";
                         }
-                        if (dr[1].ToString() != "")
+                        if (dr[2].ToString() != "")
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(dr[1].ToString());
+                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(dr[2].ToString());
+                            com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Client_Name"].Value = dr[3].ToString();
                         }
                         else
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                             com.Parameters["@Client_ID"].Value = null;
+                            com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                            com.Parameters["@Client_Name"].Value = "";
                         }
                     }
                     dr.Close();
@@ -228,9 +237,16 @@ namespace MainSystem
 
                     query = "select CustomerReturnBill_ID from customer_return_bill order by CustomerReturnBill_ID desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    int id = Convert.ToInt16(com.ExecuteScalar());
+                    MySqlDataReader dr1 = com.ExecuteReader();
+                    int id=0;
+                    while (dr1.Read())
+                    {
+                       id = Convert.ToInt16(dr1[0].ToString());
+                    }
+                    dr1.Close();
+                   
 
-                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceBD,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceBD,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID)";
+                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceBD,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID,Store_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceBD,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID,@Store_ID)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerReturnBill_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
@@ -242,13 +258,14 @@ namespace MainSystem
                     com.Parameters.Add("@SellDiscount", MySqlDbType.Decimal);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
+                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     foreach (DataGridViewRow row2 in dataGridView2.Rows)
                     {
                         if (row2.Cells[0].Value != null)
                         {
                             com.Parameters["@CustomerReturnBill_ID"].Value = id;
                             com.Parameters["@Data_ID"].Value = Convert.ToInt16(row2.Cells[0].Value);
-                            com.Parameters["@Type"].Value = row2.Cells["type1"].Value;
+                            com.Parameters["@Type"].Value = row2.Cells[11].Value;
                             com.Parameters["@TotalMeter"].Value = Convert.ToDouble(row2.Cells["Quantity"].Value);
                             com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
@@ -265,6 +282,7 @@ namespace MainSystem
                                 com.Parameters["@CustomerBill_ID"].Value = 0;
                                 com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(txtDelegate.Text);
                             }
+                            com.Parameters["@Store_ID"].Value = Convert.ToInt16(row2.Cells[12].Value);
                             com.ExecuteNonQuery();
 
                         }
@@ -346,22 +364,27 @@ namespace MainSystem
             {
                 if (load1)
                 {
-                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5 || e.ColumnIndex == 6)
                     {
                         DataGridViewRow dataRow = dataGridView2.Rows[e.RowIndex];
-                        totalBill -= Convert.ToDouble(dataRow.Cells[7].Value.ToString());
                         double sellprice = Convert.ToDouble(dataRow.Cells[4].Value.ToString());
                         double discount = Convert.ToDouble(dataRow.Cells[5].Value.ToString());
-                        double priceAD = sellprice;
+                        double priceAD = Convert.ToDouble(dataRow.Cells[6].Value.ToString());
+                        if (e.ColumnIndex == 6)
+                        {
+                            discount = 100 - (100 * priceAD / sellprice);
+                            dataRow.Cells[5].Value = String.Format("{0:0.##}", discount);
+                        }
                         if (discount != 0)
                         {
-                           priceAD = sellprice * (sellprice * discount / 100);
+                            priceAD = sellprice - (sellprice * discount / 100);
                         }
-                        dataRow.Cells[6].Value = priceAD;
-                        dataRow.Cells[7].Value = priceAD* Convert.ToDouble(dataRow.Cells[3].Value.ToString());
-                        totalBill += Convert.ToDouble(dataRow.Cells[7].Value.ToString());
-                        txtBillTotalCostAD.Text = totalBill.ToString();
+                   
+                        dataRow.Cells[6].Value = String.Format("{0:0.##}", priceAD); 
+                        dataRow.Cells[7].Value = String.Format("{0:0.##}", priceAD * Convert.ToDouble(dataRow.Cells[3].Value.ToString()));
+                        calculateTotalBill();
                     }
+                 
                 }
             }
             catch (Exception ex)
@@ -383,6 +406,14 @@ namespace MainSystem
             comDelegate.Text = "";
             dataGridView2.Rows.Clear();
         }
- 
+        public void calculateTotalBill()
+        {
+            totalBill = 0;
+            foreach (DataGridViewRow row2 in dataGridView2.Rows)
+            {
+                totalBill += Convert.ToDouble(row2.Cells[7].Value);
+            }
+            txtBillTotalCostAD.Text = String.Format("{0:0.##}", totalBill).ToString();
+        }
     }
 }

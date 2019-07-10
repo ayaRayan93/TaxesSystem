@@ -100,6 +100,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtClientName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.txtStore = new System.Windows.Forms.TextBox();
+            this.comStore = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtBranch1 = new System.Windows.Forms.TextBox();
+            this.comBranch1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -118,40 +125,43 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             this.panel3.SuspendLayout();
             this.panCustomer.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.54639F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.45361F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(934, 716);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(934, 794);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 123);
+            this.gridControl1.Location = new System.Drawing.Point(3, 183);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(928, 190);
+            this.gridControl1.Size = new System.Drawing.Size(928, 199);
             this.gridControl1.TabIndex = 236;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -178,11 +188,11 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 399);
+            this.gridControl2.Location = new System.Drawing.Point(3, 468);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(928, 178);
+            this.gridControl2.Size = new System.Drawing.Size(928, 187);
             this.gridControl2.TabIndex = 235;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -293,7 +303,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 673);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 751);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
@@ -330,7 +340,7 @@
             this.panel1.Controls.Add(this.radioButtonWithOutReturnBill);
             this.panel1.Controls.Add(this.radioButtonReturnBill);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(934, 120);
@@ -620,7 +630,7 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtCode);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 316);
+            this.panel2.Location = new System.Drawing.Point(0, 385);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(934, 80);
@@ -769,7 +779,7 @@
             this.panel3.Controls.Add(this.txtClientName);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 580);
+            this.panel3.Location = new System.Drawing.Point(0, 658);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(934, 90);
@@ -996,6 +1006,84 @@
             this.label12.TabIndex = 5;
             this.label12.Text = "اسم العميل";
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel4.Controls.Add(this.txtStore);
+            this.panel4.Controls.Add(this.comStore);
+            this.panel4.Controls.Add(this.label15);
+            this.panel4.Controls.Add(this.txtBranch1);
+            this.panel4.Controls.Add(this.comBranch1);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(934, 60);
+            this.panel4.TabIndex = 238;
+            // 
+            // txtStore
+            // 
+            this.txtStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtStore.Location = new System.Drawing.Point(211, 22);
+            this.txtStore.Name = "txtStore";
+            this.txtStore.Size = new System.Drawing.Size(55, 20);
+            this.txtStore.TabIndex = 10;
+            this.txtStore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // comStore
+            // 
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(272, 22);
+            this.comStore.Name = "comStore";
+            this.comStore.Size = new System.Drawing.Size(120, 21);
+            this.comStore.TabIndex = 9;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label15.Location = new System.Drawing.Point(398, 22);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label15.Size = new System.Drawing.Size(48, 18);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "المخزن";
+            // 
+            // txtBranch1
+            // 
+            this.txtBranch1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBranch1.Location = new System.Drawing.Point(517, 22);
+            this.txtBranch1.Name = "txtBranch1";
+            this.txtBranch1.Size = new System.Drawing.Size(55, 20);
+            this.txtBranch1.TabIndex = 7;
+            this.txtBranch1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // comBranch1
+            // 
+            this.comBranch1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch1.FormattingEnabled = true;
+            this.comBranch1.Location = new System.Drawing.Point(578, 22);
+            this.comBranch1.Name = "comBranch1";
+            this.comBranch1.Size = new System.Drawing.Size(120, 21);
+            this.comBranch1.TabIndex = 6;
+            this.comBranch1.SelectedValueChanged += new System.EventHandler(this.comBranch1_SelectedValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label3.Location = new System.Drawing.Point(703, 22);
+            this.label3.Name = "label3";
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label3.Size = new System.Drawing.Size(38, 18);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "الفرع";
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "سبب استرجاع البند";
@@ -1028,7 +1116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 716);
+            this.ClientSize = new System.Drawing.Size(934, 794);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StoreReturnBill";
             this.Text = "StoreReturnBill";
@@ -1053,6 +1141,8 @@
             this.panel3.PerformLayout();
             this.panCustomer.ResumeLayout(false);
             this.panCustomer.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1135,5 +1225,12 @@
         private System.Windows.Forms.RadioButton radClient;
         private System.Windows.Forms.Label labelEng;
         private System.Windows.Forms.Panel panCustomer;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox txtStore;
+        private System.Windows.Forms.ComboBox comStore;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtBranch1;
+        private System.Windows.Forms.ComboBox comBranch1;
+        private System.Windows.Forms.Label label3;
     }
 }

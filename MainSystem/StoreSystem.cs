@@ -13,6 +13,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
+using MainSystem.Store.Export;
 
 namespace MainSystem
 {
@@ -559,8 +560,8 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                CustomerDelivery objForm = new CustomerDelivery();
-
+                // CustomerDelivery objForm = new CustomerDelivery();
+                BillCustomerDelivery objForm = new BillCustomerDelivery();
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

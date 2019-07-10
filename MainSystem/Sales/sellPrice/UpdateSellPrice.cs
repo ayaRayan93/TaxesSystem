@@ -328,7 +328,7 @@ namespace MainSystem
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
-                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
+                                DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
                                 additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
                                 String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();

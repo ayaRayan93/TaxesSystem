@@ -622,7 +622,7 @@ namespace MainSystem
             try
             {
                 load = false;
-                string q1, q2, q3, q4;
+                string q1, q2, q3, q4,q5;
                 if (txtType.Text == "")
                 {
                     q1 = "select Type_ID from type";
@@ -655,6 +655,14 @@ namespace MainSystem
                 {
                     q4 = txtGroup.Text;
                 }
+                if (txtProduct.Text == "")
+                {
+                    q5 = "select Size_ID from size";
+                }
+                else
+                {
+                    q5 = txtProduct.Text;
+                }
                 string Month = DateTime.Now.Month.ToString();
                 if (Month.Length < 2)
                     Month = "0" + Month;
@@ -663,7 +671,7 @@ namespace MainSystem
                     Day = "0" + Day;
 
                 string date = DateTime.Now.Year + "-" + Month + "-" + Day;
-                if (txtType.Text != "1")
+                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                 {
                     string query = "SELECT data.Data_ID,data.Color_ID  ,data.Size_ID ,data.Sort_ID ,data.Code as 'الكود',type.Type_Name as 'النوع',groupo.Group_Name as 'المجموعة',factory.Factory_Name as 'المصنع',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',data.Description as 'الوصف',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',data.Classification as 'التصنيف' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") and Data_Date='"+ date + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
@@ -686,7 +694,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID , data.Code as 'الكود',type.Type_Name as 'النوع',groupo.Group_Name as 'المجموعة',factory.Factory_Name as 'المصنع',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',data.Description as 'الوصف',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',data.Classification as 'التصنيف' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") and Data_Date='" + date + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID , data.Code as 'الكود',type.Type_Name as 'النوع',groupo.Group_Name as 'المجموعة',factory.Factory_Name as 'المصنع',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',data.Description as 'الوصف',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',data.Classification as 'التصنيف' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ") and Data_Date='" + date + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet);
@@ -753,11 +761,11 @@ namespace MainSystem
                 }
                 if (txtProduct.Text == "")
                 {
-                    q5 = "select Size_ID from size";
+                    q5 = "";
                 }
                 else
                 {
-                    q5 = txtProduct.Text;
+                    q5 = "and  data.Size_ID="+ txtProduct.Text;
                 }
                 if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                 {
@@ -782,7 +790,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ") order by  SUBSTR(data.Code,1,16) ,color.Color_Name ,data.Sort_ID";
+                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") order by  SUBSTR(data.Code,1,16) ,color.Color_Name ,data.Sort_ID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet);
@@ -944,7 +952,7 @@ namespace MainSystem
             {
                 if (comGroup.Text != "" || comFactory.Text != ""|| comType.Text != "")
                 {
-                    if (txtType.Text != "1")
+                    if (txtType.Text != "1"&& txtType.Text != "2"&& txtType.Text != "9")
                     {
                         string supQuery = "";
 
@@ -978,7 +986,7 @@ namespace MainSystem
                         {
                             supQuery += " and Group_ID=" + txtGroup.Text + "";
                         }
-                        string query = "select * from size inner join type_factory on size.Factory_ID=type_factory.Factory_ID where type_factory.Type_ID=1 " + supQuery;
+                        string query = "select * from size inner join type_factory on size.Factory_ID=type_factory.Factory_ID where type_factory.Type_ID="+txtType.Text + supQuery;
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -1007,5 +1015,6 @@ namespace MainSystem
                 txtProduct.Text = "";
             }
         }
+
     }
 }

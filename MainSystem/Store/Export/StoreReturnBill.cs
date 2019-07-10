@@ -97,6 +97,21 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = "";
                 txtBranchID.Text = "";
+                comBranch1.DataSource = dt;
+                comBranch1.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch1.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch1.Text = "";
+                txtBranch1.Text = "";
+
+                query = "select * from store";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comStore.DataSource = dt;
+                comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comStore.Text = "";
+                txtStore.Text = "";
 
                 loaded = true;
             }
@@ -370,6 +385,36 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
+                            case "txtBranch1":
+                                query = "select Branch_Name from branch where Branch_ID='" + txtBranch1.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comBranch1.Text = Name;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtStore":
+                                query = "select Store_Name from store where Store_ID='" + txtStore.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comStore.Text = Name;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
                             case "txtCustomerID":
                                 query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
@@ -456,6 +501,35 @@ namespace MainSystem
                 {
                     txtBranchID.Text = comBranch.SelectedValue.ToString();
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void comBranch1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    txtBranch1.Text = comBranch1.SelectedValue.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    txtStore.Text = comStore.SelectedValue.ToString();
                 }
             }
             catch (Exception ex)
@@ -565,9 +639,9 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 List<ReturnPermissionClass> listOfData = new List<ReturnPermissionClass>();
-                if (gridView2.RowCount > 0)
+                if (gridView2.RowCount > 0 && txtStore.Text != "" && txtBranch1.Text != "")
                 {
-                    string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date)";
+                    string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date,Branch_ID) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date,@Branch_ID)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (radioButtonReturnBill.Checked)
                     {
@@ -579,7 +653,7 @@ namespace MainSystem
                         com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                         com.Parameters["@CustomerBill_ID"].Value = 0;
                     }
-                    if (txtCustomerID.Text != ""&&txtCustomerID.Visible==true)
+                    if (txtCustomerID.Text != "" && txtCustomerID.Visible == true)
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                         com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
@@ -589,7 +663,7 @@ namespace MainSystem
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                         com.Parameters["@Customer_ID"].Value = null;
                     }
-                    if (txtClientID.Text != ""&& txtClientID.Visible==true)
+                    if (txtClientID.Text != "" && txtClientID.Visible == true)
                     {
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                         com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
@@ -599,26 +673,30 @@ namespace MainSystem
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                         com.Parameters["@Client_ID"].Value = null;
                     }
+                  
                     com.Parameters.Add("@ClientReturnName", MySqlDbType.VarChar);
                     com.Parameters["@ClientReturnName"].Value = txtClientName.Text;
                     com.Parameters.Add("@ClientRetunPhone", MySqlDbType.VarChar);
                     com.Parameters["@ClientRetunPhone"].Value = txtPhone.Text;
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                    com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
+                    com.Parameters["@Branch_ID"].Value = Convert.ToInt16(txtBranch1.Text);
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnPermission_ID from customer_return_permission order by CustomerReturnPermission_ID desc limit 1";
-                    com = new MySqlCommand(query,dbconnection);
-                    int CustomerReturnPermission_ID =Convert.ToInt16(com.ExecuteScalar());
+                    com = new MySqlCommand(query, dbconnection);
+                    int CustomerReturnPermission_ID = Convert.ToInt16(com.ExecuteScalar());
 
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRow row1 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
-                        query = "insert into customer_return_permission_details (CustomerReturnPermission_ID,Data_ID,Carton,NumOfCarton,TotalQuantity,ReturnItemReason) values (@CustomerReturnPermission_ID,@Data_ID,@Carton,@NumOfCarton,@TotalQuantity,@ReturnItemReason)";
+                        query = "insert into customer_return_permission_details (CustomerReturnPermission_ID,Data_ID,Carton,NumOfCarton,TotalQuantity,ReturnItemReason,Store_ID) values (@CustomerReturnPermission_ID,@Data_ID,@Carton,@NumOfCarton,@TotalQuantity,@ReturnItemReason,@Store_ID)";
                         com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@CustomerReturnPermission_ID", MySqlDbType.Int16);
                         com.Parameters["@CustomerReturnPermission_ID"].Value = CustomerReturnPermission_ID;
+                   
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row1[0].ToString();
                         com.Parameters.Add("@Carton", MySqlDbType.Decimal);
@@ -629,9 +707,10 @@ namespace MainSystem
                         com.Parameters["@TotalQuantity"].Value = row1[4].ToString();
                         com.Parameters.Add("@ReturnItemReason", MySqlDbType.VarChar);
                         com.Parameters["@ReturnItemReason"].Value = row1[7].ToString();
-
+                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_ID"].Value = Convert.ToInt16(txtStore.Text);
                         com.ExecuteNonQuery();
-                        
+
                         ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();
                         returnPermissionClass.Data_ID = (int)row1["Data_ID"];
                         returnPermissionClass.Code = row1[1].ToString();
@@ -643,13 +722,17 @@ namespace MainSystem
                         listOfData.Add(returnPermissionClass);
 
                     }
-                    if (radioButtonWithOutReturnBill.Checked)
-                    {
-                        IncreaseProductQuantity(CustomerReturnPermission_ID);
-                    }
+                    //if (radioButtonWithOutReturnBill.Checked)
+                    //{
+                    //    IncreaseProductQuantity(CustomerReturnPermission_ID);
+                    //}
                     ReturnPermissionReportViewer ReturnCustomerPermissionReport = new ReturnPermissionReportViewer(listOfData, CustomerReturnPermission_ID.ToString(), txtClientName.Text, txtPhone.Text, dateTimePicker1.Text, txtReturnReason.Text);
                     ReturnCustomerPermissionReport.Show();
                     clear();
+                }
+                else
+                {
+                    MessageBox.Show("ادخل الفرع والمخزن");
                 }
             }
             catch (Exception ex)
@@ -658,7 +741,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         //check type of customer if engineer,client or contract 
         private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
@@ -801,11 +883,11 @@ namespace MainSystem
             }
             if (txtProduct.Text == "")
             {
-                q5 = "select Size_ID from size";
+                q5 = "";
             }
             else
             {
-                q5 = txtProduct.Text;
+                q5 = "and  data.Size_ID=" + txtProduct.Text;
             }
             //string query = "SELECT data.Data_ID, data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") ";
             //string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
@@ -815,7 +897,7 @@ namespace MainSystem
             string query = "";
             if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
             {
-                query = "SELECT data.Data_ID, data.Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ")  order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                query = "SELECT data.Data_ID, data.Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ")  order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
             }
             else
             {
@@ -1064,9 +1146,6 @@ namespace MainSystem
             }
 
         }
-
-     
-
         public void filterSize()
         {
             if (comFactory.Text != "")
@@ -1082,7 +1161,6 @@ namespace MainSystem
                 txtProduct.Text = "";
             }
         }
-
         public void IncreaseProductQuantity(int billNumber)
         {
             connectionReader.Open();
