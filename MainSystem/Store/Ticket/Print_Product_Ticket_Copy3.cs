@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace MainSystem
 {
-    public partial class Print_Product_Ticket_Copy : DevExpress.XtraReports.UI.XtraReport
+    public partial class Print_Product_Ticket_Copy3 : DevExpress.XtraReports.UI.XtraReport
     {
-        public Print_Product_Ticket_Copy()
+        public Print_Product_Ticket_Copy3()
         {
             InitializeComponent();
         }

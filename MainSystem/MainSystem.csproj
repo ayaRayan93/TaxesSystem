@@ -1852,6 +1852,12 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy3.designer.cs">
+      <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3141,6 +3147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy3.resx">
+      <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket.resx">
       <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
