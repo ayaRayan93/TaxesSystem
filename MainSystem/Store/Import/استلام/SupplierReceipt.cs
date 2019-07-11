@@ -1303,7 +1303,7 @@ namespace MainSystem
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["الكود"]);
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["النوع"], dr["النوع"]);
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الاسم"], dr["الاسم"]);
-                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المورد"], "المورد");
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المورد"], dr["المورد"]);
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["اذن استلام"], dr["اذن استلام"]);
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد البلتات"], dr["عدد البلتات"]);
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين"], dr["عدد الكراتين"]);

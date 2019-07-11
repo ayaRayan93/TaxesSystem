@@ -648,8 +648,16 @@ namespace MainSystem
                         com.Parameters["@Total_Price_AD"].Value = Convert.ToDouble(labelTotalA.Text);
                         com.Parameters.Add("@Date", MySqlDbType.DateTime);
                         com.Parameters["@Date"].Value = DateTime.Now;
-                        com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
+                        if (comSupPerm.Text != "" && comSupPerm.SelectedValue != null)
+                        {
+                            com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_Permission_Number"].Value = null;
+                        }
                         com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
                         com.Parameters["@ImportStorageReturn_ID"].Value = ImportStorageReturnId;
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
