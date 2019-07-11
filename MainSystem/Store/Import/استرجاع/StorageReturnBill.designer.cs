@@ -145,7 +145,7 @@
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label1.Location = new System.Drawing.Point(769, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 19);
+            this.label1.Size = new System.Drawing.Size(44, 19);
             this.label1.TabIndex = 166;
             this.label1.Text = "الكود";
             // 
@@ -179,7 +179,7 @@
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label14.Location = new System.Drawing.Point(479, 43);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(124, 19);
+            this.label14.Size = new System.Drawing.Size(125, 19);
             this.label14.TabIndex = 197;
             this.label14.Text = "سبب استرجاع البند";
             // 
@@ -238,7 +238,7 @@
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label11.Location = new System.Drawing.Point(496, 13);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 19);
+            this.label11.Size = new System.Drawing.Size(104, 19);
             this.label11.TabIndex = 197;
             this.label11.Text = "سبب الاسترجاع";
             // 
@@ -405,7 +405,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label8.Location = new System.Drawing.Point(307, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 19);
+            this.label8.Size = new System.Drawing.Size(86, 19);
             this.label8.TabIndex = 188;
             this.label8.Text = "عدد الكراتين";
             // 
@@ -416,7 +416,7 @@
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label3.Location = new System.Drawing.Point(120, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 19);
+            this.label3.Size = new System.Drawing.Size(72, 19);
             this.label3.TabIndex = 199;
             this.label3.Text = "متر/قطعة";
             // 
@@ -524,7 +524,7 @@
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(120, 24);
             this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comGroup_SelectedValueChanged);
             // 
             // txtGroup
             // 
@@ -563,7 +563,7 @@
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(120, 24);
             this.comFactory.TabIndex = 3;
-            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
             // 
             // comProduct
             // 
@@ -572,7 +572,7 @@
             this.comProduct.Name = "comProduct";
             this.comProduct.Size = new System.Drawing.Size(120, 24);
             this.comProduct.TabIndex = 9;
-            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comProduct_SelectedValueChanged);
             // 
             // btnNewChooes
             // 
@@ -638,7 +638,7 @@
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(120, 24);
             this.comType.TabIndex = 0;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comType_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -683,7 +683,6 @@
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(120, 24);
             this.comSupplier.TabIndex = 208;
-            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // label5
             // 
@@ -717,7 +716,6 @@
             this.comStoreFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStoreFilter.Size = new System.Drawing.Size(120, 24);
             this.comStoreFilter.TabIndex = 205;
-            this.comStoreFilter.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // panBillNumber
             // 
@@ -765,7 +763,6 @@
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(130, 24);
             this.comStore.TabIndex = 202;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // txtPermissionNum
             // 

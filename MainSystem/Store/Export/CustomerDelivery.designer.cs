@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDelivery));
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -287,9 +288,9 @@
             // 
             this.btnPut.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
-            this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
+            this.btnPut.Image = ((System.Drawing.Image)(resources.GetObject("btnPut.Image")));
             this.btnPut.ImageActive = null;
-            this.btnPut.Location = new System.Drawing.Point(146, 39);
+            this.btnPut.Location = new System.Drawing.Point(146, 33);
             this.btnPut.Name = "btnPut";
             this.btnPut.Size = new System.Drawing.Size(57, 34);
             this.btnPut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -306,15 +307,15 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrint.Image = null;
             this.btnPrint.ImagePosition = 1;
-            this.btnPrint.ImageZoom = 25;
-            this.btnPrint.LabelPosition = 18;
-            this.btnPrint.LabelText = "طباعة تقرير";
-            this.btnPrint.Location = new System.Drawing.Point(27, 26);
+            this.btnPrint.ImageZoom = 0;
+            this.btnPrint.LabelPosition = 26;
+            this.btnPrint.LabelText = "طباعة الاذن";
+            this.btnPrint.Location = new System.Drawing.Point(27, 33);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(83, 45);
+            this.btnPrint.Size = new System.Drawing.Size(83, 38);
             this.btnPrint.TabIndex = 2;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -324,7 +325,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
             this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
-            this.btnRemove.Location = new System.Drawing.Point(212, 40);
+            this.btnRemove.Location = new System.Drawing.Point(212, 33);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(59, 34);
             this.btnRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -338,7 +339,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label11.Location = new System.Drawing.Point(754, 49);
+            this.label11.Location = new System.Drawing.Point(444, 32);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(124, 19);
             this.label11.TabIndex = 224;
@@ -348,7 +349,7 @@
             // 
             this.txtRecivedQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtRecivedQuantity.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtRecivedQuantity.Location = new System.Drawing.Point(644, 49);
+            this.txtRecivedQuantity.Location = new System.Drawing.Point(334, 32);
             this.txtRecivedQuantity.Name = "txtRecivedQuantity";
             this.txtRecivedQuantity.Size = new System.Drawing.Size(104, 27);
             this.txtRecivedQuantity.TabIndex = 223;
@@ -359,28 +360,30 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label8.Location = new System.Drawing.Point(438, 47);
+            this.label8.Location = new System.Drawing.Point(480, 62);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 19);
             this.label8.TabIndex = 220;
             this.label8.Text = "اماكن التخزين";
+            this.label8.Visible = false;
             // 
             // comStorePlace
             // 
             this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 12F);
             this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(289, 42);
+            this.comStorePlace.Location = new System.Drawing.Point(331, 57);
             this.comStorePlace.Name = "comStorePlace";
             this.comStorePlace.Size = new System.Drawing.Size(146, 27);
             this.comStorePlace.TabIndex = 219;
+            this.comStorePlace.Visible = false;
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label7.Location = new System.Drawing.Point(754, 21);
+            this.label7.Location = new System.Drawing.Point(842, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 19);
             this.label7.TabIndex = 218;
@@ -390,7 +393,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtCode.Location = new System.Drawing.Point(543, 17);
+            this.txtCode.Location = new System.Drawing.Point(631, 32);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(205, 27);
             this.txtCode.TabIndex = 217;
@@ -446,7 +449,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 420F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 422F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -471,7 +474,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(422, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(423, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(99, 45);
