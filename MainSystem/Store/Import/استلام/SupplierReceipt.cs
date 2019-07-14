@@ -16,7 +16,7 @@ namespace MainSystem
 {
     public partial class SupplierReceipt : Form
     {
-        MySqlConnection conn, dbconnection2, dbconnection6, dbconnection3;
+        MySqlConnection conn, conn2, conn6, conn3;
         //int[] courrentIDs;
         //int count = 0;
         int sum = 1;
@@ -37,9 +37,9 @@ namespace MainSystem
             InitializeComponent();
             //courrentIDs = new int[100];
             conn = new MySqlConnection(connection.connectionString);
-            dbconnection2 = new MySqlConnection(connection.connectionString);
-            dbconnection6 = new MySqlConnection(connection.connectionString);
-            dbconnection3 = new MySqlConnection(connection.connectionString);
+            conn2 = new MySqlConnection(connection.connectionString);
+            conn6 = new MySqlConnection(connection.connectionString);
+            conn3 = new MySqlConnection(connection.connectionString);
             xtraTabControlStores = XtraTabControlStores;
             
             comType.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -186,7 +186,7 @@ namespace MainSystem
                 }
 
                 conn.Open();
-                dbconnection6.Open();
+                conn6.Open();
                 string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -199,7 +199,7 @@ namespace MainSystem
                 while (dr.Read())
                 {
                     string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                    MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                    MySqlCommand comand2 = new MySqlCommand(q, conn6);
                     MySqlDataReader dr2 = comand2.ExecuteReader();
                     while (dr2.Read())
                     {
@@ -230,7 +230,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-            dbconnection6.Close();
+            conn6.Close();
         }
 
         private void comBox_SelectedValueChanged(object sender, EventArgs e)
@@ -244,7 +244,7 @@ namespace MainSystem
                     case "comType":
                         if (loaded)
                         {
-                            string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
+                            string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue;
                             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                             DataTable dt = new DataTable();
                             da.Fill(dt);
@@ -252,20 +252,9 @@ namespace MainSystem
                             comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
                             comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                             comFactory.Text = "";
-
-                            query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
-                            da = new MySqlDataAdapter(query, conn);
-                            dt = new DataTable();
-                            da.Fill(dt);
-                            comOrderFactory.DataSource = dt;
-                            comOrderFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
-                            comOrderFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
-                            comOrderFactory.Text = "";
-                            txtOrderFactory.Text = "";
-
                             conn.Close();
                             conn.Open();
-                            query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
+                            query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue;
                             MySqlCommand com = new MySqlCommand(query, conn);
                             int TypeCoding_Method = (int)com.ExecuteScalar();
                             conn.Close();
@@ -278,7 +267,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
+                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue) + " and Type_ID=" + comType.SelectedValue;
                                 }
 
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, conn);
@@ -292,7 +281,7 @@ namespace MainSystem
                             }
                             factoryFlage = true;
 
-                            query = "select * from color where Type_ID=" + comType.SelectedValue.ToString();
+                            query = "select * from color where Type_ID=" + comType.SelectedValue;
                             da = new MySqlDataAdapter(query, conn);
                             dt = new DataTable();
                             da.Fill(dt);
@@ -306,9 +295,6 @@ namespace MainSystem
                     case "comFactory":
                         if (factoryFlage)
                         {
-                            comOrderFactory.Text = comFactory.Text;
-                            comOrderFactory.SelectedValue = comFactory.SelectedValue.ToString();
-                            txtOrderFactory.Text = comOrderFactory.SelectedValue.ToString();
                             conn.Close();
                             conn.Open();
                             string query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -326,6 +312,10 @@ namespace MainSystem
                                 comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
                                 comGroup.Text = "";
                             }
+                            else
+                            {
+                                filterProduct();
+                            }
 
                             groupFlage = true;
 
@@ -338,22 +328,23 @@ namespace MainSystem
                             comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                             comSize.Text = "";
                             comGroup.Focus();
+
                         }
                         break;
                     case "comGroup":
                         if (groupFlage)
                         {
                             string supQuery = "", subQuery1 = "";
-                            if (comType.SelectedValue.ToString() != "")
+                            if (comType.Text != "")
                             {
                                 supQuery += " and product.Type_ID=" + comType.SelectedValue.ToString();
                             }
-                            if (comFactory.SelectedValue.ToString() != "")
+                            if (comFactory.Text != "")
                             {
                                 supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue.ToString();
                                 subQuery1 += " and Factory_ID=" + comFactory.SelectedValue.ToString();
                             }
-                            string query3 = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + supQuery + "  order by product.Product_ID";
+                            string query3 = "select distinct product.Product_ID ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where product_factory_group.Group_ID=" + comGroup.SelectedValue.ToString() + supQuery + "  order by product.Product_ID";
                             MySqlDataAdapter da3 = new MySqlDataAdapter(query3, conn);
                             DataTable dt3 = new DataTable();
                             da3.Fill(dt3);
@@ -522,12 +513,12 @@ namespace MainSystem
                                 {
                                     MessageBox.Show("هذا العنصر تم اضافتة من قبل");
                                     conn.Close();
-                                    dbconnection2.Close();
+                                    conn2.Close();
                                     return;
                                 }
 
                                 conn.Open();
-                                dbconnection2.Open();
+                                conn2.Open();
                                 if (txtOrderNum.Text != "" && comOrderFactory.SelectedValue != null)
                                 {
                                     string query2 = "select order_details.OrderDetails_ID,order_details.Quantity from orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where order_details.Data_ID=" + row1["Data_ID"].ToString() + " and orders.Factory_ID=" + comOrderFactory.SelectedValue.ToString() + " and orders.Order_Number=" + orderNum;
@@ -547,7 +538,7 @@ namespace MainSystem
                                                 double orderTotal = 0;
                                                 //INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
                                                 string qq = "select sum(supplier_permission_details.Total_Meters) as 'Total_Meters' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=" + row1["Data_ID"].ToString() + " and orders.Order_Number=" + orderNum + " and orders.Factory_ID=" + comOrderFactory.SelectedValue.ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-                                                MySqlCommand com3 = new MySqlCommand(qq, dbconnection2);
+                                                MySqlCommand com3 = new MySqlCommand(qq, conn2);
                                                 MySqlDataReader dr2 = com3.ExecuteReader();
                                                 if (dr2.HasRows)
                                                 {
@@ -578,7 +569,7 @@ namespace MainSystem
                                                 //query2 = "update order_details set Received=2 where OrderDetails_ID=" + dr["OrderDetails_ID"].ToString();
                                             }
 
-                                            com2 = new MySqlCommand(query2, dbconnection2);
+                                            com2 = new MySqlCommand(query2, conn2);
                                             com2.ExecuteNonQuery();
                                         }
                                     }
@@ -587,7 +578,7 @@ namespace MainSystem
                                         if (MessageBox.Show("يوجد خطا فى الطلب هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                                         {
                                             conn.Close();
-                                            dbconnection2.Close();
+                                            conn2.Close();
                                             return;
                                         }
                                     }
@@ -633,7 +624,7 @@ namespace MainSystem
                                     UserControl.ItemRecord("storage_import_permission", "اضافة", storageImportPermissionID, DateTime.Now, "", conn);
 
                                     query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول'";
-                                    com = new MySqlCommand(query, dbconnection2);
+                                    com = new MySqlCommand(query, conn2);
                                     MySqlDataReader dr2 = com.ExecuteReader();
                                     if (dr2.HasRows)
                                     {
@@ -706,7 +697,7 @@ namespace MainSystem
                                     if (com.ExecuteScalar() == null)
                                     {
                                         query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول'";
-                                        com = new MySqlCommand(query, dbconnection2);
+                                        com = new MySqlCommand(query, conn2);
                                         MySqlDataReader dr2 = com.ExecuteReader();
                                         if (dr2.HasRows)
                                         {
@@ -817,7 +808,7 @@ namespace MainSystem
                                 {
                                     MessageBox.Show("برجاء التاكد من رقم اذن الاستلام");
                                     conn.Close();
-                                    dbconnection2.Close();
+                                    conn2.Close();
                                     return;
                                 }
 
@@ -888,7 +879,7 @@ namespace MainSystem
                 MessageBox.Show(ex.ToString());
             }
             conn.Close();
-            dbconnection2.Close();
+            conn2.Close();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -923,7 +914,7 @@ namespace MainSystem
                                     #region MyRegion
                                     if (row2["Factory_ID"].ToString() != "" && row2["اذن الطلب"].ToString() != "")
                                     {
-                                        dbconnection2.Open();
+                                        conn2.Open();
                                         query = "select order_details.OrderDetails_ID,order_details.Quantity from orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where order_details.Data_ID=" + row2["Data_ID"].ToString() + " and orders.Factory_ID=" + row2["Factory_ID"].ToString() + " and orders.Order_Number=" + row2["اذن الطلب"].ToString();
                                         com = new MySqlCommand(query, conn);
                                         MySqlDataReader dr = com.ExecuteReader();
@@ -941,7 +932,7 @@ namespace MainSystem
                                                     //INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
                                                     query = "select sum(supplier_permission_details.Total_Meters) as 'Total_Meters' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=" + row1["Data_ID"].ToString() + " and orders.Order_Number=" + row2["اذن الطلب"].ToString() + " and orders.Factory_ID=" + row2["Factory_ID"].ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                                                     //query = "select sum(order_details.Quantity) as 'Quantity' from orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where order_details.Data_ID=" + row2["Data_ID"].ToString() + " and orders.Received<>1 and (orders.Factory_ID<>" + row2["Factory_ID"].ToString() + " and orders.Order_Number<>" + row2["Order_Number"].ToString() + ")";
-                                                    com = new MySqlCommand(query, dbconnection2);
+                                                    com = new MySqlCommand(query, conn2);
                                                     MySqlDataReader dr2 = com.ExecuteReader();
                                                     if (dr2.HasRows)
                                                     {
@@ -971,7 +962,7 @@ namespace MainSystem
                                                     dr2.Close();
                                                 }
 
-                                                com = new MySqlCommand(query, dbconnection2);
+                                                com = new MySqlCommand(query, conn2);
                                                 com.ExecuteNonQuery();
                                             }
                                         }
@@ -1007,7 +998,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-            dbconnection2.Close();
+            conn2.Close();
         }
 
         private void btnCodingProduct_Click(object sender, EventArgs e)
@@ -1030,10 +1021,10 @@ namespace MainSystem
                 if (txtPermissionNum.Text != "")
                 {
                     conn.Close();
-                    dbconnection2.Close();
+                    conn2.Close();
 
                     conn.Open();
-                    dbconnection2.Open();
+                    conn2.Open();
                     search();
 
                     string q = "select import_supplier_permission.Supplier_ID from import_supplier_permission INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
@@ -1084,7 +1075,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
-            dbconnection2.Close();
+            conn2.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -1325,7 +1316,7 @@ namespace MainSystem
                         //gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Store_Place_ID"], dr["Store_Place_ID"]);
                         //INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
                         qq = "select orders.Order_Number,orders.Factory_ID,factory2.Factory_Name from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN factory as factory2 ON orders.Factory_ID = factory2.Factory_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId + " and data.Data_ID="+dr["Data_ID"]+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-                        com = new MySqlCommand(qq, dbconnection2);
+                        com = new MySqlCommand(qq, conn2);
                         MySqlDataReader dr2 = com.ExecuteReader();
                         if (dr2.HasRows)
                         {
@@ -1372,6 +1363,36 @@ namespace MainSystem
                     co.Text = "";
                 }
             }
+        }
+
+        public void filterProduct()
+        {
+            if (comType.Text != "")
+            {
+                if (comGroup.Text != "" || comFactory.Text != "" || comType.Text != "")
+                {
+                    string supQuery = "";
+
+                    supQuery = " product.Type_ID=" + comType.SelectedValue + "";
+                    if (comFactory.Text != "")
+                    {
+                        supQuery += " and product_factory_group.Factory_ID=" + comFactory.SelectedValue + "";
+                    }
+                    if (comGroup.Text != "")
+                    {
+                        supQuery += " and product_factory_group.Group_ID=" + comGroup.SelectedValue + "";
+                    }
+                    string query = "select distinct  product.Product_ID  ,Product_Name  from product inner join product_factory_group on product.Product_ID=product_factory_group.Product_ID  where  " + supQuery + "   order by product.Product_ID";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comProduct.DataSource = dt;
+                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                    comProduct.Text = "";
+                }
+            }
+
         }
     }
 }

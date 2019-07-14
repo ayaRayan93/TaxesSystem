@@ -11,6 +11,7 @@ namespace MainSystem
     class BaseData
     {
         static public string BranchID = "2";
+        static public string StoreID = "1";
         static public string IPAddress = "197.50.31.80";
         static public bool connStatus = true;
         static public void generateBaseProjectFile()
@@ -20,6 +21,10 @@ namespace MainSystem
                 using (StreamWriter writer = new StreamWriter("Branch.txt"))
                 {
                     writer.WriteLine(BranchID);
+                }
+                using (StreamWriter writer = new StreamWriter("Store.txt"))
+                {
+                    writer.WriteLine("1");
                 }
                 using (StreamWriter writer = new StreamWriter("backup.txt"))
                 {

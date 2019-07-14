@@ -1326,7 +1326,7 @@ namespace MainSystem
                     comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
                     comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
                     comProduct.Text = "";
-
+                    txtProduct.Text = "";
                 }
             }
 
