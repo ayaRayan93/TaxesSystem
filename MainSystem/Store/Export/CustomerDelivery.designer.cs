@@ -33,8 +33,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtAddress = new System.Windows.Forms.TextBox();
             this.labPhoneNumber = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -80,6 +78,8 @@
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDelegate = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -129,8 +129,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtAddress);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtDelegate);
             this.groupBox1.Controls.Add(this.labPhoneNumber);
             this.groupBox1.Controls.Add(this.txtPhoneNumber);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -142,35 +142,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بيانات الفاتورة";
             // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label6.Location = new System.Drawing.Point(301, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 17);
-            this.label6.TabIndex = 216;
-            this.label6.Text = "العنوان";
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtAddress.BackColor = System.Drawing.SystemColors.Control;
-            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddress.Location = new System.Drawing.Point(123, 55);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ReadOnly = true;
-            this.txtAddress.Size = new System.Drawing.Size(174, 24);
-            this.txtAddress.TabIndex = 215;
-            // 
             // labPhoneNumber
             // 
             this.labPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labPhoneNumber.AutoSize = true;
             this.labPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labPhoneNumber.Location = new System.Drawing.Point(301, 23);
+            this.labPhoneNumber.Location = new System.Drawing.Point(301, 25);
             this.labPhoneNumber.Name = "labPhoneNumber";
             this.labPhoneNumber.Size = new System.Drawing.Size(72, 17);
             this.labPhoneNumber.TabIndex = 214;
@@ -182,7 +159,7 @@
             this.txtPhoneNumber.BackColor = System.Drawing.SystemColors.Control;
             this.txtPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhoneNumber.Location = new System.Drawing.Point(123, 22);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(123, 24);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.ReadOnly = true;
             this.txtPhoneNumber.Size = new System.Drawing.Size(174, 24);
@@ -197,7 +174,7 @@
             this.groupBox2.Controls.Add(this.labClient);
             this.groupBox2.Controls.Add(this.labCustomer);
             this.groupBox2.Controls.Add(this.txtCustomerID);
-            this.groupBox2.Location = new System.Drawing.Point(409, 10);
+            this.groupBox2.Location = new System.Drawing.Point(409, 15);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(388, 65);
             this.groupBox2.TabIndex = 161;
@@ -449,7 +426,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 422F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 423F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -474,7 +451,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(423, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(424, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(99, 45);
@@ -720,6 +697,29 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label2.Location = new System.Drawing.Point(302, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 17);
+            this.label2.TabIndex = 218;
+            this.label2.Text = "المندوب";
+            // 
+            // txtDelegate
+            // 
+            this.txtDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDelegate.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDelegate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDelegate.Location = new System.Drawing.Point(124, 55);
+            this.txtDelegate.Name = "txtDelegate";
+            this.txtDelegate.ReadOnly = true;
+            this.txtDelegate.Size = new System.Drawing.Size(174, 24);
+            this.txtDelegate.TabIndex = 217;
+            // 
             // CustomerDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -767,8 +767,6 @@
         private System.Windows.Forms.Label labClient;
         private System.Windows.Forms.Label labCustomer;
         private System.Windows.Forms.TextBox txtCustomerID;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label labPhoneNumber;
         private System.Windows.Forms.TextBox txtPhoneNumber;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -807,6 +805,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtBranchID;
         private System.Windows.Forms.ComboBox comBranch;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtDelegate;
     }
 }
 

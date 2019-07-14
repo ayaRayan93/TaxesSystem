@@ -49,7 +49,8 @@ namespace MainSystem
             }
             else
             {
-                BranchID= File.ReadAllText("Branch.txt");
+                StoreID = File.ReadAllText("Store.txt");
+                BranchID = File.ReadAllText("Branch.txt");
                 IPAddress= File.ReadAllText("IP_Address.txt");
             }
 
