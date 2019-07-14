@@ -46,6 +46,20 @@
             this.comBillNumber = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Store_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -89,20 +103,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtTotalReturnBillAD = new System.Windows.Forms.TextBox();
-            this.Data_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceBD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Returned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delegate_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerBill_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Store_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -191,7 +191,7 @@
             this.labCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.labCustomer.Location = new System.Drawing.Point(247, 15);
             this.labCustomer.Name = "labCustomer";
-            this.labCustomer.Size = new System.Drawing.Size(122, 18);
+            this.labCustomer.Size = new System.Drawing.Size(121, 18);
             this.labCustomer.TabIndex = 105;
             this.labCustomer.Text = "مهندس/مقاول/تاجر";
             // 
@@ -225,10 +225,10 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radEng.Location = new System.Drawing.Point(125, 5);
+            this.radEng.Location = new System.Drawing.Point(127, 5);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(71, 22);
+            this.radEng.Size = new System.Drawing.Size(69, 22);
             this.radEng.TabIndex = 158;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = true;
@@ -239,10 +239,10 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radCon.Location = new System.Drawing.Point(202, 5);
+            this.radCon.Location = new System.Drawing.Point(203, 5);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(64, 22);
+            this.radCon.Size = new System.Drawing.Size(63, 22);
             this.radCon.TabIndex = 157;
             this.radCon.Text = "مقاول";
             this.radCon.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@
             this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.labBillNumber.Location = new System.Drawing.Point(393, 48);
             this.labBillNumber.Name = "labBillNumber";
-            this.labBillNumber.Size = new System.Drawing.Size(70, 18);
+            this.labBillNumber.Size = new System.Drawing.Size(69, 18);
             this.labBillNumber.TabIndex = 161;
             this.labBillNumber.Text = "فاتورة رقم";
             // 
@@ -339,6 +339,96 @@
             this.dataGridView2.Size = new System.Drawing.Size(1044, 166);
             this.dataGridView2.TabIndex = 164;
             // 
+            // Data_ID
+            // 
+            this.Data_ID.HeaderText = "Data_ID";
+            this.Data_ID.Name = "Data_ID";
+            this.Data_ID.ReadOnly = true;
+            this.Data_ID.Visible = false;
+            // 
+            // Code
+            // 
+            this.Code.HeaderText = "الكود";
+            this.Code.Name = "Code";
+            this.Code.ReadOnly = true;
+            // 
+            // Product_Name
+            // 
+            this.Product_Name.HeaderText = "الاسم";
+            this.Product_Name.Name = "Product_Name";
+            this.Product_Name.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "الكمية";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // priceBD
+            // 
+            this.priceBD.HeaderText = "السعر";
+            this.priceBD.Name = "priceBD";
+            this.priceBD.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "نسبة الخصم";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            // 
+            // priceAD
+            // 
+            this.priceAD.HeaderText = "بعد الخصم";
+            this.priceAD.Name = "priceAD";
+            this.priceAD.ReadOnly = true;
+            // 
+            // totalAD
+            // 
+            this.totalAD.HeaderText = "الاجمالي";
+            this.totalAD.Name = "totalAD";
+            this.totalAD.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "الوصف";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            this.Description.Visible = false;
+            // 
+            // Returned
+            // 
+            this.Returned.HeaderText = "تم الاسترجاع";
+            this.Returned.Name = "Returned";
+            this.Returned.ReadOnly = true;
+            // 
+            // Delegate_ID
+            // 
+            this.Delegate_ID.HeaderText = "Delegate_ID";
+            this.Delegate_ID.Name = "Delegate_ID";
+            this.Delegate_ID.ReadOnly = true;
+            this.Delegate_ID.Visible = false;
+            // 
+            // CustomerBill_ID
+            // 
+            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
+            this.CustomerBill_ID.Name = "CustomerBill_ID";
+            this.CustomerBill_ID.ReadOnly = true;
+            this.CustomerBill_ID.Visible = false;
+            // 
+            // Store_ID
+            // 
+            this.Store_ID.HeaderText = "Store_ID";
+            this.Store_ID.Name = "Store_ID";
+            this.Store_ID.ReadOnly = true;
+            this.Store_ID.Visible = false;
+            // 
+            // ItemType
+            // 
+            this.ItemType.HeaderText = "ItemType";
+            this.ItemType.Name = "ItemType";
+            this.ItemType.ReadOnly = true;
+            this.ItemType.Visible = false;
+            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -346,7 +436,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label6.Location = new System.Drawing.Point(501, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 18);
+            this.label6.Size = new System.Drawing.Size(126, 18);
             this.label6.TabIndex = 172;
             this.label6.Text = "الاجمالي بعد الخصم";
             // 
@@ -434,7 +524,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label5.Location = new System.Drawing.Point(744, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(166, 18);
+            this.label5.Size = new System.Drawing.Size(165, 18);
             this.label5.TabIndex = 175;
             this.label5.Text = "اجمالي الفاتورة بعد الخصم";
             // 
@@ -467,7 +557,7 @@
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label13.Location = new System.Drawing.Point(808, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(205, 18);
+            this.label13.Size = new System.Drawing.Size(206, 18);
             this.label13.TabIndex = 191;
             this.label13.Text = "اجمالي فاتورة المرتجع بعد الخصم";
             // 
@@ -501,7 +591,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label10.Location = new System.Drawing.Point(393, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 18);
+            this.label10.Size = new System.Drawing.Size(38, 18);
             this.label10.TabIndex = 195;
             this.label10.Text = "الفرع";
             // 
@@ -512,7 +602,7 @@
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label14.Location = new System.Drawing.Point(548, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(95, 18);
+            this.label14.Size = new System.Drawing.Size(96, 18);
             this.label14.TabIndex = 197;
             this.label14.Text = "سبب الاسترجاع";
             // 
@@ -739,10 +829,10 @@
             this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radioButton1.Location = new System.Drawing.Point(72, 5);
+            this.radioButton1.Location = new System.Drawing.Point(70, 5);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioButton1.Size = new System.Drawing.Size(47, 22);
+            this.radioButton1.Size = new System.Drawing.Size(49, 22);
             this.radioButton1.TabIndex = 161;
             this.radioButton1.Text = "تاجر";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -820,7 +910,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label8.Location = new System.Drawing.Point(189, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 18);
+            this.label8.Size = new System.Drawing.Size(115, 18);
             this.label8.TabIndex = 188;
             this.label8.Text = "الكمية المسترجعة";
             // 
@@ -901,96 +991,6 @@
             this.txtTotalReturnBillAD.Size = new System.Drawing.Size(150, 26);
             this.txtTotalReturnBillAD.TabIndex = 200;
             // 
-            // Data_ID
-            // 
-            this.Data_ID.HeaderText = "Data_ID";
-            this.Data_ID.Name = "Data_ID";
-            this.Data_ID.ReadOnly = true;
-            this.Data_ID.Visible = false;
-            // 
-            // Code
-            // 
-            this.Code.HeaderText = "الكود";
-            this.Code.Name = "Code";
-            this.Code.ReadOnly = true;
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.HeaderText = "الاسم";
-            this.Product_Name.Name = "Product_Name";
-            this.Product_Name.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "الكمية";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // priceBD
-            // 
-            this.priceBD.HeaderText = "السعر";
-            this.priceBD.Name = "priceBD";
-            this.priceBD.ReadOnly = true;
-            // 
-            // Discount
-            // 
-            this.Discount.HeaderText = "نسبة الخصم";
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            // 
-            // priceAD
-            // 
-            this.priceAD.HeaderText = "بعد الخصم";
-            this.priceAD.Name = "priceAD";
-            this.priceAD.ReadOnly = true;
-            // 
-            // totalAD
-            // 
-            this.totalAD.HeaderText = "الاجمالي";
-            this.totalAD.Name = "totalAD";
-            this.totalAD.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "الوصف";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            this.Description.Visible = false;
-            // 
-            // Returned
-            // 
-            this.Returned.HeaderText = "تم الاسترجاع";
-            this.Returned.Name = "Returned";
-            this.Returned.ReadOnly = true;
-            // 
-            // Delegate_ID
-            // 
-            this.Delegate_ID.HeaderText = "Delegate_ID";
-            this.Delegate_ID.Name = "Delegate_ID";
-            this.Delegate_ID.ReadOnly = true;
-            this.Delegate_ID.Visible = false;
-            // 
-            // CustomerBill_ID
-            // 
-            this.CustomerBill_ID.HeaderText = "CustomerBill_ID";
-            this.CustomerBill_ID.Name = "CustomerBill_ID";
-            this.CustomerBill_ID.ReadOnly = true;
-            this.CustomerBill_ID.Visible = false;
-            // 
-            // Store_ID
-            // 
-            this.Store_ID.HeaderText = "Store_ID";
-            this.Store_ID.Name = "Store_ID";
-            this.Store_ID.ReadOnly = true;
-            this.Store_ID.Visible = false;
-            // 
-            // ItemType
-            // 
-            this.ItemType.HeaderText = "ItemType";
-            this.ItemType.Name = "ItemType";
-            this.ItemType.ReadOnly = true;
-            this.ItemType.Visible = false;
-            // 
             // CustomerReturnBill
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1001,7 +1001,7 @@
             this.MaximizeBox = false;
             this.Name = "CustomerReturnBill";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CustomerReturnBill";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.CustomerReturnBill_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
