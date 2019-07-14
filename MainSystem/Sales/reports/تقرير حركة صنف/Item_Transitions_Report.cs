@@ -833,6 +833,16 @@ namespace MainSystem
             {
                 if (comStore.Text != "" && txtStoreID.Text != "")
                 {
+                    int cont = gridView1.RowCount;
+                    for (int i = 0; i < cont; i++)
+                    {
+                        int rowHandle = gridView1.GetRowHandle(0);
+                        gridView1.DeleteRow(rowHandle);
+                    }
+                    txtTotalBills.Text = "0";
+                    txtTotalReturn.Text = "0";
+                    txtSafy.Text = "0";
+
                     search();
                 }
                 else
