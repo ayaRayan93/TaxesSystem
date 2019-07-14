@@ -437,6 +437,15 @@ namespace MainSystem
 
                     }
                     DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
+
+                    //if (txtClientID.Text!="")
+                    //{
+                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , dateTimePicker1.Text, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
+                    //}
+                    //else if (txtCustomerID.Text!="")
+                    //{
+                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, dateTimePicker1.Text,, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
+                    //}
                     DeliveryPermissionReport.Show();
                     clear();
                 }
@@ -479,7 +488,7 @@ namespace MainSystem
                 txtClientName.Text = dr["Client_Name"].ToString();
                 txtClientID.Text = dr["Client_ID"].ToString();
                 txtPhoneNumber.Text = dr["Phone"].ToString();
-                txtAddress.Text = dr["Address"].ToString();
+                //txtAddress.Text = dr["Address"].ToString();
             }
             dr.Close();
 
