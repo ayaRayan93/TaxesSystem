@@ -104,8 +104,11 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.SelectedIndex = -1;
 
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                string supString = BaseData.StoreID;
+                storeId = Convert.ToInt16(supString);
 
                 conn.Open();
                 query = "select Store_Name from store where Store_ID=" + storeId;

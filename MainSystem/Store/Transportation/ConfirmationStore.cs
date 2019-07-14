@@ -30,8 +30,11 @@ namespace MainSystem
         {
             try
             {
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                string supString = BaseData.StoreID;
+                storeId = Convert.ToInt16(supString);
 
                 search();
             }

@@ -108,8 +108,11 @@ namespace MainSystem
 
         public void search()
         {
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-            int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
+            //int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+            string supString = BaseData.StoreID;
+            int storeId = Convert.ToInt16(supString);
 
             DataSet sourceDataSet = new DataSet();
             //,employee.Employee_Name as 'مسئول التعتيق',gate.Responsible as 'المسئول'

@@ -104,9 +104,12 @@ namespace MainSystem
                             UserControl.userType = 1;
                             UserControl.EmpType = "مدير";
 
-                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                            UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
-                            
+                            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                            //UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                            string supString = BaseData.BranchID;
+                            UserControl.EmpBranchID = Convert.ToInt16(supString);
+
                             string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
                             com = new MySqlCommand(query2, dbconnection);
                             UserControl.EmpBranchName = com.ExecuteScalar().ToString();
