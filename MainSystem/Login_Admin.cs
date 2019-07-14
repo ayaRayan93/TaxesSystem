@@ -51,8 +51,11 @@ namespace MainSystem
                             UserControl.userType = (int)result[2];
                             UserControl.EmpType = "مدير";
 
-                            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                            UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                            //UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                            string supString = BaseData.BranchID;
+                            UserControl.EmpBranchID = Convert.ToInt16(supString);
 
                             dbconnection.Open();
                             string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
@@ -81,8 +84,11 @@ namespace MainSystem
                             {
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                //int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                                string supString = BaseData.BranchID;
+                                int EmpBranchID2 = Convert.ToInt16(supString);
 
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
@@ -129,8 +135,11 @@ namespace MainSystem
                             {
                                 int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                //int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                                string supString = BaseData.BranchID;
+                                int EmpBranchID2 = Convert.ToInt16(supString);
 
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
@@ -237,8 +246,11 @@ namespace MainSystem
                                 UserControl.userType = (int)result[2];
                                 UserControl.EmpType = "مدير";
 
-                                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                //UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                                string supString = BaseData.BranchID;
+                                UserControl.EmpBranchID = Convert.ToInt16(supString);
 
                                 dbconnection.Open();
                                 string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
@@ -267,8 +279,11 @@ namespace MainSystem
                                 {
                                     int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                    int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                    //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                    //int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                                    string supString = BaseData.BranchID;
+                                    int EmpBranchID2 = Convert.ToInt16(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
                                     {
@@ -315,8 +330,11 @@ namespace MainSystem
                                 {
                                     int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
 
-                                    string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                                    int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                                    //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+                                    //int EmpBranchID2 = Convert.ToInt16(System.IO.File.ReadAllText(path));
+
+                                    string supString = BaseData.BranchID;
+                                    int EmpBranchID2 = Convert.ToInt16(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
                                     {

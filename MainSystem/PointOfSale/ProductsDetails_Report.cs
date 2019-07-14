@@ -160,8 +160,10 @@ namespace MainSystem
         public void search()
         {
             PSloaded = false;
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-            DelegateBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
+            //DelegateBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            string supString = BaseData.BranchID;
+            DelegateBranchID = Convert.ToInt16(supString);
             //if (delegateID == -1)
             //{
             //    delegateID = -1;
