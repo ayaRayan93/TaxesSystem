@@ -437,6 +437,15 @@ namespace MainSystem
 
                     }
                     DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
+
+                    //if (txtClientID.Text!="")
+                    //{
+                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , dateTimePicker1.Text, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
+                    //}
+                    //else if (txtCustomerID.Text!="")
+                    //{
+                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, dateTimePicker1.Text,, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
+                    //}
                     DeliveryPermissionReport.Show();
                     clear();
                 }
