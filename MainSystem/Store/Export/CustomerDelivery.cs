@@ -204,7 +204,7 @@ namespace MainSystem
                 {
                     if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row["الكمية"]))
                     {
-                        addNewRow(row);
+                        addNewRow(row, "oneRow");
                         txtCode.Text = "";
                         txtRecivedQuantity.Text = "";
                         comStorePlace.DataSource = null;
@@ -213,6 +213,15 @@ namespace MainSystem
                     {
                         txtRecivedQuantity.Text = "0";
                         txtRecivedQuantity.Focus();
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                    {
+                        DataRow row = gridView1.GetDataRow(i);
+                        addNewRow(row, "muliRow");
+                        
                     }
                 }
             }
@@ -272,9 +281,9 @@ namespace MainSystem
                         listOfData.Add(deliveryPermissionClass);
                        
                     }
-                    DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData,txtPermBillNumber.Text);
-                    DeliveryPermissionReport.Show();
-                    clear();
+                    //DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData,txtPermBillNumber.Text);
+                    //DeliveryPermissionReport.Show();
+                    //clear();
                 }
                 else
                 {
@@ -360,7 +369,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
         }
         private void txtRecivedQuantity_KeyDown(object sender, KeyEventArgs e)
@@ -373,7 +382,7 @@ namespace MainSystem
                     {
                         if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row[5].ToString()))
                         {
-                            addNewRow(row);
+                            addNewRow(row,"oneRow");
                             txtCode.Text = "";
                             txtRecivedQuantity.Text = "";
                             comStorePlace.DataSource = null;
@@ -436,17 +445,19 @@ namespace MainSystem
                         listOfData.Add(deliveryPermissionClass);
 
                     }
-                    DeliveryPermissionReportViewer DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
+                    DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
 
-                    //if (txtClientID.Text!="")
-                    //{
-                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , dateTimePicker1.Text, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
-                    //}
-                    //else if (txtCustomerID.Text!="")
-                    //{
-                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, dateTimePicker1.Text,, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
-                    //}
-                    DeliveryPermissionReport.Show();
+                    if (txtClientID.Text!="")
+                    {
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , dateTimePicker1.Text, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport.Show();
+                    }
+                    else if (txtCustomerID.Text!="")
+                    {
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, dateTimePicker1.Text, txtPermBillNumber.Text, txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport.Show();
+                    }
+                   
                     clear();
                 }
                 else
@@ -508,14 +519,14 @@ namespace MainSystem
             }
             dr.Close();
         }
-        public void addNewRow(DataRow row)
+        public void addNewRow(DataRow row,string flag)
         {
             if (!IsExist(row[0].ToString(), row[4].ToString()))
             {
                 gridView2.AddNewRow();
 
-                int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
-                if (gridView2.IsNewItemRow(rowHandle)&&rowHandel1 !=-1)
+                int rowHandle = gridView2.DataRowCount;
+                if ( rowHandle != -1)
                 {
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
@@ -526,12 +537,23 @@ namespace MainSystem
                     if (row[4].ToString() != "")
                     {
                         if (Convert.ToDouble(row[4]) != 0)
-                            re = Convert.ToDouble(txtRecivedQuantity.Text) / Convert.ToDouble(row[4]);
+                        {
+                            if (flag == "oneRow")
+                            {
+                                re = Convert.ToDouble(txtRecivedQuantity.Text) / Convert.ToDouble(row[4]);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], Convert.ToDouble(txtRecivedQuantity.Text));
+                            }
+                            else
+                            {
+                                re = Convert.ToDouble(row[5]) / Convert.ToDouble(row[4]);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], Convert.ToDouble(row[5]));
+                            }
+                        }
                         carton = Convert.ToDouble(row[4]);
                     }
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين المستلمة"],re+"");
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكرتنة"], carton+"");
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], Convert.ToDouble(txtRecivedQuantity.Text));
+                
                 }
             loaded = true;
             }
