@@ -105,10 +105,10 @@ namespace MainSystem
                 comBranch.SelectedIndex = -1;
 
                 //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                //storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
 
                 string supString = BaseData.StoreID;
-                storeId = Convert.ToInt16(supString);
+                storeId = Convert.ToInt32(supString);
 
                 conn.Open();
                 query = "select Store_Name from store where Store_ID=" + storeId;
@@ -924,7 +924,7 @@ namespace MainSystem
 
                     query = "select Gate_ID from gate order by Gate_ID desc limit 1";
                     com = new MySqlCommand(query, conn);
-                    int permissionNum = Convert.ToInt16(com.ExecuteScalar().ToString());
+                    int permissionNum = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                     for (int i = 0; i < treeViewSupIdPerm.Nodes.Count; i++)
                     {
@@ -958,7 +958,7 @@ namespace MainSystem
 
                         query = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
                         com = new MySqlCommand(query, conn);
-                        int gateSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        int gateSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                         for (int j = 0; j < treeViewSupIdPerm.Nodes[i].Nodes.Count; j++)
                         {

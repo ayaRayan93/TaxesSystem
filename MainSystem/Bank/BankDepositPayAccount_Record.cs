@@ -442,15 +442,15 @@ namespace MainSystem
                             MySqlDataReader dr = com2.ExecuteReader();
                             while (dr.Read())
                             {
-                                arrOFPhaat[0] = Convert.ToInt16(dr["a200"]);
-                                arrOFPhaat[1] = Convert.ToInt16(dr["a100"]);
-                                arrOFPhaat[2] = Convert.ToInt16(dr["a50"]);
-                                arrOFPhaat[3] = Convert.ToInt16(dr["a20"]);
-                                arrOFPhaat[4] = Convert.ToInt16(dr["a10"]);
-                                arrOFPhaat[5] = Convert.ToInt16(dr["a5"]);
-                                arrOFPhaat[6] = Convert.ToInt16(dr["a1"]);
-                                arrOFPhaat[7] = Convert.ToInt16(dr["aH"]);
-                                arrOFPhaat[8] = Convert.ToInt16(dr["aQ"]);
+                                arrOFPhaat[0] = Convert.ToInt32(dr["a200"]);
+                                arrOFPhaat[1] = Convert.ToInt32(dr["a100"]);
+                                arrOFPhaat[2] = Convert.ToInt32(dr["a50"]);
+                                arrOFPhaat[3] = Convert.ToInt32(dr["a20"]);
+                                arrOFPhaat[4] = Convert.ToInt32(dr["a10"]);
+                                arrOFPhaat[5] = Convert.ToInt32(dr["a5"]);
+                                arrOFPhaat[6] = Convert.ToInt32(dr["a1"]);
+                                arrOFPhaat[7] = Convert.ToInt32(dr["aH"]);
+                                arrOFPhaat[8] = Convert.ToInt32(dr["aQ"]);
                             }
                             flag = true;
                         }
@@ -1162,7 +1162,7 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
-                ClintID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
                 if (MessageBox.Show("هذا العميل موجود من قبل..هل انت متاكد انك تريد الاستمرار؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 {
                     successFlag = false;
@@ -1182,7 +1182,7 @@ namespace MainSystem
 
                 query = "select Customer_ID from customer where Customer_Phone='" + txtPhone.Text + "'";
                 com = new MySqlCommand(query, dbconnection);
-                ClintID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
             }
 
             query = "insert into pay_account (Money,Client_ID,Client_Name,Employee,Taswya) values(@Money,@Client_ID,@Client_Name,@Employee,@Taswya)";
@@ -1196,7 +1196,7 @@ namespace MainSystem
 
             query = "select PayAccount_ID from pay_account order by PayAccount_ID desc limit 1";
             com = new MySqlCommand(query, dbconnection);
-            PayAccountID = Convert.ToInt16(com.ExecuteScalar().ToString());
+            PayAccountID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
             //////////record adding/////////////
             query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";

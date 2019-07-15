@@ -44,7 +44,7 @@ namespace MainSystem
         {
             try
             {
-                AddSpecialOrderScanner form = new AddSpecialOrderScanner(this, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[0])));
+                AddSpecialOrderScanner form = new AddSpecialOrderScanner(this, Convert.ToInt32(gridView1.GetFocusedRowCellValue(gridView1.Columns[0])));
                 form.ShowDialog();
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace MainSystem
             {
                 try
                 {
-                    AdvancedEditForm2 f2 = new AdvancedEditForm2(UserControl.EmpBranchID, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
+                    AdvancedEditForm2 f2 = new AdvancedEditForm2(UserControl.EmpBranchID, Convert.ToInt32(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
                     f2.ShowDialog();
                 }
                 catch (Exception ex)
@@ -125,7 +125,7 @@ namespace MainSystem
                     {
                         imgProduct = (byte[])dr["Product_Picture"];
                     }
-                    lista.Add(new SpecialOrderPicture() { SpecialOrderId = Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), Picture = img, ProductPicture = imgProduct, SODescription = dr["Description"].ToString(), DelegateName = dr["Delegate_Name"].ToString() });
+                    lista.Add(new SpecialOrderPicture() { SpecialOrderId = Convert.ToInt32(dr["SpecialOrder_ID"].ToString()), Picture = img, ProductPicture = imgProduct, SODescription = dr["Description"].ToString(), DelegateName = dr["Delegate_Name"].ToString() });
                 }
                 dr.Close();
             }

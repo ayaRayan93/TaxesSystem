@@ -60,7 +60,7 @@ namespace MainSystem
         {
             if (e.Column == gridView1.Columns["التسلسل"])
             {
-                Permissions_Edit form = new Permissions_Edit(this, Convert.ToInt16(gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.Columns["التسلسل"])));
+                Permissions_Edit form = new Permissions_Edit(this, Convert.ToInt32(gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.Columns["التسلسل"])));
                 form.ShowDialog();
             }
         }
@@ -104,10 +104,10 @@ namespace MainSystem
         public void search()
         {
             //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-            //int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            //int storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
 
             string supString = BaseData.StoreID;
-            int storeId = Convert.ToInt16(supString);
+            int storeId = Convert.ToInt32(supString);
 
             DataSet sourceDataSet = new DataSet();
             //,employee.Employee_Name as 'مسئول التعتيق'

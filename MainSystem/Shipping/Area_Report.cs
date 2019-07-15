@@ -110,7 +110,7 @@ namespace MainSystem
 
                         q = "select Area_ID from area order by Area_ID desc limit 1";
                         c = new MySqlCommand(q, dbConnection);
-                        int areId = Convert.ToInt16(c.ExecuteScalar().ToString());
+                        int areId = Convert.ToInt32(c.ExecuteScalar().ToString());
 
                         UserControl.ItemRecord("area", "اضافة", areId, DateTime.Now, null, dbConnection);
                         updateLists();
@@ -172,7 +172,7 @@ namespace MainSystem
             try
             {
                 DataRowView row1 = (DataRowView)gridView1.GetRow(e.RowHandle);
-                areaId = Convert.ToInt16(row1[0].ToString());
+                areaId = Convert.ToInt32(row1[0].ToString());
             }
             catch (Exception ex)
             {

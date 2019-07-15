@@ -364,7 +364,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -661,8 +661,8 @@ namespace MainSystem
                     {
                         while (dr.Read())
                         {
-                            RecordOfferQuantityInStorage(Convert.ToInt16(rowOffer[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
-                            increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt16(rowOffer[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
+                            RecordOfferQuantityInStorage(Convert.ToInt32(rowOffer[0].ToString()), Convert.ToInt32(dr["Store_ID"].ToString()));
+                            increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt32(rowOffer[0].ToString()), Convert.ToInt32(dr["Store_ID"].ToString()));
                         }
                         dr.Close();
                     }
@@ -680,7 +680,7 @@ namespace MainSystem
                         com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
                         com.Parameters["@Offer_ID"].Value = rowOffer[0].ToString();
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = Convert.ToInt16(item[0].ToString());
+                        com.Parameters["@Data_ID"].Value = Convert.ToInt32(item[0].ToString());
                         com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
                         com.Parameters["@Quantity"].Value = Convert.ToDouble(item["الكمية"].ToString());
                         com.ExecuteNonQuery();
@@ -722,7 +722,7 @@ namespace MainSystem
                         }
                     }
 
-                    UserControl.ItemRecord("offer", "تعديل", Convert.ToInt16(rowOffer[0].ToString()), DateTime.Now, "", dbconnection);
+                    UserControl.ItemRecord("offer", "تعديل", Convert.ToInt32(rowOffer[0].ToString()), DateTime.Now, "", dbconnection);
 
                     //clear(tableLayoutPanel1);
                     offerForm.DisplayOffer();
@@ -864,7 +864,7 @@ namespace MainSystem
                         double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         //if (storageQ > newQuantity)
                         //{
-                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        id = Convert.ToInt32(dr2["Storage_ID"]);
                         query = "update storage set Total_Meters=" + (storageQ + newQuantity) + " where Storage_ID=" + id;
                         MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                         comm.ExecuteNonQuery();

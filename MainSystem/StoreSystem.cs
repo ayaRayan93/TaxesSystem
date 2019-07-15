@@ -980,7 +980,7 @@ namespace MainSystem
         }
         public void bindUpdateStoresForm(DataRowView selRow, Stores stores)
         {
-            int id = Convert.ToInt16(selRow[0].ToString());
+            int id = Convert.ToInt32(selRow[0].ToString());
 
             Store_Update objForm = new Store_Update(id, stores, xtraTabControlStoresContent);
             objForm.TopLevel = false;

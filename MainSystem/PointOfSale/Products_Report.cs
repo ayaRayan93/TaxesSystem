@@ -183,7 +183,7 @@ namespace MainSystem
                         {
                             while (dr4.Read())
                             {
-                                DashBillNum = Convert.ToInt16(dr4["Dash_ID"].ToString());
+                                DashBillNum = Convert.ToInt32(dr4["Dash_ID"].ToString());
                                 if (CheckDelegateBill(DashBillNum))
                                 {
                                     mainBillExist = true;
@@ -203,7 +203,7 @@ namespace MainSystem
                                                 txtPhone.Text = dr3["Phone"].ToString();
                                                 comClient.Text = dr3["Customer_Name"].ToString();
                                                 comClient.SelectedValue = dr4["Customer_ID"].ToString();
-                                                ClintID = Convert.ToInt16(dr4["Customer_ID"].ToString());
+                                                ClintID = Convert.ToInt32(dr4["Customer_ID"].ToString());
                                                 txtClientId.Text = ClintID.ToString();
                                                 AddedToBill = true;
                                             }
@@ -663,7 +663,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
+                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
                                 }
 
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -1661,7 +1661,7 @@ namespace MainSystem
                                                         com = new MySqlCommand(query, dbconnection);
                                                         if (com.ExecuteScalar() != null)
                                                         {
-                                                            ClintID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                                            ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
                                                         }
                                                         else
                                                         {
@@ -1674,7 +1674,7 @@ namespace MainSystem
 
                                                             query = "select Customer_ID from customer order by Customer_ID desc limit 1";
                                                             com = new MySqlCommand(query, dbconnection);
-                                                            ClintID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                                            ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                                             query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
                                                             com = new MySqlCommand(query, dbconnection);
@@ -1705,7 +1705,7 @@ namespace MainSystem
 
                                                     string q = "select Dash_ID from dash where Branch_ID=" + UserControl.EmpBranchID + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
-                                                    int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
+                                                    int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
 
 
                                                     query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
@@ -1764,7 +1764,7 @@ namespace MainSystem
 
                                                     string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + UserControl.EmpBranchID + "  order by Dash_ID desc limit 1";
                                                     MySqlCommand command = new MySqlCommand(q, dbconnection);
-                                                    int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
+                                                    int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
 
                                                     query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
                                                     com = new MySqlCommand(query, dbconnection);
@@ -2252,7 +2252,7 @@ namespace MainSystem
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
-                        clientIdSO = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        clientIdSO = Convert.ToInt32(com.ExecuteScalar().ToString());
                     }
                     dbconnection.Close();
 
@@ -2364,7 +2364,7 @@ namespace MainSystem
             {
                 while (dr.Read())
                 {
-                    int Delegate_ID = Convert.ToInt16(dr[0]);
+                    int Delegate_ID = Convert.ToInt32(dr[0]);
                     if (Delegate_ID == UserControl.EmpID)
                     {
                         dbconnection.Close();

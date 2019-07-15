@@ -136,9 +136,9 @@ namespace MainSystem
         {
             PSloaded = false;
             //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-            //DelegateBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            //DelegateBranchID = Convert.ToInt32(System.IO.File.ReadAllText(path));
             string supString = BaseData.BranchID;
-            DelegateBranchID = Convert.ToInt16(supString);
+            DelegateBranchID = Convert.ToInt32(supString);
             //if (delegateID == -1)
             //{
             //    delegateID = -1;
@@ -234,7 +234,7 @@ namespace MainSystem
                             comand.ExecuteNonQuery();
                             main.test(/*delegateID,*/ billNum);
 
-                            UserControl.ItemRecord("dash_details", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, conn);
+                            UserControl.ItemRecord("dash_details", "حذف", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, textBox.Text, conn);
                         }
                         conn.Close();
                         search();
@@ -279,7 +279,7 @@ namespace MainSystem
                     MySqlCommand com = new MySqlCommand(query, conn);
                     if (com.ExecuteScalar() != null && com.ExecuteScalar().ToString() != "")
                     {
-                        int CustomerId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        int CustomerId = Convert.ToInt32(com.ExecuteScalar().ToString());
                     }
                     else
                     {
@@ -368,7 +368,7 @@ namespace MainSystem
             {
                 if (PSloaded)
                 {
-                    //delegateID = Convert.ToInt16(comDelegate.SelectedValue.ToString());
+                    //delegateID = Convert.ToInt32(comDelegate.SelectedValue.ToString());
                 }
             }
             catch(Exception ex)

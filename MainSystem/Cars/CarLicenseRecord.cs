@@ -29,7 +29,7 @@ namespace MainSystem
                 dbconnection = new MySqlConnection(connection.connectionString);
                 this.CarRow = CarRow;
                 txtCarNumber.Text = CarRow[1].ToString();
-                CarId = Convert.ToInt16(CarRow[0].ToString());
+                CarId = Convert.ToInt32(CarRow[0].ToString());
                 this.cars = cars;
                 this.xtraTabControlCarsContent = xtraTabControlCarsContent;
                 this.MainForm = MainForm;
@@ -168,7 +168,7 @@ namespace MainSystem
             TimeSpan d = dateTimePicker2.Value.Date - DateTime.Now.Date;
             labLicenceRestPeriod.Text = d.Days.ToString();
 
-            int daysNum = Convert.ToInt16(d.Days.ToString());
+            int daysNum = Convert.ToInt32(d.Days.ToString());
             if (daysNum > 0)
             {
                 labLicenceRestPeriod.Text = "المدة المتبقية " + daysNum + "يوم ";

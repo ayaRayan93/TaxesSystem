@@ -92,7 +92,7 @@ namespace MainSystem
                             string query = "ALTER TABLE employee AUTO_INCREMENT = 1;";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
-                            UserControl.ItemRecord("employee", "حذف", Convert.ToInt16(setRow[1].ToString()), DateTime.Now, "", dbconnection);                            
+                            UserControl.ItemRecord("employee", "حذف", Convert.ToInt32(setRow[1].ToString()), DateTime.Now, "", dbconnection);                            
                         }
                         else
                         {
@@ -103,7 +103,7 @@ namespace MainSystem
                             string query = "ALTER TABLE delegate AUTO_INCREMENT = 1;";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
-                            UserControl.ItemRecord("employee", "حذف", Convert.ToInt16(setRow[1].ToString()), DateTime.Now, "", dbconnection);
+                            UserControl.ItemRecord("employee", "حذف", Convert.ToInt32(setRow[1].ToString()), DateTime.Now, "", dbconnection);
                         }
                         displayEmployee();
 

@@ -1158,7 +1158,7 @@ namespace MainSystem
                 dbconnection.Open();
                 string reader = command.ExecuteScalar().ToString();
                 labelNotifySpecialOrderSales.Text = reader;
-                if (Convert.ToInt16(reader) > 0)
+                if (Convert.ToInt32(reader) > 0)
                 {
                     labelNotifySpecialOrderSales.Visible = true;
                 }

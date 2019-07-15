@@ -119,7 +119,7 @@ namespace MainSystem
                     string query = "update  customer_taswaya set Client_ID=@Client_ID,Taswaya_Type=@Taswaya_Type,Money_Paid=@Money_Paid,Info=@Info,Date=@Date where CustomerTaswaya_ID=" + id;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                    com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtSupplierID.Text);
+                    com.Parameters["@Client_ID"].Value = Convert.ToInt32(txtSupplierID.Text);
                     if (radioButtonDiscount.Checked)
                     {
                         com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
@@ -177,7 +177,7 @@ namespace MainSystem
         }
         public void setData()
         {
-            id = Convert.ToInt16(row[0].ToString());
+            id = Convert.ToInt32(row[0].ToString());
             string qeury = "select CustomerTaswaya_ID as 'الكود',customer_taswaya.Customer_ID,customer_taswaya.Client_ID,c2.Customer_Name as 'المهندس/مقاول/تاجر',c1.Customer_Name as 'العميل',Taswaya_Type ,Money_Paid ,Info ,Date  from customer_taswaya inner join customer as c1 on c1.Customer_ID=customer_taswaya.Client_ID inner join customer as c2 on c2.Customer_ID=customer_taswaya.Customer_ID where CustomerTaswaya_ID=" + id;
             MySqlCommand com = new MySqlCommand(qeury, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();

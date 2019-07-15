@@ -63,10 +63,10 @@ namespace MainSystem
             try
             {
                 //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                //storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
 
                 string supString = BaseData.StoreID;
-                storeId = Convert.ToInt16(supString);
+                storeId = Convert.ToInt32(supString);
 
                 conn.Open();
                 string query = "select * from type";
@@ -190,7 +190,7 @@ namespace MainSystem
 
                 conn.Open();
                 conn6.Open();
-                string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -201,24 +201,17 @@ namespace MainSystem
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
                 {
-                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                    MySqlCommand comand2 = new MySqlCommand(q, conn6);
-                    MySqlDataReader dr2 = comand2.ExecuteReader();
-                    while (dr2.Read())
+                    gridView1.AddNewRow();
+                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    if (gridView1.IsNewItemRow(rowHandle))
                     {
-                        gridView1.AddNewRow();
-                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                        if (gridView1.IsNewItemRow(rowHandle))
-                        {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                        }
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
                     }
-                    dr2.Close();
                 }
                 dr.Close();
                 if (gridView1.IsLastVisibleRow)
@@ -270,7 +263,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue) + " and Type_ID=" + comType.SelectedValue;
+                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(comType.SelectedValue) + " and Type_ID=" + comType.SelectedValue;
                                 }
 
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, conn);
@@ -472,7 +465,7 @@ namespace MainSystem
                         {
                             flagCarton = true;
                             double total = totalMeter / carton;
-                            txtCarton.Text = Convert.ToInt16(total).ToString();
+                            txtCarton.Text = Convert.ToInt32(total).ToString();
                             flagCarton = false;
                         }
                     }
@@ -622,7 +615,7 @@ namespace MainSystem
 
                                     query = "select StorageImportPermission_ID from storage_import_permission order by StorageImportPermission_ID desc limit 1";
                                     com = new MySqlCommand(query, conn);
-                                    storageImportPermissionID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                    storageImportPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                     UserControl.ItemRecord("storage_import_permission", "اضافة", storageImportPermissionID, DateTime.Now, "", conn);
 
@@ -636,7 +629,7 @@ namespace MainSystem
                                             query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Factory_ID,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Factory_ID,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
                                             com = new MySqlCommand(query, conn);
                                             com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                                            com.Parameters["@Supplier_ID"].Value = Convert.ToInt16(comSupplier.SelectedValue.ToString());
+                                            com.Parameters["@Supplier_ID"].Value = Convert.ToInt32(comSupplier.SelectedValue.ToString());
                                             com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
                                             com.Parameters["@Supplier_Permission_Number"].Value = supPermNum;
                                             if (orderNum > 0 && comOrderFactory.SelectedValue != null)
@@ -656,7 +649,7 @@ namespace MainSystem
                                             if (dr2["Car_ID"].ToString() != "")
                                             {
                                                 com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
-                                                com.Parameters["@Car_ID"].Value = Convert.ToInt16(dr2["Car_ID"].ToString());
+                                                com.Parameters["@Car_ID"].Value = Convert.ToInt32(dr2["Car_ID"].ToString());
                                             }
                                             else
                                             {
@@ -668,7 +661,7 @@ namespace MainSystem
                                             if (dr2["Driver_ID"].ToString() != "")
                                             {
                                                 com.Parameters.Add("@Driver_ID", MySqlDbType.Int16);
-                                                com.Parameters["@Driver_ID"].Value = Convert.ToInt16(dr2["Driver_ID"].ToString());
+                                                com.Parameters["@Driver_ID"].Value = Convert.ToInt32(dr2["Driver_ID"].ToString());
                                             }
                                             else
                                             {
@@ -683,7 +676,7 @@ namespace MainSystem
 
                                             query = "select ImportSupplierPermission_ID from import_supplier_permission order by ImportSupplierPermission_ID desc limit 1";
                                             com = new MySqlCommand(query, conn);
-                                            importSupplierPermissionID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                            importSupplierPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
                                         }
                                         dr2.Close();
                                     }
@@ -694,7 +687,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    storageImportPermissionID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                    storageImportPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
                                     query = "select ImportSupplierPermission_ID from import_supplier_permission where StorageImportPermission_ID=" + storageImportPermissionID + " and Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and Supplier_Permission_Number=" + supPermNum;
                                     com = new MySqlCommand(query, conn);
                                     if (com.ExecuteScalar() == null)
@@ -729,7 +722,7 @@ namespace MainSystem
                                                 if (dr2["Car_ID"].ToString() != "")
                                                 {
                                                     com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
-                                                    com.Parameters["@Car_ID"].Value = Convert.ToInt16(dr2["Car_ID"].ToString());
+                                                    com.Parameters["@Car_ID"].Value = Convert.ToInt32(dr2["Car_ID"].ToString());
                                                 }
                                                 else
                                                 {
@@ -741,7 +734,7 @@ namespace MainSystem
                                                 if (dr2["Driver_ID"].ToString() != "")
                                                 {
                                                     com.Parameters.Add("@Driver_ID", MySqlDbType.Int16);
-                                                    com.Parameters["@Driver_ID"].Value = Convert.ToInt16(dr2["Driver_ID"].ToString());
+                                                    com.Parameters["@Driver_ID"].Value = Convert.ToInt32(dr2["Driver_ID"].ToString());
                                                 }
                                                 else
                                                 {
@@ -756,7 +749,7 @@ namespace MainSystem
 
                                                 query = "select ImportSupplierPermission_ID from import_supplier_permission order by ImportSupplierPermission_ID desc limit 1";
                                                 com = new MySqlCommand(query, conn);
-                                                importSupplierPermissionID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                                importSupplierPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
                                             }
                                             dr2.Close();
                                         }
@@ -767,7 +760,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        importSupplierPermissionID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                        importSupplierPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
                                     }
                                 }
 
@@ -902,7 +895,7 @@ namespace MainSystem
                             MySqlCommand com = new MySqlCommand(query, conn);
                             if (com.ExecuteScalar() != null)
                             {
-                                double totalf = Convert.ToInt16(com.ExecuteScalar());
+                                double totalf = Convert.ToInt32(com.ExecuteScalar());
                                 if ((totalf - Convert.ToDouble(row2["متر/قطعة"].ToString())) >= 0)
                                 {
                                     //Store_ID=" + storeId + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString() + " and  Data_ID=" + row2["Data_ID"].ToString()
@@ -1053,7 +1046,7 @@ namespace MainSystem
                     com = new MySqlCommand(q, conn);
                     if (com.ExecuteScalar() != null)
                     {
-                        flagConfirm = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        flagConfirm = Convert.ToInt32(com.ExecuteScalar().ToString());
                     }
                     else
                     {
@@ -1121,7 +1114,7 @@ namespace MainSystem
                             quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]));
                         }
 
-                        SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
+                        SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
                         bi.Add(item);
 
                         if (i == 0)

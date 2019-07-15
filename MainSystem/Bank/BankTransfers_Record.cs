@@ -280,7 +280,7 @@ namespace MainSystem
                         com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[6];
                         com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[7];
                         com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[8];
-                        com.Parameters.Add("@BankTransfer_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(bankTransferID);
+                        com.Parameters.Add("@BankTransfer_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(bankTransferID);
                         com.ExecuteNonQuery();
 
                         dbconnection.Close();
@@ -345,15 +345,15 @@ namespace MainSystem
                             MySqlDataReader dr = com2.ExecuteReader();
                             while (dr.Read())
                             {
-                                arrOFPhaatPlus[0] = Convert.ToInt16(dr["a200"]);
-                                arrOFPhaatPlus[1] = Convert.ToInt16(dr["a100"]);
-                                arrOFPhaatPlus[2] = Convert.ToInt16(dr["a50"]);
-                                arrOFPhaatPlus[3] = Convert.ToInt16(dr["a20"]);
-                                arrOFPhaatPlus[4] = Convert.ToInt16(dr["a10"]);
-                                arrOFPhaatPlus[5] = Convert.ToInt16(dr["a5"]);
-                                arrOFPhaatPlus[6] = Convert.ToInt16(dr["a1"]);
-                                arrOFPhaatPlus[7] = Convert.ToInt16(dr["aH"]);
-                                arrOFPhaatPlus[8] = Convert.ToInt16(dr["aQ"]);
+                                arrOFPhaatPlus[0] = Convert.ToInt32(dr["a200"]);
+                                arrOFPhaatPlus[1] = Convert.ToInt32(dr["a100"]);
+                                arrOFPhaatPlus[2] = Convert.ToInt32(dr["a50"]);
+                                arrOFPhaatPlus[3] = Convert.ToInt32(dr["a20"]);
+                                arrOFPhaatPlus[4] = Convert.ToInt32(dr["a10"]);
+                                arrOFPhaatPlus[5] = Convert.ToInt32(dr["a5"]);
+                                arrOFPhaatPlus[6] = Convert.ToInt32(dr["a1"]);
+                                arrOFPhaatPlus[7] = Convert.ToInt32(dr["aH"]);
+                                arrOFPhaatPlus[8] = Convert.ToInt32(dr["aQ"]);
                             }
                             dr.Close();
 
@@ -362,15 +362,15 @@ namespace MainSystem
                             MySqlDataReader dr2 = com2.ExecuteReader();
                             while (dr2.Read())
                             {
-                                arrOFPhaatMinus[0] = Convert.ToInt16(dr2["a200"]);
-                                arrOFPhaatMinus[1] = Convert.ToInt16(dr2["a100"]);
-                                arrOFPhaatMinus[2] = Convert.ToInt16(dr2["a50"]);
-                                arrOFPhaatMinus[3] = Convert.ToInt16(dr2["a20"]);
-                                arrOFPhaatMinus[4] = Convert.ToInt16(dr2["a10"]);
-                                arrOFPhaatMinus[5] = Convert.ToInt16(dr2["a5"]);
-                                arrOFPhaatMinus[6] = Convert.ToInt16(dr2["a1"]);
-                                arrOFPhaatMinus[7] = Convert.ToInt16(dr2["aH"]);
-                                arrOFPhaatMinus[8] = Convert.ToInt16(dr2["aQ"]);
+                                arrOFPhaatMinus[0] = Convert.ToInt32(dr2["a200"]);
+                                arrOFPhaatMinus[1] = Convert.ToInt32(dr2["a100"]);
+                                arrOFPhaatMinus[2] = Convert.ToInt32(dr2["a50"]);
+                                arrOFPhaatMinus[3] = Convert.ToInt32(dr2["a20"]);
+                                arrOFPhaatMinus[4] = Convert.ToInt32(dr2["a10"]);
+                                arrOFPhaatMinus[5] = Convert.ToInt32(dr2["a5"]);
+                                arrOFPhaatMinus[6] = Convert.ToInt32(dr2["a1"]);
+                                arrOFPhaatMinus[7] = Convert.ToInt32(dr2["aH"]);
+                                arrOFPhaatMinus[8] = Convert.ToInt32(dr2["aQ"]);
                             }
                             dr2.Close();
                             flag = true;

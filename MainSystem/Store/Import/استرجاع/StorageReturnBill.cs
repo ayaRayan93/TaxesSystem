@@ -527,7 +527,7 @@ namespace MainSystem
 
                                 if (row1["عدد البلتات"].ToString() != "")
                                 {
-                                    if (NoBalatat > Convert.ToInt16(row1["عدد البلتات"].ToString()))
+                                    if (NoBalatat > Convert.ToInt32(row1["عدد البلتات"].ToString()))
                                     {
                                         MessageBox.Show("تاكد من عدد البلتات");
                                         return;
@@ -535,7 +535,7 @@ namespace MainSystem
                                 }
                                 if (row1["عدد الكراتين"].ToString() != "")
                                 {
-                                    if (NoCartons > Convert.ToInt16(row1["عدد الكراتين"].ToString()))
+                                    if (NoCartons > Convert.ToInt32(row1["عدد الكراتين"].ToString()))
                                     {
                                         MessageBox.Show("تاكد من عدد الكراتين");
                                         return;
@@ -765,7 +765,7 @@ namespace MainSystem
                         {
                             flagCarton = true;
                             double total = totalMeter / carton;
-                            txtCarton.Text = Convert.ToInt16(total).ToString();
+                            txtCarton.Text = Convert.ToInt32(total).ToString();
                             flagCarton = false;
                         }
                     }
@@ -885,7 +885,7 @@ namespace MainSystem
 
                         query = "select ImportStorageReturn_ID from import_storage_return order by ImportStorageReturn_ID desc limit 1";
                         com = new MySqlCommand(query, dbconnection);
-                        storageReturnID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        storageReturnID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                         UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
 
@@ -897,7 +897,7 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
-                                storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
                             }
                             else
                             {
@@ -913,7 +913,7 @@ namespace MainSystem
 
                                 query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
                                 com = new MySqlCommand(query, dbconnection);
-                                storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
                             }
 
                             query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
@@ -990,7 +990,7 @@ namespace MainSystem
                                 quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
                             }
 
-                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
+                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
                             bi.Add(item);
 
                             if (i == 0)
@@ -1082,7 +1082,7 @@ namespace MainSystem
 
                         query = "select ImportStorageReturn_ID from import_storage_return order by ImportStorageReturn_ID desc limit 1";
                         com = new MySqlCommand(query, dbconnection);
-                        storageReturnID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        storageReturnID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                         UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
 
@@ -1090,7 +1090,7 @@ namespace MainSystem
                         com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
-                            storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
                         }
                         else
                         {
@@ -1106,7 +1106,7 @@ namespace MainSystem
 
                             query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            storageReturnSupplierId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
                         }
 
                         for (int i = 0; i < gridView2.RowCount; i++)
@@ -1214,7 +1214,7 @@ namespace MainSystem
                                 quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
                             }
 
-                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
+                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
                             bi.Add(item);
                         }
 
@@ -1280,7 +1280,7 @@ namespace MainSystem
                             quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]));
                         }
 
-                        StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt16(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd hh:mm:ss"), Reason = gridView2.GetRowCellDisplayText(i, gridView2.Columns["السبب"]) };
+                        StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd hh:mm:ss"), Reason = gridView2.GetRowCellDisplayText(i, gridView2.Columns["السبب"]) };
                         bi.Add(item);
                     }
 
@@ -1347,11 +1347,11 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["StorageImportPermission_ID"], dr["StorageImportPermission_ID"].ToString());
                     if (dr["عدد البلتات"].ToString() != "")
                     {
-                        noBalat = Convert.ToInt16(dr["عدد البلتات"].ToString());
+                        noBalat = Convert.ToInt32(dr["عدد البلتات"].ToString());
                     }
                     if (dr["عدد الكراتين"].ToString() != "")
                     {
-                        noCarton = Convert.ToInt16(dr["عدد الكراتين"].ToString());
+                        noCarton = Convert.ToInt32(dr["عدد الكراتين"].ToString());
                     }
                     if (dr["متر/قطعة"].ToString() != "")
                     {
@@ -1366,11 +1366,11 @@ namespace MainSystem
                     {
                         if (dr2["عدد البلتات"].ToString() != "")
                         {
-                            noBalat -= Convert.ToInt16(dr2["عدد البلتات"].ToString());
+                            noBalat -= Convert.ToInt32(dr2["عدد البلتات"].ToString());
                         }
                         if (dr2["عدد الكراتين"].ToString() != "")
                         {
-                            noCarton -= Convert.ToInt16(dr2["عدد الكراتين"].ToString());
+                            noCarton -= Convert.ToInt32(dr2["عدد الكراتين"].ToString());
                         }
                         if (dr2["متر/قطعة"].ToString() != "")
                         {
@@ -1564,7 +1564,7 @@ namespace MainSystem
                 if (txtType.Text == "2" || txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID=" + -1;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();

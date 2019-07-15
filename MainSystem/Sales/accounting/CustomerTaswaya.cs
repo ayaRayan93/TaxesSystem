@@ -273,14 +273,14 @@ namespace MainSystem.Sales.accounting
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                     if (txtCustomerID.Text != "")
-                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                        com.Parameters["@Customer_ID"].Value = Convert.ToInt32(txtCustomerID.Text);
                     else
                         com.Parameters["@Customer_ID"].Value = null;
 
                     com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
 
                     if (txtClientID.Text != "")
-                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                        com.Parameters["@Client_ID"].Value = Convert.ToInt32(txtClientID.Text);
                     else
                         com.Parameters["@Client_ID"].Value = null;
 

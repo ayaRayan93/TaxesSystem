@@ -263,7 +263,7 @@ namespace MainSystem
                 {
                     dbconnection.Open();
                     txtClientID.Text = comClient.SelectedValue.ToString();
-                    clientID = Convert.ToInt16(txtClientID.Text);
+                    clientID = Convert.ToInt32(txtClientID.Text);
                     Display();
                 }
             }

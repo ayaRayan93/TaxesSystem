@@ -100,7 +100,7 @@ namespace MainSystem
             try
             {
                 BaseData.generateBaseProjectFile();
-                EmpBranchId = Convert.ToInt16(BaseData.BranchID);
+                EmpBranchId = Convert.ToInt32(BaseData.BranchID);
                 search();
                 search2();
                 foreach (GridColumn column in gridView1.Columns)
@@ -499,7 +499,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -1355,7 +1355,7 @@ namespace MainSystem
                     string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(i, "Data_ID");
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                    item = new Ticket_Items() { Data_ID = Convert.ToInt16(gridView1.GetRowCellDisplayText(i, "Data_ID")), Code = gridView1.GetRowCellDisplayText(i, "الكود"), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(i, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(i, "الكرتنة") };
+                    item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, "Data_ID")), Code = gridView1.GetRowCellDisplayText(i, "الكود"), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(i, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(i, "الكرتنة") };
                     bi.Add(item);
                 }
 

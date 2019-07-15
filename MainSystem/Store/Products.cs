@@ -415,7 +415,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery(); 
 
-                        UserControl.ItemRecord("data", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("data", "حذف",Convert.ToInt32(row1[0].ToString()), DateTime.Now,"", dbconnection);
 
                         //if (chBoxSelectAll.Checked)
                         //    displayProducts();
@@ -917,7 +917,7 @@ namespace MainSystem
                 if (txtType.Text=="2"|| txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID="+-1 ;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();

@@ -55,7 +55,7 @@ namespace MainSystem
                             UserControl.EmpType = "مدير";
 
                             string supString = BaseData.BranchID;
-                            UserControl.EmpBranchID = Convert.ToInt16(supString);
+                            UserControl.EmpBranchID = Convert.ToInt32(supString);
 
                             dbconnection.Open();
                             string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
@@ -67,7 +67,7 @@ namespace MainSystem
                             MySqlDataReader dr = com.ExecuteReader();
                             while (dr.Read())
                             {
-                                UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                 UserControl.EmpName = dr["Employee_Name"].ToString();
                             }
                             dr.Close();
@@ -82,10 +82,10 @@ namespace MainSystem
                             dbconnection.Open();
                             if (com.ExecuteScalar().ToString() != "")
                             {
-                                int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                int EmpBranchID1 = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                 string supString = BaseData.BranchID;
-                                int EmpBranchID2 = Convert.ToInt16(supString);
+                                int EmpBranchID2 = Convert.ToInt32(supString);
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
                                     UserControl.userID = (int)result[0];
@@ -103,7 +103,7 @@ namespace MainSystem
                                     MySqlDataReader dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
-                                        UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                        UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                         UserControl.EmpName = dr["Delegate_Name"].ToString();
                                     }
                                     dr.Close();
@@ -129,10 +129,10 @@ namespace MainSystem
                             dbconnection.Open();
                             if (com.ExecuteScalar().ToString() != "")
                             {
-                                int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                int EmpBranchID1 = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                 string supString = BaseData.BranchID;
-                                int EmpBranchID2 = Convert.ToInt16(supString);
+                                int EmpBranchID2 = Convert.ToInt32(supString);
 
                                 if (EmpBranchID1 == EmpBranchID2)
                                 {
@@ -151,7 +151,7 @@ namespace MainSystem
                                     MySqlDataReader dr = com.ExecuteReader();
                                     while (dr.Read())
                                     {
-                                        UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                        UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                         UserControl.EmpName = dr["Employee_Name"].ToString();
                                     }
                                     dr.Close();
@@ -240,7 +240,7 @@ namespace MainSystem
                                 UserControl.EmpType = "مدير";
 
                                 string supString = BaseData.BranchID;
-                                UserControl.EmpBranchID = Convert.ToInt16(supString);
+                                UserControl.EmpBranchID = Convert.ToInt32(supString);
 
                                 dbconnection.Open();
                                 string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
@@ -252,7 +252,7 @@ namespace MainSystem
                                 MySqlDataReader dr = com.ExecuteReader();
                                 while (dr.Read())
                                 {
-                                    UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                    UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                     UserControl.EmpName = dr["Employee_Name"].ToString();
                                 }
                                 dr.Close();
@@ -267,10 +267,10 @@ namespace MainSystem
                                 dbconnection.Open();
                                 if (com.ExecuteScalar().ToString() != "")
                                 {
-                                    int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                    int EmpBranchID1 = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                     string supString = BaseData.BranchID;
-                                    int EmpBranchID2 = Convert.ToInt16(supString);
+                                    int EmpBranchID2 = Convert.ToInt32(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
                                     {
@@ -289,7 +289,7 @@ namespace MainSystem
                                         MySqlDataReader dr = com.ExecuteReader();
                                         while (dr.Read())
                                         {
-                                            UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                            UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                             UserControl.EmpName = dr["Delegate_Name"].ToString();
                                         }
                                         dr.Close();
@@ -315,10 +315,10 @@ namespace MainSystem
                                 dbconnection.Open();
                                 if (com.ExecuteScalar().ToString() != "")
                                 {
-                                    int EmpBranchID1 = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                    int EmpBranchID1 = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                     string supString = BaseData.BranchID;
-                                    int EmpBranchID2 = Convert.ToInt16(supString);
+                                    int EmpBranchID2 = Convert.ToInt32(supString);
 
                                     if (EmpBranchID1 == EmpBranchID2)
                                     {
@@ -337,7 +337,7 @@ namespace MainSystem
                                         MySqlDataReader dr = com.ExecuteReader();
                                         while (dr.Read())
                                         {
-                                            UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                            UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                             UserControl.EmpName = dr["Employee_Name"].ToString();
                                         }
                                         dr.Close();

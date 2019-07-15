@@ -244,7 +244,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
+                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
                                 }
 
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -500,7 +500,7 @@ namespace MainSystem
 
                     string query = "select Request_ID from requests where BranchBillNumber=" + txtRequestNum.Text + " and Branch_ID=" + EmpBranchId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    int RequestID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                    int RequestID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                     query = "update requests set Supplier_ID=@Supplier_ID,Customer_ID=@Customer_ID,Client_ID=@Client_ID,Employee_Name=@Employee_Name,Request_Date=@Request_Date,Receive_Date=@Receive_Date where BranchBillNumber=" + txtRequestNum.Text + " and Branch_ID=" + EmpBranchId;
                     com = new MySqlCommand(query, dbconnection);
@@ -567,7 +567,7 @@ namespace MainSystem
                     com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
-                        SpecialOrderID = Convert.ToInt16(com.ExecuteScalar());
+                        SpecialOrderID = Convert.ToInt32(com.ExecuteScalar());
                     }
 
                     query = "update special_order set Record=1 where SpecialOrder_ID=" + SpecialOrderID;

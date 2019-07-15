@@ -113,11 +113,11 @@ namespace MainSystem
 
                                 //quantity <= TotalMeters
 
-                                string query = "update dash_details set Quantity=" + quantity + ",Cartons=" + cartons + ", Store_ID=" + comStore.SelectedValue.ToString() + " , Store_Name='" + comStore.Text + "' where DashDetails_ID=" + Convert.ToInt16(selRow[0].ToString());
+                                string query = "update dash_details set Quantity=" + quantity + ",Cartons=" + cartons + ", Store_ID=" + comStore.SelectedValue.ToString() + " , Store_Name='" + comStore.Text + "' where DashDetails_ID=" + Convert.ToInt32(selRow[0].ToString());
                                 MySqlCommand comand = new MySqlCommand(query, conn);
                                 comand.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("dash_details", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, "", conn);
+                                UserControl.ItemRecord("dash_details", "تعديل", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, "", conn);
 
                                 conn.Close();
                                 MainForm.ProductsDetailsReport.loadFunc();

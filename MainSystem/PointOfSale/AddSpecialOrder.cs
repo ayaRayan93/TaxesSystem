@@ -99,7 +99,7 @@ namespace MainSystem
                     com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
-                        SpecialOrderID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        SpecialOrderID = Convert.ToInt32(com.ExecuteScalar().ToString());
                     }
 
                     /*insertRequest();*/
@@ -129,7 +129,7 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
-                branchBillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
+                branchBillNumber = Convert.ToInt32(com.ExecuteScalar()) + 1;
             }
             else
             {
@@ -140,7 +140,7 @@ namespace MainSystem
             com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
-                SpecialOrderID = Convert.ToInt16(com.ExecuteScalar());
+                SpecialOrderID = Convert.ToInt32(com.ExecuteScalar());
             }
 
             query = "select Branch_Name from Branch where Branch_ID=" + EmpBranchId;

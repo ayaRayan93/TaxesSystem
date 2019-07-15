@@ -139,7 +139,7 @@ namespace MainSystem
             try
             {
                 DataRowView a = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                storeMainForm.bindUpdateTaswayaAddingForm(Convert.ToInt16(a[1]));
+                storeMainForm.bindUpdateTaswayaAddingForm(Convert.ToInt32(a[1]));
             }
             catch (Exception ex)
             {

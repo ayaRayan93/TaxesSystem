@@ -101,7 +101,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -389,7 +389,7 @@ namespace MainSystem
                     {
                         try
                         {
-                            color_id = Convert.ToInt16(comColour.SelectedValue.ToString());
+                            color_id = Convert.ToInt32(comColour.SelectedValue.ToString());
                         }
                         catch
                         {
@@ -401,7 +401,7 @@ namespace MainSystem
                     {
                         try
                         {
-                            size_id = Convert.ToInt16(comSize.SelectedValue.ToString());
+                            size_id = Convert.ToInt32(comSize.SelectedValue.ToString());
                         }
                         catch
                         {
@@ -413,7 +413,7 @@ namespace MainSystem
                     {
                         try
                         {
-                            sort_id = Convert.ToInt16(comSort.SelectedValue.ToString());
+                            sort_id = Convert.ToInt32(comSort.SelectedValue.ToString());
                         }
                         catch
                         {
@@ -497,7 +497,7 @@ namespace MainSystem
                         char[] arrCode = maxCode.ToCharArray();
                         string part5 = arrCode[16] + arrCode[17] + arrCode[18] + arrCode[19] + "";
 
-                        int result = Convert.ToInt16(part5);
+                        int result = Convert.ToInt32(part5);
                         result = result + 1;
                         dbconnection.Close();
 
@@ -723,14 +723,14 @@ namespace MainSystem
             txtClassification.Text = row1["التصنيف"].ToString();
             txtDescription.Text = row1["الوصف"].ToString();
 
-            Data_ID =Convert.ToInt16(row1[0]);
+            Data_ID =Convert.ToInt32(row1[0]);
         }
         public void displayImage()
         {
             try
             {
                 dbconnection1.Open();
-                string query = "select Photo from data_photo where Data_ID=" + Convert.ToInt16(prodRow[0]);
+                string query = "select Photo from data_photo where Data_ID=" + Convert.ToInt32(prodRow[0]);
                 MySqlCommand com = new MySqlCommand(query, dbconnection1);
                 byte[] photo = (byte[])com.ExecuteScalar();
                
@@ -754,15 +754,15 @@ namespace MainSystem
         public void displayCode()
         {
             char[] arrCode = code.ToCharArray();
-            txtType.Text =Convert.ToInt16(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString() + "").ToString();
-            txtFactory.Text = Convert.ToInt16(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString() + "").ToString();
-            txtGroup.Text = Convert.ToInt16(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString() + "").ToString();
-            txtProduct.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() + "").ToString();
+            txtType.Text =Convert.ToInt32(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString() + "").ToString();
+            txtFactory.Text = Convert.ToInt32(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString() + "").ToString();
+            txtGroup.Text = Convert.ToInt32(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString() + "").ToString();
+            txtProduct.Text = Convert.ToInt32(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() + "").ToString();
             lastPartCode = "" + arrCode[16] + arrCode[17] + arrCode[18] + arrCode[19];
         }
         private void TypeColor()
         {
-            string query = "select * from color where Type_ID=" + Convert.ToInt16(comType.SelectedValue);
+            string query = "select * from color where Type_ID=" + Convert.ToInt32(comType.SelectedValue);
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -775,7 +775,7 @@ namespace MainSystem
         }
         private void FactorySize()
         {
-            string query2 = "select * from size where Factory_ID=" + Convert.ToInt16(comFactory.SelectedValue)+" and Group_ID="+txtGroup.Text;
+            string query2 = "select * from size where Factory_ID=" + Convert.ToInt32(comFactory.SelectedValue)+" and Group_ID="+txtGroup.Text;
             MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);

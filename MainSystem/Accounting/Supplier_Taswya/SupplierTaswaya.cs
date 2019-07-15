@@ -128,7 +128,7 @@ namespace MainSystem
                         string query = "insert into supplier_taswaya (Supplier_ID,Taswaya_Type,Money_Paid,Info,Date) values(@Supplier_ID,@Taswaya_Type,@Money_Paid,@Info,@Date)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                        com.Parameters["@Supplier_ID"].Value = Convert.ToInt16(txtSupplierID.Text);
+                        com.Parameters["@Supplier_ID"].Value = Convert.ToInt32(txtSupplierID.Text);
                         if (radioButtonDiscount.Checked)
                         {
                             com.Parameters.Add("@Taswaya_Type", MySqlDbType.VarChar);
@@ -149,7 +149,7 @@ namespace MainSystem
 
                         query = "select SupplierTaswaya_ID from supplier_taswaya order by SupplierTaswaya_ID desc limit 1";
                         com = new MySqlCommand(query, dbconnection);
-                        int SupplierTaswaya_ID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                        int SupplierTaswaya_ID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                         UserControl.ItemRecord("supplier_taswaya", "اضافة", SupplierTaswaya_ID, DateTime.Now, "", dbconnection);
 

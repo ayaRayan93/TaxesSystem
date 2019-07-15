@@ -656,7 +656,7 @@ namespace MainSystem
                     if (txtCustomerID.Text != "" && txtCustomerID.Visible == true)
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                        com.Parameters["@Customer_ID"].Value = Convert.ToInt32(txtCustomerID.Text);
                     }
                     else
                     {
@@ -666,7 +666,7 @@ namespace MainSystem
                     if (txtClientID.Text != "" && txtClientID.Visible == true)
                     {
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                        com.Parameters["@Client_ID"].Value = Convert.ToInt32(txtClientID.Text);
                     }
                     else
                     {
@@ -681,12 +681,12 @@ namespace MainSystem
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = dateTimePicker1.Value;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    com.Parameters["@Branch_ID"].Value = Convert.ToInt16(txtBranch1.Text);
+                    com.Parameters["@Branch_ID"].Value = Convert.ToInt32(txtBranch1.Text);
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnPermission_ID from customer_return_permission order by CustomerReturnPermission_ID desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    int CustomerReturnPermission_ID = Convert.ToInt16(com.ExecuteScalar());
+                    int CustomerReturnPermission_ID = Convert.ToInt32(com.ExecuteScalar());
 
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
@@ -708,7 +708,7 @@ namespace MainSystem
                         com.Parameters.Add("@ReturnItemReason", MySqlDbType.VarChar);
                         com.Parameters["@ReturnItemReason"].Value = row1[7].ToString();
                         com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_ID"].Value = Convert.ToInt16(txtStore.Text);
+                        com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStore.Text);
                         com.ExecuteNonQuery();
 
                         ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();
@@ -916,7 +916,7 @@ namespace MainSystem
         {
             string query = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranchID.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            Billid = Convert.ToInt16(com.ExecuteScalar());
+            Billid = Convert.ToInt32(com.ExecuteScalar());
             query = "select * from customer_return_permission where CustomerBill_ID=" + Billid;
             com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -1063,7 +1063,7 @@ namespace MainSystem
                 if (txtType.Text == "2" || txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID=" + -1;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();
@@ -1185,7 +1185,7 @@ namespace MainSystem
                     productQ = Convert.ToDouble(dr["TotalQuantity"]);
 
                     storageQ += productQ;
-                    id = Convert.ToInt16(dr2["Storage_ID"]);
+                    id = Convert.ToInt32(dr2["Storage_ID"]);
                     q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
                     MySqlCommand comm = new MySqlCommand(q, dbconnection);
                     comm.ExecuteNonQuery();
@@ -1243,13 +1243,13 @@ namespace MainSystem
 
             query = "select OpenStorageAccount_ID from open_storage_account order by OpenStorageAccount_ID desc limit 1";
             com = new MySqlCommand(query, dbconnection);
-            int id = Convert.ToInt16(com.ExecuteScalar());
+            int id = Convert.ToInt32(com.ExecuteScalar());
 
             UserControl.ItemRecord("open_storage_account", "اضافة", id, DateTime.Now, "", dbconnection);
 
             query = "select Storage_ID from Storage order by Storage_ID desc limit 1";
             com = new MySqlCommand(query, dbconnection);
-            id = Convert.ToInt16(com.ExecuteScalar());
+            id = Convert.ToInt32(com.ExecuteScalar());
 
             UserControl.ItemRecord("Storage", "اضافة", id, DateTime.Now, "", dbconnection);
 

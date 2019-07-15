@@ -295,7 +295,7 @@ namespace MainSystem
                 if (row != null)
                 {
                     txtCode.Text = row[1].ToString();
-                    id = Convert.ToInt16(row[0].ToString());
+                    id = Convert.ToInt32(row[0].ToString());
                     string code = txtCode.Text;
                     displayCode(code);
                 }
@@ -331,7 +331,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreasePurchasesPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreasePurchasesPrice(Convert.ToInt32(row[0].ToString()));
 
                                 String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price where PurchasingPrice_ID=" + row[0].ToString();
 
@@ -349,7 +349,7 @@ namespace MainSystem
                                 query = "INSERT INTO oldpurchasing_price (Price_Type,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date,ProfitRatio) VALUES (?Price_Type,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date,@ProfitRatio)";
                                 command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "قطعى");
-                                command.Parameters.AddWithValue("@Data_ID", Convert.ToInt16(row[1].ToString()));
+                                command.Parameters.AddWithValue("@Data_ID", Convert.ToInt32(row[1].ToString()));
                                 command.Parameters.AddWithValue("@ProfitRatio", PurchasesPercent);
                                 command.Parameters.AddWithValue("@Purchasing_Discount", 0.00);
                                 command.Parameters.AddWithValue("@Price", Price);
@@ -382,7 +382,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreasePurchasesPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreasePurchasesPrice(Convert.ToInt32(row[0].ToString()));
 
                                 string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase where PurchasingPrice_ID =" + row[0].ToString();
 
@@ -401,7 +401,7 @@ namespace MainSystem
                                 command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
                                 command.Parameters.AddWithValue("@Purchasing_Price", PurchasesPrice);
-                                command.Parameters.AddWithValue("@Data_ID", Convert.ToInt16(row[1].ToString()));
+                                command.Parameters.AddWithValue("@Data_ID", Convert.ToInt32(row[1].ToString()));
                                 command.Parameters.AddWithValue("@ProfitRatio", 0.00);
                                 command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.AddWithValue("@Price", Price);
@@ -435,7 +435,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreasePurchasesPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreasePurchasesPrice(Convert.ToInt32(row[0].ToString()));
 
                                     String query = "update purchasing_price set Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Purchasing_Price=@Purchasing_Price,ProfitRatio=@ProfitRatio,Price=@Price,Date=@Date where PurchasingPrice_ID=" + row[0].ToString();
 
@@ -477,7 +477,7 @@ namespace MainSystem
                                     command.Parameters["?Date"].Value = DateTime.Now.Date;
                                     command.ExecuteNonQuery();
                                     
-                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+                                    UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
 
                                     //insert into Archif Table
                                     query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price,Date,Normal_Increase,Categorical_Increase) VALUES(@Purchasing_Discount,@Price_Type,@Purchasing_Price,@ProfitRatio,@Data_ID,@Price,@Last_Price,@Date,@Normal_Increase,@Categorical_Increase)";
@@ -539,7 +539,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreasePurchasesPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreasePurchasesPrice(Convert.ToInt32(row[0].ToString()));
 
                                     string query = "update purchasing_price set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Purchasing_Price=@Purchasing_Price*/"Purchasing_Discount=@Purchasing_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Date=@Date where PurchasingPrice_ID =" + row[0].ToString();
 
@@ -574,13 +574,13 @@ namespace MainSystem
                                     command.ExecuteNonQuery();
 
                                   
-                                    UserControl.ItemRecord("purchasing_price", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+                                    UserControl.ItemRecord("purchasing_price", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
 
                                     //insert into Archif table
                                     query = "INSERT INTO oldpurchasing_price (Price_Type,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date,ProfitRatio) VALUES (?Price_Type,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date,@ProfitRatio)";
                                     command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("@Price_Type", "لستة");
-                                    command.Parameters.AddWithValue("@Data_ID",Convert.ToInt16(row[1].ToString()));
+                                    command.Parameters.AddWithValue("@Data_ID",Convert.ToInt32(row[1].ToString()));
 
                                     command.Parameters.AddWithValue("@ProfitRatio", 0.00);
                                     if (Purchase_Discount != -1)
@@ -684,7 +684,7 @@ namespace MainSystem
                     if (row != null)
                     {
                         txtCode.Text = row[2].ToString();
-                        id = Convert.ToInt16(row[0].ToString());
+                        id = Convert.ToInt32(row[0].ToString());
                         String code = txtCode.Text;
                         displayCode(code);
                         setData(row);
@@ -916,11 +916,11 @@ namespace MainSystem
         public void displayCode(string code)
         {
             char[] arrCode = code.ToCharArray();
-            txtCodePart1.Text = Convert.ToInt16(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
-            txtCodePart2.Text = Convert.ToInt16(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString()) + "";
-            txtCodePart3.Text = Convert.ToInt16(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
-            txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
-            txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
+            txtCodePart1.Text = Convert.ToInt32(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
+            txtCodePart2.Text = Convert.ToInt32(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString()) + "";
+            txtCodePart3.Text = Convert.ToInt32(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
+            txtCodePart4.Text = Convert.ToInt32(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
+            txtCodePart5.Text = "" + Convert.ToInt32(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
         //for Purshase Price
         public void chackUpdateType()
@@ -1048,7 +1048,7 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(queryx, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
-                    oldPurchasesPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+                    oldPurchasesPrice_ID = Convert.ToInt32(com.ExecuteScalar());
                 }
 
                 foreach (DataGridViewRow item in dataGridView1.Rows)

@@ -89,11 +89,11 @@ namespace MainSystem
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
                                 DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(selRows[i]));
-                                string Query = "update attendance set Error=1 where Attendance_ID=" + Convert.ToInt16(selRow[0].ToString());
+                                string Query = "update attendance set Error=1 where Attendance_ID=" + Convert.ToInt32(selRow[0].ToString());
                                 MySqlCommand MyCommand = new MySqlCommand(Query, conn);
                                 MyCommand.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("attendance", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, conn);
+                                UserControl.ItemRecord("attendance", "حذف", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, textBox.Text, conn);
                             }
                             search();
                         }

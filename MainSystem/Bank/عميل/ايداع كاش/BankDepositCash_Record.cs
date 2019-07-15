@@ -144,7 +144,7 @@ namespace MainSystem
                             {
                                 //double amont = 0;
                                 flag2 = true;
-                                ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                                ID = Convert.ToInt32(dr["CustomerBill_ID"].ToString());
                                 TypeBuy = dr["Type_Buy"].ToString();
                                 billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
                                 ConfirmEmp = dr["Employee_Name"].ToString();
@@ -200,11 +200,11 @@ namespace MainSystem
 
                                 if (dr["Customer_ID"].ToString() != "")
                                 {
-                                    customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                                    customerID = Convert.ToInt32(dr["Customer_ID"].ToString());
                                 }
                                 if (dr["Client_ID"].ToString() != "")
                                 {
-                                    clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                                    clientID = Convert.ToInt32(dr["Client_ID"].ToString());
                                 }
                             }
                             dr.Close();
@@ -721,7 +721,7 @@ namespace MainSystem
                                 com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
                                 com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
                                 com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
-                                com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(TransitionID);
+                                com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(TransitionID);
                                 com.ExecuteNonQuery();
                                 flagCategoriesSuccess = false;
                                 //////////////////////
@@ -851,15 +851,15 @@ namespace MainSystem
                             MySqlDataReader dr = com2.ExecuteReader();
                             while (dr.Read())
                             {
-                                arrOFPhaat[0] = Convert.ToInt16(dr["a200"]);
-                                arrOFPhaat[1] = Convert.ToInt16(dr["a100"]);
-                                arrOFPhaat[2] = Convert.ToInt16(dr["a50"]);
-                                arrOFPhaat[3] = Convert.ToInt16(dr["a20"]);
-                                arrOFPhaat[4] = Convert.ToInt16(dr["a10"]);
-                                arrOFPhaat[5] = Convert.ToInt16(dr["a5"]);
-                                arrOFPhaat[6] = Convert.ToInt16(dr["a1"]);
-                                arrOFPhaat[7] = Convert.ToInt16(dr["aH"]);
-                                arrOFPhaat[8] = Convert.ToInt16(dr["aQ"]);
+                                arrOFPhaat[0] = Convert.ToInt32(dr["a200"]);
+                                arrOFPhaat[1] = Convert.ToInt32(dr["a100"]);
+                                arrOFPhaat[2] = Convert.ToInt32(dr["a50"]);
+                                arrOFPhaat[3] = Convert.ToInt32(dr["a20"]);
+                                arrOFPhaat[4] = Convert.ToInt32(dr["a10"]);
+                                arrOFPhaat[5] = Convert.ToInt32(dr["a5"]);
+                                arrOFPhaat[6] = Convert.ToInt32(dr["a1"]);
+                                arrOFPhaat[7] = Convert.ToInt32(dr["aH"]);
+                                arrOFPhaat[8] = Convert.ToInt32(dr["aQ"]);
                             }
                             flag = true;
                         }
@@ -1551,7 +1551,7 @@ namespace MainSystem
 
                             if (storageQ >= productQ)
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1561,7 +1561,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1599,7 +1599,7 @@ namespace MainSystem
 
                             if (storageQ > productQ)
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1608,7 +1608,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1648,7 +1648,7 @@ namespace MainSystem
 
                             if (storageQ > productQ)
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1657,7 +1657,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1706,7 +1706,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1718,7 +1718,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1730,7 +1730,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1770,7 +1770,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_ItemsAccounting() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_ItemsAccounting() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1782,7 +1782,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_ItemsAccounting() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_ItemsAccounting() { Code = dr1["Set_ID"].ToString(), Product_Type = "طقم", Product_Name = dr1["Set_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = Convert.ToDouble(dr["Discount"].ToString()), Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1794,7 +1794,7 @@ namespace MainSystem
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_ItemsAccounting() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt16(dr["Cartons"].ToString()) };
+                        item = new Bill_ItemsAccounting() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
                         bi.Add(item);
                     }
                     dr1.Close();

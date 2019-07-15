@@ -200,7 +200,7 @@ namespace MainSystem
                             com.Parameters["@Supplier_Info"].Value = txtInfo.Text;
                             com.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("supplier", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, dbconnection);
+                            UserControl.ItemRecord("supplier", "تعديل", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, textBox.Text, dbconnection);
 
                             xtraTabPage = getTabPage("تعديل بيانات مورد");
                             xtraTabControlPurchases.TabPages.Remove(xtraTabPage);
@@ -278,7 +278,7 @@ namespace MainSystem
             string query = "insert into supplier_phone(Supplier_ID,Phone) values(@Supplier_ID,@Phone)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
-            com.Parameters["@Supplier_ID"].Value = Convert.ToInt16(selRow[0].ToString());
+            com.Parameters["@Supplier_ID"].Value = Convert.ToInt32(selRow[0].ToString());
             com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
             com.Parameters["@Phone"].Value = txtPhone.Text;
             com.ExecuteNonQuery();

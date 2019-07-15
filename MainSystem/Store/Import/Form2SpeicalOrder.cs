@@ -144,12 +144,12 @@ namespace MainSystem
                         while (dr.Read())
                         {
                             flag2 = true;
-                            billNum= Convert.ToInt16(dr["Request_ID"]);
+                            billNum= Convert.ToInt32(dr["Request_ID"]);
                             if (dr["Customer_ID"].ToString() != "")
-                                customerID = Convert.ToInt16(dr["Customer_ID"]);
+                                customerID = Convert.ToInt32(dr["Customer_ID"]);
 
-                            clientID = Convert.ToInt16(dr["Client_ID"]);
-                            delegateID = Convert.ToInt16(dr["Delegate_ID"]);
+                            clientID = Convert.ToInt32(dr["Client_ID"]);
+                            delegateID = Convert.ToInt32(dr["Delegate_ID"]);
                             dateTimePicker2.Value = Convert.ToDateTime(dr["Recive_Date"]);
                         }
                         dr.Close();
@@ -469,11 +469,11 @@ namespace MainSystem
                         com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
                         com.Parameters["@Branch_Name"].Value = comBranch.Text;
                         com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                        com.Parameters["@Branch_ID"].Value = Convert.ToInt16(txtBranchID.Text);
+                        com.Parameters["@Branch_ID"].Value = Convert.ToInt32(txtBranchID.Text);
                         com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
-                        com.Parameters["@Branch_BillNumber"].Value = Convert.ToInt16(txtBillNumber.Text);
+                        com.Parameters["@Branch_BillNumber"].Value = Convert.ToInt32(txtBillNumber.Text);
                         com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_ID"].Value = Convert.ToInt16(txtStoreID.Text);
+                        com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStoreID.Text);
                         com.Parameters.Add("@Store_Name", MySqlDbType.VarChar);
                         com.Parameters["@Store_Name"].Value = comStore.Text;
                         com.Parameters.Add("@Status", MySqlDbType.Int16);

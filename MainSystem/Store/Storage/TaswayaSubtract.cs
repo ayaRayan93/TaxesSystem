@@ -99,7 +99,7 @@ namespace MainSystem
                 //        dbconnection.Open();
                 //        comand.ExecuteNonQuery();
 
-                //        UserControl.ItemRecord("storage", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
+                //        UserControl.ItemRecord("storage", "حذف",Convert.ToInt32(row1[0].ToString()), DateTime.Now,"", dbconnection);
 
                 //        displayProducts();
                 //    }
@@ -161,7 +161,7 @@ namespace MainSystem
             try
             {
                 DataRowView a = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                storeMainForm.bindUpdateTaswayaSubtractgForm(Convert.ToInt16(a[1]));
+                storeMainForm.bindUpdateTaswayaSubtractgForm(Convert.ToInt32(a[1]));
             }
             catch (Exception ex)
             {

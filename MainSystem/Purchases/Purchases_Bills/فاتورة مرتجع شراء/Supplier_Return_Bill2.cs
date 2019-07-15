@@ -98,7 +98,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
-                            ImportStorageReturnId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            ImportStorageReturnId = Convert.ToInt32(com.ExecuteScalar().ToString());
                         }
                         else
                         {
@@ -111,7 +111,7 @@ namespace MainSystem
                         {
                             if (com.ExecuteScalar().ToString() != "")
                             {
-                                storageImportPermissionId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                storageImportPermissionId = Convert.ToInt32(com.ExecuteScalar().ToString());
                             }
                             else
                             {
@@ -628,7 +628,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
-                            BillNo = Convert.ToInt16(com.ExecuteScalar());
+                            BillNo = Convert.ToInt32(com.ExecuteScalar());
                             BillNo++;
                         }
 

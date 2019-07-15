@@ -147,7 +147,7 @@ namespace MainSystem
                 MySqlCommand cmd = new MySqlCommand(insert, dbconnection);
 
                 cmd.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11);
-                cmd.Parameters["@Employee_ID"].Value =Convert.ToInt16( comEmployee.SelectedValue);
+                cmd.Parameters["@Employee_ID"].Value =Convert.ToInt32( comEmployee.SelectedValue);
                 cmd.Parameters.Add("@Salary", MySqlDbType.Decimal, 10);
                 if (txtSalary.Text != "")
                     cmd.Parameters["@Salary"].Value =Convert.ToDecimal(txtSalary.Text);

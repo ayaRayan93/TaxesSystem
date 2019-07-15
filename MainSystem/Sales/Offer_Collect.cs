@@ -174,12 +174,12 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                double q = OfferCollect(Convert.ToInt16(txtOffersID.Text));
+                double q = OfferCollect(Convert.ToInt32(txtOffersID.Text));
                 double quntityRequest = Convert.ToDouble(txtOfferQuantity.Text);
                 if (quntityRequest<=q)
                 {
-                    RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt16(txtOffersID.Text));
-                    decreaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt16(txtOffersID.Text));
+                    RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+                    decreaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
                     MessageBox.Show("تم");
                     // dataGridView1.Rows.Clear();
                     offerStorage.DisplayOffer();
@@ -222,7 +222,7 @@ namespace MainSystem
                 if (e.KeyCode == Keys.Enter)
                 {
                     dbconnection.Open();
-                    double q = OfferCollect(Convert.ToInt16(txtOffersID.Text));
+                    double q = OfferCollect(Convert.ToInt32(txtOffersID.Text));
                     double quntityRequest = Convert.ToDouble(txtOfferQuantity.Text);
                     if (quntityRequest <= q)
                     {
@@ -256,7 +256,7 @@ namespace MainSystem
         {
             string query = "select count(OfferDetails_ID) from offer_details where Offer_ID=" + offerID;
             MySqlCommand com = new MySqlCommand(query,dbconnection);
-            int offerItemsNumber = Convert.ToInt16(com.ExecuteScalar());
+            int offerItemsNumber = Convert.ToInt32(com.ExecuteScalar());
             int count = 0;
             query = "select sum(storage.Total_Meters)/offer_details.Quantity as q from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join storage on offer_details.Data_ID = storage.Data_ID where offer.Offer_ID=" + offerID + " group by storage.Data_ID,Store_ID having Store_ID=" + txtStoreID.Text;
             com = new MySqlCommand(query,dbconnection);
@@ -350,7 +350,7 @@ namespace MainSystem
                 query = "insert into storage (Store_ID,Store_Name,Storage_Date,Total_Meters,Offer_ID,Type) values (@Store_ID,@Store_Name,@Storage_Date,@Total_Meters,@Offer_ID,@Type)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_ID"].Value = Convert.ToInt16(txtStoreID.Text);
+                com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStoreID.Text);
                 com.Parameters.Add("@Store_Name", MySqlDbType.VarChar);
                 com.Parameters["@Store_Name"].Value = comStore.Text;
                 com.Parameters.Add("@Storage_Date", MySqlDbType.Date);
@@ -392,7 +392,7 @@ namespace MainSystem
                         double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         if (storageQ > newQuantity)
                         {
-                            id = Convert.ToInt16(dr2["Storage_ID"]);
+                            id = Convert.ToInt32(dr2["Storage_ID"]);
                             query = "update storage set Total_Meters=" + (storageQ - newQuantity) + " where Storage_ID=" + id;
                             MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                             comm.ExecuteNonQuery();
@@ -402,7 +402,7 @@ namespace MainSystem
                         }
                         else
                         {
-                            id = Convert.ToInt16(dr2["Storage_ID"]);
+                            id = Convert.ToInt32(dr2["Storage_ID"]);
                             query = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                             MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                             comm.ExecuteNonQuery();

@@ -67,10 +67,10 @@ namespace MainSystem
                 comBranch.SelectedIndex = -1;
 
                 //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                //storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                //storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
 
                 string supString = BaseData.StoreID;
-                storeId = Convert.ToInt16(supString);
+                storeId = Convert.ToInt32(supString);
 
                 conn.Open();
                 query = "select Store_Name from store where Store_ID=" + storeId;
@@ -232,7 +232,7 @@ namespace MainSystem
 
                         query2 = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
                         com2 = new MySqlCommand(query2, conn);
-                        int gateSupplierId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        int gateSupplierId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         treeViewGatSupplierId.Nodes.Add(gateSupplierId.ToString());
 
                         if (txtPermisionNum.Text != "")
@@ -299,7 +299,7 @@ namespace MainSystem
 
                         query2 = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
                         com2 = new MySqlCommand(query2, conn);
-                        int gateSupplierId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        int gateSupplierId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         treeViewGatSupplierId.Nodes.Add(gateSupplierId.ToString());
 
                         if (txtPermisionNum.Text != "")
@@ -411,7 +411,7 @@ namespace MainSystem
 
                         query2 = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
                         com2 = new MySqlCommand(query2, conn);
-                        int gateSupplierId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        int gateSupplierId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         treeViewGatSupplierId.Nodes.Add(gateSupplierId.ToString());
 
                         if (txtPermisionNum.Text != "")
@@ -468,7 +468,7 @@ namespace MainSystem
 
                         query2 = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
                         com2 = new MySqlCommand(query2, conn);
-                        int gateSupplierId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        int gateSupplierId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         treeViewGatSupplierId.Nodes.Add(gateSupplierId.ToString());
 
                         if (txtPermisionNum.Text != "")
@@ -579,7 +579,7 @@ namespace MainSystem
 
                         query2 = "select GateSupplier_ID from gate_supplier order by GateSupplier_ID desc limit 1";
                         com2 = new MySqlCommand(query2, conn);
-                        int gateSupplierId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        int gateSupplierId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         treeViewGatSupplierId.Nodes.Add(gateSupplierId.ToString());
 
                         if (txtPermisionNum.Text != "")

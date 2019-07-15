@@ -30,7 +30,7 @@ namespace MainSystem
                 dbconnection = new MySqlConnection(connection.connectionString);
                 this.CarRow = CarRow;
                 labStoreName.Text = CarRow[1].ToString();
-                CarId =Convert.ToInt16(CarRow[0].ToString());
+                CarId =Convert.ToInt32(CarRow[0].ToString());
                 this.cars = cars;
                 this.xtraTabControlCarsContent = xtraTabControlCarsContent;
             }

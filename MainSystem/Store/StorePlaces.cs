@@ -68,7 +68,7 @@ namespace MainSystem
                         com.Parameters.Add("@StorePlaceCode", MySqlDbType.VarChar, 255);
                         com.Parameters["@StorePlaceCode"].Value = txtName.Text;
                         com.Parameters.Add("@StoreID", MySqlDbType.Int16);
-                        com.Parameters["@StoreID"].Value =Convert.ToInt16(StoreRow[0].ToString());
+                        com.Parameters["@StoreID"].Value =Convert.ToInt32(StoreRow[0].ToString());
                         
                         com.ExecuteNonQuery();
                         displayStorePlaces();
@@ -156,7 +156,7 @@ namespace MainSystem
                             com.Parameters.Add("@StorePlaceCode", MySqlDbType.VarChar, 255);
                             com.Parameters["@StorePlaceCode"].Value = txtName.Text;
                             com.Parameters.Add("@StoreID", MySqlDbType.Int16);
-                            com.Parameters["@StoreID"].Value = Convert.ToInt16(StoreRow[0].ToString());
+                            com.Parameters["@StoreID"].Value = Convert.ToInt32(StoreRow[0].ToString());
 
                             com.ExecuteNonQuery();
                             MessageBox.Show("add success");

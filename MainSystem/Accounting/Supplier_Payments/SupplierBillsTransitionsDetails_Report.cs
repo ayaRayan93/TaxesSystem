@@ -206,7 +206,7 @@ namespace MainSystem
                     txtSupplierID.Text = comSupplier.SelectedValue.ToString();
                     if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
                     {
-                        search(Convert.ToInt16(comSupplier.SelectedValue.ToString()));
+                        search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
                     }
                     else
                     {
@@ -237,7 +237,7 @@ namespace MainSystem
                         loaded = false;
                         comSupplier.Text = Name;
                         comSupplier.SelectedValue = txtSupplierID.Text;
-                        search(Convert.ToInt16(comSupplier.SelectedValue.ToString()));
+                        search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
                         loaded = true;
                     }
                     else

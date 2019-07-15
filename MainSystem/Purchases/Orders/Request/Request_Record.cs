@@ -223,7 +223,7 @@ namespace MainSystem
                                         dateTimePicker1.Enabled = false;*/
                                         dateTimePicker2.Enabled = false;
                                         txtDashOrderNum.ReadOnly = true;
-                                        orderId = Convert.ToInt16(dr["Order_ID"].ToString());
+                                        orderId = Convert.ToInt32(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
@@ -243,7 +243,7 @@ namespace MainSystem
                                         
                                         if (dr["Dash_Order_Number"].ToString() != "")
                                         {
-                                            dashOrderNumber = Convert.ToInt16(dr["Dash_Order_Number"].ToString());
+                                            dashOrderNumber = Convert.ToInt32(dr["Dash_Order_Number"].ToString());
                                         }
                                         else
                                         {
@@ -251,7 +251,7 @@ namespace MainSystem
                                         }
                                         if (dr["DashOrder_ID"].ToString() != "")
                                         {
-                                            dashOrderID = Convert.ToInt16(dr["DashOrder_ID"].ToString());
+                                            dashOrderID = Convert.ToInt32(dr["DashOrder_ID"].ToString());
                                         }
                                         else
                                         {
@@ -277,7 +277,7 @@ namespace MainSystem
                                         dateTimePicker1.Enabled = false;*/
                                         dateTimePicker2.Enabled = false;
                                         txtDashOrderNum.ReadOnly = true;
-                                        orderId = Convert.ToInt16(dr["Order_ID"].ToString());
+                                        orderId = Convert.ToInt32(dr["Order_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
                                         txtStoreID.Text = dr["Store_ID"].ToString();
@@ -296,7 +296,7 @@ namespace MainSystem
                                         txtDashOrderNum.Text = dr["Dash_Order_Number"].ToString();
                                         if (dr["Dash_Order_Number"].ToString() != "")
                                         {
-                                            dashOrderNumber = Convert.ToInt16(dr["Dash_Order_Number"].ToString());
+                                            dashOrderNumber = Convert.ToInt32(dr["Dash_Order_Number"].ToString());
                                         }
                                         else
                                         {
@@ -304,7 +304,7 @@ namespace MainSystem
                                         }
                                         if (dr["DashOrder_ID"].ToString() != "")
                                         {
-                                            dashOrderID = Convert.ToInt16(dr["DashOrder_ID"].ToString());
+                                            dashOrderID = Convert.ToInt32(dr["DashOrder_ID"].ToString());
                                         }
                                         else
                                         {
@@ -561,7 +561,7 @@ namespace MainSystem
                                     {
                                         if (dr["DashOrder_ID"].ToString() != "")
                                         {
-                                            dashOrderID = Convert.ToInt16(dr["DashOrder_ID"].ToString());
+                                            dashOrderID = Convert.ToInt32(dr["DashOrder_ID"].ToString());
                                         }
                                         else
                                         {
@@ -792,7 +792,7 @@ namespace MainSystem
                                     com = new MySqlCommand(query, dbconnection);
                                     if (com.ExecuteScalar() != null)
                                     {
-                                        orderNumber = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                        orderNumber = Convert.ToInt32(com.ExecuteScalar().ToString());
                                     }
                                     else
                                     {
@@ -1216,7 +1216,7 @@ namespace MainSystem
                         {
                             flagCarton = true;
                             double total = totalMeter / carton;
-                            txtCarton.Text = Convert.ToInt16(total).ToString();
+                            txtCarton.Text = Convert.ToInt32(total).ToString();
                             flagCarton = false;
                         }
                     }
@@ -1283,7 +1283,7 @@ namespace MainSystem
 
                             query2 = "select Order_ID from orders order by Order_ID desc limit 1";
                             com2 = new MySqlCommand(query2, dbconnection);
-                            orderId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                            orderId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         }
                         
                         string query = "insert into order_details (Order_ID,Data_ID,Balatat,Carton_Balata,Quantity,Type) values (@Order_ID,@Data_ID,@Balatat,@Carton_Balata,@Quantity,@Type)";
@@ -1401,11 +1401,11 @@ namespace MainSystem
                     {
                         int rowHand = gridView2.GetRowHandle(i);
                         
-                        Order_Items item = new Order_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Balatat"])), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"])) };
+                        Order_Items item = new Order_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = Convert.ToInt32(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Balatat"])), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"])) };
                         bi.Add(item);
                     }
                     Report_Order f = new Report_Order();
-                    f.PrintInvoice(comFactory.Text, Convert.ToInt16(txtOrderNum.Text), txtEmployee.Text, bi);
+                    f.PrintInvoice(comFactory.Text, Convert.ToInt32(txtOrderNum.Text), txtEmployee.Text, bi);
                     f.ShowDialog();
                     #endregion
 

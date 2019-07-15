@@ -145,13 +145,13 @@ namespace MainSystem
                     if (dialogResult == DialogResult.Yes)
                     {
 
-                        deleteBill(Convert.ToInt16(billRow[0].ToString()));
+                        deleteBill(Convert.ToInt32(billRow[0].ToString()));
 
                         string query = "ALTER TABLE customer_return_bill AUTO_INCREMENT = 1;";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                        UserControl.ItemRecord("customer_return_bill", "حذف", Convert.ToInt16(billRow[0].ToString()), DateTime.Now, "", dbconnection);
+                        UserControl.ItemRecord("customer_return_bill", "حذف", Convert.ToInt32(billRow[0].ToString()), DateTime.Now, "", dbconnection);
                         dbconnection.Close();
                         DisplayBills();
                         loadDataToBox();

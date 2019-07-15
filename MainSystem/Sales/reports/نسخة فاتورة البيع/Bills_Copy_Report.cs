@@ -216,7 +216,7 @@ namespace MainSystem
                 while (dr.Read())
                 {
                     flag2 = true;
-                    ID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                    ID = Convert.ToInt32(dr["CustomerBill_ID"].ToString());
                     TypeBuy = dr["Type_Buy"].ToString();
                     billDate = Convert.ToDateTime(dr["Bill_Date"].ToString());
                     dateTimePicker1.Value = billDate;
@@ -255,7 +255,7 @@ namespace MainSystem
 
                     if (dr["Customer_ID"].ToString() != "")
                     {
-                        customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                        customerID = Convert.ToInt32(dr["Customer_ID"].ToString());
                         engName = dr["Customer_Name"].ToString();
                         comClient.Text = dr["Customer_Name"].ToString();
                         comClient.SelectedValue = customerID;
@@ -263,7 +263,7 @@ namespace MainSystem
                     }
                     if (dr["Client_ID"].ToString() != "")
                     {
-                        clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                        clientID = Convert.ToInt32(dr["Client_ID"].ToString());
                         clientName = dr["Client_Name"].ToString();
                         comClient.Text = dr["Client_Name"].ToString();
                         comClient.SelectedValue = clientID;
@@ -457,7 +457,7 @@ namespace MainSystem
 
             for (int i = 0; i < gridView1.RowCount; i++)
             {
-                Copy_Bill_Items item = new Copy_Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]), Carton = Convert.ToInt16(gridView1.GetRowCellDisplayText(i, gridView1.Columns["اجمالى الكراتين"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نسبة الخصم"]) };
+                Copy_Bill_Items item = new Copy_Bill_Items() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفئة"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])), Total_Cost = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"])) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])), Store_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المخزن"]), Carton = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, gridView1.Columns["اجمالى الكراتين"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Discount = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نسبة الخصم"]) };
                 bi.Add(item);
             }
 

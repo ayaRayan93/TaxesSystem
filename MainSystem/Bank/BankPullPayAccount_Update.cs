@@ -271,7 +271,7 @@ namespace MainSystem
                     //    while (dr.Read())
                     //    {
                     //        tempFlag = true;
-                    //        ClintID = Convert.ToInt16(dr["Client_ID"].ToString());
+                    //        ClintID = Convert.ToInt32(dr["Client_ID"].ToString());
                     //        txtName.Text = dr["Client_Name"].ToString();
                     //        txtPullMoney.Text = dr["Money"].ToString();
                     //    }
@@ -504,15 +504,15 @@ namespace MainSystem
                             MySqlDataReader dr = com2.ExecuteReader();
                             while (dr.Read())
                             {
-                                arrOFPhaat[0] = Convert.ToInt16(dr["a200"]);
-                                arrOFPhaat[1] = Convert.ToInt16(dr["a100"]);
-                                arrOFPhaat[2] = Convert.ToInt16(dr["a50"]);
-                                arrOFPhaat[3] = Convert.ToInt16(dr["a20"]);
-                                arrOFPhaat[4] = Convert.ToInt16(dr["a10"]);
-                                arrOFPhaat[5] = Convert.ToInt16(dr["a5"]);
-                                arrOFPhaat[6] = Convert.ToInt16(dr["a1"]);
-                                arrOFPhaat[7] = Convert.ToInt16(dr["aH"]);
-                                arrOFPhaat[8] = Convert.ToInt16(dr["aQ"]);
+                                arrOFPhaat[0] = Convert.ToInt32(dr["a200"]);
+                                arrOFPhaat[1] = Convert.ToInt32(dr["a100"]);
+                                arrOFPhaat[2] = Convert.ToInt32(dr["a50"]);
+                                arrOFPhaat[3] = Convert.ToInt32(dr["a20"]);
+                                arrOFPhaat[4] = Convert.ToInt32(dr["a10"]);
+                                arrOFPhaat[5] = Convert.ToInt32(dr["a5"]);
+                                arrOFPhaat[6] = Convert.ToInt32(dr["a1"]);
+                                arrOFPhaat[7] = Convert.ToInt32(dr["aH"]);
+                                arrOFPhaat[8] = Convert.ToInt32(dr["aQ"]);
                             }
                             flag = true;
                         }
@@ -1146,7 +1146,7 @@ namespace MainSystem
             cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
             cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
             cmbBranch.Text = selRow["الفرع"].ToString();
-            branchID = Convert.ToInt16(cmbBranch.SelectedValue.ToString());
+            branchID = Convert.ToInt32(cmbBranch.SelectedValue.ToString());
 
             txtBillNum.Text = selRow["الفاتورة"].ToString();
             txtName.Text = selRow["العميل"].ToString();
