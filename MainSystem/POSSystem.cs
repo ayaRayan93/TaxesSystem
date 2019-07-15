@@ -216,7 +216,7 @@ namespace MainSystem
         {
             int count = 0;
             BaseData.generateBaseProjectFile();
-            int DelegateBranchId = Convert.ToInt16(BaseData.BranchID);
+            int DelegateBranchId = Convert.ToInt32(BaseData.BranchID);
 
             string query = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + BillNum + " and dash.Branch_ID=" + DelegateBranchId + " and dash.Confirmed=0";
             MySqlCommand com = new MySqlCommand(query, conn);
@@ -227,7 +227,7 @@ namespace MainSystem
                 count++;
             }
             labelBaskt.Text = (count).ToString();
-            if (Convert.ToInt16(labelBaskt.Text) > 0)
+            if (Convert.ToInt32(labelBaskt.Text) > 0)
             {
                 labelBaskt.Visible = true;
                 //delegateID = DelegateId;

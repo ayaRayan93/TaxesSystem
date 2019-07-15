@@ -357,6 +357,12 @@
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy.designer.cs">
+      <DependentUpon>Print_SupplierBill_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reception\Delegates_Attendance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1853,6 +1859,12 @@
     <Compile Include="Store\AtaqmStorage.designer.cs">
       <DependentUpon>AtaqmStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\استلام\Print_SupplierReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Import\استلام\Print_SupplierReceipt.designer.cs">
+      <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy3.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2056,12 +2068,6 @@
     </Compile>
     <Compile Include="Store\Import\استلام\Report_SupplierReceipt.designer.cs">
       <DependentUpon>Report_SupplierReceipt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Store\Import\استلام\Print_SupplierReceipt.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Store\Import\استلام\Print_SupplierReceipt.designer.cs">
-      <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\StorageReturnBill.cs">
       <SubType>Form</SubType>
@@ -2461,6 +2467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.resx">
       <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy.resx">
+      <DependentUpon>Print_SupplierBill_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
@@ -3149,6 +3158,9 @@
     <EmbeddedResource Include="Store\Import\استرجاع\Report_StorageReturn.resx">
       <DependentUpon>Report_StorageReturn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\استلام\Print_SupplierReceipt.resx">
+      <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy3.resx">
       <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>
     </EmbeddedResource>
@@ -3190,9 +3202,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استلام\Report_SupplierReceipt.resx">
       <DependentUpon>Report_SupplierReceipt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Store\Import\استلام\Print_SupplierReceipt.resx">
-      <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\StorageReturnBill.resx">
       <DependentUpon>StorageReturnBill.cs</DependentUpon>

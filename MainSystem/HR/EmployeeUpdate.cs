@@ -125,7 +125,7 @@ namespace MainSystem
                     cmd.Parameters.Add("@Employee_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
                     {
-                        cmd.Parameters["@Employee_Number"].Value = Convert.ToInt16(txtEmployeeNumber.Text);
+                        cmd.Parameters["@Employee_Number"].Value = Convert.ToInt32(txtEmployeeNumber.Text);
                         labNumberReqired.Visible = false;
                     }
                     else
@@ -202,7 +202,7 @@ namespace MainSystem
 
                     cmd.Parameters.Add("@SocialInsuranceNumber", MySqlDbType.Int16);
                     if (txtSocialInsuranceNumber.Text != "")
-                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt16(txtSocialInsuranceNumber.Text);
+                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt32(txtSocialInsuranceNumber.Text);
                     else
                         cmd.Parameters["@SocialInsuranceNumber"].Value = 0;
 
@@ -210,7 +210,7 @@ namespace MainSystem
                     cmd.Parameters["@EmploymentType"].Value = txtWorkType.Text;
                     cmd.Parameters.Add("@ExperienceYears", MySqlDbType.Int16);
                     if (txtExperienceYears.Text != "")
-                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt16(txtExperienceYears.Text);
+                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt32(txtExperienceYears.Text);
                     else
                         cmd.Parameters["@ExperienceYears"].Value = 0;
                     #endregion
@@ -218,7 +218,7 @@ namespace MainSystem
                     if (cmd.ExecuteNonQuery() == 1)
                     {
                         Employees.displayEmployee();
-                        UserControl.ItemRecord("employee", "تعديل", Convert.ToInt16(row[1].ToString()), DateTime.Now, "", dbconnection);
+                        UserControl.ItemRecord("employee", "تعديل", Convert.ToInt32(row[1].ToString()), DateTime.Now, "", dbconnection);
                         XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
                         xtraTabControlHRContent.TabPages.Remove(xtraTabPage);
                     }
@@ -232,7 +232,7 @@ namespace MainSystem
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
                     {
-                        cmd.Parameters["@Delegate_Number"].Value = Convert.ToInt16(txtEmployeeNumber.Text);
+                        cmd.Parameters["@Delegate_Number"].Value = Convert.ToInt32(txtEmployeeNumber.Text);
                         labNumberReqired.Visible = false;
                     }
                     else
@@ -307,7 +307,7 @@ namespace MainSystem
                     }
                     cmd.Parameters.Add("@SocialInsuranceNumber", MySqlDbType.Int16);
                     if (txtSocialInsuranceNumber.Text != "")
-                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt16(txtSocialInsuranceNumber.Text);
+                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt32(txtSocialInsuranceNumber.Text);
                     else
                         cmd.Parameters["@SocialInsuranceNumber"].Value = 0;
 
@@ -315,7 +315,7 @@ namespace MainSystem
                     cmd.Parameters["@EmploymentType"].Value = txtWorkType.Text;
                     cmd.Parameters.Add("@ExperienceYears", MySqlDbType.Int16);
                     if (txtExperienceYears.Text != "")
-                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt16(txtExperienceYears.Text);
+                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt32(txtExperienceYears.Text);
                     else
                         cmd.Parameters["@ExperienceYears"].Value = 0;
                     #endregion
@@ -323,7 +323,7 @@ namespace MainSystem
                     if (cmd.ExecuteNonQuery() == 1)
                     {
                         Employees.displayEmployee();
-                        UserControl.ItemRecord("delegate", "تعديل",Convert.ToInt16(row[1].ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("delegate", "تعديل",Convert.ToInt32(row[1].ToString()), DateTime.Now,"", dbconnection);
                         XtraTabPage xtraTabPage = getTabPage("تعديل موظف");
                         xtraTabControlHRContent.TabPages.Remove(xtraTabPage);
                     }

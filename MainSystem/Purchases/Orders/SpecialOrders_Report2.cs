@@ -139,7 +139,7 @@ namespace MainSystem
                 //{
                 //    row1.Add(gridView1.GetDataRow(gridView1.GetSelectedRows()[i]));
                 //}
-                mainForm.bindRecordDashOrderForm(null, row1/*, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[0]))*/);
+                mainForm.bindRecordDashOrderForm(null, row1/*, Convert.ToInt32(gridView1.GetFocusedRowCellValue(gridView1.Columns[0]))*/);
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace MainSystem
             {
                 try
                 {
-                    AdvancedEditForm2 f2 = new AdvancedEditForm2(EmpBranchId, Convert.ToInt16(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
+                    AdvancedEditForm2 f2 = new AdvancedEditForm2(EmpBranchId, Convert.ToInt32(gridView1.GetFocusedRowCellValue(gridView1.Columns[1])));
                     f2.ShowDialog();
                 }
                 catch (Exception ex)
@@ -186,7 +186,7 @@ namespace MainSystem
                     {
                         imgProduct = (byte[])dr["Product_Picture"];
                     }
-                    lista.Add(new GridPicture() { SpecialOrderID = Convert.ToInt16(dr["SpecialOrder_ID"].ToString()), Picture = img, ProductPicture = imgProduct, RequestDescription = dr["Description"].ToString() });
+                    lista.Add(new GridPicture() { SpecialOrderID = Convert.ToInt32(dr["SpecialOrder_ID"].ToString()), Picture = img, ProductPicture = imgProduct, RequestDescription = dr["Description"].ToString() });
                 }
                 dr.Close();
             }

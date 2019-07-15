@@ -326,7 +326,7 @@ namespace MainSystem
                     comand = new MySqlCommand(query, conn);
                     comand.ExecuteNonQuery();
 
-                    UserControl.ItemRecord("customer", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, "", conn);
+                    UserControl.ItemRecord("customer", "حذف", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, "", conn);
                 }
                 conn.Close();
                 search();

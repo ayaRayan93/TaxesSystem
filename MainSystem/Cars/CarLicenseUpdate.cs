@@ -33,7 +33,7 @@ namespace MainSystem
                 this.CarRow = CarRow;
                 this.xtraTabControlCarsContent = xtraTabControlCarsContent;
                 txtCarNumber.Text = CarRow[1].ToString();
-                CarId = Convert.ToInt16(CarRow[0].ToString());
+                CarId = Convert.ToInt32(CarRow[0].ToString());
               
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace MainSystem
                 this.xtraTabControlCarsContent = xtraTabControlCarsContent;
                 this.MainForm = MainForm;
                 txtCarNumber.Text = carNum;
-                CarId = Convert.ToInt16(carId);
+                CarId = Convert.ToInt32(carId);
                 flag = true;
             }
             catch (Exception ex)
@@ -205,7 +205,7 @@ namespace MainSystem
         public void calLicenseAvaliblePeriod()
         {
             TimeSpan d = dateTimePicker2.Value.Date - DateTime.Now.Date;
-            int daysNum = Convert.ToInt16(d.Days.ToString());
+            int daysNum = Convert.ToInt32(d.Days.ToString());
             if (daysNum > 0)
             {
                 labLicenceRestPeriod.Text = "المدة المتبقية " + daysNum + "يوم ";

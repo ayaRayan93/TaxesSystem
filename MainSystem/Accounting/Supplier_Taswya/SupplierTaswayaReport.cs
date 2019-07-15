@@ -51,7 +51,7 @@ namespace MainSystem
                 if (e.KeyCode == Keys.Enter)
                 {
                     dbconnection.Open();
-                    DisplaySupplierTaswaya(Convert.ToInt16(txtTaswayaCode.Text));
+                    DisplaySupplierTaswaya(Convert.ToInt32(txtTaswayaCode.Text));
                 }
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace MainSystem
                     string query = "delete from supplier_taswaya where SupplierTaswaya_ID=" + row1[0].ToString() + "";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     comand.ExecuteNonQuery();
-                    UserControl.ItemRecord("supplier_taswaya", "حذف", Convert.ToInt16(row1[0].ToString()), DateTime.Now, "", dbconnection);
+                    UserControl.ItemRecord("supplier_taswaya", "حذف", Convert.ToInt32(row1[0].ToString()), DateTime.Now, "", dbconnection);
                 }
             }
             catch (Exception ex)

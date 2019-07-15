@@ -242,7 +242,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -659,7 +659,7 @@ namespace MainSystem
                 if (row != null)
                 {
                     txtCode.Text = row[1].ToString();
-                    id = Convert.ToInt16(row[0].ToString());
+                    id = Convert.ToInt32(row[0].ToString());
                     String code = txtCode.Text;
                     displayCode(code);
                 }
@@ -1042,7 +1042,7 @@ namespace MainSystem
                     if (row != null)
                     {
                         txtCode.Text = row[1].ToString();
-                        id = Convert.ToInt16(row[0].ToString());
+                        id = Convert.ToInt32(row[0].ToString());
                         String code = txtCode.Text;
                         displayCode(code);
                     }
@@ -1227,11 +1227,11 @@ namespace MainSystem
         public void displayCode(string code)
         {
             char[] arrCode = code.ToCharArray();
-            txtCodePart1.Text = Convert.ToInt16(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
-            txtCodePart2.Text = Convert.ToInt16(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString()) + "";
-            txtCodePart3.Text = Convert.ToInt16(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
-            txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
-            txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
+            txtCodePart1.Text = Convert.ToInt32(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
+            txtCodePart2.Text = Convert.ToInt32(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString()) + "";
+            txtCodePart3.Text = Convert.ToInt32(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
+            txtCodePart4.Text = Convert.ToInt32(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
+            txtCodePart5.Text = "" + Convert.ToInt32(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
         public void insertIntoAdditionalIncrease(ref int sellPrice_ID, ref  int oldSellPrice_ID)
         {
@@ -1240,14 +1240,14 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(queryx, dbconnection);
             if (com.ExecuteScalar() != null)
             {
-                sellPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+                sellPrice_ID = Convert.ToInt32(com.ExecuteScalar());
             }
             //for archive table
             queryx = "select OldSellPrice_ID from oldsellprice order by OldSellPrice_ID desc limit 1";
             com = new MySqlCommand(queryx, dbconnection);
             if (com.ExecuteScalar() != null)
             {
-                oldSellPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+                oldSellPrice_ID = Convert.ToInt32(com.ExecuteScalar());
             }
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {

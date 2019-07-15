@@ -71,7 +71,7 @@ namespace MainSystem
                     dataGridView2.Rows.Clear();
                     totalBill = 0;
                     dbconnection.Open();
-                    int billNum = Convert.ToInt16(txtReturnPermission.Text);
+                    int billNum = Convert.ToInt32(txtReturnPermission.Text);
 
                     string query = "";
                     MySqlCommand com;
@@ -98,7 +98,7 @@ namespace MainSystem
                     {
                         if (dr[1].ToString() != "")
                         {
-                            Branch_ID = Convert.ToInt16(dr[1].ToString());
+                            Branch_ID = Convert.ToInt32(dr[1].ToString());
                         }
                         labBillNumber.Text = dr[0].ToString();
                         labBranchName.Text = dr[2].ToString();
@@ -163,7 +163,7 @@ namespace MainSystem
                     int Branch_BillNumber = 1;
                     if (com.ExecuteScalar() != null)
                     {
-                        Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
+                        Branch_BillNumber = Convert.ToInt32(com.ExecuteScalar()) + 1;
                     }
                     query = "insert into customer_return_bill (Customer_ID,Client_ID,Customer_Name,Client_Name, Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Customer_ID,@Client_ID,@Customer_Name,@Client_Name,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
                     com = new MySqlCommand(query, dbconnection);
@@ -193,7 +193,7 @@ namespace MainSystem
                         if (dr[0].ToString() != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                            com.Parameters["@Customer_ID"].Value = Convert.ToInt16(dr[0].ToString());
+                            com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[0].ToString());
                             com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
                             com.Parameters["@Customer_Name"].Value = dr[1].ToString();
                         }
@@ -207,7 +207,7 @@ namespace MainSystem
                         if (dr[2].ToString() != "")
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(dr[2].ToString());
+                            com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[2].ToString());
                             com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                             com.Parameters["@Client_Name"].Value = dr[3].ToString();
                         }
@@ -241,7 +241,7 @@ namespace MainSystem
                     int id=0;
                     while (dr1.Read())
                     {
-                       id = Convert.ToInt16(dr1[0].ToString());
+                       id = Convert.ToInt32(dr1[0].ToString());
                     }
                     dr1.Close();
                    
@@ -264,7 +264,7 @@ namespace MainSystem
                         if (row2.Cells[0].Value != null)
                         {
                             com.Parameters["@CustomerReturnBill_ID"].Value = id;
-                            com.Parameters["@Data_ID"].Value = Convert.ToInt16(row2.Cells[0].Value);
+                            com.Parameters["@Data_ID"].Value = Convert.ToInt32(row2.Cells[0].Value);
                             com.Parameters["@Type"].Value = row2.Cells[11].Value;
                             com.Parameters["@TotalMeter"].Value = Convert.ToDouble(row2.Cells["Quantity"].Value);
                             com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
@@ -273,16 +273,16 @@ namespace MainSystem
                             com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
                             if (row2.Cells["CustomerBill_ID"].Value!= null && row2.Cells["Delegate_ID"].Value != null)
                             {
-                                com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(row2.Cells["CustomerBill_ID"].Value);
-                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(row2.Cells["Delegate_ID"].Value);
+                                com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt32(row2.Cells["CustomerBill_ID"].Value);
+                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt32(row2.Cells["Delegate_ID"].Value);
 
                             }
                             else
                             {
                                 com.Parameters["@CustomerBill_ID"].Value = 0;
-                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(txtDelegate.Text);
+                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt32(txtDelegate.Text);
                             }
-                            com.Parameters["@Store_ID"].Value = Convert.ToInt16(row2.Cells[12].Value);
+                            com.Parameters["@Store_ID"].Value = Convert.ToInt32(row2.Cells[12].Value);
                             com.ExecuteNonQuery();
 
                         }

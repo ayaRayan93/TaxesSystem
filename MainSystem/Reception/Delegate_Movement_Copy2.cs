@@ -295,7 +295,7 @@ namespace MainSystem
         {
             try
             {
-                delId = Convert.ToInt16(gridView1.GetRowCellValue(e.RowHandle, colDelegateID).ToString());
+                delId = Convert.ToInt32(gridView1.GetRowCellValue(e.RowHandle, colDelegateID).ToString());
                 delName = gridView1.GetRowCellValue(e.RowHandle, colDelegate).ToString();
             }
             catch (Exception ex)
@@ -314,7 +314,7 @@ namespace MainSystem
                 MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                 if (cmd.ExecuteScalar() != null)
                 {
-                    id = Convert.ToInt16(cmd.ExecuteScalar());
+                    id = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 id = id + 1;
                 txtBill.Enabled = false;
@@ -329,7 +329,7 @@ namespace MainSystem
 
                 string q = "select Dash_ID from dash where Branch_ID=" + EmpBranchId + " and Bill_Number=" + id + " order by Dash_ID desc limit 1";
                 MySqlCommand command = new MySqlCommand(q, dbconnection);
-                int dashId = Convert.ToInt16(command.ExecuteScalar().ToString());
+                int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
 
                 UserControl.ItemRecord("dash", "اضافة", dashId, DateTime.Now, null, dbconnection);
                 dbconnection.Close();
@@ -427,7 +427,7 @@ namespace MainSystem
                 if (e.Column != gridView.Columns[3])
                     return;
 
-                int status = Convert.ToInt16(gridView.GetRowCellValue(e.RowHandle, colStatus).ToString());
+                int status = Convert.ToInt32(gridView.GetRowCellValue(e.RowHandle, colStatus).ToString());
                 if (status == 1)
                 {
                     e.RepositoryItem = repositoryItemButtonEdit1_1;
@@ -602,7 +602,7 @@ namespace MainSystem
             {
                 while (dr.Read())
                 {
-                    lista.Add(new GridData() { DelegateId = Convert.ToInt16(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1" });
+                    lista.Add(new GridData() { DelegateId = Convert.ToInt32(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1" });
                 }
                 dr.Close();
             }
@@ -801,7 +801,7 @@ namespace MainSystem
             {
                 while (dr.Read())
                 {
-                    lista.Add(new GridData() { DelegateId = Convert.ToInt16(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1" });
+                    lista.Add(new GridData() { DelegateId = Convert.ToInt32(dr["Delegate_ID"].ToString()), DelegateName = dr["Delegate_Name"].ToString(), StatusID = "-1" });
                 }
                 dr.Close();
                 gridControl1.DataSource = lista;

@@ -65,7 +65,7 @@ namespace MainSystem
 
                     if (dataRow.ItemArray[6].ToString() == "لم يتم")
                     {
-                        int id = Convert.ToInt16(dataRow.ItemArray[0]);
+                        int id = Convert.ToInt32(dataRow.ItemArray[0]);
                         string query = "delete from customer_bill where CustomerBill_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
@@ -143,7 +143,7 @@ namespace MainSystem
             {
                 string query1 = "select CustomerBill_ID from customer_bill where  Branch_BillNumber=" + txtBranchBillNum.Text + " and Branch_ID=" + txtBranchID.Text;
                 MySqlCommand com1 = new MySqlCommand(query1, dbconnection);
-                int id = Convert.ToInt16(com1.ExecuteScalar());
+                int id = Convert.ToInt32(com1.ExecuteScalar());
                 subQuery = " and customer_bill.CustomerBill_ID=" + id;
                 query = " select customer_bill.CustomerBill_ID,Type_Buy ,case when Paid_Status=1 then 'تم' else 'لم يتم' end as Paid_Status ,case when Shipped=0 then 'لم يتم' else 'تم' end as Shipped ,case when Delivered=0 then 'لم يتم' else 'تم' end as Delivered  from customer_bill inner join shipping on shipping.CustomerBill_ID=customer_bill.CustomerBill_ID inner join branch on branch.Branch_ID=customer_bill.Branch_ID    where  Bill_Date between '" + d + "' and '" + d2 + "'" + subQuery;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);

@@ -183,9 +183,9 @@ namespace MainSystem
                         string query = "INSERT INTO users (Employee_ID,User_Type,User_Name,Password) VALUES (@Employee_ID,@User_Type,@User_Name,@Password)";
                         MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                         cmd.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11);
-                        cmd.Parameters["@Employee_ID"].Value = Convert.ToInt16(comEmployee.SelectedValue);
+                        cmd.Parameters["@Employee_ID"].Value = Convert.ToInt32(comEmployee.SelectedValue);
                         cmd.Parameters.Add("@User_Type", MySqlDbType.Int16, 11);
-                        cmd.Parameters["@User_Type"].Value = Convert.ToInt16(comDepartment.SelectedValue);
+                        cmd.Parameters["@User_Type"].Value = Convert.ToInt32(comDepartment.SelectedValue);
                         cmd.Parameters.Add("@User_Name", MySqlDbType.VarChar, 255);
                         cmd.Parameters["@User_Name"].Value = txtName.Text;
                         cmd.Parameters.Add("@Password", MySqlDbType.VarChar, 255);

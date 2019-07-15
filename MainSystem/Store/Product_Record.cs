@@ -125,7 +125,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID="+-Convert.ToInt16(txtType.Text) + " and Type_ID="+ txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID="+-Convert.ToInt32(txtType.Text) + " and Type_ID="+ txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, conn);
@@ -527,15 +527,15 @@ namespace MainSystem
                 string classification, description = "";
                 if (comColour.Text != "")
                 {
-                    color_id = Convert.ToInt16(txtColor.Text);
+                    color_id = Convert.ToInt32(txtColor.Text);
                 }
                 if (comSize.Text != "")
                 {
-                    size_id = Convert.ToInt16(txtSize.Text);
+                    size_id = Convert.ToInt32(txtSize.Text);
                 }
                 if (comSort.Text != "")
                 {
-                    sort_id = Convert.ToInt16(txtSort.Text);
+                    sort_id = Convert.ToInt32(txtSort.Text);
                 }
                 if (txtCarton.Text != "")
                 {
@@ -617,7 +617,7 @@ namespace MainSystem
                     if (maxCode != "1")
                     {
                         string part5 = arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString() + "";
-                        result = Convert.ToInt16(part5);
+                        result = Convert.ToInt32(part5);
                         result = result + 1;
                     }
                     
@@ -654,7 +654,7 @@ namespace MainSystem
 
                     query2 = "select Data_ID from data order by Data_ID desc limit 1";
                     comand = new MySqlCommand(query2, conn);
-                    int data_ID = Convert.ToInt16(comand.ExecuteScalar());
+                    int data_ID = Convert.ToInt32(comand.ExecuteScalar());
                     //save image as bytes
                     command = conn.CreateCommand();
                     if (selectedImage != null)

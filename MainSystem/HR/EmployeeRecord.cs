@@ -117,7 +117,7 @@ namespace MainSystem
                     cmd.Parameters.Add("@Employee_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
                     {
-                        cmd.Parameters["@Employee_Number"].Value = Convert.ToInt16(txtEmployeeNumber.Text);
+                        cmd.Parameters["@Employee_Number"].Value = Convert.ToInt32(txtEmployeeNumber.Text);
                         labNumberReqired.Visible = false;
                     }
                     else
@@ -200,7 +200,7 @@ namespace MainSystem
 
                     cmd.Parameters.Add("@SocialInsuranceNumber", MySqlDbType.Int16);
                     if (txtSocialInsuranceNumber.Text != "")
-                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt16(txtSocialInsuranceNumber.Text);
+                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt32(txtSocialInsuranceNumber.Text);
                     else
                         cmd.Parameters["@SocialInsuranceNumber"].Value = 0;
 
@@ -208,7 +208,7 @@ namespace MainSystem
                     cmd.Parameters["@EmploymentType"].Value = txtWorkType.Text;
                     cmd.Parameters.Add("@ExperienceYears", MySqlDbType.Int16);
                     if (txtExperienceYears.Text != "")
-                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt16(txtExperienceYears.Text);
+                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt32(txtExperienceYears.Text);
                     else
                         cmd.Parameters["@ExperienceYears"].Value = 0;
                     #endregion
@@ -221,7 +221,7 @@ namespace MainSystem
                         string query = "select Employee_ID from employee order by Employee_ID desc limit 1";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                        UserControl.ItemRecord("employee", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("employee", "اضافة",Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
                         XtraTabPage xtraTabPage = getTabPage("أضافة موظف");
                         xtraTabPage.ImageOptions.Image = null;
@@ -235,7 +235,7 @@ namespace MainSystem
                     cmd.Parameters.Add("@Delegate_Number", MySqlDbType.Int16);
                     if (txtEmployeeNumber.Text != "")
                     {
-                        cmd.Parameters["@Delegate_Number"].Value = Convert.ToInt16(txtEmployeeNumber.Text);
+                        cmd.Parameters["@Delegate_Number"].Value = Convert.ToInt32(txtEmployeeNumber.Text);
                         labNumberReqired.Visible = false;
                     }
                     else
@@ -311,7 +311,7 @@ namespace MainSystem
 
                     cmd.Parameters.Add("@SocialInsuranceNumber", MySqlDbType.Int16);
                     if (txtSocialInsuranceNumber.Text != "")
-                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt16(txtSocialInsuranceNumber.Text);
+                        cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt32(txtSocialInsuranceNumber.Text);
                     else
                         cmd.Parameters["@SocialInsuranceNumber"].Value = 0;
 
@@ -319,7 +319,7 @@ namespace MainSystem
                     cmd.Parameters["@EmploymentType"].Value = txtWorkType.Text;
                     cmd.Parameters.Add("@ExperienceYears", MySqlDbType.Int16);
                     if (txtExperienceYears.Text != "")
-                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt16(txtExperienceYears.Text);
+                        cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt32(txtExperienceYears.Text);
                     else
                         cmd.Parameters["@ExperienceYears"].Value = 0;
                     #endregion
@@ -332,7 +332,7 @@ namespace MainSystem
 
                         string query = "select Delegate_ID from delegate order by Delegate_ID desc limit 1";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        UserControl.ItemRecord("delegate", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("delegate", "اضافة",Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
                         XtraTabPage xtraTabPage = getTabPage("أضافة موظف");
                         xtraTabPage.ImageOptions.Image = null;

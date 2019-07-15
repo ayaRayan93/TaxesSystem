@@ -285,12 +285,12 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                double q = Tagme3Set(Convert.ToInt16(txtSetsID.Text));
+                double q = Tagme3Set(Convert.ToInt32(txtSetsID.Text));
                 double quntityRequest = Convert.ToDouble(txtSetQuantity.Text);
                 if (quntityRequest<=q)
                 {
-                    RecordSetQuantityInStorage(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt16(txtSetsID.Text));
-                    decreaseItemsQuantityInDB(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt16(txtSetsID.Text));
+                    RecordSetQuantityInStorage(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt32(txtSetsID.Text));
+                    decreaseItemsQuantityInDB(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt32(txtSetsID.Text));
                     MessageBox.Show("تم");
                    // dataGridView1.Rows.Clear();
                     AtaqmStorage.DisplayAtaqm();
@@ -316,7 +316,7 @@ namespace MainSystem
             dbconnection.Open();
             string query = "select count(SetDetails_ID) from set_details where Set_ID=" + SetID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            int setItemsNumber = Convert.ToInt16(com.ExecuteScalar());
+            int setItemsNumber = Convert.ToInt32(com.ExecuteScalar());
             int count = 0;
             query = "select sum(storage.Total_Meters)/set_details.Quantity as q from sets inner join set_details on sets.Set_ID=set_details.Set_ID inner join storage on set_details.Data_ID = storage.Data_ID where sets.Set_ID=" + SetID + " group by storage.Data_ID,Store_ID having Store_ID=" + txtStoreID.Text;
             com = new MySqlCommand(query, dbconnection);
@@ -367,7 +367,7 @@ namespace MainSystem
                 query = "insert into storage (Store_ID,Storage_Date,Total_Meters,Supplier_Name,Set_ID,Type) values (@Store_ID,@Storage_Date,@Total_Meters,@Supplier_Name,@Set_ID,@Type)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_ID"].Value = Convert.ToInt16(txtStoreID.Text);
+                com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStoreID.Text);
                 com.Parameters.Add("@Storage_Date", MySqlDbType.Date);
                 com.Parameters["@Storage_Date"].Value = DateTime.Now.ToString("yyyy-MM-dd");
                 com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
@@ -434,7 +434,7 @@ namespace MainSystem
                 if (e.KeyCode == Keys.Enter)
                 {
                     dbconnection.Open();
-                    double q = Tagme3Set(Convert.ToInt16(txtSetsID.Text));
+                    double q = Tagme3Set(Convert.ToInt32(txtSetsID.Text));
                     double quntityRequest = Convert.ToDouble(txtSetQuantity.Text);
                     if (quntityRequest<=q)
                     {
@@ -518,7 +518,7 @@ namespace MainSystem
                         double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         if (storageQ > newQuantity)
                         {
-                            id = Convert.ToInt16(dr2["Storage_ID"]);
+                            id = Convert.ToInt32(dr2["Storage_ID"]);
                             query = "update storage set Total_Meters=" + (storageQ - newQuantity) + " where Storage_ID=" + id;
                             MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                             comm.ExecuteNonQuery();
@@ -528,7 +528,7 @@ namespace MainSystem
                         }
                         else
                         {
-                            id = Convert.ToInt16(dr2["Storage_ID"]);
+                            id = Convert.ToInt32(dr2["Storage_ID"]);
                             query = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                             MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                             comm.ExecuteNonQuery();

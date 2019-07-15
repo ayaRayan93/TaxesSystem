@@ -344,7 +344,7 @@ namespace MainSystem
                         {
                             for(int i=0;i<listBoxControlBills.Items.Count;i++)
                             {
-                                if ((Convert.ToInt16(listBoxControlBills.Items[i].ToString().Split(':')[0].Trim()) == billNumb))
+                                if ((Convert.ToInt32(listBoxControlBills.Items[i].ToString().Split(':')[0].Trim()) == billNumb))
                                 {
                                     string q = "select Branch_Name from branch where Branch_ID=" + listBoxControlBranchID.Items[i].ToString();
                                     MySqlCommand c = new MySqlCommand(q, dbconnection);
@@ -391,10 +391,10 @@ namespace MainSystem
                         {
                             connectionReader3.Close();
                             //comDelegate.Text = dataReader["Delegate_Name"].ToString();
-                            //int d = Convert.ToInt16(dataReader["Delegate_ID"].ToString());
+                            //int d = Convert.ToInt32(dataReader["Delegate_ID"].ToString());
                             //comDelegate.SelectedValue = d;
 
-                            int ci = Convert.ToInt16(dataReader["Customer_ID"].ToString());
+                            int ci = Convert.ToInt32(dataReader["Customer_ID"].ToString());
                             if (dataReader["Customer_Type"].ToString() == "عميل")
                             {
                                 radClient.Checked = true;
@@ -472,7 +472,7 @@ namespace MainSystem
                             #region طقم
                             else if (dataReader["Type"].ToString().Trim() == "طقم")
                             {
-                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='طقم'";
+                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt32(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='طقم'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -519,7 +519,7 @@ namespace MainSystem
                             #region عرض
                             else if (dataReader["Type"].ToString().Trim() == "عرض")
                             {
-                                query = "select distinct offer.Offer_ID, offer.Offer_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',offer.Price as 'السعر',(offer.Price*dash_details.Quantity) as 'الاجمالى',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM offer INNER JOIN dash_details ON dash_details.Data_ID = offer.Offer_ID INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where offer.Offer_ID=" + Convert.ToInt16(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='عرض'";
+                                query = "select distinct offer.Offer_ID, offer.Offer_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',offer.Price as 'السعر',(offer.Price*dash_details.Quantity) as 'الاجمالى',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM offer INNER JOIN dash_details ON dash_details.Data_ID = offer.Offer_ID INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where offer.Offer_ID=" + Convert.ToInt32(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + EmpBranchId + " and dash_details.Type='عرض'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -660,7 +660,7 @@ namespace MainSystem
                         {
                             if (row1["التسلسل"].ToString() != "" && row1["النوع"].ToString() != "")
                             {
-                                if (pakagesIDs[i] == Convert.ToInt16(row1["التسلسل"].ToString()) && pakagesTypes[i] == row1["النوع"].ToString())
+                                if (pakagesIDs[i] == Convert.ToInt32(row1["التسلسل"].ToString()) && pakagesTypes[i] == row1["النوع"].ToString())
                                 {
                                     gridView1.SetRowCellValue(j, "added", 0);
                                     gridView1.UnselectRow(j);
@@ -670,7 +670,7 @@ namespace MainSystem
                             }
                         }
 
-                        pakagesIDs.Add(Convert.ToInt16(row1["التسلسل"].ToString()));
+                        pakagesIDs.Add(Convert.ToInt32(row1["التسلسل"].ToString()));
                         pakagesTypes.Add(row1["النوع"].ToString());
                     }
 
@@ -682,7 +682,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
-                            Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar().ToString()) + 1;
+                            Branch_BillNumber = Convert.ToInt32(com.ExecuteScalar().ToString()) + 1;
                         }
 
                         query = "insert into customer_bill (RecivedType,Branch_BillNumber,Client_ID,Client_Name,Customer_ID,Customer_Name,Total_CostBD,Total_CostAD,Total_Discount,Bill_Date,Type_Buy,Branch_ID,Branch_Name,Employee_ID,Employee_Name,Shipped_Date) values (@RecivedType,@Branch_BillNumber,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Total_CostBD,@Total_CostAD,@Total_Discount,@Bill_Date,@Type_Buy,@Branch_ID,@Branch_Name,@Employee_ID,@Employee_Name,@Shipped_Date)";
@@ -691,7 +691,7 @@ namespace MainSystem
                         if (txtClientID.Text != "")
                         {
                             com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                            com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                            com.Parameters["@Client_ID"].Value = Convert.ToInt32(txtClientID.Text);
                             com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                             com.Parameters["@Client_Name"].Value = comClient.Text;
                         }
@@ -707,7 +707,7 @@ namespace MainSystem
                         if (txtCustomerID.Text != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                            com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                            com.Parameters["@Customer_ID"].Value = Convert.ToInt32(txtCustomerID.Text);
                             com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
                             com.Parameters["@Customer_Name"].Value = comEngCon.Text;
                         }
@@ -770,7 +770,7 @@ namespace MainSystem
                                 com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                                 com.Parameters["@CustomerBill_ID"].Value = CustomerBill_ID;
                                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                                com.Parameters["@Data_ID"].Value = Convert.ToInt16(row1["التسلسل"].ToString());
+                                com.Parameters["@Data_ID"].Value = Convert.ToInt32(row1["التسلسل"].ToString());
                                 com.Parameters.Add("@Type", MySqlDbType.VarChar);
                                 com.Parameters["@Type"].Value = row1["النوع"].ToString();
                                 com.Parameters.Add("@Price", MySqlDbType.Decimal);
@@ -804,7 +804,7 @@ namespace MainSystem
                                 com.Parameters.Add("@Cartons", MySqlDbType.Int16);
                                 com.Parameters["@Cartons"].Value = row1["اجمالى الكراتين"].ToString();
                                 com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
-                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(row1["Delegate_ID"].ToString());
+                                com.Parameters["@Delegate_ID"].Value = Convert.ToInt32(row1["Delegate_ID"].ToString());
                                 com.ExecuteNonQuery();
                                 
                             }
@@ -824,7 +824,7 @@ namespace MainSystem
                             com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                             com.Parameters["@CustomerBill_ID"].Value = CustomerBill_ID;
                             com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
-                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(listBoxControlDelegateId.Items[i].ToString());
+                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt32(listBoxControlDelegateId.Items[i].ToString());
                             com.ExecuteNonQuery();
                         }*/
 
@@ -1164,7 +1164,7 @@ namespace MainSystem
 
                             if (storageQ >= productQ)
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1174,7 +1174,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1212,7 +1212,7 @@ namespace MainSystem
 
                             if (storageQ > productQ)
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1221,7 +1221,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1259,7 +1259,7 @@ namespace MainSystem
 
                             if (storageQ > productQ)
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + (storageQ - productQ) + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();
@@ -1268,7 +1268,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                id = Convert.ToInt16(dr2["Storage_ID"].ToString());
+                                id = Convert.ToInt32(dr2["Storage_ID"].ToString());
                                 q = "update storage set Total_Meters=" + 0 + " where Storage_ID=" + id;
                                 MySqlCommand comm = new MySqlCommand(q, dbconnection);
                                 comm.ExecuteNonQuery();

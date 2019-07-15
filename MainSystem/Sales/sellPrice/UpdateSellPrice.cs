@@ -294,7 +294,7 @@ namespace MainSystem
                 if (row != null)
                 {
                     txtCode.Text = row[1].ToString();
-                    id = Convert.ToInt16(row[0].ToString());
+                    id = Convert.ToInt32(row[0].ToString());
                     String code = txtCode.Text;
                     displayCode(code);
                 }
@@ -330,7 +330,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
                                 String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "قطعى");
@@ -345,7 +345,7 @@ namespace MainSystem
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
 
                                 //insert into Archif Table
                                 query = "INSERT INTO oldsellprice (Sell_Discount,Price_Type, Sell_Price, ProfitRatio, Data_ID, Price,Last_Price, PercentageDelegate,Date) VALUES(?Sell_Discount,?Price_Type,?Sell_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?PercentageDelegate,?Date)";
@@ -384,7 +384,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
 
                                 string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + row[0].ToString();
 
@@ -403,7 +403,7 @@ namespace MainSystem
 
                                 command.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
 
                                 //insert into Archif table
                                 query = "INSERT INTO oldsellprice (Last_Price,Price_Type,Sell_Price,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Last_Price,?Price_Type,?Sell_Price,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
@@ -446,7 +446,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
-                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
 
                                 String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Last_Price=@Last_Price,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();
 
@@ -496,7 +496,7 @@ namespace MainSystem
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
 
 
                                 //insert into Archif Table
@@ -559,7 +559,7 @@ namespace MainSystem
                             {
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[listOfSelectedRows[i]]));
 
-                                additionalIncreaseSellPrice(Convert.ToInt16(row[0].ToString()));
+                                additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
 
                                 string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Sell_Price=@Sell_Price*/"Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + row[0].ToString();
 
@@ -600,7 +600,7 @@ namespace MainSystem
                                 command.ExecuteNonQuery();
 
 
-                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt16(row[0].ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
 
                                 //insert into Archif table
                                 query = "INSERT INTO oldsellprice (Price_Type,Data_ID,Sell_Discount,Price,Normal_Increase,Categorical_Increase,PercentageDelegate,Date) VALUES (?Price_Type,?Data_ID,?Sell_Discount,?Price,?Normal_Increase,?Categorical_Increase,?PercentageDelegate,?Date)";
@@ -827,7 +827,7 @@ namespace MainSystem
                     if (row != null)
                     {
                         txtCode.Text = row[2].ToString();
-                        id = Convert.ToInt16(row[0].ToString());
+                        id = Convert.ToInt32(row[0].ToString());
                         String code = txtCode.Text;
                         displayCode(code);
                         setData(row);
@@ -1113,11 +1113,11 @@ namespace MainSystem
         public void displayCode(string code)
         {
             char[] arrCode = code.ToCharArray();
-            txtCodePart1.Text = Convert.ToInt16(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
-            txtCodePart2.Text = Convert.ToInt16(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString()) + "";
-            txtCodePart3.Text = Convert.ToInt16(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
-            txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
-            txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
+            txtCodePart1.Text = Convert.ToInt32(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
+            txtCodePart2.Text = Convert.ToInt32(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString()) + "";
+            txtCodePart3.Text = Convert.ToInt32(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
+            txtCodePart4.Text = Convert.ToInt32(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString()) + "";
+            txtCodePart5.Text = "" + Convert.ToInt32(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
 
         //for update
@@ -1263,7 +1263,7 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(queryx, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
-                    oldSellPrice_ID = Convert.ToInt16(com.ExecuteScalar());
+                    oldSellPrice_ID = Convert.ToInt32(com.ExecuteScalar());
                 }
 
                 foreach (DataGridViewRow item in dataGridView1.Rows)

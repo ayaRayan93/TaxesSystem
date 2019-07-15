@@ -1063,7 +1063,7 @@ namespace MainSystem
                 dbconnection.Open();
                 string reader = command.ExecuteScalar().ToString();
                 labelNotifySpecialOrderPurchase.Text = reader;
-                if (Convert.ToInt16(reader) > 0)
+                if (Convert.ToInt32(reader) > 0)
                 {
                     labelNotifySpecialOrderPurchase.Visible = true;
                 }

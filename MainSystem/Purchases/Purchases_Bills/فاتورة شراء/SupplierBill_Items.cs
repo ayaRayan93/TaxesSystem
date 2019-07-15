@@ -16,6 +16,7 @@ namespace MainSystem
         public double Normal_Increase { get; set; }
         public double Categorical_Increase { get; set; }
         public double Last_Price { get; set; }
+        public double DiscountRatio { get; set; }
         public double Discount { get; set; }
         public double PriceA { get; set; }
     }

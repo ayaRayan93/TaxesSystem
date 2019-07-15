@@ -104,7 +104,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
+                                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
                                 }
 
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);

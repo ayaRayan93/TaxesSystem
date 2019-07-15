@@ -60,7 +60,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     checkEditSets.Checked = false;
-                    displaySets(Convert.ToInt16(comSet.SelectedValue.ToString()));
+                    displaySets(Convert.ToInt32(comSet.SelectedValue.ToString()));
                     /*dbconnection.Open();
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم', 'السعر', 'الخصم', 'بعد الخصم', 'الكمية',sets.Description as 'الوصف',set_photo.Photo as 'الصورة' FROM sets LEFT JOIN set_photo ON set_photo.Set_ID = sets.Set_ID where sets.Set_ID=0", dbconnection);

@@ -324,7 +324,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
-                                    displayGroup_Type(Convert.ToInt16(txtType1.Text));
+                                    displayGroup_Type(Convert.ToInt32(txtType1.Text));
                                     Name = (string)com.ExecuteScalar();
                                     comType.Text = Name;
                                     if (txtType1.Text == "1")
@@ -347,7 +347,7 @@ namespace MainSystem
                                     comTypeProduct.Text = Name;
 
                                     txtFactory2.Focus();
-                                    dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt16(txtType2.Text));
+                                    dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt32(txtType2.Text));
                                     dataGridViewProduct.Columns[0].Width = 50;
                                   
                                 }
@@ -381,7 +381,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
-                                    displayGroup_Factory(Convert.ToInt16(txtFactory1.Text));
+                                    displayGroup_Factory(Convert.ToInt32(txtFactory1.Text));
                                     Name = (string)com.ExecuteScalar();
                                     comFactory.Text = Name;
                                   
@@ -403,7 +403,7 @@ namespace MainSystem
                                     comFactoryGroup.Text = Name;
 
                                     txtGroup2.Focus();
-                                    dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
+                                    dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt32(txtFactory2.Text));
                                     dataGridViewProduct.Columns[0].Width = 50;
                                  
                                 }
@@ -441,7 +441,7 @@ namespace MainSystem
                                     comGroup.Text = Name;
 
                                     txtProduct.Focus();
-                                    displayProduct_Group(Convert.ToInt16(txtGroup2.Text));
+                                    displayProduct_Group(Convert.ToInt32(txtGroup2.Text));
                                 }
                                 else
                                 {
@@ -506,7 +506,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         if (com.ExecuteScalar() != null)
                         {
-                            displayGroup_Type(Convert.ToInt16(txtType1.Text));
+                            displayGroup_Type(Convert.ToInt32(txtType1.Text));
                             Name = (string)com.ExecuteScalar();
                             comType.Text = Name;
                             if (txtType1.Text == "1")
@@ -529,7 +529,7 @@ namespace MainSystem
                             comTypeProduct.Text = Name;
 
                             txtFactory2.Focus();
-                            dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt16(txtType2.Text));
+                            dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt32(txtType2.Text));
                             dataGridViewProduct.Columns[0].Width = 50;
 
                         }
@@ -545,7 +545,7 @@ namespace MainSystem
                             MySqlCommand com3 = new MySqlCommand(query, dbconnection);
                             if (com3.ExecuteScalar() != null)
                             {
-                                displayColor(Convert.ToInt16(txtType3.Text));
+                                displayColor(Convert.ToInt32(txtType3.Text));
                                 Name = (string)com3.ExecuteScalar();
                                 comType2.Text = Name;
                                 txtColor.Focus();
@@ -570,7 +570,7 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() != null)
                             {
-                                displayGroup_Factory(Convert.ToInt16(txtFactory1.Text));
+                                displayGroup_Factory(Convert.ToInt32(txtFactory1.Text));
                                 Name = (string)com.ExecuteScalar();
                                 comFactory.Text = Name;
 
@@ -592,7 +592,7 @@ namespace MainSystem
                             comFactoryGroup.Text = Name;
 
                             txtGroup2.Focus();
-                            dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
+                            dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt32(txtFactory2.Text));
                             dataGridViewProduct.Columns[0].Width = 50;
 
                         }
@@ -639,7 +639,7 @@ namespace MainSystem
                                 comGroup.Text = Name;
 
                                 txtProduct.Focus();
-                                displayProduct_Group(Convert.ToInt16(txtGroup2.Text));
+                                displayProduct_Group(Convert.ToInt32(txtGroup2.Text));
                             }
                             else
                             {
@@ -743,7 +743,7 @@ namespace MainSystem
                         query = "select Type_ID from type order by Type_ID desc limit 1";
                         com = new MySqlCommand(query, dbconnection);
                         
-                        UserControl.ItemRecord("type","اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"",dbconnection);
+                        UserControl.ItemRecord("type","اضافة",Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now,"",dbconnection);
                       
                         displayType();
                         txtType.Text = "";
@@ -792,7 +792,7 @@ namespace MainSystem
                                 query = "select Type_ID from type order by Type_ID desc limit 1";
                                 com = new MySqlCommand(query, dbconnection);
 
-                                UserControl.ItemRecord("type", "add", Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("type", "add", Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
 
                                 displayType();
                                 txtType.Text = "";
@@ -826,7 +826,7 @@ namespace MainSystem
                 if (row1 != null)
                 {
                    
-                    typeUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    typeUpdateId = Convert.ToInt32(row1.Cells[0].Value.ToString());
                     string query = "select Type_Name,TypeCoding_Method from type where Type_ID=" + typeUpdateId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
@@ -903,13 +903,13 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(storeRow.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(storeRow.Cells[0].Value.ToString());
                         string query = "delete from type where Type_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                         updateTablesDB("type", "Type_ID", id);
                  
-                        UserControl.ItemRecord("type", "حذف",Convert.ToInt16(storeRow.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("type", "حذف",Convert.ToInt32(storeRow.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
 
                         displayType();
                         txtType.Focus();
@@ -951,11 +951,11 @@ namespace MainSystem
 
                             query = "select Factory_ID from factory order by Factory_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            int factory_ID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            int factory_ID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                             for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
                             {
-                                int Type_ID = Convert.ToInt16(checkedListBox1.CheckedItems[i].ToString().Split('\t')[1]);
+                                int Type_ID = Convert.ToInt32(checkedListBox1.CheckedItems[i].ToString().Split('\t')[1]);
                                 query = "insert into type_factory (Type_ID,Factory_ID) values (@Type_ID,@Factory_ID)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Type_ID", MySqlDbType.Int16);
@@ -969,7 +969,7 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             UserControl.ItemRecord("factory", "اضافة", factory_ID, DateTime.Now,"", dbconnection);
 
-                            displayFactory(Convert.ToInt16(comType.SelectedValue));
+                            displayFactory(Convert.ToInt32(comType.SelectedValue));
                             txtFactory.Text = "";
                             for (int j = 0; j < checkedListBox1.Items.Count; j++)
                             {
@@ -1022,11 +1022,11 @@ namespace MainSystem
 
                                     query = "select Factory_ID from factory order by Factory_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
-                                    int factory_ID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                    int factory_ID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                                     for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
                                     {
-                                        int Type_ID = Convert.ToInt16(checkedListBox1.CheckedItems[i].ToString().Split('\t')[1]);
+                                        int Type_ID = Convert.ToInt32(checkedListBox1.CheckedItems[i].ToString().Split('\t')[1]);
                                         query = "insert into type_factory (Type_ID,Factory_ID) values (@Type_ID,@Factory_ID)";
                                         com = new MySqlCommand(query, dbconnection);
                                         com.Parameters.Add("@Type_ID", MySqlDbType.Int16);
@@ -1041,7 +1041,7 @@ namespace MainSystem
                                     com = new MySqlCommand(query, dbconnection);
                                     UserControl.ItemRecord("factory", "اضافة", factory_ID, DateTime.Now, "", dbconnection);
 
-                                   // displayFactory(Convert.ToInt16(comType.SelectedValue));
+                                   // displayFactory(Convert.ToInt32(comType.SelectedValue));
                                     txtFactory.Text = "";
                                     for (int j = 0; j < checkedListBox1.Items.Count; j++)
                                     {
@@ -1098,7 +1098,7 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
                                 for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
                                 {
-                                    int Type_ID = Convert.ToInt16(checkedListBox1.CheckedItems[i].ToString().Split('\t')[1]);
+                                    int Type_ID = Convert.ToInt32(checkedListBox1.CheckedItems[i].ToString().Split('\t')[1]);
                                     query = "insert into type_factory (Type_ID,Factory_ID) values (@Type_ID,@Factory_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Type_ID", MySqlDbType.Int16);
@@ -1113,7 +1113,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, dbconnection);
                                 UserControl.ItemRecord("factory", "تعديل", id, DateTime.Now,"", dbconnection);
 
-                                displayFactory(Convert.ToInt16(comType.SelectedValue));
+                                displayFactory(Convert.ToInt32(comType.SelectedValue));
                                 txtFactory.Text = "";
                                 btnSave.Visible = false;
                                 for (int j = 0; j < checkedListBox1.Items.Count; j++)
@@ -1157,21 +1157,21 @@ namespace MainSystem
                 row1 = dataGridViewFactory.Rows[dataGridViewFactory.SelectedCells[0].RowIndex];
                 if (row1 != null)
                 {
-                    id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                     string query = "select Type_ID from type_factory where Factory_ID="+id;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     List<int> idList = new List<int>();
                     while (dr.Read())
                     {
-                        idList.Add(Convert.ToInt16(dr["Type_ID"].ToString()));
+                        idList.Add(Convert.ToInt32(dr["Type_ID"].ToString()));
                     }
                     dr.Close();
                     dbconnection.Close();
                     txtFactory.Text = row1.Cells[1].Value.ToString();
                     for (int i = 0; i < checkedListBox1.Items.Count; i++)
                     {
-                        int Type_ID = Convert.ToInt16(checkedListBox1.Items[i].ToString().Split('\t')[1]);
+                        int Type_ID = Convert.ToInt32(checkedListBox1.Items[i].ToString().Split('\t')[1]);
                         for (int j = 0; j < idList.Count; j++)
                         {
                             if (Type_ID == idList[j])
@@ -1203,14 +1203,14 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                         string query = "delete from factory where Factory_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
                         updateTablesDB("factory", "Factory_ID", id);
 
-                        UserControl.ItemRecord("factory", "حذف",Convert.ToInt16(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("factory", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
 
                         displayFactory();
 
@@ -1269,11 +1269,11 @@ namespace MainSystem
                             }
                             else
                             {
-                                com.Parameters.AddWithValue("@Factory_ID", -Convert.ToInt16(comType.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", -Convert.ToInt32(comType.SelectedValue));
                             }
-                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comType.SelectedValue));
                             com.ExecuteNonQuery();
-                            displayGroup(-Convert.ToInt16(comType.SelectedValue));
+                            displayGroup(-Convert.ToInt32(comType.SelectedValue));
 
                         }
                         else
@@ -1283,10 +1283,10 @@ namespace MainSystem
                                 query = "insert into groupo (Group_Name,Factory_ID,Type_ID) values (@name,@Factory_ID,@Type_ID)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.AddWithValue("@name", txtGroup.Text);
-                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactory.SelectedValue));
-                                com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactory.SelectedValue));
+                                com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comType.SelectedValue));
                                 com.ExecuteNonQuery();
-                                displayGroup(Convert.ToInt16(comFactory.SelectedValue));
+                                displayGroup(Convert.ToInt32(comFactory.SelectedValue));
                             }
                             else
                             {
@@ -1297,7 +1297,7 @@ namespace MainSystem
                         dbconnection.Open();
                         query = "select Group_ID from groupo order by Group_ID desc limit 1";
                         com = new MySqlCommand(query, dbconnection);
-                        UserControl.ItemRecord("groupo", "اضافة", Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
+                        UserControl.ItemRecord("groupo", "اضافة", Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
 
                         txtGroup.Text = "";
                     }
@@ -1347,11 +1347,11 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        com.Parameters.AddWithValue("@Factory_ID", -Convert.ToInt16(comType.SelectedValue));
+                                        com.Parameters.AddWithValue("@Factory_ID", -Convert.ToInt32(comType.SelectedValue));
                                     }
-                                    com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                                    com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comType.SelectedValue));
                                     com.ExecuteNonQuery();
-                                    displayGroup(-Convert.ToInt16(comType.SelectedValue));
+                                    displayGroup(-Convert.ToInt32(comType.SelectedValue));
 
                                 }
                                 else
@@ -1361,10 +1361,10 @@ namespace MainSystem
                                         query = "insert into groupo (Group_Name,Factory_ID,Type_ID) values (@name,@Factory_ID,@Type_ID)";
                                         com = new MySqlCommand(query, dbconnection);
                                         com.Parameters.AddWithValue("@name", txtGroup.Text);
-                                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactory.SelectedValue));
-                                        com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactory.SelectedValue));
+                                        com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comType.SelectedValue));
                                         com.ExecuteNonQuery();
-                                        displayGroup(Convert.ToInt16(comFactory.SelectedValue));
+                                        displayGroup(Convert.ToInt32(comFactory.SelectedValue));
                                     }
                                     else
                                     {
@@ -1375,7 +1375,7 @@ namespace MainSystem
                                 dbconnection.Open();
                                 query = "select Group_ID from groupo order by Group_ID desc limit 1";
                                 com = new MySqlCommand(query, dbconnection);
-                                UserControl.ItemRecord("groupo", "اضافة", Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("groupo", "اضافة", Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
 
                                 txtGroup.Text = "";
                             }
@@ -1422,7 +1422,7 @@ namespace MainSystem
 
                         flagFactory = true;
 
-                        displayGroup_Type(Convert.ToInt16(comType.SelectedValue.ToString()));
+                        displayGroup_Type(Convert.ToInt32(comType.SelectedValue.ToString()));
                         
                         label6.Visible = true;
                         comFactory.Visible = true;
@@ -1430,7 +1430,7 @@ namespace MainSystem
                     }
                     else
                     {
-                        displayGroup_Type(Convert.ToInt16(comType.SelectedValue.ToString()));
+                        displayGroup_Type(Convert.ToInt32(comType.SelectedValue.ToString()));
 
                         label6.Visible = false;
                         comFactory.Visible = false;
@@ -1466,7 +1466,7 @@ namespace MainSystem
             {
                 if (flagFactory)
                 {
-                    displayGroup_Factory(Convert.ToInt16(comFactory.SelectedValue));
+                    displayGroup_Factory(Convert.ToInt32(comFactory.SelectedValue));
                     
                     txtFactory1.Text = "";
                     txtGroup.Focus();
@@ -1503,7 +1503,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                com.Parameters.AddWithValue("@Factory_ID", -Convert.ToInt16(comType.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", -Convert.ToInt32(comType.SelectedValue));
                             }
                             com.Parameters.AddWithValue("@Type_ID", comType.SelectedValue);
                             com.ExecuteNonQuery();
@@ -1517,10 +1517,10 @@ namespace MainSystem
                                 query = "update  groupo set Group_Name=@Group_Name,Factory_ID=@Factory_ID,Type_ID=@Type_ID where Group_ID=" + groupUpdateId;
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.AddWithValue("@Group_Name", txtGroup.Text);
-                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactory.SelectedValue));
-                                com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comType.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactory.SelectedValue));
+                                com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comType.SelectedValue));
                                 com.ExecuteNonQuery();
-                                displayGroup(Convert.ToInt16(comFactory.SelectedValue));
+                                displayGroup(Convert.ToInt32(comFactory.SelectedValue));
                             }
                             else
                             {
@@ -1567,7 +1567,7 @@ namespace MainSystem
                 row1 = dataGridViewGroup.Rows[dataGridViewGroup.SelectedCells[0].RowIndex];
                 if (row1 != null)
                 {
-                    groupUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    groupUpdateId = Convert.ToInt32(row1.Cells[0].Value.ToString());
                     string query = "select distinct * from groupo  where Group_ID=" + groupUpdateId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader drGroup = com.ExecuteReader();
@@ -1580,7 +1580,7 @@ namespace MainSystem
                     drGroup.Close();
                     txtType1.Text = type;
                     txtGroup.Text = group;
-                    if (Convert.ToInt16(factory) > 0)
+                    if (Convert.ToInt32(factory) > 0)
                         txtFactory1.Text = factory;
                     else
                     {
@@ -1612,17 +1612,17 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                         string query = "delete from groupo where Group_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                         
                         updateTablesDB("groupo", "Group_ID", id);
 
-                        UserControl.ItemRecord("groupo", "حذف",Convert.ToInt16(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("groupo", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
                         if (comFactory.Text != "")
                         {
-                            displayGroup(Convert.ToInt16(comFactory.SelectedValue));
+                            displayGroup(Convert.ToInt32(comFactory.SelectedValue));
                         }
                         else
                         {
@@ -1675,11 +1675,11 @@ namespace MainSystem
                             query = "insert into product (Product_Name,Type_ID) values (@name,@Type_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtProduct.Text);
-                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comTypeProduct.SelectedValue));
+                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comTypeProduct.SelectedValue));
                             com.ExecuteNonQuery();
                             query = "select Product_ID from product order by Product_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            int id = Convert.ToInt16(com.ExecuteScalar());
+                            int id = Convert.ToInt32(com.ExecuteScalar());
 
                             query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue;
                             com = new MySqlCommand(query, dbconnection);
@@ -1689,14 +1689,14 @@ namespace MainSystem
                                 int Group_ID = 0;
                                 for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                                 {
-                                    Group_ID = Convert.ToInt16(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
+                                    Group_ID = Convert.ToInt32(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
                                     query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                     com.Parameters["@Product_ID"].Value = id;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
-                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                     com.ExecuteNonQuery();
                                 }
@@ -1707,11 +1707,11 @@ namespace MainSystem
                                 query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.AddWithValue("@Product_ID", id);
-                                com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(comGroup.SelectedValue));
-                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                com.Parameters.AddWithValue("@Group_ID", Convert.ToInt32(comGroup.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                 com.ExecuteNonQuery();
-                                displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
+                                displayProduct_Group(Convert.ToInt32(comGroup.SelectedValue));
                             }
 
                             UserControl.ItemRecord("product", "اضافة", id , DateTime.Now,"", dbconnection);
@@ -1727,25 +1727,25 @@ namespace MainSystem
                     }
                     else
                     {
-                        int Product_ID = Convert.ToInt16(com.ExecuteScalar());
+                        int Product_ID = Convert.ToInt32(com.ExecuteScalar());
 
                         for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                         {
-                            int Group_ID = Convert.ToInt16(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
+                            int Group_ID = Convert.ToInt32(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
                             query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                             com.Parameters["@Product_ID"].Value = Product_ID;
                             com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                             com.Parameters["@Group_ID"].Value = Group_ID;
-                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                             com.ExecuteNonQuery();
                         }
 
                         txtProduct.Text = "";
                         txtProduct.Focus();
-                        displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
+                        displayProduct_Factory(Convert.ToInt32(txtFactory2.Text));
                     }
                 }
                 else
@@ -1779,11 +1779,11 @@ namespace MainSystem
                                     query = "insert into product (Product_Name,Type_ID) values (@name,@Type_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.AddWithValue("@name", txtProduct.Text);
-                                    com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(comTypeProduct.SelectedValue));
+                                    com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(comTypeProduct.SelectedValue));
                                     com.ExecuteNonQuery();
                                     query = "select Product_ID from product order by Product_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
-                                    int id = Convert.ToInt16(com.ExecuteScalar());
+                                    int id = Convert.ToInt32(com.ExecuteScalar());
                                     query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue;
                                     com = new MySqlCommand(query, dbconnection);
                                     int TypeCoding_Method = (int)com.ExecuteScalar();
@@ -1792,14 +1792,14 @@ namespace MainSystem
                                         int Group_ID = 0;
                                         for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                                         {
-                                            Group_ID = Convert.ToInt16(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
+                                            Group_ID = Convert.ToInt32(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
                                             query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                             com = new MySqlCommand(query, dbconnection);
                                             com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                             com.Parameters["@Product_ID"].Value = id;
                                             com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                             com.Parameters["@Group_ID"].Value = Group_ID;
-                                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                            com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                             com.ExecuteNonQuery();
                                         }
@@ -1810,11 +1810,11 @@ namespace MainSystem
                                         query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                         com = new MySqlCommand(query, dbconnection);
                                         com.Parameters.AddWithValue("@Product_ID", id);
-                                        com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(comGroup.SelectedValue));
-                                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                        com.Parameters.AddWithValue("@Group_ID", Convert.ToInt32(comGroup.SelectedValue));
+                                        com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                         com.ExecuteNonQuery();
-                                        displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
+                                        displayProduct_Group(Convert.ToInt32(comGroup.SelectedValue));
                                     }
                                     UserControl.ItemRecord("product", "اضافة", id, DateTime.Now, "", dbconnection);
 
@@ -1830,18 +1830,18 @@ namespace MainSystem
                             }
                             else
                             {
-                                int Product_ID = Convert.ToInt16(com.ExecuteScalar());
+                                int Product_ID = Convert.ToInt32(com.ExecuteScalar());
 
                                 for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                                 {
-                                    int Group_ID = Convert.ToInt16(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
+                                    int Group_ID = Convert.ToInt32(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
                                     query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                     com.Parameters["@Product_ID"].Value = Product_ID;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
-                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                     com.ExecuteNonQuery();
                                 }
@@ -1849,7 +1849,7 @@ namespace MainSystem
 
                                 txtProduct.Text = "";
                                 txtProduct.Focus();
-                                displayProduct_Factory(Convert.ToInt16(txtFactory2.Text));
+                                displayProduct_Factory(Convert.ToInt32(txtFactory2.Text));
                             }
                         }
                         else
@@ -1871,7 +1871,7 @@ namespace MainSystem
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    displayProduct_Group(Convert.ToInt16(txtGroup2.Text));
+                    displayProduct_Group(Convert.ToInt32(txtGroup2.Text));
                     txtProduct.Focus();
                     txtProduct.SelectAll();
                 }
@@ -1902,7 +1902,7 @@ namespace MainSystem
                     }
                   
                     dataGridViewProduct.DataSource = null;
-                    dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt16(comFactoryGroup.SelectedValue));
+                    dataGridViewProduct.DataSource = displayProduct_Factory(Convert.ToInt32(comFactoryGroup.SelectedValue));
                     dataGridViewProduct.Columns[0].Width = 50;
                 }
             }
@@ -1917,7 +1917,7 @@ namespace MainSystem
             {
                 if (flagGroup)
                 {
-                    displayProduct_Group(Convert.ToInt16(txtGroup2.Text));
+                    displayProduct_Group(Convert.ToInt32(txtGroup2.Text));
                     txtProduct.Focus();
                     txtProduct.SelectAll();
                 }         
@@ -1939,13 +1939,13 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                         string query = "delete from product where Product_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                         updateTablesDB("product", "Product_ID", id);
 
-                        UserControl.ItemRecord("product", "حذف",Convert.ToInt16(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("product", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
 
                         dataGridViewProduct.DataSource = null;
                         displayProductAll();                     
@@ -2035,7 +2035,7 @@ namespace MainSystem
                         txtGroup2.Visible = true;
                         label11.Visible = true;
                     }
-                    dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt16(txtType2.Text));
+                    dataGridViewProduct.DataSource = displayProduct_Type(Convert.ToInt32(txtType2.Text));
                     dataGridViewProduct.Columns[0].Width = 50;
                     flagFactoryP = true;
                 }
@@ -2055,7 +2055,7 @@ namespace MainSystem
                 dbconnection.Close();
                 dbconnection.Open();
                 DataGridViewRow row1 = dataGridViewProduct.Rows[dataGridViewProduct.SelectedCells[0].RowIndex];
-                productUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                productUpdateId = Convert.ToInt32(row1.Cells[0].Value.ToString());
                 string queryx = "select distinct * from  product_factory_group inner join product on product_factory_group.Product_ID=product.Product_ID where product_factory_group.Product_ID=" + productUpdateId;
                 MySqlCommand com = new MySqlCommand(queryx,dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
@@ -2133,7 +2133,7 @@ namespace MainSystem
                             query = "update  product set Product_Name=@name,Type_ID=@Type_ID where Product_ID="+ productUpdateId;
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtProduct.Text);
-                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt16(txtType2.Text));
+                            com.Parameters.AddWithValue("@Type_ID", Convert.ToInt32(txtType2.Text));
                            com.ExecuteNonQuery();
 
                             query = "delete from product_factory_Group where Product_ID=" + productUpdateId;
@@ -2148,14 +2148,14 @@ namespace MainSystem
                                 int Group_ID = 0;
                                 for (int i = 0; i < chListBoxGroup.CheckedItems.Count; i++)
                                 {
-                                    Group_ID = Convert.ToInt16(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
+                                    Group_ID = Convert.ToInt32(chListBoxGroup.CheckedItems[i].ToString().Split('\t')[1]);
                                     query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Product_ID", MySqlDbType.Int16);
                                     com.Parameters["@Product_ID"].Value = productUpdateId;
                                     com.Parameters.Add("@Group_ID", MySqlDbType.Int16);
                                     com.Parameters["@Group_ID"].Value = Group_ID;
-                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                    com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                     com.ExecuteNonQuery();
                                 }
@@ -2166,11 +2166,11 @@ namespace MainSystem
                                 query = "insert into product_factory_Group (Product_ID,Factory_ID,Group_ID) values (@Product_ID,@Factory_ID,@Group_ID)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.AddWithValue("@Product_ID", productUpdateId);
-                                com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(comGroup.SelectedValue));
-                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt16(comFactoryGroup.SelectedValue));
+                                com.Parameters.AddWithValue("@Group_ID", Convert.ToInt32(comGroup.SelectedValue));
+                                com.Parameters.AddWithValue("@Factory_ID", Convert.ToInt32(comFactoryGroup.SelectedValue));
 
                                 com.ExecuteNonQuery();
-                                displayProduct_Group(Convert.ToInt16(comGroup.SelectedValue));
+                                displayProduct_Group(Convert.ToInt32(comGroup.SelectedValue));
                             }
 
                             //int FactoryID = 0;
@@ -2259,7 +2259,7 @@ namespace MainSystem
             {
                 if (btnSave_productUpdate.Visible == true&& flagItemCheckGroup)
                 {
-                    int FactoryID = Convert.ToInt16(txtFactory2.Text);
+                    int FactoryID = Convert.ToInt32(txtFactory2.Text);
                     List<int> idList = new List<int>();
                     factory_Group mfactory_Group = new factory_Group();
                     foreach (factory_Group item in listFactory_Group)
@@ -2271,9 +2271,9 @@ namespace MainSystem
                         }
                     }
                     if (e.CurrentValue == CheckState.Unchecked)
-                        mfactory_Group.Factory_GroupsID.Add(Convert.ToInt16(chListBoxGroup.Items[e.Index].ToString().Split('\t')[1]));
+                        mfactory_Group.Factory_GroupsID.Add(Convert.ToInt32(chListBoxGroup.Items[e.Index].ToString().Split('\t')[1]));
                     else
-                        mfactory_Group.Factory_GroupsID.Remove(Convert.ToInt16(chListBoxGroup.Items[e.Index].ToString().Split('\t')[1]));
+                        mfactory_Group.Factory_GroupsID.Remove(Convert.ToInt32(chListBoxGroup.Items[e.Index].ToString().Split('\t')[1]));
 
                     for (int i = 0; i < listFactory_Group.Count; i++)
                     {
@@ -2315,7 +2315,7 @@ namespace MainSystem
                 if (comType2.Text != "")
                 {
                     dbconnection.Open();
-                    string query = "select Color_ID from color where Color_Name = '" + txtColor.Text + "' and Type_ID=" + Convert.ToInt16(comType2.SelectedValue);
+                    string query = "select Color_ID from color where Color_Name = '" + txtColor.Text + "' and Type_ID=" + Convert.ToInt32(comType2.SelectedValue);
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() == null)
                     {
@@ -2324,13 +2324,13 @@ namespace MainSystem
                             query = "insert into color (Color_Name,Type_ID) values (@name,@id)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtColor.Text);
-                            com.Parameters.AddWithValue("@id", Convert.ToInt16(comType2.SelectedValue));
+                            com.Parameters.AddWithValue("@id", Convert.ToInt32(comType2.SelectedValue));
                             com.ExecuteNonQuery();
                             query = "select Color_ID from color order by Color_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            UserControl.ItemRecord("color", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
+                            UserControl.ItemRecord("color", "اضافة",Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
-                            displayColor(Convert.ToInt16(comType2.SelectedValue));
+                            displayColor(Convert.ToInt32(comType2.SelectedValue));
                             txtColor.Text = "";
                         }
                         else
@@ -2366,7 +2366,7 @@ namespace MainSystem
                         if (comType2.Text != "")
                         {
                             dbconnection.Open();
-                            string query = "select Color_ID from color where Color_Name = '" + txtColor.Text + "' and Type_ID=" + Convert.ToInt16(comType2.SelectedValue);
+                            string query = "select Color_ID from color where Color_Name = '" + txtColor.Text + "' and Type_ID=" + Convert.ToInt32(comType2.SelectedValue);
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() == null)
                             {
@@ -2375,13 +2375,13 @@ namespace MainSystem
                                     query = "insert into color (Color_Name,Type_ID) values (@name,@id)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.AddWithValue("@name", txtColor.Text);
-                                    com.Parameters.AddWithValue("@id", Convert.ToInt16(comType2.SelectedValue));
+                                    com.Parameters.AddWithValue("@id", Convert.ToInt32(comType2.SelectedValue));
                                     com.ExecuteNonQuery();
                                     query = "select Color_ID from color order by Color_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
-                                    UserControl.ItemRecord("color", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
+                                    UserControl.ItemRecord("color", "اضافة",Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
-                                    displayColor(Convert.ToInt16(comType2.SelectedValue));
+                                    displayColor(Convert.ToInt32(comType2.SelectedValue));
                                     txtColor.Text = "";
                                     txtColor.Focus();
                                 }
@@ -2419,7 +2419,7 @@ namespace MainSystem
               
                 if (row1 != null)
                 {
-                    colorUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    colorUpdateId = Convert.ToInt32(row1.Cells[0].Value.ToString());
                     txtColor.Text = row1.Cells[1].Value.ToString();
                     dbconnection.Open();
                     
@@ -2512,18 +2512,18 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                         string query = "delete from color where Color_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
                         updateTablesDB("color", "Color_ID", id);
 
-                        UserControl.ItemRecord("color", "حذف",Convert.ToInt16(row1.Cells[0].Value), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("color", "حذف",Convert.ToInt32(row1.Cells[0].Value), DateTime.Now,"", dbconnection);
 
                         if (comType2.Text != "")
                         {
-                            displayColor(Convert.ToInt16(comType2.SelectedValue));
+                            displayColor(Convert.ToInt32(comType2.SelectedValue));
                         }
                         else
                         {
@@ -2567,7 +2567,7 @@ namespace MainSystem
                 if (comFactory2.Text != "")
                 {
                     dbconnection.Open();
-                    string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue) + " and Group_ID="+ txtGroup_Size.Text;
+                    string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt32(comFactory2.SelectedValue) + " and Group_ID="+ txtGroup_Size.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() == null)
                     {
@@ -2576,12 +2576,12 @@ namespace MainSystem
                             query = "insert into size (Size_Value,Factory_ID,Group_ID) values (@name,@id,@Group_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.AddWithValue("@name", txtSize.Text);
-                            com.Parameters.AddWithValue("@id", Convert.ToInt16(txtFactory3.Text));
-                            com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(txtGroup_Size.Text));
+                            com.Parameters.AddWithValue("@id", Convert.ToInt32(txtFactory3.Text));
+                            com.Parameters.AddWithValue("@Group_ID", Convert.ToInt32(txtGroup_Size.Text));
                             com.ExecuteNonQuery();
                             query = "select Product_ID from product order by Product_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            UserControl.ItemRecord("product", "اضافة",Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
+                            UserControl.ItemRecord("product", "اضافة",Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now,"", dbconnection);
 
                             displaySize_group();
                             txtSize.Text = "";
@@ -2619,7 +2619,7 @@ namespace MainSystem
                         if (comFactory2.Text != "")
                         {
                             dbconnection.Open();
-                            string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt16(comFactory2.SelectedValue)+ " and Group_ID=" + txtGroup_Size.Text; ;
+                            string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Factory_ID=" + Convert.ToInt32(comFactory2.SelectedValue)+ " and Group_ID=" + txtGroup_Size.Text; ;
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() == null)
                             {
@@ -2628,12 +2628,12 @@ namespace MainSystem
                                     query = "insert into size (Size_Value,Factory_ID,Group_ID) values (@name,@id,@Group_ID)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.AddWithValue("@name", txtSize.Text);
-                                    com.Parameters.AddWithValue("@id", Convert.ToInt16(txtFactory3.Text));
-                                    com.Parameters.AddWithValue("@Group_ID", Convert.ToInt16(txtGroup_Size.Text));
+                                    com.Parameters.AddWithValue("@id", Convert.ToInt32(txtFactory3.Text));
+                                    com.Parameters.AddWithValue("@Group_ID", Convert.ToInt32(txtGroup_Size.Text));
                                     com.ExecuteNonQuery();
                                     query = "select Product_ID from product order by Product_ID desc limit 1";
                                     com = new MySqlCommand(query, dbconnection);
-                                    UserControl.ItemRecord("product", "اضافة", Convert.ToInt16(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
+                                    UserControl.ItemRecord("product", "اضافة", Convert.ToInt32(com.ExecuteScalar().ToString()), DateTime.Now, "", dbconnection);
 
                                     displaySize_group();
                                     txtSize.Text = "";
@@ -2675,7 +2675,7 @@ namespace MainSystem
                 size = row1.Cells[1].Value.ToString();
                 if (row1 != null)
                 {
-                    SizeUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    SizeUpdateId = Convert.ToInt32(row1.Cells[0].Value.ToString());
                     string query = "select Factory_ID,Group_ID from size where Size_ID=" + SizeUpdateId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
@@ -2774,7 +2774,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtFactory3.Text != ""&& Convert.ToInt16(comGroup_Size.SelectedValue.ToString())>0)
+                if (txtFactory3.Text != ""&& Convert.ToInt32(comGroup_Size.SelectedValue.ToString())>0)
                 {
                    
                     txtGroup_Size.Text = comGroup_Size.SelectedValue.ToString();
@@ -2810,14 +2810,14 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                         string query = "delete from size where Size_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
                         updateTablesDB("size", "Size_ID", id);
 
-                        UserControl.ItemRecord("size", "حذف",Convert.ToInt16(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("size", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
 
                         if (comFactory2.Text != ""&&comGroup_Size.Text!="")
                         {
@@ -2941,7 +2941,7 @@ namespace MainSystem
                 row1 = dataGridViewSort.Rows[dataGridViewSort.SelectedCells[0].RowIndex];
                 if (row1 != null)
                 {
-                    SortUpdateId = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                    SortUpdateId = Convert.ToInt32(row1.Cells[0].Value.ToString());
                     string query = "select Sort_Value from sort where Sort_ID=" + SortUpdateId;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     txtSort.Text = com.ExecuteScalar().ToString();
@@ -2997,7 +2997,7 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        int id = Convert.ToInt16(row1.Cells[0].Value.ToString());
+                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
                         string query = "delete from sort where Sort_ID=" + id;
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
@@ -3286,7 +3286,7 @@ namespace MainSystem
                     }
                     else
                     {
-                        ids.Add(-Convert.ToInt16(dr[1].ToString()));
+                        ids.Add(-Convert.ToInt32(dr[1].ToString()));
                     }
                 }
                 else
@@ -3393,13 +3393,13 @@ namespace MainSystem
             int count = 0;
             while (dr.Read())
             {
-                idList.Add(Convert.ToInt16(dr["Group_ID"].ToString()));
+                idList.Add(Convert.ToInt32(dr["Group_ID"].ToString()));
                 count++;
             }
             dr.Close();
             for (int i = 0; i < chListBoxGroup.Items.Count; i++)
             {
-                int GroupID = Convert.ToInt16(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
+                int GroupID = Convert.ToInt32(chListBoxGroup.Items[i].ToString().Split('\t')[1]);
                 for (int j = 0; j < idList.Count; j++)
                 {
                     if (GroupID == idList[j])
@@ -3419,7 +3419,7 @@ namespace MainSystem
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
-                factory_Group factory_Group = new factory_Group(Convert.ToInt16(dr[0].ToString()),new List<int>());
+                factory_Group factory_Group = new factory_Group(Convert.ToInt32(dr[0].ToString()),new List<int>());
                 listFactory_Group.Add(factory_Group);
             }
             dr.Close();
@@ -3431,7 +3431,7 @@ namespace MainSystem
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    mfactory_Group.Factory_GroupsID.Add(Convert.ToInt16(dr[0].ToString()));
+                    mfactory_Group.Factory_GroupsID.Add(Convert.ToInt32(dr[0].ToString()));
 
                 }
                 dr.Close();

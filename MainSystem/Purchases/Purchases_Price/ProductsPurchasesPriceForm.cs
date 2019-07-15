@@ -165,7 +165,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -555,7 +555,7 @@ namespace MainSystem
 
                             comand.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("purchasing_price", "حذف", Convert.ToInt16(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
+                            UserControl.ItemRecord("purchasing_price", "حذف", Convert.ToInt32(dataTable.Rows[i][0].ToString()), DateTime.Now, "", dbconnection);
                          
                         }
 

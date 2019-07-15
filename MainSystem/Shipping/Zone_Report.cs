@@ -226,7 +226,7 @@ namespace MainSystem
                 panelAddZone.Visible = false;
                 panelUpdateZone.Visible = true;
                 DataRowView row1 = (DataRowView)gridView1.GetRow(e.RowHandle);
-                zoneId = Convert.ToInt16(row1[0].ToString());
+                zoneId = Convert.ToInt32(row1[0].ToString());
                 txtZoneNameUpdate.Text = row1[1].ToString();
                 zoneName = row1[1].ToString();
                 //display areas in this zone
@@ -344,7 +344,7 @@ namespace MainSystem
                             
                             q = "select Zone_ID from zone order by Zone_ID desc limit 1";
                             c = new MySqlCommand(q, dbConnection);
-                            zonId = Convert.ToInt16(c.ExecuteScalar().ToString());
+                            zonId = Convert.ToInt32(c.ExecuteScalar().ToString());
 
                             /*q = "select Zone_ID from area where Area_ID="+ item["Area_ID"].ToString();
                             c = new MySqlCommand(q, dbConnection);

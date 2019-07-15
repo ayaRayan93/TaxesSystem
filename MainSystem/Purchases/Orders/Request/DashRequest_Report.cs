@@ -191,7 +191,7 @@ namespace MainSystem
                     MySqlCommand comand = new MySqlCommand(query, conn);
                     comand.ExecuteNonQuery();
                     
-                    UserControl.ItemRecord("dash_orders", "حذف", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, "", conn);
+                    UserControl.ItemRecord("dash_orders", "حذف", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, "", conn);
                 }
                 conn.Close();
                 search();

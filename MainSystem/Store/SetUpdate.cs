@@ -467,14 +467,14 @@ namespace MainSystem
                 {
                     while (dr.Read())
                     {
-                        increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt16(updateRow[0].ToString()), Convert.ToInt16(dr["Store_ID"].ToString()));
+                        increaseItemsQuantityInDB(Convert.ToDouble(dr["الكمية"].ToString()), Convert.ToInt32(updateRow[0].ToString()), Convert.ToInt32(dr["Store_ID"].ToString()));
                     }
                     dr.Close();
                 }
                 ////////////////////
 
                 dbconnection.Open();
-                deleteSet(Convert.ToInt16(updateRow[0].ToString()));
+                deleteSet(Convert.ToInt32(updateRow[0].ToString()));
                 if (dataGridView2.Rows.Count > 0)
                 {
                     if (txtSetName.Text != "" )
@@ -528,7 +528,7 @@ namespace MainSystem
                             comand.ExecuteNonQuery();
                         }
                 
-                        int set_id = Convert.ToInt16(updateRow[0].ToString());
+                        int set_id = Convert.ToInt32(updateRow[0].ToString());
                         foreach (DataGridViewRow item in dataGridView2.Rows)
                         {
                             String query = "INSERT INTO set_Details (Set_ID,Data_ID,Quantity) VALUES (@Set_ID,@Data_ID,@Quantity)";
@@ -992,7 +992,7 @@ namespace MainSystem
                         double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         //if (storageQ > newQuantity)
                         //{
-                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        id = Convert.ToInt32(dr2["Storage_ID"]);
                         query = "update storage set Total_Meters=" + (storageQ + newQuantity) + " where Storage_ID=" + id;
                         MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                         comm.ExecuteNonQuery();
@@ -1035,7 +1035,7 @@ namespace MainSystem
                 if (txtType.Text == "2" || txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID=" + -1;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();

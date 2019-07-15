@@ -662,7 +662,7 @@ namespace MainSystem
         }
         public void bindUpdateEl3hataForm(DataRowView El3htaRow, CarEl3hata carEl3hata)
         {
-            CarElahataUpdate objForm = new CarElahataUpdate(Convert.ToInt16(El3htaRow[0].ToString()), carEl3hata, xtraTabControlCarsContent);
+            CarElahataUpdate objForm = new CarElahataUpdate(Convert.ToInt32(El3htaRow[0].ToString()), carEl3hata, xtraTabControlCarsContent);
 
             objForm.TopLevel = false;
             XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تعديل العهدة");
@@ -782,7 +782,7 @@ namespace MainSystem
         }
         public void bindUpdateIncomesForm(DataRowView incomesRow, CarIncomes carIncomes)
         {
-            CarIncomeUpdate objForm = new CarIncomeUpdate(Convert.ToInt16(incomesRow[0].ToString()), carIncomes, xtraTabControlCarsContent);
+            CarIncomeUpdate objForm = new CarIncomeUpdate(Convert.ToInt32(incomesRow[0].ToString()), carIncomes, xtraTabControlCarsContent);
 
             objForm.TopLevel = false;
             XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تعديل إيراد");
@@ -886,7 +886,7 @@ namespace MainSystem
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
-                int numDays = Convert.ToInt16(dr[1].ToString());
+                int numDays = Convert.ToInt32(dr[1].ToString());
 
                 if (numDays > 0)
                     contextMenuStrip1.Items.Add(dr[0].ToString() + ", باقي " + dr[1].ToString() + "يوم علي انتهاء معاد تجديد الرخصة ");
@@ -904,7 +904,7 @@ namespace MainSystem
             dr = com.ExecuteReader();
             while (dr.Read())
             {
-                int numDays = Convert.ToInt16(dr[1].ToString());
+                int numDays = Convert.ToInt32(dr[1].ToString());
 
                 if (numDays > 0)
                     contextMenuStrip1.Items.Add(dr[0].ToString() + ", باقي " + dr[1].ToString() + "يوم علي انتهاء صلاحية " + dr[2].ToString());

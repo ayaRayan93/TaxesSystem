@@ -116,7 +116,7 @@ namespace MainSystem
                                 dbconnection.Open();
                                 query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                                int TypeCoding_Method = Convert.ToInt16(com.ExecuteScalar());
+                                int TypeCoding_Method = Convert.ToInt32(com.ExecuteScalar());
                                 if (TypeCoding_Method == 1)
                                 {
                                     string query2 = "";
@@ -126,7 +126,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -610,7 +610,7 @@ namespace MainSystem
 
                     query = "select TransferProduct_ID from transfer_product order by TransferProduct_ID desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    int transferProductID = Convert.ToInt16(com.ExecuteScalar().ToString());
+                    int transferProductID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {

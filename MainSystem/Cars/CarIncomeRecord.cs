@@ -189,7 +189,7 @@ namespace MainSystem
                     int id=0;
                     if (com.ExecuteScalar() != null)
                     {
-                        id = Convert.ToInt16(com.ExecuteScalar());
+                        id = Convert.ToInt32(com.ExecuteScalar());
                     }
                     else
                     {

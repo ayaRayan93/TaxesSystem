@@ -210,13 +210,13 @@ namespace MainSystem
                         if (dialogResult == DialogResult.Yes)
                         {
 
-                        deleteSet(Convert.ToInt16(setRow[0].ToString()));
+                        deleteSet(Convert.ToInt32(setRow[0].ToString()));
                         
                         string query = "ALTER TABLE sets AUTO_INCREMENT = 1;";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                        UserControl.ItemRecord("sets", "delete",Convert.ToInt16(setRow[0].ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("sets", "delete",Convert.ToInt32(setRow[0].ToString()), DateTime.Now,"", dbconnection);
                         dbconnection.Close();
                 
                         }

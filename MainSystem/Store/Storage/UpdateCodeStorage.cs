@@ -120,7 +120,7 @@ namespace MainSystem
                     com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
                     com.Parameters["@Storage_Date"].Value = dateTimePicker1.Value;                  
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                    com.Parameters["@Data_ID"].Value = Convert.ToInt16(row[1].ToString());
+                    com.Parameters["@Data_ID"].Value = Convert.ToInt32(row[1].ToString());
                     com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue;
                     com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);

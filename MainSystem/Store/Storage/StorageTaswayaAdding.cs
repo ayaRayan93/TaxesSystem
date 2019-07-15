@@ -454,7 +454,7 @@ namespace MainSystem
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (com.ExecuteScalar() != null)
                     {
-                        int x = Convert.ToInt16(com.ExecuteScalar());
+                        int x = Convert.ToInt32(com.ExecuteScalar());
                         labPermissionNum.Text = (x + 1).ToString();
                     }
                     else
@@ -499,8 +499,8 @@ namespace MainSystem
                 {
                     noMeter = Convert.ToDouble(row[4].ToString());
                     txtTotalMeter.Text = noMeter.ToString();
-                    Data_ID = Convert.ToInt16(row[1].ToString());
-                    Storage_ID = Convert.ToInt16(row[0].ToString());
+                    Data_ID = Convert.ToInt32(row[1].ToString());
+                    Storage_ID = Convert.ToInt32(row[0].ToString());
                     code = row[2].ToString();
                     displayCode(code);
                     mRow = row;
@@ -683,7 +683,7 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
-                    int x = Convert.ToInt16(com.ExecuteScalar());
+                    int x = Convert.ToInt32(com.ExecuteScalar());
                     labPermissionNum.Text = (x + 1).ToString();
                 }
                 else
@@ -846,11 +846,11 @@ namespace MainSystem
         public void displayCode(string code)
         {
             char[] arrCode = code.ToCharArray();
-            txtCodePart1.Text =Convert.ToInt16(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
-            txtCodePart2.Text = Convert.ToInt16(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString() )+ "";
-            txtCodePart3.Text = Convert.ToInt16(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
-            txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() )+ "";
-            txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
+            txtCodePart1.Text =Convert.ToInt32(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
+            txtCodePart2.Text = Convert.ToInt32(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString() )+ "";
+            txtCodePart3.Text = Convert.ToInt32(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
+            txtCodePart4.Text = Convert.ToInt32(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() )+ "";
+            txtCodePart5.Text = "" + Convert.ToInt32(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
         public void makeCode(TextBox txtBox)
         {
@@ -879,7 +879,7 @@ namespace MainSystem
                     query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                    com.Parameters["@PermissionNum"].Value = Convert.ToInt16(labPermissionNum.Text);
+                    com.Parameters["@PermissionNum"].Value = Convert.ToInt32(labPermissionNum.Text);
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
@@ -890,7 +890,7 @@ namespace MainSystem
 
                     query = "select PermissionNum from taswayaa_adding_permision order by PermissionNum desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    PermissionNum = Convert.ToInt16(com.ExecuteScalar());
+                    PermissionNum = Convert.ToInt32(com.ExecuteScalar());
                     gridView2.SelectAll();
                     for (int i = 0; i < mdt.Rows.Count; i++)
                     {
@@ -944,7 +944,7 @@ namespace MainSystem
         public void add2GridView(DataTable dt, DataRowView row)
         {
             dt.Rows.Add(new object[] {
-                Convert.ToInt16(row[1].ToString()),
+                Convert.ToInt32(row[1].ToString()),
                  getStore_Place_ID((int)comStore.SelectedValue),
                 row[2].ToString(),
                 row[3].ToString(),
@@ -968,7 +968,7 @@ namespace MainSystem
             dbconnection.Open();
             string query = "select Store_Place_ID from store_places inner join store on store_places.Store_ID=store.Store_ID where store_places.Store_ID="+Store_ID+" limit 1";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            int Store_Place_ID = Convert.ToInt16(com.ExecuteScalar());
+            int Store_Place_ID = Convert.ToInt32(com.ExecuteScalar());
            
             return Store_Place_ID;
         }
@@ -1045,7 +1045,7 @@ namespace MainSystem
                 if (txtType.Text == "2" || txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID=" + -1;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();
@@ -1172,7 +1172,7 @@ namespace MainSystem
                     productQ = Convert.ToDouble(dr["AddingQuantity"]);
 
                     storageQ += productQ;
-                    id = Convert.ToInt16(dr2["Storage_ID"]);
+                    id = Convert.ToInt32(dr2["Storage_ID"]);
                     q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
                     MySqlCommand comm = new MySqlCommand(q, dbconnectionReader2);
                     comm.ExecuteNonQuery();

@@ -404,7 +404,7 @@ namespace MainSystem
                         com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
                         com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
                         com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
-                        com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt16(TransitionID);
+                        com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(TransitionID);
                         com.ExecuteNonQuery();
                         flagCategoriesSuccess = false;
                         
@@ -493,15 +493,15 @@ namespace MainSystem
                             MySqlDataReader dr = com2.ExecuteReader();
                             while (dr.Read())
                             {
-                                arrOFPhaat[0] = Convert.ToInt16(dr["a200"]);
-                                arrOFPhaat[1] = Convert.ToInt16(dr["a100"]);
-                                arrOFPhaat[2] = Convert.ToInt16(dr["a50"]);
-                                arrOFPhaat[3] = Convert.ToInt16(dr["a20"]);
-                                arrOFPhaat[4] = Convert.ToInt16(dr["a10"]);
-                                arrOFPhaat[5] = Convert.ToInt16(dr["a5"]);
-                                arrOFPhaat[6] = Convert.ToInt16(dr["a1"]);
-                                arrOFPhaat[7] = Convert.ToInt16(dr["aH"]);
-                                arrOFPhaat[8] = Convert.ToInt16(dr["aQ"]);
+                                arrOFPhaat[0] = Convert.ToInt32(dr["a200"]);
+                                arrOFPhaat[1] = Convert.ToInt32(dr["a100"]);
+                                arrOFPhaat[2] = Convert.ToInt32(dr["a50"]);
+                                arrOFPhaat[3] = Convert.ToInt32(dr["a20"]);
+                                arrOFPhaat[4] = Convert.ToInt32(dr["a10"]);
+                                arrOFPhaat[5] = Convert.ToInt32(dr["a5"]);
+                                arrOFPhaat[6] = Convert.ToInt32(dr["a1"]);
+                                arrOFPhaat[7] = Convert.ToInt32(dr["aH"]);
+                                arrOFPhaat[8] = Convert.ToInt32(dr["aQ"]);
                             }
                             flag = true;
                         }
@@ -1164,12 +1164,12 @@ namespace MainSystem
 
                     q = "select ID from expenses_type order by ID desc limit 1";
                     comand = new MySqlCommand(q, dbconnection);
-                    ExpenseType_ID = Convert.ToInt16(comand.ExecuteScalar().ToString());
+                    ExpenseType_ID = Convert.ToInt32(comand.ExecuteScalar().ToString());
                 }
                 else
                 {
                     cmbExpenseType.SelectedValue = comand.ExecuteScalar();
-                    ExpenseType_ID = Convert.ToInt16(cmbExpenseType.SelectedValue.ToString());
+                    ExpenseType_ID = Convert.ToInt32(cmbExpenseType.SelectedValue.ToString());
                 }
 
                 com.Parameters.Add("@ExpenseType_ID", MySqlDbType.Int16, 11).Value = ExpenseType_ID;
@@ -1180,7 +1180,7 @@ namespace MainSystem
 
             query = "select Expense_ID from expense order by Expense_ID desc limit 1";
             com = new MySqlCommand(query, dbconnection);
-            ID = Convert.ToInt16(com.ExecuteScalar().ToString());
+            ID = Convert.ToInt32(com.ExecuteScalar().ToString());
 
             //////////record adding/////////////
             query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";

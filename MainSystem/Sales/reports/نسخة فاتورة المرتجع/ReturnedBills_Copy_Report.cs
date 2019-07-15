@@ -213,7 +213,7 @@ namespace MainSystem
                 while (dr.Read())
                 {
                     flag2 = true;
-                    ID = Convert.ToInt16(dr["CustomerReturnBill_ID"].ToString());
+                    ID = Convert.ToInt32(dr["CustomerReturnBill_ID"].ToString());
                     TypeBuy = dr["Type_Buy"].ToString();
                     billDate = Convert.ToDateTime(dr["Date"].ToString());
                     returnInfo = dr["ReturnInfo"].ToString();
@@ -233,7 +233,7 @@ namespace MainSystem
 
                     if (dr["Customer_ID"].ToString() != "")
                     {
-                        customerID = Convert.ToInt16(dr["Customer_ID"].ToString());
+                        customerID = Convert.ToInt32(dr["Customer_ID"].ToString());
                         engName = dr["Customer_Name"].ToString();
                         comClient.Text = dr["Customer_Name"].ToString();
                         comClient.SelectedValue = customerID;
@@ -241,7 +241,7 @@ namespace MainSystem
                     }
                     if (dr["Client_ID"].ToString() != "")
                     {
-                        clientID = Convert.ToInt16(dr["Client_ID"].ToString());
+                        clientID = Convert.ToInt32(dr["Client_ID"].ToString());
                         clientName = dr["Client_Name"].ToString();
                         comClient.Text = dr["Client_Name"].ToString();
                         comClient.SelectedValue = clientID;

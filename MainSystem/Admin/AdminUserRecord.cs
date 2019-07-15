@@ -83,9 +83,9 @@ namespace MainSystem
                         string query = "INSERT INTO users (Employee_ID,User_Type,User_Name,Password) VALUES (@Employee_ID,@User_Type,@User_Name,@Password)";
                         MySqlCommand cmd = new MySqlCommand(query, dbconnection);
                         cmd.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11);
-                        cmd.Parameters["@Employee_ID"].Value = Convert.ToInt16(comEmployee.SelectedValue);
+                        cmd.Parameters["@Employee_ID"].Value = Convert.ToInt32(comEmployee.SelectedValue);
                         cmd.Parameters.Add("@User_Type", MySqlDbType.Int16, 11);
-                        cmd.Parameters["@User_Type"].Value = Convert.ToInt16(comDepartment.SelectedValue);
+                        cmd.Parameters["@User_Type"].Value = Convert.ToInt32(comDepartment.SelectedValue);
                         cmd.Parameters.Add("@User_Name", MySqlDbType.VarChar, 255);
                         cmd.Parameters["@User_Name"].Value = txtName.Text;
                         cmd.Parameters.Add("@Password", MySqlDbType.VarChar, 255);
@@ -95,7 +95,7 @@ namespace MainSystem
                         {
                             query = "select User_ID from users order by User_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            int userId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                            int userId = Convert.ToInt32(com.ExecuteScalar().ToString());
                             
                             UserControl.ItemRecord("users", "اضافة", userId, DateTime.Now, "", dbconnection);
 
@@ -105,10 +105,10 @@ namespace MainSystem
                             UserControl.EmpType = "مدير";
 
                             //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Branch.txt");
-                            //UserControl.EmpBranchID = Convert.ToInt16(System.IO.File.ReadAllText(path));
+                            //UserControl.EmpBranchID = Convert.ToInt32(System.IO.File.ReadAllText(path));
 
                             string supString = BaseData.BranchID;
-                            UserControl.EmpBranchID = Convert.ToInt16(supString);
+                            UserControl.EmpBranchID = Convert.ToInt32(supString);
 
                             string query2 = "SELECT branch.Branch_Name FROM branch where branch.Branch_ID=" + UserControl.EmpBranchID;
                             com = new MySqlCommand(query2, dbconnection);
@@ -120,7 +120,7 @@ namespace MainSystem
                             MySqlDataReader dr = com.ExecuteReader();
                             while (dr.Read())
                             {
-                                UserControl.EmpID = Convert.ToInt16(dr["Employee_ID"].ToString());
+                                UserControl.EmpID = Convert.ToInt32(dr["Employee_ID"].ToString());
                                 UserControl.EmpName = dr["Employee_Name"].ToString();
                             }
                             dr.Close();

@@ -89,7 +89,7 @@ namespace MainSystem
                         }
 
                         dbconnection.Close();
-                        MainForm.objFormBillConfirm.refreshView(rowHandel, quantity, Convert.ToInt16(comStore.SelectedValue.ToString()), comStore.Text, cartons);
+                        MainForm.objFormBillConfirm.refreshView(rowHandel, quantity, Convert.ToInt32(comStore.SelectedValue.ToString()), comStore.Text, cartons);
                         this.Close();
                     }
                     else

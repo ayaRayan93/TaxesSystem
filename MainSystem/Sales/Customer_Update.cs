@@ -197,7 +197,7 @@ namespace MainSystem
                                 AddClientToEng_Con();
                             }
 
-                            UserControl.ItemRecord("customer", "تعديل", Convert.ToInt16(selRow[0].ToString()), DateTime.Now, textBox.Text, dbconnection);
+                            UserControl.ItemRecord("customer", "تعديل", Convert.ToInt32(selRow[0].ToString()), DateTime.Now, textBox.Text, dbconnection);
 
                             //MessageBox.Show("تم");
                             //clear();
@@ -505,7 +505,7 @@ namespace MainSystem
             string query = "insert into customer_phone(Customer_ID,phone) values(@Customer_ID,@Phone)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
-            com.Parameters["@Customer_ID"].Value = Convert.ToInt16(selRow[0].ToString());
+            com.Parameters["@Customer_ID"].Value = Convert.ToInt32(selRow[0].ToString());
             com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
             com.Parameters["@Phone"].Value = txtPhone.Text;
             com.ExecuteNonQuery();

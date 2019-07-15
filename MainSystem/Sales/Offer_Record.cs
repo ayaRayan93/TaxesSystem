@@ -391,7 +391,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -700,7 +700,7 @@ namespace MainSystem
 
                     query = "select Offer_ID from offer order by Offer_ID desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    int id = Convert.ToInt16(com.ExecuteScalar());
+                    int id = Convert.ToInt32(com.ExecuteScalar());
 
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
@@ -710,7 +710,7 @@ namespace MainSystem
                         com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
                         com.Parameters["@Offer_ID"].Value = id;
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = Convert.ToInt16(item[0].ToString());
+                        com.Parameters["@Data_ID"].Value = Convert.ToInt32(item[0].ToString());
                         com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
                         com.Parameters["@Quantity"].Value = Convert.ToDouble(item["الكمية"].ToString());
                         com.ExecuteNonQuery();

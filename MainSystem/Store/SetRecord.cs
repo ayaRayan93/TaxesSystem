@@ -660,7 +660,7 @@ namespace MainSystem
 
                         query = "select Set_ID from sets order by Set_ID desc limit 1";
                         comand = new MySqlCommand(query, dbconnection);
-                        int set_id = Convert.ToInt16(comand.ExecuteScalar().ToString());
+                        int set_id = Convert.ToInt32(comand.ExecuteScalar().ToString());
 
                         foreach (DataGridViewRow item in dataGridView2.Rows)
                         {
@@ -679,7 +679,7 @@ namespace MainSystem
                         comand.Parameters["@Photo"].Value = selectedImage;
                         comand.ExecuteNonQuery();
 
-                        UserControl.ItemRecord("sets", "add",Convert.ToInt16(set_id.ToString()), DateTime.Now,"", dbconnection);
+                        UserControl.ItemRecord("sets", "add",Convert.ToInt32(set_id.ToString()), DateTime.Now,"", dbconnection);
 
                         MessageBox.Show("Done");
                         clear();
@@ -976,7 +976,7 @@ namespace MainSystem
                 if (txtType.Text == "2" || txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID=" + -1;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();

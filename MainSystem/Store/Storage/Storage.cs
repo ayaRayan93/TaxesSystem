@@ -150,7 +150,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -372,7 +372,7 @@ namespace MainSystem
                 //        dbconnection.Open();
                 //        comand.ExecuteNonQuery();
 
-                //        UserControl.ItemRecord("storage", "حذف",Convert.ToInt16(row1[0].ToString()), DateTime.Now,"", dbconnection);
+                //        UserControl.ItemRecord("storage", "حذف",Convert.ToInt32(row1[0].ToString()), DateTime.Now,"", dbconnection);
 
                 //        displayProducts();
                 //    }

@@ -167,13 +167,13 @@ namespace MainSystem
                     if (dialogResult == DialogResult.Yes)
                     {
 
-                        deleteOffer(Convert.ToInt16(offerRow[0].ToString()));
+                        deleteOffer(Convert.ToInt32(offerRow[0].ToString()));
 
                         string query = "ALTER TABLE offer AUTO_INCREMENT = 1;";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                        UserControl.ItemRecord("offer", "حذف", Convert.ToInt16(offerRow[0].ToString()), DateTime.Now, "", dbconnection);
+                        UserControl.ItemRecord("offer", "حذف", Convert.ToInt32(offerRow[0].ToString()), DateTime.Now, "", dbconnection);
                         dbconnection.Close();
                         DisplayOffer();
                         loadDataToBox();

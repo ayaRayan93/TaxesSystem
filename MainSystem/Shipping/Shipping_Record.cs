@@ -142,7 +142,7 @@ namespace MainSystem
                     dbconnection.Open();
                     string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtBillNumber.Text+" and Branch_ID="+comBranch.SelectedValue;
                     MySqlCommand com1 = new MySqlCommand(query, dbconnection);
-                    int id =Convert.ToInt16(com1.ExecuteScalar());
+                    int id =Convert.ToInt32(com1.ExecuteScalar());
 
                     query = "insert into shipping (CustomerBill_ID,Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Area_ID,Area_Name,Date,Description) values(@CustomerBill_ID,@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Area_ID,@Area_Name,@Date,@Description)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);

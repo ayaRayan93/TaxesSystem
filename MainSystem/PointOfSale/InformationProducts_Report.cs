@@ -104,7 +104,7 @@ namespace MainSystem
             try
             {
                 BaseData.generateBaseProjectFile();
-                EmpBranchId = Convert.ToInt16(BaseData.BranchID);
+                EmpBranchId = Convert.ToInt32(BaseData.BranchID);
                 search();
                 search2();
                 foreach (GridColumn column in gridView1.Columns)
@@ -503,7 +503,7 @@ namespace MainSystem
                                     }
                                     else
                                     {
-                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
+                                        query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(comType.SelectedValue.ToString()) + " and Type_ID=" + comType.SelectedValue.ToString();
                                     }
 
                                     MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);

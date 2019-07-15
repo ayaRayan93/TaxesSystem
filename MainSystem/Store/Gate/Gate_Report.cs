@@ -82,7 +82,7 @@ namespace MainSystem
                 {
                     if (tipImage == null)
                     {
-                        tipImage = new PermissionImage(Convert.ToInt16(row1["التسلسل"].ToString()), Convert.ToInt16(row1["رقم الاذن"].ToString()), row1["النوع"].ToString());
+                        tipImage = new PermissionImage(Convert.ToInt32(row1["التسلسل"].ToString()), Convert.ToInt32(row1["رقم الاذن"].ToString()), row1["النوع"].ToString());
                         
                         tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
                         tipImage.Show();
@@ -91,7 +91,7 @@ namespace MainSystem
                     {
                         tipImage.Close();
                         
-                        tipImage = new PermissionImage(Convert.ToInt16(row1["التسلسل"].ToString()), Convert.ToInt16(row1["رقم الاذن"].ToString()), row1["النوع"].ToString());
+                        tipImage = new PermissionImage(Convert.ToInt32(row1["التسلسل"].ToString()), Convert.ToInt32(row1["رقم الاذن"].ToString()), row1["النوع"].ToString());
                         
                         tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
                         tipImage.Show();
@@ -109,10 +109,10 @@ namespace MainSystem
         public void search()
         {
             //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-            //int storeId = Convert.ToInt16(System.IO.File.ReadAllText(path));
+            //int storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
 
             string supString = BaseData.StoreID;
-            int storeId = Convert.ToInt16(supString);
+            int storeId = Convert.ToInt32(supString);
 
             DataSet sourceDataSet = new DataSet();
             //,employee.Employee_Name as 'مسئول التعتيق',gate.Responsible as 'المسئول'

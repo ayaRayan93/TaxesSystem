@@ -181,14 +181,14 @@ namespace MainSystem
                         for (int j = 0; j < view2.RowCount; j++)
                         {
                             ReportOrderDetails_Items item2 = new ReportOrderDetails_Items();
-                            item2.ChildOrder_ID = Convert.ToInt16(view2.GetRowCellDisplayText(j, view2.Columns["التسلسل"]));
+                            item2.ChildOrder_ID = Convert.ToInt32(view2.GetRowCellDisplayText(j, view2.Columns["التسلسل"]));
                             item2.Code = view2.GetRowCellDisplayText(j, view2.Columns["الكود"]);
                             item2.Product_Type = view2.GetRowCellDisplayText(j, view2.Columns["النوع"]);
-                            item2.Product_Name = view2.GetRowCellDisplayText(j, view2.Columns["الاسم"]); /*Balatat = Convert.ToInt16(gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["عدد البلتات"])),*/
+                            item2.Product_Name = view2.GetRowCellDisplayText(j, view2.Columns["الاسم"]); /*Balatat = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["عدد البلتات"])),*/
                             item2.Total_Meters = Convert.ToDouble(view2.GetRowCellDisplayText(j, view2.Columns["عدد متر/قطعة"]));
                             childItem.Add(item2);
                         }
-                        ReportOrder_Items item = new ReportOrder_Items() { Order_ID = Convert.ToInt16(gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["التسلسل"])), Factory_Name = gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["المصنع"]), Order_Number = Convert.ToInt16(gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["رقم الطلب"])), Employee_Name = gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["الموظف المسئول"]), Store_Name = gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["المخزن"]), items = childItem };
+                        ReportOrder_Items item = new ReportOrder_Items() { Order_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["التسلسل"])), Factory_Name = gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["المصنع"]), Order_Number = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["رقم الطلب"])), Employee_Name = gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["الموظف المسئول"]), Store_Name = gridView1.GetRowCellDisplayText(rowHand, gridView1.Columns["المخزن"]), items = childItem };
                         bi.Add(item);
                     }
                     Report_OrderSearch f = new Report_OrderSearch();

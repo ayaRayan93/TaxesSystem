@@ -95,7 +95,7 @@ namespace MainSystem
                 cmd.Parameters.Add("@Employee_Number", MySqlDbType.Int16);
                 if (txtEmployeeNumber.Text != "")
                 {
-                    cmd.Parameters["@Employee_Number"].Value = Convert.ToInt16(txtEmployeeNumber.Text);
+                    cmd.Parameters["@Employee_Number"].Value = Convert.ToInt32(txtEmployeeNumber.Text);
                     labNumberReqired.Visible = false;
                 }
                 else
@@ -172,7 +172,7 @@ namespace MainSystem
 
                 cmd.Parameters.Add("@SocialInsuranceNumber", MySqlDbType.Int16);
                 if (txtSocialInsuranceNumber.Text != "")
-                    cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt16(txtSocialInsuranceNumber.Text);
+                    cmd.Parameters["@SocialInsuranceNumber"].Value = Convert.ToInt32(txtSocialInsuranceNumber.Text);
                 else
                     cmd.Parameters["@SocialInsuranceNumber"].Value = 0;
 
@@ -180,7 +180,7 @@ namespace MainSystem
                 cmd.Parameters["@EmploymentType"].Value = txtWorkType.Text;
                 cmd.Parameters.Add("@ExperienceYears", MySqlDbType.Int16);
                 if (txtExperienceYears.Text != "")
-                    cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt16(txtExperienceYears.Text);
+                    cmd.Parameters["@ExperienceYears"].Value = Convert.ToInt32(txtExperienceYears.Text);
                 else
                     cmd.Parameters["@ExperienceYears"].Value = 0;
                 #endregion
@@ -189,7 +189,7 @@ namespace MainSystem
                 {
                     string query = "select Employee_ID from employee order by Employee_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    int employeeId = Convert.ToInt16(com.ExecuteScalar().ToString());
+                    int employeeId = Convert.ToInt32(com.ExecuteScalar().ToString());
 
                     UserControl.ItemRecord("employee", "اضافة", employeeId, DateTime.Now,"", dbconnection);
 

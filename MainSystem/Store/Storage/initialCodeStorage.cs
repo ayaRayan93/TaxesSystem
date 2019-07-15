@@ -644,7 +644,7 @@ namespace MainSystem
                 if (row != null)
                 {
                     //noMeter = Convert.ToDouble(row[11].ToString());
-                    Data_ID = Convert.ToInt16(row[0].ToString());
+                    Data_ID = Convert.ToInt32(row[0].ToString());
                     code = row[1].ToString();
                     displayCode(code);
                     mRow = row;
@@ -700,7 +700,7 @@ namespace MainSystem
             try
             {
                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                int Data_ID = Convert.ToInt16(row[0].ToString());
+                int Data_ID = Convert.ToInt32(row[0].ToString());
                 if (!IsSaved(Data_ID))
                 {
                     int rowHandle = gridView2.GetRowHandle(gridView2.GetSelectedRows()[0]);
@@ -890,7 +890,7 @@ namespace MainSystem
                 GridView View = sender as GridView;
                 if (e.RowHandle >= 0)
                 {
-                    int Data_ID = Convert.ToInt16(View.GetRowCellDisplayText(e.RowHandle, View.Columns[0]));
+                    int Data_ID = Convert.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns[0]));
 
                     for (int i = 0; i < ListOfSavedDataIDs.Count; i++)
                     {
@@ -923,7 +923,7 @@ namespace MainSystem
             {
                 GridView view = (GridView)sender;
                 DataRow dataRow = view.GetFocusedDataRow();
-                int Data_ID = Convert.ToInt16(dataRow["Data_ID"].ToString());
+                int Data_ID = Convert.ToInt32(dataRow["Data_ID"].ToString());
                 if (IsSaved(Data_ID))
                     ListOfEditDataIDs.Add(Data_ID);
 
@@ -1116,7 +1116,7 @@ namespace MainSystem
                 ListOfSavedDataIDs.Clear();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    ListOfSavedDataIDs.Add(Convert.ToInt16(dt.Rows[i][0].ToString()));
+                    ListOfSavedDataIDs.Add(Convert.ToInt32(dt.Rows[i][0].ToString()));
                 }
                 gridControl2.DataSource = mdt;
                 gridView2.Columns[0].Visible = false;
@@ -1169,11 +1169,11 @@ namespace MainSystem
         public void displayCode(string code)
         {
             char[] arrCode = code.ToCharArray();
-            txtCodePart1.Text =Convert.ToInt16(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
-            txtCodePart2.Text = Convert.ToInt16(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString() )+ "";
-            txtCodePart3.Text = Convert.ToInt16(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
-            txtCodePart4.Text = Convert.ToInt16(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() )+ "";
-            txtCodePart5.Text = "" + Convert.ToInt16(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
+            txtCodePart1.Text =Convert.ToInt32(arrCode[0].ToString() + arrCode[1].ToString() + arrCode[2].ToString() + arrCode[3].ToString()) + "";
+            txtCodePart2.Text = Convert.ToInt32(arrCode[4].ToString() + arrCode[5].ToString() + arrCode[6].ToString() + arrCode[7].ToString() )+ "";
+            txtCodePart3.Text = Convert.ToInt32(arrCode[8].ToString() + arrCode[9].ToString() + arrCode[10].ToString() + arrCode[11].ToString()) + "";
+            txtCodePart4.Text = Convert.ToInt32(arrCode[12].ToString() + arrCode[13].ToString() + arrCode[14].ToString() + arrCode[15].ToString() )+ "";
+            txtCodePart5.Text = "" + Convert.ToInt32(arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString());
         }
         public void makeCode(TextBox txtBox)
         {
@@ -1193,7 +1193,7 @@ namespace MainSystem
             {
                 string query = "select Data_ID from data where Code='" + code + "'";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                Data_ID = Convert.ToInt16(com.ExecuteScalar());
+                Data_ID = Convert.ToInt32(com.ExecuteScalar());
                 if (validation((int)comStore.SelectedValue, (int)comStorePlace.SelectedValue))
                 {
                     query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
@@ -1280,7 +1280,7 @@ namespace MainSystem
                 date =Convert.ToDateTime(re[1]);
             }
             dt.Rows.Add(new object[] {
-                Convert.ToInt16(row[0].ToString()),
+                Convert.ToInt32(row[0].ToString()),
                 comStore.SelectedValue,
                  getStore_Place_ID((int)comStore.SelectedValue),
                 row[1].ToString(),
@@ -1305,7 +1305,7 @@ namespace MainSystem
             dbconnection.Open();
             string query = "select Store_Place_ID from store_places inner join store on store_places.Store_ID=store.Store_ID where store_places.Store_ID=" + Store_ID + " limit 1";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            int Store_Place_ID = Convert.ToInt16(com.ExecuteScalar());
+            int Store_Place_ID = Convert.ToInt32(com.ExecuteScalar());
 
             return Store_Place_ID;
         }
@@ -1459,7 +1459,7 @@ namespace MainSystem
                 if (txtType.Text == "2" || txtType.Text == "1")
                     query2 = "select * from groupo where Factory_ID=" + -1;
                 else
-                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt16(txtType.Text) + " and Type_ID=" + txtType.Text;
+                    query2 = "select * from groupo where Factory_ID=" + -Convert.ToInt32(txtType.Text) + " and Type_ID=" + txtType.Text;
 
                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
                 DataTable dt2 = new DataTable();

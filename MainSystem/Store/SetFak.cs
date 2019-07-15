@@ -285,8 +285,8 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                RecordSetQuantityInStorage(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt16(txtSetsID.Text));
-                increaseItemsQuantityInDB(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt16(txtSetsID.Text));
+                RecordSetQuantityInStorage(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt32(txtSetsID.Text));
+                increaseItemsQuantityInDB(Convert.ToDouble(txtSetQuantity.Text), Convert.ToInt32(txtSetsID.Text));
                 MessageBox.Show("تم");
 
                 dataGridView1.Rows.Clear();
@@ -473,7 +473,7 @@ namespace MainSystem
                         double storageQ = Convert.ToDouble(dr2["Total_Meters"]);
                         //if (storageQ > newQuantity)
                         //{
-                            id = Convert.ToInt16(dr2["Storage_ID"]);
+                            id = Convert.ToInt32(dr2["Storage_ID"]);
                             query = "update storage set Total_Meters=" + (storageQ + newQuantity) + " where Storage_ID=" + id;
                             MySqlCommand comm = new MySqlCommand(query, dbconnection2);
                             comm.ExecuteNonQuery();

@@ -188,7 +188,7 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         //dateTimePicker1.Enabled = false;
-                                        orderId = Convert.ToInt16(dr["DashOrder_ID"].ToString());
+                                        orderId = Convert.ToInt32(dr["DashOrder_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         txtDescription.Text = dr["Description"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
@@ -217,7 +217,7 @@ namespace MainSystem
                                         comSupplier.Enabled = false;
                                         txtSupplier.ReadOnly = true;
                                         //dateTimePicker1.Enabled = false;
-                                        orderId = Convert.ToInt16(dr["DashOrder_ID"].ToString());
+                                        orderId = Convert.ToInt32(dr["DashOrder_ID"].ToString());
                                         txtEmployee.Text = dr["Employee_Name"].ToString();
                                         txtDescription.Text = dr["Description"].ToString();
                                         comStore.SelectedValue = dr["Store_ID"].ToString();
@@ -444,7 +444,7 @@ namespace MainSystem
                                     com = new MySqlCommand(query, dbconnection);
                                     if (com.ExecuteScalar() != null)
                                     {
-                                        orderNumber = Convert.ToInt16(com.ExecuteScalar().ToString());
+                                        orderNumber = Convert.ToInt32(com.ExecuteScalar().ToString());
                                     }
                                     else
                                     {
@@ -885,7 +885,7 @@ namespace MainSystem
                         {
                             flagCarton = true;
                             double total = totalMeter / carton;
-                            txtCarton.Text = Convert.ToInt16(total).ToString();
+                            txtCarton.Text = Convert.ToInt32(total).ToString();
                             flagCarton = false;
                         }
                     }
@@ -971,7 +971,7 @@ namespace MainSystem
                             query2 = "select DashOrder_ID from dash_orders order by DashOrder_ID desc limit 1";
                             com2 = new MySqlCommand(query2, dbconnection);
 
-                            orderId = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                            orderId = Convert.ToInt32(com2.ExecuteScalar().ToString());
                         }
                         
                         string query = "insert into dash_order_details (DashOrder_ID,Data_ID,Balatat,Carton_Balata,Quantity,Type,SpecialOrder_ID) values (@DashOrder_ID,@Data_ID,@Balatat,@Carton_Balata,@Quantity,@Type,@SpecialOrder_ID)";
@@ -1113,11 +1113,11 @@ namespace MainSystem
 
                         query = "select concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Data_ID"]);
                         com = new MySqlCommand(query, dbconnection);
-                        Order_Items item = new Order_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = com.ExecuteScalar().ToString(), Balatat = Convert.ToInt16(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Balatat"])), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"])) };
+                        Order_Items item = new Order_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = com.ExecuteScalar().ToString(), Balatat = Convert.ToInt32(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Balatat"])), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"])) };
                         bi.Add(item);
                     }
                     Report_Order f = new Report_Order();
-                    f.PrintInvoice(comFactory.Text, Convert.ToInt16(txtOrderNum.Text), txtEmployee.Text, bi);
+                    f.PrintInvoice(comFactory.Text, Convert.ToInt32(txtOrderNum.Text), txtEmployee.Text, bi);
                     f.ShowDialog();
                     #endregion
 

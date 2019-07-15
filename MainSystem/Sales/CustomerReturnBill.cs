@@ -156,7 +156,7 @@ namespace MainSystem
                     txtClientID.Text = comClient.SelectedValue.ToString();
                     if (txtBranchID.Text != "")
                     {
-                        DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
+                        DisplayBillNumber(Convert.ToInt32(comCustomer.SelectedValue), Convert.ToInt32(comClient.SelectedValue));
                     }
                 }
                 catch (Exception ex)
@@ -174,7 +174,7 @@ namespace MainSystem
                 txtCustomerID.Text = comCustomer.SelectedValue.ToString();
                 if (txtBranchID.Text != "")
                 {
-                    DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
+                    DisplayBillNumber(Convert.ToInt32(comCustomer.SelectedValue), Convert.ToInt32(comClient.SelectedValue));
                 }
 
                 labClient.Visible = true;
@@ -195,7 +195,7 @@ namespace MainSystem
                     comClient.SelectedValue = -1;
                     txtClientID.Text = "";
                     loaded = true;
-                    //DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
+                    //DisplayBillNumber(Convert.ToInt32(comCustomer.SelectedValue), Convert.ToInt32(comClient.SelectedValue));
                 }
                 catch (Exception ex)
                 {
@@ -290,7 +290,7 @@ namespace MainSystem
                         {
                             newChoose();
                         }
-                        int billNum = Convert.ToInt16(comBillNumber.Text);
+                        int billNum = Convert.ToInt32(comBillNumber.Text);
                         DataTable dtAll = new DataTable();
                         string query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -330,7 +330,7 @@ namespace MainSystem
                         {
                             while (dr.Read())
                             {
-                                //customerBillId = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                                //customerBillId = Convert.ToInt32(dr["CustomerBill_ID"].ToString());
                                 txtBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
                                 labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
 
@@ -512,7 +512,7 @@ namespace MainSystem
                     int Branch_BillNumber = 1;
                     if (com.ExecuteScalar() != null)
                     {
-                        Branch_BillNumber = Convert.ToInt16(com.ExecuteScalar()) + 1;
+                        Branch_BillNumber = Convert.ToInt32(com.ExecuteScalar()) + 1;
                     }
                     //Type_Buy
                     query = "select Branch_Name from branch where Branch_ID=" + EmpBranchId;
@@ -546,7 +546,7 @@ namespace MainSystem
                     if (comCustomer.Text != "")
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                        com.Parameters["@Customer_ID"].Value = Convert.ToInt16(txtCustomerID.Text);
+                        com.Parameters["@Customer_ID"].Value = Convert.ToInt32(txtCustomerID.Text);
                         com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
                         com.Parameters["@Customer_Name"].Value = comCustomer.Text;
                     }
@@ -560,7 +560,7 @@ namespace MainSystem
                     if (comClient.Text != "")
                     {
                         com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                        com.Parameters["@Client_ID"].Value = Convert.ToInt16(txtClientID.Text);
+                        com.Parameters["@Client_ID"].Value = Convert.ToInt32(txtClientID.Text);
                         com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                         com.Parameters["@Client_Name"].Value = comClient.Text;
                     }
@@ -604,7 +604,7 @@ namespace MainSystem
 
                     query = "select CustomerReturnBill_ID from customer_return_bill order by CustomerReturnBill_ID desc limit 1";
                     com = new MySqlCommand(query, dbconnection);
-                    int id = Convert.ToInt16(com.ExecuteScalar());
+                    int id = Convert.ToInt32(com.ExecuteScalar());
 
                     query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,Store_ID,TotalMeter,PriceBD,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@Store_ID,@TotalMeter,@PriceBD,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID)";
                     com = new MySqlCommand(query, dbconnection);
@@ -624,19 +624,19 @@ namespace MainSystem
                         if (row2.Cells[0].Value != null)
                         {
                             com.Parameters["@CustomerReturnBill_ID"].Value = id;
-                            com.Parameters["@Data_ID"].Value = Convert.ToInt16(row2.Cells[0].Value);
+                            com.Parameters["@Data_ID"].Value = Convert.ToInt32(row2.Cells[0].Value);
                             com.Parameters["@Type"].Value = row2.Cells["ItemType"].Value;
-                            com.Parameters["@Store_ID"].Value = Convert.ToInt16(row2.Cells["Store_ID"].Value);
+                            com.Parameters["@Store_ID"].Value = Convert.ToInt32(row2.Cells["Store_ID"].Value);
                             com.Parameters["@TotalMeter"].Value = Convert.ToDouble(row2.Cells["Quantity"].Value);
                             com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
                             com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
-                            com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(row2.Cells["CustomerBill_ID"].Value);
-                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt16(row2.Cells["Delegate_ID"].Value);
+                            com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt32(row2.Cells["CustomerBill_ID"].Value);
+                            com.Parameters["@Delegate_ID"].Value = Convert.ToInt32(row2.Cells["Delegate_ID"].Value);
                             com.ExecuteNonQuery();
                             
-                            string queryf = "update product_bill set Returned='" + row2.Cells["Returned"].Value + "' where CustomerBill_ID=" + row2.Cells["CustomerBill_ID"].Value + " and Data_ID=" + Convert.ToInt16(row2.Cells[0].Value) + " and Type='" + row2.Cells["ItemType"].Value + "'";
+                            string queryf = "update product_bill set Returned='" + row2.Cells["Returned"].Value + "' where CustomerBill_ID=" + row2.Cells["CustomerBill_ID"].Value + " and Data_ID=" + Convert.ToInt32(row2.Cells[0].Value) + " and Type='" + row2.Cells["ItemType"].Value + "'";
                             MySqlCommand c = new MySqlCommand(queryf, dbconnection);
                             c.ExecuteNonQuery();
                         }
@@ -649,7 +649,7 @@ namespace MainSystem
                         c2.Parameters.Add("@CustomerReturnBill_ID", MySqlDbType.Int16);
                         c2.Parameters["@CustomerReturnBill_ID"].Value = id;
                         c2.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
-                        c2.Parameters["@CustomerBill_ID"].Value = Convert.ToInt16(listBoxControlCustomerBill.Items[i].ToString());
+                        c2.Parameters["@CustomerBill_ID"].Value = Convert.ToInt32(listBoxControlCustomerBill.Items[i].ToString());
                         c2.ExecuteNonQuery();
                     }
 
@@ -719,11 +719,11 @@ namespace MainSystem
                     txtBranchID.Text = comBranch.SelectedValue.ToString();
                     if (txtCustomerID.Text != "")
                     {
-                        DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
+                        DisplayBillNumber(Convert.ToInt32(comCustomer.SelectedValue), Convert.ToInt32(comClient.SelectedValue));
                     }
                     else
                     {
-                        DisplayBillNumber(0, Convert.ToInt16(comClient.SelectedValue));
+                        DisplayBillNumber(0, Convert.ToInt32(comClient.SelectedValue));
                     }
                 }
             }
@@ -749,11 +749,11 @@ namespace MainSystem
 
                     if (txtCustomerID.Text != "")
                     {
-                        DisplayBillNumber(Convert.ToInt16(comCustomer.SelectedValue), Convert.ToInt16(comClient.SelectedValue));
+                        DisplayBillNumber(Convert.ToInt32(comCustomer.SelectedValue), Convert.ToInt32(comClient.SelectedValue));
                     }
                     else
                     {
-                        DisplayBillNumber(0, Convert.ToInt16(comClient.SelectedValue));
+                        DisplayBillNumber(0, Convert.ToInt32(comClient.SelectedValue));
                     }
                 }
                 catch (Exception ex)
@@ -928,7 +928,7 @@ namespace MainSystem
                         productQ = Convert.ToDouble(dr["TotalMeter"]);
 
                         storageQ += productQ;
-                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        id = Convert.ToInt32(dr2["Storage_ID"]);
                         q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
                         MySqlCommand comm = new MySqlCommand(q, dbconnection);
                         comm.ExecuteNonQuery();
@@ -953,7 +953,7 @@ namespace MainSystem
                         productQ = Convert.ToDouble(dr["TotalMeter"]);
 
                         storageQ += productQ;
-                        id = Convert.ToInt16(dr2["Storage_ID"]);
+                        id = Convert.ToInt32(dr2["Storage_ID"]);
                         q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
                         MySqlCommand comm = new MySqlCommand(q, dbconnection);
                         comm.ExecuteNonQuery();
@@ -976,7 +976,7 @@ namespace MainSystem
                     productQ = Convert.ToDouble(dr["TotalMeter"]);
 
                     storageQ += productQ;
-                    id = Convert.ToInt16(dr3["StorageTaxesID"]);
+                    id = Convert.ToInt32(dr3["StorageTaxesID"]);
                     q = "update storage_taxes set Total_Meters=" + storageQ + " where StorageTaxesID=" + id;
                     MySqlCommand comm = new MySqlCommand(q, dbconnection);
                     comm.ExecuteNonQuery();
@@ -1002,7 +1002,7 @@ namespace MainSystem
         {
             string query = "select Delivered from shipping where CustomerBill_ID=" + comBillNumber.SelectedValue;
             MySqlCommand com = new MySqlCommand(query,dbconnection);
-            int deliveredStatus=Convert.ToInt16(com.ExecuteScalar());
+            int deliveredStatus=Convert.ToInt32(com.ExecuteScalar());
             
             if (deliveredStatus == 0)
             {
