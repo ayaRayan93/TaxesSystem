@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace MainSystem
 {
-    public partial class Print_SupplierBill_Copy : DevExpress.XtraReports.UI.XtraReport
+    public partial class Print_SupplierBill_Copy2 : DevExpress.XtraReports.UI.XtraReport
     {
-        public Print_SupplierBill_Copy()
+        public Print_SupplierBill_Copy2()
         {
             InitializeComponent();
         }
