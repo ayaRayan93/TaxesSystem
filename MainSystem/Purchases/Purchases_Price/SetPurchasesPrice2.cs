@@ -95,7 +95,7 @@ namespace MainSystem
         {
             try
             {
-                label14.Text = "نسبة الاضافة";
+                label14.Text = "نسبة الخصم";
                 txtNormal.Visible = false;
                 txtUnNormal.Visible = false;
                 label15.Visible = false;
@@ -1128,7 +1128,8 @@ namespace MainSystem
             double PurchasesPercent = double.Parse(txtPurchases.Text);
             if (radioQata3y.Checked == true)
             {
-                return price + (price * PurchasesPercent / 100.0) + addational;
+                //return price + (price * PurchasesPercent / 100.0) + addational;
+                return price - PurchasesPercent  + addational;
             }
             else
             {

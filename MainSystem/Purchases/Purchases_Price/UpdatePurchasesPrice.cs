@@ -57,7 +57,7 @@ namespace MainSystem
                     ids += rows[i][0] + ",";
                 }
                 ids += rows[rows.Count - 1][0];
-                query = "SELECT purchasing_price.PurchasingPrice_ID,purchasing_price.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,'') ,COALESCE(size.Size_Value,'') )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',purchasing_price.Price as 'السعر',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',purchasing_price.ProfitRatio as 'نسبة الاضافة',purchasing_price.Purchasing_Price as 'سعر الشراء' from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   purchasing_price.PurchasingPrice_ID in(" + ids + ")";
+                query = "SELECT purchasing_price.PurchasingPrice_ID,purchasing_price.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,'') ,COALESCE(size.Size_Value,'') )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',purchasing_price.Price as 'السعر',purchasing_price.Price_Type as 'نوع السعر',purchasing_price.Purchasing_Discount as 'خصم الشراء',purchasing_price.Normal_Increase as 'الزيادة العادية',purchasing_price.Categorical_Increase as 'الزيادة القطعية',purchasing_price.ProfitRatio as 'قيمة الخصم',purchasing_price.Purchasing_Price as 'سعر الشراء' from data INNER JOIN purchasing_price on purchasing_price.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   purchasing_price.PurchasingPrice_ID in(" + ids + ")";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -126,7 +126,8 @@ namespace MainSystem
         {
             try
             {
-                label14.Text = "نسبة الاضافة";
+                label14.Text = "قيمة الخصم";
+                label20.Visible = false;
                 txtNormal.Visible = false;
                 txtUnNormal.Visible = false;
                 label15.Visible = false;
@@ -172,6 +173,7 @@ namespace MainSystem
                     panContent.Controls["panContent"].Visible = false;
                     label19.Visible = true;
                     labPurchasesPrice.Visible = true;
+                    label20.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -820,7 +822,7 @@ namespace MainSystem
             }
             else
             {
-                txtPurchases.Text = row1["نسبة الاضافة"].ToString();
+                txtPurchases.Text = row1["قيمة الخصم"].ToString();
                 radioQata3y.Checked = true;
             }
             dataGridView1.Rows.Clear();
@@ -885,8 +887,8 @@ namespace MainSystem
             double PurchasesPercent = double.Parse(txtPurchases.Text);
             if (radioQata3y.Checked == true)
             {
-                return price + (price * PurchasesPercent / 100.0) + addational;
-
+                //return price + (price * PurchasesPercent / 100.0) + addational;
+                return price - PurchasesPercent + addational;
             }
             else
             {

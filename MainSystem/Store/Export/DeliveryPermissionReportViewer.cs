@@ -13,20 +13,26 @@ namespace MainSystem.Store.Export
     public partial class DeliveryPermissionReportViewer : Form
     {
         List<DeliveryPermissionClass> listOfData;
-        string PerNum = "";
-        public DeliveryPermissionReportViewer(List<DeliveryPermissionClass> listOfData,string PerNum)
+        string PerNum = "" , customerName="", customerPhone="", delegateName="", date="", branchId="", branchName="";
+        public DeliveryPermissionReportViewer(List<DeliveryPermissionClass> listOfData,string customerName,string customerPhone,string delegateName,string date, string PerNum,string branchId,string branchName )
         {
             InitializeComponent();
             this.listOfData = new List<DeliveryPermissionClass>();
             this.listOfData = listOfData;
             this.PerNum = PerNum;
+            this.customerName = customerName;
+            this.customerPhone = customerPhone;
+            this.delegateName = delegateName;
+            this.date = date;
+            this.branchId = branchId;
+            this.branchName = branchName;
         }
 
         private void ReportViewer_Load(object sender, EventArgs e)
         {
             try
             {
-                DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData, PerNum);
+                DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,customerName,customerPhone,delegateName,date, PerNum,branchId,branchName);
                 documentViewer1.DocumentSource = DeliveryPermissionReport;
                 DeliveryPermissionReport.CreateDocument();
             }
