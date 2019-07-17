@@ -13,13 +13,14 @@ namespace MainSystem.Store.Export
     public partial class DeliveryPermissionReportViewer : Form
     {
         List<DeliveryPermissionClass> listOfData;
-        string PerNum = "" , customerName="", customerPhone="", delegateName="", date="", branchId="", branchName="";
-        public DeliveryPermissionReportViewer(List<DeliveryPermissionClass> listOfData,string customerName,string customerPhone,string delegateName,string date, string PerNum,string branchId,string branchName )
+        string BranchBillNumber="", PerNum = "" , customerName="", customerPhone="", delegateName="", date="", branchId="", branchName="";
+        public DeliveryPermissionReportViewer(List<DeliveryPermissionClass> listOfData,string customerName,string customerPhone,string delegateName,string date, string BranchBillNumber, string PerNum, string branchId,string branchName )
         {
             InitializeComponent();
             this.listOfData = new List<DeliveryPermissionClass>();
             this.listOfData = listOfData;
             this.PerNum = PerNum;
+            this.BranchBillNumber = BranchBillNumber;
             this.customerName = customerName;
             this.customerPhone = customerPhone;
             this.delegateName = delegateName;
@@ -32,7 +33,7 @@ namespace MainSystem.Store.Export
         {
             try
             {
-                DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,customerName,customerPhone,delegateName,date, PerNum,branchId,branchName);
+                DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,customerName,customerPhone,delegateName,date, BranchBillNumber, PerNum,branchId,branchName);
                 documentViewer1.DocumentSource = DeliveryPermissionReport;
                 DeliveryPermissionReport.CreateDocument();
             }

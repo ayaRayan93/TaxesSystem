@@ -1129,7 +1129,8 @@ namespace MainSystem
             if (radioQata3y.Checked == true)
             {
                 //return price + (price * PurchasesPercent / 100.0) + addational;
-                return price - PurchasesPercent  + addational;
+                price += addational;
+                return price - (price * PurchasesPercent / 100.0);
             }
             else
             {

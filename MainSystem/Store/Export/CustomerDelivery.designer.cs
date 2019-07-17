@@ -61,10 +61,12 @@
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtStore = new System.Windows.Forms.TextBox();
             this.panBranch = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.txtBranchID = new System.Windows.Forms.TextBox();
             this.comBranch = new System.Windows.Forms.ComboBox();
+            this.comStore = new System.Windows.Forms.ComboBox();
             this.labStoreName = new System.Windows.Forms.Label();
             this.radioBtnDriverDelivery = new System.Windows.Forms.RadioButton();
             this.radioBtnCustomerDelivery = new System.Windows.Forms.RadioButton();
@@ -79,6 +81,7 @@
             this.DeliveryQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -449,7 +452,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 424F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 427F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -474,7 +477,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(425, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(428, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(98, 45);
@@ -492,7 +495,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtStore);
             this.panel2.Controls.Add(this.panBranch);
+            this.panel2.Controls.Add(this.comStore);
             this.panel2.Controls.Add(this.labStoreName);
             this.panel2.Controls.Add(this.radioBtnDriverDelivery);
             this.panel2.Controls.Add(this.radioBtnCustomerDelivery);
@@ -506,6 +511,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(990, 74);
             this.panel2.TabIndex = 230;
+            // 
+            // txtStore
+            // 
+            this.txtStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtStore.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtStore.Location = new System.Drawing.Point(28, 14);
+            this.txtStore.Name = "txtStore";
+            this.txtStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtStore.Size = new System.Drawing.Size(58, 24);
+            this.txtStore.TabIndex = 201;
+            this.txtStore.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStore_KeyDown);
             // 
             // panBranch
             // 
@@ -552,12 +568,24 @@
             this.comBranch.TabIndex = 197;
             this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
+            // comStore
+            // 
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(92, 14);
+            this.comStore.Name = "comStore";
+            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStore.Size = new System.Drawing.Size(130, 24);
+            this.comStore.TabIndex = 200;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
+            // 
             // labStoreName
             // 
             this.labStoreName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labStoreName.AutoSize = true;
             this.labStoreName.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.labStoreName.Location = new System.Drawing.Point(122, 18);
+            this.labStoreName.Location = new System.Drawing.Point(122, 1);
             this.labStoreName.Name = "labStoreName";
             this.labStoreName.Size = new System.Drawing.Size(0, 19);
             this.labStoreName.TabIndex = 229;
@@ -652,11 +680,13 @@
             this.Quantity,
             this.DeliveryQuantity,
             this.Carton,
-            this.NumOfCarton});
+            this.NumOfCarton,
+            this.ItemType});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView2_RowCellClick);
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
             // Data_ID
@@ -714,6 +744,12 @@
             this.NumOfCarton.Name = "NumOfCarton";
             this.NumOfCarton.Visible = true;
             this.NumOfCarton.VisibleIndex = 5;
+            // 
+            // ItemType
+            // 
+            this.ItemType.Caption = "الفئة";
+            this.ItemType.FieldName = "ItemType";
+            this.ItemType.Name = "ItemType";
             // 
             // gridColumn1
             // 
@@ -809,6 +845,9 @@
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDelegate;
+        private DevExpress.XtraGrid.Columns.GridColumn ItemType;
+        private System.Windows.Forms.TextBox txtStore;
+        private System.Windows.Forms.ComboBox comStore;
     }
 }
 

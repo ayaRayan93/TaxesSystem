@@ -123,9 +123,17 @@ namespace MainSystem
 
             table.Columns.Add(column);
 
-       
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "ItemType";
+            column.AutoIncrement = false;
+            column.Caption = "الفئة";
+            column.ReadOnly = false;
+            column.Unique = false;
 
-    
+            table.Columns.Add(column);
+
+
 
             DataSet = new DataSet();
             DataSet.Tables.Add(table);
