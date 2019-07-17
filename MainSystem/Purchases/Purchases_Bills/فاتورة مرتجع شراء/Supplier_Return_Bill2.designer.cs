@@ -73,6 +73,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtBillNumber = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtLastPrice = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.radioList = new System.Windows.Forms.RadioButton();
             this.radioQata3y = new System.Windows.Forms.RadioButton();
             this.label20 = new System.Windows.Forms.Label();
@@ -125,7 +127,6 @@
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(130, 24);
             this.comStore.TabIndex = 34;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // labTotalPriceBD
             // 
@@ -589,6 +590,7 @@
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsBehavior.Editable = false;
             this.gridView2.OptionsSelection.MultiSelect = true;
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
             // panel1
@@ -671,6 +673,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.txtLastPrice);
+            this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.radioList);
             this.panel2.Controls.Add(this.radioQata3y);
             this.panel2.Controls.Add(this.label20);
@@ -699,6 +703,28 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(856, 124);
             this.panel2.TabIndex = 37;
+            // 
+            // txtLastPrice
+            // 
+            this.txtLastPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtLastPrice.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtLastPrice.Location = new System.Drawing.Point(766, 21);
+            this.txtLastPrice.Name = "txtLastPrice";
+            this.txtLastPrice.Size = new System.Drawing.Size(84, 24);
+            this.txtLastPrice.TabIndex = 152;
+            this.txtLastPrice.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label16.Location = new System.Drawing.Point(766, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(87, 17);
+            this.label16.TabIndex = 153;
+            this.label16.Text = "السعر بالزيادة";
+            this.label16.Visible = false;
             // 
             // radioList
             // 
@@ -789,6 +815,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
@@ -872,6 +899,8 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.RadioButton radioList;
         private System.Windows.Forms.RadioButton radioQata3y;
+        private System.Windows.Forms.TextBox txtLastPrice;
+        private System.Windows.Forms.Label label16;
     }
 }
 
