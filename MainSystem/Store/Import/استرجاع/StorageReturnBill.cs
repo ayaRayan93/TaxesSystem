@@ -232,7 +232,7 @@ namespace MainSystem
                         comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
                         comProduct.Text = "";
                         txtProduct.Text = "";
-                        label1.Text = "الصنف";
+                        label4.Text = "الصنف";
                         filterProduct();
                     }
                     else
@@ -246,7 +246,7 @@ namespace MainSystem
                         comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
                         comProduct.Text = "";
                         txtProduct.Text = "";
-                        label1.Text = "المقاس";
+                        label4.Text = "المقاس";
                         filterProduct();
                     }
                     loaded = true;
