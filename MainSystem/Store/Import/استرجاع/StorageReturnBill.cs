@@ -1444,7 +1444,7 @@ namespace MainSystem
 
             if (comStoreFilter.SelectedValue != null)
             {
-                string q1, q2, q3, q4;
+                string q1, q2, q3, q4, q5;
                 if (txtType.Text == "")
                 {
                     q1 = "select Type_ID from data";
@@ -1477,10 +1477,25 @@ namespace MainSystem
                 {
                     q4 = txtGroup.Text;
                 }
-
+                if (txtProduct.Text == "")
+                {
+                    q5 = "";
+                }
+                else
+                {
+                    q5 = "and  data.Size_ID=" + txtProduct.Text;
+                }
+                string query = "";
                 string itemName = "type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                string query = "select data.Data_ID, Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة' from  data LEFT JOIN storage ON storage.Data_ID = data.Data_ID " + DataTableRelations + " where storage.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
+                {
+                    query = "select data.Data_ID, Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة' from  data LEFT JOIN storage ON storage.Data_ID = data.Data_ID " + DataTableRelations + " where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") " + q5 + " and data.Group_ID IN (" + q4 + ") and storage.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                }
+                else
+                {
+                    query = "select data.Data_ID, Code as 'الكود'," + itemName + ",data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة' from  data LEFT JOIN storage ON storage.Data_ID = data.Data_ID " + DataTableRelations + " where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and  data.Product_ID IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") and storage.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                }
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
