@@ -224,8 +224,8 @@ namespace MainSystem
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
                     DataRow row3 = gridView1.GetDataRow(i);
-
-                    query = "update supplier_bill_details set Price=@Price,Purchasing_Ratio=@Purchasing_Ratio,Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Value_Additive_Tax=@Value_Additive_Tax,Purchasing_Price=@Purchasing_Price where BillData_ID=" + row3[0].ToString();
+                    //,Purchasing_Ratio=@Purchasing_Ratio
+                    query = "update supplier_bill_details set Price=@Price,Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Value_Additive_Tax=@Value_Additive_Tax,Purchasing_Price=@Purchasing_Price where BillData_ID=" + row3[0].ToString();
                     com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Price", MySqlDbType.Decimal);
                     com.Parameters["@Price"].Value = row3["السعر"].ToString();
@@ -233,8 +233,8 @@ namespace MainSystem
                     {
                         com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
                         com.Parameters["@Purchasing_Discount"].Value = row3["خصم الشراء"].ToString();
-                        com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
-                        com.Parameters["@Purchasing_Ratio"].Value = null;
+                        //com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
+                        //com.Parameters["@Purchasing_Ratio"].Value = null;
                         com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
                         com.Parameters["@Normal_Increase"].Value = row3["الزيادة العادية"].ToString();
                         com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
@@ -243,9 +243,9 @@ namespace MainSystem
                     else if (row3["نسبة الشراء"].ToString() != "")
                     {
                         com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
-                        com.Parameters["@Purchasing_Discount"].Value = null;
-                        com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
-                        com.Parameters["@Purchasing_Ratio"].Value = row3["نسبة الشراء"].ToString();
+                        com.Parameters["@Purchasing_Discount"].Value = row3["خصم الشراء"].ToString();
+                        //com.Parameters.Add("@Purchasing_Ratio", MySqlDbType.Decimal);
+                        //com.Parameters["@Purchasing_Ratio"].Value = row3["نسبة الشراء"].ToString();
                         com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
                         com.Parameters["@Normal_Increase"].Value = null;
                         com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
@@ -277,7 +277,8 @@ namespace MainSystem
         void search()
         {
             DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT supplier_bill_details.BillData_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.Bill_ID =" + sellRow[0].ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+            //,supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء'
+            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT supplier_bill_details.BillData_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.Bill_ID =" + sellRow[0].ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
             adapterDetails.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
             gridView1.Columns[0].Visible = false;

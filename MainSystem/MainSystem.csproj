@@ -357,11 +357,11 @@
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy.designer.cs">
-      <DependentUpon>Print_SupplierBill_Copy.cs</DependentUpon>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
+      <DependentUpon>Print_SupplierBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Reception\Delegates_Attendance.cs">
       <SubType>Form</SubType>
@@ -629,11 +629,11 @@
     <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.designer.cs">
       <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy2.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
-      <DependentUpon>Print_SupplierBill.cs</DependentUpon>
+    <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy2.designer.cs">
+      <DependentUpon>Print_SupplierBill_Copy2.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Report_SupplierBill.cs">
       <SubType>Form</SubType>
@@ -2468,11 +2468,11 @@
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.resx">
       <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy.resx">
-      <DependentUpon>Print_SupplierBill_Copy.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy2.resx">
+      <DependentUpon>Print_SupplierBill_Copy2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Report_SupplierBill.resx">
       <DependentUpon>Report_SupplierBill.cs</DependentUpon>

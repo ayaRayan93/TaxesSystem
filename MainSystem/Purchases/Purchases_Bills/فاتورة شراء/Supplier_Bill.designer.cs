@@ -63,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comSupPerm = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtLastPrice = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.radioList = new System.Windows.Forms.RadioButton();
             this.radioQata3y = new System.Windows.Forms.RadioButton();
             this.labelPercent = new System.Windows.Forms.Label();
@@ -515,6 +517,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtLastPrice);
+            this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.radioList);
             this.panel1.Controls.Add(this.radioQata3y);
             this.panel1.Controls.Add(this.labelPercent);
@@ -539,6 +543,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(846, 94);
             this.panel1.TabIndex = 7;
+            // 
+            // txtLastPrice
+            // 
+            this.txtLastPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtLastPrice.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtLastPrice.Location = new System.Drawing.Point(496, 25);
+            this.txtLastPrice.Name = "txtLastPrice";
+            this.txtLastPrice.Size = new System.Drawing.Size(84, 24);
+            this.txtLastPrice.TabIndex = 150;
+            this.txtLastPrice.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label13.Location = new System.Drawing.Point(496, 7);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(87, 17);
+            this.label13.TabIndex = 151;
+            this.label13.Text = "السعر بالزيادة";
+            this.label13.Visible = false;
             // 
             // radioList
             // 
@@ -724,6 +750,8 @@
         private System.Windows.Forms.ComboBox comSupPerm;
         private System.Windows.Forms.RadioButton radioList;
         private System.Windows.Forms.RadioButton radioQata3y;
+        private System.Windows.Forms.TextBox txtLastPrice;
+        private System.Windows.Forms.Label label13;
     }
 }
 
