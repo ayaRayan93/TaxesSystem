@@ -26,6 +26,8 @@ namespace MainSystem
         int rowHandel2 = -1;
         string SelectType = "";
         bool comBranchLoaded=false;
+        string branchID = "", BranchName = "";
+
 
         public CustomerDelivery()
         {
@@ -39,7 +41,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        public CustomerDelivery(string permissionNum,int flag)
+        public CustomerDelivery(string permissionNum,string branchID,int flag)
         {
             try
             {
@@ -57,8 +59,22 @@ namespace MainSystem
                     radioBtnCustomerDelivery.Checked = true;
                 }
                 txtPermBillNumber.Text = permissionNum;
-                displayPermission(permissionNum);
-
+                txtBranchID.Text = branchID;
+                string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                MySqlCommand comand = new MySqlCommand(query, dbconnection);
+           
+                comBranch.Text = comand.ExecuteScalar().ToString();
+                this.branchID = branchID;
+                this.BranchName = txtBranchID.Text;
+                // displayPermission(permissionNum);
+                if (IsBillHavePerviousPermission())
+                {
+                    displayDatawithPerviousPer();
+                }
+                else
+                {
+                    displayData();
+                }
             }
             catch (Exception ex)
             {
@@ -82,9 +98,10 @@ namespace MainSystem
                 comBranch.DataSource = dt;
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.Text = "";
-                txtBranchID.Text = "";
-
+                
+                comBranch.Text = BranchName;
+                txtBranchID.Text = branchID;
+               
                 query = "select * from store";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -245,7 +262,14 @@ namespace MainSystem
                 if (e.KeyCode == Keys.Enter)
                 {
                     dbconnection.Open();
-                    displayData();
+                    if (IsBillHavePerviousPermission())
+                    {
+                        displayDatawithPerviousPer();
+                    }
+                    else
+                    {
+                        displayData();
+                    }
                     //displayPermission();
                 }
             }
@@ -282,18 +306,34 @@ namespace MainSystem
         {
             try
             {
-                if (row != null)
+                if (gridView1.SelectedRowsCount==1)
                 {
                     loaded = false;
                     if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row["الكمية"]))
                     {
-                        addrow = row;
-                        SelectType = "oneRow";
-                        addNewRow(row);
-                      
-                        txtCode.Text = "";
-                        txtRecivedQuantity.Text = "";
-                        comStorePlace.DataSource = null;
+                        if (IsDelveryQuantityHaveValue(row[6].ToString()))
+                        {
+                            if ((Convert.ToDouble(row[6]) < Convert.ToDouble(row["الكمية"])))
+                            {
+                                addrow = row;
+                                SelectType = "oneRow";
+                                addNewRow(row);
+
+                                txtCode.Text = "";
+                                txtRecivedQuantity.Text = "";
+                                comStorePlace.DataSource = null;
+                            }
+                        }
+                        else
+                        {
+                            addrow = row;
+                            SelectType = "oneRow";
+                            addNewRow(row);
+
+                            txtCode.Text = "";
+                            txtRecivedQuantity.Text = "";
+                            comStorePlace.DataSource = null;
+                        }
                     }
                     else
                     {
@@ -301,14 +341,27 @@ namespace MainSystem
                         txtRecivedQuantity.Focus();
                     }
                 }
-                else
+                else if (gridView1.SelectedRowsCount > 1)
                 {
+                    int[] selectedRows = gridView1.GetSelectedRows();
                     for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                     {
-                        DataRow row = gridView1.GetDataRow(i);
-                        addrow = row;
-                        SelectType = "muliRow";
-                        addNewRow(row);
+                        DataRow row =gridView1.GetDataRow(selectedRows[i]);
+                        if (IsDelveryQuantityHaveValue(row[6].ToString()))
+                        {
+                            if (Convert.ToDouble(row[6]) < Convert.ToDouble(row[5]))
+                            {
+                                addrow = row;
+                                SelectType = "muliRow";
+                                addNewRow(row);
+                            }
+                        }
+                        else
+                        {
+                            addrow = row;
+                            SelectType = "muliRow";
+                            addNewRow(row);
+                        }
                     
                     }
                 }
@@ -338,8 +391,14 @@ namespace MainSystem
                 if (gridView2.RowCount > 0 && txtPermBillNumber.Text != "" && txtStore.Text!="")
                 {
                     dbconnection.Open();
-                    string query = "insert into customer_permissions (Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name) values (@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,Branch_Name)";
+
+                    string query = "select * from customer_bill  where Branch_ID=" + txtBranchID.Text + " and Branch_BillNumber=" + txtPermBillNumber.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    int CustomerBill_ID = Convert.ToInt16(com.ExecuteScalar());
+                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,Branch_Name)";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                    com.Parameters["@CustomerBill_ID"].Value = txtPermBillNumber.Text;
                     com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16);
                     com.Parameters["@BranchBillNumber"].Value = txtPermBillNumber.Text;
                     if (txtCustomerID.Text != "")
@@ -390,12 +449,14 @@ namespace MainSystem
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRow row1 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
-                        query = "insert into customer_permissions_details (customer_permissions_ID,Data_ID,Carton,DeliveredQuantity,ItemType) values (@customer_permissions_ID,@Data_ID,@Carton,@DeliveredQuantity,@ItemType)";
+                        query = "insert into customer_permissions_details (Customer_Permissin_ID,Data_ID,Carton,DeliveredQuantity,Quantity,ItemType) values (@Customer_Permissin_ID,@Data_ID,@Carton,@DeliveredQuantity,@Quantity,@ItemType)";
                         com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@customer_permissions_ID", MySqlDbType.Int16);
-                        com.Parameters["@customer_permissions_ID"].Value = id;
+                        com.Parameters.Add("@Customer_Permissin_ID", MySqlDbType.Int16);
+                        com.Parameters["@Customer_Permissin_ID"].Value = id;
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
+                        com.Parameters.Add("@Quantity", MySqlDbType.Double);
+                        com.Parameters["@Quantity"].Value = row1[3].ToString();
                         com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
                         com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
                         com.Parameters.Add("@Carton", MySqlDbType.Double);
@@ -406,6 +467,7 @@ namespace MainSystem
                         com.Parameters["@ItemType"].Value = row1["ItemType"].ToString();
                         com.ExecuteNonQuery();
 
+                        IsBillRecived();
                         DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
                         deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
                         deliveryPermissionClass.Code = row1[1].ToString();
@@ -419,7 +481,7 @@ namespace MainSystem
                         {
                             deliveryPermissionClass.Carton = Convert.ToDouble(0);
                         }
-                        deliveryPermissionClass.DeliveryQuantity = Convert.ToDouble(row1[4]);
+                        deliveryPermissionClass.DeliveryQuantity = row1[4].ToString();
                         listOfData.Add(deliveryPermissionClass);
 
                     }
@@ -456,26 +518,35 @@ namespace MainSystem
         {
             try
             {
-                row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
-                rowHandel1 = e.RowHandle;
-                txtCode.Text= row[1].ToString();
-                txtRecivedQuantity.Text = row[5].ToString();
-                if (radioBtnCustomerDelivery.Checked)
-                    Store_ID = row[7].ToString();
+                if (gridView1.SelectedRowsCount == 1)
+                {
+                    row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+                    rowHandel1 = e.RowHandle;
+                    txtCode.Text = row[1].ToString();
+                    txtRecivedQuantity.Text = row[5].ToString();
+                    txtRecivedQuantity.Focus();
+                }
+                else
+                {
+                    txtCode.Text ="";
+                    txtRecivedQuantity.Text = "";
+                }
+                //if (radioBtnCustomerDelivery.Checked)
+                //    Store_ID = row[7].ToString();
                 //string query = "select concat(Store_Place_Code ,'   ',Total_Meters) as 'x' from storage inner join store_places on store_places.Store_Place_ID=storage.Store_Place_ID where storage.Store_ID=" + Store_ID + " and  Data_ID=" + row[0].ToString();
                 //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 //DataTable dt = new DataTable();
                 //da.Fill(dt);
                 //comStorePlace.DataSource = dt;
                 //comStorePlace.DisplayMember = dt.Columns["x"].ToString();
-                txtRecivedQuantity.Focus();
+           
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void gridView2_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        private void gridView2_RowClick(object sender, RowClickEventArgs e)
         {
             try
             {
@@ -499,7 +570,11 @@ namespace MainSystem
                         DataRow dataRow = view.GetFocusedDataRow();
                         double totalQuantityDelivery = Convert.ToDouble(dataRow["DeliveryQuantity"].ToString());
                         double cellValue = Convert.ToDouble(e.Value);
-                        double re = totalQuantityDelivery / cellValue;
+                        double re = 0;
+                        if (cellValue > 0)
+                        {
+                            re = totalQuantityDelivery / cellValue;
+                        }
                         view.SetRowCellValue(view.GetSelectedRows()[0], "NumOfCarton", re + "");
                     }
                     else if (e.Column.Name == "DeliveryQuantity")
@@ -543,17 +618,32 @@ namespace MainSystem
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    if (row != null)
+                    if (gridView1.SelectedRowsCount == 1)
                     {
                         loaded = false;
                         if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row[5].ToString()))
                         {
-                            addrow = row;
-                            SelectType = "oneRow";
-                            addNewRow(row);
-                            txtCode.Text = "";
-                            txtRecivedQuantity.Text = "";
-                            comStorePlace.DataSource = null;
+                            if (IsDelveryQuantityHaveValue(row[6].ToString()))
+                            {
+                                if (Convert.ToDouble(row[6].ToString()) < Convert.ToDouble(row[5].ToString()))
+                                {
+                                    addrow = row;
+                                    SelectType = "oneRow";
+                                    addNewRow(row);
+                                    txtCode.Text = "";
+                                    txtRecivedQuantity.Text = "";
+                                    comStorePlace.DataSource = null;
+                                }
+                            }
+                            else
+                            {
+                                addrow = row;
+                                SelectType = "oneRow";
+                                addNewRow(row);
+                                txtCode.Text = "";
+                                txtRecivedQuantity.Text = "";
+                                comStorePlace.DataSource = null;
+                            }
                         }
                         else
                         {
@@ -561,7 +651,7 @@ namespace MainSystem
                             txtRecivedQuantity.Focus();
                         }
                     }
-                    loaded = true;
+                     loaded = true;
                 }
             }
             catch (Exception ex)
@@ -594,7 +684,7 @@ namespace MainSystem
                         {
                             deliveryPermissionClass.Carton = 0;
                         }
-                        deliveryPermissionClass.DeliveryQuantity =0;
+                        deliveryPermissionClass.DeliveryQuantity = row1[6].ToString();
                         listOfData.Add(deliveryPermissionClass);
                     }
                     DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
@@ -715,19 +805,7 @@ namespace MainSystem
             }
             else
             {
-                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                string query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(DeliveredQuantity) as 'الكمية المسلمة',customer_permissions_details.Carton as 'الكرتنة',store.Store_Name as 'المخزن',product_bill.Store_ID,product_bill.Returned as 'تم الاسترجاع' from product_bill inner join store on product_bill.Store_ID=store.Store_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_permissions_details on customer_permissions_details.Data_ID=product_bill.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where RecivedType='العميل' and Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID="+txtBranchID.Text+" and Type='بند' group by product_bill.Data_ID";
-
-                MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                ad.Fill(dt);
-                gridControl1.DataSource = dt;
-                gridView1.Columns[0].Visible = false;
-                gridView1.Columns[7].Visible = false;
-
-
-                displayBillDataFromCustomerBill(txtBranchID.Text,txtPermBillNumber.Text);
+                displayData();
             }
         }
         public void displayPermission(string permissionNum)
@@ -818,6 +896,7 @@ namespace MainSystem
             rowHandel2 = -1;
             SelectType = "";
         }
+
         public void displayData()
         {
             string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
@@ -825,21 +904,19 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             int id = Convert.ToInt32(com.ExecuteScalar());
             displayCustomerData(id.ToString());
+            gridControl1.DataSource = null;
+            gridView1.Columns.Clear();
             DataTable dtAll = new DataTable();
-            query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Cartons as 'الكرتنة',product_bill.Quantity as 'الكمية',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Cartons as 'الكرتنة',product_bill.Quantity as 'الكمية','" + " " + " ' as 'الكمية المسلمة',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtProduct = new DataTable();
             da.Fill(dtProduct);
 
-            query = "select sets.Set_ID as 'Data_ID',sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            query = "select sets.Set_ID as 'Data_ID',sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + " " + " ' as 'الكمية المسلمة',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
             da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtSet = new DataTable();
             da.Fill(dtSet);
 
-            query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Cartons as 'الكرتنة',product_bill.Quantity as 'الكمية',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
-            da = new MySqlDataAdapter(query, dbconnection);
-            DataTable dtper = new DataTable();
-            da.Fill(dtper);
 
             dtAll = dtProduct.Copy();
             dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
@@ -866,7 +943,121 @@ namespace MainSystem
             }
             dr.Close();
         }
+        public bool IsBillHavePerviousPermission()
+        {
+            string query = "select Customer_Permissin_ID from customer_permissions where BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                dr.Close();
+                return true;
+            }
+            dr.Close();
 
+            return false;
+        }
+        public void displayDatawithPerviousPer()
+        {
+            string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            int id = Convert.ToInt32(com.ExecuteScalar());
+            displayCustomerData(id.ToString());
+
+            gridControl1.DataSource = null;
+            gridView1.Columns.Clear();
+            DataTable dtAll = new DataTable();
+
+            query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',customer_permissions_details.ItemType as 'الفئة',customer_permissions_details.Carton as 'الكرتنة',customer_permissions_details.Quantity as 'الكمية',sum(customer_permissions_details.DeliveredQuantity) as 'الكمية المستلمة' from customer_permissions_details inner join data on data.Data_ID=customer_permissions_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join customer_permissions on  customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where customer_permissions_details.ItemType='بند' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text + " group by data.Data_ID";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtper = new DataTable();
+            da.Fill(dtper);
+            dtAll = dtper.Copy();
+
+            query = "select sets.Set_ID as 'Data_ID',sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',customer_permissions_details.ItemType as 'الفئة',customer_permissions_details.Carton as 'الكرتنة',customer_permissions_details.Quantity as 'الكمية',sum(customer_permissions_details.DeliveredQuantity) as 'الكمية المستلمة' from customer_permissions_details inner join sets on sets.Set_ID=customer_permissions_details.Data_ID inner join customer_permissions on  customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where customer_permissions_details.ItemType='طقم' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text + " group by sets.Set_ID";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtper1 = new DataTable();
+            da.Fill(dtper1);
+            dtAll.Merge(dtper1, true, MissingSchemaAction.Ignore);
+            string re = getDeliveredDataItems("بند");
+            if (re != "")
+            {
+                query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Cartons as 'الكرتنة',product_bill.Quantity as 'الكمية' , '" + 0 + " ' as 'الكمية المسلمة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند' and product_bill.Data_ID not in ( " + re + " ) ";// and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dtProduct = new DataTable();
+                da.Fill(dtProduct);
+                dtAll.Merge(dtProduct, true, MissingSchemaAction.Ignore);
+            }
+
+            re = getDeliveredDataItems("طقم");
+            if (re != "")
+            {
+                query = "select sets.Set_ID as 'Data_ID',sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='طقم' and Set_ID not in (" + re + ")";// and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dtSet = new DataTable();
+                da.Fill(dtSet);
+                dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
+            }
+        
+            gridControl1.DataSource = dtAll;
+            gridView1.Columns[0].Visible = false;
+            gridView1.Columns["الفئة"].Visible = false;
+            //gridView1.Columns["الوصف"].Visible = false;
+            //gridView1.Columns["Delegate_Name"].Visible = false;
+            //gridView1.Columns["Store_ID"].Visible = false;
+            //txtDelegate.Text = gridView1.GetDataRow(0)["Delegate_Name"].ToString();
+        }
+        public string getDeliveredDataItems(string type)
+        {
+            string query = "select group_concat(distinct Data_ID) from customer_permissions_details inner join customer_permissions on customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where ItemType='" + type+"' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            string result = com.ExecuteScalar().ToString();
+
+            return result;
+        }
+        public void IsBillRecived()
+        {
+            DataTable dtAll = new DataTable();
+            string query = "select data.Data_ID,data.Code as 'الكود',customer_permissions_details.ItemType as 'الفئة',customer_permissions_details.Carton as 'الكرتنة',customer_permissions_details.Quantity as 'الكمية',sum(customer_permissions_details.DeliveredQuantity) as 'الكمية المستلمة' from customer_permissions_details inner join data on data.Data_ID=customer_permissions_details.Data_ID  inner join customer_permissions on  customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where customer_permissions_details.ItemType='بند' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text + " group by data.Data_ID";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtper = new DataTable();
+            da.Fill(dtper);
+            dtAll = dtper.Copy();
+
+            query = "select sets.Set_ID as 'Data_ID',sets.Set_ID as 'الكود',customer_permissions_details.ItemType as 'الفئة',customer_permissions_details.Carton as 'الكرتنة',customer_permissions_details.Quantity as 'الكمية',sum(customer_permissions_details.DeliveredQuantity) as 'الكمية المستلمة' from customer_permissions_details inner join sets on sets.Set_ID=customer_permissions_details.Data_ID inner join customer_permissions on  customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where customer_permissions_details.ItemType='طقم' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text + " group by sets.Set_ID";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtper1 = new DataTable();
+            da.Fill(dtper1);
+            dtAll.Merge(dtper1, true, MissingSchemaAction.Ignore);
+
+            bool flag = true;
+            foreach (DataRow item in dtAll.Rows)
+            {
+                if (Convert.ToDouble(item[4]) > Convert.ToDouble(item[5]))
+                {
+                    flag = false;
+                }
+            }
+            if (flag)
+            {
+                query = "update customer_bill set RecivedFlag='تم' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
+            }
+        }
+        public bool IsDelveryQuantityHaveValue(string x)
+        {
+            try
+            {
+                Convert.ToDouble(x);
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
     }
 
    

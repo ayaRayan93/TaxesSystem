@@ -1497,7 +1497,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindDisplayDeliveryForm(string permissionNum,int flag)
+        public void bindDisplayDeliveryForm(string permissionNum,string branchID,int flag)
         {
             if (!xtraTabControlStoresContent.Visible)
                 xtraTabControlStoresContent.Visible = true;
@@ -1512,7 +1512,7 @@ namespace MainSystem
             xtraTabPage.Controls.Clear();
             xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-            CustomerDelivery objForm = new CustomerDelivery(permissionNum, flag);
+            CustomerDelivery objForm = new CustomerDelivery(permissionNum, branchID, flag);
 
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);

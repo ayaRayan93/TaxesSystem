@@ -78,8 +78,9 @@ namespace MainSystem
                 dbconnection.Open();
                 dbconnectionr.Open();
 
-                ShippingPermissions();
-                CustomerDeliveryBills();
+                // ShippingPermissions();
+                // CustomerDeliveryBills();
+                displayBill();
             }
             catch (Exception ex)
             {
@@ -106,7 +107,7 @@ namespace MainSystem
             try
             {
                 DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);             
-                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[1].ToString(), 1);
+               // MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[1].ToString(), 1);
             }
             catch (Exception ex)
             {
@@ -118,8 +119,9 @@ namespace MainSystem
         {
             try
             {
-                DataRow dataRow = gridView1.GetDataRow(gridView1.FocusedRowHandle);
-                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), 2);
+
+                DataRow dataRow = gridView2.GetDataRow(gridView2.FocusedRowHandle);
+                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
             }
             catch (Exception ex)
             {
@@ -178,9 +180,9 @@ namespace MainSystem
         public void CustomerDeliveryBills()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            string d = date.ToString("yyyy-MM-dd");
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string d2 = date2.ToString("yyyy-MM-dd");
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
@@ -200,7 +202,7 @@ namespace MainSystem
             dr.Close();
             customer_IDs += 0;
 
-            query = "select customer_bill.CustomerBill_ID as 'كود الفاتورة', customer_bill.Customer_Name as 'العميل' ,store.Store_Name as 'المخزن' from customer_bill inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID inner join store on Store.Store_ID=product_bill.Store_ID where  Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            query = "select distinct customer_bill.CustomerBill_ID as 'كود الفاتورة', customer_bill.Customer_Name as 'العميل' ,store.Store_Name as 'المخزن' from customer_bill inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID inner join store on Store.Store_ID=product_bill.Store_ID where  Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
             MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
             query = "SELECT product_bill.CustomerBill_ID as 'كود الفاتورة',data.Code as 'الكود' ," + itemName + ",product_bill.Quantity as 'الكمية',data.Carton as 'الكرتنة',(product_bill.Quantity/data.Carton) as 'عدد الكراتين/الوحدات', data_photo.Photo as 'صورة' from data " + DataTableRelations + " INNER JOIN product_bill on data.Data_ID=product_bill.Data_ID INNER JOIN customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID left join data_photo on data_photo.Data_ID=data.Data_ID  WHERE date(Customer_bill.Shipped_Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "' and product_bill.CustomerBill_ID in(" + customer_IDs + ") " + subQuery;
             MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
@@ -218,6 +220,25 @@ namespace MainSystem
 
             //Bind the grid control to the data source 
             gridControl2.DataSource = dataSet11.Tables["Shipping"];
+            AddUnboundColumngridView2();
+            AddRepositorygridView2();
+        }
+
+        public void displayBill()
+        {
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd");
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd");
+            string subQuery = "";
+            if (txtStoreID.Text != "")
+                subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
+            string query = "select Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل' from customer_bill where RecivedType='العميل' and RecivedFlag='لا' and Paid_Status=1 and Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+            gridView2.Columns[2].Visible = false;
             AddUnboundColumngridView2();
             AddRepositorygridView2();
         }

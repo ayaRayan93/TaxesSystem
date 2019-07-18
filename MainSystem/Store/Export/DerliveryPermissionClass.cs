@@ -13,6 +13,6 @@ namespace MainSystem
         public string Code { get; set; }
         public double Carton { get; set; }
         public double TotalQuantity { get; set; }
-        public double DeliveryQuantity { get; set; }
+        public string DeliveryQuantity { get; set; }
     }
 }
