@@ -345,7 +345,7 @@ namespace MainSystem
                 if (xtraTabPage == null)
                 {
                     tabPageInformationProductsReport.Name = "tabPageInformationProductsReport";
-                    tabPageInformationProductsReport.Text = "تقرير الاصناف بسعر البيع";
+                    tabPageInformationProductsReport.Text = "رصيد الاصناف بسعر البيع";
                     panelInformationProductsReport.Name = "panelInformationProductsReport";
                     panelInformationProductsReport.Dock = DockStyle.Fill;
 

@@ -277,58 +277,65 @@ namespace MainSystem
         {
             try
             {
-                string q1, q2, q3, q4, fQuery = "";
-                if (comType.Text == "")
+                if (comType.Text != "" && comFactory.Text != "" && comGroup.Text != "")
                 {
-                    q1 = "select Type_ID from type";
+                    string q1, q2, q3, q4, fQuery = "";
+                    if (comType.Text == "")
+                    {
+                        q1 = "select Type_ID from type";
+                    }
+                    else
+                    {
+                        q1 = comType.SelectedValue.ToString();
+                    }
+                    if (comFactory.Text == "")
+                    {
+                        q2 = "select Factory_ID from factory";
+                    }
+                    else
+                    {
+                        q2 = comFactory.SelectedValue.ToString();
+                    }
+                    if (comProduct.Text == "")
+                    {
+                        q3 = "select Product_ID from product";
+                    }
+                    else
+                    {
+                        q3 = comProduct.SelectedValue.ToString();
+                    }
+                    if (comGroup.Text == "")
+                    {
+                        q4 = "select Group_ID from groupo";
+                    }
+                    else
+                    {
+                        q4 = comGroup.SelectedValue.ToString();
+                    }
+
+                    if (comSize.Text != "")
+                    {
+                        fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
+                    }
+
+                    if (comColor.Text != "")
+                    {
+                        fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
+                    }
+                    if (comSort.Text != "")
+                    {
+                        fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
+                    }
+
+                    displayPrduct(q1, q2, q3, q4, fQuery);
+
+                    fQuery = "";
                 }
                 else
                 {
-                    q1 = comType.SelectedValue.ToString();
+                    gridControl1.DataSource = null;
+                    MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
                 }
-                if (comFactory.Text == "")
-                {
-                    q2 = "select Factory_ID from factory";
-                }
-                else
-                {
-                    q2 = comFactory.SelectedValue.ToString();
-                }
-                if (comProduct.Text == "")
-                {
-                    q3 = "select Product_ID from product";
-                }
-                else
-                {
-                    q3 = comProduct.SelectedValue.ToString();
-                }
-                if (comGroup.Text == "")
-                {
-                    q4 = "select Group_ID from groupo";
-                }
-                else
-                {
-                    q4 = comGroup.SelectedValue.ToString();
-                }
-
-                if (comSize.Text != "")
-                {
-                    fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
-                }
-
-                if (comColor.Text != "")
-                {
-                    fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
-                }
-                if (comSort.Text != "")
-                {
-                    fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
-                }
-
-                displayPrduct(q1, q2, q3, q4, fQuery);
-
-                fQuery = "";
-
             }
             catch (Exception ex)
             {

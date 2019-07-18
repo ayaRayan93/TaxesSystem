@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
@@ -517,10 +518,11 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemInformationFactoryReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -689,7 +691,6 @@
             this.tcMainContent.Name = "tcMainContent";
             this.tcMainContent.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tcMainContent.Padding = new System.Windows.Forms.Padding(30);
-            this.tcMainContent.Position = 86;
             this.tcMainContent.Size = new System.Drawing.Size(1145, 702);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
@@ -1622,7 +1623,8 @@
             this.navBarItemReturnedBillCopy,
             this.navBarItemTransitionCopy,
             this.navBarItemReturnWithPermision,
-            this.navBarItemItemTransitionReport});
+            this.navBarItemItemTransitionReport,
+            this.navBarItemInformationFactoryReport});
             this.navBarControl2.Location = new System.Drawing.Point(955, 0);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 190;
@@ -1640,7 +1642,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemItemTransitionReport)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemItemTransitionReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationFactoryReport)});
             this.navBarGroup18.Name = "navBarGroup18";
             // 
             // navBarItemSalesTransitions
@@ -2585,7 +2588,7 @@
             // 
             this.navBarGroup31.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroup31.Appearance.Options.UseFont = true;
-            this.navBarGroup31.Caption = "استعلامات";
+            this.navBarGroup31.Caption = "تقارير المبيعات";
             this.navBarGroup31.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationProducts),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationSets),
@@ -2621,7 +2624,7 @@
             // 
             this.navBarItemInformationProductsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.navBarItemInformationProductsReport.Appearance.Options.UseFont = true;
-            this.navBarItemInformationProductsReport.Caption = "تقرير الاصناف بسعر البيع";
+            this.navBarItemInformationProductsReport.Caption = "رصيد الاصناف بسعر البيع";
             this.navBarItemInformationProductsReport.Name = "navBarItemInformationProductsReport";
             this.navBarItemInformationProductsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemInformationProductsReport_LinkClicked);
             // 
@@ -4914,6 +4917,12 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItemInformationFactoryReport
+            // 
+            this.navBarItemInformationFactoryReport.Caption = "رصيد الشركات بسعر البيع";
+            this.navBarItemInformationFactoryReport.Name = "navBarItemInformationFactoryReport";
+            this.navBarItemInformationFactoryReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemInformationFactoryReport_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5460,6 +5469,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroupProductsTicket;
         private DevExpress.XtraNavBar.NavBarItem navBarItemProductTicket;
         private DevExpress.XtraNavBar.NavBarItem navBarItemItemTransitionReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemInformationFactoryReport;
     }
 }
 
