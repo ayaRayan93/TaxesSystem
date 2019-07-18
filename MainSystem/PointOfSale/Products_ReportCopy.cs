@@ -1048,184 +1048,191 @@ namespace MainSystem
         {
             try
             {
-                string q1, q2, q3, q4, fQuery = "";
-                if (comType.Text == "")
+                if (comType.Text != "" && comFactory.Text != "" && comGroup.Text != "")
                 {
-                    q1 = "select Type_ID from type";
-                }
-                else
-                {
-                    q1 = comType.SelectedValue.ToString();
-                }
-                if (comFactory.Text == "")
-                {
-                    q2 = "select Factory_ID from factory";
-                }
-                else
-                {
-                    q2 = comFactory.SelectedValue.ToString();
-                }
-                if (comProduct.Text == "")
-                {
-                    q3 = "select Product_ID from product";
-                }
-                else
-                {
-                    q3 = comProduct.SelectedValue.ToString();
-                }
-                if (comGroup.Text == "")
-                {
-                    q4 = "select Group_ID from groupo";
-                }
-                else
-                {
-                    q4 = comGroup.SelectedValue.ToString();
-                }
-
-                if (comSize.Text != "")
-                {
-                    fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
-                }
-
-                if (comColor.Text != "")
-                {
-                    fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
-                }
-                if (comSort.Text != "")
-                {
-                    fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
-                }
-                if (comClassfication.Text != "")
-                {
-                    fQuery += "and data.Classification='" + comClassfication.Text + "'";
-                }
-
-                dbconnection.Open();
-                dbconnection6.Open();
-
-                string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',data.Carton as 'الكرتنة',sellprice.Price_Type FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                gridControl1.DataSource = dt;
-                if (radProducts.Checked)
-                {
-                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr = comand.ExecuteReader();
-                    while (dr.Read())
+                    string q1, q2, q3, q4, fQuery = "";
+                    if (comType.Text == "")
                     {
-                        string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
-                        MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
-                        MySqlDataReader dr2 = comand2.ExecuteReader();
-                        while (dr2.Read())
-                        {
-                            gridView1.AddNewRow();
-                            int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                            if (gridView1.IsNewItemRow(rowHandle))
-                            {
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
-
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
-                            }
-                        }
-                        dr2.Close();
+                        q1 = "select Type_ID from type";
                     }
-                    dr.Close();
-                }
-                else if (radSets.Checked)
-                {
+                    else
+                    {
+                        q1 = comType.SelectedValue.ToString();
+                    }
+                    if (comFactory.Text == "")
+                    {
+                        q2 = "select Factory_ID from factory";
+                    }
+                    else
+                    {
+                        q2 = comFactory.SelectedValue.ToString();
+                    }
                     if (comProduct.Text == "")
                     {
-                        q3 = "select Set_ID from sets";
+                        q3 = "select Product_ID from product";
                     }
                     else
                     {
                         q3 = comProduct.SelectedValue.ToString();
                     }
-
-                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
-                    DataTable dtf = new DataTable();
-                    adapter.Fill(dtf);
-                    gridControl1.DataSource = dtf;
-                    //gridView1.Columns["Type"].Visible = false;
-                    //gridView1.Columns[0].Visible = false;
-
-                    query = "SELECT sets.Set_ID as 'الكود','Type',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")";
-                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr = comand.ExecuteReader();
-                    while (dr.Read())
+                    if (comGroup.Text == "")
                     {
-                        dbconnection3.Open();
-                        double price = 0;
-                        double priceF = 0;
-                        double totalQuanity = 0;
-                        gridView1.AddNewRow();
-                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                        if (gridView1.IsNewItemRow(rowHandle))
+                        q4 = "select Group_ID from groupo";
+                    }
+                    else
+                    {
+                        q4 = comGroup.SelectedValue.ToString();
+                    }
+
+                    if (comSize.Text != "")
+                    {
+                        fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
+                    }
+
+                    if (comColor.Text != "")
+                    {
+                        fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
+                    }
+                    if (comSort.Text != "")
+                    {
+                        fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
+                    }
+                    if (comClassfication.Text != "")
+                    {
+                        fQuery += "and data.Classification='" + comClassfication.Text + "'";
+                    }
+
+                    dbconnection.Open();
+                    dbconnection6.Open();
+
+                    string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',data.Carton as 'الكرتنة',sellprice.Price_Type FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    gridControl1.DataSource = dt;
+                    if (radProducts.Checked)
+                    {
+                        query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr = comand.ExecuteReader();
+                        while (dr.Read())
                         {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
-
-                            query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID order by sellprice.Date desc";
-                            comand = new MySqlCommand(query, dbconnection3);
-                            MySqlDataReader dr1 = comand.ExecuteReader();
-                            while (dr1.Read())
+                            string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',sellprice.Price_Type from data INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID where data.Data_ID=" + dr["Data_ID"].ToString() + " order by sellprice.Date desc limit 1";
+                            MySqlCommand comand2 = new MySqlCommand(q, dbconnection6);
+                            MySqlDataReader dr2 = comand2.ExecuteReader();
+                            while (dr2.Read())
                             {
-                                price += Convert.ToDouble(dr1["السعر"].ToString());
-                                priceF += Convert.ToDouble(dr1["بعد الخصم"].ToString());
-
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
-                            }
-                            dr1.Close();
-
-                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
-                            comand = new MySqlCommand(query, dbconnection3);
-                            dr1 = comand.ExecuteReader();
-                            while (dr1.Read())
-                            {
-                                if (dr1["الكمية"].ToString() != "")
+                                gridView1.AddNewRow();
+                                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                                if (gridView1.IsNewItemRow(rowHandle))
                                 {
-                                    totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"]);
+
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr2["السعر"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr2["الخصم"]);
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr2["بعد الخصم"]);
+                                }
+                            }
+                            dr2.Close();
+                        }
+                        dr.Close();
+                    }
+                    else if (radSets.Checked)
+                    {
+                        if (comProduct.Text == "")
+                        {
+                            q3 = "select Set_ID from sets";
+                        }
+                        else
+                        {
+                            q3 = comProduct.SelectedValue.ToString();
+                        }
+
+                        MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(storage.Total_Meters) as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'الخصم',sellprice.Sell_Price as 'بعد الخصم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+                        DataTable dtf = new DataTable();
+                        adapter.Fill(dtf);
+                        gridControl1.DataSource = dtf;
+                        //gridView1.Columns["Type"].Visible = false;
+                        //gridView1.Columns[0].Visible = false;
+
+                        query = "SELECT sets.Set_ID as 'الكود','Type',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',sets.Description as 'الوصف' FROM sets INNER JOIN type ON type.Type_ID = sets.Type_ID INNER JOIN factory ON factory.Factory_ID = sets.Factory_ID where sets.Type_ID IN(" + q1 + ") and sets.Factory_ID IN(" + q2 + ") and sets.Set_ID IN (" + q3 + ")";
+                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr = comand.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            dbconnection3.Open();
+                            double price = 0;
+                            double priceF = 0;
+                            double totalQuanity = 0;
+                            gridView1.AddNewRow();
+                            int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                            if (gridView1.IsNewItemRow(rowHandle))
+                            {
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "طقم");
+
+                                query = "SELECT sum(set_details.Quantity*sellprice.Last_Price) as 'السعر',(set_details.Quantity*sellprice.Sell_Discount) as 'الخصم',sum(set_details.Quantity*sellprice.Sell_Price) as 'بعد الخصم' FROM sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID order by sellprice.Date desc";
+                                comand = new MySqlCommand(query, dbconnection3);
+                                MySqlDataReader dr1 = comand.ExecuteReader();
+                                while (dr1.Read())
+                                {
+                                    price += Convert.ToDouble(dr1["السعر"].ToString());
+                                    priceF += Convert.ToDouble(dr1["بعد الخصم"].ToString());
+
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخصم"], dr1["الخصم"]);
+                                }
+                                dr1.Close();
+
+                                query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
+                                comand = new MySqlCommand(query, dbconnection3);
+                                dr1 = comand.ExecuteReader();
+                                while (dr1.Read())
+                                {
+                                    if (dr1["الكمية"].ToString() != "")
+                                    {
+                                        totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
+                                    }
+                                    else
+                                    {
+                                        totalQuanity += 0;
+                                    }
+                                }
+                                dr1.Close();
+
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], price);
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], priceF);
+                                if (totalQuanity != 0)
+                                {
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuanity);
                                 }
                                 else
                                 {
-                                    totalQuanity += 0;
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], "");
                                 }
                             }
-                            dr1.Close();
-
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], price);
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], priceF);
-                            if (totalQuanity != 0)
-                            {
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuanity);
-                            }
-                            else
-                            {
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], "");
-                            }
+                            dbconnection3.Close();
                         }
-                        dbconnection3.Close();
+                        dr.Close();
+
                     }
-                    dr.Close();
                     
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
                 }
-
-
-                if (gridView1.IsLastVisibleRow)
+                else
                 {
-                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    gridControl1.DataSource = null;
+                    MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
                 }
             }
             catch (Exception ex)
