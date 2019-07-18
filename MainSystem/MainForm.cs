@@ -772,7 +772,8 @@ namespace MainSystem
         }
     }
 
-    public static class connection
+    public static class 
+    connection
     {
         static string supString = File.ReadAllText("IP_Address.txt");
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));

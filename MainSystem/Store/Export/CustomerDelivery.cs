@@ -27,8 +27,7 @@ namespace MainSystem
         string SelectType = "";
         bool comBranchLoaded=false;
         string branchID = "", BranchName = "";
-
-
+        
         public CustomerDelivery()
         {
             try
@@ -1058,6 +1057,7 @@ namespace MainSystem
                 return false;
             }
         }
+
     }
 
    

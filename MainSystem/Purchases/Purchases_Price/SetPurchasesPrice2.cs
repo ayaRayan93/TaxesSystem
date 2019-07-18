@@ -58,33 +58,13 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }    
-        private void chBoxAdditionalIncrease_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (chBoxAdditionalIncrease.Checked)
-                {
-                    tLPanCpntent.RowStyles[2].Height = 360;                  
-                }
-                else
-                {
-                    tLPanCpntent.RowStyles[2].Height = 200;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+    
         private void radioList_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 label14.Text = "خصم الشراء";
-                txtNormal.Visible = true;
-                txtUnNormal.Visible = true;
-                label15.Visible = true;
-                label16.Visible = true;
+       
             }
             catch (Exception ex)
             {
@@ -96,10 +76,7 @@ namespace MainSystem
             try
             {
                 label14.Text = "نسبة الخصم";
-                txtNormal.Visible = false;
-                txtUnNormal.Visible = false;
-                label15.Visible = false;
-                label16.Visible = false;
+     
             }
             catch (Exception ex)
             {
@@ -680,8 +657,6 @@ namespace MainSystem
                         #region set qata3yPrice for list item
                         if (gridView1.SelectedRowsCount>1)
                         {
-                            double NormalPercent = double.Parse(txtNormal.Text);
-                            double UnNormalPercent = double.Parse(txtUnNormal.Text);
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
@@ -689,28 +664,30 @@ namespace MainSystem
 
                                 if (!checkExist(row[0].ToString()))
                                 {
-                                    string query = "INSERT INTO purchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
+                                    string query = "INSERT INTO purchasing_price (Normal_Increase,Categorical_Increase,Purchasing_Discount,Price_Type, Purchasing_Price, Data_ID, Price,Last_Price, Date) VALUES(@Normal_Increase,@Categorical_Increase,?Purchasing_Discount,?Price_Type,?Purchasing_Price,?Data_ID,?Price,?Last_Price,?Date)";
                                     MySqlCommand command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                     command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
                                     command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
-                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                    command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                    command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                     command.Parameters.AddWithValue("?Price", price);
                                     command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
-                                    command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                    command.Parameters.AddWithValue("?Purchasing_Discount", double.Parse(txtPurchases.Text));
                                     command.Parameters.Add("?Date", MySqlDbType.Date);
                                     command.Parameters["?Date"].Value = DateTime.Now.Date;
                                     command.ExecuteNonQuery();
 
-                                    query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type, Purchasing_Price, ProfitRatio, Data_ID, Price,Last_Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Last_Price,?Date)";
+                                    query = "INSERT INTO oldpurchasing_price (Normal_Increase,Categorical_Increase,Purchasing_Discount,Price_Type, Purchasing_Price, Data_ID, Price,Last_Price, Date) VALUES(@Normal_Increase,@Categorical_Increase,?Purchasing_Discount,?Price_Type,?Purchasing_Price,?Data_ID,?Price,?Last_Price,?Date)";
                                     command = new MySqlCommand(query, dbconnection);
                                     command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                     command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
                                     command.Parameters.AddWithValue("?Data_ID", row[0].ToString());
-                                    command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                    command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                    command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                     command.Parameters.AddWithValue("?Price", price);
                                     command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
-                                    command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                    command.Parameters.AddWithValue("?Purchasing_Discount", double.Parse(txtPurchases.Text));
                                     command.Parameters.Add("?Date", MySqlDbType.Date);
                                     command.Parameters["?Date"].Value = DateTime.Now.Date;
                                     command.ExecuteNonQuery();
@@ -726,28 +703,30 @@ namespace MainSystem
                         {
                             if (id != 0)
                             {
-                                string query = "INSERT INTO purchasing_price (Purchasing_Discount,Price_Type,Last_Price, Purchasing_Price, ProfitRatio, Data_ID, Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Last_Price,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Date)";
+                                string query = "INSERT INTO purchasing_price (Normal_Increase,Categorical_Increase,Purchasing_Discount,Price_Type,Last_Price, Purchasing_Price, Data_ID, Price, Date) VALUES(@Normal_Increase,@Categorical_Increase,?Purchasing_Discount,?Price_Type,?Last_Price,?Purchasing_Price,?Data_ID,?Price,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                 command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
                                 command.Parameters.AddWithValue("?Data_ID", id);
-                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                 command.Parameters.AddWithValue("?Price", price);
                                 command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                command.Parameters.AddWithValue("?Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
 
-                                query = "INSERT INTO oldpurchasing_price (Purchasing_Discount,Price_Type,Last_Price, Purchasing_Price, ProfitRatio, Data_ID, Price, Date) VALUES(?Purchasing_Discount,?Price_Type,?Last_Price,?Purchasing_Price,?ProfitRatio,?Data_ID,?Price,?Date)";
+                                query = "INSERT INTO oldpurchasing_price (Normal_Increase,Categorical_Increase,Purchasing_Discount,Price_Type,Last_Price, Purchasing_Price, Data_ID, Price, Date) VALUES(@Normal_Increase,@Categorical_Increase,?Purchasing_Discount,?Price_Type,?Last_Price,?Purchasing_Price,?Data_ID,?Price,?Date)";
                                 command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("?Price_Type", "قطعى");
                                 command.Parameters.AddWithValue("?Purchasing_Price", calPurchasesPrice());
                                 command.Parameters.AddWithValue("?Data_ID", id);
-                                command.Parameters.AddWithValue("?ProfitRatio", double.Parse(txtPurchases.Text));
+                                command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                 command.Parameters.AddWithValue("?Price", price);
                                 command.Parameters.AddWithValue("?Last_Price", calPurchasesPrice());
-                                command.Parameters.AddWithValue("?Purchasing_Discount", 0.0);
+                                command.Parameters.AddWithValue("?Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
                                 command.ExecuteNonQuery();
@@ -769,12 +748,7 @@ namespace MainSystem
                         #region set priceList for collection of items
                         if (gridView1.SelectedRowsCount>1)
                         {
-                            double NormalPercent = double.Parse(txtNormal.Text);
-                            double unNormalPercent = double.Parse(txtUnNormal.Text);
-
-                            double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
-
-                            PurchasesPrice = PurchasesPrice + unNormalPercent;
+                           
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
                             {
@@ -790,8 +764,8 @@ namespace MainSystem
                                     command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                     command.Parameters.AddWithValue("@Price", price);
                                     command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
-                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                    command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                    command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                     command.Parameters.Add("?Date", MySqlDbType.Date);
                                     command.Parameters["?Date"].Value = DateTime.Now.Date;
                                     command.ExecuteNonQuery();
@@ -804,8 +778,8 @@ namespace MainSystem
                                     command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                     command.Parameters.AddWithValue("@Price", price);
                                     command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
-                                    command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                    command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                    command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                    command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                     command.Parameters.Add("?Date", MySqlDbType.Date);
                                     command.Parameters["?Date"].Value = DateTime.Now.Date;
                                     command.ExecuteNonQuery();
@@ -822,13 +796,7 @@ namespace MainSystem
                         {
                             if (id != 0)
                             {
-                                double NormalPercent = double.Parse(txtNormal.Text);
-                                double unNormalPercent = double.Parse(txtUnNormal.Text);
-
-                                double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
-
-                                PurchasesPrice = PurchasesPrice + unNormalPercent;
-
+                            
                                 string query = "INSERT INTO purchasing_price (Last_Price,Price_Type,Purchasing_Price,Data_ID,Purchasing_Discount,Price,Normal_Increase,Categorical_Increase,Date) VALUES (?Last_Price,?Price_Type,?Purchasing_Price,?Data_ID,?Purchasing_Discount,?Price,?Normal_Increase,?Categorical_Increase,?Date)";
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
@@ -837,8 +805,8 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.AddWithValue("@Price", price);
                                 command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
-                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
 
@@ -852,8 +820,8 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("@Purchasing_Discount", double.Parse(txtPurchases.Text));
                                 command.Parameters.AddWithValue("@Price", price);
                                 command.Parameters.AddWithValue("@Last_Price", lastPrice(calPurchasesPrice()));
-                                command.Parameters.AddWithValue("@Normal_Increase", double.Parse(txtNormal.Text));
-                                command.Parameters.AddWithValue("@Categorical_Increase", double.Parse(txtUnNormal.Text));
+                                command.Parameters.AddWithValue("@Normal_Increase", getNormalIncrease());
+                                command.Parameters.AddWithValue("@Categorical_Increase", getUnNormalIncrease());
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
 
@@ -1091,8 +1059,6 @@ namespace MainSystem
             if (txtCode.Text == "" &&
                 txtPrice.Text == "0" &&
                 txtPurchases.Text == "0" &&
-                txtNormal.Text == "0" &&
-                txtUnNormal.Text == "0" &&
                 radioList.Checked == true)
                 return true;
             else
@@ -1103,8 +1069,6 @@ namespace MainSystem
             txtCode.Text = "";
             txtPrice.Text = "0";
             txtPurchases.Text = "0";
-            txtNormal.Text = "0";
-            txtUnNormal.Text = "0";
             txtDes.Text = "";
             txtPlus.Text = "";
             dataGridView1.Rows.Clear();
@@ -1115,29 +1079,19 @@ namespace MainSystem
         {
             double addational = 0.0;
             double price = double.Parse(txtPrice.Text);
-            if (dataGridView1.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow item in dataGridView1.Rows)
-                {
-                    if (item.Cells[1].Value.ToString() == "عادية")
-                        price += Convert.ToDouble(item.Cells[0].Value);
-                    else if (item.Cells[1].Value.ToString() == "قطعية")
-                        addational += Convert.ToDouble(item.Cells[0].Value);
-                }
-            }
+
             double PurchasesPercent = double.Parse(txtPurchases.Text);
             if (radioQata3y.Checked == true)
             {
                 //return price + (price * PurchasesPercent / 100.0) + addational;
-                price += addational;
+                price += getNormalIncrease() + getUnNormalIncrease(); ;
                 return price - (price * PurchasesPercent / 100.0);
             }
             else
             {
-                double NormalPercent = double.Parse(txtNormal.Text);
-                double unNormalPercent = double.Parse(txtUnNormal.Text);
-                double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
-                PurchasesPrice = PurchasesPrice + unNormalPercent;
+             
+                double PurchasesPrice = (price + getNormalIncrease()) - ((price + getNormalIncrease()) * PurchasesPercent / 100.0);
+                PurchasesPrice = PurchasesPrice + getUnNormalIncrease();
                 return PurchasesPrice + addational;
             }
         }
@@ -1238,6 +1192,35 @@ namespace MainSystem
             }
         }
 
-
+        public double getNormalIncrease()
+        {
+            double result = 0;
+            if (dataGridView1.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells[1].Value.ToString() == "عادية")
+                    {
+                        result += Convert.ToDouble(item.Cells[0].Value);
+                    }
+                }
+            }
+            return result;
+        }
+        public double getUnNormalIncrease()
+        {
+            double result = 0;
+            if (dataGridView1.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (item.Cells[1].Value.ToString() == "قطعية")
+                    {
+                        result += Convert.ToDouble(item.Cells[0].Value);
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
