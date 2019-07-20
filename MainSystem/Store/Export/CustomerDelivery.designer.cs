@@ -452,7 +452,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 427F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 430F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -477,10 +477,10 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(428, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(432, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(98, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(97, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -532,7 +532,6 @@
             this.panBranch.Name = "panBranch";
             this.panBranch.Size = new System.Drawing.Size(256, 33);
             this.panBranch.TabIndex = 239;
-            this.panBranch.Visible = false;
             // 
             // label10
             // 
@@ -594,14 +593,12 @@
             // 
             this.radioBtnDriverDelivery.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioBtnDriverDelivery.AutoSize = true;
-            this.radioBtnDriverDelivery.Checked = true;
             this.radioBtnDriverDelivery.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioBtnDriverDelivery.Location = new System.Drawing.Point(820, 19);
             this.radioBtnDriverDelivery.Name = "radioBtnDriverDelivery";
             this.radioBtnDriverDelivery.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioBtnDriverDelivery.Size = new System.Drawing.Size(100, 20);
             this.radioBtnDriverDelivery.TabIndex = 238;
-            this.radioBtnDriverDelivery.TabStop = true;
             this.radioBtnDriverDelivery.Text = "تسليم سائق";
             this.radioBtnDriverDelivery.UseVisualStyleBackColor = true;
             this.radioBtnDriverDelivery.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
@@ -610,12 +607,14 @@
             // 
             this.radioBtnCustomerDelivery.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioBtnCustomerDelivery.AutoSize = true;
+            this.radioBtnCustomerDelivery.Checked = true;
             this.radioBtnCustomerDelivery.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioBtnCustomerDelivery.Location = new System.Drawing.Point(823, 45);
             this.radioBtnCustomerDelivery.Name = "radioBtnCustomerDelivery";
             this.radioBtnCustomerDelivery.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioBtnCustomerDelivery.Size = new System.Drawing.Size(97, 20);
             this.radioBtnCustomerDelivery.TabIndex = 237;
+            this.radioBtnCustomerDelivery.TabStop = true;
             this.radioBtnCustomerDelivery.Text = "تسليم عميل";
             this.radioBtnCustomerDelivery.UseVisualStyleBackColor = true;
             this.radioBtnCustomerDelivery.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
@@ -686,7 +685,7 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView2_RowCellClick);
+            this.gridView2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView2_RowClick);
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
             // Data_ID

@@ -86,11 +86,6 @@
             this.txtDes = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtPlus = new System.Windows.Forms.TextBox();
-            this.chBoxAdditionalIncrease = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtUnNormal = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtNormal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtPurchases = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -98,14 +93,14 @@
             this.radioList = new System.Windows.Forms.RadioButton();
             this.radioQata3y = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCodePart4 = new System.Windows.Forms.TextBox();
-            this.txtCodePart5 = new System.Windows.Forms.TextBox();
-            this.txtCodePart1 = new System.Windows.Forms.TextBox();
-            this.txtCodePart3 = new System.Windows.Forms.TextBox();
-            this.txtCodePart2 = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.panCodeParts = new System.Windows.Forms.Panel();
+            this.txtCodePart2 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtCodePart3 = new System.Windows.Forms.TextBox();
+            this.txtCodePart1 = new System.Windows.Forms.TextBox();
+            this.txtCodePart5 = new System.Windows.Forms.TextBox();
+            this.txtCodePart4 = new System.Windows.Forms.TextBox();
             this.panContainer.SuspendLayout();
             this.tLPanCpntent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -144,7 +139,7 @@
             this.tLPanCpntent.RowCount = 4;
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 360F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tLPanCpntent.Size = new System.Drawing.Size(908, 737);
             this.tLPanCpntent.TabIndex = 0;
@@ -735,7 +730,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(902, 351);
+            this.gridControl1.Size = new System.Drawing.Size(902, 191);
             this.gridControl1.TabIndex = 41;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -770,11 +765,6 @@
             this.panContent.Controls.Add(this.txtDes);
             this.panContent.Controls.Add(this.label17);
             this.panContent.Controls.Add(this.txtPlus);
-            this.panContent.Controls.Add(this.chBoxAdditionalIncrease);
-            this.panContent.Controls.Add(this.label16);
-            this.panContent.Controls.Add(this.txtUnNormal);
-            this.panContent.Controls.Add(this.label15);
-            this.panContent.Controls.Add(this.txtNormal);
             this.panContent.Controls.Add(this.label14);
             this.panContent.Controls.Add(this.txtPurchases);
             this.panContent.Controls.Add(this.label13);
@@ -785,9 +775,9 @@
             this.panContent.Controls.Add(this.txtCode);
             this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panContent.Location = new System.Drawing.Point(3, 480);
+            this.panContent.Location = new System.Drawing.Point(3, 320);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(902, 194);
+            this.panContent.Size = new System.Drawing.Size(902, 354);
             this.panContent.TabIndex = 42;
             // 
             // panel2
@@ -795,7 +785,7 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.Controls.Add(this.radioNormal);
             this.panel2.Controls.Add(this.radioQata3a);
-            this.panel2.Location = new System.Drawing.Point(301, 190);
+            this.panel2.Location = new System.Drawing.Point(301, 159);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(228, 31);
             this.panel2.TabIndex = 144;
@@ -848,7 +838,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Location = new System.Drawing.Point(140, 320);
+            this.btnDelete.Location = new System.Drawing.Point(140, 289);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(67, 27);
             this.btnDelete.TabIndex = 140;
@@ -873,7 +863,7 @@
             this.Value,
             this.type,
             this.Description});
-            this.dataGridView1.Location = new System.Drawing.Point(213, 253);
+            this.dataGridView1.Location = new System.Drawing.Point(213, 222);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView1.Size = new System.Drawing.Size(488, 94);
@@ -905,7 +895,7 @@
             this.btnNewPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPlus.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnNewPlus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewPlus.Location = new System.Drawing.Point(96, 224);
+            this.btnNewPlus.Location = new System.Drawing.Point(96, 193);
             this.btnNewPlus.Name = "btnNewPlus";
             this.btnNewPlus.Size = new System.Drawing.Size(92, 27);
             this.btnNewPlus.TabIndex = 138;
@@ -918,7 +908,7 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(422, 226);
+            this.label18.Location = new System.Drawing.Point(422, 195);
             this.label18.Name = "label18";
             this.label18.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label18.Size = new System.Drawing.Size(45, 16);
@@ -929,7 +919,7 @@
             // 
             this.txtDes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDes.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDes.Location = new System.Drawing.Point(258, 223);
+            this.txtDes.Location = new System.Drawing.Point(258, 192);
             this.txtDes.Name = "txtDes";
             this.txtDes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDes.Size = new System.Drawing.Size(158, 24);
@@ -942,7 +932,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(613, 225);
+            this.label17.Location = new System.Drawing.Point(613, 194);
             this.label17.Name = "label17";
             this.label17.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label17.Size = new System.Drawing.Size(39, 16);
@@ -953,75 +943,13 @@
             // 
             this.txtPlus.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPlus.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPlus.Location = new System.Drawing.Point(509, 222);
+            this.txtPlus.Location = new System.Drawing.Point(509, 191);
             this.txtPlus.Name = "txtPlus";
             this.txtPlus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPlus.Size = new System.Drawing.Size(98, 24);
             this.txtPlus.TabIndex = 64;
             this.txtPlus.Text = "0";
             this.txtPlus.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // chBoxAdditionalIncrease
-            // 
-            this.chBoxAdditionalIncrease.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chBoxAdditionalIncrease.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxAdditionalIncrease.Location = new System.Drawing.Point(559, 173);
-            this.chBoxAdditionalIncrease.Name = "chBoxAdditionalIncrease";
-            this.chBoxAdditionalIncrease.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chBoxAdditionalIncrease.Size = new System.Drawing.Size(105, 20);
-            this.chBoxAdditionalIncrease.TabIndex = 63;
-            this.chBoxAdditionalIncrease.Text = "زيادات اضافية";
-            this.chBoxAdditionalIncrease.UseVisualStyleBackColor = true;
-            this.chBoxAdditionalIncrease.CheckedChanged += new System.EventHandler(this.chBoxAdditionalIncrease_CheckedChanged);
-            this.chBoxAdditionalIncrease.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(384, 139);
-            this.label16.Name = "label16";
-            this.label16.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label16.Size = new System.Drawing.Size(71, 16);
-            this.label16.TabIndex = 62;
-            this.label16.Text = "زيادة قطعية";
-            // 
-            // txtUnNormal
-            // 
-            this.txtUnNormal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtUnNormal.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtUnNormal.Location = new System.Drawing.Point(280, 135);
-            this.txtUnNormal.Name = "txtUnNormal";
-            this.txtUnNormal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtUnNormal.Size = new System.Drawing.Size(98, 24);
-            this.txtUnNormal.TabIndex = 61;
-            this.txtUnNormal.Text = "0";
-            this.txtUnNormal.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(597, 139);
-            this.label15.Name = "label15";
-            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(70, 16);
-            this.label15.TabIndex = 60;
-            this.label15.Text = "زيادة العادية";
-            // 
-            // txtNormal
-            // 
-            this.txtNormal.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNormal.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNormal.Location = new System.Drawing.Point(493, 135);
-            this.txtNormal.Name = "txtNormal";
-            this.txtNormal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtNormal.Size = new System.Drawing.Size(98, 24);
-            this.txtNormal.TabIndex = 59;
-            this.txtNormal.Text = "0";
-            this.txtNormal.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // label14
             // 
@@ -1115,56 +1043,6 @@
             this.label6.TabIndex = 50;
             this.label6.Text = "كود المنتج";
             // 
-            // txtCodePart4
-            // 
-            this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart4.Location = new System.Drawing.Point(198, 5);
-            this.txtCodePart4.Name = "txtCodePart4";
-            this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart4.TabIndex = 49;
-            this.txtCodePart4.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart5
-            // 
-            this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart5.Location = new System.Drawing.Point(254, 5);
-            this.txtCodePart5.Name = "txtCodePart5";
-            this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart5.TabIndex = 48;
-            this.txtCodePart5.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart1
-            // 
-            this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart1.Location = new System.Drawing.Point(30, 5);
-            this.txtCodePart1.Name = "txtCodePart1";
-            this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart1.TabIndex = 47;
-            this.txtCodePart1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart3
-            // 
-            this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart3.Location = new System.Drawing.Point(142, 5);
-            this.txtCodePart3.Name = "txtCodePart3";
-            this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart3.TabIndex = 46;
-            this.txtCodePart3.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // txtCodePart2
-            // 
-            this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart2.Location = new System.Drawing.Point(86, 5);
-            this.txtCodePart2.Name = "txtCodePart2";
-            this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart2.TabIndex = 45;
-            this.txtCodePart2.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
             // txtCode
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1174,18 +1052,6 @@
             this.txtCode.Size = new System.Drawing.Size(171, 24);
             this.txtCode.TabIndex = 43;
             this.txtCode.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(313, 9);
-            this.label11.Name = "label11";
-            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label11.Size = new System.Drawing.Size(64, 16);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "كود المنتج";
             // 
             // panCodeParts
             // 
@@ -1199,6 +1065,68 @@
             this.panCodeParts.Name = "panCodeParts";
             this.panCodeParts.Size = new System.Drawing.Size(397, 35);
             this.panCodeParts.TabIndex = 145;
+            // 
+            // txtCodePart2
+            // 
+            this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart2.Location = new System.Drawing.Point(86, 5);
+            this.txtCodePart2.Name = "txtCodePart2";
+            this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart2.TabIndex = 45;
+            this.txtCodePart2.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(313, 9);
+            this.label11.Name = "label11";
+            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label11.Size = new System.Drawing.Size(64, 16);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "كود المنتج";
+            // 
+            // txtCodePart3
+            // 
+            this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart3.Location = new System.Drawing.Point(142, 5);
+            this.txtCodePart3.Name = "txtCodePart3";
+            this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart3.TabIndex = 46;
+            this.txtCodePart3.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtCodePart1
+            // 
+            this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart1.Location = new System.Drawing.Point(30, 5);
+            this.txtCodePart1.Name = "txtCodePart1";
+            this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart1.TabIndex = 47;
+            this.txtCodePart1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtCodePart5
+            // 
+            this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart5.Location = new System.Drawing.Point(254, 5);
+            this.txtCodePart5.Name = "txtCodePart5";
+            this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart5.TabIndex = 48;
+            this.txtCodePart5.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
+            // 
+            // txtCodePart4
+            // 
+            this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCodePart4.Location = new System.Drawing.Point(198, 5);
+            this.txtCodePart4.Name = "txtCodePart4";
+            this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
+            this.txtCodePart4.TabIndex = 49;
+            this.txtCodePart4.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // SetPurchasesPrice2
             // 
@@ -1281,15 +1209,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RadioButton radioList;
         private System.Windows.Forms.RadioButton radioQata3y;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtUnNormal;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtNormal;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtPurchases;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtPrice;
-        private System.Windows.Forms.CheckBox chBoxAdditionalIncrease;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtDes;
         private System.Windows.Forms.Label label17;
