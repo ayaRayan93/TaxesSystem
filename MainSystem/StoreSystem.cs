@@ -915,6 +915,70 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemItemTransitionReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+                
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "حركة صنف");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("حركة صنف");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "حركة صنف");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                Item_Transitions_Report objForm = new Item_Transitions_Report();
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemInformationFactoryReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات بسعر البيع");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("رصيد الشركات بسعر البيع");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات بسعر البيع");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                InformationFactory_Report objForm = new InformationFactory_Report(this);
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         /// <summary>
         private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
         {
