@@ -363,6 +363,12 @@
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Sales Report\SalesProductsBills_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\SalesProductsBills_Report.designer.cs">
+      <DependentUpon>SalesProductsBills_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reception\Delegates_Attendance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2516,6 +2522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">
       <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Sales Report\SalesProductsBills_Report.resx">
+      <DependentUpon>SalesProductsBills_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>

@@ -536,6 +536,37 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSalesProductsDate_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الفواتير المباعة بالتاريخ");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("الفواتير المباعة بالتاريخ");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الفواتير المباعة بالتاريخ");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplaySalesProductsBillsForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //Special Orders Report
         public void bindDisplaySpecialOrdersReport(XtraTabPage xtraTabPage)
         {
@@ -915,6 +946,16 @@ namespace MainSystem
         public void bindDisplayDashRequestReportForm(XtraTabPage xtraTabPage)
         {
             DashRequest_Report objForm = new DashRequest_Report(this, xtraTabControlPurchases);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplaySalesProductsBillsForm(XtraTabPage xtraTabPage)
+        {
+            SalesProductsBills_Report objForm = new SalesProductsBills_Report(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

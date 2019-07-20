@@ -1568,6 +1568,64 @@ namespace MainSystem
                 txtFactory.Text = "";
             }
         }
+
+        private void comStoreFilter_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comStoreFilter.SelectedValue != null)
+                {
+                    txtStoreFilterId.Text = comStoreFilter.SelectedValue.ToString();
+                }
+                else
+                {
+                    txtStoreFilterId.Text = "";
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comSupplier.SelectedValue != null)
+                {
+                    txtSupplierId.Text = comSupplier.SelectedValue.ToString();
+                }
+                else
+                {
+                    txtSupplierId.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comStore.SelectedValue != null)
+                {
+                    txtStoreID.Text = comStore.SelectedValue.ToString();
+                }
+                else
+                {
+                    txtStoreID.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void filterGroup()
         {
             string query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
