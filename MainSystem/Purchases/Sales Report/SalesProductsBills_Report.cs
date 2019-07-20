@@ -207,9 +207,9 @@ namespace MainSystem
 
         private void btnBillReport_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
-                /*if (comBranch.Text != "" && txtBranchID.Text != "")
+                if (comBranch.Text != "" && txtBranchID.Text != "")
                 {
                     /*List<Transition_Items> bi = new List<Transition_Items>();
                     //DataTable dt = (DataTable)gridControl2.DataSource;
@@ -228,12 +228,12 @@ namespace MainSystem
                 else
                 {
                     MessageBox.Show("يجب اختيار فرع");
-                }*/
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
 
         public bool IsBillDelivered()
