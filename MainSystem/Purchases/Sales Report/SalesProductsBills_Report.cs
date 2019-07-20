@@ -19,7 +19,7 @@ namespace MainSystem
 {
     public partial class SalesProductsBills_Report : Form
     {
-        MySqlConnection conn;
+        MySqlConnection conn, conn2;
         MainForm bankMainForm = null;
         
         public static XtraTabPage MainTabPagePrintingTransitions;
@@ -35,6 +35,7 @@ namespace MainSystem
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
+            conn2 = new MySqlConnection(connection.connectionString);
             bankMainForm = BankMainForm;
             
             MainTabPagePrintingTransitions = new XtraTabPage();
@@ -83,6 +84,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+            conn2.Close();
         }
         
 
@@ -105,52 +107,50 @@ namespace MainSystem
         public void search()
         {
             conn.Open();
-            double totalBill = 0;
-            double totalReturned = 0;
-            //dateTimePicker2.Value.ToString("yyyy-MM-dd HH:mm:ss")
-            MySqlDataAdapter adapterSale = new MySqlDataAdapter("SELECT customer_bill.CustomerBill_ID as 'ID','النوع',customer_bill.Branch_BillNumber as 'الفاتورة',customer_bill.Type_Buy as 'نوع الفاتورة',customer_bill.Bill_Date as 'التاريخ',customer_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',customer_bill.Total_CostBD as 'الاجمالى',customer_bill.Total_Discount as 'الخصم',customer_bill.Total_CostAD as 'الصافى' FROM customer_bill left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'", conn);
-            DataTable saledt = new DataTable();
-            adapterSale.Fill(saledt);
+            conn2.Open();
 
-            MySqlDataAdapter adapterReturn = new MySqlDataAdapter("SELECT customer_return_bill.CustomerReturnBill_ID as 'ID','النوع',customer_return_bill.Branch_BillNumber as 'الفاتورة',customer_return_bill.Type_Buy as 'نوع الفاتورة',customer_return_bill.Date as 'التاريخ',customer_return_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_return_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_return_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_return_bill.Client_ID) as 'العميل',customer_return_bill.TotalCostAD as 'الصافى' FROM customer_return_bill left join customer as customer1 on customer1.Customer_ID=customer_return_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_return_bill.Client_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'", conn);
-            DataTable returndt = new DataTable();
-            adapterReturn.Fill(returndt);
-
-            DataTable dtAll = new DataTable();
-            dtAll = saledt.Copy();
-            dtAll.Merge(returndt);
-
-            gridControl1.DataSource = dtAll;
-            gridView1.Columns[0].Visible = false;
-            gridView1.Columns["Customer_ID"].Visible = false;
-            gridView1.Columns["Client_ID"].Visible = false;
-            if (gridView1.IsLastVisibleRow)
+            string query = "select data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+            DataTable dtProduct = new DataTable();
+            da.Fill(dtProduct);
+            gridControl1.DataSource = dtProduct;
+            
+            query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(product_bill.Quantity) as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' group by product_bill.Data_ID";
+            MySqlCommand c = new MySqlCommand(query, conn);
+            MySqlDataReader dataReader1 = c.ExecuteReader();
+            while (dataReader1.Read())
             {
-                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
-            }
-            for (int i = 0; i < gridView1.RowCount; i++)
-            {
-                if (gridView1.GetRowCellDisplayText(i, "الاجمالى") != "")
+                gridView1.AddNewRow();
+                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                if (gridView1.IsNewItemRow(rowHandle))
                 {
-                    gridView1.SetRowCellValue(i, "النوع", "بيع");
-                    totalBill += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الصافى").ToString());
-                }
-                else
-                {
-                    gridView1.SetRowCellValue(i, "النوع", "مرتجع");
-                    totalReturned += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الصافى").ToString());
-                }
-            }
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dataReader1["الكود"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
+                    double totalQuantity = 0;
+                    double returnedQuantity = 0;
+                    //customer_return_bill_details.CustomerBill_ID=" + dataReader1["CustomerBill_ID"].ToString() + " and
+                    query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
+                    MySqlCommand com = new MySqlCommand(query, conn2);
+                    //com.ExecuteScalar().ToString() != "" || 
+                    if (com.ExecuteScalar() != null)
+                    {
+                        returnedQuantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                    }
+                    else
+                    {
+                        returnedQuantity = 0;
+                    }
 
-            if (!loaded)
-            {
-                for (int i = 1; i < gridView1.Columns.Count; i++)
-                {
-                    gridView1.Columns[i].Width = 110;
+                    try
+                    {
+                        totalQuantity = Convert.ToDouble(dataReader1["الكمية"].ToString());
+                    }
+                    catch { }
+
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuantity - returnedQuantity);
                 }
             }
-
-            loaded = true;
+                    
         }
 
         private void btnNewChosen_Click(object sender, EventArgs e)
@@ -233,6 +233,22 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public bool IsBillDelivered()
+        {
+            string query = "select Delivered from shipping where CustomerBill_ID=" /*+ comBillNumber.SelectedValue*/;
+            MySqlCommand com = new MySqlCommand(query, conn);
+            int deliveredStatus = Convert.ToInt32(com.ExecuteScalar());
+
+            if (deliveredStatus == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
