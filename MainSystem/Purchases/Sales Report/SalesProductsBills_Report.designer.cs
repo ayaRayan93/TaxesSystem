@@ -115,7 +115,7 @@
             this.btnBillReport.ImagePosition = 1;
             this.btnBillReport.ImageZoom = 25;
             this.btnBillReport.LabelPosition = 18;
-            this.btnBillReport.LabelText = "طباعة الفواتير";
+            this.btnBillReport.LabelText = "طباعة";
             this.btnBillReport.Location = new System.Drawing.Point(471, 4);
             this.btnBillReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBillReport.Name = "btnBillReport";
