@@ -209,7 +209,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.Text != "" && txtBranchID.Text != "")
+                /*if (comBranch.Text != "" && txtBranchID.Text != "")
                 {
                     /*List<Transition_Items> bi = new List<Transition_Items>();
                     //DataTable dt = (DataTable)gridControl2.DataSource;
@@ -217,7 +217,7 @@ namespace MainSystem
                     {
                         Transition_Items item = new Transition_Items() { ID = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]), Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
                         bi.Add(item);
-                    }*/
+                    }*
 
                     gridcontrol = gridControl1;
                     BillsTransitions_Print f = new BillsTransitions_Print();
@@ -228,7 +228,7 @@ namespace MainSystem
                 else
                 {
                     MessageBox.Show("يجب اختيار فرع");
-                }
+                }*/
             }
             catch (Exception ex)
             {
