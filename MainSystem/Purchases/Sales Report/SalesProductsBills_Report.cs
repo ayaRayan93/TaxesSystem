@@ -235,21 +235,5 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }*/
         }
-
-        public bool IsBillDelivered()
-        {
-            string query = "select Delivered from shipping where CustomerBill_ID=" /*+ comBillNumber.SelectedValue*/;
-            MySqlCommand com = new MySqlCommand(query, conn);
-            int deliveredStatus = Convert.ToInt32(com.ExecuteScalar());
-
-            if (deliveredStatus == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
     }
 }
