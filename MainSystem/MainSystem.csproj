@@ -419,6 +419,7 @@
     <Compile Include="Store\Reports\تقرير اصناف الشركات\InformationFactory_Report.designer.cs">
       <DependentUpon>InformationFactory_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Reports\تقرير حركة صنف\Item_Transitions.cs" />
     <Compile Include="Store\Reports\تقرير حركة صنف\Item_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1896,6 +1897,18 @@
     <Compile Include="Store\Import\استلام\Print_SupplierReceipt.designer.cs">
       <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Reports\تقرير حركة صنف\Print_Item_Transitions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير حركة صنف\Print_Item_Transitions.designer.cs">
+      <DependentUpon>Print_Item_Transitions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.designer.cs">
+      <DependentUpon>Report_Item_Transitions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy3.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3206,6 +3219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استلام\Print_SupplierReceipt.resx">
       <DependentUpon>Print_SupplierReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Reports\تقرير حركة صنف\Print_Item_Transitions.resx">
+      <DependentUpon>Print_Item_Transitions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.resx">
+      <DependentUpon>Report_Item_Transitions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy3.resx">
       <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>

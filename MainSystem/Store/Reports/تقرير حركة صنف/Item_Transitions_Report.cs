@@ -900,58 +900,52 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
-                if (comBranch.Text != "" && txtBranchID.Text != "")
+                if (comStore.SelectedValue != null && gridView1.RowCount > 0 && row1 != null)
                 {
-                    //int bilNum = 0;
-                    double costSale = 0;
-                    double costReturn = 0;
-                    List<Transition_Items> bi = new List<Transition_Items>();
-                    //DataTable dt = (DataTable)gridControl2.DataSource;
-                    for (int i = 0; i < gridView2.RowCount; i++)
+                    List<Item_Transitions> bi = new List<Item_Transitions>();
+
+                    for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        /*if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]) != "")
+                        double ItemIncrease = 0;
+                        double ItemDecrease = 0;
+                        double pricee = 0;
+                        double totali = 0;
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["اضافة"]) != "")
                         {
-                            bilNum = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]));
+                            ItemIncrease = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["اضافة"]));
                         }
-                        else
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["خصم"]) != "")
                         {
-                            bilNum = 0;
-                        }*
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["دائن"]) != "")
-                        {
-                            costSale = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["دائن"]));
+                            ItemDecrease = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["خصم"]));
                         }
-                        else
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"]) != "")
                         {
-                            costSale = 0;
+                            pricee = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["السعر"]));
                         }
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["مدين"]) != "")
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالى"]) != "")
                         {
-                            costReturn = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["مدين"]));
+                            totali = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالى"]));
                         }
-                        else
-                        {
-                            costReturn = 0;
-                        }
-                        Transition_Items item = new Transition_Items() { ID = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"])/*, Branch_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفرع"])*, Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
+
+                        Item_Transitions item = new Item_Transitions() { Bill = gridView1.GetRowCellDisplayText(i, gridView1.Columns["رقم الفاتورة"]), Date = gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"]), Client = gridView1.GetRowCellDisplayText(i, gridView1.Columns["العميل"]), Item_Increase = ItemIncrease, Item_Decrease = ItemDecrease, Price = pricee, Total_Cost = totali };
                         bi.Add(item);
                     }
 
-                    Print_Transition_Report f = new Print_Transition_Report();
-                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
+                    Report_Item_Transitions f = new Report_Item_Transitions();
+                    f.PrintInvoice(comStore.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, row1["النوع"].ToString() + " " + row1["الاسم"].ToString(), Convert.ToDouble(txtTotalBills.Text), Convert.ToDouble(txtTotalReturn.Text), Convert.ToDouble(txtSafy.Text), bi);
                     f.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show("يجب اختيار فرع");
+                    MessageBox.Show("يجب اختيار مخزن");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
 
         //functions
