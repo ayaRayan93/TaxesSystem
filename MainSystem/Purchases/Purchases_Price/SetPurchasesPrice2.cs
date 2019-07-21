@@ -830,7 +830,6 @@ namespace MainSystem
                                 insertIntoAdditionalIncrease(ref PurchasesPrice_ID, ref OldPurchasingPrice_ID);
                                 UserControl.ItemRecord("purchasing_price", "اضافة", PurchasesPrice_ID, DateTime.Now, "", dbconnection);
 
-
                             }
                             else
                             {
@@ -1095,6 +1094,7 @@ namespace MainSystem
                 return PurchasesPrice + addational;
             }
         }
+        //
         public double lastPrice(double purchasePrice)
         {
             double discount = double.Parse(txtPurchases.Text);

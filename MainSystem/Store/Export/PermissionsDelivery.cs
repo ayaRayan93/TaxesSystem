@@ -233,7 +233,7 @@ namespace MainSystem
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
-            string query = "select Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل' from customer_bill where RecivedType='العميل' and RecivedFlag='لا' and Paid_Status=1 and Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            string query = "select Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill where RecivedType='العميل' and RecivedFlag='لا' and Paid_Status=1 and Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);

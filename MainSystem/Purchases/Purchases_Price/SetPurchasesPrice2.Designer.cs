@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContainer = new System.Windows.Forms.Panel();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -139,7 +139,7 @@
             this.tLPanCpntent.RowCount = 4;
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 360F));
+            this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 260F));
             this.tLPanCpntent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tLPanCpntent.Size = new System.Drawing.Size(908, 737);
             this.tLPanCpntent.TabIndex = 0;
@@ -730,7 +730,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(902, 191);
+            this.gridControl1.Size = new System.Drawing.Size(902, 291);
             this.gridControl1.TabIndex = 41;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -775,9 +775,9 @@
             this.panContent.Controls.Add(this.txtCode);
             this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panContent.Location = new System.Drawing.Point(3, 320);
+            this.panContent.Location = new System.Drawing.Point(3, 420);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(902, 354);
+            this.panContent.Size = new System.Drawing.Size(902, 254);
             this.panContent.TabIndex = 42;
             // 
             // panel2
@@ -785,7 +785,7 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.Controls.Add(this.radioNormal);
             this.panel2.Controls.Add(this.radioQata3a);
-            this.panel2.Location = new System.Drawing.Point(301, 159);
+            this.panel2.Location = new System.Drawing.Point(307, 86);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(228, 31);
             this.panel2.TabIndex = 144;
@@ -823,7 +823,7 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(276, 109);
+            this.label20.Location = new System.Drawing.Point(65, 38);
             this.label20.Name = "label20";
             this.label20.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label20.Size = new System.Drawing.Size(25, 23);
@@ -838,7 +838,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Location = new System.Drawing.Point(140, 289);
+            this.btnDelete.Location = new System.Drawing.Point(146, 216);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(67, 27);
             this.btnDelete.TabIndex = 140;
@@ -850,20 +850,20 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
             this.type,
             this.Description});
-            this.dataGridView1.Location = new System.Drawing.Point(213, 222);
+            this.dataGridView1.Location = new System.Drawing.Point(219, 149);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dataGridView1.Size = new System.Drawing.Size(488, 94);
@@ -895,7 +895,7 @@
             this.btnNewPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewPlus.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnNewPlus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewPlus.Location = new System.Drawing.Point(96, 193);
+            this.btnNewPlus.Location = new System.Drawing.Point(102, 120);
             this.btnNewPlus.Name = "btnNewPlus";
             this.btnNewPlus.Size = new System.Drawing.Size(92, 27);
             this.btnNewPlus.TabIndex = 138;
@@ -908,7 +908,7 @@
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(422, 195);
+            this.label18.Location = new System.Drawing.Point(428, 122);
             this.label18.Name = "label18";
             this.label18.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label18.Size = new System.Drawing.Size(45, 16);
@@ -919,7 +919,7 @@
             // 
             this.txtDes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDes.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDes.Location = new System.Drawing.Point(258, 192);
+            this.txtDes.Location = new System.Drawing.Point(264, 119);
             this.txtDes.Name = "txtDes";
             this.txtDes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDes.Size = new System.Drawing.Size(158, 24);
@@ -932,7 +932,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(613, 194);
+            this.label17.Location = new System.Drawing.Point(619, 121);
             this.label17.Name = "label17";
             this.label17.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label17.Size = new System.Drawing.Size(39, 16);
@@ -943,7 +943,7 @@
             // 
             this.txtPlus.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPlus.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPlus.Location = new System.Drawing.Point(509, 191);
+            this.txtPlus.Location = new System.Drawing.Point(515, 118);
             this.txtPlus.Name = "txtPlus";
             this.txtPlus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPlus.Size = new System.Drawing.Size(98, 24);
@@ -956,7 +956,7 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(384, 112);
+            this.label14.Location = new System.Drawing.Point(173, 41);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label14.Size = new System.Drawing.Size(68, 16);
@@ -967,7 +967,7 @@
             // 
             this.txtPurchases.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPurchases.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPurchases.Location = new System.Drawing.Point(301, 108);
+            this.txtPurchases.Location = new System.Drawing.Point(90, 37);
             this.txtPurchases.Name = "txtPurchases";
             this.txtPurchases.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPurchases.Size = new System.Drawing.Size(77, 24);
@@ -980,7 +980,7 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(597, 112);
+            this.label13.Location = new System.Drawing.Point(386, 41);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label13.Size = new System.Drawing.Size(38, 16);
@@ -991,7 +991,7 @@
             // 
             this.txtPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPrice.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPrice.Location = new System.Drawing.Point(493, 108);
+            this.txtPrice.Location = new System.Drawing.Point(282, 37);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPrice.Size = new System.Drawing.Size(98, 24);
@@ -1005,7 +1005,7 @@
             this.radioList.AutoSize = true;
             this.radioList.Checked = true;
             this.radioList.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioList.Location = new System.Drawing.Point(460, 81);
+            this.radioList.Location = new System.Drawing.Point(249, 10);
             this.radioList.Name = "radioList";
             this.radioList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioList.Size = new System.Drawing.Size(51, 20);
@@ -1021,7 +1021,7 @@
             this.radioQata3y.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioQata3y.AutoSize = true;
             this.radioQata3y.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioQata3y.Location = new System.Drawing.Point(379, 81);
+            this.radioQata3y.Location = new System.Drawing.Point(168, 10);
             this.radioQata3y.Name = "radioQata3y";
             this.radioQata3y.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioQata3y.Size = new System.Drawing.Size(63, 20);
@@ -1036,7 +1036,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(670, 16);
+            this.label6.Location = new System.Drawing.Point(713, 10);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(64, 16);
@@ -1047,7 +1047,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCode.Location = new System.Drawing.Point(493, 12);
+            this.txtCode.Location = new System.Drawing.Point(536, 6);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(171, 24);
             this.txtCode.TabIndex = 43;
@@ -1055,13 +1055,14 @@
             // 
             // panCodeParts
             // 
+            this.panCodeParts.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panCodeParts.Controls.Add(this.txtCodePart2);
             this.panCodeParts.Controls.Add(this.label11);
             this.panCodeParts.Controls.Add(this.txtCodePart3);
             this.panCodeParts.Controls.Add(this.txtCodePart1);
             this.panCodeParts.Controls.Add(this.txtCodePart5);
             this.panCodeParts.Controls.Add(this.txtCodePart4);
-            this.panCodeParts.Location = new System.Drawing.Point(408, 40);
+            this.panCodeParts.Location = new System.Drawing.Point(451, 34);
             this.panCodeParts.Name = "panCodeParts";
             this.panCodeParts.Size = new System.Drawing.Size(397, 35);
             this.panCodeParts.TabIndex = 145;
