@@ -83,6 +83,8 @@
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labDate = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -132,6 +134,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.labDate);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtDelegate);
             this.groupBox1.Controls.Add(this.labPhoneNumber);
@@ -150,7 +154,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(302, 56);
+            this.label2.Location = new System.Drawing.Point(430, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 17);
             this.label2.TabIndex = 218;
@@ -162,7 +166,7 @@
             this.txtDelegate.BackColor = System.Drawing.SystemColors.Control;
             this.txtDelegate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegate.Location = new System.Drawing.Point(124, 55);
+            this.txtDelegate.Location = new System.Drawing.Point(252, 59);
             this.txtDelegate.Name = "txtDelegate";
             this.txtDelegate.ReadOnly = true;
             this.txtDelegate.Size = new System.Drawing.Size(174, 24);
@@ -173,7 +177,7 @@
             this.labPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labPhoneNumber.AutoSize = true;
             this.labPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labPhoneNumber.Location = new System.Drawing.Point(301, 25);
+            this.labPhoneNumber.Location = new System.Drawing.Point(429, 29);
             this.labPhoneNumber.Name = "labPhoneNumber";
             this.labPhoneNumber.Size = new System.Drawing.Size(72, 17);
             this.labPhoneNumber.TabIndex = 214;
@@ -185,7 +189,7 @@
             this.txtPhoneNumber.BackColor = System.Drawing.SystemColors.Control;
             this.txtPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhoneNumber.Location = new System.Drawing.Point(123, 24);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(251, 28);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.ReadOnly = true;
             this.txtPhoneNumber.Size = new System.Drawing.Size(174, 24);
@@ -200,7 +204,7 @@
             this.groupBox2.Controls.Add(this.labClient);
             this.groupBox2.Controls.Add(this.labCustomer);
             this.groupBox2.Controls.Add(this.txtCustomerID);
-            this.groupBox2.Location = new System.Drawing.Point(409, 15);
+            this.groupBox2.Location = new System.Drawing.Point(537, 19);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(388, 65);
             this.groupBox2.TabIndex = 161;
@@ -452,7 +456,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 430F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 432F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -477,7 +481,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(432, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(433, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(97, 45);
@@ -757,6 +761,27 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
             // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label4.Location = new System.Drawing.Point(166, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 17);
+            this.label4.TabIndex = 219;
+            this.label4.Text = "تاريخ الفاتورة";
+            // 
+            // labDate
+            // 
+            this.labDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labDate.AutoSize = true;
+            this.labDate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labDate.Location = new System.Drawing.Point(64, 35);
+            this.labDate.Name = "labDate";
+            this.labDate.Size = new System.Drawing.Size(0, 17);
+            this.labDate.TabIndex = 220;
+            // 
             // CustomerDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -847,6 +872,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn ItemType;
         private System.Windows.Forms.TextBox txtStore;
         private System.Windows.Forms.ComboBox comStore;
+        private System.Windows.Forms.Label labDate;
+        private System.Windows.Forms.Label label4;
     }
 }
 
