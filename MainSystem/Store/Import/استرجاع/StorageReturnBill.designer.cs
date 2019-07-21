@@ -478,7 +478,7 @@
             this.groupBox1.Controls.Add(this.txtStoreFilterId);
             this.groupBox1.Controls.Add(this.comStoreFilter);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(9, 0);
+            this.groupBox1.Location = new System.Drawing.Point(14, 1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(648, 141);
@@ -683,6 +683,7 @@
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(120, 24);
             this.comSupplier.TabIndex = 208;
+            this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
             // 
             // label5
             // 
@@ -716,6 +717,7 @@
             this.comStoreFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStoreFilter.Size = new System.Drawing.Size(120, 24);
             this.comStoreFilter.TabIndex = 205;
+            this.comStoreFilter.SelectedValueChanged += new System.EventHandler(this.comStoreFilter_SelectedValueChanged);
             // 
             // panBillNumber
             // 
@@ -763,6 +765,7 @@
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(130, 24);
             this.comStore.TabIndex = 202;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // txtPermissionNum
             // 
