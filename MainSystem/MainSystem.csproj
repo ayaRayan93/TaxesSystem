@@ -363,10 +363,23 @@
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Sales Report\SalesProductsBills_Report.cs">
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Items_Bills.cs" />
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBills.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBills.designer.cs">
+      <DependentUpon>Print_ProductsBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_Bills.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Sales Report\SalesProductsBills_Report.designer.cs">
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_Bills.designer.cs">
+      <DependentUpon>Report_Items_Bills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBills_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBills_Report.designer.cs">
       <DependentUpon>SalesProductsBills_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Reception\Delegates_Attendance.cs">
@@ -2536,7 +2549,13 @@
     <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">
       <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Sales Report\SalesProductsBills_Report.resx">
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBills.resx">
+      <DependentUpon>Print_ProductsBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_Bills.resx">
+      <DependentUpon>Report_Items_Bills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBills_Report.resx">
       <DependentUpon>SalesProductsBills_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
@@ -3565,6 +3584,7 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
+    <Folder Include="Purchases\Sales Report\تقرير الاصناف بالفواتير\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
