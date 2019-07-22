@@ -230,7 +230,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("يجب اختيار فرع والتاكد من وجود بنود");
+                    MessageBox.Show("يجب اختيار الفرع والتاكد من وجود بنود");
                 }
             }
             catch (Exception ex)

@@ -206,7 +206,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.Text != "" && txtBranchID.Text != "" && gridView1.RowCount > 0)
+                if (comBranch.Text != "" && txtBranchID.Text != "" && txtFromBill.Text != "" && txtToBill.Text != "" && gridView1.RowCount > 0)
                 {
                     List<Items_Bills> bi = new List<Items_Bills>();
 
@@ -222,7 +222,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("يجب اختيار فرع والتاكد من وجود بنود");
+                    MessageBox.Show("يجب اختيار الفرع والفواتير والتاكد من وجود بنود");
                 }
             }
             catch (Exception ex)
