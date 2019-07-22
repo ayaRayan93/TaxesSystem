@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainSystem
 {
-    public class Items_Bills
+    public class Items_BillsDate
     {
         public string Code { get; set; }
         public string Product_Type { get; set; }

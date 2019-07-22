@@ -11,16 +11,16 @@ using DevExpress.XtraEditors;
 
 namespace MainSystem
 {
-    public partial class Report_Items_Bills : DevExpress.XtraEditors.XtraForm
+    public partial class Report_Items_BillsDate : DevExpress.XtraEditors.XtraForm
     {
-        public Report_Items_Bills()
+        public Report_Items_BillsDate()
         {
             InitializeComponent();
         }
 
-        public void PrintInvoice(string BranchName, List<Items_Bills> BillItems)
+        public void PrintInvoice(string BranchName, List<Items_BillsDate> BillItems)
         {
-            Print_ProductsBills report = new Print_ProductsBills();
+            Print_ProductsBillsDate report = new Print_ProductsBillsDate();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;

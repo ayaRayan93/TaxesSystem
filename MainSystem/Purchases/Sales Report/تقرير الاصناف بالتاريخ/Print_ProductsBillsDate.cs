@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace MainSystem
 {
-    public partial class Print_ProductsBills : DevExpress.XtraReports.UI.XtraReport
+    public partial class Print_ProductsBillsDate : DevExpress.XtraReports.UI.XtraReport
     {
-        public Print_ProductsBills()
+        public Print_ProductsBillsDate()
         {
             InitializeComponent();
         }
 
-        public void InitData(string branchName, List<Items_Bills> Bill_Items)
+        public void InitData(string branchName, List<Items_BillsDate> Bill_Items)
         {
             Branch_Name.Value = branchName;
             DateNow.Value = DateTime.Now;

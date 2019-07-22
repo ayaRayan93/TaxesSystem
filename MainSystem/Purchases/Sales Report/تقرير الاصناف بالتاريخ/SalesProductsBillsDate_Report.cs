@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class SalesProductsBills_Report : Form
+    public partial class SalesProductsBillsDate_Report : Form
     {
         MySqlConnection conn, conn2;
         MainForm bankMainForm = null;
@@ -31,7 +31,7 @@ namespace MainSystem
         bool loaded = false;
         bool loadedBranch = false;
 
-        public SalesProductsBills_Report(MainForm BankMainForm)
+        public SalesProductsBillsDate_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -216,15 +216,15 @@ namespace MainSystem
             {
                 if (comBranch.Text != "" && txtBranchID.Text != "" && gridView1.RowCount > 0)
                 {
-                    List<Items_Bills> bi = new List<Items_Bills>();
+                    List<Items_BillsDate> bi = new List<Items_BillsDate>();
 
                     for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        Items_Bills item = new Items_Bills() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])) };
+                        Items_BillsDate item = new Items_BillsDate() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"])) };
                         bi.Add(item);
                     }
 
-                    Report_Items_Bills f = new Report_Items_Bills();
+                    Report_Items_BillsDate f = new Report_Items_BillsDate();
                     f.PrintInvoice(comBranch.Text, bi);
                     f.ShowDialog();
                 }

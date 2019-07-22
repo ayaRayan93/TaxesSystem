@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Print_ProductsBills
+    partial class Print_ProductsBillsDate
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_ProductsBills));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_ProductsBillsDate));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -436,7 +436,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Items_Bills);
+            this.objectDataSource1.DataSource = typeof(MainSystem.Items_BillsDate);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // Print_ProductsBills

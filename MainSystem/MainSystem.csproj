@@ -363,24 +363,24 @@
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Items_Bills.cs" />
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBills.cs">
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Items_BillsDate.cs" />
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBillsDate.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBills.designer.cs">
-      <DependentUpon>Print_ProductsBills.cs</DependentUpon>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBillsDate.designer.cs">
+      <DependentUpon>Print_ProductsBillsDate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_Bills.cs">
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_BillsDate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_Bills.designer.cs">
-      <DependentUpon>Report_Items_Bills.cs</DependentUpon>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_BillsDate.designer.cs">
+      <DependentUpon>Report_Items_BillsDate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBills_Report.cs">
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBillsDate_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBills_Report.designer.cs">
-      <DependentUpon>SalesProductsBills_Report.cs</DependentUpon>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBillsDate_Report.designer.cs">
+      <DependentUpon>SalesProductsBillsDate_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Reception\Delegates_Attendance.cs">
       <SubType>Form</SubType>
@@ -2549,14 +2549,14 @@
     <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPrice2.resx">
       <DependentUpon>SetPurchasesPrice2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBills.resx">
-      <DependentUpon>Print_ProductsBills.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Print_ProductsBillsDate.resx">
+      <DependentUpon>Print_ProductsBillsDate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_Bills.resx">
-      <DependentUpon>Report_Items_Bills.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\Report_Items_BillsDate.resx">
+      <DependentUpon>Report_Items_BillsDate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBills_Report.resx">
-      <DependentUpon>SalesProductsBills_Report.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBillsDate_Report.resx">
+      <DependentUpon>SalesProductsBillsDate_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier\UpdateSupplier.resx">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>

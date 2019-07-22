@@ -558,7 +558,7 @@ namespace MainSystem
                     xtraTabPage.Controls.Clear();
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-                    bindDisplaySalesProductsBillsForm(xtraTabPage);
+                    bindDisplaySalesProductsBillsDateForm(xtraTabPage);
                 }
             }
             catch (Exception ex)
@@ -953,9 +953,9 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-        public void bindDisplaySalesProductsBillsForm(XtraTabPage xtraTabPage)
+        public void bindDisplaySalesProductsBillsDateForm(XtraTabPage xtraTabPage)
         {
-            SalesProductsBills_Report objForm = new SalesProductsBills_Report(this);
+            SalesProductsBillsDate_Report objForm = new SalesProductsBillsDate_Report(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
