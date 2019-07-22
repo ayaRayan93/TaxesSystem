@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Print_ProductsBillsDate
+    partial class Print_ProductsBillsNum
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_ProductsBillsDate));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_ProductsBillsNum));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -54,21 +54,21 @@
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.Branch_Name = new DevExpress.XtraReports.Parameters.Parameter();
             this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.FromDate = new DevExpress.XtraReports.Parameters.Parameter();
-            this.ToDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.FromBill = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ToBill = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -199,7 +199,7 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(198.9167F, 30F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "كشف الاصناف بالتاريخ";
+            this.xrLabel1.Text = "كشف الاصناف بالفواتير";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrPictureBox1
@@ -355,15 +355,27 @@
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel1,
             this.xrPictureBox1,
+            this.xrLabel2,
             this.xrLabel11,
             this.xrLabel15,
             this.xrLabel8,
             this.xrLabel5,
             this.xrLabel7,
-            this.xrLabel6,
-            this.xrLabel2});
-            this.ReportHeader.HeightF = 85.06686F;
+            this.xrLabel6});
+            this.ReportHeader.HeightF = 86.10853F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(647.2994F, 36.56378F);
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(37.04163F, 20F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = ": فرع";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel11
             // 
@@ -371,7 +383,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Branch_Name]")});
             this.xrLabel11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(510.3827F, 36.56368F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(510.3828F, 36.56368F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.SizeF = new System.Drawing.SizeF(136.9167F, 20.00001F);
@@ -387,7 +399,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[DateNow]")});
             this.xrLabel15.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(510.3827F, 56.56369F);
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(510.3828F, 56.56369F);
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 6, 0, 0, 100F);
             this.xrLabel15.SizeF = new System.Drawing.SizeF(173.9582F, 20F);
@@ -402,7 +414,7 @@
             // xrLabel8
             // 
             this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[FromDate]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[FromBill]")});
             this.xrLabel8.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(112.0509F, 36.56379F);
@@ -415,12 +427,11 @@
             this.xrLabel8.StylePriority.UseTextAlignment = false;
             this.xrLabel8.Text = "xrLabel10";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrLabel8.TextFormatString = "{0:yyyy-MM-dd}";
             // 
             // xrLabel5
             // 
             this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[ToDate]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[ToBill]")});
             this.xrLabel5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(112.0509F, 56.56379F);
@@ -433,7 +444,6 @@
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.Text = "xrLabel10";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrLabel5.TextFormatString = "{0:yyyy-MM-dd}";
             // 
             // xrLabel7
             // 
@@ -458,18 +468,6 @@
             this.xrLabel6.StylePriority.UseTextAlignment = false;
             this.xrLabel6.Text = ": الى";
             this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrLabel2
-            // 
-            this.xrLabel2.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(647.2994F, 36.56378F);
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(37.04163F, 20F);
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = ": فرع";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrControlStyle1
             // 
@@ -509,17 +507,21 @@
             this.objectDataSource1.DataSource = typeof(MainSystem.Items_Bills);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // FromDate
+            // FromBill
             // 
-            this.FromDate.Description = "FromDate";
-            this.FromDate.Name = "FromDate";
+            this.FromBill.Description = "FromBill";
+            this.FromBill.Name = "FromBill";
+            this.FromBill.Type = typeof(int);
+            this.FromBill.ValueInfo = "0";
             // 
-            // ToDate
+            // ToBill
             // 
-            this.ToDate.Description = "ToDate";
-            this.ToDate.Name = "ToDate";
+            this.ToBill.Description = "ToBill";
+            this.ToBill.Name = "ToBill";
+            this.ToBill.Type = typeof(int);
+            this.ToBill.ValueInfo = "0";
             // 
-            // Print_ProductsBillsDate
+            // Print_ProductsBillsNum
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -536,8 +538,8 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.Branch_Name,
             this.DateNow,
-            this.FromDate,
-            this.ToDate});
+            this.FromBill,
+            this.ToBill});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.xrControlStyle1,
             this.xrControlStyle2});
@@ -569,6 +571,7 @@
         private DevExpress.XtraReports.UI.XRControlStyle xrControlStyle1;
         private DevExpress.XtraReports.UI.ReportFooterBand ReportFooter;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.Parameters.Parameter Branch_Name;
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
@@ -587,8 +590,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
-        private DevExpress.XtraReports.Parameters.Parameter FromDate;
-        private DevExpress.XtraReports.Parameters.Parameter ToDate;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.Parameters.Parameter FromBill;
+        private DevExpress.XtraReports.Parameters.Parameter ToBill;
     }
 }

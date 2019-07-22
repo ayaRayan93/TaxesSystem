@@ -251,13 +251,13 @@
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(313.2482F, 0F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(302.8315F, 0F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(176F, 30F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(196.8334F, 30F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "كشف أصناف";
+            this.xrLabel1.Text = "كشف أصناف الشركات";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrPictureBox1

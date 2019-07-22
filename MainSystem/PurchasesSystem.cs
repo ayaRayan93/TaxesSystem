@@ -549,16 +549,47 @@ namespace MainSystem
                     if (!xtraTabControlPurchases.Visible)
                         xtraTabControlPurchases.Visible = true;
 
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الفواتير المباعة بالتاريخ");
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالتاريخ");
                     if (xtraTabPage == null)
                     {
-                        xtraTabControlPurchases.TabPages.Add("الفواتير المباعة بالتاريخ");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الفواتير المباعة بالتاريخ");
+                        xtraTabControlPurchases.TabPages.Add("الاصناف المباعة بالتاريخ");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالتاريخ");
                     }
                     xtraTabPage.Controls.Clear();
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplaySalesProductsBillsDateForm(xtraTabPage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSalesProductsBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالفواتير");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("الاصناف المباعة بالفواتير");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالفواتير");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+                    bindDisplaySalesProductsBillsNumForm(xtraTabPage);
                 }
             }
             catch (Exception ex)
@@ -956,6 +987,16 @@ namespace MainSystem
         public void bindDisplaySalesProductsBillsDateForm(XtraTabPage xtraTabPage)
         {
             SalesProductsBillsDate_Report objForm = new SalesProductsBillsDate_Report(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplaySalesProductsBillsNumForm(XtraTabPage xtraTabPage)
+        {
+            SalesProductsBillsNum_Report objForm = new SalesProductsBillsNum_Report(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

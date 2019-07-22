@@ -7,18 +7,18 @@ using System.Collections.Generic;
 
 namespace MainSystem
 {
-    public partial class Print_ProductsBillsDate : DevExpress.XtraReports.UI.XtraReport
+    public partial class Print_ProductsBillsNum : DevExpress.XtraReports.UI.XtraReport
     {
-        public Print_ProductsBillsDate()
+        public Print_ProductsBillsNum()
         {
             InitializeComponent();
         }
 
-        public void InitData(string branchName, DateTime fromDate, DateTime toDate, List<Items_Bills> Bill_Items)
+        public void InitData(string branchName, string fromBill, string toBill, List<Items_Bills> Bill_Items)
         {
             Branch_Name.Value = branchName;
-            FromDate.Value = fromDate;
-            ToDate.Value = toDate;
+            FromBill.Value = fromBill;
+            ToBill.Value = toBill;
             DateNow.Value = DateTime.Now;
             objectDataSource1.DataSource = Bill_Items;
         }
