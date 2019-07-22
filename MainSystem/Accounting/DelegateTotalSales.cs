@@ -47,6 +47,18 @@ namespace MainSystem
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
                 comDelegate.Text = "";
                 txtDelegateID.Text = "";
+
+                query = "select * from branch";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+
+                comBranch.Text = "";
+                txtBranchID.Text = "";
+
                 loaded = true;
             }
             catch (Exception ex)
@@ -76,7 +88,41 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    txtBranchID.Text = comBranch.SelectedValue.ToString();
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         private void txtDelegateID_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -116,7 +162,7 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
 
-                string query= "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "'";
+                string query= "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -126,7 +172,7 @@ namespace MainSystem
                 }
                 dr.Close();
 
-                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "'";
+                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
            
@@ -138,7 +184,7 @@ namespace MainSystem
 
                 str += 0;
 
-                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "'";
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
                 string str1 = "";
@@ -165,6 +211,8 @@ namespace MainSystem
                 _Table = getTotalReturn(_Table, str1, query);
 
                 gridControl1.DataSource = _Table;
+
+                CalTotal(_Table);
             }
             catch (Exception ex)
             {
@@ -257,7 +305,19 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Safaya", typeof(string)));
             return _Table;
         }
-
+        public void CalTotal(DataTable _Tabl)
+        {
+            double totalSales = 0, totalReturn = 0, totalSafay = 0;
+            foreach (DataRow item in _Tabl.Rows)
+            {
+                totalSales += Convert.ToDouble(item["TotalSales"].ToString());
+                totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
+                totalSafay += Convert.ToDouble(item["Safaya"].ToString());
+            }
+            txtTotalSales.Text = totalSales.ToString();
+            txtTotalReturn.Text = totalReturn.ToString();
+            txtTotalSafay.Text = totalSafay.ToString();
+        }
         private void btnReport_Click(object sender, EventArgs e)
         {
             try
