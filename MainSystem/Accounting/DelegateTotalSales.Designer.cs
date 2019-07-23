@@ -46,6 +46,7 @@
             this.TotalReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Safaya = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comBranch = new System.Windows.Forms.ComboBox();
@@ -121,6 +122,7 @@
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(91, 36);
             this.btnReport.TabIndex = 3;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panel2
             // 
@@ -225,6 +227,14 @@
             this.gridView1.AppearancePrint.EvenRow.Options.UseFont = true;
             this.gridView1.AppearancePrint.EvenRow.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.EvenRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.FooterPanel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.FooterPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.FooterPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Delegate_ID,
             this.Delegate_Name,
@@ -274,6 +284,9 @@
             this.TotalSales.Caption = "اجمالي المبيعات";
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
+            this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
+            this.TotalSales.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 2;
             // 
@@ -292,6 +305,9 @@
             this.TotalReturn.Caption = "اجمالي المرتجعات";
             this.TotalReturn.FieldName = "TotalReturn";
             this.TotalReturn.Name = "TotalReturn";
+            this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "اجمالي المرتجعات={0:0.##}")});
+            this.TotalReturn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalReturn.Visible = true;
             this.TotalReturn.VisibleIndex = 1;
             // 
@@ -310,12 +326,17 @@
             this.Safaya.Caption = "الصافي";
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
+            this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "اجمالي الصافي={0:0.##}")});
+            this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
+            this.Safaya.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.Safaya.Visible = true;
             this.Safaya.VisibleIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.comBranch);
@@ -335,6 +356,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(913, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.IndianRed;
+            this.label10.Location = new System.Drawing.Point(219, 19);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 19);
+            this.label10.TabIndex = 208;
+            this.label10.Text = "*";
             // 
             // label5
             // 
@@ -549,5 +582,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalSales;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label10;
     }
 }

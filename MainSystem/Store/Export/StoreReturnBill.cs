@@ -641,7 +641,7 @@ namespace MainSystem
                 List<ReturnPermissionClass> listOfData = new List<ReturnPermissionClass>();
                 if (gridView2.RowCount > 0 && txtStore.Text != "" && txtBranch1.Text != "")
                 {
-                    string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date,Branch_ID) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date,@Branch_ID)";
+                    string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date,Branch_ID,Branch_Name) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date,@Branch_ID,@Branch_Name)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     if (radioButtonReturnBill.Checked)
                     {
@@ -682,6 +682,8 @@ namespace MainSystem
                     com.Parameters["@Date"].Value = dateTimePicker1.Value;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     com.Parameters["@Branch_ID"].Value = Convert.ToInt32(txtBranch1.Text);
+                    com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Branch_Name"].Value = Convert.ToInt32(txtBranch1.Text);
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnPermission_ID from customer_return_permission order by CustomerReturnPermission_ID desc limit 1";

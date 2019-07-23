@@ -32,7 +32,15 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTotalSafay = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtTotalReturn = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTotalSales = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comBranch = new System.Windows.Forms.ComboBox();
@@ -57,19 +65,12 @@
             this.TotalReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Safaya = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Factory_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtTotalSales = new System.Windows.Forms.TextBox();
-            this.txtTotalReturn = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtTotalSafay = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -145,9 +146,84 @@
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.txtTotalSafay);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.txtTotalReturn);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.txtTotalSales);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(812, 38);
+            this.panel2.TabIndex = 4;
+            // 
+            // txtTotalSafay
+            // 
+            this.txtTotalSafay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalSafay.Location = new System.Drawing.Point(31, 9);
+            this.txtTotalSafay.Name = "txtTotalSafay";
+            this.txtTotalSafay.ReadOnly = true;
+            this.txtTotalSafay.Size = new System.Drawing.Size(114, 26);
+            this.txtTotalSafay.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(151, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 19);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "اجمالي الصافي";
+            // 
+            // txtTotalReturn
+            // 
+            this.txtTotalReturn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalReturn.Location = new System.Drawing.Point(335, 9);
+            this.txtTotalReturn.Name = "txtTotalReturn";
+            this.txtTotalReturn.ReadOnly = true;
+            this.txtTotalReturn.Size = new System.Drawing.Size(114, 26);
+            this.txtTotalReturn.TabIndex = 3;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(455, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 19);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "اجمالي المرتجعات";
+            // 
+            // txtTotalSales
+            // 
+            this.txtTotalSales.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalSales.Location = new System.Drawing.Point(568, 9);
+            this.txtTotalSales.Name = "txtTotalSales";
+            this.txtTotalSales.ReadOnly = true;
+            this.txtTotalSales.Size = new System.Drawing.Size(114, 26);
+            this.txtTotalSales.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(688, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(92, 19);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "اجمالي المبيعات";
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.comBranch);
@@ -171,6 +247,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(922, 120);
             this.panel1.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.IndianRed;
+            this.label10.Location = new System.Drawing.Point(322, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 19);
+            this.label10.TabIndex = 204;
+            this.label10.Text = "*";
             // 
             // label5
             // 
@@ -399,6 +487,16 @@
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.EvenRow.BackColor = System.Drawing.Color.White;
+            this.gridView1.AppearancePrint.EvenRow.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.EvenRow.Options.UseBackColor = true;
+            this.gridView1.AppearancePrint.EvenRow.Options.UseFont = true;
+            this.gridView1.AppearancePrint.EvenRow.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.EvenRow.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.FooterPanel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.FooterPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.FooterPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
@@ -412,6 +510,7 @@
             this.Factory_Name});
             this.gridView1.GridControl = this.GridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             // 
@@ -453,6 +552,8 @@
             this.TotalSales.Caption = "اجمالي المبيعات";
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
+            this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 2;
             // 
@@ -471,6 +572,8 @@
             this.TotalReturn.Caption = "اجمالي المرتجعات";
             this.TotalReturn.FieldName = "TotalReturn";
             this.TotalReturn.Name = "TotalReturn";
+            this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "اجمالي المرتجعات={0:0.##}")});
             this.TotalReturn.Visible = true;
             this.TotalReturn.VisibleIndex = 1;
             // 
@@ -489,6 +592,9 @@
             this.Safaya.Caption = "الصافي";
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
+            this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "اجمالي الصافي={0:0.##}")});
+            this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
             this.Safaya.Visible = true;
             this.Safaya.VisibleIndex = 0;
             // 
@@ -508,80 +614,6 @@
             this.Factory_Name.Visible = true;
             this.Factory_Name.VisibleIndex = 3;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.txtTotalSafay);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.txtTotalReturn);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.txtTotalSales);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(812, 38);
-            this.panel2.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(688, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(92, 19);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "اجمالي المبيعات";
-            // 
-            // txtTotalSales
-            // 
-            this.txtTotalSales.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalSales.Location = new System.Drawing.Point(568, 9);
-            this.txtTotalSales.Name = "txtTotalSales";
-            this.txtTotalSales.ReadOnly = true;
-            this.txtTotalSales.Size = new System.Drawing.Size(114, 26);
-            this.txtTotalSales.TabIndex = 1;
-            // 
-            // txtTotalReturn
-            // 
-            this.txtTotalReturn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalReturn.Location = new System.Drawing.Point(335, 9);
-            this.txtTotalReturn.Name = "txtTotalReturn";
-            this.txtTotalReturn.ReadOnly = true;
-            this.txtTotalReturn.Size = new System.Drawing.Size(114, 26);
-            this.txtTotalReturn.TabIndex = 3;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(455, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 19);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "اجمالي المرتجعات";
-            // 
-            // txtTotalSafay
-            // 
-            this.txtTotalSafay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalSafay.Location = new System.Drawing.Point(31, 9);
-            this.txtTotalSafay.Name = "txtTotalSafay";
-            this.txtTotalSafay.ReadOnly = true;
-            this.txtTotalSafay.Size = new System.Drawing.Size(114, 26);
-            this.txtTotalSafay.TabIndex = 5;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(151, 9);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 19);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "اجمالي الصافي";
-            // 
             // DelegateSalesForCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -593,12 +625,12 @@
             this.Load += new System.EventHandler(this.DelegateSalesForCompany_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -641,5 +673,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalSales;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label10;
     }
 }

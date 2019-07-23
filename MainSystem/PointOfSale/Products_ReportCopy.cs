@@ -328,7 +328,6 @@ namespace MainSystem
                                     getSetsComBox();
                                 }
                             }
-
                             break;
                         case "comFactory":
                             if (factoryFlage)

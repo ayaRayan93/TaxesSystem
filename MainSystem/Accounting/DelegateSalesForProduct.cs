@@ -47,16 +47,16 @@ namespace MainSystem
                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                 comFactory.Text = "";
                 txtFactory.Text = "";
-
-                query = "select * from delegate ";
+                
+                query = "select * from branch";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
-                comDelegate.DataSource = dt;
-                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
-                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
-                comDelegate.Text = "";
-                txtDelegateID.Text = "";
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
+                txtBranchID.Text = "";
 
                 loaded = true;
             }
@@ -91,6 +91,53 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    txtBranchID.Text = comBranch.SelectedValue.ToString();
+                    dbconnection.Open();
+                    loaded = false;
+                    string query = "select * from delegate where Branch_ID=" + txtBranchID.Text;
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDelegate.DataSource = dt;
+                    comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                    comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                    comDelegate.Text = "";
+                    txtDelegateID.Text = "";
+                    loaded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
         private void comDelegate_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -207,7 +254,7 @@ namespace MainSystem
 
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
 
-                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "'";
+                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -217,7 +264,7 @@ namespace MainSystem
                 }
                 dr.Close();
 
-                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "'";
+                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
 
@@ -229,7 +276,7 @@ namespace MainSystem
 
                 str += 0;
 
-                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "'";
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
                 string str1 = "";
@@ -244,10 +291,11 @@ namespace MainSystem
                 _Table = getReturnedQuantity(_Table, itemName, DataTableRelations, d, d2,str1);
 
                 gridControl1.DataSource = _Table;
+                CalTotal(_Table);
             }
             catch
             {
-                MessageBox.Show("حدد الشركة والمندوب");
+                MessageBox.Show("حدد الشركة والمندوب والفرع");
                 txtFactory.Focus();
             }
             dbconnection.Close();
@@ -315,7 +363,8 @@ namespace MainSystem
                     DataRow row = temp.NewRow();
 
                     row["QuantitySaled"] = dr[2].ToString();
-                    row["Quantity"] = dr[2].ToString();
+                    if (dr[2].ToString()!="")
+                    row["Quantity"] = -Convert.ToDouble(dr[2].ToString());
                     row["Data_ID"] = dr[0].ToString();
                     row["CodeName"] = dr[1].ToString();
                     row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
@@ -397,6 +446,25 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        public void CalTotal(DataTable _Tabl)
+        {
+            double totalSales = 0, totalReturn = 0, totalSafay = 0,totalCost=0;
+            foreach (DataRow item in _Tabl.Rows)
+            {
+                if(item["QuantitySaled"].ToString()!="")
+                    totalSales += Convert.ToDouble(item["QuantitySaled"].ToString());
+                if (item["QuantityReturned"].ToString() != "")
+                    totalReturn += Convert.ToDouble(item["QuantityReturned"].ToString());
+                if (item["Quantity"].ToString() != "")
+                    totalSafay += Convert.ToDouble(item["Quantity"].ToString());
+                if (item["Cost"].ToString() != "")
+                    totalCost += Convert.ToDouble(item["Cost"].ToString());
+            }
+            txtTotalSalesQuantity.Text = totalSales.ToString();
+            txtTotalReturnQuantity.Text = totalReturn.ToString();
+            txtTotalSafayQuantity.Text = totalSafay.ToString();
+            txttotalSales.Text = totalCost.ToString();
         }
     }
 

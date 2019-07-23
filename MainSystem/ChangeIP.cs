@@ -44,13 +44,27 @@ namespace MainSystem
                     comBranchName.DataSource = dt;
                     comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
                     comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
+
+                    query = "select * from store";
+                    da = new MySqlDataAdapter(query, dbconnection);
+                    dt = new DataTable();
+                    da.Fill(dt);
+                    comStore.DataSource = dt;
+                    comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                    comStore.ValueMember = dt.Columns["Store_ID"].ToString();
+
                     string BranchID = File.ReadAllText("Branch.txt");
+                    string StoreID = File.ReadAllText("Store.txt");
                     string IPAddress = File.ReadAllText("IP_Address.txt");
                     labOldIP.Text = IPAddress;
                     query = "select Branch_Name from branch where Branch_ID=" + BranchID;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     comBranchName.Text = com.ExecuteScalar().ToString();
                     oldBranch = comBranchName.Text;
+                    query = "select Store_Name from store where Store_ID=" + StoreID;
+                    com = new MySqlCommand(query, dbconnection);
+                    comStore.Text = com.ExecuteScalar().ToString();
+
                     dbconnection.Close();
                 }
                 
@@ -106,6 +120,14 @@ namespace MainSystem
                     comBranchName.DataSource = dt;
                     comBranchName.DisplayMember = dt.Columns["Branch_Name"].ToString();
                     comBranchName.ValueMember = dt.Columns["Branch_ID"].ToString();
+
+                    query = "select * from store";
+                    da = new MySqlDataAdapter(query, dbconnection);
+                    dt = new DataTable();
+                    da.Fill(dt);
+                    comStore.DataSource = dt;
+                    comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                    comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 }
                 catch
                 {
@@ -131,6 +153,11 @@ namespace MainSystem
                     {
                         //Write to a file
                         using (StreamWriter writer = new StreamWriter("Branch.txt"))
+                        {
+                            writer.WriteLine(comBranchName.SelectedValue);
+                        }
+
+                        using (StreamWriter writer = new StreamWriter("Store.txt"))
                         {
                             writer.WriteLine(comBranchName.SelectedValue);
                         }
