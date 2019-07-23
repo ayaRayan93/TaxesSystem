@@ -70,6 +70,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBillNum = new System.Windows.Forms.TextBox();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -131,7 +135,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label7.Location = new System.Drawing.Point(357, 8);
+            this.label7.Location = new System.Drawing.Point(245, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 18);
             this.label7.TabIndex = 30;
@@ -141,7 +145,7 @@
             // 
             this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtQuantity.Location = new System.Drawing.Point(251, 6);
+            this.txtQuantity.Location = new System.Drawing.Point(139, 6);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtQuantity.Size = new System.Drawing.Size(100, 23);
@@ -151,10 +155,11 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtCode.Location = new System.Drawing.Point(470, 6);
+            this.txtCode.Location = new System.Drawing.Point(670, 6);
             this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
             this.txtCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtCode.Size = new System.Drawing.Size(180, 23);
+            this.txtCode.Size = new System.Drawing.Size(170, 23);
             this.txtCode.TabIndex = 79;
             // 
             // label5
@@ -162,7 +167,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label5.Location = new System.Drawing.Point(656, 8);
+            this.label5.Location = new System.Drawing.Point(846, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 18);
             this.label5.TabIndex = 78;
@@ -172,9 +177,9 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label6.Location = new System.Drawing.Point(155, 8);
+            this.label6.Location = new System.Drawing.Point(8, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 18);
+            this.label6.Size = new System.Drawing.Size(16, 18);
             this.label6.TabIndex = 80;
             this.label6.Text = "اماكن التخزين";
             this.label6.Visible = false;
@@ -184,7 +189,7 @@
             this.cmbPlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbPlace.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.cmbPlace.FormattingEnabled = true;
-            this.cmbPlace.Location = new System.Drawing.Point(133, 5);
+            this.cmbPlace.Location = new System.Drawing.Point(8, 8);
             this.cmbPlace.Name = "cmbPlace";
             this.cmbPlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbPlace.Size = new System.Drawing.Size(16, 24);
@@ -211,7 +216,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(902, 720);
             this.tableLayoutPanel1.TabIndex = 83;
             // 
@@ -619,6 +623,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.comBranch);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.txtBillNum);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.txtCode);
@@ -640,7 +648,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(27, 3);
+            this.btnDelete.Location = new System.Drawing.Point(30, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(50, 28);
             this.btnDelete.TabIndex = 117;
@@ -656,13 +664,57 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(77, 3);
+            this.btnAdd.Location = new System.Drawing.Point(80, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(53, 28);
             this.btnAdd.TabIndex = 116;
             this.btnAdd.Text = "اضافة";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label8.Location = new System.Drawing.Point(424, 8);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 18);
+            this.label8.TabIndex = 118;
+            this.label8.Text = "رقم الفاتورة";
+            // 
+            // txtBillNum
+            // 
+            this.txtBillNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBillNum.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtBillNum.Location = new System.Drawing.Point(318, 6);
+            this.txtBillNum.Name = "txtBillNum";
+            this.txtBillNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtBillNum.Size = new System.Drawing.Size(100, 23);
+            this.txtBillNum.TabIndex = 119;
+            this.txtBillNum.TextChanged += new System.EventHandler(this.txtBillNum_TextChanged);
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(508, 5);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comBranch.Size = new System.Drawing.Size(121, 24);
+            this.comBranch.TabIndex = 121;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label9.Location = new System.Drawing.Point(635, 8);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 18);
+            this.label9.TabIndex = 120;
+            this.label9.Text = "فرع";
             // 
             // TransportationStore
             // 
@@ -736,6 +788,10 @@
         private System.Windows.Forms.TextBox txtFactory;
         private System.Windows.Forms.TextBox txtGroup;
         private System.Windows.Forms.TextBox txtType;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtBillNum;
+        private System.Windows.Forms.ComboBox comBranch;
+        private System.Windows.Forms.Label label9;
     }
 }
 

@@ -2301,11 +2301,11 @@
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\ConfirmationToStore.cs">
+    <Compile Include="Store\Transportation\ConfirmationToStoreX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\ConfirmationToStore.designer.cs">
-      <DependentUpon>ConfirmationToStore.cs</DependentUpon>
+    <Compile Include="Store\Transportation\ConfirmationToStoreX.designer.cs">
+      <DependentUpon>ConfirmationToStoreX.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Transportation\ConfirmationStore.cs">
       <SubType>Form</SubType>
@@ -3410,8 +3410,8 @@
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\ConfirmationToStore.resx">
-      <DependentUpon>ConfirmationToStore.cs</DependentUpon>
+    <EmbeddedResource Include="Store\Transportation\ConfirmationToStoreX.resx">
+      <DependentUpon>ConfirmationToStoreX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\Print_Transportation.resx">
       <DependentUpon>Print_Transportation.cs</DependentUpon>
