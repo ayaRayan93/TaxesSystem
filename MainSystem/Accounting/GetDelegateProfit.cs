@@ -39,17 +39,17 @@ namespace MainSystem
             {
                 dbconnection.Open();
 
-                string query = "select * from delegate ";
+                string query = "select * from branch ";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
             
                 da.Fill(dt);
-                comDelegate.DataSource = dt;
-                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
-                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
-                comDelegate.Text = "";
-                txtDelegateID.Text = "";
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
+                txtBranchID.Text = "";
 
                 loaded = true;
             }
@@ -124,7 +124,53 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    txtBranchID.Text = comBranch.SelectedValue.ToString();
+                    dbconnection.Open();
+                    loaded = false;
+                    string query = "select * from delegate where Branch_ID=" + txtBranchID.Text;
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDelegate.DataSource = dt;
+                    comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                    comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                    comDelegate.Text = "";
+                    txtDelegateID.Text = "";
+                    loaded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try

@@ -857,13 +857,22 @@ namespace MainSystem
                 displayBillDataFromCustomerBill(txtBranchID.Text,permissionNum);
             }
         }
-        public bool IsExist(string Data_ID,string carton)
+        public bool IsExist(string Data_ID,string carton1)
         {
-            for (int i = 0; i < gridView2.RowCount; i++)
+            //for (int i = 0; i < gridView2.RowCount; i++)
+            //{
+            //    int rowHandle = gridView2.GetRowHandle(i);
+            //    DataRow ss = gridView2.GetDataRow(i);
+            //    if (ss[0].ToString() == Data_ID&& ss[5].ToString()==carton)
+            //        return true;
+            //}
+            DataView dv =(DataView) gridView2.DataSource;
+            DataTable dt = dv.Table;
+            foreach (DataRow item in dt.Rows)
             {
-                int rowHandle = gridView2.GetRowHandle(i);
-                DataRow ss = gridView2.GetDataRow(rowHandle);
-                if (ss[0].ToString() == Data_ID&& ss[5].ToString()==carton)
+                double itemCarton = Convert.ToDouble(item[5].ToString());
+                double carton = Convert.ToDouble(carton1);
+                if (item[0].ToString() == Data_ID && itemCarton == carton)
                     return true;
             }
             return false;

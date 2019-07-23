@@ -95,13 +95,25 @@ namespace MainSystem
                 if (loaded)
                 {
                     txtBranchID.Text = comBranch.SelectedValue.ToString();
-
+                    dbconnection.Open();
+                    loaded = false;
+                    string query = "select * from delegate where Branch_ID=" + txtBranchID.Text;
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDelegate.DataSource = dt;
+                    comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                    comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                    comDelegate.Text = "";
+                    txtDelegateID.Text = "";
+                    loaded = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
         private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
         {
@@ -184,7 +196,7 @@ namespace MainSystem
 
                 str += 0;
 
-                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
                 string str1 = "";
@@ -216,7 +228,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("اختار الفرع");
             }
             dbconnection.Close(); 
         }
@@ -278,7 +290,8 @@ namespace MainSystem
                     DataRow row = temp.NewRow();
 
                     row["TotalReturn"] = dr[2].ToString();
-                    row["Safaya"] = dr[2].ToString();
+                    if(dr[2].ToString()!="")
+                    row["Safaya"] = -Convert.ToDouble(dr[2].ToString());
                     row["Delegate_ID"] = dr[0].ToString();
                     row["Delegate_Name"] = dr[1].ToString();
 
@@ -310,9 +323,12 @@ namespace MainSystem
             double totalSales = 0, totalReturn = 0, totalSafay = 0;
             foreach (DataRow item in _Tabl.Rows)
             {
-                totalSales += Convert.ToDouble(item["TotalSales"].ToString());
-                totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
-                totalSafay += Convert.ToDouble(item["Safaya"].ToString());
+                if(item["TotalSales"].ToString()!="")
+                    totalSales += Convert.ToDouble(item["TotalSales"].ToString());
+                if (item["TotalReturn"].ToString() != "")
+                    totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
+                if (item["Safaya"].ToString() != "")
+                    totalSafay += Convert.ToDouble(item["Safaya"].ToString());
             }
             txtTotalSales.Text = totalSales.ToString();
             txtTotalReturn.Text = totalReturn.ToString();
@@ -331,5 +347,6 @@ namespace MainSystem
             }
         }
 
+      
     }
 }

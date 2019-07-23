@@ -99,8 +99,21 @@ namespace MainSystem
                         if (dr[1].ToString() != "")
                         {
                             Branch_ID = Convert.ToInt32(dr[1].ToString());
+                            load = false;
+                            query = "select * from delegate where Branch_ID="+Branch_ID;
+                            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            comDelegate.DataSource = dt;
+                            comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                            comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                            comDelegate.Text = "";
+                            txtDelegate.Text = "";
+
+                            load = true;
                         }
                         labBillNumber.Text = dr[0].ToString();
+                        Branch_ID = Convert.ToInt16(dr[1].ToString());
                         labBranchName.Text = dr[2].ToString();
                         labClientName.Text = dr[3].ToString();
                         labClientPhone.Text = dr[4].ToString();
@@ -165,13 +178,15 @@ namespace MainSystem
                     {
                         Branch_BillNumber = Convert.ToInt32(com.ExecuteScalar()) + 1;
                     }
-                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Customer_Name,Client_Name, Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name) values (@Customer_ID,@Client_ID,@Customer_Name,@Client_Name,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name)";
+                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Customer_Name,Client_Name, Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name,Branch_Name) values (@Customer_ID,@Client_ID,@Customer_Name,@Client_Name,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name,@Branch_Name)";
                     com = new MySqlCommand(query, dbconnection);
                     
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
                     com.Parameters["@Branch_BillNumber"].Value = Branch_BillNumber;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
-                    com.Parameters["@Branch_ID"].Value = BaseData.BranchID;
+                    com.Parameters["@Branch_ID"].Value =Branch_ID;
+                    com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Branch_Name"].Value = labBranchName.Text;
                     int storeNum = 0;
                     if (int.TryParse(txtReturnPermission.Text, out storeNum))
                     {

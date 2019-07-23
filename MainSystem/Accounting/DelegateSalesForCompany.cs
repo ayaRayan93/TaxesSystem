@@ -37,15 +37,15 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select * from delegate ";
+                string query = "select * from branch ";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                comDelegate.DataSource = dt;
-                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
-                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
-                comDelegate.Text = "";
-                txtDelegateID.Text = "";
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
+                txtBranchID.Text = "";
 
                 query = "select * from factory ";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -57,16 +57,7 @@ namespace MainSystem
                 comFactory.Text = "";
                 txtFactory.Text = "";
 
-                query = "select * from branch";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comBranch.DataSource = dt;
-                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-
-                comBranch.Text = "";
-                txtBranchID.Text = "";
+               
 
                 loaded = true;
             }
@@ -270,11 +261,12 @@ namespace MainSystem
 
                 GridControl1.DataSource = _Table;
 
+
                 CalTotal(_Table);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("اختار الفرع");
             }
             dbconnection.Close();
         }
@@ -299,13 +291,25 @@ namespace MainSystem
                 if (loaded)
                 {
                     txtBranchID.Text = comBranch.SelectedValue.ToString();
-
+                    dbconnection.Open();
+                    loaded = false;
+                    string query = "select * from delegate where Branch_ID="+ txtBranchID.Text;
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDelegate.DataSource = dt;
+                    comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                    comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                    comDelegate.Text = "";
+                    txtDelegateID.Text = "";
+                    loaded = true;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
         private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
         {
@@ -331,7 +335,21 @@ namespace MainSystem
         //functions
         public DataTable getTotalSales(DataTable _Table,string customerBill_ids,string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(product_bill.PriceAD*Quantity) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids+ ") "+subQuery+ " group by delegate.Delegate_ID ";
+            string query = "";
+            if (txtFactory.Text != "")
+            {
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(product_bill.PriceAD*Quantity) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and data.Factory_ID=" + txtFactory.Text + " group by delegate.Delegate_ID ";
+            }
+            else if (txtDelegateID.Text != "")
+            {
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(product_bill.PriceAD*Quantity) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and delegate.Delegate_ID=" + txtDelegateID.Text + " group by Factory_Name ";
+            }
+            else
+            {
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,product_bill.PriceAD*Quantity from product_bill left join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID left join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ")  ";
+
+            }
+
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
 
@@ -339,12 +357,21 @@ namespace MainSystem
             {
                 DataRow row = _Table.NewRow();
 
-                row["Delegate_ID"] = dr[0].ToString();
-                row["Delegate_Name"] = dr[1].ToString();
-                row["Factory_Name"] = dr[2].ToString();
-                row["TotalSales"] = dr[3].ToString();
-                row["Safaya"] = dr[3].ToString();
-                _Table.Rows.Add(row);
+                if(dr[0].ToString()!="")
+                    row["Delegate_ID"] =dr[0].ToString();
+                if (dr[1].ToString() != "")
+                    row["Delegate_Name"] = dr[1].ToString();
+                if (dr[2].ToString() != "")
+                    row["Factory_Name"] = dr[2].ToString();
+                if (dr[3].ToString() != "")
+                    row["TotalSales"] = dr[3].ToString();
+                else
+                    row["TotalSales"] = 0;
+                if (dr[3].ToString() != "")
+                    row["Safaya"] = dr[3].ToString();
+                else
+                    row["Safaya"] = 0;
+               _Table.Rows.Add(row);
             }
             dr.Close();
 
@@ -352,7 +379,20 @@ namespace MainSystem
         }
         public DataTable getTotalReturn(DataTable _Table, string CustomerReturnBill_IDs, string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  "+ subQuery + " group by delegate.Delegate_ID ";
+            string query = "";
+            if (txtFactory.Text != "")
+            {
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by Factory_Name ";
+            }
+            else if (txtDelegateID.Text != "")
+            {
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by delegate.Delegate_ID ";
+            }
+            else
+            {
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  ";
+            }
+
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
@@ -363,8 +403,16 @@ namespace MainSystem
                 {
                     if (item[0].ToString() == dr[0].ToString())
                     {
-                        item["TotalReturn"] = dr[3].ToString();
-                        item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                        if (dr[3].ToString() != "")
+                        {
+                            item["TotalReturn"] = dr[3].ToString();
+                            item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                        }
+                        else
+                        {
+                            item["TotalReturn"] = 0;
+                            item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) -0);
+                        }
                         flag = false;
                     }
 
@@ -372,9 +420,17 @@ namespace MainSystem
                 if (flag)
                 {
                     DataRow row = temp.NewRow();
-
-                    row["TotalReturn"] = dr[3].ToString();
-                    row["Safaya"] = dr[3].ToString();
+                    if (dr[3].ToString() != "")
+                    {
+                        row["TotalReturn"] = dr[3].ToString();
+                        if(dr[3].ToString()!="")
+                            row["Safaya"] = -Convert.ToDouble(dr[3].ToString());
+                    }
+                    else
+                    {
+                        row["TotalReturn"] = 0;
+                        row["Safaya"] = 0;
+                    }
                     row["Delegate_ID"] = dr[0].ToString();
                     row["Delegate_Name"] = dr[1].ToString();
                     row["Factory_Name"] = dr[1].ToString();
@@ -419,9 +475,12 @@ namespace MainSystem
             double totalSales = 0, totalReturn = 0, totalSafay = 0;
             foreach (DataRow item in _Tabl.Rows)
             {
-                totalSales += Convert.ToDouble(item["TotalSales"].ToString());
-                totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
-                totalSafay += Convert.ToDouble(item["Safaya"].ToString());
+                if(item["TotalSales"].ToString()!="")
+                    totalSales += Convert.ToDouble(item["TotalSales"].ToString());
+                if (item["TotalReturn"].ToString() != "")
+                    totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
+                if (item["Safaya"].ToString() != "")
+                    totalSafay += Convert.ToDouble(item["Safaya"].ToString());
             }
             txtTotalSales.Text = totalSales.ToString();
             txtTotalReturn.Text = totalReturn.ToString();
