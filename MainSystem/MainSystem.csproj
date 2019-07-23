@@ -382,6 +382,24 @@
       <DependentUpon>SalesProductsBillsDate_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Sales Report\Items_Bills.cs" />
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بشركة\Print_ProductsBillsFactory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بشركة\Print_ProductsBillsFactory.designer.cs">
+      <DependentUpon>Print_ProductsBillsFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بشركة\Report_Items_BillsFactory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بشركة\Report_Items_BillsFactory.designer.cs">
+      <DependentUpon>Report_Items_BillsFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بشركة\SalesProductsBillsFactory_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Sales Report\تقرير الاصناف بشركة\SalesProductsBillsFactory_Report.designer.cs">
+      <DependentUpon>SalesProductsBillsFactory_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Sales Report\تقرير الاصناف بالفواتير\Print_ProductsBillsNum.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2575,6 +2593,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالتاريخ\SalesProductsBillsDate_Report.resx">
       <DependentUpon>SalesProductsBillsDate_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بشركة\Print_ProductsBillsFactory.resx">
+      <DependentUpon>Print_ProductsBillsFactory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بشركة\Report_Items_BillsFactory.resx">
+      <DependentUpon>Report_Items_BillsFactory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بشركة\SalesProductsBillsFactory_Report.resx">
+      <DependentUpon>SalesProductsBillsFactory_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Sales Report\تقرير الاصناف بالفواتير\Print_ProductsBillsNum.resx">
       <DependentUpon>Print_ProductsBillsNum.cs</DependentUpon>

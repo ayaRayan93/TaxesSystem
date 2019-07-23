@@ -527,6 +527,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSalesProductsFactory = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -4291,7 +4292,8 @@
             this.navBarItemDashRequestReport,
             this.navBarItemRequestReport,
             this.navBarItemSalesProductsBills,
-            this.navBarItemSalesProductsDate});
+            this.navBarItemSalesProductsDate,
+            this.navBarItemSalesProductsFactory});
             this.navBarControl7.Location = new System.Drawing.Point(955, 0);
             this.navBarControl7.Name = "navBarControl7";
             this.navBarControl7.OptionsNavPane.ExpandedWidth = 190;
@@ -4306,7 +4308,8 @@
             this.navBarGroup55.Expanded = true;
             this.navBarGroup55.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesProductsBills),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesProductsDate)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesProductsDate),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesProductsFactory)});
             this.navBarGroup55.Name = "navBarGroup55";
             // 
             // navBarItemSalesProductsBills
@@ -4958,6 +4961,12 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItemSalesProductsFactory
+            // 
+            this.navBarItemSalesProductsFactory.Caption = "الاصناف المباعة بالشركة";
+            this.navBarItemSalesProductsFactory.Name = "navBarItemSalesProductsFactory";
+            this.navBarItemSalesProductsFactory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesProductsFactory_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5509,6 +5518,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup55;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSalesProductsBills;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSalesProductsDate;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSalesProductsFactory;
     }
 }
 
