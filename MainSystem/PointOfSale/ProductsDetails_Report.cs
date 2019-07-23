@@ -206,18 +206,18 @@ namespace MainSystem
             //comDelegate.SelectedValue = delegateID;
 
             conn.Open();
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='بند' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',sellprice.Sell_Price as 'السعر',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sellprice ON dash_details.Data_ID = sellprice.Data_ID inner join data on dash_details.Data_ID=data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='بند' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
            
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
 
-            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join sets on dash_details.Data_ID=sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum+ " and dash.Confirmed=0 and dash_details.Type='طقم'", conn);
+            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join sets on dash_details.Data_ID=sets.Set_ID INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID INNER JOIN type ON type.Type_ID = sets.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum+ " and dash.Confirmed=0 and dash_details.Type='طقم' group by sets.Set_ID", conn);
             DataSet sourceDataSet2 = new DataSet();
             adapter.Fill(sourceDataSet2);
 
             sourceDataSet.Merge(sourceDataSet2);
 
-            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',offer.Offer_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join offer on dash_details.Data_ID=offer.Offer_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='عرض'", conn);
+            adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',offer.Offer_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',Price as 'السعر',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join offer on dash_details.Data_ID=offer.Offer_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed=0 and dash_details.Type='عرض'", conn);
             DataSet sourceDataSet3 = new DataSet();
             adapter.Fill(sourceDataSet3);
 
@@ -246,6 +246,11 @@ namespace MainSystem
             PSloaded = true;
             conn.Close();
 
+            if (gridView1.IsLastVisibleRow)
+            {
+                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+            }
+
             for (int i = 1; i < gridView1.Columns.Count; i++)
             {
                 gridView1.Columns[i].Width = 150;
@@ -253,12 +258,12 @@ namespace MainSystem
             gridView1.Columns["الكود"].Width = 180;
             gridView1.Columns["الاسم"].Width = 270;
 
-            /*double sum = 0;
+            double sum = 0;
             for (int i = 0; i < gridView1.RowCount; i++)
             {
-                sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString());
+                sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString()) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر").ToString());
             }
-            labTotalQuantity.Text = "اجمالى الكميات = " + sum.ToString();*/
+            txtTotal.Text = sum.ToString();
         }
 
         void delete(GridView view)
@@ -327,17 +332,17 @@ namespace MainSystem
                 try
                 {
                     conn.Open();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on dash_details.Data_ID=data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='بند' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',sellprice.Sell_Price as 'السعر',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sellprice ON dash_details.Data_ID = sellprice.Data_ID inner join data on dash_details.Data_ID=data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='بند' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
                     DataSet sourceDataSet = new DataSet();
                     adapter.Fill(sourceDataSet);
 
-                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join sets on dash_details.Data_ID=sets.Set_ID INNER JOIN type ON type.Type_ID = sets.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='طقم'", conn);
+                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',type.Type_Name as 'النوع',sets.Set_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',sum(set_details.Quantity*sellprice.Sell_Price) as 'السعر',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join sets on dash_details.Data_ID=sets.Set_ID INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID INNER JOIN type ON type.Type_ID = sets.Type_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='طقم' group by sets.Set_ID", conn);
                     DataSet sourceDataSet2 = new DataSet();
                     adapter.Fill(sourceDataSet2);
 
                     sourceDataSet.Merge(sourceDataSet2);
 
-                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',offer.Offer_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join offer on dash_details.Data_ID=offer.Offer_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='عرض'", conn);
+                    adapter = new MySqlDataAdapter("SELECT dash_details.DashDetails_ID,CAST(dash_details.Data_ID as CHAR(255)) as 'الكود',offer.Offer_Name as 'الاسم',dash_details.Type as 'الفئة',dash_details.Quantity as 'الكمية',dash_details.Store_Name as 'المخزن',Price as 'السعر',dash_details.Store_ID FROM dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join offer on dash_details.Data_ID=offer.Offer_ID where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + txtBillNum.Text + " and dash.Confirmed=0 and dash_details.Type='عرض'", conn);
                     DataSet sourceDataSet3 = new DataSet();
                     adapter.Fill(sourceDataSet3);
 
@@ -366,6 +371,11 @@ namespace MainSystem
                     PSloaded = true;
                     conn.Close();
 
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+
                     for (int i = 1; i < gridView1.Columns.Count; i++)
                     {
                         gridView1.Columns[i].Width = 150;
@@ -373,12 +383,12 @@ namespace MainSystem
                     gridView1.Columns["الكود"].Width = 180;
                     gridView1.Columns["الاسم"].Width = 270;
 
-                    /*double sum = 0;
+                    double sum = 0;
                     for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString());
+                        sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الكمية").ToString()) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر").ToString());
                     }
-                    labTotalQuantity.Text = "اجمالى الكميات = " + sum.ToString();*/
+                    txtTotal.Text = sum.ToString();
 
                     main.test(/*delegateID,*/ billNum);
                 }
