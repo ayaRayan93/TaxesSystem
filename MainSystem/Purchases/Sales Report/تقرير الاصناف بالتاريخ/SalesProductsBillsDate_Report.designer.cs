@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SalesProductsBills_Report
+    partial class SalesProductsBillsDate_Report
     {
         /// <summary>
         /// Required designer variable.
@@ -231,10 +231,10 @@
             // 
             // txtBranchID
             // 
-            this.txtBranchID.Enabled = false;
             this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBranchID.Location = new System.Drawing.Point(700, 3);
             this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.ReadOnly = true;
             this.txtBranchID.Size = new System.Drawing.Size(66, 23);
             this.txtBranchID.TabIndex = 11;
             // 
@@ -297,14 +297,14 @@
             this.toolTipController1.Appearance.Options.UseFont = true;
             this.toolTipController1.ShowBeak = true;
             // 
-            // SalesProductsBills_Report
+            // SalesProductsBillsDate_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "SalesProductsBills_Report";
+            this.Name = "SalesProductsBillsDate_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bills_Transitions_Report";
             this.Load += new System.EventHandler(this.Bills_Transitions_Report_Load);
