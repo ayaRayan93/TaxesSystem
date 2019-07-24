@@ -566,7 +566,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -608,7 +608,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -650,7 +650,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -687,7 +687,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
+                if (UserControl.userType == 7 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     if (!xtraTabControlSalesContent.Visible)
                         xtraTabControlSalesContent.Visible = true;
