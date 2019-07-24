@@ -194,7 +194,12 @@ namespace MainSystem
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
 
-                pictureBoxSales.Visible = true;
+                if (UserControl.userType == 6)
+                {
+                    pictureBoxSales.Visible = true;
+                    btnBank.Enabled = true;
+                    btnBank.Checked = true;
+                }
             }
             else if (UserControl.userType == 8)
             {
