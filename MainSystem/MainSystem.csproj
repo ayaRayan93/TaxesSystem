@@ -442,6 +442,7 @@
     <Compile Include="Sales\Products_Report2Sales.designer.cs">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\تقرير حركة السدادات\DataHelperClassBillsTransitions.cs" />
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Items_Factory.cs" />
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.cs">
       <SubType>Form</SubType>

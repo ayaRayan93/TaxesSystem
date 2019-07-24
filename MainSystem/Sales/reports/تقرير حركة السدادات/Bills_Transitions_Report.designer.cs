@@ -28,9 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BillNum = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BillType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Customer_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Customer = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Client_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Client = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Total = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Discount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Safy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTotalBills = new System.Windows.Forms.TextBox();
             this.txtTotalReturn = new System.Windows.Forms.TextBox();
@@ -40,7 +53,7 @@
             this.txtSafy = new System.Windows.Forms.TextBox();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -61,18 +74,16 @@
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.txtBranchID = new System.Windows.Forms.TextBox();
             this.btnNewChosen = new System.Windows.Forms.Button();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,11 +101,11 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -104,11 +115,171 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1043, 600);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(3, 53);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.gridControl1.Size = new System.Drawing.Size(1037, 219);
+            this.gridControl1.TabIndex = 241;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.gridView1.AppearancePrint.Row.Options.UseFont = true;
+            this.gridView1.AppearancePrint.Row.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ID,
+            this.Type,
+            this.BillNum,
+            this.BillType,
+            this.Date,
+            this.Customer_ID,
+            this.Customer,
+            this.Client_ID,
+            this.Client,
+            this.Total,
+            this.Discount,
+            this.Safy});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Date, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // ID
+            // 
+            this.ID.Caption = "ID";
+            this.ID.FieldName = "ColID";
+            this.ID.Name = "ID";
+            // 
+            // Type
+            // 
+            this.Type.Caption = "النوع";
+            this.Type.FieldName = "ColType";
+            this.Type.Name = "Type";
+            this.Type.Visible = true;
+            this.Type.VisibleIndex = 1;
+            this.Type.Width = 62;
+            // 
+            // BillNum
+            // 
+            this.BillNum.Caption = "الفاتورة";
+            this.BillNum.FieldName = "ColBill";
+            this.BillNum.Name = "BillNum";
+            this.BillNum.Visible = true;
+            this.BillNum.VisibleIndex = 0;
+            this.BillNum.Width = 72;
+            // 
+            // BillType
+            // 
+            this.BillType.Caption = "نوع الفاتورة";
+            this.BillType.FieldName = "ColBillType";
+            this.BillType.Name = "BillType";
+            this.BillType.Visible = true;
+            this.BillType.VisibleIndex = 3;
+            this.BillType.Width = 100;
+            // 
+            // Date
+            // 
+            this.Date.Caption = "التاريخ";
+            this.Date.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.Date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.Date.FieldName = "ColDate";
+            this.Date.Name = "Date";
+            this.Date.OptionsColumn.AllowEdit = false;
+            this.Date.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
+            this.Date.Visible = true;
+            this.Date.VisibleIndex = 2;
+            this.Date.Width = 158;
+            // 
+            // Customer_ID
+            // 
+            this.Customer_ID.Caption = "Customer_ID";
+            this.Customer_ID.FieldName = "ColCustomer_ID";
+            this.Customer_ID.Name = "Customer_ID";
+            // 
+            // Customer
+            // 
+            this.Customer.Caption = "المهندس/المقاول/التاجر";
+            this.Customer.FieldName = "ColCustomer";
+            this.Customer.Name = "Customer";
+            this.Customer.Visible = true;
+            this.Customer.VisibleIndex = 5;
+            this.Customer.Width = 171;
+            // 
+            // Client_ID
+            // 
+            this.Client_ID.Caption = "Client_ID";
+            this.Client_ID.FieldName = "ColClient_ID";
+            this.Client_ID.Name = "Client_ID";
+            // 
+            // Client
+            // 
+            this.Client.Caption = "العميل";
+            this.Client.FieldName = "ColClient";
+            this.Client.Name = "Client";
+            this.Client.Visible = true;
+            this.Client.VisibleIndex = 4;
+            this.Client.Width = 172;
+            // 
+            // Total
+            // 
+            this.Total.Caption = "الاجمالى";
+            this.Total.FieldName = "ColTotal";
+            this.Total.Name = "Total";
+            this.Total.OptionsColumn.AllowEdit = false;
+            this.Total.Visible = true;
+            this.Total.VisibleIndex = 6;
+            this.Total.Width = 96;
+            // 
+            // Discount
+            // 
+            this.Discount.Caption = "الخصم";
+            this.Discount.FieldName = "ColDiscount";
+            this.Discount.Name = "Discount";
+            this.Discount.Visible = true;
+            this.Discount.VisibleIndex = 7;
+            this.Discount.Width = 85;
+            // 
+            // Safy
+            // 
+            this.Safy.Caption = "الصافى";
+            this.Safy.FieldName = "ColSafy";
+            this.Safy.Name = "Safy";
+            this.Safy.Visible = true;
+            this.Safy.VisibleIndex = 8;
+            this.Safy.Width = 103;
+            // 
             // tableLayoutPanel5
             // 
+            this.tableLayoutPanel5.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel5.ColumnCount = 8;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
@@ -387,6 +558,7 @@
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel3.ColumnCount = 12;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
@@ -513,45 +685,6 @@
             this.btnNewChosen.UseVisualStyleBackColor = false;
             this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
             // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl1.Location = new System.Drawing.Point(3, 53);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(1037, 219);
-            this.gridControl1.TabIndex = 4;
-            this.gridControl1.ToolTipController = this.toolTipController1;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseForeColor = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsDetail.EnableMasterViewMode = false;
-            this.gridView1.OptionsFind.FindNullPrompt = "بحث";
-            this.gridView1.OptionsFind.ShowClearButton = false;
-            this.gridView1.OptionsFind.ShowFindButton = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
             // Bills_Transitions_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -565,6 +698,8 @@
             this.Load += new System.EventHandler(this.Bills_Transitions_Report_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
@@ -574,8 +709,6 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -584,8 +717,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private DevExpress.Utils.ToolTipController toolTipController1;
@@ -616,5 +747,19 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtSafy;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn BillNum;
+        private DevExpress.XtraGrid.Columns.GridColumn Date;
+        private DevExpress.XtraGrid.Columns.GridColumn Client;
+        private DevExpress.XtraGrid.Columns.GridColumn Total;
+        private DevExpress.XtraGrid.Columns.GridColumn Discount;
+        private DevExpress.XtraGrid.Columns.GridColumn Safy;
+        private DevExpress.XtraGrid.Columns.GridColumn ID;
+        private DevExpress.XtraGrid.Columns.GridColumn Type;
+        private DevExpress.XtraGrid.Columns.GridColumn BillType;
+        private DevExpress.XtraGrid.Columns.GridColumn Customer_ID;
+        private DevExpress.XtraGrid.Columns.GridColumn Customer;
+        private DevExpress.XtraGrid.Columns.GridColumn Client_ID;
     }
 }
