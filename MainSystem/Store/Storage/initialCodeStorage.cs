@@ -1277,14 +1277,15 @@ namespace MainSystem
             }
             else
             {
-                date =Convert.ToDateTime(re[1]);
+                date = Convert.ToDateTime(re[1]);
             }
             dt.Rows.Add(new object[] {
                 Convert.ToInt32(row[0].ToString()),
                 comStore.SelectedValue,
                  getStore_Place_ID((int)comStore.SelectedValue),
                 row[1].ToString(),
-                row[2].ToString(),
+                  row[2].ToString(),
+                row[3].ToString(),
                 quantity,
                 txtNote.Text,
                 date
