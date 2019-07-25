@@ -92,11 +92,7 @@ namespace MainSystem
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
-                comBranch.DataSource = dt;
-                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.Text = "";
-                txtBranchID.Text = "";
+             
                 comBranch1.DataSource = dt;
                 comBranch1.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch1.ValueMember = dt.Columns["Branch_ID"].ToString();
@@ -139,8 +135,7 @@ namespace MainSystem
             {
                 panBillNumber.Visible = true;
                 groupBox1.Visible = false;
-                comBranch.Text = "";
-                txtBranchID.Text = "";
+              
                 panCustomer.Visible = false;
             }
             catch (Exception ex)
@@ -370,21 +365,7 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-                            case "txtBranchID":
-                                query = "select Branch_Name from branch where Branch_ID='" + txtBranchID.Text + "'";
-                                com = new MySqlCommand(query, dbconnection);
-                                if (com.ExecuteScalar() != null)
-                                {
-                                    Name = (string)com.ExecuteScalar();
-                                    comBranch.Text = Name;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("there is no item with this id");
-                                    dbconnection.Close();
-                                    return;
-                                }
-                                break;
+                        
                             case "txtBranch1":
                                 query = "select Branch_Name from branch where Branch_ID='" + txtBranch1.Text + "'";
                                 com = new MySqlCommand(query, dbconnection);
@@ -493,21 +474,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    txtBranchID.Text = comBranch.SelectedValue.ToString();
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+   
         private void comBranch1_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -916,12 +883,49 @@ namespace MainSystem
         }
         public void displayBill()
         {
-            string query = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranchID.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
+            string q = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranch1.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
+            string query = "select CustomerBill_ID,customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where CustomerBill_ID=" + Billid;
+
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            Billid = Convert.ToInt32(com.ExecuteScalar());
+            
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                Billid = Convert.ToInt16(dr[0].ToString());
+                if (dr[1].ToString() != "")
+                {
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                    com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[1].ToString());
+                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Customer_Name"].Value = dr[2].ToString();
+                }
+                else
+                {
+                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                    com.Parameters["@Customer_ID"].Value = null;
+                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Customer_Name"].Value = "";
+                }
+                if (dr[3].ToString() != "")
+                {
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                    com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[3].ToString());
+                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Client_Name"].Value = dr[4].ToString();
+                }
+                else
+                {
+                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                    com.Parameters["@Client_ID"].Value = null;
+                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                    com.Parameters["@Client_Name"].Value = "";
+                }
+            }
+            dr.Close();
+
             query = "select * from customer_return_permission where CustomerBill_ID=" + Billid;
             com = new MySqlCommand(query, dbconnection);
-            MySqlDataReader dr = com.ExecuteReader();
+            dr = com.ExecuteReader();
             if (dr.HasRows)
             {
                 dr.Close();

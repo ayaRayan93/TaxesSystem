@@ -907,7 +907,7 @@ namespace MainSystem
                         {
                             e.Appearance.BackColor = Color.LightBlue;
                             e.Appearance.BackColor2 = Color.LightBlue;
-                            e.Appearance.ForeColor = Color.White;
+                            e.Appearance.ForeColor = Color.Black;
                         }
                     }
                 }
@@ -1124,9 +1124,12 @@ namespace MainSystem
                 gridView2.Columns[2].Visible = false;
                 gridView2.Columns[3].OptionsColumn.AllowEdit = false;
                 gridView2.Columns[4].OptionsColumn.AllowEdit = false;
-                gridView2.Columns[6].OptionsColumn.AllowEdit = false;
+                gridView2.Columns[5].OptionsColumn.AllowEdit = false;
+                gridView2.Columns[6].OptionsColumn.AllowEdit = true;
+                gridView2.Columns[7].OptionsColumn.AllowEdit = true;
+                gridView2.Columns[8].OptionsColumn.AllowEdit = true;
                 gridView2.BestFitColumns();
-              
+
             }
             catch (Exception ex)
             {
@@ -1300,7 +1303,7 @@ namespace MainSystem
             gridView2.Columns[5].OptionsColumn.AllowEdit = false;
             gridView2.Columns[6].OptionsColumn.AllowEdit = true;
             gridView2.Columns[7].OptionsColumn.AllowEdit = true;
-            gridView2.Columns[8].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[8].OptionsColumn.AllowEdit = true;
             gridView2.BestFitColumns();
         }
         public int getStore_Place_ID(int Store_ID)
