@@ -1156,21 +1156,18 @@ namespace MainSystem
                 MySqlDataReader dr = command.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    if (dr.HasRows)
+                    while (dr.Read())
                     {
-                        while (dr.Read())
-                        {
-                            count++;
-                        }
-                        labelPurchaseLeast.Text = count.ToString();
-                        labelPurchaseLeast.Visible = true;
-                        dr.Close();
+                        count++;
                     }
+                    dr.Close();
+                    labelPurchaseLeast.Text = count.ToString();
+                    labelPurchaseLeast.Visible = true;
                 }
                 else
                 {
                     labelPurchaseLeast.Text = "0";
-                    labelPurchaseLeast.Visible = true;
+                    labelPurchaseLeast.Visible = false;
                 }
             }
         }
