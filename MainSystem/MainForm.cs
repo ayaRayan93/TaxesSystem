@@ -171,6 +171,13 @@ namespace MainSystem
                 //btnPOS.Checked = true;
 
                 pictureBoxStoreExpectedOrder.Visible = true;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroup54.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup8.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
