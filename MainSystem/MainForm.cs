@@ -178,6 +178,10 @@ namespace MainSystem
                 navBarGroup54.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup8.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup12.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
