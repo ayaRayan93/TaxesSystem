@@ -739,8 +739,11 @@ namespace MainSystem
         {
             try
             {
-                UserUpdate form = new UserUpdate(this);
-                form.ShowDialog();
+                if (UserControl.userType == 1)
+                {
+                    UserUpdate form = new UserUpdate(this);
+                    form.ShowDialog();
+                }
             }
             catch(Exception ex)
             {

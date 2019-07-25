@@ -520,7 +520,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 1/* || UserControl.userType == 2*/)
+                if (/*UserControl.userType == 6 ||*/ UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     //if (flag == false)
                     //{
