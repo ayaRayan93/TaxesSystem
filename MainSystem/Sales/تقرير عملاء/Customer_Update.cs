@@ -152,8 +152,10 @@ namespace MainSystem
                         if (txtName.Text != "" && checkedListBoxControlPhone.ItemCount > 0)
                         {
                             dbconnection.Open();
-                            string query = "update customer set Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type,Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
+                            string query = "update customer set Customer_Name=@Customer_Name,Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type,Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Customer_Name"].Value = txtName.Text;
                             com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255);
                             com.Parameters["@Customer_Address"].Value = txtAddress.Text;
                             com.Parameters.Add("@Customer_OpenAccount", MySqlDbType.Decimal);

@@ -40,6 +40,7 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.label6 = new System.Windows.Forms.Label();
             this.btnDeletePhone = new System.Windows.Forms.Button();
@@ -100,7 +101,6 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -143,9 +143,8 @@
             // 
             // txtName
             // 
-            this.txtName.Enabled = false;
             this.txtName.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(555, 92);
+            this.txtName.Location = new System.Drawing.Point(572, 92);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(220, 27);
             this.txtName.TabIndex = 0;
@@ -154,7 +153,7 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(196, 92);
+            this.txtPhone.Location = new System.Drawing.Point(213, 92);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(189, 27);
             this.txtPhone.TabIndex = 1;
@@ -163,7 +162,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(555, 148);
+            this.txtAddress.Location = new System.Drawing.Point(572, 148);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(220, 27);
             this.txtAddress.TabIndex = 2;
@@ -172,7 +171,7 @@
             // txtINF
             // 
             this.txtINF.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtINF.Location = new System.Drawing.Point(196, 148);
+            this.txtINF.Location = new System.Drawing.Point(213, 148);
             this.txtINF.Multiline = true;
             this.txtINF.Name = "txtINF";
             this.txtINF.Size = new System.Drawing.Size(189, 138);
@@ -183,7 +182,7 @@
             // 
             this.radMCon.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMCon.Location = new System.Drawing.Point(359, 37);
+            this.radMCon.Location = new System.Drawing.Point(376, 37);
             this.radMCon.Name = "radMCon";
             this.radMCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMCon.Size = new System.Drawing.Size(84, 26);
@@ -197,7 +196,7 @@
             // 
             this.radMDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMDealer.Location = new System.Drawing.Point(12, 37);
+            this.radMDealer.Location = new System.Drawing.Point(29, 37);
             this.radMDealer.Name = "radMDealer";
             this.radMDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMDealer.Size = new System.Drawing.Size(343, 26);
@@ -211,7 +210,7 @@
             // 
             this.radMEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMEng.Location = new System.Drawing.Point(447, 37);
+            this.radMEng.Location = new System.Drawing.Point(464, 37);
             this.radMEng.Name = "radMEng";
             this.radMEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMEng.Size = new System.Drawing.Size(86, 26);
@@ -224,7 +223,7 @@
             // txtNationalID
             // 
             this.txtNationalID.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationalID.Location = new System.Drawing.Point(555, 259);
+            this.txtNationalID.Location = new System.Drawing.Point(572, 259);
             this.txtNationalID.Name = "txtNationalID";
             this.txtNationalID.Size = new System.Drawing.Size(220, 27);
             this.txtNationalID.TabIndex = 4;
@@ -233,7 +232,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(555, 204);
+            this.txtEmail.Location = new System.Drawing.Point(572, 204);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(220, 27);
             this.txtEmail.TabIndex = 3;
@@ -271,6 +270,27 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(892, 54);
             this.tableLayoutPanel2.TabIndex = 35;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.ImagePosition = 1;
+            this.btnSave.ImageZoom = 25;
+            this.btnSave.LabelPosition = 18;
+            this.btnSave.LabelText = "حفظ";
+            this.btnSave.Location = new System.Drawing.Point(405, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(83, 46);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // layoutControl1
             // 
@@ -315,7 +335,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(-12, 12);
+            this.label6.Location = new System.Drawing.Point(5, 12);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 550);
             this.label6.TabIndex = 58;
@@ -326,7 +346,7 @@
             this.btnDeletePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletePhone.ForeColor = System.Drawing.Color.White;
-            this.btnDeletePhone.Location = new System.Drawing.Point(12, 254);
+            this.btnDeletePhone.Location = new System.Drawing.Point(29, 254);
             this.btnDeletePhone.Name = "btnDeletePhone";
             this.btnDeletePhone.Size = new System.Drawing.Size(151, 32);
             this.btnDeletePhone.TabIndex = 56;
@@ -339,7 +359,7 @@
             this.checkedListBoxControlPhone.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.checkedListBoxControlPhone.Appearance.Options.UseFont = true;
             this.checkedListBoxControlPhone.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(12, 148);
+            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(29, 148);
             this.checkedListBoxControlPhone.Name = "checkedListBoxControlPhone";
             this.checkedListBoxControlPhone.Size = new System.Drawing.Size(151, 102);
             this.checkedListBoxControlPhone.StyleController = this.layoutControl1;
@@ -351,7 +371,7 @@
             this.btnAddPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPhone.ForeColor = System.Drawing.Color.White;
-            this.btnAddPhone.Location = new System.Drawing.Point(12, 92);
+            this.btnAddPhone.Location = new System.Drawing.Point(29, 92);
             this.btnAddPhone.Name = "btnAddPhone";
             this.btnAddPhone.Size = new System.Drawing.Size(151, 27);
             this.btnAddPhone.TabIndex = 54;
@@ -361,14 +381,14 @@
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(167, 148);
+            this.label15.Location = new System.Drawing.Point(184, 148);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 138);
             this.label15.TabIndex = 53;
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(524, 148);
+            this.label14.Location = new System.Drawing.Point(541, 148);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 138);
             this.label14.TabIndex = 52;
@@ -377,7 +397,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(167, 92);
+            this.label13.Location = new System.Drawing.Point(184, 92);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 27);
             this.label13.TabIndex = 51;
@@ -388,7 +408,7 @@
             // 
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(524, 92);
+            this.label12.Location = new System.Drawing.Point(541, 92);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(27, 27);
             this.label12.TabIndex = 50;
@@ -397,28 +417,28 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(12, 67);
+            this.label8.Location = new System.Drawing.Point(29, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(868, 21);
             this.label8.TabIndex = 49;
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(494, 148);
+            this.label11.Location = new System.Drawing.Point(511, 148);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 138);
             this.label11.TabIndex = 48;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(494, 92);
+            this.label10.Location = new System.Drawing.Point(511, 92);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(26, 27);
             this.label10.TabIndex = 47;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(12, 12);
+            this.label9.Location = new System.Drawing.Point(29, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(868, 21);
             this.label9.TabIndex = 46;
@@ -436,7 +456,7 @@
             this.groupBox1.Controls.Add(this.radCon);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.groupBox1.Location = new System.Drawing.Point(12, 345);
+            this.groupBox1.Location = new System.Drawing.Point(29, 345);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(868, 217);
             this.groupBox1.TabIndex = 43;
@@ -476,7 +496,7 @@
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(560, 76);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(54, 23);
+            this.labelName.Size = new System.Drawing.Size(53, 23);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "الاسم";
             this.labelName.Visible = false;
@@ -501,9 +521,9 @@
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radEng.Location = new System.Drawing.Point(489, 30);
+            this.radEng.Location = new System.Drawing.Point(491, 30);
             this.radEng.Name = "radEng";
-            this.radEng.Size = new System.Drawing.Size(95, 30);
+            this.radEng.Size = new System.Drawing.Size(93, 30);
             this.radEng.TabIndex = 12;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -517,9 +537,9 @@
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radDealer.Location = new System.Drawing.Point(333, 30);
+            this.radDealer.Location = new System.Drawing.Point(335, 30);
             this.radDealer.Name = "radDealer";
-            this.radDealer.Size = new System.Drawing.Size(62, 30);
+            this.radDealer.Size = new System.Drawing.Size(60, 30);
             this.radDealer.TabIndex = 14;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -533,9 +553,9 @@
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radCon.Location = new System.Drawing.Point(400, 30);
+            this.radCon.Location = new System.Drawing.Point(401, 30);
             this.radCon.Name = "radCon";
-            this.radCon.Size = new System.Drawing.Size(85, 30);
+            this.radCon.Size = new System.Drawing.Size(84, 30);
             this.radCon.TabIndex = 13;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -545,35 +565,35 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(555, 179);
+            this.label7.Location = new System.Drawing.Point(572, 179);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(325, 21);
             this.label7.TabIndex = 42;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 290);
+            this.label4.Location = new System.Drawing.Point(29, 290);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(868, 20);
             this.label4.TabIndex = 39;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(555, 235);
+            this.label3.Location = new System.Drawing.Point(572, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(325, 20);
             this.label3.TabIndex = 38;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 123);
+            this.label2.Location = new System.Drawing.Point(29, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(868, 21);
             this.label2.TabIndex = 37;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(625, 37);
+            this.label1.Location = new System.Drawing.Point(642, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(255, 26);
             this.label1.TabIndex = 36;
@@ -582,7 +602,7 @@
             // 
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radClient.Location = new System.Drawing.Point(537, 37);
+            this.radClient.Location = new System.Drawing.Point(554, 37);
             this.radClient.Name = "radClient";
             this.radClient.Size = new System.Drawing.Size(84, 26);
             this.radClient.TabIndex = 8;
@@ -594,7 +614,7 @@
             // txtOpenAccount
             // 
             this.txtOpenAccount.EditValue = "0.00";
-            this.txtOpenAccount.Location = new System.Drawing.Point(555, 314);
+            this.txtOpenAccount.Location = new System.Drawing.Point(572, 314);
             this.txtOpenAccount.Name = "txtOpenAccount";
             this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOpenAccount.Properties.Appearance.Options.UseFont = true;
@@ -1042,27 +1062,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(898, 640);
             this.panel1.TabIndex = 35;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnSave.ImagePosition = 1;
-            this.btnSave.ImageZoom = 25;
-            this.btnSave.LabelPosition = 18;
-            this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(405, 4);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(83, 46);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // Customer_Update
             // 
