@@ -264,6 +264,8 @@ namespace MainSystem
                         }
                         index++;
                     }
+
+                    xtraTabControlMainContainer.SelectedTabPage = POSTP;
                     
                     XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageProductsDetailsReport");
                     //if (xtraTabPage == null)
@@ -285,6 +287,7 @@ namespace MainSystem
                     xtraTabControlPointSale.TabPages.Add(tabPageProductsDetailsReport);
                     ProductsDetailsReport.Show();
                     xtraTabControlPointSale.SelectedTabPage = tabPageProductsDetailsReport;
+                    
                     //}
                     //else
                     //{

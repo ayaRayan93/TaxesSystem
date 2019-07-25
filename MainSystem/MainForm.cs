@@ -171,6 +171,17 @@ namespace MainSystem
                 //btnPOS.Checked = true;
 
                 pictureBoxStoreExpectedOrder.Visible = true;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroup54.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup12.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
@@ -194,7 +205,12 @@ namespace MainSystem
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
 
-                pictureBoxSales.Visible = true;
+                if (UserControl.userType == 6)
+                {
+                    pictureBoxSales.Visible = true;
+                    btnBank.Enabled = true;
+                    btnBank.Checked = true;
+                }
             }
             else if (UserControl.userType == 8)
             {
@@ -723,8 +739,11 @@ namespace MainSystem
         {
             try
             {
-                UserUpdate form = new UserUpdate(this);
-                form.ShowDialog();
+                if (UserControl.userType == 1)
+                {
+                    UserUpdate form = new UserUpdate(this);
+                    form.ShowDialog();
+                }
             }
             catch(Exception ex)
             {

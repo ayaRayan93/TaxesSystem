@@ -30,7 +30,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 2 || UserControl.userType == 1)
+                if (/*UserControl.userType == 2 ||*/ UserControl.userType == 1)
                 {
                     ExpectedOrdersFunction();
 
@@ -50,7 +50,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 2 || UserControl.userType == 1)
+                if (/*UserControl.userType == 2 ||*/ UserControl.userType == 1)
                 {
                     //if (StoreFlag == false)
                     //{

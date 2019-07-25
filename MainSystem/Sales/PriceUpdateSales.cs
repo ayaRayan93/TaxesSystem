@@ -110,7 +110,7 @@ namespace MainSystem
                     if (double.TryParse(txtPrice.Text, out price))
                     {
                         double priceValue = Convert.ToDouble(selRow["السعر"].ToString()) - price;
-                        txtDiscount.Text = ((priceValue / Convert.ToDouble(selRow["السعر"].ToString())) * 100).ToString();
+                        txtDiscount.Text = ((priceValue / Convert.ToDouble(selRow["السعر"].ToString())) * 100).ToString("0.##");
                         txtTotalPrice.Text = (Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(selRow["الكمية"].ToString())).ToString();
                     }
                 }
