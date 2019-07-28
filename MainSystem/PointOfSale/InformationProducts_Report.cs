@@ -147,8 +147,17 @@ namespace MainSystem
         {
             try
             {
-                if (comType.Text != "" && comFactory.Text != "" && comGroup.Text != "")
+                if (comType.Text != "" && comFactory.Text != "")
                 {
+                    if (comType.Text == "سيراميك" || comType.Text == "بورسلين")
+                    {
+                        if (comGroup.Text == "")
+                        {
+                            gridControl1.DataSource = null;
+                            MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
+                            return;
+                        }
+                    }
                     string q1, q2, q3, q4, fQuery = "";
                     if (comType.Text == "")
                     {
