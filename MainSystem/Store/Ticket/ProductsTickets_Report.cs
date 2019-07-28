@@ -1346,22 +1346,31 @@ namespace MainSystem
         {
             try
             {
-                List<Ticket_Items> bi = new List<Ticket_Items>();
-                dbconnection.Open();
-                for (int i = 0; i < gridView1.RowCount; i++)
+                if (gridView1.SelectedRowsCount > 0)
                 {
-                    Ticket_Items item;
+                    List<Ticket_Items> bi = new List<Ticket_Items>();
+                    dbconnection.Open();
+                    for (int j = 0; j < gridView1.SelectedRowsCount; j++)
+                    {
+                        int rowhand = 0;
+                        rowhand = gridView1.GetSelectedRows()[j];
+                        Ticket_Items item;
 
-                    string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(i, "Data_ID");
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(rowhand, "Data_ID");
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                    item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, "Data_ID")), Code = gridView1.GetRowCellDisplayText(i, "الكود"), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(i, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(i, "الكرتنة") };
-                    bi.Add(item);
+                        item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowhand, "Data_ID")), Code = gridView1.GetRowCellDisplayText(rowhand, "الكود"), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(rowhand, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(rowhand, "الكرتنة") };
+                        bi.Add(item);
+                    }
+
+                    Print_Ticket_Report f = new Print_Ticket_Report();
+                    f.PrintInvoice(bi);
+                    f.ShowDialog();
                 }
-
-                Print_Ticket_Report f = new Print_Ticket_Report();
-                f.PrintInvoice(bi);
-                f.ShowDialog();
+                else
+                {
+                    MessageBox.Show("يجب اختيار البنود اولا");
+                }
             }
             catch(Exception ex)
             {
