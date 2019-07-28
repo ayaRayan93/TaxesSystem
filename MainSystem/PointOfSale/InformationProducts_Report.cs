@@ -253,7 +253,7 @@ namespace MainSystem
                 else
                 {
                     gridControl1.DataSource = null;
-                    MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
+                    MessageBox.Show("يجب اختيار النوع والمصنع على الاقل");
                 }
             }
             catch (Exception ex)
