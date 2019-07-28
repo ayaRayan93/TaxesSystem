@@ -192,45 +192,47 @@ namespace MainSystem
         private void GridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             GridView view = sender as GridView;
-
-            view.SetRowCellValue(e.RowHandle, view.Columns[0], addrow[0]);
-            view.SetRowCellValue(e.RowHandle, view.Columns[1], addrow[1]);
-            view.SetRowCellValue(e.RowHandle, view.Columns[2], addrow[2]);
-            view.SetRowCellValue(e.RowHandle, view.Columns[3], addrow[5]);
-            view.SetRowCellValue(e.RowHandle, view.Columns[7], addrow[3]);
-            double re = 0, carton = 0;
-            if (addrow[4].ToString() != "")
+            if (!IsExist(addrow[0].ToString(), addrow[4].ToString()))
             {
-                carton= Convert.ToDouble(addrow[4]);
-            }
-
-            if (SelectType == "oneRow")
-            {
-                if (carton != 0)
+                view.SetRowCellValue(e.RowHandle, view.Columns[0], addrow[0]);
+                view.SetRowCellValue(e.RowHandle, view.Columns[1], addrow[1]);
+                view.SetRowCellValue(e.RowHandle, view.Columns[2], addrow[2]);
+                view.SetRowCellValue(e.RowHandle, view.Columns[3], addrow[5]);
+                view.SetRowCellValue(e.RowHandle, view.Columns[7], addrow[3]);
+                double re = 0, carton = 0;
+                if (addrow[4].ToString() != "")
                 {
-                    re = Convert.ToDouble(txtRecivedQuantity.Text) / carton;
+                    carton = Convert.ToDouble(addrow[4]);
+                }
+
+                if (SelectType == "oneRow")
+                {
+                    if (carton != 0)
+                    {
+                        re = Convert.ToDouble(txtRecivedQuantity.Text) / carton;
+                    }
+                    else
+                    {
+                        re = 0;
+                    }
+                    view.SetRowCellValue(e.RowHandle, view.Columns[4], txtRecivedQuantity.Text);
                 }
                 else
                 {
-                    re = 0;
+                    if (carton != 0)
+                    {
+                        re = Convert.ToDouble(addrow[5]) / carton;
+                    }
+                    else
+                    {
+                        re = 0;
+                    }
+                    view.SetRowCellValue(e.RowHandle, view.Columns[4], addrow[5].ToString());
                 }
-                    view.SetRowCellValue(e.RowHandle, view.Columns[4], Convert.ToDouble(txtRecivedQuantity.Text));
+
+                view.SetRowCellValue(e.RowHandle, view.Columns[6], re + "");
+                view.SetRowCellValue(e.RowHandle, view.Columns[5], carton + "");
             }
-            else
-            {
-                if (carton != 0)
-                {
-                    re = Convert.ToDouble(addrow[5]) / carton;
-                }
-                else
-                {
-                    re = 0;
-                }
-            view.SetRowCellValue(e.RowHandle, view.Columns[4], Convert.ToDouble(addrow[5]));
-            }
-            
-            view.SetRowCellValue(e.RowHandle, view.Columns[6], re + "");
-            view.SetRowCellValue(e.RowHandle, view.Columns[5], carton + "");
         }
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -269,7 +271,9 @@ namespace MainSystem
                     {
                         displayData();
                     }
-                    //displayPermission();
+                    DataHelper dh = new DataHelper(DSparametr.simpleDS);
+                    gridControl2.DataSource = dh.DataSet;
+                    gridControl2.DataMember = dh.DataMember;
                 }
             }
             catch (Exception ex)
@@ -305,7 +309,7 @@ namespace MainSystem
         {
             try
             {
-                if (gridView1.SelectedRowsCount==1)
+                if (gridView1.SelectedRowsCount==1&& txtRecivedQuantity.Text!="")
                 {
                     loaded = false;
                     if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row["الكمية"]))
@@ -340,7 +344,7 @@ namespace MainSystem
                         txtRecivedQuantity.Focus();
                     }
                 }
-                else if (gridView1.SelectedRowsCount > 1)
+                else 
                 {
                     int[] selectedRows = gridView1.GetSelectedRows();
                     for (int i = 0; i < gridView1.SelectedRowsCount; i++)
@@ -368,7 +372,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
        
         }
@@ -448,40 +452,43 @@ namespace MainSystem
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRow row1 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
-                        query = "insert into customer_permissions_details (Customer_Permissin_ID,Data_ID,Carton,DeliveredQuantity,Quantity,ItemType) values (@Customer_Permissin_ID,@Data_ID,@Carton,@DeliveredQuantity,@Quantity,@ItemType)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Customer_Permissin_ID", MySqlDbType.Int16);
-                        com.Parameters["@Customer_Permissin_ID"].Value = id;
-                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
-                        com.Parameters.Add("@Quantity", MySqlDbType.Double);
-                        com.Parameters["@Quantity"].Value = row1[3].ToString();
-                        com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
-                        com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
-                        com.Parameters.Add("@Carton", MySqlDbType.Double);
-                        com.Parameters["@Carton"].Value = row1[5].ToString();
-                        com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
-                        com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
-                        com.Parameters.Add("@ItemType", MySqlDbType.VarChar);
-                        com.Parameters["@ItemType"].Value = row1["ItemType"].ToString();
-                        com.ExecuteNonQuery();
+                        if (row1 != null&&row1[0].ToString()!="")
+                        {
+                            query = "insert into customer_permissions_details (Customer_Permissin_ID,Data_ID,Carton,DeliveredQuantity,Quantity,ItemType) values (@Customer_Permissin_ID,@Data_ID,@Carton,@DeliveredQuantity,@Quantity,@ItemType)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Customer_Permissin_ID", MySqlDbType.Int16);
+                            com.Parameters["@Customer_Permissin_ID"].Value = id;
+                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                            com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
+                            com.Parameters.Add("@Quantity", MySqlDbType.Double);
+                            com.Parameters["@Quantity"].Value = row1[3].ToString();
+                            com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
+                            com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
+                            com.Parameters.Add("@Carton", MySqlDbType.Double);
+                            com.Parameters["@Carton"].Value = row1[5].ToString();
+                            com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
+                            com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
+                            com.Parameters.Add("@ItemType", MySqlDbType.VarChar);
+                            com.Parameters["@ItemType"].Value = row1["ItemType"].ToString();
+                            com.ExecuteNonQuery();
 
-                        IsBillRecived();
-                        DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
-                        deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
-                        deliveryPermissionClass.Code = row1[1].ToString();
-                        deliveryPermissionClass.ItemName = row1[2].ToString();
-                        deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[3]);
-                        if (row1[5].ToString() != "")
-                        {
-                            deliveryPermissionClass.Carton = Convert.ToDouble(row1[5]);
+                            IsBillRecived();
+                            DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
+                            deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
+                            deliveryPermissionClass.Code = row1[1].ToString();
+                            deliveryPermissionClass.ItemName = row1[2].ToString();
+                            deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[3]);
+                            if (row1[5].ToString() != "")
+                            {
+                                deliveryPermissionClass.Carton = Convert.ToDouble(row1[5]);
+                            }
+                            else
+                            {
+                                deliveryPermissionClass.Carton = Convert.ToDouble(0);
+                            }
+                            deliveryPermissionClass.DeliveryQuantity = row1[4].ToString();
+                            listOfData.Add(deliveryPermissionClass);
                         }
-                        else
-                        {
-                            deliveryPermissionClass.Carton = Convert.ToDouble(0);
-                        }
-                        deliveryPermissionClass.DeliveryQuantity = row1[4].ToString();
-                        listOfData.Add(deliveryPermissionClass);
 
                     }
                     DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
@@ -537,8 +544,7 @@ namespace MainSystem
                 //DataTable dt = new DataTable();
                 //da.Fill(dt);
                 //comStorePlace.DataSource = dt;
-                //comStorePlace.DisplayMember = dt.Columns["x"].ToString();
-           
+                //comStorePlace.DisplayMember = dt.Columns["x"].ToString();          
             }
             catch (Exception ex)
             {
@@ -608,7 +614,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
         }
         private void txtRecivedQuantity_KeyDown(object sender, KeyEventArgs e)
@@ -859,14 +865,7 @@ namespace MainSystem
         }
         public bool IsExist(string Data_ID,string carton1)
         {
-            //for (int i = 0; i < gridView2.RowCount; i++)
-            //{
-            //    int rowHandle = gridView2.GetRowHandle(i);
-            //    DataRow ss = gridView2.GetDataRow(i);
-            //    if (ss[0].ToString() == Data_ID&& ss[5].ToString()==carton)
-            //        return true;
-            //}
-            DataView dv =(DataView) gridView2.DataSource;
+            DataView dv = (DataView)gridView2.DataSource;
             DataTable dt = dv.Table;
             foreach (DataRow item in dt.Rows)
             {
@@ -904,7 +903,6 @@ namespace MainSystem
             rowHandel2 = -1;
             SelectType = "";
         }
-
         public void displayData()
         {
             string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;

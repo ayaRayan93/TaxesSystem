@@ -60,9 +60,6 @@
             this.txtGroup = new System.Windows.Forms.TextBox();
             this.comGroup = new System.Windows.Forms.ComboBox();
             this.panBillNumber = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtBranchID = new System.Windows.Forms.TextBox();
-            this.comBranch = new System.Windows.Forms.ComboBox();
             this.txtBranchBillNum = new System.Windows.Forms.TextBox();
             this.labelDelegate = new System.Windows.Forms.Label();
             this.radioButtonWithOutReturnBill = new System.Windows.Forms.RadioButton();
@@ -364,7 +361,7 @@
             this.groupBox1.Controls.Add(this.txtGroup);
             this.groupBox1.Controls.Add(this.comGroup);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(39, 0);
+            this.groupBox1.Location = new System.Drawing.Point(46, 1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(721, 117);
@@ -518,9 +515,6 @@
             // panBillNumber
             // 
             this.panBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panBillNumber.Controls.Add(this.label10);
-            this.panBillNumber.Controls.Add(this.txtBranchID);
-            this.panBillNumber.Controls.Add(this.comBranch);
             this.panBillNumber.Controls.Add(this.txtBranchBillNum);
             this.panBillNumber.Controls.Add(this.labelDelegate);
             this.panBillNumber.Location = new System.Drawing.Point(355, 6);
@@ -528,40 +522,6 @@
             this.panBillNumber.Size = new System.Drawing.Size(286, 112);
             this.panBillNumber.TabIndex = 2;
             this.panBillNumber.Visible = false;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label10.Location = new System.Drawing.Point(220, 29);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 18);
-            this.label10.TabIndex = 203;
-            this.label10.Text = "الفرع";
-            // 
-            // txtBranchID
-            // 
-            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(28, 26);
-            this.txtBranchID.Name = "txtBranchID";
-            this.txtBranchID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBranchID.Size = new System.Drawing.Size(50, 24);
-            this.txtBranchID.TabIndex = 204;
-            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comBranch
-            // 
-            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(84, 26);
-            this.comBranch.Name = "comBranch";
-            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comBranch.Size = new System.Drawing.Size(130, 24);
-            this.comBranch.TabIndex = 202;
-            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
             // txtBranchBillNum
             // 
@@ -1154,9 +1114,6 @@
         private System.Windows.Forms.RadioButton radioButtonWithOutReturnBill;
         private System.Windows.Forms.RadioButton radioButtonReturnBill;
         private System.Windows.Forms.Panel panBillNumber;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtBranchID;
-        private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.TextBox txtBranchBillNum;
         private System.Windows.Forms.Label labelDelegate;
         private System.Windows.Forms.GroupBox groupBox1;
