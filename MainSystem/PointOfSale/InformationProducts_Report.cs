@@ -149,9 +149,9 @@ namespace MainSystem
             {
                 if (comType.Text != "" && comFactory.Text != "")
                 {
-                    if(comType.Text == "سيراميك" || comType.Text == "بورسلين")
+                    if (comType.Text == "سيراميك" || comType.Text == "بورسلين")
                     {
-                        if(comGroup.Text == "")
+                        if (comGroup.Text == "")
                         {
                             gridControl1.DataSource = null;
                             MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
