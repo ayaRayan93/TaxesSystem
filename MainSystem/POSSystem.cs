@@ -441,44 +441,6 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemDelegateBill_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            if (UserControl.userType == 1)
-            {
-                try
-                {
-                    restForeColorOfNavBarItem();
-                    NavBarItem navBarItem = (NavBarItem)sender;
-                    navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
-
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPointSale, "tabPageDelegateBillReport");
-                    if (xtraTabPage == null)
-                    {
-                        tabPageDelegateBillReport.Name = "tabPageDelegateBillReport";
-                        tabPageDelegateBillReport.Text = "تقرير فواتير المناديب";
-                        panelDelegateBillReport.Name = "panelDelegateBillReport";
-                        panelDelegateBillReport.Dock = DockStyle.Fill;
-
-                        DelegateBillReport = new DelegateBill_Report();
-                        DelegateBillReport.Size = new Size(1109, 660);
-                        DelegateBillReport.TopLevel = false;
-                        DelegateBillReport.FormBorderStyle = FormBorderStyle.None;
-                        DelegateBillReport.Dock = DockStyle.Fill;
-                    }
-                    panelDelegateBillReport.Controls.Clear();
-                    panelDelegateBillReport.Controls.Add(DelegateBillReport);
-                    tabPageDelegateBillReport.Controls.Add(panelDelegateBillReport);
-                    xtraTabControlPointSale.TabPages.Add(tabPageDelegateBillReport);
-                    DelegateBillReport.Show();
-                    xtraTabControlPointSale.SelectedTabPage = tabPageDelegateBillReport;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
         private void navBarItemDelegateBill_Return_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

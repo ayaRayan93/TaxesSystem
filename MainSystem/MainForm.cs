@@ -177,16 +177,18 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroup54.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
-                navBarGroup8.Visible = false;
-                navBarGroup3.Visible = false;
-                navBarGroup4.Visible = false;
-                navBarGroup5.Visible = false;
+                //navBarGroup8.Visible = false;
+                //navBarGroup3.Visible = false;
+                //navBarGroup4.Visible = false;
+                //navBarGroup5.Visible = false;
                 navBarGroup12.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
                 btnBank.Enabled = true;
                 btnBank.Checked = true;
+
+                navBarGroupReportBank.Visible = false;
             }
             else if (UserControl.userType == 4)
             {
@@ -795,7 +797,7 @@ namespace MainSystem
     {
         static string supString = File.ReadAllText("IP_Address.txt");
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=ayatest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
