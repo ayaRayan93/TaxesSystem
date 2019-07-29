@@ -650,7 +650,7 @@ namespace MainSystem
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     com.Parameters["@Branch_ID"].Value = Convert.ToInt32(txtBranch1.Text);
                     com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Branch_Name"].Value = Convert.ToInt32(txtBranch1.Text);
+                    com.Parameters["@Branch_Name"].Value = comBranch1.Text;
                     com.ExecuteNonQuery();
 
                     query = "select CustomerReturnPermission_ID from customer_return_permission order by CustomerReturnPermission_ID desc limit 1";
