@@ -177,16 +177,18 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroup54.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
-                navBarGroup8.Visible = false;
-                navBarGroup3.Visible = false;
-                navBarGroup4.Visible = false;
-                navBarGroup5.Visible = false;
+                //navBarGroup8.Visible = false;
+                //navBarGroup3.Visible = false;
+                //navBarGroup4.Visible = false;
+                //navBarGroup5.Visible = false;
                 navBarGroup12.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
                 btnBank.Enabled = true;
                 btnBank.Checked = true;
+
+                navBarGroupReportBank.Visible = false;
             }
             else if (UserControl.userType == 4)
             {
