@@ -189,6 +189,7 @@
             this.txtStoreID.Name = "txtStoreID";
             this.txtStoreID.Size = new System.Drawing.Size(48, 24);
             this.txtStoreID.TabIndex = 203;
+            this.txtStoreID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStoreID_KeyDown);
             // 
             // comStore
             // 
@@ -199,6 +200,7 @@
             this.comStore.Name = "comStore";
             this.comStore.Size = new System.Drawing.Size(173, 24);
             this.comStore.TabIndex = 201;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // labelDelegate
             // 

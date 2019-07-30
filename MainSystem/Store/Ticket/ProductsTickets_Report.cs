@@ -1163,26 +1163,6 @@ namespace MainSystem
             }
         }
 
-        private void txtBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                xtraTabPage = getTabPage("tabPageProductsReport");
-                if (!IsClear())
-                {
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                }
-                else
-                {
-                    xtraTabPage.ImageOptions.Image = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         //functions
         public void search()
         {
@@ -1382,10 +1362,11 @@ namespace MainSystem
                                         rowhand = gridView1.GetSelectedRows()[0];
                                         Ticket_Items item;
 
-                                        string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(rowhand, "Data_ID");
+                                        string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(rowhand, "Data_ID");
                                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                                        item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowhand, "Data_ID")), Code = gridView1.GetRowCellDisplayText(rowhand, "الكود"), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(rowhand, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(rowhand, "الكرتنة") };
+                                        item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowhand, "Data_ID")), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(rowhand, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(rowhand, "الكرتنة") };
+                                        item.Code = gridView1.GetRowCellDisplayText(rowhand, "الكود");
                                         bi.Add(item);
                                     }
 
@@ -1412,10 +1393,11 @@ namespace MainSystem
                             rowhand = gridView1.GetSelectedRows()[j];
                             Ticket_Items item;
 
-                            string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(rowhand, "Data_ID");
+                            string query = "SELECT concat(factory.Factory_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',COALESCE(size.Size_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + gridView1.GetRowCellDisplayText(rowhand, "Data_ID");
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                            item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowhand, "Data_ID")), Code = gridView1.GetRowCellDisplayText(rowhand, "الكود"), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(rowhand, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(rowhand, "الكرتنة") };
+                            item = new Ticket_Items() { Data_ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(rowhand, "Data_ID")), /*Type = gridView1.GetRowCellDisplayText(i, "النوع"), Product_Type = "بند",*/ Product_Name = com.ExecuteScalar().ToString(), Cost = /*Convert.ToDouble(*/gridView1.GetRowCellDisplayText(rowhand, "السعر")/*)*/, Carton = gridView1.GetRowCellDisplayText(rowhand, "الكرتنة") };
+                            item.Code = gridView1.GetRowCellDisplayText(rowhand, "الكود").ToString();
                             bi.Add(item);
                         }
 

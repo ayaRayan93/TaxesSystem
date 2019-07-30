@@ -102,29 +102,32 @@ namespace MainSystem
         {
             try
             {
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
-
-                XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "tabPageBankReport");
-                if (xtraTabPage == null)
+                if (UserControl.userType == 1)
                 {
-                    tabPageBankReport.Name = "tabPageBankReport";
-                    tabPageBankReport.Text = "عرض البنوك";
-                    panelBankReport.Name = "panelBankReport";
-                    panelBankReport.Dock = DockStyle.Fill;
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.FromArgb(54, 70, 151);
 
-                    formShow = new Bank_Report();
-                    formShow.Size = new Size(1109, 660);
-                    formShow.TopLevel = false;
-                    formShow.FormBorderStyle = FormBorderStyle.None;
-                    formShow.Dock = DockStyle.Fill;
+                    XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "tabPageBankReport");
+                    if (xtraTabPage == null)
+                    {
+                        tabPageBankReport.Name = "tabPageBankReport";
+                        tabPageBankReport.Text = "عرض البنوك";
+                        panelBankReport.Name = "panelBankReport";
+                        panelBankReport.Dock = DockStyle.Fill;
+
+                        formShow = new Bank_Report();
+                        formShow.Size = new Size(1109, 660);
+                        formShow.TopLevel = false;
+                        formShow.FormBorderStyle = FormBorderStyle.None;
+                        formShow.Dock = DockStyle.Fill;
+                    }
+                    panelBankReport.Controls.Clear();
+                    panelBankReport.Controls.Add(formShow);
+                    tabPageBankReport.Controls.Add(panelBankReport);
+                    MainTabControlBank.TabPages.Add(tabPageBankReport);
+                    formShow.Show();
+                    MainTabControlBank.SelectedTabPage = tabPageBankReport;
                 }
-                panelBankReport.Controls.Clear();
-                panelBankReport.Controls.Add(formShow);
-                tabPageBankReport.Controls.Add(panelBankReport);
-                MainTabControlBank.TabPages.Add(tabPageBankReport);
-                formShow.Show();
-                MainTabControlBank.SelectedTabPage = tabPageBankReport;
             }
             catch (Exception ex)
             {
