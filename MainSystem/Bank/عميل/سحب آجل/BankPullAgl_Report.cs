@@ -71,36 +71,42 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                if (((GridView)gridView1).GetSelectedRows().Count() > 0)
+                try
                 {
-                    DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
-                    bankMainForm.bindUpdatePullAglForm(sellRow, this);
+                    if (((GridView)gridView1).GetSelectedRows().Count() > 0)
+                    {
+                        DataRowView sellRow = (DataRowView)(((GridView)gridView1).GetRow(((GridView)gridView1).GetSelectedRows()[0]));
+                        bankMainForm.bindUpdatePullAglForm(sellRow, this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب تحديد العنصر المراد تعديله");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("يجب تحديد العنصر المراد تعديله");
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                GridView view = gridView1 as GridView;
-                delete(view);
+                try
+                {
+                    GridView view = gridView1 as GridView;
+                    delete(view);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -134,20 +140,23 @@ namespace MainSystem
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                if (e.KeyCode == Keys.Delete)
+                try
                 {
-                    //GridView view = sender as GridView;
-                    GridView view = gridView1 as GridView;
-                    delete(view);
+                    if (e.KeyCode == Keys.Delete)
+                    {
+                        //GridView view = sender as GridView;
+                        GridView view = gridView1 as GridView;
+                        delete(view);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void toolTipController1_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)
