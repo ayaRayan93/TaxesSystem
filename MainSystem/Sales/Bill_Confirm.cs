@@ -22,7 +22,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, dbconnectionr, dbconnection2, dbconnection3;
         MySqlConnection connectionReader, connectionReader1, connectionReader2, connectionReader3;
-        string RecivedType = "شحن";
+        string RecivedType = "العميل";
         string Customer_Type = "";
         int CustomerBill_ID = 0;
         bool loaded = false;
