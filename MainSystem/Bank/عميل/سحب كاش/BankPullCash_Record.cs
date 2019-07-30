@@ -719,6 +719,8 @@ namespace MainSystem
             connectionReader2.Close();
             connectionReader1.Close();
             connectionReader.Close();
+            connectionReader3.Close();
+            connectionReader4.Close();
         }
 
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)

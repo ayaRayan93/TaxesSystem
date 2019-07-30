@@ -11,7 +11,7 @@ namespace MainSystem
         public int Data_ID { get; set; }
         public string ItemName { get; set; }
         public string Code { get; set; }
-        public double Carton { get; set; }
+        public double NumOfCarton { get; set; }
         public double TotalQuantity { get; set; }
         public string DeliveryQuantity { get; set; }
     }

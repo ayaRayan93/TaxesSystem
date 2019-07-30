@@ -128,7 +128,40 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-       
+
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtStoreID.Text = comStore.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtStoreID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Store_Name from store where Store_ID=" + txtStoreID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Store_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comStore.Text = Store_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         //functions
         public void ShippingPermissions()
         {
@@ -233,7 +266,12 @@ namespace MainSystem
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
-            string query = "select Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill where RecivedType='العميل' and RecivedFlag='لا' and Paid_Status=1 and Shipped_Date between '" + d + "' and '" + d2 + "' " + subQuery;
+            string query = "";
+            if (d== d2)
+              query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where  Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and  case when Type_Buy='كاش' then Paid_Status=1 end " + subQuery;
+            else
+                query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where  Shipped_Date between '" + d +"' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and case when Type_Buy='كاش' then Paid_Status=1 end  " + subQuery;
+
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -269,7 +307,9 @@ namespace MainSystem
             edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
        
-        }       
+        }
+
+   
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)

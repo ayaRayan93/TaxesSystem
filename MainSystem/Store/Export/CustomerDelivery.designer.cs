@@ -33,8 +33,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labDate = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDelegate = new System.Windows.Forms.TextBox();
             this.labPhoneNumber = new System.Windows.Forms.Label();
@@ -46,6 +44,8 @@
             this.labClient = new System.Windows.Forms.Label();
             this.labCustomer = new System.Windows.Forms.Label();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.labDate = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
@@ -146,27 +146,6 @@
             this.groupBox1.TabIndex = 210;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بيانات الفاتورة";
-            // 
-            // labDate
-            // 
-            this.labDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labDate.AutoSize = true;
-            this.labDate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labDate.Location = new System.Drawing.Point(353, 48);
-            this.labDate.Name = "labDate";
-            this.labDate.Size = new System.Drawing.Size(0, 17);
-            this.labDate.TabIndex = 220;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label4.Location = new System.Drawing.Point(455, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 17);
-            this.label4.TabIndex = 219;
-            this.label4.Text = "تاريخ الفاتورة";
             // 
             // label2
             // 
@@ -288,6 +267,27 @@
             this.txtCustomerID.ReadOnly = true;
             this.txtCustomerID.Size = new System.Drawing.Size(48, 20);
             this.txtCustomerID.TabIndex = 103;
+            // 
+            // labDate
+            // 
+            this.labDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labDate.AutoSize = true;
+            this.labDate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labDate.Location = new System.Drawing.Point(353, 48);
+            this.labDate.Name = "labDate";
+            this.labDate.Size = new System.Drawing.Size(0, 17);
+            this.labDate.TabIndex = 220;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label4.Location = new System.Drawing.Point(455, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 17);
+            this.label4.TabIndex = 219;
+            this.label4.Text = "تاريخ الفاتورة";
             // 
             // groupBox3
             // 
@@ -430,6 +430,7 @@
             this.txtPermBillNumber.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtPermBillNumber.Location = new System.Drawing.Point(566, 42);
             this.txtPermBillNumber.Name = "txtPermBillNumber";
+            this.txtPermBillNumber.ReadOnly = true;
             this.txtPermBillNumber.Size = new System.Drawing.Size(146, 27);
             this.txtPermBillNumber.TabIndex = 227;
             this.txtPermBillNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNumber_KeyDown);
@@ -475,7 +476,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 433F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 434F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -500,7 +501,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(434, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(435, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(97, 45);

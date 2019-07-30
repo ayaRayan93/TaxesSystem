@@ -931,7 +931,7 @@ namespace MainSystem
         }
         public void add2GridView(DataTable dt, DataRowView row)
         {
-            if ((Convert.ToDouble(row[4].ToString()) - Convert.ToDouble(txtSubtractQuantity.Text)) > 0)
+            if ((Convert.ToDouble(row[4].ToString()) - Convert.ToDouble(txtSubtractQuantity.Text)) >= 0)
             {
                 dt.Rows.Add(new object[] {
                 Convert.ToInt32(row[1].ToString()),
