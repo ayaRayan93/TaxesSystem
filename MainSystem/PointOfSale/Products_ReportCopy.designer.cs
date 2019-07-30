@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
+            this.components = new System.ComponentModel.Container();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
@@ -91,7 +92,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.tLPanCpntent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -884,8 +885,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButtonAddSpecialOrder, 3, 0);
@@ -951,13 +952,13 @@
             this.bunifuTileButtonAddSpecialOrder.ForeColor = System.Drawing.Color.White;
             this.bunifuTileButtonAddSpecialOrder.Image = global::MainSystem.Properties.Resources.File_32;
             this.bunifuTileButtonAddSpecialOrder.ImagePosition = 1;
-            this.bunifuTileButtonAddSpecialOrder.ImageZoom = 25;
+            this.bunifuTileButtonAddSpecialOrder.ImageZoom = 18;
             this.bunifuTileButtonAddSpecialOrder.LabelPosition = 18;
             this.bunifuTileButtonAddSpecialOrder.LabelText = "اضافة طلب خاص";
-            this.bunifuTileButtonAddSpecialOrder.Location = new System.Drawing.Point(352, 4);
+            this.bunifuTileButtonAddSpecialOrder.Location = new System.Drawing.Point(302, 4);
             this.bunifuTileButtonAddSpecialOrder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bunifuTileButtonAddSpecialOrder.Name = "bunifuTileButtonAddSpecialOrder";
-            this.bunifuTileButtonAddSpecialOrder.Size = new System.Drawing.Size(92, 46);
+            this.bunifuTileButtonAddSpecialOrder.Size = new System.Drawing.Size(142, 46);
             this.bunifuTileButtonAddSpecialOrder.TabIndex = 9;
             this.bunifuTileButtonAddSpecialOrder.Click += new System.EventHandler(this.bunifuTileButtonAddSpecialOrder_Click);
             // 

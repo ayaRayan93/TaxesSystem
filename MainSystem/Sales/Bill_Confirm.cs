@@ -845,7 +845,7 @@ namespace MainSystem
                     }
                     else
                     {
-                        MessageBox.Show("تاكد من تواجد كميات كافية من العناصر");
+                        //MessageBox.Show("تاكد من تواجد كميات كافية من العناصر");
                     }
                 }
                 else
@@ -1083,6 +1083,7 @@ namespace MainSystem
                         }
                         else
                         {
+                            MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
                             return false;
                         }
                     }
@@ -1100,6 +1101,7 @@ namespace MainSystem
                         }
                         else
                         {
+                            MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
                             return false;
                         }
                     }
@@ -1118,6 +1120,7 @@ namespace MainSystem
                         }
                         else
                         {
+                            MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
                             return false;
                         }
                     }

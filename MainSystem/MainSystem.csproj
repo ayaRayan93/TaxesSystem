@@ -300,6 +300,12 @@
     <Compile Include="PointOfSale\Bills_Delegate_Report.designer.cs">
       <DependentUpon>Bills_Delegate_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="PointOfSale\QuantityUpdate_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointOfSale\QuantityUpdate_Copy.Designer.cs">
+      <DependentUpon>QuantityUpdate_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2489,6 +2495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PointOfSale\Products_Report.resx">
       <DependentUpon>Products_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointOfSale\QuantityUpdate_Copy.resx">
+      <DependentUpon>QuantityUpdate_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Orders\Request\DashRequest_Record.resx">
       <DependentUpon>DashRequest_Record.cs</DependentUpon>
