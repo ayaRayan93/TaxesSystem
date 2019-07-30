@@ -115,6 +115,7 @@
             // 
             this.radByClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radByClient.AutoSize = true;
+            this.radByClient.Checked = true;
             this.radByClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radByClient.Location = new System.Drawing.Point(25, 69);
             this.radByClient.Name = "radByClient";
@@ -129,13 +130,11 @@
             // 
             this.radFromStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radFromStore.AutoSize = true;
-            this.radFromStore.Checked = true;
             this.radFromStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radFromStore.Location = new System.Drawing.Point(25, 33);
             this.radFromStore.Name = "radFromStore";
             this.radFromStore.Size = new System.Drawing.Size(58, 20);
             this.radFromStore.TabIndex = 99;
-            this.radFromStore.TabStop = true;
             this.radFromStore.Text = "شحن";
             this.radFromStore.UseVisualStyleBackColor = true;
             this.radFromStore.CheckedChanged += new System.EventHandler(this.radRecivedType_CheckedChanged);
@@ -423,7 +422,7 @@
             this.dateTimePicker1.RightToLeftLayout = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(159, 23);
             this.dateTimePicker1.TabIndex = 97;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 7, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2019, 8, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Visible = false;
             // 
             // btnDetails

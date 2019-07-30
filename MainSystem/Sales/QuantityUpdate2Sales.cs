@@ -197,5 +197,44 @@ namespace MainSystem
             }
             return false;
         }
+
+        private void txtRequiredQuantity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtRequiredQuantity.Text != "")
+                {
+                    if (selRow["الكود"].ToString().Length >= 20)
+                    {
+                        dbconnection.Open();
+                        string q = "select Carton from data where Code='" + selRow["الكود"].ToString() + "'";
+                        MySqlCommand c = new MySqlCommand(q, dbconnection);
+                        if (c.ExecuteScalar() != null)
+                        {
+                            if (Convert.ToDecimal(c.ExecuteScalar().ToString()) != 0)
+                            {
+                                decimal numCartn = Convert.ToDecimal(txtRequiredQuantity.Text) / Convert.ToDecimal(c.ExecuteScalar().ToString());
+                                txtNumCartons.Text = decimal.Ceiling(numCartn).ToString();//"0.##"
+                                txtQuantity.Text = (Convert.ToDecimal(c.ExecuteScalar().ToString()) * decimal.Ceiling(numCartn)).ToString();
+                            }
+                        }
+                    }
+                    else //if (Convert.ToDecimal(row1["الكرتنة"].ToString()) == 0)
+                    {
+                        txtNumCartons.Text = "0";
+                        txtQuantity.Text = txtRequiredQuantity.Text;
+                    }
+                }
+                else
+                {
+                    txtQuantity.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
     }
 }
