@@ -110,6 +110,7 @@
             this.groupBox2.TabIndex = 148;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "طريقة الاستلام";
+            this.groupBox2.Visible = false;
             // 
             // radByClient
             // 
@@ -533,7 +534,7 @@
             this.labelDate.ForeColor = System.Drawing.Color.Snow;
             this.labelDate.Location = new System.Drawing.Point(968, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(56, 36);
+            this.labelDate.Size = new System.Drawing.Size(54, 36);
             this.labelDate.TabIndex = 98;
             this.labelDate.Text = "تاريخ الاستلام";
             this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -599,9 +600,9 @@
             this.checkBoxAdd.AutoSize = true;
             this.checkBoxAdd.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAdd.Location = new System.Drawing.Point(129, 66);
+            this.checkBoxAdd.Location = new System.Drawing.Point(128, 66);
             this.checkBoxAdd.Name = "checkBoxAdd";
-            this.checkBoxAdd.Size = new System.Drawing.Size(62, 20);
+            this.checkBoxAdd.Size = new System.Drawing.Size(63, 20);
             this.checkBoxAdd.TabIndex = 153;
             this.checkBoxAdd.Text = "+اخرى";
             this.checkBoxAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

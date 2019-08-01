@@ -689,7 +689,7 @@ namespace MainSystem
             
                 }
                 displayData();
-                productsSellPriceForm.displayProducts();
+               // productsSellPriceForm.displayProducts();
                 MessageBox.Show("تم");
                 gridView1.SelectAll();
                 XtraTabPage xtraTabPage = getTabPage("تعديل اسعار البنود");

@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panDate = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbUpdateItems = new System.Windows.Forms.CheckBox();
             this.labSearch = new System.Windows.Forms.Label();
             this.panSearchAddtionalTool = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
@@ -74,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panDate.SuspendLayout();
             this.panSearchAddtionalTool.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -102,6 +109,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.panDate);
+            this.panel1.Controls.Add(this.cbUpdateItems);
             this.panel1.Controls.Add(this.labSearch);
             this.panel1.Controls.Add(this.panSearchAddtionalTool);
             this.panel1.Controls.Add(this.label3);
@@ -122,6 +131,65 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(886, 224);
             this.panel1.TabIndex = 46;
+            // 
+            // panDate
+            // 
+            this.panDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panDate.Controls.Add(this.dateTimePicker1);
+            this.panDate.Controls.Add(this.dateTimePicker2);
+            this.panDate.Controls.Add(this.label11);
+            this.panDate.Controls.Add(this.label6);
+            this.panDate.Location = new System.Drawing.Point(138, -1);
+            this.panDate.Name = "panDate";
+            this.panDate.Size = new System.Drawing.Size(552, 35);
+            this.panDate.TabIndex = 164;
+            this.panDate.Visible = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(36, 8);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 159;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(297, 8);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 160;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(503, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(25, 16);
+            this.label11.TabIndex = 162;
+            this.label11.Text = "من";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(242, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(28, 16);
+            this.label6.TabIndex = 161;
+            this.label6.Text = "الي";
+            // 
+            // cbUpdateItems
+            // 
+            this.cbUpdateItems.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbUpdateItems.AutoSize = true;
+            this.cbUpdateItems.Location = new System.Drawing.Point(696, 11);
+            this.cbUpdateItems.Name = "cbUpdateItems";
+            this.cbUpdateItems.Size = new System.Drawing.Size(91, 17);
+            this.cbUpdateItems.TabIndex = 163;
+            this.cbUpdateItems.Text = "بنود تم تعديلها";
+            this.cbUpdateItems.UseVisualStyleBackColor = true;
+            this.cbUpdateItems.CheckedChanged += new System.EventHandler(this.cbUpdateItems_CheckedChanged);
             // 
             // labSearch
             // 
@@ -348,7 +416,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(466, 59);
+            this.label3.Location = new System.Drawing.Point(466, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 19);
             this.label3.TabIndex = 49;
@@ -359,7 +427,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(466, 32);
+            this.label4.Location = new System.Drawing.Point(466, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 19);
             this.label4.TabIndex = 48;
@@ -370,7 +438,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(751, 60);
+            this.label2.Location = new System.Drawing.Point(751, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 19);
             this.label2.TabIndex = 47;
@@ -381,7 +449,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(751, 33);
+            this.label1.Location = new System.Drawing.Point(751, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 19);
             this.label1.TabIndex = 46;
@@ -392,7 +460,7 @@
             this.comType.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comType.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(606, 33);
+            this.comType.Location = new System.Drawing.Point(606, 45);
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(139, 24);
             this.comType.TabIndex = 21;
@@ -403,7 +471,7 @@
             this.comGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comGroup.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(606, 60);
+            this.comGroup.Location = new System.Drawing.Point(606, 72);
             this.comGroup.Name = "comGroup";
             this.comGroup.Size = new System.Drawing.Size(139, 24);
             this.comGroup.TabIndex = 18;
@@ -413,7 +481,7 @@
             // 
             this.txtType.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtType.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtType.Location = new System.Drawing.Point(530, 33);
+            this.txtType.Location = new System.Drawing.Point(530, 45);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(72, 23);
             this.txtType.TabIndex = 20;
@@ -423,7 +491,7 @@
             // 
             this.txtGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtGroup.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGroup.Location = new System.Drawing.Point(530, 61);
+            this.txtGroup.Location = new System.Drawing.Point(530, 73);
             this.txtGroup.Name = "txtGroup";
             this.txtGroup.Size = new System.Drawing.Size(72, 23);
             this.txtGroup.TabIndex = 23;
@@ -434,7 +502,7 @@
             this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comFactory.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(320, 32);
+            this.comFactory.Location = new System.Drawing.Point(320, 44);
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(143, 24);
             this.comFactory.TabIndex = 25;
@@ -449,7 +517,7 @@
             this.btnNewChoose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNewChoose.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnNewChoose.Location = new System.Drawing.Point(98, 22);
+            this.btnNewChoose.Location = new System.Drawing.Point(98, 34);
             this.btnNewChoose.Margin = new System.Windows.Forms.Padding(0);
             this.btnNewChoose.Name = "btnNewChoose";
             this.btnNewChoose.Size = new System.Drawing.Size(105, 33);
@@ -467,7 +535,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSearch.Location = new System.Drawing.Point(98, 60);
+            this.btnSearch.Location = new System.Drawing.Point(98, 72);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 33);
             this.btnSearch.TabIndex = 40;
@@ -480,7 +548,7 @@
             this.comProduct.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comProduct.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comProduct.FormattingEnabled = true;
-            this.comProduct.Location = new System.Drawing.Point(320, 59);
+            this.comProduct.Location = new System.Drawing.Point(320, 71);
             this.comProduct.Name = "comProduct";
             this.comProduct.Size = new System.Drawing.Size(143, 24);
             this.comProduct.TabIndex = 22;
@@ -490,7 +558,7 @@
             // 
             this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtFactory.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFactory.Location = new System.Drawing.Point(235, 33);
+            this.txtFactory.Location = new System.Drawing.Point(235, 45);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(78, 23);
             this.txtFactory.TabIndex = 19;
@@ -500,7 +568,7 @@
             // 
             this.txtProduct.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtProduct.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProduct.Location = new System.Drawing.Point(235, 60);
+            this.txtProduct.Location = new System.Drawing.Point(235, 72);
             this.txtProduct.Name = "txtProduct";
             this.txtProduct.Size = new System.Drawing.Size(78, 23);
             this.txtProduct.TabIndex = 24;
@@ -652,6 +720,7 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             // 
             // layoutControlGroup1
             // 
@@ -724,6 +793,8 @@
             this.layoutControl1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panDate.ResumeLayout(false);
+            this.panDate.PerformLayout();
             this.panSearchAddtionalTool.ResumeLayout(false);
             this.panSearchAddtionalTool.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
@@ -781,5 +852,11 @@
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private System.Windows.Forms.Panel panDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cbUpdateItems;
     }
 }
