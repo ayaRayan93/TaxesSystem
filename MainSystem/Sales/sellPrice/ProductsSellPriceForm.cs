@@ -21,7 +21,7 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-
+        List<string> list=null;
         public ProductsSellPriceForm(MainForm salesMainForm)
         {
             try
@@ -660,6 +660,9 @@ namespace MainSystem
             //lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView1.Appearance.HeaderPanel.TextOptions.HAlignment;
 
             gridControl1.DataSource = dt;
+            list = new List<string>();
+            list = getUpdatedItems();
+
             gridView1.BestFitColumns();
             gridView1.Columns[0].Visible = false;
             //gridView1.Columns[1].Width = 200;
@@ -667,7 +670,22 @@ namespace MainSystem
 
             fQuery = "";
         }
+        public List<string> getUpdatedItems()
+        {
+            dbconnection.Close();
+            dbconnection.Open();
+            DateTime date = dateTimePicker2.Value;
+            string d = date.ToString("yyyy-MM-dd hh:mm:ss");
+            DateTime date2 = dateTimePicker1.Value;
+            string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
+            string query = "SELECT group_concat(UserControl_RecordID) FROM cccmaindb.usercontrol where UserControl_TableName='sellprice' and UserControl_Status='تعديل' and UserControl_Date between '"+d+"' and '"+ d2 +"'";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            string re = com.ExecuteScalar().ToString();
+            List<string> arr = re.Split(',').ToList<string>();
+            dbconnection.Close();
+            return arr;
 
+        }
         public void filterProduct()
         {
             if (comType.Text != "")
@@ -699,5 +717,47 @@ namespace MainSystem
 
         }
 
+        private void cbUpdateItems_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbUpdateItems.Checked)
+                {
+                    panDate.Visible = true;
+                }
+                else
+                {
+                    panDate.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    string sellID = View.GetRowCellDisplayText(e.RowHandle, View.Columns[0]);
+                   
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (sellID == list[i])
+                            e.Appearance.BackColor = Color.CornflowerBlue;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        
     }
 }

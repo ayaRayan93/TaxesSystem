@@ -905,7 +905,7 @@ namespace MainSystem
 
                     MessageBox.Show("Done");
                     Clear();
-                    productsSellPriceForm.displayProducts();
+                    //productsSellPriceForm.displayProducts();
                 }
                 else
                 {
