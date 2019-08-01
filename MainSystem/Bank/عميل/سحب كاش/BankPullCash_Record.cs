@@ -1512,7 +1512,7 @@ namespace MainSystem
             List<ReturnedBill_Items> bi = new List<ReturnedBill_Items>();
             
             dbconnection.Open();
-            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
+            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100)*customer_return_bill_details.TotalMeter as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
@@ -1576,7 +1576,7 @@ namespace MainSystem
             List<ReturnedBill_ItemsAccounting> bi = new List<ReturnedBill_ItemsAccounting>();
 
             dbconnection.Open();
-            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100) as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
+            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100)*customer_return_bill_details.TotalMeter as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
