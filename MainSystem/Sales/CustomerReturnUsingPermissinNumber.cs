@@ -124,7 +124,7 @@ namespace MainSystem
 
                     if (labBillNumber.Text != "")
                     {
-                        query = "select DISTINCT product_bill.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and product_bill.Type='بند' ";
+                        query = "select DISTINCT product_bill.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on product_bill.Data_ID=customer_return_permission_details.Data_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and product_bill.Type='بند' ";
                     }
                     else
                     {
@@ -204,8 +204,10 @@ namespace MainSystem
                     string q = "select customer_return_permission.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_return_permission left join customer as c1 on c1.Customer_ID=customer_return_permission.Customer_ID left join customer as c2 on c2.Customer_ID=customer_return_permission.Client_ID where CustomerReturnPermission_ID=" + storeNum;
                     MySqlCommand c = new MySqlCommand(q, dbconnection);
                     MySqlDataReader dr = c.ExecuteReader();
+                    bool flag = false;
                     while (dr.Read())
                     {
+                        flag = true;
                         if (dr[0].ToString() != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
@@ -236,7 +238,44 @@ namespace MainSystem
                         }
                     }
                     dr.Close();
-
+                    if (!flag)
+                    {
+                        q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + Branch_BillNumber+" and Branch_ID="+Branch_ID;
+                        c = new MySqlCommand(q, dbconnection);
+                        dr = c.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            if (dr[0].ToString() != "")
+                            {
+                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                                com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[0].ToString());
+                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                                com.Parameters["@Customer_Name"].Value = dr[1].ToString();
+                            }
+                            else
+                            {
+                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                                com.Parameters["@Customer_ID"].Value = null;
+                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                                com.Parameters["@Customer_Name"].Value = "";
+                            }
+                            if (dr[2].ToString() != "")
+                            {
+                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                                com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[2].ToString());
+                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                                com.Parameters["@Client_Name"].Value = dr[3].ToString();
+                            }
+                            else
+                            {
+                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                                com.Parameters["@Client_ID"].Value = null;
+                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                                com.Parameters["@Client_Name"].Value = "";
+                            }
+                        }
+                        dr.Close();
+                    }
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = DateTime.Now;
                     com.Parameters.Add("@ReturnInfo", MySqlDbType.VarChar);

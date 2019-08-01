@@ -606,7 +606,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 List<ReturnPermissionClass> listOfData = new List<ReturnPermissionClass>();
-                if (gridView2.RowCount > 0 && txtStore.Text != "" && txtBranch1.Text != "")
+                if (gridView2.RowCount > 0 && txtStore.Text != "" && txtBranch1.Text != ""&& customerNameSelected())
                 {
                     string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date,Branch_ID,Branch_Name) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date,@Branch_ID,@Branch_Name)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -701,7 +701,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("ادخل الفرع والمخزن");
+                    MessageBox.Show("ادخل الفرع والمخزنوالعميل");
                 }
             }
             catch (Exception ex)
@@ -884,10 +884,11 @@ namespace MainSystem
         public void displayBill()
         {
             string q = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranch1.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
-            string query = "select CustomerBill_ID,customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where CustomerBill_ID=" + Billid;
+            MySqlCommand com = new MySqlCommand(q, dbconnection);
+            Billid =Convert.ToInt16(com.ExecuteScalar());
 
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            
+            string query = "select CustomerBill_ID,customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where CustomerBill_ID=" + Billid;
+            com = new MySqlCommand(query, dbconnection);            
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
@@ -1259,6 +1260,17 @@ namespace MainSystem
 
             UserControl.ItemRecord("Storage", "اضافة", id, DateTime.Now, "", dbconnection);
 
+        }
+        public bool customerNameSelected()
+        {
+            if (radioButtonWithOutReturnBill.Checked)
+            {
+                if (txtClientID.Text != "" || txtCustomerID.Text != "")
+                    return true;
+                else
+                    return false;
+            }
+            return true;
         }
 
     }
