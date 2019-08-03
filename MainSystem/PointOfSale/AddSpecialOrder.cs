@@ -31,7 +31,7 @@ namespace MainSystem
             DelegateId = delegateId;
         }
 
-        private void textBox_Click(object sender, EventArgs e)
+        /*private void textBox_Click(object sender, EventArgs e)
         {
             openOnScreenKeyboard();
         }
@@ -54,7 +54,7 @@ namespace MainSystem
                 asd.Kill();
             }
 
-        }
+        }*/
 
         private void btnSave_Click(object sender, EventArgs e)
         {

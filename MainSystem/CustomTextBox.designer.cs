@@ -32,8 +32,8 @@
             // 
             // Custom1TextBox
             // 
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
-            this.Leave += new System.EventHandler(this.textBox_Leave);
+            //this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
+            //this.Leave += new System.EventHandler(this.textBox_Leave);
             this.ResumeLayout(false);
 
         }

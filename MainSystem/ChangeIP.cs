@@ -76,7 +76,7 @@ namespace MainSystem
            
         }
 
-        private void textBox_Click(object sender, EventArgs e)
+        /*private void textBox_Click(object sender, EventArgs e)
         {
             openOnScreenKeyboard();
         }
@@ -99,7 +99,7 @@ namespace MainSystem
                 asd.Kill();
             }
 
-        }
+        }*/
 
         private void btnTestConnection_Click(object sender, EventArgs e)
         {

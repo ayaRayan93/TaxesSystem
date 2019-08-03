@@ -105,8 +105,8 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(403, 115);
             this.txtDescription.TabIndex = 5;
-            this.txtDescription.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
-            this.txtDescription.Leave += new System.EventHandler(this.textBox_Leave);
+            //this.txtDescription.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
+            //this.txtDescription.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // layoutControlGroup1
             // 

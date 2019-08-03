@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version30\</PublishUrl>
+    <PublishUrl>D:\التكويد\version33\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>82</ApplicationRevision>
+    <ApplicationRevision>87</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -294,6 +294,42 @@
     </Compile>
     <Compile Include="Bank\عميل\فاتورة المرتجع للحسابات\ReturnedBill_ItemsAccounting.cs" />
     <Compile Include="baseData.cs" />
+    <Compile Include="Cars\CarEl3hata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cars\CarEl3hata.designer.cs">
+      <DependentUpon>CarEl3hata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cars\CarExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cars\CarExpenses.designer.cs">
+      <DependentUpon>CarExpenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cars\CarExpensesUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cars\CarExpensesUpdate.designer.cs">
+      <DependentUpon>CarExpensesUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cars\CarIncomeRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cars\CarIncomeRecord.designer.cs">
+      <DependentUpon>CarIncomeRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cars\CarIncomes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cars\CarIncomes.designer.cs">
+      <DependentUpon>CarIncomes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cars\CarIncomesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cars\CarIncomesReport.designer.cs">
+      <DependentUpon>CarIncomesReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="PointOfSale\Bills_Delegate_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1189,12 +1225,6 @@
     <Compile Include="Cars\CarDrivers.designer.cs">
       <DependentUpon>CarDrivers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cars\CarEl3hata.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cars\CarEl3hata.Designer.cs">
-      <DependentUpon>CarEl3hata.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cars\CarEl3hataReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1213,12 +1243,6 @@
     <Compile Include="Cars\CarElahataUpdate.designer.cs">
       <DependentUpon>CarElahataUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cars\CarExpenses.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cars\CarExpenses.Designer.cs">
-      <DependentUpon>CarExpenses.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cars\CarExpensesRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1236,30 +1260,6 @@
     </Compile>
     <Compile Include="Cars\CarExpensesType.Designer.cs">
       <DependentUpon>CarExpensesType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cars\CarExpensesUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cars\CarExpensesUpdate.designer.cs">
-      <DependentUpon>CarExpensesUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cars\CarIncomeRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cars\CarIncomeRecord.designer.cs">
-      <DependentUpon>CarIncomeRecord.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cars\CarIncomes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cars\CarIncomes.Designer.cs">
-      <DependentUpon>CarIncomes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cars\CarIncomesReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Cars\CarIncomesReport.Designer.cs">
-      <DependentUpon>CarIncomesReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Cars\CarIncomeUpdate.cs">
       <SubType>Form</SubType>
@@ -2457,6 +2457,24 @@
     <EmbeddedResource Include="Bank\مورد\سحب آجل\SupplierReturnedBillAgl.resx">
       <DependentUpon>SupplierReturnedBillAgl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cars\CarEl3hata.resx">
+      <DependentUpon>CarEl3hata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cars\CarExpenses.resx">
+      <DependentUpon>CarExpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cars\CarExpensesUpdate.resx">
+      <DependentUpon>CarExpensesUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cars\CarIncomeRecord.resx">
+      <DependentUpon>CarIncomeRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cars\CarIncomes.resx">
+      <DependentUpon>CarIncomes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cars\CarIncomesReport.resx">
+      <DependentUpon>CarIncomesReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangeIP.resx">
       <DependentUpon>ChangeIP.cs</DependentUpon>
     </EmbeddedResource>
@@ -2874,9 +2892,6 @@
     <EmbeddedResource Include="Cars\CarDrivers.resx">
       <DependentUpon>CarDrivers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cars\CarEl3hata.resx">
-      <DependentUpon>CarEl3hata.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Cars\CarEl3hataReport.resx">
       <DependentUpon>CarEl3hataReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -2886,9 +2901,6 @@
     <EmbeddedResource Include="Cars\CarElahataUpdate.resx">
       <DependentUpon>CarElahataUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cars\CarExpenses.resx">
-      <DependentUpon>CarExpenses.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Cars\CarExpensesRecord.resx">
       <DependentUpon>CarExpensesRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -2897,18 +2909,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cars\CarExpensesType.resx">
       <DependentUpon>CarExpensesType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cars\CarExpensesUpdate.resx">
-      <DependentUpon>CarExpensesUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cars\CarIncomeRecord.resx">
-      <DependentUpon>CarIncomeRecord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cars\CarIncomes.resx">
-      <DependentUpon>CarIncomes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cars\CarIncomesReport.resx">
-      <DependentUpon>CarIncomesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cars\CarIncomeUpdate.resx">
       <DependentUpon>CarIncomeUpdate.cs</DependentUpon>

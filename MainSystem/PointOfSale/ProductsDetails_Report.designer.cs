@@ -274,10 +274,10 @@
             this.txtBillNum.Name = "txtBillNum";
             this.txtBillNum.Size = new System.Drawing.Size(101, 23);
             this.txtBillNum.TabIndex = 3;
-            this.txtBillNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
+            //this.txtBillNum.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtBillNum.TextChanged += new System.EventHandler(this.txtBillNum_TextChanged);
             this.txtBillNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNum_KeyDown);
-            this.txtBillNum.Leave += new System.EventHandler(this.textBox_Leave);
+            //this.txtBillNum.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // label3
             // 
@@ -302,8 +302,8 @@
             this.comCustomer.TabIndex = 5;
             this.comCustomer.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
             this.comCustomer.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
-            this.comCustomer.Leave += new System.EventHandler(this.textBox_Leave);
-            this.comCustomer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
+            //this.comCustomer.Leave += new System.EventHandler(this.textBox_Leave);
+            //this.comCustomer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             // 
             // txtClientId
             // 
@@ -312,9 +312,9 @@
             this.txtClientId.Name = "txtClientId";
             this.txtClientId.Size = new System.Drawing.Size(70, 23);
             this.txtClientId.TabIndex = 6;
-            this.txtClientId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
+            //this.txtClientId.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtClientId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClientId_KeyDown);
-            this.txtClientId.Leave += new System.EventHandler(this.textBox_Leave);
+            //this.txtClientId.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // ProductsDetails_Report
             // 

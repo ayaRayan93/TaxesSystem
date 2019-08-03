@@ -29,7 +29,6 @@ namespace MainSystem
                 c += arr[i].ToString();
                 if (j % 4 == 0 && i != 19)
                     c += "-";
-
                 j++;
             }
             return c;

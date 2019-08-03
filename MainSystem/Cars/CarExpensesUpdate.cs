@@ -51,7 +51,7 @@ namespace MainSystem
                 comCarNumber.ValueMember = dt.Columns["Car_ID"].ToString();
                 comCarNumber.Text = row[1].ToString();
 
-                query = "select * from expense_type";
+                query = "select * from expenses_type";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);

@@ -232,10 +232,8 @@
             this.txtCodeSearch1.Name = "txtCodeSearch1";
             this.txtCodeSearch1.Size = new System.Drawing.Size(56, 23);
             this.txtCodeSearch1.TabIndex = 135;
-            this.txtCodeSearch1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch1.TextChanged += new System.EventHandler(this.txtCodeSearch1_TextChanged);
             this.txtCodeSearch1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            this.txtCodeSearch1.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch2
             // 
@@ -245,10 +243,8 @@
             this.txtCodeSearch2.Name = "txtCodeSearch2";
             this.txtCodeSearch2.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch2.TabIndex = 136;
-            this.txtCodeSearch2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch2.TextChanged += new System.EventHandler(this.txtCodeSearch2_TextChanged);
             this.txtCodeSearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            this.txtCodeSearch2.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch3
             // 
@@ -258,10 +254,8 @@
             this.txtCodeSearch3.Name = "txtCodeSearch3";
             this.txtCodeSearch3.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch3.TabIndex = 137;
-            this.txtCodeSearch3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch3.TextChanged += new System.EventHandler(this.txtCodeSearch3_TextChanged);
             this.txtCodeSearch3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            this.txtCodeSearch3.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch4
             // 
@@ -271,10 +265,8 @@
             this.txtCodeSearch4.Name = "txtCodeSearch4";
             this.txtCodeSearch4.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch4.TabIndex = 138;
-            this.txtCodeSearch4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch4.TextChanged += new System.EventHandler(this.txtCodeSearch4_TextChanged);
             this.txtCodeSearch4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            this.txtCodeSearch4.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // txtCodeSearch5
             // 
@@ -284,10 +276,8 @@
             this.txtCodeSearch5.Name = "txtCodeSearch5";
             this.txtCodeSearch5.Size = new System.Drawing.Size(53, 23);
             this.txtCodeSearch5.TabIndex = 139;
-            this.txtCodeSearch5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox_Click);
             this.txtCodeSearch5.TextChanged += new System.EventHandler(this.txtCodeSearch5_TextChanged);
             this.txtCodeSearch5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodeSearch_KeyDown);
-            this.txtCodeSearch5.Leave += new System.EventHandler(this.textBox_Leave);
             // 
             // panel2
             // 

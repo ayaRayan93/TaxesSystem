@@ -189,7 +189,7 @@ namespace MainSystem
                     int id=0;
                     if (com.ExecuteScalar() != null)
                     {
-                        id = Convert.ToInt32(com.ExecuteScalar());
+                        id = Convert.ToInt16(com.ExecuteScalar());
                     }
                     else
                     {
@@ -237,7 +237,7 @@ namespace MainSystem
                 if (load)
                 {
                     dbconnection.Open();
-
+                    
                     string query = "select meter_reading from cars where Car_ID=" + comCarNumber.SelectedValue.ToString();
                     MySqlCommand command = new MySqlCommand(query, dbconnection);
 
@@ -409,7 +409,8 @@ namespace MainSystem
 
                     query = "insert into Car_Meter_Reading (Car_ID,Car_Meter_Reading_Current,Car_Meter_Reading_Prev,Car_Meter_Reading_Diff,Date) values (@Car_ID,@Car_Meter_Reading_Current,@Car_Meter_Reading_Prev,@Car_Meter_Reading_Diff,@Date)";
                     command = new MySqlCommand(query, dbconnection);
-                    
+
+
                     command.Parameters.Add("@Date", MySqlDbType.Date);
                     command.Parameters["@Date"].Value = dateTimePicker1.Value.Date;
                     command.Parameters.Add("@Car_ID", MySqlDbType.Int16);
@@ -483,8 +484,8 @@ namespace MainSystem
         {
             return SafayCar_Number = Convert.ToDouble(txtNolone.Text) - (gate + Taateg);
         }
-
-       
+        
+      
     }
     
 }

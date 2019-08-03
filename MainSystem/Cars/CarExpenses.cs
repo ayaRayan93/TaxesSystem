@@ -15,14 +15,14 @@ namespace MainSystem
     public partial class CarExpenses : Form
     {
         MySqlConnection dbconnection;
-        MainForm MainForm;
-        public CarExpenses(MainForm MainForm)
+        MainForm carsMainForm;
+        public CarExpenses(MainForm carsMainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                this.MainForm = MainForm;
+                this.carsMainForm = carsMainForm;
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace MainSystem
         {
             try
             {
-                MainForm.bindRecordExpensesForm(this);
+                carsMainForm.bindRecordExpensesForm(this);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace MainSystem
             try
             {
                 DataRowView expensesRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                MainForm.bindUpdateExpensesForm(expensesRow, this);
+                carsMainForm.bindUpdateExpensesForm(expensesRow, this);
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace MainSystem
         {
             try
             {
-                MainForm.bindReportExpensesForm(gridControl1);
+                carsMainForm.bindReportExpensesForm(gridControl1);
             }
             catch (Exception ex)
             {
@@ -124,7 +124,7 @@ namespace MainSystem
         //functions
         public void displayData()
         {
-            string query = "select ID as 'الرقم المسلسل', cars.Car_Number as 'رقم العربية',Expenses_Type as 'نوع المصروفات',Cost as 'التكلفة',Date as 'التاريخ',Note as 'الملاحظات' from car_expenses inner join cars on car_expenses.Car_ID=cars.Car_ID ";
+            string query = "select ID as 'الرقم المسلسل', cars.Car_Number as 'رقم العربية',Expenses_Type as 'نوع المصروفات',Cost as 'التكلفة',DATE_FORMAT(Date,'%Y-%m-%d') as 'التاريخ',Note as 'الملاحظات' from car_expenses inner join cars on car_expenses.Car_ID=cars.Car_ID ";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
