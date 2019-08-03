@@ -17,14 +17,14 @@ namespace MainSystem
     public partial class CarIncomes : Form
     {
         MySqlConnection dbconnection;
-        MainForm MainForm;
-        public CarIncomes(MainForm MainForm)
+        MainForm carsMainForm;
+        public CarIncomes(MainForm carsMainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                this.MainForm = MainForm;
+                this.carsMainForm = carsMainForm;
                 
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace MainSystem
         {
             try
             {
-                MainForm.bindRecordIncomesForm(this);
+                carsMainForm.bindRecordIncomesForm(this);
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace MainSystem
             try
             {
                 DataRowView incomesRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                MainForm.bindUpdateIncomesForm(incomesRow, this);
+                carsMainForm.bindUpdateIncomesForm(incomesRow, this);
             }
             catch (Exception ex)
             {
@@ -117,7 +117,7 @@ namespace MainSystem
         {
             try
             {
-                MainForm.bindReportIncomesForm(gridControl1);
+                carsMainForm.bindReportIncomesForm(gridControl1);
             }
             catch (Exception ex)
             {

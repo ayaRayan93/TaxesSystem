@@ -28,7 +28,7 @@ namespace MainSystem
             base.OnPaint(pe);
         }
 
-        private void textBox_Click(object sender, EventArgs e)
+        /*private void textBox_Click(object sender, EventArgs e)
         {
             openOnScreenKeyboard();
         }
@@ -50,7 +50,6 @@ namespace MainSystem
                 System.Diagnostics.Process asd = System.Diagnostics.Process.GetProcessesByName("TabTip").First();
                 asd.Kill();
             }
-
-        }
+        }*/
     }
 }

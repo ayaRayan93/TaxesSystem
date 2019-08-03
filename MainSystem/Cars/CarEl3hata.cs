@@ -15,14 +15,14 @@ namespace MainSystem
     public partial class CarEl3hata : Form
     {
         MySqlConnection dbconnection;
-        MainForm MainForm;
-        public CarEl3hata(MainForm MainForm)
+        MainForm carsMainForm;
+        public CarEl3hata(MainForm carsMainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                this.MainForm = MainForm;
+                this.carsMainForm = carsMainForm;
             }
             catch (Exception ex)
             {
@@ -47,7 +47,7 @@ namespace MainSystem
         {
             try
             {
-                MainForm.bindRecordEl3hataForm(this);
+                carsMainForm.bindRecordEl3hataForm(this);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace MainSystem
             try
             {
                 DataRowView el3htaRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-                MainForm.bindUpdateEl3hataForm(el3htaRow, this);
+                carsMainForm.bindUpdateEl3hataForm(el3htaRow, this);
             }
             catch (Exception ex)
             {
@@ -113,7 +113,7 @@ namespace MainSystem
         {
             try
             {
-                MainForm.bindReportEl3hataForm(gridControl1);
+                carsMainForm.bindReportEl3hataForm(gridControl1);
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace MainSystem
         //function
         public void displayData()
         {
-            string query = "select ID as 'الرقم المسلسل', cars.Car_Number as 'رقم العربية',Travel_Destination as 'وجهة السفر',Previous_Custody as 'رصيد العهدة السابق',Custody as 'العهدة',Settlement_Custody as 'تسوية العهدة',Rest_Custody as 'رصيد العهدة',Date as 'التاريخ',Note as 'الملاحظات' from car_travel inner join cars on  car_travel.Car_ID=cars.Car_ID";
+            string query = "select ID as 'الرقم المسلسل', cars.Car_Number as 'رقم العربية',Travel_Destination as 'وجهة السفر',Previous_Custody as 'رصيد العهدة السابق',Custody as 'العهدة',Settlement_Custody as 'تسوية العهدة',Rest_Custody as 'رصيد العهدة',DATE_FORMAT(Date,'%Y-%m-%d') as 'التاريخ',Note as 'الملاحظات' from car_travel inner join cars on  car_travel.Car_ID=cars.Car_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);

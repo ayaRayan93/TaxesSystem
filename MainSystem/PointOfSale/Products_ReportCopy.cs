@@ -123,7 +123,7 @@ namespace MainSystem
             }
         }
 
-        private void textBox_Click(object sender, EventArgs e)
+        /*private void textBox_Click(object sender, EventArgs e)
         {
             openOnScreenKeyboard();
         }
@@ -146,7 +146,7 @@ namespace MainSystem
                 asd.Kill();
             }
 
-        }
+        }*/
         
         private void SearchProduct_Load(object sender, EventArgs e)
         {
