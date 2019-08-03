@@ -300,7 +300,10 @@ namespace MainSystem
 
                         for (int i = 0; i < arrPaidMoneyPlus.Length; i++)
                             arrPaidMoneyPlus[i] = 0;
-                        
+                        for (int i = 0; i < arrOFPhaatPlus.Length; i++)
+                            arrOFPhaatPlus[i] = 0;
+                        for (int i = 0; i < arrOFPhaatMinus.Length; i++)
+                            arrOFPhaatMinus[i] = 0;
                         xtraTabPage.ImageOptions.Image = null;
                     }
                     else
