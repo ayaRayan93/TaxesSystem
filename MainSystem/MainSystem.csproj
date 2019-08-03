@@ -1965,6 +1965,12 @@
     <Compile Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.designer.cs">
       <DependentUpon>Report_Item_Transitions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket_Copy4.designer.cs">
+      <DependentUpon>Print_Product_Ticket_Copy4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy3.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3308,6 +3314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.resx">
       <DependentUpon>Report_Item_Transitions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy4.resx">
+      <DependentUpon>Print_Product_Ticket_Copy4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy3.resx">
       <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>
