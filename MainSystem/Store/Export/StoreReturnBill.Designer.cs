@@ -766,6 +766,8 @@
             // comEngCon
             // 
             this.comEngCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comEngCon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comEngCon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
             this.comEngCon.Location = new System.Drawing.Point(58, 30);
@@ -872,6 +874,8 @@
             // comClient
             // 
             this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comClient.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comClient.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(58, 61);
