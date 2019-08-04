@@ -362,7 +362,7 @@ namespace MainSystem
         {
             try
             {
-                if (comFromStore.Text != "" && comType.Text != "" && comFactory.Text != "" && comGroup.Text != "")
+                if (comFromStore.Text != "" && comType.Text != "" && comFactory.Text != "")
                 {
                     CustomerBillID = 0;
                     string q1, q2, q3, q4, fQuery = "";
@@ -459,7 +459,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    MessageBox.Show("يجب اختيار المخزن واختيار النوع والمصنع والمجموعة على الاقل");
+                    MessageBox.Show("يجب اختيار المخزن واختيار النوع والمصنع على الاقل");
                 }
             }
             catch (Exception ex)
