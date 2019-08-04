@@ -407,7 +407,11 @@ namespace MainSystem
             try
             {
                 clearCom();
-                gridControl1.DataSource = null;
+                while (gridView1.RowCount != 0)
+                {
+                    gridView1.SelectAll();
+                    gridView1.DeleteSelectedRows();
+                }
                 gridControl2.DataSource = null;
                 txtSale.Text = "0";
                 txtReturn.Text = "0";
