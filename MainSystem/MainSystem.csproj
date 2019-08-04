@@ -2326,6 +2326,24 @@
     <Compile Include="Store\Transportation\ConfirmationStore.designer.cs">
       <DependentUpon>ConfirmationStore.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Transportation\report\Print_Transportation_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Print_Transportation_Copy.designer.cs">
+      <DependentUpon>Print_Transportation_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Report_Transportation_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Report_Transportation_Copy.designer.cs">
+      <DependentUpon>Report_Transportation_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Transportation_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Transportation_Report.designer.cs">
+      <DependentUpon>Transportation_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Transportation\Transportation_Items.cs" />
     <Compile Include="Store\Transportation\Print_Transportation.cs">
       <SubType>Component</SubType>
@@ -3434,6 +3452,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\Print_Transportation.resx">
       <DependentUpon>Print_Transportation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\Print_Transportation_Copy.resx">
+      <DependentUpon>Print_Transportation_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\Report_Transportation_Copy.resx">
+      <DependentUpon>Report_Transportation_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\Transportation_Report.resx">
+      <DependentUpon>Transportation_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\Report_Transportation.resx">
       <DependentUpon>Report_Transportation.cs</DependentUpon>

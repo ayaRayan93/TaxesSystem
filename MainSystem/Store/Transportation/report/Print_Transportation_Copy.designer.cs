@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Print_Transportation
+    partial class Print_Transportation_Copy
     {
         /// <summary>
         /// Required designer variable.
@@ -71,8 +71,9 @@
             this.FromStore = new DevExpress.XtraReports.Parameters.Parameter();
             this.TransferNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.ToStore = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -378,7 +379,8 @@
             this.xrLabel4,
             this.xrLabel2,
             this.xrLabel9,
-            this.xrPictureBox1});
+            this.xrPictureBox1,
+            this.xrLabel20});
             this.ReportHeader.HeightF = 126.125F;
             this.ReportHeader.Name = "ReportHeader";
             // 
@@ -522,6 +524,11 @@
             this.ToStore.Description = "ToStore";
             this.ToStore.Name = "ToStore";
             // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MainSystem.Transportation_Items);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // xrPictureBox1
             // 
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
@@ -531,10 +538,21 @@
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(74.99996F, 100F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
-            // objectDataSource1
+            // xrLabel20
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Transportation_Items);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(9.536743E-05F, 100F);
+            this.xrLabel20.Multiline = true;
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(75F, 23F);
+            this.xrLabel20.StylePriority.UseBorders = false;
+            this.xrLabel20.StylePriority.UseFont = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "COPY صورة";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // Print_Transportation
             // 
@@ -610,5 +628,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel20;
     }
 }
