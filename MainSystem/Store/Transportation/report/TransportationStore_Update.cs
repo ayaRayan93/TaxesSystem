@@ -22,11 +22,13 @@ namespace MainSystem
         bool flagProduct = false;
         DataRow row1;
         int CustomerBillID = 0;
+        DataRow selRow = null;
 
         public TransportationStore_Update(DataRow rows, Transportation_Report transportationReport, XtraTabControl xtraTabControlStoresContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            selRow = rows;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -69,6 +71,16 @@ namespace MainSystem
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = "";
+
+                //query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية','رقم الفاتورة','CustomerBill_ID' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  group by data.Data_ID";
+                query = "SELECT data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name, ' ', COALESCE(color.Color_Name, ''), ' ', data.Description, ' ', groupo.Group_Name, ' ', factory.Factory_Name, ' ', COALESCE(size.Size_Value, ''), ' ', COALESCE(sort.Sort_Value, '')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID="+selRow[0].ToString()+" order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                gridControl2.DataSource = dt;
+                gridView2.Columns[0].Visible = false;
+                gridView2.Columns["CustomerBill_ID"].Visible = false;
+                gridView2.Columns["الاسم"].Width = 300;
 
                 loaded = true;
             }
