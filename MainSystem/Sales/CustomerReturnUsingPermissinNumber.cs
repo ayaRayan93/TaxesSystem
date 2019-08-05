@@ -244,7 +244,7 @@ namespace MainSystem
                     dbconnection.Open();
                     if (!flag)
                     {
-                        q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name  from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + Branch_BillNumber+" and Branch_ID="+Branch_ID;
+                        q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name  from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + labBillNumber.Text+" and Branch_ID="+Branch_ID;
                         c = new MySqlCommand(q, dbconnection);
                         dr = c.ExecuteReader();
                         while (dr.Read())
