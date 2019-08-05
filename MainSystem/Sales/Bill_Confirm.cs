@@ -101,7 +101,10 @@ namespace MainSystem
                 string qb = "select Branch_Name from branch where Branch_ID=" + EmpBranchId;
                 MySqlCommand cqb = new MySqlCommand(qb, dbconnection);
                 EmpBranchName = cqb.ExecuteScalar().ToString();
-         
+
+                dateTimePicker1.Visible = true;
+                labelDate.Visible = true;
+
                 loaded = true;
             }
             catch (Exception ex)

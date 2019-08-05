@@ -67,6 +67,7 @@ namespace MainSystem
         {
             try
             {
+                txtBillNum.Text = "";
                 search(0);
             }
             catch (Exception ex)
