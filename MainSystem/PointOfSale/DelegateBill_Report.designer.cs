@@ -100,6 +100,7 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // panel2
             // 
@@ -205,7 +206,6 @@
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.Size = new System.Drawing.Size(200, 24);
             this.comDelegate.TabIndex = 10;
-            this.comDelegate.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // buttonSearch
             // 

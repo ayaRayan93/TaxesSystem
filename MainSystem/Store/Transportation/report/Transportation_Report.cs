@@ -21,65 +21,37 @@ namespace MainSystem
     {
         MySqlConnection conn;
         MySqlConnection connectionReader1, connectionReader2;
-        MainForm bankMainForm = null;
-        XtraTabControl MainTabControlBank;
+        MainForm MainForm = null;
         DataRow row1 = null;
         
-        public static XtraTabPage MainTabPagePrintingTransitions;
-        Panel panelPrintingTransitions;
-
-        public static BillsTransitions_Print bankPrint;
-
-        public static GridControl gridcontrol;
         bool loadedBranch = false;
 
-        public Transportation_Report(MainForm BankMainForm)
+        public Transportation_Report(MainForm mainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             connectionReader1 = new MySqlConnection(connection.connectionString);
             connectionReader2 = new MySqlConnection(connection.connectionString);
-            bankMainForm = BankMainForm;
-            MainTabControlBank = MainForm.tabControlBank;
-            
-            MainTabPagePrintingTransitions = new XtraTabPage();
-            panelPrintingTransitions = new Panel();
-            
-            gridcontrol = gridControl1;
-
-            /*comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;*/
+            MainForm = mainForm;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (!loadedBranch)
-                {
-                    loadBranch();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
         
         private void txtBillNum_KeyDown(object sender, KeyEventArgs e)
         {
-            /*if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
-                    if (comBranch.Text != "" && txtBranchID.Text != "")
+                    if (txtBillNum.Text != "")
                     {
-                        search();
+                        search(Convert.ToInt16(txtBillNum.Text));
                     }
                     else
                     {
-                        MessageBox.Show("يجب اختيار فرع");
+                        MessageBox.Show("يجب تحديد رقم الفاتورة");
                     }
                 }
                 catch (Exception ex)
@@ -87,16 +59,15 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
                 conn.Close();
-                myConnection.Close();
                 connectionReader1.Close();
-            }*/
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                search();
+                search(0);
             }
             catch (Exception ex)
             {
@@ -110,7 +81,7 @@ namespace MainSystem
         {
             try
             {
-                /*clearCom();*/
+                clearCom();
             }
             catch (Exception ex)
             {
@@ -162,28 +133,21 @@ namespace MainSystem
             }
         }
 
-        //functions
-        private void loadBranch()
-        {
-            conn.Open();
-            string query = "select * from branch";
-            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            /*comBranch.DataSource = dt;
-            comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-            comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            comBranch.SelectedIndex = -1;*/
-
-            loadedBranch = true;
-        }
-
-        public void search()
+        public void search(int billNum)
         {
             DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store", conn);
-            MySqlDataAdapter adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
-
+            MySqlDataAdapter adapterSupplier = null;
+            MySqlDataAdapter adapterPhone = null;
+            if (billNum != 0)
+            {
+                adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store", conn);
+                adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+            }
+            else
+            {
+                adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store where transfer_product.TransferProduct_ID=" + billNum, conn);
+                adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + billNum + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+            }
             adapterSupplier.Fill(sourceDataSet, "transfer_product");
             adapterPhone.Fill(sourceDataSet, "transfer_product_details");
 
@@ -207,6 +171,16 @@ namespace MainSystem
             }
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public void clearCom()
         {
             foreach (Control co in this.tableLayoutPanel3.Controls)
@@ -220,24 +194,6 @@ namespace MainSystem
                     co.Text = "";
                 }
             }
-            /*foreach (Control co in this.tableLayoutPanel4.Controls)
-            {
-                if (co is System.Windows.Forms.ComboBox)
-                {
-                    co.Text = "";
-                }
-                else if (co is TextBox)
-                {
-                    co.Text = "";
-                }
-                else if (co is DateTimePicker)
-                {
-                    dateTimePicker1.Value = DateTime.Now;
-                }
-            }
-            txtTotal.Text = "";
-            txtDiscount.Text = "";
-            txtFinal.Text = "";*/
             gridControl1.DataSource = null;
         }
     }

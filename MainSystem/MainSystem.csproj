@@ -2338,6 +2338,12 @@
     <Compile Include="Store\Transportation\report\Report_Transportation_Copy.designer.cs">
       <DependentUpon>Report_Transportation_Copy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Transportation\report\TransportationStore_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\TransportationStore_Update.designer.cs">
+      <DependentUpon>TransportationStore_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Transportation\report\Transportation_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3458,6 +3464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\report\Report_Transportation_Copy.resx">
       <DependentUpon>Report_Transportation_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\TransportationStore_Update.resx">
+      <DependentUpon>TransportationStore_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\report\Transportation_Report.resx">
       <DependentUpon>Transportation_Report.cs</DependentUpon>
