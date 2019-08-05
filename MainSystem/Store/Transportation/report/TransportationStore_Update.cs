@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace MainSystem
         DataRow row1;
         int CustomerBillID = 0;
 
-        public TransportationStore_Update(MainForm mainForm)
+        public TransportationStore_Update(DataRow rows, Transportation_Report transportationReport, XtraTabControl xtraTabControlStoresContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
