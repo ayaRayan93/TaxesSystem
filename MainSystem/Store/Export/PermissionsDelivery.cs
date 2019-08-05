@@ -46,7 +46,17 @@ namespace MainSystem
                 comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStore.Text = "";
-                comStore.Text = "";
+                txtStoreID.Text = "";
+
+                query = "select * from branch ";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
+                txtBranchID.Text = "";
                 loaded = true;
             }
             catch (Exception ex)
@@ -62,6 +72,8 @@ namespace MainSystem
             {
                 txtStoreID.Text = "";
                 comStore.Text = "";
+                txtBranchID.Text = "";
+                comBranch.Text = "";
                 dateTimeFrom.Value = DateTime.Now.Date;
                 dateTimeTo.Value = DateTime.Now.Date;
             }
@@ -140,7 +152,17 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBranchID.Text = comBranch.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void txtStoreID_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -161,7 +183,26 @@ namespace MainSystem
                 }
             }
         }
-
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         //functions
         public void ShippingPermissions()
         {
@@ -266,6 +307,8 @@ namespace MainSystem
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
+            if (txtBranchID.Text != "")
+                subQuery = " and customer_bill.Branch_ID=" + txtBranchID.Text;
             string query = "";
             if (d== d2)
               query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where  Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
