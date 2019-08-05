@@ -423,7 +423,7 @@
             this.dateTimePicker1.RightToLeftLayout = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(159, 23);
             this.dateTimePicker1.TabIndex = 97;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 8, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2019, 8, 5, 0, 0, 0, 0);
             this.dateTimePicker1.Visible = false;
             // 
             // btnDetails
