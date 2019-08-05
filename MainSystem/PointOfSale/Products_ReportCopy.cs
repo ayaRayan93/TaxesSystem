@@ -23,7 +23,7 @@ namespace MainSystem
 {
     public partial class Products_ReportCopy : Form
     {
-        MySqlConnection dbconnection, dbconnection2, dbconnection3, dbconnection4, dbconnection5, dbconnection6, dbconnection7;
+        MySqlConnection dbconnection, dbconnection2, dbconnection3, dbconnection4, dbconnection5, dbconnection6, dbconnection7, dbconnection8;
         XtraTabControl MainTabControlPointSale;
         bool loaded = false;
         bool factoryFlage = false;
@@ -78,7 +78,7 @@ namespace MainSystem
                 dbconnection5 = new MySqlConnection(connection.connectionString);
                 dbconnection6 = new MySqlConnection(connection.connectionString);
                 dbconnection7 = new MySqlConnection(connection.connectionString);
-             
+                dbconnection8 = new MySqlConnection(connection.connectionString);
                 MainTabControlPointSale = MainForm.tabControlPointSale;
 
                 xtraTabPage = new XtraTabPage();
@@ -1345,12 +1345,15 @@ namespace MainSystem
                     int billnum = 0;
                     if (int.TryParse(txtBillNum.Text, out billnum))
                     {
+                        dbconnection8.Open();
                         dbconnection5.Open();
-                        string qt = "select dash_delegate_bill.Delegate_ID from dash_delegate_bill inner join dash on dash_delegate_bill.Dash_ID=dash.Dash_ID where dash_delegate_bill.Bill_Number=" + billnum + " and dash_delegate_bill.Branch_ID=" + empBranchID + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
-                        MySqlCommand comt = new MySqlCommand(qt, dbconnection5);
-                        if (comt.ExecuteScalar() == null)
+                        string qt = "select dash_delegate_bill.Delegate_ID,dash_delegate_bill.Delegate_Name from dash_delegate_bill inner join dash on dash_delegate_bill.Dash_ID=dash.Dash_ID where dash_delegate_bill.Bill_Number=" + billnum + " and dash_delegate_bill.Branch_ID=" + empBranchID + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                        MySqlCommand comt = new MySqlCommand(qt, dbconnection8);
+                        MySqlDataReader dr = comt.ExecuteReader();
+                        if (!dr.HasRows)
                         {
                             empID = 0;
+                            txtDelegateName.Text = "";
                             comClient.Text = "";
                             txtPhone.Text = "";
                             comClient.Enabled = true;
@@ -1361,48 +1364,64 @@ namespace MainSystem
                             billExist = false;
                             mainBillExist = false;
                             main.test(0);
-                            dbconnection5.Close();
+                            dbconnection8.Close();
                             MessageBox.Show("يوجد خطا فى هذه الفاتورة");
                             return;
                         }
-                        empID = Convert.ToInt32(comt.ExecuteScalar().ToString());
-
-                        string q = "select * from dash where dash.Branch_ID=" + empBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
-                        MySqlCommand cc = new MySqlCommand(q, dbconnection5);
-                        MySqlDataReader dr4 = cc.ExecuteReader();
-                        if (dr4.HasRows)
+                        while (dr.Read())
                         {
-                            while (dr4.Read())
+
+                            empID = Convert.ToInt32(dr[0].ToString());
+                            txtDelegateName.Text = dr[1].ToString();
+
+                            string q = "select * from dash where dash.Branch_ID=" + empBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                            MySqlCommand cc = new MySqlCommand(q, dbconnection5);
+                            MySqlDataReader dr4 = cc.ExecuteReader();
+                            if (dr4.HasRows)
                             {
-                                DashBillNum = Convert.ToInt32(dr4["Dash_ID"].ToString());
-                                if (CheckDelegateBill(DashBillNum))
+                                while (dr4.Read())
                                 {
-                                    mainBillExist = true;
-                                    if (dr4["Customer_ID"].ToString() != "")
+                                    DashBillNum = Convert.ToInt32(dr4["Dash_ID"].ToString());
+                                    if (CheckDelegateBill(DashBillNum))
                                     {
-                                        dbconnection4.Open();
-                                        string query = "select * from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + dr4["Customer_ID"].ToString();
-                                        MySqlCommand cd = new MySqlCommand(query, dbconnection4);
-                                        MySqlDataReader dr3 = cd.ExecuteReader();
-                                        if (dr3.HasRows)
+                                        mainBillExist = true;
+                                        if (dr4["Customer_ID"].ToString() != "")
                                         {
-                                            while (dr3.Read())
+                                            dbconnection4.Open();
+                                            string query = "select * from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_ID=" + dr4["Customer_ID"].ToString();
+                                            MySqlCommand cd = new MySqlCommand(query, dbconnection4);
+                                            MySqlDataReader dr3 = cd.ExecuteReader();
+                                            if (dr3.HasRows)
                                             {
-                                                txtPhone.Enabled = false;
-                                                comClient.Enabled = false;
-                                                txtClientId.Enabled = false;
-                                                txtPhone.Text = dr3["Phone"].ToString();
-                                                comClient.Text = dr3["Customer_Name"].ToString();
-                                                comClient.SelectedValue = dr4["Customer_ID"].ToString();
-                                                ClintID = Convert.ToInt32(dr4["Customer_ID"].ToString());
-                                                txtClientId.Text = ClintID.ToString();
-                                                AddedToBill = true;
+                                                while (dr3.Read())
+                                                {
+                                                    txtPhone.Enabled = false;
+                                                    comClient.Enabled = false;
+                                                    txtClientId.Enabled = false;
+                                                    txtPhone.Text = dr3["Phone"].ToString();
+                                                    comClient.Text = dr3["Customer_Name"].ToString();
+                                                    comClient.SelectedValue = dr4["Customer_ID"].ToString();
+                                                    ClintID = Convert.ToInt32(dr4["Customer_ID"].ToString());
+                                                    txtClientId.Text = ClintID.ToString();
+                                                    AddedToBill = true;
+                                                }
+                                                dr3.Close();
                                             }
-                                            dr3.Close();
+                                        }
+                                        else
+                                        {
+                                            comClient.Text = "";
+                                            txtPhone.Text = "";
+                                            comClient.Enabled = true;
+                                            txtPhone.Enabled = true;
+                                            txtClientId.Enabled = true;
+                                            txtClientId.Text = "";
+                                            AddedToBill = false;
                                         }
                                     }
                                     else
                                     {
+                                        ////////////////////////
                                         comClient.Text = "";
                                         txtPhone.Text = "";
                                         comClient.Enabled = true;
@@ -1410,60 +1429,50 @@ namespace MainSystem
                                         txtClientId.Enabled = true;
                                         txtClientId.Text = "";
                                         AddedToBill = false;
+                                        billExist = false;
+                                        mainBillExist = false;
+                                        main.test(0);
+                                        ///////////////////////
+                                        MessageBox.Show("المندوب غير مسجل علي هذه الفاتورة");
+                                        txtBillNum.Text = "";
+                                        dbconnection4.Close();
+                                        dbconnection2.Close();
+                                        dbconnection5.Close();
+                                        return;
                                     }
+                                }
+
+                                string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + empBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
+                                dbconnection2.Open();
+                                MySqlCommand com = new MySqlCommand(qu, dbconnection2);
+                                dr2 = com.ExecuteReader();
+                                if (dr2.HasRows)
+                                {
+                                    billExist = true;
+                                    main.test(billnum);
                                 }
                                 else
                                 {
-                                    ////////////////////////
-                                    comClient.Text = "";
-                                    txtPhone.Text = "";
-                                    comClient.Enabled = true;
-                                    txtPhone.Enabled = true;
-                                    txtClientId.Enabled = true;
-                                    txtClientId.Text = "";
-                                    AddedToBill = false;
                                     billExist = false;
-                                    mainBillExist = false;
-                                    main.test(0);
-                                    ///////////////////////
-                                    MessageBox.Show("المندوب غير مسجل علي هذه الفاتورة");
-                                    txtBillNum.Text = "";
-                                    dbconnection4.Close();
-                                    dbconnection2.Close();
-                                    dbconnection5.Close();
-                                    return;
+                                    main.test(billnum);
                                 }
-                            }
-
-                            string qu = "select * from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID where dash.Branch_ID=" + empBranchID + " and dash.Bill_Number=" + billnum + " and dash.Confirmed=0 order by dash.Dash_ID desc limit 1";
-                            dbconnection2.Open();
-                            MySqlCommand com = new MySqlCommand(qu, dbconnection2);
-                            dr2 = com.ExecuteReader();
-                            if (dr2.HasRows)
-                            {
-                                billExist = true;
-                                main.test(billnum);
                             }
                             else
                             {
+                                comClient.Text = "";
+                                txtPhone.Text = "";
+                                comClient.Enabled = true;
+                                txtPhone.Enabled = true;
+                                txtClientId.Enabled = true;
+                                txtClientId.Text = "";
                                 billExist = false;
-                                main.test(billnum);
+                                mainBillExist = false;
+                                AddedToBill = false;
+                                main.test(0);
+                                MessageBox.Show("هذه الفاتورة غير موجودة");
                             }
                         }
-                        else
-                        {
-                            comClient.Text = "";
-                            txtPhone.Text = "";
-                            comClient.Enabled = true;
-                            txtPhone.Enabled = true;
-                            txtClientId.Enabled = true;
-                            txtClientId.Text = "";
-                            billExist = false;
-                            mainBillExist = false;
-                            AddedToBill = false;
-                            main.test(0);
-                            MessageBox.Show("هذه الفاتورة غير موجودة");
-                        }
+                        dr.Close();
                     }
                     else
                     {
@@ -1477,6 +1486,7 @@ namespace MainSystem
                 dbconnection4.Close();
                 dbconnection2.Close();
                 dbconnection5.Close();
+                dbconnection8.Close();
             }
         }
         private void txtPhone_KeyDown(object sender, KeyEventArgs e)

@@ -47,6 +47,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -148,6 +151,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.txtBranchID);
+            this.panel1.Controls.Add(this.comBranch);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.newChoose);
             this.panel1.Controls.Add(this.txtStoreID);
             this.panel1.Controls.Add(this.comStore);
@@ -312,6 +318,38 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowIndicator = false;
             // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtBranchID.Location = new System.Drawing.Point(227, 20);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.Size = new System.Drawing.Size(48, 24);
+            this.txtBranchID.TabIndex = 207;
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(282, 20);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.Size = new System.Drawing.Size(173, 24);
+            this.comBranch.TabIndex = 205;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(461, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 16);
+            this.label1.TabIndex = 206;
+            this.label1.Text = "الفرع";
+            // 
             // PermissionsDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,5 +394,8 @@
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private System.Windows.Forms.TextBox txtBranchID;
+        private System.Windows.Forms.ComboBox comBranch;
+        private System.Windows.Forms.Label label1;
     }
 }

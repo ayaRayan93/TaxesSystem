@@ -207,13 +207,14 @@ namespace MainSystem
                     bool flag = false;
                     while (dr.Read())
                     {
-                        flag = true;
+
                         if (dr[0].ToString() != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                             com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[0].ToString());
                             com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
                             com.Parameters["@Customer_Name"].Value = dr[1].ToString();
+                            flag = true;
                         }
                         else
                         {
@@ -228,6 +229,7 @@ namespace MainSystem
                             com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[2].ToString());
                             com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                             com.Parameters["@Client_Name"].Value = dr[3].ToString();
+                            flag = true;
                         }
                         else
                         {
@@ -238,39 +240,35 @@ namespace MainSystem
                         }
                     }
                     dr.Close();
+                    dbconnection.Close();
+                    dbconnection.Open();
                     if (!flag)
                     {
-                        q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + Branch_BillNumber+" and Branch_ID="+Branch_ID;
+                        q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name  from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + Branch_BillNumber+" and Branch_ID="+Branch_ID;
                         c = new MySqlCommand(q, dbconnection);
                         dr = c.ExecuteReader();
                         while (dr.Read())
                         {
                             if (dr[0].ToString() != "")
                             {
-                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                                 com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[0].ToString());
-                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                               
                                 com.Parameters["@Customer_Name"].Value = dr[1].ToString();
                             }
                             else
                             {
-                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
                                 com.Parameters["@Customer_ID"].Value = null;
-                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
                                 com.Parameters["@Customer_Name"].Value = "";
                             }
                             if (dr[2].ToString() != "")
                             {
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                                 com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[2].ToString());
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                              
                                 com.Parameters["@Client_Name"].Value = dr[3].ToString();
                             }
                             else
                             {
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
                                 com.Parameters["@Client_ID"].Value = null;
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                                 com.Parameters["@Client_Name"].Value = "";
                             }
                         }
