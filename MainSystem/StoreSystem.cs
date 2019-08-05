@@ -1626,6 +1626,30 @@ namespace MainSystem
             searchReciveDate.Dock = DockStyle.Fill;
             searchReciveDate.Show();
         }
+        public void bindUpdateTransporationForm(DataRow rows, Transportation_Report transportationStore)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل بيانات تحويل بنود");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تعديل بيانات تحويل بنود");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل بيانات تحويل بنود");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            TransportationStore_Update objForm = new TransportationStore_Update(rows, transportationStore, xtraTabControlStoresContent);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         public void GetExpectedOrders(object sender, EventArgs e)
         {
             try
