@@ -297,6 +297,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(97, 46);
             this.btnCancel.TabIndex = 5;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnUpdate
             // 
@@ -317,7 +318,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(97, 46);
             this.btnUpdate.TabIndex = 3;
-            this.btnUpdate.Click += new System.EventHandler(this.btnReport_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // toolTipController1
             // 

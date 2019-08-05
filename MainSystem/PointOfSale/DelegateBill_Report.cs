@@ -69,32 +69,9 @@ namespace MainSystem
             conn.Close();
         }
 
-        private void txtBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    XtraTabPage xtraTabPage = getTabPage("tabPageDelegateBillReport");
-                    if (!IsClear())
-                    {
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                    }
-                    else
-                    {
-                        xtraTabPage.ImageOptions.Image = null;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         public void search()
         {
-            string query = "SELECT distinct delegate.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Customer_Name as 'العميل',dash.Bill_Date as 'التاريخ' FROM dash left JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON dash_details.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID + " and dash_details.Delegate_ID=" + comDelegate.SelectedValue.ToString();
+            string query = "SELECT distinct delegate.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Customer_Name as 'العميل',dash.Bill_Date as 'التاريخ' FROM dash inner JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON dash_details.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID + " and dash_details.Delegate_ID=" + comDelegate.SelectedValue.ToString();
             conn.Open();
             MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
             DataSet dset = new DataSet();
@@ -104,7 +81,7 @@ namespace MainSystem
 
         public void searchAll()
         {
-            string query = "SELECT distinct delegate.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Customer_Name as 'العميل',dash.Bill_Date as 'التاريخ' FROM dash left JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON dash_details.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID;
+            string query = "SELECT distinct delegate.Delegate_Name as 'المندوب',dash.Bill_Number as 'الفاتورة',dash.Customer_Name as 'العميل',dash.Bill_Date as 'التاريخ' FROM dash inner JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON dash_details.Delegate_ID = delegate.Delegate_ID where DATE_FORMAT(dash.Bill_Date,'%Y-%m-%d') between '" + this.dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + this.dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and dash.Branch_ID=" + UserControl.EmpBranchID;
             conn.Open();
             MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
             DataSet dset = new DataSet();
