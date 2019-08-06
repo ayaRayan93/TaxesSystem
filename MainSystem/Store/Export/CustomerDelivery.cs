@@ -188,7 +188,6 @@ namespace MainSystem
                 }
             }
         }
-
         private void GridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
             GridView view = sender as GridView;

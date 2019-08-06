@@ -530,29 +530,29 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void dataGridView1_EditorKeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtEditCode.Visible = true;
-                    label7.Visible = true;
-                    DataRowView row = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                    if (row != null)
-                    {
-                        arrCode = row[4].ToString().ToCharArray();
-                        string str = arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString() + "";
-                        txtEditCode.Text = str;
-                        txtEditCode.Focus();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //private void dataGridView1_EditorKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.KeyCode == Keys.Enter)
+        //        {
+        //            txtEditCode.Visible = true;
+        //            label7.Visible = true;
+        //            DataRowView row = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
+        //            if (row != null)
+        //            {
+        //                arrCode = row[4].ToString().ToCharArray();
+        //                string str = arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString() + "";
+        //                txtEditCode.Text = str;
+        //                txtEditCode.Focus();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
         private void txtEditCode_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -691,6 +691,7 @@ namespace MainSystem
                     lView.Columns[2].Visible = false;
                     lView.Columns[3].Visible = false;
                     lView.Columns[4].Width = 200;
+                    lView.CellValueChanged += gridView2_CellValueChanged;
                 }
                 else
                 {
@@ -712,6 +713,7 @@ namespace MainSystem
                     lView.Columns[2].Visible = false;
                     lView.Columns[3].Visible = false;
                     lView.Columns[4].Width = 200;
+                    lView.CellValueChanged += gridView2_CellValueChanged;
                 }
                 load = true;
             }
@@ -787,6 +789,7 @@ namespace MainSystem
                     lView.Columns[2].Visible = false;
                     lView.Columns[3].Visible = false;
                     lView.Columns[4].Width = 200;
+                    lView.CellValueChanged += gridView2_CellValueChanged;
                 }
                 else
                 {
@@ -808,6 +811,7 @@ namespace MainSystem
                     lView.Columns[2].Visible = false;
                     lView.Columns[3].Visible = false;
                     lView.Columns[4].Width = 200;
+                    lView.CellValueChanged += gridView2_CellValueChanged;
                 }
                 load = true;
             }
@@ -1000,6 +1004,28 @@ namespace MainSystem
             }
         
         }
+
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "colالكرتنة")
+                {
+                    GridView lView =  (GridView) sender;
+                    DataRow dataRow = lView.GetDataRow(e.RowHandle);
+                    dbconnection.Open();
+                    string query = "update data set Carton="+e.Value+" where Data_ID="+ dataRow[0].ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
         public void filterSize()
         {
             if (comFactory.Text != "")

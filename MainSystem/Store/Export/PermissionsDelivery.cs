@@ -301,9 +301,9 @@ namespace MainSystem
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd");
+            string d = date.ToString("yyyy-MM-dd hh:mm:ss");
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd");
+            string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
