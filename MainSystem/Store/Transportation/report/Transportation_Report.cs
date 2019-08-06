@@ -24,8 +24,6 @@ namespace MainSystem
         MainForm MainForm = null;
         DataRow row1 = null;
         
-        bool loadedBranch = false;
-
         public Transportation_Report(MainForm mainForm)
         {
             InitializeComponent();
@@ -141,13 +139,13 @@ namespace MainSystem
             MySqlDataAdapter adapterPhone = null;
             if (billNum == 0)
             {
-                adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store", conn);
-                adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+                adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store where transfer_product.Canceled=0", conn);
+                adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.Canceled=0 order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
             }
             else
             {
-                adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store where transfer_product.TransferProduct_ID=" + billNum, conn);
-                adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + billNum + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+                adapterSupplier = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',storeFrom.Store_Name as 'من مخزن',storeTo.Store_Name as 'الى مخزن',transfer_product.Date as 'تاريخ التحويل' FROM transfer_product left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store where transfer_product.Canceled=0 and transfer_product.TransferProduct_ID=" + billNum, conn);
+                adapterPhone = new MySqlDataAdapter("SELECT transfer_product.TransferProduct_ID as 'رقم التحويل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.Canceled=0 and transfer_product.TransferProduct_ID=" + billNum + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
             }
             adapterSupplier.Fill(sourceDataSet, "transfer_product");
             adapterPhone.Fill(sourceDataSet, "transfer_product_details");
@@ -174,26 +172,80 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (row1 != null)
+            if (UserControl.userType == 1)
             {
-                try
+                if (row1 != null)
                 {
-                    MainForm.bindUpdateTransporationForm(row1, this);
+                    try
+                    {
+                        MainForm.bindUpdateTransporationForm(row1, this);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("يجب تحديد البند المراد تعديله");
                 }
-            }
-            else
-            {
-                MessageBox.Show("يجب تحديد البند المراد تعديله");
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            if (UserControl.userType == 1)
+            {
+                if (MessageBox.Show("هل انت متاكد انك تريد الالغاء؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        conn.Open();
+                        connectionReader1.Open();
+                        int rowhnd = gridView1.GetSelectedRows()[0];
+                        DataRow row2 = gridView1.GetDataRow(rowhnd);
 
+                        string query = "SELECT data.Data_ID,transfer_product_details.Quantity as 'الكمية',transfer_product_details.CustomerBill_ID,transfer_product.From_Store,transfer_product.To_Store FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store left JOIN customer_bill ON transfer_product_details.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + row2[0].ToString() + " and transfer_product.Canceled=0 order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
+                        MySqlCommand com = new MySqlCommand(query, connectionReader1);
+                        MySqlDataReader dr = com.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            if (dr["CustomerBill_ID"].ToString() == "0")
+                            {
+                                query = "select sum(Total_Meters) from storage where Data_ID=" + dr[0].ToString() + " and Store_ID=" + dr["From_Store"].ToString() + " group by Data_ID";
+                                com = new MySqlCommand(query, conn);
+                                double quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                double meters = quantity + Convert.ToDouble(dr["الكمية"].ToString());
+                                query = "update storage set Total_Meters=" + meters + " where Data_ID=" + dr[0].ToString() + " and Store_ID=" + dr["From_Store"].ToString();
+                                com = new MySqlCommand(query, conn);
+                                com.ExecuteNonQuery();
+
+                                query = "select sum(Total_Meters) from storage where Data_ID=" + dr[0].ToString() + " and Store_ID=" + dr["To_Store"].ToString() + " group by Data_ID";
+                                com = new MySqlCommand(query, conn);
+                                quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                meters = quantity - Convert.ToDouble(dr["الكمية"].ToString());
+                                query = "update storage set Total_Meters=" + meters + " where Data_ID=" + dr[0].ToString() + " and Store_ID=" + dr["To_Store"].ToString();
+                                com = new MySqlCommand(query, conn);
+                                com.ExecuteNonQuery();
+                            }
+                        }
+                        dr.Close();
+
+                        query = "update transfer_product set Canceled=1 where TransferProduct_ID=" + row2[0].ToString();
+                        com = new MySqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+
+                        GridView view = gridView1 as GridView;
+                        view.DeleteRow(rowhnd);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    conn.Close();
+                    connectionReader1.Close();
+                }
+            }
         }
 
         public void clearCom()

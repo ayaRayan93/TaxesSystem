@@ -15,7 +15,7 @@ namespace MainSystem
 {
     public partial class TransportationStore_Update : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection2;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
@@ -28,6 +28,7 @@ namespace MainSystem
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
             selRow = rows;
         }
 
@@ -42,7 +43,16 @@ namespace MainSystem
                 comFromStore.DataSource = dt;
                 comFromStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comFromStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                comFromStore.Text = "";
+                comFromStore.Text = selRow["من مخزن"].ToString();
+
+                query = "select * from Store where Store_ID<>" + comFromStore.SelectedValue.ToString();
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comToStore.DataSource = dt;
+                comToStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comToStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comToStore.Text = selRow["الى مخزن"].ToString();
 
                 query = "select * from type";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -72,8 +82,7 @@ namespace MainSystem
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.Text = "";
 
-                //query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية','رقم الفاتورة','CustomerBill_ID' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  INNER JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  group by data.Data_ID";
-                query = "SELECT data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name, ' ', COALESCE(color.Color_Name, ''), ' ', data.Description, ' ', groupo.Group_Name, ' ', factory.Factory_Name, ' ', COALESCE(size.Size_Value, ''), ' ', COALESCE(sort.Sort_Value, '')) as 'الاسم',transfer_product_details.Quantity as 'الكمية' FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID="+selRow[0].ToString()+" order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
+                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name, ' ', COALESCE(color.Color_Name, ''), ' ', data.Description, ' ', groupo.Group_Name, ' ', factory.Factory_Name, ' ', COALESCE(size.Size_Value, ''), ' ', COALESCE(sort.Sort_Value, '')) as 'الاسم',data.Carton as 'الكرتنة',transfer_product_details.Quantity as 'الكمية',customer_bill.Branch_BillNumber as 'رقم الفاتورة',customer_bill.CustomerBill_ID FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store left JOIN customer_bill ON transfer_product_details.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + selRow[0].ToString() + " and transfer_product.Canceled=0 order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
@@ -94,14 +103,14 @@ namespace MainSystem
         {
             if (loaded)
             {
-                string query = "select * from Store where Store_ID<>" + comFromStore.SelectedValue.ToString();
+                /*string query = "select * from Store where Store_ID<>" + comFromStore.SelectedValue.ToString();
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 comToStore.DataSource = dt;
                 comToStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comToStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                comToStore.Text = "";
+                comToStore.Text = "";*/
 
                 txtCode.Text = "";
                 txtQuantity.Text = "";
@@ -545,11 +554,10 @@ namespace MainSystem
                         return;
                     }
 
-                    if (txtQuantity.Text != ""/* && txtBalat.Text != "" && txtCarton.Text != ""*/)
+                    if (txtQuantity.Text != "")
                     {
                         double neededQuantity = 0;
-                        //int balatat, numCartons = 0;
-                        if (!double.TryParse(txtQuantity.Text, out neededQuantity)/* || !int.TryParse(txtBalat.Text, out balatat) || !int.TryParse(txtCarton.Text, out numCartons)*/)
+                        if (!double.TryParse(txtQuantity.Text, out neededQuantity))
                         {
                             MessageBox.Show("الكمية يجب ان تكون عدد");
                             return;
@@ -564,6 +572,56 @@ namespace MainSystem
                         
                         if (neededQuantity <= quantity)
                         {
+                            string query = "insert into transfer_product_details (Data_ID,Quantity,TransferProduct_ID,CustomerBill_ID) values (@Data_ID,@Quantity,@TransferProduct_ID,@CustomerBill_ID)";
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                            com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
+                            com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                            com.Parameters["@Quantity"].Value = neededQuantity;
+                            com.Parameters.Add("@TransferProduct_ID", MySqlDbType.Int16);
+                            com.Parameters["@TransferProduct_ID"].Value = selRow["رقم التحويل"].ToString();
+                            com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                            com.Parameters["@CustomerBill_ID"].Value = CustomerBillID;
+                            com.ExecuteNonQuery();
+
+                            if (txtBillNum.Text == "")
+                            {
+                                //query = "select sum(Total_Meters) from storage where Data_ID=" + row1[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
+                                //com = new MySqlCommand(query, dbconnection);
+                                //double quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                double meters = quantity - neededQuantity;
+                                query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row1[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString();
+                                com = new MySqlCommand(query, dbconnection);
+                                com.ExecuteNonQuery();
+
+                                query = "select sum(Total_Meters) from storage where Data_ID=" + row1[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                    meters = quantity + neededQuantity;
+                                    query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row1[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.ExecuteNonQuery();
+                                }
+                                else
+                                {
+                                    query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
+                                    com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime);
+                                    com.Parameters["@Storage_Date"].Value = DateTime.Now;
+                                    com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                                    com.Parameters["@Type"].Value = "بند";
+                                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
+                                    com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                                    com.Parameters["@Total_Meters"].Value = neededQuantity;
+                                    com.ExecuteNonQuery();
+                                }
+                            }
+
                             gridView2.AddNewRow();
                             int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
                             if (gridView2.IsNewItemRow(rowHandle) && row1 != null)
@@ -584,8 +642,6 @@ namespace MainSystem
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["رقم الفاتورة"], "");
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["CustomerBill_ID"], 0);
                                 }
-                                //gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد البلتات"], balatat);
-                                //gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين"], numCartons);
                             }
 
                             txtQuantity.Text = "";
@@ -623,13 +679,55 @@ namespace MainSystem
                 {
                     try
                     {
+                        dbconnection.Open();
+                        dbconnection2.Open();
+                        int cont = gridView2.GetSelectedRows().Length;
+                        for (int i = 0; i < cont; i++)
+                        {
+                            int rowhnd = gridView2.GetSelectedRows()[0];
+                            DataRow row2 = gridView2.GetDataRow(rowhnd);
+
+                            string query = "SELECT transfer_product_details.Quantity as 'الكمية',transfer_product_details.CustomerBill_ID FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store left JOIN customer_bill ON transfer_product_details.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + selRow[0].ToString() + " and data.Data_ID=" + row2[0].ToString() + " and transfer_product.Canceled=0 order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
+                            MySqlCommand com = new MySqlCommand(query, dbconnection2);
+                            MySqlDataReader dr = com.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                if (dr["CustomerBill_ID"].ToString() == "0")
+                                {
+                                    query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    double quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                    double meters = quantity + Convert.ToDouble(row2["الكمية"].ToString());
+                                    query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString();
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.ExecuteNonQuery();
+
+                                    query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                    meters = quantity - Convert.ToDouble(row2["الكمية"].ToString());
+                                    query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.ExecuteNonQuery();
+                                }
+                            }
+                            dr.Close();
+
+                            query = "delete from transfer_product_details where transfer_product_details.TransferProduct_ID=" + selRow[0].ToString() + " and transfer_product_details.Data_ID=" + row2["Data_ID"].ToString();
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                        }
                         GridView view = gridView2 as GridView;
                         view.DeleteSelectedRows();
+
+                        gridControl1.DataSource = null;
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
+                    dbconnection.Close();
+                    dbconnection2.Close();
                 }
             }
         }
@@ -638,81 +736,86 @@ namespace MainSystem
         {
             try
             {
-                if (gridView2.RowCount > 0 && comFromStore.Text != "" && comToStore.Text != "" && comFromStore.SelectedValue != null && comToStore.SelectedValue != null)
+                if (gridView2.RowCount > 0)
                 {
+                    dbconnection2.Open();
                     dbconnection.Open();
-                    string query = "insert into transfer_product (From_Store,To_Store,Date) values (@From_Store,@To_Store,@Date)";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@From_Store", MySqlDbType.Int16);
-                    com.Parameters["@From_Store"].Value = comFromStore.SelectedValue.ToString();
-                    com.Parameters.Add("@To_Store", MySqlDbType.Int16);
-                    com.Parameters["@To_Store"].Value = comToStore.SelectedValue.ToString();
-                    com.Parameters.Add("@Date", MySqlDbType.DateTime);
-                    com.Parameters["@Date"].Value = DateTime.Now;
-                    com.ExecuteNonQuery();
-
-                    query = "select TransferProduct_ID from transfer_product order by TransferProduct_ID desc limit 1";
-                    com = new MySqlCommand(query, dbconnection);
-                    int transferProductID = Convert.ToInt32(com.ExecuteScalar().ToString());
-
-                    for (int i = 0; i < gridView2.RowCount; i++)
+                    int transferProductID = Convert.ToInt32(selRow[0].ToString());
+                    string query = "SELECT data.Data_ID FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store left JOIN customer_bill ON transfer_product_details.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + selRow[0].ToString() + " order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection2);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    while (dr.Read())
                     {
-                        int rowhnd = gridView2.GetRowHandle(i);
-                        DataRow row2 = gridView2.GetDataRow(rowhnd);
-                        query = "insert into transfer_product_details (Data_ID,Quantity,TransferProduct_ID,CustomerBill_ID) values (@Data_ID,@Quantity,@TransferProduct_ID,@CustomerBill_ID)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
-                        //com.Parameters.Add("@Balatat", MySqlDbType.Int16);
-                        //com.Parameters["@Balatat"].Value = row2["عدد البلتات"].ToString();
-                        //com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
-                        //com.Parameters["@Carton_Balata"].Value = row2["عدد الكراتين"].ToString();
-                        com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-                        com.Parameters["@Quantity"].Value = row2["الكمية"].ToString();
-                        com.Parameters.Add("@TransferProduct_ID", MySqlDbType.Int16);
-                        com.Parameters["@TransferProduct_ID"].Value = transferProductID;
-                        com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
-                        com.Parameters["@CustomerBill_ID"].Value = row2["CustomerBill_ID"].ToString();
-                        com.ExecuteNonQuery();
-                        
-                        if (row2["رقم الفاتورة"].ToString() == "")
+                        bool dataFlag = false;
+                        string productDataId = dr[0].ToString();
+                        for (int i = 0; i < gridView2.RowCount; i++)
                         {
-                            query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
-                            com = new MySqlCommand(query, dbconnection);
-                            double quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
-                            double meters = quantity - Convert.ToDouble(row2["الكمية"].ToString());
-                            query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString();
-                            com = new MySqlCommand(query, dbconnection);
-                            com.ExecuteNonQuery();
-
-                            query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
-                            com = new MySqlCommand(query, dbconnection);
-                            if (com.ExecuteScalar() != null)
+                            int rowhnd = gridView2.GetRowHandle(i);
+                            DataRow row2 = gridView2.GetDataRow(rowhnd);
+                            if (productDataId == row2["Data_ID"].ToString())
                             {
-                                quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
-                                meters = quantity + Convert.ToDouble(row2["الكمية"].ToString());
-                                query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
-                                com = new MySqlCommand(query, dbconnection);
-                                com.ExecuteNonQuery();
-                            }
-                            else
-                            {
-                                query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
-                                com = new MySqlCommand(query, dbconnection);
-                                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                                com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
-                                com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime);
-                                com.Parameters["@Storage_Date"].Value = DateTime.Now;
-                                com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                                com.Parameters["@Type"].Value = "بند";
-                                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                                com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
-                                com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                                com.Parameters["@Total_Meters"].Value = row2["الكمية"].ToString();
-                                com.ExecuteNonQuery();
+                                dataFlag = true;
                             }
                         }
+                        if (dataFlag)
+                        {
+                            for (int i = 0; i < gridView2.RowCount; i++)
+                            {
+                                int rowhnd = gridView2.GetRowHandle(i);
+                                DataRow row2 = gridView2.GetDataRow(rowhnd);
+                                query = "update transfer_product_details set Quantity=@Quantity,CustomerBill_ID=@CustomerBill_ID where Data_ID=" + row2["Data_ID"] + " and TransferProduct_ID=" + selRow[0].ToString();
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                                com.Parameters["@Quantity"].Value = row2["الكمية"].ToString();
+                                com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                                com.Parameters["@CustomerBill_ID"].Value = row2["CustomerBill_ID"].ToString();
+                                com.ExecuteNonQuery();
+
+                                if (row2["رقم الفاتورة"].ToString() == "")
+                                {
+                                    query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    double quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                    double meters = quantity - Convert.ToDouble(row2["الكمية"].ToString());
+                                    query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString();
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.ExecuteNonQuery();
+
+                                    query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    if (com.ExecuteScalar() != null)
+                                    {
+                                        quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
+                                        meters = quantity + Convert.ToDouble(row2["الكمية"].ToString());
+                                        query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                        com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
+                                        com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime);
+                                        com.Parameters["@Storage_Date"].Value = DateTime.Now;
+                                        com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                                        com.Parameters["@Type"].Value = "بند";
+                                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                        com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
+                                        com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                                        com.Parameters["@Total_Meters"].Value = row2["الكمية"].ToString();
+                                        com.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+
+                        }
                     }
+                    dr.Close();
 
                     #region report
                     List<Transportation_Items> bi = new List<Transportation_Items>();
@@ -740,6 +843,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection2.Close();
         }
 
         //function
