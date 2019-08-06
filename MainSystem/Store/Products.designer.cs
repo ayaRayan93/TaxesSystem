@@ -35,6 +35,7 @@
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
+            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -58,7 +59,6 @@
             this.txtType = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnDisplayWithImage = new DevExpress.XtraEditors.SimpleButton();
-            this.chBoxSelectAll = new System.Windows.Forms.CheckBox();
             this.tLPanProductsContainer.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -211,6 +211,19 @@
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
+            // chBoxSelectAll
+            // 
+            this.chBoxSelectAll.AutoSize = true;
+            this.chBoxSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.chBoxSelectAll.Location = new System.Drawing.Point(3, 3);
+            this.chBoxSelectAll.Name = "chBoxSelectAll";
+            this.chBoxSelectAll.Size = new System.Drawing.Size(257, 54);
+            this.chBoxSelectAll.TabIndex = 6;
+            this.chBoxSelectAll.Text = "عرض البنود المسجلة اليوم فقط";
+            this.chBoxSelectAll.UseVisualStyleBackColor = true;
+            // 
             // dataGridView1
             // 
             this.tLPanProductsContainer.SetColumnSpan(this.dataGridView1, 3);
@@ -225,7 +238,6 @@
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
-            this.dataGridView1.EditorKeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_EditorKeyDown);
             // 
             // gridView2
             // 
@@ -250,6 +262,7 @@
             this.gridView2.OptionsFilter.AllowFilterEditor = false;
             this.gridView2.OptionsFilter.AllowMRUFilterList = false;
             this.gridView2.ViewCaption = "بند";
+            this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
             // panelControl1
             // 
@@ -564,19 +577,6 @@
             this.btnDisplayWithImage.TabIndex = 12;
             this.btnDisplayWithImage.Text = "عرض مع الصور";
             this.btnDisplayWithImage.Click += new System.EventHandler(this.btnDisplayWithImage_Click);
-            // 
-            // chBoxSelectAll
-            // 
-            this.chBoxSelectAll.AutoSize = true;
-            this.chBoxSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chBoxSelectAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxSelectAll.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chBoxSelectAll.Location = new System.Drawing.Point(3, 3);
-            this.chBoxSelectAll.Name = "chBoxSelectAll";
-            this.chBoxSelectAll.Size = new System.Drawing.Size(257, 54);
-            this.chBoxSelectAll.TabIndex = 6;
-            this.chBoxSelectAll.Text = "عرض البنود المسجلة اليوم فقط";
-            this.chBoxSelectAll.UseVisualStyleBackColor = true;
             // 
             // Products
             // 

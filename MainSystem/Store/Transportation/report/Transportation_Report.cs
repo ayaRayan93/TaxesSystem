@@ -174,7 +174,7 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (row1 != null)
+            /*if (row1 != null)
             {
                 try
                 {
@@ -188,7 +188,7 @@ namespace MainSystem
             else
             {
                 MessageBox.Show("يجب تحديد البند المراد تعديله");
-            }
+            }*/
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

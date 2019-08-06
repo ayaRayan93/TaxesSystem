@@ -703,6 +703,7 @@
             this.txtReturnedQuantity.Font = new System.Drawing.Font("Tahoma", 12F);
             this.txtReturnedQuantity.Location = new System.Drawing.Point(610, 45);
             this.txtReturnedQuantity.Name = "txtReturnedQuantity";
+            this.txtReturnedQuantity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtReturnedQuantity.Size = new System.Drawing.Size(104, 27);
             this.txtReturnedQuantity.TabIndex = 227;
             // 
