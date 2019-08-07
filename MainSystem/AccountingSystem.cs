@@ -129,6 +129,45 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void navBarItemDelegateLeastBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير معلقة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("فواتير معلقة");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير معلقة");
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+                else
+                {
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                DelegateLeastBills objForm = new DelegateLeastBills();
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void DelegateProfit_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -399,7 +438,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+     
         public void displayDelegateReport(GridControl gridControl, dataX d)
         {
             Delegate_Report objForm = new Delegate_Report(gridControl,d);

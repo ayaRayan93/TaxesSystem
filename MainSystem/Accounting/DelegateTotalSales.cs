@@ -239,6 +239,7 @@ namespace MainSystem
             {
                 txtDelegateID.Text = "";
                 comDelegate.Text = "";
+
             }
             catch (Exception ex)
             {
