@@ -289,7 +289,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Image = global::MainSystem.Properties.Resources.Delete_32;
             this.btnCancel.ImagePosition = 1;
-            this.btnCancel.ImageZoom = 20;
+            this.btnCancel.ImageZoom = 23;
             this.btnCancel.LabelPosition = 18;
             this.btnCancel.LabelText = "الغاء";
             this.btnCancel.Location = new System.Drawing.Point(369, 4);
