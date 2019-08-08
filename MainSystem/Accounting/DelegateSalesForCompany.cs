@@ -347,7 +347,6 @@ namespace MainSystem
             else
             {
                 query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,product_bill.PriceAD*Quantity from product_bill left join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID left join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ")  ";
-
             }
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);

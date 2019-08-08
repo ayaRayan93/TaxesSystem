@@ -154,7 +154,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
-                DelegateLeastBills objForm = new DelegateLeastBills();
+                DelegateLeastBills objForm = new DelegateLeastBills(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -168,6 +168,46 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void navBarItemDelegateCustomersBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير العملاء الاجل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("فواتير العملاء الاجل");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير العملاء الاجل");
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+                else
+                {
+                    xtraTabPage.RightToLeft = RightToLeft.No;
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                DelegateAgleCustomers objForm = new DelegateAgleCustomers(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void DelegateProfit_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

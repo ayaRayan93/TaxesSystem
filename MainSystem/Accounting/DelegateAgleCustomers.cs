@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class DelegateLeastBills : Form
+    public partial class DelegateAgleCustomers : Form
     {
         private MySqlConnection dbconnection;
         bool loaded = false;
         MainForm MainForm;
-        public DelegateLeastBills(MainForm MainForm)
+        public DelegateAgleCustomers(MainForm MainForm)
         {
             try
             {
@@ -164,12 +164,13 @@ namespace MainSystem
         {
             try
             {
+
                 DateTime date = dateTimeFrom.Value;
                 string d = date.ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
                 DataTable mdt = new DataTable();
-                string query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text+ " and Delegate_ID="+txtDelegateID.Text+ " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d+"' and '"+d2+ "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
+                string query = "select distinct concat(transitions.Customer_Name,' ',transitions.Customer_ID) as 'مهندس/مقاول', concat(transitions.Client_Name,' ',transitions.Client_ID) as 'العميل' ,Date as 'تاريخ السداد',Transition as 'نوع السداد', Amount as 'السداد'   from transitions where  transitions.Branch_ID=" + txtBranchID.Text+ " and Delegate_ID=" + txtDelegateID.Text+ "  and Date between '" + d+"' and '"+d2+ "' and Type='آجل'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt1 = new DataTable();
                 da.Fill(dt1);

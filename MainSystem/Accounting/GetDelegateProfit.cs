@@ -248,6 +248,7 @@ namespace MainSystem
                 gridView1.SelectRows(0, gridView1.RowCount - 1);
 
                 labTotalDelegateProfit.Text = totalDelegateProfit.ToString();
+                txtDelegateProfit.Text = totalDelegateProfit.ToString();
                 _Table2 = getSoldQuantity(_Table2 ,itemName, DataTableRelations, d, d2,str);
                 _Table2 = getReturnedQuantity(_Table2, itemName, DataTableRelations, d, d2,str1);
 
@@ -281,7 +282,7 @@ namespace MainSystem
                     view.SetRowCellValue(view.GetSelectedRows()[0], "ValueDelegate", re);
 
                     labTotalDelegateProfit.Text = (cellValue * totalItemValue) + totalValue + "";
-
+                    txtDelegateProfit.Text = (cellValue * totalItemValue) + totalValue + "";
                 }
             }
             catch (Exception ex)
@@ -309,6 +310,7 @@ namespace MainSystem
                 }
 
                 labTotalDelegateProfit.Text = result.ToString();
+                txtDelegateProfit.Text = result.ToString();
             }
             catch (Exception ex)
             {
@@ -321,7 +323,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                if (txtDelegateID.Text != "" && labTotalDelegateProfit.Text != "")
+                if (txtDelegateID.Text != "" && labTotalDelegateProfit.Text != "" && txtDelegateProfit.Text != "")
                 {
                     string query = "INSERT INTO Delegates_Profit (Delegate_ID,Delegate_Profit, Date_From, Date_To) VALUES(@Delegate_ID,@Delegate_Profit, @Date_From, @Date_To)";
                     MySqlCommand command = new MySqlCommand(query, dbconnection);
@@ -329,7 +331,7 @@ namespace MainSystem
                     command.Parameters.Add("@Delegate_ID", MySqlDbType.Int16);
                     command.Parameters["@Delegate_ID"].Value = txtDelegateID.Text;
                     command.Parameters.Add("@Delegate_Profit", MySqlDbType.Double);
-                    command.Parameters["@Delegate_Profit"].Value = labTotalDelegateProfit.Text;
+                    command.Parameters["@Delegate_Profit"].Value = txtDelegateProfit.Text;
                     command.Parameters.Add("@Date_From", MySqlDbType.Date);
                     command.Parameters["@Date_From"].Value = dateTimeFrom.Value.Date;
                     command.Parameters.Add("@Date_To", MySqlDbType.Date);
@@ -600,6 +602,7 @@ namespace MainSystem
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
             labTotalDelegateProfit.Text = "";
+            txtDelegateProfit.Text = "";
         }
 
         private void btnReport_Click(object sender, EventArgs e)

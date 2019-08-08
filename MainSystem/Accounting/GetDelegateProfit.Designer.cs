@@ -41,6 +41,11 @@
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -63,11 +68,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.labTotalDelegateProfit = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comBranch = new System.Windows.Forms.ComboBox();
-            this.txtBranchID = new System.Windows.Forms.TextBox();
+            this.txtDelegateProfit = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -203,7 +204,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.69295F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.16406F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.96875F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 360F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 362F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnReport, 2, 0);
@@ -230,7 +231,7 @@
             this.btnAdd.ImageZoom = 20;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(456, 4);
+            this.btnAdd.Location = new System.Drawing.Point(457, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(86, 38);
@@ -251,7 +252,7 @@
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "طباعة تقرير";
-            this.btnReport.Location = new System.Drawing.Point(365, 4);
+            this.btnReport.Location = new System.Drawing.Point(366, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(85, 38);
@@ -281,6 +282,73 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(875, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.IndianRed;
+            this.label10.Location = new System.Drawing.Point(507, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 19);
+            this.label10.TabIndex = 213;
+            this.label10.Text = "*";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(764, 17);
+            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 18);
+            this.label5.TabIndex = 211;
+            this.label5.Text = "الفرع";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label6.Location = new System.Drawing.Point(764, 17);
+            this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 17);
+            this.label6.TabIndex = 212;
+            this.label6.Text = "الصنف";
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comBranch.BackColor = System.Drawing.Color.White;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(586, 17);
+            this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.Size = new System.Drawing.Size(175, 24);
+            this.comBranch.TabIndex = 210;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBranchID.BackColor = System.Drawing.Color.White;
+            this.txtBranchID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtBranchID.Location = new System.Drawing.Point(531, 17);
+            this.txtBranchID.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.Size = new System.Drawing.Size(49, 24);
+            this.txtBranchID.TabIndex = 209;
+            this.txtBranchID.TabStop = false;
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
             // label3
             // 
@@ -499,6 +567,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtDelegateProfit);
             this.panel2.Controls.Add(this.labTotalDelegateProfit);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -528,72 +597,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "اجمالي قيمة ربح المندوب";
             // 
-            // label10
+            // txtDelegateProfit
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.IndianRed;
-            this.label10.Location = new System.Drawing.Point(507, 20);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(19, 19);
-            this.label10.TabIndex = 213;
-            this.label10.Text = "*";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(764, 17);
-            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 18);
-            this.label5.TabIndex = 211;
-            this.label5.Text = "الفرع";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label6.Location = new System.Drawing.Point(764, 17);
-            this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 17);
-            this.label6.TabIndex = 212;
-            this.label6.Text = "الصنف";
-            // 
-            // comBranch
-            // 
-            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comBranch.BackColor = System.Drawing.Color.White;
-            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(586, 17);
-            this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comBranch.Name = "comBranch";
-            this.comBranch.Size = new System.Drawing.Size(175, 24);
-            this.comBranch.TabIndex = 210;
-            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
-            // 
-            // txtBranchID
-            // 
-            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBranchID.BackColor = System.Drawing.Color.White;
-            this.txtBranchID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(531, 17);
-            this.txtBranchID.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBranchID.Name = "txtBranchID";
-            this.txtBranchID.Size = new System.Drawing.Size(49, 24);
-            this.txtBranchID.TabIndex = 209;
-            this.txtBranchID.TabStop = false;
-            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            this.txtDelegateProfit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDelegateProfit.Location = new System.Drawing.Point(232, 21);
+            this.txtDelegateProfit.Name = "txtDelegateProfit";
+            this.txtDelegateProfit.Size = new System.Drawing.Size(128, 26);
+            this.txtDelegateProfit.TabIndex = 2;
             // 
             // GetDelegateProfit
             // 
@@ -664,5 +674,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.TextBox txtBranchID;
+        private System.Windows.Forms.TextBox txtDelegateProfit;
     }
 }
