@@ -178,6 +178,10 @@
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.comDelegate = new System.Windows.Forms.ComboBox();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.label5 = new System.Windows.Forms.Label();
+            this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -270,6 +274,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -283,6 +289,8 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.label5);
+            this.dataLayoutControl1.Controls.Add(this.comDelegate);
             this.dataLayoutControl1.Controls.Add(this.label4);
             this.dataLayoutControl1.Controls.Add(this.label3);
             this.dataLayoutControl1.Controls.Add(this.comEng);
@@ -434,9 +442,9 @@
             // 
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(7, 60);
+            this.label1.Location = new System.Drawing.Point(394, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(534, 21);
+            this.label1.Size = new System.Drawing.Size(147, 21);
             this.label1.TabIndex = 73;
             this.label1.Text = "*";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1666,7 +1674,9 @@
             this.layoutControlItem59,
             this.layoutControlItem64,
             this.layoutControlItem18,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem17,
+            this.layoutControlItem21});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1853,9 +1863,9 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.label1;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 53);
+            this.layoutControlItem8.Location = new System.Drawing.Point(387, 53);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(538, 25);
+            this.layoutControlItem8.Size = new System.Drawing.Size(151, 25);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem8.TextVisible = false;
             // 
@@ -2024,6 +2034,46 @@
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
+            // comDelegate
+            // 
+            this.comDelegate.FormattingEnabled = true;
+            this.comDelegate.Location = new System.Drawing.Point(31, 60);
+            this.comDelegate.Name = "comDelegate";
+            this.comDelegate.Size = new System.Drawing.Size(236, 24);
+            this.comDelegate.TabIndex = 86;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
+            this.layoutControlItem17.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem17.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem17.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem17.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem17.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem17.Control = this.comDelegate;
+            this.layoutControlItem17.Location = new System.Drawing.Point(24, 53);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(363, 25);
+            this.layoutControlItem17.Text = "مندوب";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(120, 20);
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(7, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 21);
+            this.label5.TabIndex = 87;
+            // 
+            // layoutControlItem21
+            // 
+            this.layoutControlItem21.Control = this.label5;
+            this.layoutControlItem21.Location = new System.Drawing.Point(0, 53);
+            this.layoutControlItem21.Name = "layoutControlItem21";
+            this.layoutControlItem21.Size = new System.Drawing.Size(24, 25);
+            this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem21.TextVisible = false;
+            // 
             // BankPullAgl_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -2128,6 +2178,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2283,6 +2335,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private System.Windows.Forms.Label label4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comDelegate;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
     }
 }
 

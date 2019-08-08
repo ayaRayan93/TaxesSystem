@@ -70,6 +70,15 @@ namespace MainSystem
                 string query = "select Branch_Name from branch where Branch_ID=" + transitionbranchID;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 branchName = com.ExecuteScalar().ToString();
+
+                query = "select * from delegate where Branch_ID=" + transitionbranchID;
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comDelegate.DataSource = dt;
+                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                comDelegate.Text = "";
             }
             catch (Exception ex)
             {
@@ -398,7 +407,7 @@ namespace MainSystem
                         
                         dbconnection.Open();
 
-                        string query = "insert into Transitions (TransitionBranch_ID,TransitionBranch_Name,Transition,Type,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Transition,@Type,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name)";
+                        string query = "insert into Transitions (TransitionBranch_ID,TransitionBranch_Name,Transition,Type,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Transition,@Type,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
@@ -471,7 +480,16 @@ namespace MainSystem
                         }
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
-
+                        if (comDelegate.SelectedValue != null && comDelegate.Text != "")
+                        {
+                            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = comDelegate.SelectedValue.ToString();
+                            com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = comDelegate.Text;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = null;
+                            com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = null;
+                        }
                         com.ExecuteNonQuery();
 
                         //////////record adding/////////////
