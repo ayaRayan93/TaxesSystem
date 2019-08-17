@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class DelegateLeastBills
+    partial class DelegateAgleCustomers
     {
         /// <summary>
         /// Required designer variable.

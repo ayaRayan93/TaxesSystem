@@ -17,6 +17,7 @@ namespace MainSystem
         private double recivedMoney = 0;
         int clientID = -1;
         private bool loaded=false;
+        private bool load=false;
         private string Customer_Type;
         //double safay = -1;
         //string ClientName = "";
@@ -38,7 +39,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select Customer_ID,Customer_Name from customer";
+                string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -47,7 +48,21 @@ namespace MainSystem
                 comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                 comClient.Text = "";
                 txtClientID.Text = "";
+
+                query = "select * from branch ";
+
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
+                txtBranchID.Text = "";
+
                 loaded = true;
+                load = true;
             }
             catch (Exception ex)
             {
@@ -63,54 +78,58 @@ namespace MainSystem
             txtClientID.Text = "";
             comEngCon.Text = "";
             txtCustomerID.Text = "";
-
-            loaded = false; //this is flag to prevent action of SelectedValueChanged event until datasource fill combobox
-            try
+            if (txtBranchID.Text != "")
             {
-                if (Customer_Type == "عميل")
+                loaded = false; //this is flag to prevent action of SelectedValueChanged event until datasource fill combobox
+                try
                 {
-                    labelEng.Visible = false;
-                    comEngCon.Visible = false;
-                    txtCustomerID.Visible = false;
-                    labelClient.Visible = true;
-                    comClient.Visible = true;
-                    txtClientID.Visible = true;
+                    if (Customer_Type == "عميل")
+                    {
+                        labelEng.Visible = false;
+                        comEngCon.Visible = false;
+                        txtCustomerID.Visible = false;
+                        labelClient.Visible = true;
+                        comClient.Visible = true;
+                        txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comClient.DataSource = dt;
-                    comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                    comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
-                    comClient.Text = "";
-                    txtClientID.Text = "";
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comClient.DataSource = dt;
+                        comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                        comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                        comClient.Text = "";
+                        txtClientID.Text = "";
+                    }
+                    else
+                    {
+                        labelEng.Visible = true;
+                        comEngCon.Visible = true;
+                        txtCustomerID.Visible = true;
+                        labelClient.Visible = false;
+                        comClient.Visible = false;
+                        txtClientID.Visible = false;
+
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comEngCon.DataSource = dt;
+                        comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                        comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
+                        comEngCon.Text = "";
+                        txtCustomerID.Text = "";
+                    }
+
+                    loaded = true;
                 }
-                else
+                catch (Exception ex)
                 {
-                    labelEng.Visible = true;
-                    comEngCon.Visible = true;
-                    txtCustomerID.Visible = true;
-                    labelClient.Visible = false;
-                    comClient.Visible = false;
-                    txtClientID.Visible = false;
-
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comEngCon.DataSource = dt;
-                    comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
-                    comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
-                    comEngCon.Text = "";
-                    txtCustomerID.Text = "";
+                    MessageBox.Show(ex.Message);
                 }
-
-                loaded = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
@@ -316,7 +335,84 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (load)
+                {
+                    txtBranchID.Text = comBranch.SelectedValue.ToString();
+                    loaded = false;
+                    if (Customer_Type == "عميل")
+                    {
+                        labelEng.Visible = false;
+                        comEngCon.Visible = false;
+                        txtCustomerID.Visible = false;
+                        labelClient.Visible = true;
+                        comClient.Visible = true;
+                        txtClientID.Visible = true;
 
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comClient.DataSource = dt;
+                        comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                        comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+                        comClient.Text = "";
+                        txtClientID.Text = "";
+                    }
+                    else
+                    {
+                        labelEng.Visible = true;
+                        comEngCon.Visible = true;
+                        txtCustomerID.Visible = true;
+                        labelClient.Visible = false;
+                        comClient.Visible = false;
+                        txtClientID.Visible = false;
+
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comEngCon.DataSource = dt;
+                        comEngCon.DisplayMember = dt.Columns["Customer_Name"].ToString();
+                        comEngCon.ValueMember = dt.Columns["Customer_ID"].ToString();
+                        comEngCon.Text = "";
+                        txtCustomerID.Text = "";
+                    }
+
+                    loaded = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         public void Display()
         {
             string query = "";
