@@ -14,13 +14,17 @@ namespace MainSystem
 {
     public partial class PermissionsReport : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3;
         bool loaded = false;
+        DataRow row1 = null;
 
         public PermissionsReport(MainForm mainform, XtraTabControl tabControlContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection1 = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
+            dbconnection3 = new MySqlConnection(connection.connectionString);
         }
         private void requestStored_Load(object sender, EventArgs e)
         {
@@ -97,8 +101,8 @@ namespace MainSystem
             {
                 try
                 {
-                    int supplierID, billNum = 0;
-                    if (int.TryParse(txtStoreID.Text, out supplierID) && comStore.SelectedValue != null && int.TryParse(txtPermissionNumber.Text, out billNum))
+                    int storeID, billNum = 0;
+                    if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && int.TryParse(txtPermissionNumber.Text, out billNum))
                     {
                         gridControl2.DataSource = null;
                         DataSet sourceDataSet = new DataSet();
@@ -142,9 +146,10 @@ namespace MainSystem
         {
             try
             {
-                int supplierID= 0;
-                if (int.TryParse(txtStoreID.Text, out supplierID) && comStore.SelectedValue != null)
+                int storeID = 0;
+                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null)
                 {
+                    txtPermissionNumber.Text = "";
                     gridControl2.DataSource = null;
                     DataSet sourceDataSet = new DataSet();
                     MySqlDataAdapter adapterPerm = null;
@@ -192,7 +197,7 @@ namespace MainSystem
             {
                 try
                 {
-                    DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
+                    row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                     DataSet sourceDataSet = new DataSet();
                     MySqlDataAdapter adapterPerm = null;
                     MySqlDataAdapter adapterSup = null;
@@ -223,7 +228,104 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int storeID = 0;
+                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && gridView1.RowCount > 0)
+                {
+                    string suppliers_Name = "";
+                    dbconnection.Open();
+                    string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    string storeName = com.ExecuteScalar().ToString();
 
+                    string q1, q2, q3 = "";
+                    dbconnection1.Open();
+                    dbconnection2.Open();
+                    dbconnection3.Open();
+                    q1 = "SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString();
+                    MySqlCommand com1 = new MySqlCommand(q1, dbconnection1);
+                    MySqlDataReader dr1 = com1.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        List<string> supplierList = new List<string>();
+                        List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
+                        int supplierCount = 0;
+                        int gridcount = 0;
+                        q2 = "SELECT DISTINCT supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',import_supplier_permission.Order_Number as 'رقم الطلب',import_supplier_permission.ImportSupplierPermission_ID as 'ID' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and storage_import_permission.StorageImportPermission_ID=" + dr1["التسلسل"].ToString();
+                        MySqlCommand com2 = new MySqlCommand(q2, dbconnection2);
+                        MySqlDataReader dr2 = com2.ExecuteReader();
+                        while (dr2.Read())
+                        {
+                            supplierList.Add(dr2["المورد"].ToString());
+                            bool flagTest = false;
+                            q3 = "select storage_import_permission.StorageImportPermission_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',supplier_permission_details.ImportSupplierPermission_ID as 'ID' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + dr2["ID"].ToString();
+                            MySqlCommand com3 = new MySqlCommand(q3, dbconnection3);
+                            MySqlDataReader dr3 = com3.ExecuteReader();
+                            while (dr3.Read())
+                            {
+                                gridcount++;
+                                double carton = 0;
+                                double balate = 0;
+                                double quantity = 0;
+
+                                if (dr3["عدد البلتات"].ToString() != "")
+                                {
+                                    balate = Convert.ToDouble(dr3["عدد البلتات"].ToString());
+                                }
+                                if (dr3["عدد الكراتين"].ToString() != "")
+                                {
+                                    carton = Convert.ToDouble(dr3["عدد الكراتين"].ToString());
+                                }
+                                if (dr3["متر/قطعة"].ToString() != "")
+                                {
+                                    quantity = Convert.ToDouble(dr3["متر/قطعة"].ToString());
+                                }
+
+                                SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = dr3["الكود"].ToString(), Product_Type = dr3["النوع"].ToString(), Product_Name = dr3["الاسم"].ToString(), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(dr2["اذن استلام"].ToString()), Date = Convert.ToDateTime(dr3["تاريخ التخزين"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"), Note = dr3["ملاحظة"].ToString() };
+                                bi.Add(item);
+                            }
+                            dr3.Close();
+
+                            if (supplierCount == 0)
+                            {
+                                suppliers_Name += dr2["المورد"].ToString();
+                            }
+
+                            for (int j = 0; j < supplierList.Count; j++)
+                            {
+                                if (dr2["المورد"].ToString() == supplierList[j])
+                                {
+                                    flagTest = true;
+                                }
+                            }
+                            if (!flagTest)
+                            {
+                                suppliers_Name += "," + dr2["المورد"].ToString();
+                            }
+                            supplierCount++;
+                        }
+                        dr2.Close();
+
+                        Report_SupplierReceipt f = new Report_SupplierReceipt();
+                        f.PrintInvoice(storeName, dr1["رقم الاذن"].ToString(), suppliers_Name, bi);
+                        f.ShowDialog();
+                    }
+                    dr1.Close();
+                }
+                else
+                {
+                    MessageBox.Show("يجب ادخال البيانات كاملة");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+            dbconnection1.Close();
+            dbconnection2.Close();
+            dbconnection3.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
