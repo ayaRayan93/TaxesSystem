@@ -164,7 +164,6 @@ namespace MainSystem
         {
             try
             {
-
                 DateTime date = dateTimeFrom.Value;
                 string d = date.ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime date2 = dateTimeTo.Value;
