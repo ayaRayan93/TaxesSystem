@@ -505,13 +505,13 @@ namespace MainSystem
 
                             if (int.Parse(txtPermissionNum.Text) <= sum)
                             {
-                                if (IsAdded())
+                                /*if (IsAdded())
                                 {
                                     MessageBox.Show("هذا العنصر تم اضافتة من قبل");
                                     conn.Close();
                                     conn2.Close();
                                     return;
-                                }
+                                }*/
 
                                 conn.Open();
                                 conn2.Open();
