@@ -73,6 +73,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.labelTotalVal = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -278,7 +280,7 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label14.Location = new System.Drawing.Point(258, 0);
+            this.label14.Location = new System.Drawing.Point(186, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(87, 17);
             this.label14.TabIndex = 31;
@@ -288,7 +290,7 @@
             // 
             this.labelTotalA.AutoSize = true;
             this.labelTotalA.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalA.Location = new System.Drawing.Point(252, 0);
+            this.labelTotalA.Location = new System.Drawing.Point(180, 0);
             this.labelTotalA.Name = "labelTotalA";
             this.labelTotalA.Size = new System.Drawing.Size(0, 17);
             this.labelTotalA.TabIndex = 32;
@@ -307,7 +309,7 @@
             // 
             this.labelTotalB.AutoSize = true;
             this.labelTotalB.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalB.Location = new System.Drawing.Point(590, 0);
+            this.labelTotalB.Location = new System.Drawing.Point(700, 0);
             this.labelTotalB.Name = "labelTotalB";
             this.labelTotalB.Size = new System.Drawing.Size(0, 17);
             this.labelTotalB.TabIndex = 36;
@@ -317,7 +319,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label3.Location = new System.Drawing.Point(596, 0);
+            this.label3.Location = new System.Drawing.Point(706, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 17);
             this.label3.TabIndex = 35;
@@ -620,16 +622,21 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 5;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.Controls.Add(this.label14, 3, 0);
+            this.tableLayoutPanel3.ColumnCount = 8;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.label14, 5, 0);
             this.tableLayoutPanel3.Controls.Add(this.label3, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.labelTotalA, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalA, 6, 0);
             this.tableLayoutPanel3.Controls.Add(this.labelTotalB, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label15, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalVal, 4, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 593);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -678,6 +685,26 @@
             this.btnRemove.Text = "حذف";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label15.Location = new System.Drawing.Point(446, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 17);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "اجمالى الضريبة";
+            // 
+            // labelTotalVal
+            // 
+            this.labelTotalVal.AutoSize = true;
+            this.labelTotalVal.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalVal.Location = new System.Drawing.Point(440, 0);
+            this.labelTotalVal.Name = "labelTotalVal";
+            this.labelTotalVal.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalVal.TabIndex = 38;
             // 
             // Supplier_Bill
             // 
@@ -752,6 +779,8 @@
         private System.Windows.Forms.RadioButton radioQata3y;
         private System.Windows.Forms.TextBox txtLastPrice;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label labelTotalVal;
     }
 }
 
