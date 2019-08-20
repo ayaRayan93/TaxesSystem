@@ -145,8 +145,8 @@ namespace MainSystem
                     }
                     gridView1.Columns[1].Width = 170;
                     gridView1.Columns[3].Width = 300;
-
-                    q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'نسبة الخصم',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Last_Price AS 'السعر بالزيادة',purchasing_price.ProfitRatio as 'ضريبة القيمة المضافة',purchasing_price.Purchasing_Price AS 'سعر الشراء',(purchasing_price.Purchasing_Price*supplier_permission_details.Total_Meters) as 'الاجمالى بعد',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=0";
+                    //,purchasing_price.ProfitRatio as 'ضريبة القيمة المضافة'
+                    q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'نسبة الخصم',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Last_Price AS 'السعر بالزيادة',purchasing_price.Purchasing_Price AS 'سعر الشراء',(purchasing_price.Purchasing_Price*supplier_permission_details.Total_Meters) as 'الاجمالى بعد',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=0";
                     da = new MySqlDataAdapter(q, conn);
                     dt = new DataTable();
                     da.Fill(dt);
@@ -247,7 +247,7 @@ namespace MainSystem
                          &&
                          double.TryParse(txtTax.Text, out VAT))
                         {
-                            txtPurchasePrice.Text = (calPurchasesPrice() + VAT) + "";
+                            txtPurchasePrice.Text = (calPurchasesPrice() /*+ VAT*/) + "";
                         }
                         else
                         {
@@ -317,7 +317,7 @@ namespace MainSystem
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], NormalIncrease/*""*/);
                                             gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], CategoricalIncrease/*""*/);
                                         }
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
+                                        //gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر بالزيادة"], txtLastPrice.Text);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], purchasePrice);
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
@@ -333,19 +333,24 @@ namespace MainSystem
                                         }
 
                                         double totalB = 0;
-                                        double totalVal = 0;
+                                        //double totalVal = 0;
                                         double totalA = 0;
+                                        double totalDiscount = 0;
                                         for (int i = 0; i < gridView2.RowCount; i++)
                                         {
+                                            totalDiscount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر بالزيادة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"))) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
                                             totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                                            totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                                            //totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                                             totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                                         }
                                         Clear();
                                         row1 = null;
+                                        txtAllTax.Text = "0.00";
                                         labelTotalB.Text = totalB.ToString();
-                                        labelTotalVal.Text = totalVal.ToString();
+                                        //labelTotalVal.Text = totalVal.ToString();
                                         labelTotalA.Text = totalA.ToString();
+                                        labelTotalDiscount.Text = totalDiscount.ToString();
+                                        labelTotalSafy.Text = totalA.ToString();
                                     }
                                 }
                                 else
@@ -428,17 +433,22 @@ namespace MainSystem
                     gridView1.Columns[3].Width = 300;
                     
                     double totalB = 0;
-                    double totalVal = 0;
+                    //double totalVal = 0;
                     double totalA = 0;
+                    double totalDiscount = 0;
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                        totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                        totalDiscount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر بالزيادة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"))) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
+                        //totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                         totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                     }
+                    txtAllTax.Text = "0.00";
                     labelTotalB.Text = totalB.ToString();
-                    labelTotalVal.Text = totalVal.ToString();
+                    //labelTotalVal.Text = totalVal.ToString();
                     labelTotalA.Text = totalA.ToString();
+                    labelTotalDiscount.Text = totalDiscount.ToString();
+                    labelTotalSafy.Text = totalA.ToString();
                     row2 = null;
                 }
             }
@@ -452,7 +462,7 @@ namespace MainSystem
         {
             try
             {
-                if (gridView2.RowCount > 0 && comPermessionNum.SelectedValue != null && comSupplier.SelectedValue != null && comSupPerm.SelectedValue != null)
+                if (gridView2.RowCount > 0 && txtAllTax.Text != "" && comPermessionNum.SelectedValue != null && comSupplier.SelectedValue != null && comSupPerm.SelectedValue != null)
                 {
                     conn.Open();
                     string q = "select Bill_No from supplier_bill where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " ORDER BY Bill_ID DESC LIMIT 1 ";
@@ -464,7 +474,7 @@ namespace MainSystem
                         BillNo++;
                     }
 
-                    string query = "insert into supplier_bill (Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID) values (@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID)";
+                    string query = "insert into supplier_bill (Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID,Value_Additive_Tax) values (@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID,@Value_Additive_Tax)";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     //com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     //com.Parameters["@Branch_ID"].Value = UserControl.EmpBranchID;
@@ -479,7 +489,7 @@ namespace MainSystem
                     com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
                     com.Parameters["@Total_Price_B"].Value = labelTotalB.Text;
                     com.Parameters.Add("@Total_Price_A", MySqlDbType.Decimal);
-                    com.Parameters["@Total_Price_A"].Value = labelTotalA.Text;
+                    com.Parameters["@Total_Price_A"].Value = labelTotalSafy.Text;
                     com.Parameters.Add("@StorageImportPermission_ID", MySqlDbType.Int16);
                     com.Parameters["@StorageImportPermission_ID"].Value = comPermessionNum.SelectedValue.ToString();
                     com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
@@ -488,6 +498,8 @@ namespace MainSystem
                     com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
                     com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
                     com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
+                    com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
+                    com.Parameters["@Value_Additive_Tax"].Value = txtAllTax.Text;
                     com.ExecuteNonQuery();
 
                     string q1 = "select Bill_ID from supplier_bill ORDER BY Bill_ID DESC LIMIT 1";
@@ -498,7 +510,7 @@ namespace MainSystem
                     {
                         DataRow row3 = gridView2.GetDataRow(i);
 
-                        query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price_Type,Price,Last_Price,Purchasing_Discount,Normal_Increase,Categorical_Increase,Value_Additive_Tax,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price_Type,@Price,@Last_Price,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Value_Additive_Tax,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
+                        query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price_Type,Price,Last_Price,Purchasing_Discount,Normal_Increase,Categorical_Increase,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price_Type,@Price,@Last_Price,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
                         com = new MySqlCommand(query, conn);
                         com.Parameters.Add("@Bill_ID", MySqlDbType.Int16);
                         com.Parameters["@Bill_ID"].Value = id;
@@ -530,8 +542,8 @@ namespace MainSystem
                             com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
                             com.Parameters["@Categorical_Increase"].Value = row3["الزيادة القطعية"].ToString();
                         }
-                        com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
-                        com.Parameters["@Value_Additive_Tax"].Value = row3["ضريبة القيمة المضافة"].ToString();
+                        //com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
+                        //com.Parameters["@Value_Additive_Tax"].Value = row3["ضريبة القيمة المضافة"].ToString();
                         com.Parameters.Add("@Purchasing_Price", MySqlDbType.Decimal);
                         com.Parameters["@Purchasing_Price"].Value = row3["سعر الشراء"].ToString();
                         com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
@@ -605,10 +617,11 @@ namespace MainSystem
                             SupplierBill_Items item = new SupplierBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
                             bi.Add(item);
                         }
-                        addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
+                        //addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
                     }
+                    addabtiveTax = Convert.ToDouble(txtAllTax.Text);
                     Report_SupplierBill f = new Report_SupplierBill();
-                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, Convert.ToDouble(labelTotalA.Text), addabtiveTax, bi);
+                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, Convert.ToDouble(labelTotalSafy.Text), addabtiveTax, bi);
                     f.ShowDialog();
                     #endregion
 
@@ -675,13 +688,35 @@ namespace MainSystem
         public void Clear()
         {
             txtCode.Text = txtPrice.Text = txtLastPrice.Text = txtTotalMeter.Text = "";
+            txtAllTax.Text = "0.00";
             txtTax.Text = txtCategoricalIncrease.Text = txtDiscount.Text = txtNormalIncrease.Text = "0";
-            labelTotalB.Text = txtPurchasePrice.Text = labelTotalVal.Text = labelTotalA.Text = "";
+            labelTotalB.Text = txtPurchasePrice.Text /*= labelTotalVal.Text*/ = labelTotalDiscount.Text = labelTotalSafy.Text = "";
         }
 
         public double calPurchasesPrice()
         {
+            double addational = 0.0;
             double price = double.Parse(txtPrice.Text);
+
+            double PurchasesPercent = double.Parse(txtDiscount.Text);
+            if (radioQata3y.Checked == true)
+            {
+                price += Convert.ToDouble(txtNormalIncrease.Text) + Convert.ToDouble(txtCategoricalIncrease.Text);
+                return price - (price * PurchasesPercent / 100.0);
+            }
+            else if (radioList.Checked == true)
+            {
+
+                double PurchasesPrice = (price + Convert.ToDouble(txtNormalIncrease.Text)) - ((price + Convert.ToDouble(txtNormalIncrease.Text)) * PurchasesPercent / 100.0);
+                PurchasesPrice = PurchasesPrice + Convert.ToDouble(txtCategoricalIncrease.Text);
+                return PurchasesPrice + addational;
+            }
+            else
+            {
+                return 0;
+            }
+            
+            /*double price = double.Parse(txtPrice.Text);
             double PurchasesPercent = double.Parse(txtDiscount.Text);
             if (radioQata3y.Checked == true)
             {
@@ -698,12 +733,12 @@ namespace MainSystem
             else
             {
                 return 0;
-            }
+            }*/
         }
 
         public void IncreaseSupplierAccount()
         {
-            double totalSafy = Convert.ToDouble(labelTotalA.Text);
+            double totalSafy = Convert.ToDouble(labelTotalSafy.Text);
             string query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
             MySqlCommand com = new MySqlCommand(query, conn);
             if (com.ExecuteScalar() != null)
@@ -760,6 +795,36 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }*/
+        }
+
+        private void txtAllTax_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (loaded)
+                {
+                    if (txtAllTax.Text != "")
+                    {
+                        double VAT;
+                        if (double.TryParse(txtAllTax.Text, out VAT))
+                        {
+                            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString();
+                        }
+                        else
+                        {
+                            labelTotalSafy.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        labelTotalSafy.Text = "";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void updateGrid(/*string PriceType, */double PurchasingPrice, double ProfitRatio, double PurchasingDiscount, double Price, double NormalIncrease, double CategoricalIncrease)
