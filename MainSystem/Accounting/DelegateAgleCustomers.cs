@@ -186,7 +186,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void newChoose_Click(object sender, EventArgs e)
         {
             try
@@ -195,14 +194,12 @@ namespace MainSystem
                 comBranch.Text = "";
                 txtDelegateID.Text = "";
                 comDelegate.Text = "";
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnReport_Click(object sender, EventArgs e)
         {
             try
@@ -215,5 +212,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }
