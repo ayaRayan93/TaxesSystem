@@ -33,6 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labTotalPaid = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientCode2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.labTotalBillCost = new System.Windows.Forms.Label();
@@ -73,13 +80,8 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientCode2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chAgel = new System.Windows.Forms.CheckBox();
+            this.chKash = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -131,6 +133,46 @@
             this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView2.Size = new System.Drawing.Size(970, 191);
             this.dataGridView2.TabIndex = 167;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn6.HeaderText = "تاريخ";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // Type
+            // 
+            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Type.HeaderText = "النوع";
+            this.Type.Name = "Type";
+            // 
+            // ClientCode2
+            // 
+            this.ClientCode2.HeaderText = "الكود";
+            this.ClientCode2.Name = "ClientCode2";
+            // 
+            // Client_ID
+            // 
+            this.Client_ID.HeaderText = "العميل";
+            this.Client_ID.Name = "Client_ID";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "رقم التسلسل";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "مرتد سداد";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "السدادات";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // panel1
             // 
@@ -269,6 +311,8 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panHeader.Controls.Add(this.chAgel);
+            this.panHeader.Controls.Add(this.chKash);
             this.panHeader.Controls.Add(this.txtClientID);
             this.panHeader.Controls.Add(this.txtCustomerID);
             this.panHeader.Controls.Add(this.radDealer);
@@ -295,7 +339,7 @@
             // 
             this.txtClientID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientID.Location = new System.Drawing.Point(583, 72);
+            this.txtClientID.Location = new System.Drawing.Point(514, 72);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.Size = new System.Drawing.Size(48, 24);
             this.txtClientID.TabIndex = 172;
@@ -305,7 +349,7 @@
             // 
             this.txtCustomerID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerID.Location = new System.Drawing.Point(583, 41);
+            this.txtCustomerID.Location = new System.Drawing.Point(514, 41);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.Size = new System.Drawing.Size(48, 24);
             this.txtCustomerID.TabIndex = 171;
@@ -316,7 +360,7 @@
             this.radDealer.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDealer.Location = new System.Drawing.Point(617, 15);
+            this.radDealer.Location = new System.Drawing.Point(548, 15);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radDealer.Size = new System.Drawing.Size(46, 20);
@@ -331,7 +375,7 @@
             this.comEngCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(638, 41);
+            this.comEngCon.Location = new System.Drawing.Point(569, 41);
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(173, 24);
             this.comEngCon.TabIndex = 168;
@@ -343,7 +387,7 @@
             this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(638, 72);
+            this.comClient.Location = new System.Drawing.Point(569, 72);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(173, 24);
             this.comClient.TabIndex = 163;
@@ -355,7 +399,7 @@
             this.labelClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClient.Location = new System.Drawing.Point(817, 76);
+            this.labelClient.Location = new System.Drawing.Point(748, 76);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(35, 16);
             this.labelClient.TabIndex = 164;
@@ -367,7 +411,7 @@
             this.radCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCon.Location = new System.Drawing.Point(672, 15);
+            this.radCon.Location = new System.Drawing.Point(603, 15);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(59, 20);
@@ -382,7 +426,7 @@
             this.radEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radEng.Location = new System.Drawing.Point(737, 15);
+            this.radEng.Location = new System.Drawing.Point(668, 15);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(65, 20);
@@ -397,7 +441,7 @@
             this.radClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radClient.Location = new System.Drawing.Point(814, 15);
+            this.radClient.Location = new System.Drawing.Point(745, 15);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(53, 20);
@@ -412,7 +456,7 @@
             this.labelEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelEng.AutoSize = true;
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEng.Location = new System.Drawing.Point(815, 45);
+            this.labelEng.Location = new System.Drawing.Point(746, 45);
             this.labelEng.Name = "labelEng";
             this.labelEng.Size = new System.Drawing.Size(110, 16);
             this.labelEng.TabIndex = 169;
@@ -611,45 +655,31 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
             // 
-            // dataGridViewTextBoxColumn6
+            // chAgel
             // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.HeaderText = "تاريخ";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.chAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chAgel.AutoSize = true;
+            this.chAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chAgel.Location = new System.Drawing.Point(893, 69);
+            this.chAgel.Name = "chAgel";
+            this.chAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chAgel.Size = new System.Drawing.Size(47, 23);
+            this.chAgel.TabIndex = 174;
+            this.chAgel.Text = "اّجل";
+            this.chAgel.UseVisualStyleBackColor = true;
             // 
-            // Type
+            // chKash
             // 
-            this.Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type.HeaderText = "النوع";
-            this.Type.Name = "Type";
-            // 
-            // ClientCode2
-            // 
-            this.ClientCode2.HeaderText = "الكود";
-            this.ClientCode2.Name = "ClientCode2";
-            // 
-            // Client_ID
-            // 
-            this.Client_ID.HeaderText = "العميل";
-            this.Client_ID.Name = "Client_ID";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn3.HeaderText = "رقم التسلسل";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "مرتد سداد";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.HeaderText = "السدادات";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.chKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chKash.AutoSize = true;
+            this.chKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chKash.Location = new System.Drawing.Point(889, 41);
+            this.chKash.Name = "chKash";
+            this.chKash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chKash.Size = new System.Drawing.Size(51, 23);
+            this.chKash.TabIndex = 173;
+            this.chKash.Text = "كاش";
+            this.chKash.UseVisualStyleBackColor = true;
             // 
             // AccountStatement
             // 
@@ -725,5 +755,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.CheckBox chAgel;
+        private System.Windows.Forms.CheckBox chKash;
     }
 }
