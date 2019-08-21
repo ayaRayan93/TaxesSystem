@@ -270,6 +270,8 @@ namespace MainSystem
                     com.Parameters["@Purchasing_Price"].Value = row3["سعر الشراء"].ToString();
                     com.ExecuteNonQuery();
                 }
+                DecreaseSupplierAccount();
+                IncreaseSupplierAccount();
                 try
                 {
                     purchaseBillReport.search(0);
@@ -410,6 +412,49 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void DecreaseSupplierAccount()
+        {
+            //double totalSafy = Convert.ToDouble(labelTotalSafy.Text);
+            double totalSafy = Convert.ToDouble(sellRow["الاجمالى بعد"]);
+            string query = "select Money from supplier_rest_money where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
+            MySqlCommand com = new MySqlCommand(query, conn);
+            if (com.ExecuteScalar() != null)
+            {
+                double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                query = "update supplier_rest_money set Money=" + (restMoney - totalSafy) + " where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
+                com = new MySqlCommand(query, conn);
+            }
+            /*else
+            {
+                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
+                com = new MySqlCommand(query, conn);
+                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = -1 * totalSafy;
+            }*/
+            com.ExecuteNonQuery();
+        }
+
+        public void IncreaseSupplierAccount()
+        {
+            double totalSafy = Convert.ToDouble(labelTotalSafy.Text);
+            string query = "select Money from supplier_rest_money where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
+            MySqlCommand com = new MySqlCommand(query, conn);
+            if (com.ExecuteScalar() != null)
+            {
+                double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                query = "update supplier_rest_money set Money=" + (restMoney + totalSafy) + " where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
+                com = new MySqlCommand(query, conn);
+            }
+            /*else
+            {
+                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
+                com = new MySqlCommand(query, conn);
+                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
+                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = totalSafy;
+            }*/
+            com.ExecuteNonQuery();
         }
     }
 }
