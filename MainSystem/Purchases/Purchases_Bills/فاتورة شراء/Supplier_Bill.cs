@@ -248,15 +248,18 @@ namespace MainSystem
                          double.TryParse(txtTax.Text, out VAT))
                         {
                             txtPurchasePrice.Text = (calPurchasesPrice() /*+ VAT*/) + "";
+                            txtLastPrice.Text = (lastPrice(calPurchasesPrice())) + "";
                         }
                         else
                         {
                             txtPurchasePrice.Text = "";
+                            txtLastPrice.Text = "";
                         }
                     }
                     else
                     {
                         txtPurchasePrice.Text = "";
+                        txtLastPrice.Text = "";
                     }
                 }
             }
@@ -345,12 +348,13 @@ namespace MainSystem
                                         }
                                         Clear();
                                         row1 = null;
-                                        txtAllTax.Text = "0.00";
+                                        //txtAllTax.Text = "0.00";
                                         labelTotalB.Text = totalB.ToString();
                                         //labelTotalVal.Text = totalVal.ToString();
                                         labelTotalA.Text = totalA.ToString();
                                         labelTotalDiscount.Text = totalDiscount.ToString();
-                                        labelTotalSafy.Text = totalA.ToString();
+                                        //labelTotalSafy.Text = totalA.ToString();
+                                        labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString();
                                     }
                                 }
                                 else
@@ -443,12 +447,13 @@ namespace MainSystem
                         //totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                         totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                     }
-                    txtAllTax.Text = "0.00";
+                    //txtAllTax.Text = "0.00";
                     labelTotalB.Text = totalB.ToString();
                     //labelTotalVal.Text = totalVal.ToString();
                     labelTotalA.Text = totalA.ToString();
                     labelTotalDiscount.Text = totalDiscount.ToString();
-                    labelTotalSafy.Text = totalA.ToString();
+                    //labelTotalSafy.Text = totalA.ToString();
+                    labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString();
                     row2 = null;
                 }
             }
@@ -683,14 +688,15 @@ namespace MainSystem
             gridControl2.DataSource = null;
             gridControl1.DataSource = null;
             Clear();
+            txtAllTax.Text = "0.00";
         }
         //clear fields
         public void Clear()
         {
             txtCode.Text = txtPrice.Text = txtLastPrice.Text = txtTotalMeter.Text = "";
-            txtAllTax.Text = "0.00";
+            //txtAllTax.Text = "0.00";
             txtTax.Text = txtCategoricalIncrease.Text = txtDiscount.Text = txtNormalIncrease.Text = "0";
-            labelTotalB.Text = txtPurchasePrice.Text /*= labelTotalVal.Text*/ = labelTotalDiscount.Text = labelTotalSafy.Text = "";
+            labelTotalB.Text = labelTotalA.Text = txtPurchasePrice.Text = txtLastPrice.Text /*= labelTotalVal.Text*/ = labelTotalDiscount.Text = labelTotalSafy.Text = "";
         }
 
         public double calPurchasesPrice()
@@ -734,6 +740,14 @@ namespace MainSystem
             {
                 return 0;
             }*/
+        }
+
+        public double lastPrice(double purchasePrice)
+        {
+            double discount = double.Parse(txtDiscount.Text);
+            double lastPrice = purchasePrice * 100 / (100 - discount);
+
+            return lastPrice;
         }
 
         public void IncreaseSupplierAccount()
