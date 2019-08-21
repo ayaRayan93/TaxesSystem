@@ -259,6 +259,15 @@ namespace MainSystem
 
                 pictureBoxCar.Visible = true;
             }
+            else if (UserControl.userType == 15)
+            {
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                pictureBoxBell.Visible = true;
+                userAccess();
+            }
             labUserName.Text = UserControl.EmpName;
         }
 
@@ -754,29 +763,29 @@ namespace MainSystem
         }
         public void userAccess()
         {
-            navBarGroup3.Visible = false;
-            navBarGroup4.Visible = false;
-            navBarGroup5.Visible = false;
-            navBarGroup6.Visible = false;
-            navBarGroup7.Visible = false;
-            navBarGroup8.Visible = false;
-            navBarGroup9.Visible = false;
-            navBarGroup10.Visible = false;
-            navBarGroup11.Visible = false;
-            navBarGroup12.Visible = false;
-            navBarGroup45.Visible = false;
-
-            navBarGroup14.Visible = false;
             navBarGroup15.Visible = false;
             navBarGroup16.Visible = false;
-            navBarGroup17.Visible = false;
-            navBarGroup18.Visible = false;
+            navBarGroup13.Visible = false;
             navBarGroup39.Visible = false;
+            //navBarGroup7.Visible = false;
+            //navBarGroup8.Visible = false;
+            //navBarGroup9.Visible = false;
+            //navBarGroup10.Visible = false;
+            //navBarGroup11.Visible = false;
+            //navBarGroup12.Visible = false;
+            //navBarGroup45.Visible = false;
 
-            navBarGroup43.Visible = false;
-            navBarGroup44.Visible = false;
-            navBarGroupSupplier.Visible = false;
-            navBarGroupLeastQuantity.Visible = false;
+            //navBarGroup14.Visible = false;
+            //navBarGroup15.Visible = false;
+            //navBarGroup16.Visible = false;
+            //navBarGroup17.Visible = false;
+            //navBarGroup18.Visible = false;
+            //navBarGroup39.Visible = false;
+
+            //navBarGroup43.Visible = false;
+            //navBarGroup44.Visible = false;
+            //navBarGroupSupplier.Visible = false;
+            //navBarGroupLeastQuantity.Visible = false;
             
         }
         private void pictureBox1_Click(object sender, EventArgs e)

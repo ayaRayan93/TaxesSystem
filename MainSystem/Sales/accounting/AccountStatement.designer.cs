@@ -54,6 +54,8 @@
             this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.chAgel = new System.Windows.Forms.CheckBox();
+            this.chKash = new System.Windows.Forms.CheckBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
@@ -80,8 +82,6 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.chAgel = new System.Windows.Forms.CheckBox();
-            this.chKash = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -334,6 +334,32 @@
             this.panHeader.Name = "panHeader";
             this.panHeader.Size = new System.Drawing.Size(970, 120);
             this.panHeader.TabIndex = 0;
+            // 
+            // chAgel
+            // 
+            this.chAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chAgel.AutoSize = true;
+            this.chAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chAgel.Location = new System.Drawing.Point(893, 69);
+            this.chAgel.Name = "chAgel";
+            this.chAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chAgel.Size = new System.Drawing.Size(47, 23);
+            this.chAgel.TabIndex = 174;
+            this.chAgel.Text = "اّجل";
+            this.chAgel.UseVisualStyleBackColor = true;
+            // 
+            // chKash
+            // 
+            this.chKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chKash.AutoSize = true;
+            this.chKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chKash.Location = new System.Drawing.Point(889, 41);
+            this.chKash.Name = "chKash";
+            this.chKash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chKash.Size = new System.Drawing.Size(51, 23);
+            this.chKash.TabIndex = 173;
+            this.chKash.Text = "كاش";
+            this.chKash.UseVisualStyleBackColor = true;
             // 
             // txtClientID
             // 
@@ -655,32 +681,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
             // 
-            // chAgel
-            // 
-            this.chAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chAgel.AutoSize = true;
-            this.chAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chAgel.Location = new System.Drawing.Point(893, 69);
-            this.chAgel.Name = "chAgel";
-            this.chAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chAgel.Size = new System.Drawing.Size(47, 23);
-            this.chAgel.TabIndex = 174;
-            this.chAgel.Text = "اّجل";
-            this.chAgel.UseVisualStyleBackColor = true;
-            // 
-            // chKash
-            // 
-            this.chKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chKash.AutoSize = true;
-            this.chKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chKash.Location = new System.Drawing.Point(889, 41);
-            this.chKash.Name = "chKash";
-            this.chKash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chKash.Size = new System.Drawing.Size(51, 23);
-            this.chKash.TabIndex = 173;
-            this.chKash.Text = "كاش";
-            this.chKash.UseVisualStyleBackColor = true;
-            // 
             // AccountStatement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -692,6 +692,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerBills";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountStatement_FormClosed);
+            this.Load += new System.EventHandler(this.AccountStatement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -46,6 +46,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void UpdatePurchasesPrice_Load(object sender, EventArgs e)
         {
             try
@@ -74,6 +75,7 @@ namespace MainSystem
                 gridView1.SelectAll();
                 checkBoxPurchasesDiscount.Checked = true;
                 checkBoxPrice.Checked = true;
+                chBoxAdditionalIncrease.Checked = true;
                 load = true;
             }
             catch (Exception ex)
@@ -755,8 +757,8 @@ namespace MainSystem
                 radioQata3y.Checked = true;
             }
             dataGridView1.Rows.Clear();
-            string query = "select AdditionalValue,Type,Description from additional_increase_purchasingprice where PurchasingPrice_ID=" + row1[0].ToString(); ;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            string query1 = "select AdditionalValue,Type,Description from additional_increase_purchasingprice where PurchasingPrice_ID=" + row1[0].ToString(); ;
+            MySqlCommand com = new MySqlCommand(query1, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
@@ -764,7 +766,6 @@ namespace MainSystem
                 dataGridView1.Rows[n].Cells[0].Value = dr[0].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = dr[1].ToString();
                 dataGridView1.Rows[n].Cells[2].Value = dr[2].ToString();
-
             }
             dr.Close();
             displayCode(txtCode.Text);
@@ -803,7 +804,6 @@ namespace MainSystem
         }
         public double calPurchasesPrice()
         {
-            double addational = 0.0;
             double price = double.Parse(txtPrice.Text);
 
             double PurchasesPercent = double.Parse(txtPurchases.Text);
@@ -818,7 +818,7 @@ namespace MainSystem
 
                 double PurchasesPrice = (price + getNormalIncrease()) - ((price + getNormalIncrease()) * PurchasesPercent / 100.0);
                 PurchasesPrice = PurchasesPrice + getUnNormalIncrease();
-                return PurchasesPrice + addational;
+                return PurchasesPrice;
             }
         }
         public void makeCode(TextBox txtBox)
@@ -952,7 +952,6 @@ namespace MainSystem
                 }
             }
         }
-
         public double getNormalIncrease()
         {
             double result = 0;

@@ -18,6 +18,7 @@ namespace MainSystem
         MySqlConnection dbconnection;
         MySqlConnection dbconnection2;
         string Customer_Type = "";
+        string Type = "كاش";
         bool flag = false;    //to check if the customer have guide or not
         XtraTabPage xtraTabPage;
         DataRowView selRow;
@@ -65,7 +66,7 @@ namespace MainSystem
                 {
                     radClient.Checked = true;
 
-                    string query = "select customer1.Customer_Type as 'النوع', customer1.Customer_Name as 'المسئول',custmer_client.Customer_OpenAccount from customer as customer1 INNER JOIN custmer_client ON custmer_client.Customer_ID = customer1.Customer_ID INNER JOIN customer as customer2 ON custmer_client.Client_ID = customer2.Customer_ID where customer2.Customer_ID=" + selRow[0].ToString();
+                    string query = "select customer1.Customer_Type as 'النوع',customer1.Type as 'نوع العميل', customer1.Customer_Name as 'المسئول',custmer_client.Customer_OpenAccount from customer as customer1 INNER JOIN custmer_client ON custmer_client.Customer_ID = customer1.Customer_ID INNER JOIN customer as customer2 ON custmer_client.Client_ID = customer2.Customer_ID where customer2.Customer_ID=" + selRow[0].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection2);
                     MySqlDataReader dr = com.ExecuteReader();
                     if (dr.HasRows)
@@ -86,6 +87,14 @@ namespace MainSystem
                             }
                             comEnginner.Text = dr["المسئول"].ToString();
                             txtOpenAccount2.Text = dr["Customer_OpenAccount"].ToString();
+                            if (dr["نوع العميل"].ToString() == "كاش")
+                            {
+                                radioKash.Checked = true;
+                            }
+                            else if (dr["نوع العميل"].ToString() == "اّجل")
+                            {
+                                radioAgel.Checked = true;
+                            }
                         }
                         dr.Close();
                     }
@@ -152,7 +161,7 @@ namespace MainSystem
                         if (txtName.Text != "" && checkedListBoxControlPhone.ItemCount > 0)
                         {
                             dbconnection.Open();
-                            string query = "update customer set Customer_Name=@Customer_Name,Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type,Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
+                            string query = "update customer set Customer_Name=@Customer_Name,Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type,Type=@Type,Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
                             com.Parameters["@Customer_Name"].Value = txtName.Text;
@@ -193,6 +202,10 @@ namespace MainSystem
                                 dbconnection.Close();
                                 return;
                             }
+
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                            com.Parameters["@Type"].Value = Type;
+
                             com.ExecuteNonQuery();
                             if (Customer_Type == "عميل" && flag)
                             {
@@ -541,6 +554,30 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void radioAgel_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Type = "اّجل";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radioKash_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Type = "كاش";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
