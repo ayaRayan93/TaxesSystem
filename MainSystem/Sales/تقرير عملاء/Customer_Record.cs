@@ -18,6 +18,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         string Customer_Type = "";
+        string Type = "كاش";
         bool flag = false; //to check if the customer have guide or not
         XtraTabPage xtraTabPage;
         XtraTabControl mainTabControl;
@@ -115,7 +116,7 @@ namespace MainSystem
                     dbconnection.Open();
                     if (checkPhonesExist())
                     {
-                        string query = "insert into customer (Customer_NationalID,Customer_Email,Customer_Name,Customer_Address,Customer_Info,Customer_Start,Customer_Type,Customer_OpenAccount) values(@Customer_NationalID,@Customer_Email,@Customer_Name,@Customer_Address,@Customer_Info,@Customer_Start,@Customer_Type,@Customer_OpenAccount)";
+                        string query = "insert into customer (Customer_NationalID,Customer_Email,Customer_Name,Customer_Address,Customer_Info,Customer_Start,Customer_Type,Customer_OpenAccount,Type) values(@Customer_NationalID,@Customer_Email,@Customer_Name,@Customer_Address,@Customer_Info,@Customer_Start,@Customer_Type,@Customer_OpenAccount,@Type)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
                         com.Parameters["@Customer_Name"].Value = txtName.Text;
@@ -158,6 +159,9 @@ namespace MainSystem
                             dbconnection.Close();
                             return;
                         }
+                        com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Type"].Value = Type;
+
                         com.ExecuteNonQuery();
 
                         AddPhoneNumbers();
@@ -447,5 +451,28 @@ namespace MainSystem
             return flag5;
         }
 
+        private void rdioKash_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Type = "كاش";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Type = "اّجل";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

@@ -101,6 +101,11 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.radioKash = new System.Windows.Forms.RadioButton();
+            this.radioAgel = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -139,12 +144,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(572, 92);
+            this.txtName.Location = new System.Drawing.Point(597, 92);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(220, 27);
             this.txtName.TabIndex = 0;
@@ -153,7 +161,7 @@
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(213, 92);
+            this.txtPhone.Location = new System.Drawing.Point(238, 92);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(189, 27);
             this.txtPhone.TabIndex = 1;
@@ -162,7 +170,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(572, 148);
+            this.txtAddress.Location = new System.Drawing.Point(597, 172);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(220, 27);
             this.txtAddress.TabIndex = 2;
@@ -171,7 +179,7 @@
             // txtINF
             // 
             this.txtINF.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtINF.Location = new System.Drawing.Point(213, 148);
+            this.txtINF.Location = new System.Drawing.Point(238, 172);
             this.txtINF.Multiline = true;
             this.txtINF.Name = "txtINF";
             this.txtINF.Size = new System.Drawing.Size(189, 138);
@@ -182,7 +190,7 @@
             // 
             this.radMCon.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMCon.Location = new System.Drawing.Point(376, 37);
+            this.radMCon.Location = new System.Drawing.Point(228, 37);
             this.radMCon.Name = "radMCon";
             this.radMCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMCon.Size = new System.Drawing.Size(84, 26);
@@ -196,10 +204,10 @@
             // 
             this.radMDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMDealer.Location = new System.Drawing.Point(29, 37);
+            this.radMDealer.Location = new System.Drawing.Point(54, 37);
             this.radMDealer.Name = "radMDealer";
             this.radMDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radMDealer.Size = new System.Drawing.Size(343, 26);
+            this.radMDealer.Size = new System.Drawing.Size(170, 26);
             this.radMDealer.TabIndex = 11;
             this.radMDealer.TabStop = true;
             this.radMDealer.Text = "تاجر";
@@ -210,7 +218,7 @@
             // 
             this.radMEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radMEng.Location = new System.Drawing.Point(464, 37);
+            this.radMEng.Location = new System.Drawing.Point(316, 37);
             this.radMEng.Name = "radMEng";
             this.radMEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radMEng.Size = new System.Drawing.Size(86, 26);
@@ -223,7 +231,7 @@
             // txtNationalID
             // 
             this.txtNationalID.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNationalID.Location = new System.Drawing.Point(572, 259);
+            this.txtNationalID.Location = new System.Drawing.Point(597, 283);
             this.txtNationalID.Name = "txtNationalID";
             this.txtNationalID.Size = new System.Drawing.Size(220, 27);
             this.txtNationalID.TabIndex = 4;
@@ -232,7 +240,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(572, 204);
+            this.txtEmail.Location = new System.Drawing.Point(597, 228);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(220, 27);
             this.txtEmail.TabIndex = 3;
@@ -294,6 +302,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.groupBox2);
             this.layoutControl1.Controls.Add(this.label6);
             this.layoutControl1.Controls.Add(this.btnDeletePhone);
             this.layoutControl1.Controls.Add(this.checkedListBoxControlPhone);
@@ -335,9 +344,9 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(5, 12);
+            this.label6.Location = new System.Drawing.Point(30, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 550);
+            this.label6.Size = new System.Drawing.Size(20, 574);
             this.label6.TabIndex = 58;
             // 
             // btnDeletePhone
@@ -346,7 +355,7 @@
             this.btnDeletePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePhone.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletePhone.ForeColor = System.Drawing.Color.White;
-            this.btnDeletePhone.Location = new System.Drawing.Point(29, 254);
+            this.btnDeletePhone.Location = new System.Drawing.Point(54, 278);
             this.btnDeletePhone.Name = "btnDeletePhone";
             this.btnDeletePhone.Size = new System.Drawing.Size(151, 32);
             this.btnDeletePhone.TabIndex = 56;
@@ -359,7 +368,7 @@
             this.checkedListBoxControlPhone.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.checkedListBoxControlPhone.Appearance.Options.UseFont = true;
             this.checkedListBoxControlPhone.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(29, 148);
+            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(54, 172);
             this.checkedListBoxControlPhone.Name = "checkedListBoxControlPhone";
             this.checkedListBoxControlPhone.Size = new System.Drawing.Size(151, 102);
             this.checkedListBoxControlPhone.StyleController = this.layoutControl1;
@@ -371,7 +380,7 @@
             this.btnAddPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPhone.ForeColor = System.Drawing.Color.White;
-            this.btnAddPhone.Location = new System.Drawing.Point(29, 92);
+            this.btnAddPhone.Location = new System.Drawing.Point(54, 92);
             this.btnAddPhone.Name = "btnAddPhone";
             this.btnAddPhone.Size = new System.Drawing.Size(151, 27);
             this.btnAddPhone.TabIndex = 54;
@@ -381,14 +390,14 @@
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(184, 148);
+            this.label15.Location = new System.Drawing.Point(209, 172);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 138);
             this.label15.TabIndex = 53;
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(541, 148);
+            this.label14.Location = new System.Drawing.Point(566, 172);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 138);
             this.label14.TabIndex = 52;
@@ -397,7 +406,7 @@
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(184, 92);
+            this.label13.Location = new System.Drawing.Point(209, 92);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(25, 27);
             this.label13.TabIndex = 51;
@@ -408,7 +417,7 @@
             // 
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(541, 92);
+            this.label12.Location = new System.Drawing.Point(566, 92);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(27, 27);
             this.label12.TabIndex = 50;
@@ -417,28 +426,28 @@
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(29, 67);
+            this.label8.Location = new System.Drawing.Point(54, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(868, 21);
             this.label8.TabIndex = 49;
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(511, 148);
+            this.label11.Location = new System.Drawing.Point(536, 172);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 138);
             this.label11.TabIndex = 48;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(511, 92);
+            this.label10.Location = new System.Drawing.Point(536, 92);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(26, 27);
             this.label10.TabIndex = 47;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(29, 12);
+            this.label9.Location = new System.Drawing.Point(54, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(868, 21);
             this.label9.TabIndex = 46;
@@ -456,7 +465,7 @@
             this.groupBox1.Controls.Add(this.radCon);
             this.groupBox1.Font = new System.Drawing.Font("Neo Sans Arabic", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.groupBox1.Location = new System.Drawing.Point(29, 345);
+            this.groupBox1.Location = new System.Drawing.Point(54, 369);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(868, 217);
             this.groupBox1.TabIndex = 43;
@@ -496,7 +505,7 @@
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(560, 76);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(53, 23);
+            this.labelName.Size = new System.Drawing.Size(54, 23);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "الاسم";
             this.labelName.Visible = false;
@@ -521,9 +530,9 @@
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radEng.Location = new System.Drawing.Point(491, 30);
+            this.radEng.Location = new System.Drawing.Point(489, 30);
             this.radEng.Name = "radEng";
-            this.radEng.Size = new System.Drawing.Size(93, 30);
+            this.radEng.Size = new System.Drawing.Size(95, 30);
             this.radEng.TabIndex = 12;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -537,9 +546,9 @@
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radDealer.Location = new System.Drawing.Point(335, 30);
+            this.radDealer.Location = new System.Drawing.Point(333, 30);
             this.radDealer.Name = "radDealer";
-            this.radDealer.Size = new System.Drawing.Size(60, 30);
+            this.radDealer.Size = new System.Drawing.Size(62, 30);
             this.radDealer.TabIndex = 14;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -553,9 +562,9 @@
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 15.75F);
             this.radCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radCon.Location = new System.Drawing.Point(401, 30);
+            this.radCon.Location = new System.Drawing.Point(400, 30);
             this.radCon.Name = "radCon";
-            this.radCon.Size = new System.Drawing.Size(84, 30);
+            this.radCon.Size = new System.Drawing.Size(85, 30);
             this.radCon.TabIndex = 13;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -565,44 +574,44 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(572, 179);
+            this.label7.Location = new System.Drawing.Point(597, 203);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(325, 21);
             this.label7.TabIndex = 42;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(29, 290);
+            this.label4.Location = new System.Drawing.Point(54, 314);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(868, 20);
             this.label4.TabIndex = 39;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(572, 235);
+            this.label3.Location = new System.Drawing.Point(597, 259);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(325, 20);
             this.label3.TabIndex = 38;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(29, 123);
+            this.label2.Location = new System.Drawing.Point(54, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(868, 21);
             this.label2.TabIndex = 37;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(642, 37);
+            this.label1.Location = new System.Drawing.Point(494, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 26);
+            this.label1.Size = new System.Drawing.Size(428, 26);
             this.label1.TabIndex = 36;
             // 
             // radClient
             // 
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.radClient.Location = new System.Drawing.Point(554, 37);
+            this.radClient.Location = new System.Drawing.Point(406, 37);
             this.radClient.Name = "radClient";
             this.radClient.Size = new System.Drawing.Size(84, 26);
             this.radClient.TabIndex = 8;
@@ -614,7 +623,7 @@
             // txtOpenAccount
             // 
             this.txtOpenAccount.EditValue = "0.00";
-            this.txtOpenAccount.Location = new System.Drawing.Point(572, 314);
+            this.txtOpenAccount.Location = new System.Drawing.Point(597, 338);
             this.txtOpenAccount.Name = "txtOpenAccount";
             this.txtOpenAccount.Properties.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOpenAccount.Properties.Appearance.Options.UseFont = true;
@@ -657,9 +666,11 @@
             this.layoutControlItem28,
             this.layoutControlItem29,
             this.emptySpaceItem1,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.emptySpaceItem2,
+            this.layoutControlItem32});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(916, 574);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(916, 598);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem4
@@ -668,7 +679,7 @@
             this.layoutControlItem4.Location = new System.Drawing.Point(24, 25);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(24, 29);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(347, 30);
+            this.layoutControlItem4.Size = new System.Drawing.Size(174, 30);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
@@ -676,7 +687,7 @@
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.radMCon;
-            this.layoutControlItem5.Location = new System.Drawing.Point(371, 25);
+            this.layoutControlItem5.Location = new System.Drawing.Point(198, 25);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(88, 30);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(88, 30);
             this.layoutControlItem5.Name = "layoutControlItem5";
@@ -688,7 +699,7 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.radMEng;
-            this.layoutControlItem6.Location = new System.Drawing.Point(459, 25);
+            this.layoutControlItem6.Location = new System.Drawing.Point(286, 25);
             this.layoutControlItem6.MaxSize = new System.Drawing.Size(90, 30);
             this.layoutControlItem6.MinSize = new System.Drawing.Size(90, 30);
             this.layoutControlItem6.Name = "layoutControlItem6";
@@ -700,7 +711,7 @@
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.radClient;
-            this.layoutControlItem1.Location = new System.Drawing.Point(549, 25);
+            this.layoutControlItem1.Location = new System.Drawing.Point(376, 25);
             this.layoutControlItem1.MaxSize = new System.Drawing.Size(88, 30);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(88, 30);
             this.layoutControlItem1.Name = "layoutControlItem1";
@@ -736,7 +747,7 @@
             this.layoutControlItem13.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem13.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem13.Control = this.txtNationalID;
-            this.layoutControlItem13.Location = new System.Drawing.Point(567, 247);
+            this.layoutControlItem13.Location = new System.Drawing.Point(567, 271);
             this.layoutControlItem13.MaxSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem13.MinSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem13.Name = "layoutControlItem13";
@@ -748,10 +759,10 @@
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.label1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(637, 25);
+            this.layoutControlItem2.Location = new System.Drawing.Point(464, 25);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(24, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(259, 30);
+            this.layoutControlItem2.Size = new System.Drawing.Size(432, 30);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
@@ -783,7 +794,7 @@
             this.layoutControlItem12.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem12.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem12.Control = this.txtAddress;
-            this.layoutControlItem12.Location = new System.Drawing.Point(567, 136);
+            this.layoutControlItem12.Location = new System.Drawing.Point(567, 160);
             this.layoutControlItem12.MaxSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem12.MinSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem12.Name = "layoutControlItem12";
@@ -807,7 +818,7 @@
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.label3;
-            this.layoutControlItem16.Location = new System.Drawing.Point(567, 223);
+            this.layoutControlItem16.Location = new System.Drawing.Point(567, 247);
             this.layoutControlItem16.MaxSize = new System.Drawing.Size(329, 24);
             this.layoutControlItem16.MinSize = new System.Drawing.Size(329, 24);
             this.layoutControlItem16.Name = "layoutControlItem16";
@@ -819,7 +830,7 @@
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.label4;
-            this.layoutControlItem17.Location = new System.Drawing.Point(24, 278);
+            this.layoutControlItem17.Location = new System.Drawing.Point(24, 302);
             this.layoutControlItem17.MaxSize = new System.Drawing.Size(872, 24);
             this.layoutControlItem17.MinSize = new System.Drawing.Size(872, 24);
             this.layoutControlItem17.Name = "layoutControlItem17";
@@ -837,7 +848,7 @@
             this.layoutControlItem10.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem10.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem10.Control = this.txtEmail;
-            this.layoutControlItem10.Location = new System.Drawing.Point(567, 192);
+            this.layoutControlItem10.Location = new System.Drawing.Point(567, 216);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem10.Name = "layoutControlItem10";
@@ -849,7 +860,7 @@
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.label7;
-            this.layoutControlItem20.Location = new System.Drawing.Point(567, 167);
+            this.layoutControlItem20.Location = new System.Drawing.Point(567, 191);
             this.layoutControlItem20.MaxSize = new System.Drawing.Size(329, 25);
             this.layoutControlItem20.MinSize = new System.Drawing.Size(329, 25);
             this.layoutControlItem20.Name = "layoutControlItem20";
@@ -868,7 +879,7 @@
             this.layoutControlItem14.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem14.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.layoutControlItem14.Control = this.txtINF;
-            this.layoutControlItem14.Location = new System.Drawing.Point(208, 136);
+            this.layoutControlItem14.Location = new System.Drawing.Point(208, 160);
             this.layoutControlItem14.MaxSize = new System.Drawing.Size(298, 142);
             this.layoutControlItem14.MinSize = new System.Drawing.Size(298, 142);
             this.layoutControlItem14.Name = "layoutControlItem14";
@@ -880,7 +891,7 @@
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.groupBox1;
-            this.layoutControlItem18.Location = new System.Drawing.Point(24, 333);
+            this.layoutControlItem18.Location = new System.Drawing.Point(24, 357);
             this.layoutControlItem18.MaxSize = new System.Drawing.Size(0, 221);
             this.layoutControlItem18.MinSize = new System.Drawing.Size(104, 221);
             this.layoutControlItem18.Name = "layoutControlItem18";
@@ -917,7 +928,7 @@
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.label11;
-            this.layoutControlItem21.Location = new System.Drawing.Point(506, 136);
+            this.layoutControlItem21.Location = new System.Drawing.Point(506, 160);
             this.layoutControlItem21.MaxSize = new System.Drawing.Size(30, 142);
             this.layoutControlItem21.MinSize = new System.Drawing.Size(30, 142);
             this.layoutControlItem21.Name = "layoutControlItem21";
@@ -953,7 +964,7 @@
             // layoutControlItem24
             // 
             this.layoutControlItem24.Control = this.label14;
-            this.layoutControlItem24.Location = new System.Drawing.Point(536, 136);
+            this.layoutControlItem24.Location = new System.Drawing.Point(536, 160);
             this.layoutControlItem24.MaxSize = new System.Drawing.Size(31, 142);
             this.layoutControlItem24.MinSize = new System.Drawing.Size(31, 142);
             this.layoutControlItem24.Name = "layoutControlItem24";
@@ -965,7 +976,7 @@
             // layoutControlItem25
             // 
             this.layoutControlItem25.Control = this.label15;
-            this.layoutControlItem25.Location = new System.Drawing.Point(179, 136);
+            this.layoutControlItem25.Location = new System.Drawing.Point(179, 160);
             this.layoutControlItem25.MaxSize = new System.Drawing.Size(29, 142);
             this.layoutControlItem25.MinSize = new System.Drawing.Size(29, 142);
             this.layoutControlItem25.Name = "layoutControlItem25";
@@ -1001,7 +1012,7 @@
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.checkedListBoxControlPhone;
-            this.layoutControlItem27.Location = new System.Drawing.Point(24, 136);
+            this.layoutControlItem27.Location = new System.Drawing.Point(24, 160);
             this.layoutControlItem27.MaxSize = new System.Drawing.Size(155, 106);
             this.layoutControlItem27.MinSize = new System.Drawing.Size(155, 106);
             this.layoutControlItem27.Name = "layoutControlItem27";
@@ -1013,7 +1024,7 @@
             // layoutControlItem28
             // 
             this.layoutControlItem28.Control = this.btnDeletePhone;
-            this.layoutControlItem28.Location = new System.Drawing.Point(24, 242);
+            this.layoutControlItem28.Location = new System.Drawing.Point(24, 266);
             this.layoutControlItem28.MaxSize = new System.Drawing.Size(155, 36);
             this.layoutControlItem28.MinSize = new System.Drawing.Size(155, 36);
             this.layoutControlItem28.Name = "layoutControlItem28";
@@ -1029,7 +1040,7 @@
             this.layoutControlItem29.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem29.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem29.Control = this.txtOpenAccount;
-            this.layoutControlItem29.Location = new System.Drawing.Point(567, 302);
+            this.layoutControlItem29.Location = new System.Drawing.Point(567, 326);
             this.layoutControlItem29.MaxSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem29.MinSize = new System.Drawing.Size(329, 31);
             this.layoutControlItem29.Name = "layoutControlItem29";
@@ -1041,7 +1052,7 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(24, 302);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(24, 326);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(543, 31);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -1051,7 +1062,7 @@
             this.layoutControlItem7.Control = this.label6;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(24, 554);
+            this.layoutControlItem7.Size = new System.Drawing.Size(24, 578);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -1062,6 +1073,59 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(898, 640);
             this.panel1.TabIndex = 35;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(24, 136);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(10, 24);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // radioKash
+            // 
+            this.radioKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radioKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioKash.Location = new System.Drawing.Point(-247, -1);
+            this.radioKash.Name = "radioKash";
+            this.radioKash.Size = new System.Drawing.Size(578, 25);
+            this.radioKash.TabIndex = 59;
+            this.radioKash.TabStop = true;
+            this.radioKash.Text = "كاش";
+            this.radioKash.UseVisualStyleBackColor = true;
+            this.radioKash.CheckedChanged += new System.EventHandler(this.radioKash_CheckedChanged);
+            // 
+            // radioAgel
+            // 
+            this.radioAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radioAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioAgel.Location = new System.Drawing.Point(-260, -6);
+            this.radioAgel.Name = "radioAgel";
+            this.radioAgel.Size = new System.Drawing.Size(349, 25);
+            this.radioAgel.TabIndex = 60;
+            this.radioAgel.TabStop = true;
+            this.radioAgel.Text = "اّجل";
+            this.radioAgel.UseVisualStyleBackColor = true;
+            this.radioAgel.CheckedChanged += new System.EventHandler(this.radioAgel_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioAgel);
+            this.groupBox2.Controls.Add(this.radioKash);
+            this.groupBox2.Location = new System.Drawing.Point(490, 148);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(432, 20);
+            this.groupBox2.TabIndex = 61;
+            this.groupBox2.TabStop = false;
+            // 
+            // layoutControlItem32
+            // 
+            this.layoutControlItem32.Control = this.groupBox2;
+            this.layoutControlItem32.Location = new System.Drawing.Point(460, 136);
+            this.layoutControlItem32.Name = "layoutControlItem32";
+            this.layoutControlItem32.Size = new System.Drawing.Size(436, 24);
+            this.layoutControlItem32.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem32.TextVisible = false;
             // 
             // Customer_Update
             // 
@@ -1114,6 +1178,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1191,6 +1258,11 @@
         private System.Windows.Forms.TextBox txtOpenAccount2;
         private System.Windows.Forms.Label label6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private System.Windows.Forms.RadioButton radioAgel;
+        private System.Windows.Forms.RadioButton radioKash;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem32;
     }
 }
 

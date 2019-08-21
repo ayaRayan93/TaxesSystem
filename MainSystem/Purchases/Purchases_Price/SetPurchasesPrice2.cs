@@ -1076,7 +1076,6 @@ namespace MainSystem
         }
         public double calPurchasesPrice()
         {
-            double addational = 0.0;
             double price = double.Parse(txtPrice.Text);
 
             double PurchasesPercent = double.Parse(txtPurchases.Text);
@@ -1091,7 +1090,7 @@ namespace MainSystem
              
                 double PurchasesPrice = (price + getNormalIncrease()) - ((price + getNormalIncrease()) * PurchasesPercent / 100.0);
                 PurchasesPrice = PurchasesPrice + getUnNormalIncrease();
-                return PurchasesPrice + addational;
+                return PurchasesPrice;
             }
         }
         //

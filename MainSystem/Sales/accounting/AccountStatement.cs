@@ -22,6 +22,7 @@ namespace MainSystem
         double safay = -1;
         int ClientID = -1;
         string ClientName = "";
+        string q = "";
         public AccountStatement(MainForm mainForm)
         {
             InitializeComponent();
@@ -44,7 +45,19 @@ namespace MainSystem
             txtClientID.Text = "";
             comEngCon.Text = "";
             txtCustomerID.Text = "";
-
+         
+            if (chAgel.Checked)
+            {
+                q = " and Type='اّجل'";
+            }
+            else if (chKash.Checked)
+            {
+                q = " and Type='كاش'";
+            }
+            else if (chKash.Checked && chAgel.Checked)
+            {
+                q = "";
+            }
             loaded = false; //this is flag to prevent action of SelectedValueChanged event until datasource fill combobox
             try
             {
@@ -57,7 +70,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -76,7 +89,7 @@ namespace MainSystem
                     comClient.Visible = false;
                     txtClientID.Visible = false;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -122,7 +135,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ") "+q;
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -599,5 +612,9 @@ namespace MainSystem
             }
         }
 
+        private void AccountStatement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
