@@ -1078,103 +1078,103 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            //if (flagConfirm == 2)
-            //{
-            try
+            if (flagConfirm == 2)
             {
-                if (comSupplier.SelectedValue != null && txtPermissionNum.Text != "" && gridView2.RowCount > 0)
+                try
                 {
-                    string suppliers_Name = "";
-                    conn.Open();
-                    string query = "select Store_Name from store where Store_ID=" + storeId;
-                    MySqlCommand com = new MySqlCommand(query, conn);
-                    string storeName = com.ExecuteScalar().ToString();
-
-                    string q = "update storage_import_permission set Confirmed=0 where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
-                    MySqlCommand c = new MySqlCommand(q, conn);
-                    c.ExecuteNonQuery();
-                    flagConfirm = 0;
-                    conn.Close();
-
-                    double carton = 0;
-                    double balate = 0;
-                    double quantity = 0;
-
-                    List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
-                    for (int i = 0; i < gridView2.RowCount; i++)
+                    if (comSupplier.SelectedValue != null && txtPermissionNum.Text != "" && gridView2.RowCount > 0)
                     {
-                        int rowHand = gridView2.GetRowHandle(i);
-                        bool flagTest = false;
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]) != "")
-                        {
-                            balate = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]));
-                        }
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد الكراتين"]) != "")
-                        {
-                            carton = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد الكراتين"]));
-                        }
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]) != "")
-                        {
-                            quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]));
-                        }
+                        string suppliers_Name = "";
+                        conn.Open();
+                        string query = "select Store_Name from store where Store_ID=" + storeId;
+                        MySqlCommand com = new MySqlCommand(query, conn);
+                        string storeName = com.ExecuteScalar().ToString();
 
-                        SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
-                        bi.Add(item);
+                        string q = "update storage_import_permission set Confirmed=0 where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
+                        MySqlCommand c = new MySqlCommand(q, conn);
+                        c.ExecuteNonQuery();
+                        flagConfirm = 0;
+                        conn.Close();
 
-                        if (i == 0)
-                        {
-                            suppliers_Name += gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]);
-                        }
+                        double carton = 0;
+                        double balate = 0;
+                        double quantity = 0;
 
-                        if (i < (gridView2.RowCount - 1))
+                        List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
+                        for (int i = 0; i < gridView2.RowCount; i++)
                         {
-                            for (int j = 0; j < gridView2.RowCount; j++)
+                            int rowHand = gridView2.GetRowHandle(i);
+                            bool flagTest = false;
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]) != "")
                             {
-                                int rowHand2 = gridView2.GetRowHandle(j);
-                                if (i != j)
+                                balate = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]));
+                            }
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد الكراتين"]) != "")
+                            {
+                                carton = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد الكراتين"]));
+                            }
+                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]) != "")
+                            {
+                                quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]));
+                            }
+
+                            SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["اذن استلام"])), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["تاريخ التخزين"])).ToString("yyyy-MM-dd hh:mm:ss"), Note = gridView2.GetRowCellDisplayText(i, gridView2.Columns["ملاحظة"]) };
+                            bi.Add(item);
+
+                            if (i == 0)
+                            {
+                                suppliers_Name += gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]);
+                            }
+
+                            if (i < (gridView2.RowCount - 1))
+                            {
+                                for (int j = 0; j < gridView2.RowCount; j++)
                                 {
-                                    if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["المورد"]))
+                                    int rowHand2 = gridView2.GetRowHandle(j);
+                                    if (i != j)
                                     {
-                                        flagTest = true;
+                                        if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["المورد"]))
+                                        {
+                                            flagTest = true;
+                                        }
                                     }
                                 }
-                            }
-                            if (!flagTest)
-                            {
-                                suppliers_Name += "," + gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]);
+                                if (!flagTest)
+                                {
+                                    suppliers_Name += "," + gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["المورد"]);
+                                }
                             }
                         }
-                    }
 
-                    bool flagTest2 = false;
-                    for (int j = 0; j < gridView2.RowCount - 1; j++)
-                    {
-                        int rowHand2 = gridView2.GetRowHandle(j);
-                        if (gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["المورد"]))
+                        bool flagTest2 = false;
+                        for (int j = 0; j < gridView2.RowCount - 1; j++)
                         {
-                            flagTest2 = true;
+                            int rowHand2 = gridView2.GetRowHandle(j);
+                            if (gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]) == gridView2.GetRowCellDisplayText(rowHand2, gridView2.Columns["المورد"]))
+                            {
+                                flagTest2 = true;
+                            }
                         }
-                    }
-                    if (!flagTest2 && gridView2.RowCount > 1)
-                    {
-                        suppliers_Name += "," + gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]);
-                    }
+                        if (!flagTest2 && gridView2.RowCount > 1)
+                        {
+                            suppliers_Name += "," + gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]);
+                        }
 
-                    Report_SupplierReceipt f = new Report_SupplierReceipt();
-                    f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, bi);
-                    f.ShowDialog();
+                        Report_SupplierReceipt f = new Report_SupplierReceipt();
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, bi);
+                        f.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب ادخال البيانات كاملة");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("يجب ادخال البيانات كاملة");
+                    MessageBox.Show(ex.Message);
                 }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
-            //}
         }
 
         private void btnCodingDetails_Click(object sender, EventArgs e)

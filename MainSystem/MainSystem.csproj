@@ -497,6 +497,30 @@
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\DataHelperClassBillsTransitions.cs" />
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.designer.cs">
+      <DependentUpon>Print_StorageReturnCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Report_StorageReturnCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Report_StorageReturnCopy.designer.cs">
+      <DependentUpon>Report_StorageReturnCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Print_SupplierReceiptCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Print_SupplierReceiptCopy.designer.cs">
+      <DependentUpon>Print_SupplierReceiptCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Report_SupplierReceiptCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Report_SupplierReceiptCopy.designer.cs">
+      <DependentUpon>Report_SupplierReceiptCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Items_Factory.cs" />
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.cs">
       <SubType>Form</SubType>
@@ -2107,16 +2131,16 @@
     <Compile Include="Store\Gate\Permissions_Edit.Designer.cs">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Import\Reports\PermissionReturnedReport.cs">
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\PermissionReturnedReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Import\Reports\PermissionReturnedReport.designer.cs">
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\PermissionReturnedReport.designer.cs">
       <DependentUpon>PermissionReturnedReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Import\Reports\PermissionsReport.cs">
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\PermissionsReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Import\Reports\PermissionsReport.designer.cs">
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\PermissionsReport.designer.cs">
       <DependentUpon>PermissionsReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\استرجاع\DataHelperClass2.cs" />
@@ -2733,6 +2757,18 @@
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.resx">
+      <DependentUpon>Print_StorageReturnCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\نسخة اذن المرتجع\Report_StorageReturnCopy.resx">
+      <DependentUpon>Report_StorageReturnCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\Print_SupplierReceiptCopy.resx">
+      <DependentUpon>Print_SupplierReceiptCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\Report_SupplierReceiptCopy.resx">
+      <DependentUpon>Report_SupplierReceiptCopy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.resx">
       <DependentUpon>Report_Items_Factory.cs</DependentUpon>
     </EmbeddedResource>
@@ -3336,10 +3372,10 @@
     <EmbeddedResource Include="Store\Gate\Permissions_Edit.resx">
       <DependentUpon>Permissions_Edit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Import\Reports\PermissionReturnedReport.resx">
+    <EmbeddedResource Include="Store\Import\Reports\نسخة اذن المرتجع\PermissionReturnedReport.resx">
       <DependentUpon>PermissionReturnedReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Import\Reports\PermissionsReport.resx">
+    <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\PermissionsReport.resx">
       <DependentUpon>PermissionsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\استرجاع\Print_StorageReturn.resx">

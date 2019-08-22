@@ -538,7 +538,7 @@ namespace MainSystem
                                     gridView1.Columns["Type"].Visible = false;
                                     gridView1.Columns[0].Visible = false;
 
-                                    dbconnection.Open();
+                                    //dbconnection.Open();
                                     dbconnection6.Open();
                                     query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code like '" + code1 + code2 + code3 + code4 + "%' group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
@@ -1364,6 +1364,9 @@ namespace MainSystem
                             billExist = false;
                             mainBillExist = false;
                             main.test(0);
+                            dbconnection4.Close();
+                            dbconnection2.Close();
+                            dbconnection5.Close();
                             dbconnection8.Close();
                             MessageBox.Show("يوجد خطا فى هذه الفاتورة");
                             return;
@@ -1438,6 +1441,7 @@ namespace MainSystem
                                         dbconnection4.Close();
                                         dbconnection2.Close();
                                         dbconnection5.Close();
+                                        dbconnection8.Close();
                                         return;
                                     }
                                 }

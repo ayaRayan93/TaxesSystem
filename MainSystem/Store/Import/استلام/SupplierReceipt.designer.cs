@@ -615,11 +615,11 @@
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::MainSystem.Properties.Resources.Save_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 33;
             this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "طباعة";
+            this.btnReport.LabelText = "حفظ";
             this.btnReport.Location = new System.Drawing.Point(373, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
