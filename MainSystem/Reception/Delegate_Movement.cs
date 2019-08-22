@@ -326,8 +326,9 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                dbconnection.Close();
+                //dbconnection.Close();
             }
+            dbconnection.Close();
         }
 
         private void repositoryItemLookUpEdit1_Closed(object sender, DevExpress.XtraEditors.Controls.ClosedEventArgs e)
@@ -579,12 +580,12 @@ namespace MainSystem
                 int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
 
                 UserControl.ItemRecord("dash", "اضافة", dashId, DateTime.Now, null, dbconnection);
-                dbconnection.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void radOldBill_Click(object sender, EventArgs e)

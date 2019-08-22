@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_StorageReturn));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -58,7 +59,6 @@
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -86,7 +86,8 @@
             this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedPermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedReason = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -391,7 +392,6 @@
             this.xrLabel10,
             this.xrLabel5,
             this.xrLabel14,
-            this.xrPictureBox1,
             this.xrLabel2,
             this.xrLabel3,
             this.xrLabel4,
@@ -399,7 +399,8 @@
             this.xrLabel12,
             this.xrLabel15,
             this.xrLabel1,
-            this.xrTable2});
+            this.xrTable2,
+            this.xrPictureBox1});
             this.PageHeader.HeightF = 153.5417F;
             this.PageHeader.Name = "PageHeader";
             // 
@@ -444,15 +445,6 @@
             this.xrLabel14.StylePriority.UseTextAlignment = false;
             this.xrLabel14.Text = ":رقم";
             this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrPictureBox1
-            // 
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(70.00008F, 0F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(75F, 95F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // xrLabel2
             // 
@@ -726,6 +718,15 @@
             this.objectDataSource1.DataSource = typeof(MainSystem.StorageReturn_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(70.00002F, 0F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(70.5F, 93.5F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // Print_StorageReturn
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -768,7 +769,6 @@
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
@@ -821,5 +821,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
+        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
     }
 }

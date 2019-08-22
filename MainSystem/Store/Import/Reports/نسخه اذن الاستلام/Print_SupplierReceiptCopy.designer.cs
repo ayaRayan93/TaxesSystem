@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Print_SupplierReceipt
+    partial class Print_SupplierReceiptCopy
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_SupplierReceipt));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_SupplierReceiptCopy));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -81,6 +81,7 @@
             this.PermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -363,6 +364,7 @@
             this.xrLabel2,
             this.xrLabel1,
             this.xrTable2,
+            this.xrLabel20,
             this.xrPictureBox1});
             this.PageHeader.HeightF = 131F;
             this.PageHeader.Name = "PageHeader";
@@ -643,6 +645,22 @@
             this.objectDataSource1.DataSource = typeof(MainSystem.SupplierReceipt_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrLabel20
+            // 
+            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(71.64252F, 67F);
+            this.xrLabel20.Multiline = true;
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(55.00001F, 23F);
+            this.xrLabel20.StylePriority.UseBorders = false;
+            this.xrLabel20.StylePriority.UseFont = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "COPY";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
             // xrPictureBox1
             // 
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
@@ -652,7 +670,7 @@
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(55F, 70F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
-            // Print_SupplierReceipt
+            // Print_SupplierReceiptCopy
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -738,6 +756,7 @@
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel20;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
     }
 }

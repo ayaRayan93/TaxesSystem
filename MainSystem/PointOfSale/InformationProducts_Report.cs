@@ -1472,8 +1472,56 @@ namespace MainSystem
             comType.DisplayMember = dt.Columns["Type_Name"].ToString();
             comType.ValueMember = dt.Columns["Type_ID"].ToString();
             comType.Text = "";
-            //txtType.Text = "";
-            
+            txtCodeSearch1.Text = "";
+
+            query = "select * from factory";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comFactory.DataSource = dt;
+            comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+            comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+            comFactory.Text = "";
+            txtCodeSearch2.Text = "";
+
+            query = "select * from groupo";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comGroup.DataSource = dt;
+            comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
+            comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
+            comGroup.Text = "";
+            txtCodeSearch3.Text = "";
+
+            query = "select * from product";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comProduct.DataSource = dt;
+            comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+            comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+            comProduct.Text = "";
+            txtCodeSearch4.Text = "";
+
+            query = "select * from size";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comSize.DataSource = dt;
+            comSize.DisplayMember = dt.Columns["Size_Value"].ToString();
+            comSize.ValueMember = dt.Columns["Size_ID"].ToString();
+            comSize.Text = "";
+
+            query = "select * from color";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comColor.DataSource = dt;
+            comColor.DisplayMember = dt.Columns["Color_Name"].ToString();
+            comColor.ValueMember = dt.Columns["Color_ID"].ToString();
+            comColor.Text = "";
+
             query = "select * from sort";
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();
