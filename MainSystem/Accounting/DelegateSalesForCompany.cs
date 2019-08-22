@@ -199,11 +199,12 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+                string d = date.ToString("yyyy-MM-dd ");
+                d += "00:00:00";
                 DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
-
-                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                string d2 = date2.ToString("yyyy-MM-dd ");
+                d2 += "23:59:59";
+                string query = "select distinct customer_bill.CustomerBill_ID from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text + " and delegate.Delegate_ID= " + txtDelegateID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -213,7 +214,7 @@ namespace MainSystem
                 }
                 dr.Close();
 
-                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and Branch_ID="+txtBranchID.Text;
+                query = "select distinct customer_bill.CustomerBill_ID from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text + " and delegate.Delegate_ID= " + txtDelegateID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
 
@@ -225,7 +226,7 @@ namespace MainSystem
 
                 str += 0;
 
-                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and Branch_ID="+txtBranchID.Text;
+                query = "select distinct customer_return_bill.CustomerReturnBill_ID from customer_return_bill inner join customer_return_bill_details on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text +" and delegate.Delegate_ID= " + txtDelegateID.Text  ;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
                 string str1 = "";
@@ -385,7 +386,7 @@ namespace MainSystem
             }
             else if (txtDelegateID.Text != "")
             {
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by delegate.Delegate_ID ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where customer_return_bill.CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by factory.Factory_ID";
             }
             else
             {
@@ -400,19 +401,39 @@ namespace MainSystem
             {
                 foreach (DataRow item in _Table.Rows)
                 {
-                    if (item[0].ToString() == dr[0].ToString())
+                    if (txtFactory.Text == "")
                     {
-                        if (dr[3].ToString() != "")
+                        if (item[2].ToString() == dr[2].ToString())
                         {
-                            item["TotalReturn"] = dr[3].ToString();
-                            item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                            if (dr[3].ToString() != "")
+                            {
+                                item["TotalReturn"] = dr[3].ToString();
+                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                            }
+                            else
+                            {
+                                item["TotalReturn"] = 0;
+                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - 0);
+                            }
+                            flag = false;
                         }
-                        else
+                    }
+                    else if (txtDelegateID.Text == "")
+                    {
+                        if (item[0].ToString() == dr[0].ToString())
                         {
-                            item["TotalReturn"] = 0;
-                            item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) -0);
+                            if (dr[3].ToString() != "")
+                            {
+                                item["TotalReturn"] = dr[3].ToString();
+                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                            }
+                            else
+                            {
+                                item["TotalReturn"] = 0;
+                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - 0);
+                            }
+                            flag = false;
                         }
-                        flag = false;
                     }
 
                 }
@@ -432,7 +453,7 @@ namespace MainSystem
                     }
                     row["Delegate_ID"] = dr[0].ToString();
                     row["Delegate_Name"] = dr[1].ToString();
-                    row["Factory_Name"] = dr[1].ToString();
+                    row["Factory_Name"] = dr[2].ToString();
                     temp.Rows.Add(row);
                 }
 

@@ -79,6 +79,8 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.PriceAD = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -576,9 +578,11 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Data_ID,
             this.CodeName,
+            this.Code,
             this.QuantitySaled,
             this.QuantityReturned,
             this.Quantity,
+            this.PriceAD,
             this.Cost});
             this.gridView1.CustomizationFormBounds = new System.Drawing.Rectangle(584, 396, 260, 282);
             this.gridView1.GridControl = this.gridControl1;
@@ -606,7 +610,7 @@
             this.CodeName.FieldName = "CodeName";
             this.CodeName.Name = "CodeName";
             this.CodeName.Visible = true;
-            this.CodeName.VisibleIndex = 4;
+            this.CodeName.VisibleIndex = 5;
             this.CodeName.Width = 150;
             // 
             // QuantitySaled
@@ -628,7 +632,7 @@
             this.QuantitySaled.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantitySaled", "اجمالي الكمية المباعة={0:0.##}")});
             this.QuantitySaled.Visible = true;
-            this.QuantitySaled.VisibleIndex = 3;
+            this.QuantitySaled.VisibleIndex = 4;
             this.QuantitySaled.Width = 173;
             // 
             // QuantityReturned
@@ -649,7 +653,7 @@
             this.QuantityReturned.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityReturned", "اجمالي الكمية المرتجعة={0:0.##}")});
             this.QuantityReturned.Visible = true;
-            this.QuantityReturned.VisibleIndex = 2;
+            this.QuantityReturned.VisibleIndex = 3;
             this.QuantityReturned.Width = 173;
             // 
             // Quantity
@@ -671,7 +675,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Quantity", "اجمالي صافي الكمية={0:0.##}")});
             this.Quantity.UnboundExpression = "[QuantitySaled] - [QuantityReturned]";
             this.Quantity.Visible = true;
-            this.Quantity.VisibleIndex = 1;
+            this.Quantity.VisibleIndex = 2;
             this.Quantity.Width = 173;
             // 
             // Cost
@@ -752,6 +756,22 @@
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 0;
             // 
+            // PriceAD
+            // 
+            this.PriceAD.Caption = "السعر بعد الخصم";
+            this.PriceAD.FieldName = "PriceAD";
+            this.PriceAD.Name = "PriceAD";
+            this.PriceAD.Visible = true;
+            this.PriceAD.VisibleIndex = 1;
+            // 
+            // Code
+            // 
+            this.Code.Caption = "الكود";
+            this.Code.FieldName = "Code";
+            this.Code.Name = "Code";
+            this.Code.Visible = true;
+            this.Code.VisibleIndex = 6;
+            // 
             // DelegateSalesForProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,5 +846,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.XtraGrid.Columns.GridColumn Code;
+        private DevExpress.XtraGrid.Columns.GridColumn PriceAD;
     }
 }

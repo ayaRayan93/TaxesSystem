@@ -72,9 +72,11 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+                string d = date.ToString("yyyy-MM-dd ");
+                d += "00:00:00";
                 DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+                string d2 = date2.ToString("yyyy-MM-dd ");
+                d2 += "23:59:59";
 
                 string query = "select DISTINCT factory.Factory_ID,Factory_Name from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID  where Paid_Status=1 and Bill_Date between '" + d + "' and '" + d2 + "'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -247,9 +249,11 @@ namespace MainSystem
                 DataTable _Table = peraperDataTable();
 
                 DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+                string d = date.ToString("yyyy-MM-dd ");
+                d += "00:00:00";
                 DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+                string d2 = date2.ToString("yyyy-MM-dd ");
+                d2 += "23:59:59";
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
 
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
@@ -318,7 +322,7 @@ namespace MainSystem
         //get sold quantity from cash bill
         public DataTable getSoldQuantity1(DataTable _Table,string itemName,string DataTableRelations,string dateFrom,string dateTo,string customerBill_IDs)
         {
-            string query = "select product_bill.Data_ID," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by product_bill.Data_ID ";
+            string query = "select product_bill.Data_ID,data.Code," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by product_bill.Data_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
 
@@ -327,10 +331,12 @@ namespace MainSystem
                 DataRow row = _Table.NewRow();
 
                 row["Data_ID"] = dr[0].ToString();
-                row["CodeName"] = dr[1].ToString();
-                row["QuantitySaled"] = dr[2].ToString();
-                row["Quantity"] = dr[2].ToString();
-                row["Cost"] =Convert.ToDouble(dr[2].ToString())* Convert.ToDouble(dr[3].ToString());
+                row["Code"] = dr[1].ToString();
+                row["CodeName"] = dr[2].ToString();
+                row["QuantitySaled"] = dr[3].ToString();
+                row["Quantity"] = dr[3].ToString();
+                row["PriceAD"] = dr[4].ToString();
+                row["Cost"] =Convert.ToDouble(dr[3].ToString())* Convert.ToDouble(dr[4].ToString());
                 _Table.Rows.Add(row);
             }
             dr.Close();
@@ -340,7 +346,7 @@ namespace MainSystem
         //get sold quantity from agel bill
         public DataTable getSoldQuantity2(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo)
         {
-            string query = "select product_bill.Data_ID," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code ,customer_bill.CustomerBill_ID ,delegate.Delegate_ID ";
+            string query = "select product_bill.Data_ID,data.Code," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + dateFrom + "' and '" + dateTo + "' and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code ,customer_bill.CustomerBill_ID ,delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
@@ -351,9 +357,9 @@ namespace MainSystem
                 {
                     if (item[0].ToString() == dr[0].ToString())
                     {
-                        item["QuantitySaled"] = dr[2].ToString();
-                        item["Quantity"] = (Convert.ToDouble(item[2].ToString()) + Convert.ToDouble(dr[2].ToString())).ToString();
-                        item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        item["QuantitySaled"] = dr[3].ToString();
+                        item["Quantity"] = (Convert.ToDouble(item[3].ToString()) + Convert.ToDouble(dr[3].ToString())).ToString();
+                        item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[4].ToString());
                         flag = false;
                     }
 
@@ -362,12 +368,13 @@ namespace MainSystem
                 {
                     DataRow row = temp.NewRow();
 
-                    row["QuantitySaled"] = dr[2].ToString();
+                    row["QuantitySaled"] = dr[3].ToString();
                     if (dr[2].ToString()!="")
-                    row["Quantity"] = -Convert.ToDouble(dr[2].ToString());
+                    row["Quantity"] = -Convert.ToDouble(dr[3].ToString());
                     row["Data_ID"] = dr[0].ToString();
-                    row["CodeName"] = dr[1].ToString();
-                    row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+                    row["CodeName"] = dr[2].ToString();
+                    row["Code"] = dr[1].ToString();
+                    row["Cost"] = Convert.ToDouble(dr[3].ToString()) * Convert.ToDouble(dr[4].ToString());
 
                     temp.Rows.Add(row);
                 }
@@ -382,7 +389,7 @@ namespace MainSystem
 
         public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo, string customerReturnBill_IDs)
         {
-            string query = "select customer_return_bill_details.Data_ID," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code  ";
+            string query = "select customer_return_bill_details.Data_ID,data.Code," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code  ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
@@ -393,8 +400,8 @@ namespace MainSystem
                 {
                     if (item[0].ToString() == dr[0].ToString())
                     {
-                        item["QuantityReturned"] = dr[2].ToString();
-                        item["Quantity"] = (Convert.ToDouble(item[2].ToString()) - Convert.ToDouble(dr[2].ToString())).ToString();
+                        item["QuantityReturned"] = dr[3].ToString();
+                        item["Quantity"] = (Convert.ToDouble(item[3].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
                         item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
                         flag = false;
                     }
@@ -404,10 +411,12 @@ namespace MainSystem
                 {
                     DataRow row = temp.NewRow();
 
-                    row["QuantityReturned"] = dr[2].ToString();
-                    row["Quantity"] = dr[2].ToString();
+                    row["QuantityReturned"] = dr[3].ToString();
+                    row["Quantity"] = dr[3].ToString();
+                    row["PriceAD"] = dr[4].ToString();
                     row["Data_ID"] = dr[0].ToString();
-                    row["CodeName"] = dr[1].ToString();
+                    row["Code"] = dr[1].ToString();
+                    row["CodeName"] = dr[2].ToString();
                     row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
 
                     temp.Rows.Add(row);
@@ -427,9 +436,11 @@ namespace MainSystem
             DataTable _Table = new DataTable("Table");
 
             _Table.Columns.Add(new DataColumn("Data_ID", typeof(int)) );
+            _Table.Columns.Add(new DataColumn("Code", typeof(string)));
             _Table.Columns.Add(new DataColumn("CodeName", typeof(string)));
             _Table.Columns.Add(new DataColumn("QuantitySaled", typeof(string)));
             _Table.Columns.Add(new DataColumn("QuantityReturned", typeof(string)));
+            _Table.Columns.Add(new DataColumn("PriceAD", typeof(string)));
             _Table.Columns.Add(new DataColumn("Cost", typeof(string)));
             _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
