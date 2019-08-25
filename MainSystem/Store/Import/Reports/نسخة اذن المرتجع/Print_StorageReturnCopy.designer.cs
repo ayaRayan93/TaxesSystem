@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_StorageReturnCopy));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -77,6 +76,7 @@
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
@@ -87,8 +87,7 @@
             this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedPermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedReason = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -219,7 +218,7 @@
             this.xrTableCell8.StyleName = "xrControlStyle2";
             this.xrTableCell8.StylePriority.UseFont = false;
             this.xrTableCell8.Text = "xrTableCell8";
-            this.xrTableCell8.Weight = 5.2703205969366866D;
+            this.xrTableCell8.Weight = 4.7376126757502357D;
             // 
             // xrTableCell9
             // 
@@ -231,7 +230,7 @@
             this.xrTableCell9.StyleName = "xrControlStyle2";
             this.xrTableCell9.StylePriority.UseFont = false;
             this.xrTableCell9.Text = "xrTableCell9";
-            this.xrTableCell9.Weight = 8.3865491079663528D;
+            this.xrTableCell9.Weight = 8.9192476651097969D;
             // 
             // xrTableCell3
             // 
@@ -244,7 +243,7 @@
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell3.Summary = xrSummary1;
             this.xrTableCell3.Text = "xrTableCell3";
-            this.xrTableCell3.Weight = 2.8025551066486418D;
+            this.xrTableCell3.Weight = 2.8025644706916473D;
             // 
             // TopMargin
             // 
@@ -644,7 +643,7 @@
             this.xrTableCell7.StylePriority.UseBorderWidth = false;
             this.xrTableCell7.StylePriority.UseFont = false;
             this.xrTableCell7.Text = "النوع";
-            this.xrTableCell7.Weight = 2.4531855735698636D;
+            this.xrTableCell7.Weight = 2.2052252798757142D;
             // 
             // xrTableCell11
             // 
@@ -652,7 +651,7 @@
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseFont = false;
             this.xrTableCell11.Text = "الكود";
-            this.xrTableCell11.Weight = 3.9037059590096894D;
+            this.xrTableCell11.Weight = 4.1517105661458737D;
             // 
             // xrTableCell6
             // 
@@ -660,7 +659,23 @@
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseFont = false;
             this.xrTableCell6.Text = "م";
-            this.xrTableCell6.Weight = 1.3045117156297028D;
+            this.xrTableCell6.Weight = 1.3044766644137711D;
+            // 
+            // xrLabel20
+            // 
+            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(70.00002F, 88F);
+            this.xrLabel20.Multiline = true;
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(70.00002F, 23F);
+            this.xrLabel20.StylePriority.UseBorders = false;
+            this.xrLabel20.StylePriority.UseFont = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "COPY";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // ReportHeader
             // 
@@ -728,22 +743,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MainSystem.StorageReturn_Items);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrLabel20
-            // 
-            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(70.00002F, 88F);
-            this.xrLabel20.Multiline = true;
-            this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel20.SizeF = new System.Drawing.SizeF(70.00002F, 23F);
-            this.xrLabel20.StylePriority.UseBorders = false;
-            this.xrLabel20.StylePriority.UseFont = false;
-            this.xrLabel20.StylePriority.UseTextAlignment = false;
-            this.xrLabel20.Text = "COPY";
-            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // Print_StorageReturnCopy
             // 
