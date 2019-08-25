@@ -34,6 +34,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+             
             }
             catch (Exception ex)
             {
@@ -45,6 +46,10 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
+                if (UserControl.EmpType == "مدير")
+                {
+                    btnPrint.Visible = true;
+                }
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();
                 this.permissionNum = permissionNum;

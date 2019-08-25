@@ -810,7 +810,7 @@ namespace MainSystem
             if (radioQata3y.Checked == true)
             {
                 //return price + (price * PurchasesPercent / 100.0) + addational;
-                price += getNormalIncrease() + getUnNormalIncrease(); ;
+                price += getNormalIncrease() + getUnNormalIncrease();
                 return price - (price * PurchasesPercent / 100.0);
             }
             else

@@ -170,10 +170,11 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+                string d = date.ToString("yyyy-MM-dd ");
+                d += "00:00:00";
                 DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
-
+                string d2 = date2.ToString("yyyy-MM-dd ");
+                d2 += "23:59:59";
                 string query= "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
@@ -249,7 +250,7 @@ namespace MainSystem
         //functions
         public DataTable getTotalSales(DataTable _Table, string customerBill_ids, string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,sum(product_bill.PriceAD*Quantity) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_ids + ")  " + subQuery + " group by delegate.Delegate_ID ";
+            string query = "select delegate.Delegate_ID,Delegate_Name,sum(product_bill.PriceAD*Quantity) from product_bill inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where product_bill.CustomerBill_ID in (" + customerBill_ids + ")  " + subQuery + " group by delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
 
@@ -269,7 +270,7 @@ namespace MainSystem
         }
         public DataTable getTotalReturn(DataTable _Table, string CustomerReturnBill_IDs, string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") " + subQuery + " group by delegate.Delegate_ID ";
+            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") " + subQuery + " group by delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
