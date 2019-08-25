@@ -14,13 +14,18 @@ namespace MainSystem
 {
     public partial class PermissionReturnedReport : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3, dbconnection4;
         bool loaded = false;
+        DataRow row1 = null;
 
         public PermissionReturnedReport(MainForm mainform, XtraTabControl tabControlContent)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection1 = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
+            dbconnection3 = new MySqlConnection(connection.connectionString);
+            dbconnection4 = new MySqlConnection(connection.connectionString);
         }
         private void requestStored_Load(object sender, EventArgs e)
         {
@@ -82,6 +87,22 @@ namespace MainSystem
                         MessageBox.Show("there is no item with this id");
 
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
+            }
+        }
+
+        private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                 }
                 catch (Exception ex)
                 {
@@ -181,7 +202,104 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int storeID = 0;
+                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && gridView1.RowCount > 0)
+                {
+                    string suppliers_Name = "";
+                    dbconnection.Open();
+                    string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    string storeName = com.ExecuteScalar().ToString();
 
+                    string q1, q2, q3 = "";
+                    dbconnection1.Open();
+                    dbconnection2.Open();
+                    dbconnection3.Open();
+                    q1 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',import_storage_return.Returned_Permission_Number as 'رقم اذن المرتجع',import_storage_return.Retrieval_Date as 'تاريخ الاسترجاع',import_storage_return.Reason as 'سبب الاسترجاع' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.Returned_Permission_Number=" + row1["رقم اذن المرتجع"].ToString() + " and import_storage_return.Store_ID=" + comStore.SelectedValue.ToString();
+                    MySqlCommand com1 = new MySqlCommand(q1, dbconnection1);
+                    MySqlDataReader dr1 = com1.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        List<string> supplierList = new List<string>();
+                        List<StorageReturn_Items> bi = new List<StorageReturn_Items>();
+                        int supplierCount = 0;
+                        int gridcount = 0;
+                        q2 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_storage_return_supplier.Supplier_Permission_Number as 'رقم اذن الاستلام',import_storage_return_supplier.ImportStorageReturnSupplier_ID as 'ID' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.ImportStorageReturn_ID=" + dr1["التسلسل"].ToString();
+                        MySqlCommand com2 = new MySqlCommand(q2, dbconnection2);
+                        MySqlDataReader dr2 = com2.ExecuteReader();
+                        while (dr2.Read())
+                        {
+                            supplierList.Add(dr2["المورد"].ToString());
+                            bool flagTest = false;
+                            q3 = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where import_storage_return_supplier.ImportStorageReturnSupplier_ID=" + dr2["ID"].ToString();
+                            MySqlCommand com3 = new MySqlCommand(q3, dbconnection3);
+                            MySqlDataReader dr3 = com3.ExecuteReader();
+                            while (dr3.Read())
+                            {
+                                gridcount++;
+                                double carton = 0;
+                                double balate = 0;
+                                double quantity = 0;
+
+                                if (dr3["عدد البلتات"].ToString() != "")
+                                {
+                                    balate = Convert.ToDouble(dr3["عدد البلتات"].ToString());
+                                }
+                                if (dr3["عدد الكراتين"].ToString() != "")
+                                {
+                                    carton = Convert.ToDouble(dr3["عدد الكراتين"].ToString());
+                                }
+                                if (dr3["متر/قطعة"].ToString() != "")
+                                {
+                                    quantity = Convert.ToDouble(dr3["متر/قطعة"].ToString());
+                                }
+
+                                StorageReturn_Items item = new StorageReturn_Items() { Code = dr3["الكود"].ToString(), Product_Type = dr3["النوع"].ToString(), Product_Name = dr3["الاسم"].ToString(), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(dr2["رقم اذن الاستلام"].ToString()), Date = Convert.ToDateTime(dr3["وقت الاسترجاع"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"), Reason = dr3["السبب"].ToString() };
+                                bi.Add(item);
+                            }
+                            dr3.Close();
+
+                            if (supplierCount == 0)
+                            {
+                                suppliers_Name += dr2["المورد"].ToString();
+                            }
+
+                            for (int j = 0; j < supplierList.Count; j++)
+                            {
+                                if (dr2["المورد"].ToString() == supplierList[j])
+                                {
+                                    flagTest = true;
+                                }
+                            }
+                            if (!flagTest)
+                            {
+                                suppliers_Name += "," + dr2["المورد"].ToString();
+                            }
+                            supplierCount++;
+
+                            Report_StorageReturnCopy f = new Report_StorageReturnCopy();
+                            f.PrintInvoice(storeName, dr1["رقم اذن المرتجع"].ToString(), suppliers_Name, Convert.ToInt16(dr2["رقم اذن الاستلام"].ToString()), row1["سبب الاسترجاع"].ToString(), bi);
+                            f.ShowDialog();
+                        }
+                        dr2.Close();
+                    }
+                    dr1.Close();
+                }
+                else
+                {
+                    MessageBox.Show("يجب ادخال البيانات كاملة");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+            dbconnection1.Close();
+            dbconnection2.Close();
+            dbconnection3.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

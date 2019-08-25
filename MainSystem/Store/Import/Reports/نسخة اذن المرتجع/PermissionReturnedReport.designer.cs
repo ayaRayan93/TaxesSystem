@@ -285,6 +285,7 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.ViewCaption = "المرتجعات";
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
             // panel1
             // 
