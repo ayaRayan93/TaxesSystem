@@ -46,10 +46,10 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
-                if (UserControl.EmpType == "مدير")
-                {
+                //if (UserControl.EmpType == "مدير")
+                //{
                     btnPrint.Visible = true;
-                }
+               // }
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();
                 this.permissionNum = permissionNum;
