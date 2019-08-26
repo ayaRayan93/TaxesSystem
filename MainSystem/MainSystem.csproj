@@ -783,16 +783,16 @@
     <Compile Include="Accounting\Supplier_Payments\SupplierAccount_Report.designer.cs">
       <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Report.designer.cs">
       <DependentUpon>PurchaseBill_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Update.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Update.designer.cs">
       <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill_Copy2.cs">
@@ -2658,10 +2658,10 @@
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierAccount_Report.resx">
       <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Report.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Report.resx">
       <DependentUpon>PurchaseBill_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\PurchaseBill_Update.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Update.resx">
       <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
@@ -3747,6 +3747,7 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
+    <Folder Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

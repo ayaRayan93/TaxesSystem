@@ -235,5 +235,75 @@ namespace MainSystem
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
         }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            /*try
+            {
+                int supplierID = 0;
+                if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null && gridView1.RowCount > 0)
+                {
+                    dbconnection.Open();
+                    string q1, q2, q3 = "";
+                    dbconnection1.Open();
+                    dbconnection2.Open();
+                    dbconnection3.Open();
+                    q1 = "SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString();
+                    MySqlCommand com1 = new MySqlCommand(q1, dbconnection1);
+                    MySqlDataReader dr1 = com1.ExecuteReader();
+                    while (dr1.Read())
+                    {
+                        List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
+                        
+                        int gridcount = 0;
+                        
+                            q3 = "select storage_import_permission.StorageImportPermission_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',supplier_permission_details.ImportSupplierPermission_ID as 'ID' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + dr2["ID"].ToString();
+                            MySqlCommand com3 = new MySqlCommand(q3, dbconnection3);
+                            MySqlDataReader dr3 = com3.ExecuteReader();
+                            while (dr3.Read())
+                            {
+                                gridcount++;
+                                double carton = 0;
+                                double balate = 0;
+                                double quantity = 0;
+
+                                if (dr3["عدد البلتات"].ToString() != "")
+                                {
+                                    balate = Convert.ToDouble(dr3["عدد البلتات"].ToString());
+                                }
+                                if (dr3["عدد الكراتين"].ToString() != "")
+                                {
+                                    carton = Convert.ToDouble(dr3["عدد الكراتين"].ToString());
+                                }
+                                if (dr3["متر/قطعة"].ToString() != "")
+                                {
+                                    quantity = Convert.ToDouble(dr3["متر/قطعة"].ToString());
+                                }
+
+                                SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = dr3["الكود"].ToString(), Product_Type = dr3["النوع"].ToString(), Product_Name = dr3["الاسم"].ToString(), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(dr2["اذن استلام"].ToString()), Date = Convert.ToDateTime(dr3["تاريخ التخزين"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"), Note = dr3["ملاحظة"].ToString() };
+                                bi.Add(item);
+                            }
+                            dr3.Close();
+                        
+                        Report_SupplierReceiptCopy f = new Report_SupplierReceiptCopy();
+                        f.PrintInvoice(storeName, dr1["رقم الاذن"].ToString(), suppliers_Name, bi);
+                        f.ShowDialog();
+                    }
+                    dr1.Close();
+                }
+                else
+                {
+                    MessageBox.Show("يجب ادخال البيانات كاملة");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+            dbconnection1.Close();
+            dbconnection2.Close();
+            dbconnection3.Close();*/
+        }
     }
 }
