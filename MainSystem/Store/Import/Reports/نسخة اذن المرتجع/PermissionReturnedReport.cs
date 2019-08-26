@@ -209,9 +209,9 @@ namespace MainSystem
                 {
                     string suppliers_Name = "";
                     dbconnection.Open();
-                    string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    string storeName = com.ExecuteScalar().ToString();
+                    //string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
+                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    string storeName = comStore.Text;
 
                     string q1, q2, q3 = "";
                     dbconnection1.Open();
