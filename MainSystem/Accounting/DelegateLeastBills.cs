@@ -191,6 +191,7 @@ namespace MainSystem
                     //DataTable dt2 = new DataTable();
                     //da.Fill(dt2);
                     //mdt.Merge(dt2,true,MissingSchemaAction.Ignore);
+                    gridControl1.DataSource = null;
                     gridControl1.DataSource = dt1;
                 }
                 else
