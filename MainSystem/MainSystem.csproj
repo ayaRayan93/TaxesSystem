@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version54\</PublishUrl>
+    <PublishUrl>D:\التكويد\version55\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>113</ApplicationRevision>
+    <ApplicationRevision>115</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -165,6 +165,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\checkPaidBillsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\checkPaidBillsForm.designer.cs">
+      <DependentUpon>checkPaidBillsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounting\DelegateAgleCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1411,12 +1417,6 @@
       <DependentUpon>SparePart_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="CarSystem.cs" />
-    <Compile Include="Sales\accounting\checkPaidBillsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sales\accounting\checkPaidBillsForm.designer.cs">
-      <DependentUpon>checkPaidBillsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\accounting\customerBills.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2436,6 +2436,9 @@
     <Compile Include="UserUpdate.designer.cs">
       <DependentUpon>UserUpdate.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Accounting\checkPaidBillsForm.resx">
+      <DependentUpon>checkPaidBillsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateAgleCustomers.resx">
       <DependentUpon>DelegateAgleCustomers.cs</DependentUpon>
     </EmbeddedResource>
@@ -3041,9 +3044,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cars\SparePart_Report.resx">
       <DependentUpon>SparePart_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sales\accounting\checkPaidBillsForm.resx">
-      <DependentUpon>checkPaidBillsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\customerBills.resx">
       <DependentUpon>customerBills.cs</DependentUpon>

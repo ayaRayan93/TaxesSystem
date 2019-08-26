@@ -185,19 +185,21 @@ namespace MainSystem
                 }
                 dr.Close();
 
-                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
-                com = new MySqlCommand(query, dbconnection);
-                dr = com.ExecuteReader();
+                //query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                //com = new MySqlCommand(query, dbconnection);
+                //dr = com.ExecuteReader();
            
-                while (dr.Read())
-                {
-                    str += dr[0].ToString() + ",";
-                }
-                dr.Close();
+                //while (dr.Read())
+                //{
+                //    str += dr[0].ToString() + ",";
+                //}
+                //dr.Close();
 
                 str += 0;
 
-                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                //query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
+
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
                 string str1 = "";
@@ -270,7 +272,7 @@ namespace MainSystem
         }
         public DataTable getTotalReturn(DataTable _Table, string CustomerReturnBill_IDs, string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") " + subQuery + " group by delegate.Delegate_ID ";
+            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") " + subQuery + " group by delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();

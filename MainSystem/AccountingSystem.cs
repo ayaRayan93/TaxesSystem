@@ -207,7 +207,43 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnTaswayAgalBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 7 || UserControl.userType == 1 || UserControl.userType == 15 )
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
 
+                    if (!xtraTabControlAccounting.Visible)
+                        xtraTabControlAccounting.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تسوية فواتير الاجل");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlAccounting.TabPages.Add("تسوية فواتير الاجل");
+                        xtraTabPage = getTabPage(xtraTabControlAccounting, "تسوية فواتير الاجل");
+                    }
+                    xtraTabPage.Controls.Clear();
+
+                    xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                    checkPaidBillsForm objForm = new checkPaidBillsForm();
+                    objForm.TopLevel = false;
+
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void DelegateProfit_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
