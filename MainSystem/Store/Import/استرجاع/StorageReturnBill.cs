@@ -128,6 +128,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void GridView2_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -174,6 +175,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void radioButtonWithOutReturnBill_CheckedChanged(object sender, EventArgs e)
@@ -202,6 +204,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void comType_SelectedIndexChanged(object sender, EventArgs e)
@@ -470,12 +473,44 @@ namespace MainSystem
         {
             try
             {
-                displayData();
+                if (comType.Text != "" && comFactory.Text != "")
+                {
+                    if (comType.Text == "سيراميك" || comType.Text == "بورسلين")
+                    {
+                        if (comGroup.Text == "")
+                        {
+                            gridControl1.DataSource = null;
+                            gridView1.Columns.Clear();
+
+                            for (int i = 0; i < gridView2.RowCount; i++)
+                            {
+                                int rowHandle = gridView2.GetRowHandle(i);
+                                gridView2.DeleteRow(rowHandle);
+                            }
+                            MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
+                            return;
+                        }
+                    }
+                    displayData();
+                }
+                else
+                {
+                    gridControl1.DataSource = null;
+                    gridView1.Columns.Clear();
+
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        int rowHandle = gridView2.GetRowHandle(i);
+                        gridView2.DeleteRow(rowHandle);
+                    }
+                    MessageBox.Show("يجب اختيار النوع والمصنع على الاقل");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void btnNewChooes_Click(object sender, EventArgs e)
@@ -498,6 +533,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void btnAddToReturnBill_Click(object sender, EventArgs e)
@@ -661,6 +697,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -679,6 +716,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
         
         private void txtPermissionNum_TextChanged(object sender, EventArgs e)
@@ -749,6 +787,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.ToString());
             }
+            dbconnection.Close();
         }
 
         private void txtTotalMeter_TextChanged(object sender, EventArgs e)
@@ -775,6 +814,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.ToString());
             }
+            dbconnection.Close();
         }
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
@@ -818,6 +858,7 @@ namespace MainSystem
             {
                 //MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -1586,6 +1627,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
@@ -1605,6 +1647,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
@@ -1624,6 +1667,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         public void filterGroup()

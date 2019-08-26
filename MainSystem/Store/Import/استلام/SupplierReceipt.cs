@@ -140,86 +140,103 @@ namespace MainSystem
         {
             try
             {
-                string q1, q2, q3, q4, fQuery = "";
-                if (comType.Text == "")
+                if (comType.Text != "" && comFactory.Text != "")
                 {
-                    q1 = "select Type_ID from type";
-                }
-                else
-                {
-                    q1 = comType.SelectedValue.ToString();
-                }
-                if (comFactory.Text == "")
-                {
-                    q2 = "select Factory_ID from factory";
-                }
-                else
-                {
-                    q2 = comFactory.SelectedValue.ToString();
-                }
-                if (comProduct.Text == "")
-                {
-                    q3 = "select Product_ID from product";
-                }
-                else
-                {
-                    q3 = comProduct.SelectedValue.ToString();
-                }
-                if (comGroup.Text == "")
-                {
-                    q4 = "select Group_ID from groupo";
-                }
-                else
-                {
-                    q4 = comGroup.SelectedValue.ToString();
-                }
-
-                if (comSize.Text != "")
-                {
-                    fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
-                }
-
-                if (comColor.Text != "")
-                {
-                    fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
-                }
-                if (comSort.Text != "")
-                {
-                    fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
-                }
-
-                conn.Open();
-                conn6.Open();
-                string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                gridControl1.DataSource = dt;
-
-                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-                MySqlCommand comand = new MySqlCommand(query, conn);
-                MySqlDataReader dr = comand.ExecuteReader();
-                while (dr.Read())
-                {
-                    gridView1.AddNewRow();
-                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                    if (gridView1.IsNewItemRow(rowHandle))
+                    if (comType.Text == "سيراميك" || comType.Text == "بورسلين")
                     {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                        if (comGroup.Text == "")
+                        {
+                            gridControl1.DataSource = null;
+                            MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
+                            return;
+                        }
                     }
+                    string q1, q2, q3, q4, fQuery = "";
+                    if (comType.Text == "")
+                    {
+                        q1 = "select Type_ID from type";
+                    }
+                    else
+                    {
+                        q1 = comType.SelectedValue.ToString();
+                    }
+                    if (comFactory.Text == "")
+                    {
+                        q2 = "select Factory_ID from factory";
+                    }
+                    else
+                    {
+                        q2 = comFactory.SelectedValue.ToString();
+                    }
+                    if (comProduct.Text == "")
+                    {
+                        q3 = "select Product_ID from product";
+                    }
+                    else
+                    {
+                        q3 = comProduct.SelectedValue.ToString();
+                    }
+                    if (comGroup.Text == "")
+                    {
+                        q4 = "select Group_ID from groupo";
+                    }
+                    else
+                    {
+                        q4 = comGroup.SelectedValue.ToString();
+                    }
+
+                    if (comSize.Text != "")
+                    {
+                        fQuery += " and size.Size_ID=" + comSize.SelectedValue.ToString();
+                    }
+
+                    if (comColor.Text != "")
+                    {
+                        fQuery += " and color.Color_ID=" + comColor.SelectedValue.ToString();
+                    }
+                    if (comSort.Text != "")
+                    {
+                        fQuery += " and Sort.Sort_ID=" + comSort.SelectedValue.ToString();
+                    }
+
+                    conn.Open();
+                    conn6.Open();
+                    string query = "select data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    gridControl1.DataSource = dt;
+
+                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                    MySqlCommand comand = new MySqlCommand(query, conn);
+                    MySqlDataReader dr = comand.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        gridView1.AddNewRow();
+                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                        if (gridView1.IsNewItemRow(rowHandle))
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "بند");
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                        }
+                    }
+                    dr.Close();
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+                    gridView1.Columns[0].Visible = false;
+                    gridView1.Columns["Type"].Visible = false;
                 }
-                dr.Close();
-                if (gridView1.IsLastVisibleRow)
+                else
                 {
-                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    gridControl1.DataSource = null;
+                    MessageBox.Show("يجب اختيار النوع والمصنع على الاقل");
                 }
-                gridView1.Columns[0].Visible = false;
-                gridView1.Columns["Type"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -420,6 +437,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
         private void txtNumCarton_TextChanged(object sender, EventArgs e)
@@ -449,6 +467,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.ToString());
             }
+            conn.Close();
         }
 
         private void txtTotalMeter_TextChanged(object sender, EventArgs e)
@@ -475,6 +494,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.ToString());
             }
+            conn.Close();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -1010,6 +1030,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
         private void txtPermissionNum_TextChanged(object sender, EventArgs e)
@@ -1188,6 +1209,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
         private void txtSupplier_KeyDown(object sender, KeyEventArgs e)
@@ -1229,6 +1251,7 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
+                conn.Close();
             }
         }
 
@@ -1244,6 +1267,7 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
+                conn.Close();
             }
         }
 
@@ -1259,6 +1283,7 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
+                conn.Close();
             }
         }
 
