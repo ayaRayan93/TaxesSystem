@@ -730,7 +730,11 @@ namespace MainSystem
                                 {
                                     query = "update customer_bill set Paid_Status=0 where CustomerBill_ID=" + ID;
                                 }
-                                else if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 || checkBoxTaswya.Checked == true)
+                                else if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 /*|| checkBoxTaswya.Checked == true*/)
+                                {
+                                    query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
+                                }
+                                else if (checkBoxTaswya.Checked == true && (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text)) <= 50)
                                 {
                                     query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
                                 }
@@ -738,7 +742,7 @@ namespace MainSystem
                                 {
                                     query = "update customer_bill set Paid_Status=2 where CustomerBill_ID=" + ID;
                                 }
-
+                                
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
                                 

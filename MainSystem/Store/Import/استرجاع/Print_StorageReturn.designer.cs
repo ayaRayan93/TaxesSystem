@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_StorageReturn));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -76,6 +75,7 @@
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
@@ -86,8 +86,7 @@
             this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedPermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReturnedReason = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -218,7 +217,7 @@
             this.xrTableCell8.StyleName = "xrControlStyle2";
             this.xrTableCell8.StylePriority.UseFont = false;
             this.xrTableCell8.Text = "xrTableCell8";
-            this.xrTableCell8.Weight = 5.2703205969366866D;
+            this.xrTableCell8.Weight = 4.7376126757502348D;
             // 
             // xrTableCell9
             // 
@@ -230,7 +229,7 @@
             this.xrTableCell9.StyleName = "xrControlStyle2";
             this.xrTableCell9.StylePriority.UseFont = false;
             this.xrTableCell9.Text = "xrTableCell9";
-            this.xrTableCell9.Weight = 8.3865491079663528D;
+            this.xrTableCell9.Weight = 8.9192570291528046D;
             // 
             // xrTableCell3
             // 
@@ -633,7 +632,7 @@
             this.xrTableCell7.StylePriority.UseBorderWidth = false;
             this.xrTableCell7.StylePriority.UseFont = false;
             this.xrTableCell7.Text = "النوع";
-            this.xrTableCell7.Weight = 2.4531855735698636D;
+            this.xrTableCell7.Weight = 2.2052249177496259D;
             // 
             // xrTableCell11
             // 
@@ -641,7 +640,7 @@
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.StylePriority.UseFont = false;
             this.xrTableCell11.Text = "الكود";
-            this.xrTableCell11.Weight = 3.9037059590096894D;
+            this.xrTableCell11.Weight = 4.151666614829927D;
             // 
             // xrTableCell6
             // 
@@ -650,6 +649,15 @@
             this.xrTableCell6.StylePriority.UseFont = false;
             this.xrTableCell6.Text = "م";
             this.xrTableCell6.Weight = 1.3045117156297028D;
+            // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(70.00002F, 0F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(70.5F, 93.5F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // ReportHeader
             // 
@@ -717,15 +725,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MainSystem.StorageReturn_Items);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrPictureBox1
-            // 
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(70.00002F, 0F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(70.5F, 93.5F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // Print_StorageReturn
             // 
