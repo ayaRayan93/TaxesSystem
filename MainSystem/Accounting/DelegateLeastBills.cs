@@ -164,7 +164,7 @@ namespace MainSystem
         {
             try
             {
-                if (txtBranchID.Text != "" && txtDelegateID.Text != "")
+                if (txtBranchID.Text != "")// && txtDelegateID.Text != "")
                 {
                     DateTime date = dateTimeFrom.Value;
                     string d = date.ToString("yyyy-MM-dd ");
@@ -174,9 +174,9 @@ namespace MainSystem
                     d2 += "23:59:59";
                     DataTable mdt = new DataTable();
                     string query = "";
-                    if (txtDelegateID.Text != "")
+                    if (txtDelegateID.Text == "")
                     {
-                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
+                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,transitions.Delegate_Name as 'المندوب',Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
                     }
                     else
                     {
