@@ -181,13 +181,15 @@ namespace MainSystem
                 DataTable _Table2 = peraperDataTable();
                 DataTable _Table3 = peraperDataTable3();//all items of all companys
                 DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+                string d = date.ToString("yyyy-MM-dd ");
+                d += "00:00:00";
                 DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+                string d2 = date2.ToString("yyyy-MM-dd ");
+                d2 += "23:59:59";
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
 
-                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "'";
+                string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -197,7 +199,7 @@ namespace MainSystem
                 }
                 dr.Close();
 
-                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "'";
+                query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
 
@@ -209,7 +211,7 @@ namespace MainSystem
 
                 str += 0;
 
-                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "'";
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
                 string str1 = "";
@@ -219,7 +221,7 @@ namespace MainSystem
                 }
                 dr.Close();
                 str1 += 0;
-                
+
                 _Table3 = getTotalSoldProfitOfCompany(_Table3, DataTableRelations, d, d2, str);
                 _Table3 = getTotalReturnedProfitOfCompany(_Table3, DataTableRelations, d, d2, str1);
                 _Table = _Table3;
@@ -488,7 +490,7 @@ namespace MainSystem
                     row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
                     double str = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
 
-                    row["ValueDelegate"] = PercentageDelegate / 100 * str;
+                    row["ValueDelegate"] = PercentageDelegate  * str;
                     row["Data_ID"] = dr[4].ToString();
                     _Table.Rows.Add(row);
                     dbconnection2.Close();

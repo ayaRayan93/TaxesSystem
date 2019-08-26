@@ -164,24 +164,39 @@ namespace MainSystem
         {
             try
             {
-                DateTime date = dateTimeFrom.Value;
-                string d = date.ToString("yyyy-MM-dd ");
-                d += "00:00:00";
-                DateTime date2 = dateTimeTo.Value;
-                string d2 = date2.ToString("yyyy-MM-dd ");
-                d2 += "23:59:59";
-                DataTable mdt = new DataTable();
-                string query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text+ " and transitions.Delegate_ID=" + txtDelegateID.Text+ " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d+"' and '"+d2+ "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt1 = new DataTable();
-                da.Fill(dt1);
-                //mdt = dt1.Copy();
-                //query = "select distinct concat(customer_return_bill.Customer_Name,' ',customer_return_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_return_bill.Client_Name,' ',customer_return_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة','" + 0.0+ "'  as 'السداد',case when Transition ='سحب' then Amount end as 'مرتد السداد'   from  transitions inner join  customer_return_bill on customer_return_bill.Branch_BillNumber=transitions.Bill_Number inner join customer_bill on customer_bill. inner join product_bill on product_bill.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and Delegate_ID=" + txtDelegateID.Text + " and customer_return_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' ";
-                //da = new MySqlDataAdapter(query, dbconnection);
-                //DataTable dt2 = new DataTable();
-                //da.Fill(dt2);
-                //mdt.Merge(dt2,true,MissingSchemaAction.Ignore);
-                gridControl1.DataSource = dt1;
+                if (txtBranchID.Text != "" && txtDelegateID.Text != "")
+                {
+                    DateTime date = dateTimeFrom.Value;
+                    string d = date.ToString("yyyy-MM-dd ");
+                    d += "00:00:00";
+                    DateTime date2 = dateTimeTo.Value;
+                    string d2 = date2.ToString("yyyy-MM-dd ");
+                    d2 += "23:59:59";
+                    DataTable mdt = new DataTable();
+                    string query = "";
+                    if (txtDelegateID.Text != "")
+                    {
+                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
+                    }
+                    else
+                    {
+                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and transitions.Delegate_ID=" + txtDelegateID.Text + " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
+                    }
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt1 = new DataTable();
+                    da.Fill(dt1);
+                    //mdt = dt1.Copy();
+                    //query = "select distinct concat(customer_return_bill.Customer_Name,' ',customer_return_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_return_bill.Client_Name,' ',customer_return_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة','" + 0.0+ "'  as 'السداد',case when Transition ='سحب' then Amount end as 'مرتد السداد'   from  transitions inner join  customer_return_bill on customer_return_bill.Branch_BillNumber=transitions.Bill_Number inner join customer_bill on customer_bill. inner join product_bill on product_bill.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and Delegate_ID=" + txtDelegateID.Text + " and customer_return_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' ";
+                    //da = new MySqlDataAdapter(query, dbconnection);
+                    //DataTable dt2 = new DataTable();
+                    //da.Fill(dt2);
+                    //mdt.Merge(dt2,true,MissingSchemaAction.Ignore);
+                    gridControl1.DataSource = dt1;
+                }
+                else
+                {
+                    MessageBox.Show("ادخل الفرع واسم المندوب");
+                }
             }
             catch (Exception ex)
             {

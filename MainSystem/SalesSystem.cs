@@ -646,43 +646,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void btnTaswayAgalBills_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                if (UserControl.userType == 7 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 6)
-                {
-                    restForeColorOfNavBarItem();
-                    NavBarItem navBarItem = (NavBarItem)sender;
-                    navBarItem.Appearance.ForeColor = Color.Blue;
-
-                    if (!xtraTabControlSalesContent.Visible)
-                        xtraTabControlSalesContent.Visible = true;
-
-                    XtraTabPage xtraTabPage = getTabPage("تسوية فواتير الاجل");
-                    if (xtraTabPage == null)
-                    {
-                        xtraTabControlSalesContent.TabPages.Add("تسوية فواتير الاجل");
-                        xtraTabPage = getTabPage("تسوية فواتير الاجل");
-                    }
-                    xtraTabPage.Controls.Clear();
-
-                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-
-                    checkPaidBillsForm objForm = new checkPaidBillsForm();
-                    objForm.TopLevel = false;
-
-                    xtraTabPage.Controls.Add(objForm);
-                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                    objForm.Dock = DockStyle.Fill;
-                    objForm.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+    
         private void btnCustomerTaswaya_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
