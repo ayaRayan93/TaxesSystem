@@ -7,22 +7,22 @@ using System.Collections.Generic;
 
 namespace MainSystem
 {
-    public partial class Print_SupplierBill : DevExpress.XtraReports.UI.XtraReport
+    public partial class Print_SupplierBillCopy : DevExpress.XtraReports.UI.XtraReport
     {
-        public Print_SupplierBill()
+        public Print_SupplierBillCopy()
         {
             InitializeComponent();
         }
 
-        public void InitData(string storeName, string permissionNum, string supplierName, string SupPerm, string storePermessionNum, double discount, double TotalA, double addabtiveTax, List<SupplierBill_Items> ReceiptItems)
+        public void InitData(string storeName, string permissionNum, string supplierName, string SupPerm, string storePermessionNum, string date, double totalDiscount, double TotalA, double addabtiveTax, List<SupplierBill_Items> ReceiptItems)
         {
-            DateNow.Value = DateTime.Now;
+            DateNow.Value = date;
             StoreName.Value = storeName;
             PermissionNumber.Value = permissionNum;
             SupplierName.Value = supplierName;
             SupplierPermession.Value = SupPerm;
             StorePermessionNum.Value = storePermessionNum;
-            TotalDiscount.Value = discount;
+            TotalDiscount.Value = totalDiscount;
             Safy.Value = TotalA;
             Value_Additive_Tax.Value = addabtiveTax;
             objectDataSource1.DataSource = ReceiptItems;
