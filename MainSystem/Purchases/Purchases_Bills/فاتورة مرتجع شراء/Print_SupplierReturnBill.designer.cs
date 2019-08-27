@@ -116,6 +116,7 @@
             this.Safy = new DevExpress.XtraReports.Parameters.Parameter();
             this.SupplierPermession = new DevExpress.XtraReports.Parameters.Parameter();
             this.StorePermessionNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TotalDiscount = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -233,6 +234,7 @@
             this.xrTableCell20.StyleName = "xrControlStyle2";
             this.xrTableCell20.StylePriority.UseFont = false;
             this.xrTableCell20.Text = "xrTableCell20";
+            this.xrTableCell20.TextFormatString = "{0:#.00}";
             this.xrTableCell20.Weight = 10.839156986721859D;
             // 
             // xrTableCell31
@@ -884,7 +886,7 @@
             this.xrTableCell23.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell23.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "(Sum([Discount])*Sum([Last_Price]))/100")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TotalDiscount]")});
             this.xrTableCell23.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 2, 0, 0, 100F);
@@ -894,6 +896,7 @@
             this.xrTableCell23.StylePriority.UseTextAlignment = false;
             this.xrTableCell23.Text = "xrTableCell23";
             this.xrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell23.TextFormatString = "{0:#.00}";
             this.xrTableCell23.Weight = 1.0208319091474D;
             // 
             // xrTableCell27
@@ -1040,7 +1043,7 @@
             this.xrTableCell37.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell37.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Sum([PriceA])*([Parameters].[Value_Additive_Tax]/100)")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Sum([Total_Meters]*[PriceA])*([Parameters].[Value_Additive_Tax]/100)")});
             this.xrTableCell37.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell37.Name = "xrTableCell37";
             this.xrTableCell37.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 2, 0, 0, 100F);
@@ -1050,6 +1053,7 @@
             this.xrTableCell37.StylePriority.UseTextAlignment = false;
             this.xrTableCell37.Text = "xrTableCell24";
             this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell37.TextFormatString = "{0:#.00}";
             this.xrTableCell37.Weight = 1.0208340159906382D;
             // 
             // xrTableCell38
@@ -1122,6 +1126,13 @@
             this.StorePermessionNum.Type = typeof(int);
             this.StorePermessionNum.ValueInfo = "0";
             // 
+            // TotalDiscount
+            // 
+            this.TotalDiscount.Description = "TotalDiscount";
+            this.TotalDiscount.Name = "TotalDiscount";
+            this.TotalDiscount.Type = typeof(decimal);
+            this.TotalDiscount.ValueInfo = "0";
+            // 
             // objectDataSource2
             // 
             this.objectDataSource2.DataSource = typeof(MainSystem.SupplierReturnBill_Items);
@@ -1153,7 +1164,8 @@
             this.Value_Additive_Tax,
             this.Safy,
             this.SupplierPermession,
-            this.StorePermessionNum});
+            this.StorePermessionNum,
+            this.TotalDiscount});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.xrControlStyle1,
             this.xrControlStyle2});
@@ -1258,5 +1270,6 @@
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
+        private DevExpress.XtraReports.Parameters.Parameter TotalDiscount;
     }
 }

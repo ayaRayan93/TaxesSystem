@@ -558,6 +558,7 @@
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(85, 46);
             this.btnReport.TabIndex = 7;
+            this.btnReport.Visible = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnSave

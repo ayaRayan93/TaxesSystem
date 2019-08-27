@@ -429,6 +429,18 @@
     <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Print_SupplierBillCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Print_SupplierBillCopy.designer.cs">
+      <DependentUpon>Print_SupplierBillCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.designer.cs">
+      <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2676,11 +2688,17 @@
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierAccount_Report.resx">
       <DependentUpon>SupplierAccount_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Print_SupplierBillCopy.resx">
+      <DependentUpon>Print_SupplierBillCopy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Report.resx">
       <DependentUpon>PurchaseBill_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\PurchaseBill_Update.resx">
       <DependentUpon>PurchaseBill_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.resx">
+      <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>

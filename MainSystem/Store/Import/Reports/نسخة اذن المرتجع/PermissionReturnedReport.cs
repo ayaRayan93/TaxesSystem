@@ -205,7 +205,7 @@ namespace MainSystem
             try
             {
                 int storeID = 0;
-                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && gridView1.RowCount > 0)
+                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && gridView1.RowCount > 0 && row1 != null)
                 {
                     string suppliers_Name = "";
                     dbconnection.Open();

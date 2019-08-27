@@ -15,7 +15,7 @@ namespace MainSystem
 {
     public partial class PurchaseBill_Report : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1, dbconnection2;
         bool loaded = false;
         DataRow row1 = null;
 
@@ -23,6 +23,8 @@ namespace MainSystem
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection1 = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
         }
         private void requestStored_Load(object sender, EventArgs e)
         {
@@ -107,7 +109,7 @@ namespace MainSystem
                         MySqlDataAdapter adapterDetails = null;
                         //,supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء'
                         adapterPerm = new MySqlDataAdapter("SELECT distinct supplier_bill.Bill_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',supplier_bill.Bill_No as 'رقم الفاتورة',supplier_bill.Date as 'التاريخ',supplier_bill.Total_Price_B as 'الاجمالى قبل',supplier_bill.Total_Price_A as 'الاجمالى بعد',store.Store_Name as 'المخزن',supplier_bill.Supplier_Permission_Number as 'اذن الاستلام',supplier_bill.Import_Permission_Number as 'اذن المخزن' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where supplier_bill.Bill_No=" + txtBillNumber.Text + " and supplier_bill.Supplier_ID=" + comSupplier.SelectedValue.ToString(), dbconnection);
-                        adapterDetails = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.Bill_No=" + txtBillNumber.Text + " and supplier_bill.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", dbconnection);
+                        adapterDetails = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.Bill_No=" + txtBillNumber.Text + " and supplier_bill.Supplier_ID=" + comSupplier.SelectedValue.ToString() /*+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID"*/, dbconnection);
                         adapterPerm.Fill(sourceDataSet, "supplier_bill");
                         adapterDetails.Fill(sourceDataSet, "supplier_bill_details");
                         //Set up a master-detail relationship between the DataTables 
@@ -210,12 +212,12 @@ namespace MainSystem
             {
                 //,supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء'
                 adapterPerm = new MySqlDataAdapter("SELECT distinct supplier_bill.Bill_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',supplier_bill.Bill_No as 'رقم الفاتورة',supplier_bill.Date as 'التاريخ',supplier_bill.Total_Price_B as 'الاجمالى قبل',supplier_bill.Total_Price_A as 'الاجمالى بعد',store.Store_Name as 'المخزن',supplier_bill.Supplier_Permission_Number as 'اذن الاستلام',supplier_bill.Import_Permission_Number as 'اذن المخزن',supplier_bill.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill.Supplier_ID FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where date(supplier_bill.Date) >='" + d + "' and date(supplier_bill.Date) <='" + d2 + "' and supplier_bill.Supplier_ID=" + comSupplier.SelectedValue.ToString(), dbconnection);
-                adapterDetails = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where date(supplier_bill.Date) >='" + d + "' and date(supplier_bill.Date) <='" + d2 + "' and supplier_bill.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", dbconnection);
+                adapterDetails = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where date(supplier_bill.Date) >='" + d + "' and date(supplier_bill.Date) <='" + d2 + "' and supplier_bill.Supplier_ID=" + comSupplier.SelectedValue.ToString() /*+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID"*/, dbconnection);
             }
             else
             {
                 adapterPerm = new MySqlDataAdapter("SELECT distinct supplier_bill.Bill_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',supplier_bill.Bill_No as 'رقم الفاتورة',supplier_bill.Date as 'التاريخ',supplier_bill.Total_Price_B as 'الاجمالى قبل',supplier_bill.Total_Price_A as 'الاجمالى بعد',store.Store_Name as 'المخزن',supplier_bill.Supplier_Permission_Number as 'اذن الاستلام',supplier_bill.Import_Permission_Number as 'اذن المخزن',supplier_bill.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill.Supplier_ID FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where date(supplier_bill.Date) >='" + d + "' and date(supplier_bill.Date) <='" + d2 + "'", dbconnection);
-                adapterDetails = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'خصم الشراء',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where date(supplier_bill.Date) >='" + d + "' and date(supplier_bill.Date) <='" + d2 + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", dbconnection);
+                adapterDetails = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where date(supplier_bill.Date) >='" + d + "' and date(supplier_bill.Date) <='" + d2 + "'" /*+" order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID"*/, dbconnection);
             }
             adapterPerm.Fill(sourceDataSet, "supplier_bill");
             adapterDetails.Fill(sourceDataSet, "supplier_bill_details");
@@ -238,55 +240,36 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
                 int supplierID = 0;
-                if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null && gridView1.RowCount > 0)
+                if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null && gridView1.RowCount > 0 && row1 != null)
                 {
                     dbconnection.Open();
-                    string q1, q2, q3 = "";
+
+                    string q1, q2 = "";
                     dbconnection1.Open();
                     dbconnection2.Open();
-                    dbconnection3.Open();
-                    q1 = "SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString();
+                    q1 = "SELECT distinct supplier_bill.Bill_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',supplier_bill.Bill_No as 'رقم الفاتورة',supplier_bill.Date as 'التاريخ',supplier_bill.Total_Price_B as 'الاجمالى قبل',supplier_bill.Total_Price_A as 'الاجمالى بعد',store.Store_Name as 'المخزن',supplier_bill.Supplier_Permission_Number as 'اذن الاستلام',supplier_bill.Import_Permission_Number as 'اذن المخزن',supplier_bill.Value_Additive_Tax as 'ضريبة القيمة المضافة',supplier_bill.Supplier_ID FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where supplier_bill.Bill_ID=" + row1["التسلسل"].ToString();
                     MySqlCommand com1 = new MySqlCommand(q1, dbconnection1);
                     MySqlDataReader dr1 = com1.ExecuteReader();
                     while (dr1.Read())
                     {
-                        List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
-                        
-                        int gridcount = 0;
-                        
-                            q3 = "select storage_import_permission.StorageImportPermission_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',supplier_permission_details.ImportSupplierPermission_ID as 'ID' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + row1["رقم الاذن"].ToString() + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and import_supplier_permission.ImportSupplierPermission_ID=" + dr2["ID"].ToString();
-                            MySqlCommand com3 = new MySqlCommand(q3, dbconnection3);
-                            MySqlDataReader dr3 = com3.ExecuteReader();
-                            while (dr3.Read())
-                            {
-                                gridcount++;
-                                double carton = 0;
-                                double balate = 0;
-                                double quantity = 0;
+                        List<SupplierBill_Items> bi = new List<SupplierBill_Items>();
+                        double discount = 0;
+                        q2 = "SELECT supplier_bill.Bill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.Bill_ID=" + row1["التسلسل"].ToString() /*+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID"*/;
+                        MySqlCommand com2 = new MySqlCommand(q2, dbconnection2);
+                        MySqlDataReader dr2 = com2.ExecuteReader();
+                        while (dr2.Read())
+                        {
+                            discount += (Convert.ToDouble(dr2["السعر بالزيادة"].ToString())* Convert.ToDouble(dr2["متر/قطعة"].ToString())) * (Convert.ToDouble(dr2["نسبة الخصم"].ToString()) / 100);
+                            SupplierBill_Items item = new SupplierBill_Items() { Code = dr2["الكود"].ToString(), Product_Type = dr2["النوع"].ToString(), Product_Name = dr2["الاسم"].ToString(), Total_Meters = Convert.ToDouble(dr2["متر/قطعة"].ToString()), PriceB = Convert.ToDouble(dr2["السعر"].ToString()), Discount = Convert.ToDouble(dr2["نسبة الخصم"].ToString()), Last_Price = Convert.ToDouble(dr2["السعر بالزيادة"].ToString()), Normal_Increase = Convert.ToDouble(dr2["الزيادة العادية"].ToString()), Categorical_Increase = Convert.ToDouble(dr2["الزيادة القطعية"].ToString()), PriceA = Convert.ToDouble(dr2["سعر الشراء"].ToString()) };
+                            bi.Add(item);
+                        }
+                        dr2.Close();
 
-                                if (dr3["عدد البلتات"].ToString() != "")
-                                {
-                                    balate = Convert.ToDouble(dr3["عدد البلتات"].ToString());
-                                }
-                                if (dr3["عدد الكراتين"].ToString() != "")
-                                {
-                                    carton = Convert.ToDouble(dr3["عدد الكراتين"].ToString());
-                                }
-                                if (dr3["متر/قطعة"].ToString() != "")
-                                {
-                                    quantity = Convert.ToDouble(dr3["متر/قطعة"].ToString());
-                                }
-
-                                SupplierReceipt_Items item = new SupplierReceipt_Items() { Code = dr3["الكود"].ToString(), Product_Type = dr3["النوع"].ToString(), Product_Name = dr3["الاسم"].ToString(), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(dr2["اذن استلام"].ToString()), Date = Convert.ToDateTime(dr3["تاريخ التخزين"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"), Note = dr3["ملاحظة"].ToString() };
-                                bi.Add(item);
-                            }
-                            dr3.Close();
-                        
-                        Report_SupplierReceiptCopy f = new Report_SupplierReceiptCopy();
-                        f.PrintInvoice(storeName, dr1["رقم الاذن"].ToString(), suppliers_Name, bi);
+                        Report_SupplierBillCopy f = new Report_SupplierBillCopy();
+                        f.PrintInvoice(dr1["المخزن"].ToString(), dr1["رقم الفاتورة"].ToString(), comSupplier.Text, dr1["اذن الاستلام"].ToString(), dr1["اذن المخزن"].ToString(), dr1["التاريخ"].ToString(), discount, Convert.ToDouble(dr1["الاجمالى بعد"].ToString()), Convert.ToDouble(dr1["ضريبة القيمة المضافة"].ToString()), bi);
                         f.ShowDialog();
                     }
                     dr1.Close();
@@ -303,7 +286,6 @@ namespace MainSystem
             dbconnection.Close();
             dbconnection1.Close();
             dbconnection2.Close();
-            dbconnection3.Close();*/
         }
     }
 }
