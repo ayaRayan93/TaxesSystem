@@ -39,7 +39,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل'";
+                string query = "select customer.Customer_ID,customer.Customer_Name from customer where Type='اّجل'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -92,7 +92,7 @@ namespace MainSystem
                         comClient.Visible = true;
                         txtClientID.Visible = true;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -112,7 +112,7 @@ namespace MainSystem
                         comClient.Visible = false;
                         txtClientID.Visible = false;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -345,14 +345,14 @@ namespace MainSystem
                     loaded = false;
                     if (Customer_Type == "عميل")
                     {
-                        labelEng.Visible = false;
-                        comEngCon.Visible = false;
-                        txtCustomerID.Visible = false;
-                        labelClient.Visible = true;
-                        comClient.Visible = true;
-                        txtClientID.Visible = true;
+                        //labelEng.Visible = false;
+                        //comEngCon.Visible = false;
+                        //txtCustomerID.Visible = false;
+                        //labelClient.Visible = true;
+                        //comClient.Visible = true;
+                        //txtClientID.Visible = true;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer  where Type='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -365,14 +365,14 @@ namespace MainSystem
                     }
                     else
                     {
-                        labelEng.Visible = true;
-                        comEngCon.Visible = true;
-                        txtCustomerID.Visible = true;
-                        labelClient.Visible = false;
-                        comClient.Visible = false;
-                        txtClientID.Visible = false;
+                        //labelEng.Visible = true;
+                        //comEngCon.Visible = true;
+                        //txtCustomerID.Visible = true;
+                        //labelClient.Visible = false;
+                        //comClient.Visible = false;
+                        //txtClientID.Visible = false;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "' and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer  where Type='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -448,7 +448,7 @@ namespace MainSystem
             checkColumn.ReadOnly = false;
             checkColumn.FalseValue = false;
             checkColumn.TrueValue = true;
-            // checkColumn.FillWeight = 10; //if the datagridview is resized (on form resize) the checkbox won't take up too much; value is relative to the other columns' fill values           
+            
             dataGridView1.Columns.Add(checkColumn);
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             checkColumn.Width = 100;
