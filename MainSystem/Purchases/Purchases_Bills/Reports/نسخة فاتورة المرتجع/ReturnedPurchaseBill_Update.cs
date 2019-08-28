@@ -14,16 +14,16 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class PurchaseBill_Update : Form
+    public partial class ReturnedPurchaseBill_Update : Form
     {
         MySqlConnection conn;
-        PurchaseBill_Report purchaseBillReport = null;
+        ReturnedPurchaseBill_Report purchaseBillReport = null;
         bool loaded = false;
         DataRow row1 = null;
         DataRow sellRow = null;
         int rowHandle = 0;
 
-        public PurchaseBill_Update(PurchaseBill_Report PurchaseBillReport, DataRow sellrow)
+        public ReturnedPurchaseBill_Update(ReturnedPurchaseBill_Report PurchaseBillReport, DataRow sellrow)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -65,24 +65,6 @@ namespace MainSystem
                 {
                     txtCategoricalIncrease.Text = txtNormalIncrease.Text = "0";
                 }
-                /*if (row1["نوع السعر"].ToString() != "")
-                {
-                    txtDiscount.Text = row1["نسبة الخصم"].ToString();
-                    label7.Text = "خصم الشراء";
-                    txtNormalIncrease.Visible = true;
-                    txtCategoricalIncrease.Visible = true;
-                    label8.Visible = true;
-                    label6.Visible = true;
-                }
-                else if (row1["نسبة الشراء"].ToString() != "")
-                {
-                    txtDiscount.Text = row1["نسبة الشراء"].ToString();
-                    label7.Text = "نسبة الشراء";
-                    txtNormalIncrease.Visible = false;
-                    txtCategoricalIncrease.Visible = false;
-                    label8.Visible = false;
-                    label6.Visible = false;
-                }*/
                 if (txtDiscount.Text == "")
                 {
                     txtDiscount.Text = "0";
@@ -228,12 +210,12 @@ namespace MainSystem
             try
             {
                 conn.Open();
-                string query = "update supplier_bill set Total_Price_B=@Total_Price_B,Total_Price_A=@Total_Price_A,Value_Additive_Tax=@Value_Additive_Tax where Bill_ID=" + sellRow[0].ToString();
+                string query = "update supplier_return_bill set Total_Price_BD=@Total_Price_BD,Total_Price_AD=@Total_Price_AD,Value_Additive_Tax=@Value_Additive_Tax where ReturnBill_ID=" + sellRow[0].ToString();
                 MySqlCommand com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
-                com.Parameters["@Total_Price_B"].Value = labelTotalB.Text;
-                com.Parameters.Add("@Total_Price_A", MySqlDbType.Decimal);
-                com.Parameters["@Total_Price_A"].Value = labelTotalSafy.Text;
+                com.Parameters.Add("@Total_Price_BD", MySqlDbType.Decimal);
+                com.Parameters["@Total_Price_BD"].Value = labelTotalB.Text;
+                com.Parameters.Add("@Total_Price_AD", MySqlDbType.Decimal);
+                com.Parameters["@Total_Price_AD"].Value = labelTotalSafy.Text;
                 com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
                 com.Parameters["@Value_Additive_Tax"].Value = txtAllTax.Text;
                 com.ExecuteNonQuery();
@@ -242,7 +224,7 @@ namespace MainSystem
                 {
                     DataRow row3 = gridView1.GetDataRow(i);
                     //,Purchasing_Ratio=@Purchasing_Ratio
-                    query = "update supplier_bill_details set Price=@Price,Last_Price=@Last_Price,Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Purchasing_Price=@Purchasing_Price where BillData_ID=" + row3[0].ToString();
+                    query = "update supplier_return_bill_details set Price=@Price,Last_Price=@Last_Price,Purchasing_Discount=@Purchasing_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Purchasing_Price=@Purchasing_Price where ReturnBillDetails_ID=" + row3[0].ToString();
                     com = new MySqlCommand(query, conn);
                     com.Parameters.Add("@Price", MySqlDbType.Decimal);
                     com.Parameters["@Price"].Value = row3["السعر"].ToString();
@@ -274,8 +256,8 @@ namespace MainSystem
                     com.Parameters["@Purchasing_Price"].Value = row3["سعر الشراء"].ToString();
                     com.ExecuteNonQuery();
                 }
-                DecreaseSupplierAccount();
                 IncreaseSupplierAccount();
+                DecreaseSupplierAccount();
                 try
                 {
                     purchaseBillReport.search(0);
@@ -297,12 +279,12 @@ namespace MainSystem
         {
             DataSet sourceDataSet = new DataSet();
             //,supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء'
-            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT supplier_bill_details.BillData_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_bill_details.Normal_Increase as 'الزيادة العادية',supplier_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price as 'سعر الشراء',supplier_bill_details.Total_Meters as 'متر/قطعة',supplier_bill.Value_Additive_Tax,supplier_bill_details.Price_Type as 'نوع السعر' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_bill.Bill_ID =" + sellRow[0].ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
+            MySqlDataAdapter adapterDetails = new MySqlDataAdapter("SELECT supplier_return_bill_details.ReturnBillDetails_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_return_bill_details.Price as 'السعر',supplier_return_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_return_bill_details.Normal_Increase as 'الزيادة العادية',supplier_return_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_return_bill_details.Last_Price AS 'السعر بالزيادة',supplier_return_bill_details.Purchasing_Price as 'سعر الشراء',supplier_return_bill_details.Total_Meters as 'متر/قطعة',supplier_return_bill.Value_Additive_Tax,supplier_return_bill_details.Price_Type as 'نوع السعر' FROM supplier_return_bill INNER JOIN supplier_return_bill_details ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID INNER JOIN store ON store.Store_ID = supplier_return_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_return_bill.Supplier_ID INNER JOIN data ON supplier_return_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_return_bill.ReturnBill_ID =" + sellRow[0].ToString() + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID", conn);
             adapterDetails.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["Value_Additive_Tax"].Visible = false;
-            gridView1.Columns["نوع السعر"].Visible = false;
+            //gridView1.Columns["نوع السعر"].Visible = false;
             for (int i = 0; i < gridView1.Columns.Count; i++)
             {
                 gridView1.Columns[i].Width = 120;
@@ -352,25 +334,7 @@ namespace MainSystem
             {
                 return 0;
             }
-
-            /*double price = double.Parse(txtPrice.Text);
-            double PurchasesPercent = double.Parse(txtDiscount.Text);
-            if (row1["نسبة الشراء"].ToString() != "")
-            {
-                return price + (price * PurchasesPercent / 100.0);
-            }
-            else if (row1["خصم الشراء"].ToString() != "")
-            {
-                double NormalPercent = double.Parse(txtNormalIncrease.Text);
-                double unNormalPercent = double.Parse(txtCategoricalIncrease.Text);
-                double PurchasesPrice = (price + NormalPercent) - ((price + NormalPercent) * PurchasesPercent / 100.0);
-                PurchasesPrice = PurchasesPrice + unNormalPercent;
-                return PurchasesPrice;
-            }
-            else
-            {
-                return 0;
-            }*/
+            
         }
         public double lastPrice(double purchasePrice)
         {
@@ -418,7 +382,7 @@ namespace MainSystem
             }
         }
 
-        public void DecreaseSupplierAccount()
+        public void IncreaseSupplierAccount()
         {
             //double totalSafy = Convert.ToDouble(labelTotalSafy.Text);
             double totalSafy = Convert.ToDouble(sellRow["الاجمالى بعد"]);
@@ -427,20 +391,13 @@ namespace MainSystem
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update supplier_rest_money set Money=" + (restMoney - totalSafy) + " where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
+                query = "update supplier_rest_money set Money=" + (restMoney + totalSafy) + " where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
                 com = new MySqlCommand(query, conn);
             }
-            /*else
-            {
-                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
-                com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
-                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = -1 * totalSafy;
-            }*/
             com.ExecuteNonQuery();
         }
 
-        public void IncreaseSupplierAccount()
+        public void DecreaseSupplierAccount()
         {
             double totalSafy = Convert.ToDouble(labelTotalSafy.Text);
             string query = "select Money from supplier_rest_money where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
@@ -448,16 +405,9 @@ namespace MainSystem
             if (com.ExecuteScalar() != null)
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update supplier_rest_money set Money=" + (restMoney + totalSafy) + " where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
+                query = "update supplier_rest_money set Money=" + (restMoney - totalSafy) + " where Supplier_ID=" + sellRow["Supplier_ID"].ToString();
                 com = new MySqlCommand(query, conn);
             }
-            /*else
-            {
-                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
-                com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
-                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = totalSafy;
-            }*/
             com.ExecuteNonQuery();
         }
     }

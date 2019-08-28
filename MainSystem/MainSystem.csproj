@@ -441,6 +441,30 @@
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.designer.cs">
       <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.designer.cs">
+      <DependentUpon>Print_SupplierReturnBillCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Report_SupplierReturnBillCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Report_SupplierReturnBillCopy.designer.cs">
+      <DependentUpon>Report_SupplierReturnBillCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Report.designer.cs">
+      <DependentUpon>ReturnedPurchaseBill_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Update.designer.cs">
+      <DependentUpon>ReturnedPurchaseBill_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2700,6 +2724,18 @@
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.resx">
       <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.resx">
+      <DependentUpon>Print_SupplierReturnBillCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Report_SupplierReturnBillCopy.resx">
+      <DependentUpon>Report_SupplierReturnBillCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Report.resx">
+      <DependentUpon>ReturnedPurchaseBill_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Update.resx">
+      <DependentUpon>ReturnedPurchaseBill_Update.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -3783,7 +3819,6 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
-    <Folder Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

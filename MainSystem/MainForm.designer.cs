@@ -534,6 +534,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReturnedPurchaseBillPriceUpdate = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem228 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -4274,7 +4276,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup43;
+            this.navBarControl7.ActiveGroup = this.navBarGroup45;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -4368,7 +4370,8 @@
             this.navBarItemRequestReport,
             this.navBarItemSalesProductsBills,
             this.navBarItemSalesProductsDate,
-            this.navBarItemSalesProductsFactory});
+            this.navBarItemSalesProductsFactory,
+            this.navBarItemReturnedPurchaseBillPriceUpdate});
             this.navBarControl7.Location = new System.Drawing.Point(955, 0);
             this.navBarControl7.Name = "navBarControl7";
             this.navBarControl7.OptionsNavPane.ExpandedWidth = 190;
@@ -4380,7 +4383,6 @@
             // navBarGroup43
             // 
             this.navBarGroup43.Caption = "فاتورة شراء";
-            this.navBarGroup43.Expanded = true;
             this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
             this.navBarGroup43.Name = "navBarGroup43";
@@ -4526,8 +4528,10 @@
             // navBarGroup45
             // 
             this.navBarGroup45.Caption = "تقارير فواتير الشراء";
+            this.navBarGroup45.Expanded = true;
             this.navBarGroup45.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchaseBillPriceUpdate)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchaseBillPriceUpdate),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedPurchaseBillPriceUpdate)});
             this.navBarGroup45.Name = "navBarGroup45";
             // 
             // navBarItemPurchaseBillPriceUpdate
@@ -5041,6 +5045,16 @@
             // 
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
+            // 
+            // navBarItem228
+            // navBarItemReturnedPurchaseBillPriceUpdate
+            // 
+            this.navBarItem228.Caption = "مبيعات مندوب/مندوبين لشركة/شركات (آجل)";
+            this.navBarItem228.Name = "navBarItem228";
+            this.navBarItem228.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompanyAgel_LinkClicked);
+            this.navBarItemReturnedPurchaseBillPriceUpdate.Caption = "عرض فواتير المرتجع";
+            this.navBarItemReturnedPurchaseBillPriceUpdate.Name = "navBarItemReturnedPurchaseBillPriceUpdate";
+            this.navBarItemReturnedPurchaseBillPriceUpdate.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedPurchaseBillPriceUpdate_LinkClicked);
             // 
             // MainForm
             // 
@@ -5600,6 +5614,7 @@
         private DevExpress.XtraNavBar.NavBarItem btnTaswayAgalBills1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem227;
         private DevExpress.XtraNavBar.NavBarItem navBarItem228;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemReturnedPurchaseBillPriceUpdate;
     }
 }
 
