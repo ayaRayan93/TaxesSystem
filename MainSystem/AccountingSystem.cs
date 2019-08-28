@@ -32,17 +32,86 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة كاش");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لفترة");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة");
+                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لفترة كاش");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة كاش");
                 }
 
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
                 DelegateTotalSales objForm = new DelegateTotalSales(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemDelegateTotalSalesAgel_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترةآجل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لفترةآجل");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترةآجل");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                DelegateTotalSalesAgel objForm = new DelegateTotalSalesAgel(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemDelegateSalesForCompanyAgel_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوبين لشركات آجل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوبين لشركات آجل");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوبين لشركات آجل");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                DelegateSalesForCompanyAgel objForm = new DelegateSalesForCompanyAgel(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -66,11 +135,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات المندوبين لشركة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوبين لشركات كاش");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات المندوبين لشركة");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات المندوبين لشركة");
+                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوبين لشركات كاش");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوبين لشركات كاش");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -90,6 +159,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void navBarItemDelegateSalesForProduct_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

@@ -382,6 +382,7 @@
             this.navBarAccounting = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup40 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem154 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem227 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDelegateSalesForCompany = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDelegateSalesForProduct = new DevExpress.XtraNavBar.NavBarItem();
             this.DelegateProfit = new DevExpress.XtraNavBar.NavBarItem();
@@ -533,6 +534,7 @@
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemReturnedPurchaseBillPriceUpdate = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem228 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3789,7 +3791,9 @@
             this.navBarItemSupplierBillsTransitionsDetailsReport,
             this.navBarItem16,
             this.navBarItem226,
-            this.btnTaswayAgalBills1});
+            this.btnTaswayAgalBills1,
+            this.navBarItem227,
+            this.navBarItem228});
             this.navBarAccounting.Location = new System.Drawing.Point(943, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 202;
@@ -3804,23 +3808,31 @@
             this.navBarGroup40.Expanded = true;
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem227),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct),
             new DevExpress.XtraNavBar.NavBarItemLink(this.DelegateProfit),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem16),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem226),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnTaswayAgalBills1)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnTaswayAgalBills1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem228)});
             this.navBarGroup40.Name = "navBarGroup40";
             // 
             // navBarItem154
             // 
-            this.navBarItem154.Caption = "اجمالي مبيعات المندوبين/مندوب لفترة";
+            this.navBarItem154.Caption = "اجمالي مبيعات المندوبين كاش";
             this.navBarItem154.Name = "navBarItem154";
             this.navBarItem154.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateTotalSales_LinkClicked);
             // 
+            // navBarItem227
+            // 
+            this.navBarItem227.Caption = "اجمالي مبيعات المندوبين آجل";
+            this.navBarItem227.Name = "navBarItem227";
+            this.navBarItem227.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateTotalSalesAgel_LinkClicked);
+            // 
             // navBarItemDelegateSalesForCompany
             // 
-            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات مندوب/مندوبين لشركة/شركات";
+            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات مندوب/مندوبين لشركة/شركات (كاش)";
             this.navBarItemDelegateSalesForCompany.Name = "navBarItemDelegateSalesForCompany";
             this.navBarItemDelegateSalesForCompany.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompany_LinkClicked);
             // 
@@ -5027,8 +5039,12 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItem228
             // navBarItemReturnedPurchaseBillPriceUpdate
             // 
+            this.navBarItem228.Caption = "مبيعات مندوب/مندوبين لشركة/شركات (آجل)";
+            this.navBarItem228.Name = "navBarItem228";
+            this.navBarItem228.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompanyAgel_LinkClicked);
             this.navBarItemReturnedPurchaseBillPriceUpdate.Caption = "عرض فواتير المرتجع";
             this.navBarItemReturnedPurchaseBillPriceUpdate.Name = "navBarItemReturnedPurchaseBillPriceUpdate";
             this.navBarItemReturnedPurchaseBillPriceUpdate.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedPurchaseBillPriceUpdate_LinkClicked);
@@ -5589,6 +5605,8 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem16;
         private DevExpress.XtraNavBar.NavBarItem navBarItem226;
         private DevExpress.XtraNavBar.NavBarItem btnTaswayAgalBills1;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem227;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem228;
         private DevExpress.XtraNavBar.NavBarItem navBarItemReturnedPurchaseBillPriceUpdate;
     }
 }

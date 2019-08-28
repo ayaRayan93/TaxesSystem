@@ -13,12 +13,12 @@ using DevExpress.XtraGrid.Columns;
 
 namespace MainSystem
 {
-    public partial class DelegateTotalSales : DevExpress.XtraEditors.XtraForm
+    public partial class DelegateTotalSalesAgel : DevExpress.XtraEditors.XtraForm
     {
         private MySqlConnection dbconnection;
         bool loaded = false;
         MainForm MainForm;
-        public DelegateTotalSales(MainForm MainForm)
+        public DelegateTotalSalesAgel(MainForm MainForm)
         {
             try
             {
@@ -175,30 +175,31 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd ");
                 d2 += "23:59:59";
-                string query= "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
-                while (dr.Read())
-                {
-                    str += dr[0].ToString() + ",";
-                }
-                dr.Close();
-
-                //query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
-                //com = new MySqlCommand(query, dbconnection);
-                //dr = com.ExecuteReader();
-           
+                //string query= "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
+                //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                //MySqlDataReader dr = com.ExecuteReader();
+                //string str = "";
                 //while (dr.Read())
                 //{
                 //    str += dr[0].ToString() + ",";
                 //}
                 //dr.Close();
 
+                string query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+           
+                while (dr.Read())
+                {
+                   str += dr[0].ToString() + ",";
+                }
+                dr.Close();
+
                 str += 0;
 
-                //query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
-                query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
+                //query = "select CustomerReturnBill_ID from customer_return_bill where  Type_Buy='آجل' and Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='آجل' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text+ " and Bill_Number!=null";
 
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
@@ -214,12 +215,12 @@ namespace MainSystem
                 if (txtDelegateID.Text != "")
                 {
                     query = " and delegate.Delegate_ID= " + txtDelegateID.Text;
-                   // gridView1.Columns[1].Visible = false;
+                    gridView1.Columns[1].Visible = false;
                 }
                 else
                 {
                     query = "";
-                   // gridView1.Columns[1].Visible = true;
+                    gridView1.Columns[1].Visible = true;
                 }
                 DataTable _Table = peraperDataTable();
                 _Table = getTotalSales(_Table, str, query);
