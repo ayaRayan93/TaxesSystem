@@ -389,6 +389,7 @@
             this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem226 = new DevExpress.XtraNavBar.NavBarItem();
             this.btnTaswayAgalBills1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem228 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup32 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupSupplierPayments = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierPayments = new DevExpress.XtraNavBar.NavBarItem();
@@ -3708,7 +3709,7 @@
             this.xtraTabControlAccounting.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlAccounting.Name = "xtraTabControlAccounting";
             this.xtraTabControlAccounting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.xtraTabControlAccounting.Size = new System.Drawing.Size(943, 702);
+            this.xtraTabControlAccounting.Size = new System.Drawing.Size(927, 702);
             this.xtraTabControlAccounting.TabIndex = 6;
             this.xtraTabControlAccounting.Visible = false;
             this.xtraTabControlAccounting.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -3794,11 +3795,11 @@
             this.btnTaswayAgalBills1,
             this.navBarItem227,
             this.navBarItem228});
-            this.navBarAccounting.Location = new System.Drawing.Point(943, 0);
+            this.navBarAccounting.Location = new System.Drawing.Point(927, 0);
             this.navBarAccounting.Name = "navBarAccounting";
-            this.navBarAccounting.OptionsNavPane.ExpandedWidth = 202;
+            this.navBarAccounting.OptionsNavPane.ExpandedWidth = 218;
             this.navBarAccounting.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarAccounting.Size = new System.Drawing.Size(202, 702);
+            this.navBarAccounting.Size = new System.Drawing.Size(218, 702);
             this.navBarAccounting.TabIndex = 5;
             this.navBarAccounting.Text = "navBarControl6";
             // 
@@ -3808,14 +3809,14 @@
             this.navBarGroup40.Expanded = true;
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem227),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem227),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem228),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct),
             new DevExpress.XtraNavBar.NavBarItemLink(this.DelegateProfit),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem16),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem226),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnTaswayAgalBills1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem228)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnTaswayAgalBills1)});
             this.navBarGroup40.Name = "navBarGroup40";
             // 
             // navBarItem154
@@ -3832,7 +3833,7 @@
             // 
             // navBarItemDelegateSalesForCompany
             // 
-            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات مندوب/مندوبين لشركة/شركات (كاش)";
+            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات مندوب لشركات (كاش)";
             this.navBarItemDelegateSalesForCompany.Name = "navBarItemDelegateSalesForCompany";
             this.navBarItemDelegateSalesForCompany.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompany_LinkClicked);
             // 
@@ -3865,6 +3866,12 @@
             this.btnTaswayAgalBills1.Caption = "تسوية فواتير الاجل";
             this.btnTaswayAgalBills1.Name = "btnTaswayAgalBills1";
             this.btnTaswayAgalBills1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnTaswayAgalBills_LinkClicked);
+            // 
+            // navBarItem228
+            // 
+            this.navBarItem228.Caption = "مبيعات مندوب لشركات (آجل)";
+            this.navBarItem228.Name = "navBarItem228";
+            this.navBarItem228.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompanyAgel_LinkClicked);
             // 
             // navBarGroup32
             // 
