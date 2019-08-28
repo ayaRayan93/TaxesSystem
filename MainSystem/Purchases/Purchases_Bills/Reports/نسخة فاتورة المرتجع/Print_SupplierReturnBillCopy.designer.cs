@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_SupplierReturnBill));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_SupplierReturnBillCopy));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -117,7 +116,8 @@
             this.SupplierPermession = new DevExpress.XtraReports.Parameters.Parameter();
             this.StorePermessionNum = new DevExpress.XtraReports.Parameters.Parameter();
             this.TotalDiscount = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -448,7 +448,8 @@
             this.xrLabel13,
             this.xrLabel11,
             this.xrLabel1,
-            this.xrTable2});
+            this.xrTable2,
+            this.xrLabel20});
             this.PageHeader.HeightF = 165F;
             this.PageHeader.Name = "PageHeader";
             // 
@@ -500,7 +501,7 @@
             this.xrPictureBox1.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(70.00002F, 0F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(75F, 95.00008F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(76F, 95.00008F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // xrLabel15
@@ -1138,7 +1139,23 @@
             this.objectDataSource2.DataSource = typeof(MainSystem.SupplierReturnBill_Items);
             this.objectDataSource2.Name = "objectDataSource2";
             // 
-            // Print_SupplierReturnBill
+            // xrLabel20
+            // 
+            this.xrLabel20.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrLabel20.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(70.53003F, 90F);
+            this.xrLabel20.Multiline = true;
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(74.4F, 23F);
+            this.xrLabel20.StylePriority.UseBorders = false;
+            this.xrLabel20.StylePriority.UseFont = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "COPY صورة";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // Print_SupplierReturnBillCopy
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -1271,5 +1288,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
         private DevExpress.XtraReports.Parameters.Parameter TotalDiscount;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel20;
     }
 }
