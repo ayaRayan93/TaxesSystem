@@ -39,7 +39,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select * from delegate";
+                string query = "select * from delegate where Branch_ID="+UserControl.EmpBranchID;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
