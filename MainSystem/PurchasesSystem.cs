@@ -474,6 +474,43 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemReturnedPurchaseBillPriceUpdate_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 10 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+                    if (!xtraTabControlPurchases.Visible)
+                        xtraTabControlPurchases.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض فواتير المرتجع");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlPurchases.TabPages.Add("عرض فواتير المرتجع");
+                        xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض فواتير المرتجع");
+                    }
+
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                    ReturnedPurchaseBill_Report objForm = new ReturnedPurchaseBill_Report(this, xtraTabControlPurchases);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemDashOrderReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
