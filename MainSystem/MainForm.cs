@@ -786,7 +786,6 @@ namespace MainSystem
             //navBarGroup44.Visible = false;
             //navBarGroupSupplier.Visible = false;
             //navBarGroupLeastQuantity.Visible = false;
-            
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
