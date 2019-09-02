@@ -112,6 +112,21 @@ namespace MainSystem
             }
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if(UserControl.userType == 1)
+            {
+                try
+                {
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         private void txtBillNumber_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

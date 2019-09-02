@@ -71,12 +71,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comSet = new System.Windows.Forms.ComboBox();
             this.comOffer = new System.Windows.Forms.ComboBox();
-            this.btnSearchAll = new System.Windows.Forms.Button();
             this.checkEditSets = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
+            this.btnSearchAll = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -491,7 +491,7 @@
             this.label15.Location = new System.Drawing.Point(653, 37);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(53, 19);
+            this.label15.Size = new System.Drawing.Size(54, 19);
             this.label15.TabIndex = 5;
             this.label15.Text = "المصنع";
             // 
@@ -502,7 +502,7 @@
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label13.Location = new System.Drawing.Point(265, 37);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 19);
+            this.label13.Size = new System.Drawing.Size(42, 19);
             this.label13.TabIndex = 16;
             this.label13.Text = "اللون";
             // 
@@ -514,7 +514,7 @@
             this.label14.Location = new System.Drawing.Point(452, 8);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(69, 19);
+            this.label14.Size = new System.Drawing.Size(71, 19);
             this.label14.TabIndex = 8;
             this.label14.Text = "المجموعة";
             // 
@@ -525,7 +525,7 @@
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label12.Location = new System.Drawing.Point(264, 8);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(57, 19);
+            this.label12.Size = new System.Drawing.Size(58, 19);
             this.label12.TabIndex = 15;
             this.label12.Text = "المقاس";
             // 
@@ -548,7 +548,7 @@
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label11.Location = new System.Drawing.Point(118, 8);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 19);
+            this.label11.Size = new System.Drawing.Size(36, 19);
             this.label11.TabIndex = 14;
             this.label11.Text = "الفرز";
             // 
@@ -572,7 +572,7 @@
             this.label7.Location = new System.Drawing.Point(660, 8);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(40, 19);
+            this.label7.Size = new System.Drawing.Size(41, 19);
             this.label7.TabIndex = 2;
             this.label7.Text = "النوع";
             // 
@@ -672,22 +672,6 @@
             this.comOffer.TabIndex = 3;
             this.comOffer.SelectedValueChanged += new System.EventHandler(this.comOffer_SelectedValueChanged);
             // 
-            // btnSearchAll
-            // 
-            this.btnSearchAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSearchAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchAll.ForeColor = System.Drawing.Color.White;
-            this.btnSearchAll.Location = new System.Drawing.Point(3, 3);
-            this.btnSearchAll.Name = "btnSearchAll";
-            this.btnSearchAll.Size = new System.Drawing.Size(100, 28);
-            this.btnSearchAll.TabIndex = 14;
-            this.btnSearchAll.Text = "بحث عام";
-            this.btnSearchAll.UseVisualStyleBackColor = false;
-            this.btnSearchAll.Visible = false;
-            this.btnSearchAll.Click += new System.EventHandler(this.btnSearchAll_Click);
-            // 
             // checkEditSets
             // 
             this.checkEditSets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -723,7 +707,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label1.Location = new System.Drawing.Point(563, 8);
+            this.label1.Location = new System.Drawing.Point(589, 8);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(51, 19);
@@ -735,11 +719,26 @@
             this.comStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(432, 5);
+            this.comStore.Location = new System.Drawing.Point(458, 5);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(120, 24);
             this.comStore.TabIndex = 3;
+            // 
+            // btnSearchAll
+            // 
+            this.btnSearchAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSearchAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchAll.ForeColor = System.Drawing.Color.White;
+            this.btnSearchAll.Location = new System.Drawing.Point(3, 3);
+            this.btnSearchAll.Name = "btnSearchAll";
+            this.btnSearchAll.Size = new System.Drawing.Size(100, 28);
+            this.btnSearchAll.TabIndex = 14;
+            this.btnSearchAll.Text = "بحث عام";
+            this.btnSearchAll.UseVisualStyleBackColor = false;
+            this.btnSearchAll.Visible = false;
             // 
             // InformationFactory_Report
             // 
@@ -807,7 +806,6 @@
         private System.Windows.Forms.TextBox txtCodeSearch3;
         private System.Windows.Forms.TextBox txtCodeSearch4;
         private System.Windows.Forms.TextBox txtCodeSearch5;
-        private System.Windows.Forms.Button btnSearchAll;
         private DevExpress.XtraEditors.CheckEdit checkEditSets;
         private DevExpress.XtraEditors.CheckEdit checkEditOffers;
         private System.Windows.Forms.ComboBox comColor;
@@ -827,5 +825,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comStore;
+        private System.Windows.Forms.Button btnSearchAll;
     }
 }

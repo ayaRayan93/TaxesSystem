@@ -17,6 +17,7 @@ namespace MainSystem
         MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3, dbconnection4;
         bool loaded = false;
         DataRow row1 = null;
+        XtraTabControl tabControlContentStore = null;
 
         public PermissionsReport(MainForm mainform, XtraTabControl tabControlContent)
         {
@@ -26,6 +27,7 @@ namespace MainSystem
             dbconnection2 = new MySqlConnection(connection.connectionString);
             dbconnection3 = new MySqlConnection(connection.connectionString);
             dbconnection4 = new MySqlConnection(connection.connectionString);
+            tabControlContentStore = tabControlContent;
         }
         private void requestStored_Load(object sender, EventArgs e)
         {
@@ -110,7 +112,7 @@ namespace MainSystem
                         MySqlDataAdapter adapterPerm = null;
                         MySqlDataAdapter adapterSup = null;
                         MySqlDataAdapter adapterDetails = null;
-                        adapterPerm = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNumber.Text + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString(), dbconnection);
+                        adapterPerm = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين',storage_import_permission.Store_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNumber.Text + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString(), dbconnection);
                         adapterSup = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',import_supplier_permission.Order_Number as 'رقم الطلب',import_supplier_permission.ImportSupplierPermission_ID as 'ID' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNumber.Text + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString(), dbconnection);
                         //,store_places.Store_Place_Code as 'مكان التخزين'
                         //order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID
@@ -128,6 +130,8 @@ namespace MainSystem
                         //sourceDataSet.Relations.Add("تفاصيل الاذن", foreignKeyColumn, foreignKeyColumn2);
                         sourceDataSet.Relations.Add("تفاصيل الاذن", foreignKeyColumn3, foreignKeyColumn4);
                         gridControl1.DataSource = sourceDataSet.Tables["storage_import_permission"];
+
+                        gridView1.Columns["Store_ID"].Visible = false;
                     }
                     else
                     {
@@ -140,6 +144,22 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
                 dbconnection.Close();
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (UserControl.userType == 1)
+            {
+                try
+                {
+                    SupplierReceiptUpdate form = new SupplierReceiptUpdate(row1, this, tabControlContentStore);
+                    form.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -156,15 +176,15 @@ namespace MainSystem
                     MySqlDataAdapter adapterPerm = null;
                     MySqlDataAdapter adapterSup = null;
                     MySqlDataAdapter adapterDetails = null;
-                    DateTime date = dateTimePicker1.Value.Date;
-                    string d = date.ToString("dd-MM-yyyy");
-                    DateTime date2 = dateTimePicker2.Value.Date;
-                    string d2 = date2.ToString("dd-MM-yyyy");
-                    adapterPerm = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString()+ " and DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') >='" + d + "' and DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') <='" + d2 + "'", dbconnection);
-                    adapterSup = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',import_supplier_permission.Order_Number as 'رقم الطلب',import_supplier_permission.ImportSupplierPermission_ID as 'ID' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') >='" + d + "' and DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') <='" + d2 + "'", dbconnection);
+                    //DateTime date = dateTimePicker1.Value.Date;
+                    //string d = date.ToString("dd-MM-yyyy");
+                    //DateTime date2 = dateTimePicker2.Value.Date;
+                    //string d2 = date2.ToString("dd-MM-yyyy");
+                    adapterPerm = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',storage_import_permission.Import_Permission_Number as 'رقم الاذن',DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') as 'تاريخ التخزين',storage_import_permission.Store_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString()+ " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'", dbconnection);
+                    adapterSup = new MySqlDataAdapter("SELECT DISTINCT storage_import_permission.StorageImportPermission_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',import_supplier_permission.Order_Number as 'رقم الطلب',import_supplier_permission.ImportSupplierPermission_ID as 'ID' FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID where supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'", dbconnection);
                     //,store_places.Store_Place_Code as 'مكان التخزين'
                     //order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID
-                    adapterDetails = new MySqlDataAdapter("select storage_import_permission.StorageImportPermission_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',supplier_permission_details.ImportSupplierPermission_ID as 'ID' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') >='" + d + "' and DATE_FORMAT(storage_import_permission.Storage_Date, '%d-%m-%Y') <='" + d2 + "' ", dbconnection);
+                    adapterDetails = new MySqlDataAdapter("select storage_import_permission.StorageImportPermission_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',supplier_permission_details.ImportSupplierPermission_ID as 'ID' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID left JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'", dbconnection);
                     adapterPerm.Fill(sourceDataSet, "storage_import_permission");
                     adapterSup.Fill(sourceDataSet, "import_supplier_permission");
                     adapterDetails.Fill(sourceDataSet, "supplier_permission_details");
@@ -178,6 +198,8 @@ namespace MainSystem
                     //sourceDataSet.Relations.Add("تفاصيل الاذن", foreignKeyColumn, foreignKeyColumn2);
                     sourceDataSet.Relations.Add("تفاصيل الاذن", foreignKeyColumn3, foreignKeyColumn4);
                     gridControl1.DataSource = sourceDataSet.Tables["storage_import_permission"];
+
+                    gridView1.Columns["Store_ID"].Visible = false;
                 }
                 else
                 {

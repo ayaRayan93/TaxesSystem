@@ -199,7 +199,8 @@ namespace MainSystem
                     comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
                     comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
                     comClient.Text = "";
-                    comClient.SelectedValue = -1;
+                    //comClient.SelectedValue = -1;
+                    comClient.SelectedIndex = -1;
                     txtClientID.Text = "";
                     loaded = true;
                 }
@@ -241,7 +242,7 @@ namespace MainSystem
                         dbconnection.Open();
                         switch (txtBox.Name)
                         {
-                            case "txtCustomerID":
+                            case "txtClientID":
                                 query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
@@ -258,7 +259,7 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-                            case "txtEngConID":
+                            case "txtCustomerID":
                                 query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
@@ -579,7 +580,7 @@ namespace MainSystem
                     {
                         sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
                     }
-                    labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+                    labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString("0.00");
 
                     double discount = 0;
                     for (int i = 0; i < gridView1.RowCount; i++)
@@ -589,9 +590,9 @@ namespace MainSystem
                             discount += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
                         }
                     }
-                    labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString();
+                    labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString("0.00");
 
-                    labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString();
+                    labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString("0.00");
                 }
                 catch (Exception ex)
                 {
@@ -628,7 +629,7 @@ namespace MainSystem
                 {
                     sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
                 }
-                labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+                labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString("0.00");
 
                 double discount = 0;
                 for (int i = 0; i < gridView1.RowCount; i++)
@@ -638,9 +639,9 @@ namespace MainSystem
                         discount += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
                     }
                 }
-                labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString();
+                labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString("0.00");
 
-                labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString();
+                labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString("0.00");
             }
             catch(Exception ex)
             {
@@ -1374,7 +1375,7 @@ namespace MainSystem
                     {
                         sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
                     }
-                    labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+                    labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString("0.00");
 
                     double discount = 0;
                     for (int i = 0; i < gridView1.RowCount; i++)
@@ -1384,9 +1385,9 @@ namespace MainSystem
                             discount += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
                         }
                     }
-                    labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString();
+                    labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString("0.00");
 
-                    labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString();
+                    labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString("0.00");
                 }
             }
             catch(Exception ex)
@@ -1411,7 +1412,7 @@ namespace MainSystem
             {
                 sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
             }
-            labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+            labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString("0.00");
 
             double discount = 0;
             for (int i = 0; i < gridView1.RowCount; i++)
@@ -1421,9 +1422,9 @@ namespace MainSystem
                     discount += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
                 }
             }
-            labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString();
+            labTotalDiscount.Text = "اجمالى الخصم = " + discount.ToString("0.00");
 
-            labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString();
+            labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discount).ToString("0.00");
         }
 
         public void refreshPriceView(int rowHandel, double discount, double price, double totalPrice)
@@ -1439,7 +1440,7 @@ namespace MainSystem
             {
                 sum += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الاجمالى").ToString());
             }
-            labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString();
+            labTotalBillPriceBD.Text = "اجمالى الفاتورة = " + sum.ToString("0.00");
 
             double discont = 0;
             for (int i = 0; i < gridView1.RowCount; i++)
@@ -1449,9 +1450,9 @@ namespace MainSystem
                     discont += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "الخصم").ToString());
                 }
             }
-            labTotalDiscount.Text = "اجمالى الخصم = " + discont.ToString();
+            labTotalDiscount.Text = "اجمالى الخصم = " + discont.ToString("0.00");
 
-            labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discont).ToString();
+            labTotalBillPriceAD.Text = "صافى الفاتورة = " + (sum - discont).ToString("0.00");
         }
     }
 }

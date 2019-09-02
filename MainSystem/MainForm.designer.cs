@@ -535,7 +535,7 @@
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemReturnedPurchaseBillPriceUpdate = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem228 = new DevExpress.XtraNavBar.NavBarItem();
+            //this.navBarItem228 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();

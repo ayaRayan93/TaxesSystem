@@ -30,6 +30,9 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panContent = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSupplierAccount = new System.Windows.Forms.TextBox();
             this.dateTime1 = new System.Windows.Forms.DateTimePicker();
@@ -46,9 +49,6 @@
             this.txtSupplierID = new System.Windows.Forms.TextBox();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.labelSupplier = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panContent.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -92,6 +92,45 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(811, 565);
             this.panContent.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(410, 146);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 19);
+            this.label8.TabIndex = 198;
+            this.label8.Text = "*";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(410, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(18, 19);
+            this.label7.TabIndex = 197;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(337, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(18, 19);
+            this.label6.TabIndex = 196;
+            this.label6.Text = "*";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label5
             // 
@@ -281,45 +320,6 @@
             this.labelSupplier.Size = new System.Drawing.Size(48, 19);
             this.labelSupplier.TabIndex = 174;
             this.labelSupplier.Text = "المورد";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(337, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 19);
-            this.label6.TabIndex = 196;
-            this.label6.Text = "*";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(410, 194);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(18, 19);
-            this.label7.TabIndex = 197;
-            this.label7.Text = "*";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(410, 146);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 19);
-            this.label8.TabIndex = 198;
-            this.label8.Text = "*";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // SupplierTaswaya
             // 
