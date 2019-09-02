@@ -92,10 +92,30 @@ namespace MainSystem
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    string query = "delete from supplier_taswaya where SupplierTaswaya_ID=" + row1[0].ToString() + "";
-                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                    comand.ExecuteNonQuery();
+                    string query = "select Money from supplier_rest_money where Supplier_ID=" + row1["Supplier_ID"].ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                        
+                        if (row1["نوع التسوية"].ToString() == "اضافة")
+                        {
+                            query = "update supplier_rest_money set Money=" + (restMoney - Convert.ToDouble(row1["قيمة التسوية"].ToString())) + " where Supplier_ID=" + row1["Supplier_ID"].ToString();
+                        }
+                        else
+                        {
+                            query = "update supplier_rest_money set Money=" + (restMoney + Convert.ToDouble(row1["قيمة التسوية"].ToString())) + " where Supplier_ID=" + row1["Supplier_ID"].ToString();
+                        }
+                        com = new MySqlCommand(query, dbconnection);
+                        com.ExecuteNonQuery();
+                    }
+
+                    query = "delete from supplier_taswaya where SupplierTaswaya_ID=" + row1[0].ToString() + "";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
                     UserControl.ItemRecord("supplier_taswaya", "حذف", Convert.ToInt32(row1[0].ToString()), DateTime.Now, "", dbconnection);
+
+                    gridView1.DeleteSelectedRows();
                 }
             }
             catch (Exception ex)
@@ -108,21 +128,21 @@ namespace MainSystem
         //functions
         public void DisplaySupplierTaswaya()
         {
-            string qeury = "select SupplierTaswaya_ID as 'الكود',supplier.Supplier_Name as 'المورد',Taswaya_Type as 'نوع التسوية',Money_Paid as 'قيمة التسوية',Info as 'بيان',Date as 'التاريخ' from supplier_taswaya inner join supplier on supplier.Supplier_ID=supplier_taswaya.Supplier_ID";
+            string qeury = "select SupplierTaswaya_ID as 'الكود',supplier.Supplier_Name as 'المورد',Taswaya_Type as 'نوع التسوية',Money_Paid as 'قيمة التسوية',Info as 'بيان',Date as 'التاريخ',supplier_taswaya.Supplier_ID from supplier_taswaya inner join supplier on supplier.Supplier_ID=supplier_taswaya.Supplier_ID";
             MySqlDataAdapter adapter = new MySqlDataAdapter(qeury, dbconnection);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
-
             gridControl1.DataSource = dataSet.Tables[0];
+            gridView1.Columns["Supplier_ID"].Visible = false;
         }
         public void DisplaySupplierTaswaya(int id)
         {
-            string qeury = "select SupplierTaswaya_ID as 'الكود',supplier.Supplier_Name as 'المورد',Taswaya_Type as 'نوع التسوية',Money_Paid as 'قيمة التسوية',Info as 'بيان',Date as 'التاريخ' from supplier_taswaya inner join supplier on supplier.Supplier_ID=supplier_taswaya.Supplier_ID where SupplierTaswaya_ID=" + id;
+            string qeury = "select SupplierTaswaya_ID as 'الكود',supplier.Supplier_Name as 'المورد',Taswaya_Type as 'نوع التسوية',Money_Paid as 'قيمة التسوية',Info as 'بيان',Date as 'التاريخ',supplier_taswaya.Supplier_ID from supplier_taswaya inner join supplier on supplier.Supplier_ID=supplier_taswaya.Supplier_ID where SupplierTaswaya_ID=" + id;
             MySqlDataAdapter adapter = new MySqlDataAdapter(qeury, dbconnection);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
-
             gridControl1.DataSource = dataSet.Tables[0];
+            gridView1.Columns["Supplier_ID"].Visible = false;
         }
     }
 }

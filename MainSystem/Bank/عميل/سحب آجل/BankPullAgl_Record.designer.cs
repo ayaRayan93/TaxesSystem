@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.txtClientID = new System.Windows.Forms.TextBox();
+            this.txtCustomerID = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comDelegate = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comEng = new System.Windows.Forms.ComboBox();
@@ -178,10 +182,10 @@
             this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.comDelegate = new System.Windows.Forms.ComboBox();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label5 = new System.Windows.Forms.Label();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem53 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -276,6 +280,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -289,6 +295,8 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.txtClientID);
+            this.dataLayoutControl1.Controls.Add(this.txtCustomerID);
             this.dataLayoutControl1.Controls.Add(this.label5);
             this.dataLayoutControl1.Controls.Add(this.comDelegate);
             this.dataLayoutControl1.Controls.Add(this.label4);
@@ -332,6 +340,40 @@
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
+            // txtClientID
+            // 
+            this.txtClientID.Enabled = false;
+            this.txtClientID.Location = new System.Drawing.Point(545, 109);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.Size = new System.Drawing.Size(62, 20);
+            this.txtClientID.TabIndex = 89;
+            this.txtClientID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // txtCustomerID
+            // 
+            this.txtCustomerID.Enabled = false;
+            this.txtCustomerID.Location = new System.Drawing.Point(545, 60);
+            this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.Size = new System.Drawing.Size(62, 20);
+            this.txtCustomerID.TabIndex = 88;
+            this.txtCustomerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(7, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 21);
+            this.label5.TabIndex = 87;
+            // 
+            // comDelegate
+            // 
+            this.comDelegate.FormattingEnabled = true;
+            this.comDelegate.Location = new System.Drawing.Point(31, 60);
+            this.comDelegate.Name = "comDelegate";
+            this.comDelegate.Size = new System.Drawing.Size(236, 24);
+            this.comDelegate.TabIndex = 86;
+            // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.White;
@@ -352,9 +394,9 @@
             // 
             this.comEng.Enabled = false;
             this.comEng.FormattingEnabled = true;
-            this.comEng.Location = new System.Drawing.Point(545, 60);
+            this.comEng.Location = new System.Drawing.Point(611, 60);
             this.comEng.Name = "comEng";
-            this.comEng.Size = new System.Drawing.Size(368, 24);
+            this.comEng.Size = new System.Drawing.Size(302, 24);
             this.comEng.TabIndex = 83;
             this.comEng.SelectedValueChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
             this.comEng.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -453,10 +495,11 @@
             // 
             this.comClient.Enabled = false;
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(545, 109);
+            this.comClient.Location = new System.Drawing.Point(611, 109);
             this.comClient.Name = "comClient";
-            this.comClient.Size = new System.Drawing.Size(368, 24);
+            this.comClient.Size = new System.Drawing.Size(302, 24);
             this.comClient.TabIndex = 70;
+            this.comClient.SelectedValueChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
             this.comClient.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // labelName
@@ -1676,7 +1719,9 @@
             this.layoutControlItem18,
             this.layoutControlItem9,
             this.layoutControlItem17,
-            this.layoutControlItem21});
+            this.layoutControlItem21,
+            this.layoutControlItem46,
+            this.layoutControlItem53});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1941,9 +1986,9 @@
             this.layoutControlItem3.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem3.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem3.Control = this.comClient;
-            this.layoutControlItem3.Location = new System.Drawing.Point(538, 102);
+            this.layoutControlItem3.Location = new System.Drawing.Point(604, 102);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(495, 25);
+            this.layoutControlItem3.Size = new System.Drawing.Size(429, 25);
             this.layoutControlItem3.Text = "عميل";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(120, 20);
             // 
@@ -2019,9 +2064,9 @@
             this.layoutControlItem18.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem18.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem18.Control = this.comEng;
-            this.layoutControlItem18.Location = new System.Drawing.Point(538, 53);
+            this.layoutControlItem18.Location = new System.Drawing.Point(604, 53);
             this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(495, 25);
+            this.layoutControlItem18.Size = new System.Drawing.Size(429, 25);
             this.layoutControlItem18.Text = "مهندس/مقاول/تاجر";
             this.layoutControlItem18.TextSize = new System.Drawing.Size(120, 20);
             // 
@@ -2033,14 +2078,6 @@
             this.layoutControlItem9.Size = new System.Drawing.Size(1033, 24);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
-            // 
-            // comDelegate
-            // 
-            this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(31, 60);
-            this.comDelegate.Name = "comDelegate";
-            this.comDelegate.Size = new System.Drawing.Size(236, 24);
-            this.comDelegate.TabIndex = 86;
             // 
             // layoutControlItem17
             // 
@@ -2057,14 +2094,6 @@
             this.layoutControlItem17.Text = "مندوب";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(120, 20);
             // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(7, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 21);
-            this.label5.TabIndex = 87;
-            // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.label5;
@@ -2073,6 +2102,24 @@
             this.layoutControlItem21.Size = new System.Drawing.Size(24, 25);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
+            // 
+            // layoutControlItem46
+            // 
+            this.layoutControlItem46.Control = this.txtCustomerID;
+            this.layoutControlItem46.Location = new System.Drawing.Point(538, 53);
+            this.layoutControlItem46.Name = "layoutControlItem46";
+            this.layoutControlItem46.Size = new System.Drawing.Size(66, 25);
+            this.layoutControlItem46.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem46.TextVisible = false;
+            // 
+            // layoutControlItem53
+            // 
+            this.layoutControlItem53.Control = this.txtClientID;
+            this.layoutControlItem53.Location = new System.Drawing.Point(538, 102);
+            this.layoutControlItem53.Name = "layoutControlItem53";
+            this.layoutControlItem53.Size = new System.Drawing.Size(66, 25);
+            this.layoutControlItem53.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem53.TextVisible = false;
             // 
             // BankPullAgl_Record
             // 
@@ -2180,6 +2227,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2339,6 +2388,10 @@
         private System.Windows.Forms.ComboBox comDelegate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
+        private System.Windows.Forms.TextBox txtClientID;
+        private System.Windows.Forms.TextBox txtCustomerID;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem46;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem53;
     }
 }
 

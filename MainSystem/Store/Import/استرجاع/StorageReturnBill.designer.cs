@@ -455,7 +455,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.panBillNumber);
             this.panel3.Controls.Add(this.radioButtonWithOutReturnPermission);

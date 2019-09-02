@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SupplierReceipt
+    partial class SupplierReceiptUpdate
     {
         /// <summary>
         /// Required designer variable.
@@ -112,6 +112,8 @@
             // comSupplier
             // 
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupplier.Enabled = false;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comSupplier.FormattingEnabled = true;
             this.comSupplier.Location = new System.Drawing.Point(320, 5);
@@ -255,6 +257,7 @@
             // txtPermissionNum
             // 
             this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPermissionNum.Enabled = false;
             this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtPermissionNum.Location = new System.Drawing.Point(527, 5);
             this.txtPermissionNum.Name = "txtPermissionNum";
@@ -646,6 +649,7 @@
             // txtSupplier
             // 
             this.txtSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSupplier.Enabled = false;
             this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtSupplier.Location = new System.Drawing.Point(264, 5);
             this.txtSupplier.Name = "txtSupplier";
@@ -873,14 +877,14 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // SupplierReceipt
+            // SupplierReceiptUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(827, 661);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "SupplierReceipt";
+            this.Name = "SupplierReceiptUpdate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.SupplierReceipt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
