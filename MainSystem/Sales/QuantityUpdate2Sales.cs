@@ -60,37 +60,44 @@ namespace MainSystem
                     double quantity = 0;
                     if (double.TryParse(txtQuantity.Text, out quantity))
                     {
-                        dbconnection.Open();
-                        if (!checkQuantityInStore())
+                        if (quantity > 0)
                         {
-                            MessageBox.Show("لا يوجد كمية كافية من العنصر فى المخزن");
-                            dbconnection.Close();
-                            return;
-                        }
-
-                        cartons = 0;
-                        if (selRow["الكود"].ToString().Length >= 20)
-                        {
-                            string q = "select Carton from data where Code='" + selRow["الكود"].ToString() + "'";
-                            MySqlCommand c = new MySqlCommand(q, dbconnection);
-                            if (c.ExecuteScalar() != null)
+                            dbconnection.Open();
+                            if (!checkQuantityInStore())
                             {
-                                if (Convert.ToDouble(c.ExecuteScalar().ToString()) > 0)
+                                MessageBox.Show("لا يوجد كمية كافية من العنصر فى المخزن");
+                                dbconnection.Close();
+                                return;
+                            }
+
+                            cartons = 0;
+                            if (selRow["الكود"].ToString().Length >= 20)
+                            {
+                                string q = "select Carton from data where Code='" + selRow["الكود"].ToString() + "'";
+                                MySqlCommand c = new MySqlCommand(q, dbconnection);
+                                if (c.ExecuteScalar() != null)
                                 {
-                                    if (cartonNumCheck())
-                                    { }
-                                    else
+                                    if (Convert.ToDouble(c.ExecuteScalar().ToString()) > 0)
                                     {
-                                        dbconnection.Close();
-                                        return;
+                                        if (cartonNumCheck())
+                                        { }
+                                        else
+                                        {
+                                            dbconnection.Close();
+                                            return;
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        dbconnection.Close();
-                        MainForm.objFormBillConfirm.refreshView(rowHandel, quantity, Convert.ToInt32(comStore.SelectedValue.ToString()), comStore.Text, cartons);
-                        this.Close();
+                            dbconnection.Close();
+                            MainForm.objFormBillConfirm.refreshView(rowHandel, quantity, Convert.ToInt32(comStore.SelectedValue.ToString()), comStore.Text, cartons);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("الكمية يجب ان تكون اكبر من صفر");
+                        }
                     }
                     else
                     {

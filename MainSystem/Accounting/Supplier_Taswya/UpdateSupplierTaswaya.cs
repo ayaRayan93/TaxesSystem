@@ -41,8 +41,8 @@ namespace MainSystem
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
                 comSupplier.Text = "";
-                loaded = true;
                 setData();
+                loaded = true;
             }
             catch (Exception ex)
             {
