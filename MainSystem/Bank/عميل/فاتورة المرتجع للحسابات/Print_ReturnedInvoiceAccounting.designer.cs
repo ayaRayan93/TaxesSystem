@@ -104,6 +104,9 @@
             this.ReturnInfo = new DevExpress.XtraReports.Parameters.Parameter();
             this.PhoneNum = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Delegate_Name = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -556,7 +559,7 @@
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPanel1});
-            this.ReportHeader.HeightF = 104.5833F;
+            this.ReportHeader.HeightF = 129.5833F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // xrPanel1
@@ -564,6 +567,8 @@
             this.xrPanel1.BackColor = System.Drawing.Color.Transparent;
             this.xrPanel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel8,
+            this.xrLabel6,
             this.xrLabel15,
             this.xrLabel1,
             this.xrLabel9,
@@ -579,7 +584,7 @@
             this.xrLabel19});
             this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(0.0001271566F, 0F);
             this.xrPanel1.Name = "xrPanel1";
-            this.xrPanel1.SizeF = new System.Drawing.SizeF(800F, 104.5833F);
+            this.xrPanel1.SizeF = new System.Drawing.SizeF(800F, 129.5833F);
             this.xrPanel1.StylePriority.UseBackColor = false;
             this.xrPanel1.StylePriority.UseBorders = false;
             // 
@@ -962,6 +967,40 @@
             this.objectDataSource1.DataSource = typeof(MainSystem.ReturnedBill_ItemsAccounting);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrLabel8
+            // 
+            this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Delegate_Name]")});
+            this.xrLabel8.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(473.976F, 96.66669F);
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(230.0237F, 20F);
+            this.xrLabel8.StylePriority.UseFont = false;
+            this.xrLabel8.StylePriority.UseForeColor = false;
+            this.xrLabel8.StylePriority.UseTextAlignment = false;
+            this.xrLabel8.Text = "xrLabel8";
+            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
+            // xrLabel6
+            // 
+            this.xrLabel6.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(703.9997F, 96.66669F);
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(96F, 20F);
+            this.xrLabel6.StylePriority.UseFont = false;
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            this.xrLabel6.Text = ": اسم المندوب";
+            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // Delegate_Name
+            // 
+            this.Delegate_Name.Description = "Parameter1";
+            this.Delegate_Name.Name = "Delegate_Name";
+            this.Delegate_Name.Visible = false;
+            // 
             // Print_ReturnedInvoiceAccounting
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -985,7 +1024,8 @@
             this.DateNow,
             this.Branch_ID,
             this.ReturnInfo,
-            this.PhoneNum});
+            this.PhoneNum,
+            this.Delegate_Name});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.xrControlStyle1,
             this.xrControlStyle2});
@@ -1075,5 +1115,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
+        private DevExpress.XtraReports.Parameters.Parameter Delegate_Name;
     }
 }

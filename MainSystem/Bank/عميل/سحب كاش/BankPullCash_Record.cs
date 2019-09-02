@@ -25,7 +25,7 @@ namespace MainSystem
         string clientName = "";
         string customerPhoneNumber = "";
         string clientPhoneNumber = "";
-        //string delegateName = "";
+        string Delegate_Name = "";
         int branchID = 0;
         int ID = -1;
         double paidAmount = 0;
@@ -1512,11 +1512,13 @@ namespace MainSystem
             List<ReturnedBill_Items> bi = new List<ReturnedBill_Items>();
             
             dbconnection.Open();
-            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100)*customer_return_bill_details.TotalMeter as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
+            string query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type,customer_return_bill_details.PriceBD,((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100)*customer_return_bill_details.TotalMeter as 'SellDiscount',customer_return_bill_details.PriceAD,customer_return_bill_details.TotalMeter,delegate.Delegate_Name FROM customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
+          
             while (dr.Read())
             {
+                Delegate_Name = dr["Delegate_Name"].ToString();
                 ReturnedBill_Items item;
                 connectionReader3.Open();
                 if (dr["Type"].ToString() == "بند")
@@ -1527,6 +1529,7 @@ namespace MainSystem
                     while (dr1.Read())
                     {
                         item = new ReturnedBill_Items() { Code = dr1["Code"].ToString(), Type = dr1["Type_Name"].ToString(), Product_Type = "بند", Product_Name = dr1["Product_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = Convert.ToDouble(dr["SellDiscount"].ToString()) };
+                       
                         bi.Add(item);
                     }
                     dr1.Close();
@@ -1562,11 +1565,11 @@ namespace MainSystem
             Print_ReturnedBill_Report f = new Print_ReturnedBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi, Delegate_Name);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName,  Convert.ToDouble(txtTotalCost.Text), returnInfo,  bi, Delegate_Name);
             }
             f.ShowDialog();
         }
@@ -1626,11 +1629,11 @@ namespace MainSystem
             Print_ReturnedBill_ReportAccounting f = new Print_ReturnedBill_ReportAccounting();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi, Delegate_Name);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, cmbBranch.SelectedValue.ToString(), branchName, Convert.ToDouble(txtTotalCost.Text), returnInfo, bi, Delegate_Name);
             }
             f.ShowDialog();
         }

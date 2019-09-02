@@ -111,6 +111,9 @@
             this.ReturnInfo = new DevExpress.XtraReports.Parameters.Parameter();
             this.PhoneNum = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Delegate_Name = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -651,7 +654,9 @@
             this.xrLabel4,
             this.xrLabel13,
             this.xrLabel19,
-            this.xrLabel20});
+            this.xrLabel20,
+            this.xrLabel8,
+            this.xrLabel12});
             this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(0.0001271566F, 0F);
             this.xrPanel1.Name = "xrPanel1";
             this.xrPanel1.SizeF = new System.Drawing.SizeF(800F, 125F);
@@ -1053,6 +1058,40 @@
             this.objectDataSource1.DataSource = typeof(MainSystem.CopyReturnedBill_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrLabel8
+            // 
+            this.xrLabel8.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(704F, 96.66667F);
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(96F, 20F);
+            this.xrLabel8.StylePriority.UseFont = false;
+            this.xrLabel8.StylePriority.UseTextAlignment = false;
+            this.xrLabel8.Text = ": اسم المندوب";
+            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrLabel12
+            // 
+            this.xrLabel12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Delegate_Name]")});
+            this.xrLabel12.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(473.9763F, 96.66667F);
+            this.xrLabel12.Name = "xrLabel12";
+            this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel12.SizeF = new System.Drawing.SizeF(230.0237F, 20F);
+            this.xrLabel12.StylePriority.UseFont = false;
+            this.xrLabel12.StylePriority.UseForeColor = false;
+            this.xrLabel12.StylePriority.UseTextAlignment = false;
+            this.xrLabel12.Text = "xrLabel8";
+            this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
+            // Delegate_Name
+            // 
+            this.Delegate_Name.Description = "Parameter1";
+            this.Delegate_Name.Name = "Delegate_Name";
+            this.Delegate_Name.Visible = false;
+            // 
             // Print_CopyReturnedInvoice
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1076,7 +1115,8 @@
             this.DateNow,
             this.Branch_ID,
             this.ReturnInfo,
-            this.PhoneNum});
+            this.PhoneNum,
+            this.Delegate_Name});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.xrControlStyle1,
             this.xrControlStyle2});
@@ -1173,5 +1213,8 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo2;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel12;
+        private DevExpress.XtraReports.Parameters.Parameter Delegate_Name;
     }
 }
