@@ -195,11 +195,11 @@ namespace MainSystem
                             Clear();
                             row1 = null;
                             //txtAllTax.Text = "0.00";
-                            labelTotalB.Text = totalB.ToString();
-                            labelTotalA.Text = totalA.ToString();
-                            labelTotalDiscount.Text = totalDiscount.ToString();
+                            labelTotalB.Text = totalB.ToString("#.000");
+                            labelTotalA.Text = totalA.ToString("#.000");
+                            labelTotalDiscount.Text = totalDiscount.ToString("#.000");
                             //labelTotalSafy.Text = totalA.ToString();
-                            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString();
+                            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                         }
                         else
                         {
@@ -324,11 +324,11 @@ namespace MainSystem
                 totalA += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
             }
             txtAllTax.Text = gridView1.GetRowCellDisplayText(0, "Value_Additive_Tax").ToString();
-            labelTotalB.Text = totalB.ToString();
-            labelTotalA.Text = totalA.ToString();
-            labelTotalDiscount.Text = totalDiscount.ToString();
+            labelTotalB.Text = totalB.ToString("#.000");
+            labelTotalA.Text = totalA.ToString("#.000");
+            labelTotalDiscount.Text = totalDiscount.ToString("#.000");
             //labelTotalSafy.Text = totalA.ToString();
-            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString();
+            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
         }
         public double calPurchasesPrice()
         {

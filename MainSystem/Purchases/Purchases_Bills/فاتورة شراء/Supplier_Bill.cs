@@ -349,12 +349,12 @@ namespace MainSystem
                                         Clear();
                                         row1 = null;
                                         //txtAllTax.Text = "0.00";
-                                        labelTotalB.Text = totalB.ToString("0.00");
+                                        labelTotalB.Text = totalB.ToString("#.000");
                                         //labelTotalVal.Text = totalVal.ToString();
-                                        labelTotalA.Text = totalA.ToString("0.00");
-                                        labelTotalDiscount.Text = totalDiscount.ToString("0.00");
+                                        labelTotalA.Text = totalA.ToString("#.000");
+                                        labelTotalDiscount.Text = totalDiscount.ToString("#.000");
                                         //labelTotalSafy.Text = totalA.ToString();
-                                        labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("0.00");
+                                        labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                                     }
                                 }
                                 else
@@ -448,12 +448,12 @@ namespace MainSystem
                         totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                     }
                     //txtAllTax.Text = "0.00";
-                    labelTotalB.Text = totalB.ToString("0.00");
+                    labelTotalB.Text = totalB.ToString("#.000");
                     //labelTotalVal.Text = totalVal.ToString();
-                    labelTotalA.Text = totalA.ToString("0.00");
-                    labelTotalDiscount.Text = totalDiscount.ToString("0.00");
+                    labelTotalA.Text = totalA.ToString("#.000");
+                    labelTotalDiscount.Text = totalDiscount.ToString("#.000");
                     //labelTotalSafy.Text = totalA.ToString();
-                    labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("0.00");
+                    labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                     row2 = null;
                 }
             }
@@ -827,7 +827,7 @@ namespace MainSystem
                         double VAT;
                         if (double.TryParse(txtAllTax.Text, out VAT))
                         {
-                            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("0.00");
+                            labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                         }
                         else
                         {
