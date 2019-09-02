@@ -166,21 +166,34 @@ namespace MainSystem
             {
                 if (txtBranchID.Text != "")// && txtDelegateID.Text != "")
                 {
+                    dbconnection.Open();
                     DateTime date = dateTimeFrom.Value;
                     string d = date.ToString("yyyy-MM-dd ");
                     d += "00:00:00";
                     DateTime date2 = dateTimeTo.Value;
                     string d2 = date2.ToString("yyyy-MM-dd ");
                     d2 += "23:59:59";
+                    string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=2 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    string str = "";
+                    while (dr.Read())
+                    {
+                        str += dr[0].ToString() + ",";
+                    }
+                    dr.Close();
+                    str += 0;
+
+
                     DataTable mdt = new DataTable();
-                    string query = "";
+                    query = "";
                     if (txtDelegateID.Text == "")
                     {
-                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,transitions.Delegate_Name as 'المندوب',Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
+                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,delegate.Delegate_Name as 'المندوب',Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where customer_bill.CustomerBill_ID in("+str+") and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
                     }
                     else
                     {
-                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID  where Paid_Status=2 and transitions.Branch_ID=" + txtBranchID.Text + " and transitions.Delegate_ID=" + txtDelegateID.Text + " and customer_bill.Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
+                        query = "select distinct concat(customer_bill.Customer_Name,' ',customer_bill.Customer_ID) as 'مهندس/مقاول', concat(customer_bill.Client_Name,' ',customer_bill.Client_ID) as 'العميل' ,Bill_Date as 'تاريخ الفاتورة',customer_bill.Branch_BillNumber as 'رقم الفاتورة',Total_CostAD as 'اجمالي الفاتورة',case when Transition ='ايداع' then Amount end  as 'السداد'   from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where customer_bill.CustomerBill_ID in(" + str + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + "  and Bill_Date between '" + d + "' and '" + d2 + "' group by Bill_Number,transitions.Branch_ID,transitions.Transition having Transition='ايداع'";
                     }
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt1 = new DataTable();
@@ -203,6 +216,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void newChoose_Click(object sender, EventArgs e)

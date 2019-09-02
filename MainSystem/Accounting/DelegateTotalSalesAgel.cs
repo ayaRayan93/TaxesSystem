@@ -273,7 +273,7 @@ namespace MainSystem
         }
         public DataTable getTotalReturn(DataTable _Table, string CustomerReturnBill_IDs, string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") " + subQuery + " group by delegate.Delegate_ID ";
+            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") and  customer_return_bill.Branch_ID=" + txtBranchID.Text + " " + subQuery + " group by delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();

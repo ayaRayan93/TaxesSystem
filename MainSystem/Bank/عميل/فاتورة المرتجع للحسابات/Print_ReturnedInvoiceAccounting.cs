@@ -14,7 +14,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string client_Name, string phoneNumber, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceAD, string returnInfo, List<ReturnedBill_ItemsAccounting> Bill_Items)
+        public void InitData(string client_Name, string phoneNumber, DateTime billDate, string pay_Type, int bill_Number, string branchId, string branch_Name, double TotalBillPriceAD, string returnInfo, List<ReturnedBill_ItemsAccounting> Bill_Items,string delegateName)
         {
             Client_Name.Value = client_Name;
             PhoneNum.Value = phoneNumber;
@@ -26,6 +26,7 @@ namespace MainSystem
             DateNow.Value = DateTime.Now;
             ReturnInfo.Value = returnInfo;
             objectDataSource1.DataSource = Bill_Items;
+            Delegate_Name.Value = delegateName;
         }
     }
 }

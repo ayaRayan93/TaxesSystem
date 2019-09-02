@@ -24,7 +24,7 @@ namespace MainSystem
         MySqlConnection myConnection;
         MainForm bankMainForm = null;
         XtraTabControl MainTabControlBank;
-        
+        string delegateName = "";
         public static XtraTabPage MainTabPagePrintingTransitions;
         Panel panelPrintingTransitions;
 
@@ -282,11 +282,13 @@ namespace MainSystem
                     gridControl1.DataSource = dtProduct;
 
 
-                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100)*customer_return_bill_details.TotalMeter as 'SellDiscount' FROM customer_return_bill_details where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
+                    query = "SELECT customer_return_bill_details.Data_ID,customer_return_bill_details.Type as 'الفئة',customer_return_bill_details.PriceBD as 'السعر',customer_return_bill_details.SellDiscount as 'نسبة الخصم',customer_return_bill_details.PriceAD as 'بعد الخصم',customer_return_bill_details.TotalMeter as 'الكمية',((customer_return_bill_details.SellDiscount*customer_return_bill_details.PriceBD)/100)*customer_return_bill_details.TotalMeter as 'SellDiscount',delegate.Delegate_Name FROM customer_return_bill_details inner join delegate on  delegate.Delegate_ID=customer_return_bill_details.Delegate_ID where customer_return_bill_details.CustomerReturnBill_ID=" + ID;
                     com = new MySqlCommand(query, conn);
                     dr = com.ExecuteReader();
+                    
                     while (dr.Read())
                     {
+                        delegateName = dr["Delegate_Name"].ToString();
                         connectionReader1.Open();
                         if (dr["الفئة"].ToString() == "بند")
                         {
@@ -450,11 +452,11 @@ namespace MainSystem
             Print_CopyReturnedBill_Report f = new Print_CopyReturnedBill_Report();
             if (clientID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi);
+                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi);
+                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName);
             }
             f.ShowDialog();
         }

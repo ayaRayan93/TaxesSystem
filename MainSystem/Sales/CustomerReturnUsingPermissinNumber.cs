@@ -391,18 +391,23 @@ namespace MainSystem
         {
             try
             {
-                string query = "select Delegate_Name from delegate where Delegate_ID='" + txtDelegate.Text + "'";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    Name = (string)com.ExecuteScalar();
-                    comDelegate.Text = Name;
-                }
-                else
-                {
-                    MessageBox.Show("there is no item with this id");
                     dbconnection.Close();
-                    return;
+                    dbconnection.Open();
+                    string query = "select Delegate_Name from delegate where Delegate_ID='" + txtDelegate.Text + "' and Branch_ID=" + UserControl.EmpBranchID;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        Name = (string)com.ExecuteScalar();
+                        comDelegate.Text = Name;
+                    }
+                    else
+                    {
+                        MessageBox.Show("there is no item with this id");
+                        dbconnection.Close();
+                        return;
+                    }
                 }
             }
             catch (Exception ex)
