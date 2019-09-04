@@ -207,7 +207,6 @@ namespace MainSystem
 
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
-
             TextBox txtBox = (TextBox)sender;
             string query;
             MySqlCommand com;
@@ -221,7 +220,7 @@ namespace MainSystem
                         dbconnection.Open();
                         switch (txtBox.Name)
                         {
-                            case "txtCustomerID":
+                            case "txtClientID":
                                 query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
@@ -238,7 +237,7 @@ namespace MainSystem
                                     return;
                                 }
                                 break;
-                            case "txtEngConID":
+                            case "txtCustomerID":
                                 query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)

@@ -734,7 +734,7 @@ namespace MainSystem
                                 {
                                     query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
                                 }
-                                else if (checkBoxTaswya.Checked == true && (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text)) <= 50)
+                                else if (checkBoxTaswya.Checked == true && (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text)) <= 5)
                                 {
                                     query = "update customer_bill set Paid_Status=1 where CustomerBill_ID=" + ID;
                                 }

@@ -639,8 +639,8 @@ namespace MainSystem
             }
             xtraTabPage.Controls.Clear();
             xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
-
-            UpdateSupplierTaswaya objForm = new UpdateSupplierTaswaya(row, this, SupplierTaswayaReport);
+            
+            UpdateSupplierTaswaya objForm = new UpdateSupplierTaswaya(row, SupplierTaswayaReport, xtraTabControlAccounting);
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

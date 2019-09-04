@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DevExpress.XtraTab;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,15 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         MySqlConnection dbconnection1;
-        MainForm saleMainForm;
         SupplierTaswayaReport supplierTaswayaReport;
         DataRowView row1;
         private bool loaded = false;
         int id = -1;
         string supplierId = "";
         bool flag = false;
-        public UpdateSupplierTaswaya(DataRowView row1, MainForm saleMainForm, SupplierTaswayaReport supplierTaswayaReport)
+        XtraTabControl xtraTabControl = null;
+
+        public UpdateSupplierTaswaya(DataRowView row1, SupplierTaswayaReport supplierTaswayaReport, XtraTabControl xtraTabControl)
         {
             try
             {
@@ -31,8 +33,8 @@ namespace MainSystem
                 dbconnection1 = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();
                 this.row1 = row1;
-                this.saleMainForm = saleMainForm;
                 this.supplierTaswayaReport = supplierTaswayaReport;
+                this.xtraTabControl = xtraTabControl;
                 string query = "select * from supplier";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -180,6 +182,8 @@ namespace MainSystem
 
                             supplierTaswayaReport.DisplaySupplierTaswaya();
                             clear();
+                            XtraTabPage xtraTabPage = getTabPage("تعديل تسوية مورد");
+                            xtraTabControl.TabPages.Remove(xtraTabPage);
                         }
                         else
                         {
@@ -199,6 +203,15 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        public XtraTabPage getTabPage(string text)
+        {
+            for (int i = 0; i < xtraTabControl.TabPages.Count; i++)
+                if (xtraTabControl.TabPages[i].Text == text)
+                {
+                    return xtraTabControl.TabPages[i];
+                }
+            return null;
+        }
 
         //function
         /*public void checkCustomerType()

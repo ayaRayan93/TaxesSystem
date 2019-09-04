@@ -58,6 +58,10 @@ namespace MainSystem
                 {
                     transitionbranchID = UserControl.EmpBranchID;
                     loadBranch();
+                    if(UserControl.userType == 1)
+                    {
+                        dateTimePicker1.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -353,11 +357,12 @@ namespace MainSystem
                                 {
                                     dbconnection.Open();
 
-                                    string query = "update Transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
+                                    string query = "update Transitions set Amount=@Amount,Date=@Date,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
                                     MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                     com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                                     com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
+                                    com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
                                     com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
                                     MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
@@ -436,19 +441,22 @@ namespace MainSystem
                                     if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) == 0 /*|| checkBoxTaswya.Checked == true*/)
                                     {
                                         query = "update customer_bill set Paid_Status=1 where customer_bill.Branch_BillNumber=" + ID + " and customer_bill.Branch_ID=" + branchID;
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.ExecuteNonQuery();
                                     }
-                                    else if (checkBoxTaswya.Checked == true && (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text)) <= 50)
+                                    else if (checkBoxTaswya.Checked == true && (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text)) <= 5)
                                     {
                                         query = "update customer_bill set Paid_Status=1 where customer_bill.Branch_BillNumber=" + ID + " and customer_bill.Branch_ID=" + branchID;
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.ExecuteNonQuery();
                                     }
                                     else if (Convert.ToDouble(txtRestMoney.Text) - Convert.ToDouble(txtPaidMoney.Text) > 0)
                                     {
                                         query = "update customer_bill set Paid_Status=2 where customer_bill.Branch_BillNumber=" + ID + " and customer_bill.Branch_ID=" + branchID;
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.ExecuteNonQuery();
                                     }
-
-                                    com = new MySqlCommand(query, dbconnection);
-                                    com.ExecuteNonQuery();
-
+                                    
                                     dbconnection.Close();
 
                                     //print bill
@@ -1228,6 +1236,7 @@ namespace MainSystem
             cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
             cmbBranch.Text = selRow["الفرع"].ToString();
             branchID = Convert.ToInt32(selRow["Branch_ID"].ToString());
+            dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
             
             dbconnection.Close();
             txtBillNumber.Text = selRow["الفاتورة"].ToString();
@@ -1391,11 +1400,11 @@ namespace MainSystem
             Print_CategoriesBill_Report f = new Print_CategoriesBill_Report();
             if (selRow["Client_ID"].ToString() != "")
             {
-                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, ID, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), Transaction_Type, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, ID, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), Transaction_Type, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (selRow["Customer_ID"].ToString() != "")
             {
-                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, ID, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), Transaction_Type, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, ID, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), Transaction_Type, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)
