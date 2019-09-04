@@ -39,7 +39,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select customer.Customer_ID,customer.Customer_Name from customer where Type='اّجل'";
+                string query = "select customer.Customer_ID,customer.Customer_Name from customer where Type='آجل'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -92,7 +92,7 @@ namespace MainSystem
                         comClient.Visible = true;
                         txtClientID.Visible = true;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -112,7 +112,7 @@ namespace MainSystem
                         comClient.Visible = false;
                         txtClientID.Visible = false;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer inner join customer_bill on customer_bill.Client_ID=customer.Customer_ID where Type_Buy='آجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -352,7 +352,7 @@ namespace MainSystem
                         //comClient.Visible = true;
                         //txtClientID.Visible = true;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer  where Type='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer  where Type='آجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();
@@ -372,7 +372,7 @@ namespace MainSystem
                         //comClient.Visible = false;
                         //txtClientID.Visible = false;
 
-                        string query = "select customer.Customer_ID,customer.Customer_Name from customer  where Type='اّجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
+                        string query = "select customer.Customer_ID,customer.Customer_Name from customer  where Type='آجل' and Customer_Type='" + Customer_Type + "'";// and Branch_ID=" + txtBranchID.Text;
 
                         MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                         DataTable dt = new DataTable();

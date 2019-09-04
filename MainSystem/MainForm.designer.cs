@@ -2883,7 +2883,7 @@
             // 
             this.navBarItem90.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.navBarItem90.Appearance.Options.UseFont = true;
-            this.navBarItem90.Caption = "فاتورة كاش/اّجل";
+            this.navBarItem90.Caption = "فاتورة كاش/آجل";
             this.navBarItem90.Name = "navBarItem90";
             this.navBarItem90.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDepositCash_LinkClicked);
             // 
