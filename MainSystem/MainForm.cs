@@ -268,6 +268,20 @@ namespace MainSystem
                 pictureBoxBell.Visible = true;
                 userAccess();
             }
+            else if (UserControl.userType == 16)
+            {
+          
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                pictureBoxBell.Visible = true;
+                userAccessStore();
+            }
             labUserName.Text = UserControl.EmpName;
         }
 
@@ -786,6 +800,19 @@ namespace MainSystem
             //navBarGroup44.Visible = false;
             //navBarGroupSupplier.Visible = false;
             //navBarGroupLeastQuantity.Visible = false;
+        }
+        public void userAccessStore()
+        {
+            navBarGroup1.Visible = false;
+            navBarGroup2.Visible = false;
+            navBarGroup7.Visible = false;
+            navBarGroup9.Visible = false;
+            navBarGroup10.Visible = false;
+            navBarGroup11.Visible = false;
+            navBarGroupProductsTicket.Visible = false;
+            navBarGroup17.Visible = false;
+            navBarGroup13.Visible = false;
+            navBarGroup39.Visible = false;
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
