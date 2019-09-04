@@ -442,141 +442,141 @@ namespace MainSystem
                         {
                             /*if (outParse <= restMoney)
                             {*/
-                                string opNumString = null;
-                                if (txtOperationNumber.Text != "")
+                            string opNumString = null;
+                            if (txtOperationNumber.Text != "")
+                            {
+                                int OpNum = 0;
+                                if (int.TryParse(txtOperationNumber.Text, out OpNum))
                                 {
-                                    int OpNum = 0;
-                                    if (int.TryParse(txtOperationNumber.Text, out OpNum))
-                                    {
-                                        opNumString = txtOperationNumber.Text;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("رقم العملية يجب ان يكون عدد");
-                                        dbconnection.Close();
-                                        return;
-                                    }
+                                    opNumString = txtOperationNumber.Text;
                                 }
-
-                                Form prompt = new Form()
+                                else
                                 {
-                                    Width = 500,
-                                    Height = 220,
-                                    FormBorderStyle = FormBorderStyle.FixedDialog,
-                                    Text = "",
-                                    StartPosition = FormStartPosition.CenterScreen,
-                                    MaximizeBox = false,
-                                    MinimizeBox = false
-                                };
-                                Label textLabel = new Label() { Left = 340, Top = 20, Text = "ما هو سبب التعديل؟" };
-                                TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 385, Multiline = true, Height = 80, RightToLeft = RightToLeft };
-                                Button confirmation = new Button() { Text = "تأكيد", Left = 200, Width = 100, Top = 140, DialogResult = DialogResult.OK };
-                                prompt.Controls.Add(textBox);
-                                prompt.Controls.Add(confirmation);
-                                prompt.Controls.Add(textLabel);
-                                prompt.AcceptButton = confirmation;
-                                if (prompt.ShowDialog() == DialogResult.OK)
-                                {
-                                    if (textBox.Text != "")
-                                    {
-                                        dbconnection.Open();
-                                        string query = "update Transitions set Amount=@Amount,Data=@Data,Date=@Date,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
-                                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                    MessageBox.Show("رقم العملية يجب ان يكون عدد");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                            }
 
-                                        com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
-                                        com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
+                            Form prompt = new Form()
+                            {
+                                Width = 500,
+                                Height = 220,
+                                FormBorderStyle = FormBorderStyle.FixedDialog,
+                                Text = "",
+                                StartPosition = FormStartPosition.CenterScreen,
+                                MaximizeBox = false,
+                                MinimizeBox = false
+                            };
+                            Label textLabel = new Label() { Left = 340, Top = 20, Text = "ما هو سبب التعديل؟" };
+                            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 385, Multiline = true, Height = 80, RightToLeft = RightToLeft };
+                            Button confirmation = new Button() { Text = "تأكيد", Left = 200, Width = 100, Top = 140, DialogResult = DialogResult.OK };
+                            prompt.Controls.Add(textBox);
+                            prompt.Controls.Add(confirmation);
+                            prompt.Controls.Add(textLabel);
+                            prompt.AcceptButton = confirmation;
+                            if (prompt.ShowDialog() == DialogResult.OK)
+                            {
+                                if (textBox.Text != "")
+                                {
+                                    dbconnection.Open();
+                                    string query = "update Transitions set Amount=@Amount,Data=@Data,Date=@Date,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
+                                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+
+                                    com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
+                                    com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                                     com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
 
                                     com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
-                                        MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
-                                        double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                                        amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
-                                        amount2 -= outParse;
-                                        MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
-                                        com3.ExecuteNonQuery();
+                                    MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                                    double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                    amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
+                                    amount2 -= outParse;
+                                    MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                                    com3.ExecuteNonQuery();
 
-                                        if (txtVisaType.Text != "")
-                                        {
-                                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                                        }
-                                        else
-                                        {
-                                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                                        }
-
-                                        if (dateEdit1.Text != "")
-                                        {
-                                            com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
-                                        }
-                                        else
-                                        {
-                                            com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = null;
-                                        }
-
-                                        if (txtCheckNumber.Text != "")
-                                        {
-                                            com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = txtCheckNumber.Text;
-                                        }
-                                        else
-                                        {
-                                            com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
-                                        }
-
-                                        com.ExecuteNonQuery();
-
-                                        //////////update categories/////////
-                                        query = "update transition_categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ,r200=@r200,r100=@r100,r50=@r50,r20=@r20,r10=@r10,r5=@r5,r1=@r1,rH=@rH,rQ=@rQ where Transition_ID=" + selRow[0].ToString();
-                                        com = new MySqlCommand(query, dbconnection);
-                                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
-                                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
-                                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
-                                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
-                                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
-                                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
-                                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
-                                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
-                                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
-                                        com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
-                                        com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
-                                        com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
-                                        com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
-                                        com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
-                                        com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
-                                        com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
-                                        com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
-                                        com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
-                                        //com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(selRow[0].ToString());
-                                        com.ExecuteNonQuery();
-                                        flagCategoriesSuccess = false;
-
-                                        //////////record adding/////////////
-                                        string TransitionID = selRow[0].ToString();
-
-                                        query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-                                        com = new MySqlCommand(query, dbconnection);
-                                        com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "transitions";
-                                        com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
-                                        com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
-                                        com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                                        com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
-                                        com.ExecuteNonQuery();
-                                        //////////////////////
-                                        dbconnection.Close();
-
-                                        //print bill
-                                        printCategoriesBill();
-
-                                        xtraTabPage.ImageOptions.Image = null;
-                                        tabControlBank.TabPages.Remove(xtraTabPage);
+                                    if (txtVisaType.Text != "")
+                                    {
+                                        com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
                                     }
                                     else
                                     {
-                                        MessageBox.Show("يجب كتابة السبب");
+                                        com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
                                     }
+
+                                    if (dateEdit1.Text != "")
+                                    {
+                                        com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
+                                    }
+                                    else
+                                    {
+                                        com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = null;
+                                    }
+
+                                    if (txtCheckNumber.Text != "")
+                                    {
+                                        com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = txtCheckNumber.Text;
+                                    }
+                                    else
+                                    {
+                                        com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
+                                    }
+
+                                    com.ExecuteNonQuery();
+
+                                    //////////update categories/////////
+                                    query = "update transition_categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ,r200=@r200,r100=@r100,r50=@r50,r20=@r20,r10=@r10,r5=@r5,r1=@r1,rH=@rH,rQ=@rQ where Transition_ID=" + selRow[0].ToString();
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
+                                    com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
+                                    com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
+                                    com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
+                                    com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
+                                    com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
+                                    com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
+                                    com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
+                                    com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
+                                    com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
+                                    com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
+                                    com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
+                                    com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
+                                    com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
+                                    com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
+                                    com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
+                                    com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
+                                    com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
+                                    //com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(selRow[0].ToString());
+                                    com.ExecuteNonQuery();
+                                    flagCategoriesSuccess = false;
+
+                                    //////////record adding/////////////
+                                    string TransitionID = selRow[0].ToString();
+
+                                    query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
+                                    com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "transitions";
+                                    com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
+                                    com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
+                                    com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                                    com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
+                                    com.ExecuteNonQuery();
+                                    //////////////////////
+                                    dbconnection.Close();
+
+                                    //print bill
+                                    printCategoriesBill();
+
+                                    xtraTabPage.ImageOptions.Image = null;
+                                    tabControlBank.TabPages.Remove(xtraTabPage);
                                 }
                                 else
-                                { }
+                                {
+                                    MessageBox.Show("يجب كتابة السبب");
+                                }
+                            }
+                            else
+                            { }
                             /*}
                             else
                             {
@@ -1446,11 +1446,11 @@ namespace MainSystem
             Print_ReturnedCategoriesBill_Report f = new Print_ReturnedCategoriesBill_Report();
             if (selRow["Client_ID"].ToString() != "")
             {
-                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (selRow["Customer_ID"].ToString() != "")
             {
-                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

@@ -66,7 +66,7 @@ namespace MainSystem
                 {
                     radClient.Checked = true;
 
-                    string query = "select customer1.Customer_Type as 'النوع',customer1.Type as 'نوع العميل', customer1.Customer_Name as 'المسئول',custmer_client.Customer_OpenAccount from customer as customer1 INNER JOIN custmer_client ON custmer_client.Customer_ID = customer1.Customer_ID INNER JOIN customer as customer2 ON custmer_client.Client_ID = customer2.Customer_ID where customer2.Customer_ID=" + selRow[0].ToString();
+                    string query = "select customer1.Customer_Type as 'النوع', customer1.Customer_Name as 'المسئول',custmer_client.Customer_OpenAccount from customer as customer1 INNER JOIN custmer_client ON custmer_client.Customer_ID = customer1.Customer_ID INNER JOIN customer as customer2 ON custmer_client.Client_ID = customer2.Customer_ID where customer2.Customer_ID=" + selRow[0].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection2);
                     MySqlDataReader dr = com.ExecuteReader();
                     if (dr.HasRows)
@@ -87,14 +87,6 @@ namespace MainSystem
                             }
                             comEnginner.Text = dr["المسئول"].ToString();
                             txtOpenAccount2.Text = dr["Customer_OpenAccount"].ToString();
-                            if (dr["نوع العميل"].ToString() == "كاش")
-                            {
-                                radioKash.Checked = true;
-                            }
-                            else if (dr["نوع العميل"].ToString() == "اّجل")
-                            {
-                                radioAgel.Checked = true;
-                            }
                         }
                         dr.Close();
                     }
@@ -110,6 +102,17 @@ namespace MainSystem
                 else if (selRow["النوع"].ToString() == "تاجر")
                 {
                     radMDealer.Checked = true;
+                }
+
+                if (selRow["كاش/اجل"].ToString() == "كاش")
+                {
+                    radioKash.Checked = true;
+                    Type = "كاش";
+                }
+                else if (selRow["كاش/اجل"].ToString() == "آجل")
+                {
+                    radioAgel.Checked = true;
+                    Type = "آجل";
                 }
                 loadedflag = true;
                 //dbconnection2.Close();
@@ -160,9 +163,9 @@ namespace MainSystem
                     {
                         if (txtName.Text != "" && checkedListBoxControlPhone.ItemCount > 0 && (radioAgel.Checked || radioKash.Checked))
                         {
+                            dbconnection.Open();
                             if (checkNameExist())
                             {
-                                dbconnection.Open();
                                 string query = "update customer set Customer_Name=@Customer_Name,Customer_NationalID=@Customer_NationalID,Customer_Email=@Customer_Email,Customer_Address=@Customer_Address,Customer_Info=@Customer_Info,Customer_Type=@Customer_Type,Type=@Type,Customer_OpenAccount=@Customer_OpenAccount where Customer_ID=" + selRow[0].ToString();
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
@@ -576,7 +579,7 @@ namespace MainSystem
         {
             try
             {
-                Type = "اّجل";
+                Type = "آجل";
             }
             catch (Exception ex)
             {

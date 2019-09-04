@@ -284,9 +284,7 @@ namespace MainSystem
             DataColumn keyColumn = sourceDataSet.Tables["customer"].Columns["الكود"];
             DataColumn foreignKeyColumn = sourceDataSet.Tables["customer_phone"].Columns["الكود"];
             sourceDataSet.Relations.Add("ارقام التليفون", keyColumn, foreignKeyColumn);
-
-
-
+            
             gridControl1.DataSource = sourceDataSet.Tables["customer"];
             gridView1.Columns["الرصيد الافتتاحي"].Visible = false;
             //gridView1.Columns["التسلسل"].Group();

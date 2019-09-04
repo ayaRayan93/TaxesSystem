@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -106,10 +105,10 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -150,9 +149,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -308,9 +307,8 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.panel2);
             this.layoutControl1.Controls.Add(this.label18);
-            this.layoutControl1.Controls.Add(this.radioAgel);
-            this.layoutControl1.Controls.Add(this.radioKash);
             this.layoutControl1.Controls.Add(this.label17);
             this.layoutControl1.Controls.Add(this.label6);
             this.layoutControl1.Controls.Add(this.btnDeletePhone);
@@ -353,21 +351,21 @@
             // 
             // label18
             // 
-            this.label18.Location = new System.Drawing.Point(572, 91);
+            this.label18.Location = new System.Drawing.Point(736, 91);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(325, 25);
+            this.label18.Size = new System.Drawing.Size(161, 25);
             this.label18.TabIndex = 64;
             // 
             // radioAgel
             // 
             this.radioAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioAgel.Location = new System.Drawing.Point(213, 91);
+            this.radioAgel.Location = new System.Drawing.Point(4, 0);
             this.radioAgel.Name = "radioAgel";
             this.radioAgel.Size = new System.Drawing.Size(234, 25);
             this.radioAgel.TabIndex = 60;
             this.radioAgel.TabStop = true;
-            this.radioAgel.Text = "اّجل";
+            this.radioAgel.Text = "آجل";
             this.radioAgel.UseVisualStyleBackColor = true;
             this.radioAgel.CheckedChanged += new System.EventHandler(this.radioAgel_CheckedChanged);
             // 
@@ -375,7 +373,7 @@
             // 
             this.radioKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioKash.Location = new System.Drawing.Point(451, 91);
+            this.radioKash.Location = new System.Drawing.Point(238, 0);
             this.radioKash.Name = "radioKash";
             this.radioKash.Size = new System.Drawing.Size(117, 25);
             this.radioKash.TabIndex = 59;
@@ -718,9 +716,8 @@
             this.layoutControlItem7,
             this.emptySpaceItem2,
             this.layoutControlItem31,
-            this.layoutControlItem34,
             this.layoutControlItem35,
-            this.layoutControlItem33});
+            this.layoutControlItem30});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(916, 612);
             this.layoutControlGroup1.TextVisible = false;
@@ -1140,41 +1137,17 @@
             this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem31.TextVisible = false;
             // 
-            // layoutControlItem34
-            // 
-            this.layoutControlItem34.Control = this.radioAgel;
-            this.layoutControlItem34.Location = new System.Drawing.Point(208, 79);
-            this.layoutControlItem34.MaxSize = new System.Drawing.Size(0, 29);
-            this.layoutControlItem34.MinSize = new System.Drawing.Size(24, 29);
-            this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(238, 29);
-            this.layoutControlItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem34.TextVisible = false;
-            // 
             // layoutControlItem35
             // 
             this.layoutControlItem35.Control = this.label18;
-            this.layoutControlItem35.Location = new System.Drawing.Point(567, 79);
+            this.layoutControlItem35.Location = new System.Drawing.Point(731, 79);
             this.layoutControlItem35.MaxSize = new System.Drawing.Size(0, 29);
             this.layoutControlItem35.MinSize = new System.Drawing.Size(24, 29);
             this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(329, 29);
+            this.layoutControlItem35.Size = new System.Drawing.Size(165, 29);
             this.layoutControlItem35.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
-            // 
-            // layoutControlItem33
-            // 
-            this.layoutControlItem33.Control = this.radioKash;
-            this.layoutControlItem33.Location = new System.Drawing.Point(446, 79);
-            this.layoutControlItem33.MaxSize = new System.Drawing.Size(0, 29);
-            this.layoutControlItem33.MinSize = new System.Drawing.Size(24, 29);
-            this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(121, 29);
-            this.layoutControlItem33.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem33.TextVisible = false;
             // 
             // panel1
             // 
@@ -1183,6 +1156,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(898, 640);
             this.panel1.TabIndex = 35;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.radioKash);
+            this.panel2.Controls.Add(this.radioAgel);
+            this.panel2.Location = new System.Drawing.Point(213, 91);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(519, 25);
+            this.panel2.TabIndex = 65;
+            // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.panel2;
+            this.layoutControlItem30.Location = new System.Drawing.Point(208, 79);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(523, 29);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem30.TextVisible = false;
             // 
             // Customer_Update
             // 
@@ -1237,9 +1228,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1323,9 +1314,9 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem34;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
     }
 }
 

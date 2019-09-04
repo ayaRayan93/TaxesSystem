@@ -345,7 +345,7 @@
             this.chAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chAgel.Size = new System.Drawing.Size(47, 23);
             this.chAgel.TabIndex = 174;
-            this.chAgel.Text = "اّجل";
+            this.chAgel.Text = "آجل";
             this.chAgel.UseVisualStyleBackColor = true;
             // 
             // chKash

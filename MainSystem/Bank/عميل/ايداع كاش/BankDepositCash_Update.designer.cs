@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.label15 = new System.Windows.Forms.Label();
@@ -1220,7 +1219,7 @@
             this.layoutControlItemPaid,
             this.layoutControlItemRest});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(377, 344);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(377, 346);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // emptySpaceItem2
@@ -1228,7 +1227,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(0, 313);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(357, 11);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(357, 13);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem34
@@ -1738,9 +1737,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(517, 494);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(517, 492);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(516, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(516, 28);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItemStock
@@ -1868,8 +1867,11 @@
             this.layoutControlItemBank.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemBank.Control = this.cmbBank;
             this.layoutControlItemBank.Location = new System.Drawing.Point(541, 268);
+            this.layoutControlItemBank.MaxSize = new System.Drawing.Size(492, 28);
+            this.layoutControlItemBank.MinSize = new System.Drawing.Size(492, 28);
             this.layoutControlItemBank.Name = "layoutControlItemBank";
             this.layoutControlItemBank.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItemBank.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemBank.Text = "خزينة";
             this.layoutControlItemBank.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1884,8 +1886,11 @@
             this.layoutControlItemMoney.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemMoney.Control = this.txtPaidMoney;
             this.layoutControlItemMoney.Location = new System.Drawing.Point(541, 296);
+            this.layoutControlItemMoney.MaxSize = new System.Drawing.Size(492, 28);
+            this.layoutControlItemMoney.MinSize = new System.Drawing.Size(492, 28);
             this.layoutControlItemMoney.Name = "layoutControlItemMoney";
             this.layoutControlItemMoney.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItemMoney.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemMoney.Text = "المبلغ المدفوع";
             this.layoutControlItemMoney.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1900,8 +1905,11 @@
             this.layoutControlItemComment.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemComment.Control = this.txtDescrip;
             this.layoutControlItemComment.Location = new System.Drawing.Point(541, 324);
+            this.layoutControlItemComment.MaxSize = new System.Drawing.Size(492, 56);
+            this.layoutControlItemComment.MinSize = new System.Drawing.Size(492, 56);
             this.layoutControlItemComment.Name = "layoutControlItemComment";
             this.layoutControlItemComment.Size = new System.Drawing.Size(492, 56);
+            this.layoutControlItemComment.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemComment.Text = "البيان";
             this.layoutControlItemComment.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1916,8 +1924,11 @@
             this.layoutControlItemPayDate.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemPayDate.Control = this.dateEdit1;
             this.layoutControlItemPayDate.Location = new System.Drawing.Point(541, 380);
+            this.layoutControlItemPayDate.MaxSize = new System.Drawing.Size(492, 28);
+            this.layoutControlItemPayDate.MinSize = new System.Drawing.Size(492, 28);
             this.layoutControlItemPayDate.Name = "layoutControlItemPayDate";
             this.layoutControlItemPayDate.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItemPayDate.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
             this.layoutControlItemPayDate.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1932,8 +1943,11 @@
             this.layoutControlItemCheck.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemCheck.Control = this.txtCheckNumber;
             this.layoutControlItemCheck.Location = new System.Drawing.Point(541, 408);
+            this.layoutControlItemCheck.MaxSize = new System.Drawing.Size(492, 28);
+            this.layoutControlItemCheck.MinSize = new System.Drawing.Size(492, 28);
             this.layoutControlItemCheck.Name = "layoutControlItemCheck";
             this.layoutControlItemCheck.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItemCheck.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemCheck.Text = "رقم الشيك";
             this.layoutControlItemCheck.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -2005,8 +2019,11 @@
             this.layoutControlItemVisaType.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemVisaType.Control = this.txtVisaType;
             this.layoutControlItemVisaType.Location = new System.Drawing.Point(541, 436);
+            this.layoutControlItemVisaType.MaxSize = new System.Drawing.Size(492, 28);
+            this.layoutControlItemVisaType.MinSize = new System.Drawing.Size(492, 28);
             this.layoutControlItemVisaType.Name = "layoutControlItemVisaType";
             this.layoutControlItemVisaType.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItemVisaType.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemVisaType.Text = "نوع الكارت";
             this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -2021,8 +2038,11 @@
             this.layoutControlItemOperationNumber.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemOperationNumber.Control = this.txtOperationNumber;
             this.layoutControlItemOperationNumber.Location = new System.Drawing.Point(541, 464);
+            this.layoutControlItemOperationNumber.MaxSize = new System.Drawing.Size(492, 28);
+            this.layoutControlItemOperationNumber.MinSize = new System.Drawing.Size(492, 28);
             this.layoutControlItemOperationNumber.Name = "layoutControlItemOperationNumber";
             this.layoutControlItemOperationNumber.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItemOperationNumber.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemOperationNumber.Text = "رقم العملية";
             this.layoutControlItemOperationNumber.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;

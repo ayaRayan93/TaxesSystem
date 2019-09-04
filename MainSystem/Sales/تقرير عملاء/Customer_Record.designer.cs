@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -42,10 +41,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.label18 = new System.Windows.Forms.Label();
+            this.rdioAgel = new System.Windows.Forms.RadioButton();
+            this.rdioKash = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.rdioKash = new System.Windows.Forms.RadioButton();
-            this.rdioAgel = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.btnDeletePhone = new System.Windows.Forms.Button();
             this.btnAddPhone = new System.Windows.Forms.Button();
@@ -102,13 +103,11 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label18 = new System.Windows.Forms.Label();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -148,9 +147,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -303,9 +302,8 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.panel2);
             this.layoutControl1.Controls.Add(this.label18);
-            this.layoutControl1.Controls.Add(this.rdioAgel);
-            this.layoutControl1.Controls.Add(this.rdioKash);
             this.layoutControl1.Controls.Add(this.label17);
             this.layoutControl1.Controls.Add(this.label16);
             this.layoutControl1.Controls.Add(this.label8);
@@ -347,6 +345,47 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(735, 89);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(162, 25);
+            this.label18.TabIndex = 66;
+            // 
+            // rdioAgel
+            // 
+            this.rdioAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.rdioAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdioAgel.Location = new System.Drawing.Point(3, 0);
+            this.rdioAgel.Name = "rdioAgel";
+            this.rdioAgel.Size = new System.Drawing.Size(233, 25);
+            this.rdioAgel.TabIndex = 59;
+            this.rdioAgel.TabStop = true;
+            this.rdioAgel.Text = "آجل";
+            this.rdioAgel.UseVisualStyleBackColor = true;
+            this.rdioAgel.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            // 
+            // rdioKash
+            // 
+            this.rdioKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.rdioKash.Checked = true;
+            this.rdioKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdioKash.Location = new System.Drawing.Point(236, 0);
+            this.rdioKash.Name = "rdioKash";
+            this.rdioKash.Size = new System.Drawing.Size(115, 25);
+            this.rdioKash.TabIndex = 60;
+            this.rdioKash.TabStop = true;
+            this.rdioKash.Text = "كاش";
+            this.rdioKash.UseVisualStyleBackColor = true;
+            this.rdioKash.CheckedChanged += new System.EventHandler(this.rdioKash_CheckedChanged);
+            // 
+            // label17
+            // 
+            this.label17.Location = new System.Drawing.Point(29, 89);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(181, 25);
+            this.label17.TabIndex = 65;
+            // 
             // label16
             // 
             this.label16.Location = new System.Drawing.Point(600, 36);
@@ -364,32 +403,6 @@
             this.label8.TabIndex = 62;
             this.label8.Text = "*";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // rdioKash
-            // 
-            this.rdioKash.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rdioKash.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdioKash.Location = new System.Drawing.Point(451, 89);
-            this.rdioKash.Name = "rdioKash";
-            this.rdioKash.Size = new System.Drawing.Size(115, 25);
-            this.rdioKash.TabIndex = 60;
-            this.rdioKash.TabStop = true;
-            this.rdioKash.Text = "كاش";
-            this.rdioKash.UseVisualStyleBackColor = true;
-            this.rdioKash.CheckedChanged += new System.EventHandler(this.rdioKash_CheckedChanged);
-            // 
-            // rdioAgel
-            // 
-            this.rdioAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.rdioAgel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdioAgel.Location = new System.Drawing.Point(214, 89);
-            this.rdioAgel.Name = "rdioAgel";
-            this.rdioAgel.Size = new System.Drawing.Size(233, 25);
-            this.rdioAgel.TabIndex = 59;
-            this.rdioAgel.TabStop = true;
-            this.rdioAgel.Text = "اّجل";
-            this.rdioAgel.UseVisualStyleBackColor = true;
-            this.rdioAgel.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // label6
             // 
@@ -698,9 +711,8 @@
             this.layoutControlItem8,
             this.layoutControlItem30,
             this.layoutControlItem32,
-            this.layoutControlItem33,
-            this.layoutControlItem34,
-            this.layoutControlItem35});
+            this.layoutControlItem35,
+            this.layoutControlItem23});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(916, 603);
             this.layoutControlGroup1.TextVisible = false;
@@ -1100,21 +1112,6 @@
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(898, 636);
-            this.panel1.TabIndex = 35;
-            // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(29, 89);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(181, 25);
-            this.label17.TabIndex = 65;
-            // 
             // layoutControlItem32
             // 
             this.layoutControlItem32.Control = this.label17;
@@ -1127,48 +1124,43 @@
             this.layoutControlItem32.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem32.TextVisible = false;
             // 
-            // layoutControlItem33
-            // 
-            this.layoutControlItem33.Control = this.rdioKash;
-            this.layoutControlItem33.Location = new System.Drawing.Point(446, 77);
-            this.layoutControlItem33.MaxSize = new System.Drawing.Size(0, 29);
-            this.layoutControlItem33.MinSize = new System.Drawing.Size(24, 29);
-            this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(119, 29);
-            this.layoutControlItem33.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem33.TextVisible = false;
-            // 
-            // layoutControlItem34
-            // 
-            this.layoutControlItem34.Control = this.rdioAgel;
-            this.layoutControlItem34.Location = new System.Drawing.Point(209, 77);
-            this.layoutControlItem34.MaxSize = new System.Drawing.Size(0, 29);
-            this.layoutControlItem34.MinSize = new System.Drawing.Size(24, 29);
-            this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(237, 29);
-            this.layoutControlItem34.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem34.TextVisible = false;
-            // 
-            // label18
-            // 
-            this.label18.Location = new System.Drawing.Point(570, 89);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(327, 25);
-            this.label18.TabIndex = 66;
-            // 
             // layoutControlItem35
             // 
             this.layoutControlItem35.Control = this.label18;
-            this.layoutControlItem35.Location = new System.Drawing.Point(565, 77);
+            this.layoutControlItem35.Location = new System.Drawing.Point(730, 77);
             this.layoutControlItem35.MaxSize = new System.Drawing.Size(0, 29);
             this.layoutControlItem35.MinSize = new System.Drawing.Size(24, 29);
             this.layoutControlItem35.Name = "layoutControlItem35";
-            this.layoutControlItem35.Size = new System.Drawing.Size(331, 29);
+            this.layoutControlItem35.Size = new System.Drawing.Size(166, 29);
             this.layoutControlItem35.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem35.TextVisible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(898, 636);
+            this.panel1.TabIndex = 35;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rdioKash);
+            this.panel2.Controls.Add(this.rdioAgel);
+            this.panel2.Location = new System.Drawing.Point(214, 89);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(517, 25);
+            this.panel2.TabIndex = 67;
+            // 
+            // layoutControlItem23
+            // 
+            this.layoutControlItem23.Control = this.panel2;
+            this.layoutControlItem23.Location = new System.Drawing.Point(209, 77);
+            this.layoutControlItem23.Name = "layoutControlItem23";
+            this.layoutControlItem23.Size = new System.Drawing.Size(521, 29);
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem23.TextVisible = false;
             // 
             // Customer_Record
             // 
@@ -1221,9 +1213,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1306,9 +1298,9 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem32;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem34;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
     }
 }
 

@@ -48,7 +48,7 @@ namespace MainSystem
          
             if (chAgel.Checked)
             {
-                q = " and Type='اّجل'";
+                q = " and Type='آجل'";
             }
             else if (chKash.Checked)
             {

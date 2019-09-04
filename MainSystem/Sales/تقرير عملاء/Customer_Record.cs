@@ -113,11 +113,11 @@ namespace MainSystem
                             return;
                         }
                     }
+                    dbconnection.Open();
                     if (checkNameExist())
                     {
                         if (checkPhonesExist())
                         {
-                            dbconnection.Open();
                             string query = "insert into customer (Customer_NationalID,Customer_Email,Customer_Name,Customer_Address,Customer_Info,Customer_Start,Customer_Type,Customer_OpenAccount,Type) values(@Customer_NationalID,@Customer_Email,@Customer_Name,@Customer_Address,@Customer_Info,@Customer_Start,@Customer_Type,@Customer_OpenAccount,@Type)";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
@@ -485,7 +485,7 @@ namespace MainSystem
         {
             try
             {
-                Type = "اّجل";
+                Type = "آجل";
             }
             catch (Exception ex)
             {
