@@ -128,8 +128,8 @@ namespace MainSystem
         {
             double totalBills = 0;
             double TotalReturns = 0;
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT supplier_bill.Bill_ID as 'التسلسل','النوع',supplier.Supplier_Name as 'المورد',supplier_bill.Bill_No as 'رقم الفاتورة',store.Store_Name as 'المخزن',supplier_bill.Date as 'التاريخ',supplier_bill.Total_Price_B as 'الاجمالى قبل',supplier_bill.Total_Price_A as 'الاجمالى بعد' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where supplier_bill.Bill_ID=0", dbconnection);
+            //supplier_bill.Bill_ID as 'التسلسل',
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT 'النوع',supplier.Supplier_Name as 'المورد',supplier_bill.Bill_No as 'رقم الفاتورة',store.Store_Name as 'المخزن',supplier_bill.Date as 'التاريخ',supplier_bill.Total_Price_B as 'الاجمالى قبل',supplier_bill.Total_Price_A as 'الاجمالى بعد' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN store ON store.Store_ID = supplier_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where supplier_bill.Bill_ID=0", dbconnection);
             DataTable dtf = new DataTable();
             adapter.Fill(dtf);
             gridControl1.DataSource = dtf;
@@ -147,7 +147,7 @@ namespace MainSystem
                     int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                     if (gridView1.IsNewItemRow(rowHandle))
                     {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
+                        //gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], "شراء");
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"]);
@@ -168,7 +168,7 @@ namespace MainSystem
                         rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                         if (gridView1.IsNewItemRow(rowHandle))
                         {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr2["التسلسل"]);
+                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr2["التسلسل"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr2["المورد"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], "مرتجع");
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr2["رقم الفاتورة"]);
@@ -195,7 +195,7 @@ namespace MainSystem
                     int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                     if (gridView1.IsNewItemRow(rowHandle))
                     {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
+                        //gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["التسلسل"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr["المورد"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], "شراء");
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"]);
@@ -216,7 +216,7 @@ namespace MainSystem
                         rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                         if (gridView1.IsNewItemRow(rowHandle))
                         {
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr2["التسلسل"]);
+                            //gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr2["التسلسل"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المورد"], dr2["المورد"]);
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], "مرتجع");
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr2["رقم الفاتورة"]);
