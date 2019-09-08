@@ -885,6 +885,9 @@
             this.DetailCaptionBackground3,
             this.PageInfo});
             this.Version = "18.1";
+            this.Watermark.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Watermark.ForeColor = System.Drawing.Color.DarkGray;
+            this.Watermark.Text = "Draft";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
