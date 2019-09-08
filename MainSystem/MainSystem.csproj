@@ -70,7 +70,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Bunifu_UI_v1.5.3">
-      <HintPath>D:\sara\Codes\Bank_DX\BankDX\BankDX\BankDX\BankDX\bin\Debug\Bunifu_UI_v1.5.3.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />

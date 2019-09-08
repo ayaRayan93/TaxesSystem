@@ -279,7 +279,7 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
-                pictureBoxBell.Visible = true;
+               // pictureBoxBell.Visible = true;
                 userAccessStore();
             }
             labUserName.Text = UserControl.EmpName;
