@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
+            this.components = new System.ComponentModel.Container();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtDelegateName = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -91,9 +94,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtDelegateName = new System.Windows.Forms.TextBox();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.tLPanCpntent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -209,6 +210,29 @@
             this.panel2.Size = new System.Drawing.Size(995, 60);
             this.panel2.TabIndex = 0;
             // 
+            // txtDelegateName
+            // 
+            this.txtDelegateName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDelegateName.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.txtDelegateName.Location = new System.Drawing.Point(728, 33);
+            this.txtDelegateName.Name = "txtDelegateName";
+            this.txtDelegateName.ReadOnly = true;
+            this.txtDelegateName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtDelegateName.Size = new System.Drawing.Size(154, 23);
+            this.txtDelegateName.TabIndex = 14;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(888, 35);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(63, 19);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "المندوب";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -216,7 +240,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label6.Location = new System.Drawing.Point(303, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 19);
+            this.label6.Size = new System.Drawing.Size(51, 19);
             this.label6.TabIndex = 8;
             this.label6.Text = "العميل";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -228,7 +252,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label5.Location = new System.Drawing.Point(573, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 19);
+            this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 6;
             this.label5.Text = "التليفون";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,7 +322,7 @@
             this.radOffers.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radOffers.AutoSize = true;
             this.radOffers.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radOffers.Location = new System.Drawing.Point(356, 35);
+            this.radOffers.Location = new System.Drawing.Point(339, 35);
             this.radOffers.Name = "radOffers";
             this.radOffers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radOffers.Size = new System.Drawing.Size(63, 21);
@@ -313,7 +337,7 @@
             this.radSets.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radSets.AutoSize = true;
             this.radSets.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radSets.Location = new System.Drawing.Point(496, 35);
+            this.radSets.Location = new System.Drawing.Point(479, 35);
             this.radSets.Name = "radSets";
             this.radSets.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radSets.Size = new System.Drawing.Size(47, 21);
@@ -328,7 +352,7 @@
             this.radProducts.AutoSize = true;
             this.radProducts.Checked = true;
             this.radProducts.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radProducts.Location = new System.Drawing.Point(627, 35);
+            this.radProducts.Location = new System.Drawing.Point(610, 35);
             this.radProducts.Name = "radProducts";
             this.radProducts.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radProducts.Size = new System.Drawing.Size(45, 21);
@@ -391,7 +415,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(773, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(126, 19);
+            this.label13.Size = new System.Drawing.Size(128, 19);
             this.label13.TabIndex = 175;
             this.label13.Text = "البحث بكود الصنف";
             // 
@@ -539,7 +563,7 @@
             this.label9.Location = new System.Drawing.Point(625, 45);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(31, 16);
+            this.label9.Size = new System.Drawing.Size(30, 16);
             this.label9.TabIndex = 144;
             this.label9.Text = "الفرز";
             // 
@@ -596,7 +620,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(696, 85);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(123, 19);
+            this.labSearch.Size = new System.Drawing.Size(126, 19);
             this.labSearch.TabIndex = 173;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -959,7 +983,7 @@
             this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label16.Location = new System.Drawing.Point(618, 11);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(86, 19);
+            this.label16.Size = new System.Drawing.Size(85, 19);
             this.label16.TabIndex = 16;
             this.label16.Text = "عدد الكراتين";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -983,7 +1007,7 @@
             this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label15.Location = new System.Drawing.Point(835, 11);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(132, 19);
+            this.label15.Size = new System.Drawing.Size(134, 19);
             this.label15.TabIndex = 14;
             this.label15.Text = "عدد الامتار المطلوبة";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1006,7 +1030,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label8.Location = new System.Drawing.Point(405, 11);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 19);
+            this.label8.Size = new System.Drawing.Size(101, 19);
             this.label8.TabIndex = 9;
             this.label8.Text = "عدد متر/قطعة";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1032,29 +1056,6 @@
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(175, 21);
             this.comStore.TabIndex = 12;
-            // 
-            // label17
-            // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(888, 35);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(62, 19);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "المندوب";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtDelegateName
-            // 
-            this.txtDelegateName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDelegateName.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.txtDelegateName.Location = new System.Drawing.Point(728, 33);
-            this.txtDelegateName.Name = "txtDelegateName";
-            this.txtDelegateName.ReadOnly = true;
-            this.txtDelegateName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtDelegateName.Size = new System.Drawing.Size(154, 23);
-            this.txtDelegateName.TabIndex = 14;
             // 
             // Products_ReportCopy
             // 

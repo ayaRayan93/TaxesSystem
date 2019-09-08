@@ -1750,11 +1750,65 @@ namespace MainSystem
                                                 {
                                                     if (comClient.Text != "" && txtPhone.Text != "")
                                                     {
-                                                        query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
+                                                        query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' or customer.Customer_Name='" + comClient.Text + "'";
                                                         com = new MySqlCommand(query, dbconnection);
                                                         if (com.ExecuteScalar() != null)
                                                         {
-                                                            ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                                            query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_Name='" + comClient.Text + "'";
+                                                            com = new MySqlCommand(query, dbconnection);
+                                                            //repeated name
+                                                            if (com.ExecuteScalar() != null)
+                                                            {
+                                                                string query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' and customer.Customer_ID=" + com.ExecuteScalar().ToString();
+                                                                MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
+                                                                if (com2.ExecuteScalar() != null)
+                                                                {
+                                                                    ClintID = Convert.ToInt32(com2.ExecuteScalar().ToString());
+                                                                }
+                                                                else
+                                                                {
+                                                                    query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
+                                                                    com2 = new MySqlCommand(query2, dbconnection);
+                                                                    if (com2.ExecuteScalar() != null)
+                                                                    {
+                                                                        ClintID = 0;
+                                                                        MessageBox.Show("هذا الرقم موجود من قبل لعميل اخر");
+                                                                        dbconnection.Close();
+                                                                        return;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                                                        query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
+                                                                        com = new MySqlCommand(query, dbconnection);
+                                                                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
+                                                                        com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
+                                                                        com.ExecuteNonQuery();
+                                                                    }
+                                                                }
+                                                            }
+                                                            //non repeated name
+                                                            else
+                                                            {
+                                                                string query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
+                                                                MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
+                                                                if (com2.ExecuteScalar() != null)
+                                                                {
+                                                                    ClintID = 0;
+                                                                    MessageBox.Show("هذا الرقم موجود من قبل لعميل اخر");
+                                                                    dbconnection.Close();
+                                                                    return;
+                                                                }
+                                                                else
+                                                                {
+                                                                    ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                                                    query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
+                                                                    com = new MySqlCommand(query, dbconnection);
+                                                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
+                                                                    com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
+                                                                    com.ExecuteNonQuery();
+                                                                }
+                                                            }
                                                         }
                                                         else
                                                         {
