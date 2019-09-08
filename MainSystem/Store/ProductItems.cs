@@ -2078,8 +2078,17 @@ namespace MainSystem
                 int TypeCoding_Method = (int)com.ExecuteScalar();
                 if (TypeCoding_Method==1)
                 {
-                    string query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID  where type.Type_ID="+ comType.SelectedValue + " and Factory_ID="+-(int)comType.SelectedValue;
-               
+                    string query1 = "";
+                    if (comType.SelectedValue.ToString() == "2")
+                    {
+                        query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID  where type.Type_ID=" + 1 + " and Factory_ID=" + -1;
+                    }
+                    else
+                    {
+                        query1 = "select distinct groupo.Group_ID, Group_Name from groupo inner join type on type.Type_ID=groupo.Type_ID  where type.Type_ID=" + comType.SelectedValue + " and Factory_ID=" + -(int)comType.SelectedValue;
+
+                    }
+
                     chListBoxGroup.Visible = true;
                     labGroup.Visible = true;
                     comGroup.Visible = false;
