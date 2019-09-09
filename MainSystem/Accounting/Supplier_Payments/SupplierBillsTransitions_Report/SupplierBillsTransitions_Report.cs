@@ -771,6 +771,59 @@ namespace MainSystem
             }
         }
 
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<SupplierBillsTransitions_Items> bi = new List<SupplierBillsTransitions_Items>();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    string debit = "", credit = "", bill = "", taswyaaAdd = "", returnBill = "", taswyaaSub = "", transitions = "", descripe = "";
+                    if (dataGridView1.Rows[i].Cells["Debit"].Value != null)
+                    {
+                        debit = dataGridView1.Rows[i].Cells["Debit"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["Credit"].Value != null)
+                    {
+                        credit = dataGridView1.Rows[i].Cells["Credit"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["Bill"].Value != null)
+                    {
+                        bill = dataGridView1.Rows[i].Cells["Bill"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["TaswyaaAdding"].Value != null)
+                    {
+                        taswyaaAdd = dataGridView1.Rows[i].Cells["TaswyaaAdding"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["ReturnBill"].Value != null)
+                    {
+                        returnBill = dataGridView1.Rows[i].Cells["ReturnBill"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["TaswyaDiscount"].Value != null)
+                    {
+                        taswyaaSub = dataGridView1.Rows[i].Cells["TaswyaDiscount"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["Transitions"].Value != null)
+                    {
+                        transitions = dataGridView1.Rows[i].Cells["Transitions"].Value.ToString();
+                    }
+                    if (dataGridView1.Rows[i].Cells["Descripe"].Value != null)
+                    {
+                        descripe = dataGridView1.Rows[i].Cells["Descripe"].Value.ToString();
+                    }
+                    SupplierBillsTransitions_Items item = new SupplierBillsTransitions_Items() { debit = debit, credit = credit, BillNum = bill, addingTaswyaa = taswyaaAdd, ReturnBillNum = returnBill, SubTaswyaa = taswyaaSub, Transitions = transitions, Info = descripe };
+                    bi.Add(item);
+                }
+                Report_SupplierBillsTransitions f = new Report_SupplierBillsTransitions();
+                f.PrintInvoice(comSupplier.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(), bi);
+                f.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public XtraTabPage getTabPage(XtraTabControl tabControl, string text)
         {
             for (int i = 0; i < tabControl.TabPages.Count; i++)

@@ -266,6 +266,24 @@ namespace MainSystem
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 pictureBoxBell.Visible = true;
+
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
+                navBarItemInformationFactoryReport.Visible = false;
+
                 userAccess();
             }
             else if (UserControl.userType == 16)
