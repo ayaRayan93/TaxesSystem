@@ -148,6 +148,10 @@ namespace MainSystem
                                 comColour.ValueMember = dt.Columns["Color_ID"].ToString();
                                 comColour.Text = "";
                                 txtColor.Text = "";
+
+                                comProduct.Text = "";
+                                txtProduct.Text = "";
+
                                 comFactory.Focus();
                             }
                             break;
@@ -182,6 +186,10 @@ namespace MainSystem
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
                                 txtSize.Text = "";
+
+                                comProduct.Text = "";
+                                txtProduct.Text = "";
+
                                 comGroup.Focus();
                             }
                             break;
@@ -259,6 +267,7 @@ namespace MainSystem
             {
                 try
                 {
+                    conn.Close();
                     conn.Open();
                     switch (txtBox.Name)
                     {
@@ -276,61 +285,94 @@ namespace MainSystem
                             else
                             {
                                 MessageBox.Show("there is no item with this id");
+                                txtType.Text = "";
+                                comType.Text = "";
                                 conn.Close();
                                 return;
                             }
                             break;
                         case "txtFactory":
-                            query = "select Factory_Name from factory where Factory_ID='" + txtFactory.Text + "'";
-                            com = new MySqlCommand(query, conn);
-                            if (com.ExecuteScalar() != null)
+                            if (txtType.Text != "")
                             {
-                                Name = (string)com.ExecuteScalar();
-                                groupFlage = true;
-                                comBox_SelectedValueChanged(comFactory, e);
-                                comFactory.Text = Name;
-                                txtGroup.Focus();
+                                query = "select Factory_Name from factory inner join type_factory on type_factory.Factory_ID=factory.Factory_ID where factory.Factory_ID='" + txtFactory.Text + "' and type_factory.Type_ID=" + txtType.Text;
+                                com = new MySqlCommand(query, conn);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    groupFlage = true;
+                                    comBox_SelectedValueChanged(comFactory, e);
+                                    comFactory.Text = Name;
+                                    txtGroup.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    txtFactory.Text = "";
+                                    comFactory.Text = "";
+                                    conn.Close();
+                                    return;
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("there is no item with this id");
-                                conn.Close();
-                                return;
+                                txtFactory.Text = "";
                             }
-                            break;
+                                break;
+
                         case "txtGroup":
-                            query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
-                            com = new MySqlCommand(query, conn);
-                            if (com.ExecuteScalar() != null)
+                            if (txtType.Text != "" && txtFactory.Text != "")
                             {
-                                Name = (string)com.ExecuteScalar();
-                                flagProduct = true;
-                                comBox_SelectedValueChanged(comGroup, e);
-                                comGroup.Text = Name;
-                                txtProduct.Focus();
+                                if(txtType.Text=="2")
+                                    query = "select Group_Name from groupo inner join product_factory_group on product_factory_group.Group_ID=groupo.Group_ID where groupo.Group_ID='" + txtGroup.Text + "' and product_factory_group.Factory_ID=" + txtFactory.Text + " and Type_ID=1";
+                                else
+                                    query = "select Group_Name from groupo inner join product_factory_group on product_factory_group.Group_ID=groupo.Group_ID where groupo.Group_ID='" + txtGroup.Text + "' and product_factory_group.Factory_ID=" + txtFactory.Text + " and Type_ID=" + txtType.Text;
+                                com = new MySqlCommand(query, conn);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    flagProduct = true;
+                                    comBox_SelectedValueChanged(comGroup, e);
+                                    comGroup.Text = Name;
+                                    txtProduct.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    txtGroup.Text = "";
+                                    comGroup.Text = "";
+                                    conn.Close();
+                                    return;
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("there is no item with this id");
-                                conn.Close();
-                                return;
+                                txtGroup.Text = "";
                             }
                             break;
                         case "txtProduct":
-                            query = "select Product_Name from product where Product_ID='" + txtProduct.Text + "'";
-                            com = new MySqlCommand(query, conn);
-                            if (com.ExecuteScalar() != null)
+                            if (txtType.Text != "" && txtFactory.Text != "" && txtGroup.Text != "")
                             {
-                                Name = (string)com.ExecuteScalar();
-                                comBox_SelectedValueChanged(comProduct, e);
-                                comProduct.Text = Name;
-                                txtColor.Focus();
+                                query = "select Product_Name from product inner join product_factory_group on product_factory_group.Product_ID=product.Product_ID where product.Product_ID='" + txtProduct.Text + "' and Group_ID=" + txtGroup.Text + " and Factory_ID=" + txtFactory.Text + " and Type_ID=" + txtType.Text;
+                                com = new MySqlCommand(query, conn);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comBox_SelectedValueChanged(comProduct, e);
+                                    comProduct.Text = Name;
+                                    txtColor.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    txtProduct.Text = "";
+                                    comProduct.Text = "";
+                                    conn.Close();
+                                    return;
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("there is no item with this id");
-                                conn.Close();
-                                return;
+                                txtProduct.Text = "";
                             }
                             break;
                         case "txtColor":
@@ -346,6 +388,7 @@ namespace MainSystem
                             {
                                 MessageBox.Show("there is no item with this id");
                                 txtColor.Text = "";
+                                comColour.Text = "";
                                 conn.Close();
                                 return;
                             }
@@ -363,6 +406,7 @@ namespace MainSystem
                             {
                                 MessageBox.Show("there is no item with this id");
                                 txtSize.Text = "";
+                                comSize.Text = "";
                                 txtClassification.Focus();
                                 conn.Close();
                                 return;
@@ -389,6 +433,7 @@ namespace MainSystem
                             {
                                 MessageBox.Show("there is no item with this id");
                                 txtSort.Text = "";
+                                comSort.Text = "";
                                 txtCarton.Focus();
                                 conn.Close();
                                 return;
@@ -485,6 +530,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
 
         private void btnNewChooes_Click(object sender, EventArgs e)

@@ -40,6 +40,7 @@ namespace MainSystem
                 mTC_Content.SelectedIndex = 6;
                 displayType();
                 txtType.Focus();
+                DeletePermission();
             }
             catch (Exception e)
             {
@@ -3488,6 +3489,20 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void DeletePermission()
+        {
+            if (UserControl.userType != 1)
+            {
+                btnDelete.Enabled = false;
+                btnTypeDelete.Enabled = false;
+                btnFactoryDelete.Enabled = false;
+                btnDeleteSize.Enabled = false;
+                btnDeleteGroup.Enabled = false;
+                btnDeleteProduct.Enabled = false;
+                bunifuTileButton1.Enabled = false;
             }
         }
         
