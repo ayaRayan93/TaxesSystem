@@ -228,6 +228,8 @@ namespace MainSystem
             {
                 btnPurchases.Enabled = true;
                 btnPurchases.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
 
                 pictureBoxPurchase.Visible = true;
                 pictureBoxPurchaseLeast.Visible = true;
@@ -250,7 +252,11 @@ namespace MainSystem
                 btnStores.Checked = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
-                userAccess();
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                //userAccess();
             }
             else if (UserControl.userType == 14)
             {
@@ -266,11 +272,28 @@ namespace MainSystem
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 pictureBoxBell.Visible = true;
+
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
+                navBarItemInformationFactoryReport.Visible = false;
+
                 userAccess();
             }
             else if (UserControl.userType == 16)
             {
-          
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 btnStores.Enabled = true;
@@ -281,6 +304,18 @@ namespace MainSystem
                 btnReception.Checked = true;
                // pictureBoxBell.Visible = true;
                 userAccessStore();
+            }
+            else if (UserControl.userType == 17)
+            {
+                btnPurchases.Enabled = true;
+                btnPurchases.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+
+                pictureBoxPurchase.Visible = true;
+                pictureBoxPurchaseLeast.Visible = true;
             }
             labUserName.Text = UserControl.EmpName;
         }
@@ -762,18 +797,18 @@ namespace MainSystem
         }
         private void pictureBoxProfile_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (UserControl.userType == 1)
+            //if (UserControl.userType == 1)
+            //{
+                try
                 {
                     UserUpdate form = new UserUpdate(this);
                     form.ShowDialog();
                 }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            //}
         }
         public void userAccess()
         {

@@ -33,7 +33,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     LeastQuantityFunction();
                     ConfirmedSpecialOrdersFunction();
@@ -54,7 +54,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1 /*|| UserControl.userType == 2*/)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1 /*|| UserControl.userType == 2*/)
                 {
                     //if (purchaseFlag == false)
                     //{
@@ -99,7 +99,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     //if (purchaseFlag == false)
                     //{
@@ -144,7 +144,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1 || UserControl.userType == 2)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1/* || UserControl.userType == 2*/)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -175,7 +175,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -206,7 +206,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -237,7 +237,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -268,7 +268,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -299,7 +299,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -330,7 +330,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -367,7 +367,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -404,7 +404,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -441,7 +441,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -478,7 +478,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -515,7 +515,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -546,7 +546,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -577,7 +577,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -608,7 +608,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -639,7 +639,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 1)
+                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -1181,7 +1181,7 @@ namespace MainSystem
 
         public void LeastQuantityFunction()
         {
-            if (UserControl.userType == 10 || UserControl.userType == 1)
+            if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
             {
                 string q1 = "select Data_ID from storage_least_taswya";
                 string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
@@ -1211,7 +1211,7 @@ namespace MainSystem
 
         public void ConfirmedSpecialOrdersFunction()
         {
-            if (UserControl.userType == 10 || UserControl.userType == 1)
+            if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
             {
                 dbconnection.Close();
                 //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 

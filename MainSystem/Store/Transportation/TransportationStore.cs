@@ -548,8 +548,8 @@ namespace MainSystem
                         {
                             quantity = Convert.ToDouble(row1["الكمية"].ToString());
                         }
-                        
-                        if (neededQuantity <= quantity)
+
+                        if (comBranch.Text != "" && txtBillNum.Text != "")
                         {
                             gridView2.AddNewRow();
                             int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
@@ -561,29 +561,38 @@ namespace MainSystem
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الاسم"], row1["الاسم"].ToString());
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكرتنة"], row1["الكرتنة"].ToString());
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكمية"], neededQuantity);
-                                if (comBranch.Text != "" && txtBillNum.Text != "")
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns["رقم الفاتورة"], comBranch.Text + " " + txtBillNum.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns["CustomerBill_ID"], CustomerBillID);
+                            }
+                        }
+                        else
+                        {
+                            if (neededQuantity <= quantity)
+                            {
+                                gridView2.AddNewRow();
+                                int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+                                if (gridView2.IsNewItemRow(rowHandle) && row1 != null)
                                 {
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["رقم الفاتورة"], comBranch.Text + " " + txtBillNum.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["CustomerBill_ID"], CustomerBillID);
-                                }
-                                else
-                                {
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Data_ID"], row1["Data_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكود"], row1["الكود"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["النوع"], row1["النوع"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الاسم"], row1["الاسم"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكرتنة"], row1["الكرتنة"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الكمية"], neededQuantity);
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["رقم الفاتورة"], "");
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns["CustomerBill_ID"], 0);
                                 }
-                                //gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد البلتات"], balatat);
-                                //gridView2.SetRowCellValue(rowHandle, gridView2.Columns["عدد الكراتين"], numCartons);
                             }
+                            else if (neededQuantity > quantity)
+                            {
+                                MessageBox.Show("لا يوجد كمية كافية");
+                            }
+                        }
 
-                            txtQuantity.Text = "";
-                            txtCode.Text = "";
-                            txtBillNum.Text = "";
-                            comBranch.SelectedIndex = -1;
-                        }
-                        else if (neededQuantity > quantity)
-                        {
-                            MessageBox.Show("لا يوجد كمية كافية");
-                        }
+                        txtQuantity.Text = "";
+                        txtCode.Text = "";
+                        txtBillNum.Text = "";
+                        comBranch.SelectedIndex = -1;
                     }
                     else
                     {
@@ -661,7 +670,7 @@ namespace MainSystem
                         com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                         com.Parameters["@CustomerBill_ID"].Value = row2["CustomerBill_ID"].ToString();
                         com.ExecuteNonQuery();
-                        
+
                         if (row2["رقم الفاتورة"].ToString() == "")
                         {
                             query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
@@ -684,6 +693,27 @@ namespace MainSystem
                             }
                             else
                             {
+                                query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() == null)
+                                {
+                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Date)";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
+                                    com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                                    com.Parameters["@Quantity"].Value = row2["الكمية"].ToString();
+                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
+                                    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                                    DateTime date = DateTime.Now;
+                                    string d = date.ToString("yyyy-MM-dd");
+                                    com.Parameters["@Date"].Value = d;
+                                    com.ExecuteNonQuery();
+                                    
+                                    UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "", dbconnection);
+                                }
+                                
                                 query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
@@ -788,7 +818,7 @@ namespace MainSystem
                         {
                             txtQuantity.ReadOnly = true;
                             txtQuantity.Text = dr["Quantity"].ToString();
-                            CustomerBillID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                            CustomerBillID = Convert.ToInt32(dr["CustomerBill_ID"].ToString());
                         }
                     }
                     else
