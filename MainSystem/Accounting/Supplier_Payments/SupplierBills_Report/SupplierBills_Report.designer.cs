@@ -43,6 +43,7 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -250,6 +251,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnDisplay);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.txtSupplierID);
@@ -259,6 +261,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(965, 74);
             this.panel1.TabIndex = 216;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(148, 18);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 35);
+            this.btnPrint.TabIndex = 206;
+            this.btnPrint.Text = "طباعة";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // SupplierBills_Report
             // 
@@ -299,6 +316,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTotalReturns;
+        private System.Windows.Forms.Button btnPrint;
     }
 }
 

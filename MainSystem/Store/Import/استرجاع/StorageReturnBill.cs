@@ -482,11 +482,11 @@ namespace MainSystem
                             gridControl1.DataSource = null;
                             gridView1.Columns.Clear();
 
-                            for (int i = 0; i < gridView2.RowCount; i++)
-                            {
-                                int rowHandle = gridView2.GetRowHandle(i);
-                                gridView2.DeleteRow(rowHandle);
-                            }
+                            //for (int i = 0; i < gridView2.RowCount; i++)
+                            //{
+                            //    int rowHandle = gridView2.GetRowHandle(i);
+                            //    gridView2.DeleteRow(rowHandle);
+                            //}
                             MessageBox.Show("يجب اختيار النوع والمصنع والمجموعة على الاقل");
                             return;
                         }
@@ -498,11 +498,11 @@ namespace MainSystem
                     gridControl1.DataSource = null;
                     gridView1.Columns.Clear();
 
-                    for (int i = 0; i < gridView2.RowCount; i++)
-                    {
-                        int rowHandle = gridView2.GetRowHandle(i);
-                        gridView2.DeleteRow(rowHandle);
-                    }
+                    //for (int i = 0; i < gridView2.RowCount; i++)
+                    //{
+                    //    int rowHandle = gridView2.GetRowHandle(i);
+                    //    gridView2.DeleteRow(rowHandle);
+                    //}
                     MessageBox.Show("يجب اختيار النوع والمصنع على الاقل");
                 }
             }
@@ -528,6 +528,11 @@ namespace MainSystem
                 txtProduct.Text = "";
 
                 displayData();
+                for (int i = 0; i < gridView2.RowCount; i++)
+                {
+                    int rowHandle = gridView2.GetRowHandle(i);
+                    gridView2.DeleteRow(rowHandle);
+                }
             }
             catch (Exception ex)
             {
@@ -1271,6 +1276,11 @@ namespace MainSystem
                         txtBalat.Text = "0";
                         txtReason.Text = "";
                         txtItemReason.Text = "";
+                        for (int i = 0; i < gridView2.RowCount; i++)
+                        {
+                            int rowHandle = gridView2.GetRowHandle(i);
+                            gridView2.DeleteRow(rowHandle);
+                        }
                     }
                     #endregion
                 }
@@ -1474,11 +1484,11 @@ namespace MainSystem
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
 
-            for (int i = 0; i < gridView2.RowCount; i++)
-            {
-                int rowHandle = gridView2.GetRowHandle(i);
-                gridView2.DeleteRow(rowHandle);
-            }
+            //for (int i = 0; i < gridView2.RowCount; i++)
+            //{
+            //    int rowHandle = gridView2.GetRowHandle(i);
+            //    gridView2.DeleteRow(rowHandle);
+            //}
             
             //gridControl2.DataSource = null;
             //gridView2.Columns.Clear();

@@ -244,6 +244,11 @@ namespace MainSystem
             labelSafy.Text = (totalBills - TotalReturns).ToString();
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public XtraTabPage getTabPage(XtraTabControl tabControl, string text)
         {
             for (int i = 0; i < tabControl.TabPages.Count; i++)
