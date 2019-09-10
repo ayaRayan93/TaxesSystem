@@ -228,6 +228,8 @@ namespace MainSystem
             {
                 btnPurchases.Enabled = true;
                 btnPurchases.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
 
                 pictureBoxPurchase.Visible = true;
                 pictureBoxPurchaseLeast.Visible = true;
@@ -302,6 +304,18 @@ namespace MainSystem
                 btnReception.Checked = true;
                // pictureBoxBell.Visible = true;
                 userAccessStore();
+            }
+            else if (UserControl.userType == 17)
+            {
+                btnPurchases.Enabled = true;
+                btnPurchases.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+
+                pictureBoxPurchase.Visible = true;
+                pictureBoxPurchaseLeast.Visible = true;
             }
             labUserName.Text = UserControl.EmpName;
         }
