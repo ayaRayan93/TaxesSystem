@@ -256,6 +256,8 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
                 //userAccess();
             }
             else if (UserControl.userType == 14)
@@ -313,6 +315,8 @@ namespace MainSystem
                 AccountingSystem.Checked = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
 
                 pictureBoxPurchase.Visible = true;
                 pictureBoxPurchaseLeast.Visible = true;
