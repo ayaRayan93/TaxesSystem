@@ -51,6 +51,10 @@ namespace MainSystem
         {
             try
             {
+                if (UserControl.userType != 1)
+                {
+                    btnDelete.Enabled = false;
+                }
                 dbconnection.Open();
 
                 string query = "select * from type";
