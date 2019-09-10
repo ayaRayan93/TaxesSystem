@@ -661,7 +661,7 @@ namespace MainSystem
                         com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                         com.Parameters["@CustomerBill_ID"].Value = row2["CustomerBill_ID"].ToString();
                         com.ExecuteNonQuery();
-                        
+
                         if (row2["رقم الفاتورة"].ToString() == "")
                         {
                             query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
@@ -684,6 +684,27 @@ namespace MainSystem
                             }
                             else
                             {
+                                query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() == null)
+                                {
+                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Date)";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
+                                    com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                                    com.Parameters["@Quantity"].Value = row2["الكمية"].ToString();
+                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
+                                    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                                    DateTime date = DateTime.Now;
+                                    string d = date.ToString("yyyy-MM-dd");
+                                    com.Parameters["@Date"].Value = d;
+                                    com.ExecuteNonQuery();
+                                    
+                                    UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "", dbconnection);
+                                }
+                                
                                 query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
@@ -788,7 +809,7 @@ namespace MainSystem
                         {
                             txtQuantity.ReadOnly = true;
                             txtQuantity.Text = dr["Quantity"].ToString();
-                            CustomerBillID = Convert.ToInt16(dr["CustomerBill_ID"].ToString());
+                            CustomerBillID = Convert.ToInt32(dr["CustomerBill_ID"].ToString());
                         }
                     }
                     else
