@@ -123,34 +123,55 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                DataRowView selRow = (DataRowView)gridView1.GetRow(gridView1.GetSelectedRows()[0]);
-                if (selRow[0].ToString() != "")
+                try
                 {
-                    XtraTabPage xtraTabPage = getTabPage("tabPageUpdateCustomer2");
-                    if (xtraTabPage == null)
+                    DataRowView selRow = (DataRowView)gridView1.GetRow(gridView1.GetSelectedRows()[0]);
+                    if (selRow[0].ToString() != "")
                     {
-                        Customer_Update form = new Customer_Update(selRow, mainTabControl);
-                        MainForm.MainTabPageUpdateCustomer2.Name = "tabPageUpdateCustomer2";
-                        MainForm.MainTabPageUpdateCustomer2.Text = "تعديل بيانات عميل";
-                        MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
-                        //panelUpdateCustomer.Name = "panelUpdateCustomer";
-                        //panelUpdateCustomer.Dock = DockStyle.Fill;
-                        MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
-                        form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        form.TopLevel = false;
-                        form.Show();
-                        //panelUpdateCustomer.Controls.Add(form);
-                        MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
-                        mainTabControl.TabPages.Add(MainForm.MainTabPageUpdateCustomer2);
-                        mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
-                    }
-                    else if (xtraTabPage.ImageOptions.Image != null)
-                    {
-                        DialogResult dialogResult = MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (dialogResult == DialogResult.Yes)
+                        XtraTabPage xtraTabPage = getTabPage("tabPageUpdateCustomer2");
+                        if (xtraTabPage == null)
+                        {
+                            Customer_Update form = new Customer_Update(selRow, mainTabControl);
+                            MainForm.MainTabPageUpdateCustomer2.Name = "tabPageUpdateCustomer2";
+                            MainForm.MainTabPageUpdateCustomer2.Text = "تعديل بيانات عميل";
+                            MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
+                            //panelUpdateCustomer.Name = "panelUpdateCustomer";
+                            //panelUpdateCustomer.Dock = DockStyle.Fill;
+                            MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
+                            form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                            form.Dock = DockStyle.Fill;
+                            form.TopLevel = false;
+                            form.Show();
+                            //panelUpdateCustomer.Controls.Add(form);
+                            MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
+                            mainTabControl.TabPages.Add(MainForm.MainTabPageUpdateCustomer2);
+                            mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
+                        }
+                        else if (xtraTabPage.ImageOptions.Image != null)
+                        {
+                            DialogResult dialogResult = MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
+                                Customer_Update form = new Customer_Update(selRow, mainTabControl);
+                                form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                                form.Dock = DockStyle.Fill;
+                                form.TopLevel = false;
+                                form.Show();
+                                MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
+                                //panelUpdateCustomer.Controls.Clear();
+                                //panelUpdateCustomer.Controls.Add(form);
+                                MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
+                                mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
+                            }
+                            else if (dialogResult == DialogResult.No)
+                            {
+                                mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
+                            }
+                        }
+                        else
                         {
                             MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
                             Customer_Update form = new Customer_Update(selRow, mainTabControl);
@@ -164,45 +185,30 @@ namespace MainSystem
                             MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
                             mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
                         }
-                        else if (dialogResult == DialogResult.No)
-                        {
-                            mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
-                        }
-                    }
-                    else
-                    {
-                        MainForm.MainTabPageUpdateCustomer2.ImageOptions.Image = null;
-                        Customer_Update form = new Customer_Update(selRow, mainTabControl);
-                        form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        form.TopLevel = false;
-                        form.Show();
-                        MainForm.MainTabPageUpdateCustomer2.Controls.Clear();
-                        //panelUpdateCustomer.Controls.Clear();
-                        //panelUpdateCustomer.Controls.Add(form);
-                        MainForm.MainTabPageUpdateCustomer2.Controls.Add(form);
-                        mainTabControl.SelectedTabPage = MainForm.MainTabPageUpdateCustomer2;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                GridView view = gridView1 as GridView;
-                delete(view);
+                try
+                {
+                    GridView view = gridView1 as GridView;
+                    delete(view);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -230,20 +236,23 @@ namespace MainSystem
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                if (e.KeyCode == Keys.Delete)
+                try
                 {
-                    //GridView view = sender as GridView;
-                    GridView view = gridView1 as GridView;
-                    delete(view);
+                    if (e.KeyCode == Keys.Delete)
+                    {
+                        //GridView view = sender as GridView;
+                        GridView view = gridView1 as GridView;
+                        delete(view);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void toolTipController1_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)

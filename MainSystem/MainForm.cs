@@ -250,7 +250,11 @@ namespace MainSystem
                 btnStores.Checked = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
-                userAccess();
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                //userAccess();
             }
             else if (UserControl.userType == 14)
             {
@@ -288,7 +292,6 @@ namespace MainSystem
             }
             else if (UserControl.userType == 16)
             {
-          
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 btnStores.Enabled = true;
@@ -780,18 +783,18 @@ namespace MainSystem
         }
         private void pictureBoxProfile_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (UserControl.userType == 1)
+            //if (UserControl.userType == 1)
+            //{
+                try
                 {
                     UserUpdate form = new UserUpdate(this);
                     form.ShowDialog();
                 }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            //}
         }
         public void userAccess()
         {
