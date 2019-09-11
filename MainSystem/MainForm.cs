@@ -246,6 +246,7 @@ namespace MainSystem
             }
             else if (UserControl.userType == 13)
             {
+                pictureBoxSales.Visible = true;
                 //btnCoding.Enabled = true;
                 //btnCoding.Checked = true;
                 btnStores.Enabled = true;

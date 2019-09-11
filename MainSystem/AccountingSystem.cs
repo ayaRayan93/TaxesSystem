@@ -453,39 +453,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void navBarItemSupplierBillReport_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-                if (!xtraTabControlAccounting.Visible)
-                    xtraTabControlAccounting.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير فواتير الموردين");
-                if (xtraTabPage == null)
-                {
-                    xtraTabControlAccounting.TabPages.Add("تقرير فواتير الموردين");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير فواتير الموردين");
-                }
-
-                xtraTabPage.Controls.Clear();
-                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
-
-                SupplierBills_Report objForm = new SupplierBills_Report(this, xtraTabControlAccounting);
-
-                objForm.TopLevel = false;
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                objForm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void navBarItemSupplierTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
