@@ -702,7 +702,7 @@ namespace MainSystem
                                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                                     com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
                                     com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-                                    com.Parameters["@Quantity"].Value = row2["الكمية"].ToString();
+                                    com.Parameters["@Quantity"].Value = 0/*row2["الكمية"].ToString()*/;
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
                                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
