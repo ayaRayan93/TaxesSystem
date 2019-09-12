@@ -252,8 +252,6 @@
             this.Delegate_ID.Caption = "Delegate_ID";
             this.Delegate_ID.FieldName = "Delegate_ID";
             this.Delegate_ID.Name = "Delegate_ID";
-            this.Delegate_ID.Visible = true;
-            this.Delegate_ID.VisibleIndex = 4;
             // 
             // Delegate_Name
             // 
