@@ -71,12 +71,12 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comSet = new System.Windows.Forms.ComboBox();
             this.comOffer = new System.Windows.Forms.ComboBox();
+            this.btnSearchAll = new System.Windows.Forms.Button();
             this.checkEditSets = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
-            this.btnSearchAll = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -672,6 +672,21 @@
             this.comOffer.TabIndex = 3;
             this.comOffer.SelectedValueChanged += new System.EventHandler(this.comOffer_SelectedValueChanged);
             // 
+            // btnSearchAll
+            // 
+            this.btnSearchAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSearchAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchAll.ForeColor = System.Drawing.Color.White;
+            this.btnSearchAll.Location = new System.Drawing.Point(3, 3);
+            this.btnSearchAll.Name = "btnSearchAll";
+            this.btnSearchAll.Size = new System.Drawing.Size(100, 28);
+            this.btnSearchAll.TabIndex = 14;
+            this.btnSearchAll.Text = "بحث عام";
+            this.btnSearchAll.UseVisualStyleBackColor = false;
+            this.btnSearchAll.Visible = false;
+            // 
             // checkEditSets
             // 
             this.checkEditSets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -724,21 +739,6 @@
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(120, 24);
             this.comStore.TabIndex = 3;
-            // 
-            // btnSearchAll
-            // 
-            this.btnSearchAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSearchAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchAll.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchAll.ForeColor = System.Drawing.Color.White;
-            this.btnSearchAll.Location = new System.Drawing.Point(3, 3);
-            this.btnSearchAll.Name = "btnSearchAll";
-            this.btnSearchAll.Size = new System.Drawing.Size(100, 28);
-            this.btnSearchAll.TabIndex = 14;
-            this.btnSearchAll.Text = "بحث عام";
-            this.btnSearchAll.UseVisualStyleBackColor = false;
-            this.btnSearchAll.Visible = false;
             // 
             // InformationFactory_Report
             // 

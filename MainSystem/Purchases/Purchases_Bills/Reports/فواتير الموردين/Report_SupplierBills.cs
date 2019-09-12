@@ -18,14 +18,14 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(string SupplierName, string dateFrom, string dateTo, List<SupplierBills_Items> ReceiptItems)
+        public void PrintInvoice(string TotalBills, string TotalReturns, string Safy, List<SupplierBills_Items> ReceiptItems)
         {
             Print_SupplierBills report = new Print_SupplierBills();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(SupplierName, dateFrom, dateTo, ReceiptItems);
+            report.InitData(TotalBills, TotalReturns, Safy, ReceiptItems);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

@@ -246,7 +246,25 @@ namespace MainSystem
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            if (gridView1.RowCount > 0)
+            {
+                try
+                {
+                    List<SupplierBills_Items> bi = new List<SupplierBills_Items>();
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        SupplierBills_Items item = new SupplierBills_Items() { Type = gridView1.GetRowCellDisplayText(i, "النوع"), SupplierName = gridView1.GetRowCellDisplayText(i, "المورد"), BillNum = gridView1.GetRowCellDisplayText(i, "رقم الفاتورة"), StoreName = gridView1.GetRowCellDisplayText(i, "المخزن"), Date = gridView1.GetRowCellDisplayText(i, "التاريخ"), TotalB = gridView1.GetRowCellDisplayText(i, "الاجمالى قبل"), TotalA = gridView1.GetRowCellDisplayText(i, "الاجمالى بعد") };
+                        bi.Add(item);
+                    }
+                    Report_SupplierBills f = new Report_SupplierBills();
+                    f.PrintInvoice(labelTotalBills.Text, labelTotalReturns.Text, labelSafy.Text, bi);
+                    f.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         public XtraTabPage getTabPage(XtraTabControl tabControl, string text)

@@ -33,7 +33,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                if (UserControl.userType == 19 || UserControl.userType == 1)
                 {
                     LeastQuantityFunction();
                     ConfirmedSpecialOrdersFunction();
@@ -41,6 +42,13 @@ namespace MainSystem
                     Purchasetimer.Interval = 1000 * 60;
                     Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
                     Purchasetimer.Tick += new EventHandler(GetConfirmedSpecialOrder);
+                    Purchasetimer.Start();
+                }
+                if (UserControl.userType == 20)
+                {
+                    LeastQuantityFunction();
+                    Purchasetimer.Interval = 1000 * 60;
+                    Purchasetimer.Tick += new EventHandler(GetNonRequestedLeastQuantity);
                     Purchasetimer.Start();
                 }
             }
@@ -54,8 +62,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1 /*|| UserControl.userType == 2*/)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1 /*|| UserControl.userType == 2*/)
+                //{
                     //if (purchaseFlag == false)
                     //{
                         if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
@@ -87,7 +95,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplaySpecialOrdersReport(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -99,8 +107,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 19 || UserControl.userType == 20 /*/*|| UserControl.userType == 10 || UserControl.userType == 17*/ || UserControl.userType == 1)
+                //{
                     //if (purchaseFlag == false)
                     //{
                         if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePurchases))
@@ -132,7 +140,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayLeastQuantityReport(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -144,8 +152,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1/* || UserControl.userType == 2*/)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1/* || UserControl.userType == 2*/)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -163,7 +171,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayProductsPurchasesPriceForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -175,8 +183,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -194,7 +202,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindSupplierBillForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -206,8 +214,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -225,7 +233,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindSupplierRetunBillForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -237,8 +245,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -256,7 +264,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplaySupplierForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -268,8 +276,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -287,7 +295,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayLeastQuantityForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -299,8 +307,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -318,7 +326,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayOrderReportForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -330,8 +338,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -355,7 +363,7 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -367,8 +375,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -392,7 +400,7 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -404,8 +412,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -429,7 +437,7 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -441,8 +449,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -466,7 +474,7 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -478,8 +486,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -503,7 +511,7 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -515,8 +523,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -534,7 +542,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayDashOrderReportForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -546,8 +554,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -565,7 +573,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplayDashRequestReportForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -577,8 +585,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -596,7 +604,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplaySalesProductsBillsDateForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -608,8 +616,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -627,7 +635,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplaySalesProductsBillsNumForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -639,8 +647,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -658,7 +666,7 @@ namespace MainSystem
 
                     xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
                     bindDisplaySalesProductsBillsFactoryForm(xtraTabPage);
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -669,8 +677,8 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
                     navBarItem.Appearance.ForeColor = Color.Blue;
@@ -694,7 +702,7 @@ namespace MainSystem
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -1217,7 +1225,7 @@ namespace MainSystem
 
         public void LeastQuantityFunction()
         {
-            if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+            if (/*UserControl.userType == 10 || */UserControl.userType == 19 || UserControl.userType == 20 /*|| UserControl.userType == 17*/ || UserControl.userType == 1)
             {
                 string q1 = "select Data_ID from storage_least_taswya";
                 string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
@@ -1247,7 +1255,7 @@ namespace MainSystem
 
         public void ConfirmedSpecialOrdersFunction()
         {
-            if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+            if (/*UserControl.userType == 10 ||*/ UserControl.userType == 19 /*|| UserControl.userType == 17*/ || UserControl.userType == 1)
             {
                 dbconnection.Close();
                 //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 

@@ -72,6 +72,9 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup54 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemItemTransitionReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemInformationFactoryReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -118,9 +121,6 @@
             this.navBarItem225 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupProductsTicket = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemProductTicket = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup54 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemItemTransitionReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemInformationFactoryReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSupplierReturnedPermission = new DevExpress.XtraNavBar.NavBarItem();
@@ -1178,6 +1178,27 @@
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
+            // navBarGroup54
+            // 
+            this.navBarGroup54.Caption = "تقارير المبيعات";
+            this.navBarGroup54.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemItemTransitionReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationFactoryReport)});
+            this.navBarGroup54.Name = "navBarGroup54";
+            this.navBarGroup54.SelectedLinkIndex = 0;
+            // 
+            // navBarItemItemTransitionReport
+            // 
+            this.navBarItemItemTransitionReport.Caption = "حركة صنف";
+            this.navBarItemItemTransitionReport.Name = "navBarItemItemTransitionReport";
+            this.navBarItemItemTransitionReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemItemTransitionReport_LinkClicked);
+            // 
+            // navBarItemInformationFactoryReport
+            // 
+            this.navBarItemInformationFactoryReport.Caption = "رصيد الشركات بسعر البيع";
+            this.navBarItemInformationFactoryReport.Name = "navBarItemInformationFactoryReport";
+            this.navBarItemInformationFactoryReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemInformationFactoryReport_LinkClicked);
+            // 
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
@@ -1499,30 +1520,10 @@
             this.navBarItemProductTicket.Name = "navBarItemProductTicket";
             this.navBarItemProductTicket.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemProductTicket_LinkClicked);
             // 
-            // navBarGroup54
-            // 
-            this.navBarGroup54.Caption = "تقارير المبيعات";
-            this.navBarGroup54.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemItemTransitionReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationFactoryReport)});
-            this.navBarGroup54.Name = "navBarGroup54";
-            this.navBarGroup54.SelectedLinkIndex = 0;
-            // 
-            // navBarItemItemTransitionReport
-            // 
-            this.navBarItemItemTransitionReport.Caption = "حركة صنف";
-            this.navBarItemItemTransitionReport.Name = "navBarItemItemTransitionReport";
-            this.navBarItemItemTransitionReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemItemTransitionReport_LinkClicked);
-            // 
-            // navBarItemInformationFactoryReport
-            // 
-            this.navBarItemInformationFactoryReport.Caption = "رصيد الشركات بسعر البيع";
-            this.navBarItemInformationFactoryReport.Name = "navBarItemInformationFactoryReport";
-            this.navBarItemInformationFactoryReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemInformationFactoryReport_LinkClicked);
-            // 
             // navBarGroup12
             // 
             this.navBarGroup12.Caption = "التقارير";
+            this.navBarGroup12.Expanded = true;
             this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPermission),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturnedPermission)});
@@ -3717,8 +3718,7 @@
             // 
             // navBarAccounting
             // 
-            this.navBarAccounting.ActiveGroup = this.navBarGroup47;
-            this.navBarAccounting.ActiveGroup = this.navBarGroup40;
+            this.navBarAccounting.ActiveGroup = this.navBarGroup32;
             this.navBarAccounting.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarAccounting.Appearance.Background.Options.UseFont = true;
             this.navBarAccounting.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -3836,6 +3836,7 @@
             // navBarGroup32
             // 
             this.navBarGroup32.Caption = " تقارير حسابات العملاء";
+            this.navBarGroup32.Expanded = true;
             this.navBarGroup32.Name = "navBarGroup32";
             // 
             // navBarGroup40
@@ -4294,7 +4295,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup45;
+            this.navBarControl7.ActiveGroup = this.navBarGroup43;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -4430,6 +4431,7 @@
             // navBarGroup43
             // 
             this.navBarGroup43.Caption = "فاتورة شراء";
+            this.navBarGroup43.Expanded = true;
             this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
             this.navBarGroup43.Name = "navBarGroup43";
