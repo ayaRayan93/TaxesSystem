@@ -14,11 +14,11 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string supplierName, string dateFrom, string dateTo, List<SupplierBills_Items> ReceiptItems)
+        public void InitData(string totalBills, string totalReturns, string safy, List<SupplierBills_Items> ReceiptItems)
         {
-            DateFrom.Value = dateFrom;
-            DateTo.Value = dateTo;
-            SupplierName.Value = supplierName;
+            TotalBills.Value = totalBills;
+            TotalReturns.Value = totalReturns;
+            Safy.Value = safy;
             objectDataSource1.DataSource = ReceiptItems;
         }
     }

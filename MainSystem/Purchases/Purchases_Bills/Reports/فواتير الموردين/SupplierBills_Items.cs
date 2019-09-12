@@ -8,13 +8,12 @@ namespace MainSystem
 {
     public class SupplierBills_Items
     {
-        public string debit { get; set; }
-        public string credit { get; set; }
+        public string Type { get; set; }
+        public string SupplierName { get; set; }
         public string BillNum { get; set; }
-        public string addingTaswyaa { get; set; }
-        public string ReturnBillNum { get; set; }
-        public string SubTaswyaa { get; set; }
-        public string Transitions { get; set; }
-        public string Info { get; set; }
+        public string StoreName { get; set; }
+        public string Date { get; set; }
+        public string TotalB { get; set; }
+        public string TotalA { get; set; }
     }
 }
