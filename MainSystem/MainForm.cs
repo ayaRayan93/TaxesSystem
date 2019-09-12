@@ -214,6 +214,8 @@ namespace MainSystem
                 btnPurchases.Checked = true;
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
 
                 navBarGroup51.Visible = false;
                 navBarGroup46.Visible = false;
@@ -223,6 +225,20 @@ namespace MainSystem
                 navBarGroupPurchasesReport.Visible = false;
                 navBarGroup32.Visible = false;
                 navBarGroup40.Visible = false;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
 
                 //pictureBoxPurchase.Visible = true;
                 //pictureBoxPurchaseLeast.Visible = true;
