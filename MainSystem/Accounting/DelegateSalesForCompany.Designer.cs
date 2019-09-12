@@ -65,6 +65,7 @@
             this.TotalReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Safaya = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Factory_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label11 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -223,6 +224,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
@@ -345,6 +347,7 @@
             this.label1.Size = new System.Drawing.Size(52, 18);
             this.label1.TabIndex = 197;
             this.label1.Text = "الشركة";
+            this.label1.Visible = false;
             // 
             // label4
             // 
@@ -358,6 +361,7 @@
             this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 198;
             this.label4.Text = "الصنف";
+            this.label4.Visible = false;
             // 
             // comFactory
             // 
@@ -373,6 +377,7 @@
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(175, 24);
             this.comFactory.TabIndex = 196;
+            this.comFactory.Visible = false;
             this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
             // 
             // txtFactory
@@ -387,6 +392,7 @@
             this.txtFactory.Size = new System.Drawing.Size(53, 24);
             this.txtFactory.TabIndex = 195;
             this.txtFactory.TabStop = false;
+            this.txtFactory.Visible = false;
             this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFactory_KeyDown);
             // 
             // txtDelegateID
@@ -614,6 +620,18 @@
             this.Factory_Name.Visible = true;
             this.Factory_Name.VisibleIndex = 3;
             // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.IndianRed;
+            this.label11.Location = new System.Drawing.Point(187, 80);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(19, 19);
+            this.label11.TabIndex = 205;
+            this.label11.Text = "*";
+            // 
             // DelegateSalesForCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -674,5 +692,6 @@
         private System.Windows.Forms.TextBox txtTotalSales;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

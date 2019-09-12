@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version66\</PublishUrl>
+    <PublishUrl>D:\التكويد\version68\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>128</ApplicationRevision>
+    <ApplicationRevision>130</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -188,6 +188,12 @@
     </Compile>
     <Compile Include="Accounting\DelegateSalesForCompanyAgel.Designer.cs">
       <DependentUpon>DelegateSalesForCompanyAgel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\DelegateTotalSalesAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\DelegateTotalSalesAll.Designer.cs">
+      <DependentUpon>DelegateTotalSalesAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Accounting\DelegateTotalSalesAgel.cs">
       <SubType>Form</SubType>
@@ -2540,6 +2546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateSalesForCompanyAgel.resx">
       <DependentUpon>DelegateSalesForCompanyAgel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\DelegateTotalSalesAll.resx">
+      <DependentUpon>DelegateTotalSalesAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateTotalSalesAgel.resx">
       <DependentUpon>DelegateTotalSalesAgel.cs</DependentUpon>

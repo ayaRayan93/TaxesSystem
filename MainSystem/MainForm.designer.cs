@@ -395,6 +395,8 @@
             this.navBarItem16 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem226 = new DevExpress.XtraNavBar.NavBarItem();
             this.btnTaswayAgalBills1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem229 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup32 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarGroupSupplierPayments = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierPayments = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSupplierSoonPayments_Report = new DevExpress.XtraNavBar.NavBarItem();
@@ -3793,7 +3795,8 @@
             this.navBarItem226,
             this.btnTaswayAgalBills1,
             this.navBarItem227,
-            this.navBarItem228});
+            this.navBarItem228,
+            this.navBarItem229});
             this.navBarAccounting.Location = new System.Drawing.Point(927, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 218;
@@ -3839,10 +3842,12 @@
             // navBarGroup40
             // 
             this.navBarGroup40.Caption = "تقارير حسابات المناديب";
+            this.navBarGroup40.Expanded = true;
             this.navBarGroup40.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem229),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem154),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem227),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForCompany),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem228),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelegateSalesForProduct),
             new DevExpress.XtraNavBar.NavBarItemLink(this.DelegateProfit),
@@ -3855,11 +3860,11 @@
             // 
             this.navBarItem154.Caption = "اجمالي مبيعات المندوبين كاش";
             this.navBarItem154.Name = "navBarItem154";
-            this.navBarItem154.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateTotalSales_LinkClicked);
+            this.navBarItem154.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateTotalSalesCash_LinkClicked);
             // 
             // navBarItemDelegateSalesForCompany
             // 
-            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات مندوب لشركات (كاش)";
+            this.navBarItemDelegateSalesForCompany.Caption = "مبيعات مندوب لشركات";
             this.navBarItemDelegateSalesForCompany.Name = "navBarItemDelegateSalesForCompany";
             this.navBarItemDelegateSalesForCompany.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompany_LinkClicked);
             // 
@@ -3872,7 +3877,9 @@
             // navBarItem228
             // 
             this.navBarItem228.Caption = "مبيعات مندوب/مندوبين لشركة/شركات (آجل)";
+            this.navBarItem228.Enabled = false;
             this.navBarItem228.Name = "navBarItem228";
+            this.navBarItem228.Visible = false;
             this.navBarItem228.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateSalesForCompanyAgel_LinkClicked);
             // 
             // navBarItemDelegateSalesForProduct
@@ -3884,26 +3891,45 @@
             // DelegateProfit
             // 
             this.DelegateProfit.Caption = "حساب نسبة المندوب";
+            this.DelegateProfit.Enabled = false;
             this.DelegateProfit.Name = "DelegateProfit";
+            this.DelegateProfit.Visible = false;
             this.DelegateProfit.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.DelegateProfit_LinkClicked);
             // 
             // navBarItem16
             // 
             this.navBarItem16.Caption = "فواتير معلقة";
+            this.navBarItem16.Enabled = false;
             this.navBarItem16.Name = "navBarItem16";
+            this.navBarItem16.Visible = false;
             this.navBarItem16.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
             // 
             // navBarItem226
             // 
             this.navBarItem226.Caption = "تقرير العملاء الاجل";
+            this.navBarItem226.Enabled = false;
             this.navBarItem226.Name = "navBarItem226";
+            this.navBarItem226.Visible = false;
             this.navBarItem226.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateCustomersBills_LinkClicked);
             // 
             // btnTaswayAgalBills1
             // 
             this.btnTaswayAgalBills1.Caption = "تسوية فواتير الاجل";
+            this.btnTaswayAgalBills1.Enabled = false;
             this.btnTaswayAgalBills1.Name = "btnTaswayAgalBills1";
+            this.btnTaswayAgalBills1.Visible = false;
             this.btnTaswayAgalBills1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnTaswayAgalBills_LinkClicked);
+            // 
+            // navBarItem229
+            // 
+            this.navBarItem229.Caption = "اجمالي مبيعات مندوب";
+            this.navBarItem229.Name = "navBarItem229";
+            this.navBarItem229.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateTotalSales_LinkClicked);
+            // 
+            // navBarGroup32
+            // 
+            this.navBarGroup32.Caption = " تقارير حسابات العملاء";
+            this.navBarGroup32.Name = "navBarGroup32";
             // 
             // navBarGroupSupplierPayments
             // 
@@ -5613,6 +5639,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem228;
         private DevExpress.XtraNavBar.NavBarItem navBarItemReturnedPurchaseBillPriceUpdate;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSupplierBillReport2;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem229;
     }
 }
 

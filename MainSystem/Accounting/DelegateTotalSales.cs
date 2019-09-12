@@ -174,7 +174,7 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd ");
                 d2 += "23:59:59";
-                string query= "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
+                string query= "select CustomerBill_ID from customer_bill  where Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -196,8 +196,8 @@ namespace MainSystem
 
                 str += 0;
 
-                //query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
-                query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
+                query = "select Branch_BillNumber from customer_return_bill where Type_Buy='كاش' and  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                //query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
 
                 com = new MySqlCommand(query, dbconnection);
                 dr = com.ExecuteReader();
