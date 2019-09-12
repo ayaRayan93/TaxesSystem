@@ -286,27 +286,30 @@ namespace MainSystem
 
         private void btnOpenBill_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 19 || UserControl.userType == 1)
             {
-                if (gridView1.SelectedRowsCount > 0)
+                try
                 {
-                    List<DataRow> row1 = new List<DataRow>();
-                    for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                    if (gridView1.SelectedRowsCount > 0)
                     {
-                        row1.Add(gridView1.GetDataRow(gridView1.GetSelectedRows()[i]));
+                        List<DataRow> row1 = new List<DataRow>();
+                        for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                        {
+                            row1.Add(gridView1.GetDataRow(gridView1.GetSelectedRows()[i]));
+                        }
+                        mainForm.bindRecordDashOrderForm(null, row1/*, 0*/);
+                        //Order_Record form = new Order_Record(row1, null, xtraTabControlPurchases);
+                        //form.ShowDialog();
                     }
-                    mainForm.bindRecordDashOrderForm(null, row1/*, 0*/);
-                    //Order_Record form = new Order_Record(row1, null, xtraTabControlPurchases);
-                    //form.ShowDialog();
+                    else
+                    {
+                        MessageBox.Show("يجب اختيار البنود اولا");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("يجب اختيار البنود اولا");
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -350,44 +353,47 @@ namespace MainSystem
 
         private void CheckedChanged(object sender, System.EventArgs e)
         {
-            try
+            if (UserControl.userType == 19 || UserControl.userType == 1)
             {
-                DevExpress.XtraEditors.CheckEdit edit = sender as DevExpress.XtraEditors.CheckEdit;
-                switch (edit.Checked)
+                try
                 {
-                    case true:
-                        if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            dbconnection.Open();
-                            string query = "insert into storage_least_taswya (Data_ID,Date) values (@Data_ID,@Date)";
-                            MySqlCommand com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = gridView1.GetFocusedRowCellDisplayText(gridView1.Columns["Data_ID"]);
-                            com.Parameters.Add("@Date", MySqlDbType.DateTime);
-                            com.Parameters["@Date"].Value = DateTime.Now;
-                            com.ExecuteNonQuery();
-                            dbconnection.Close();
-                            clearCom();
-                            string q1, q2, q3, q4, fQuery = "";
-                            q1 = "select Type_ID from type";
-                            q2 = "select Factory_ID from factory";
-                            q3 = "select Product_ID from product";
-                            q4 = "select Group_ID from groupo";
-                            testQuantity(q1, q2, q3, q4, fQuery);
-                            mainForm.LeastQuantityFunction();
-                        }
-                        else
-                        {
-                            edit.CheckState = CheckState.Unchecked;
-                        }
-                        break;
+                    DevExpress.XtraEditors.CheckEdit edit = sender as DevExpress.XtraEditors.CheckEdit;
+                    switch (edit.Checked)
+                    {
+                        case true:
+                            if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                dbconnection.Open();
+                                string query = "insert into storage_least_taswya (Data_ID,Date) values (@Data_ID,@Date)";
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                com.Parameters["@Data_ID"].Value = gridView1.GetFocusedRowCellDisplayText(gridView1.Columns["Data_ID"]);
+                                com.Parameters.Add("@Date", MySqlDbType.DateTime);
+                                com.Parameters["@Date"].Value = DateTime.Now;
+                                com.ExecuteNonQuery();
+                                dbconnection.Close();
+                                clearCom();
+                                string q1, q2, q3, q4, fQuery = "";
+                                q1 = "select Type_ID from type";
+                                q2 = "select Factory_ID from factory";
+                                q3 = "select Product_ID from product";
+                                q4 = "select Group_ID from groupo";
+                                testQuantity(q1, q2, q3, q4, fQuery);
+                                mainForm.LeastQuantityFunction();
+                            }
+                            else
+                            {
+                                edit.CheckState = CheckState.Unchecked;
+                            }
+                            break;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
         }
 
         //clear function

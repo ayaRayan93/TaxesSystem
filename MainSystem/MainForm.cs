@@ -157,18 +157,6 @@ namespace MainSystem
             {
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
-                //btnSales.Enabled = true;
-                //btnSales.Checked = true;
-                //btnPurchases.Enabled = true;
-                //btnPurchases.Checked = true;
-                //btnHR.Enabled = true;
-                //btnHR.Checked = true;
-                //btnBank.Enabled = true;
-                //btnBank.Checked = true;
-                //btnReception.Enabled = true;
-                //btnReception.Checked = true;
-                //btnPOS.Enabled = true;
-                //btnPOS.Checked = true;
 
                 pictureBoxStoreExpectedOrder.Visible = true;
 
@@ -177,10 +165,6 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroup54.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
-                //navBarGroup8.Visible = false;
-                //navBarGroup3.Visible = false;
-                //navBarGroup4.Visible = false;
-                //navBarGroup5.Visible = false;
                 navBarGroup12.Visible = false;
             }
             else if (UserControl.userType == 3)
@@ -231,8 +215,17 @@ namespace MainSystem
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
 
-                pictureBoxPurchase.Visible = true;
-                pictureBoxPurchaseLeast.Visible = true;
+                navBarGroup51.Visible = false;
+                navBarGroup46.Visible = false;
+                navBarGroup52.Visible = false;
+                navBarGroup53.Visible = false;
+                navBarGroupLeastQuantity.Visible = false;
+                navBarGroupPurchasesReport.Visible = false;
+                navBarGroup32.Visible = false;
+                navBarGroup40.Visible = false;
+
+                //pictureBoxPurchase.Visible = true;
+                //pictureBoxPurchaseLeast.Visible = true;
             }
             else if (UserControl.userType == 11)
             {
@@ -244,13 +237,12 @@ namespace MainSystem
                 btnCustomerService.Enabled = true;
                 btnCustomerService.Checked = true;
             }
+            //data entry- coding
             else if (UserControl.userType == 13)
             {
-                pictureBoxSales.Visible = true;
-                //btnCoding.Enabled = true;
-                //btnCoding.Checked = true;
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
+                navBarGroupProductsTicket.Visible = false;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 btnBank.Enabled = true;
@@ -259,6 +251,9 @@ namespace MainSystem
                 btnReception.Checked = true;
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
+                navBarGroupSupplierPayments.Visible = false;
+                navBarGroup49.Visible = false;
+                navBarGroup47.Visible = false;
                 //userAccess();
             }
             else if (UserControl.userType == 14)
@@ -308,6 +303,7 @@ namespace MainSystem
                // pictureBoxBell.Visible = true;
                 userAccessStore();
             }
+            //eslam
             else if (UserControl.userType == 17)
             {
                 btnPurchases.Enabled = true;
@@ -319,8 +315,113 @@ namespace MainSystem
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
 
+                navBarGroup51.Visible = false;
+                navBarGroup46.Visible = false;
+                navBarGroup52.Visible = false;
+                navBarGroup53.Visible = false;
+                navBarGroupLeastQuantity.Visible = false;
+                navBarGroupPurchasesReport.Visible = false;
+                navBarGroup32.Visible = false;
+                navBarGroup40.Visible = false;
+
+                navBarGroup15.Visible = false;
+                navBarGroup16.Visible = false;
+                navBarGroup17.Visible = false;
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
+
+                //pictureBoxPurchase.Visible = true;
+                //pictureBoxPurchaseLeast.Visible = true;
+            }
+            //marwa
+            else if (UserControl.userType == 18)
+            {
+                btnPurchases.Enabled = true;
+                btnPurchases.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+
+                navBarGroup51.Visible = false;
+                navBarGroup46.Visible = false;
+                navBarGroup52.Visible = false;
+                navBarGroup53.Visible = false;
+                navBarGroupLeastQuantity.Visible = false;
+                navBarGroupPurchasesReport.Visible = false;
+                navBarGroup32.Visible = false;
+                navBarGroup40.Visible = false;
+
+                navBarGroup15.Visible = false;
+                navBarGroup16.Visible = false;
+                navBarGroup17.Visible = false;
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+
+                //pictureBoxPurchase.Visible = true;
+                //pictureBoxPurchaseLeast.Visible = true;
+            }
+            //ahmed sayed
+            else if (UserControl.userType == 19)
+            {
+                btnPurchases.Enabled = true;
+                btnPurchases.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroup12.Visible = false;
+
+                navBarGroup43.Visible = false;
+                navBarGroup44.Visible = false;
+                //navBarGroup46.Visible = false;
+                navBarGroupSupplier.Visible = false;
+                navBarGroup48.Visible = false;
+
                 pictureBoxPurchase.Visible = true;
                 pictureBoxPurchaseLeast.Visible = true;
+            }
+            //asmaa rady
+            else if (UserControl.userType == 20)
+            {
+                pictureBoxPurchaseLeast.Visible = true;
+                navBarGroup43.Visible = false;
+                navBarGroup44.Visible = false;
+                navBarGroup51.Visible = false;
+                navBarGroup46.Visible = false;
+                navBarGroup52.Visible = false;
+                navBarGroup53.Visible = false;
+                navBarItemLeastQuantity.Visible = false;
+                //navBarGroupLeastQuantity.Visible = false;
+                navBarGroup48.Visible = false;
+                navBarGroupSupplier.Visible = false;
+                navBarGroupPurchasesReport.Visible = false;
+                navBarGroup45.Visible = false;
+                navBarGroup55.Visible = false;
             }
             labUserName.Text = UserControl.EmpName;
         }
