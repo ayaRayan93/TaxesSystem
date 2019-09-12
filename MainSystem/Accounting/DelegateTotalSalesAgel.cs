@@ -186,7 +186,7 @@ namespace MainSystem
                 //}
                 //dr.Close();
 
-                string query = "select CustomerBill_ID from customer_bill  where Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                string query = "select CustomerBill_ID from customer_bill  where Type_Buy='آجل' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
            

@@ -40,6 +40,7 @@
             this.txtTotalSales = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,7 +66,8 @@
             this.TotalReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Safaya = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Factory_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label11 = new System.Windows.Forms.Label();
+            this.PercentageDelegate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DelegateProfit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -249,6 +251,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(922, 120);
             this.panel1.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.IndianRed;
+            this.label11.Location = new System.Drawing.Point(187, 80);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(19, 19);
+            this.label11.TabIndex = 205;
+            this.label11.Text = "*";
             // 
             // label10
             // 
@@ -507,13 +521,19 @@
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
             this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.Row.Options.UseFont = true;
+            this.gridView1.AppearancePrint.Row.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Delegate_ID,
             this.Delegate_Name,
             this.TotalSales,
             this.TotalReturn,
             this.Safaya,
-            this.Factory_Name});
+            this.Factory_Name,
+            this.PercentageDelegate,
+            this.DelegateProfit});
             this.gridView1.GridControl = this.GridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
@@ -541,7 +561,7 @@
             this.Delegate_Name.Name = "Delegate_Name";
             this.Delegate_Name.OptionsColumn.AllowEdit = false;
             this.Delegate_Name.Visible = true;
-            this.Delegate_Name.VisibleIndex = 4;
+            this.Delegate_Name.VisibleIndex = 6;
             // 
             // TotalSales
             // 
@@ -561,7 +581,7 @@
             this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
             this.TotalSales.Visible = true;
-            this.TotalSales.VisibleIndex = 2;
+            this.TotalSales.VisibleIndex = 4;
             // 
             // TotalReturn
             // 
@@ -581,7 +601,7 @@
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "اجمالي المرتجعات={0:0.##}")});
             this.TotalReturn.Visible = true;
-            this.TotalReturn.VisibleIndex = 1;
+            this.TotalReturn.VisibleIndex = 3;
             // 
             // Safaya
             // 
@@ -602,7 +622,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "اجمالي الصافي={0:0.##}")});
             this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
             this.Safaya.Visible = true;
-            this.Safaya.VisibleIndex = 0;
+            this.Safaya.VisibleIndex = 2;
             // 
             // Factory_Name
             // 
@@ -618,19 +638,33 @@
             this.Factory_Name.FieldName = "Factory_Name";
             this.Factory_Name.Name = "Factory_Name";
             this.Factory_Name.Visible = true;
-            this.Factory_Name.VisibleIndex = 3;
+            this.Factory_Name.VisibleIndex = 5;
             // 
-            // label11
+            // PercentageDelegate
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.IndianRed;
-            this.label11.Location = new System.Drawing.Point(187, 80);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(19, 19);
-            this.label11.TabIndex = 205;
-            this.label11.Text = "*";
+            this.PercentageDelegate.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PercentageDelegate.AppearanceCell.Options.UseFont = true;
+            this.PercentageDelegate.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PercentageDelegate.AppearanceHeader.Options.UseFont = true;
+            this.PercentageDelegate.Caption = "نسبة المندوب";
+            this.PercentageDelegate.FieldName = "PercentageDelegate";
+            this.PercentageDelegate.Name = "PercentageDelegate";
+            this.PercentageDelegate.Visible = true;
+            this.PercentageDelegate.VisibleIndex = 1;
+            // 
+            // DelegateProfit
+            // 
+            this.DelegateProfit.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DelegateProfit.AppearanceCell.Options.UseFont = true;
+            this.DelegateProfit.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DelegateProfit.AppearanceHeader.Options.UseFont = true;
+            this.DelegateProfit.Caption = "قيمة ربح المندوب";
+            this.DelegateProfit.FieldName = "DelegateProfit";
+            this.DelegateProfit.Name = "DelegateProfit";
+            this.DelegateProfit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DelegateProfit", "اجمالي ربح المندوب={0:0.##}")});
+            this.DelegateProfit.Visible = true;
+            this.DelegateProfit.VisibleIndex = 0;
             // 
             // DelegateSalesForCompany
             // 
@@ -693,5 +727,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private DevExpress.XtraGrid.Columns.GridColumn PercentageDelegate;
+        private DevExpress.XtraGrid.Columns.GridColumn DelegateProfit;
     }
 }

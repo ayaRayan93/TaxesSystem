@@ -252,8 +252,6 @@
             this.Delegate_ID.Caption = "Delegate_ID";
             this.Delegate_ID.FieldName = "Delegate_ID";
             this.Delegate_ID.Name = "Delegate_ID";
-            this.Delegate_ID.Visible = true;
-            this.Delegate_ID.VisibleIndex = 4;
             // 
             // Delegate_Name
             // 
@@ -530,13 +528,13 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // DelegateTotalSales
+            // DelegateTotalSalesAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 536);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "DelegateTotalSales";
+            this.Name = "DelegateTotalSalesAll";
             this.Text = "DelegateTotalSales";
             this.Load += new System.EventHandler(this.DelegateTotalSales_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
