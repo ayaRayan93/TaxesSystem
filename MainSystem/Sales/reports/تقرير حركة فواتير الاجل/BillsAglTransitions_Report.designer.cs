@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
@@ -54,7 +53,7 @@
             this.txtSafy = new System.Windows.Forms.TextBox();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -227,7 +226,7 @@
             this.Customer.FieldName = "ColCustomer";
             this.Customer.Name = "Customer";
             this.Customer.Visible = true;
-            this.Customer.VisibleIndex = 5;
+            this.Customer.VisibleIndex = 4;
             this.Customer.Width = 171;
             // 
             // Client_ID
@@ -242,7 +241,7 @@
             this.Client.FieldName = "ColClient";
             this.Client.Name = "Client";
             this.Client.Visible = true;
-            this.Client.VisibleIndex = 4;
+            this.Client.VisibleIndex = 3;
             this.Client.Width = 172;
             // 
             // Total
@@ -252,7 +251,7 @@
             this.Total.Name = "Total";
             this.Total.OptionsColumn.AllowEdit = false;
             this.Total.Visible = true;
-            this.Total.VisibleIndex = 6;
+            this.Total.VisibleIndex = 5;
             this.Total.Width = 96;
             // 
             // Discount
@@ -261,7 +260,7 @@
             this.Discount.FieldName = "ColDiscount";
             this.Discount.Name = "Discount";
             this.Discount.Visible = true;
-            this.Discount.VisibleIndex = 7;
+            this.Discount.VisibleIndex = 6;
             this.Discount.Width = 85;
             // 
             // Safy
@@ -270,7 +269,7 @@
             this.Safy.FieldName = "ColSafy";
             this.Safy.Name = "Safy";
             this.Safy.Visible = true;
-            this.Safy.VisibleIndex = 8;
+            this.Safy.VisibleIndex = 7;
             this.Safy.Width = 103;
             // 
             // tableLayoutPanel5
@@ -603,7 +602,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(627, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(144, 20);
@@ -611,7 +611,8 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(427, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(144, 20);

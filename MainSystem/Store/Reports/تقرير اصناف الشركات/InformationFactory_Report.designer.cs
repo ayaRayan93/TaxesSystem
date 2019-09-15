@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -38,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -75,6 +74,8 @@
             this.checkEditSets = new DevExpress.XtraEditors.CheckEdit();
             this.checkEditOffers = new DevExpress.XtraEditors.CheckEdit();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
@@ -709,6 +710,8 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.dateTimePicker2);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.comStore);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -717,12 +720,33 @@
             this.panel4.Size = new System.Drawing.Size(1037, 34);
             this.panel4.TabIndex = 79;
             // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(430, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 19);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "حتى تاريخ";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimePicker2.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(275, 7);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(149, 20);
+            this.dateTimePicker2.TabIndex = 6;
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label1.Location = new System.Drawing.Point(589, 8);
+            this.label1.Location = new System.Drawing.Point(672, 8);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(51, 19);
@@ -734,7 +758,7 @@
             this.comStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(458, 5);
+            this.comStore.Location = new System.Drawing.Point(541, 5);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(120, 24);
@@ -826,5 +850,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.Button btnSearchAll;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }

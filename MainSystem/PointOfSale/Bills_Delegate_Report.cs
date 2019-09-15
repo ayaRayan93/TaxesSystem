@@ -37,8 +37,8 @@ namespace MainSystem
             
             gridcontrol = gridControl1;
             
-            this.dateTimePicker1.Format = DateTimePickerFormat.Short;
-            this.dateTimePicker2.Format = DateTimePickerFormat.Short;
+            //this.dateTimePicker1.Format = DateTimePickerFormat.Short;
+            //this.dateTimePicker2.Format = DateTimePickerFormat.Short;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
