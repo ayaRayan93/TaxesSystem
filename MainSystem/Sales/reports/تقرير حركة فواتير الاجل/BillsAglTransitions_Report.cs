@@ -42,8 +42,8 @@ namespace MainSystem
             
             gridcontrol = gridControl1;
             
-            this.dateTimePicker1.Format = DateTimePickerFormat.Short;
-            this.dateTimePicker2.Format = DateTimePickerFormat.Short;
+            //this.dateTimePicker1.Format = DateTimePickerFormat.Short;
+            //this.dateTimePicker2.Format = DateTimePickerFormat.Short;
         }
 
         private void GridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)

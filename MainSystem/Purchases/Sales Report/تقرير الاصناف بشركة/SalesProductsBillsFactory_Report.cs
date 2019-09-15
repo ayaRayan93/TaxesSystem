@@ -46,8 +46,8 @@ namespace MainSystem
             comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            this.dateTimePicker1.Format = DateTimePickerFormat.Short;
-            this.dateTimePicker2.Format = DateTimePickerFormat.Short;
+            //this.dateTimePicker1.Format = DateTimePickerFormat.Short;
+            //this.dateTimePicker2.Format = DateTimePickerFormat.Short;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
