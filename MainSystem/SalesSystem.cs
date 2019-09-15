@@ -679,6 +679,43 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemBillsAgleTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1 || UserControl.userType == 15 || UserControl.userType == 16)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تقرير حركة الفواتير الآجل");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("تقرير حركة الفواتير الآجل");
+                        xtraTabPage = getTabPage(xtraTabControlSalesContent, "تقرير حركة الفواتير الآجل");
+                    }
+
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+                    BillsAglTransitions_Report objForm = new BillsAglTransitions_Report(this);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindDisplaySpecialOrderConfirm(XtraTabPage xtraTabPage)
         {
