@@ -66,9 +66,11 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Data_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CodeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.QuantitySaled = new DevExpress.XtraGrid.Columns.GridColumn();
             this.QuantityReturned = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PriceAD = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Cost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -79,8 +81,6 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.PriceAD = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -343,6 +343,7 @@
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeTo.Location = new System.Drawing.Point(616, 80);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
@@ -352,6 +353,7 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeFrom.Location = new System.Drawing.Point(616, 47);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
@@ -613,6 +615,14 @@
             this.CodeName.VisibleIndex = 5;
             this.CodeName.Width = 150;
             // 
+            // Code
+            // 
+            this.Code.Caption = "الكود";
+            this.Code.FieldName = "Code";
+            this.Code.Name = "Code";
+            this.Code.Visible = true;
+            this.Code.VisibleIndex = 6;
+            // 
             // QuantitySaled
             // 
             this.QuantitySaled.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -677,6 +687,14 @@
             this.Quantity.Visible = true;
             this.Quantity.VisibleIndex = 2;
             this.Quantity.Width = 173;
+            // 
+            // PriceAD
+            // 
+            this.PriceAD.Caption = "السعر بعد الخصم";
+            this.PriceAD.FieldName = "PriceAD";
+            this.PriceAD.Name = "PriceAD";
+            this.PriceAD.Visible = true;
+            this.PriceAD.VisibleIndex = 1;
             // 
             // Cost
             // 
@@ -755,22 +773,6 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 0;
-            // 
-            // PriceAD
-            // 
-            this.PriceAD.Caption = "السعر بعد الخصم";
-            this.PriceAD.FieldName = "PriceAD";
-            this.PriceAD.Name = "PriceAD";
-            this.PriceAD.Visible = true;
-            this.PriceAD.VisibleIndex = 1;
-            // 
-            // Code
-            // 
-            this.Code.Caption = "الكود";
-            this.Code.FieldName = "Code";
-            this.Code.Name = "Code";
-            this.Code.Visible = true;
-            this.Code.VisibleIndex = 6;
             // 
             // DelegateSalesForProduct
             // 
