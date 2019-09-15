@@ -596,6 +596,30 @@
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\DataHelperClassBillsTransitions.cs" />
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\BillsAglTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\BillsAglTransitions_Report.designer.cs">
+      <DependentUpon>BillsAglTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\BillsAglTransitions_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\BillsAglTransitions_Print.designer.cs">
+      <DependentUpon>BillsAglTransitions_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition_Report.designer.cs">
+      <DependentUpon>Print_AglTransition_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
+      <DependentUpon>Print_AglTransition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2894,6 +2918,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\CustomerReturnUsingPermissinNumber.resx">
       <DependentUpon>CustomerReturnUsingPermissinNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير حركة فواتير الاجل\BillsAglTransitions_Report.resx">
+      <DependentUpon>BillsAglTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير حركة فواتير الاجل\BillsAglTransitions_Print.resx">
+      <DependentUpon>BillsAglTransitions_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition_Report.resx">
+      <DependentUpon>Print_AglTransition_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.resx">
+      <DependentUpon>Print_AglTransition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\تقرير عملاء\Customer_Record.resx">
       <DependentUpon>Customer_Record.cs</DependentUpon>
