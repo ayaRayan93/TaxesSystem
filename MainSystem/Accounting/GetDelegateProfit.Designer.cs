@@ -66,9 +66,9 @@
             this.PercentageDelegate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtDelegateProfit = new System.Windows.Forms.TextBox();
             this.labTotalDelegateProfit = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDelegateProfit = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -128,13 +128,15 @@
             this.labelDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDelegate.Location = new System.Drawing.Point(765, 58);
             this.labelDelegate.Name = "labelDelegate";
-            this.labelDelegate.Size = new System.Drawing.Size(45, 16);
+            this.labelDelegate.Size = new System.Drawing.Size(44, 16);
             this.labelDelegate.TabIndex = 193;
             this.labelDelegate.Text = "مندوب";
             // 
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeTo.Location = new System.Drawing.Point(232, 57);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
@@ -143,6 +145,8 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeFrom.Location = new System.Drawing.Point(232, 21);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
@@ -155,7 +159,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(447, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.Size = new System.Drawing.Size(23, 16);
             this.label2.TabIndex = 190;
             this.label2.Text = "من";
             // 
@@ -204,7 +208,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.69295F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.16406F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.96875F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 362F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 363F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnReport, 2, 0);
@@ -231,7 +235,7 @@
             this.btnAdd.ImageZoom = 20;
             this.btnAdd.LabelPosition = 18;
             this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(457, 4);
+            this.btnAdd.Location = new System.Drawing.Point(458, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(86, 38);
@@ -252,7 +256,7 @@
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "طباعة تقرير";
-            this.btnReport.Location = new System.Drawing.Point(366, 4);
+            this.btnReport.Location = new System.Drawing.Point(367, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(85, 38);
@@ -304,7 +308,7 @@
             this.label5.Location = new System.Drawing.Point(764, 17);
             this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 18);
+            this.label5.Size = new System.Drawing.Size(37, 18);
             this.label5.TabIndex = 211;
             this.label5.Text = "الفرع";
             // 
@@ -577,6 +581,14 @@
             this.panel2.Size = new System.Drawing.Size(875, 70);
             this.panel2.TabIndex = 5;
             // 
+            // txtDelegateProfit
+            // 
+            this.txtDelegateProfit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDelegateProfit.Location = new System.Drawing.Point(232, 21);
+            this.txtDelegateProfit.Name = "txtDelegateProfit";
+            this.txtDelegateProfit.Size = new System.Drawing.Size(128, 26);
+            this.txtDelegateProfit.TabIndex = 2;
+            // 
             // labTotalDelegateProfit
             // 
             this.labTotalDelegateProfit.AutoSize = true;
@@ -596,14 +608,6 @@
             this.label1.Size = new System.Drawing.Size(199, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "اجمالي قيمة ربح المندوب";
-            // 
-            // txtDelegateProfit
-            // 
-            this.txtDelegateProfit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelegateProfit.Location = new System.Drawing.Point(232, 21);
-            this.txtDelegateProfit.Name = "txtDelegateProfit";
-            this.txtDelegateProfit.Size = new System.Drawing.Size(128, 26);
-            this.txtDelegateProfit.TabIndex = 2;
             // 
             // GetDelegateProfit
             // 

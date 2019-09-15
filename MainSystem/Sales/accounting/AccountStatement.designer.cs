@@ -389,7 +389,7 @@
             this.radDealer.Location = new System.Drawing.Point(548, 15);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(46, 20);
+            this.radDealer.Size = new System.Drawing.Size(45, 20);
             this.radDealer.TabIndex = 170;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -440,7 +440,7 @@
             this.radCon.Location = new System.Drawing.Point(603, 15);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(59, 20);
+            this.radCon.Size = new System.Drawing.Size(58, 20);
             this.radCon.TabIndex = 165;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -484,7 +484,7 @@
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEng.Location = new System.Drawing.Point(746, 45);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(110, 16);
+            this.labelEng.Size = new System.Drawing.Size(108, 16);
             this.labelEng.TabIndex = 169;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
@@ -508,6 +508,8 @@
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeTo.Location = new System.Drawing.Point(211, 68);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
@@ -516,6 +518,8 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeFrom.Location = new System.Drawing.Point(211, 32);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
@@ -528,7 +532,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(426, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.Size = new System.Drawing.Size(23, 16);
             this.label2.TabIndex = 159;
             this.label2.Text = "من";
             // 
@@ -570,7 +574,7 @@
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(860, 98);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 16);
+            this.label4.Size = new System.Drawing.Size(92, 16);
             this.label4.TabIndex = 178;
             this.label4.Text = "الرصيد الافتتاحي";
             // 

@@ -796,7 +796,7 @@
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEng.Location = new System.Drawing.Point(235, 34);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(110, 16);
+            this.labelEng.Size = new System.Drawing.Size(108, 16);
             this.labelEng.TabIndex = 179;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
@@ -835,7 +835,7 @@
             this.radDealer.Location = new System.Drawing.Point(37, 4);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(46, 20);
+            this.radDealer.Size = new System.Drawing.Size(45, 20);
             this.radDealer.TabIndex = 180;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -865,7 +865,7 @@
             this.radCon.Location = new System.Drawing.Point(92, 4);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(59, 20);
+            this.radCon.Size = new System.Drawing.Size(58, 20);
             this.radCon.TabIndex = 175;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -929,7 +929,9 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
             this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(11, 16);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(190, 26);
@@ -1045,7 +1047,7 @@
             this.label3.Location = new System.Drawing.Point(703, 22);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(38, 18);
+            this.label3.Size = new System.Drawing.Size(37, 18);
             this.label3.TabIndex = 8;
             this.label3.Text = "الفرع";
             // 

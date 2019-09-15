@@ -269,7 +269,7 @@
             this.label5.Location = new System.Drawing.Point(583, 11);
             this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 18);
+            this.label5.Size = new System.Drawing.Size(37, 18);
             this.label5.TabIndex = 202;
             this.label5.Text = "الفرع";
             // 
@@ -342,7 +342,7 @@
             this.label1.Location = new System.Drawing.Point(449, 48);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 18);
+            this.label1.Size = new System.Drawing.Size(50, 18);
             this.label1.TabIndex = 197;
             this.label1.Text = "الشركة";
             // 
@@ -418,13 +418,15 @@
             this.labelDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDelegate.Location = new System.Drawing.Point(450, 78);
             this.labelDelegate.Name = "labelDelegate";
-            this.labelDelegate.Size = new System.Drawing.Size(45, 16);
+            this.labelDelegate.Size = new System.Drawing.Size(44, 16);
             this.labelDelegate.TabIndex = 193;
             this.labelDelegate.Text = "مندوب";
             // 
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeTo.Location = new System.Drawing.Point(602, 78);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
@@ -433,6 +435,8 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeFrom.Location = new System.Drawing.Point(602, 48);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
@@ -446,7 +450,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(817, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.Size = new System.Drawing.Size(23, 16);
             this.label2.TabIndex = 190;
             this.label2.Text = "من";
             // 
@@ -614,13 +618,13 @@
             this.Factory_Name.Visible = true;
             this.Factory_Name.VisibleIndex = 3;
             // 
-            // DelegateSalesForCompany
+            // DelegateSalesForCompanyAgel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 551);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "DelegateSalesForCompany";
+            this.Name = "DelegateSalesForCompanyAgel";
             this.Text = "DelegateSalesForCompany";
             this.Load += new System.EventHandler(this.DelegateSalesForCompany_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

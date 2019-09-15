@@ -108,7 +108,9 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
             this.dateTimeFrom.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeFrom.Location = new System.Drawing.Point(434, 294);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(182, 27);
@@ -187,7 +189,7 @@
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(629, 201);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 19);
+            this.label3.Size = new System.Drawing.Size(83, 19);
             this.label3.TabIndex = 189;
             this.label3.Text = "نوع التسوية";
             // 
@@ -198,7 +200,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(629, 249);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 19);
+            this.label2.Size = new System.Drawing.Size(47, 19);
             this.label2.TabIndex = 186;
             this.label2.Text = "المبلغ";
             // 
@@ -218,7 +220,7 @@
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(629, 341);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 19);
+            this.label1.Size = new System.Drawing.Size(34, 19);
             this.label1.TabIndex = 184;
             this.label1.Text = "بيان";
             // 
@@ -260,7 +262,7 @@
             this.radDealer.Location = new System.Drawing.Point(407, 67);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(51, 23);
+            this.radDealer.Size = new System.Drawing.Size(50, 23);
             this.radDealer.TabIndex = 180;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -296,7 +298,7 @@
             this.labelClient.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClient.Location = new System.Drawing.Point(629, 140);
             this.labelClient.Name = "labelClient";
-            this.labelClient.Size = new System.Drawing.Size(40, 19);
+            this.labelClient.Size = new System.Drawing.Size(41, 19);
             this.labelClient.TabIndex = 174;
             this.labelClient.Text = "عميل";
             // 
@@ -308,7 +310,7 @@
             this.radCon.Location = new System.Drawing.Point(459, 67);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(67, 23);
+            this.radCon.Size = new System.Drawing.Size(68, 23);
             this.radCon.TabIndex = 175;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -323,7 +325,7 @@
             this.radEng.Location = new System.Drawing.Point(522, 67);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(75, 23);
+            this.radEng.Size = new System.Drawing.Size(76, 23);
             this.radEng.TabIndex = 176;
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
@@ -338,7 +340,7 @@
             this.radClient.Location = new System.Drawing.Point(604, 67);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radClient.Size = new System.Drawing.Size(58, 23);
+            this.radClient.Size = new System.Drawing.Size(59, 23);
             this.radClient.TabIndex = 177;
             this.radClient.TabStop = true;
             this.radClient.Text = "عميل";
@@ -352,7 +354,7 @@
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEng.Location = new System.Drawing.Point(629, 109);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(133, 19);
+            this.labelEng.Size = new System.Drawing.Size(134, 19);
             this.labelEng.TabIndex = 179;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             // 

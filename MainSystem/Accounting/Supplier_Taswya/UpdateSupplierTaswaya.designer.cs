@@ -96,7 +96,8 @@
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimeFrom.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeFrom.Location = new System.Drawing.Point(434, 240);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
