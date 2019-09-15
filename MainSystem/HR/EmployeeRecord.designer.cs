@@ -466,7 +466,8 @@
             // 
             this.dateTimePickerBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerBirthDate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePickerBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerBirthDate.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePickerBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerBirthDate.Location = new System.Drawing.Point(170, 502);
             this.dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
             this.dateTimePickerBirthDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -509,7 +510,8 @@
             // 
             this.dateTimePickerStartDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePickerStartDate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerStartDate.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerStartDate.Location = new System.Drawing.Point(692, 308);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
