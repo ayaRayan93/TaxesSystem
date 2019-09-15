@@ -35,6 +35,9 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.newChoose = new System.Windows.Forms.Button();
             this.txtStoreID = new System.Windows.Forms.TextBox();
             this.comStore = new System.Windows.Forms.ComboBox();
@@ -47,9 +50,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtBranchID = new System.Windows.Forms.TextBox();
-            this.comBranch = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -170,6 +170,38 @@
             this.panel1.Size = new System.Drawing.Size(860, 100);
             this.panel1.TabIndex = 214;
             // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtBranchID.Location = new System.Drawing.Point(227, 20);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.Size = new System.Drawing.Size(48, 24);
+            this.txtBranchID.TabIndex = 207;
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(282, 20);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.Size = new System.Drawing.Size(173, 24);
+            this.comBranch.TabIndex = 205;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(461, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 16);
+            this.label1.TabIndex = 206;
+            this.label1.Text = "الفرع";
+            // 
             // newChoose
             // 
             this.newChoose.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -222,6 +254,8 @@
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeTo.Location = new System.Drawing.Point(551, 58);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
@@ -230,6 +264,8 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimeFrom.Location = new System.Drawing.Point(551, 22);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
@@ -242,7 +278,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(766, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.Size = new System.Drawing.Size(23, 16);
             this.label2.TabIndex = 199;
             this.label2.Text = "من";
             // 
@@ -317,38 +353,6 @@
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowIndicator = false;
-            // 
-            // txtBranchID
-            // 
-            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(227, 20);
-            this.txtBranchID.Name = "txtBranchID";
-            this.txtBranchID.Size = new System.Drawing.Size(48, 24);
-            this.txtBranchID.TabIndex = 207;
-            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
-            // 
-            // comBranch
-            // 
-            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(282, 20);
-            this.comBranch.Name = "comBranch";
-            this.comBranch.Size = new System.Drawing.Size(173, 24);
-            this.comBranch.TabIndex = 205;
-            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(461, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 16);
-            this.label1.TabIndex = 206;
-            this.label1.Text = "الفرع";
             // 
             // PermissionsDelivery
             // 
