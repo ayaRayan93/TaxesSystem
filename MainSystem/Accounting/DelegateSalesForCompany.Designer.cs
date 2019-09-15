@@ -445,6 +445,7 @@
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeTo.Location = new System.Drawing.Point(602, 78);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
@@ -453,6 +454,7 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeFrom.Location = new System.Drawing.Point(602, 48);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
