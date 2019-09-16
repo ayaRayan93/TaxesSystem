@@ -465,15 +465,15 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (billNumber != 0 && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
+                    check = (billNumber != 0 && cmbBranch.Text != "" && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (billNumber != 0 && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (billNumber != 0 && cmbBranch.Text != "" && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (billNumber != 0 && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (billNumber != 0 && cmbBranch.Text != "" && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
 
                 if(check)
