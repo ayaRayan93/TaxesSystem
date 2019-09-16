@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -68,12 +69,14 @@
             this.Factory_Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PercentageDelegate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DelegateProfit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -580,10 +583,13 @@
             this.TotalSales.AppearanceHeader.Options.UseTextOptions = true;
             this.TotalSales.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.TotalSales.Caption = "اجمالي المبيعات";
+            this.TotalSales.DisplayFormat.FormatString = "{0:n2}";
+            this.TotalSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
             this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
+            this.TotalSales.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 4;
             // 
@@ -687,6 +693,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -733,5 +740,6 @@
         private System.Windows.Forms.Label label11;
         private DevExpress.XtraGrid.Columns.GridColumn PercentageDelegate;
         private DevExpress.XtraGrid.Columns.GridColumn DelegateProfit;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
     }
 }
