@@ -486,6 +486,12 @@
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.designer.cs">
       <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Supplier_Bill_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Supplier_Bill_Update.designer.cs">
+      <DependentUpon>Supplier_Bill_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2819,6 +2825,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.resx">
       <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Supplier_Bill_Update.resx">
+      <DependentUpon>Supplier_Bill_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.resx">
       <DependentUpon>Print_SupplierReturnBillCopy.cs</DependentUpon>
