@@ -34,7 +34,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtTotalSafay = new System.Windows.Forms.TextBox();
+            this.txtTotalProfit = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTotalReturn = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -70,6 +70,8 @@
             this.PercentageDelegate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DelegateProfit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.txtTotalSafay = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,7 +89,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSearch.Location = new System.Drawing.Point(57, 78);
+            this.btnSearch.Location = new System.Drawing.Point(109, 78);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(93, 32);
@@ -110,7 +112,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(922, 551);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1026, 551);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -128,7 +130,7 @@
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(916, 44);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1020, 44);
             this.tableLayoutPanel2.TabIndex = 8;
             // 
             // btnReport
@@ -145,16 +147,18 @@
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "طباعة تقرير";
-            this.btnReport.Location = new System.Drawing.Point(821, 4);
+            this.btnReport.Location = new System.Drawing.Point(914, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(92, 36);
+            this.btnReport.Size = new System.Drawing.Size(103, 36);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.txtTotalSafay);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.txtTotalProfit);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.txtTotalReturn);
             this.panel2.Controls.Add(this.label8);
@@ -163,17 +167,17 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(812, 38);
+            this.panel2.Size = new System.Drawing.Size(905, 38);
             this.panel2.TabIndex = 4;
             // 
-            // txtTotalSafay
+            // txtTotalProfit
             // 
-            this.txtTotalSafay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalSafay.Location = new System.Drawing.Point(31, 9);
-            this.txtTotalSafay.Name = "txtTotalSafay";
-            this.txtTotalSafay.ReadOnly = true;
-            this.txtTotalSafay.Size = new System.Drawing.Size(114, 26);
-            this.txtTotalSafay.TabIndex = 5;
+            this.txtTotalProfit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalProfit.Location = new System.Drawing.Point(31, 9);
+            this.txtTotalProfit.Name = "txtTotalProfit";
+            this.txtTotalProfit.ReadOnly = true;
+            this.txtTotalProfit.Size = new System.Drawing.Size(114, 26);
+            this.txtTotalProfit.TabIndex = 5;
             // 
             // label9
             // 
@@ -182,14 +186,14 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(151, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 19);
+            this.label9.Size = new System.Drawing.Size(74, 19);
             this.label9.TabIndex = 4;
-            this.label9.Text = "اجمالي الصافي";
+            this.label9.Text = "ربح المندوب";
             // 
             // txtTotalReturn
             // 
             this.txtTotalReturn.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalReturn.Location = new System.Drawing.Point(335, 9);
+            this.txtTotalReturn.Location = new System.Drawing.Point(455, 9);
             this.txtTotalReturn.Name = "txtTotalReturn";
             this.txtTotalReturn.ReadOnly = true;
             this.txtTotalReturn.Size = new System.Drawing.Size(114, 26);
@@ -200,7 +204,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(455, 9);
+            this.label8.Location = new System.Drawing.Point(575, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 19);
             this.label8.TabIndex = 2;
@@ -209,7 +213,7 @@
             // txtTotalSales
             // 
             this.txtTotalSales.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalSales.Location = new System.Drawing.Point(568, 9);
+            this.txtTotalSales.Location = new System.Drawing.Point(688, 9);
             this.txtTotalSales.Name = "txtTotalSales";
             this.txtTotalSales.ReadOnly = true;
             this.txtTotalSales.Size = new System.Drawing.Size(114, 26);
@@ -220,7 +224,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(688, 9);
+            this.label7.Location = new System.Drawing.Point(808, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 19);
             this.label7.TabIndex = 0;
@@ -252,7 +256,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(922, 120);
+            this.panel1.Size = new System.Drawing.Size(1026, 120);
             this.panel1.TabIndex = 0;
             // 
             // label11
@@ -261,7 +265,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.IndianRed;
-            this.label11.Location = new System.Drawing.Point(187, 80);
+            this.label11.Location = new System.Drawing.Point(239, 80);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(19, 19);
             this.label11.TabIndex = 205;
@@ -273,7 +277,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.IndianRed;
-            this.label10.Location = new System.Drawing.Point(322, 14);
+            this.label10.Location = new System.Drawing.Point(374, 14);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(19, 19);
             this.label10.TabIndex = 204;
@@ -285,7 +289,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(583, 11);
+            this.label5.Location = new System.Drawing.Point(635, 11);
             this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 18);
@@ -298,7 +302,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label6.Location = new System.Drawing.Point(583, 11);
+            this.label6.Location = new System.Drawing.Point(635, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 17);
@@ -313,7 +317,7 @@
             this.comBranch.BackColor = System.Drawing.Color.White;
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(405, 11);
+            this.comBranch.Location = new System.Drawing.Point(457, 11);
             this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comBranch.Name = "comBranch";
             this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -327,7 +331,7 @@
             this.txtBranchID.BackColor = System.Drawing.Color.White;
             this.txtBranchID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(346, 11);
+            this.txtBranchID.Location = new System.Drawing.Point(398, 11);
             this.txtBranchID.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.Size = new System.Drawing.Size(53, 24);
@@ -343,7 +347,7 @@
             this.newChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.newChoose.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newChoose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.newChoose.Location = new System.Drawing.Point(57, 40);
+            this.newChoose.Location = new System.Drawing.Point(109, 40);
             this.newChoose.Margin = new System.Windows.Forms.Padding(0);
             this.newChoose.Name = "newChoose";
             this.newChoose.Size = new System.Drawing.Size(93, 32);
@@ -358,7 +362,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(449, 48);
+            this.label1.Location = new System.Drawing.Point(501, 48);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 18);
@@ -372,7 +376,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label4.Location = new System.Drawing.Point(449, 48);
+            this.label4.Location = new System.Drawing.Point(501, 48);
             this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 17);
@@ -388,7 +392,7 @@
             this.comFactory.BackColor = System.Drawing.Color.White;
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(271, 48);
+            this.comFactory.Location = new System.Drawing.Point(323, 48);
             this.comFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -403,7 +407,7 @@
             this.txtFactory.BackColor = System.Drawing.Color.White;
             this.txtFactory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtFactory.Location = new System.Drawing.Point(212, 48);
+            this.txtFactory.Location = new System.Drawing.Point(264, 48);
             this.txtFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.Size = new System.Drawing.Size(53, 24);
@@ -416,7 +420,7 @@
             // 
             this.txtDelegateID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDelegateID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegateID.Location = new System.Drawing.Point(212, 78);
+            this.txtDelegateID.Location = new System.Drawing.Point(264, 78);
             this.txtDelegateID.Name = "txtDelegateID";
             this.txtDelegateID.Size = new System.Drawing.Size(53, 24);
             this.txtDelegateID.TabIndex = 194;
@@ -427,7 +431,7 @@
             this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(271, 78);
+            this.comDelegate.Location = new System.Drawing.Point(323, 78);
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDelegate.Size = new System.Drawing.Size(175, 24);
@@ -439,7 +443,7 @@
             this.labelDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelDelegate.AutoSize = true;
             this.labelDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDelegate.Location = new System.Drawing.Point(450, 78);
+            this.labelDelegate.Location = new System.Drawing.Point(502, 78);
             this.labelDelegate.Name = "labelDelegate";
             this.labelDelegate.Size = new System.Drawing.Size(45, 16);
             this.labelDelegate.TabIndex = 193;
@@ -450,7 +454,7 @@
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
             this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeTo.Location = new System.Drawing.Point(602, 78);
+            this.dateTimeTo.Location = new System.Drawing.Point(654, 78);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
             this.dateTimeTo.TabIndex = 188;
@@ -460,7 +464,7 @@
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
             this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeFrom.Location = new System.Drawing.Point(602, 48);
+            this.dateTimeFrom.Location = new System.Drawing.Point(654, 48);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFrom.TabIndex = 189;
@@ -471,7 +475,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(817, 53);
+            this.label2.Location = new System.Drawing.Point(869, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 190;
@@ -482,7 +486,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(816, 83);
+            this.label3.Location = new System.Drawing.Point(868, 83);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 191;
@@ -499,7 +503,7 @@
             this.GridControl1.MainView = this.gridView1;
             this.GridControl1.Margin = new System.Windows.Forms.Padding(0);
             this.GridControl1.Name = "GridControl1";
-            this.GridControl1.Size = new System.Drawing.Size(922, 381);
+            this.GridControl1.Size = new System.Drawing.Size(1026, 381);
             this.GridControl1.TabIndex = 1;
             this.GridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -626,6 +630,8 @@
             this.Safaya.AppearanceHeader.Options.UseTextOptions = true;
             this.Safaya.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Safaya.Caption = "الصافي";
+            this.Safaya.DisplayFormat.FormatString = "{0:n2}";
+            this.Safaya.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
             this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -669,6 +675,8 @@
             this.DelegateProfit.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DelegateProfit.AppearanceHeader.Options.UseFont = true;
             this.DelegateProfit.Caption = "قيمة ربح المندوب";
+            this.DelegateProfit.DisplayFormat.FormatString = "{0:n2}";
+            this.DelegateProfit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.DelegateProfit.FieldName = "DelegateProfit";
             this.DelegateProfit.Name = "DelegateProfit";
             this.DelegateProfit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -676,11 +684,31 @@
             this.DelegateProfit.Visible = true;
             this.DelegateProfit.VisibleIndex = 0;
             // 
+            // txtTotalSafay
+            // 
+            this.txtTotalSafay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalSafay.Location = new System.Drawing.Point(245, 9);
+            this.txtTotalSafay.Name = "txtTotalSafay";
+            this.txtTotalSafay.ReadOnly = true;
+            this.txtTotalSafay.Size = new System.Drawing.Size(114, 26);
+            this.txtTotalSafay.TabIndex = 7;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(365, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(87, 19);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "اجمالي الصافي";
+            // 
             // DelegateSalesForCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 551);
+            this.ClientSize = new System.Drawing.Size(1026, 551);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DelegateSalesForCompany";
             this.Text = "DelegateSalesForCompany";
@@ -730,7 +758,7 @@
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.TextBox txtBranchID;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtTotalSafay;
+        private System.Windows.Forms.TextBox txtTotalProfit;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTotalReturn;
         private System.Windows.Forms.Label label8;
@@ -741,5 +769,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn PercentageDelegate;
         private DevExpress.XtraGrid.Columns.GridColumn DelegateProfit;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private System.Windows.Forms.TextBox txtTotalSafay;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,6 +104,8 @@ namespace MainSystem
                 mdt = new DataTable();
                 mdt = createDataTable();
                 loaded = true;
+
+           
             }
             catch (Exception ex)
             {
@@ -443,17 +446,33 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    dbconnection.Open();
-                    string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
+                    //dbconnection.Open();
+                    //string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
+                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    //if (com.ExecuteScalar() != null)
+                    //{
+                    //    labPermissionNum.Text = (Convert.ToInt32(com.ExecuteScalar()) + 1).ToString();
+                    //}
+                    //else
+                    //{
+                    //    labPermissionNum.Text = "1";
+                    //}
+                    if (!File.Exists("TaswaySubCount.txt"))
                     {
-                        labPermissionNum.Text = (Convert.ToInt32(com.ExecuteScalar()) + 1).ToString();
+                        using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
+                        {
+                            writer.WriteLine(180);
+                        }
+                        labPermissionNum.Text ="180";
                     }
                     else
                     {
-                        labPermissionNum.Text = "1";
+                        int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
+                        count++;
+                     
+                        labPermissionNum.Text = count+"";
                     }
+                  
                     txtNote.Focus();
                 }
             }
@@ -673,17 +692,21 @@ namespace MainSystem
                 comStore.Enabled = true;
                 txtNote.ReadOnly = false;
                 gridControl2.Enabled = true;
-                dbconnection.Open();
-                string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    labPermissionNum.Text = (Convert.ToInt32(com.ExecuteScalar()) + 1).ToString();
-                }
-                else
-                {
-                    labPermissionNum.Text = "1";
-                }
+                //dbconnection.Open();
+                //string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
+                //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                //if (com.ExecuteScalar() != null)
+                //{
+                //    labPermissionNum.Text = (Convert.ToInt32(com.ExecuteScalar()) + 1).ToString();
+                //}
+                //else
+                //{
+                //    labPermissionNum.Text = "1";
+                //}
+                int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
+                count++;
+
+                labPermissionNum.Text = count + "";
                 mdt.Rows.Clear();
                 btnReport.Enabled = false;
             }
@@ -906,6 +929,10 @@ namespace MainSystem
                     UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
 
                     MessageBox.Show("تم الحفظ");
+                    using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
+                    {
+                        writer.WriteLine(labPermissionNum.Text);
+                    }
                     btnReport.Enabled = true;
                     comStore.Enabled = false;
                     txtNote.ReadOnly = true;

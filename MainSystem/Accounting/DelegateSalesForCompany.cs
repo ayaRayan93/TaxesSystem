@@ -56,8 +56,7 @@ namespace MainSystem
                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                 comFactory.Text = "";
                 txtFactory.Text = "";
-
-               
+                
 
                 loaded = true;
             }
@@ -383,15 +382,15 @@ namespace MainSystem
             string query = "";
             if (txtFactory.Text != "")
             {
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(product_bill.PriceAD*Quantity),max(PercentageDelegate) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and data.Factory_ID=" + txtFactory.Text + " group by delegate.Delegate_ID ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(product_bill.PriceAD*Quantity),2),max(PercentageDelegate) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and data.Factory_ID=" + txtFactory.Text + " group by delegate.Delegate_ID ";
             }
             else if (txtDelegateID.Text != "")
             {
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(product_bill.PriceAD*Quantity),max(PercentageDelegate) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join sellprice on sellprice.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and delegate.Delegate_ID=" + txtDelegateID.Text + " group by Factory_Name ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(product_bill.PriceAD*Quantity),2),max(PercentageDelegate) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID inner join sellprice on sellprice.Data_ID=product_bill.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and delegate.Delegate_ID=" + txtDelegateID.Text + " group by Factory_Name ";
             }
             else
             {
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(product_bill.PriceAD*Quantity),max(PercentageDelegate) from product_bill left join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID left join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ")  ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(product_bill.PriceAD*Quantity),2),max(PercentageDelegate) from product_bill left join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID left join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ")  ";
             }
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -432,17 +431,17 @@ namespace MainSystem
             string query = "";
             if (txtFactory.Text != "")
             {
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD),max(PercentageDelegate) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by Factory_Name ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(TotalAD),2),max(PercentageDelegate) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by Factory_Name ";
             }
             else if (txtDelegateID.Text != "")
             {
                 //query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where customer_return_bill.CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by factory.Factory_ID";
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD),max(PercentageDelegate) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join sellprice on sellprice.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") and  customer_return_bill.Branch_ID=" + txtBranchID.Text + " " + subQuery + " group by factory.Factory_ID";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(TotalAD),2),max(PercentageDelegate) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join sellprice on sellprice.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") and  customer_return_bill.Branch_ID=" + txtBranchID.Text + " " + subQuery + " group by factory.Factory_ID";
 
             }
             else
             {
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD),max(PercentageDelegate) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(TotalAD),2),max(PercentageDelegate) from customer_return_bill_details inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  ";
             }
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -532,9 +531,9 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Factory_Name", typeof(string)));
             _Table.Columns.Add(new DataColumn("TotalSales", typeof(string)));
             _Table.Columns.Add(new DataColumn("TotalReturn", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Safaya", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Safaya", typeof(decimal)));
             _Table.Columns.Add(new DataColumn("PercentageDelegate", typeof(string)));
-            _Table.Columns.Add(new DataColumn("DelegateProfit", typeof(string)));
+            _Table.Columns.Add(new DataColumn("DelegateProfit", typeof(decimal)));
             return _Table;
         }
         private void btnReport_Click(object sender, EventArgs e)
@@ -551,7 +550,7 @@ namespace MainSystem
         }
         public void CalTotal(DataTable _Tabl)
         {
-            double totalSales = 0, totalReturn = 0, totalSafay = 0;
+            double totalSales = 0, totalReturn = 0, totalSafay = 0,totalProfit=0;
             foreach (DataRow item in _Tabl.Rows)
             {
                 if(item["TotalSales"].ToString()!="")
@@ -560,10 +559,14 @@ namespace MainSystem
                     totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
                 if (item["Safaya"].ToString() != "")
                     totalSafay += Convert.ToDouble(item["Safaya"].ToString());
+                if (item["DelegateProfit"].ToString() != "")
+                    totalProfit += Convert.ToDouble(item["DelegateProfit"].ToString());
             }
-            txtTotalSales.Text = totalSales.ToString();
-            txtTotalReturn.Text = totalReturn.ToString();
-            txtTotalSafay.Text = totalSafay.ToString();
+            txtTotalSales.Text = totalSales.ToString("0.00");
+            txtTotalReturn.Text = totalReturn.ToString("0.00");
+            txtTotalSafay.Text = totalSafay.ToString("0.00");
+            txtTotalProfit.Text = totalProfit.ToString("0.00");
+
         }
     }
     public class dataX

@@ -318,9 +318,9 @@ namespace MainSystem
 
             _Table.Columns.Add(new DataColumn("Delegate_ID", typeof(int)));
             _Table.Columns.Add(new DataColumn("Delegate_Name", typeof(string)));
-            _Table.Columns.Add(new DataColumn("TotalSales", typeof(string)));
-            _Table.Columns.Add(new DataColumn("TotalReturn", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Safaya", typeof(string)));
+            _Table.Columns.Add(new DataColumn("TotalSales", typeof(decimal)));
+            _Table.Columns.Add(new DataColumn("TotalReturn", typeof(decimal)));
+            _Table.Columns.Add(new DataColumn("Safaya", typeof(decimal)));
             return _Table;
         }
         public void CalTotal(DataTable _Tabl)
