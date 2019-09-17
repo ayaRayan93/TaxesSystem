@@ -184,7 +184,7 @@ namespace MainSystem
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnUpdatePrice_Click(object sender, EventArgs e)
         {
             try
             {
@@ -198,6 +198,22 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            /*try
+            {
+                if (row1 != null)
+                {
+                    Supplier_Bill_Update form = new Supplier_Bill_Update(this, row1);
+                    form.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
         }
 
         public void search(int supplierId)

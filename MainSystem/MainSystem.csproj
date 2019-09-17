@@ -275,29 +275,29 @@
     <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.designer.cs">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\Print_SupplierBills.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Print_SupplierBills.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\Print_SupplierBills.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Print_SupplierBills.designer.cs">
       <DependentUpon>Print_SupplierBills.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\Report_SupplierBills.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Report_SupplierBills.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\Report_SupplierBills.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Report_SupplierBills.designer.cs">
       <DependentUpon>Report_SupplierBills.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\SupplierBills_Items.cs" />
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\SupplierBills_Items.cs" />
     <Compile Include="Accounting\Supplier_Payments\SupplierTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierTransitions_Report.designer.cs">
       <DependentUpon>SupplierTransitions_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\SupplierBills_Report.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\SupplierBills_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\SupplierBills_Report.designer.cs">
+    <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\SupplierBills_Report.designer.cs">
       <DependentUpon>SupplierBills_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.cs">
@@ -485,6 +485,12 @@
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.designer.cs">
       <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Supplier_Bill_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Supplier_Bill_Update.designer.cs">
+      <DependentUpon>Supplier_Bill_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.cs">
       <SubType>Component</SubType>
@@ -2613,16 +2619,16 @@
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.resx">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\Print_SupplierBills.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Print_SupplierBills.resx">
       <DependentUpon>Print_SupplierBills.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\Report_SupplierBills.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Report_SupplierBills.resx">
       <DependentUpon>Report_SupplierBills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierTransitions_Report.resx">
       <DependentUpon>SupplierTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين\SupplierBills_Report.resx">
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\SupplierBills_Report.resx">
       <DependentUpon>SupplierBills_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierSoonPayments_Report.resx">
@@ -2819,6 +2825,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Report_SupplierBillCopy.resx">
       <DependentUpon>Report_SupplierBillCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Supplier_Bill_Update.resx">
+      <DependentUpon>Supplier_Bill_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\Print_SupplierReturnBillCopy.resx">
       <DependentUpon>Print_SupplierReturnBillCopy.cs</DependentUpon>
