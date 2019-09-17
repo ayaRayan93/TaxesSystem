@@ -282,6 +282,8 @@
             this.TotalSales.AppearanceHeader.Options.UseTextOptions = true;
             this.TotalSales.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.TotalSales.Caption = "اجمالي المبيعات";
+            this.TotalSales.DisplayFormat.FormatString = "{0:n2}";
+            this.TotalSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
             this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -303,6 +305,8 @@
             this.TotalReturn.AppearanceHeader.Options.UseTextOptions = true;
             this.TotalReturn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.TotalReturn.Caption = "اجمالي المرتجعات";
+            this.TotalReturn.DisplayFormat.FormatString = "{0:n2}";
+            this.TotalReturn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.TotalReturn.FieldName = "TotalReturn";
             this.TotalReturn.Name = "TotalReturn";
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -324,6 +328,8 @@
             this.Safaya.AppearanceHeader.Options.UseTextOptions = true;
             this.Safaya.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Safaya.Caption = "الصافي";
+            this.Safaya.DisplayFormat.FormatString = "{0:n2}";
+            this.Safaya.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
             this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
