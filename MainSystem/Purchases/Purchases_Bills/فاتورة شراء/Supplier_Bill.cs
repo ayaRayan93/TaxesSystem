@@ -275,8 +275,8 @@ namespace MainSystem
             {
                 if (row1 != null)
                 {
-                    if (!IsAdded())
-                    {
+                    //if (!IsAdded())
+                    //{
                         if (row1["سعر الشراء"].ToString() != "")
                         {
                             if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
@@ -371,11 +371,11 @@ namespace MainSystem
                         {
                             MessageBox.Show("يجب تسعير البند اولا");
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("هذا البند تم اضافتة من قبل");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("هذا البند تم اضافتة من قبل");
+                    //}
                 }
                 else
                 {

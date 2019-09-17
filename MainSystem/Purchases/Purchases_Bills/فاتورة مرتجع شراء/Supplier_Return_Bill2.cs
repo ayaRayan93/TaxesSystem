@@ -378,8 +378,8 @@ namespace MainSystem
             {
                 if (row1 != null)
                 {
-                    if (!IsAdded())
-                    {
+                    //if (!IsAdded())
+                    //{
                         if (Convert.ToDouble(row1["متر/قطعة"].ToString()) > 0)
                         {
                             if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
@@ -489,11 +489,11 @@ namespace MainSystem
                         {
                             MessageBox.Show("لا يوجد كمية كافية من البند");
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("هذا البند تم اضافتة من قبل");
-                    }
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("هذا البند تم اضافتة من قبل");
+                    //}
                 }
                 else
                 {
