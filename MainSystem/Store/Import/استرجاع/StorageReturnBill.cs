@@ -560,11 +560,11 @@ namespace MainSystem
                             #region add with permission
                             if (int.TryParse(txtPermissionNum.Text, out permNum))
                             {
-                                if (IsAdded())
-                                {
-                                    MessageBox.Show("هذا العنصر تم اضافتة من قبل");
-                                    return;
-                                }
+                                //if (IsAdded())
+                                //{
+                                //    MessageBox.Show("هذا العنصر تم اضافتة من قبل");
+                                //    return;
+                                //}
 
                                 if (row1["عدد البلتات"].ToString() != "")
                                 {
