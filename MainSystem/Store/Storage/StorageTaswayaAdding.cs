@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -449,17 +450,35 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    dbconnection.Open();
-                    string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
+                    //dbconnection.Open();
+                    //string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
+                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    //if (com.ExecuteScalar() != null)
+                    //{
+                    //    int x = Convert.ToInt32(com.ExecuteScalar());
+                    //    labPermissionNum.Text = (x + 1).ToString();
+                    //}
+                    //else
+                    //{
+                    //    labPermissionNum.Text = "1";
+                    //}
+                    if (!File.Exists("TaswayAddCount.txt"))
                     {
-                        int x = Convert.ToInt32(com.ExecuteScalar());
-                        labPermissionNum.Text = (x + 1).ToString();
+                        using (StreamWriter writer = new StreamWriter("TaswayAddCount.txt"))
+                        {
+                            writer.WriteLine(363);
+                        }
+                        labPermissionNum.Text = "363";
                     }
                     else
                     {
-                        labPermissionNum.Text = "1";
+                        int count = Convert.ToInt16(File.ReadAllText("TaswayAddCount.txt"));
+                        count++;
+                        labPermissionNum.Text = count + "";
+                        using (StreamWriter writer = new StreamWriter("TaswayAddCount.txt"))
+                        {
+                            writer.WriteLine(labPermissionNum.Text);
+                        }
                     }
                     txtNote.Focus();
                 }
@@ -677,18 +696,25 @@ namespace MainSystem
                 labVcode.Visible = true;
                 labVaddingMeter.Visible = true;
                 labVnote.Visible = true;
-                dbconnection.Close();
-                dbconnection.Open();
-                string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
+                //dbconnection.Close();
+                //dbconnection.Open();
+                //string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
+                //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                //if (com.ExecuteScalar() != null)
+                //{
+                //    int x = Convert.ToInt32(com.ExecuteScalar());
+                //    labPermissionNum.Text = (x + 1).ToString();
+                //}
+                //else
+                //{
+                //    labPermissionNum.Text = "1";
+                //}
+                int count = Convert.ToInt16(File.ReadAllText("TaswayAddCount.txt"));
+                count++;
+                labPermissionNum.Text = count + "";
+                using (StreamWriter writer = new StreamWriter("TaswayAddCount.txt"))
                 {
-                    int x = Convert.ToInt32(com.ExecuteScalar());
-                    labPermissionNum.Text = (x + 1).ToString();
-                }
-                else
-                {
-                    labPermissionNum.Text = "1";
+                    writer.WriteLine(labPermissionNum.Text);
                 }
                 mdt.Rows.Clear();
                 btnReport.Enabled = false;
@@ -916,6 +942,8 @@ namespace MainSystem
 
                     UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
                     MessageBox.Show("تم الحفظ");
+
+                  
 
                     btnReport.Enabled = true;
                     comStore.Enabled = false;
