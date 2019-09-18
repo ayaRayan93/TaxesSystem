@@ -17,7 +17,8 @@ namespace MainSystem
     public partial class Supplier_Bill_Update : Form
     {
         MySqlConnection conn, conn2;
-        
+
+        bool load = false;
         bool flag = false;
         bool loaded = false;
         bool loadPerm = false;
@@ -25,15 +26,15 @@ namespace MainSystem
         int storeId = 0;
         PurchaseBill_Report purchasesMainForm;
         DataRow row1 = null;
-        int rowHandle = 0;
         DataRow selRow = null;
+        int rowHandle = 0;
 
-        public Supplier_Bill_Update(PurchaseBill_Report PurchaseBillReport, DataRow SelRow)
+        public Supplier_Bill_Update(PurchaseBill_Report mainForm, DataRow SelRow)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             conn2 = new MySqlConnection(connection.connectionString);
-            purchasesMainForm = PurchaseBillReport;
+            purchasesMainForm = mainForm;
             selRow = SelRow;
         }
 
@@ -41,15 +42,16 @@ namespace MainSystem
         {
             try
             {
-                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                //storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
-
-                string supString = BaseData.StoreID;
-                storeId = Convert.ToInt32(supString);
-
-                loadFunc();
-                
-                flag = true;
+                string query = "select Store_ID,Store_Name from store";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comStore.DataSource = dt;
+                comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comStore.SelectedIndex = -1;
+                load = true;
+                comStore.Text = selRow["المخزن"].ToString();
             }
             catch (Exception ex)
             {
@@ -73,14 +75,9 @@ namespace MainSystem
                     comSupplier.DataSource = dt;
                     comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                     comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                    comSupplier.Text = "";
-
-                    if (comSupPerm.DataSource != null)
-                    {
-                        comSupPerm.DataSource = null;
-                    }
-                    NewBill();
+                    comSupplier.SelectedIndex = -1;
                     loadPerm = true;
+                    comSupplier.Text = selRow["المورد"].ToString();
                 }
                 catch (Exception ex)
                 {
@@ -97,17 +94,16 @@ namespace MainSystem
                 try
                 {
                     loadSup = false;
-                    string query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and import_supplier_permission.Purchase_Bill=0";
+                    string query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     comSupPerm.DataSource = dt;
                     comSupPerm.DisplayMember = dt.Columns["Supplier_Permission_Number"].ToString();
                     comSupPerm.ValueMember = dt.Columns["ImportSupplierPermission_ID"].ToString();
-                    comSupPerm.Text = "";
-                    
-                    NewBill();
+                    comSupPerm.SelectedIndex = -1;
                     loadSup = true;
+                    comSupPerm.Text = selRow["اذن الاستلام"].ToString();
                 }
                 catch (Exception ex)
                 {
@@ -148,7 +144,7 @@ namespace MainSystem
                     gridView1.Columns[1].Width = 170;
                     gridView1.Columns[3].Width = 300;
                     //,purchasing_price.ProfitRatio as 'ضريبة القيمة المضافة'
-                    q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Total_Meters as 'متر/قطعة',purchasing_price.Price AS 'السعر',purchasing_price.Purchasing_Discount AS 'نسبة الخصم',purchasing_price.Normal_Increase AS 'الزيادة العادية',purchasing_price.Categorical_Increase AS 'الزيادة القطعية',purchasing_price.Last_Price AS 'السعر بالزيادة',purchasing_price.Purchasing_Price AS 'سعر الشراء',(purchasing_price.Purchasing_Price*supplier_permission_details.Total_Meters) as 'الاجمالى بعد',purchasing_price.PurchasingPrice_ID,purchasing_price.Price_Type as 'نوع السعر',supplier_permission_details.Supplier_Permission_Details_ID FROM storage_import_permission INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID inner join supplier_permission_details on supplier_permission_details.ImportSupplierPermission_ID=import_supplier_permission.ImportSupplierPermission_ID INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where storage_import_permission.StorageImportPermission_ID=0";
+                    q = "SELECT DISTINCT data.Data_ID,data.Code AS 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_bill_details.Total_Meters as 'متر/قطعة',supplier_bill_details.Price AS 'السعر',supplier_bill_details.Purchasing_Discount AS 'نسبة الخصم',supplier_bill_details.Normal_Increase AS 'الزيادة العادية',supplier_bill_details.Categorical_Increase AS 'الزيادة القطعية',supplier_bill_details.Last_Price AS 'السعر بالزيادة',supplier_bill_details.Purchasing_Price AS 'سعر الشراء',(supplier_bill_details.Purchasing_Price*supplier_bill_details.Total_Meters) as 'الاجمالى بعد',purchasing_price.PurchasingPrice_ID,supplier_bill_details.Price_Type as 'نوع السعر',supplier_bill_details.Supplier_Permission_Details_ID FROM supplier_bill_details INNER JOIN supplier_bill ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON supplier_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID left JOIN purchasing_price ON data.Data_ID = purchasing_price.Data_ID where supplier_bill.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and supplier_bill.Supplier_ID = " + comSupplier.SelectedValue.ToString() + " and supplier_bill.Supplier_Permission_Number=" + comSupPerm.SelectedValue.ToString();
                     da = new MySqlDataAdapter(q, conn);
                     dt = new DataTable();
                     da.Fill(dt);
@@ -635,12 +631,7 @@ namespace MainSystem
                     f.ShowDialog();
                     #endregion
 
-                    loaded = false;
-                    loadFunc();
-                    flag = true;
-
-                    NewBill();
-                    loaded = true;
+                    this.Close();
                 }
                 else
                 {
@@ -658,26 +649,16 @@ namespace MainSystem
         //function
         void loadFunc()
         {
-            flag = false;
-            loadSup = false;
-            loadPerm = false;
-            string query = "select StorageImportPermission_ID,Import_Permission_Number from storage_import_permission where Store_ID=" + storeId + " and Confirmed=0";
+            string query = "select StorageImportPermission_ID,Import_Permission_Number from storage_import_permission where Store_ID=" + storeId;
             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
             DataTable dt = new DataTable();
             da.Fill(dt);
             comPermessionNum.DataSource = dt;
             comPermessionNum.DisplayMember = dt.Columns["Import_Permission_Number"].ToString();
             comPermessionNum.ValueMember = dt.Columns["StorageImportPermission_ID"].ToString();
-            comPermessionNum.Text = "";
-
-            if (comSupplier.DataSource != null)
-            {
-                comSupplier.DataSource = null;
-            }
-            if (comSupPerm.DataSource != null)
-            {
-                comSupPerm.DataSource = null;
-            }
+            comPermessionNum.SelectedIndex = -1;
+            flag = true;
+            comPermessionNum.Text = selRow["اذن المخزن"].ToString();
         }
         bool IsAdded()
         {
@@ -845,6 +826,23 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (load)
+            {
+                try
+                {
+                    storeId = Convert.ToInt16(comStore.SelectedValue.ToString());
+                    loadFunc();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                conn.Close();
             }
         }
 
