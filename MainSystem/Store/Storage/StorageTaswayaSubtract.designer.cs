@@ -410,6 +410,7 @@
             this.label10.Size = new System.Drawing.Size(46, 19);
             this.label10.TabIndex = 25;
             this.label10.Text = "أذن رقم";
+            this.label10.Visible = false;
             // 
             // labPermissionNum
             // 
@@ -421,6 +422,7 @@
             this.labPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labPermissionNum.Size = new System.Drawing.Size(0, 19);
             this.labPermissionNum.TabIndex = 24;
+            this.labPermissionNum.Visible = false;
             // 
             // dateTimePicker1
             // 

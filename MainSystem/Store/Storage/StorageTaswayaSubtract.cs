@@ -457,26 +457,26 @@ namespace MainSystem
                     //{
                     //    labPermissionNum.Text = "1";
                     //}
-                    if (!File.Exists("TaswaySubCount.txt"))
-                    {
-                        using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
-                        {
-                            writer.WriteLine(180);
-                        }
-                        labPermissionNum.Text ="180";
-                    }
-                    else
-                    {
-                        int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
-                        count++;
-                        labPermissionNum.Text = count + "";
-                        using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
-                        {
-                            writer.WriteLine(labPermissionNum.Text);
-                        }
-                    }
+                    //if (!File.Exists("TaswaySubCount.txt"))
+                    //{
+                    //    using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
+                    //    {
+                    //        writer.WriteLine(180);
+                    //    }
+                    //    labPermissionNum.Text ="180";
+                    //}
+                    //else
+                    //{
+                    //    int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
+                    //    count++;
+                    //    labPermissionNum.Text = count + "";
+                    //    using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
+                    //    {
+                    //        writer.WriteLine(labPermissionNum.Text);
+                    //    }
+                    //}
                   
-                    txtNote.Focus();
+                    //txtNote.Focus();
                 }
             }
             catch (Exception ex)
@@ -707,13 +707,13 @@ namespace MainSystem
                 //    labPermissionNum.Text = "1";
                 //}
 
-                int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
-                count++;
-                labPermissionNum.Text = count + "";
-                using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
-                {
-                    writer.WriteLine(labPermissionNum.Text);
-                }
+                //int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
+                //count++;
+                //labPermissionNum.Text = count + "";
+                //using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
+                //{
+                //    writer.WriteLine(labPermissionNum.Text);
+                //}
 
                 mdt.Rows.Clear();
                 btnReport.Enabled = false;

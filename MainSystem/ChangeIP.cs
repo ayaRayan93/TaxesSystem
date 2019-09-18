@@ -16,6 +16,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         string oldBranch = "";
+        string oldStore = "";
         bool testFlag = false;
         public ChangeIP()
         {
@@ -64,7 +65,7 @@ namespace MainSystem
                     query = "select Store_Name from store where Store_ID=" + StoreID;
                     com = new MySqlCommand(query, dbconnection);
                     comStore.Text = com.ExecuteScalar().ToString();
-
+                    oldStore = comStore.Text;
                     dbconnection.Close();
                 }
                 
@@ -159,7 +160,7 @@ namespace MainSystem
 
                         using (StreamWriter writer = new StreamWriter("Store.txt"))
                         {
-                            writer.WriteLine(comBranchName.SelectedValue);
+                            writer.WriteLine(comStore.SelectedValue);
                         }
 
                         using (StreamWriter writer = new StreamWriter("IP_Address.txt"))
@@ -180,6 +181,13 @@ namespace MainSystem
                         using (StreamWriter writer = new StreamWriter("Branch.txt"))
                         {
                             writer.WriteLine(comBranchName.SelectedValue);
+                        }
+                    }
+                    if (comStore.Text != oldStore)
+                    {
+                        using (StreamWriter writer = new StreamWriter("Store.txt"))
+                        {
+                            writer.WriteLine(comStore.SelectedValue);
                         }
                     }
                 }
