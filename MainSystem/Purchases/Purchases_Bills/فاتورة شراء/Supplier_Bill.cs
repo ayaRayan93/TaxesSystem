@@ -17,7 +17,8 @@ namespace MainSystem
     public partial class Supplier_Bill : Form
     {
         MySqlConnection conn, conn2;
-        
+
+        bool load = false;
         bool flag = false;
         bool loaded = false;
         bool loadPerm = false;
@@ -39,15 +40,15 @@ namespace MainSystem
         {
             try
             {
-                //string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Store.txt");
-                //storeId = Convert.ToInt32(System.IO.File.ReadAllText(path));
-
-                string supString = BaseData.StoreID;
-                storeId = Convert.ToInt32(supString);
-
-                loadFunc();
-                
-                flag = true;
+                string query = "select Store_ID,Store_Name from store";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comStore.DataSource = dt;
+                comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
+                comStore.ValueMember = dt.Columns["Store_ID"].ToString();
+                comStore.Text = "";
+                load = true;
             }
             catch (Exception ex)
             {
@@ -843,6 +844,25 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (load)
+            {
+                try
+                {
+                    storeId = Convert.ToInt16(comStore.SelectedValue.ToString());
+                    loadFunc();
+
+                    flag = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                conn.Close();
             }
         }
 

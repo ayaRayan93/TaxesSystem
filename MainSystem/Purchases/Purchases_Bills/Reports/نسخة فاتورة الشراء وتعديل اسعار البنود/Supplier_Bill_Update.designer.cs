@@ -62,6 +62,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comSupPerm = new System.Windows.Forms.ComboBox();
+            this.comStore = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtLastPrice = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -264,7 +266,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(751, 0);
+            this.label11.Location = new System.Drawing.Point(616, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 18);
             this.label11.TabIndex = 26;
@@ -303,11 +305,13 @@
             // 
             // comPermessionNum
             // 
+            this.comPermessionNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comPermessionNum.Enabled = false;
             this.comPermessionNum.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comPermessionNum.FormattingEnabled = true;
-            this.comPermessionNum.Location = new System.Drawing.Point(645, 3);
+            this.comPermessionNum.Location = new System.Drawing.Point(496, 3);
             this.comPermessionNum.Name = "comPermessionNum";
-            this.comPermessionNum.Size = new System.Drawing.Size(100, 24);
+            this.comPermessionNum.Size = new System.Drawing.Size(114, 24);
             this.comPermessionNum.TabIndex = 33;
             this.comPermessionNum.SelectedValueChanged += new System.EventHandler(this.comPermessionNum_SelectedValueChanged);
             // 
@@ -456,21 +460,25 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 8;
+            this.tableLayoutPanel2.ColumnCount = 10;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.label11, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comPermessionNum, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comSupplier, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comSupPerm, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label11, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comPermessionNum, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comSupplier, 6, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comSupPerm, 8, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comStore, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label17, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -481,9 +489,11 @@
             // 
             // comSupplier
             // 
+            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupplier.Enabled = false;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(391, 3);
+            this.comSupplier.Location = new System.Drawing.Point(276, 3);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(144, 24);
@@ -495,7 +505,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(541, 0);
+            this.label1.Location = new System.Drawing.Point(426, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 198;
@@ -506,7 +516,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(251, 0);
+            this.label2.Location = new System.Drawing.Point(176, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 18);
             this.label2.TabIndex = 200;
@@ -514,14 +524,39 @@
             // 
             // comSupPerm
             // 
+            this.comSupPerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupPerm.Enabled = false;
             this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupPerm.FormattingEnabled = true;
-            this.comSupPerm.Location = new System.Drawing.Point(145, 3);
+            this.comSupPerm.Location = new System.Drawing.Point(70, 3);
             this.comSupPerm.Name = "comSupPerm";
             this.comSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupPerm.Size = new System.Drawing.Size(100, 24);
             this.comSupPerm.TabIndex = 201;
             this.comSupPerm.SelectedValueChanged += new System.EventHandler(this.comSupPerm_SelectedValueChanged);
+            // 
+            // comStore
+            // 
+            this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comStore.Enabled = false;
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(695, 3);
+            this.comStore.Name = "comStore";
+            this.comStore.Size = new System.Drawing.Size(115, 24);
+            this.comStore.TabIndex = 203;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(816, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(42, 18);
+            this.label17.TabIndex = 204;
+            this.label17.Text = "مخزن";
             // 
             // panel1
             // 
@@ -760,13 +795,13 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // Supplier_Bill
+            // Supplier_Bill_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 740);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Supplier_Bill";
+            this.Name = "Supplier_Bill_Update";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -839,6 +874,8 @@
         private System.Windows.Forms.Label labelTotalDiscount;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label labelTotalA;
+        private System.Windows.Forms.ComboBox comStore;
+        private System.Windows.Forms.Label label17;
     }
 }
 
