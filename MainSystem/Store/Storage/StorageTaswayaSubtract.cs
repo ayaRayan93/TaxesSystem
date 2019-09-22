@@ -253,8 +253,38 @@ namespace MainSystem
                             {
                                 Name = (string)com.ExecuteScalar();
                                 comType.Text = Name;
-                                txtFactory.Focus();
+                           
+
+                                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
+                                {
+                                    query = "select * from product";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "الصنف";
+                                    filterProduct();
+                                }
+                                else
+                                {
+                                    query = "select * from size";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "المقاس";
+                                    filterProduct();
+                                }
                                 dbconnection.Close();
+                                txtFactory.Focus();
                             }
                             else
                             {
@@ -483,7 +513,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
+           // dbconnection.Close();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -888,18 +918,15 @@ namespace MainSystem
         {
             if (gridView2.RowCount > 0)
             {
-                string query = "select PermissionNum from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
+                string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    MessageBox.Show("هذا الاذن تم حفظه من قبل");
-                }
-                else
-                {
-                    query = "insert into taswayaa_subtract_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
+              
+                  int PermissionNum = (Convert.ToInt32(com.ExecuteScalar()) + 1);
+                
+                query = "insert into taswayaa_subtract_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                    com.Parameters["@PermissionNum"].Value = Convert.ToInt32(labPermissionNum.Text);
+                    com.Parameters["@PermissionNum"].Value = PermissionNum;
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
@@ -943,7 +970,7 @@ namespace MainSystem
                     txtNote.ReadOnly = true;
                     gridControl2.Enabled = false;
                     flag = true;
-                }
+                
             }
         }
         public DataTable createDataTable()

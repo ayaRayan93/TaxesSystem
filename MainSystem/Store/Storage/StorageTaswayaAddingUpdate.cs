@@ -845,6 +845,8 @@ namespace MainSystem
             com.ExecuteNonQuery();
             DecreaseProductQuantity(Convert.ToInt32(labPermissionNum.Text));
             query = "delete from addstorage where PermissionNum=" + labPermissionNum.Text;
+            dbconnection.Close();
+            dbconnection.Open();
             com = new MySqlCommand(query, dbconnection);
             com.ExecuteNonQuery();
           
@@ -871,6 +873,8 @@ namespace MainSystem
                 com.ExecuteNonQuery();
             }
             IncreaseProductQuantity(Convert.ToInt32(labPermissionNum.Text));
+            dbconnection.Close();
+            dbconnection.Open();
             UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", Convert.ToInt32(labPermissionNum.Text), DateTime.Now, "", dbconnection);
             MessageBox.Show("تم الحفظ");
 
@@ -1120,8 +1124,12 @@ namespace MainSystem
 
         public void IncreaseProductQuantity(int billNumber)
         {
+            dbconnection.Close();
+            dbconnectionReader.Close();
+            connectionReader1.Close();
             dbconnection.Open();
             dbconnectionReader.Open();
+            connectionReader1.Open();
             string q;
             int id;
             bool flag = false;
@@ -1144,7 +1152,7 @@ namespace MainSystem
                     storageQ += productQ;
                     id = Convert.ToInt32(dr2["Storage_ID"]);
                     q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
-                    MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                    MySqlCommand comm = new MySqlCommand(q, connectionReader1);
                     comm.ExecuteNonQuery();
                     flag = true;
                     break;
@@ -1157,6 +1165,7 @@ namespace MainSystem
 
             dbconnectionReader.Close();
             dbconnection.Close();
+            connectionReader1.Close();
         }
         public void DecreaseProductQuantity(int billNumber)
         {
@@ -1164,6 +1173,8 @@ namespace MainSystem
             dbconnectionReader.Close();
             dbconnection.Open();
             dbconnectionReader.Open();
+            connectionReader1.Close();
+            connectionReader1.Open();
             string q;
             int id;
             bool flag = false;
@@ -1175,7 +1186,7 @@ namespace MainSystem
 
             while (dr.Read())
             {
-                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='بند' and ";
+                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='بند'  and Store_ID="+comStore.SelectedValue;
                 MySqlCommand com2 = new MySqlCommand(query2, dbconnectionReader);
                 MySqlDataReader dr2 = com2.ExecuteReader();
                 while (dr2.Read())
@@ -1186,17 +1197,17 @@ namespace MainSystem
                     storageQ -= productQ;
                     id = Convert.ToInt32(dr2["Storage_ID"]);
                     q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
-                    MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                    MySqlCommand comm = new MySqlCommand(q, connectionReader1);
                     comm.ExecuteNonQuery();
                     flag = true;
                     break;
                 }
                 dr2.Close();
-
-
+                
             }
             dr.Close();
 
+            connectionReader1.Close();
             dbconnectionReader.Close();
             dbconnection.Close();
         }

@@ -253,8 +253,38 @@ namespace MainSystem
                             {
                                 Name = (string)com.ExecuteScalar();
                                 comType.Text = Name;
-                                txtFactory.Focus();
+                               
+
+                                if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
+                                {
+                                    query = "select * from product";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "الصنف";
+                                    filterProduct();
+                                }
+                                else
+                                {
+                                    query = "select * from size";
+                                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                                    DataTable dt = new DataTable();
+                                    da.Fill(dt);
+                                    comProduct.DataSource = dt;
+                                    comProduct.DisplayMember = dt.Columns["Size_Value"].ToString();
+                                    comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
+                                    comProduct.Text = "";
+                                    txtProduct.Text = "";
+                                    label1.Text = "المقاس";
+                                    filterProduct();
+                                }
                                 dbconnection.Close();
+                                txtFactory.Focus();
                             }
                             else
                             {
@@ -487,7 +517,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
+            //dbconnection.Close();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -696,19 +726,19 @@ namespace MainSystem
                 labVcode.Visible = true;
                 labVaddingMeter.Visible = true;
                 labVnote.Visible = true;
-                //dbconnection.Close();
-                //dbconnection.Open();
-                //string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
-                //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                //if (com.ExecuteScalar() != null)
-                //{
-                //    int x = Convert.ToInt32(com.ExecuteScalar());
-                //    labPermissionNum.Text = (x + 1).ToString();
-                //}
-                //else
-                //{
-                //    labPermissionNum.Text = "1";
-                //}
+                dbconnection.Close();
+                dbconnection.Open();
+                string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                if (com.ExecuteScalar() != null)
+                {
+                    int x = Convert.ToInt32(com.ExecuteScalar());
+                    labPermissionNum.Text = (x + 1).ToString();
+                }
+                else
+                {
+                    labPermissionNum.Text = "1";
+                }
                 //int count = Convert.ToInt16(File.ReadAllText("TaswayAddCount.txt"));
                 //count++;
                 //labPermissionNum.Text = count + "";
@@ -847,11 +877,11 @@ namespace MainSystem
                 string qq = "";
                 if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
                 {
-                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID "+ /*INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID */ " INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
                 }
                 else
                 {
-                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID  INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID " + /*INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID */ " INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
                 }
 
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
@@ -894,18 +924,23 @@ namespace MainSystem
         {
             if (gridView2.RowCount > 0)
             {
-                string query = "select TaswayaAdding_ID from taswayaa_adding_permision where PermissionNum="+labPermissionNum.Text;
+                //string query = "select TaswayaAdding_ID from taswayaa_adding_permision where PermissionNum="+labPermissionNum.Text;
+                //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                //if (com.ExecuteScalar() != null)
+                //{
+                //    MessageBox.Show("هذا الاذن تم حفظه من قبل");
+                //}
+                //else
+                //{
+                string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    MessageBox.Show("هذا الاذن تم حفظه من قبل");
-                }
-                else
-                {
+              
+                    int x = Convert.ToInt32(com.ExecuteScalar());
+                x++;
                     query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                    com.Parameters["@PermissionNum"].Value = Convert.ToInt32(labPermissionNum.Text);
+                    com.Parameters["@PermissionNum"].Value = x;
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
@@ -950,7 +985,7 @@ namespace MainSystem
                     txtNote.ReadOnly = true;
                     gridControl2.Enabled = false;
                     flag = true;
-                }
+               // }
             }
         
         }
