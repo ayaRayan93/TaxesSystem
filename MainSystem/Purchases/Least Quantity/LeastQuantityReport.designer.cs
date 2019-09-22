@@ -50,6 +50,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.comType = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -65,7 +66,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(878, 538);
+            this.gridControl1.Size = new System.Drawing.Size(878, 528);
             this.gridControl1.TabIndex = 83;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -99,18 +100,20 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnCount = 4;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.btnOpenBill, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnPrint, 2, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 627);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 617);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(878, 44);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(878, 54);
             this.tableLayoutPanel3.TabIndex = 174;
             // 
             // btnOpenBill
@@ -119,9 +122,9 @@
             this.btnOpenBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenBill.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnOpenBill.ForeColor = System.Drawing.Color.White;
-            this.btnOpenBill.Location = new System.Drawing.Point(392, 3);
+            this.btnOpenBill.Location = new System.Drawing.Point(442, 3);
             this.btnOpenBill.Name = "btnOpenBill";
-            this.btnOpenBill.Size = new System.Drawing.Size(94, 38);
+            this.btnOpenBill.Size = new System.Drawing.Size(94, 47);
             this.btnOpenBill.TabIndex = 21;
             this.btnOpenBill.Text = "اذن طلب";
             this.btnOpenBill.UseVisualStyleBackColor = true;
@@ -140,7 +143,7 @@
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 674);
             this.tableLayoutPanel1.TabIndex = 175;
             // 
@@ -363,6 +366,27 @@
             this.label18.TabIndex = 11;
             this.label18.Text = "الصنف";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrint.ImagePosition = 1;
+            this.btnPrint.ImageZoom = 33;
+            this.btnPrint.LabelPosition = 18;
+            this.btnPrint.LabelText = "طباعة";
+            this.btnPrint.Location = new System.Drawing.Point(351, 4);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(76, 46);
+            this.btnPrint.TabIndex = 22;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // LeastQuantityReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,6 +431,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox comType;
         private System.Windows.Forms.Label label18;
+        private Bunifu.Framework.UI.BunifuTileButton btnPrint;
     }
 }
 

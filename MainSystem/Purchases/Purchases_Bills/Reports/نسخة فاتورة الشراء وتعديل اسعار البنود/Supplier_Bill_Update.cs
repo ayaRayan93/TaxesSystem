@@ -361,6 +361,62 @@ namespace MainSystem
                                     labelTotalA.Text = totalA.ToString("#.000");
                                     labelTotalDiscount.Text = totalDiscount.ToString("#.000");
                                     labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
+
+                                    #region Save
+                                    conn.Open();
+
+                                    string query = "update supplier_bill Total_Price_B=@Total_Price_B,Total_Price_A=@Total_Price_A,Value_Additive_Tax=@Value_Additive_Tax where Bill_ID=" + selRow[0].ToString();
+                                    MySqlCommand com = new MySqlCommand(query, conn);
+                                    com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
+                                    com.Parameters["@Total_Price_B"].Value = labelTotalB.Text;
+                                    com.Parameters.Add("@Total_Price_A", MySqlDbType.Decimal);
+                                    com.Parameters["@Total_Price_A"].Value = labelTotalSafy.Text;
+                                    com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
+                                    com.Parameters["@Value_Additive_Tax"].Value = txtAllTax.Text;
+                                    com.ExecuteNonQuery();
+
+                                    query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price_Type,Price,Last_Price,Purchasing_Discount,Normal_Increase,Categorical_Increase,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price_Type,@Price,@Last_Price,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
+                                    com = new MySqlCommand(query, conn);
+                                    com.Parameters.Add("@Bill_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Bill_ID"].Value = selRow[0].ToString();
+                                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
+                                    com.Parameters.Add("@Price", MySqlDbType.Decimal);
+                                    com.Parameters["@Price"].Value = System.Math.Round(Convert.ToDouble(txtPrice.Text), 2);
+                                    if (radioList.Checked == true)
+                                    {
+                                        com.Parameters.Add("@Price_Type", MySqlDbType.VarChar);
+                                        com.Parameters["@Price_Type"].Value = "لستة";
+                                        com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
+                                        com.Parameters["@Purchasing_Discount"].Value = System.Math.Round(BuyDiscount, 2);
+                                        com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
+                                        com.Parameters["@Normal_Increase"].Value = System.Math.Round(NormalIncrease, 2);
+                                        com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
+                                        com.Parameters["@Categorical_Increase"].Value = System.Math.Round(CategoricalIncrease, 2);
+                                    }
+                                    else if (radioQata3y.Checked == true)
+                                    {
+                                        com.Parameters.Add("@Price_Type", MySqlDbType.VarChar);
+                                        com.Parameters["@Price_Type"].Value = "قطعى";
+                                        com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
+                                        com.Parameters["@Purchasing_Discount"].Value = System.Math.Round(BuyDiscount, 2);
+                                        com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
+                                        com.Parameters["@Normal_Increase"].Value = System.Math.Round(NormalIncrease, 2);
+                                        com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
+                                        com.Parameters["@Categorical_Increase"].Value = System.Math.Round(CategoricalIncrease, 2);
+                                    }
+                                    com.Parameters.Add("@Last_Price", MySqlDbType.Decimal);
+                                    com.Parameters["@Last_Price"].Value = System.Math.Round(Convert.ToDouble(txtLastPrice.Text), 2);
+                                    com.Parameters.Add("@Purchasing_Price", MySqlDbType.Decimal);
+                                    com.Parameters["@Purchasing_Price"].Value = System.Math.Round(purchasePrice, 2);
+                                    com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                                    com.Parameters["@Total_Meters"].Value = quantity;
+                                    com.Parameters.Add("@Supplier_Permission_Details_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Supplier_Permission_Details_ID"].Value = row1["Supplier_Permission_Details_ID"].ToString();
+                                    com.ExecuteNonQuery();
+
+                                    IncreaseSupplierAccount();
+                                    #endregion
                                 }
                             }
                             else
@@ -490,7 +546,7 @@ namespace MainSystem
                     }
                     addabtiveTax = Convert.ToDouble(txtAllTax.Text);
                     Report_SupplierBill f = new Report_SupplierBill();
-                    //f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, discount, Convert.ToDouble(labelTotalSafy.Text), addabtiveTax, bi);
+                    f.PrintInvoice(storeName, selRow["رقم الفاتورة"].ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, discount, Convert.ToDouble(labelTotalSafy.Text), addabtiveTax, bi);
                     f.ShowDialog();
                     #endregion
                     
@@ -592,13 +648,6 @@ namespace MainSystem
                 query = "update supplier_rest_money set Money=" + (restMoney + totalSafy) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
                 com = new MySqlCommand(query, conn);
             }
-            else
-            {
-                query = "insert into supplier_rest_money (Supplier_ID,Money) values (@Supplier_ID,@Money)";
-                com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
-                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = totalSafy;
-            }
             com.ExecuteNonQuery();
         }
 
@@ -638,121 +687,6 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        void save()
-        {
-            conn.Open();
-            string q = "select Bill_No from supplier_bill where Supplier_ID=" + comSupplier.SelectedValue.ToString() + " ORDER BY Bill_ID DESC LIMIT 1 ";
-            MySqlCommand comm = new MySqlCommand(q, conn);
-            int BillNo = 1;
-            if (comm.ExecuteScalar() != null)
-            {
-                BillNo = Convert.ToInt32(comm.ExecuteScalar().ToString());
-                BillNo++;
-            }
-
-            string query = "insert into supplier_bill (Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID,Value_Additive_Tax) values (@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID,@Value_Additive_Tax)";
-            MySqlCommand com = new MySqlCommand(query, conn);
-            com.Parameters.Add("@Bill_No", MySqlDbType.Int16);
-            com.Parameters["@Bill_No"].Value = BillNo;
-            com.Parameters.Add("@Date", MySqlDbType.DateTime);
-            com.Parameters["@Date"].Value = DateTime.Now;
-            com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
-            com.Parameters["@Import_Permission_Number"].Value = comPermessionNum.Text;
-            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-            com.Parameters["@Store_ID"].Value = storeId;
-            com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
-            com.Parameters["@Total_Price_B"].Value = labelTotalB.Text;
-            com.Parameters.Add("@Total_Price_A", MySqlDbType.Decimal);
-            com.Parameters["@Total_Price_A"].Value = labelTotalSafy.Text;
-            com.Parameters.Add("@StorageImportPermission_ID", MySqlDbType.Int16);
-            com.Parameters["@StorageImportPermission_ID"].Value = comPermessionNum.SelectedValue.ToString();
-            com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-            com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
-            com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-            com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
-            com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
-            com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
-            com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
-            com.Parameters["@Value_Additive_Tax"].Value = txtAllTax.Text;
-            com.ExecuteNonQuery();
-
-            string q1 = "select Bill_ID from supplier_bill ORDER BY Bill_ID DESC LIMIT 1";
-            comm = new MySqlCommand(q1, conn);
-            int id = Convert.ToInt32(comm.ExecuteScalar().ToString());
-
-            for (int i = 0; i < gridView2.RowCount; i++)
-            {
-                DataRow row3 = gridView2.GetDataRow(i);
-
-                query = "insert into supplier_bill_details (Bill_ID,Data_ID,Price_Type,Price,Last_Price,Purchasing_Discount,Normal_Increase,Categorical_Increase,Purchasing_Price,Total_Meters,Supplier_Permission_Details_ID) values (@Bill_ID,@Data_ID,@Price_Type,@Price,@Last_Price,@Purchasing_Discount,@Normal_Increase,@Categorical_Increase,@Purchasing_Price,@Total_Meters,@Supplier_Permission_Details_ID)";
-                com = new MySqlCommand(query, conn);
-                com.Parameters.Add("@Bill_ID", MySqlDbType.Int16);
-                com.Parameters["@Bill_ID"].Value = id;
-                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                com.Parameters["@Data_ID"].Value = row3["Data_ID"].ToString();
-                com.Parameters.Add("@Price_Type", MySqlDbType.VarChar);
-                com.Parameters["@Price_Type"].Value = row3["نوع السعر"].ToString();
-                com.Parameters.Add("@Price", MySqlDbType.Decimal);
-                com.Parameters["@Price"].Value = row3["السعر"].ToString();
-                if (row3["نوع السعر"].ToString() == "لستة")
-                {
-                    com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
-                    com.Parameters["@Purchasing_Discount"].Value = row3["نسبة الخصم"].ToString();
-                    com.Parameters.Add("@Last_Price", MySqlDbType.Decimal);
-                    com.Parameters["@Last_Price"].Value = row3["السعر بالزيادة"].ToString();
-                    com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
-                    com.Parameters["@Normal_Increase"].Value = row3["الزيادة العادية"].ToString();
-                    com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
-                    com.Parameters["@Categorical_Increase"].Value = row3["الزيادة القطعية"].ToString();
-                }
-                else if (row3["نوع السعر"].ToString() == "قطعى")
-                {
-                    com.Parameters.Add("@Purchasing_Discount", MySqlDbType.Decimal);
-                    com.Parameters["@Purchasing_Discount"].Value = row3["نسبة الخصم"].ToString();
-                    com.Parameters.Add("@Last_Price", MySqlDbType.Decimal);
-                    com.Parameters["@Last_Price"].Value = row3["السعر بالزيادة"].ToString();
-                    com.Parameters.Add("@Normal_Increase", MySqlDbType.Decimal);
-                    com.Parameters["@Normal_Increase"].Value = row3["الزيادة العادية"].ToString();
-                    com.Parameters.Add("@Categorical_Increase", MySqlDbType.Decimal);
-                    com.Parameters["@Categorical_Increase"].Value = row3["الزيادة القطعية"].ToString();
-                }
-                com.Parameters.Add("@Purchasing_Price", MySqlDbType.Decimal);
-                com.Parameters["@Purchasing_Price"].Value = row3["سعر الشراء"].ToString();
-                com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                com.Parameters["@Total_Meters"].Value = row3["متر/قطعة"].ToString();
-                com.Parameters.Add("@Supplier_Permission_Details_ID", MySqlDbType.Int16);
-                com.Parameters["@Supplier_Permission_Details_ID"].Value = row3["Supplier_Permission_Details_ID"].ToString();
-                com.ExecuteNonQuery();
-            }
-
-            string q2 = "update import_supplier_permission set Purchase_Bill=1 where ImportSupplierPermission_ID=" + comSupPerm.SelectedValue.ToString();
-            com = new MySqlCommand(q2, conn);
-            com.ExecuteNonQuery();
-
-            bool flagConfirm = false;
-            conn2.Open();
-
-            query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM import_supplier_permission INNER JOIN storage_import_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID where import_supplier_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString()/*dr["StorageImportPermission_ID"].ToString()*/ + " and import_supplier_permission.Purchase_Bill=0 and storage_import_permission.Store_ID=" + storeId + " and storage_import_permission.Confirmed=0";
-            com = new MySqlCommand(query, conn2);
-            MySqlDataReader dr2 = com.ExecuteReader();
-            while (dr2.Read())
-            {
-                flagConfirm = true;
-            }
-            dr2.Close();
-            conn.Close();
-
-            conn.Open();
-            if (flagConfirm == false)
-            {
-                query = "update storage_import_permission set Confirmed=1 where storage_import_permission.Import_Permission_Number=" + comPermessionNum.Text + " and storage_import_permission.Store_ID=" + storeId;
-                MySqlCommand c = new MySqlCommand(query, conn);
-                c.ExecuteNonQuery();
-            }
-
-            IncreaseSupplierAccount();
         }
 
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
