@@ -151,7 +151,6 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(80, 52);
             this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd

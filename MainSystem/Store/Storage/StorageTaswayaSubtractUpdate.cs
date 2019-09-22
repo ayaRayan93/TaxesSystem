@@ -397,8 +397,8 @@ namespace MainSystem
                             txtSubtractQuantity.Focus();
                             break;
                         case "txtSubtractQuantity":
-                            if (btnReport.Enabled)
-                            {
+                            //if (btnReport.Enabled)
+                            //{
                                 if (validation())
                                 {
                                     if (mRow != null)
@@ -418,11 +418,11 @@ namespace MainSystem
                                 code = "";
                                 txtCodePart1.Focus();
 
-                            }
-                            else
-                            {
-                                MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
-                            }
+                            //}
+                            //else
+                            //{
+                            //    MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
+                            //}
                             break;
                         case "txtNote":
                             txtCodePart1.Focus();
@@ -444,30 +444,30 @@ namespace MainSystem
 
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (loaded)
-                {
-                    dbconnection.Open();
-                    string query = "select permissionNum from taswayaa_subtract_permision order by permissionNum desc limit 1 ";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        int x = Convert.ToInt32(com.ExecuteScalar());
-                        labPermissionNum.Text = (x + 1).ToString();
-                    }
-                    else
-                    {
-                        labPermissionNum.Text = "1";
-                    }
-                    txtNote.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
+            //try
+            //{
+            //    if (loaded)
+            //    {
+            //        dbconnection.Open();
+            //        string query = "select permissionNum from taswayaa_subtract_permision order by permissionNum desc limit 1 ";
+            //        MySqlCommand com = new MySqlCommand(query, dbconnection);
+            //        if (com.ExecuteScalar() != null)
+            //        {
+            //            int x = Convert.ToInt32(com.ExecuteScalar());
+            //            labPermissionNum.Text = (x + 1).ToString();
+            //        }
+            //        else
+            //        {
+            //            labPermissionNum.Text = "1";
+            //        }
+            //        txtNote.Focus();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //dbconnection.Close();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -527,8 +527,8 @@ namespace MainSystem
         {
             try
             {
-                if (!btnReport.Enabled)
-                {
+                //if (!btnReport.Enabled)
+                //{
                     dbconnection.Open();
                     if (validation())
                     {
@@ -544,11 +544,11 @@ namespace MainSystem
                     code = "";
                     clearPart();
                     txtCodePart1.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
-                }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
+                //}
             }
             catch (Exception ex)
             {
@@ -617,9 +617,9 @@ namespace MainSystem
                     GridView view = (GridView)sender;
                     DataRow dataRow = view.GetFocusedDataRow();
                     double SubtractQuantity = Convert.ToDouble(dataRow["الكمية المخصومة"].ToString());
-                    double totalBeforSubtract = Convert.ToDouble(dataRow["اجمالي عدد الوحدات قبل الخصم"].ToString());
+                    double totalBeforSubtract = Convert.ToDouble(dataRow["الكمية قبل الخصم"].ToString());
 
-                    view.SetRowCellValue(view.GetSelectedRows()[0], "رصيد البند", totalBeforSubtract + SubtractQuantity);
+                    view.SetRowCellValue(view.GetSelectedRows()[0], "الكمية بعد الخصم", totalBeforSubtract - SubtractQuantity);
 
                 }
 
@@ -841,7 +841,7 @@ namespace MainSystem
             for (int i = 0; i < gridView2.RowCount; i++)
             {
                 DataRow d = gridView2.GetDataRow(i);
-                IncreaseProductQuantity(d[0].ToString(), Convert.ToDouble(d[3]), comStore.SelectedValue.ToString());
+                IncreaseProductQuantity(d[0].ToString(), Convert.ToDouble(d[4]), comStore.SelectedValue.ToString());
             }
 
             query = "delete from substorage where PermissionNum=" + labPermissionNum.Text;
@@ -861,19 +861,19 @@ namespace MainSystem
                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                 com.Parameters["@Data_ID"].Value = d[0];
                 com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
-                com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(d[4]) - Convert.ToDouble(d[3]);
+                com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(d[5]) - Convert.ToDouble(d[4]);
                 com.Parameters.Add("@SubtractQuantity", MySqlDbType.Decimal);
-                com.Parameters["@SubtractQuantity"].Value = Convert.ToDouble(d[3]);
+                com.Parameters["@SubtractQuantity"].Value = Convert.ToDouble(d[4]);
                 com.Parameters.Add("@QuantityAfterSubtract", MySqlDbType.Decimal);
-                com.Parameters["@QuantityAfterSubtract"].Value = Convert.ToDouble(d[4]);
+                com.Parameters["@QuantityAfterSubtract"].Value = Convert.ToDouble(d[5]);
                 com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                com.Parameters["@Note"].Value = d[5];
+                com.Parameters["@Note"].Value = d[6];
 
                 com.ExecuteNonQuery();
 
-                DecreaseProductQuantity(d[0].ToString(), Convert.ToDouble(d[3]), comStore.SelectedValue.ToString());
+                DecreaseProductQuantity(d[0].ToString(), Convert.ToDouble(d[4]), comStore.SelectedValue.ToString());
             }
-            UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
+            UserControl.ItemRecord("taswayaa_subtract_permision", "خصم", TaswayaAdding_ID, DateTime.Now, "", dbconnection);
             MessageBox.Show("تم الحفظ");
 
             btnReport.Enabled = true;
@@ -886,8 +886,9 @@ namespace MainSystem
             dt.Columns.Add("Data_ID", typeof(int));
             dt.Columns.Add("كود", typeof(string));
             dt.Columns.Add("البند", typeof(string));
+            dt.Columns.Add("الكمية قبل الخصم", typeof(double));
             dt.Columns.Add("الكمية المخصومة", typeof(double));
-            dt.Columns.Add("رصيد البند", typeof(double));
+            dt.Columns.Add("الكمية بعد الخصم", typeof(double));
             dt.Columns.Add("ملاحظة", typeof(string));
 
             return dt;
@@ -898,8 +899,9 @@ namespace MainSystem
                 Convert.ToInt32(row[0].ToString()),
                 row[1].ToString(),
                 row[2].ToString(),
-                Convert.ToDouble(Convert.ToDouble(txtSubtractQuantity.Text)),
-                Convert.ToDouble(row[3].ToString())-Convert.ToDouble(txtSubtractQuantity.Text),
+                 Convert.ToDouble( row[4].ToString()),
+                Convert.ToDouble(txtSubtractQuantity.Text),
+                Convert.ToDouble(row[4].ToString())-Convert.ToDouble(txtSubtractQuantity.Text),
                 txtItemNote.Text
             });
             gridControl2.DataSource = dt;
@@ -976,7 +978,7 @@ namespace MainSystem
             }
             dr.Close();
             string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-            query = "SELECT data.Data_ID, data.Code as 'الكود' ," + itemName + ",SubtractQuantity as 'الكمية المضافة',QuantityAfterSubtract as 'الكمية بعد الاضافة',substorage.Note as 'ملاحظة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  inner join substorage on substorage.Data_ID=data.Data_ID inner join taswayaa_subtract_permision on taswayaa_subtract_permision.PermissionNum=substorage.PermissionNum  WHERE taswayaa_subtract_permision.PermissionNum=" + labPermissionNum.Text;
+            query = "SELECT data.Data_ID, data.Code as 'الكود' ," + itemName + ",CurrentQuantity as 'الكمية قبل الخصم' ,SubtractQuantity as 'الكمية المخصومة',QuantityAfterSubtract as 'الكمية بعد الخصم',substorage.Note as 'ملاحظة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  inner join substorage on substorage.Data_ID=data.Data_ID inner join taswayaa_subtract_permision on taswayaa_subtract_permision.PermissionNum=substorage.PermissionNum  WHERE taswayaa_subtract_permision.PermissionNum=" + labPermissionNum.Text;
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -985,12 +987,12 @@ namespace MainSystem
             gridView2.Columns[0].Visible = false;
             gridView2.Columns[1].OptionsColumn.AllowEdit = false;
             gridView2.Columns[2].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[4].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[3].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[5].OptionsColumn.AllowEdit = false;
             gridView2.BestFitColumns();
             if (dt != null)
                 btnReport.Enabled = true;
         }
-
         public void filterFactory()
         {
             if (comType.Text != "")

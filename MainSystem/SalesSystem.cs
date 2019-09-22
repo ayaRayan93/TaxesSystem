@@ -479,6 +479,44 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void navBarItemTotalSales_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 1 || UserControl.userType == 15 || UserControl.userType == 16)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "اجمالي مبيعات الشركات");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("اجمالي مبيعات الشركات");
+                        xtraTabPage = getTabPage(xtraTabControlSalesContent, "اجمالي مبيعات الشركات");
+
+                    }
+                    //xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    salesReportForCompany objForm = new salesReportForCompany();
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemBillCancel_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
