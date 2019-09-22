@@ -145,7 +145,7 @@ namespace MainSystem
                         comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
                         comProduct.Text = "";
                         txtProduct.Text = "";
-                        label1.Text = "الصنف";
+                        label3.Text = "الصنف";
                         filterProduct();
                     }
                     else
@@ -159,7 +159,7 @@ namespace MainSystem
                         comProduct.ValueMember = dt.Columns["Size_ID"].ToString();
                         comProduct.Text = "";
                         txtProduct.Text = "";
-                        label1.Text = "المقاس";
+                        label3.Text = "المقاس";
                         filterProduct();
                     }
                     loaded = true;
@@ -449,10 +449,11 @@ namespace MainSystem
 
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
+            if (loaded)
             {
-                if (loaded)
+                try
                 {
+
                     dbconnection.Open();
                     string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -466,13 +467,14 @@ namespace MainSystem
                         labPermissionNum.Text = "1";
                     }
                     txtNote.Focus();
+
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -532,8 +534,7 @@ namespace MainSystem
         {
             try
             {
-                if (!btnReport.Enabled)
-                {
+                
                     dbconnection.Open();
                     if (validation())
                     {
@@ -549,11 +550,7 @@ namespace MainSystem
                     code = "";
                     clearPart();
                     txtCodePart1.Focus();
-                }
-                else
-                {
-                    MessageBox.Show("اطبع الاذن او قم بانشاء اذن جديد");
-                }
+               
             }
             catch (Exception ex)
             {
@@ -639,6 +636,7 @@ namespace MainSystem
         {
             try
             {
+                dbconnection.Close();
                 dbconnection.Open();
                 if (gridView2.RowCount > 0)
                 {
@@ -842,6 +840,8 @@ namespace MainSystem
             com.Parameters["@Date"].Value = dateTimePicker1.Value;
             com.Parameters.Add("@Note", MySqlDbType.VarChar);
             com.Parameters["@Note"].Value = txtNote.Text;
+            dbconnection.Close();
+            dbconnection.Open();
             com.ExecuteNonQuery();
             DecreaseProductQuantity(Convert.ToInt32(labPermissionNum.Text));
             query = "delete from addstorage where PermissionNum=" + labPermissionNum.Text;
@@ -970,9 +970,12 @@ namespace MainSystem
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
-                comStore.SelectedValue = dr[2].ToString();
+                loaded = false;
                 dateTimePicker1.Text = dr[3].ToString();
                 txtNote.Text= dr[4].ToString();
+                comStore.SelectedValue = dr[2].ToString();
+             
+                loaded = true;
             }
             dr.Close();
             string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
@@ -1157,6 +1160,8 @@ namespace MainSystem
         }
         public void DecreaseProductQuantity(int billNumber)
         {
+            dbconnection.Close();
+            dbconnectionReader.Close();
             dbconnection.Open();
             dbconnectionReader.Open();
             string q;
