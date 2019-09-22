@@ -114,7 +114,7 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(UserControl.userType == 1 && UserControl.userType == 13)
+            if(UserControl.userType == 1 || UserControl.userType == 13)
             {
                 try
                 {

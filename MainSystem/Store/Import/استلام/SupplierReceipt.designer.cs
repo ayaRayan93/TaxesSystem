@@ -807,7 +807,7 @@
             this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(4, 7);
+            this.comStorePlace.Location = new System.Drawing.Point(3, 10);
             this.comStorePlace.Name = "comStorePlace";
             this.comStorePlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStorePlace.Size = new System.Drawing.Size(17, 24);

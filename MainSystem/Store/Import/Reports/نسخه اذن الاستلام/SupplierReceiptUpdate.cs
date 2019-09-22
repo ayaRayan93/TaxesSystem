@@ -1030,14 +1030,13 @@ namespace MainSystem
                     c.ExecuteNonQuery();
                     flagConfirm = 0;
                     conn.Close();
-
-                    double carton = 0;
-                    double balate = 0;
-                    double quantity = 0;
-
+                    
                     List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
+                        double carton = 0;
+                        double balate = 0;
+                        double quantity = 0;
                         int rowHand = gridView2.GetRowHandle(i);
                         bool flagTest = false;
                         if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]) != "")

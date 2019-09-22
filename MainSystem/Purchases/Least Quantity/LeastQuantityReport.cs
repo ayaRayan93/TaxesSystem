@@ -396,6 +396,30 @@ namespace MainSystem
             }
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /*List<SupplierBill_Items> bi = new List<SupplierBill_Items>();
+                double discount = 0;
+                for (int i = 0; i < gridView2.RowCount; i++)
+                {
+                        discount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"]).ToString()) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]).ToString())) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"]).ToString()) / 100);
+                        SupplierBill_Items item = new SupplierBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
+                        bi.Add(item);
+                    
+                }
+                addabtiveTax = Convert.ToDouble(txtAllTax.Text);
+                Report_SupplierBill f = new Report_SupplierBill();
+                f.PrintInvoice(storeName, selRow["رقم الفاتورة"].ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, discount, Convert.ToDouble(labelTotalSafy.Text), addabtiveTax, bi);
+                f.ShowDialog();*/
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //clear function
         public void clearCom()
         {
