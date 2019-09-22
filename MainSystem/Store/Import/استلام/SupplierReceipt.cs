@@ -937,7 +937,7 @@ namespace MainSystem
                             MySqlCommand com = new MySqlCommand(query, conn);
                             if (com.ExecuteScalar() != null)
                             {
-                                double totalf = Convert.ToInt32(com.ExecuteScalar());
+                                double totalf = Convert.ToDouble(com.ExecuteScalar());
                                 if ((totalf - Convert.ToDouble(row2["متر/قطعة"].ToString())) >= 0)
                                 {
                                     //Store_ID=" + storeId + " and Store_Place_ID=" + row2["Store_Place_ID"].ToString() + " and  Data_ID=" + row2["Data_ID"].ToString()
@@ -1006,6 +1006,7 @@ namespace MainSystem
                                             }
                                         }
                                         dr.Close();
+                                        conn2.Close();
                                     }
                                     #endregion
 
@@ -1137,14 +1138,13 @@ namespace MainSystem
                         c.ExecuteNonQuery();
                         flagConfirm = 0;
                         conn.Close();
-
-                        double carton = 0;
-                        double balate = 0;
-                        double quantity = 0;
-
+                        
                         List<SupplierReceipt_Items> bi = new List<SupplierReceipt_Items>();
                         for (int i = 0; i < gridView2.RowCount; i++)
                         {
+                            double carton = 0;
+                            double balate = 0;
+                            double quantity = 0;
                             int rowHand = gridView2.GetRowHandle(i);
                             bool flagTest = false;
                             if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["عدد البلتات"]) != "")
@@ -1364,6 +1364,8 @@ namespace MainSystem
                         //gridView2.SetRowCellValue(rowHandle, gridView2.Columns["Store_Place_ID"], dr["Store_Place_ID"]);
                         //INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
                         //order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID
+                        conn2.Close();
+                        conn2.Open();
                         qq = "select orders.Order_Number,orders.Factory_ID,factory2.Factory_Name from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN factory as factory2 ON orders.Factory_ID = factory2.Factory_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + storeId + " and data.Data_ID="+dr["Data_ID"]+ " ";
                         com = new MySqlCommand(qq, conn2);
                         MySqlDataReader dr2 = com.ExecuteReader();
@@ -1377,6 +1379,7 @@ namespace MainSystem
                             }
                         }
                         dr2.Close();
+                        conn2.Close();
                     }
                 }
             }

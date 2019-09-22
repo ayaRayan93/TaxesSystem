@@ -1013,14 +1013,13 @@ namespace MainSystem
                         MySqlCommand com4 = new MySqlCommand(query2, dbconnection);
                         string storeName = com4.ExecuteScalar().ToString();
                         dbconnection.Close();
-
-                        double carton = 0;
-                        double balate = 0;
-                        double quantity = 0;
-
+                        
                         List<StorageReturn_Items> bi = new List<StorageReturn_Items>();
                         for (int i = 0; i < gridView2.RowCount; i++)
                         {
+                            double carton = 0;
+                            double balate = 0;
+                            double quantity = 0;
                             int rowHand = gridView2.GetRowHandle(i);
                             bool flagTest = false;
                             if (gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["NumOfBalate"]) != "")

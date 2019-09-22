@@ -62,6 +62,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comSupPerm = new System.Windows.Forms.ComboBox();
+            this.comStore = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtLastPrice = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -79,8 +81,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.comStore = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -266,7 +266,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(651, 0);
+            this.label11.Location = new System.Drawing.Point(619, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 18);
             this.label11.TabIndex = 26;
@@ -307,7 +307,7 @@
             // 
             this.comPermessionNum.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comPermessionNum.FormattingEnabled = true;
-            this.comPermessionNum.Location = new System.Drawing.Point(531, 3);
+            this.comPermessionNum.Location = new System.Drawing.Point(499, 3);
             this.comPermessionNum.Name = "comPermessionNum";
             this.comPermessionNum.Size = new System.Drawing.Size(114, 24);
             this.comPermessionNum.TabIndex = 33;
@@ -465,9 +465,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.comPermessionNum, 4, 0);
@@ -489,7 +489,7 @@
             // 
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(311, 3);
+            this.comSupplier.Location = new System.Drawing.Point(279, 3);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(144, 24);
@@ -501,7 +501,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(461, 0);
+            this.label1.Location = new System.Drawing.Point(429, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 18);
             this.label1.TabIndex = 198;
@@ -512,7 +512,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(171, 0);
+            this.label2.Location = new System.Drawing.Point(184, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 18);
             this.label2.TabIndex = 200;
@@ -522,12 +522,33 @@
             // 
             this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupPerm.FormattingEnabled = true;
-            this.comSupPerm.Location = new System.Drawing.Point(65, 3);
+            this.comSupPerm.Location = new System.Drawing.Point(78, 3);
             this.comSupPerm.Name = "comSupPerm";
             this.comSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupPerm.Size = new System.Drawing.Size(100, 24);
             this.comSupPerm.TabIndex = 201;
             this.comSupPerm.SelectedValueChanged += new System.EventHandler(this.comSupPerm_SelectedValueChanged);
+            // 
+            // comStore
+            // 
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(698, 3);
+            this.comStore.Name = "comStore";
+            this.comStore.Size = new System.Drawing.Size(115, 24);
+            this.comStore.TabIndex = 203;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(819, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(42, 18);
+            this.label17.TabIndex = 204;
+            this.label17.Text = "مخزن";
             // 
             // panel1
             // 
@@ -765,27 +786,6 @@
             this.btnRemove.Text = "حذف";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // comStore
-            // 
-            this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(730, 3);
-            this.comStore.Name = "comStore";
-            this.comStore.Size = new System.Drawing.Size(115, 24);
-            this.comStore.TabIndex = 203;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(851, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(42, 18);
-            this.label17.TabIndex = 204;
-            this.label17.Text = "مخزن";
             // 
             // Supplier_Bill
             // 
