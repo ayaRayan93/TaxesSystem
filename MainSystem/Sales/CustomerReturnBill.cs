@@ -506,7 +506,7 @@ namespace MainSystem
                 dbconnection.Open();
                 if (dataGridView2.Rows.Count > 0 && (comClient.Text != "" || comCustomer.Text != "") /*&& txtStorePermission.Text != ""*/)
                 {
-                    string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" + txtBranchID.Text+ " order by CustomerReturnBill_ID desc limit 1";
+                    string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" + EmpBranchId + " order by CustomerReturnBill_ID desc limit 1";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     int Branch_BillNumber = 1;
                     if (com.ExecuteScalar() != null)

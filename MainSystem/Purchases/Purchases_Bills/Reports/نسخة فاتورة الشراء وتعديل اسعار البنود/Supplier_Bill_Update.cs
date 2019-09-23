@@ -110,7 +110,7 @@ namespace MainSystem
                     if (SupplierPermissionDetailsID.EndsWith(","))
                         SupplierPermissionDetailsID = SupplierPermissionDetailsID.Substring(0, SupplierPermissionDetailsID.Length - 1);
 
-                    string query = "SELECT import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM supplier_permission_details INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and supplier_permission_details.Supplier_Permission_Details_ID in (" + SupplierPermissionDetailsID + ")";
+                    string query = "SELECT distinct import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.ImportSupplierPermission_ID FROM supplier_permission_details INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID where import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_supplier_permission.StorageImportPermission_ID=" + comPermessionNum.SelectedValue.ToString() + " and supplier_permission_details.Supplier_Permission_Details_ID in (" + SupplierPermissionDetailsID + ")";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -158,6 +158,20 @@ namespace MainSystem
                     }
                     gridView2.Columns[1].Width = 170;
                     gridView2.Columns[3].Width = 300;
+
+                    double totalB = 0;
+                    double totalA = 0;
+                    double totalDiscount = 0;
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                        totalDiscount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر بالزيادة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"))) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
+                        totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                    }
+                    labelTotalB.Text = totalB.ToString("#.000");
+                    labelTotalA.Text = totalA.ToString("#.000");
+                    labelTotalDiscount.Text = totalDiscount.ToString("#.000");
+                    labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
 
                     string SupplierPermissionDetailsID = "";
                     if (gridView2.RowCount > 0)
@@ -363,8 +377,6 @@ namespace MainSystem
                                     labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
 
                                     #region Save
-                                    conn.Open();
-
                                     string query = "update supplier_bill Total_Price_B=@Total_Price_B,Total_Price_A=@Total_Price_A,Value_Additive_Tax=@Value_Additive_Tax where Bill_ID=" + selRow[0].ToString();
                                     MySqlCommand com = new MySqlCommand(query, conn);
                                     com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
@@ -453,6 +465,11 @@ namespace MainSystem
                 DataRow row2 = gridView2.GetDataRow(gridView2.FocusedRowHandle);
                 if (row2 != null)
                 {
+                    conn.Open();
+                    string query = "delete from supplier_bill_details where Bill_ID=" + selRow[0].ToString() + " and Data_ID=" + row2["Data_ID"].ToString() + " and Supplier_Permission_Details_ID=" + row2["Supplier_Permission_Details_ID"].ToString();
+                    MySqlCommand com = new MySqlCommand(query, conn);
+                    com.ExecuteNonQuery();
+
                     gridView2.DeleteRow(gridView2.FocusedRowHandle);
 
                     string str = "";
@@ -507,12 +524,27 @@ namespace MainSystem
                     labelTotalDiscount.Text = totalDiscount.ToString("#.000");
                     labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                     row2 = null;
+
+                    #region Save
+                    query = "update supplier_bill set Total_Price_B=@Total_Price_B,Total_Price_A=@Total_Price_A,Value_Additive_Tax=@Value_Additive_Tax where Bill_ID=" + selRow[0].ToString();
+                    com = new MySqlCommand(query, conn);
+                    com.Parameters.Add("@Total_Price_B", MySqlDbType.Decimal);
+                    com.Parameters["@Total_Price_B"].Value = labelTotalB.Text;
+                    com.Parameters.Add("@Total_Price_A", MySqlDbType.Decimal);
+                    com.Parameters["@Total_Price_A"].Value = labelTotalSafy.Text;
+                    com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
+                    com.Parameters["@Value_Additive_Tax"].Value = txtAllTax.Text;
+                    com.ExecuteNonQuery();
+                    
+                    DecreaseSupplierAccount();
+                    #endregion
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            conn.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -646,6 +678,20 @@ namespace MainSystem
             {
                 double restMoney = Convert.ToDouble(com.ExecuteScalar());
                 query = "update supplier_rest_money set Money=" + (restMoney + totalSafy) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                com = new MySqlCommand(query, conn);
+            }
+            com.ExecuteNonQuery();
+        }
+
+        public void DecreaseSupplierAccount()
+        {
+            double totalSafy = Convert.ToDouble(labelTotalSafy.Text);
+            string query = "select Money from supplier_rest_money where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+            MySqlCommand com = new MySqlCommand(query, conn);
+            if (com.ExecuteScalar() != null)
+            {
+                double restMoney = Convert.ToDouble(com.ExecuteScalar());
+                query = "update supplier_rest_money set Money=" + (restMoney - totalSafy) + " where Supplier_ID=" + comSupplier.SelectedValue.ToString();
                 com = new MySqlCommand(query, conn);
             }
             com.ExecuteNonQuery();
