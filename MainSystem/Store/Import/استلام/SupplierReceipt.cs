@@ -624,22 +624,6 @@ namespace MainSystem
                                 MySqlCommand com = new MySqlCommand(query, conn);
                                 if (com.ExecuteScalar() == null)
                                 {
-                                    query = "insert into storage_import_permission (Store_ID,Storage_Date,Import_Permission_Number) values (@Store_ID,@Storage_Date,@Import_Permission_Number)";
-                                    com = new MySqlCommand(query, conn);
-                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                                    com.Parameters["@Store_ID"].Value = storeId;
-                                    com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime, 0);
-                                    com.Parameters["@Storage_Date"].Value = DateTime.Now;
-                                    com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
-                                    com.Parameters["@Import_Permission_Number"].Value = permNum;
-                                    com.ExecuteNonQuery();
-
-                                    query = "select StorageImportPermission_ID from storage_import_permission order by StorageImportPermission_ID desc limit 1";
-                                    com = new MySqlCommand(query, conn);
-                                    storageImportPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
-
-                                    UserControl.ItemRecord("storage_import_permission", "اضافة", storageImportPermissionID, DateTime.Now, "", conn);
-
                                     query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول'";
                                     com = new MySqlCommand(query, conn2);
                                     MySqlDataReader dr2 = com.ExecuteReader();
@@ -647,6 +631,22 @@ namespace MainSystem
                                     {
                                         while (dr2.Read())
                                         {
+                                            query = "insert into storage_import_permission (Store_ID,Storage_Date,Import_Permission_Number) values (@Store_ID,@Storage_Date,@Import_Permission_Number)";
+                                            com = new MySqlCommand(query, conn);
+                                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                            com.Parameters["@Store_ID"].Value = storeId;
+                                            com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime, 0);
+                                            com.Parameters["@Storage_Date"].Value = DateTime.Now;
+                                            com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
+                                            com.Parameters["@Import_Permission_Number"].Value = permNum;
+                                            com.ExecuteNonQuery();
+
+                                            query = "select StorageImportPermission_ID from storage_import_permission order by StorageImportPermission_ID desc limit 1";
+                                            com = new MySqlCommand(query, conn);
+                                            storageImportPermissionID = Convert.ToInt32(com.ExecuteScalar().ToString());
+
+                                            UserControl.ItemRecord("storage_import_permission", "اضافة", storageImportPermissionID, DateTime.Now, "", conn);
+
                                             query = "insert into import_supplier_permission (Supplier_ID,Supplier_Permission_Number,Factory_ID,Order_Number,Car_ID,Car_Number,Driver_ID,Driver_Name,StorageImportPermission_ID) values (@Supplier_ID,@Supplier_Permission_Number,@Factory_ID,@Order_Number,@Car_ID,@Car_Number,@Driver_ID,@Driver_Name,@StorageImportPermission_ID)";
                                             com = new MySqlCommand(query, conn);
                                             com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
