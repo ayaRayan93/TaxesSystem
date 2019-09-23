@@ -122,8 +122,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(292, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -148,7 +148,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label5.Location = new System.Drawing.Point(834, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 19);
+            this.label5.Size = new System.Drawing.Size(50, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "العميل";
             // 
@@ -177,9 +177,9 @@
             this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.253616F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.7946F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.932498F));
             this.tableLayoutPanel2.Controls.Add(this.btnReport, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -215,9 +215,9 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 7;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.2F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.4F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -228,27 +228,27 @@
             this.tableLayoutPanel5.Controls.Add(this.label7, 5, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtFinal, 6, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(109, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(107, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(460, 48);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(500, 48);
             this.tableLayoutPanel5.TabIndex = 6;
             // 
             // txtTotal
             // 
             this.txtTotal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(307, 3);
+            this.txtTotal.Location = new System.Drawing.Point(347, 3);
             this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(86, 23);
+            this.txtTotal.Size = new System.Drawing.Size(80, 23);
             this.txtTotal.TabIndex = 2;
             // 
             // txtDiscount
             // 
             this.txtDiscount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiscount.Location = new System.Drawing.Point(169, 3);
+            this.txtDiscount.Location = new System.Drawing.Point(185, 3);
             this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Size = new System.Drawing.Size(86, 23);
+            this.txtDiscount.Size = new System.Drawing.Size(109, 23);
             this.txtDiscount.TabIndex = 3;
             // 
             // label1
@@ -257,7 +257,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label1.Location = new System.Drawing.Point(399, 0);
+            this.label1.Location = new System.Drawing.Point(433, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 4;
@@ -269,7 +269,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label6.Location = new System.Drawing.Point(261, 0);
+            this.label6.Location = new System.Drawing.Point(300, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 16);
             this.label6.TabIndex = 5;
@@ -281,7 +281,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label7.Location = new System.Drawing.Point(96, 0);
+            this.label7.Location = new System.Drawing.Point(105, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 16);
             this.label7.TabIndex = 6;
@@ -290,7 +290,7 @@
             // txtFinal
             // 
             this.txtFinal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFinal.Location = new System.Drawing.Point(3, 3);
+            this.txtFinal.Location = new System.Drawing.Point(12, 3);
             this.txtFinal.Name = "txtFinal";
             this.txtFinal.Size = new System.Drawing.Size(87, 23);
             this.txtFinal.TabIndex = 7;
@@ -366,7 +366,7 @@
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(494, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 19);
+            this.label4.Size = new System.Drawing.Size(47, 19);
             this.label4.TabIndex = 7;
             this.label4.Text = "فاتورة";
             // 
