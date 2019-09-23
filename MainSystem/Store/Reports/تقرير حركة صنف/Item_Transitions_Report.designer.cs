@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Note = new DevExpress.XtraGrid.Columns.GridColumn();
             this.BillNum = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Client = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -208,6 +210,7 @@
             this.gridView1.AppearancePrint.Row.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Note,
             this.BillNum,
             this.Date,
             this.Client,
@@ -224,14 +227,23 @@
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Date, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
+            // Note
+            // 
+            this.Note.Caption = "بيان";
+            this.Note.FieldName = "بيان";
+            this.Note.Name = "Note";
+            this.Note.Visible = true;
+            this.Note.VisibleIndex = 0;
+            this.Note.Width = 110;
+            // 
             // BillNum
             // 
             this.BillNum.Caption = "رقم الفاتورة";
             this.BillNum.FieldName = "رقم الفاتورة";
             this.BillNum.Name = "BillNum";
             this.BillNum.Visible = true;
-            this.BillNum.VisibleIndex = 0;
-            this.BillNum.Width = 150;
+            this.BillNum.VisibleIndex = 1;
+            this.BillNum.Width = 132;
             // 
             // Date
             // 
@@ -243,8 +255,8 @@
             this.Date.OptionsColumn.AllowEdit = false;
             this.Date.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
             this.Date.Visible = true;
-            this.Date.VisibleIndex = 1;
-            this.Date.Width = 200;
+            this.Date.VisibleIndex = 2;
+            this.Date.Width = 177;
             // 
             // Client
             // 
@@ -252,8 +264,8 @@
             this.Client.FieldName = "العميل";
             this.Client.Name = "Client";
             this.Client.Visible = true;
-            this.Client.VisibleIndex = 2;
-            this.Client.Width = 200;
+            this.Client.VisibleIndex = 3;
+            this.Client.Width = 177;
             // 
             // ItemIncrease
             // 
@@ -262,8 +274,8 @@
             this.ItemIncrease.Name = "ItemIncrease";
             this.ItemIncrease.OptionsColumn.AllowEdit = false;
             this.ItemIncrease.Visible = true;
-            this.ItemIncrease.VisibleIndex = 3;
-            this.ItemIncrease.Width = 92;
+            this.ItemIncrease.VisibleIndex = 4;
+            this.ItemIncrease.Width = 80;
             // 
             // ItemDecrease
             // 
@@ -271,8 +283,8 @@
             this.ItemDecrease.FieldName = "خصم";
             this.ItemDecrease.Name = "ItemDecrease";
             this.ItemDecrease.Visible = true;
-            this.ItemDecrease.VisibleIndex = 4;
-            this.ItemDecrease.Width = 92;
+            this.ItemDecrease.VisibleIndex = 5;
+            this.ItemDecrease.Width = 80;
             // 
             // Price
             // 
@@ -280,8 +292,8 @@
             this.Price.FieldName = "السعر";
             this.Price.Name = "Price";
             this.Price.Visible = true;
-            this.Price.VisibleIndex = 5;
-            this.Price.Width = 137;
+            this.Price.VisibleIndex = 6;
+            this.Price.Width = 121;
             // 
             // TotalCost
             // 
@@ -289,8 +301,8 @@
             this.TotalCost.FieldName = "الاجمالى";
             this.TotalCost.Name = "TotalCost";
             this.TotalCost.Visible = true;
-            this.TotalCost.VisibleIndex = 6;
-            this.TotalCost.Width = 148;
+            this.TotalCost.VisibleIndex = 7;
+            this.TotalCost.Width = 142;
             // 
             // panel2
             // 
@@ -1065,5 +1077,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn TotalCost;
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn Note;
     }
 }

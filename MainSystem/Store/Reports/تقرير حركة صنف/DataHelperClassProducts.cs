@@ -42,6 +42,16 @@ namespace MainSystem
 
             column = new DataColumn();
             column.DataType = typeof(string);
+            column.ColumnName = "بيان";
+            column.AutoIncrement = false;
+            column.Caption = "بيان";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
             column.ColumnName = "رقم الفاتورة";
             column.AutoIncrement = false;
             column.Caption = "رقم الفاتورة";
@@ -118,6 +128,16 @@ namespace MainSystem
         {
             DataTable table = new DataTable("FirstTable");
             DataColumn column;
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "بيان";
+            column.AutoIncrement = false;
+            column.Caption = "بيان";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = typeof(string);

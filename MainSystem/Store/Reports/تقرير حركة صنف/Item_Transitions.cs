@@ -8,6 +8,7 @@ namespace MainSystem
 {
     public class Item_Transitions
     {
+        public string Note { get; set; }
         public string Bill { get; set; }
         public string Date { get; set; }
         public string Client { get; set; }

@@ -932,7 +932,7 @@ namespace MainSystem
                             totali = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالى"]));
                         }
 
-                        Item_Transitions item = new Item_Transitions() { Bill = gridView1.GetRowCellDisplayText(i, gridView1.Columns["رقم الفاتورة"]), Date = gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"]), Client = gridView1.GetRowCellDisplayText(i, gridView1.Columns["العميل"]), Item_Increase = ItemIncrease, Item_Decrease = ItemDecrease, Price = pricee, Total_Cost = totali };
+                        Item_Transitions item = new Item_Transitions() { Note= gridView1.GetRowCellDisplayText(i, gridView1.Columns["بيان"]), Bill = gridView1.GetRowCellDisplayText(i, gridView1.Columns["رقم الفاتورة"]), Date = gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"]), Client = gridView1.GetRowCellDisplayText(i, gridView1.Columns["العميل"]), Item_Increase = ItemIncrease, Item_Decrease = ItemDecrease, Price = pricee, Total_Cost = totali };
                         bi.Add(item);
                     }
 
@@ -1187,7 +1187,8 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "الرصيد الافتتاحى");
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "الرصيد الافتتاحى");
+                    //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "الرصيد الافتتاحى");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                 }
@@ -1203,6 +1204,7 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "مبيعات");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], dr["العميل"].ToString() + " " + dr["المهندس/المقاول/التاجر"].ToString());
@@ -1222,6 +1224,7 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "مبيعات");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], dr["العميل"].ToString() + " " + dr["المهندس/المقاول/التاجر"].ToString());
@@ -1232,7 +1235,7 @@ namespace MainSystem
             }
             dr.Close();
             //,supplier_bill_details.Purchasing_Ratio as 'نسبة الشراء'
-            query = "SELECT concat(storage_import_permission.Import_Permission_Number,' ',store.Store_Name) as 'رقم الفاتورة',storage_import_permission.Storage_Date as 'التاريخ',GROUP_CONCAT(concat(supplier.Supplier_Name,' ',supplier.Supplier_ID) SEPARATOR ',') as 'العميل',supplier_permission_details.Total_Meters as 'الكمية',import_supplier_permission.Supplier_ID,import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.StorageImportPermission_ID FROM import_supplier_permission INNER JOIN storage_import_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner join data on data.Data_ID=supplier_permission_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and storage_import_permission.Store_ID=" + comStore.SelectedValue.ToString() + " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
+            query = "SELECT concat(storage_import_permission.Import_Permission_Number,' ',store.Store_Name) as 'رقم الفاتورة',storage_import_permission.Storage_Date as 'التاريخ',GROUP_CONCAT(DISTINCT concat(supplier.Supplier_Name,' ',supplier.Supplier_ID) SEPARATOR ',') as 'العميل',supplier_permission_details.Total_Meters as 'الكمية',import_supplier_permission.Supplier_ID,import_supplier_permission.Supplier_Permission_Number,import_supplier_permission.StorageImportPermission_ID FROM import_supplier_permission INNER JOIN storage_import_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner join data on data.Data_ID=supplier_permission_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and storage_import_permission.Store_ID=" + comStore.SelectedValue.ToString() + " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
             comand = new MySqlCommand(query, dbconnection);
             dr = comand.ExecuteReader();
             while (dr.Read())
@@ -1243,11 +1246,12 @@ namespace MainSystem
                     int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                     if (gridView1.IsNewItemRow(rowHandle))
                     {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "اذن مخزن");
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], dr["العميل"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
-                        double priceA = 1;
+                        /*double priceA = 1;
                         if (dr["StorageImportPermission_ID"].ToString() != "")
                         {
                             query = "SELECT supplier_bill.Bill_No 'رقم الفاتورة',supplier_bill.Date as 'التاريخ',concat(supplier.Supplier_Name,' ',supplier_bill.Supplier_ID) as 'العميل',supplier_bill_details.Price as 'السعر',supplier_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_bill_details.Purchasing_Price as 'بعد الخصم',supplier_bill_details.Total_Meters as 'الكمية' FROM supplier_bill INNER JOIN supplier_bill_details ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID inner join data on data.Data_ID=supplier_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and supplier_bill.Store_ID=" + comStore.SelectedValue.ToString() + " and date(supplier_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and supplier_bill.Supplier_ID=" + dr["Supplier_ID"].ToString() + " and supplier_bill.Supplier_Permission_Number=" + dr["Supplier_Permission_Number"].ToString() + " and supplier_bill.StorageImportPermission_ID=" + dr["StorageImportPermission_ID"].ToString() + "";
@@ -1268,13 +1272,13 @@ namespace MainSystem
                             }
                             dr2.Close();
                         }
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(dr["الكمية"].ToString()) * priceA);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(dr["الكمية"].ToString()) * priceA);*/
                     }
                 }
             }
             dr.Close();
             //,supplier_return_bill_details.Purchasing_Ratio as 'نسبة الشراء'
-            query = "SELECT concat(import_storage_return.Returned_Permission_Number,' ',store.Store_Name) 'رقم الفاتورة',import_storage_return.Retrieval_Date as 'التاريخ',GROUP_CONCAT(concat(supplier.Supplier_Name,' ',supplier.Supplier_ID) SEPARATOR ',') as 'العميل',import_storage_return_details.Total_Meters as 'الكمية',import_storage_return.ImportStorageReturn_ID FROM import_storage_return_supplier INNER JOIN import_storage_return ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN store ON store.Store_ID = import_storage_return.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID inner join data on data.Data_ID=import_storage_return_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and date(import_storage_return.Retrieval_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
+            query = "SELECT concat(import_storage_return.Returned_Permission_Number,' ',store.Store_Name) 'رقم الفاتورة',import_storage_return.Retrieval_Date as 'التاريخ',GROUP_CONCAT(DISTINCT concat(supplier.Supplier_Name,' ',supplier.Supplier_ID) SEPARATOR ',') as 'العميل',import_storage_return_details.Total_Meters as 'الكمية',import_storage_return.ImportStorageReturn_ID FROM import_storage_return_supplier INNER JOIN import_storage_return ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN store ON store.Store_ID = import_storage_return.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID inner join data on data.Data_ID=import_storage_return_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and date(import_storage_return.Retrieval_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
             comand = new MySqlCommand(query, dbconnection);
             dr = comand.ExecuteReader();
             while (dr.Read())
@@ -1285,11 +1289,12 @@ namespace MainSystem
                     int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                     if (gridView1.IsNewItemRow(rowHandle))
                     {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "اذن مخزن");
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], dr["العميل"].ToString());
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], dr["الكمية"].ToString());
-                        double priceA = 1;
+                        /*double priceA = 1;
                         if (dr["ImportStorageReturn_ID"].ToString() != "")
                         {
                             query = "SELECT supplier_return_bill.Return_Bill_No 'رقم الفاتورة',supplier_return_bill.Date as 'التاريخ',concat(supplier.Supplier_Name,' ',supplier_return_bill.Supplier_ID) as 'العميل',supplier_return_bill_details.Price as 'السعر',supplier_return_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_return_bill_details.Purchasing_Price as 'بعد الخصم',supplier_return_bill_details.Total_Meters as 'الكمية' FROM supplier_return_bill INNER JOIN supplier_return_bill_details ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID INNER JOIN supplier ON supplier_return_bill.Supplier_ID = supplier.Supplier_ID inner join data on data.Data_ID=supplier_return_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and supplier_return_bill.Store_ID=" + comStore.SelectedValue.ToString() + " and date(supplier_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and supplier_return_bill.ImportStorageReturn_ID=" + dr["ImportStorageReturn_ID"].ToString();
@@ -1310,7 +1315,7 @@ namespace MainSystem
                             }
                             dr2.Close();
                         }
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(dr["الكمية"].ToString()) * priceA);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Convert.ToDouble(dr["الكمية"].ToString()) * priceA);*/
                     }
                 }
             }
@@ -1325,8 +1330,9 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "تسوية");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تسوية");
+                    //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تسوية");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
                 }
@@ -1342,8 +1348,9 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "تسوية");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تسوية");
+                    //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تسوية");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], dr["الكمية"].ToString());
                 }
@@ -1359,8 +1366,9 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "تحويل");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تحويل");
+                    //gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العميل"], "تحويل");
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                     if (dr["From_Store"].ToString() == comStore.SelectedValue.ToString())
                     {
@@ -1691,37 +1699,6 @@ namespace MainSystem
             }
             dbconnection.Close();
             dbconnection2.Close();
-        }
-        
-        private void btnBillReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comStore.Text != "" && txtStoreID.Text != "")
-                {
-                    /*List<Transition_Items> bi = new List<Transition_Items>();
-                    //DataTable dt = (DataTable)gridControl2.DataSource;
-                    for (int i = 0; i < gridView2.RowCount; i++)
-                    {
-                        Transition_Items item = new Transition_Items() { ID = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["عملية"]), Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"]), Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["العميل"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
-                        bi.Add(item);
-                    }*/
-
-                    gridcontrol = gridControl1;
-                    BillsTransitions_Print f = new BillsTransitions_Print();
-                    //Print_Transition_Report f = new Print_Transition_Report();
-                    //f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
-                    f.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("يجب اختيار فرع");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
     }
 }
