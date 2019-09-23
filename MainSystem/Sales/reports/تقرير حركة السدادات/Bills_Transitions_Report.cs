@@ -206,8 +206,8 @@ namespace MainSystem
                 gridView1.SelectAll();
                 gridView1.DeleteSelectedRows();
             }
-
             string query = "SELECT customer_bill.CustomerBill_ID as 'ID',customer_bill.Branch_BillNumber as 'الفاتورة',customer_bill.Type_Buy as 'نوع الفاتورة',customer_bill.Bill_Date as 'التاريخ',customer_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',customer_bill.Total_CostBD as 'الاجمالى',customer_bill.Total_Discount as 'الخصم',customer_bill.Total_CostAD as 'الصافى' FROM customer_bill left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
+           
             MySqlCommand comand = new MySqlCommand(query, conn);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
