@@ -2133,8 +2133,11 @@
             this.layoutControlItem8.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem8.Control = this.dateTimePicker1;
             this.layoutControlItem8.Location = new System.Drawing.Point(541, 124);
+            this.layoutControlItem8.MaxSize = new System.Drawing.Size(492, 24);
+            this.layoutControlItem8.MinSize = new System.Drawing.Size(492, 24);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(492, 24);
+            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem8.Text = "التاريخ";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(97, 20);
             // 
