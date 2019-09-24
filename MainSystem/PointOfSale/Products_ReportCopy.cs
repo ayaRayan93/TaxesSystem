@@ -1514,6 +1514,7 @@ namespace MainSystem
                     else
                     {
                         comClient.Text = "";
+                        txtClientId.Text = "";
                     }
                 }
                 catch (Exception ex)
@@ -1750,11 +1751,12 @@ namespace MainSystem
                                                 {
                                                     if (comClient.Text != "" && txtPhone.Text != "")
                                                     {
-                                                        query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' or customer.Customer_Name='" + comClient.Text + "'";
+                                                        query = "select distinct customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' or customer.Customer_Name='" + comClient.Text + "'";
                                                         com = new MySqlCommand(query, dbconnection);
                                                         if (com.ExecuteScalar() != null)
                                                         {
-                                                            query = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer.Customer_Name='" + comClient.Text + "'";
+                                                            // inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID
+                                                            query = "select customer.Customer_ID from customer where customer.Customer_Name='" + comClient.Text + "'";
                                                             com = new MySqlCommand(query, dbconnection);
                                                             //repeated name
                                                             if (com.ExecuteScalar() != null)

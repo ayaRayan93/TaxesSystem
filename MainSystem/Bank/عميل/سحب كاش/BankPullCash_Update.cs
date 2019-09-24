@@ -67,10 +67,6 @@ namespace MainSystem
                 {
                     transitionbranchID = UserControl.EmpBranchID;
                     loadBranch();
-                    if (UserControl.userType == 1)
-                    {
-                        dateTimePicker1.Enabled = true;
-                    }
                 }
             }
             catch (Exception ex)

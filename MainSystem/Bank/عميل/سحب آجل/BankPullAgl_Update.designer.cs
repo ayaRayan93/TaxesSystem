@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.label5 = new System.Windows.Forms.Label();
@@ -183,6 +184,8 @@
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.layoutControlItem53 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -278,6 +281,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -291,6 +295,7 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.dateTimePicker1);
             this.dataLayoutControl1.Controls.Add(this.label5);
             this.dataLayoutControl1.Controls.Add(this.comDelegate);
             this.dataLayoutControl1.Controls.Add(this.label4);
@@ -483,9 +488,9 @@
             // 
             this.labelName.BackColor = System.Drawing.Color.White;
             this.labelName.ForeColor = System.Drawing.Color.Red;
-            this.labelName.Location = new System.Drawing.Point(31, 109);
+            this.labelName.Location = new System.Drawing.Point(394, 109);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(510, 21);
+            this.labelName.Size = new System.Drawing.Size(147, 21);
             this.labelName.TabIndex = 69;
             this.labelName.Text = "*";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1711,7 +1716,8 @@
             this.layoutControlItem17,
             this.layoutControlItem18,
             this.layoutControlItem21,
-            this.layoutControlItem46});
+            this.layoutControlItem46,
+            this.layoutControlItem53});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1997,9 +2003,9 @@
             // layoutControlItem60
             // 
             this.layoutControlItem60.Control = this.labelName;
-            this.layoutControlItem60.Location = new System.Drawing.Point(24, 102);
+            this.layoutControlItem60.Location = new System.Drawing.Point(387, 102);
             this.layoutControlItem60.Name = "layoutControlItem60";
-            this.layoutControlItem60.Size = new System.Drawing.Size(514, 25);
+            this.layoutControlItem60.Size = new System.Drawing.Size(151, 25);
             this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem60.TextVisible = false;
             // 
@@ -2109,6 +2115,31 @@
             this.layoutControlItem46.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem46.TextVisible = false;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(31, 109);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(236, 24);
+            this.dateTimePicker1.TabIndex = 89;
+            // 
+            // layoutControlItem53
+            // 
+            this.layoutControlItem53.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
+            this.layoutControlItem53.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem53.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem53.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem53.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem53.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem53.Control = this.dateTimePicker1;
+            this.layoutControlItem53.Location = new System.Drawing.Point(24, 102);
+            this.layoutControlItem53.Name = "layoutControlItem53";
+            this.layoutControlItem53.Size = new System.Drawing.Size(363, 25);
+            this.layoutControlItem53.Text = "التاريخ";
+            this.layoutControlItem53.TextSize = new System.Drawing.Size(120, 20);
+            // 
             // BankPullAgl_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -2217,6 +2248,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2378,6 +2410,8 @@
         private System.Windows.Forms.ComboBox comDelegate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem46;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem53;
     }
 }
 

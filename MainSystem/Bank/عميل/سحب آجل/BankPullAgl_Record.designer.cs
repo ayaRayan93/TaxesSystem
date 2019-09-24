@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.txtClientID = new System.Windows.Forms.TextBox();
@@ -185,6 +186,10 @@
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem53 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.layoutControlItem54 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.label7 = new System.Windows.Forms.Label();
+            this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -281,6 +286,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -294,6 +301,8 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.label7);
+            this.dataLayoutControl1.Controls.Add(this.dateTimePicker1);
             this.dataLayoutControl1.Controls.Add(this.txtClientID);
             this.dataLayoutControl1.Controls.Add(this.txtCustomerID);
             this.dataLayoutControl1.Controls.Add(this.label5);
@@ -505,9 +514,9 @@
             // 
             this.labelName.BackColor = System.Drawing.Color.White;
             this.labelName.ForeColor = System.Drawing.Color.Red;
-            this.labelName.Location = new System.Drawing.Point(7, 109);
+            this.labelName.Location = new System.Drawing.Point(394, 109);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(534, 21);
+            this.labelName.Size = new System.Drawing.Size(147, 21);
             this.labelName.TabIndex = 69;
             this.labelName.Text = "*";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1720,7 +1729,9 @@
             this.layoutControlItem17,
             this.layoutControlItem21,
             this.layoutControlItem46,
-            this.layoutControlItem53});
+            this.layoutControlItem53,
+            this.layoutControlItem54,
+            this.layoutControlItem56});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1997,9 +2008,9 @@
             // layoutControlItem60
             // 
             this.layoutControlItem60.Control = this.labelName;
-            this.layoutControlItem60.Location = new System.Drawing.Point(0, 102);
+            this.layoutControlItem60.Location = new System.Drawing.Point(387, 102);
             this.layoutControlItem60.Name = "layoutControlItem60";
-            this.layoutControlItem60.Size = new System.Drawing.Size(538, 25);
+            this.layoutControlItem60.Size = new System.Drawing.Size(151, 25);
             this.layoutControlItem60.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem60.TextVisible = false;
             // 
@@ -2123,6 +2134,49 @@
             this.layoutControlItem53.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem53.TextVisible = false;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(31, 109);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(236, 24);
+            this.dateTimePicker1.TabIndex = 90;
+            // 
+            // layoutControlItem54
+            // 
+            this.layoutControlItem54.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold);
+            this.layoutControlItem54.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem54.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem54.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem54.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem54.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem54.Control = this.dateTimePicker1;
+            this.layoutControlItem54.Location = new System.Drawing.Point(24, 102);
+            this.layoutControlItem54.Name = "layoutControlItem54";
+            this.layoutControlItem54.Size = new System.Drawing.Size(363, 25);
+            this.layoutControlItem54.Text = "التاريخ";
+            this.layoutControlItem54.TextSize = new System.Drawing.Size(120, 20);
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(7, 109);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(20, 21);
+            this.label7.TabIndex = 91;
+            // 
+            // layoutControlItem56
+            // 
+            this.layoutControlItem56.Control = this.label7;
+            this.layoutControlItem56.Location = new System.Drawing.Point(0, 102);
+            this.layoutControlItem56.Name = "layoutControlItem56";
+            this.layoutControlItem56.Size = new System.Drawing.Size(24, 25);
+            this.layoutControlItem56.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem56.TextVisible = false;
+            // 
             // BankPullAgl_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -2231,6 +2285,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem53)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2394,6 +2450,10 @@
         private System.Windows.Forms.TextBox txtCustomerID;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem46;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem53;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem54;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
     }
 }
 
