@@ -181,7 +181,7 @@ namespace MainSystem
 
                     //query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
                     // query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
-                    query = "select Branch_BillNumber from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                    query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
 
                     com = new MySqlCommand(query, dbconnection);
                     dr = com.ExecuteReader();
