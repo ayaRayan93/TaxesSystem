@@ -689,7 +689,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 7 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 6 || UserControl.userType == 13)
+                if (UserControl.userType == 7 || UserControl.userType == 1/*|| UserControl.userType == 15*/ /*|| UserControl.userType == 6*/ || UserControl.userType == 13)
                 {
                     if (!xtraTabControlSalesContent.Visible)
                         xtraTabControlSalesContent.Visible = true;
