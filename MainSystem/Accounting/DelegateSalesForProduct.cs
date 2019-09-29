@@ -259,7 +259,7 @@ namespace MainSystem
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
 
                 //string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
-                string query = "select CustomerBill_ID from customer_bill  where  Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                string query = "select CustomerBill_ID from customer_bill  where  Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
 
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
@@ -300,7 +300,7 @@ namespace MainSystem
                 gridControl1.DataSource = _Table;
                 CalTotal(_Table);
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("حدد الشركة والمندوب والفرع");
                 txtFactory.Focus();
@@ -444,7 +444,7 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("QuantitySaled", typeof(string)));
             _Table.Columns.Add(new DataColumn("QuantityReturned", typeof(string)));
             _Table.Columns.Add(new DataColumn("PriceAD", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Cost", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Cost", typeof(decimal)));
             _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
         }
