@@ -212,7 +212,7 @@ namespace MainSystem
                     //pictureBoxSales.Visible = true;
                     btnTaswayAgalBills.Visible = false;
                     navBarItem153.Visible = false;
-                    navBarItemSalesTransitions.Visible = false;
+                    //navBarItemSalesTransitions.Visible = false;
                     navBarItemBillsAgleTransitionsReport.Visible = false;
                     navBarItemTotalSales.Visible = false;
                     //btnBank.Enabled = true;
