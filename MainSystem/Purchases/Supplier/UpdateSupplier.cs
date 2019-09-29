@@ -119,6 +119,7 @@ namespace MainSystem
                     ArrayList temp = new ArrayList();
                     foreach (int index in checkedListBoxControlPhone.CheckedIndices)
                         temp.Add(checkedListBoxControlPhone.Items[index]);
+                    dbconnection.Open();
                     foreach (object item in temp)
                     {
                         string query = "delete from supplier_phone where Supplier_ID=" + selRow[0].ToString() + " and phone='" + item.ToString() + "'";
@@ -133,6 +134,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+            dbconnection.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

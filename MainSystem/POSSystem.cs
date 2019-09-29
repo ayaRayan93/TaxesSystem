@@ -212,7 +212,7 @@ namespace MainSystem
 
    
          //review
-         public void test(/*int DelegateId,*/ int BillNum)
+        public void test(/*int DelegateId,*/ int BillNum)
         {
             int count = 0;
             BaseData.generateBaseProjectFile();
@@ -250,7 +250,7 @@ namespace MainSystem
             try
             {
                 
-                if (UserControl.userType == 5 || UserControl.userType == 1)
+                if (UserControl.userType == 5 || UserControl.userType == 1 || UserControl.userType == 13)
                 {
                     if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPagePOS))
                     {

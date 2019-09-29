@@ -345,6 +345,30 @@ namespace MainSystem
                         {
                            
                         }
+
+                        #region add all
+                        double totalAD = 0;
+                        foreach (DataGridViewRow item in dataGridView1.Rows)
+                        {
+                            int n = dataGridView2.Rows.Add();
+                            dataGridView2.Rows[n].Cells["Data_ID"].Value = item.Cells["Data_ID"].Value;
+                            dataGridView2.Rows[n].Cells["ItemType"].Value = item.Cells["الفئة"].Value;
+                            dataGridView2.Rows[n].Cells["Code"].Value = item.Cells["الكود"].Value.ToString();
+                            dataGridView2.Rows[n].Cells["Product_Name"].Value = item.Cells["الاسم"].Value;
+                            dataGridView2.Rows[n].Cells["Quantity"].Value = item.Cells["الكمية"].Value;
+                            dataGridView2.Rows[n].Cells["priceBD"].Value = item.Cells["السعر"].Value;
+                            dataGridView2.Rows[n].Cells["Discount"].Value = item.Cells["نسبة الخصم"].Value;
+                            dataGridView2.Rows[n].Cells["priceAD"].Value = item.Cells["السعر بعد الخصم"].Value;
+                            dataGridView2.Rows[n].Cells["totalAD"].Value = Convert.ToDouble(item.Cells["الكمية"].Value) * Convert.ToDouble(item.Cells["السعر بعد الخصم"].Value);
+                            dataGridView2.Rows[n].Cells["Description"].Value = item.Cells["الوصف"].Value;
+                            dataGridView2.Rows[n].Cells["Returned"].Value = "نعم";
+                            dataGridView2.Rows[n].Cells["Delegate_ID"].Value = item.Cells["Delegate_ID"].Value;
+                            dataGridView2.Rows[n].Cells["CustomerBill_ID"].Value = item.Cells["CustomerBill_ID"].Value;
+                            dataGridView2.Rows[n].Cells["Store_ID"].Value = item.Cells["Store_ID"].Value;
+                            totalAD += Convert.ToDouble(item.Cells["الكمية"].Value) * Convert.ToDouble(item.Cells["السعر بعد الخصم"].Value);
+                        }
+                        txtTotalReturnBillAD.Text = totalAD.ToString();
+                        #endregion
                     }
                     else
                     {
