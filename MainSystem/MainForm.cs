@@ -171,6 +171,22 @@ namespace MainSystem
             {
                 btnBank.Enabled = true;
                 btnBank.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup54.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
 
                 navBarGroupReportBank.Visible = false;
             }
@@ -193,10 +209,17 @@ namespace MainSystem
 
                 if (UserControl.userType == 6)
                 {
-                    pictureBoxSales.Visible = true;
-                    btnBank.Enabled = true;
-                    btnBank.Checked = true;
+                    //pictureBoxSales.Visible = true;
+                    btnTaswayAgalBills.Visible = false;
+                    navBarItem153.Visible = false;
+                    navBarItemSalesTransitions.Visible = false;
+                    navBarItemBillsAgleTransitionsReport.Visible = false;
+                    navBarItemTotalSales.Visible = false;
+                    //btnBank.Enabled = true;
+                    //btnBank.Checked = true;
                 }
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
             }
             else if (UserControl.userType == 8)
             {
@@ -259,6 +282,10 @@ namespace MainSystem
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
                 navBarGroupProductsTicket.Visible = false;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupReportPointSale.Visible = false;
+                pictureBoxBell.Visible = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 btnBank.Enabled = true;
@@ -283,8 +310,8 @@ namespace MainSystem
             //مدير
             else if (UserControl.userType == 15)
             {
-                //btnPOS.Enabled = true;
-                //btnPOS.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 pictureBoxBell.Visible = true;
@@ -310,6 +337,7 @@ namespace MainSystem
                 navBarItemTotalSales.Visible = false;
                 btnTaswayAgalBills.Visible = false;
                 navBarItem153.Visible = false;
+                navBarGroupReportPointSale.Visible = false;
 
                 userAccess();
             }
@@ -323,7 +351,10 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
-               // pictureBoxBell.Visible = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupReportPointSale.Visible = false;
+                pictureBoxBell.Visible = true;
                 userAccessStore();
             }
             //eslam
@@ -1010,9 +1041,9 @@ namespace MainSystem
 
     public static class connection
     {
-        static string supString = File.ReadAllText("IP_Address.txt");
+        static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=newuser;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

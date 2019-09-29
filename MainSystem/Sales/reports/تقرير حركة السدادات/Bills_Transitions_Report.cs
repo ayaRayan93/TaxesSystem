@@ -78,6 +78,13 @@ namespace MainSystem
                     gridView1.InitNewRow += GridView1_InitNewRow;
 
                     loadBranch();
+
+                    if(UserControl.userType != 1)
+                    {
+                        comBranch.Enabled = false;
+                        comBranch.DropDownStyle = ComboBoxStyle.DropDownList;
+                        comBranch.SelectedValue = UserControl.EmpBranchID;
+                    }
                 }
             }
             catch (Exception ex)

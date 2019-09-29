@@ -1156,7 +1156,7 @@ namespace MainSystem
 
         public void SpecialOrdersFunction()
         {
-            if (/*UserControl.userType == 7 || */UserControl.userType == 6/* || UserControl.userType == 13*/ || UserControl.userType == 1)
+            if (/*UserControl.userType == 7 || UserControl.userType == 6 || UserControl.userType == 13 ||*/ UserControl.userType == 1)
             {
                 dbconnection.Close();
                 //INNER JOIN orders ON special_order.SpecialOrder_ID = orders.SpecialOrder_ID 
