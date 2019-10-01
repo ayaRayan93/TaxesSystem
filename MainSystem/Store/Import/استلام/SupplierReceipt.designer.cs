@@ -667,6 +667,7 @@
             this.btnCodingDetails.TabIndex = 12;
             this.btnCodingDetails.Text = "تكويد العناصر";
             this.btnCodingDetails.UseVisualStyleBackColor = false;
+            this.btnCodingDetails.Visible = false;
             this.btnCodingDetails.Click += new System.EventHandler(this.btnCodingDetails_Click);
             // 
             // btnCodingProduct
@@ -682,6 +683,7 @@
             this.btnCodingProduct.TabIndex = 11;
             this.btnCodingProduct.Text = "تكويد بند";
             this.btnCodingProduct.UseVisualStyleBackColor = false;
+            this.btnCodingProduct.Visible = false;
             this.btnCodingProduct.Click += new System.EventHandler(this.btnCodingProduct_Click);
             // 
             // panel2

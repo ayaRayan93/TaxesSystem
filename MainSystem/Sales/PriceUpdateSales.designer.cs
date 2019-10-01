@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
@@ -40,9 +42,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label2 = new System.Windows.Forms.Label();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -74,12 +74,28 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(12, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(260, 20);
+            this.label2.TabIndex = 10;
+            // 
+            // txtTotalPrice
+            // 
+            this.txtTotalPrice.Enabled = false;
+            this.txtTotalPrice.Location = new System.Drawing.Point(12, 108);
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.Size = new System.Drawing.Size(131, 20);
+            this.txtTotalPrice.TabIndex = 9;
+            // 
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(12, 60);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(131, 20);
             this.txtPrice.TabIndex = 8;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             this.txtPrice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrice_KeyDown);
             // 
             // label1
@@ -116,6 +132,7 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(131, 20);
             this.txtDiscount.TabIndex = 4;
+            this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             this.txtDiscount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDiscount_KeyDown);
             // 
             // layoutControlGroup1
@@ -182,14 +199,6 @@
             this.layoutControlItem3.Text = "السعر بعد الخصم";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(126, 19);
             // 
-            // txtTotalPrice
-            // 
-            this.txtTotalPrice.Enabled = false;
-            this.txtTotalPrice.Location = new System.Drawing.Point(12, 108);
-            this.txtTotalPrice.Name = "txtTotalPrice";
-            this.txtTotalPrice.Size = new System.Drawing.Size(131, 20);
-            this.txtTotalPrice.TabIndex = 9;
-            // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
@@ -200,13 +209,6 @@
             this.layoutControlItem5.Size = new System.Drawing.Size(264, 24);
             this.layoutControlItem5.Text = "الاجمالى بعد الخصم";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(126, 19);
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(12, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(260, 20);
-            this.label2.TabIndex = 10;
             // 
             // layoutControlItem6
             // 
