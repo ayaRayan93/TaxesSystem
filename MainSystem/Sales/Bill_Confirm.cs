@@ -20,8 +20,7 @@ namespace MainSystem
 {
     public partial class Bill_Confirm : Form
     {
-        MySqlConnection dbconnection, dbconnectionr, dbconnection2, dbconnection3;
-        MySqlConnection connectionReader, connectionReader1, connectionReader2, connectionReader3;
+        MySqlConnection dbconnection, dbconnectionr, connectionReader3;
         string RecivedType = "العميل";
         string Customer_Type = "";
         int CustomerBill_ID = 0;
@@ -37,11 +36,6 @@ namespace MainSystem
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnectionr = new MySqlConnection(connection.connectionString);
-            dbconnection2 = new MySqlConnection(connection.connectionString);
-            dbconnection3 = new MySqlConnection(connection.connectionString);
-            connectionReader = new MySqlConnection(connection.connectionString);
-            connectionReader1 = new MySqlConnection(connection.connectionString);
-            connectionReader2 = new MySqlConnection(connection.connectionString);
             connectionReader3 = new MySqlConnection(connection.connectionString);
 
             string query = "select * from customer";
@@ -134,7 +128,7 @@ namespace MainSystem
                     txtClientID.Visible = true;
 
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, connectionReader3);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     comClient.DataSource = dt;
@@ -156,7 +150,7 @@ namespace MainSystem
                     txtClientID.Visible = false;
 
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection2);
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, connectionReader3);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     comEngCon.DataSource = dt;
@@ -174,7 +168,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection2.Close();
+            connectionReader3.Close();
         }
 
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
@@ -481,7 +475,7 @@ namespace MainSystem
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
                                 {
-                                    dbconnection3.Open();
+                                    connectionReader3.Open();
                                     gridView1.AddNewRow();
                                     int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                                     if (gridView1.IsNewItemRow(rowHandle))
@@ -499,7 +493,7 @@ namespace MainSystem
                                         //,sum(sellprice.Last_Price * dash_details.Quantity * set_details.Quantity) as 'الاجمالى'  ..,sum(sellprice.Sell_Price * dash_details.Quantity * set_details.Quantity) as 'الاجمالى بعد'
                                         //sets INNER JOIN set_details ON set_details.Set_ID = sets.Set_ID INNER JOIN dash_details ON sets.Set_ID = dash_details.Data_ID INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where sets.Set_ID=" + dataReader1[0] + " and dash_details.Type='طقم' group by set_details.Set_ID order by sellprice.Date desc
                                         query = "SELECT  sum(sellprice.Last_Price * set_details.Quantity) as 'السعر' ,(sellprice.Sell_Discount) as 'الخصم' ,sum(sellprice.Sell_Price * set_details.Quantity) as 'بعد الخصم' FROM set_details INNER JOIN sellprice ON set_details.Data_ID = sellprice.Data_ID where set_details.Set_ID=" + dataReader1[0] + " group by set_details.Set_ID order by sellprice.Date desc limit 1";
-                                        com = new MySqlCommand(query, dbconnection3);
+                                        com = new MySqlCommand(query, connectionReader3);
                                         MySqlDataReader dr1 = com.ExecuteReader();
                                         while (dr1.Read())
                                         {
@@ -514,7 +508,7 @@ namespace MainSystem
                                         }
                                         dr1.Close();
                                     }
-                                    dbconnection3.Close();
+                                    connectionReader3.Close();
                                 }
                                 dataReader1.Close();
                             }
@@ -567,7 +561,7 @@ namespace MainSystem
                         dataReader.Close();
                         dbconnection.Close();
                         dbconnectionr.Close();
-                        dbconnection2.Close();
+                        //dbconnection2.Close();
                         //comDelegate.Text = "";
                         comClient.Text = "";
                         comEngCon.Text = "";
@@ -600,7 +594,7 @@ namespace MainSystem
                 }
                 dbconnection.Close();
                 dbconnectionr.Close();
-                dbconnection2.Close();
+                //dbconnection2.Close();
                 connectionReader3.Close();
             }
         }
@@ -862,9 +856,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-            connectionReader2.Close();
-            connectionReader1.Close();
-            connectionReader.Close();
+            //connectionReader2.Close();
+            //connectionReader1.Close();
+            //connectionReader.Close();
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -1133,7 +1127,7 @@ namespace MainSystem
             return false;
         }
 
-        public void DecreaseProductQuantity()
+        /*public void DecreaseProductQuantity()
         {
             connectionReader.Open();
             connectionReader1.Open();
@@ -1298,7 +1292,7 @@ namespace MainSystem
             connectionReader2.Close();
             connectionReader1.Close();
             connectionReader.Close();
-        }
+        }*/
 
         public void addItemToView(DataRowView comeRow1, double comeQuantity, int comeStoreId, string comeStore, int cartns)
         {

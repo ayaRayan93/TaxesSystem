@@ -18,6 +18,8 @@ namespace MainSystem
         int rowHandel = 0;
         DataRowView selRow;
         MySqlConnection dbconnection;
+        bool priceFlag = true;
+        bool discountFlag = true;
 
         public PriceUpdateSales(int rowhandel, DataRowView Selrow)
         {
@@ -81,7 +83,7 @@ namespace MainSystem
 
         private void txtDiscount_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            /*if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
@@ -97,12 +99,12 @@ namespace MainSystem
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            }*/
         }
 
         private void txtPrice_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            /*if (e.KeyCode == Keys.Enter)
             {
                 try
                 {
@@ -112,6 +114,52 @@ namespace MainSystem
                         double priceValue = Convert.ToDouble(selRow["السعر"].ToString()) - price;
                         txtDiscount.Text = ((priceValue / Convert.ToDouble(selRow["السعر"].ToString())) * 100).ToString("0.##");
                         txtTotalPrice.Text = (Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(selRow["الكمية"].ToString())).ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }*/
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            if (discountFlag)
+            {
+                try
+                {
+                    double discount = 0;
+                    if (double.TryParse(txtDiscount.Text, out discount))
+                    {
+                        priceFlag = false;
+                        double discountValue = Convert.ToDouble(selRow["السعر"].ToString()) * (discount / 100);
+                        txtPrice.Text = (Convert.ToDouble(selRow["السعر"].ToString()) - discountValue).ToString("0.##");
+                        txtTotalPrice.Text = (Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(selRow["الكمية"].ToString())).ToString();
+                        priceFlag = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (priceFlag)
+            {
+                try
+                {
+                    double price = 0;
+                    if (double.TryParse(txtPrice.Text, out price))
+                    {
+                        discountFlag = false;
+                        double priceValue = Convert.ToDouble(selRow["السعر"].ToString()) - price;
+                        txtDiscount.Text = ((priceValue / Convert.ToDouble(selRow["السعر"].ToString())) * 100).ToString("0.##");
+                        txtTotalPrice.Text = (Convert.ToDouble(txtPrice.Text) * Convert.ToDouble(selRow["الكمية"].ToString())).ToString();
+                        discountFlag = true;
                     }
                 }
                 catch (Exception ex)

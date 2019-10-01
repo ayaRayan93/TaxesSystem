@@ -345,8 +345,8 @@ namespace MainSystem
             {
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
-                btnStores.Enabled = true;
-                btnStores.Checked = true;
+                //btnStores.Enabled = true;
+                //btnStores.Checked = true;
                 btnBank.Enabled = true;
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
@@ -355,6 +355,8 @@ namespace MainSystem
                 btnPOS.Checked = true;
                 navBarGroupReportPointSale.Visible = false;
                 pictureBoxBell.Visible = true;
+                navBarItemBillsAgleTransitionsReport.Visible = false;
+                navBarItemTotalSales.Visible = false;
                 userAccessStore();
             }
             //eslam
@@ -513,7 +515,7 @@ namespace MainSystem
                 navBarGroup12.Visible = false;
                 navBarGroup54.Visible = false;
             }
-            //حركة تسليم/استلام
+            //حركة استلام
             else if (UserControl.userType == 22)
             {
                 btnStores.Enabled = true;
@@ -522,12 +524,37 @@ namespace MainSystem
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
                 navBarGroup3.Visible = false;
+                navBarItem11.Visible = false;
+                navBarItemCustomerReturnBillOfPeriod.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup54.Visible = false;
+                //navBarItem17.Visible = false;
+                //navBarItemTransportationStore.Visible = false;
+            }
+            //حركة تسليم
+            else if (UserControl.userType == 23)
+            {
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarItemStoreReturn.Visible = false;
                 navBarGroup7.Visible = false;
                 navBarGroup9.Visible = false;
                 navBarGroup10.Visible = false;
                 navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup54.Visible = false;
+                navBarGroup12.Visible = false;
                 navBarItem17.Visible = false;
                 navBarItemTransportationStore.Visible = false;
             }

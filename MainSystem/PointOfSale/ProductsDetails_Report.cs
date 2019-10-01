@@ -501,11 +501,11 @@ namespace MainSystem
                 if (PSloaded)
                 {
                     txtClientId.Text = comCustomer.SelectedValue.ToString();
-                    string query = "update dash set Customer_ID=" + txtClientId.Text + " , Customer_Name='" + comCustomer.Text + "' where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed = 0";
+                    /*string query = "update dash set Customer_ID=" + txtClientId.Text + " , Customer_Name='" + comCustomer.Text + "' where dash.Branch_ID=" + DelegateBranchID + " and dash.Bill_Number=" + billNum + " and dash.Confirmed = 0";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     conn.Close();
                     conn.Open();
-                    com.ExecuteNonQuery();
+                    com.ExecuteNonQuery();*/
                 }
             }
             catch (Exception ex)
