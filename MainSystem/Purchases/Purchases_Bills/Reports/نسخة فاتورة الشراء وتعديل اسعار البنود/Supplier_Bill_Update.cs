@@ -168,6 +168,7 @@ namespace MainSystem
                         totalDiscount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر بالزيادة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"))) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
                         totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                     }
+                    txtAllTax.Text = selRow["ضريبة القيمة المضافة"].ToString();
                     labelTotalB.Text = totalB.ToString("#.000");
                     labelTotalA.Text = totalA.ToString("#.000");
                     labelTotalDiscount.Text = totalDiscount.ToString("#.000");
@@ -204,6 +205,8 @@ namespace MainSystem
                     }
                     gridView1.Columns[1].Width = 170;
                     gridView1.Columns[3].Width = 300;
+
+                    loaded = true;
                 }
                 catch (Exception ex)
                 {
