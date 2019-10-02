@@ -441,11 +441,24 @@ namespace MainSystem
                                     else
                                     {
                                         MessageBox.Show("لا يوجد كمية كافية");
+
+                                        dbconnection.Close();
+                                        dbconnection1.Close();
+                                        dbconnection2.Close();
+                                        dbconnection3.Close();
+                                        dbconnection4.Close();
+                                        return;
                                     }
                                 }
                                 else
                                 {
                                     MessageBox.Show("لا يوجد كمية كافية");
+                                    dbconnection.Close();
+                                    dbconnection1.Close();
+                                    dbconnection2.Close();
+                                    dbconnection3.Close();
+                                    dbconnection4.Close();
+                                    return;
                                 }
                             }
                             dr3.Close();

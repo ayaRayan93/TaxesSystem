@@ -700,8 +700,7 @@ namespace MainSystem
                             com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                             com.Parameters["@Client_Name"].Value = null;
                         }
-
-
+                        
                         if (txtCustomerID.Text != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
