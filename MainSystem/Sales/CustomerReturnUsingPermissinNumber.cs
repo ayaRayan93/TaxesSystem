@@ -166,10 +166,12 @@ namespace MainSystem
         }
         private void btnCreateReturnBill_Click(object sender, EventArgs e)
         {
+     
             try
             {
                 dbconnection.Close();
                 dbconnection.Open();
+                MySqlTransaction tra = dbconnection.BeginTransaction();
                 if (dataGridView2.RowCount > 0 && txtReturnPermission.Text != "")
                 {
                     string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +BaseData.BranchID + " order by CustomerReturnBill_ID desc limit 1";
@@ -179,7 +181,7 @@ namespace MainSystem
                     {
                         Branch_BillNumber = Convert.ToInt32(com.ExecuteScalar()) + 1;
                     }
-                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Customer_Name,Client_Name, Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name,Branch_Name) values (@Customer_ID,@Client_ID,@Customer_Name,@Client_Name,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name,@Branch_Name)";
+                    query = "insert into customer_return_bill (Customer_ID,Client_ID,Customer_Name,Client_Name, Branch_ID,Branch_BillNumber,Store_Permission_Number,Date,TotalCostAD,ReturnInfo,Type_Buy,Employee_ID,Employee_Name,Branch_Name) values (@Customer_ID,@Client_ID,@Customer_Name,@Client_Name,@Branch_ID,@Branch_BillNumber,@Store_Permission_Number,@Date,@TotalCostAD,@ReturnInfo,@Type_Buy,@Employee_ID,@Employee_Name,@Branch_Name) ";
                     com = new MySqlCommand(query, dbconnection);
                     
                     com.Parameters.Add("@Branch_BillNumber", MySqlDbType.Int16);
@@ -240,8 +242,11 @@ namespace MainSystem
                         }
                     }
                     dr.Close();
+                    tra.Rollback();
+
                     dbconnection.Close();
                     dbconnection.Open();
+                    tra = dbconnection.BeginTransaction();
                     if (!flag)
                     {
                         q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name  from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + labBillNumber.Text+" and Branch_ID="+Branch_ID;
@@ -299,7 +304,7 @@ namespace MainSystem
                     dr1.Close();
                    
 
-                    query = "insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceBD,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID,Store_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceBD,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID,@Store_ID)";
+                    query = " insert into customer_return_bill_details (CustomerReturnBill_ID,Data_ID,Type,TotalMeter,PriceBD,PriceAD,TotalAD,SellDiscount,CustomerBill_ID,Delegate_ID,Store_ID)values (@CustomerReturnBill_ID,@Data_ID,@Type,@TotalMeter,@PriceBD,@PriceAD,@TotalAD,@SellDiscount,@CustomerBill_ID,@Delegate_ID,@Store_ID) ";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerReturnBill_ID", MySqlDbType.Int16);
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
@@ -344,6 +349,7 @@ namespace MainSystem
                     MessageBox.Show("فاتورة مرتجع رقم "+Branch_BillNumber);
                     UserControl.ItemRecord("customer_return_bill", "اضافة", id, DateTime.Now, "", dbconnection);
                     clear();
+                    tra.Rollback();
                 }
                 else
                 {
@@ -352,7 +358,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show("تاكد من ادخال اسم المندوب");
+                MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
