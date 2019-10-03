@@ -173,8 +173,20 @@ namespace MainSystem
                 dbconnection.Open();
                 if (dataGridView2.RowCount > 0 && txtReturnPermission.Text != "")
                 {
-                    string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +BaseData.BranchID + " order by CustomerReturnBill_ID desc limit 1";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    int billNum = Convert.ToInt32(txtReturnPermission.Text);
+
+                    string query = "";
+                    MySqlCommand com;
+                    query = "select Store_Permission_Number from customer_return_bill where Store_Permission_Number=" + billNum;
+                    com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        MessageBox.Show("اذن المرتجع تم تسجيله من قبل");
+                        dbconnection.Close();
+                        return;
+                    }
+                    query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +BaseData.BranchID + " order by CustomerReturnBill_ID desc limit 1";
+                    com = new MySqlCommand(query, dbconnection);
                     int Branch_BillNumber = 1;
                     if (com.ExecuteScalar() != null)
                     {
