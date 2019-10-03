@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version79\</PublishUrl>
+    <PublishUrl>D:\التكويد\version81\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>147</ApplicationRevision>
+    <ApplicationRevision>148</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -614,11 +614,17 @@
     <Compile Include="Reception\Delegate_Movement_Copy.designer.cs">
       <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\salesReportForCompany.cs">
+    <Compile Include="Reports\sales\salesReportForCompany.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reports\salesReportForCompany.Designer.cs">
+    <Compile Include="Reports\sales\salesReportForCompany.Designer.cs">
       <DependentUpon>salesReportForCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\sales\SalesReportForCompanyDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\sales\SalesReportForCompanyDetails.Designer.cs">
+      <DependentUpon>SalesReportForCompanyDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Products_Report2Sales.cs">
       <SubType>Form</SubType>
@@ -2956,8 +2962,11 @@
     <EmbeddedResource Include="Reception\Delegate_Movement_Copy.resx">
       <DependentUpon>Delegate_Movement_Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\salesReportForCompany.resx">
+    <EmbeddedResource Include="Reports\sales\salesReportForCompany.resx">
       <DependentUpon>salesReportForCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\sales\SalesReportForCompanyDetails.resx">
+      <DependentUpon>SalesReportForCompanyDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\BillCancelForm.resx">
       <DependentUpon>BillCancelForm.cs</DependentUpon>

@@ -171,7 +171,6 @@ namespace MainSystem
             {
                 dbconnection.Close();
                 dbconnection.Open();
-                MySqlTransaction tra = dbconnection.BeginTransaction();
                 if (dataGridView2.RowCount > 0 && txtReturnPermission.Text != "")
                 {
                     string query = "select Branch_BillNumber from customer_return_bill where Branch_ID=" +BaseData.BranchID + " order by CustomerReturnBill_ID desc limit 1";
@@ -242,11 +241,9 @@ namespace MainSystem
                         }
                     }
                     dr.Close();
-                    tra.Rollback();
 
                     dbconnection.Close();
                     dbconnection.Open();
-                    tra = dbconnection.BeginTransaction();
                     if (!flag)
                     {
                         q = "select customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name  from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where Branch_BillNumber=" + labBillNumber.Text+" and Branch_ID="+Branch_ID;
@@ -349,7 +346,6 @@ namespace MainSystem
                     MessageBox.Show("فاتورة مرتجع رقم "+Branch_BillNumber);
                     UserControl.ItemRecord("customer_return_bill", "اضافة", id, DateTime.Now, "", dbconnection);
                     clear();
-                    tra.Rollback();
                 }
                 else
                 {
