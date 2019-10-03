@@ -125,6 +125,7 @@
             this.comClassfication.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClassfication.Size = new System.Drawing.Size(175, 24);
             this.comClassfication.TabIndex = 151;
+            this.comClassfication.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // txtSort
             // 
@@ -138,6 +139,7 @@
             this.txtSort.Size = new System.Drawing.Size(54, 23);
             this.txtSort.TabIndex = 143;
             this.txtSort.TabStop = false;
+            this.txtSort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // label10
             // 
@@ -177,6 +179,7 @@
             this.txtColor.Size = new System.Drawing.Size(54, 23);
             this.txtColor.TabIndex = 141;
             this.txtColor.TabStop = false;
+            this.txtColor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // label8
             // 
@@ -205,6 +208,7 @@
             this.comColor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comColor.Size = new System.Drawing.Size(175, 24);
             this.comColor.TabIndex = 140;
+            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comSize
             // 
@@ -220,6 +224,7 @@
             this.comSize.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSize.Size = new System.Drawing.Size(175, 24);
             this.comSize.TabIndex = 148;
+            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // label9
             // 
@@ -246,6 +251,7 @@
             this.txtSize.Size = new System.Drawing.Size(54, 23);
             this.txtSize.TabIndex = 145;
             this.txtSize.TabStop = false;
+            this.txtSize.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comSort
             // 
@@ -261,6 +267,7 @@
             this.comSort.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSort.Size = new System.Drawing.Size(175, 24);
             this.comSort.TabIndex = 142;
+            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // comboBox3
             // 
@@ -331,6 +338,7 @@
             this.txtProduct.Size = new System.Drawing.Size(54, 24);
             this.txtProduct.TabIndex = 40;
             this.txtProduct.TabStop = false;
+            this.txtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comProduct
             // 
@@ -346,6 +354,7 @@
             this.comProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comProduct.Size = new System.Drawing.Size(175, 24);
             this.comProduct.TabIndex = 41;
+            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // label1
             // 
@@ -400,6 +409,7 @@
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comFactory.Size = new System.Drawing.Size(175, 24);
             this.comFactory.TabIndex = 37;
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // txtFactory
             // 
@@ -413,6 +423,7 @@
             this.txtFactory.Size = new System.Drawing.Size(54, 24);
             this.txtFactory.TabIndex = 34;
             this.txtFactory.TabStop = false;
+            this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // com
             // 
@@ -443,6 +454,7 @@
             this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comGroup.Size = new System.Drawing.Size(175, 24);
             this.comGroup.TabIndex = 31;
+            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // label5
             // 
@@ -469,6 +481,7 @@
             this.txtGroup.Size = new System.Drawing.Size(54, 24);
             this.txtGroup.TabIndex = 32;
             this.txtGroup.TabStop = false;
+            this.txtGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comType
             // 
@@ -484,6 +497,7 @@
             this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comType.Size = new System.Drawing.Size(175, 24);
             this.comType.TabIndex = 29;
+            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // txtType
             // 
@@ -497,6 +511,7 @@
             this.txtType.Size = new System.Drawing.Size(54, 24);
             this.txtType.TabIndex = 30;
             this.txtType.TabStop = false;
+            this.txtType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // tt
             // 
