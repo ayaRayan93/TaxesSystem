@@ -852,7 +852,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, conn);
                         if (com.ExecuteScalar() != null)
                         {
-                            double totalf = Convert.ToInt32(com.ExecuteScalar());
+                            double totalf = Convert.ToDouble(com.ExecuteScalar());
                             if ((totalf - Convert.ToDouble(row2["متر/قطعة"].ToString())) >= 0)
                             {
                                 query = "delete from supplier_permission_details where Supplier_Permission_Details_ID=" + row2["Supplier_Permission_Details_ID"].ToString();
