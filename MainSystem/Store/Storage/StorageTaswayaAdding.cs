@@ -546,11 +546,11 @@ namespace MainSystem
                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                 if (row != null)
                 {
-                    noMeter = Convert.ToDouble(row[4].ToString());
+                    noMeter = Convert.ToDouble(row[3].ToString());
                     txtTotalMeter.Text = noMeter.ToString();
-                    Data_ID = Convert.ToInt32(row[1].ToString());
-                    Storage_ID = Convert.ToInt32(row[0].ToString());
-                    code = row[2].ToString();
+                    Data_ID = Convert.ToInt32(row[0].ToString());
+                  //  Storage_ID = Convert.ToInt32(row[0].ToString());
+                    code = row[1].ToString();
                     displayCode(code);
                     mRow = row;
                     txtAddingQuantity.Focus();
@@ -877,11 +877,11 @@ namespace MainSystem
                 string qq = "";
                 if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
                 {
-                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID "+ /*INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID */ " INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                    qq = "select data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند' from storage INNER JOIN store on storage.Store_ID=store.Store_ID "+ /*INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID */ " INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID ";
                 }
                 else
                 {
-                    qq = "select Storage_ID,data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند', storage.Note as 'ملاحظة' from storage INNER JOIN store on storage.Store_ID=store.Store_ID " + /*INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID */ " INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID order by Storage_ID desc";
+                    qq = "select data.Data_ID, data.Code as 'كود'," + itemName + ",sum(storage.Total_Meters) as 'رصيد البند' from storage INNER JOIN store on storage.Store_ID=store.Store_ID " + /*INNER JOIN store_places on storage.Store_Place_ID=store_places.Store_Place_ID */ " INNER JOIN data  ON storage.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + query1 + q + " group by storage.Store_ID,storage.Data_ID ";
                 }
 
                 MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
@@ -890,7 +890,7 @@ namespace MainSystem
                
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
-                gridView1.Columns[1].Visible = false;
+                //gridView1.Columns[1].Visible = false;
                 gridView1.BestFitColumns();
             }
             catch (Exception ex)
@@ -1007,12 +1007,12 @@ namespace MainSystem
         public void add2GridView(DataTable dt, DataRowView row)
         {
             dt.Rows.Add(new object[] {
-                Convert.ToInt32(row[1].ToString()),
+                Convert.ToInt32(row[0].ToString()),
                  getStore_Place_ID((int)comStore.SelectedValue),
+                row[1].ToString(),
                 row[2].ToString(),
-                row[3].ToString(),
-                Convert.ToDouble(row[4].ToString()),
-                Convert.ToDouble(row[4].ToString())+Convert.ToDouble(txtAddingQuantity.Text),
+                Convert.ToDouble(row[3].ToString()),
+                Convert.ToDouble(row[3].ToString())+Convert.ToDouble(txtAddingQuantity.Text),
                 Convert.ToDouble(txtAddingQuantity.Text),
                 txtItemNote.Text
             });

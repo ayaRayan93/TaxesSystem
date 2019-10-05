@@ -1289,7 +1289,7 @@ namespace MainSystem
         }
         public bool checkExist(string Data_ID)
         {
-            string query = "select sellPrice_ID from sellprice where Data_ID="+ Data_ID;
+            string query = "select SellPrice_ID from sellprice where Data_ID="+ Data_ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
