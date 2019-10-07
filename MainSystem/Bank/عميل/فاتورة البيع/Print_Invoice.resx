@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>البضاعة المباعة ترد وتستبدل بكامل قيمتها فى الحالة المستلم عليها خلال 14 يوم - 
+معارضنا لا تقبل استبدال أو إرتجاع فوائض السيراميك أو البورسلين بعد التركيب - 
+التسليم والارتجاع يتم بالمخازن الرئيسية كما أن الكميات المطلوبة والكسر بعد التسليم مسؤلية العميل - 
+منتجات البورسلين والسيراميك الليزر لابد من ترك فاصل لا يقل عن 2 مم عند التركيب بدون ترك فاصل تقع المسئولية على العميل - 
+يجب التأكد قبل التركيب من مطابقة أشكال والوان الموديلات بما تم اختيارة فبعد التركيب تقع المسئولية على العميل - 
+فى حالة موافقة الشركة على الارتجاع او الغاء الفاتورة او رد الحجز يتم خصم 10% مصاريف إدارية - 
+الفرز الثالث ليس له خدمة عملاء ولا يقبل اى مرتجعات او استبدال - 
+فى حالة الحجز يتم الحجز لمدة (          ) ويتم رد الفاتورة تلقائيا فى حالة تخطى فترة الحجز - 
+ النقل والتنزيل مسئولية العميل - </value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xrPictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAQtJREFUOE+d
+        0rFLAmEcxvETMnQSAxFMSJocmpyCBC0oHGxpagv6A8KhpaHdbI1wbOs/aGoSomgSao8mhyhIwkCE+j7v
+        3cFJL/dqD3zw/T14B+/7nmfJMtro4w0D9NBCGrHZxxcecIh1VHGCV7xgDdbs4Rt60JYULvGOVRXR5PGJ
+        AzPF5wp3SJgpyDnu/aUzSxiiYSaifU4wRlKFIxv4gQ44p+IxKET7dGUH4f/PVIwixbwvuFHxHCnmfcGF
+        iiZ0fTqHRRWObEIPf6CkQimg4i+dWcApOmb6Z66x5S/jk0UNGTP50bXrU5/6kGwpQnet/ep3G7t4QhnO
+        1BGettyiixXMnGPoro/M9Cee9wsmOTs+gPSCIQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="xrPictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAKhJREFUOE/N
+        07EJAkEQheHVJi6xEEEwuhYs6hATy7CAS8yN7MDAMkRR9F+Zd8wug3JGPviCndkZjoNNZI0LniPlmQ7p
+        ZoVfXBE2aif02OFgNSkOkS2mUFbw/eIQmUGZYwPfLw6RCXIWiPph0VPqTx/6UTFrjdJAtSN0rxjyPuWM
+        4Z4f8vZGWUK1B3SvGIooo/+BKH+84NtjUqIF78eUn/PdChGlXsBM6l4GI82S9VSU3gAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
   <data name="xrPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAa4AAAIrCAYAAAC3YH1sAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -606,36 +636,6 @@
         KiNwhWEYhlUZgSsMwzCsyghcYRiGYVVG4ArDMAyrMgJXGIZhWJURuMIwDMOqjMAVhmEYVmUErjAMw7Aq
         I3CFYRiGVRmBKwzDMKzKCFxhGIZhVUbgCsMwDKsyAlcYhmFYlRG4wjAMw6qMwBWGYRhWZQSuMAzDsCoj
         cIVhGIZV+T//8z/b/n9rgwzqsqW/8wAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="xrLabel6.Text" xml:space="preserve">
-    <value>البضاعة المباعة ترد وتستبدل بكامل قيمتها فى الحالة المستلم عليها خلال 14 يوم - 
-معارضنا لا تقبل استبدال أو إرتجاع فوائض السيراميك أو البورسلين بعد التركيب - 
-التسليم والارتجاع يتم بالمخازن الرئيسية كما أن الكميات المطلوبة والكسر بعد التسليم مسؤلية العميل - 
-منتجات البورسلين والسيراميك الليزر لابد من ترك فاصل لا يقل عن 2 مم عند التركيب بدون ترك فاصل تقع المسئولية على العميل - 
-يجب التأكد قبل التركيب من مطابقة أشكال والوان الموديلات بما تم اختيارة فبعد التركيب تقع المسئولية على العميل - 
-فى حالة موافقة الشركة على الارتجاع او الغاء الفاتورة او رد الحجز يتم خصم 10% مصاريف إدارية - 
-الفرز الثالث ليس له خدمة عملاء ولا يقبل اى مرتجعات او استبدال - 
-فى حالة الحجز يتم الحجز لمدة (          ) ويتم رد الفاتورة تلقائيا فى حالة تخطى فترة الحجز - 
- النقل والتنزيل مسئولية العميل - </value>
-  </data>
-  <data name="xrPictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAQtJREFUOE+d
-        0rFLAmEcxvETMnQSAxFMSJocmpyCBC0oHGxpagv6A8KhpaHdbI1wbOs/aGoSomgSao8mhyhIwkCE+j7v
-        3cFJL/dqD3zw/T14B+/7nmfJMtro4w0D9NBCGrHZxxcecIh1VHGCV7xgDdbs4Rt60JYULvGOVRXR5PGJ
-        AzPF5wp3SJgpyDnu/aUzSxiiYSaifU4wRlKFIxv4gQ44p+IxKET7dGUH4f/PVIwixbwvuFHxHCnmfcGF
-        iiZ0fTqHRRWObEIPf6CkQimg4i+dWcApOmb6Z66x5S/jk0UNGTP50bXrU5/6kGwpQnet/ep3G7t4QhnO
-        1BGettyiixXMnGPoro/M9Cee9wsmOTs+gPSCIQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="xrPictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAKhJREFUOE/N
-        07EJAkEQheHVJi6xEEEwuhYs6hATy7CAS8yN7MDAMkRR9F+Zd8wug3JGPviCndkZjoNNZI0LniPlmQ7p
-        ZoVfXBE2aif02OFgNSkOkS2mUFbw/eIQmUGZYwPfLw6RCXIWiPph0VPqTx/6UTFrjdJAtSN0rxjyPuWM
-        4Z4f8vZGWUK1B3SvGIooo/+BKH+84NtjUqIF78eUn/PdChGlXsBM6l4GI82S9VSU3gAAAABJRU5ErkJg
-        gg==
 </value>
   </data>
   <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

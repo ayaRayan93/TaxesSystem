@@ -57,6 +57,26 @@ namespace MainSystem
             conn.Close();
         }
 
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (load)
+            {
+                try
+                {
+                    storeId = Convert.ToInt16(comStore.SelectedValue.ToString());
+                    loadFunc();
+
+                    NewBill();
+                    flag = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                conn.Close();
+            }
+        }
+
         private void comPermessionNum_SelectedValueChanged(object sender, EventArgs e)
         {
             if (flag)
@@ -844,25 +864,6 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void comStore_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (load)
-            {
-                try
-                {
-                    storeId = Convert.ToInt16(comStore.SelectedValue.ToString());
-                    loadFunc();
-
-                    flag = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                conn.Close();
             }
         }
 

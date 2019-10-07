@@ -492,7 +492,7 @@ namespace MainSystem
                         
                         dbconnection.Open();
 
-                        string query = "insert into Transitions (TransitionBranch_ID,TransitionBranch_Name,Transition,Type,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Transition,@Type,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
+                        string query = "insert into transitions (TransitionBranch_ID,TransitionBranch_Name,Transition,Type,Client_ID,Client_Name,Customer_ID,Customer_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Transition,@Type,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";

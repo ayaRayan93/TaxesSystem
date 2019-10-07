@@ -315,7 +315,7 @@ namespace MainSystem
                         }
 
                         dbconnection.Open();
-                        string query = "insert into Transitions (TransitionBranch_ID,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Employee_ID,Error) values(@TransitionBranch_ID,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Employee_ID,@Error)";
+                        string query = "insert into transitions (TransitionBranch_ID,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Employee_ID,Error) values(@TransitionBranch_ID,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Employee_ID,@Error)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع";

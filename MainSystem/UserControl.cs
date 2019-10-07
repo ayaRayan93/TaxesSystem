@@ -22,7 +22,7 @@ namespace MainSystem
 
         public static void ItemRecord(string tableName, string status, int recordID, DateTime date, string reason, MySqlConnection conn)
         {
-            string query = "insert into UserControl (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason)values (@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+            string query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason)values (@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
             MySqlCommand com = new MySqlCommand(query, conn);
             com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16);
             com.Parameters["@UserControl_UserID"].Value = userID;

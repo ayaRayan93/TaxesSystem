@@ -266,7 +266,7 @@ namespace MainSystem
                         {
                             DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(selRows[i]));
 
-                            string query = "update Transitions set Error=1 where Transition_ID=" + selRow[0].ToString();
+                            string query = "update transitions set Error=1 where Transition_ID=" + selRow[0].ToString();
                             MySqlCommand comand = new MySqlCommand(query, conn);
                             comand.ExecuteNonQuery();
 

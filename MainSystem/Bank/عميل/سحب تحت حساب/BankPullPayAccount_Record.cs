@@ -347,7 +347,7 @@ namespace MainSystem
 
                         dbconnection.Open();
 
-                        string query = "insert into Transitions (Branch_ID,Branch_Name,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
+                        string query = "insert into transitions (Branch_ID,Branch_Name,Client_Name,Client_ID,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Bill_Number,Type,Error) values(@Branch_ID,@Branch_Name,@Client_Name,@Client_ID,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Bill_Number,@Type,@Error)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب";
