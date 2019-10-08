@@ -462,13 +462,17 @@ namespace MainSystem
             }
 
             Print_CopyBill_Report f = new Print_CopyBill_Report();
-            if (clientID > 0)
+            if (clientID > 0 && customerID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+                f.PrintInvoice(clientName + " " + clientID, engName + " " + customerID, clientPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+            }
+            else if (clientID > 0)
+            {
+                f.PrintInvoice(clientName + " " + clientID, "", clientPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
+                f.PrintInvoice(engName + " " + customerID, "", customerPhoneNumber, delegateName + " - " /*+ "("*/ + TypeBuy /*+ ")"*/, billDate, TypeBuy, billNumber, branchID.ToString(), branchName, totalCostBD, totalCostAD, totalDiscount, bi);
             }
             f.ShowDialog();
         }
