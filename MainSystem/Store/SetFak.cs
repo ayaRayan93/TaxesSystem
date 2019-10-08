@@ -40,7 +40,7 @@ namespace MainSystem
                 comStore.Text = "";
                 txtStoreID.Text = "";
 
-                query = "select distinct Factory_Name,sets.Factory_ID from sets inner join Factory on sets.Factory_ID=Factory.Factory_ID";
+                query = "select distinct Factory_Name,sets.Factory_ID from sets inner join factory on sets.Factory_ID=factory.Factory_ID";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);

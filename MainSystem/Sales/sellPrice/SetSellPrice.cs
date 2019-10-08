@@ -1300,7 +1300,6 @@ namespace MainSystem
                 return false;
             }
         }
-
         public void filterProduct()
         {
             if (comType.Text != "")

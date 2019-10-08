@@ -1226,7 +1226,7 @@ namespace MainSystem
 
             while (dr.Read())
             {
-                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='بند'";
+                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Store_ID="+comStore.SelectedValue+" and Type='بند'";
                 MySqlCommand com2 = new MySqlCommand(query2, dbconnectionReader);
                 MySqlDataReader dr2 = com2.ExecuteReader();
                 while (dr2.Read())
