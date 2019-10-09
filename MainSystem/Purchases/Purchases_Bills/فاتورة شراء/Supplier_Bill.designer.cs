@@ -73,11 +73,13 @@
             this.txtPurchasePrice = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label16 = new System.Windows.Forms.Label();
+            this.labelTotalDiscount = new System.Windows.Forms.Label();
+            this.labelTotalA = new System.Windows.Forms.Label();
             this.txtAllTax = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.labelTotalDiscount = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.labelTotalA = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.labelTotalCat = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -288,7 +290,8 @@
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label14.Location = new System.Drawing.Point(476, 37);
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(156, 37);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(87, 17);
             this.label14.TabIndex = 31;
@@ -298,7 +301,8 @@
             // 
             this.labelTotalSafy.AutoSize = true;
             this.labelTotalSafy.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalSafy.Location = new System.Drawing.Point(470, 37);
+            this.labelTotalSafy.ForeColor = System.Drawing.Color.Black;
+            this.labelTotalSafy.Location = new System.Drawing.Point(150, 37);
             this.labelTotalSafy.Name = "labelTotalSafy";
             this.labelTotalSafy.Size = new System.Drawing.Size(0, 17);
             this.labelTotalSafy.TabIndex = 32;
@@ -661,21 +665,23 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalSafy, 6, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label14, 5, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.labelTotalB, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.label16, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtAllTax, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label15, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.labelTotalDiscount, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label14, 3, 1);
-            this.tableLayoutPanel3.Controls.Add(this.labelTotalSafy, 4, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label18, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.labelTotalA, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label19, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalCat, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label20, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.labelTotalA, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label15, 3, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtAllTax, 4, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 603);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -690,16 +696,34 @@
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label16.Location = new System.Drawing.Point(476, 0);
+            this.label16.Location = new System.Drawing.Point(436, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(78, 17);
             this.label16.TabIndex = 39;
             this.label16.Text = "قيمة الخصم";
             // 
+            // labelTotalDiscount
+            // 
+            this.labelTotalDiscount.AutoSize = true;
+            this.labelTotalDiscount.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalDiscount.Location = new System.Drawing.Point(430, 0);
+            this.labelTotalDiscount.Name = "labelTotalDiscount";
+            this.labelTotalDiscount.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalDiscount.TabIndex = 42;
+            // 
+            // labelTotalA
+            // 
+            this.labelTotalA.AutoSize = true;
+            this.labelTotalA.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalA.Location = new System.Drawing.Point(740, 37);
+            this.labelTotalA.Name = "labelTotalA";
+            this.labelTotalA.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalA.TabIndex = 44;
+            // 
             // txtAllTax
             // 
             this.txtAllTax.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAllTax.Location = new System.Drawing.Point(640, 40);
+            this.txtAllTax.Location = new System.Drawing.Point(330, 40);
             this.txtAllTax.Name = "txtAllTax";
             this.txtAllTax.Size = new System.Drawing.Size(100, 24);
             this.txtAllTax.TabIndex = 40;
@@ -711,40 +735,42 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label15.Location = new System.Drawing.Point(746, 37);
+            this.label15.Location = new System.Drawing.Point(436, 37);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(149, 17);
             this.label15.TabIndex = 41;
             this.label15.Text = "ضريبة القيمة المضافة %";
             // 
-            // labelTotalDiscount
+            // label19
             // 
-            this.labelTotalDiscount.AutoSize = true;
-            this.labelTotalDiscount.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalDiscount.Location = new System.Drawing.Point(470, 0);
-            this.labelTotalDiscount.Name = "labelTotalDiscount";
-            this.labelTotalDiscount.Size = new System.Drawing.Size(0, 17);
-            this.labelTotalDiscount.TabIndex = 42;
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label19.Location = new System.Drawing.Point(156, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(123, 17);
+            this.label19.TabIndex = 45;
+            this.label19.Text = "قيمة الزيادة القطعية";
             // 
-            // label18
+            // label20
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label18.Location = new System.Drawing.Point(156, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(160, 17);
-            this.label18.TabIndex = 43;
-            this.label18.Text = "اجمالي الفاتورة بعد الخصم";
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label20.Location = new System.Drawing.Point(746, 37);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(60, 17);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "الاجمالى";
             // 
-            // labelTotalA
+            // labelTotalCat
             // 
-            this.labelTotalA.AutoSize = true;
-            this.labelTotalA.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalA.Location = new System.Drawing.Point(150, 0);
-            this.labelTotalA.Name = "labelTotalA";
-            this.labelTotalA.Size = new System.Drawing.Size(0, 17);
-            this.labelTotalA.TabIndex = 44;
+            this.labelTotalCat.AutoSize = true;
+            this.labelTotalCat.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalCat.Location = new System.Drawing.Point(150, 0);
+            this.labelTotalCat.Name = "labelTotalCat";
+            this.labelTotalCat.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalCat.TabIndex = 47;
             // 
             // panel2
             // 
@@ -864,10 +890,12 @@
         private System.Windows.Forms.TextBox txtAllTax;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label labelTotalDiscount;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label labelTotalA;
         private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label labelTotalCat;
     }
 }
 

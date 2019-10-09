@@ -298,100 +298,124 @@ namespace MainSystem
                 {
                     //if (!IsAdded())
                     //{
-                        if (row1["سعر الشراء"].ToString() != "")
+                    if (row1["سعر الشراء"].ToString() != "")
+                    {
+                        if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
                         {
-                            if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
+                            double price, BuyDiscount, NormalIncrease, CategoricalIncrease, VAT, purchasePrice, quantity;
+                            if (double.TryParse(txtPrice.Text, out price)
+                             &&
+                             double.TryParse(txtDiscount.Text, out BuyDiscount)
+                             &&
+                             double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
+                             &&
+                             double.TryParse(txtCategoricalIncrease.Text, out CategoricalIncrease)
+                             &&
+                             double.TryParse(txtTotalMeter.Text, out quantity)
+                             &&
+                             double.TryParse(txtTax.Text, out VAT)
+                             &&
+                             double.TryParse(txtPurchasePrice.Text, out purchasePrice))
                             {
-                                double price, BuyDiscount, NormalIncrease, CategoricalIncrease, VAT, purchasePrice, quantity;
-                                if (double.TryParse(txtPrice.Text, out price)
-                                 &&
-                                 double.TryParse(txtDiscount.Text, out BuyDiscount)
-                                 &&
-                                 double.TryParse(txtNormalIncrease.Text, out NormalIncrease)
-                                 &&
-                                 double.TryParse(txtCategoricalIncrease.Text, out CategoricalIncrease)
-                                 &&
-                                 double.TryParse(txtTotalMeter.Text, out quantity)
-                                 &&
-                                 double.TryParse(txtTax.Text, out VAT)
-                                 &&
-                                 double.TryParse(txtPurchasePrice.Text, out purchasePrice))
+                                conn.Open();
+                                gridView2.AddNewRow();
+                                int rowHandl = gridView2.GetRowHandle(gridView2.DataRowCount);
+                                if (gridView2.IsNewItemRow(rowHandl))
                                 {
-                                    conn.Open();
-                                    gridView2.AddNewRow();
-                                    int rowHandl = gridView2.GetRowHandle(gridView2.DataRowCount);
-                                    if (gridView2.IsNewItemRow(rowHandl))
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["Data_ID"], row1["Data_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الكود"], row1["الكود"].ToString());
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["النوع"], row1["النوع"].ToString());
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاسم"], row1["الاسم"].ToString());
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر"], System.Math.Round(Convert.ToDouble(txtPrice.Text), 2));
+                                    if (radioList.Checked == true)
                                     {
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["Data_ID"], row1["Data_ID"].ToString());
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الكود"], row1["الكود"].ToString());
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["النوع"], row1["النوع"].ToString());
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاسم"], row1["الاسم"].ToString());
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر"], System.Math.Round(Convert.ToDouble(txtPrice.Text), 2));
-                                        if (radioList.Checked == true)
-                                        {
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "لستة");
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الخصم"], System.Math.Round(BuyDiscount, 2));
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], System.Math.Round(NormalIncrease, 2));
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], System.Math.Round(CategoricalIncrease, 2));
-                                        }
-                                        else if (radioQata3y.Checked == true)
-                                        {
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "قطعى");
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الخصم"], System.Math.Round(BuyDiscount, 2));
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], System.Math.Round(NormalIncrease, 2)/*""*/);
-                                            gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], System.Math.Round(CategoricalIncrease, 2)/*""*/);
-                                        }
-                                        //gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر بالزيادة"], System.Math.Round(Convert.ToDouble(txtLastPrice.Text), 2));
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], System.Math.Round(purchasePrice, 2));
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاجمالى بعد"], System.Math.Round(purchasePrice, 2) * quantity);
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["PurchasingPrice_ID"], row1["PurchasingPrice_ID"].ToString());
-                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["Supplier_Permission_Details_ID"], row1["Supplier_Permission_Details_ID"].ToString());
-
-                                        gridView1.DeleteRow(gridView1.FocusedRowHandle);
-
-                                        if (gridView2.IsLastVisibleRow)
-                                        {
-                                            gridView2.FocusedRowHandle = gridView2.RowCount - 1;
-                                        }
-
-                                        double totalB = 0;
-                                        //double totalVal = 0;
-                                        double totalA = 0;
-                                        double totalDiscount = 0;
-                                        for (int i = 0; i < gridView2.RowCount; i++)
-                                        {
-                                            totalDiscount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر بالزيادة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"))) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
-                                            totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                                            //totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                                            totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                                        }
-                                        Clear();
-                                        row1 = null;
-                                        //txtAllTax.Text = "0.00";
-                                        labelTotalB.Text = totalB.ToString("#.000");
-                                        //labelTotalVal.Text = totalVal.ToString();
-                                        labelTotalA.Text = totalA.ToString("#.000");
-                                        labelTotalDiscount.Text = totalDiscount.ToString("#.000");
-                                        //labelTotalSafy.Text = totalA.ToString();
-                                        labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "لستة");
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الخصم"], System.Math.Round(BuyDiscount, 2));
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], System.Math.Round(NormalIncrease, 2));
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], System.Math.Round(CategoricalIncrease, 2));
                                     }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("تاكد ان البيانات صحيحة");
+                                    else if (radioQata3y.Checked == true)
+                                    {
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نوع السعر"], "قطعى");
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["نسبة الخصم"], System.Math.Round(BuyDiscount, 2));
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة العادية"], System.Math.Round(NormalIncrease, 2)/*""*/);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], System.Math.Round(CategoricalIncrease, 2)/*""*/);
+                                    }
+                                    //gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر بالزيادة"], System.Math.Round(Convert.ToDouble(txtLastPrice.Text), 2));
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], System.Math.Round(purchasePrice, 2));
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاجمالى بعد"], System.Math.Round(purchasePrice, 2) * quantity);
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["PurchasingPrice_ID"], row1["PurchasingPrice_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["Supplier_Permission_Details_ID"], row1["Supplier_Permission_Details_ID"].ToString());
+
+                                    gridView1.DeleteRow(gridView1.FocusedRowHandle);
+
+                                    if (gridView2.IsLastVisibleRow)
+                                    {
+                                        gridView2.FocusedRowHandle = gridView2.RowCount - 1;
+                                    }
+
+                                    double totalAllB = 0;
+                                    double totalAllA = 0;
+                                    double totalAllDiscount = 0;
+                                    double totalAllCatInc = 0;
+                                    for (int i = 0; i < gridView2.RowCount; i++)
+                                    {
+                                        double totalB = 0;
+                                        double totalA = 0;
+                                        double totalNormInc = 0;
+                                        double totalDiscount = 0;
+                                        double totalCatInc = 0;
+                                        if (gridView2.GetRowCellDisplayText(i, "الزيادة العادية") != "")
+                                        {
+                                            totalNormInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة العادية"));
+                                        }
+                                        else
+                                        {
+                                            totalNormInc = 0;
+                                        }
+                                        if (gridView2.GetRowCellDisplayText(i, "الزيادة القطعية") != "")
+                                        {
+                                            totalCatInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة القطعية"));
+                                        }
+                                        else
+                                        {
+                                            totalCatInc = 0;
+                                        }
+                                        totalB = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) + totalNormInc) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                                        totalDiscount = totalB * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
+                                        totalCatInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة القطعية")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                                        totalA = (totalB - totalDiscount) + totalCatInc;
+
+                                        totalAllB += totalB;
+                                        totalAllDiscount += totalDiscount;
+                                        totalAllCatInc += totalCatInc;
+                                        totalAllA += totalA;
+                                    }
+                                    Clear();
+                                    row1 = null;
+                                    labelTotalB.Text = totalAllB.ToString("#.000");
+                                    labelTotalDiscount.Text = totalAllDiscount.ToString("#.000");
+                                    labelTotalCat.Text = totalAllCatInc.ToString("#.000");
+                                    labelTotalA.Text = totalAllA.ToString("#.000");
+                                    labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("تاكد من ادخال جميع البيانات");
+                                MessageBox.Show("تاكد ان البيانات صحيحة");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("يجب تسعير البند اولا");
+                            MessageBox.Show("تاكد من ادخال جميع البيانات");
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب تسعير البند اولا");
+                    }
                     //}
                     //else
                     //{
@@ -458,22 +482,37 @@ namespace MainSystem
                     gridView1.Columns[3].Width = 300;
                     
                     double totalB = 0;
-                    //double totalVal = 0;
                     double totalA = 0;
+                    double totalNormInc = 0;
                     double totalDiscount = 0;
+                    double totalCatInc = 0;
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
-                        totalB += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                        totalDiscount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر بالزيادة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"))) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
-                        //totalVal += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "ضريبة القيمة المضافة")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                        totalA += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                        if(gridView2.GetRowCellDisplayText(i, "الزيادة العادية") != "")
+                        {
+                            totalNormInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة العادية"));
+                        }
+                        else
+                        {
+                            totalNormInc = 0;
+                        }
+                        if (gridView2.GetRowCellDisplayText(i, "الزيادة القطعية") != "")
+                        {
+                            totalCatInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة القطعية"));
+                        }
+                        else
+                        {
+                            totalCatInc = 0;
+                        }
+                        totalB += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) + totalNormInc) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                        totalDiscount += totalB * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
+                        totalCatInc += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة القطعية")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                        totalA += (totalB - totalDiscount) + totalCatInc;
                     }
-                    //txtAllTax.Text = "0.00";
                     labelTotalB.Text = totalB.ToString("#.000");
-                    //labelTotalVal.Text = totalVal.ToString();
-                    labelTotalA.Text = totalA.ToString("#.000");
                     labelTotalDiscount.Text = totalDiscount.ToString("#.000");
-                    //labelTotalSafy.Text = totalA.ToString();
+                    labelTotalCat.Text = totalCatInc.ToString("#.000");
+                    labelTotalA.Text = totalA.ToString("#.000");
                     labelTotalSafy.Text = (Convert.ToDouble(labelTotalA.Text) + (Convert.ToDouble(labelTotalA.Text) * (Convert.ToDouble(txtAllTax.Text) / 100))).ToString("#.000");
                     row2 = null;
                 }
