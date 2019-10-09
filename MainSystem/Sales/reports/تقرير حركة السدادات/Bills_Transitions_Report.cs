@@ -79,7 +79,7 @@ namespace MainSystem
 
                     loadBranch();
 
-                    if(UserControl.userType != 1)
+                    if(UserControl.userType != 1 && UserControl.userType != 13)
                     {
                         comBranch.Enabled = false;
                         comBranch.DropDownStyle = ComboBoxStyle.DropDownList;

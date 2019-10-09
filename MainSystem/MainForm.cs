@@ -166,6 +166,10 @@ namespace MainSystem
                 navBarGroup54.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup12.Visible = false;
+
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarItemStoreReturn.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
@@ -228,13 +232,15 @@ namespace MainSystem
                     navBarGroup6.Visible = false;
                     navBarGroup54.Visible = false;
                     navBarGroup7.Visible = false;
-                    navBarGroup8.Visible = false;
+                    //navBarGroup8.Visible = false;
                     navBarGroup9.Visible = false;
                     navBarGroup10.Visible = false;
                     navBarGroup11.Visible = false;
                     navBarGroupProductsTicket.Visible = false;
                     navBarGroup12.Visible = false;
                     navBarItemStoreReturn.Visible = false;
+                    navBarItemConfirmTransferFromStore.Visible = false;
+                    navBarItem17.Visible = false;
                 }
                 navBarGroup13.Visible = false;
                 navBarGroup39.Visible = false;
@@ -1124,7 +1130,7 @@ namespace MainSystem
 
     public static class connection
     {
-        static string supString = File.ReadAllText("IP_Address.txt");//
+        static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
         public static string connectionString = "SERVER="+ supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
