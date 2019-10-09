@@ -1126,7 +1126,7 @@ namespace MainSystem
     {
         static string supString = File.ReadAllText("IP_Address.txt");//
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER='35.232.25.153'" /*+ supString */+ ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        public static string connectionString = "SERVER="+ supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccs;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }

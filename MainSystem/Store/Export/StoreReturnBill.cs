@@ -895,31 +895,36 @@ namespace MainSystem
                 Billid = Convert.ToInt16(dr[0].ToString());
                 if (dr[1].ToString() != "")
                 {
-                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                    com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[1].ToString());
-                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Customer_Name"].Value = dr[2].ToString();
+                    //com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                    //com.Parameters["@Customer_ID"].Value = Convert.ToInt32(dr[1].ToString());
+                    //com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                    //com.Parameters["@Customer_Name"].Value = dr[2].ToString();
+                    txtCustomerID.Text = dr[1].ToString();
+                    comEngCon.Text = dr[2].ToString();
                 }
                 else
                 {
-                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
-                    com.Parameters["@Customer_ID"].Value = null;
-                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Customer_Name"].Value = "";
+                    //com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
+                    //com.Parameters["@Customer_ID"].Value = null;
+                    //com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar);
+                    //com.Parameters["@Customer_Name"].Value = "";
                 }
                 if (dr[3].ToString() != "")
                 {
-                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                    com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[3].ToString());
-                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Client_Name"].Value = dr[4].ToString();
+                    //com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                    //com.Parameters["@Client_ID"].Value = Convert.ToInt32(dr[3].ToString());
+                    //com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                    //com.Parameters["@Client_Name"].Value = dr[4].ToString();
+
                 }
                 else
                 {
-                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
-                    com.Parameters["@Client_ID"].Value = null;
-                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
-                    com.Parameters["@Client_Name"].Value = "";
+                    //com.Parameters.Add("@Client_ID", MySqlDbType.Int16);
+                    //com.Parameters["@Client_ID"].Value = null;
+                    //com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
+                    //com.Parameters["@Client_Name"].Value = "";
+                    txtClientID.Text = dr[3].ToString();
+                    comClient.Text = dr[4].ToString();
                 }
             }
             dr.Close();
