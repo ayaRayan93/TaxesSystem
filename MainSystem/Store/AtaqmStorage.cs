@@ -380,7 +380,7 @@ namespace MainSystem
         }
         public void loadDataToBox()
         {
-            string query = "select distinct Factory_Name,sets.Factory_ID from sets inner join Factory on sets.Factory_ID=Factory.Factory_ID";
+            string query = "select distinct Factory_Name,sets.Factory_ID from sets inner join factory on sets.Factory_ID=factory.Factory_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -425,7 +425,7 @@ namespace MainSystem
         {
             if (txtType.Text != "")
             {
-                string query = "select distinct Factory_Name,sets.Factory_ID from sets inner join Factory on sets.Factory_ID=Factory.Factory_ID where sets.Type_ID=" + txtType.Text;
+                string query = "select distinct Factory_Name,sets.Factory_ID from sets inner join factory on sets.Factory_ID=factory.Factory_ID where sets.Type_ID=" + txtType.Text;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

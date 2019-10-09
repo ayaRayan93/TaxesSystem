@@ -1087,7 +1087,6 @@ namespace MainSystem
             }
             else
             {
-             
                 double PurchasesPrice = (price + getNormalIncrease()) - ((price + getNormalIncrease()) * PurchasesPercent / 100.0);
                 PurchasesPrice = PurchasesPrice + getUnNormalIncrease();
                 return PurchasesPrice;

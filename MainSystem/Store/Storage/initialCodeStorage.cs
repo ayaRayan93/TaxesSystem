@@ -802,7 +802,7 @@ namespace MainSystem
                                 com.Parameters["@Note"].Value = mdt.Rows[i][7];
                                 com.ExecuteNonQuery();
 
-                                query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
+                                query = "insert into storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                 com.Parameters["@Store_ID"].Value = mdt.Rows[i][1];
@@ -845,7 +845,7 @@ namespace MainSystem
                             com.Parameters["@Note"].Value = mdt.Rows[i][7];
                             com.ExecuteNonQuery();
 
-                            query = "update Storage set Type=@Type,Storage_Date=@Storage_Date,Store_Place_ID=@Store_Place_ID,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + mdt.Rows[i][0] + " and Store_ID=" + mdt.Rows[i][1];
+                            query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Store_Place_ID=@Store_Place_ID,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + mdt.Rows[i][0] + " and Store_ID=" + mdt.Rows[i][1];
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Type", MySqlDbType.VarChar);
                             com.Parameters["@Type"].Value = "بند";
@@ -1215,7 +1215,7 @@ namespace MainSystem
                     com.Parameters["@Note"].Value = txtNote.Text;
                     com.ExecuteNonQuery();
 
-                    query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
+                    query = "insert into storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                     com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
