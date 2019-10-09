@@ -232,13 +232,15 @@ namespace MainSystem
                     navBarGroup6.Visible = false;
                     navBarGroup54.Visible = false;
                     navBarGroup7.Visible = false;
-                    navBarGroup8.Visible = false;
+                    //navBarGroup8.Visible = false;
                     navBarGroup9.Visible = false;
                     navBarGroup10.Visible = false;
                     navBarGroup11.Visible = false;
                     navBarGroupProductsTicket.Visible = false;
                     navBarGroup12.Visible = false;
                     navBarItemStoreReturn.Visible = false;
+                    navBarItemConfirmTransferFromStore.Visible = false;
+                    navBarItem17.Visible = false;
                 }
                 navBarGroup13.Visible = false;
                 navBarGroup39.Visible = false;
