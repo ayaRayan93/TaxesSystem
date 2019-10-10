@@ -20,7 +20,7 @@ namespace MainSystem
 {
     public partial class Bill_Confirm : Form
     {
-        MySqlConnection dbconnection, dbconnectionr, connectionReader3;
+        MySqlConnection dbconnection, dbconnectionr, connectionReader3, connectionReader2;
         string RecivedType = "العميل";
         string Customer_Type = "";
         int CustomerBill_ID = 0;
@@ -37,6 +37,7 @@ namespace MainSystem
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnectionr = new MySqlConnection(connection.connectionString);
             connectionReader3 = new MySqlConnection(connection.connectionString);
+            connectionReader2 = new MySqlConnection(connection.connectionString);
 
             string query = "select * from customer";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -123,9 +124,11 @@ namespace MainSystem
                     labelEng.Visible = false;
                     comEngCon.Visible = false;
                     txtCustomerID.Visible = false;
+                    txtCustomerPhone.Visible = false;
                     labelClient.Visible = true;
                     comClient.Visible = true;
                     txtClientID.Visible = true;
+                    txtClientPhone.Visible = true;
 
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, connectionReader3);
@@ -138,6 +141,8 @@ namespace MainSystem
                     comEngCon.Text = "";
                     txtClientID.Text = "";
                     txtCustomerID.Text = "";
+                    txtCustomerPhone.Text = "";
+                    txtClientPhone.Text = "";
                 }
                 else
                 {
@@ -145,9 +150,11 @@ namespace MainSystem
                     labelEng.Visible = true;
                     comEngCon.Visible = true;
                     txtCustomerID.Visible = true;
+                    txtCustomerPhone.Visible = true;
                     labelClient.Visible = false;
                     comClient.Visible = false;
                     txtClientID.Visible = false;
+                    txtClientPhone.Visible = false;
 
                     string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, connectionReader3);
@@ -160,6 +167,8 @@ namespace MainSystem
                     comEngCon.Text = "";
                     txtCustomerID.Text = "";
                     txtClientID.Text = "";
+                    txtCustomerPhone.Text = "";
+                    txtClientPhone.Text = "";
                 }
 
                 loaded = true;
@@ -179,13 +188,19 @@ namespace MainSystem
                 try
                 {
                     txtCustomerID.Text = comEngCon.SelectedValue.ToString();
+                    
+                    connectionReader2.Open();
+                    string query = "select Phone from customer_phone where Customer_ID=" + comEngCon.SelectedValue.ToString()+ " order by CustomerPhone_ID desc";
+                    MySqlCommand com = new MySqlCommand(query, connectionReader2);
+                    txtCustomerPhone.Text = com.ExecuteScalar().ToString();
 
                     labelClient.Visible = true;
                     comClient.Visible = true;
                     txtClientID.Visible = true;
+                    txtClientPhone.Visible = true;
 
                     loaded = false;
-                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -196,12 +211,14 @@ namespace MainSystem
                     //comClient.SelectedValue = -1;
                     comClient.SelectedIndex = -1;
                     txtClientID.Text = "";
+                    txtClientPhone.Text = "";
                     loaded = true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                connectionReader2.Close();
             }
         }
 
@@ -212,11 +229,17 @@ namespace MainSystem
                 try
                 {
                     txtClientID.Text = comClient.SelectedValue.ToString();
+                    
+                    connectionReader2.Open();
+                    string query = "select Phone from customer_phone where Customer_ID=" + comClient.SelectedValue.ToString() + " order by CustomerPhone_ID desc";
+                    MySqlCommand com = new MySqlCommand(query, connectionReader2);
+                    txtClientPhone.Text = com.ExecuteScalar().ToString();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                connectionReader2.Close();
             }
         }
 
@@ -237,7 +260,7 @@ namespace MainSystem
                         switch (txtBox.Name)
                         {
                             case "txtClientID":
-                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
+                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + " and Customer_Type='عميل'";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
@@ -245,25 +268,36 @@ namespace MainSystem
                                     comClient.Text = Name;
                                     comClient.SelectedValue = txtClientID.Text;
 
+                                    query = "select Phone from customer_phone where Customer_ID=" + comClient.SelectedValue.ToString() + " order by CustomerPhone_ID desc";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    txtClientPhone.Text = com.ExecuteScalar().ToString();
                                 }
                                 else
                                 {
+                                    comClient.Text = "";
+                                    txtClientPhone.Text = "";
                                     MessageBox.Show("there is no item with this id");
                                     dbconnection.Close();
                                     return;
                                 }
                                 break;
                             case "txtCustomerID":
-                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
+                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + " and Customer_Type<>'عميل'";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comEngCon.Text = Name;
                                     comEngCon.SelectedValue = txtCustomerID.Text;
+
+                                    query = "select Phone from customer_phone where Customer_ID=" + comEngCon.SelectedValue.ToString() + " order by CustomerPhone_ID desc";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    txtCustomerPhone.Text = com.ExecuteScalar().ToString();
                                 }
                                 else
                                 {
+                                    comEngCon.Text = "";
+                                    txtCustomerPhone.Text = "";
                                     MessageBox.Show("there is no item with this id");
                                     dbconnection.Close();
                                     return;

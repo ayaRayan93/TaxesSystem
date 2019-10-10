@@ -148,7 +148,7 @@ namespace MainSystem
                         switch (txtBox.Name)
                         {
                             case "txtClientID":
-                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + "";
+                                query = "select Customer_Name from customer where Customer_ID=" + txtClientID.Text + " and Customer_Type='عميل'";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
@@ -158,13 +158,14 @@ namespace MainSystem
                                 }
                                 else
                                 {
+                                    comClient.Text = "";
                                     MessageBox.Show("there is no item with this id");
                                     dbconnection.Close();
                                     return;
                                 }
                                 break;
                             case "txtCustomerID":
-                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + "";
+                                query = "select Customer_Name from customer where Customer_ID=" + txtCustomerID.Text + " and Customer_Type<>'عميل'";
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() != null)
                                 {
@@ -174,6 +175,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
+                                    comEng.Text = "";
                                     MessageBox.Show("there is no item with this id");
                                     dbconnection.Close();
                                     return;
