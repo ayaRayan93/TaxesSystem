@@ -70,6 +70,8 @@
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.txtCustomerPhone = new System.Windows.Forms.TextBox();
+            this.txtClientPhone = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -84,6 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBranchID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).BeginInit();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // labTotalBillPriceAD
@@ -211,7 +214,7 @@
             this.labelEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelEng.AutoSize = true;
             this.labelEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelEng.Location = new System.Drawing.Point(253, 49);
+            this.labelEng.Location = new System.Drawing.Point(253, 28);
             this.labelEng.Name = "labelEng";
             this.labelEng.Size = new System.Drawing.Size(119, 17);
             this.labelEng.TabIndex = 143;
@@ -223,7 +226,7 @@
             this.comEngCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(99, 45);
+            this.comEngCon.Location = new System.Drawing.Point(99, 24);
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(150, 24);
             this.comEngCon.TabIndex = 142;
@@ -235,7 +238,7 @@
             this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radClient.Location = new System.Drawing.Point(266, 15);
+            this.radClient.Location = new System.Drawing.Point(266, 3);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(58, 21);
@@ -250,7 +253,7 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radEng.Location = new System.Drawing.Point(189, 15);
+            this.radEng.Location = new System.Drawing.Point(189, 3);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(71, 21);
@@ -265,7 +268,7 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radCon.Location = new System.Drawing.Point(124, 15);
+            this.radCon.Location = new System.Drawing.Point(124, 3);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(59, 21);
@@ -280,7 +283,7 @@
             this.labelClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelClient.Location = new System.Drawing.Point(292, 81);
+            this.labelClient.Location = new System.Drawing.Point(292, 80);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(40, 17);
             this.labelClient.TabIndex = 136;
@@ -292,7 +295,7 @@
             this.comClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(99, 77);
+            this.comClient.Location = new System.Drawing.Point(99, 76);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(150, 24);
             this.comClient.TabIndex = 135;
@@ -641,7 +644,7 @@
             // 
             this.txtClientID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientID.Location = new System.Drawing.Point(43, 77);
+            this.txtClientID.Location = new System.Drawing.Point(43, 76);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(50, 24);
@@ -653,7 +656,7 @@
             // 
             this.txtCustomerID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerID.Location = new System.Drawing.Point(43, 45);
+            this.txtCustomerID.Location = new System.Drawing.Point(43, 24);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(50, 24);
@@ -666,7 +669,7 @@
             this.radDealer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radDealer.Location = new System.Drawing.Point(69, 15);
+            this.radDealer.Location = new System.Drawing.Point(69, 3);
             this.radDealer.Name = "radDealer";
             this.radDealer.Size = new System.Drawing.Size(49, 21);
             this.radDealer.TabIndex = 144;
@@ -677,10 +680,34 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.txtClientPhone);
+            this.panel5.Controls.Add(this.txtCustomerPhone);
             this.panel5.Location = new System.Drawing.Point(24, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(358, 128);
             this.panel5.TabIndex = 147;
+            // 
+            // txtCustomerPhone
+            // 
+            this.txtCustomerPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCustomerPhone.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtCustomerPhone.Location = new System.Drawing.Point(19, 50);
+            this.txtCustomerPhone.Name = "txtCustomerPhone";
+            this.txtCustomerPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCustomerPhone.Size = new System.Drawing.Size(140, 24);
+            this.txtCustomerPhone.TabIndex = 146;
+            this.txtCustomerPhone.Visible = false;
+            // 
+            // txtClientPhone
+            // 
+            this.txtClientPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClientPhone.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtClientPhone.Location = new System.Drawing.Point(19, 102);
+            this.txtClientPhone.Name = "txtClientPhone";
+            this.txtClientPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtClientPhone.Size = new System.Drawing.Size(140, 24);
+            this.txtClientPhone.TabIndex = 147;
+            this.txtClientPhone.Visible = false;
             // 
             // Bill_Confirm
             // 
@@ -713,6 +740,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -760,6 +789,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.TextBox txtClientPhone;
+        private System.Windows.Forms.TextBox txtCustomerPhone;
     }
 }
 

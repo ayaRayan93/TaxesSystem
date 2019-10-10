@@ -1755,8 +1755,6 @@ namespace MainSystem
                                                         com = new MySqlCommand(query, dbconnection);
                                                         if (com.ExecuteScalar() != null)
                                                         {
-                                                            dbconnection.Close();
-                                                            dbconnection.Open();
                                                             // inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID
                                                             query = "select Customer_ID from customer where Customer_Name='" + comClient.Text + "'";
                                                             com = new MySqlCommand(query, dbconnection);
