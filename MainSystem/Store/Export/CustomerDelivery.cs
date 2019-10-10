@@ -27,7 +27,7 @@ namespace MainSystem
         string SelectType = "";
         bool comBranchLoaded=false;
         string branchID = "", BranchName = "";
-        
+        string TypeBuy = "";
         public CustomerDelivery()
         {
             try
@@ -499,12 +499,12 @@ namespace MainSystem
 
                     if (txtClientID.Text != "")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text,id.ToString(), txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text);
                         DeliveryPermissionReport.Show();
                     }
                     else if (txtCustomerID.Text != "")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text, id.ToString(), txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text);
                         DeliveryPermissionReport.Show();
                     }
 
@@ -700,12 +700,12 @@ namespace MainSystem
 
                     if (txtClientID.Text!="")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , labDate.Text, txtPermBillNumber.Text,"", txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text);
                         DeliveryPermissionReport.Show();
                     }
                     else if (txtCustomerID.Text!="")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text,"", txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text);
                         DeliveryPermissionReport.Show();
                     }
                   
@@ -909,10 +909,19 @@ namespace MainSystem
         }
         public void displayData()
         {
-            string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+            string query = "select CustomerBill_ID,Type_Buy from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            int id = Convert.ToInt32(com.ExecuteScalar());
+            MySqlDataReader dr = com.ExecuteReader();
+            int id=-1;
+            while (dr.Read())
+            {
+               id = Convert.ToInt32(dr[0]);
+               TypeBuy = dr[1].ToString();
+            }
+            dr.Close();
+         
+
             displayCustomerData(id.ToString());
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
