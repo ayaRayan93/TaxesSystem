@@ -202,9 +202,17 @@ namespace MainSystem
                                 {
                                     customerID = Convert.ToInt32(dr["Customer_ID"].ToString());
                                 }
+                                else
+                                {
+                                    customerID = 0;
+                                }
                                 if (dr["Client_ID"].ToString() != "")
                                 {
                                     clientID = Convert.ToInt32(dr["Client_ID"].ToString());
+                                }
+                                else
+                                {
+                                    clientID = 0;
                                 }
                             }
                             dr.Close();
@@ -227,6 +235,11 @@ namespace MainSystem
                                     }
                                     dr.Close();
                                 }
+                                else
+                                {
+                                    clientPhoneNumber = "";
+                                    clientName = "";
+                                }
                                 //else
                                 //{
                                 //    MessageBox.Show("لابد من وجود عميل");
@@ -245,6 +258,11 @@ namespace MainSystem
                                         engName = dr["Customer_Name"].ToString();
                                     }
                                     dr.Close();
+                                }
+                                else
+                                {
+                                    engName = "";
+                                    customerPhoneNumber = "";
                                 }
                                 flag2 = false;
                             }

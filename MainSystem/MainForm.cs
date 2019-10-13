@@ -381,7 +381,11 @@ namespace MainSystem
                 pictureBoxBell.Visible = true;
                 navBarItemBillsAgleTransitionsReport.Visible = false;
                 navBarItemTotalSales.Visible = false;
-                userAccessStore();
+                
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+                btnTaswayAgalBills.Visible = false;
+                navBarItem153.Visible = false;
             }
             //eslam
             else if (UserControl.userType == 17)
