@@ -420,18 +420,6 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Safaya", typeof(decimal)));
             return _Table;
         }
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, "", comFactory.Text);
-                MainForm.displayDelegateReport(GridControl1, d);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         public void CalTotal(DataTable _Tabl)
         {
             double totalSales = 0, totalReturn = 0, totalSafay = 0, totalProfit = 0;
@@ -449,6 +437,20 @@ namespace MainSystem
             txtTotalSafay.Text = totalSafay.ToString("0.00");
 
         }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, "", comFactory.Text);
+                MainForm.displayDelegateReport(GridControl1, d);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+      
     }
 
 }
