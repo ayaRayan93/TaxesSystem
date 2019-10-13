@@ -412,11 +412,18 @@ namespace MainSystem
                     //,delegate.Delegate_ID,delegate.Delegate_Name .. INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID
                 
                     string query = "SELECT dash.Customer_ID,dash.Customer_Name,customer.Customer_Type,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
-                    
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     dataReader = com.ExecuteReader();
                     if (dataReader.HasRows)
                     {
+                        connectionReader2.Open();
+                        string query2 = "SELECT delegate.Delegate_Name FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON delegate.Delegate_ID = dash_details.Delegate_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0 order by dash_details.DashDetails_ID desc";
+                        MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                        if (com2.ExecuteScalar() != null)
+                        {
+                            txtDelegate.Text = com2.ExecuteScalar().ToString();
+                        }
+                        connectionReader2.Close();
                         listBoxControlBills.Items.Add(billNumb + ":" + comBranch.Text);
                         listBoxControlBranchID.Items.Add(comBranch.SelectedValue.ToString());
                         while (dataReader.Read())
@@ -430,6 +437,9 @@ namespace MainSystem
                             if (dataReader["Customer_Type"].ToString() == "عميل")
                             {
                                 radClient.Checked = true;
+                                loaded = false;
+                                comClient.SelectedIndex = -1;
+                                loaded = true;
                                 comClient.Text = dataReader["Customer_Name"].ToString();
                                 comClient.SelectedValue = ci;
                                 txtClientID.Text = ci.ToString();
@@ -437,6 +447,9 @@ namespace MainSystem
                             else if (dataReader["Customer_Type"].ToString() == "مهندس")
                             {
                                 radEng.Checked = true;
+                                loaded = false;
+                                comEngCon.SelectedIndex = -1;
+                                loaded = true;
                                 comEngCon.Text = dataReader["Customer_Name"].ToString();
                                 comEngCon.SelectedValue = ci;
                                 txtCustomerID.Text = ci.ToString();
@@ -444,6 +457,9 @@ namespace MainSystem
                             else if (dataReader["Customer_Type"].ToString() == "مقاول")
                             {
                                 radCon.Checked = true;
+                                loaded = false;
+                                comEngCon.SelectedIndex = -1;
+                                loaded = true;
                                 comEngCon.Text = dataReader["Customer_Name"].ToString();
                                 comEngCon.SelectedValue = ci;
                                 txtCustomerID.Text = ci.ToString();
@@ -451,6 +467,9 @@ namespace MainSystem
                             else if (dataReader["Customer_Type"].ToString() == "تاجر")
                             {
                                 radDealer.Checked = true;
+                                loaded = false;
+                                comEngCon.SelectedIndex = -1;
+                                loaded = true;
                                 comEngCon.Text = dataReader["Customer_Name"].ToString();
                                 comEngCon.SelectedValue = ci;
                                 txtCustomerID.Text = ci.ToString();
@@ -595,10 +614,16 @@ namespace MainSystem
                         dataReader.Close();
                         dbconnection.Close();
                         dbconnectionr.Close();
+                        connectionReader2.Close();
                         //dbconnection2.Close();
                         //comDelegate.Text = "";
                         comClient.Text = "";
+                        txtClientID.Text = "";
+                        txtClientPhone.Text = "";
                         comEngCon.Text = "";
+                        txtCustomerID.Text = "";
+                        txtCustomerPhone.Text = "";
+                        txtDelegate.Text = "";
                         MessageBox.Show("هذه الفاتورة غير موجوده");
                         return;
                     }
@@ -630,6 +655,7 @@ namespace MainSystem
                 dbconnectionr.Close();
                 //dbconnection2.Close();
                 connectionReader3.Close();
+                connectionReader2.Close();
             }
         }
 

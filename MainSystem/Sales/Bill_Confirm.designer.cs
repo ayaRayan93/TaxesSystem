@@ -70,8 +70,10 @@
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.radDealer = new System.Windows.Forms.RadioButton();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.txtCustomerPhone = new System.Windows.Forms.TextBox();
             this.txtClientPhone = new System.Windows.Forms.TextBox();
+            this.txtCustomerPhone = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDelegate = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -148,7 +150,7 @@
             this.comBranch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(149, 17);
+            this.comBranch.Location = new System.Drawing.Point(148, 13);
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(150, 24);
             this.comBranch.TabIndex = 147;
@@ -159,7 +161,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label6.Location = new System.Drawing.Point(305, 21);
+            this.label6.Location = new System.Drawing.Point(304, 17);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 151;
@@ -214,7 +216,7 @@
             this.labelEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelEng.AutoSize = true;
             this.labelEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelEng.Location = new System.Drawing.Point(253, 28);
+            this.labelEng.Location = new System.Drawing.Point(253, 27);
             this.labelEng.Name = "labelEng";
             this.labelEng.Size = new System.Drawing.Size(119, 17);
             this.labelEng.TabIndex = 143;
@@ -226,7 +228,7 @@
             this.comEngCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(99, 24);
+            this.comEngCon.Location = new System.Drawing.Point(99, 23);
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(150, 24);
             this.comEngCon.TabIndex = 142;
@@ -238,7 +240,7 @@
             this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radClient.Location = new System.Drawing.Point(266, 3);
+            this.radClient.Location = new System.Drawing.Point(266, 2);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(58, 21);
@@ -253,7 +255,7 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radEng.Location = new System.Drawing.Point(189, 3);
+            this.radEng.Location = new System.Drawing.Point(189, 2);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(71, 21);
@@ -268,7 +270,7 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radCon.Location = new System.Drawing.Point(124, 3);
+            this.radCon.Location = new System.Drawing.Point(124, 2);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(59, 21);
@@ -283,7 +285,7 @@
             this.labelClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelClient.Location = new System.Drawing.Point(292, 80);
+            this.labelClient.Location = new System.Drawing.Point(292, 79);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(40, 17);
             this.labelClient.TabIndex = 136;
@@ -295,7 +297,7 @@
             this.comClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(99, 76);
+            this.comClient.Location = new System.Drawing.Point(99, 75);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(150, 24);
             this.comClient.TabIndex = 135;
@@ -307,7 +309,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(281, 68);
+            this.label2.Location = new System.Drawing.Point(280, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 133;
@@ -318,7 +320,7 @@
             this.txtBillNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBillNo.Enabled = false;
             this.txtBillNo.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBillNo.Location = new System.Drawing.Point(195, 64);
+            this.txtBillNo.Location = new System.Drawing.Point(194, 43);
             this.txtBillNo.Name = "txtBillNo";
             this.txtBillNo.Size = new System.Drawing.Size(80, 24);
             this.txtBillNo.TabIndex = 132;
@@ -576,6 +578,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.txtDelegate);
             this.panel3.Controls.Add(this.listBoxControlBranchID);
             this.panel3.Controls.Add(this.checkBoxAdd);
             this.panel3.Controls.Add(this.listBoxControlBills);
@@ -591,9 +595,9 @@
             // listBoxControlBranchID
             // 
             this.listBoxControlBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxControlBranchID.Location = new System.Drawing.Point(122, 8);
+            this.listBoxControlBranchID.Location = new System.Drawing.Point(121, 13);
             this.listBoxControlBranchID.Name = "listBoxControlBranchID";
-            this.listBoxControlBranchID.Size = new System.Drawing.Size(20, 52);
+            this.listBoxControlBranchID.Size = new System.Drawing.Size(20, 28);
             this.listBoxControlBranchID.TabIndex = 156;
             this.listBoxControlBranchID.Visible = false;
             // 
@@ -603,7 +607,7 @@
             this.checkBoxAdd.AutoSize = true;
             this.checkBoxAdd.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAdd.Location = new System.Drawing.Point(129, 66);
+            this.checkBoxAdd.Location = new System.Drawing.Point(128, 45);
             this.checkBoxAdd.Name = "checkBoxAdd";
             this.checkBoxAdd.Size = new System.Drawing.Size(62, 20);
             this.checkBoxAdd.TabIndex = 153;
@@ -615,10 +619,10 @@
             // 
             this.listBoxControlBills.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxControlBills.HorizontalScrollbar = true;
-            this.listBoxControlBills.Location = new System.Drawing.Point(14, 17);
+            this.listBoxControlBills.Location = new System.Drawing.Point(13, 13);
             this.listBoxControlBills.Name = "listBoxControlBills";
             this.listBoxControlBills.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.listBoxControlBills.Size = new System.Drawing.Size(100, 69);
+            this.listBoxControlBills.Size = new System.Drawing.Size(100, 84);
             this.listBoxControlBills.TabIndex = 155;
             // 
             // panel4
@@ -644,7 +648,7 @@
             // 
             this.txtClientID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientID.Location = new System.Drawing.Point(43, 76);
+            this.txtClientID.Location = new System.Drawing.Point(43, 75);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(50, 24);
@@ -656,7 +660,7 @@
             // 
             this.txtCustomerID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerID.Location = new System.Drawing.Point(43, 24);
+            this.txtCustomerID.Location = new System.Drawing.Point(43, 23);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(50, 24);
@@ -669,7 +673,7 @@
             this.radDealer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radDealer.Location = new System.Drawing.Point(69, 3);
+            this.radDealer.Location = new System.Drawing.Point(69, 2);
             this.radDealer.Name = "radDealer";
             this.radDealer.Size = new System.Drawing.Size(49, 21);
             this.radDealer.TabIndex = 144;
@@ -687,27 +691,48 @@
             this.panel5.Size = new System.Drawing.Size(358, 128);
             this.panel5.TabIndex = 147;
             // 
+            // txtClientPhone
+            // 
+            this.txtClientPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClientPhone.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtClientPhone.Location = new System.Drawing.Point(19, 101);
+            this.txtClientPhone.Name = "txtClientPhone";
+            this.txtClientPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtClientPhone.Size = new System.Drawing.Size(140, 24);
+            this.txtClientPhone.TabIndex = 147;
+            this.txtClientPhone.Visible = false;
+            // 
             // txtCustomerPhone
             // 
             this.txtCustomerPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerPhone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerPhone.Location = new System.Drawing.Point(19, 50);
+            this.txtCustomerPhone.Location = new System.Drawing.Point(19, 49);
             this.txtCustomerPhone.Name = "txtCustomerPhone";
             this.txtCustomerPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerPhone.Size = new System.Drawing.Size(140, 24);
             this.txtCustomerPhone.TabIndex = 146;
             this.txtCustomerPhone.Visible = false;
             // 
-            // txtClientPhone
+            // label1
             // 
-            this.txtClientPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClientPhone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientPhone.Location = new System.Drawing.Point(19, 102);
-            this.txtClientPhone.Name = "txtClientPhone";
-            this.txtClientPhone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtClientPhone.Size = new System.Drawing.Size(140, 24);
-            this.txtClientPhone.TabIndex = 147;
-            this.txtClientPhone.Visible = false;
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label1.Location = new System.Drawing.Point(280, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 17);
+            this.label1.TabIndex = 158;
+            this.label1.Text = "المندوب";
+            // 
+            // txtDelegate
+            // 
+            this.txtDelegate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDelegate.Enabled = false;
+            this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDelegate.Location = new System.Drawing.Point(128, 73);
+            this.txtDelegate.Name = "txtDelegate";
+            this.txtDelegate.Size = new System.Drawing.Size(146, 24);
+            this.txtDelegate.TabIndex = 157;
             // 
             // Bill_Confirm
             // 
@@ -791,6 +816,8 @@
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.TextBox txtClientPhone;
         private System.Windows.Forms.TextBox txtCustomerPhone;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDelegate;
     }
 }
 
