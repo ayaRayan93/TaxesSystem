@@ -261,6 +261,11 @@ namespace MainSystem
                         comClient.SelectedValue = customerID;
                         txtClientId.Text = customerID.ToString();
                     }
+                    else
+                    {
+                        customerID = 0;
+                        engName = "";
+                    }
                     if (dr["Client_ID"].ToString() != "")
                     {
                         clientID = Convert.ToInt32(dr["Client_ID"].ToString());
@@ -268,6 +273,11 @@ namespace MainSystem
                         comClient.Text = dr["Client_Name"].ToString();
                         comClient.SelectedValue = clientID;
                         txtClientId.Text = clientID.ToString();
+                    }
+                    else
+                    {
+                        clientID = 0;
+                        clientName = "";
                     }
                 }
                 dr.Close();
@@ -285,7 +295,11 @@ namespace MainSystem
                         }
                         dr.Close();
                     }
-                    else if (customerID > 0)
+                    else
+                    {
+                        clientPhoneNumber = "";
+                    }
+                    if (customerID > 0)
                     {
                         query = "select * from customer inner join customer_phone on customer.Customer_ID=customer_phone.Customer_ID where customer.Customer_ID=" + customerID + " order by customer_phone.CustomerPhone_ID desc limit 1";
                         com = new MySqlCommand(query, conn);
@@ -296,14 +310,17 @@ namespace MainSystem
                         }
                         dr.Close();
                     }
+                    else
+                    {
+                        customerPhoneNumber = "";
+                    }
 
                     query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Cartons as 'اجمالى الكراتين',store.Store_Name as 'المخزن' from product_bill INNER JOIN customer_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN store ON store.Store_ID = product_bill.Store_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where product_bill.CustomerBill_ID=" + ID + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء') and data.Data_ID=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dtProduct = new DataTable();
                     da.Fill(dtProduct);
                     gridControl1.DataSource = dtProduct;
-
-
+                    
                     query = "SELECT product_bill.Data_ID,product_bill.Type as 'الفئة',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Quantity as 'الكمية',product_bill.Store_Name as 'المخزن',product_bill.Cartons as 'اجمالى الكراتين' FROM product_bill where product_bill.CustomerBill_ID=" + ID;
                     com = new MySqlCommand(query, conn);
                     dr = com.ExecuteReader();
