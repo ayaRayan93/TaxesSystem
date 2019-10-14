@@ -1,5 +1,4 @@
 ﻿using MainSystem;
-using MainSystem.Reports.sales;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SalesReportForCompanyDetails());
+            Application.Run(new Login());
         }
     }
 }
