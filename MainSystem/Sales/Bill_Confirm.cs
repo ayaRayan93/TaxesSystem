@@ -201,7 +201,7 @@ namespace MainSystem
 
                     loaded = false;
                     query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, connectionReader2);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     comClient.DataSource = dt;

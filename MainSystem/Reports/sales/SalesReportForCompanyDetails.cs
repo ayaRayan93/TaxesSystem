@@ -520,9 +520,7 @@ namespace MainSystem.Reports.sales
                         str += dr[0].ToString() + ",";
                     }
                     dr.Close();
-
-                   
-
+                    
                     str += 0;
                     
                     query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
