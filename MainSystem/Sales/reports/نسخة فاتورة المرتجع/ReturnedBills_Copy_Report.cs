@@ -467,13 +467,17 @@ namespace MainSystem
             }
 
             Print_CopyReturnedBill_Report f = new Print_CopyReturnedBill_Report();
-            if (clientID > 0)
+            if (clientID > 0 && customerID > 0)
             {
-                f.PrintInvoice(clientName + " " + clientID, clientPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName + " - " + TypeBuy);
+                f.PrintInvoice(clientName + " " + clientID, engName + " " + customerID, clientPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName + " - " + TypeBuy);
+            }
+            else if (clientID > 0)
+            {
+                f.PrintInvoice(clientName + " " + clientID, "", clientPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName + " - " + TypeBuy);
             }
             else if (customerID > 0)
             {
-                f.PrintInvoice(engName + " " + customerID, customerPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName + " - " + TypeBuy);
+                f.PrintInvoice(engName + " " + customerID, "", customerPhoneNumber, billDate, TypeBuy, billNumber, comBranch.SelectedValue.ToString(), branchName, totalCostAD, returnInfo, bi, delegateName + " - " + TypeBuy);
             }
             f.ShowDialog();
         }
