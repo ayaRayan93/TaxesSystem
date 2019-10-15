@@ -547,7 +547,7 @@ namespace MainSystem.Reports.sales
                 }
                 else
                 {
-                    MessageBox.Show("اختار الفرع والمندوب");
+                    MessageBox.Show("اختار الفرع ");
                 }
             }
             catch (Exception ex)
@@ -590,8 +590,60 @@ namespace MainSystem.Reports.sales
         }
         public DataTable getTotalSales(DataTable _Table, string customerBill_ids)
         {
+            string q1, q2, q3, q4, fQuery = "";
+            if (txtType.Text == "")
+            {
+                q1 = "select Type_ID from data";
+            }
+            else
+            {
+                q1 = txtType.Text;
+            }
+            if (txtFactory.Text == "")
+            {
+                q2 = "select Factory_ID from data";
+            }
+            else
+            {
+                q2 = txtFactory.Text;
+            }
+            if (txtProduct.Text == "")
+            {
+                q3 = "select Product_ID from data";
+            }
+            else
+            {
+                q3 = txtProduct.Text;
+            }
+            if (txtGroup.Text == "")
+            {
+                q4 = "select Group_ID from data";
+            }
+            else
+            {
+                q4 = txtGroup.Text;
+            }
+
+            if (comSize.Text != "")
+            {
+                fQuery += "and size.Size_ID='" + comSize.SelectedValue + "'";
+            }
+
+            if (comColor.Text != "")
+            {
+                fQuery += "and color.Color_ID='" + comColor.SelectedValue + "'";
+            }
+            if (comSort.Text != "")
+            {
+                fQuery += "and Sort.Sort_ID='" + comSort.SelectedValue + "'";
+            }
+            if (comClassfication.Text != "")
+            {
+                fQuery += "and data.Classification='" + comClassfication.Text + "'";
+            }
+
             string subString = " INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-            string query = "select data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',FORMAT(sum(product_bill.PriceAD*Quantity),2) from product_bill  inner join data on data.Data_ID=product_bill.Data_ID "+subString+" where CustomerBill_ID in (" + customerBill_ids + ") group by  data.Data_ID";
+            string query = "select data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',FORMAT(sum(product_bill.PriceAD*Quantity),2) from product_bill  inner join data on data.Data_ID=product_bill.Data_ID "+subString+" where CustomerBill_ID in (" + customerBill_ids + ") and data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " group by  data.Data_ID";
             
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -600,9 +652,27 @@ namespace MainSystem.Reports.sales
             {
                 DataRow row = _Table.NewRow();
                 if (dr[0].ToString() != "")
-                    row["Factory_ID"] = dr[0].ToString();
+                    row["Data_ID"] = dr[0].ToString();
                 if (dr[1].ToString() != "")
-                    row["Factory_Name"] = dr[1].ToString();
+                    row["Code"] = dr[1].ToString();
+                if (dr[2].ToString() != "")
+                    row["Product_Name"] = dr[2].ToString();
+                if (dr[3].ToString() != "")
+                    row["Type_Name"] = dr[3].ToString();
+                if (dr[4].ToString() != "")
+                    row["Factory_Name"] = dr[4].ToString();
+                if (dr[5].ToString() != "")
+                    row["Group_Name"] = dr[5].ToString();
+                if (dr[6].ToString() != "")
+                    row["Color_Name"] = dr[6].ToString();
+                if (dr[7].ToString() != "")
+                    row["Size_Value"] = dr[7].ToString();
+                if (dr[8].ToString() != "")
+                    row["Sort_Value"] = dr[8].ToString();
+                if (dr[9].ToString() != "")
+                    row["Classification"] = dr[9].ToString();
+                if (dr[10].ToString() != "")
+                    row["Description"] = dr[10].ToString();
                 if (dr[11].ToString() != "")
                     row["TotalSales"] = dr[11].ToString();
                 else
@@ -620,8 +690,60 @@ namespace MainSystem.Reports.sales
         }
         public DataTable getTotalReturn(DataTable _Table, string CustomerReturnBill_IDs)
         {
+            string q1, q2, q3, q4, fQuery = "";
+            if (txtType.Text == "")
+            {
+                q1 = "select Type_ID from data";
+            }
+            else
+            {
+                q1 = txtType.Text;
+            }
+            if (txtFactory.Text == "")
+            {
+                q2 = "select Factory_ID from data";
+            }
+            else
+            {
+                q2 = txtFactory.Text;
+            }
+            if (txtProduct.Text == "")
+            {
+                q3 = "select Product_ID from data";
+            }
+            else
+            {
+                q3 = txtProduct.Text;
+            }
+            if (txtGroup.Text == "")
+            {
+                q4 = "select Group_ID from data";
+            }
+            else
+            {
+                q4 = txtGroup.Text;
+            }
+
+            if (comSize.Text != "")
+            {
+                fQuery += "and size.Size_ID='" + comSize.SelectedValue + "'";
+            }
+
+            if (comColor.Text != "")
+            {
+                fQuery += "and color.Color_ID='" + comColor.SelectedValue + "'";
+            }
+            if (comSort.Text != "")
+            {
+                fQuery += "and Sort.Sort_ID='" + comSort.SelectedValue + "'";
+            }
+            if (comClassfication.Text != "")
+            {
+                fQuery += "and data.Classification='" + comClassfication.Text + "'";
+            }
+
             string subString = " INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-            string query = "select data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',FORMAT(sum(TotalAD),2) from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID "+subString+" where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  group by  factory.Factory_ID  ";
+            string query = "select data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',FORMAT(sum(TotalAD),2) from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID "+subString+" where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") and data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + "  group by  factory.Factory_ID  ";
           
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -656,9 +778,18 @@ namespace MainSystem.Reports.sales
                         row["TotalReturn"] = dr[11].ToString();
                         if (dr[2].ToString() != "")
                             row["Safaya"] = -Convert.ToDouble(dr[11].ToString());
-
-                        row["Factory_ID"] = dr[0].ToString();
-                        row["Factory_Name"] = dr[1].ToString();
+                        
+                            row["Data_ID"] = dr[0].ToString();
+                            row["Code"] = dr[1].ToString();
+                            row["Product_Name"] = dr[2].ToString();
+                            row["Type_Name"] = dr[3].ToString();
+                            row["Factory_Name"] = dr[4].ToString();
+                            row["Group_Name"] = dr[5].ToString();
+                            row["Color_Name"] = dr[6].ToString();
+                            row["Size_Value"] = dr[7].ToString();
+                            row["Sort_Value"] = dr[8].ToString();
+                            row["Classification"] = dr[9].ToString();
+                            row["Description"] = dr[10].ToString();
                         temp.Rows.Add(row);
                     }
                     else
@@ -681,8 +812,18 @@ namespace MainSystem.Reports.sales
         public DataTable peraperDataTable()
         {
             DataTable _Table = new DataTable("Table2");
-            _Table.Columns.Add(new DataColumn("Factory_ID", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Data_ID", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Code", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Product_Name", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Type_Name", typeof(string)));
             _Table.Columns.Add(new DataColumn("Factory_Name", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Group_Name", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Color_Name", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Size_Value", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Sort_Value", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Classification", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Description", typeof(string)));
+
             _Table.Columns.Add(new DataColumn("TotalSales", typeof(string)));
             _Table.Columns.Add(new DataColumn("TotalReturn", typeof(string)));
             _Table.Columns.Add(new DataColumn("Safaya", typeof(decimal)));

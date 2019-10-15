@@ -243,11 +243,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير معلقة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير لما يتم سدادها بالكامل");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("فواتير معلقة");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير معلقة");
+                    xtraTabControlAccounting.TabPages.Add("فواتير لما يتم سدادها بالكامل");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير لما يتم سدادها بالكامل");
                     xtraTabPage.RightToLeft = RightToLeft.No;
                 }
                 else
