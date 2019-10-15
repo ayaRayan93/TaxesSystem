@@ -25,7 +25,8 @@ namespace MainSystem
         string Customer_Type = "";
         int CustomerBill_ID = 0;
         bool loaded = false;
-        
+        int DelegateID = 0;
+
         int EmpBranchId = 0;
         string EmpBranchName = "";
         string type = "كاش";
@@ -423,6 +424,13 @@ namespace MainSystem
                         {
                             txtDelegate.Text = com2.ExecuteScalar().ToString();
                         }
+
+                        query2 = "SELECT delegate.Delegate_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN delegate ON delegate.Delegate_ID = dash_details.Delegate_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0 order by dash_details.DashDetails_ID desc";
+                        com2 = new MySqlCommand(query2, connectionReader2);
+                        if (com2.ExecuteScalar() != null)
+                        {
+                            DelegateID = Convert.ToInt16(com2.ExecuteScalar().ToString());
+                        }
                         connectionReader2.Close();
                         listBoxControlBills.Items.Add(billNumb + ":" + comBranch.Text);
                         listBoxControlBranchID.Items.Add(comBranch.SelectedValue.ToString());
@@ -624,6 +632,7 @@ namespace MainSystem
                         txtCustomerID.Text = "";
                         txtCustomerPhone.Text = "";
                         txtDelegate.Text = "";
+                        DelegateID = 0;
                         MessageBox.Show("هذه الفاتورة غير موجوده");
                         return;
                     }
@@ -1379,7 +1388,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], comeStore);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Dash_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Dash_ID"));
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], 1);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Delegate_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Delegate_ID"));
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Delegate_ID"], DelegateID/*gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Delegate_ID")*/);
                     }
                     else if (comeRow1["Type"].ToString() == "طقم")
                     {
@@ -1398,7 +1407,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], comeStore);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Dash_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Dash_ID"));
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], 1);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Delegate_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Delegate_ID"));
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Delegate_ID"], DelegateID/*gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Delegate_ID")*/);
                     }
                     else if (comeRow1["Type"].ToString() == "عرض")
                     {
@@ -1415,7 +1424,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المخزن"], comeStore);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Dash_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Dash_ID"));
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], 1);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Delegate_ID"], gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Delegate_ID"));
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Delegate_ID"], DelegateID/*gridView1.GetRowCellDisplayText((gridView1.RowCount - 2), "Delegate_ID")*/);
                     }
 
                     if (gridView1.IsLastVisibleRow)
