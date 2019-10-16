@@ -82,6 +82,8 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
+            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -124,14 +126,14 @@
             this.dataGridViewTextBoxColumn1});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 351);
+            this.dataGridView2.Location = new System.Drawing.Point(0, 356);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 80;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView2.Size = new System.Drawing.Size(970, 191);
+            this.dataGridView2.Size = new System.Drawing.Size(970, 186);
             this.dataGridView2.TabIndex = 167;
             // 
             // dataGridViewTextBoxColumn6
@@ -178,15 +180,16 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.btnReport);
             this.panel1.Controls.Add(this.labTotalBillCost);
             this.panel1.Controls.Add(this.labTotalReturnCost);
             this.panel1.Controls.Add(this.labRest);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.panel1.Location = new System.Drawing.Point(0, 311);
+            this.panel1.Location = new System.Drawing.Point(0, 306);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(970, 40);
+            this.panel1.Size = new System.Drawing.Size(970, 50);
             this.panel1.TabIndex = 162;
             // 
             // label6
@@ -265,7 +268,7 @@
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView1.Size = new System.Drawing.Size(970, 191);
+            this.dataGridView1.Size = new System.Drawing.Size(970, 186);
             this.dataGridView1.TabIndex = 161;
             // 
             // Date
@@ -389,7 +392,7 @@
             this.radDealer.Location = new System.Drawing.Point(548, 15);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(45, 20);
+            this.radDealer.Size = new System.Drawing.Size(46, 20);
             this.radDealer.TabIndex = 170;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -440,7 +443,7 @@
             this.radCon.Location = new System.Drawing.Point(603, 15);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(58, 20);
+            this.radCon.Size = new System.Drawing.Size(59, 20);
             this.radCon.TabIndex = 165;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -484,7 +487,7 @@
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEng.Location = new System.Drawing.Point(746, 45);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(108, 16);
+            this.labelEng.Size = new System.Drawing.Size(110, 16);
             this.labelEng.TabIndex = 169;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
@@ -532,7 +535,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(426, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 16);
+            this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 159;
             this.label2.Text = "من";
             // 
@@ -550,6 +553,7 @@
             // panFooter
             // 
             this.panFooter.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panFooter.Controls.Add(this.bunifuTileButton1);
             this.panFooter.Controls.Add(this.label4);
             this.panFooter.Controls.Add(this.labCustomerOpenAccount);
             this.panFooter.Controls.Add(this.label9);
@@ -574,7 +578,7 @@
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(860, 98);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 16);
+            this.label4.Size = new System.Drawing.Size(93, 16);
             this.label4.TabIndex = 178;
             this.label4.Text = "الرصيد الافتتاحي";
             // 
@@ -605,7 +609,7 @@
             this.btnTaswaya.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTaswaya.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTaswaya.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnTaswaya.Location = new System.Drawing.Point(24, 98);
+            this.btnTaswaya.Location = new System.Drawing.Point(22, 98);
             this.btnTaswaya.Name = "btnTaswaya";
             this.btnTaswaya.Size = new System.Drawing.Size(111, 40);
             this.btnTaswaya.TabIndex = 177;
@@ -679,11 +683,50 @@
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.Image = null;
+            this.btnReport.ImagePosition = 1;
+            this.btnReport.ImageZoom = 20;
+            this.btnReport.LabelPosition = 25;
+            this.btnReport.LabelText = "طباعة تقرير";
+            this.btnReport.Location = new System.Drawing.Point(22, 7);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(94, 36);
+            this.btnReport.TabIndex = 4;
+            // 
+            // bunifuTileButton1
+            // 
+            this.bunifuTileButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.bunifuTileButton1.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.bunifuTileButton1.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton1.Image = null;
+            this.bunifuTileButton1.ImagePosition = 1;
+            this.bunifuTileButton1.ImageZoom = 20;
+            this.bunifuTileButton1.LabelPosition = 25;
+            this.bunifuTileButton1.LabelText = "طباعة تقرير";
+            this.bunifuTileButton1.Location = new System.Drawing.Point(22, 12);
+            this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.bunifuTileButton1.Name = "bunifuTileButton1";
+            this.bunifuTileButton1.Size = new System.Drawing.Size(94, 36);
+            this.bunifuTileButton1.TabIndex = 5;
             // 
             // AccountStatement
             // 
@@ -762,5 +805,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.CheckBox chAgel;
         private System.Windows.Forms.CheckBox chKash;
+        private Bunifu.Framework.UI.BunifuTileButton btnReport;
+        private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton1;
     }
 }
