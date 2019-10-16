@@ -1229,11 +1229,11 @@ namespace MainSystem
             {
                 string q1 = "select Data_ID from storage_least_taswya";
                 string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
-                string q3 = "select data.Data_ID from data inner join storage on data.Data_ID=storage.Data_ID group by data.Data_ID HAVING SUM(storage.Total_Meters) <= least_order.Least_Quantity";
+                //string q3 = "select data.Data_ID from data inner join storage on data.Data_ID=storage.Data_ID group by data.Data_ID HAVING SUM(storage.Total_Meters) <= least_order.Least_Quantity";
                 int count = 0;
                 dbconnection.Close();
-                //string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
-                string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID where data.Data_ID in (" + q3 + ") and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
+                string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
+                //string query = "SELECT least_order.Least_Quantity FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID where data.Data_ID in (" + q3 + ") and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ")";
                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                 dbconnection.Open();
                 MySqlDataReader dr = command.ExecuteReader();
