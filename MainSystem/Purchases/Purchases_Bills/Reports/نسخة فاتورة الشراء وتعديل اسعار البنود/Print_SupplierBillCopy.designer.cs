@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraReports.UI.XRSummary xrSummary1 = new DevExpress.XtraReports.UI.XRSummary();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Print_SupplierBillCopy));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
@@ -87,18 +88,6 @@
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
-            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.StoreName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
-            this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Value_Additive_Tax = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Safy = new DevExpress.XtraReports.Parameters.Parameter();
-            this.SupplierPermession = new DevExpress.XtraReports.Parameters.Parameter();
-            this.StorePermessionNum = new DevExpress.XtraReports.Parameters.Parameter();
-            this.TotalDiscount = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
-            this.TotalA = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrTable9 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow9 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -127,9 +116,20 @@
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
+            this.StoreName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PermissionNumber = new DevExpress.XtraReports.Parameters.Parameter();
+            this.SupplierName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Value_Additive_Tax = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Safy = new DevExpress.XtraReports.Parameters.Parameter();
+            this.SupplierPermession = new DevExpress.XtraReports.Parameters.Parameter();
+            this.StorePermessionNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TotalDiscount = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TotalA = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).BeginInit();
@@ -137,6 +137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -844,82 +845,6 @@
             this.ReportFooter.HeightF = 159.7917F;
             this.ReportFooter.Name = "ReportFooter";
             // 
-            // DateNow
-            // 
-            this.DateNow.Description = "DateNow";
-            this.DateNow.Name = "DateNow";
-            this.DateNow.Type = typeof(System.DateTime);
-            this.DateNow.ValueInfo = "2018-11-01";
-            // 
-            // xrControlStyle2
-            // 
-            this.xrControlStyle2.BackColor = System.Drawing.Color.White;
-            this.xrControlStyle2.Name = "xrControlStyle2";
-            // 
-            // StoreName
-            // 
-            this.StoreName.Description = "StoreName";
-            this.StoreName.Name = "StoreName";
-            // 
-            // PermissionNumber
-            // 
-            this.PermissionNumber.Description = "PermissionNumber";
-            this.PermissionNumber.Name = "PermissionNumber";
-            this.PermissionNumber.Type = typeof(int);
-            this.PermissionNumber.ValueInfo = "0";
-            // 
-            // SupplierName
-            // 
-            this.SupplierName.Description = "SupplierName";
-            this.SupplierName.Name = "SupplierName";
-            // 
-            // Value_Additive_Tax
-            // 
-            this.Value_Additive_Tax.Description = "Value_Additive_Tax";
-            this.Value_Additive_Tax.Name = "Value_Additive_Tax";
-            this.Value_Additive_Tax.Type = typeof(decimal);
-            this.Value_Additive_Tax.ValueInfo = "0";
-            // 
-            // Safy
-            // 
-            this.Safy.Description = "Safy";
-            this.Safy.Name = "Safy";
-            this.Safy.Type = typeof(decimal);
-            this.Safy.ValueInfo = "0";
-            // 
-            // SupplierPermession
-            // 
-            this.SupplierPermession.Description = "SupplierPermession";
-            this.SupplierPermession.Name = "SupplierPermession";
-            this.SupplierPermession.Type = typeof(int);
-            this.SupplierPermession.ValueInfo = "0";
-            // 
-            // StorePermessionNum
-            // 
-            this.StorePermessionNum.Description = "StorePermessionNum";
-            this.StorePermessionNum.Name = "StorePermessionNum";
-            this.StorePermessionNum.Type = typeof(int);
-            this.StorePermessionNum.ValueInfo = "0";
-            // 
-            // TotalDiscount
-            // 
-            this.TotalDiscount.Description = "TotalDiscount";
-            this.TotalDiscount.Name = "TotalDiscount";
-            this.TotalDiscount.Type = typeof(decimal);
-            this.TotalDiscount.ValueInfo = "0";
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.SupplierBill_Items);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // TotalA
-            // 
-            this.TotalA.Description = "TotalA";
-            this.TotalA.Name = "TotalA";
-            this.TotalA.Type = typeof(decimal);
-            this.TotalA.ValueInfo = "0";
-            // 
             // xrTable9
             // 
             this.xrTable9.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
@@ -1278,6 +1203,82 @@
             this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell25.Weight = 1.6083888641038757D;
             // 
+            // DateNow
+            // 
+            this.DateNow.Description = "DateNow";
+            this.DateNow.Name = "DateNow";
+            this.DateNow.Type = typeof(System.DateTime);
+            this.DateNow.ValueInfo = "2018-11-01";
+            // 
+            // xrControlStyle2
+            // 
+            this.xrControlStyle2.BackColor = System.Drawing.Color.White;
+            this.xrControlStyle2.Name = "xrControlStyle2";
+            // 
+            // StoreName
+            // 
+            this.StoreName.Description = "StoreName";
+            this.StoreName.Name = "StoreName";
+            // 
+            // PermissionNumber
+            // 
+            this.PermissionNumber.Description = "PermissionNumber";
+            this.PermissionNumber.Name = "PermissionNumber";
+            this.PermissionNumber.Type = typeof(int);
+            this.PermissionNumber.ValueInfo = "0";
+            // 
+            // SupplierName
+            // 
+            this.SupplierName.Description = "SupplierName";
+            this.SupplierName.Name = "SupplierName";
+            // 
+            // Value_Additive_Tax
+            // 
+            this.Value_Additive_Tax.Description = "Value_Additive_Tax";
+            this.Value_Additive_Tax.Name = "Value_Additive_Tax";
+            this.Value_Additive_Tax.Type = typeof(decimal);
+            this.Value_Additive_Tax.ValueInfo = "0";
+            // 
+            // Safy
+            // 
+            this.Safy.Description = "Safy";
+            this.Safy.Name = "Safy";
+            this.Safy.Type = typeof(decimal);
+            this.Safy.ValueInfo = "0";
+            // 
+            // SupplierPermession
+            // 
+            this.SupplierPermession.Description = "SupplierPermession";
+            this.SupplierPermession.Name = "SupplierPermession";
+            this.SupplierPermession.Type = typeof(int);
+            this.SupplierPermession.ValueInfo = "0";
+            // 
+            // StorePermessionNum
+            // 
+            this.StorePermessionNum.Description = "StorePermessionNum";
+            this.StorePermessionNum.Name = "StorePermessionNum";
+            this.StorePermessionNum.Type = typeof(int);
+            this.StorePermessionNum.ValueInfo = "0";
+            // 
+            // TotalDiscount
+            // 
+            this.TotalDiscount.Description = "TotalDiscount";
+            this.TotalDiscount.Name = "TotalDiscount";
+            this.TotalDiscount.Type = typeof(decimal);
+            this.TotalDiscount.ValueInfo = "0";
+            // 
+            // TotalA
+            // 
+            this.TotalA.Description = "TotalA";
+            this.TotalA.Name = "TotalA";
+            this.TotalA.Type = typeof(decimal);
+            this.TotalA.ValueInfo = "0";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MainSystem.SupplierBill_Items);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
             // Print_SupplierBillCopy
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1313,7 +1314,6 @@
             this.Version = "18.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).EndInit();
@@ -1321,6 +1321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

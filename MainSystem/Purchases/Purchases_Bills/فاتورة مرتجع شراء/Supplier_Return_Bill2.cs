@@ -825,7 +825,7 @@ namespace MainSystem
 
                         double addabtiveTax = 0;
                         List<SupplierReturnBill_Items> bi = new List<SupplierReturnBill_Items>();
-                        double discount = 0;
+                        //double discount = 0;
                         for (int i = 0; i < gridView2.RowCount; i++)
                         {
                             int rowHand = gridView2.GetRowHandle(i);
@@ -833,7 +833,7 @@ namespace MainSystem
                             {
                                 //double lastPrice = 0;
                                 //lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])));
-                                discount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]).ToString())) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"]).ToString()) / 100);
+                                /*discount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]).ToString())) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"]).ToString()) / 100);*/
                                 SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
                                 bi.Add(item);
                             }
@@ -842,7 +842,7 @@ namespace MainSystem
                                 //double lastPrice = 0;
                                 //lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])));
                                 //, Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"]))
-                                discount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]).ToString())) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"]).ToString()) / 100);
+                                //discount += (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"]).ToString())) * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"]).ToString()) / 100);
                                 SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
                                 bi.Add(item);
                             }
@@ -850,7 +850,7 @@ namespace MainSystem
                         }
                         addabtiveTax = Convert.ToDouble(txtAllTax.Text);
                         Report_SupplierReturnBill f = new Report_SupplierReturnBill();
-                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, discount, Convert.ToDouble(labelTotalSafy.Text), addabtiveTax, bi);
+                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, Convert.ToDouble(labelTotalDiscount.Text), Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), bi);
                         f.ShowDialog(); 
                         #endregion
             
@@ -1341,7 +1341,7 @@ namespace MainSystem
             gridControl2.DataSource = null;
             txtDiscount.Text = txtCategoricalIncrease.Text = txtCode.Text = "";
             txtPrice.Text = txtLastPrice.Text = txtNormalIncrease.Text = txtTotalMeter.Text = "";
-            txtPurchasePrice.Text = labTotalPrice.Text = labTotalPriceBD.Text = labelTotalB.Text = labelTotalA.Text= labelTotalSafy.Text = labelTotalDiscount.Text = "";
+            txtPurchasePrice.Text = labTotalPrice.Text = labTotalPriceBD.Text = labelTotalB.Text = labelTotalA.Text= labelTotalSafy.Text = labelTotalDiscount.Text = labelTotalCat.Text = "";
             txtTax.Text = "0";
             loaded = false;
             txtAllTax.Text = "0.00";

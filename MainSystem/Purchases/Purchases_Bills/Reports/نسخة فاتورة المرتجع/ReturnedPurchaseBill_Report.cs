@@ -256,21 +256,56 @@ namespace MainSystem
                     MySqlDataReader dr1 = com1.ExecuteReader();
                     while (dr1.Read())
                     {
+                        double totalAllB = 0;
+                        double totalAllA = 0;
+                        double totalAllDiscount = 0;
+                        double totalAllCatInc = 0;
                         List<SupplierReturnBill_Items> bi = new List<SupplierReturnBill_Items>();
-                        double discount = 0;
+                        //double discount = 0;
                         q2 = "SELECT supplier_return_bill.ReturnBill_ID as 'التسلسل',data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_return_bill_details.Price as 'السعر',supplier_return_bill_details.Purchasing_Discount as 'نسبة الخصم',supplier_return_bill_details.Normal_Increase as 'الزيادة العادية',supplier_return_bill_details.Categorical_Increase as 'الزيادة القطعية',supplier_return_bill_details.Last_Price AS 'السعر بالزيادة',supplier_return_bill_details.Purchasing_Price as 'سعر الشراء',supplier_return_bill_details.Total_Meters as 'متر/قطعة' FROM supplier_return_bill INNER JOIN supplier_return_bill_details ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID INNER JOIN store ON store.Store_ID = supplier_return_bill.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = supplier_return_bill.Supplier_ID INNER JOIN data ON supplier_return_bill_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where supplier_return_bill.ReturnBill_ID=" + row1["التسلسل"].ToString() /*+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID"*/;
                         MySqlCommand com2 = new MySqlCommand(q2, dbconnection2);
                         MySqlDataReader dr2 = com2.ExecuteReader();
                         while (dr2.Read())
                         {
-                            discount += (Convert.ToDouble(dr2["السعر بالزيادة"].ToString())* Convert.ToDouble(dr2["متر/قطعة"].ToString())) * (Convert.ToDouble(dr2["نسبة الخصم"].ToString()) / 100);
+                            /*discount += (Convert.ToDouble(dr2["السعر بالزيادة"].ToString())* Convert.ToDouble(dr2["متر/قطعة"].ToString())) * (Convert.ToDouble(dr2["نسبة الخصم"].ToString()) / 100);*/
                             SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = dr2["الكود"].ToString(), Product_Type = dr2["النوع"].ToString(), Product_Name = dr2["الاسم"].ToString(), Total_Meters = Convert.ToDouble(dr2["متر/قطعة"].ToString()), PriceB = Convert.ToDouble(dr2["السعر"].ToString()), Discount = Convert.ToDouble(dr2["نسبة الخصم"].ToString()), Last_Price = Convert.ToDouble(dr2["السعر بالزيادة"].ToString()), Normal_Increase = Convert.ToDouble(dr2["الزيادة العادية"].ToString()), Categorical_Increase = Convert.ToDouble(dr2["الزيادة القطعية"].ToString()), PriceA = Convert.ToDouble(dr2["سعر الشراء"].ToString()) };
                             bi.Add(item);
+
+                            double totalB = 0;
+                            double totalA = 0;
+                            double totalNormInc = 0;
+                            double totalDiscount = 0;
+                            double totalCatInc = 0;
+                            if (dr2["الزيادة العادية"].ToString() != "")
+                            {
+                                totalNormInc = Convert.ToDouble(dr2["الزيادة العادية"].ToString());
+                            }
+                            else
+                            {
+                                totalNormInc = 0;
+                            }
+                            if (dr2["الزيادة القطعية"].ToString() != "")
+                            {
+                                totalCatInc = Convert.ToDouble(dr2["الزيادة القطعية"].ToString());
+                            }
+                            else
+                            {
+                                totalCatInc = 0;
+                            }
+                            totalB = (Convert.ToDouble(dr2["السعر"].ToString()) + totalNormInc) * Convert.ToDouble(dr2["متر/قطعة"].ToString());
+                            totalDiscount = totalB * (Convert.ToDouble(dr2["نسبة الخصم"].ToString()) / 100);
+                            totalCatInc = Convert.ToDouble(dr2["الزيادة القطعية"].ToString()) * Convert.ToDouble(dr2["متر/قطعة"].ToString());
+                            totalA = (totalB - totalDiscount) + totalCatInc;
+
+                            totalAllB += totalB;
+                            totalAllDiscount += totalDiscount;
+                            totalAllCatInc += totalCatInc;
+                            totalAllA += totalA;
                         }
                         dr2.Close();
 
                         Report_SupplierReturnBillCopy f = new Report_SupplierReturnBillCopy();
-                        f.PrintInvoice(dr1["المخزن"].ToString(), dr1["رقم الفاتورة"].ToString(), comSupplier.Text, dr1["اذن المخزن"].ToString(), dr1["اذن الاستلام"].ToString(), dr1["التاريخ"].ToString(), discount, Convert.ToDouble(dr1["الاجمالى بعد"].ToString()), Convert.ToDouble(dr1["ضريبة القيمة المضافة"].ToString()), bi);
+                        f.PrintInvoice(dr1["المخزن"].ToString(), dr1["رقم الفاتورة"].ToString(), comSupplier.Text, dr1["اذن المخزن"].ToString(), dr1["اذن الاستلام"].ToString(), dr1["التاريخ"].ToString(), totalAllDiscount, totalAllA, Convert.ToDouble(dr1["ضريبة القيمة المضافة"].ToString()), Convert.ToDouble(dr1["الاجمالى بعد"].ToString()), bi);
                         f.ShowDialog();
                     }
                     dr1.Close();

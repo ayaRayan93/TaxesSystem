@@ -14,7 +14,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string storeName, string permissionNum, string supplierName, string storePermessionNum, string SupPerm, string date, double discount, double TotalA, double addabtiveTax, List<SupplierReturnBill_Items> ReceiptItems)
+        public void InitData(string storeName, string permissionNum, string supplierName, string storePermessionNum, string SupPerm, string date, double discount, double totalA, double addabtiveTax, double totalSafy, List<SupplierReturnBill_Items> ReceiptItems)
         {
             DateNow.Value = date;
             StoreName.Value = storeName;
@@ -23,7 +23,8 @@ namespace MainSystem
             StorePermessionNum.Value = storePermessionNum;
             SupplierPermession.Value = SupPerm;
             TotalDiscount.Value = discount;
-            Safy.Value = TotalA;
+            TotalA.Value = totalA;
+            Safy.Value = totalSafy;
             Value_Additive_Tax.Value = addabtiveTax;
             objectDataSource2.DataSource = ReceiptItems;
         }
