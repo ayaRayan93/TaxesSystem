@@ -14,6 +14,7 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 using MainSystem.Sales.accounting;
+using MainSystem.Reports.sales;
 
 namespace MainSystem
 {
@@ -516,7 +517,42 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void navBarItemTotalSalesDetails_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 13 || UserControl.userType == 1)
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
 
+                    if (!xtraTabControlSalesContent.Visible)
+                        xtraTabControlSalesContent.Visible = true;
+
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تفاصيل اجمالي المبيعات");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlSalesContent.TabPages.Add("تفاصيل اجمالي المبيعات");
+                        xtraTabPage = getTabPage(xtraTabControlSalesContent, "تفاصيل اجمالي المبيعات");
+
+                    }
+                    //xtraTabPage.Controls.Clear();
+
+                    xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                    SalesReportForCompanyDetails objForm = new SalesReportForCompanyDetails();
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void navBarItemBillCancel_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
