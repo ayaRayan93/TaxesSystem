@@ -1136,63 +1136,71 @@ namespace MainSystem
                 DataRowView row1 = (DataRowView)gridView1.GetRow(j);
                 double totalMeter = Convert.ToDouble(row1["الكمية"].ToString());
 
-                if (row1["النوع"].ToString() == "بند" && row1["added"].ToString() != "0")
+                if (totalMeter > 0)
                 {
-                    string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + row1["Store_ID"].ToString() + " and storage.Data_ID=" + gridView1.GetRowCellDisplayText(j, "التسلسل") + " and storage.Type='بند' group by storage.Data_ID,storage.Store_ID";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
+                    if (row1["النوع"].ToString() == "بند" && row1["added"].ToString() != "0")
                     {
-                        double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
-                        if (totalMeter <= totalquant)
+                        string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + row1["Store_ID"].ToString() + " and storage.Data_ID=" + gridView1.GetRowCellDisplayText(j, "التسلسل") + " and storage.Type='بند' group by storage.Data_ID,storage.Store_ID";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
                         {
-                            return true;
+                            double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
+                            if (totalMeter <= totalquant)
+                            {
+                                //return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
+                                return false;
+                            }
                         }
-                        else
+                    }
+                    else if (row1["النوع"].ToString() == "طقم" && row1["added"].ToString() != "0")
+                    {
+                        string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + row1["Store_ID"].ToString() + " and storage.Set_ID=" + gridView1.GetRowCellDisplayText(j, "التسلسل") + " and storage.Type='طقم' group by storage.Set_ID,storage.Store_ID";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
                         {
-                            MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
-                            return false;
+                            double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
+                            if (totalMeter <= totalquant)
+                            {
+                                //return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
+                                return false;
+                            }
+                        }
+                    }
+                    else if (row1["النوع"].ToString() == "عرض" && row1["added"].ToString() != "0")
+                    {
+                        //storage.Store_ID=" + row1["Store_ID"].ToString() + " and  ... ,storage.Store_ID
+                        string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where  storage.Offer_ID=" + gridView1.GetRowCellDisplayText(j, "التسلسل") + " and storage.Type='عرض' group by storage.Offer_ID";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                            double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
+                            if (totalMeter <= totalquant)
+                            {
+                                //return true;
+                            }
+                            else
+                            {
+                                MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
+                                return false;
+                            }
                         }
                     }
                 }
-                else if (row1["النوع"].ToString() == "طقم" && row1["added"].ToString() != "0")
+                else
                 {
-                    string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + row1["Store_ID"].ToString() + " and storage.Set_ID=" + gridView1.GetRowCellDisplayText(j, "التسلسل") + " and storage.Type='طقم' group by storage.Set_ID,storage.Store_ID";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
-                        if (totalMeter <= totalquant)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
-                            return false;
-                        }
-                    }
-                }
-                else if (row1["النوع"].ToString() == "عرض" && row1["added"].ToString() != "0")
-                {
-                    //storage.Store_ID=" + row1["Store_ID"].ToString() + " and  ... ,storage.Store_ID
-                    string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where  storage.Offer_ID=" + gridView1.GetRowCellDisplayText(j, "التسلسل") + " and storage.Type='عرض' group by storage.Offer_ID";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (com.ExecuteScalar() != null)
-                    {
-                        double totalquant = Convert.ToDouble(com.ExecuteScalar().ToString());
-                        if (totalMeter <= totalquant)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            MessageBox.Show(row1["الاسم"].ToString() + " لا يوجد كمية كافية منه ");
-                            return false;
-                        }
-                    }
+                    MessageBox.Show(row1["الاسم"].ToString() + " يجب ان تكون كميتة فى الفاتورة اكبر من صفر ");
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
 
         /*public void DecreaseProductQuantity()

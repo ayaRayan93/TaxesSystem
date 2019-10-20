@@ -530,6 +530,12 @@
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Update.designer.cs">
       <DependentUpon>ReturnedPurchaseBill_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\SupplierReturnBill_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\SupplierReturnBill_Update.designer.cs">
+      <DependentUpon>SupplierReturnBill_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -669,6 +675,12 @@
     </Compile>
     <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Report_StorageReturnCopy.designer.cs">
       <DependentUpon>Report_StorageReturnCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\StorageReturnBill_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\StorageReturnBill_Update.designer.cs">
+      <DependentUpon>StorageReturnBill_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Print_SupplierReceiptCopy.cs">
       <SubType>Component</SubType>
@@ -2879,6 +2891,9 @@
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\ReturnedPurchaseBill_Update.resx">
       <DependentUpon>ReturnedPurchaseBill_Update.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة المرتجع\SupplierReturnBill_Update.resx">
+      <DependentUpon>SupplierReturnBill_Update.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.resx">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -3001,6 +3016,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Reports\نسخة اذن المرتجع\Report_StorageReturnCopy.resx">
       <DependentUpon>Report_StorageReturnCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\نسخة اذن المرتجع\StorageReturnBill_Update.resx">
+      <DependentUpon>StorageReturnBill_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\Print_SupplierReceiptCopy.resx">
       <DependentUpon>Print_SupplierReceiptCopy.cs</DependentUpon>
