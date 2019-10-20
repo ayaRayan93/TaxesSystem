@@ -17,6 +17,7 @@ namespace MainSystem
         MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3, dbconnection4;
         bool loaded = false;
         DataRow row1 = null;
+        XtraTabControl tabControlContentStore = null;
 
         public PermissionReturnedReport(MainForm mainform, XtraTabControl tabControlContent)
         {
@@ -26,6 +27,7 @@ namespace MainSystem
             dbconnection2 = new MySqlConnection(connection.connectionString);
             dbconnection3 = new MySqlConnection(connection.connectionString);
             dbconnection4 = new MySqlConnection(connection.connectionString);
+            tabControlContentStore = tabControlContent;
         }
         private void requestStored_Load(object sender, EventArgs e)
         {
@@ -118,7 +120,8 @@ namespace MainSystem
             {
                 try
                 {
-
+                    StorageReturnBill_Update form = new StorageReturnBill_Update(row1, this, tabControlContentStore);
+                    form.ShowDialog();
                 }
                 catch(Exception ex)
                 {

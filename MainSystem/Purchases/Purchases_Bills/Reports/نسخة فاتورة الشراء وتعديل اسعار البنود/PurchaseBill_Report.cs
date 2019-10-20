@@ -259,8 +259,8 @@ namespace MainSystem
         {
             try
             {
-                int supplierID = 0;
-                if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null && gridView1.RowCount > 0 && row1 != null)
+                //int supplierID = 0;
+                if ( gridView1.RowCount > 0 && row1 != null /*&& int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null*/)
                 {
                     dbconnection.Open();
 
@@ -321,7 +321,7 @@ namespace MainSystem
                         dr2.Close();
 
                         Report_SupplierBillCopy f = new Report_SupplierBillCopy();
-                        f.PrintInvoice(dr1["المخزن"].ToString(), dr1["رقم الفاتورة"].ToString(), comSupplier.Text, dr1["اذن الاستلام"].ToString(), dr1["اذن المخزن"].ToString(), dr1["التاريخ"].ToString(), totalAllDiscount, totalAllA, Convert.ToDouble(dr1["ضريبة القيمة المضافة"].ToString()), Convert.ToDouble(dr1["الاجمالى بعد"].ToString()), bi);
+                        f.PrintInvoice(dr1["المخزن"].ToString(), dr1["رقم الفاتورة"].ToString(), dr1["المورد"].ToString(), dr1["اذن الاستلام"].ToString(), dr1["اذن المخزن"].ToString(), dr1["التاريخ"].ToString(), totalAllDiscount, totalAllA, Convert.ToDouble(dr1["ضريبة القيمة المضافة"].ToString()), Convert.ToDouble(dr1["الاجمالى بعد"].ToString()), bi);
                         f.ShowDialog();
                     }
                     dr1.Close();

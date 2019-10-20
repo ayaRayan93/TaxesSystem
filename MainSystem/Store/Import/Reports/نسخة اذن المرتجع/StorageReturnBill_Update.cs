@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class StorageReturnBill : Form
+    public partial class StorageReturnBill_Update : Form
     {
         MySqlConnection dbconnection, dbconnection2, dbconnection3, dbconnection4;
         
@@ -24,22 +25,21 @@ namespace MainSystem
         DataRow row1 = null;
         bool loaded = false;
         //bool loadedPer = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
         int storageReturnSupplierId = 0;
         int ReturnedPermissionNumber = 1;
+        XtraTabControl xtraTabControlStores = null;
+        DataRow selrow = null;
         //int flagConfirm = 2;
         //int rowHandel1;
 
-        public StorageReturnBill(MainForm SalesMainForm, DevExpress.XtraTab.XtraTabControl TabControlStores)
+        public StorageReturnBill_Update(DataRow Selrow, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnection2 = new MySqlConnection(connection.connectionString);
             dbconnection3 = new MySqlConnection(connection.connectionString);
             dbconnection4 = new MySqlConnection(connection.connectionString);
-
+            
             comType.AutoCompleteMode = AutoCompleteMode.Suggest;
             comType.AutoCompleteSource = AutoCompleteSource.ListItems;
             comFactory.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -48,6 +48,9 @@ namespace MainSystem
             comGroup.AutoCompleteSource = AutoCompleteSource.ListItems;
             comProduct.AutoCompleteMode = AutoCompleteMode.Suggest;
             comProduct.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            xtraTabControlStores = tabControlContentStore;
+            selrow = Selrow;
         }
 
         private void StorageReturnBill_Load(object sender, EventArgs e)
@@ -464,9 +467,7 @@ namespace MainSystem
                                 }
                                 break;
                         }
-
                     }
-
                 }
                 catch
                 {

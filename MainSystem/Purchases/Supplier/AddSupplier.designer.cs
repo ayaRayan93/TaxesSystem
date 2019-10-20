@@ -39,78 +39,81 @@
             this.txtFax = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.label11 = new System.Windows.Forms.Label();
+            this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnDeletePhone = new System.Windows.Forms.Button();
+            this.btnAddPhone = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnAddPhone = new System.Windows.Forms.Button();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnDeletePhone = new System.Windows.Forms.Button();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label4 = new System.Windows.Forms.Label();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label6 = new System.Windows.Forms.Label();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label7 = new System.Windows.Forms.Label();
-            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label8 = new System.Windows.Forms.Label();
-            this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label2 = new System.Windows.Forms.Label();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label3 = new System.Windows.Forms.Label();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label10 = new System.Windows.Forms.Label();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -196,8 +199,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(534, 240);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -208,6 +211,7 @@
             // layoutControl1
             // 
             this.layoutControl1.BackColor = System.Drawing.Color.White;
+            this.layoutControl1.Controls.Add(this.label11);
             this.layoutControl1.Controls.Add(this.checkedListBoxControlPhone);
             this.layoutControl1.Controls.Add(this.label10);
             this.layoutControl1.Controls.Add(this.label3);
@@ -241,6 +245,102 @@
             this.layoutControl1.Size = new System.Drawing.Size(876, 621);
             this.layoutControl1.TabIndex = 20;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(12, 267);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(852, 20);
+            this.label11.TabIndex = 69;
+            // 
+            // checkedListBoxControlPhone
+            // 
+            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(12, 87);
+            this.checkedListBoxControlPhone.Name = "checkedListBoxControlPhone";
+            this.checkedListBoxControlPhone.Size = new System.Drawing.Size(136, 141);
+            this.checkedListBoxControlPhone.StyleController = this.layoutControl1;
+            this.checkedListBoxControlPhone.TabIndex = 68;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(510, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(20, 176);
+            this.label10.TabIndex = 67;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(534, 216);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(330, 20);
+            this.label3.TabIndex = 66;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(152, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 176);
+            this.label2.TabIndex = 65;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(534, 165);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(330, 20);
+            this.label8.TabIndex = 64;
+            this.label8.Text = " ";
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(176, 165);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(330, 20);
+            this.label7.TabIndex = 63;
+            this.label7.Text = " ";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(176, 114);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(330, 20);
+            this.label6.TabIndex = 61;
+            this.label6.Text = " ";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(534, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(330, 20);
+            this.label4.TabIndex = 60;
+            this.label4.Text = " ";
+            // 
+            // btnDeletePhone
+            // 
+            this.btnDeletePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnDeletePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePhone.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnDeletePhone.ForeColor = System.Drawing.Color.White;
+            this.btnDeletePhone.Location = new System.Drawing.Point(12, 232);
+            this.btnDeletePhone.Name = "btnDeletePhone";
+            this.btnDeletePhone.Size = new System.Drawing.Size(136, 31);
+            this.btnDeletePhone.TabIndex = 57;
+            this.btnDeletePhone.Text = "حذف";
+            this.btnDeletePhone.UseVisualStyleBackColor = false;
+            this.btnDeletePhone.Click += new System.EventHandler(this.btnDeletePhone_Click);
+            // 
+            // btnAddPhone
+            // 
+            this.btnAddPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAddPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPhone.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnAddPhone.ForeColor = System.Drawing.Color.White;
+            this.btnAddPhone.Location = new System.Drawing.Point(12, 36);
+            this.btnAddPhone.Name = "btnAddPhone";
+            this.btnAddPhone.Size = new System.Drawing.Size(136, 23);
+            this.btnAddPhone.TabIndex = 53;
+            this.btnAddPhone.Text = "+";
+            this.btnAddPhone.UseVisualStyleBackColor = false;
+            this.btnAddPhone.Click += new System.EventHandler(this.btnAddPhone_Click);
             // 
             // label14
             // 
@@ -296,27 +396,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(852, 54);
             this.tableLayoutPanel2.TabIndex = 36;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(387, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(79, 46);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -346,7 +425,8 @@
             this.layoutControlItem8,
             this.layoutControlItem17,
             this.layoutControlItem7,
-            this.layoutControlItem24});
+            this.layoutControlItem24,
+            this.layoutControlItem18});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(876, 621);
             this.layoutControlGroup1.TextVisible = false;
@@ -368,24 +448,10 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 255);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 279);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(856, 288);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(856, 264);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
-            this.layoutControlItem7.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem7.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem7.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.layoutControlItem7.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-            this.layoutControlItem7.Control = this.txtCredit;
-            this.layoutControlItem7.Location = new System.Drawing.Point(164, 75);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(334, 27);
-            this.layoutControlItem7.Text = "دائن";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(127, 23);
             // 
             // layoutControlItem11
             // 
@@ -413,20 +479,6 @@
             this.layoutControlItem2.Text = "العنوان";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(127, 23);
             // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
-            this.layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem4.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.layoutControlItem4.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-            this.layoutControlItem4.Control = this.txtMail;
-            this.layoutControlItem4.Location = new System.Drawing.Point(522, 126);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(334, 27);
-            this.layoutControlItem4.Text = "الايميل";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(127, 23);
-            // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.label1;
@@ -448,20 +500,6 @@
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
-            this.layoutControlItem9.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem9.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem9.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.layoutControlItem9.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-            this.layoutControlItem9.Control = this.txtFax;
-            this.layoutControlItem9.Location = new System.Drawing.Point(522, 177);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(334, 27);
-            this.layoutControlItem9.Text = "الفاكس";
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(127, 23);
-            // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
@@ -475,6 +513,36 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(334, 27);
             this.layoutControlItem3.Text = "التليفون";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(127, 23);
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.label14;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem25.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem25.MinSize = new System.Drawing.Size(24, 24);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(856, 24);
+            this.layoutControlItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
+            // 
+            // layoutControlItem23
+            // 
+            this.layoutControlItem23.Control = this.btnAddPhone;
+            this.layoutControlItem23.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem23.Name = "layoutControlItem23";
+            this.layoutControlItem23.Size = new System.Drawing.Size(140, 27);
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem23.TextVisible = false;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.Control = this.label9;
+            this.layoutControlItem19.Location = new System.Drawing.Point(140, 24);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Size = new System.Drawing.Size(24, 27);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem19.TextVisible = false;
             // 
             // layoutControlItem6
             // 
@@ -493,28 +561,63 @@
             this.layoutControlItem6.Text = "البيان";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(127, 23);
             // 
-            // layoutControlItem8
+            // layoutControlItem16
             // 
-            this.layoutControlItem8.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
-            this.layoutControlItem8.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem8.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem8.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.layoutControlItem8.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
-            this.layoutControlItem8.Control = this.txtDebit;
-            this.layoutControlItem8.Location = new System.Drawing.Point(164, 126);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(334, 27);
-            this.layoutControlItem8.Text = "مدين";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(127, 23);
+            this.layoutControlItem16.Control = this.label4;
+            this.layoutControlItem16.Location = new System.Drawing.Point(522, 102);
+            this.layoutControlItem16.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem16.MinSize = new System.Drawing.Size(24, 24);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(334, 24);
+            this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
             // 
-            // layoutControlItem19
+            // layoutControlItem12
             // 
-            this.layoutControlItem19.Control = this.label9;
-            this.layoutControlItem19.Location = new System.Drawing.Point(140, 24);
-            this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(24, 27);
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem19.TextVisible = false;
+            this.layoutControlItem12.Control = this.btnDeletePhone;
+            this.layoutControlItem12.Location = new System.Drawing.Point(0, 220);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(140, 35);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem4.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem4.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+            this.layoutControlItem4.Control = this.txtMail;
+            this.layoutControlItem4.Location = new System.Drawing.Point(522, 126);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(334, 27);
+            this.layoutControlItem4.Text = "الايميل";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(127, 23);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.label2;
+            this.layoutControlItem13.Location = new System.Drawing.Point(140, 75);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(24, 180);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.layoutControlItem9.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem9.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem9.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem9.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+            this.layoutControlItem9.Control = this.txtFax;
+            this.layoutControlItem9.Location = new System.Drawing.Point(522, 177);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(334, 27);
+            this.layoutControlItem9.Text = "الفاكس";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(127, 23);
             // 
             // layoutControlItem5
             // 
@@ -530,132 +633,6 @@
             this.layoutControlItem5.Text = "تاريخ بدء المعاملة";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(127, 23);
             // 
-            // layoutControlItem25
-            // 
-            this.layoutControlItem25.Control = this.label14;
-            this.layoutControlItem25.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem25.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem25.MinSize = new System.Drawing.Size(24, 24);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(856, 24);
-            this.layoutControlItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem25.TextVisible = false;
-            // 
-            // btnAddPhone
-            // 
-            this.btnAddPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAddPhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddPhone.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.btnAddPhone.ForeColor = System.Drawing.Color.White;
-            this.btnAddPhone.Location = new System.Drawing.Point(12, 36);
-            this.btnAddPhone.Name = "btnAddPhone";
-            this.btnAddPhone.Size = new System.Drawing.Size(136, 23);
-            this.btnAddPhone.TabIndex = 53;
-            this.btnAddPhone.Text = "+";
-            this.btnAddPhone.UseVisualStyleBackColor = false;
-            this.btnAddPhone.Click += new System.EventHandler(this.btnAddPhone_Click);
-            // 
-            // layoutControlItem23
-            // 
-            this.layoutControlItem23.Control = this.btnAddPhone;
-            this.layoutControlItem23.Location = new System.Drawing.Point(0, 24);
-            this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(140, 27);
-            this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem23.TextVisible = false;
-            // 
-            // btnDeletePhone
-            // 
-            this.btnDeletePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnDeletePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeletePhone.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.btnDeletePhone.ForeColor = System.Drawing.Color.White;
-            this.btnDeletePhone.Location = new System.Drawing.Point(12, 232);
-            this.btnDeletePhone.Name = "btnDeletePhone";
-            this.btnDeletePhone.Size = new System.Drawing.Size(136, 31);
-            this.btnDeletePhone.TabIndex = 57;
-            this.btnDeletePhone.Text = "حذف";
-            this.btnDeletePhone.UseVisualStyleBackColor = false;
-            this.btnDeletePhone.Click += new System.EventHandler(this.btnDeletePhone_Click);
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.btnDeletePhone;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 220);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(140, 35);
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(534, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(330, 20);
-            this.label4.TabIndex = 60;
-            this.label4.Text = " ";
-            // 
-            // layoutControlItem16
-            // 
-            this.layoutControlItem16.Control = this.label4;
-            this.layoutControlItem16.Location = new System.Drawing.Point(522, 102);
-            this.layoutControlItem16.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem16.MinSize = new System.Drawing.Size(24, 24);
-            this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(334, 24);
-            this.layoutControlItem16.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem16.TextVisible = false;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(176, 114);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(330, 20);
-            this.label6.TabIndex = 61;
-            this.label6.Text = " ";
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.label6;
-            this.layoutControlItem17.Location = new System.Drawing.Point(164, 102);
-            this.layoutControlItem17.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem17.MinSize = new System.Drawing.Size(24, 24);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(334, 24);
-            this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem17.TextVisible = false;
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(176, 165);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(330, 20);
-            this.label7.TabIndex = 63;
-            this.label7.Text = " ";
-            // 
-            // layoutControlItem20
-            // 
-            this.layoutControlItem20.Control = this.label7;
-            this.layoutControlItem20.Location = new System.Drawing.Point(164, 153);
-            this.layoutControlItem20.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem20.MinSize = new System.Drawing.Size(24, 24);
-            this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(334, 24);
-            this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem20.TextVisible = false;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(534, 165);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(330, 20);
-            this.label8.TabIndex = 64;
-            this.label8.Text = " ";
-            // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.label8;
@@ -667,29 +644,6 @@
             this.layoutControlItem21.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(152, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 176);
-            this.label2.TabIndex = 65;
-            // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.label2;
-            this.layoutControlItem13.Location = new System.Drawing.Point(140, 75);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(24, 180);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(534, 216);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(330, 20);
-            this.label3.TabIndex = 66;
             // 
             // layoutControlItem14
             // 
@@ -703,13 +657,6 @@
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(510, 87);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(20, 176);
-            this.label10.TabIndex = 67;
-            // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.label10;
@@ -719,13 +666,57 @@
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
             // 
-            // checkedListBoxControlPhone
+            // layoutControlItem20
             // 
-            this.checkedListBoxControlPhone.Location = new System.Drawing.Point(12, 87);
-            this.checkedListBoxControlPhone.Name = "checkedListBoxControlPhone";
-            this.checkedListBoxControlPhone.Size = new System.Drawing.Size(136, 141);
-            this.checkedListBoxControlPhone.StyleController = this.layoutControl1;
-            this.checkedListBoxControlPhone.TabIndex = 68;
+            this.layoutControlItem20.Control = this.label7;
+            this.layoutControlItem20.Location = new System.Drawing.Point(164, 153);
+            this.layoutControlItem20.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem20.MinSize = new System.Drawing.Size(24, 24);
+            this.layoutControlItem20.Name = "layoutControlItem20";
+            this.layoutControlItem20.Size = new System.Drawing.Size(334, 24);
+            this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem20.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.layoutControlItem8.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem8.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem8.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem8.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+            this.layoutControlItem8.Control = this.txtDebit;
+            this.layoutControlItem8.Location = new System.Drawing.Point(164, 126);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(334, 27);
+            this.layoutControlItem8.Text = "مدين";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(127, 23);
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.label6;
+            this.layoutControlItem17.Location = new System.Drawing.Point(164, 102);
+            this.layoutControlItem17.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem17.MinSize = new System.Drawing.Size(24, 24);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(334, 24);
+            this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.AppearanceItemCaption.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.layoutControlItem7.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem7.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem7.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem7.AppearanceItemCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
+            this.layoutControlItem7.Control = this.txtCredit;
+            this.layoutControlItem7.Location = new System.Drawing.Point(164, 75);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(334, 27);
+            this.layoutControlItem7.Text = "دائن";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(127, 23);
             // 
             // layoutControlItem24
             // 
@@ -739,6 +730,36 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.label11;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 255);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(856, 24);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "حفظ";
+            this.btnAdd.Location = new System.Drawing.Point(387, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(79, 46);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // AddSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -749,34 +770,35 @@
             this.Text = "AddSuppliers";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -835,6 +857,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlPhone;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private System.Windows.Forms.Label label11;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
     }
 }
 

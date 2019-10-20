@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Supplier_Return_Bill2
+    partial class SupplierReturnBill_Update
     {
         /// <summary>
         /// Required designer variable.
@@ -925,13 +925,13 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
-            // Supplier_Return_Bill2
+            // SupplierReturnBill_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 702);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Supplier_Return_Bill2";
+            this.Name = "SupplierReturnBill_Update";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Supplier_Return_Bill_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

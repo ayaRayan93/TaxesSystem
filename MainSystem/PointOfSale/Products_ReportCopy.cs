@@ -1731,46 +1731,71 @@ namespace MainSystem
                                         double TotalMeters = 0;
                                         if (double.TryParse(txtQuantity.Text, out TotalMeters))
                                         {
-                                            if (checkQuantityInStore(TotalMeters))
+                                            if (TotalMeters > 0)
                                             {
-                                                cartons = 0;
-                                                if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20 && Convert.ToDouble(gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكرتنة")) > 0)
+                                                if (checkQuantityInStore(TotalMeters))
                                                 {
-                                                    if (cartonNumCheck())
-                                                    { }
-                                                    /*else
+                                                    cartons = 0;
+                                                    if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20 && Convert.ToDouble(gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكرتنة")) > 0)
                                                     {
-                                                        dbconnection.Close();
-                                                        return;
-                                                    }*/
-                                                }
-                                                string query = "";
-                                                MySqlCommand com;
-
-                                                if (!AddedToBill)
-                                                {
-                                                    if (comClient.Text != "" && txtPhone.Text != "")
-                                                    {
-                                                        query = "select distinct customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' or customer.Customer_Name='" + comClient.Text + "'";
-                                                        com = new MySqlCommand(query, dbconnection);
-                                                        if (com.ExecuteScalar() != null)
+                                                        if (cartonNumCheck())
+                                                        { }
+                                                        /*else
                                                         {
-                                                            // inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID
-                                                            query = "select Customer_ID from customer where Customer_Name='" + comClient.Text + "'";
+                                                            dbconnection.Close();
+                                                            return;
+                                                        }*/
+                                                    }
+                                                    string query = "";
+                                                    MySqlCommand com;
+
+                                                    if (!AddedToBill)
+                                                    {
+                                                        if (comClient.Text != "" && txtPhone.Text != "")
+                                                        {
+                                                            query = "select distinct customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' or customer.Customer_Name='" + comClient.Text + "'";
                                                             com = new MySqlCommand(query, dbconnection);
-                                                            //repeated name
                                                             if (com.ExecuteScalar() != null)
                                                             {
-                                                                string query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' and customer.Customer_ID=" + com.ExecuteScalar().ToString();
-                                                                MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
-                                                                if (com2.ExecuteScalar() != null)
+                                                                // inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID
+                                                                query = "select Customer_ID from customer where Customer_Name='" + comClient.Text + "'";
+                                                                com = new MySqlCommand(query, dbconnection);
+                                                                //repeated name
+                                                                if (com.ExecuteScalar() != null)
                                                                 {
-                                                                    ClintID = Convert.ToInt32(com2.ExecuteScalar().ToString());
+                                                                    string query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "' and customer.Customer_ID=" + com.ExecuteScalar().ToString();
+                                                                    MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
+                                                                    if (com2.ExecuteScalar() != null)
+                                                                    {
+                                                                        ClintID = Convert.ToInt32(com2.ExecuteScalar().ToString());
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
+                                                                        com2 = new MySqlCommand(query2, dbconnection);
+                                                                        if (com2.ExecuteScalar() != null)
+                                                                        {
+                                                                            ClintID = 0;
+                                                                            MessageBox.Show("هذا الرقم موجود من قبل لعميل اخر");
+                                                                            dbconnection.Close();
+                                                                            return;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                                                            query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
+                                                                            com = new MySqlCommand(query, dbconnection);
+                                                                            com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
+                                                                            com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
+                                                                            com.ExecuteNonQuery();
+                                                                        }
+                                                                    }
                                                                 }
+                                                                //non repeated name
                                                                 else
                                                                 {
-                                                                    query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
-                                                                    com2 = new MySqlCommand(query2, dbconnection);
+                                                                    string query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
+                                                                    MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
                                                                     if (com2.ExecuteScalar() != null)
                                                                     {
                                                                         ClintID = 0;
@@ -1789,184 +1814,166 @@ namespace MainSystem
                                                                     }
                                                                 }
                                                             }
-                                                            //non repeated name
                                                             else
                                                             {
-                                                                string query2 = "select customer.Customer_ID from customer inner join customer_phone on customer_phone.Customer_ID=customer.Customer_ID where customer_phone.Phone='" + txtPhone.Text + "'";
-                                                                MySqlCommand com2 = new MySqlCommand(query2, dbconnection);
-                                                                if (com2.ExecuteScalar() != null)
-                                                                {
-                                                                    ClintID = 0;
-                                                                    MessageBox.Show("هذا الرقم موجود من قبل لعميل اخر");
-                                                                    dbconnection.Close();
-                                                                    return;
-                                                                }
-                                                                else
-                                                                {
-                                                                    ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
-                                                                    query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
-                                                                    com = new MySqlCommand(query, dbconnection);
-                                                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
-                                                                    com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
-                                                                    com.ExecuteNonQuery();
-                                                                }
+                                                                query = "insert into customer (Customer_Name,Customer_Start,Customer_Type) values(@Customer_Name,@Customer_Start,@Customer_Type)";
+                                                                com = new MySqlCommand(query, dbconnection);
+                                                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
+                                                                com.Parameters.Add("@Customer_Start", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
+                                                                com.Parameters.Add("@Customer_Type", MySqlDbType.VarChar, 255).Value = "عميل";
+                                                                com.ExecuteNonQuery();
+
+                                                                query = "select Customer_ID from customer order by Customer_ID desc limit 1";
+                                                                com = new MySqlCommand(query, dbconnection);
+                                                                ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                                                txtClientId.Text = ClintID.ToString();
+
+                                                                query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
+                                                                com = new MySqlCommand(query, dbconnection);
+                                                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
+                                                                com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
+                                                                com.ExecuteNonQuery();
                                                             }
+
+                                                            query = "update dash set Customer_ID=@Customer_ID,Customer_Name=@Customer_Name where Bill_Number=" + billNo + " and Branch_ID=" + empBranchID + " order by Dash_ID desc limit 1";
+                                                            com = new MySqlCommand(query, dbconnection);
+                                                            com.Parameters.Add("@Customer_ID", MySqlDbType.Int16).Value = ClintID;
+                                                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar).Value = comClient.Text;
+                                                            com.ExecuteNonQuery();
+                                                            AddedToBill = true;
                                                         }
                                                         else
                                                         {
-                                                            query = "insert into customer (Customer_Name,Customer_Start,Customer_Type) values(@Customer_Name,@Customer_Start,@Customer_Type)";
-                                                            com = new MySqlCommand(query, dbconnection);
-                                                            com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
-                                                            com.Parameters.Add("@Customer_Start", MySqlDbType.Date, 0).Value = DateTime.Now.Date;
-                                                            com.Parameters.Add("@Customer_Type", MySqlDbType.VarChar, 255).Value = "عميل";
-                                                            com.ExecuteNonQuery();
+                                                            MessageBox.Show("تاكد من تحديد العميل");
+                                                            dbconnection.Close();
+                                                            return;
+                                                        }
+                                                    }
 
-                                                            query = "select Customer_ID from customer order by Customer_ID desc limit 1";
-                                                            com = new MySqlCommand(query, dbconnection);
-                                                            ClintID = Convert.ToInt32(com.ExecuteScalar().ToString());
-                                                            txtClientId.Text = ClintID.ToString();
+                                                    #region new bill
+                                                    if (!billExist)
+                                                    {
+                                                        billExist = true;
 
-                                                            query = "insert into customer_phone (Customer_ID,Phone) values(@Customer_ID,@Phone)";
+                                                        string q = "select Dash_ID from dash where Branch_ID=" + empBranchID + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
+                                                        MySqlCommand command = new MySqlCommand(q, dbconnection);
+                                                        int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
+
+
+                                                        query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
+                                                        com = new MySqlCommand(query, dbconnection);
+                                                        com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
+                                                        if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
+                                                        {
+                                                            com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = "بند";
+                                                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID");
+                                                        }
+                                                        else
+                                                        {
+                                                            com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type");
+                                                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود");
+                                                        }
+                                                        com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
+                                                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
+                                                        com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
+                                                        com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
+                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = empID;
+                                                        com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
+                                                        com.ExecuteNonQuery();
+
+                                                        dbconnection.Close();
+                                                        txtQuantity.Text = "";
+                                                        comStore.Text = "";
+                                                        txtRequiredQuantity.Text = "";
+                                                        txtNumCartons.Text = "";
+                                                        main.test(billNo);
+                                                    }
+                                                    #endregion
+
+                                                    #region bill already exist
+                                                    else if (billExist)
+                                                    {
+                                                        if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "بند")
+                                                        {
+                                                            string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + empBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                            MySqlCommand comm = new MySqlCommand(qq, dbconnection);
+                                                            if (comm.ExecuteScalar() != null)
+                                                            {
+                                                                MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
+                                                                dbconnection.Close();
+                                                                return;
+                                                            }
+                                                        }
+                                                        else if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "طقم" || (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "عرض")
+                                                        {
+                                                            string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + empBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
+                                                            MySqlCommand comm = new MySqlCommand(qq, dbconnection);
+                                                            if (comm.ExecuteScalar() != null)
+                                                            {
+                                                                MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
+                                                                dbconnection.Close();
+                                                                return;
+                                                            }
+                                                        }
+
+                                                        string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + empBranchID + "  order by Dash_ID desc limit 1";
+                                                        MySqlCommand command = new MySqlCommand(q, dbconnection);
+                                                        int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
+
+                                                        query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
+                                                        com = new MySqlCommand(query, dbconnection);
+                                                        com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
+                                                        if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
+                                                        {
+                                                            com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = "بند";
+                                                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID");
+                                                        }
+                                                        else
+                                                        {
+                                                            com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type");
+                                                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود");
+                                                        }
+                                                        com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
+                                                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
+                                                        com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
+                                                        com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
+                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = empID;
+                                                        com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
+                                                        com.ExecuteNonQuery();
+
+                                                        dbconnection.Close();
+                                                        txtQuantity.Text = "";
+                                                        comStore.Text = "";
+                                                        txtRequiredQuantity.Text = "";
+                                                        txtNumCartons.Text = "";
+                                                        main.test(billNo);
+                                                    }
+                                                    #endregion
+
+                                                    if (UserControl.userType != 1)
+                                                    {
+                                                        dbconnection.Open();
+                                                        query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + empID + " and delegate_customer.Customer_ID=" + ClintID;
+                                                        com = new MySqlCommand(query, dbconnection);
+                                                        if (com.ExecuteScalar() == null)
+                                                        {
+                                                            query = "insert into delegate_customer (Customer_ID,Delegate_ID) values(@Customer_ID,@Delegate_ID)";
                                                             com = new MySqlCommand(query, dbconnection);
                                                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
-                                                            com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
+                                                            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = empID;
                                                             com.ExecuteNonQuery();
                                                         }
-
-                                                        query = "update dash set Customer_ID=@Customer_ID,Customer_Name=@Customer_Name where Bill_Number=" + billNo + " and Branch_ID=" + empBranchID + " order by Dash_ID desc limit 1";
-                                                        com = new MySqlCommand(query, dbconnection);
-                                                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16).Value = ClintID;
-                                                        com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar).Value = comClient.Text;
-                                                        com.ExecuteNonQuery();
-                                                        AddedToBill = true;
-                                                    }
-                                                    else
-                                                    {
-                                                        MessageBox.Show("تاكد من تحديد العميل");
                                                         dbconnection.Close();
-                                                        return;
                                                     }
                                                 }
-
-                                                #region new bill
-                                                if (!billExist)
+                                                else
                                                 {
-                                                    billExist = true;
-
-                                                    string q = "select Dash_ID from dash where Branch_ID=" + empBranchID + " and Bill_Number=" + txtBillNum.Text + " order by Dash_ID desc limit 1";
-                                                    MySqlCommand command = new MySqlCommand(q, dbconnection);
-                                                    int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
-
-
-                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
-                                                    com = new MySqlCommand(query, dbconnection);
-                                                    com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
-                                                    if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
-                                                    {
-                                                        com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = "بند";
-                                                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID");
-                                                    }
-                                                    else
-                                                    {
-                                                        com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type");
-                                                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود");
-                                                    }
-                                                    com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
-                                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
-                                                    com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
-                                                    com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = empID;
-                                                    com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
-                                                    com.ExecuteNonQuery();
-
-                                                    dbconnection.Close();
-                                                    txtQuantity.Text = "";
-                                                    comStore.Text = "";
-                                                    txtRequiredQuantity.Text = "";
-                                                    txtNumCartons.Text = "";
-                                                    main.test(billNo);
-                                                }
-                                                #endregion
-
-                                                #region bill already exist
-                                                else if (billExist)
-                                                {
-                                                    if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "بند")
-                                                    {
-                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + empBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
-                                                        MySqlCommand comm = new MySqlCommand(qq, dbconnection);
-                                                        if (comm.ExecuteScalar() != null)
-                                                        {
-                                                            MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
-                                                            dbconnection.Close();
-                                                            return;
-                                                        }
-                                                    }
-                                                    else if ((gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "طقم" || (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type")) == "عرض")
-                                                    {
-                                                        string qq = "SELECT dash_details.Data_ID FROM dash_details INNER JOIN dash ON dash.Dash_ID = dash_details.Dash_ID where dash.Bill_Number=" + billNo + " and dash.Branch_ID=" + empBranchID + " and dash.Confirmed=0 and dash_details.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and dash_details.Type='" + row1["Type"].ToString() + "' and dash_details.Store_ID=" + comStore.SelectedValue.ToString() + " order by dash.Dash_ID desc limit 1";
-                                                        MySqlCommand comm = new MySqlCommand(qq, dbconnection);
-                                                        if (comm.ExecuteScalar() != null)
-                                                        {
-                                                            MessageBox.Show("هذا البند تم اضافتة للسلة من قبل");
-                                                            dbconnection.Close();
-                                                            return;
-                                                        }
-                                                    }
-
-                                                    string q = "select Dash_ID from dash where Bill_Number=" + billNo + " and Branch_ID=" + empBranchID + "  order by Dash_ID desc limit 1";
-                                                    MySqlCommand command = new MySqlCommand(q, dbconnection);
-                                                    int dashId = Convert.ToInt32(command.ExecuteScalar().ToString());
-
-                                                    query = "insert into dash_details (Dash_ID,Type,Data_ID,Quantity,Store_ID,Store_Name,Delegate_ID,Cartons,Emp_Type) values (@Dash_ID,@Type,@Data_ID,@Quantity,@Store_ID,@Store_Name,@Delegate_ID,@Cartons,@Emp_Type)";
-                                                    com = new MySqlCommand(query, dbconnection);
-                                                    com.Parameters.Add("@Dash_ID", MySqlDbType.Int16).Value = dashId;
-                                                    if (gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود").Length >= 20)
-                                                    {
-                                                        com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = "بند";
-                                                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID");
-                                                    }
-                                                    else
-                                                    {
-                                                        com.Parameters.Add("@Type", MySqlDbType.VarChar).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Type");
-                                                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16).Value = gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود");
-                                                    }
-                                                    com.Parameters.Add("@Quantity", MySqlDbType.Decimal).Value = TotalMeters;
-                                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16).Value = comStore.SelectedValue.ToString();
-                                                    com.Parameters.Add("@Store_Name", MySqlDbType.VarChar).Value = comStore.Text;
-                                                    com.Parameters.Add("@Emp_Type", MySqlDbType.VarChar).Value = UserControl.EmpType;
-                                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16).Value = empID;
-                                                    com.Parameters.Add("@Cartons", MySqlDbType.Int16).Value = cartons;
-                                                    com.ExecuteNonQuery();
-
-                                                    dbconnection.Close();
-                                                    txtQuantity.Text = "";
-                                                    comStore.Text = "";
-                                                    txtRequiredQuantity.Text = "";
-                                                    txtNumCartons.Text = "";
-                                                    main.test(billNo);
-                                                }
-                                                #endregion
-
-                                                if (UserControl.userType != 1)
-                                                {
-                                                    dbconnection.Open();
-                                                    query = "SELECT delegate_customer.DelegateCustomer_ID FROM delegate_customer where delegate_customer.Delegate_ID=" + empID + " and delegate_customer.Customer_ID=" + ClintID;
-                                                    com = new MySqlCommand(query, dbconnection);
-                                                    if (com.ExecuteScalar() == null)
-                                                    {
-                                                        query = "insert into delegate_customer (Customer_ID,Delegate_ID) values(@Customer_ID,@Delegate_ID)";
-                                                        com = new MySqlCommand(query, dbconnection);
-                                                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = ClintID;
-                                                        com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = empID;
-                                                        com.ExecuteNonQuery();
-                                                    }
-                                                    dbconnection.Close();
+                                                    MessageBox.Show("لا يوجد كمية كافية");
                                                 }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("لا يوجد كمية كافية");
+                                                MessageBox.Show("الكمية يجب ان تكون اكبر من صفر");
                                             }
                                         }
                                         else
@@ -2151,7 +2158,7 @@ namespace MainSystem
         {
             if (row1["Type"].ToString() == "بند")
             {
-                string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " group by storage.Data_ID,storage.Store_ID";
+                string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Data_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "Data_ID") + " and storage.Type='بند' group by storage.Data_ID,storage.Store_ID";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
@@ -2168,7 +2175,7 @@ namespace MainSystem
             }
             else if (row1["Type"].ToString() == "طقم")
             {
-                string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Set_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " group by storage.Set_ID,storage.Store_ID";
+                string query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM storage where storage.Store_ID=" + comStore.SelectedValue.ToString() + " and storage.Set_ID=" + gridView1.GetRowCellDisplayText(gridView1.GetSelectedRows()[0], "الكود") + " and storage.Type='طقم' group by storage.Set_ID,storage.Store_ID";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() != null)
                 {
