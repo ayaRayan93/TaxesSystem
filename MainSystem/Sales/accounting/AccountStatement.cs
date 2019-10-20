@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraTab;
+using MainSystem.Sales.accounting;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -612,9 +613,43 @@ namespace MainSystem
             }
         }
 
-        private void AccountStatement_Load(object sender, EventArgs e)
+
+        private void btnReportBills_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnReportPaid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //List<TransitionData> arrTD = new List<TransitionData>();
+                //for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                //{
+                //    TransitionData item = new TransitionData();
+                //    item.ID =Convert.ToInt16(dataGridView2.Rows[i].Cells[5].Value.ToString());
+                //    item.Bill_Number=dataGridView2.Rows[i].Cells[1].Value.ToString();
+                //    item.Client= dataGridView2.Rows[i].Cells[1].Value.ToString();
+                //    item.CostReturn=Convert.ToDouble(dataGridView2.Rows[i].Cells[3].Value.ToString());
+                //    item.CostSale= Convert.ToDouble(dataGridView2.Rows[i].Cells[4].Value.ToString());
+                //    item.Date = dataGridView2.Rows[i].Cells[2].Value.ToString();
+                //    item.Description = dataGridView2.Rows[i].Cells[2].Value.ToString();
+                //    arrTD.Add(item);
+                //}
+                //PrintReport pr = new PrintReport(arrTD);
+                //var file = new ExcelFile();
+                //var sheet = file.Worksheets.Add("DataGridView");
+                //DataGridViewConverter.ImportFromDataGridView(
+                //    sheet,
+                //    dataGridView1,
+                //    new ImportFromDataGridViewOptions() { ColumnHeaders = true });
+
+                //file.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

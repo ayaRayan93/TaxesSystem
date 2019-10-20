@@ -716,7 +716,6 @@ namespace MainSystem
             }
 
         }
-
         private void cbUpdateItems_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -735,7 +734,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
         {
             try
