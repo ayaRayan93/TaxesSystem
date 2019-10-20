@@ -556,7 +556,7 @@ namespace MainSystem
                         MySqlCommand com = new MySqlCommand(query, conn);
                         if (com.ExecuteScalar() == null)
                         {
-                            query = "insert into storage_import_permission (Store_ID,Storage_Date,Import_Permission_Number) values (@Store_ID,@Storage_Date,@Import_Permission_Number)";
+                            /*query = "insert into storage_import_permission (Store_ID,Storage_Date,Import_Permission_Number) values (@Store_ID,@Storage_Date,@Import_Permission_Number)";
                             com = new MySqlCommand(query, conn);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = storeId;
@@ -636,7 +636,7 @@ namespace MainSystem
                             else
                             {
                                 importSupplierPermissionID = 0;
-                            }
+                            }*/
                         }
                         else
                         {
@@ -789,10 +789,12 @@ namespace MainSystem
                             query = "update storage set Total_Meters=" + (totalMeter + total) + " where Data_ID=" + row1["Data_ID"].ToString() + " and Store_ID=" + storeId; //+ " and Store_Place_ID=" + comStorePlace.SelectedValue.ToString();
                             com = new MySqlCommand(query, conn);
                             com.ExecuteNonQuery();
+
+                            UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row1["Data_ID"].ToString()), DateTime.Now, "من اذن مخزن", conn);
                         }
                         else
                         {
-                            query = "insert into Storage (Store_ID,Type,Data_ID,Total_Meters) values (@Store_ID,@Type,@Data_ID,@Total_Meters)";
+                            query = "insert into storage (Store_ID,Type,Data_ID,Total_Meters) values (@Store_ID,@Type,@Data_ID,@Total_Meters)";
                             com = new MySqlCommand(query, conn);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = storeId;
@@ -803,6 +805,8 @@ namespace MainSystem
                             com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                             com.Parameters["@Total_Meters"].Value = total;
                             com.ExecuteNonQuery();
+
+                            UserControl.ItemRecord("storage", "اضافة", Convert.ToInt16(row1[0].ToString()), DateTime.Now, "من اذن مخزن", conn);
                         }
 
                         search();
@@ -862,6 +866,8 @@ namespace MainSystem
                                 query = "update storage set Total_Meters=" + (totalf - Convert.ToDouble(row2["متر/قطعة"].ToString())) + " where Store_ID=" + storeId /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/ + " and Data_ID=" + row2["Data_ID"].ToString();
                                 com = new MySqlCommand(query, conn);
                                 com.ExecuteNonQuery();
+
+                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من اذن مخزن", conn);
 
                                 #region MyRegion
                                 if (row2["Factory_ID"].ToString() != "" && row2["اذن الطلب"].ToString() != "")

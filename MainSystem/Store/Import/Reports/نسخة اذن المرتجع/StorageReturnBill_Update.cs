@@ -1011,6 +1011,8 @@ namespace MainSystem
                                 query = "update storage set Total_Meters=" + (totalMeter - Convert.ToDouble(row2["TotalQuantity"].ToString())) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
+
+                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
                             }
                         }
                         dbconnection.Close();
@@ -1221,6 +1223,8 @@ namespace MainSystem
                                                 com = new MySqlCommand(query, dbconnection);
                                                 com.ExecuteNonQuery();
 
+                                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
+
                                                 totalQuant = 0;
                                             }
                                             else if ((totalMeter - totalQuant) < 0)
@@ -1228,6 +1232,8 @@ namespace MainSystem
                                                 query = "update storage set Total_Meters=" + 0 + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
                                                 com = new MySqlCommand(query, dbconnection);
                                                 com.ExecuteNonQuery();
+
+                                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
 
                                                 totalQuant = totalQuant - totalMeter;
                                             }

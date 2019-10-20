@@ -738,6 +738,8 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             com.ExecuteNonQuery();
 
+                            UserControl.ItemRecord("storage", "تعديل", Convert.ToInt32(row2[0].ToString()), DateTime.Now, "طرح بسبب تحويل", dbconnection);
+
                             query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() == null)
@@ -756,7 +758,7 @@ namespace MainSystem
                                 com.Parameters["@Date"].Value = DateTime.Now;
                                 com.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "", dbconnection);
+                                UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "بسبب تحويل", dbconnection);
                             }
 
                             query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
@@ -768,6 +770,8 @@ namespace MainSystem
                                 query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
+
+                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt32(row2[0].ToString()), DateTime.Now, "اضافة بسبب تحويل", dbconnection);
                             }
                             else
                             {
@@ -786,6 +790,8 @@ namespace MainSystem
                                 com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                                 com.Parameters["@Total_Meters"].Value = row2["الكمية"].ToString();
                                 com.ExecuteNonQuery();
+
+                                UserControl.ItemRecord("storage", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "بسبب تحويل", dbconnection);
                             }
                         }
                     }
