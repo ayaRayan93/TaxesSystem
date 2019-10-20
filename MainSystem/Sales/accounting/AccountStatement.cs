@@ -1,7 +1,9 @@
-﻿using DevExpress.XtraTab;
+﻿using DevExpress.Pdf;
+using DevExpress.XtraTab;
 using MainSystem.Sales.accounting;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +26,18 @@ namespace MainSystem
         int ClientID = -1;
         string ClientName = "";
         string q = "";
+        Bitmap bitmap = null;
+        #region Member Variables
+        StringFormat strFormat; //Used to format the grid rows.
+        ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
+        ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
+        int iCellHeight = 0; //Used to get/set the datagridview cell height
+        int iTotalWidth = 0; //
+        int iRow = 0;//Used as counter
+        bool bFirstPage = false; //Used to check whether we are printing first page
+        bool bNewPage = false;// Used to check whether we are printing a new page
+        int iHeaderHeight = 0; //Used for the header height
+        #endregion
         public AccountStatement(MainForm mainForm)
         {
             InitializeComponent();
@@ -623,33 +637,28 @@ namespace MainSystem
         {
             try
             {
-                //List<TransitionData> arrTD = new List<TransitionData>();
-                //for (int i = 0; i < dataGridView2.Rows.Count; i++)
-                //{
-                //    TransitionData item = new TransitionData();
-                //    item.ID =Convert.ToInt16(dataGridView2.Rows[i].Cells[5].Value.ToString());
-                //    item.Bill_Number=dataGridView2.Rows[i].Cells[1].Value.ToString();
-                //    item.Client= dataGridView2.Rows[i].Cells[1].Value.ToString();
-                //    item.CostReturn=Convert.ToDouble(dataGridView2.Rows[i].Cells[3].Value.ToString());
-                //    item.CostSale= Convert.ToDouble(dataGridView2.Rows[i].Cells[4].Value.ToString());
-                //    item.Date = dataGridView2.Rows[i].Cells[2].Value.ToString();
-                //    item.Description = dataGridView2.Rows[i].Cells[2].Value.ToString();
-                //    arrTD.Add(item);
-                //}
-                //PrintReport pr = new PrintReport(arrTD);
-                //var file = new ExcelFile();
-                //var sheet = file.Worksheets.Add("DataGridView");
-                //DataGridViewConverter.ImportFromDataGridView(
-                //    sheet,
-                //    dataGridView1,
-                //    new ImportFromDataGridViewOptions() { ColumnHeaders = true });
-
-                //file.Print();
+                List<TransitionData> arrTD = new List<TransitionData>();
+                for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                {
+                    TransitionData item = new TransitionData();
+                    //item.ID = 1;// Convert.ToInt16(dataGridView2.Rows[i].Cells[5].Value.ToString());
+                    //item.Bill_Number = "10";// dataGridView2.Rows[i].Cells[1].Value.ToString();
+                    //item.Client = "ahmed"; //dataGridView2.Rows[i].Cells[1].Value.ToString();
+                    //item.CostReturn = 20.2;// Convert.ToDouble(dataGridView2.Rows[i].Cells[3].Value.ToString());
+                    //item.CostSale = 50;// Convert.ToDouble(dataGridView2.Rows[i].Cells[4].Value.ToString());
+                    //item.Date = "";// dataGridView2.Rows[i].Cells[2].Value.ToString();
+                    //item.Description = "";// dataGridView2.Rows[i].Cells[2].Value.ToString();
+                    //arrTD.Add(item);
+                }
+                PrintReport pr = new PrintReport(arrTD);
+                pr.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+      
     }
 }

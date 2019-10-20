@@ -2715,7 +2715,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Size_ID not in(" + SizeUpdateId + ")";
+                string query = "select Size_ID from size where Size_Value = '" + txtSize.Text + "' and Size_ID not in(" + SizeUpdateId + ") and Factory_ID="+ txtFactory3.Text + " and Group_ID="+ txtGroup_Size.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 if (com.ExecuteScalar() == null)
                 {
@@ -2735,7 +2735,6 @@ namespace MainSystem
                 comGroup_Size.Text = "";
                 txtGroup_Size.Text = "";
                 txtSize.Text = "";
-                
             }
             catch (Exception ex)
             {
