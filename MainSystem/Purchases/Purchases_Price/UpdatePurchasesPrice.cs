@@ -286,7 +286,6 @@ namespace MainSystem
                         if (radioQata3y.Checked == true)
                         {
                             #region set qata3yPrice for list item
-
                             
                             int[] listOfSelectedRows = gridView1.GetSelectedRows();
                             for (int i = 0; i < gridView1.SelectedRowsCount; i++)

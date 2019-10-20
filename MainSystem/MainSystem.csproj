@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version93\</PublishUrl>
+    <PublishUrl>D:\التكويد\version95\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>163</ApplicationRevision>
+    <ApplicationRevision>165</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -626,6 +626,19 @@
     </Compile>
     <Compile Include="Reports\sales\SalesReportForCompanyDetails.Designer.cs">
       <DependentUpon>SalesReportForCompanyDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting\PrintReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\PrintReport.Designer.cs">
+      <DependentUpon>PrintReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting\TransitionData.cs" />
+    <Compile Include="Sales\accounting\XtraReportTransition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\XtraReportTransition.Designer.cs">
+      <DependentUpon>XtraReportTransition.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Products_Report2Sales.cs">
       <SubType>Form</SubType>
@@ -2968,6 +2981,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\sales\SalesReportForCompanyDetails.resx">
       <DependentUpon>SalesReportForCompanyDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\PrintReport.resx">
+      <DependentUpon>PrintReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\XtraReportTransition.resx">
+      <DependentUpon>XtraReportTransition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\BillCancelForm.resx">
       <DependentUpon>BillCancelForm.cs</DependentUpon>

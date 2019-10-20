@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labTotalPaid = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +42,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnReportBills = new Bunifu.Framework.UI.BunifuTileButton();
             this.labTotalBillCost = new System.Windows.Forms.Label();
             this.labTotalReturnCost = new System.Windows.Forms.Label();
             this.labRest = new System.Windows.Forms.Label();
@@ -72,6 +73,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
+            this.btnReportPaid = new Bunifu.Framework.UI.BunifuTileButton();
             this.label4 = new System.Windows.Forms.Label();
             this.labCustomerOpenAccount = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -82,8 +84,6 @@
             this.labSafay = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
-            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -107,14 +107,14 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(129)))), ((int)(((byte)(201)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(129)))), ((int)(((byte)(201)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.ColumnHeadersHeight = 40;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -180,7 +180,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.btnReport);
+            this.panel1.Controls.Add(this.btnReportBills);
             this.panel1.Controls.Add(this.labTotalBillCost);
             this.panel1.Controls.Add(this.labTotalReturnCost);
             this.panel1.Controls.Add(this.labRest);
@@ -202,6 +202,26 @@
             this.label6.Size = new System.Drawing.Size(101, 16);
             this.label6.TabIndex = 166;
             this.label6.Text = "صافي المسحوبات";
+            // 
+            // btnReportBills
+            // 
+            this.btnReportBills.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReportBills.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReportBills.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReportBills.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportBills.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnReportBills.ForeColor = System.Drawing.Color.White;
+            this.btnReportBills.Image = null;
+            this.btnReportBills.ImagePosition = 1;
+            this.btnReportBills.ImageZoom = 20;
+            this.btnReportBills.LabelPosition = 25;
+            this.btnReportBills.LabelText = "طباعة تقرير";
+            this.btnReportBills.Location = new System.Drawing.Point(22, 7);
+            this.btnReportBills.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportBills.Name = "btnReportBills";
+            this.btnReportBills.Size = new System.Drawing.Size(94, 36);
+            this.btnReportBills.TabIndex = 4;
+            this.btnReportBills.Click += new System.EventHandler(this.btnReportBills_Click);
             // 
             // labTotalBillCost
             // 
@@ -239,14 +259,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(129)))), ((int)(((byte)(201)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(129)))), ((int)(((byte)(201)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
@@ -263,8 +283,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 80;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -553,7 +573,7 @@
             // panFooter
             // 
             this.panFooter.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panFooter.Controls.Add(this.bunifuTileButton1);
+            this.panFooter.Controls.Add(this.btnReportPaid);
             this.panFooter.Controls.Add(this.label4);
             this.panFooter.Controls.Add(this.labCustomerOpenAccount);
             this.panFooter.Controls.Add(this.label9);
@@ -571,6 +591,26 @@
             this.panFooter.Name = "panFooter";
             this.panFooter.Size = new System.Drawing.Size(970, 150);
             this.panFooter.TabIndex = 168;
+            // 
+            // btnReportPaid
+            // 
+            this.btnReportPaid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReportPaid.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReportPaid.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReportPaid.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReportPaid.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnReportPaid.ForeColor = System.Drawing.Color.White;
+            this.btnReportPaid.Image = null;
+            this.btnReportPaid.ImagePosition = 1;
+            this.btnReportPaid.ImageZoom = 20;
+            this.btnReportPaid.LabelPosition = 25;
+            this.btnReportPaid.LabelText = "طباعة تقرير";
+            this.btnReportPaid.Location = new System.Drawing.Point(22, 12);
+            this.btnReportPaid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportPaid.Name = "btnReportPaid";
+            this.btnReportPaid.Size = new System.Drawing.Size(94, 36);
+            this.btnReportPaid.TabIndex = 5;
+            this.btnReportPaid.Click += new System.EventHandler(this.btnReportPaid_Click);
             // 
             // label4
             // 
@@ -690,44 +730,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 692);
             this.tableLayoutPanel1.TabIndex = 178;
             // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = null;
-            this.btnReport.ImagePosition = 1;
-            this.btnReport.ImageZoom = 20;
-            this.btnReport.LabelPosition = 25;
-            this.btnReport.LabelText = "طباعة تقرير";
-            this.btnReport.Location = new System.Drawing.Point(22, 7);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(94, 36);
-            this.btnReport.TabIndex = 4;
-            // 
-            // bunifuTileButton1
-            // 
-            this.bunifuTileButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.bunifuTileButton1.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.bunifuTileButton1.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = null;
-            this.bunifuTileButton1.ImagePosition = 1;
-            this.bunifuTileButton1.ImageZoom = 20;
-            this.bunifuTileButton1.LabelPosition = 25;
-            this.bunifuTileButton1.LabelText = "طباعة تقرير";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(22, 12);
-            this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(94, 36);
-            this.bunifuTileButton1.TabIndex = 5;
-            // 
             // AccountStatement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -739,7 +741,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "customerBills";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountStatement_FormClosed);
-            this.Load += new System.EventHandler(this.AccountStatement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -805,7 +806,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.CheckBox chAgel;
         private System.Windows.Forms.CheckBox chKash;
-        private Bunifu.Framework.UI.BunifuTileButton btnReport;
-        private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton1;
+        private Bunifu.Framework.UI.BunifuTileButton btnReportBills;
+        private Bunifu.Framework.UI.BunifuTileButton btnReportPaid;
     }
 }
