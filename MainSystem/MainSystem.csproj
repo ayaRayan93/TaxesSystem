@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version96\</PublishUrl>
+    <PublishUrl>D:\التكويد\version97\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>166</ApplicationRevision>
+    <ApplicationRevision>167</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -640,11 +640,17 @@
       <DependentUpon>PrintReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\accounting\TransitionData.cs" />
-    <Compile Include="Sales\accounting\XtraReportTransition.cs">
+    <Compile Include="Sales\accounting\XtraPrintReportBills.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sales\accounting\XtraReportTransition.Designer.cs">
-      <DependentUpon>XtraReportTransition.cs</DependentUpon>
+    <Compile Include="Sales\accounting\XtraPrintReportBills.Designer.cs">
+      <DependentUpon>XtraPrintReportBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting\XtraPrintReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting\XtraPrintReport.Designer.cs">
+      <DependentUpon>XtraPrintReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Products_Report2Sales.cs">
       <SubType>Form</SubType>
@@ -2187,6 +2193,12 @@
     <Compile Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.designer.cs">
       <DependentUpon>Report_Item_Transitions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Storage\الجرد\GardStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Storage\الجرد\GardStorage.designer.cs">
+      <DependentUpon>GardStorage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy4.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3000,8 +3012,11 @@
     <EmbeddedResource Include="Sales\accounting\PrintReport.resx">
       <DependentUpon>PrintReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sales\accounting\XtraReportTransition.resx">
-      <DependentUpon>XtraReportTransition.cs</DependentUpon>
+    <EmbeddedResource Include="Sales\accounting\XtraPrintReportBills.resx">
+      <DependentUpon>XtraPrintReportBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting\XtraPrintReport.resx">
+      <DependentUpon>XtraPrintReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\BillCancelForm.resx">
       <DependentUpon>BillCancelForm.cs</DependentUpon>
@@ -3668,6 +3683,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير حركة صنف\Report_Item_Transitions.resx">
       <DependentUpon>Report_Item_Transitions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Storage\الجرد\GardStorage.resx">
+      <DependentUpon>GardStorage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy4.resx">
       <DependentUpon>Print_Product_Ticket_Copy4.cs</DependentUpon>

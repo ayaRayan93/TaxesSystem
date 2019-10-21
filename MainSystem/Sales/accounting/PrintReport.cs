@@ -14,18 +14,32 @@ namespace MainSystem.Sales.accounting
     public partial class PrintReport : DevExpress.XtraEditors.XtraForm
     {
         List<TransitionData> Bill_Items;
-        public PrintReport(List<TransitionData> Bill_Items)
+        string name;
+        bool flag = true;
+        public PrintReport(List<TransitionData> Bill_Items, string name,bool flag)
         {
             InitializeComponent();
             this.Bill_Items = Bill_Items;
+            this.name = name;
+            this.flag = flag;
         }
 
         private void PrintReport_Load(object sender, EventArgs e)
         {
-            XtraReportTransition tt = new XtraReportTransition();
-            tt.InitData(Bill_Items);
-            documentViewer1.DocumentSource = tt;
-            tt.CreateDocument();
+            if (flag)
+            {
+                XtraPrintReport tt = new XtraPrintReport();
+                tt.InitData(Bill_Items, name);
+                documentViewer1.DocumentSource = tt;
+                tt.CreateDocument();
+            }
+            else
+            {
+                XtraPrintReportBills tt = new XtraPrintReportBills();
+                tt.InitData(Bill_Items, name);
+                documentViewer1.DocumentSource = tt;
+                tt.CreateDocument();
+            }
         }
     }
 }
