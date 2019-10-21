@@ -15,7 +15,7 @@ namespace MainSystem.Sales.accounting
         }
         public void InitData(List<TransitionData> Bill_Items)
         {
-            objectDataSource1.DataSource = Bill_Items;
+            //objectDataSource1.DataSource = Bill_Items;
         }
     }
 }
