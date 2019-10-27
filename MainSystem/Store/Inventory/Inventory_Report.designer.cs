@@ -71,11 +71,11 @@
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl1.Location = new System.Drawing.Point(3, 143);
+            this.gridControl1.Location = new System.Drawing.Point(3, 123);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(878, 468);
+            this.gridControl1.Size = new System.Drawing.Size(878, 488);
             this.gridControl1.TabIndex = 83;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -154,7 +154,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
@@ -180,7 +180,7 @@
             this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.comType);
             this.panel3.Controls.Add(this.label18);
-            this.panel3.Location = new System.Drawing.Point(74, 63);
+            this.panel3.Location = new System.Drawing.Point(74, 43);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(736, 74);
             this.panel3.TabIndex = 175;
@@ -382,27 +382,25 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 7;
+            this.tableLayoutPanel2.ColumnCount = 6;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.label1, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtInventoryNum, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comStore, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtInventoryNum, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.comStore, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(878, 54);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(878, 34);
             this.tableLayoutPanel2.TabIndex = 176;
             // 
             // label1
@@ -455,13 +453,14 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.radOld, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.radNew, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(667, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(770, 4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(94, 48);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(94, 28);
             this.tableLayoutPanel4.TabIndex = 44;
+            this.tableLayoutPanel4.Visible = false;
             // 
             // radOld
             // 
@@ -471,7 +470,7 @@
             this.radOld.ForeColor = System.Drawing.Color.Maroon;
             this.radOld.Location = new System.Drawing.Point(15, 3);
             this.radOld.Name = "radOld";
-            this.radOld.Size = new System.Drawing.Size(76, 18);
+            this.radOld.Size = new System.Drawing.Size(76, 8);
             this.radOld.TabIndex = 0;
             this.radOld.TabStop = true;
             this.radOld.Text = "جرد قديم";
@@ -483,9 +482,9 @@
             this.radNew.AutoSize = true;
             this.radNew.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radNew.ForeColor = System.Drawing.Color.Maroon;
-            this.radNew.Location = new System.Drawing.Point(17, 27);
+            this.radNew.Location = new System.Drawing.Point(17, 17);
             this.radNew.Name = "radNew";
-            this.radNew.Size = new System.Drawing.Size(74, 18);
+            this.radNew.Size = new System.Drawing.Size(74, 8);
             this.radNew.TabIndex = 1;
             this.radNew.Text = "جرد جديد";
             this.radNew.UseVisualStyleBackColor = true;
