@@ -550,7 +550,7 @@ namespace MainSystem.Reports.sales
                     MessageBox.Show("اختار الفرع ");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("اختار الفرع");
             }

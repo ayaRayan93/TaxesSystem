@@ -1384,6 +1384,43 @@ namespace MainSystem
             }
             dr.Close();
 
+            query = "SELECT concat(inventory.Inventory_Num,' ',store.Store_Name) 'رقم الفاتورة',inventory.Date as 'التاريخ',(inventory_details.Current_Quantity-inventory_details.Old_Quantity) as 'الكمية' FROM inventory_details INNER JOIN inventory ON inventory_details.Inventory_ID = inventory.Inventory_ID INNER JOIN store ON store.Store_ID = inventory.Store_ID inner join data on data.Data_ID=inventory_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and inventory.Store_ID=" + comStore.SelectedValue.ToString() + " and date(inventory_details.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+            comand = new MySqlCommand(query, dbconnection);
+            dr = comand.ExecuteReader();
+            while (dr.Read())
+            {
+                gridView1.AddNewRow();
+                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                if (gridView1.IsNewItemRow(rowHandle))
+                {
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بيان"], "تسوية جرد");
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الفاتورة"], dr["رقم الفاتورة"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
+                    if (dr["الكمية"].ToString() != "")
+                    {
+                        if (Convert.ToDouble(dr["الكمية"].ToString()) > 0)
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
+                        }
+                        else if (Convert.ToDouble(dr["الكمية"].ToString()) < 0)
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], -1 * Convert.ToDouble(dr["الكمية"].ToString()));
+                        }
+                        else if (Convert.ToDouble(dr["الكمية"].ToString()) == 0)
+                        {
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], dr["الكمية"].ToString());
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], dr["الكمية"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["اضافة"], 0);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["خصم"], 0);
+                    }
+                }
+            }
+            dr.Close();
+
             if (gridView1.IsLastVisibleRow)
             {
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
@@ -1406,7 +1443,7 @@ namespace MainSystem
                 {
                     totalBill += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "اضافة").ToString());
                 }
-                else
+                else if (gridView1.GetRowCellDisplayText(i, "خصم") != "")
                 {
                     totalReturned += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "خصم").ToString());
                 }

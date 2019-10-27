@@ -272,16 +272,16 @@ namespace MainSystem
                             if (com2.ExecuteScalar() != null)
                             {
                                 int r = int.Parse(com2.ExecuteScalar().ToString());
-                                if (radOld.Checked)
-                                {
-                                    sum = r;
-                                    txtInventoryNum.Text = sum.ToString();
-                                }
-                                else
-                                {
-                                    sum = r + 1;
-                                    txtInventoryNum.Text = sum.ToString();
-                                }
+                                //if (radOld.Checked)
+                                //{
+                                sum = r;
+                                txtInventoryNum.Text = sum.ToString();
+                                //}
+                                //else
+                                //{
+                                //    sum = r + 1;
+                                //    txtInventoryNum.Text = sum.ToString();
+                                //}
                             }
                             else
                             {
@@ -524,7 +524,7 @@ namespace MainSystem
 
         private void rad_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 loaded = false;
                 comStore.SelectedIndex = -1;
@@ -535,7 +535,7 @@ namespace MainSystem
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
 
         //clear function

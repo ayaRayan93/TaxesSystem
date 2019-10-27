@@ -16,9 +16,6 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, connectionReader, connectionReader2;
         bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
         int Billid = 0;
         string Customer_Type = "";
 

@@ -24,9 +24,6 @@ namespace MainSystem
         DataRow row1 = null;
         bool loaded = false;
         //bool loadedPer = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
         int storageReturnSupplierId = 0;
         int ReturnedPermissionNumber = 1;
         //int flagConfirm = 2;

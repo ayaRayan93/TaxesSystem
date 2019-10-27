@@ -17,8 +17,6 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, dbconnectionReader, connectionReader, connectionReader1, connectionReader2;
         bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
         bool flag = false;
         double noMeter = 0;
         int TaswayaAdding_ID = 0;
@@ -1132,7 +1130,7 @@ namespace MainSystem
             connectionReader1.Open();
             string q;
             int id;
-            bool flag = false;
+            //bool flag = false;
             double storageQ, productQ;
 
             string query = "select Data_ID,AddingQuantity from addstorage where PermissionNum=" + billNumber;
@@ -1177,7 +1175,7 @@ namespace MainSystem
             connectionReader1.Open();
             string q;
             int id;
-            bool flag = false;
+            //bool flag = false;
             double storageQ, productQ;
 
             string query = "select Data_ID,AddingQuantity from addstorage where PermissionNum=" + billNumber;
