@@ -725,6 +725,25 @@
     <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\SupplierReceiptUpdate.designer.cs">
       <DependentUpon>SupplierReceiptUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Inventory\Inventory_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Inventory\Inventory_Report.designer.cs">
+      <DependentUpon>Inventory_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Inventory\Inventory_Items.cs" />
+    <Compile Include="Store\Inventory\Print_Inventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Inventory\Print_Inventory.designer.cs">
+      <DependentUpon>Print_Inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Inventory\Report_Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Inventory\Report_Inventory.designer.cs">
+      <DependentUpon>Report_Inventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Items_Factory.cs" />
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.cs">
       <SubType>Form</SubType>
@@ -3071,6 +3090,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\SupplierReceiptUpdate.resx">
       <DependentUpon>SupplierReceiptUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Inventory\Inventory_Report.resx">
+      <DependentUpon>Inventory_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Inventory\Print_Inventory.resx">
+      <DependentUpon>Print_Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Inventory\Report_Inventory.resx">
+      <DependentUpon>Report_Inventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.resx">
       <DependentUpon>Report_Items_Factory.cs</DependentUpon>

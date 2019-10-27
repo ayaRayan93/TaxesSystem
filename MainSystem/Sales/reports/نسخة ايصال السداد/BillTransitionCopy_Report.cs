@@ -69,7 +69,14 @@ namespace MainSystem
                                     txtBillNum.Text = "";
                                 }
 
-                                txtClient.Text = dr1["Client_Name"].ToString() + " " + dr1["Client_ID"].ToString();
+                                if (dr1["Client_Name"].ToString() != "")
+                                {
+                                    txtClient.Text = dr1["Client_Name"].ToString() + " " + dr1["Client_ID"].ToString();
+                                }
+                                else
+                                {
+                                    txtClient.Text = dr1["Customer_Name"].ToString() + " " + dr1["Customer_ID"].ToString();
+                                }
                                 /*if (dr1["Client_ID"].ToString() != "")
                                 {
                                     conn2.Open();

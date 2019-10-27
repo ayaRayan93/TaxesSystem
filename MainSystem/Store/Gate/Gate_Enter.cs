@@ -970,14 +970,14 @@ namespace MainSystem
                             {
                                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
                                 com.Parameters["@Branch_ID"].Value = treeViewSupIdPerm.Nodes[i].Nodes[j].Text.Split(':')[0];
-                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int32, 11);
                                 com.Parameters["@Supplier_PermissionNumber"].Value = treeViewSupIdPerm.Nodes[i].Nodes[j].Text.Split(':')[1];
                             }
                             else
                             {
                                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
                                 com.Parameters["@Branch_ID"].Value = null;
-                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int16, 11);
+                                com.Parameters.Add("@Supplier_PermissionNumber", MySqlDbType.Int32, 11);
                                 com.Parameters["@Supplier_PermissionNumber"].Value = treeViewSupIdPerm.Nodes[i].Nodes[j].Text;
                             }
                             com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
