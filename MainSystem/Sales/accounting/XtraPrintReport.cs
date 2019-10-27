@@ -7,15 +7,16 @@ using System.Collections.Generic;
 
 namespace MainSystem.Sales.accounting
 {
-    public partial class XtraReportTransition : DevExpress.XtraReports.UI.XtraReport
+    public partial class XtraPrintReport : DevExpress.XtraReports.UI.XtraReport
     {
-        public XtraReportTransition()
+        public XtraPrintReport()
         {
             InitializeComponent();
         }
-        public void InitData(List<TransitionData> Bill_Items)
+        public void InitData(List<TransitionData> TransitionData,string name)
         {
-            //objectDataSource1.DataSource = Bill_Items;
+            objectDataSource1.DataSource = TransitionData;
+            Name.Value = name;
         }
     }
 }

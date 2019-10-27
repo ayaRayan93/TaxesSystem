@@ -508,6 +508,8 @@ namespace MainSystem
                 query = "select * from transitions where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "'  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
                 query1 = "select * from customer_taswaya where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Date between '" + d + "' and '" + d2 + "' and Taswaya_Type='خصم'";
                 Name = comClient.Text;
+                dataGridView2.Columns[3].Visible = false;
+                dataGridView2.Columns[2].Visible = false;
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
@@ -630,7 +632,31 @@ namespace MainSystem
 
         private void btnReportBills_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                List<TransitionData> arrTD = new List<TransitionData>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    TransitionData item = new TransitionData();
+                    item.ID = Convert.ToInt16(dataGridView1.Rows[i].Cells[4].Value.ToString());
+                    item.Operation_Type = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    if (txtClientID.Text == "")
+                    {
+                        item.Client = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                        item.ClientCode = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                    }
+                    item.Paid = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                    item.Date = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    arrTD.Add(item);
+                }
+                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,false);
+                pr.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnReportPaid_Click(object sender, EventArgs e)
@@ -641,16 +667,19 @@ namespace MainSystem
                 for (int i = 0; i < dataGridView2.Rows.Count; i++)
                 {
                     TransitionData item = new TransitionData();
-                    //item.ID = 1;// Convert.ToInt16(dataGridView2.Rows[i].Cells[5].Value.ToString());
-                    //item.Bill_Number = "10";// dataGridView2.Rows[i].Cells[1].Value.ToString();
-                    //item.Client = "ahmed"; //dataGridView2.Rows[i].Cells[1].Value.ToString();
-                    //item.CostReturn = 20.2;// Convert.ToDouble(dataGridView2.Rows[i].Cells[3].Value.ToString());
-                    //item.CostSale = 50;// Convert.ToDouble(dataGridView2.Rows[i].Cells[4].Value.ToString());
-                    //item.Date = "";// dataGridView2.Rows[i].Cells[2].Value.ToString();
-                    //item.Description = "";// dataGridView2.Rows[i].Cells[2].Value.ToString();
-                    //arrTD.Add(item);
+                    item.ID = Convert.ToInt16(dataGridView2.Rows[i].Cells[4].Value.ToString());
+                    item.Operation_Type =  dataGridView2.Rows[i].Cells[1].Value.ToString();
+                    if (txtClientID.Text == "")
+                    {
+                        item.Client = dataGridView2.Rows[i].Cells[3].Value.ToString();
+                        item.ClientCode = dataGridView2.Rows[i].Cells[2].Value.ToString();
+                    }
+                    item.Paid = Convert.ToDouble(dataGridView2.Rows[i].Cells[6].Value.ToString());
+                    item.Date = dataGridView2.Rows[i].Cells[0].Value.ToString();
+                    item.Returned = Convert.ToDouble(dataGridView2.Rows[i].Cells[5].Value.ToString());
+                    arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD);
+                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,true);
                 pr.Show();
             }
             catch (Exception ex)
