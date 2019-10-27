@@ -374,7 +374,7 @@ namespace MainSystem
                 }
                 loaded = true;
             }
-            catch (Exception ex)
+            catch
             {
                // MessageBox.Show(ex.Message);
             }
@@ -616,7 +616,7 @@ namespace MainSystem
                     //}
                 }
             }
-            catch (Exception ex)
+            catch
             {
                // MessageBox.Show(ex.Message);
             }

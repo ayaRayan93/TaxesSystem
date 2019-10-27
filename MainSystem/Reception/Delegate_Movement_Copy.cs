@@ -31,8 +31,7 @@ namespace MainSystem
         int EmpBranchId = 0;
         int delId = 0;
         string delName = "";
-
-        bool flag = false;
+        
         bool loaded = false;
 
         RepositoryItemButtonEdit repositoryItemButtonEdit0;

@@ -300,7 +300,7 @@ namespace MainSystem
                 gridControl1.DataSource = _Table;
                 CalTotal(_Table);
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show("حدد الشركة والمندوب والفرع");
                 txtFactory.Focus();

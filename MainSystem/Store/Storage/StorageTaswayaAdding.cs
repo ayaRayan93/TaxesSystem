@@ -18,14 +18,11 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, dbconnectionReader, dbconnectionReader2;
         bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
         bool flag = false;
         double noMeter = 0;
         int PermissionNum = 0;
         XtraTabControl xtraTabControlStoresContent;
-        int Data_ID=-1, Storage_ID=-1;
+        int Data_ID=-1/*, Storage_ID=-1*/;
         string code = "";
         MainForm mainForm;
         DataTable mdt=null;
@@ -1217,7 +1214,7 @@ namespace MainSystem
             dbconnectionReader2.Open();
             string q;
             int id;
-            bool flag = false;
+            //bool flag = false;
             double storageQ, productQ;
 
             string query = "select Data_ID,AddingQuantity from addstorage where PermissionNum=" + billNumber;

@@ -309,7 +309,7 @@ namespace MainSystem
                     MessageBox.Show("اختار الفرع والمندوب");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("اختار الفرع");
             }

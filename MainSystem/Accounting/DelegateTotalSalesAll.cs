@@ -228,7 +228,7 @@ namespace MainSystem
 
                 CalTotal(_Table);
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("اختار الفرع");
             }

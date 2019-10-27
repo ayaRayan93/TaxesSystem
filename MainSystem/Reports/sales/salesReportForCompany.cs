@@ -249,7 +249,7 @@ namespace MainSystem
                     MessageBox.Show("اختار الفرع والمندوب");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("اختار الفرع");
             }
@@ -422,7 +422,7 @@ namespace MainSystem
         }
         public void CalTotal(DataTable _Tabl)
         {
-            double totalSales = 0, totalReturn = 0, totalSafay = 0, totalProfit = 0;
+            double totalSales = 0, totalReturn = 0, totalSafay = 0/*, totalProfit = 0*/;
             foreach (DataRow item in _Tabl.Rows)
             {
                 if (item["TotalSales"].ToString() != "")

@@ -745,7 +745,7 @@ namespace MainSystem
                     while (dr.Read())
                     {
                         dbconnection3.Open();
-                        double price = 0;
+                        //double price = 0;
                         double priceF = 0;
                         double totalQuanity = 0;
                         gridView1.AddNewRow();
@@ -1250,7 +1250,7 @@ namespace MainSystem
                     while (dr.Read())
                     {
                         dbconnection3.Open();
-                        double price = 0;
+                        //double price = 0;
                         double priceF = 0;
                         double totalQuanity = 0;
                         gridView1.AddNewRow();

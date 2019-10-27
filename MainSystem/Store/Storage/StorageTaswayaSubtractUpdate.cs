@@ -17,8 +17,6 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, connectionReader;
         bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
         bool flag = false;
         double noMeter = 0;
         int TaswayaAdding_ID = 0;

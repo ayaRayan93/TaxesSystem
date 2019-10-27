@@ -28,7 +28,6 @@ namespace MainSystem
         public static BillsTransitions_Print bankPrint;
 
         public static GridControl gridcontrol;
-        bool loaded = false;
         bool loadedBranch = false;
 
         public SalesProductsBillsFactory_Report(MainForm BankMainForm)
