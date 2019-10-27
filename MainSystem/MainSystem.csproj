@@ -276,12 +276,6 @@
     <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.designer.cs">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Purchases\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2712,9 +2706,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.resx">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>

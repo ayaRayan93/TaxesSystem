@@ -583,7 +583,7 @@ namespace MainSystem
         {
             dbconnection1.Close();
             dbconnection1.Open();
-            string query = "select avg(PercentageDelegate) from Data inner join sellprice on sellprice.Data_ID=data.Data_ID inner join factory on factory.Factory_ID=data.Factory_ID where Factory_Name='" + factoryName+"'";
+            string query = "select max(PercentageDelegate) from Data inner join sellprice on sellprice.Data_ID=data.Data_ID inner join factory on factory.Factory_ID=data.Factory_ID where Factory_Name='" + factoryName+"'";
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             double d =Convert.ToDouble(com.ExecuteScalar());
             dbconnection1.Close();

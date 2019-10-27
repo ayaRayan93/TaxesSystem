@@ -51,7 +51,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType != 1)
+                if (UserControl.userType != 1&& UserControl.userID!=31)
                 {
                     btnDelete.Enabled = false;
                 }
