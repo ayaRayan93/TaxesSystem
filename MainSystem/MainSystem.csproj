@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version97\</PublishUrl>
+    <PublishUrl>D:\التكويد\version98\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>167</ApplicationRevision>
+    <ApplicationRevision>168</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -275,6 +275,12 @@
     </Compile>
     <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.designer.cs">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
@@ -2706,6 +2712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.resx">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>
