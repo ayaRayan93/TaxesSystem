@@ -94,7 +94,15 @@ namespace MainSystem
                 comOrderFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
                 comOrderFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                 comOrderFactory.Text = "";
-                
+
+                query = "select * from store_places where Store_ID=" + storeId;
+                da = new MySqlDataAdapter(query, conn);
+                dt = new DataTable();
+                da.Fill(dt);
+                comStorePlace.DataSource = dt;
+                comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
+                comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
+
                 txtPermissionNum.Text = selrow["رقم الاذن"].ToString();
                 
                 loaded = true;
@@ -763,7 +771,7 @@ namespace MainSystem
                         com = new MySqlCommand(query, conn);
                         if (com.ExecuteScalar() == null)
                         {
-                            query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Date)";
+                            query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
                             com = new MySqlCommand(query, conn);
                             com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                             com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
@@ -771,6 +779,8 @@ namespace MainSystem
                             com.Parameters["@Quantity"].Value = 0;
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = storeId;
+                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                            com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                             com.Parameters.Add("@Date", MySqlDbType.Date, 0);
                             DateTime date = DateTime.Now;
                             string d = date.ToString("yyyy-MM-dd");
@@ -794,12 +804,16 @@ namespace MainSystem
                         }
                         else
                         {
-                            query = "insert into storage (Store_ID,Type,Data_ID,Total_Meters) values (@Store_ID,@Type,@Data_ID,@Total_Meters)";
+                            query = "insert into storage (Store_ID,Store_Place_ID,Type,Storage_Date,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Type,@Storage_Date,@Data_ID,@Total_Meters)";
                             com = new MySqlCommand(query, conn);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = storeId;
+                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                            com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                             com.Parameters.Add("@Type", MySqlDbType.VarChar);
                             com.Parameters["@Type"].Value = "بند";
+                            com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
+                            com.Parameters["@Storage_Date"].Value = DateTime.Now.ToString("yyyy-MM-dd");
                             com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                             com.Parameters["@Data_ID"].Value = row1[0].ToString();
                             com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);

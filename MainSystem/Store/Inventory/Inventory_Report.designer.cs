@@ -102,6 +102,7 @@
             this.gridView1.OptionsFind.ShowClearButton = false;
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             // 
             // tableLayoutPanel3
             // 
@@ -408,7 +409,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label1.Location = new System.Drawing.Point(267, 0);
+            this.label1.Location = new System.Drawing.Point(317, 0);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(66, 19);
@@ -418,18 +419,19 @@
             // txtInventoryNum
             // 
             this.txtInventoryNum.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInventoryNum.Location = new System.Drawing.Point(161, 3);
+            this.txtInventoryNum.Location = new System.Drawing.Point(211, 3);
             this.txtInventoryNum.Name = "txtInventoryNum";
             this.txtInventoryNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtInventoryNum.Size = new System.Drawing.Size(100, 23);
             this.txtInventoryNum.TabIndex = 41;
+            this.txtInventoryNum.TextChanged += new System.EventHandler(this.txtInventoryNum_TextChanged);
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label9.Location = new System.Drawing.Point(567, 0);
+            this.label9.Location = new System.Drawing.Point(617, 0);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label9.Size = new System.Drawing.Size(51, 19);
@@ -440,7 +442,7 @@
             // 
             this.comStore.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(411, 3);
+            this.comStore.Location = new System.Drawing.Point(461, 3);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(150, 24);
@@ -453,7 +455,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.radOld, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.radNew, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(770, 4);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(781, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));

@@ -667,6 +667,7 @@
             this.btnAddAll.TabIndex = 22;
             this.btnAddAll.Text = "اضافة الكل";
             this.btnAddAll.UseVisualStyleBackColor = true;
+            this.btnAddAll.Visible = false;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
             // 
             // gridControl2

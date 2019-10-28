@@ -478,10 +478,10 @@
             this.groupBox1.Controls.Add(this.txtStoreFilterId);
             this.groupBox1.Controls.Add(this.comStoreFilter);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(14, 1);
+            this.groupBox1.Location = new System.Drawing.Point(14, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(648, 141);
+            this.groupBox1.Size = new System.Drawing.Size(648, 139);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Visible = false;
@@ -665,6 +665,7 @@
             // txtSupplierId
             // 
             this.txtSupplierId.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSupplierId.Enabled = false;
             this.txtSupplierId.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtSupplierId.Location = new System.Drawing.Point(76, 19);
             this.txtSupplierId.Name = "txtSupplierId";
@@ -676,6 +677,8 @@
             // comSupplier
             // 
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupplier.Enabled = false;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupplier.FormattingEnabled = true;
             this.comSupplier.Location = new System.Drawing.Point(137, 19);
@@ -699,6 +702,7 @@
             // txtStoreFilterId
             // 
             this.txtStoreFilterId.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtStoreFilterId.Enabled = false;
             this.txtStoreFilterId.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtStoreFilterId.Location = new System.Drawing.Point(328, 19);
             this.txtStoreFilterId.Name = "txtStoreFilterId";
@@ -710,6 +714,8 @@
             // comStoreFilter
             // 
             this.comStoreFilter.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStoreFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comStoreFilter.Enabled = false;
             this.comStoreFilter.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStoreFilter.FormattingEnabled = true;
             this.comStoreFilter.Location = new System.Drawing.Point(389, 19);
@@ -747,6 +753,7 @@
             // txtStoreID
             // 
             this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtStoreID.Enabled = false;
             this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtStoreID.Location = new System.Drawing.Point(27, 22);
             this.txtStoreID.Name = "txtStoreID";
@@ -758,6 +765,8 @@
             // comStore
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comStore.Enabled = false;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStore.FormattingEnabled = true;
             this.comStore.Location = new System.Drawing.Point(83, 22);
@@ -770,6 +779,7 @@
             // txtPermissionNum
             // 
             this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPermissionNum.Enabled = false;
             this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPermissionNum.Location = new System.Drawing.Point(59, 52);
             this.txtPermissionNum.Name = "txtPermissionNum";
@@ -980,14 +990,14 @@
             this.Supplier_Name.FieldName = "Supplier_Name";
             this.Supplier_Name.Name = "Supplier_Name";
             // 
-            // StorageReturnBill
+            // StorageReturnBill_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(827, 661);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "StorageReturnBill";
+            this.Name = "StorageReturnBill_Update";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.StorageReturnBill_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

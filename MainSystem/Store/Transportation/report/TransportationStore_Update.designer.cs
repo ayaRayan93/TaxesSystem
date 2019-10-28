@@ -65,6 +65,8 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comStorePlace = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -72,6 +74,8 @@
             this.txtBillNum = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -80,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -201,6 +206,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 2);
@@ -209,13 +215,13 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(902, 720);
             this.tableLayoutPanel1.TabIndex = 83;
             // 
@@ -502,11 +508,11 @@
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl2.Location = new System.Drawing.Point(3, 443);
+            this.gridControl2.Location = new System.Drawing.Point(3, 413);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(896, 274);
+            this.gridControl2.Size = new System.Drawing.Size(896, 244);
             this.gridControl2.TabIndex = 215;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -543,7 +549,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(896, 274);
+            this.gridControl1.Size = new System.Drawing.Size(896, 244);
             this.gridControl1.TabIndex = 214;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -573,6 +579,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comStorePlace);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.comFromStore);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
@@ -582,6 +590,31 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(896, 34);
             this.panel1.TabIndex = 0;
+            // 
+            // comStorePlace
+            // 
+            this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comStorePlace.FormattingEnabled = true;
+            this.comStorePlace.Location = new System.Drawing.Point(33, 5);
+            this.comStorePlace.Name = "comStorePlace";
+            this.comStorePlace.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStorePlace.Size = new System.Drawing.Size(54, 24);
+            this.comStorePlace.TabIndex = 34;
+            this.comStorePlace.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label10.Location = new System.Drawing.Point(93, 8);
+            this.label10.Name = "label10";
+            this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label10.Size = new System.Drawing.Size(90, 19);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "مكان التخزين";
+            this.label10.Visible = false;
             // 
             // panel2
             // 
@@ -599,7 +632,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 403);
+            this.panel2.Location = new System.Drawing.Point(3, 373);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(896, 34);
             this.panel2.TabIndex = 77;
@@ -679,6 +712,45 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 663);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(896, 54);
+            this.tableLayoutPanel3.TabIndex = 218;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.ImagePosition = 1;
+            this.btnSave.ImageZoom = 33;
+            this.btnSave.LabelPosition = 18;
+            this.btnSave.LabelText = "حفظ";
+            this.btnSave.Location = new System.Drawing.Point(411, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(76, 46);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // TransportationStore_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,6 +774,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -752,6 +825,10 @@
         private System.Windows.Forms.TextBox txtBillNum;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comStorePlace;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private Bunifu.Framework.UI.BunifuTileButton btnSave;
     }
 }
 
