@@ -485,12 +485,31 @@ namespace MainSystem
                                             totalAllCatInc += totalCatInc;
                                             totalAllA += totalA;
                                         }
+                                        gridView1.DeleteSelectedRows();
                                         row1 = null;
                                         rowHandle = -1;
+                                        /////////////////////////////
+                                        double totalB1 = 0;
+                                        double totalA1 = 0;
+                                        for (int i = 0; i < gridView1.RowCount; i++)
+                                        {
+                                            if (gridView1.GetRowCellDisplayText(i, "السعر") != "")
+                                            {
+                                                totalB1 += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
+                                            }
+                                            if (gridView1.GetRowCellDisplayText(i, "سعر الشراء") != "")
+                                            {
+                                                totalA1 += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
+                                            }
+                                        }
+                                        labTotalPriceBD.Text = totalB1.ToString();
+                                        labTotalPrice.Text = totalA1.ToString();
+                                        ///////////////////////////
                                         txtTotalMeter.Text = txtCode.Text = "";
                                         txtDiscount.Text = txtNormalIncrease.Text = txtCategoricalIncrease.Text = "0";
                                         txtPrice.Text = txtLastPrice.Text = txtPurchasePrice.Text = "";
                                         txtTax.Text = "0";
+
                                         labelTotalB.Text = totalAllB.ToString("#.000");
                                         labelTotalDiscount.Text = totalAllDiscount.ToString("#.000");
                                         labelTotalCat.Text = totalAllCatInc.ToString("#.000");
@@ -578,6 +597,9 @@ namespace MainSystem
                             {
                                 gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ImportStorageReturnDetails_ID"], gridView1.GetRowCellDisplayText(i, "ImportStorageReturnDetails_ID"));
                             }
+
+                            int rowHnd = gridView1.GetRowHandle(i);
+                            gridView1.DeleteRow(rowHnd);
                         }
                     }
                 }
@@ -598,6 +620,9 @@ namespace MainSystem
                     double totalNormInc = 0;
                     double totalDiscount = 0;
                     double totalCatInc = 0;
+                    double price = 0;
+                    double discount = 0;
+                    double CatInc = 0;
                     if (gridView2.GetRowCellDisplayText(i, "الزيادة العادية") != "")
                     {
                         totalNormInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة العادية"));
@@ -614,9 +639,22 @@ namespace MainSystem
                     {
                         totalCatInc = 0;
                     }
-                    totalB = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر")) + totalNormInc) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
-                    totalDiscount = totalB * (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم")) / 100);
-                    totalCatInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة القطعية")) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                    if (gridView2.GetRowCellDisplayText(i, "السعر") != "")
+                    {
+                        price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "السعر"));
+                    }
+                    if (gridView2.GetRowCellDisplayText(i, "نسبة الخصم") != "")
+                    {
+                        discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "نسبة الخصم"));
+                    }
+                    if (gridView2.GetRowCellDisplayText(i, "الزيادة القطعية") != "")
+                    {
+                        CatInc = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "الزيادة القطعية"));
+                    }
+
+                    totalB = (price + totalNormInc) * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
+                    totalDiscount = totalB * (discount / 100);
+                    totalCatInc = CatInc * Convert.ToDouble(gridView2.GetRowCellDisplayText(i, "متر/قطعة"));
                     totalA = (totalB - totalDiscount) + totalCatInc;
 
                     totalAllB += totalB;
@@ -644,6 +682,54 @@ namespace MainSystem
                 DataRow row2 = gridView2.GetDataRow(gridView2.FocusedRowHandle);
                 if (row2 != null)
                 {
+                    gridView1.AddNewRow();
+                    int rowHandl = gridView1.GetRowHandle(gridView1.DataRowCount);
+                    if (gridView1.IsNewItemRow(rowHandl))
+                    {
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["Data_ID"], row2["Data_ID"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الكود"], row2["الكود"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["النوع"], row2["النوع"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الاسم"], row2["الاسم"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["السعر"], row2["السعر"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["السعر بالزيادة"], row2["السعر بالزيادة"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["نسبة الخصم"], row2["نسبة الخصم"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة العادية"], row2["الزيادة العادية"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["الزيادة القطعية"], row2["الزيادة القطعية"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["سعر الشراء"], row2["سعر الشراء"].ToString());
+
+                        if (row2["BillData_ID"].ToString() != "")
+                        {
+                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["BillData_ID"], row2["BillData_ID"].ToString());
+                        }
+                        else
+                        {
+                            gridView1.SetRowCellValue(rowHandl, gridView1.Columns["ImportStorageReturnDetails_ID"], row2["ImportStorageReturnDetails_ID"].ToString());
+                        }
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["Price_Type"], row2["نوع السعر"].ToString());
+                        gridView1.SetRowCellValue(rowHandl, gridView1.Columns["متر/قطعة"], row2["متر/قطعة"].ToString());
+                    }
+
+                    if (gridView1.IsLastVisibleRow)
+                    {
+                        gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                    }
+
+                    double totalB1 = 0;
+                    double totalA1 = 0;
+                    for (int i = 0; i < gridView1.RowCount; i++)
+                    {
+                        if (gridView1.GetRowCellDisplayText(i, "السعر") != "")
+                        {
+                            totalB1 += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "السعر")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
+                        }
+                        if (gridView1.GetRowCellDisplayText(i, "سعر الشراء") != "")
+                        {
+                            totalA1 += Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "سعر الشراء")) * Convert.ToDouble(gridView1.GetRowCellDisplayText(i, "متر/قطعة"));
+                        }
+                    }
+                    labTotalPriceBD.Text = totalB1.ToString();
+                    labTotalPrice.Text = totalA1.ToString();
+                    //////////////////////////////////////////////
                     gridView2.DeleteRow(gridView2.FocusedRowHandle);
 
                     double totalAllB = 0;

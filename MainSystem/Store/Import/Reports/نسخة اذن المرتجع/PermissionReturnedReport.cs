@@ -116,18 +116,18 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if(UserControl.userType == 1 || UserControl.userType == 13)
+            /*if(UserControl.userType == 1 || UserControl.userType == 13)
             {
                 try
                 {
-                    StorageReturnBill_Update form = new StorageReturnBill_Update(row1, this, tabControlContentStore);
+                    StorageReturnBill_Update form = new StorageReturnBill_Update(row1, comStore.SelectedValue.ToString(), this, tabControlContentStore);
                     form.ShowDialog();
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            }*/
         }
 
         private void txtBillNumber_KeyDown(object sender, KeyEventArgs e)
@@ -357,10 +357,16 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query = "insert into Storage (Store_ID,Type,Storage_Date,Data_ID,Total_Meters) values (@Store_ID,@Type,@Date,@Data_ID,@TotalOfMeters)";
+                                    query = "SELECT store_places.Store_Place_ID FROM store_places INNER JOIN store ON store_places.Store_ID = store.Store_ID where store_places.Store_ID=" + comStore.SelectedValue.ToString();
+                                    com = new MySqlCommand(query, dbconnection);
+                                    string storePlaceId = com.ExecuteScalar().ToString();
+
+                                    query = "insert into Storage (Store_ID,Store_Place_ID,Type,Storage_Date,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Type,@Date,@Data_ID,@TotalOfMeters)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
+                                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_Place_ID"].Value = storePlaceId;
                                     com.Parameters.Add("@Type", MySqlDbType.VarChar);
                                     com.Parameters["@Type"].Value = "بند";
                                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);

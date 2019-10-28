@@ -23,6 +23,7 @@ namespace MainSystem
         DataRow row1;
         int CustomerBillID = 0;
         DataRow selRow = null;
+        bool loadToStore = false;
 
         public TransportationStore_Update(DataRow rows, Transportation_Report transportationReport, XtraTabControl xtraTabControlStoresContent)
         {
@@ -53,6 +54,14 @@ namespace MainSystem
                 comToStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comToStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comToStore.Text = selRow["الى مخزن"].ToString();
+
+                query = "select * from store_places where Store_ID=" + comToStore.SelectedValue.ToString();
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comStorePlace.DataSource = dt;
+                comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
+                comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
 
                 query = "select * from type";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -598,7 +607,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() == null)
                                 {
-                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Date)";
+                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                                     com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
@@ -606,6 +615,8 @@ namespace MainSystem
                                     com.Parameters["@Quantity"].Value = 0;
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
+                                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
                                     DateTime date = DateTime.Now;
                                     string d = date.ToString("yyyy-MM-dd");
@@ -627,10 +638,12 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
+                                    query = "insert into storage (Store_ID,Store_Place_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
+                                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                                     com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime);
                                     com.Parameters["@Storage_Date"].Value = DateTime.Now;
                                     com.Parameters.Add("@Type", MySqlDbType.VarChar);
@@ -753,91 +766,12 @@ namespace MainSystem
             }
         }
 
-        /*private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 if (gridView2.RowCount > 0)
                 {
-                    dbconnection2.Open();
-                    dbconnection.Open();
-                    int transferProductID = Convert.ToInt32(selRow[0].ToString());
-                    string query = "SELECT data.Data_ID FROM transfer_product_details INNER JOIN transfer_product ON transfer_product_details.TransferProduct_ID = transfer_product.TransferProduct_ID left JOIN store as storeTo ON storeTo.Store_ID = transfer_product.To_Store left join store as storeFrom on storeFrom.Store_ID = transfer_product.From_Store left JOIN customer_bill ON transfer_product_details.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN data ON transfer_product_details.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where transfer_product.TransferProduct_ID=" + selRow[0].ToString() + " order by SUBSTR(data.Code, 1, 16),color.Color_Name,data.Description,data.Sort_ID";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection2);
-                    MySqlDataReader dr = com.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        bool dataFlag = false;
-                        string productDataId = dr[0].ToString();
-                        for (int i = 0; i < gridView2.RowCount; i++)
-                        {
-                            int rowhnd = gridView2.GetRowHandle(i);
-                            DataRow row2 = gridView2.GetDataRow(rowhnd);
-                            if (productDataId == row2["Data_ID"].ToString())
-                            {
-                                dataFlag = true;
-                            }
-                        }
-                        if (dataFlag)
-                        {
-                            for (int i = 0; i < gridView2.RowCount; i++)
-                            {
-                                int rowhnd = gridView2.GetRowHandle(i);
-                                DataRow row2 = gridView2.GetDataRow(rowhnd);
-                                query = "update transfer_product_details set Quantity=@Quantity,CustomerBill_ID=@CustomerBill_ID where Data_ID=" + row2["Data_ID"] + " and TransferProduct_ID=" + selRow[0].ToString();
-                                com = new MySqlCommand(query, dbconnection);
-                                com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-                                com.Parameters["@Quantity"].Value = row2["الكمية"].ToString();
-                                com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
-                                com.Parameters["@CustomerBill_ID"].Value = row2["CustomerBill_ID"].ToString();
-                                com.ExecuteNonQuery();
-
-                                if (row2["رقم الفاتورة"].ToString() == "")
-                                {
-                                    query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString() + " group by Data_ID";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    double quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
-                                    double meters = quantity - Convert.ToDouble(row2["الكمية"].ToString());
-                                    query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comFromStore.SelectedValue.ToString();
-                                    com = new MySqlCommand(query, dbconnection);
-                                    com.ExecuteNonQuery();
-
-                                    query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    if (com.ExecuteScalar() != null)
-                                    {
-                                        quantity = Convert.ToDouble(com.ExecuteScalar().ToString());
-                                        meters = quantity + Convert.ToDouble(row2["الكمية"].ToString());
-                                        query = "update storage set Total_Meters=" + meters + " where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString();
-                                        com = new MySqlCommand(query, dbconnection);
-                                        com.ExecuteNonQuery();
-                                    }
-                                    else
-                                    {
-                                        query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
-                                        com = new MySqlCommand(query, dbconnection);
-                                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                                        com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
-                                        com.Parameters.Add("@Storage_Date", MySqlDbType.DateTime);
-                                        com.Parameters["@Storage_Date"].Value = DateTime.Now;
-                                        com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                                        com.Parameters["@Type"].Value = "بند";
-                                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                                        com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
-                                        com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                                        com.Parameters["@Total_Meters"].Value = row2["الكمية"].ToString();
-                                        com.ExecuteNonQuery();
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-
-                        }
-                    }
-                    dr.Close();
-
                     #region report
                     List<Transportation_Items> bi = new List<Transportation_Items>();
                     for (int i = 0; i < gridView2.RowCount; i++)
@@ -847,12 +781,10 @@ namespace MainSystem
                         Transportation_Items item = new Transportation_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["الكمية"])) };
                         bi.Add(item);
                     }
-                    Report_Transportation f = new Report_Transportation();
-                    f.PrintInvoice(transferProductID, comFromStore.Text, comToStore.Text, bi);
+                    Report_Transportation_Copy f = new Report_Transportation_Copy();
+                    f.PrintInvoice(Convert.ToInt16(selRow["رقم التحويل"].ToString()), comFromStore.Text, comToStore.Text, selRow["تاريخ التحويل"].ToString(), bi);
                     f.ShowDialog();
                     #endregion
-
-                    clear();
                 }
                 else
                 {
@@ -863,9 +795,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
-            dbconnection2.Close();
-        }*/
+        }
 
         //function
         bool IsItemAdded()

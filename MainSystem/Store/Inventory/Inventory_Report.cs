@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
@@ -116,6 +117,26 @@ namespace MainSystem
             }
             dbconnection.Close();
             dbconnection1.Close();
+        }
+
+        private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["added"]);
+                    if (category == "1")
+                    {
+                        e.Appearance.BackColor = Color.Beige;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void comBox_SelectedValueChanged(object sender, EventArgs e)
@@ -300,7 +321,7 @@ namespace MainSystem
         
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (comStore.SelectedValue != null && comStore.Text != "")
+            if (comStore.SelectedValue != null && comStore.Text != "" && txtInventoryNum.Text != "")
             {
                 try
                 {
@@ -376,12 +397,13 @@ namespace MainSystem
 
         void testQuantity(string qT, string qF, string qP, string qG, string fQuery)
         {
-            string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',SUM(storage.Total_Meters) as 'الكمية الحالية' FROM data INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=0 group by data.Data_ID";
+            string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',SUM(storage.Total_Meters) as 'الكمية الحالية','added' FROM data INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=0 group by data.Data_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
             gridView1.Columns[0].Visible = false;
+            gridView1.Columns["added"].Visible = false;
 
             query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where data.Type_ID IN(" + qT + ") and data.Factory_ID IN(" + qF + ") and data.Product_ID IN (" + qP + ") and data.Group_ID IN (" + qG + ") " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -402,6 +424,13 @@ namespace MainSystem
                     if (c.ExecuteScalar() != null)
                     {
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية الحالية"], c.ExecuteScalar().ToString());
+                    }
+
+                    q = "select inventory_details.InventoryDetails_ID FROM inventory_details INNER JOIN inventory ON inventory_details.Inventory_ID = inventory.Inventory_ID where inventory_details.Data_ID=" + dr["Data_ID"].ToString() + " and inventory.Store_ID=" + comStore.SelectedValue.ToString() + " and inventory.Inventory_Num=" + txtInventoryNum.Text;
+                    c = new MySqlCommand(q, dbconnection1);
+                    if (c.ExecuteScalar() != null)
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], "1");
                     }
                 }
             }
@@ -464,6 +493,8 @@ namespace MainSystem
                             c.Parameters.Add("@Date", MySqlDbType.DateTime);
                             c.Parameters["@Date"].Value = DateTime.Now;
                             c.ExecuteNonQuery();
+
+                            gridView1.SetRowCellValue(i, "added", "1");
                         }
                     }
                     else
@@ -496,6 +527,8 @@ namespace MainSystem
                                     c.Parameters.Add("@Date", MySqlDbType.DateTime);
                                     c.Parameters["@Date"].Value = DateTime.Now;
                                     c.ExecuteNonQuery();
+
+                                    gridView1.SetRowCellValue(i, "added", "1");
                                 }
                             }
                         }
@@ -536,6 +569,18 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }*/
+        }
+
+        private void txtInventoryNum_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                gridControl1.DataSource = null;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //clear function

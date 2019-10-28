@@ -29,10 +29,11 @@ namespace MainSystem
         int ReturnedPermissionNumber = 1;
         XtraTabControl xtraTabControlStores = null;
         DataRow selrow = null;
+        string storeIdd = "";
         //int flagConfirm = 2;
         //int rowHandel1;
 
-        public StorageReturnBill_Update(DataRow Selrow, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
+        public StorageReturnBill_Update(DataRow Selrow, string StoreIdd, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -51,6 +52,7 @@ namespace MainSystem
 
             xtraTabControlStores = tabControlContentStore;
             selrow = Selrow;
+            storeIdd = StoreIdd;
         }
 
         private void StorageReturnBill_Load(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace MainSystem
                 gridControl2.DataSource = dh.DataSet;
                 gridControl2.DataMember = dh.DataMember;
                 gridView2.InitNewRow += GridView2_InitNewRow;
-                
+
                 string query = "select * from store";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -132,6 +134,83 @@ namespace MainSystem
                 comProduct.Text = "";
                 txtProduct.Text = "";
 
+                if (selrow["رقم اذن المخزن"].ToString() != "")
+                {
+                    radioButtonReturnPermission.Checked = true;
+                    comStore.SelectedValue = storeIdd;
+                    txtPermissionNum.Text = selrow["رقم اذن المخزن"].ToString();
+                }
+                else
+                {
+                    radioButtonWithOutReturnPermission.Checked = true;
+                    comStoreFilter.SelectedValue = storeIdd;
+                }
+
+                dbconnection.Open();
+                if (radioButtonReturnPermission.Checked)
+                {
+                    #region add with permission
+                    query = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        gridView2.AddNewRow();
+                        int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+                        if (gridView2.IsNewItemRow(rowHandle))
+                        {
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["Data_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["الكود"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], dr["النوع"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], dr["الاسم"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], dr["الكرتنة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], dr["متر/قطعة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["عدد الكراتين"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد البلتات"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["السبب"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_Permission_Details_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["Supplier_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["اذن استلام"].ToString());
+                            //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["المورد"].ToString());
+                        }
+                    }
+                    dr.Close();
+                    #endregion
+                }
+                else
+                {
+                    #region without permission
+                    query = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        comSupplier.SelectedValue = dr["Supplier_ID"].ToString();
+                        txtSupplierId.Text = dr["Supplier_ID"].ToString();
+                        gridView2.AddNewRow();
+                        int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+                        if (gridView2.IsNewItemRow(rowHandle))
+                        {
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["Data_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["الكود"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], dr["النوع"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], dr["الاسم"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], dr["الكرتنة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], dr["متر/قطعة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["عدد الكراتين"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد البلتات"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["السبب"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], "0");
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], "0");
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], "0");
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "0");
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], "");
+                        }
+                    }
+                    dr.Close(); 
+                    #endregion
+                }
                 loaded = true;
             }
             catch (Exception ex)
@@ -1655,22 +1734,25 @@ namespace MainSystem
 
         private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
+            if (loaded)
             {
-                if (comSupplier.SelectedValue != null)
+                try
                 {
-                    txtSupplierId.Text = comSupplier.SelectedValue.ToString();
+                    if (comSupplier.SelectedValue != null)
+                    {
+                        txtSupplierId.Text = comSupplier.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        txtSupplierId.Text = "";
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    txtSupplierId.Text = "";
+                    MessageBox.Show(ex.Message);
                 }
+                dbconnection.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
         }
 
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
