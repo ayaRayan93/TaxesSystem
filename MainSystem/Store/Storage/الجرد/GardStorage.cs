@@ -21,30 +21,23 @@ namespace MainSystem
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
+        
         bool flag = false;
         //double noMeter = 0;
         MainForm MainForm;
-        XtraTabControl xtraTabControlStoresContent;
-        DataTable mdt;
-        //DataTable mdtSaved;
-        int Data_ID;
         string code = "";
-        DataRowView mRow = null;
         List<int> ListOfDataIDs;
-        List<int> ListOfSavedDataIDs;
         List<int> ListOfEditDataIDs;
 
-        public GardStorage(/*XtraTabControl xtraTabControlStoresContent*/)
+        public GardStorage(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-                this.MainForm = MainForm;
                 ListOfDataIDs = new List<int>();
-                ListOfSavedDataIDs = new List<int>();
                 ListOfEditDataIDs = new List<int>();
-                //this.xtraTabControlStoresContent = xtraTabControlStoresContent;
+                this.MainForm = MainForm;
             }
             catch (Exception ex)
             {
@@ -502,9 +495,6 @@ namespace MainSystem
                         labGardPermission.Text = dr[0].ToString();
                         dateTimePicker1.Text = dr[1].ToString();
                         ListOfEditDataIDs.Clear();
-                        //ListOfSavedDataIDs.Clear();
-                        //ListOfDataIDs.Clear();
-                        //displayProducts();
                     }
                     dr.Close();
                   
@@ -544,7 +534,6 @@ namespace MainSystem
                 txtProduct.Text = "";
                 
                 gridControl2.DataSource = null;
-                mdt.Rows.Clear();
                 flag = false;
                 
             }
@@ -561,15 +550,12 @@ namespace MainSystem
                 if (e.RowHandle >= 0)
                 {
                     int Data_ID = Convert.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns[0]));
-
-                    for (int i = 0; i < ListOfSavedDataIDs.Count; i++)
+                    string value =View.GetRowCellDisplayText(e.RowHandle, View.Columns[6]);
+                    if (value != "")
                     {
-                        if (Data_ID == ListOfSavedDataIDs[i])
-                        {
-                            e.Appearance.BackColor = Color.MediumSeaGreen;
-                            e.Appearance.BackColor2 = Color.MediumSeaGreen;
-                            e.Appearance.ForeColor = Color.White;
-                        }
+                        e.Appearance.BackColor = Color.MediumSeaGreen;
+                        e.Appearance.BackColor2 = Color.MediumSeaGreen;
+                        e.Appearance.ForeColor = Color.White;
                     }
                     for (int i = 0; i < ListOfEditDataIDs.Count; i++)
                     {
@@ -602,25 +588,13 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-
-
-
         private void btnReport_Click(object sender, EventArgs e)
         {
             try
             {
                 if (gridView2.RowCount > 0)
                 {
-                    if (flag)//to ensure data save first
-                    {
-                        MainForm.bindReportStorageForm(gridControl2, "تقرير كميات البنود");
-                    }
-                    else
-                    {
-                        MessageBox.Show("يجب حفظ البيانات اولا");
-                    }
+                  MainForm.bindReportStorageForm(gridControl2, "تقرير كميات الجرد");
                 }
                 else
                 {
@@ -632,118 +606,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-           
-        }
-    
+     
         //functions
-        public void clear()
-        {
-
-        }
-        public XtraTabPage getTabPage(string text)
-        {
-            for (int i = 0; i < xtraTabControlStoresContent.TabPages.Count; i++)
-                if (xtraTabControlStoresContent.TabPages[i].Text == text)
-                {
-                    return xtraTabControlStoresContent.TabPages[i];
-                }
-            return null;
-        }
-        public bool IsClear()
-        {
-            foreach (Control item in this.Controls["tableLayoutPanel1"].Controls)
-            {
-                if (item is TextBox)
-                {
-                    if (item.Text != "")
-                        return false;
-                }
-                else if (item is ComboBox)
-                {
-                    if (item.Text != "")
-                        return false;
-                }
-                else if (item is DateTimePicker)
-                {
-                    DateTimePicker item1 = (DateTimePicker)item;
-                    if (item1.Value.Date != DateTime.Now.Date)
-                        return false;
-                }
-            }
-            return true;
-        }
-        public void displayData(string code)
-        {
-            string q1, q2, q3, q4,q5;
-            if (txtType.Text == "")
-            {
-                q1 = "select Type_ID from data";
-            }
-            else
-            {
-                q1 = txtType.Text;
-            }
-            if (txtFactory.Text == "")
-            {
-                q2 = "select Factory_ID from data";
-            }
-            else
-            {
-                q2 = txtFactory.Text;
-            }
-            if (txtProduct.Text == "")
-            {
-                q3 = "select Product_ID from data";
-            }
-            else
-            {
-                q3 = txtProduct.Text;
-            }
-            if (txtGroup.Text == "")
-            {
-                q4 = "select Group_ID from data";
-            }
-            else
-            {
-                q4 = txtGroup.Text;
-            }
-            if (txtProduct.Text == "")
-            {
-                q5 = "";
-            }
-            else
-            {
-                q5 = "and  data.Size_ID=" + txtProduct.Text;
-            }
-            string q = "";
-            if (code != "")
-            {
-                q = " and data.Code='" + code + "'";
-            }
-            else
-            {
-                q = "";
-            }
-            string itemName = "concat(type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-            string query = "";
-            if (txtType.Text == "1" || txtType.Text == "2" || txtType.Text == "9")
-            {
-               query = "SELECT data.Data_ID, data.Code as 'الكود', product.Product_Name as 'الصنف'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") " + q+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-            }
-            else
-            {
-               query = "SELECT data.Data_ID, data.Code as 'الكود', product.Product_Name as 'الصنف'," + itemName + ",data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ") " + q+ " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-            }
-            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            gridControl2.DataSource = dt;
-            gridView2.Columns[0].Visible = false;
-            gridView2.Columns[1].Width = 200;
-            gridView2.BestFitColumns();
-        }
+ 
         public void displayProducts()
         {
             string q1, q2, q3, q4, fQuery = "";
@@ -805,114 +670,15 @@ namespace MainSystem
             gridControl2.DataSource = dt;
             gridView2.Columns[0].Visible = false;
             gridView2.Columns[1].Width = 140;
+            gridView2.Columns[0].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[1].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[2].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[3].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[4].OptionsColumn.AllowEdit = false;
+
+            gridView2.BestFitColumns();
             fQuery = "";
-        }
-
-        public string getDataIDsWhichHaveQuantity()
-        {
-            dbconnection.Close();
-            dbconnection.Open();
-            string query = "select Data_ID from storage where Data_ID is not null and Store_ID="+comStore.SelectedValue+" and Store_Place_ID=";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            MySqlDataReader dr = com.ExecuteReader();
-            string DataIDs = "";
-            while (dr.Read())
-            {
-                DataIDs += dr[0].ToString() + ",";
-            }
-            dr.Close();
-            DataIDs += "0";
-            dbconnection.Close();
-            return DataIDs;
-        }
-        public bool validation(int storeID,int StorePlaceID)
-        {
-            string query = "select Storage_ID from storage where Data_ID="+Data_ID+" and Store_ID="+ storeID + " and Store_Place_ID="+ StorePlaceID;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            if (com.ExecuteScalar() != null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-        }
-        public void displayCode(string code)
-        {
-            char[] arrCode = code.ToCharArray();
-     
-        }
-        public void makeCode(TextBox txtBox)
-        {
-            if (code.Length < 20)
-            {
-                int j = 4 - txtBox.TextLength;
-                for (int i = 0; i < j; i++)
-                {
-                    code += "0";
-                }
-                code += txtBox.Text;
-            }
-        }
-        //public void add2Store()
-        //{
-        //    if ( code.Length==20)
-        //    {
-        //        string query = "select Data_ID from data where Code='" + code + "'";
-        //        MySqlCommand com = new MySqlCommand(query, dbconnection);
-        //        Data_ID = Convert.ToInt32(com.ExecuteScalar());
-        //        if (validation((int)comStore.SelectedValue, (int)comStorePlace.SelectedValue))
-        //        {
-        //            query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
-        //            com = new MySqlCommand(query, dbconnection);
-        //            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-        //            com.Parameters["@Data_ID"].Value = Data_ID;
-        //            com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-        //            com.Parameters["@Quantity"].Value = txtTotalMeter.Text;
-        //            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-        //            com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-        //            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-        //            com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue;
-        //            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-        //            com.Parameters["@Date"].Value = dateTimePicker1.Value;
-        //            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-        //            com.Parameters["@Note"].Value = txtNote.Text;
-        //            com.ExecuteNonQuery();
-
-        //            query = "insert into storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
-        //            com = new MySqlCommand(query, dbconnection);
-        //            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-        //            com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-        //            com.Parameters.Add("@Type", MySqlDbType.VarChar);
-        //            com.Parameters["@Type"].Value = "بند";
-        //            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-        //            com.Parameters["@Date"].Value = dateTimePicker1.Value;
-        //            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-        //            com.Parameters["@Data_ID"].Value = Data_ID;
-        //            com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
-        //            com.Parameters["@PlaceOfStore"].Value = comStorePlace.SelectedValue;
-        //            com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
-        //            com.Parameters["@TotalOfMeters"].Value = txtTotalMeter.Text;
-        //            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-        //            com.Parameters["@Note"].Value = txtNote.Text;
-        //            com.ExecuteNonQuery();
-        //            MessageBox.Show("Add success");
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("هذا البند مضاف فعلا");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("you must fill all fields please");
-        //        dbconnection.Close();
-        //        return;
-        //    }
-
-        //}
+        }     
         public DataTable createDataTable()
         {
             DataTable dt = new DataTable();
@@ -928,50 +694,6 @@ namespace MainSystem
            
             return dt;
         }
-        public void add2GridView(DataTable dt, DataRowView row, string [] re)
-        {
-            double quantity;
-            DateTime date = new DateTime();
-            if (re[0] == null)
-            {
-               // quantity = Convert.ToDouble(txtTotalMeter.Text);
-            }
-            else
-            {
-                quantity = Convert.ToDouble(re[0]);
-            }
-            if (re[1] == null)
-            {
-                date = dateTimePicker1.Value;
-            }
-            else
-            {
-                date = Convert.ToDateTime(re[1]);
-            }
-            //dt.Rows.Add(new object[] {
-            //    Convert.ToInt32(row[0].ToString()),
-            //    comStore.SelectedValue,
-            //     getStore_Place_ID((int)comStore.SelectedValue),
-            //    row[1].ToString(),
-            //      row[2].ToString(),
-            //    row[3].ToString(),
-            //    quantity,
-            //    txtNote.Text,
-            //    date
-            //});
-         
-            gridControl2.DataSource = dt;
-            gridView2.Columns[0].Visible = false;
-            gridView2.Columns[1].Visible = false;
-            gridView2.Columns[2].Visible = false;
-            gridView2.Columns[3].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[4].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[5].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[6].OptionsColumn.AllowEdit = true;
-            gridView2.Columns[7].OptionsColumn.AllowEdit = true;
-            gridView2.Columns[8].OptionsColumn.AllowEdit = true;
-            gridView2.BestFitColumns();
-        }
         public int getStore_Place_ID(int Store_ID)
         {
             dbconnection.Close();
@@ -979,27 +701,8 @@ namespace MainSystem
             string query = "select Store_Place_ID from store_places inner join store on store_places.Store_ID=store.Store_ID where store_places.Store_ID=" + Store_ID + " limit 1";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             int Store_Place_ID = Convert.ToInt32(com.ExecuteScalar());
-
             return Store_Place_ID;
-        }
-        public string [] getOldValueIfExist(int Data_ID)
-        {
-            string [] re =new string[2];
-            bool f = false;
-            string query = "select Quantity,Date from open_storage_account where Data_ID=" + Data_ID+" and Store_ID="+comStore.SelectedValue;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            MySqlDataReader dr = com.ExecuteReader();
-           while(dr.Read())
-            { 
-                re[0] =dr[0].ToString();
-                re[1] = dr[1].ToString();
-                f = true;
-                ListOfDataIDs.Add(Data_ID);
-            }
-           if(f)
-            MessageBox.Show("البند مضاف من قبل");           
-            return re;
-        }
+        }   
         public bool IsEdited(int DataID)
         {
             for (int i = 0; i < ListOfEditDataIDs.Count; i++)
@@ -1008,103 +711,6 @@ namespace MainSystem
                     return true;
             }
             return false;
-        }
-        public bool IsSaved(int DataID)
-        {
-            for (int i = 0; i < ListOfSavedDataIDs.Count; i++)
-            {
-                if (DataID == ListOfSavedDataIDs[i])
-                    return true;
-            }
-            return false;
-        }
-        public bool IsExistInGridView(string c)
-        {
-            for (int i = 0; i < gridView2.DataRowCount; i++)
-            {
-                DataRowView r = (DataRowView)gridView2.GetRow(i);
-                if (r[3].ToString()==c)
-                {
-                    // gridView2.MoveBy(i);
-                    int x = gridView2.GetSelectedRows()[0];
-                    if(x!=0)
-                        gridView2.FocusedRowHandle = 0;
-                    else
-                        gridView2.FocusedRowHandle = gridView2.DataRowCount-1;
-                    gridView2.FocusedRowHandle = i;
-                    ListOfDataIDs.Add((int)r[0]);
-                    return true;
-                }
-            }
-            return false;
-        }
-        //public bool validation()
-        //{
-        //    if (code.Length != 20)
-        //        labcode.Visible = true;
-        //    else
-        //        labcode.Visible = false;
-        //    if (txtTotalMeter.Text == "")
-        //        labQuantity.Visible = true;
-        //    else
-        //        labQuantity.Visible = false;
-        //    if (comStore.Text == "")
-        //        labStore.Visible = true;
-        //    else
-        //        labStore.Visible = false;
-        //    if (comStorePlace.Text == "")
-        //        labStorePlace.Visible = true;
-        //    else
-        //        labStorePlace.Visible = false;
-        //    if (code.Length == 20 && txtTotalMeter.Text != "" && comStore.Text != "" && comStorePlace.Text != "")
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-        public static DialogResult InputBox(string title, string promptText, ref string value)
-        {
-            Form form = new Form();
-            Label label = new Label();
-            TextBox textBox = new TextBox();
-            Button buttonOk = new Button();
-            Button buttonCancel = new Button();
-
-            form.Text = title;
-            label.Text = promptText;
-            textBox.Text = value;
-
-            buttonOk.Text = "OK";
-            buttonCancel.Text = "Cancel";
-            buttonOk.DialogResult = DialogResult.OK;
-            buttonCancel.DialogResult = DialogResult.Cancel;
-
-            label.SetBounds(9, 20, 372, 13);
-            textBox.SetBounds(12, 36, 372, 20);
-            buttonOk.SetBounds(228, 72, 75, 23);
-            buttonCancel.SetBounds(309, 72, 75, 23);
-
-            label.AutoSize = true;
-            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
-            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-
-            form.ClientSize = new Size(396, 107);
-            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
-            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
-            form.FormBorderStyle = FormBorderStyle.FixedDialog;
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.MinimizeBox = false;
-            form.MaximizeBox = false;
-            form.AcceptButton = buttonOk;
-            form.CancelButton = buttonCancel;
-
-            DialogResult dialogResult = form.ShowDialog();
-            value = textBox.Text;
-            return dialogResult;
         }
         public void filterFactory()
         {
@@ -1230,30 +836,13 @@ namespace MainSystem
                 txtProduct.Text = "";
             }
         }
-        public bool AllDataIsSaved()
-        {
-            if ((ListOfSavedDataIDs.Count - ListOfEditDataIDs.Count) != mdt.Rows.Count)
-            {
-                for (int i = 0; i < mdt.Rows.Count; i++)
-                {
-                    if (IsEdited((int)mdt.Rows[i][0]) || !IsSaved((int)mdt.Rows[i][0]))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-
-
-
+    
         public void addGardQuantity(int Data_ID, DataRow row)
         {
             dbconnection.Close();
             dbconnection.Open();
 
-            string query = "select Inventory_ID from inventory where Inventory_Num=" + labGardPermission.Text;
+            string query = "select Inventory_ID from inventory where Inventory_Num=" + labGardPermission.Text+" and Store_ID="+txtStoreID.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             int Inventory_ID = Convert.ToInt16(com.ExecuteScalar());
             if (haveOpenStorageAccount(Data_ID))

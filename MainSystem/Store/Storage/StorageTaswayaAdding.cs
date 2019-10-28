@@ -687,6 +687,7 @@ namespace MainSystem
                 if (gridView2.RowCount > 0)
                 {
                     save2DB();
+                    btnSave.Enabled = false;
                 }
                 else
                 {
@@ -748,6 +749,7 @@ namespace MainSystem
                 comStore.Enabled = true;
                 txtNote.ReadOnly = false;
                 gridControl2.Enabled = true;
+                btnSave.Enabled = true;
 
             }
             catch (Exception ex)
@@ -921,71 +923,61 @@ namespace MainSystem
         {
             if (gridView2.RowCount > 0)
             {
-                //string query = "select TaswayaAdding_ID from taswayaa_adding_permision where PermissionNum="+labPermissionNum.Text;
-                //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                //if (com.ExecuteScalar() != null)
-                //{
-                //    MessageBox.Show("هذا الاذن تم حفظه من قبل");
-                //}
-                //else
-                //{
                 string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
               
-                    int x = Convert.ToInt32(com.ExecuteScalar());
+                int x = Convert.ToInt32(com.ExecuteScalar());
                 x++;
-                    query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
+                query = "insert into taswayaa_adding_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
+                com.Parameters["@PermissionNum"].Value = x;
+                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
+                com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                com.Parameters["@Note"].Value = txtNote.Text;
+                com.ExecuteNonQuery();
+
+                query = "select PermissionNum from taswayaa_adding_permision order by PermissionNum desc limit 1";
+                com = new MySqlCommand(query, dbconnection);
+                PermissionNum = Convert.ToInt32(com.ExecuteScalar());
+                gridView2.SelectAll();
+                for (int i = 0; i < mdt.Rows.Count; i++)
+                {
+                    query = "insert into addstorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                    com.Parameters["@PermissionNum"].Value = x;
-                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                    com.Parameters["@Store_ID"].Value = comStore.SelectedValue;
-                    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                    com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                    com.Parameters["@PermissionNum"].Value = PermissionNum;
+                    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                    com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
+                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                    com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
+                    com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
+                    com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
+                    com.Parameters.Add("@AddingQuantity", MySqlDbType.Decimal);
+                    com.Parameters["@AddingQuantity"].Value = mdt.Rows[i][6];
+                    com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
+                    com.Parameters["@QuantityAfterAdding"].Value = mdt.Rows[i][5];
                     com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                    com.Parameters["@Note"].Value = txtNote.Text;
+                    com.Parameters["@Note"].Value = txtItemNote.Text;
                     com.ExecuteNonQuery();
+                }
+                IncreaseProductQuantity(PermissionNum);
 
-                    query = "select PermissionNum from taswayaa_adding_permision order by PermissionNum desc limit 1";
-                    com = new MySqlCommand(query, dbconnection);
-                    PermissionNum = Convert.ToInt32(com.ExecuteScalar());
-                    gridView2.SelectAll();
-                    for (int i = 0; i < mdt.Rows.Count; i++)
-                    {
-                        query = "insert into addstorage (PermissionNum,Data_ID,Store_Place_ID,CurrentQuantity,AddingQuantity,QuantityAfterAdding,Note) values (@PermissionNum,@Data_ID,@Store_Place_ID,@CurrentQuantity,@AddingQuantity,@QuantityAfterAdding,@Note)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
-                        com.Parameters["@PermissionNum"].Value = PermissionNum;
-                        com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID((int)comStore.SelectedValue);
-                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                        com.Parameters["@Data_ID"].Value = mdt.Rows[i][0];
-                        com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
-                        com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(mdt.Rows[i][4]);
-                        com.Parameters.Add("@AddingQuantity", MySqlDbType.Decimal);
-                        com.Parameters["@AddingQuantity"].Value = mdt.Rows[i][6];
-                        com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
-                        com.Parameters["@QuantityAfterAdding"].Value = mdt.Rows[i][5];
-                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                        com.Parameters["@Note"].Value = txtItemNote.Text;
-                        com.ExecuteNonQuery();
-                    }
-                    IncreaseProductQuantity(PermissionNum);
+                UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
+                MessageBox.Show("تم الحفظ");
 
-                    UserControl.ItemRecord("taswayaa_adding_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
-                    MessageBox.Show("تم الحفظ");
-
-                  
-
-                    btnReport.Enabled = true;
-                    comStore.Enabled = false;
-                    txtNote.ReadOnly = true;
-                    gridControl2.Enabled = false;
-                    flag = true;
-               // }
+                btnReport.Enabled = true;
+                comStore.Enabled = false;
+                txtNote.ReadOnly = true;
+                gridControl2.Enabled = false;
+                flag = true;
             }
         
         }
+
         public DataTable createDataTable()
         {
             DataTable dt = new DataTable();
@@ -1001,6 +993,7 @@ namespace MainSystem
 
             return dt;
         }
+
         public void add2GridView(DataTable dt, DataRowView row)
         {
             dt.Rows.Add(new object[] {

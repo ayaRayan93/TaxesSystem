@@ -1061,7 +1061,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                GardStorage objForm = new GardStorage();
+                GardStorage objForm = new GardStorage(this);
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
