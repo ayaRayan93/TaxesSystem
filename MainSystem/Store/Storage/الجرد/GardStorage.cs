@@ -491,19 +491,20 @@ namespace MainSystem
             {
                 if (load)
                 {
+                    dbconnection.Close();
                     dbconnection.Open();
                     txtStoreID.Text = comStore.SelectedValue.ToString();
                     string query = "select Inventory_Num,Date from inventory where Store_ID="+txtStoreID.Text+ " order by Inventory_Num desc limit 1 ";
-                    MySqlCommand com = new MySqlCommand();
+                    MySqlCommand com = new MySqlCommand(query,dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
                     {
                         labGardPermission.Text = dr[0].ToString();
                         dateTimePicker1.Text = dr[1].ToString();
                         ListOfEditDataIDs.Clear();
-                        ListOfSavedDataIDs.Clear();
-                        ListOfDataIDs.Clear();
-                        displayProducts();
+                        //ListOfSavedDataIDs.Clear();
+                        //ListOfDataIDs.Clear();
+                        //displayProducts();
                     }
                     dr.Close();
                   
@@ -594,7 +595,7 @@ namespace MainSystem
                 DataRow dataRow = view.GetFocusedDataRow();
                 int Data_ID = Convert.ToInt32(dataRow["Data_ID"].ToString());
                 addGardQuantity(Data_ID, dataRow);
-
+                ListOfEditDataIDs.Add(Data_ID);
             }
             catch (Exception ex)
             {
@@ -797,7 +798,7 @@ namespace MainSystem
                 fQuery += "and data.Classification='" + comClassfication.Text + "'";
             }
 
-            string query = "SELECT data.Data_ID,data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(size.Size_Value,''),COALESCE(data.Classification,''),COALESCE(data.Description,'') )as 'البند',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',Old_Quantity as 'الكمية قبل الجرد' ,Current_Quantity as 'الكمية المجردة' from inventory_details INNER JOIN data on inventory_details.Data_ID=data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID ";
+            string query = "SELECT data.Data_ID,data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(size.Size_Value,''),COALESCE(data.Classification,''),COALESCE(data.Description,'') )as 'البند',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',Old_Quantity as 'الكمية قبل الجرد' ,Current_Quantity as 'الكمية المجردة' from inventory inner join inventory_details on inventory.Inventory_ID=inventory_details.Inventory_ID INNER JOIN data on inventory_details.Data_ID=data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " and Inventory_Num=" + labGardPermission.Text + " and Store_ID=" + txtStoreID.Text+" order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID ";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1249,50 +1250,53 @@ namespace MainSystem
 
         public void addGardQuantity(int Data_ID, DataRow row)
         {
+            dbconnection.Close();
+            dbconnection.Open();
+
+            string query = "select Inventory_ID from inventory where Inventory_Num=" + labGardPermission.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            int Inventory_ID = Convert.ToInt16(com.ExecuteScalar());
             if (haveOpenStorageAccount(Data_ID))
             {
-                if (IsEdited(Data_ID))
-                {
-                    string query = "update  inventory_details set Current_Quantity=@Current_Quantity,Store_Place_ID=@Store_Place_ID,Date=@Date,Note=@Note where Data_ID=" + row[0] + " and Inventory_ID=" + row[1];
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
-                    com.Parameters["@Current_Quantity"].Value = row[6];
-                    com.Parameters.Add("@Updated", MySqlDbType.Int16);
-                    com.Parameters["@Updated"].Value = 1;
-                    com.ExecuteNonQuery();
+                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Updated=@Updated where Data_ID=" + Data_ID + " and Inventory_ID=" + Inventory_ID;
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
+                com.Parameters["@Current_Quantity"].Value = row[6];
+                com.Parameters.Add("@Updated", MySqlDbType.Int16);
+                com.Parameters["@Updated"].Value = 1;
+                com.ExecuteNonQuery();
 
-                    query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + row[0] + " and Store_ID=" + row[1];
-                    com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                    com.Parameters["@Type"].Value = "بند";
-                    com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
-                    DateTime date = Convert.ToDateTime(dateTimePicker1.Text);
-                    string d = date.ToString("yyyy-MM-dd");
-                    com.Parameters["@Storage_Date"].Value = d;
-                    com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                    com.Parameters["@Total_Meters"].Value = row[6];
-                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                    com.Parameters["@Note"].Value = "تعديل جرد";
-                    com.ExecuteNonQuery();
+                query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + Data_ID + " and Store_ID=" +txtStoreID.Text;
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                com.Parameters["@Type"].Value = "بند";
+                com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
+                DateTime date = Convert.ToDateTime(dateTimePicker1.Text);
+                string d = date.ToString("yyyy-MM-dd");
+                com.Parameters["@Storage_Date"].Value = d;
+                com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                com.Parameters["@Total_Meters"].Value = row[6];
+                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                com.Parameters["@Note"].Value = "تعديل جرد";
+                com.ExecuteNonQuery();
 
-                    string value = "";
-                    UserControl.ItemRecord("inventory_details", "تعديل", (int)row[0], DateTime.Now, value, dbconnection);
+                string value = "";
+                UserControl.ItemRecord("inventory_details", "تعديل", (int)row[0], DateTime.Now, value, dbconnection);
 
-                }
             }
             else
             {
                 //save to open storage account with inital value 0
-                string query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
+                com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                 com.Parameters["@Data_ID"].Value = row[0];
                 com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
                 com.Parameters["@Quantity"].Value = row[6];
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_ID"].Value = row[1];
+                com.Parameters["@Store_ID"].Value =Convert.ToInt16(txtStoreID.Text);
                 com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID(Convert.ToInt16(row[1]));
+                com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID(Convert.ToInt16(txtStoreID.Text));
                 com.Parameters.Add("@Date", MySqlDbType.Date, 0);
                 DateTime date = Convert.ToDateTime(dateTimePicker1.Text);
                 string d = date.ToString("yyyy-MM-dd");
@@ -1305,25 +1309,25 @@ namespace MainSystem
                 query = "insert into storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                com.Parameters["@Store_ID"].Value = row[1];
+                com.Parameters["@Store_ID"].Value = txtStoreID.Text;
                 com.Parameters.Add("@Type", MySqlDbType.VarChar);
                 com.Parameters["@Type"].Value = "بند";
                 com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                date = Convert.ToDateTime(row[8]);
+                date = Convert.ToDateTime(dateTimePicker1.Text);
                 d = date.ToString("yyyy-MM-dd");
                 com.Parameters["@Date"].Value = d;
                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                 com.Parameters["@Data_ID"].Value = row[0];
                 com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
-                com.Parameters["@PlaceOfStore"].Value = row[2];
+                com.Parameters["@PlaceOfStore"].Value = getStore_Place_ID(Convert.ToInt16(txtStoreID.Text));
                 com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
                 com.Parameters["@TotalOfMeters"].Value = row[6];
                 com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                com.Parameters["@Note"].Value = row[7];
+                com.Parameters["@Note"].Value = "تعديل جرد";
                 com.ExecuteNonQuery();
 
                 //update inventory
-                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Store_Place_ID=@Store_Place_ID,Date=@Date,Note=@Note where Data_ID=" + row[0] + " and Inventory_ID=" + row[1];
+                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Updated=@Updated where Data_ID=" + Data_ID + " and Inventory_ID=" + Inventory_ID;
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
                 com.Parameters["@Current_Quantity"].Value = row[6];
@@ -1334,10 +1338,10 @@ namespace MainSystem
                 UserControl.ItemRecord("inventory_details", "تعديل", (int)row[0], DateTime.Now, "", dbconnection);
 
             }
+            dbconnection.Close();
         }
         public bool haveOpenStorageAccount(int Data_ID)
         {
-            dbconnection.Open();
             string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID="+Data_ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
