@@ -881,7 +881,7 @@ namespace MainSystem
                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                 com.Parameters["@Data_ID"].Value = row[0];
                 com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-                com.Parameters["@Quantity"].Value = row[6];
+                com.Parameters["@Quantity"].Value = 0;
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                 com.Parameters["@Store_ID"].Value =Convert.ToInt16(txtStoreID.Text);
                 com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
