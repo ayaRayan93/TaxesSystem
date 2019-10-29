@@ -302,8 +302,8 @@ namespace MainSystem
                 if (row1["Price_Type"].ToString() == "لستة")
                 {
                     radioList.Checked = true;
-                    /*txtDiscount.Text = row1["خصم الشراء"].ToString();
-                    label7.Text = "خصم الشراء";
+                    txtDiscount.Text = row1["نسبة الخصم"].ToString();
+                    /*label7.Text = "خصم الشراء";
                     txtNormalIncrease.Visible = true;
                     txtCategoricalIncrease.Visible = true;
                     label8.Visible = true;
@@ -312,8 +312,8 @@ namespace MainSystem
                 else if (row1["Price_Type"].ToString() == "قطعى")
                 {
                     radioQata3y.Checked = true;
-                    /*txtDiscount.Text = row1["نسبة الشراء"].ToString();
-                    label7.Text = "نسبة الشراء";
+                    txtDiscount.Text = row1["نسبة الخصم"].ToString();
+                    /*label7.Text = "نسبة الشراء";
                     txtNormalIncrease.Visible = false;
                     txtCategoricalIncrease.Visible = false;
                     label8.Visible = false;
