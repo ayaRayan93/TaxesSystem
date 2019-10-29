@@ -31,6 +31,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtStoreID = new System.Windows.Forms.TextBox();
             this.labGardPermission = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.labStore = new System.Windows.Forms.Label();
@@ -67,10 +68,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
-            this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtStoreID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -119,6 +118,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(921, 244);
             this.panel1.TabIndex = 37;
+            // 
+            // txtStoreID
+            // 
+            this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtStoreID.Location = new System.Drawing.Point(49, 22);
+            this.txtStoreID.Name = "txtStoreID";
+            this.txtStoreID.Size = new System.Drawing.Size(55, 20);
+            this.txtStoreID.TabIndex = 238;
             // 
             // labGardPermission
             // 
@@ -567,13 +574,12 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.btnReport, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 781);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
@@ -598,33 +604,12 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(376, 4);
+            this.btnReport.Location = new System.Drawing.Point(417, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(86, 52);
+            this.btnReport.Size = new System.Drawing.Size(96, 52);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnSave.ImagePosition = 1;
-            this.btnSave.ImageZoom = 25;
-            this.btnSave.LabelPosition = 21;
-            this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(469, 5);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 50);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // gridControl2
             // 
@@ -686,14 +671,6 @@
             this.gridView2.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView2_RowStyle);
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
-            // txtStoreID
-            // 
-            this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtStoreID.Location = new System.Drawing.Point(49, 22);
-            this.txtStoreID.Name = "txtStoreID";
-            this.txtStoreID.Size = new System.Drawing.Size(55, 20);
-            this.txtStoreID.TabIndex = 238;
-            // 
             // GardStorage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -742,7 +719,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
-        private Bunifu.Framework.UI.BunifuTileButton btnSave;
         private System.Windows.Forms.Label labStore;
         private DevExpress.XtraGrid.GridControl gridControl2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;

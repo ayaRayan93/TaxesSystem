@@ -683,6 +683,7 @@ namespace MainSystem
                 if (gridView2.RowCount > 0)
                 {
                     save2DB();
+                    btnSave.Enabled = false;
                 }
                 else
                 {
@@ -744,6 +745,7 @@ namespace MainSystem
 
                 mdt.Rows.Clear();
                 btnReport.Enabled = false;
+                btnSave.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -914,12 +916,20 @@ namespace MainSystem
         {
             if (gridView2.RowCount > 0)
             {
-                string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
+                string query = "select TaswayaSubtract_ID from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-              
-                  int PermissionNum = (Convert.ToInt32(com.ExecuteScalar()) + 1);
-                
-                query = "insert into taswayaa_subtract_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
+                if (com.ExecuteScalar() != null)
+                {
+                    MessageBox.Show("هذا الاذن تم حفظه من قبل");
+                }
+                else
+                {
+                    query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
+                    com = new MySqlCommand(query, dbconnection);
+
+                    int PermissionNum = (Convert.ToInt32(com.ExecuteScalar()) + 1);
+
+                    query = "insert into taswayaa_subtract_permision (PermissionNum,Store_ID,Date,Note)values (@PermissionNum,@Store_ID,@Date,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@PermissionNum", MySqlDbType.Int16);
                     com.Parameters["@PermissionNum"].Value = PermissionNum;
@@ -960,13 +970,13 @@ namespace MainSystem
                     UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
 
                     MessageBox.Show("تم الحفظ");
-               
+
                     btnReport.Enabled = true;
                     comStore.Enabled = false;
                     txtNote.ReadOnly = true;
                     gridControl2.Enabled = false;
                     flag = true;
-                
+                }
             }
         }
         public DataTable createDataTable()

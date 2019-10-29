@@ -1447,23 +1447,67 @@ namespace MainSystem
                 #region بند
                 if (dr["Type"].ToString() == "بند")
                 {
-                    string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "' and Store_ID=" + dr["Store_ID"].ToString();
-                    MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
-                    MySqlDataReader dr2 = com2.ExecuteReader();
-                    while (dr2.Read())
+                    if (haveOpenStorageAccount(Convert.ToInt16(dr["Data_ID"].ToString())))
                     {
-                        storageQ = Convert.ToDouble(dr2["Total_Meters"]);
-                        productQ = Convert.ToDouble(dr["TotalMeter"]);
+                        string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "' and Store_ID=" + dr["Store_ID"].ToString();
+                        MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                        MySqlDataReader dr2 = com2.ExecuteReader();
+                        while (dr2.Read())
+                        {
+                            storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                            productQ = Convert.ToDouble(dr["TotalMeter"]);
 
-                        storageQ += productQ;
-                        id = Convert.ToInt32(dr2["Storage_ID"]);
-                        q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
-                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
-                        comm.ExecuteNonQuery();
-                        flag = true;
-                        break;
+                            storageQ += productQ;
+                            id = Convert.ToInt32(dr2["Storage_ID"]);
+                            q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                            MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                            comm.ExecuteNonQuery();
+                            flag = true;
+                            break;
+                        }
+                        dr2.Close();
                     }
-                    dr2.Close();
+                    else
+                    {
+                        query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                        com.Parameters["@Data_ID"].Value = dr[0];
+                        com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                        com.Parameters["@Quantity"].Value = 0;
+                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_ID"].Value = Convert.ToInt16(dr["Store_ID"].ToString());
+                        com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_Place_ID"].Value = getStore_Place_ID(Convert.ToInt16(dr["Store_ID"].ToString()));
+                        com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                        DateTime date = Convert.ToDateTime(dateTimePicker1.Value.Date);
+                        string d = date.ToString("yyyy-MM-dd");
+                        com.Parameters["@Date"].Value = d;
+                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                        com.Parameters["@Note"].Value = "مرتجع عميل";
+                        com.ExecuteNonQuery();
+
+                        //save to storage with gard value
+                        query = "insert into storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                        com.Parameters["@Store_ID"].Value = dr["Store_ID"].ToString();
+                        com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                        com.Parameters["@Type"].Value = "بند";
+                        com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                        date = Convert.ToDateTime(dateTimePicker1.Value.Date);
+                        d = date.ToString("yyyy-MM-dd");
+                        com.Parameters["@Date"].Value = d;
+                        com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                        com.Parameters["@Data_ID"].Value = dr[0];
+                        com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
+                        com.Parameters["@PlaceOfStore"].Value = getStore_Place_ID(Convert.ToInt16(dr["Store_ID"].ToString()));
+                        com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
+                        com.Parameters["@TotalOfMeters"].Value = Convert.ToDouble(dr["TotalMeter"]);
+                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                        com.Parameters["@Note"].Value = "مرتجع عميل";
+                        com.ExecuteNonQuery();
+                    }
                 }
                 #endregion
 
@@ -1513,18 +1557,36 @@ namespace MainSystem
                 dr3.Close();*/
                 #endregion
 
-                if (!flag)
-                {
-                    MessageBox.Show(dr["Data_ID"].ToString() + " not valid in store");
-                }
-                flag = false;
+                //if (!flag)
+                //{
+                //    MessageBox.Show(dr["Data_ID"].ToString() + " not valid in store");
+                //}
+                //flag = false;
             }
             dr.Close();
 
             connectionReader2.Close();
             connectionReader.Close();
         }
-
+        public bool haveOpenStorageAccount(int Data_ID)
+        {
+            string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID=" + Data_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public int getStore_Place_ID(int Store_ID)
+        {
+            dbconnection.Close();
+            dbconnection.Open();
+            string query = "select Store_Place_ID from store_places inner join store on store_places.Store_ID=store.Store_ID where store_places.Store_ID=" + Store_ID + " limit 1";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            int Store_Place_ID = Convert.ToInt32(com.ExecuteScalar());
+            return Store_Place_ID;
+        }
         void printBill()
         {
             List<ReturnedBill_Items> bi = new List<ReturnedBill_Items>();
