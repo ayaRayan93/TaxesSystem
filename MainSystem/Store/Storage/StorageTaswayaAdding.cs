@@ -27,6 +27,7 @@ namespace MainSystem
         MainForm mainForm;
         DataTable mdt=null;
         DataRowView mRow = null;
+        string storeName, StoreID;
         //List<int> ListOfDataIDs;
         public StorageTaswayaAdding(MainForm mainForm,XtraTabControl xtraTabControlStoresContent)
         {
@@ -422,7 +423,7 @@ namespace MainSystem
                             displayProducts(code);
                             DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                             mRow = row;
-                            txtTotalMeter.Text = row[4].ToString();
+                            txtTotalMeter.Text = row[3].ToString();
                             txtAddingQuantity.Focus();
                             break;
                         case "txtAddingQuantity":
@@ -460,7 +461,7 @@ namespace MainSystem
                     }
 
                 }
-                catch
+                catch(Exception ex)
                 {
                     MessageBox.Show("خطأ في الادخال");
                     txtCodePart1.Text = txtCodePart2.Text = txtCodePart3.Text = txtCodePart4.Text = txtCodePart5.Text = "";
@@ -477,37 +478,26 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    //dbconnection.Open();
-                    //string query = "select permissionNum from taswayaa_adding_permision order by permissionNum desc limit 1 ";
-                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    //if (com.ExecuteScalar() != null)
-                    //{
-                    //    int x = Convert.ToInt32(com.ExecuteScalar());
-                    //    labPermissionNum.Text = (x + 1).ToString();
-                    //}
-                    //else
-                    //{
-                    //    labPermissionNum.Text = "1";
-                    //}
-                    //if (!File.Exists("TaswayAddCount.txt"))
-                    //{
-                    //    using (StreamWriter writer = new StreamWriter("TaswayAddCount.txt"))
-                    //    {
-                    //        writer.WriteLine(363);
-                    //    }
-                    //    labPermissionNum.Text = "363";
-                    //}
-                    //else
-                    //{
-                    //    int count = Convert.ToInt16(File.ReadAllText("TaswayAddCount.txt"));
-                    //    count++;
-                    //    labPermissionNum.Text = count + "";
-                    //    using (StreamWriter writer = new StreamWriter("TaswayAddCount.txt"))
-                    //    {
-                    //        writer.WriteLine(labPermissionNum.Text);
-                    //    }
-                    //}
-                    //txtNote.Focus();
+                    if (gridView2.RowCount > 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("يوجد بنود لم يتم حفظها .هل تريد الغاء التسوية؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            clear();
+                        }
+                        else
+                        {
+                            loaded = false;
+                            comStore.Text = storeName;
+                            comStore.SelectedValue = StoreID;
+                            loaded = true;
+                        }
+                    }
+                    else
+                    {
+                        storeName = comStore.Name;
+                        StoreID = comStore.SelectedValue.ToString(); ;
+                    }
                 }
             }
             catch (Exception ex)
@@ -769,6 +759,8 @@ namespace MainSystem
             comStore.Text = "";
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
+            mdt = new DataTable();
+            mdt = createDataTable();
         }
         public void clearPart()
         {
@@ -1216,7 +1208,7 @@ namespace MainSystem
 
             while (dr.Read())
             {
-                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Store_ID="+comStore.SelectedValue+" and Type='بند'";
+                string query2 = "select Storage_ID,Total_Meters from storage where Data_ID=" + dr["Data_ID"].ToString() + " and Store_ID="+StoreID+" and Type='بند'";
                 MySqlCommand com2 = new MySqlCommand(query2, dbconnectionReader);
                 MySqlDataReader dr2 = com2.ExecuteReader();
                 while (dr2.Read())

@@ -27,7 +27,7 @@ namespace MainSystem
         MainForm mainForm;
         DataTable mdt=null;
         DataRowView mRow = null;
-
+        string storeName, StoreID;
         public StorageTaswayaSubtract(MainForm mainForm,XtraTabControl xtraTabControlStoresContent)
         {
             try
@@ -422,7 +422,7 @@ namespace MainSystem
                             displayProducts(code);
                             DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
                             mRow = row;
-                            txtTotalMeter.Text = row[4].ToString();
+                            txtTotalMeter.Text = row[3].ToString();
                             txtSubtractQuantity.Focus();
                             break;
                         case "txtSubtractQuantity":
@@ -473,37 +473,26 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    //dbconnection.Open();
-                    //string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
-                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    //if (com.ExecuteScalar() != null)
-                    //{
-                    //    labPermissionNum.Text = (Convert.ToInt32(com.ExecuteScalar()) + 1).ToString();
-                    //}
-                    //else
-                    //{
-                    //    labPermissionNum.Text = "1";
-                    //}
-                    //if (!File.Exists("TaswaySubCount.txt"))
-                    //{
-                    //    using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
-                    //    {
-                    //        writer.WriteLine(180);
-                    //    }
-                    //    labPermissionNum.Text ="180";
-                    //}
-                    //else
-                    //{
-                    //    int count = Convert.ToInt16(File.ReadAllText("TaswaySubCount.txt"));
-                    //    count++;
-                    //    labPermissionNum.Text = count + "";
-                    //    using (StreamWriter writer = new StreamWriter("TaswaySubCount.txt"))
-                    //    {
-                    //        writer.WriteLine(labPermissionNum.Text);
-                    //    }
-                    //}
-                  
-                    //txtNote.Focus();
+                    if (gridView2.RowCount > 0)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("يوجد بنود لم يتم حفظها .هل تريد الغاء التسوية؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            clear();
+                        }
+                        else
+                        {
+                            loaded = false;
+                            comStore.Text = storeName;
+                            comStore.SelectedValue = StoreID;
+                            loaded = true;
+                        }
+                    }
+                    else
+                    {
+                        storeName = comStore.Name;
+                        StoreID = comStore.SelectedValue.ToString(); ;
+                    }
                 }
             }
             catch (Exception ex)
@@ -764,6 +753,8 @@ namespace MainSystem
             comStore.Text = "";
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
+            mdt = new DataTable();
+            mdt = createDataTable();
         }
         public void clearPart()
         {
@@ -916,16 +907,16 @@ namespace MainSystem
         {
             if (gridView2.RowCount > 0)
             {
-                string query = "select TaswayaSubtract_ID from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
+                //string query = "select TaswayaSubtract_ID from taswayaa_subtract_permision where PermissionNum=" + labPermissionNum.Text;
+                //MySqlCommand com = new MySqlCommand(query, dbconnection);
+                //if (com.ExecuteScalar() != null)
+                //{
+                //    MessageBox.Show("هذا الاذن تم حفظه من قبل");
+                //}
+                //else
+                //{
+                string query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                if (com.ExecuteScalar() != null)
-                {
-                    MessageBox.Show("هذا الاذن تم حفظه من قبل");
-                }
-                else
-                {
-                    query = "select PermissionNum from taswayaa_subtract_permision order by PermissionNum desc limit 1 ";
-                    com = new MySqlCommand(query, dbconnection);
 
                     int PermissionNum = (Convert.ToInt32(com.ExecuteScalar()) + 1);
 
@@ -965,8 +956,8 @@ namespace MainSystem
                         com.Parameters["@Note"].Value = txtItemNote.Text;
                         com.ExecuteNonQuery();
 
-                        DecreaseProductQuantity(mdt.Rows[i][0].ToString(), Convert.ToDouble(mdt.Rows[i][6].ToString()), comStore.SelectedValue.ToString());
-                    }
+                        DecreaseProductQuantity(mdt.Rows[i][0].ToString(), Convert.ToDouble(mdt.Rows[i][6].ToString()), StoreID);
+                    //}
                     UserControl.ItemRecord("taswayaa_subtract_permision", "اضافة", PermissionNum, DateTime.Now, "", dbconnection);
 
                     MessageBox.Show("تم الحفظ");

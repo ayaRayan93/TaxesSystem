@@ -119,7 +119,7 @@ namespace MainSystem
             dbconnection1.Close();
         }
 
-        private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
+        /*private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }*/
 
         private void comBox_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -426,12 +426,12 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية الحالية"], c.ExecuteScalar().ToString());
                     }
 
-                    q = "select inventory_details.InventoryDetails_ID FROM inventory_details INNER JOIN inventory ON inventory_details.Inventory_ID = inventory.Inventory_ID where inventory_details.Data_ID=" + dr["Data_ID"].ToString() + " and inventory.Store_ID=" + comStore.SelectedValue.ToString() + " and inventory.Inventory_Num=" + txtInventoryNum.Text;
+                    /*q = "select inventory_details.InventoryDetails_ID FROM inventory_details INNER JOIN inventory ON inventory_details.Inventory_ID = inventory.Inventory_ID where inventory_details.Data_ID=" + dr["Data_ID"].ToString() + " and inventory.Store_ID=" + comStore.SelectedValue.ToString() + " and inventory.Inventory_Num=" + txtInventoryNum.Text;
                     c = new MySqlCommand(q, dbconnection1);
                     if (c.ExecuteScalar() != null)
                     {
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["added"], "1");
-                    }
+                    }*/
                 }
             }
             
@@ -454,7 +454,7 @@ namespace MainSystem
                 {
                     dbconnection.Open();
                     dbconnection1.Open();
-                    string query = "SELECT inventory.Inventory_ID FROM inventory_details INNER JOIN inventory ON inventory_details.Inventory_ID = inventory.Inventory_ID where inventory.Store_ID=" + comStore.SelectedValue.ToString() + " and inventory.Inventory_Num=" + txtInventoryNum.Text;
+                    string query = "SELECT inventory.Inventory_ID FROM inventory where inventory.Store_ID=" + comStore.SelectedValue.ToString() + " and inventory.Inventory_Num=" + txtInventoryNum.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     if (!dr.HasRows)
@@ -494,7 +494,7 @@ namespace MainSystem
                             c.Parameters["@Date"].Value = DateTime.Now;
                             c.ExecuteNonQuery();
 
-                            gridView1.SetRowCellValue(i, "added", "1");
+                            //gridView1.SetRowCellValue(i, "added", "1");
                         }
                     }
                     else
@@ -528,7 +528,7 @@ namespace MainSystem
                                     c.Parameters["@Date"].Value = DateTime.Now;
                                     c.ExecuteNonQuery();
 
-                                    gridView1.SetRowCellValue(i, "added", "1");
+                                    //gridView1.SetRowCellValue(i, "added", "1");
                                 }
                             }
                         }

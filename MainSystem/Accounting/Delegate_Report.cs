@@ -39,7 +39,7 @@ namespace MainSystem
                 
                 printableComponentLink.Component = gridControl;
                 printableComponentLink.RightToLeftLayout = false;
-                printableComponentLink.Landscape = true;
+                printableComponentLink.Landscape = false;
                 printableComponentLink.Margins = new System.Drawing.Printing.Margins(50, 50, 50, 50);
                 printingSystem1.Links.Add(printableComponentLink);
                 printableComponentLink.CreateReportHeaderArea += PrintableComponentLink_CreateReportHeaderArea;
