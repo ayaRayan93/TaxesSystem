@@ -931,7 +931,7 @@ namespace MainSystem
         }
         public bool haveOpenStorageAccount(int Data_ID)
         {
-            string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID="+Data_ID;
+            string query = "select OpenStorageAccount_ID from open_storage_account where Data_ID="+Data_ID+ " and Store_ID=" + txtStoreID.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
