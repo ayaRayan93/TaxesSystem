@@ -551,7 +551,7 @@ namespace MainSystem
                         BillNo++;
                     }
 
-                    string query = "insert into supplier_bill (Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID,Value_Additive_Tax) values (@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID,@Value_Additive_Tax)";
+                    string query = "insert into supplier_bill (Bill_No,Date,Import_Permission_Number,Store_ID,Total_Price_B,Total_Price_A,StorageImportPermission_ID,Supplier_ID,Supplier_Permission_Number,Employee_ID,Value_Additive_Tax,Import_Date) values (@Bill_No,@Date,@Import_Permission_Number,@Store_ID,@Total_Price_B,@Total_Price_A,@StorageImportPermission_ID,@Supplier_ID,@Supplier_Permission_Number,@Employee_ID,@Value_Additive_Tax,@Import_Date)";
                     MySqlCommand com = new MySqlCommand(query, conn);
                     //com.Parameters.Add("@Branch_ID", MySqlDbType.Int16);
                     //com.Parameters["@Branch_ID"].Value = UserControl.EmpBranchID;
@@ -577,6 +577,8 @@ namespace MainSystem
                     com.Parameters["@Supplier_Permission_Number"].Value = comSupPerm.Text;
                     com.Parameters.Add("@Value_Additive_Tax", MySqlDbType.Decimal);
                     com.Parameters["@Value_Additive_Tax"].Value = txtAllTax.Text;
+                    com.Parameters.Add("@Import_Date", MySqlDbType.Date);
+                    com.Parameters["@Import_Date"].Value = dateTimePicker1.Value.Date;
                     com.ExecuteNonQuery();
 
                     string q1 = "select Bill_ID from supplier_bill ORDER BY Bill_ID DESC LIMIT 1";
@@ -701,7 +703,7 @@ namespace MainSystem
                     }
                     addabtiveTax = Convert.ToDouble(txtAllTax.Text);
                     Report_SupplierBill f = new Report_SupplierBill();
-                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, discount, Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), bi);
+                    f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, discount, Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), dateTimePicker1.Value.Date, bi);
                     f.ShowDialog();
                     #endregion
 
