@@ -52,6 +52,10 @@ namespace MainSystem
                 comStore.SelectedIndex = -1;
                 load = true;
                 comStore.Text = selRow["المخزن"].ToString();
+                if (selRow["تاريخ الشراء"].ToString() != "")
+                {
+                    dateTimePicker1.Value = Convert.ToDateTime(selRow["تاريخ الشراء"].ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -646,10 +650,16 @@ namespace MainSystem
             {
                 try
                 {
-                    #region report
                     conn.Open();
-                    string query = "select Store_Name from store where Store_ID=" + storeId;
+                    string query = "update supplier_bill set Import_Date=@Import_Date where Bill_ID=" + selRow[0].ToString();
                     MySqlCommand com = new MySqlCommand(query, conn);
+                    com.Parameters.Add("@Import_Date", MySqlDbType.Date);
+                    com.Parameters["@Import_Date"].Value = dateTimePicker1.Value.Date;
+                    com.ExecuteNonQuery();
+
+                    #region report
+                    query = "select Store_Name from store where Store_ID=" + storeId;
+                    com = new MySqlCommand(query, conn);
                     string storeName = com.ExecuteScalar().ToString();
 
                     double addabtiveTax = 0;
@@ -672,7 +682,7 @@ namespace MainSystem
                     }
                     addabtiveTax = Convert.ToDouble(txtAllTax.Text);
                     Report_SupplierBillCopy f = new Report_SupplierBillCopy();
-                    f.PrintInvoice(storeName, selRow["رقم الفاتورة"].ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, selRow["التاريخ"].ToString(), discount, Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), bi);
+                    f.PrintInvoice(storeName, selRow["رقم الفاتورة"].ToString(), comSupplier.Text, comSupPerm.Text, comPermessionNum.Text, selRow["التاريخ"].ToString(), discount, Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), dateTimePicker1.Value.Date.ToString(), bi);
                     f.ShowDialog();
                     #endregion
                     

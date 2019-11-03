@@ -26,12 +26,13 @@ namespace MainSystem
         bool loaded = false;
         //bool loadedPer = false;
         int storageReturnSupplierId = 0;
-        int ReturnedPermissionNumber = 1;
+        //int ReturnedPermissionNumber = 1;
         XtraTabControl xtraTabControlStores = null;
         DataRow selrow = null;
         string storeIdd = "";
         //int flagConfirm = 2;
         //int rowHandel1;
+        int storageReturnID = 0;
 
         public StorageReturnBill_Update(DataRow Selrow, string StoreIdd, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
         {
@@ -53,6 +54,7 @@ namespace MainSystem
             xtraTabControlStores = tabControlContentStore;
             selrow = Selrow;
             storeIdd = StoreIdd;
+            storageReturnID = Convert.ToInt16(Selrow["التسلسل"].ToString());
         }
 
         private void StorageReturnBill_Load(object sender, EventArgs e)
@@ -150,7 +152,7 @@ namespace MainSystem
                 if (radioButtonReturnPermission.Checked)
                 {
                     #region add with permission
-                    query = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    query = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID and import_storage_return_details.Data_ID = supplier_permission_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
@@ -168,11 +170,10 @@ namespace MainSystem
                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["عدد الكراتين"].ToString());
                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد البلتات"].ToString());
                             gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["السبب"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_Permission_Details_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["Supplier_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["اذن استلام"].ToString());
-                            //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["المورد"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], dr["Supplier_Permission_Details_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], dr["Supplier_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], dr["اذن استلام"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], dr["المورد"].ToString());
                         }
                     }
                     dr.Close();
@@ -718,6 +719,117 @@ namespace MainSystem
                                     //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["المورد"].ToString());
                                 }
+
+                                
+                                if (int.TryParse(txtPermissionNum.Text, out permNum))
+                                { }
+                                else
+                                {
+                                    MessageBox.Show("برجاء التاكد من ادخال البيانات بطريقة صحيحة");
+                                    return;
+                                }
+                                dbconnection.Open();
+                                dbconnection2.Open();
+                                int storageImportPermissionID = 0;
+
+                                string q = "select StorageImportPermission_ID from storage_import_permission where Store_ID=" + comStore.SelectedValue.ToString() + " and Import_Permission_Number=" + permNum;
+                                MySqlCommand com2 = new MySqlCommand(q, dbconnection);
+                                if (com2.ExecuteScalar() != null)
+                                {
+                                    storageImportPermissionID = int.Parse(com2.ExecuteScalar().ToString());
+                                }
+                                else
+                                {
+                                    MessageBox.Show("هذا الاذن غير موجود");
+                                    dbconnection.Close();
+                                    dbconnection2.Close();
+                                    return;
+                                }
+
+
+                                for (int i = 0; i < gridView2.RowCount; i++)
+                                {
+                                    DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
+
+                                    string query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID + " and Supplier_ID =" + row2["Supplier_ID"].ToString() + " and Supplier_Permission_Number=" + row2["Supplier_Permission_Number"].ToString();
+                                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                                    if (com.ExecuteScalar() != null)
+                                    {
+                                        storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                    }
+                                    else
+                                    {
+                                        query = "insert into import_storage_return_supplier (Supplier_ID,Supplier_Permission_Number,ImportStorageReturn_ID) values (@Supplier_ID,@Supplier_Permission_Number,@ImportStorageReturn_ID)";
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                                        com.Parameters["@Supplier_ID"].Value = row2["Supplier_ID"].ToString();
+                                        com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                                        com.Parameters["@Supplier_Permission_Number"].Value = row2["Supplier_Permission_Number"].ToString();
+                                        com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
+                                        com.Parameters["@ImportStorageReturn_ID"].Value = storageReturnID;
+                                        com.ExecuteNonQuery();
+
+                                        query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
+                                        com = new MySqlCommand(query, dbconnection);
+                                        storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
+                                    }
+
+                                    query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
+                                    //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                    //com.Parameters["@Store_Place_ID"].Value = row2["Store_Place_ID"].ToString();
+                                    com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
+                                    com.Parameters["@Date"].Value = DateTime.Now;
+                                    if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
+                                    {
+                                        com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                                        com.Parameters["@Balatat"].Value = row2["NumOfBalate"].ToString();
+                                        com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                                        com.Parameters["@Carton_Balata"].Value = row2["NumOfCarton"].ToString();
+                                    }
+                                    else
+                                    {
+                                        com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                                        com.Parameters["@Balatat"].Value = null;
+                                        com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                                        com.Parameters["@Carton_Balata"].Value = null;
+                                    }
+                                    com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                    com.Parameters["@Data_ID"].Value = row2[0].ToString();
+                                    com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                                    com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
+                                    com.Parameters.Add("@Reason", MySqlDbType.VarChar);
+                                    com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
+                                    com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
+                                    com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
+                                    com.ExecuteNonQuery();
+
+                                    query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
+                                    com = new MySqlCommand(query, dbconnection);
+                                    if (com.ExecuteScalar() != null)
+                                    {
+                                        double totalMeter = Convert.ToDouble(com.ExecuteScalar().ToString());
+
+                                        query = "update storage set Total_Meters=" + (totalMeter - Convert.ToDouble(row2["TotalQuantity"].ToString())) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.ExecuteNonQuery();
+
+                                        UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
+                                    }
+                                }
+                                dbconnection.Close();
+
+                                UserControl.ItemRecord("import_storage_return", "تعديل", storageReturnID, DateTime.Now, "", dbconnection);
+
+                                search();
+                                txtCode.Text = "";
+                                txtTotalMeter.Text = "0";
+                                txtCarton.Text = "0";
+                                txtBalat.Text = "0";
+                                txtReason.Text = "";
+                                txtItemReason.Text = "";
                             }
                             else
                             {
@@ -727,12 +839,13 @@ namespace MainSystem
                         }
                         else
                         {
+                            #region without Permission
                             if (IsItemAdded())
                             {
                                 MessageBox.Show("هذا العنصر تم اضافتة من قبل");
                                 return;
                             }
-                            
+
                             if (row1["الكمية المتاحة"].ToString() != "")
                             {
                                 if (total > Convert.ToDouble(row1["الكمية المتاحة"].ToString()))
@@ -768,6 +881,130 @@ namespace MainSystem
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "0");
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], "");
                             }
+
+                            dbconnection.Open();
+                            dbconnection2.Open();
+
+                            string query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID + " and Supplier_ID =" + comSupplier.SelectedValue.ToString() + " and Supplier_Permission_Number is null";
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            if (com.ExecuteScalar() != null)
+                            {
+                                storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
+                            }
+                            else
+                            {
+                                query = "insert into import_storage_return_supplier (Supplier_ID,Supplier_Permission_Number,ImportStorageReturn_ID) values (@Supplier_ID,@Supplier_Permission_Number,@ImportStorageReturn_ID)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
+                                com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
+                                com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
+                                com.Parameters["@Supplier_Permission_Number"].Value = null;
+                                com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
+                                com.Parameters["@ImportStorageReturn_ID"].Value = storageReturnID;
+                                com.ExecuteNonQuery();
+
+                                query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
+                                com = new MySqlCommand(query, dbconnection);
+                                storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
+                            }
+
+                            for (int i = 0; i < gridView2.RowCount; i++)
+                            {
+                                DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
+
+                                query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                                com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
+                                //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                                //com.Parameters["@Store_Place_ID"].Value = null;
+                                com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
+                                com.Parameters["@Date"].Value = DateTime.Now;
+                                if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
+                                {
+                                    com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                                    com.Parameters["@Balatat"].Value = row2["NumOfBalate"].ToString();
+                                    com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                                    com.Parameters["@Carton_Balata"].Value = row2["NumOfCarton"].ToString();
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Balatat", MySqlDbType.Int16);
+                                    com.Parameters["@Balatat"].Value = null;
+                                    com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
+                                    com.Parameters["@Carton_Balata"].Value = null;
+                                }
+                                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                                com.Parameters["@Data_ID"].Value = row2[0].ToString();
+                                com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                                com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
+                                com.Parameters.Add("@Reason", MySqlDbType.VarChar);
+                                com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
+                                com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
+                                com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
+                                com.ExecuteNonQuery();
+
+                                double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());
+
+                                dbconnection4.Open();
+                                //Store_Place_ID,
+                                query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString();
+                                com = new MySqlCommand(query, dbconnection4);
+                                MySqlDataReader dr = com.ExecuteReader();
+                                if (dr.HasRows)
+                                {
+                                    while (dr.Read())
+                                    {
+                                        if (totalQuant > 0)
+                                        {
+                                            double totalMeter = Convert.ToDouble(dr["Total_Meters"]);
+
+                                            if (totalMeter > 0)
+                                            {
+                                                if ((totalMeter - totalQuant) >= 0)
+                                                {
+                                                    query = "update storage set Total_Meters=" + (totalMeter - totalQuant) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
+                                                    com = new MySqlCommand(query, dbconnection);
+                                                    com.ExecuteNonQuery();
+
+                                                    UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
+
+                                                    totalQuant = 0;
+                                                }
+                                                else if ((totalMeter - totalQuant) < 0)
+                                                {
+                                                    query = "update storage set Total_Meters=" + 0 + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
+                                                    com = new MySqlCommand(query, dbconnection);
+                                                    com.ExecuteNonQuery();
+
+                                                    UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
+
+                                                    totalQuant = totalQuant - totalMeter;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    dr.Close();
+                                }
+                                dbconnection4.Close();
+                            }
+                            dbconnection.Close();
+                            UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
+
+                            displayData();
+
+                            txtCode.Text = "";
+                            txtTotalMeter.Text = "0";
+                            txtCarton.Text = "0";
+                            txtBalat.Text = "0";
+                            txtReason.Text = "";
+                            txtItemReason.Text = "";
+                            for (int i = 0; i < gridView2.RowCount; i++)
+                            {
+                                int rowHandl = gridView2.GetRowHandle(i);
+                                gridView2.DeleteRow(rowHandl);
+                            } 
+                            #endregion
                         }
                         txtCode.Text = "";
                         txtBalat.Text = "0";
@@ -790,6 +1027,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection2.Close();
+            dbconnection3.Close();
+            dbconnection4.Close();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -962,140 +1202,6 @@ namespace MainSystem
                     #region with permission
                     if (radioButtonReturnPermission.Checked)
                     {
-                        int permNum = 0;
-                        if (int.TryParse(txtPermissionNum.Text, out permNum))
-                        { }
-                        else
-                        {
-                            MessageBox.Show("برجاء التاكد من ادخال البيانات بطريقة صحيحة");
-                            return;
-                        }
-                        dbconnection.Open();
-                        dbconnection2.Open();
-                        int storageReturnID = 0;
-                        int storageImportPermissionID = 0;
-                        ReturnedPermissionNumber = 1;
-
-                        string q = "select StorageImportPermission_ID from storage_import_permission where Store_ID=" + comStore.SelectedValue.ToString() + " and Import_Permission_Number=" + permNum;
-                        MySqlCommand com2 = new MySqlCommand(q, dbconnection);
-                        if (com2.ExecuteScalar() != null)
-                        {
-                            storageImportPermissionID = int.Parse(com2.ExecuteScalar().ToString());
-                        }
-                        else
-                        {
-                            MessageBox.Show("هذا الاذن غير موجود");
-                            dbconnection.Close();
-                            dbconnection2.Close();
-                            return;
-                        }
-                        
-                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
-                        MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
-                        if (com3.ExecuteScalar() != null)
-                        {
-                            int r = int.Parse(com3.ExecuteScalar().ToString());
-                            ReturnedPermissionNumber = r + 1;
-                        }
-
-                        string query = "insert into import_storage_return (Store_ID,Returned_Permission_Number,Retrieval_Date,Import_Permission_Number,StorageImportPermission_ID,Reason,Employee_ID) values (@Store_ID,@Returned_Permission_Number,@Retrieval_Date,@Import_Permission_Number,@StorageImportPermission_ID,@Reason,@Employee_ID)";
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
-                        com.Parameters.Add("@Returned_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Returned_Permission_Number"].Value = ReturnedPermissionNumber;
-                        com.Parameters.Add("@Retrieval_Date", MySqlDbType.DateTime, 0);
-                        com.Parameters["@Retrieval_Date"].Value = DateTime.Now;
-                        com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Import_Permission_Number"].Value = permNum;
-                        com.Parameters.Add("@StorageImportPermission_ID", MySqlDbType.Int16);
-                        com.Parameters["@StorageImportPermission_ID"].Value = storageImportPermissionID;
-                        com.Parameters.Add("@Reason", MySqlDbType.VarChar);
-                        com.Parameters["@Reason"].Value = txtReason.Text;
-                        com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-                        com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
-                        com.ExecuteNonQuery();
-
-                        query = "select ImportStorageReturn_ID from import_storage_return order by ImportStorageReturn_ID desc limit 1";
-                        com = new MySqlCommand(query, dbconnection);
-                        storageReturnID = Convert.ToInt32(com.ExecuteScalar().ToString());
-
-                        UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
-
-                        for (int i = 0; i < gridView2.RowCount; i++)
-                        {
-                            DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
-
-                            query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID + " and Supplier_ID =" + row2["Supplier_ID"].ToString() + " and Supplier_Permission_Number=" + row2["Supplier_Permission_Number"].ToString();
-                            com = new MySqlCommand(query, dbconnection);
-                            if (com.ExecuteScalar() != null)
-                            {
-                                storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
-                            }
-                            else
-                            {
-                                query = "insert into import_storage_return_supplier (Supplier_ID,Supplier_Permission_Number,ImportStorageReturn_ID) values (@Supplier_ID,@Supplier_Permission_Number,@ImportStorageReturn_ID)";
-                                com = new MySqlCommand(query, dbconnection);
-                                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                                com.Parameters["@Supplier_ID"].Value = row2["Supplier_ID"].ToString();
-                                com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
-                                com.Parameters["@Supplier_Permission_Number"].Value = row2["Supplier_Permission_Number"].ToString();
-                                com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
-                                com.Parameters["@ImportStorageReturn_ID"].Value = storageReturnID;
-                                com.ExecuteNonQuery();
-
-                                query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
-                                com = new MySqlCommand(query, dbconnection);
-                                storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
-                            }
-
-                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
-                            //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            //com.Parameters["@Store_Place_ID"].Value = row2["Store_Place_ID"].ToString();
-                            com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
-                            com.Parameters["@Date"].Value = DateTime.Now;
-                            if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
-                            {
-                                com.Parameters.Add("@Balatat", MySqlDbType.Int16);
-                                com.Parameters["@Balatat"].Value = row2["NumOfBalate"].ToString();
-                                com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
-                                com.Parameters["@Carton_Balata"].Value = row2["NumOfCarton"].ToString();
-                            }
-                            else
-                            {
-                                com.Parameters.Add("@Balatat", MySqlDbType.Int16);
-                                com.Parameters["@Balatat"].Value = null;
-                                com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
-                                com.Parameters["@Carton_Balata"].Value = null;
-                            }
-                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = row2[0].ToString();
-                            com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                            com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
-                            com.Parameters.Add("@Reason", MySqlDbType.VarChar);
-                            com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
-                            com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
-                            com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
-                            com.ExecuteNonQuery();
-
-                            query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
-                            com = new MySqlCommand(query, dbconnection);
-                            if (com.ExecuteScalar() != null)
-                            {
-                                double totalMeter = Convert.ToDouble(com.ExecuteScalar().ToString());
-
-                                query = "update storage set Total_Meters=" + (totalMeter - Convert.ToDouble(row2["TotalQuantity"].ToString())) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
-                                com = new MySqlCommand(query, dbconnection);
-                                com.ExecuteNonQuery();
-
-                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
-                            }
-                        }
-                        dbconnection.Close();
-
                         string suppliers_Name = "";
                         dbconnection.Open();
                         string query2 = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
@@ -1167,7 +1273,7 @@ namespace MainSystem
                         }
 
                         Report_StorageReturn f = new Report_StorageReturn();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, ReturnedPermissionNumber, txtReason.Text, bi);
+                        //f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, ReturnedPermissionNumber, txtReason.Text, bi);
                         f.ShowDialog();
                         
                         search();
@@ -1183,148 +1289,6 @@ namespace MainSystem
                     #region with out permission
                     else if (radioButtonWithOutReturnPermission.Checked)
                     {
-                        dbconnection.Open();
-                        dbconnection2.Open();
-                        int storageReturnID = 0;
-                        ReturnedPermissionNumber = 1;
-
-                        string qq = "select Returned_Permission_Number from import_storage_return where Store_ID=" + comStoreFilter.SelectedValue.ToString() + " ORDER BY ImportStorageReturn_ID DESC LIMIT 1";
-                        MySqlCommand com3 = new MySqlCommand(qq, dbconnection);
-                        if (com3.ExecuteScalar() != null)
-                        {
-                            int r = int.Parse(com3.ExecuteScalar().ToString());
-                            ReturnedPermissionNumber = r + 1;
-                        }
-                        
-                        string query = "insert into import_storage_return (Store_ID,Returned_Permission_Number,Retrieval_Date,Import_Permission_Number,StorageImportPermission_ID,Reason,Employee_ID) values (@Store_ID,@Returned_Permission_Number,@Retrieval_Date,@Import_Permission_Number,@StorageImportPermission_ID,@Reason,@Employee_ID)";
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                        com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
-                        com.Parameters.Add("@Returned_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Returned_Permission_Number"].Value = ReturnedPermissionNumber;
-                        com.Parameters.Add("@Retrieval_Date", MySqlDbType.DateTime, 0);
-                        com.Parameters["@Retrieval_Date"].Value = DateTime.Now;
-                        com.Parameters.Add("@Import_Permission_Number", MySqlDbType.Int16);
-                        com.Parameters["@Import_Permission_Number"].Value = null;
-                        com.Parameters.Add("@StorageImportPermission_ID", MySqlDbType.Int16);
-                        com.Parameters["@StorageImportPermission_ID"].Value = null;
-                        com.Parameters.Add("@Reason", MySqlDbType.VarChar);
-                        com.Parameters["@Reason"].Value = txtReason.Text;
-                        com.Parameters.Add("@Employee_ID", MySqlDbType.Int16);
-                        com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
-                        com.ExecuteNonQuery();
-
-                        query = "select ImportStorageReturn_ID from import_storage_return order by ImportStorageReturn_ID desc limit 1";
-                        com = new MySqlCommand(query, dbconnection);
-                        storageReturnID = Convert.ToInt32(com.ExecuteScalar().ToString());
-
-                        UserControl.ItemRecord("import_storage_return", "اضافة", storageReturnID, DateTime.Now, "", dbconnection);
-
-                        query = "SELECT import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where ImportStorageReturn_ID=" + storageReturnID + " and Supplier_ID =" + comSupplier.SelectedValue.ToString() + " and Supplier_Permission_Number is null";
-                        com = new MySqlCommand(query, dbconnection);
-                        if (com.ExecuteScalar() != null)
-                        {
-                            storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
-                        }
-                        else
-                        {
-                            query = "insert into import_storage_return_supplier (Supplier_ID,Supplier_Permission_Number,ImportStorageReturn_ID) values (@Supplier_ID,@Supplier_Permission_Number,@ImportStorageReturn_ID)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16);
-                            com.Parameters["@Supplier_ID"].Value = comSupplier.SelectedValue.ToString();
-                            com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
-                            com.Parameters["@Supplier_Permission_Number"].Value = null;
-                            com.Parameters.Add("@ImportStorageReturn_ID", MySqlDbType.Int16);
-                            com.Parameters["@ImportStorageReturn_ID"].Value = storageReturnID;
-                            com.ExecuteNonQuery();
-
-                            query = "select ImportStorageReturnSupplier_ID from import_storage_return_supplier order by ImportStorageReturnSupplier_ID desc limit 1";
-                            com = new MySqlCommand(query, dbconnection);
-                            storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
-                        }
-
-                        for (int i = 0; i < gridView2.RowCount; i++)
-                        {
-                            DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
-
-                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
-                            //com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            //com.Parameters["@Store_Place_ID"].Value = null;
-                            com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
-                            com.Parameters["@Date"].Value = DateTime.Now;
-                            if (Convert.ToDouble(row2["Carton"].ToString()) > 0)
-                            {
-                                com.Parameters.Add("@Balatat", MySqlDbType.Int16);
-                                com.Parameters["@Balatat"].Value = row2["NumOfBalate"].ToString();
-                                com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
-                                com.Parameters["@Carton_Balata"].Value = row2["NumOfCarton"].ToString();
-                            }
-                            else
-                            {
-                                com.Parameters.Add("@Balatat", MySqlDbType.Int16);
-                                com.Parameters["@Balatat"].Value = null;
-                                com.Parameters.Add("@Carton_Balata", MySqlDbType.Int16);
-                                com.Parameters["@Carton_Balata"].Value = null;
-                            }
-                            com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = row2[0].ToString();
-                            com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                            com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
-                            com.Parameters.Add("@Reason", MySqlDbType.VarChar);
-                            com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
-                            com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
-                            com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
-                            com.ExecuteNonQuery();
-
-                            double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());
-
-                            dbconnection4.Open();
-                            //Store_Place_ID,
-                            query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString();
-                            com = new MySqlCommand(query, dbconnection4);
-                            MySqlDataReader dr = com.ExecuteReader();
-                            if (dr.HasRows)
-                            {
-                                while (dr.Read())
-                                {
-                                    if (totalQuant > 0)
-                                    {
-                                        double totalMeter = Convert.ToDouble(dr["Total_Meters"]);
-
-                                        if (totalMeter > 0)
-                                        {
-                                            if ((totalMeter - totalQuant) >= 0)
-                                            {
-                                                query = "update storage set Total_Meters=" + (totalMeter - totalQuant) + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
-                                                com = new MySqlCommand(query, dbconnection);
-                                                com.ExecuteNonQuery();
-
-                                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
-
-                                                totalQuant = 0;
-                                            }
-                                            else if ((totalMeter - totalQuant) < 0)
-                                            {
-                                                query = "update storage set Total_Meters=" + 0 + " where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStoreFilter.SelectedValue.ToString() /*+ " and Store_Place_ID=" + dr["Store_Place_ID"].ToString()*/;
-                                                com = new MySqlCommand(query, dbconnection);
-                                                com.ExecuteNonQuery();
-
-                                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من مرتجع اذن مخزن", dbconnection);
-
-                                                totalQuant = totalQuant - totalMeter;
-                                            }
-                                        }
-                                    }
-                                }
-                                dr.Close();
-                            }
-                            dbconnection4.Close();
-                        }
-                        dbconnection.Close();
-                        
                         dbconnection.Open();
                         string query2 = "select Store_Name from store where Store_ID=" + comStoreFilter.SelectedValue.ToString();
                         MySqlCommand com4 = new MySqlCommand(query2, dbconnection);
@@ -1357,7 +1321,7 @@ namespace MainSystem
                         }
 
                         Report_StorageReturn f = new Report_StorageReturn();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, txtReason.Text, bi);
+                        //f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, ReturnedPermissionNumber, txtReason.Text, bi);
                         f.ShowDialog();
 
                         displayData();

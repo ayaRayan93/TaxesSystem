@@ -57,6 +57,8 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,12 +76,12 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label16 = new System.Windows.Forms.Label();
             this.labelTotalDiscount = new System.Windows.Forms.Label();
-            this.labelTotalA = new System.Windows.Forms.Label();
-            this.txtAllTax = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.labelTotalCat = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.labelTotalA = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtAllTax = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -424,12 +426,16 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel4.ColumnCount = 6;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label18, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dateTimePicker1, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 683);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -453,12 +459,36 @@
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 18;
             this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(416, 4);
+            this.btnSave.Location = new System.Drawing.Point(365, 4);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(85, 46);
+            this.btnSave.Size = new System.Drawing.Size(92, 46);
             this.btnSave.TabIndex = 8;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(623, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(81, 18);
+            this.label18.TabIndex = 9;
+            this.label18.Text = "تاريخ الشراء";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(473, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(144, 24);
+            this.dateTimePicker1.TabIndex = 212;
             // 
             // tableLayoutPanel2
             // 
@@ -711,36 +741,6 @@
             this.labelTotalDiscount.Size = new System.Drawing.Size(0, 17);
             this.labelTotalDiscount.TabIndex = 42;
             // 
-            // labelTotalA
-            // 
-            this.labelTotalA.AutoSize = true;
-            this.labelTotalA.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalA.Location = new System.Drawing.Point(740, 37);
-            this.labelTotalA.Name = "labelTotalA";
-            this.labelTotalA.Size = new System.Drawing.Size(0, 17);
-            this.labelTotalA.TabIndex = 44;
-            // 
-            // txtAllTax
-            // 
-            this.txtAllTax.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAllTax.Location = new System.Drawing.Point(330, 40);
-            this.txtAllTax.Name = "txtAllTax";
-            this.txtAllTax.Size = new System.Drawing.Size(100, 24);
-            this.txtAllTax.TabIndex = 40;
-            this.txtAllTax.Text = "0.00";
-            this.txtAllTax.TextChanged += new System.EventHandler(this.txtAllTax_TextChanged);
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label15.Location = new System.Drawing.Point(436, 37);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(149, 17);
-            this.label15.TabIndex = 41;
-            this.label15.Text = "ضريبة القيمة المضافة %";
-            // 
             // label19
             // 
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -751,6 +751,15 @@
             this.label19.Size = new System.Drawing.Size(123, 17);
             this.label19.TabIndex = 45;
             this.label19.Text = "قيمة الزيادة القطعية";
+            // 
+            // labelTotalCat
+            // 
+            this.labelTotalCat.AutoSize = true;
+            this.labelTotalCat.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalCat.Location = new System.Drawing.Point(150, 0);
+            this.labelTotalCat.Name = "labelTotalCat";
+            this.labelTotalCat.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalCat.TabIndex = 47;
             // 
             // label20
             // 
@@ -763,14 +772,35 @@
             this.label20.TabIndex = 46;
             this.label20.Text = "الاجمالى";
             // 
-            // labelTotalCat
+            // labelTotalA
             // 
-            this.labelTotalCat.AutoSize = true;
-            this.labelTotalCat.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelTotalCat.Location = new System.Drawing.Point(150, 0);
-            this.labelTotalCat.Name = "labelTotalCat";
-            this.labelTotalCat.Size = new System.Drawing.Size(0, 17);
-            this.labelTotalCat.TabIndex = 47;
+            this.labelTotalA.AutoSize = true;
+            this.labelTotalA.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelTotalA.Location = new System.Drawing.Point(740, 37);
+            this.labelTotalA.Name = "labelTotalA";
+            this.labelTotalA.Size = new System.Drawing.Size(0, 17);
+            this.labelTotalA.TabIndex = 44;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label15.Location = new System.Drawing.Point(436, 37);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(149, 17);
+            this.label15.TabIndex = 41;
+            this.label15.Text = "ضريبة القيمة المضافة %";
+            // 
+            // txtAllTax
+            // 
+            this.txtAllTax.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAllTax.Location = new System.Drawing.Point(330, 40);
+            this.txtAllTax.Name = "txtAllTax";
+            this.txtAllTax.Size = new System.Drawing.Size(100, 24);
+            this.txtAllTax.TabIndex = 40;
+            this.txtAllTax.Text = "0.00";
+            this.txtAllTax.TextChanged += new System.EventHandler(this.txtAllTax_TextChanged);
             // 
             // panel2
             // 
@@ -828,6 +858,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -896,6 +927,8 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label labelTotalCat;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

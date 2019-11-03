@@ -792,6 +792,7 @@
             // 
             this.radioButtonWithOutReturnPermission.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButtonWithOutReturnPermission.AutoSize = true;
+            this.radioButtonWithOutReturnPermission.Enabled = false;
             this.radioButtonWithOutReturnPermission.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonWithOutReturnPermission.Location = new System.Drawing.Point(674, 68);
             this.radioButtonWithOutReturnPermission.Name = "radioButtonWithOutReturnPermission";
@@ -807,6 +808,7 @@
             // 
             this.radioButtonReturnPermission.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radioButtonReturnPermission.AutoSize = true;
+            this.radioButtonReturnPermission.Enabled = false;
             this.radioButtonReturnPermission.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonReturnPermission.Location = new System.Drawing.Point(697, 41);
             this.radioButtonReturnPermission.Name = "radioButtonReturnPermission";
