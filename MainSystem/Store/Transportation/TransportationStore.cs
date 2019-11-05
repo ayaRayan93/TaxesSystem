@@ -744,7 +744,7 @@ namespace MainSystem
                             com = new MySqlCommand(query, dbconnection);
                             if (com.ExecuteScalar() == null)
                             {
-                                query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
+                                query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                                 com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
@@ -756,9 +756,11 @@ namespace MainSystem
                                 com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                                 com.Parameters.Add("@Date", MySqlDbType.Date, 0);
                                 com.Parameters["@Date"].Value = DateTime.Now;
+                                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                com.Parameters["@Note"].Value = "تحويل";
                                 com.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "بسبب تحويل", dbconnection);
+                                UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "تحويل", dbconnection);
                             }
 
                             query = "select sum(Total_Meters) from storage where Data_ID=" + row2[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
@@ -771,11 +773,11 @@ namespace MainSystem
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt32(row2[0].ToString()), DateTime.Now, "اضافة بسبب تحويل", dbconnection);
+                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt32(row2[0].ToString()), DateTime.Now, "تحويل", dbconnection);
                             }
                             else
                             {
-                                query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Store_Place_ID,Total_Meters) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Store_Place_ID,@Total_Meters)";
+                                query = "insert into storage (Store_ID,Storage_Date,Type,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Storage_Date,@Type,@Data_ID,@Store_Place_ID,@Total_Meters,@Note)";
                                 com = new MySqlCommand(query, dbconnection);
                                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                 com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
@@ -789,9 +791,11 @@ namespace MainSystem
                                 com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
                                 com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                                 com.Parameters["@Total_Meters"].Value = row2["الكمية"].ToString();
+                                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                com.Parameters["@Note"].Value = "تحويل";
                                 com.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("storage", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "بسبب تحويل", dbconnection);
+                                UserControl.ItemRecord("storage", "اضافة", Convert.ToInt32(row2["Data_ID"].ToString()), DateTime.Now, "تحويل", dbconnection);
                             }
                         }
                     }
@@ -854,8 +858,10 @@ namespace MainSystem
         public void clear()
         {
             loaded = false;
+            loadToStore = false;
             comFromStore.SelectedIndex = -1;
             comToStore.DataSource = null;
+            comStorePlace.DataSource = null;
             txtCode.Text = "";
             txtQuantity.Text = "";
             comBranch.SelectedIndex = -1;
@@ -863,6 +869,7 @@ namespace MainSystem
             //cmbPlace.DataSource = null;
             gridControl1.DataSource = null;
             gridControl2.DataSource = null;
+            loadToStore = true;
             loaded = true;
         }
 

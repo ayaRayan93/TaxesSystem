@@ -878,7 +878,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, conn);
                                 if (com.ExecuteScalar() == null)
                                 {
-                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
+                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
                                     com = new MySqlCommand(query, conn);
                                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                                     com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
@@ -890,6 +890,8 @@ namespace MainSystem
                                     com.Parameters["@Store_Place_ID"].Value = comStorePlace.SelectedValue.ToString();
                                     com.Parameters.Add("@Date", MySqlDbType.DateTime, 0);
                                     com.Parameters["@Date"].Value = DateTime.Now;
+                                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                    com.Parameters["@Note"].Value = "اذن مخزن";
                                     com.ExecuteNonQuery();
 
                                     UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row1["Data_ID"].ToString()), DateTime.Now, "", conn);
@@ -907,7 +909,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query = "insert into storage (Store_ID,Type,Data_ID,Storage_Date,Total_Meters,Store_Place_ID) values (@Store_ID,@Type,@Data_ID,@Storage_Date,@Total_Meters,@Store_Place_ID)";
+                                    query = "insert into storage (Store_ID,Type,Data_ID,Storage_Date,Total_Meters,Store_Place_ID,Note) values (@Store_ID,@Type,@Data_ID,@Storage_Date,@Total_Meters,@Store_Place_ID,@Note)";
                                     com = new MySqlCommand(query, conn);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = storeId;
@@ -921,6 +923,8 @@ namespace MainSystem
                                     com.Parameters["@Data_ID"].Value = row1[0].ToString();
                                     com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                                     com.Parameters["@Total_Meters"].Value = total;
+                                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                    com.Parameters["@Note"].Value = "اذن مخزن";
                                     com.ExecuteNonQuery();
                                 }
                                 

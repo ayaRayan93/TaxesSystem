@@ -189,8 +189,10 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comEngCon.Text = Name;
+                                    loaded = false;
+                                    comEngCon.SelectedIndex = -1;
+                                    loaded = true;
                                     comEngCon.SelectedValue = txtCustomerID.Text;
-
                                 }
                                 else
                                 {
@@ -206,7 +208,9 @@ namespace MainSystem
                                 {
                                     Name = (string)com.ExecuteScalar();
                                     comClient.Text = Name;
+                                    loaded = false;
                                     comClient.SelectedValue = txtClientID.Text;
+                                    loaded = true;
                                 }
                                 else
                                 {
@@ -307,7 +311,7 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from customer_bill inner join customer on customer_bill.Client_ID=customer.Customer_ID where  customer_bill.Customer_ID=" + txtCustomerID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
+                query = "select * from customer_bill inner join customer on customer_bill.Customer_ID=customer.Customer_ID where  customer_bill.Customer_ID=" + txtCustomerID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
                 dataGridView1.Columns[3].Visible = true;
@@ -367,7 +371,7 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from customer_return_bill inner join customer on customer_return_bill.Client_ID=customer.Customer_ID where  customer_return_bill.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'";
+                query = "select * from customer_return_bill inner join customer on customer_return_bill.Customer_ID=customer.Customer_ID where  customer_return_bill.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'";
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
                 datagridview.Columns[3].Visible = true;
@@ -424,7 +428,7 @@ namespace MainSystem
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
                 dataGridView2.Columns[3].Visible = true;
-                query = "select * from transitions inner join customer on transitions.Client_ID=customer.Customer_ID  where transitions.Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
+                query = "select * from transitions inner join customer on transitions.Customer_ID=customer.Customer_ID  where transitions.Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='ايداع'";
                 query1 = "select * from customer_taswaya inner join customer on customer_taswaya.Client_ID=customer.Customer_ID where  customer_taswaya.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='اضافة'";
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
@@ -513,7 +517,7 @@ namespace MainSystem
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
-                query = "select * from transitions inner join customer on transitions.Client_ID=customer.Customer_ID where transitions.Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
+                query = "select * from transitions inner join customer on transitions.Customer_ID=customer.Customer_ID where transitions.Customer_ID=" + txtCustomerID.Text + "  and Date between '" + d + "' and '" + d2 + "' and Transition='سحب'";
                 query1 = "select * from customer_taswaya inner join customer on customer_taswaya.Client_ID=customer.Customer_ID where  customer_taswaya.Customer_ID=" + txtCustomerID.Text + " and Date between '" + d + "' and '" + d2 + "'  and Taswaya_Type='خصم'";
                 MySqlCommand com1 = new MySqlCommand(query, dbconnection1);
                 MySqlDataReader dr1 = com1.ExecuteReader();
