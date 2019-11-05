@@ -771,7 +771,7 @@ namespace MainSystem
                         com = new MySqlCommand(query, conn);
                         if (com.ExecuteScalar() == null)
                         {
-                            query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
+                            query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
                             com = new MySqlCommand(query, conn);
                             com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                             com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
@@ -785,9 +785,11 @@ namespace MainSystem
                             DateTime date = DateTime.Now;
                             string d = date.ToString("yyyy-MM-dd");
                             com.Parameters["@Date"].Value = d;
+                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                            com.Parameters["@Note"].Value = "تعديل اذن مخزن";
                             com.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row1["Data_ID"].ToString()), DateTime.Now, "", conn);
+                            UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row1["Data_ID"].ToString()), DateTime.Now, "تعديل اذن مخزن", conn);
                         }
 
                         query = "select Total_Meters from storage where Data_ID=" + row1["Data_ID"].ToString() + " and Store_ID=" + storeId; //+ " and Store_Place_ID=" + comStorePlace.SelectedValue.ToString();
@@ -800,11 +802,11 @@ namespace MainSystem
                             com = new MySqlCommand(query, conn);
                             com.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row1["Data_ID"].ToString()), DateTime.Now, "من اذن مخزن", conn);
+                            UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row1["Data_ID"].ToString()), DateTime.Now, "تعديل اذن مخزن", conn);
                         }
                         else
                         {
-                            query = "insert into storage (Store_ID,Store_Place_ID,Type,Storage_Date,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Type,@Storage_Date,@Data_ID,@Total_Meters)";
+                            query = "insert into storage (Store_ID,Store_Place_ID,Type,Storage_Date,Data_ID,Total_Meters,Note) values (@Store_ID,@Store_Place_ID,@Type,@Storage_Date,@Data_ID,@Total_Meters,@Note)";
                             com = new MySqlCommand(query, conn);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = storeId;
@@ -818,9 +820,11 @@ namespace MainSystem
                             com.Parameters["@Data_ID"].Value = row1[0].ToString();
                             com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                             com.Parameters["@Total_Meters"].Value = total;
+                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                            com.Parameters["@Note"].Value = "تعديل اذن مخزن";
                             com.ExecuteNonQuery();
 
-                            UserControl.ItemRecord("storage", "اضافة", Convert.ToInt16(row1[0].ToString()), DateTime.Now, "من اذن مخزن", conn);
+                            UserControl.ItemRecord("storage", "اضافة", Convert.ToInt16(row1[0].ToString()), DateTime.Now, "تعديل اذن مخزن", conn);
                         }
 
                         search();
@@ -881,7 +885,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, conn);
                                 com.ExecuteNonQuery();
 
-                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "من اذن مخزن", conn);
+                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(row2["Data_ID"].ToString()), DateTime.Now, "اذن مخزن", conn);
 
                                 #region MyRegion
                                 if (row2["Factory_ID"].ToString() != "" && row2["اذن الطلب"].ToString() != "")

@@ -607,7 +607,7 @@ namespace MainSystem
                                 com = new MySqlCommand(query, dbconnection);
                                 if (com.ExecuteScalar() == null)
                                 {
-                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date)";
+                                    query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                                     com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
@@ -621,9 +621,11 @@ namespace MainSystem
                                     DateTime date = DateTime.Now;
                                     string d = date.ToString("yyyy-MM-dd");
                                     com.Parameters["@Date"].Value = d;
+                                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                    com.Parameters["@Note"].Value = "تعديل تحويل";
                                     com.ExecuteNonQuery();
 
-                                    UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row1["Data_ID"].ToString()), DateTime.Now, "", dbconnection);
+                                    UserControl.ItemRecord("open_storage_account", "اضافة", Convert.ToInt32(row1["Data_ID"].ToString()), DateTime.Now, "تعديل تحويل", dbconnection);
                                 }
 
                                 query = "select sum(Total_Meters) from storage where Data_ID=" + row1[0].ToString() + " and Store_ID=" + comToStore.SelectedValue.ToString() + " group by Data_ID";
@@ -638,7 +640,7 @@ namespace MainSystem
                                 }
                                 else
                                 {
-                                    query = "insert into storage (Store_ID,Store_Place_ID,Storage_Date,Type,Data_ID,Total_Meters) values (@Store_ID,@Store_Place_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters)";
+                                    query = "insert into storage (Store_ID,Store_Place_ID,Storage_Date,Type,Data_ID,Total_Meters,Note) values (@Store_ID,@Store_Place_ID,@Storage_Date,@Type,@Data_ID,@Total_Meters,@Note)";
                                     com = new MySqlCommand(query, dbconnection);
                                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                                     com.Parameters["@Store_ID"].Value = comToStore.SelectedValue.ToString();
@@ -652,6 +654,8 @@ namespace MainSystem
                                     com.Parameters["@Data_ID"].Value = row1["Data_ID"].ToString();
                                     com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                                     com.Parameters["@Total_Meters"].Value = neededQuantity;
+                                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                                    com.Parameters["@Note"].Value = "تعديل تحويل";
                                     com.ExecuteNonQuery();
                                 }
                             }

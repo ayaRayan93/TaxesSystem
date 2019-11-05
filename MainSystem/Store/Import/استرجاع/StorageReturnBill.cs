@@ -157,6 +157,15 @@ namespace MainSystem
         {
             try
             {
+                gridControl1.DataSource = null;
+                gridView1.Columns.Clear();
+
+                for (int i = 0; i < gridView2.RowCount; i++)
+                {
+                    int rowHandle = gridView2.GetRowHandle(i);
+                    gridView2.DeleteRow(rowHandle);
+                }
+
                 panBillNumber.Visible = true;
                 groupBox1.Visible = false;
                 comType.Text = "";
@@ -186,6 +195,15 @@ namespace MainSystem
         {
             try
             {
+                gridControl1.DataSource = null;
+                gridView1.Columns.Clear();
+
+                for (int i = 0; i < gridView2.RowCount; i++)
+                {
+                    int rowHandle = gridView2.GetRowHandle(i);
+                    gridView2.DeleteRow(rowHandle);
+                }
+
                 panBillNumber.Visible = false;
                 groupBox1.Visible = true;
                 comType.Text = "";
